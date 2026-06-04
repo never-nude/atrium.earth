@@ -1,0 +1,138 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import WorkCard from '../components/WorkCard.astro';
+import Viewer from '../components/Viewer.astro';
+import TimelineStrip from '../components/TimelineStrip.astro';
+import { collectionHighlights, facets, featuredWorkForDate, recentlyPrepared, works } from '../lib/catalog';
+import { withBase } from '../lib/urls';
+
+const featured = featuredWorkForDate();
+const highlights = collectionHighlights();
+const recent = recentlyPrepared(8);
+const pathways = [
+  { label: 'Ancient Mediterranean', href: '/museum/?era=ancient&place=mediterranean', note: 'Greek, Roman, and classical works.' },
+  { label: 'Marble', href: '/museum/?material=marble', note: 'Stone figures, reliefs, and fragments.' },
+  { label: 'Bronze', href: '/museum/?material=bronze', note: 'Cast figures, ancient to modern.' },
+  { label: 'Renaissance', href: '/museum/?era=renaissance', note: 'European workshops and devotional works.' },
+  { label: 'The Human Figure', href: '/museum/?q=figure', note: 'Bodies, portraits, torsos, and studies.' },
+  { label: 'Asia', href: '/museum/?place=asia', note: 'Sculpture from across Asia.' },
+];
+
+const description = 'A digital museum of sculpture — explore 174 works in 3D, from antiquity to the modern era.';
+---
+
+<BaseLayout
+  title="Atrium.Earth"
+  description={description}
+  image={featured.posterImage}
+  jsonLd={{
+    '@context': 'https://schema.org',
+    '@type': 'Museum',
+    name: 'Atrium.Earth',
+    url: 'https://atrium.earth/',
+    description,
+  }}
+>
+  <section class="home-hero" aria-labelledby="home-title">
+    <div class="band-inner hero-content">
+      <p class="eyebrow">Digital sculpture museum</p>
+      <h1 id="home-title">Five thousand years of sculpture, up close.</h1>
+      <p class="lede">Open any piece to turn it from every angle, adjust the light, and study the surface in detail — antiquity to the modern era.</p>
+      <div class="hero-actions">
+        <a class="button" href={withBase('/museum/')}>Open the museum</a>
+        <a class="button secondary" href={withBase(featured.route)}>Featured piece</a>
+      </div>
+      <div class="hero-caption" aria-label="Featured piece">
+        <span>{featured.title}</span>
+        <span>{featured.maker || featured.sourceMuseum || featured.geography}</span>
+        <span>{featured.displayDate}</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="featured-title">
+    <div class="feature-block">
+      <Viewer
+        glb={featured.hasPreview ? withBase(featured.modelGlb) : ''}
+        poster={withBase(featured.thumbnailImage)}
+        title={featured.title}
+        hud={false}
+        tag={featured.hasPreview ? '3D MODEL' : 'PHOTOGRAPH'}
+        upAxis={featured.modelUpAxis}
+        materialAppearance={featured.materialAppearance}
+      />
+      <div>
+        <p class="eyebrow">Featured this week</p>
+        <h2 id="featured-title">{featured.title}</h2>
+        {featured.description && <p class="lede">{featured.description}</p>}
+        <ul class="meta-line" aria-label="Details">
+          {[featured.displayDate, featured.maker, featured.geography, featured.materials[0]]
+            .filter((v) => v && !/not yet recorded|unassigned/i.test(v))
+            .map((f) => <li>{f}</li>)}
+        </ul>
+        <div class="hero-actions">
+          <a class="button" href={withBase(featured.route)}>See this piece</a>
+          <a class="button secondary" href={withBase('/museum/')}>Browse the museum</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="timeline-title">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Across five millennia</p>
+        <h2 id="timeline-title">From 3000 BCE to the present.</h2>
+      </div>
+      <p class="lede">The collection runs from ancient reliefs to modern bronze.</p>
+    </div>
+    <TimelineStrip />
+    <div class="stat-grid">
+      <div class="stat-card"><strong>{works.length}</strong><span>works</span></div>
+      <div class="stat-card"><strong>{facets.geography.length}</strong><span>places</span></div>
+      <div class="stat-card"><strong>{facets.materials.length}</strong><span>materials</span></div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="pathways-title">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Where to start</p>
+        <h2 id="pathways-title">A few ways in.</h2>
+      </div>
+    </div>
+    <div class="pathway-grid">
+      {pathways.map((pathway) => (
+        <a class="pathway" href={withBase(pathway.href)}>
+          <strong>{pathway.label}</strong>
+          <span>{pathway.note}</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="highlights-title">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Highlights</p>
+        <h2 id="highlights-title">Some of the best-documented pieces.</h2>
+      </div>
+      <a class="text-link" href={withBase('/museum/')}>Browse all works</a>
+    </div>
+    <div class="rail">
+      {highlights.slice(0, 8).map((work, index) => <WorkCard work={work} eager={index < 4} />)}
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="recent-title">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Recently added</p>
+        <h2 id="recent-title">New to the collection.</h2>
+      </div>
+    </div>
+    <div class="rail">
+      {recent.map((work) => <WorkCard work={work} />)}
+    </div>
+  </section>
+</BaseLayout>

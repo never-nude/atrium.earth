@@ -1,0 +1,56 @@
+---
+import Viewer from './Viewer.astro';
+import type { Work } from '../lib/catalog';
+import { withBase } from '../lib/urls';
+
+type Props = {
+  work: Work;
+};
+
+const { work } = Astro.props;
+const hasModel = Boolean(work.modelGlb);
+---
+
+<section class="viewer-section" id="viewer" aria-labelledby="viewer-title">
+  <div class="section">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">In 3D</p>
+        <h2 id="viewer-title">Turn it around. Look closely.</h2>
+      </div>
+    </div>
+
+    <div class="viewer-grid">
+      <Viewer
+        glb={hasModel ? withBase(work.modelGlb) : ''}
+        poster={withBase(work.thumbnailImage)}
+        title={work.title}
+        hud={true}
+        tag={hasModel ? '3D MODEL' : 'PHOTOGRAPH'}
+        upAxis={work.modelUpAxis}
+        materialAppearance={work.materialAppearance}
+      />
+
+      <aside class="viewer-copy" aria-label="About this view">
+        {hasModel ? (
+          <>
+            <h3>What you can do</h3>
+            <ul class="how-list">
+              <li><strong>Spin it.</strong> Drag in any direction; right-drag to pan, scroll to zoom.</li>
+              <li><strong>Exposure.</strong> Brighten or dim the whole view.</li>
+              <li><strong>Light.</strong> Swing the light around to rake across the surface.</li>
+              <li><strong>Texture.</strong> Slide from rough to shiny — useful for bronze and wood.</li>
+              <li><strong>Auto-rotate &amp; wireframe.</strong> Toggle the slow turn, or see how it's built.</li>
+            </ul>
+            <p class="fine">Built from a 3D scan. The photo and the facts stay on the page if the model can't load.</p>
+          </>
+        ) : (
+          <>
+            <h3>Photograph only, for now</h3>
+            <p>A 3D model of this piece hasn't been prepared yet, so the page shows the still image and its record. More sculptures get the full 3D treatment over time.</p>
+          </>
+        )}
+      </aside>
+    </div>
+  </div>
+</section>

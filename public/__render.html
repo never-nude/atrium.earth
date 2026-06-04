@@ -1,0 +1,215 @@
+<!doctype html><html><head><meta charset="utf-8">
+<style>
+ html,body{margin:0;height:100%;overflow:hidden}
+ #bg{position:fixed;inset:0;background:
+   radial-gradient(70% 52% at 50% 20%, rgba(215,222,232,.07), transparent 72%),
+   #15243A;}
+ canvas{position:fixed;inset:0}
+</style>
+<script type="importmap">
+{"imports":{"three":"/node_modules/three/build/three.module.js","three/addons/":"/node_modules/three/examples/jsm/"}}
+</script>
+</head><body><div id="bg"></div>
+<script type="module">
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+import { MeshoptDecoder } from 'three/addons/libs/meshopt_decoder.module.js';
+const W=1000,H=1250;
+const renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});
+renderer.setSize(W,H); renderer.setPixelRatio(2);
+renderer.toneMapping=THREE.ACESFilmicToneMapping; renderer.toneMappingExposure=0.2; renderer.outputColorSpace=THREE.SRGBColorSpace;
+document.body.appendChild(renderer.domElement);
+const scene=new THREE.Scene();
+const camera=new THREE.PerspectiveCamera(32, W/H, .01, 100);
+const pmrem=new THREE.PMREMGenerator(renderer); scene.environment=pmrem.fromScene(new RoomEnvironment(),.04).texture;
+const hemi=new THREE.HemisphereLight(0xeaf0f7,0x0b1220,.7); scene.add(hemi);
+const key=new THREE.DirectionalLight(0xfff1dd,2.3); key.position.set(2.5,4,3); scene.add(key);
+const fill=new THREE.DirectionalLight(0x9fb6d6,.5); fill.position.set(-3,1.2,-2.5); scene.add(fill);
+const rim=new THREE.DirectionalLight(0xdbe8ff,.4); rim.position.set(-2.7,2.6,3.4); scene.add(rim);
+const loader=new GLTFLoader(); loader.setMeshoptDecoder(MeshoptDecoder); let current=null;
+function loop(){ renderer.render(scene,camera); requestAnimationFrame(loop); } loop();
+const defaultAppearance={
+  baseColor:'#9F9689',
+  secondaryColor:'#7A7268',
+  tintStrength:.1,
+  variation:.12,
+  metalness:0,
+  roughness:.68,
+  textureDefault:34,
+  exposure:.66,
+  envMapIntensity:.18,
+  emissiveIntensity:0,
+  mapLift:.16,
+  mapFloor:.05,
+  backdropTop:'#15243A',
+  backdropBase:'#15243A',
+  backdropGlow:'#D7DEE8',
+  backdropGlowStrength:.07,
+  keyLightIntensity:1.12,
+  fillLightIntensity:.88,
+  rimLightIntensity:1.16,
+  hemiLightIntensity:.82
+};
+function readAppearance(raw) {
+  try { return {...defaultAppearance, ...JSON.parse(raw || '{}')}; }
+  catch { return defaultAppearance; }
+}
+function clamp01(value){ return Math.max(0, Math.min(1, value)); }
+function noise01(value){ const s=Math.sin(value*12.9898)*43758.5453; return s-Math.floor(s); }
+function hexToRgba(hex, alpha){
+  const source=String(hex || '#E0A95B').replace('#','').trim();
+  const full=source.length===3 ? source.split('').map((char)=>char+char).join('') : source;
+  if(!/^[0-9a-f]{6}$/i.test(full)) return `rgba(224, 169, 91, ${clamp01(alpha)})`;
+  const value=Number.parseInt(full,16);
+  const r=(value>>16)&255, g=(value>>8)&255, b=value&255;
+  return `rgba(${r}, ${g}, ${b}, ${clamp01(alpha)})`;
+}
+function applyBackdrop(appearance){
+  const bg=document.getElementById('bg');
+  if(!bg) return;
+  const glow=hexToRgba(appearance.backdropGlow, appearance.backdropGlowStrength ?? defaultAppearance.backdropGlowStrength);
+  bg.style.background=[
+    `radial-gradient(70% 52% at 50% 20%, ${glow}, transparent 72%)`,
+    `radial-gradient(125% 95% at 50% -2%, ${appearance.backdropTop || defaultAppearance.backdropTop}, ${appearance.backdropBase || defaultAppearance.backdropBase} 72%)`
+  ].join(', ');
+}
+function applyLighting(appearance){
+  hemi.intensity=appearance.hemiLightIntensity ?? defaultAppearance.hemiLightIntensity;
+  key.intensity=appearance.keyLightIntensity ?? defaultAppearance.keyLightIntensity;
+  fill.intensity=appearance.fillLightIntensity ?? defaultAppearance.fillLightIntensity;
+  rim.intensity=appearance.rimLightIntensity ?? defaultAppearance.rimLightIntensity;
+}
+function addMaterialVariation(mesh, material, appearance) {
+  const position=mesh.geometry?.attributes?.position;
+  if(!position || position.count>850000) return;
+  if(!mesh.geometry.attributes.color) mesh.geometry=mesh.geometry.clone();
+  const colors=new Float32Array(position.count*3);
+  const base=new THREE.Color(appearance.baseColor);
+  const secondary=new THREE.Color(appearance.secondaryColor || appearance.baseColor);
+  const seed=noise01(String(mesh.name || material.name || 'atrium').length*17.17);
+  for(let i=0;i<position.count;i++){
+    const x=position.getX(i), y=position.getY(i), z=position.getZ(i);
+    const grain=noise01(x*37.1 + y*51.7 + z*73.3 + seed*19.9);
+    const vertical=clamp01((y+.5)*.75);
+    const mix=clamp01(grain*appearance.variation + vertical*appearance.variation*.45);
+    const color=base.clone().lerp(secondary, mix);
+    color.multiplyScalar(1 - appearance.variation*.28 + grain*appearance.variation*.42);
+    colors[i*3]=color.r; colors[i*3+1]=color.g; colors[i*3+2]=color.b;
+  }
+  mesh.geometry.setAttribute('color', new THREE.BufferAttribute(colors,3));
+  material.vertexColors=true;
+}
+function prepareMaterial(source) {
+  if('roughness' in source && 'metalness' in source && 'emissive' in source) return source;
+  const prepared=new THREE.MeshStandardMaterial({
+    name: source.name || 'atrium-material',
+    map: source.map || null,
+    normalMap: source.normalMap || null,
+    aoMap: source.aoMap || null,
+    alphaMap: source.alphaMap || null,
+    transparent: source.transparent || false,
+    opacity: source.opacity ?? 1,
+    side: source.side,
+    color: source.color ? source.color.clone() : new THREE.Color(0xffffff)
+  });
+  prepared.needsUpdate=true;
+  return prepared;
+}
+function applyMapLift(material, appearance) {
+  const mapLift=appearance.mapLift || 0;
+  const mapFloor=appearance.mapFloor || 0;
+  if(!material.map || (!mapLift && !mapFloor)) return;
+  const liftColor=new THREE.Color(appearance.secondaryColor || appearance.baseColor);
+  material.onBeforeCompile=(shader)=>{
+    shader.uniforms.atriumMapLift={value:mapLift};
+    shader.uniforms.atriumMapFloor={value:mapFloor};
+    shader.uniforms.atriumMapLiftColor={value:liftColor};
+    shader.fragmentShader=`
+uniform float atriumMapLift;
+uniform float atriumMapFloor;
+uniform vec3 atriumMapLiftColor;
+${shader.fragmentShader.replace('#include <map_fragment>', `
+#include <map_fragment>
+#ifdef USE_MAP
+  diffuseColor.rgb = mix(diffuseColor.rgb, atriumMapLiftColor, atriumMapLift);
+  float atriumLuma = dot(diffuseColor.rgb, vec3(0.2126, 0.7152, 0.0722));
+  if (atriumLuma < atriumMapFloor) {
+    diffuseColor.rgb *= atriumMapFloor / max(atriumLuma, 0.001);
+  }
+#endif
+`)}`;
+  };
+  material.customProgramCacheKey=()=>`atrium-map-lift-${mapLift}-${mapFloor}-${liftColor.getHexString()}`;
+}
+function applyMaterialAppearance(mesh, material, appearance) {
+  if(!('color' in material)) return;
+  const target=new THREE.Color(appearance.baseColor);
+  material.color.lerp(target, appearance.tintStrength);
+  if('metalness' in material) material.metalness=appearance.metalness;
+  if('roughness' in material) material.roughness=appearance.roughness;
+  if('envMapIntensity' in material) material.envMapIntensity=appearance.envMapIntensity;
+  if('emissive' in material && appearance.emissiveIntensity){
+    material.emissive.lerp(target, .72);
+    material.emissiveIntensity=appearance.emissiveIntensity;
+  }
+  applyMapLift(material, appearance);
+  addMaterialVariation(mesh, material, appearance);
+  material.needsUpdate=true;
+}
+function orientModel(model, upAxis='auto') {
+  const [axis, , yawValue]=String(upAxis || 'auto').toLowerCase().split(':');
+  let box=new THREE.Box3().setFromObject(model);
+  let size=box.getSize(new THREE.Vector3());
+  const isLikelyZUp = size.z > size.y * 1.15 && size.z > Math.min(size.x, size.y) * 1.15;
+  if (axis === 'z' || (axis === 'auto' && isLikelyZUp)) model.rotation.x -= Math.PI / 2;
+  const yaw=Number(yawValue)||0;
+  if (yaw) model.rotation.y += (yaw*Math.PI)/180;
+}
+function removeScanHelpers(model) {
+  const helpers=[];
+  model.traverse((obj)=>{
+    if (/^(?:cubo|disco)(?:_|\.|$)/i.test(obj.name || '') || /^(?:cubo|disco)(?:_|\.|$)/i.test(obj.material?.name || '')) helpers.push(obj);
+  });
+  for (const helper of helpers) helper.parent?.remove(helper);
+}
+window.loadModel=(url, upAxis='auto', rawAppearance='{}')=>new Promise((res,rej)=>{
+  if(current){ scene.remove(current); current=null; }
+  loader.load(url,(g)=>{
+    const appearance=readAppearance(rawAppearance);
+    applyBackdrop(appearance);
+    applyLighting(appearance);
+    renderer.toneMappingExposure=appearance.exposure;
+    const m=g.scene;
+    removeScanHelpers(m);
+    m.traverse((obj)=>{
+      if(!obj.isMesh || !obj.material) return;
+      const list=Array.isArray(obj.material) ? obj.material : [obj.material];
+      const prepared=list.map((material)=>prepareMaterial(material));
+      obj.material=Array.isArray(obj.material) ? prepared : prepared[0];
+      for(const material of prepared) applyMaterialAppearance(obj, material, appearance);
+    });
+    orientModel(m, upAxis);
+    let box=new THREE.Box3().setFromObject(m); let size=box.getSize(new THREE.Vector3());
+    const maxDim=Math.max(size.x,size.y,size.z)||1; m.scale.setScalar(1/maxDim);
+    box=new THREE.Box3().setFromObject(m); size=box.getSize(new THREE.Vector3());
+    const c=box.getCenter(new THREE.Vector3()); m.position.sub(c);
+    scene.add(m); current=m;
+    const isWideLow=Math.max(size.x,size.z)>Math.max(size.y*1.8,0.65);
+    const fitOverride=Number(String(upAxis || '').split(':')[1])||0;
+    const fit=fitOverride || (isWideLow?1.9:1.3);
+    const dist=(1/(2*Math.tan((camera.fov*Math.PI)/360)))*fit;
+    camera.position.set(dist*0.42, dist*0.26, dist*0.95); camera.lookAt(0,0,0);
+    setTimeout(()=>res(true),350);
+  }, undefined, (e)=>rej(String(e)));
+});
+window.__ready=true;
+const params=new URLSearchParams(window.location.search);
+const model=params.get('model');
+if (model) {
+  window.__ready=false;
+  window.loadModel(model, params.get('up') || 'auto', params.get('appearance') || '{}')
+    .then(() => { window.__ready=true; document.body.dataset.renderReady='true'; })
+    .catch((err) => { window.__ready=true; document.body.dataset.renderError=String(err); });
+}
+</script></body></html>

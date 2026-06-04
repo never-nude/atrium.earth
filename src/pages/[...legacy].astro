@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { legacyRedirects } from '../lib/legacy';
+import { withBase } from '../lib/urls';
+
+export function getStaticPaths() {
+  return legacyRedirects
+    .filter((redirect) => redirect.from.startsWith('/'))
+    .map((redirect) => ({
+      params: { legacy: redirect.from.replace(/^\/|\/$/g, '') },
+      props: { redirect },
+    }));
+}
+
+const { redirect } = Astro.props;
+---
+
+<BaseLayout title="Redirecting" description="This Atrium.Earth route has moved." canonical={redirect.to}>
+  <meta http-equiv="refresh" content={`0; url=${withBase(redirect.to)}`} slot="head" />
+  <section class="page-shell" aria-labelledby="redirect-title">
+    <p class="eyebrow">Moved</p>
+    <h1 id="redirect-title">This page has a new museum route.</h1>
+    <p class="lede">The canonical page is now <a href={withBase(redirect.to)}>{redirect.to}</a>.</p>
+    <a class="button" href={withBase(redirect.to)}>Open new route</a>
+  </section>
+</BaseLayout>

@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import WorkCard from '../../components/WorkCard.astro';
+import TimelineStrip from '../../components/TimelineStrip.astro';
+import { facets, formatYear, works } from '../../lib/catalog';
+
+const sorted = [...works].sort((a, b) => {
+  if (a.yearStart === null && b.yearStart === null) return a.index - b.index;
+  if (a.yearStart === null) return 1;
+  if (b.yearStart === null) return -1;
+  return a.yearStart - b.yearStart;
+});
+
+const groups = facets.eras.map((facet) => ({
+  ...facet,
+  works: sorted.filter((work) => work.era === facet.label),
+  firstYear: sorted.find((work) => work.era === facet.label && work.yearStart !== null)?.yearStart ?? null,
+}));
+---
+
+<BaseLayout
+  title="Timeline"
+  description="A chronological view of the Atrium.Earth sculpture collection from 3000 BCE to the present."
+  image={sorted[0]?.posterImage}
+>
+  <section class="page-shell" aria-labelledby="timeline-title">
+    <p class="eyebrow">Era</p>
+    <h1 id="timeline-title">Browse by era.</h1>
+    <p class="lede">Sculpture grouped by period, from antiquity to the modern era.</p>
+    <TimelineStrip />
+  </section>
+
+  <section class="section" aria-labelledby="chronology-title">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">By era</p>
+        <h2 id="chronology-title">Earliest dated works first.</h2>
+      </div>
+      <p class="lede">Works without a known date are listed on their own, not given a false one.</p>
+    </div>
+    <div class="collection-grid">
+      {sorted.slice(0, 24).map((work, index) => <WorkCard work={work} eager={index < 8} />)}
+    </div>
+  </section>
+
+  {groups.map((group) => (
+    <section class="section" id={group.value} aria-labelledby={`${group.value}-title`}>
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">{group.count} works</p>
+          <h2 id={`${group.value}-title`}>{group.label}</h2>
+        </div>
+        <p class="lede">{group.firstYear !== null ? `Starts around ${formatYear(group.firstYear)}` : 'Dates are being reviewed for this group.'}</p>
+      </div>
+      <div class="rail">
+        {group.works.slice(0, 8).map((work) => <WorkCard work={work} />)}
+      </div>
+    </section>
+  ))}
+</BaseLayout>

@@ -1,0 +1,54 @@
+---
+import type { Work } from '../lib/catalog';
+import { publicDataset } from '../lib/catalog';
+import { withBase } from '../lib/urls';
+
+type Props = {
+  work: Work;
+  eager?: boolean;
+};
+
+const { work, eager = false } = Astro.props;
+const data = publicDataset(work);
+const maker = work.maker || '';
+const material = work.materials[0] || '';
+const recordNo = `№ ${String(work.index).padStart(3, '0')}`;
+const alt = `${work.title}${maker ? ', ' + maker : ''}${material ? ', ' + material : ''} — ${work.era}`;
+---
+
+<article
+  class="work-card"
+  data-work-card
+  data-search={data.search}
+  data-year={data.year}
+  data-era={data.era}
+  data-place={data.place}
+  data-material={data.material}
+  data-maker={data.maker}
+  data-media={data.media}
+>
+  <a href={withBase(work.route)}>
+    <div class="work-card__image">
+      <img
+        src={withBase(work.thumbnailImage)}
+        alt={alt}
+        width="720"
+        height="900"
+        loading={eager ? 'eager' : 'lazy'}
+        decoding="async"
+      />
+      <span class="work-card__badge">{work.era}</span>
+      <span class="work-card__date">{recordNo}</span>
+    </div>
+    <div class="work-card__body">
+      <h3>{work.title}</h3>
+      {maker && <p class="work-card__maker">{maker}</p>}
+      {material && (
+        <ul class="meta-line" aria-label="Object summary">
+          <li>{material}</li>
+        </ul>
+      )}
+      {work.hasPreview && <span class="card-3d">3D model</span>}
+    </div>
+  </a>
+</article>

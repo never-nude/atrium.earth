@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import WorkCard from '../../components/WorkCard.astro';
+import { works } from '../../lib/catalog';
+import { withBase } from '../../lib/urls';
+
+const exhibitions = [
+  {
+    title: 'Stone and the Human Figure',
+    href: '/museum/?materials=marble&q=figure',
+    summary: 'Bodies, torsos, portraits, reliefs, and fragments where stone carries human presence.',
+    works: works.filter((work) => work.materials.includes('Marble') || work.materials.includes('Stone')).slice(0, 4),
+  },
+  {
+    title: 'Renaissance Workshop Records',
+    href: '/museum/?q=renaissance',
+    summary: 'Maker-led records from Michelangelo, Donatello, Verrocchio, and related European collections.',
+    works: works.filter((work) => work.era === 'Renaissance').slice(0, 4),
+  },
+  {
+    title: 'Relief, Fragment, Surface',
+    href: '/museum/?q=relief',
+    summary: 'Objects that read through planes, edges, architecture, and surviving surfaces.',
+    works: works.filter((work) => /relief|fragment|corbel|lintel|capital|stele/i.test(work.search)).slice(0, 4),
+  },
+];
+---
+
+<BaseLayout title="Exhibitions" description="Themed groupings from the sculpture collection.">
+  <section class="page-shell" aria-labelledby="exhibitions-title">
+    <p class="eyebrow">Exhibitions</p>
+    <h1 id="exhibitions-title">Themed groupings.</h1>
+    <p class="lede">A few themed ways through the collection.</p>
+  </section>
+
+  {exhibitions.map((exhibition) => (
+    <section class="section" aria-labelledby={`${exhibition.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}-title`}>
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Exhibition</p>
+          <h2 id={`${exhibition.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}-title`}>{exhibition.title}</h2>
+        </div>
+        <a class="text-link" href={withBase(exhibition.href)}>Open in museum</a>
+      </div>
+      <p class="lede">{exhibition.summary}</p>
+      <div class="rail">
+        {exhibition.works.map((work) => <WorkCard work={work} />)}
+      </div>
+    </section>
+  ))}
+</BaseLayout>

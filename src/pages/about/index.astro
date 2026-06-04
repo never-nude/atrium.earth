@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { facets, works } from '../../lib/catalog';
+
+const stats = [
+  ['Works', works.length],
+  ['Eras', facets.eras.length],
+  ['Places', facets.geography.length],
+  ['Materials', facets.materials.length],
+];
+---
+
+<BaseLayout title="About" description="What Atrium is, where the records come from, and how the 3D works.">
+  <section class="page-shell" aria-labelledby="about-title">
+    <p class="eyebrow">About</p>
+    <h1 id="about-title">About Atrium.</h1>
+    <p class="lede">Atrium is a digital museum of sculpture. Every piece has a photograph, the facts we can confirm, and — where one has been made — a 3D model you can turn around and study.</p>
+  </section>
+
+  <section class="section" aria-labelledby="how-title">
+    <div class="content-grid">
+      <div class="prose">
+        <h2 id="how-title">How it works</h2>
+        <p>Open any piece to turn it, light it, and look closely — or drop to a wireframe to see how it's built. The 3D loads on its own; a photo and the facts are always there too.</p>
+
+        <h2>Where the records come from</h2>
+        <p>The records and 3D scans come from SMK Open and related collections. We show the objective facts we can confirm — maker, date, material, dimensions, where it's held — and leave the rest blank rather than guess.</p>
+      </div>
+      <aside class="aside-panel">
+        <h2>The collection</h2>
+        <div class="stat-grid">
+          {stats.map(([label, value]) => (
+            <div class="stat-card"><strong>{value}</strong><span>{label}</span></div>
+          ))}
+        </div>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>

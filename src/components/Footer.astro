@@ -1,0 +1,21 @@
+---
+import { withBase } from '../lib/urls';
+---
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <span class="footer-name">Atrium.Earth</span>
+    <nav class="footer-links" aria-label="Footer">
+      <a href={withBase('/museum/')}>Museum</a>
+      <a href={withBase('/timeline/')}>Era</a>
+      <a href={withBase('/geography/')}>Place</a>
+      <a href={withBase('/materials/')}>Material</a>
+      <a href={withBase('/makers/')}>Maker</a>
+      <a href={withBase('/about/')}>About</a>
+    </nav>
+  </div>
+  <div class="site-footer__inner footer-fine">
+    <span>Records via SMK Open &amp; related sources</span>
+    <span>© 2026 Atrium.Earth · object records under their respective source rights</span>
+  </div>
+</footer>

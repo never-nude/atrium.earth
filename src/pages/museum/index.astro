@@ -1,0 +1,90 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FacetExplorer from '../../components/FacetExplorer.astro';
+import WorkCard from '../../components/WorkCard.astro';
+import Viewer from '../../components/Viewer.astro';
+import TimelineStrip from '../../components/TimelineStrip.astro';
+import { collectionHighlights, facets, featuredWorkForDate, works } from '../../lib/catalog';
+import { withBase } from '../../lib/urls';
+
+const featured = featuredWorkForDate();
+const highlights = collectionHighlights().slice(0, 4);
+---
+
+<BaseLayout
+  title="Museum"
+  description="Browse 174 sculptures by era, place, material, and maker."
+  image={featured.posterImage}
+>
+  <section class="page-shell" aria-labelledby="museum-title">
+    <p class="eyebrow">The museum · {works.length} works</p>
+    <h1 id="museum-title">The collection.</h1>
+    <p class="lede">{works.length} works, antiquity to the present. Use the filters to narrow by era, place, material, or maker — or search by name.</p>
+    <TimelineStrip />
+  </section>
+
+  <section class="section" aria-labelledby="featured-object">
+    <div class="feature-block">
+      <Viewer
+        glb={featured.hasPreview ? withBase(featured.modelGlb) : ''}
+        poster={withBase(featured.thumbnailImage)}
+        title={featured.title}
+        hud={false}
+        tag={featured.hasPreview ? '3D MODEL' : 'PHOTOGRAPH'}
+        upAxis={featured.modelUpAxis}
+        materialAppearance={featured.materialAppearance}
+      />
+      <div>
+        <p class="eyebrow">Featured this week</p>
+        <h2 id="featured-object">{featured.title}</h2>
+        {featured.description && <p class="lede">{featured.description}</p>}
+        <ul class="meta-line" aria-label="Details">
+          {[featured.displayDate, featured.maker, featured.geography, featured.materials[0]]
+            .filter((v) => v && !/not yet recorded|unassigned/i.test(v))
+            .map((f) => <li>{f}</li>)}
+        </ul>
+        <div class="hero-actions">
+          <a class="button" href={withBase(featured.route)}>See this piece</a>
+          <a class="button secondary" href="#collection-grid">Browse the grid</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="collection-grid" aria-labelledby="collection-title">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Browse</p>
+        <h2 id="collection-title">Find a piece.</h2>
+      </div>
+      <p class="lede">Narrow by era, place, material, maker, or media. Every change updates the grid right away.</p>
+    </div>
+    <FacetExplorer works={works} />
+  </section>
+
+  <section class="section" aria-labelledby="discovery-title">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">More ways in</p>
+        <h2 id="discovery-title">Other routes through the collection.</h2>
+      </div>
+    </div>
+    <div class="pathway-grid">
+      <a class="pathway" href={withBase('/timeline/')}><strong>Era</strong><span>{facets.eras.length} eras, ancient to modern.</span></a>
+      <a class="pathway" href={withBase('/geography/')}><strong>Place</strong><span>{facets.geography.length} places across the collection.</span></a>
+      <a class="pathway" href={withBase('/materials/')}><strong>Material</strong><span>{facets.materials.length} materials, marble to bronze.</span></a>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="highlight-rail-title">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Start here</p>
+        <h2 id="highlight-rail-title">A few to begin with.</h2>
+      </div>
+    </div>
+    <div class="rail">
+      {highlights.map((work) => <WorkCard work={work} />)}
+    </div>
+  </section>
+</BaseLayout>

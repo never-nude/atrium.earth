@@ -1,0 +1,170 @@
+---
+import WorkCard from './WorkCard.astro';
+import type { Work } from '../lib/catalog';
+import { facets } from '../lib/catalog';
+
+type Props = {
+  works: Work[];
+};
+
+const { works } = Astro.props;
+const modelCount = works.filter((work) => work.hasPreview).length;
+const stillCount = works.length - modelCount;
+---
+
+<div data-museum-explorer>
+  <form class="museum-tools" aria-label="Search and filter the collection" data-filter-form>
+    <div class="filter-grid">
+      <label class="field field--search">
+        <span>Search</span>
+        <input type="search" placeholder="Title, maker, place, material" autocomplete="off" data-search />
+      </label>
+
+      <label class="field">
+        <span>Era</span>
+        <select data-filter="era">
+          <option value="">All eras</option>
+          {facets.eras.map((facet) => <option value={facet.value}>{facet.label} ({facet.count})</option>)}
+        </select>
+      </label>
+
+      <label class="field">
+        <span>Place</span>
+        <select data-filter="place">
+          <option value="">All places</option>
+          {facets.geography.map((facet) => <option value={facet.value}>{facet.label} ({facet.count})</option>)}
+        </select>
+      </label>
+
+      <label class="field">
+        <span>Material</span>
+        <select data-filter="material">
+          <option value="">All materials</option>
+          {facets.materials.map((facet) => <option value={facet.value}>{facet.label} ({facet.count})</option>)}
+        </select>
+      </label>
+
+      <label class="field">
+        <span>Maker</span>
+        <select data-filter="maker">
+          <option value="">All makers</option>
+          {facets.makers.map((facet) => <option value={facet.value}>{facet.label} ({facet.count})</option>)}
+        </select>
+      </label>
+
+      <label class="field">
+        <span>Media</span>
+        <select data-filter="media">
+          <option value="">All media</option>
+          <option value="model">Has 3D model ({modelCount})</option>
+          <option value="still">Still image only ({stillCount})</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="result-row">
+      <span data-result-count>All records · <b>{works.length}</b></span>
+      <button class="button subtle" type="reset" data-reset-filters>Reset</button>
+    </div>
+  </form>
+
+  <div class="collection-grid" data-grid>
+    {works.map((work, index) => <WorkCard work={work} eager={index < 8} />)}
+  </div>
+
+  <div class="empty-state" data-empty hidden>
+    <strong>No records match these filters.</strong>
+    <p class="fine">Try removing a filter, or <button type="button" class="text-link" data-reset-inline>reset all filters</button> to see all {works.length} records.</p>
+  </div>
+</div>
+
+<script>
+  const explorers = document.querySelectorAll('[data-museum-explorer]');
+
+  for (const explorer of explorers) {
+    const form = explorer.querySelector('[data-filter-form]');
+    const grid = explorer.querySelector('[data-grid]');
+    const empty = explorer.querySelector('[data-empty]');
+    const cards = [...explorer.querySelectorAll('[data-work-card]')];
+    const search = explorer.querySelector('[data-search]');
+    const count = explorer.querySelector('[data-result-count]');
+    const selects = [...explorer.querySelectorAll('[data-filter]')];
+
+    if (!(form instanceof HTMLFormElement) || !(search instanceof HTMLInputElement) || !grid || !empty || !count) {
+      continue;
+    }
+
+    const total = cards.length;
+
+    // Hydrate filters from the URL so a shared link reproduces the view.
+    const params = new URLSearchParams(window.location.search);
+    if (params.has('q')) search.value = params.get('q') || '';
+    for (const select of selects) {
+      const key = select.getAttribute('data-filter');
+      if (key && params.has(key)) select.value = params.get(key) || '';
+    }
+
+    function matchesSelect(card, select) {
+      const key = select.getAttribute('data-filter');
+      const value = select.value;
+      if (!key || !value) return true;
+      if (key === 'material') return (card.getAttribute('data-material') || '').split(' ').includes(value);
+      return card.getAttribute(`data-${key}`) === value;
+    }
+
+    function syncUrl() {
+      const next = new URLSearchParams();
+      if (search.value.trim()) next.set('q', search.value.trim());
+      for (const select of selects) {
+        const key = select.getAttribute('data-filter');
+        if (key && select.value) next.set(key, select.value);
+      }
+      const query = next.toString();
+      const url = query ? `${window.location.pathname}?${query}` : window.location.pathname;
+      window.history.replaceState({}, '', url);
+    }
+
+    function apply() {
+      const query = search.value.trim().toLowerCase();
+      let visible = 0;
+
+      for (const card of cards) {
+        const searchMatch = !query || (card.getAttribute('data-search') || '').includes(query);
+        const selectMatch = selects.every((select) => matchesSelect(card, select));
+        const show = searchMatch && selectMatch;
+        card.classList.toggle('hidden', !show);
+        if (show) visible += 1;
+      }
+
+      for (const select of selects) select.classList.toggle('is-active', Boolean(select.value));
+
+      const anyFilter = Boolean(query) || selects.some((select) => select.value);
+      count.innerHTML = anyFilter
+        ? `Showing <b>${visible}</b> of <b>${total}</b> records`
+        : `All records · <b>${total}</b>`;
+
+      const none = visible === 0;
+      grid.classList.toggle('hidden', none);
+      empty.classList.toggle('is-visible', none);
+      empty.toggleAttribute('hidden', !none);
+
+      syncUrl();
+    }
+
+    form.addEventListener('input', apply);
+    form.addEventListener('change', apply);
+    form.addEventListener('reset', () => {
+      window.setTimeout(() => {
+        for (const select of selects) select.value = '';
+        apply();
+      }, 0);
+    });
+    explorer.querySelector('[data-reset-inline]')?.addEventListener('click', () => {
+      search.value = '';
+      for (const select of selects) select.value = '';
+      apply();
+    });
+
+    apply();
+  }
+</script>

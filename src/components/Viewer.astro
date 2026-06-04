@@ -1,0 +1,479 @@
+---
+type Props = {
+  glb?: string;
+  poster: string;
+  title: string;
+  hud?: boolean;
+  tag?: string;
+  upAxis?: string;
+  materialAppearance?: Record<string, unknown>;
+};
+const { glb = '', poster, title, hud = true, tag, upAxis = 'auto', materialAppearance = {} } = Astro.props;
+const hasModel = Boolean(glb);
+const uid = Math.random().toString(36).slice(2, 8);
+const appearanceJson = JSON.stringify(materialAppearance);
+---
+
+<div class="viewer" data-viewer>
+  <div class="model-stage" data-stage data-glb={hasModel ? glb : ''} data-up-axis={upAxis} data-material-appearance={appearanceJson}>
+    <span class="stage-corner stage-corner--tl" aria-hidden="true"></span>
+    <span class="stage-corner stage-corner--tr" aria-hidden="true"></span>
+    <span class="stage-corner stage-corner--bl" aria-hidden="true"></span>
+    <span class="stage-corner stage-corner--br" aria-hidden="true"></span>
+    <span class="stage-tag" aria-hidden="true">{tag ?? (hasModel ? '3D MODEL' : 'PHOTOGRAPH')}</span>
+
+    <img src={poster} alt={`${title} — still image`} width="720" height="900" loading="lazy" decoding="async" data-poster />
+
+    {hasModel && (
+      <button class="stage-activate" type="button" data-activate>
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+          <path d="M12 2 4 6.5v9L12 20l8-4.5v-9L12 2z" />
+          <path d="M4 6.5 12 11l8-4.5M12 11v9" />
+        </svg>
+        Examine in 3D
+      </button>
+    )}
+    <div class="stage-loading" data-loading hidden>
+      <span class="spinner" aria-hidden="true"></span>
+      <span class="loading-text">Loading…</span>
+    </div>
+  </div>
+
+  {hud && hasModel && (
+    <div class="viewer-hud" data-hud-panel hidden>
+      <div class="hud-control">
+        <label for={`b-${uid}`}>Exposure <span class="hud-read" data-read-brightness>20%</span></label>
+        <input id={`b-${uid}`} type="range" min="5" max="120" step="1" value="20" data-brightness />
+      </div>
+      <div class="hud-control">
+        <label for={`r-${uid}`}>Texture <span class="hud-ends">rough → shiny</span></label>
+        <input id={`r-${uid}`} type="range" min="0" max="100" step="1" value="20" data-texture />
+      </div>
+      <div class="hud-control">
+        <label for={`l-${uid}`}>Light <span class="hud-ends">swing around</span></label>
+        <input id={`l-${uid}`} type="range" min="0" max="100" step="1" value="15" data-light />
+      </div>
+      <div class="hud-control hud-control--row">
+        <label class="hud-switch">
+          <input type="checkbox" data-autorotate checked />
+          <span>Auto-rotate</span>
+        </label>
+        <label class="hud-switch">
+          <input type="checkbox" data-wireframe />
+          <span>Wireframe</span>
+        </label>
+        <button class="hud-reset" type="button" data-reset>Reset view</button>
+      </div>
+    </div>
+  )}
+
+  {hasModel && <p class="stage-hint fine" data-hint hidden>Drag to rotate · right-drag to pan · scroll to zoom · double-tap to reset</p>}
+
+  <noscript><p class="fine">Showing the still photo. Turn on JavaScript for the 3D model.</p></noscript>
+</div>
+
+<script>
+  type Viewer = {
+    setBrightness: (pct: number) => void;
+    setTexture: (pct: number) => void;
+    setLightAngle: (pct: number) => void;
+    setWireframe: (on: boolean) => void;
+    setAutoRotate: (on: boolean) => void;
+    reset: () => void;
+    defaults: { exposure: number; texture: number };
+  };
+
+  type Appearance = {
+    baseColor: string;
+    secondaryColor: string;
+    tintStrength: number;
+    variation: number;
+    metalness: number;
+    roughness: number;
+    textureDefault: number;
+    exposure: number;
+    envMapIntensity: number;
+    emissiveIntensity?: number;
+    mapLift?: number;
+    mapFloor?: number;
+    backdropTop?: string;
+    backdropBase?: string;
+    backdropGlow?: string;
+    backdropGlowStrength?: number;
+    keyLightIntensity?: number;
+    fillLightIntensity?: number;
+    rimLightIntensity?: number;
+    hemiLightIntensity?: number;
+  };
+
+  const defaultAppearance: Appearance = {
+    baseColor: '#9F9689',
+    secondaryColor: '#7A7268',
+    tintStrength: 0.1,
+    variation: 0.12,
+    metalness: 0,
+    roughness: 0.68,
+    textureDefault: 34,
+    exposure: 0.66,
+    envMapIntensity: 0.18,
+    emissiveIntensity: 0,
+    mapLift: 0.16,
+    mapFloor: 0.05,
+    backdropTop: '#15243A',
+    backdropBase: '#15243A',
+    backdropGlow: '#D7DEE8',
+    backdropGlowStrength: 0.07,
+    keyLightIntensity: 1.12,
+    fillLightIntensity: 0.88,
+    rimLightIntensity: 1.16,
+    hemiLightIntensity: 0.82,
+  };
+
+  function readAppearance(stage: HTMLElement): Appearance {
+    try {
+      return { ...defaultAppearance, ...JSON.parse(stage.dataset.materialAppearance || '{}') };
+    } catch {
+      return defaultAppearance;
+    }
+  }
+
+  function clamp01(value: number) {
+    return Math.max(0, Math.min(1, value));
+  }
+
+  function noise01(value: number) {
+    const s = Math.sin(value * 12.9898) * 43758.5453;
+    return s - Math.floor(s);
+  }
+
+  function hexToRgba(hex: string | undefined, alpha: number) {
+    const source = (hex || '#E0A95B').replace('#', '').trim();
+    const full = source.length === 3 ? source.split('').map((char) => char + char).join('') : source;
+    if (!/^[0-9a-f]{6}$/i.test(full)) return `rgba(224, 169, 91, ${clamp01(alpha)})`;
+    const value = Number.parseInt(full, 16);
+    const r = (value >> 16) & 255;
+    const g = (value >> 8) & 255;
+    const b = value & 255;
+    return `rgba(${r}, ${g}, ${b}, ${clamp01(alpha)})`;
+  }
+
+  function applyStageBackdrop(stage: HTMLElement, appearance: Appearance) {
+    const top = appearance.backdropTop || defaultAppearance.backdropTop;
+    const base = appearance.backdropBase || defaultAppearance.backdropBase;
+    const glow = hexToRgba(appearance.backdropGlow, appearance.backdropGlowStrength ?? defaultAppearance.backdropGlowStrength ?? 0.18);
+    stage.style.background = [
+      `radial-gradient(70% 52% at 50% 20%, ${glow}, transparent 72%)`,
+      `radial-gradient(120% 80% at 50% -5%, ${top}, ${base} 78%)`,
+    ].join(', ');
+  }
+
+  function addMaterialVariation(THREE: any, mesh: any, material: any, appearance: Appearance) {
+    const position = mesh.geometry?.attributes?.position;
+    if (!position || position.count > 850000) return;
+
+    if (!mesh.geometry.attributes.color) mesh.geometry = mesh.geometry.clone();
+    const colors = new Float32Array(position.count * 3);
+    const base = new THREE.Color(appearance.baseColor);
+    const secondary = new THREE.Color(appearance.secondaryColor || appearance.baseColor);
+    const seed = noise01((mesh.name || material.name || 'atrium').length * 17.17);
+
+    for (let i = 0; i < position.count; i += 1) {
+      const x = position.getX(i), y = position.getY(i), z = position.getZ(i);
+      const grain = noise01(x * 37.1 + y * 51.7 + z * 73.3 + seed * 19.9);
+      const vertical = clamp01((y + 0.5) * 0.75);
+      const mix = clamp01(grain * appearance.variation + vertical * appearance.variation * 0.45);
+      const color = base.clone().lerp(secondary, mix);
+      const shade = 1 - appearance.variation * 0.28 + grain * appearance.variation * 0.42;
+      color.multiplyScalar(shade);
+      colors[i * 3] = color.r;
+      colors[i * 3 + 1] = color.g;
+      colors[i * 3 + 2] = color.b;
+    }
+
+    mesh.geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+    material.vertexColors = true;
+  }
+
+  function prepareMaterial(THREE: any, source: any) {
+    if ('roughness' in source && 'metalness' in source && 'emissive' in source) return source;
+    const prepared = new THREE.MeshStandardMaterial({
+      name: source.name || 'atrium-material',
+      map: source.map || null,
+      normalMap: source.normalMap || null,
+      aoMap: source.aoMap || null,
+      alphaMap: source.alphaMap || null,
+      transparent: source.transparent || false,
+      opacity: source.opacity ?? 1,
+      side: source.side,
+      color: source.color ? source.color.clone() : new THREE.Color(0xffffff),
+    });
+    prepared.needsUpdate = true;
+    return prepared;
+  }
+
+  function applyMapLift(THREE: any, material: any, appearance: Appearance) {
+    const mapLift = appearance.mapLift || 0;
+    const mapFloor = appearance.mapFloor || 0;
+    if (!material.map || (!mapLift && !mapFloor)) return;
+    const liftColor = new THREE.Color(appearance.secondaryColor || appearance.baseColor);
+    material.onBeforeCompile = (shader: any) => {
+      shader.uniforms.atriumMapLift = { value: mapLift };
+      shader.uniforms.atriumMapFloor = { value: mapFloor };
+      shader.uniforms.atriumMapLiftColor = { value: liftColor };
+      shader.fragmentShader = `
+uniform float atriumMapLift;
+uniform float atriumMapFloor;
+uniform vec3 atriumMapLiftColor;
+${shader.fragmentShader.replace('#include <map_fragment>', `
+#include <map_fragment>
+#ifdef USE_MAP
+  diffuseColor.rgb = mix(diffuseColor.rgb, atriumMapLiftColor, atriumMapLift);
+  float atriumLuma = dot(diffuseColor.rgb, vec3(0.2126, 0.7152, 0.0722));
+  if (atriumLuma < atriumMapFloor) {
+    diffuseColor.rgb *= atriumMapFloor / max(atriumLuma, 0.001);
+  }
+#endif
+`)}`;
+    };
+    material.customProgramCacheKey = () => `atrium-map-lift-${mapLift}-${mapFloor}-${liftColor.getHexString()}`;
+  }
+
+  function applyMaterialAppearance(THREE: any, mesh: any, material: any, appearance: Appearance) {
+    if (!('color' in material)) return;
+    const target = new THREE.Color(appearance.baseColor);
+    material.color.lerp(target, appearance.tintStrength);
+    if ('metalness' in material) material.metalness = appearance.metalness;
+    if ('roughness' in material) material.roughness = appearance.roughness;
+    if ('envMapIntensity' in material) material.envMapIntensity = appearance.envMapIntensity;
+    if ('emissive' in material && appearance.emissiveIntensity) {
+      material.emissive.lerp(target, 0.72);
+      material.emissiveIntensity = appearance.emissiveIntensity;
+    }
+    applyMapLift(THREE, material, appearance);
+    addMaterialVariation(THREE, mesh, material, appearance);
+    material.needsUpdate = true;
+  }
+
+  async function buildViewer(stage: HTMLElement, glb: string): Promise<Viewer> {
+    const THREE = await import('three');
+    const { GLTFLoader } = await import('three/examples/jsm/loaders/GLTFLoader.js');
+    const { OrbitControls } = await import('three/examples/jsm/controls/OrbitControls.js');
+    const { RoomEnvironment } = await import('three/examples/jsm/environments/RoomEnvironment.js');
+    const { MeshoptDecoder } = await import('three/examples/jsm/libs/meshopt_decoder.module.js');
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    let width = stage.clientWidth || 600;
+    let height = stage.clientHeight || 600;
+    const appearance = readAppearance(stage);
+    applyStageBackdrop(stage, appearance);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(width, height);
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = appearance.exposure;
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.domElement.classList.add('viewer-canvas');
+    stage.appendChild(renderer.domElement);
+    renderer.domElement.addEventListener('contextmenu', (e) => e.preventDefault());
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(35, width / height, 0.01, 200);
+
+    const pmrem = new THREE.PMREMGenerator(renderer);
+    scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+
+    scene.add(new THREE.HemisphereLight(0xeaf0f7, 0x0b1220, appearance.hemiLightIntensity ?? 0.7));
+    const key = new THREE.DirectionalLight(0xfff1dd, appearance.keyLightIntensity ?? 2.4);
+    const keyRadius = 5, keyHeight = 4;
+    function placeKey(pct: number) { const a = (pct / 100) * Math.PI * 2; key.position.set(Math.cos(a) * keyRadius, keyHeight, Math.sin(a) * keyRadius); }
+    placeKey(15);
+    scene.add(key);
+    const fill = new THREE.DirectionalLight(0x9fb6d6, appearance.fillLightIntensity ?? 0.55);
+    fill.position.set(-3, 1.2, -2.5);
+    scene.add(fill);
+    const rim = new THREE.DirectionalLight(0xdbe8ff, appearance.rimLightIntensity ?? 0.4);
+    rim.position.set(-2.7, 2.6, 3.4);
+    scene.add(rim);
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.08;
+    controls.enablePan = true;
+    controls.rotateSpeed = 0.9;
+    controls.zoomSpeed = 0.8;
+    controls.mouseButtons = { LEFT: THREE.MOUSE.ROTATE, MIDDLE: THREE.MOUSE.DOLLY, RIGHT: THREE.MOUSE.PAN };
+    controls.autoRotate = !reduce;
+    controls.autoRotateSpeed = 0.5;
+
+    const loader = new GLTFLoader();
+    loader.setMeshoptDecoder(MeshoptDecoder);
+    const gltf = await loader.loadAsync(glb);
+    const model = gltf.scene;
+    const [upAxis, fitValue, yawValue] = (stage.dataset.upAxis || 'auto').toLowerCase().split(':');
+    const fitOverride = Number(fitValue) || 0;
+    const yawOverride = Number(yawValue) || 0;
+
+    const scanHelpers: any[] = [];
+    const materials: any[] = [];
+    model.traverse((obj: any) => {
+      if (/^(?:cubo|disco)(?:_|\.|$)/i.test(obj.name || '') || /^(?:cubo|disco)(?:_|\.|$)/i.test(obj.material?.name || '')) {
+        scanHelpers.push(obj);
+        return;
+      }
+      if (obj.isMesh && obj.material) {
+        const list = Array.isArray(obj.material) ? obj.material : [obj.material];
+        const prepared = list.map((m: any) => prepareMaterial(THREE, m));
+        obj.material = Array.isArray(obj.material) ? prepared : prepared[0];
+        for (const m of prepared) {
+          applyMaterialAppearance(THREE, obj, m, appearance);
+          materials.push(m);
+        }
+      }
+    });
+    for (const helper of scanHelpers) helper.parent?.remove(helper);
+
+    // Normalize to ~1 unit and center (source meshes vary wildly in scale).
+    let box = new THREE.Box3().setFromObject(model);
+    let size = box.getSize(new THREE.Vector3());
+    const isLikelyZUp = size.z > size.y * 1.15 && size.z > Math.min(size.x, size.y) * 1.15;
+    let transformed = false;
+    if (upAxis === 'z' || (upAxis === 'auto' && isLikelyZUp)) {
+      model.rotation.x -= Math.PI / 2;
+      transformed = true;
+    }
+    if (yawOverride) {
+      model.rotation.y += (yawOverride * Math.PI) / 180;
+      transformed = true;
+    }
+    if (transformed) {
+      box = new THREE.Box3().setFromObject(model);
+      size = box.getSize(new THREE.Vector3());
+    }
+    const maxDim = Math.max(size.x, size.y, size.z) || 1;
+    model.scale.setScalar(1 / maxDim);
+    box = new THREE.Box3().setFromObject(model);
+    size = box.getSize(new THREE.Vector3());
+    const center = box.getCenter(new THREE.Vector3());
+    model.position.sub(center);
+    scene.add(model);
+
+    const isWideLow = Math.max(size.x, size.z) > Math.max(size.y * 1.8, 0.65);
+    const fit = fitOverride || (isWideLow ? 1.9 : 1.35);
+    const dist = (1 / (2 * Math.tan((camera.fov * Math.PI) / 360))) * fit;
+    camera.near = 0.01;
+    camera.far = 100;
+    camera.position.set(dist * 0.55, dist * 0.34, dist * 0.9);
+    camera.updateProjectionMatrix();
+    controls.target.set(0, 0, 0);
+    controls.minDistance = 0.5;
+    controls.maxDistance = 8;
+    controls.update();
+
+    const grid = new THREE.GridHelper(4, 24, 0x3a557a, 0x22324a);
+    grid.position.y = -size.y / 2 - 0.001;
+    (grid.material as any).transparent = true;
+    (grid.material as any).opacity = 0.18;
+    scene.add(grid);
+
+    // Soft contact shadow so the piece sits on the floor instead of floating.
+    const shadowCanvas = document.createElement('canvas');
+    shadowCanvas.width = shadowCanvas.height = 256;
+    const sctx = shadowCanvas.getContext('2d')!;
+    const sgrad = sctx.createRadialGradient(128, 128, 8, 128, 128, 128);
+    sgrad.addColorStop(0, 'rgba(0,0,0,0.55)');
+    sgrad.addColorStop(0.55, 'rgba(0,0,0,0.18)');
+    sgrad.addColorStop(1, 'rgba(0,0,0,0)');
+    sctx.fillStyle = sgrad;
+    sctx.fillRect(0, 0, 256, 256);
+    const shadowFoot = Math.max(0.5, Math.max(size.x, size.z) * 1.9);
+    const shadow = new THREE.Mesh(
+      new THREE.PlaneGeometry(shadowFoot, shadowFoot),
+      new THREE.MeshBasicMaterial({ map: new THREE.CanvasTexture(shadowCanvas), transparent: true, depthWrite: false, opacity: 0.9 }),
+    );
+    shadow.rotation.x = -Math.PI / 2;
+    shadow.position.y = -size.y / 2 + 0.001;
+    shadow.renderOrder = 1;
+    scene.add(shadow);
+
+    const home = { pos: camera.position.clone(), tgt: controls.target.clone() };
+
+    let raf = 0;
+    function frame() { controls.update(); renderer.render(scene, camera); raf = requestAnimationFrame(frame); }
+    frame();
+
+    const ro = new ResizeObserver(() => {
+      width = stage.clientWidth; height = stage.clientHeight;
+      renderer.setSize(width, height); camera.aspect = width / height; camera.updateProjectionMatrix();
+    });
+    ro.observe(stage);
+    document.addEventListener('visibilitychange', () => { if (document.hidden) cancelAnimationFrame(raf); else frame(); });
+
+    return {
+      setBrightness: (pct) => { renderer.toneMappingExposure = pct / 100; },
+      // Slider runs rough (0) → shiny (100); roughness is the inverse.
+      setTexture: (pct) => { const r = 1 - pct / 100; for (const m of materials) { m.roughness = r; m.needsUpdate = true; } },
+      setLightAngle: (pct) => placeKey(pct),
+      setWireframe: (on) => { for (const m of materials) { m.wireframe = on; } },
+      setAutoRotate: (on) => { controls.autoRotate = on; },
+      reset: () => { camera.position.copy(home.pos); controls.target.copy(home.tgt); controls.update(); },
+      defaults: { exposure: Math.round(appearance.exposure * 100), texture: appearance.textureDefault },
+    };
+  }
+
+  for (const root of document.querySelectorAll('[data-viewer]')) {
+    const stage = root.querySelector('[data-stage]') as HTMLElement | null;
+    const glb = stage?.getAttribute('data-glb') || '';
+    if (!stage || !glb) continue;
+    const poster = root.querySelector('[data-poster]') as HTMLElement | null;
+    const loading = root.querySelector('[data-loading]') as HTMLElement | null;
+    const activate = root.querySelector('[data-activate]') as HTMLButtonElement | null;
+    const hud = root.querySelector('[data-hud-panel]') as HTMLElement | null;
+    const hint = root.querySelector('[data-hint]') as HTMLElement | null;
+    let started = false;
+
+    async function start() {
+      if (started) return; started = true;
+      if (activate) activate.hidden = true;
+      if (poster) poster.style.opacity = '0';
+      if (loading) loading.hidden = false;
+      try {
+        const viewer = await buildViewer(stage!, glb);
+        if (loading) loading.hidden = true;
+        stage!.classList.add('is-live');
+        if (hint) hint.hidden = false;
+        if (hud) {
+          hud.hidden = false;
+          const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          const brightness = hud.querySelector('[data-brightness]') as HTMLInputElement | null;
+          const texture = hud.querySelector('[data-texture]') as HTMLInputElement | null;
+          const light = hud.querySelector('[data-light]') as HTMLInputElement | null;
+          const autorotate = hud.querySelector('[data-autorotate]') as HTMLInputElement | null;
+          const wire = hud.querySelector('[data-wireframe]') as HTMLInputElement | null;
+          const reset = hud.querySelector('[data-reset]') as HTMLButtonElement | null;
+          const readB = hud.querySelector('[data-read-brightness]') as HTMLElement | null;
+          if (brightness) brightness.value = String(viewer.defaults.exposure);
+          if (texture) texture.value = String(viewer.defaults.texture);
+          if (readB && brightness) readB.textContent = `${brightness.value}%`;
+          if (brightness) { viewer.setBrightness(+brightness.value); brightness.addEventListener('input', () => { viewer.setBrightness(+brightness.value); if (readB) readB.textContent = `${brightness.value}%`; }); }
+          if (texture) { viewer.setTexture(+texture.value); texture.addEventListener('input', () => viewer.setTexture(+texture.value)); }
+          if (light) { viewer.setLightAngle(+light.value); light.addEventListener('input', () => viewer.setLightAngle(+light.value)); }
+          if (autorotate) { if (reduce) autorotate.checked = false; viewer.setAutoRotate(autorotate.checked); autorotate.addEventListener('change', () => viewer.setAutoRotate(autorotate.checked)); }
+          if (wire) wire.addEventListener('change', () => viewer.setWireframe(wire.checked));
+          if (reset) reset.addEventListener('click', () => viewer.reset());
+        }
+        stage!.addEventListener('dblclick', () => viewer.reset());
+      } catch (err) {
+        if (loading) loading.hidden = true;
+        if (poster) poster.style.opacity = '1';
+        if (activate) activate.hidden = false;
+        started = false;
+      }
+    }
+
+    if (activate) activate.addEventListener('click', start);
+    // Load on open (after first paint), per the 3D-first intent.
+    if ('requestIdleCallback' in window) (window as any).requestIdleCallback(() => start(), { timeout: 1500 });
+    else setTimeout(start, 300);
+  }
+</script>

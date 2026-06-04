@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import WorkCard from '../../components/WorkCard.astro';
+import { facets, worksForFacet } from '../../lib/catalog';
+import { withBase } from '../../lib/urls';
+
+const groups = facets.makers.map((facet) => ({ ...facet, works: worksForFacet('maker', facet.label) }));
+---
+
+<BaseLayout title="Makers" description="Browse the sculpture collection by maker.">
+  <section class="page-shell" aria-labelledby="makers-title">
+    <p class="eyebrow">Maker</p>
+    <h1 id="makers-title">Browse by maker.</h1>
+    <p class="lede">The artists and workshops behind the work. Where the maker isn’t known, we say so.</p>
+  </section>
+
+  <section class="section" aria-labelledby="maker-groups">
+    <div class="facet-grid" id="maker-groups">
+      {groups.map((group) => (
+        <a class="facet-card" href={`#${group.value}`}>
+          <strong>{group.label}</strong>
+          <span>{group.count} works</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  {groups.map((group) => (
+    <section class="section" id={group.value} aria-labelledby={`${group.value}-title`}>
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">{group.count} works</p>
+          <h2 id={`${group.value}-title`}>{group.label}</h2>
+        </div>
+        <a class="text-link" href={withBase(`/museum/?maker=${group.value}`)}>Open in museum</a>
+      </div>
+      <div class="rail">
+        {group.works.slice(0, 8).map((work) => <WorkCard work={work} />)}
+      </div>
+    </section>
+  ))}
+</BaseLayout>

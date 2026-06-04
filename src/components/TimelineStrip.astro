@@ -1,0 +1,20 @@
+---
+import type { Work } from '../lib/catalog';
+import { formatYear, timelinePercent } from '../lib/catalog';
+
+type Props = {
+  work?: Work;
+};
+
+const { work } = Astro.props;
+const percent = work ? timelinePercent(work.yearStart) : 50;
+---
+
+<div class="timeline-strip" aria-label={work ? `Timeline position for ${work.title}` : 'Collection timeline'}>
+  {work && <span class="timeline-dot" style={`left: ${percent}%`} aria-hidden="true"></span>}
+  <div class="timeline-note">
+    <span>3000 BCE</span>
+    {work && <span>{work.displayDate || (work.yearStart !== null ? formatYear(work.yearStart) : 'Date not yet recorded')}</span>}
+    <span>Present</span>
+  </div>
+</div>

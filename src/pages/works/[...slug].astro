@@ -1,0 +1,100 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ModelPanel from '../../components/ModelPanel.astro';
+import WorkCard from '../../components/WorkCard.astro';
+import { workBySlug, works, type Work } from '../../lib/catalog';
+import { absoluteUrl, withBase } from '../../lib/urls';
+
+export function getStaticPaths() {
+  return works.map((work) => ({
+    params: { slug: work.slug },
+    props: { work },
+  }));
+}
+
+type Props = {
+  work: Work;
+};
+
+const { work } = Astro.props;
+const related = work.relatedWorks.map((slug) => workBySlug(slug)).filter(Boolean) as Work[];
+const recordNo = `№ ${String(work.index).padStart(3, '0')}`;
+const subtitle = [work.maker || work.culture, work.displayDate].filter(Boolean).join(' · ');
+const factLine = [work.maker, work.displayDate, work.geography, work.medium || work.materials.join(', ')].filter(Boolean).join(' · ');
+const metaDescription = `${work.title}${factLine ? ' — ' + factLine : ''}.`;
+const factRows = ([
+  ['Maker', work.maker],
+  ['Year', /not yet recorded/i.test(work.displayDate) ? '' : work.displayDate],
+  ['Material', work.medium || work.materials.join(', ')],
+  ['Dimensions', work.dimensions],
+  ['Origin', /unassigned/i.test(work.geography) ? '' : work.geography],
+  ['On display at', work.museum],
+] as Array<[string, string]>).filter(([, v]) => Boolean(v && String(v).trim()));
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'VisualArtwork',
+  name: work.title,
+  creator: work.maker ? { '@type': 'Person', name: work.maker } : undefined,
+  artMedium: work.medium || work.materials.join(', ') || undefined,
+  temporalCoverage: work.displayDate,
+  contentLocation: work.geography,
+  image: absoluteUrl(work.posterImage, String(Astro.site ?? 'https://atrium.earth')),
+  url: absoluteUrl(work.route, String(Astro.site ?? 'https://atrium.earth')),
+  isPartOf: { '@type': 'Museum', name: 'Atrium.Earth', url: 'https://atrium.earth/' },
+};
+---
+
+<BaseLayout title={work.title} description={metaDescription} image={work.posterImage} canonical={work.route} jsonLd={jsonLd}>
+  <section class="page-shell object-head" aria-labelledby="object-title">
+    <p class="eyebrow">{recordNo} · {work.era}</p>
+    <h1 id="object-title">{work.title}</h1>
+    {subtitle && <p class="object-sub">{subtitle}</p>}
+  </section>
+
+  <ModelPanel work={work} />
+
+  <section class="section" aria-labelledby="details-title">
+    <div class="content-grid">
+      <div>
+        <p class="eyebrow" id="details-title">Facts</p>
+        {factRows.length ? (
+          <dl class="detail-list">
+            {factRows.map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}
+          </dl>
+        ) : (
+          <p class="fine">Details for this piece aren’t recorded yet.</p>
+        )}
+      </div>
+
+      <aside class="aside-panel">
+        <h3>Source &amp; rights</h3>
+        <p class="fine">{work.sourceMuseum || 'Source institution not yet recorded'} · {work.rights}</p>
+        {work.sourceUrl && (
+          <p><a class="text-link" href={work.sourceUrl} aria-label={`Open the source record for ${work.title}`}>Open source record ↗</a></p>
+        )}
+        {work.tags.length > 0 && (
+          <>
+            <h3 class="aside-tags-head">Tags</h3>
+            <ul class="tag-list">
+              {work.tags.slice(0, 8).map((tag) => <li><span>{tag}</span></li>)}
+            </ul>
+          </>
+        )}
+      </aside>
+    </div>
+  </section>
+
+  {related.length > 0 && (
+    <section class="section" aria-labelledby="related-title">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">More to see</p>
+          <h2 id="related-title">Nearby in the collection.</h2>
+        </div>
+      </div>
+      <div class="rail">
+        {related.map((item) => <WorkCard work={item} />)}
+      </div>
+    </section>
+  )}
+</BaseLayout>

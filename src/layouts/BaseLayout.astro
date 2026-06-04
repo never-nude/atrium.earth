@@ -1,0 +1,64 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { absoluteUrl, withBase, withoutBase } from '../lib/urls';
+import '../styles/global.css';
+
+type Props = {
+  title?: string;
+  description?: string;
+  image?: string;
+  canonical?: string;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+};
+
+const {
+  title = 'Atrium.Earth',
+  description = 'A static-first digital museum for sculpture across five millennia.',
+  image = '/previews/posters/michelangelo/david/poster.svg',
+  canonical = Astro.url.pathname,
+  jsonLd,
+} = Astro.props;
+
+const site = String(Astro.site ?? 'https://atrium.earth');
+const currentPath = withoutBase(Astro.url.pathname);
+const canonicalUrl = absoluteUrl(withoutBase(canonical), site);
+const imageUrl = absoluteUrl(image, site);
+const pageTitle = title === 'Atrium.Earth' ? 'Atrium.Earth — Digital Sculpture Museum' : `${title} · Atrium.Earth`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#0B1220" />
+    <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={imageUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
+    <slot name="head" />
+    <title>{pageTitle}</title>
+    {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to collection</a>
+    <Header currentPath={currentPath} />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

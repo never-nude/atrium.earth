@@ -1,0 +1,35 @@
+---
+import { withBase } from '../lib/urls';
+
+type Props = {
+  currentPath: string;
+};
+
+const { currentPath } = Astro.props;
+
+const nav: Array<[string, string]> = [
+  ['Museum', '/museum/'],
+  ['About', '/about/'],
+];
+const isCurrent = (href: string) => currentPath === href || (href !== '/' && currentPath.startsWith(href));
+---
+
+<header class="site-header">
+  <a class="brand" href={withBase('/')} aria-label="Atrium.Earth home">
+    <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M3 29V13a13 13 0 0 1 26 0v16" />
+      <path d="M2 29h28" />
+      <path d="M10 29V17a6 6 0 0 1 12 0v12" />
+    </svg>
+    <span class="brand-text">
+      <span class="brand-name">Atrium.Earth</span>
+      <span class="brand-sub">Digital Sculpture Museum</span>
+    </span>
+  </a>
+
+  <nav class="top-nav" aria-label="Primary">
+    {nav.map(([label, href]) => (
+      <a href={withBase(href)} aria-current={isCurrent(href) ? 'page' : undefined}>{label}</a>
+    ))}
+  </nav>
+</header>
