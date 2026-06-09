@@ -24,7 +24,7 @@ const description = 'A digital museum of sculpture — explore 174 works in 3D, 
 <BaseLayout
   title="Atrium.Earth"
   description={description}
-  image={featured.posterImage}
+  image={featured.thumbnailImage}
   jsonLd={{
     '@context': 'https://schema.org',
     '@type': 'Museum',
@@ -43,9 +43,9 @@ const description = 'A digital museum of sculpture — explore 174 works in 3D, 
         <a class="button secondary" href={withBase(featured.route)}>Featured piece</a>
       </div>
       <div class="hero-caption" aria-label="Featured piece">
-        <span>{featured.title}</span>
-        <span>{featured.maker || featured.sourceMuseum || featured.geography}</span>
-        <span>{featured.displayDate}</span>
+        {[featured.title, featured.maker || featured.sourceMuseum || featured.geography, featured.displayDate]
+          .filter((v) => v && !/not yet recorded|unassigned/i.test(v))
+          .map((v) => <span>{v}</span>)}
       </div>
     </div>
   </section>
@@ -86,7 +86,7 @@ const description = 'A digital museum of sculpture — explore 174 works in 3D, 
       </div>
       <p class="lede">The collection runs from ancient reliefs to modern bronze.</p>
     </div>
-    <TimelineStrip />
+    <TimelineStrip works={works} />
     <div class="stat-grid">
       <div class="stat-card"><strong>{works.length}</strong><span>works</span></div>
       <div class="stat-card"><strong>{facets.geography.length}</strong><span>places</span></div>

@@ -369,6 +369,10 @@ h3 { margin-bottom: var(--space-2); font-size: var(--step-h3); line-height: 1.14
   backdrop-filter: blur(4px);
 }
 .work-card__date { top: 12px; right: 12px; color: var(--ink-faint); text-align: right; }
+.work-card__badge--undated {
+  color: var(--ink-faint);
+  border-color: var(--rule-strong);
+}
 
 .work-card__body { display: grid; gap: var(--space-2); padding: var(--space-3); }
 .work-card h3 { margin: 0; font-size: 1.3rem; line-height: 1.1; font-weight: 600; letter-spacing: -0.02em; }
@@ -519,6 +523,15 @@ h3 { margin-bottom: var(--space-2); font-size: var(--step-h3); line-height: 1.14
   top: 42px; left: 0; right: 0;
   height: 2px;
   background: linear-gradient(90deg, var(--rule-strong), var(--accent));
+}
+.timeline-tick {
+  position: absolute;
+  top: 38px;
+  width: 2px; height: 10px;
+  transform: translateX(-50%);
+  background: var(--accent);
+  opacity: 0.22;
+  border-radius: 1px;
 }
 .timeline-dot {
   position: absolute;

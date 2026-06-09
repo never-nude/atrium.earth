@@ -21,13 +21,13 @@ const groups = facets.eras.map((facet) => ({
 <BaseLayout
   title="Timeline"
   description="A chronological view of the Atrium.Earth sculpture collection from 3000 BCE to the present."
-  image={sorted[0]?.posterImage}
+  image={sorted[0]?.thumbnailImage}
 >
   <section class="page-shell" aria-labelledby="timeline-title">
     <p class="eyebrow">Era</p>
     <h1 id="timeline-title">Browse by era.</h1>
     <p class="lede">Sculpture grouped by period, from antiquity to the modern era.</p>
-    <TimelineStrip />
+    <TimelineStrip works={works} />
   </section>
 
   <section class="section" aria-labelledby="chronology-title">

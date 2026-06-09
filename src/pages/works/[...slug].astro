@@ -38,13 +38,13 @@ const jsonLd = {
   artMedium: work.medium || work.materials.join(', ') || undefined,
   temporalCoverage: work.displayDate,
   contentLocation: work.geography,
-  image: absoluteUrl(work.posterImage, String(Astro.site ?? 'https://atrium.earth')),
+  image: absoluteUrl(work.thumbnailImage, String(Astro.site ?? 'https://atrium.earth')),
   url: absoluteUrl(work.route, String(Astro.site ?? 'https://atrium.earth')),
   isPartOf: { '@type': 'Museum', name: 'Atrium.Earth', url: 'https://atrium.earth/' },
 };
 ---
 
-<BaseLayout title={work.title} description={metaDescription} image={work.posterImage} canonical={work.route} jsonLd={jsonLd}>
+<BaseLayout title={work.title} description={metaDescription} image={work.thumbnailImage} canonical={work.route} jsonLd={jsonLd}>
   <section class="page-shell object-head" aria-labelledby="object-title">
     <p class="eyebrow">{recordNo} · {work.era}</p>
     <h1 id="object-title">{work.title}</h1>

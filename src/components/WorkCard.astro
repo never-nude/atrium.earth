@@ -37,7 +37,7 @@ const alt = `${work.title}${maker ? ', ' + maker : ''}${material ? ', ' + materi
         loading={eager ? 'eager' : 'lazy'}
         decoding="async"
       />
-      <span class="work-card__badge">{work.era}</span>
+      <span class:list={['work-card__badge', { 'work-card__badge--undated': work.era === 'Undated' }]}>{work.era}</span>
       <span class="work-card__date">{recordNo}</span>
     </div>
     <div class="work-card__body">

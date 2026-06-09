@@ -4,13 +4,18 @@ import { formatYear, timelinePercent } from '../lib/catalog';
 
 type Props = {
   work?: Work;
+  works?: Work[];
 };
 
-const { work } = Astro.props;
+const { work, works = [] } = Astro.props;
 const percent = work ? timelinePercent(work.yearStart) : 50;
+const ticks = works
+  .filter((w) => w.yearStart !== null)
+  .map((w) => timelinePercent(w.yearStart));
 ---
 
 <div class="timeline-strip" aria-label={work ? `Timeline position for ${work.title}` : 'Collection timeline'}>
+  {ticks.map((p) => <span class="timeline-tick" style={`left: ${p}%`} aria-hidden="true"></span>)}
   {work && <span class="timeline-dot" style={`left: ${percent}%`} aria-hidden="true"></span>}
   <div class="timeline-note">
     <span>3000 BCE</span>
