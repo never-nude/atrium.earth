@@ -24,6 +24,13 @@ const API_DELAY_MS = 250;
 const MET_SEARCH_CANDIDATES = 12;
 
 const catalog = JSON.parse(readFileSync(catalogPath, 'utf8'));
+
+// --slice=a:b limits the SMK/Met passes to catalog[a:b] so long runs can be
+// split into sandbox-budget-sized chunks (fills are idempotent; catalog is
+// rewritten whole each run).
+const sliceArg = (args.find((a) => a.startsWith('--slice=')) || '').slice(8);
+const [sliceStart, sliceEnd] = sliceArg ? sliceArg.split(':').map(Number) : [0, Infinity];
+const sliceTargets = catalog.slice(sliceStart, sliceEnd === Infinity ? catalog.length : sliceEnd);
 const mined = existsSync(minePath) ? JSON.parse(readFileSync(minePath, 'utf8')) : {};
 
 const materialLabels = new Map([
@@ -75,13 +82,18 @@ function sleep(ms) {
 
 let lastFetch = 0;
 async function fetchJson(url) {
-  const wait = lastFetch + API_DELAY_MS - Date.now();
-  if (wait > 0) await sleep(wait);
-  lastFetch = Date.now();
-  const response = await fetch(url, { headers: { accept: 'application/json' } });
-  if (response.status === 404) return null;
-  if (!response.ok) throw new Error(`${response.status} ${response.statusText} for ${url}`);
-  return response.json();
+  for (let attempt = 0; attempt < 5; attempt += 1) {
+    const wait = lastFetch + API_DELAY_MS - Date.now();
+    if (wait > 0) await sleep(wait);
+    lastFetch = Date.now();
+    const response = await fetch(url, { headers: { accept: 'application/json' } });
+    if (response.status === 404) return null;
+    // Rate limit / transient server error: back off and retry.
+    if (response.status === 429 || response.status >= 500) { await sleep(2000 * (attempt + 1)); continue; }
+    if (!response.ok) throw new Error(`${response.status} ${response.statusText} for ${url}`);
+    return response.json();
+  }
+  throw new Error(`still rate-limited after retries for ${url}`);
 }
 
 // --- report state -----------------------------------------------------------
@@ -227,7 +239,7 @@ function licenseLabelFor(rightsUrl) {
 }
 
 async function smkPass() {
-  for (const record of catalog) {
+  for (const record of sliceTargets) {
     const mine = mined[record.slug] || {};
     const sourceUrl = clean(record.source_url) || clean(mine.source_url);
     const number = smkObjectNumber(sourceUrl);
@@ -319,30 +331,44 @@ function metDimensions(raw) {
   return cm[1].replace(/\s*x\s*/gi, ' × ').replace(/\s+/g, ' ').trim();
 }
 
+// A source_url pointing at a Met object page identifies the object directly
+// (audit-confirmed source of record) — no slug pattern needed.
+function metUrlObjectId(record) {
+  const match = clean(record.source_url).match(/metmuseum\.org\/art\/collection\/search\/(\d+)/i);
+  return match?.[1] || '';
+}
+
 async function metPass() {
-  for (const record of catalog) {
+  for (const record of sliceTargets) {
+    const urlId = metUrlObjectId(record);
     const ref = metRef(record.slug);
-    if (!ref) continue;
-    if (ref.ambiguous) {
+    if (!urlId && !ref) continue;
+    if (!urlId && ref.ambiguous) {
       report.met.skipped.push({ slug: record.slug, reason: `trailing "${ref.ambiguous}" is 4 digits — could be a year, not an objectID` });
       continue;
     }
 
     let object;
     try {
-      object = ref.objectId
-        ? await fetchJson(`${MET_API}/objects/${ref.objectId}`)
-        : await metObjectByAccession(ref.accession);
+      object = urlId
+        ? await fetchJson(`${MET_API}/objects/${urlId}`)
+        : ref.objectId
+          ? await fetchJson(`${MET_API}/objects/${ref.objectId}`)
+          : await metObjectByAccession(ref.accession);
     } catch (error) {
       report.met.skipped.push({ slug: record.slug, reason: `API error: ${error.message}` });
       continue;
     }
     if (!object) {
-      report.met.skipped.push({ slug: record.slug, reason: `no Met object found for ${ref.objectId || ref.accession}` });
+      report.met.skipped.push({ slug: record.slug, reason: `no Met object found for ${urlId || ref.objectId || ref.accession}` });
       continue;
     }
-    if (!titleMatchesSlug(ref.words, object.title)) {
-      report.met.skipped.push({ slug: record.slug, reason: `Met title "${object.title}" does not match slug words "${ref.words}"` });
+    // Slug-derived ids keep the title sanity-check as a blocker; for URL-derived
+    // ids the URL itself is the evidence — title disagreement is only a warning,
+    // logged below by the sameLoosely() conflict check.
+    const slugWords = ref?.words || record.slug.split('/').pop();
+    if (!urlId && !titleMatchesSlug(slugWords, object.title)) {
+      report.met.skipped.push({ slug: record.slug, reason: `Met title "${object.title}" does not match slug words "${slugWords}"` });
       continue;
     }
     if (!sameLoosely(record.title, object.title)) {
@@ -445,7 +471,9 @@ function isCastWork(record) {
 // old museum value; works identified only by source_institution/note get the plain
 // collection name (SMK's sculpture scans are its Royal Cast Collection digitisation).
 function castScanSource(record) {
-  const oldMuseum = clean(record.museum);
+  // The SMK pass fills empty museums as "SMK — Royal Cast Collection"; drop that
+  // prefix so scan_source reads "Plaster cast, Royal Cast Collection (SMK), Copenhagen".
+  const oldMuseum = clean(record.museum).replace(/^SMK\s*[—–-]\s*/, '');
   const venue = /cast collection/i.test(oldMuseum) ? oldMuseum : 'Royal Cast Collection';
   return `Plaster cast, ${venue} (SMK), Copenhagen`;
 }
@@ -539,7 +567,9 @@ function entityIsLost(entity, classLabels) {
 }
 
 async function castsPass() {
-  const castRecords = catalog.filter(isCastWork);
+  // Works already carrying scan_source had the cast/original split done in an
+  // earlier run (or at ingest) — leave them alone.
+  const castRecords = catalog.filter((record) => isCastWork(record) && isEmpty(record.scan_source));
   report.casts.identified = castRecords.map((record) => record.slug);
 
   // Phase 1: search candidates for every cast work.
