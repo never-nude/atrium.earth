@@ -29,7 +29,11 @@ const factRows = ([
   ['Dimensions', work.dimensions],
   ['Origin', /unassigned/i.test(work.geography) ? '' : work.geography],
   ['On display at', work.museum],
+  ['Scanned from', work.scanSource],
 ] as Array<[string, string]>).filter(([, v]) => Boolean(v && String(v).trim()));
+const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUrl).hostname.replace(/^www\./, '') : '');
+const licenseText = /rights review pending/i.test(work.rights) ? '' : work.rights;
+const hasFactRows = factRows.length > 0 || Boolean(work.sourceUrl) || Boolean(licenseText) || Boolean(work.creditLine);
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'VisualArtwork',
@@ -57,9 +61,18 @@ const jsonLd = {
     <div class="content-grid">
       <div>
         <p class="eyebrow" id="details-title">Facts</p>
-        {factRows.length ? (
+        {hasFactRows ? (
           <dl class="detail-list">
             {factRows.map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}
+            {work.sourceUrl && (
+              <div><dt>Source</dt><dd><a class="text-link" href={work.sourceUrl}>{sourceLabel}</a></dd></div>
+            )}
+            {licenseText && (
+              <div><dt>License</dt><dd>{work.licenseUrl ? <a class="text-link" href={work.licenseUrl}>{licenseText}</a> : licenseText}</dd></div>
+            )}
+            {work.creditLine && (
+              <div><dt>Attribution</dt><dd>{work.creditLine}</dd></div>
+            )}
           </dl>
         ) : (
           <p class="fine">Details for this piece aren’t recorded yet.</p>

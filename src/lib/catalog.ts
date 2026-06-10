@@ -17,7 +17,12 @@ type RawWork = {
   museum?: string | null;
   source_institution?: string | null;
   source_url?: string | null;
+  scan_source?: string | null;
   license?: string | null;
+  license_url?: string | null;
+  attribution?: string | null;
+  accession?: string | null;
+  wikidata?: string | null;
   note?: string | null;
   tier?: number | null;
   index?: number | null;
@@ -66,6 +71,7 @@ export type Work = {
   accession: string;
   creditLine: string;
   rights: string;
+  licenseUrl: string;
   description: string;
   curatorialNote: string;
   provenance: string;
@@ -82,6 +88,7 @@ export type Work = {
   search: string;
   hasPreview: boolean;
   sourceUrl: string;
+  scanSource: string;
   internalModelSource: string;
 };
 
@@ -466,9 +473,10 @@ function normalize(raw: RawWork, fallbackIndex: number): Work {
     materialProfile,
     materialAppearance,
     dimensions: clean(raw.dimensions),
-    accession: '',
-    creditLine: '',
+    accession: clean(raw.accession),
+    creditLine: clean(raw.attribution),
     rights: clean(raw.license) || 'Rights review pending',
+    licenseUrl: clean(raw.license_url),
     description,
     curatorialNote: publicNote(raw),
     provenance: '',
@@ -485,6 +493,7 @@ function normalize(raw: RawWork, fallbackIndex: number): Work {
     search: clean(raw.search) || `${title} ${maker} ${era} ${geography} ${materials.join(' ')}`.toLowerCase(),
     hasPreview: Boolean(preview?.url),
     sourceUrl: clean(raw.source_url),
+    scanSource: clean(raw.scan_source),
     internalModelSource: clean(raw.model?.sourcePath),
   };
 }

@@ -273,6 +273,8 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = appearance.exposure;
     renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     renderer.domElement.classList.add('viewer-canvas');
     stage.appendChild(renderer.domElement);
     renderer.domElement.addEventListener('contextmenu', (e) => e.preventDefault());
@@ -288,6 +290,10 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     const keyRadius = 5, keyHeight = 4;
     function placeKey(pct: number) { const a = (pct / 100) * Math.PI * 2; key.position.set(Math.cos(a) * keyRadius, keyHeight, Math.sin(a) * keyRadius); }
     placeKey(15);
+    key.castShadow = true;
+    key.shadow.mapSize.set(2048, 2048);
+    key.shadow.bias = -0.001;
+    key.shadow.normalBias = 0.02;
     scene.add(key);
     const fill = new THREE.DirectionalLight(0x9fb6d6, appearance.fillLightIntensity ?? 0.55);
     fill.position.set(-3, 1.2, -2.5);
@@ -304,7 +310,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     controls.zoomSpeed = 0.8;
     controls.mouseButtons = { LEFT: THREE.MOUSE.ROTATE, MIDDLE: THREE.MOUSE.DOLLY, RIGHT: THREE.MOUSE.PAN };
     controls.autoRotate = !reduce;
-    controls.autoRotateSpeed = 0.5;
+    controls.autoRotateSpeed = 1.0;
 
     const loader = new GLTFLoader();
     loader.setMeshoptDecoder(MeshoptDecoder);
@@ -322,6 +328,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
         return;
       }
       if (obj.isMesh && obj.material) {
+        obj.castShadow = true;
         const list = Array.isArray(obj.material) ? obj.material : [obj.material];
         const prepared = list.map((m: any) => prepareMaterial(THREE, m));
         obj.material = Array.isArray(obj.material) ? prepared : prepared[0];
@@ -358,6 +365,19 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     model.position.sub(center);
     scene.add(model);
 
+    // Tight orthographic shadow frustum: covers the normalized model plus its shadow
+    // run-out on the floor, and tracks the key light as the Light slider swings it.
+    const shadowSpan = Math.max(size.x, size.y, size.z) * 2.2;
+    const keyDist = Math.hypot(keyRadius, keyHeight);
+    const shadowCam = key.shadow.camera;
+    shadowCam.left = -shadowSpan;
+    shadowCam.right = shadowSpan;
+    shadowCam.top = shadowSpan;
+    shadowCam.bottom = -shadowSpan;
+    shadowCam.near = Math.max(0.1, keyDist - shadowSpan);
+    shadowCam.far = keyDist + shadowSpan;
+    shadowCam.updateProjectionMatrix();
+
     const isWideLow = Math.max(size.x, size.z) > Math.max(size.y * 1.8, 0.65);
     const fit = fitOverride || (isWideLow ? 1.9 : 1.35);
     const dist = (1 / (2 * Math.tan((camera.fov * Math.PI) / 360))) * fit;
@@ -376,25 +396,17 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     (grid.material as any).opacity = 0.18;
     scene.add(grid);
 
-    // Soft contact shadow so the piece sits on the floor instead of floating.
-    const shadowCanvas = document.createElement('canvas');
-    shadowCanvas.width = shadowCanvas.height = 256;
-    const sctx = shadowCanvas.getContext('2d')!;
-    const sgrad = sctx.createRadialGradient(128, 128, 8, 128, 128, 128);
-    sgrad.addColorStop(0, 'rgba(0,0,0,0.55)');
-    sgrad.addColorStop(0.55, 'rgba(0,0,0,0.18)');
-    sgrad.addColorStop(1, 'rgba(0,0,0,0)');
-    sctx.fillStyle = sgrad;
-    sctx.fillRect(0, 0, 256, 256);
-    const shadowFoot = Math.max(0.5, Math.max(size.x, size.z) * 1.9);
-    const shadow = new THREE.Mesh(
+    // Real ground shadow: a transparent ShadowMaterial plane at the model's base catches
+    // the key light's shadow (it follows the Light slider) without tinting the backdrop.
+    const shadowFoot = Math.max(1.2, Math.max(size.x, size.z) * 4);
+    const ground = new THREE.Mesh(
       new THREE.PlaneGeometry(shadowFoot, shadowFoot),
-      new THREE.MeshBasicMaterial({ map: new THREE.CanvasTexture(shadowCanvas), transparent: true, depthWrite: false, opacity: 0.9 }),
+      new THREE.ShadowMaterial({ opacity: 0.26, depthWrite: false }),
     );
-    shadow.rotation.x = -Math.PI / 2;
-    shadow.position.y = -size.y / 2 + 0.001;
-    shadow.renderOrder = 1;
-    scene.add(shadow);
+    ground.rotation.x = -Math.PI / 2;
+    ground.position.y = -size.y / 2 + 0.001;
+    ground.receiveShadow = true;
+    scene.add(ground);
 
     const home = { pos: camera.position.clone(), tgt: controls.target.clone() };
 
