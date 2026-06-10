@@ -421,11 +421,19 @@ let lastWdFetch = 0;
 async function wdJson(params) {
   const url = `${WD_API}?${new URLSearchParams({ format: 'json', ...params })}`;
   if (wdCache[url]) return wdCache[url];
-  for (let attempt = 0; attempt < 6; attempt += 1) {
+  for (let attempt = 0; attempt < 10; attempt += 1) {
     const wait = lastWdFetch + 1200 - Date.now();
     if (wait > 0) await sleep(wait);
     lastWdFetch = Date.now();
-    const response = await fetch(url, { headers: { 'User-Agent': 'atrium.earth catalog enrichment script' } });
+    let response;
+    try {
+      // Stalled connections (egress proxies black-holing reused sockets) hang fetch
+      // forever without a timeout — abort and retry on a fresh attempt.
+      response = await fetch(url, { headers: { 'User-Agent': 'atrium.earth catalog enrichment script' }, signal: AbortSignal.timeout(5000) });
+    } catch {
+      await sleep(300);
+      continue;
+    }
     if (response.status === 429 || response.status >= 500) { await sleep(2500 * (attempt + 1)); continue; }
     if (!response.ok) throw new Error(`${response.status} ${response.statusText} for ${url}`);
     const data = await response.json();
@@ -462,9 +470,14 @@ function preferRanked(claims) {
 }
 
 function isCastWork(record) {
-  return /\bSMK\b/i.test(clean(record.source_institution))
-    || /cast collection/i.test(clean(record.museum))
-    || /plaster[- ]cast|cast scan|cast collection/i.test(clean(record.note));
+  if (/cast collection/i.test(clean(record.museum))) return true;
+  if (/plaster[- ]cast|cast scan|cast collection/i.test(clean(record.note))) return true;
+  // SMK-sourced AND carrying a Royal Cast Collection (KAS) number. SMK also owns
+  // ORIGINAL marbles (DEP/inv. accessions, e.g. the Bregno reliefs) — being SMK-
+  // sourced alone is not a cast indicator.
+  const smkSourced = /\bSMK\b/i.test(clean(record.source_institution)) || /smk\.dk/i.test(clean(record.source_url));
+  const kasNumbered = /^KAS\d/i.test(clean(record.accession)) || /kas\d/i.test(clean(record.source_url));
+  return smkSourced && kasNumbered;
 }
 
 // "Plaster cast, Room 120, Royal Cast Collection (SMK), Copenhagen" — built from the
