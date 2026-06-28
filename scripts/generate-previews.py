@@ -24,9 +24,15 @@ FEATURED_SLUGS = [
 ]
 SOURCE_OVERRIDES = {
     "michelangelo/david": "michelangelo/david/david_source.stl",
+    "americas/stirrup-spout-bottle-mountain-sacrifice-met": "americas/stirrup-spout-bottle-mountain-sacrifice-met/stirrup-spout-bottle-mountain-sacrifice-met_preview.glb",
+    "asia/brazier-of-rasulid-sultan-met": "asia/brazier-of-rasulid-sultan-met/brazier-of-rasulid-sultan-met_preview.glb",
+    "asia/tile-panel-architectural-niche-met": "asia/tile-panel-architectural-niche-met/tile-panel-architectural-niche-met_preview.glb",
     "neoclassical/model-of-the-greek-slave-smithsonian": "neoclassical/model-of-the-greek-slave-smithsonian/greek-slave-smithsonian_preview.glb",
 }
 DIRECT_COPY_PREVIEWS = {
+    "americas/stirrup-spout-bottle-mountain-sacrifice-met",
+    "asia/brazier-of-rasulid-sultan-met",
+    "asia/tile-panel-architectural-niche-met",
     "neoclassical/model-of-the-greek-slave-smithsonian",
 }
 

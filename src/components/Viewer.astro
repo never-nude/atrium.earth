@@ -258,6 +258,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
 
   async function buildViewer(stage: HTMLElement, glb: string): Promise<Viewer> {
     const THREE = await import('three');
+    const { DRACOLoader } = await import('three/examples/jsm/loaders/DRACOLoader.js');
     const { GLTFLoader } = await import('three/examples/jsm/loaders/GLTFLoader.js');
     const { OrbitControls } = await import('three/examples/jsm/controls/OrbitControls.js');
     const { RoomEnvironment } = await import('three/examples/jsm/environments/RoomEnvironment.js');
@@ -317,6 +318,9 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
 
     const loader = new GLTFLoader();
     loader.setMeshoptDecoder(MeshoptDecoder);
+    const dracoLoader = new DRACOLoader();
+    dracoLoader.setDecoderPath(`${import.meta.env.BASE_URL}vendor/draco/`);
+    loader.setDRACOLoader(dracoLoader);
     const gltf = await loader.loadAsync(glb);
     const model = gltf.scene;
     const transform = parseModelTransform(stage.dataset.modelTransform || stage.dataset.upAxis || 'auto', stage.dataset.upAxis || 'auto');

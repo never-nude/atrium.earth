@@ -12,6 +12,7 @@
 </head><body><div id="bg"></div>
 <script type="module">
 import * as THREE from 'three';
+import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import { MeshoptDecoder } from 'three/addons/libs/meshopt_decoder.module.js';
@@ -28,7 +29,8 @@ const hemi=new THREE.HemisphereLight(0xeaf0f7,0x0b1220,.7); scene.add(hemi);
 const key=new THREE.DirectionalLight(0xfff1dd,2.3); key.position.set(2.5,4,3); scene.add(key);
 const fill=new THREE.DirectionalLight(0x9fb6d6,.5); fill.position.set(-3,1.2,-2.5); scene.add(fill);
 const rim=new THREE.DirectionalLight(0xdbe8ff,.4); rim.position.set(-2.7,2.6,3.4); scene.add(rim);
-const loader=new GLTFLoader(); loader.setMeshoptDecoder(MeshoptDecoder); let current=null;
+const dracoLoader=new DRACOLoader(); dracoLoader.setDecoderPath('/public/vendor/draco/');
+const loader=new GLTFLoader(); loader.setMeshoptDecoder(MeshoptDecoder); loader.setDRACOLoader(dracoLoader); let current=null;
 function loop(){ renderer.render(scene,camera); requestAnimationFrame(loop); } loop();
 const defaultAppearance={
   baseColor:'#9F9689',
