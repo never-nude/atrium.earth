@@ -10,6 +10,12 @@ function rotationArray(value) {
   return value.map((item) => finiteNumber(item, 0));
 }
 
+function vector3Array(value) {
+  if (!Array.isArray(value) || value.length !== 3) return undefined;
+  const next = value.map((item) => finiteNumber(item, Number.NaN));
+  return next.every(Number.isFinite) ? next : undefined;
+}
+
 function parseLegacyTransform(value) {
   const [rawAxis, rawFit, rawYaw] = String(value || 'auto').toLowerCase().split(':');
   const upAxis = AXES.has(rawAxis) ? rawAxis : 'auto';
@@ -43,6 +49,7 @@ export function parseModelTransform(value, fallback = 'auto') {
     : legacy.upAxis;
   const fit = finiteNumber(value.fit, legacy.fit);
   const yaw = finiteNumber(value.yaw, legacy.yaw);
+  const viewDirection = vector3Array(value.viewDirection || value.cameraDirection);
 
   return {
     ...value,
@@ -50,6 +57,7 @@ export function parseModelTransform(value, fallback = 'auto') {
     fit: fit > 0 ? fit : 0,
     yaw,
     modelRotation: rotationArray(value.modelRotation || value.rotation),
+    viewDirection,
   };
 }
 
