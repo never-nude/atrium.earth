@@ -1,4 +1,6 @@
-import { existsSync, readFileSync } from 'node:fs';
+import { existsSync, mkdtempSync, readFileSync, rmSync } from 'node:fs';
+import { execFileSync } from 'node:child_process';
+import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
@@ -21,6 +23,7 @@ console.error = (...args) => {
 };
 
 const root = resolve('.');
+const tempRoot = mkdtempSync(join(tmpdir(), 'atrium-audit-'));
 const loader = new GLTFLoader();
 loader.setMeshoptDecoder(MeshoptDecoder);
 
@@ -30,7 +33,13 @@ const EXCLUDED = /\b(relief|frieze|stele|sarcophagus|capital|corbel|lintel|vouss
 const STANDING = /\b(standing|standing buddha|statue|figure|kore|kouros|athena|apollo|aphrodite|venus|david|madonna|saint|warrior|priest|pharaoh|kaaper|nefertiti|doryphoros|diadoumenos|herakles|hercules|hermes|diana|hebe|vulcan|ganymede|germanicus|augustus|perseus|john the baptist)\b/i;
 
 function loadGlb(file) {
-  const buffer = readFileSync(file);
+  let source = file;
+  let buffer = readFileSync(source);
+  if (buffer.includes('KHR_draco_mesh_compression')) {
+    source = join(tempRoot, `${file.replace(/[^a-z0-9]+/gi, '-')}.glb`);
+    execFileSync('npx', ['--yes', '@gltf-transform/cli', 'copy', file, source], { stdio: 'ignore' });
+    buffer = readFileSync(source);
+  }
   const arrayBuffer = buffer.buffer.slice(buffer.byteOffset, buffer.byteOffset + buffer.byteLength);
   return new Promise((resolveLoad, rejectLoad) => {
     loader.parse(arrayBuffer, '', resolveLoad, rejectLoad);
@@ -191,3 +200,5 @@ console.log(`Rotated: ${counts.rotated || 0}`);
 console.log(`Left as-is: ${counts['left-as-is'] || 0}`);
 console.log(`Flagged candidates: ${counts.candidate || 0}`);
 console.log(`Flagged ambiguous: ${counts.ambiguous || 0}`);
+
+rmSync(tempRoot, { recursive: true, force: true });

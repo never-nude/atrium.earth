@@ -51,6 +51,8 @@ type OrientationEntry = string | {
   yaw?: number;
   modelRotation?: number[];
   rotation?: number[];
+  viewDirection?: number[];
+  cameraDirection?: number[];
   status?: string;
   note?: string;
 };
@@ -60,6 +62,7 @@ export type ModelTransform = {
   fit: number;
   yaw: number;
   modelRotation: [number, number, number];
+  viewDirection?: [number, number, number];
   status?: string;
   note?: string;
 };
@@ -247,6 +250,16 @@ function rotationArray(value: unknown): [number, number, number] {
   ];
 }
 
+function optionalVector3(value: unknown): [number, number, number] | undefined {
+  if (!Array.isArray(value) || value.length !== 3) return undefined;
+  const next = [
+    finiteNumber(value[0], Number.NaN),
+    finiteNumber(value[1], Number.NaN),
+    finiteNumber(value[2], Number.NaN),
+  ] as [number, number, number];
+  return next.every(Number.isFinite) ? next : undefined;
+}
+
 function parseLegacyTransform(value: unknown): ModelTransform {
   const [rawAxis, rawFit, rawYaw] = String(value || 'auto').toLowerCase().split(':');
   const upAxis = ['auto', 'x', 'y', 'z'].includes(rawAxis) ? rawAxis : 'auto';
@@ -265,6 +278,7 @@ function modelTransformFor(entry: OrientationEntry | undefined): ModelTransform 
   const rawAxis = clean(entry.upAxis || entry.axis || fallback.upAxis).toLowerCase();
   const upAxis = ['auto', 'x', 'y', 'z'].includes(rawAxis) ? rawAxis : fallback.upAxis;
   const fit = finiteNumber(entry.fit, fallback.fit);
+  const viewDirection = optionalVector3(entry.viewDirection || entry.cameraDirection);
   return {
     status: entry.status,
     note: entry.note,
@@ -272,6 +286,7 @@ function modelTransformFor(entry: OrientationEntry | undefined): ModelTransform 
     fit: fit > 0 ? fit : 0,
     yaw: finiteNumber(entry.yaw, fallback.yaw),
     modelRotation: rotationArray(entry.modelRotation || entry.rotation),
+    ...(viewDirection ? { viewDirection } : {}),
   };
 }
 
