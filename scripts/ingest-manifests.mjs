@@ -107,7 +107,22 @@ function sourceYearSort(m) {
       if (Number.isFinite(value)) return value;
     }
   }
-  return null;
+  return yearSortFromDisplay(sourceField(m, 'year'));
+}
+
+function yearSortFromCentury(century, bce) {
+  const midpoint = (100 * Number(century)) - 50;
+  return bce ? -midpoint : midpoint;
+}
+
+function yearSortFromDisplay(display) {
+  const text = textValue(display);
+  if (!text) return null;
+  const century = text.match(/(\d{1,2})(?:st|nd|rd|th)\s+century\s*(BCE|CE)?/i);
+  if (century) return yearSortFromCentury(century[1], /^BCE$/i.test(century[2] || ''));
+  const leading = text.match(/(\d{1,4})/);
+  if (!leading) return null;
+  return /BCE/i.test(text) ? -Number(leading[1]) : Number(leading[1]);
 }
 
 function licenseLooksLike(license, needles) {
