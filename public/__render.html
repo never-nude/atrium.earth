@@ -191,7 +191,7 @@ window.loadModel=(url, rawTransform='auto', rawAppearance='{}', upAxis='auto')=>
     scene.add(m); current=m;
     const isWideLow=Math.max(size.x,size.z)>Math.max(size.y*1.8,0.65);
     frameCameraToBox(THREE, camera, box, {
-      direction:[0.55,0.34,0.9],
+      direction:transform.viewDirection || [0.55,0.34,0.9],
       padding:transform.fit || (isWideLow?1.26:1.16)
     });
     setTimeout(()=>res(true),350);
