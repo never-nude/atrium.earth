@@ -625,12 +625,19 @@ export function facetValue(label: string): string {
   return valueKey(label);
 }
 
+const UNRESOLVED_FACET_PATTERN = /not yet recorded|unassigned/i;
+
 function facetCounts(values: string[]): Facet[] {
   const counts = new Map<string, number>();
   for (const value of values.filter(Boolean)) counts.set(value, (counts.get(value) || 0) + 1);
   return [...counts.entries()]
     .map(([label, count]) => ({ label, value: facetValue(label), count }))
-    .sort((a, b) => b.count - a.count || a.label.localeCompare(b.label));
+    .sort((a, b) => {
+      const aUnresolved = UNRESOLVED_FACET_PATTERN.test(a.label);
+      const bUnresolved = UNRESOLVED_FACET_PATTERN.test(b.label);
+      if (aUnresolved !== bUnresolved) return aUnresolved ? 1 : -1;
+      return b.count - a.count || a.label.localeCompare(b.label);
+    });
 }
 
 export const facets = {
