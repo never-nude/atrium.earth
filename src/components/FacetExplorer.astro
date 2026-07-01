@@ -53,6 +53,14 @@ const stillCount = works.length - modelCount;
       </label>
 
       <label class="field">
+        <span>Movement</span>
+        <select data-filter="movement">
+          <option value="">All movements</option>
+          {facets.movements.map((facet) => <option value={facet.value}>{facet.label} ({facet.count})</option>)}
+        </select>
+      </label>
+
+      <label class="field">
         <span>Media</span>
         <select data-filter="media">
           <option value="">All media</option>

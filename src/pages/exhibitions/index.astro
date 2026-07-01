@@ -7,7 +7,7 @@ import { withBase } from '../../lib/urls';
 const exhibitions = [
   {
     title: 'Stone and the Human Figure',
-    href: '/museum/?materials=marble&q=figure',
+    href: '/museum/?material=marble&q=figure',
     summary: 'Bodies, torsos, portraits, reliefs, and fragments where stone carries human presence.',
     works: works.filter((work) => work.materials.includes('Marble') || work.materials.includes('Stone')).slice(0, 4),
   },

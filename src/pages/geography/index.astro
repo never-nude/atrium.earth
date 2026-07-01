@@ -32,7 +32,7 @@ const groups = facets.geography.map((facet) => ({ ...facet, works: worksForFacet
           <p class="eyebrow">{group.count} works</p>
           <h2 id={`${group.value}-title`}>{group.label}</h2>
         </div>
-        <a class="text-link" href={withBase(`/museum/?geography=${group.value}`)}>Open in museum</a>
+        <a class="text-link" href={withBase(`/museum/?place=${group.value}`)}>Open in museum</a>
       </div>
       <div class="rail">
         {group.works.slice(0, 8).map((work) => <WorkCard work={work} />)}

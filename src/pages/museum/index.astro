@@ -20,8 +20,8 @@ const newAdditions = recentlyPrepared(3);
   <section class="page-shell" aria-labelledby="museum-title">
     <p class="eyebrow">The museum · {works.length} works</p>
     <h1 id="museum-title">The collection.</h1>
-    <p class="lede">{works.length} works, antiquity to the present. Use the filters to narrow by era, place, material, or maker — or search by name.</p>
-    <TimelineStrip />
+    <p class="lede">{works.length} works, antiquity to the modern era. Use the filters to narrow by era, place, material, or maker — or search by name.</p>
+    <TimelineStrip works={works} />
   </section>
 
   <section class="section" aria-labelledby="new-additions-title">

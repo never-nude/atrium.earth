@@ -625,12 +625,23 @@ export function facetValue(label: string): string {
   return valueKey(label);
 }
 
+// Matches the "we don't know yet" values used across catalog.ts and the page templates
+// (e.g. "Maker not yet recorded", "Unassigned geography"). These are real, honest buckets —
+// but they're an artifact of missing data, not a meaningful browse category, so they should
+// never rank first just because they happen to be the largest bucket.
+const UNRESOLVED_FACET_PATTERN = /not yet recorded|pending|unassigned/i;
+
 function facetCounts(values: string[]): Facet[] {
   const counts = new Map<string, number>();
   for (const value of values.filter(Boolean)) counts.set(value, (counts.get(value) || 0) + 1);
   return [...counts.entries()]
     .map(([label, count]) => ({ label, value: facetValue(label), count }))
-    .sort((a, b) => b.count - a.count || a.label.localeCompare(b.label));
+    .sort((a, b) => {
+      const aUnresolved = UNRESOLVED_FACET_PATTERN.test(a.label);
+      const bUnresolved = UNRESOLVED_FACET_PATTERN.test(b.label);
+      if (aUnresolved !== bUnresolved) return aUnresolved ? 1 : -1;
+      return b.count - a.count || a.label.localeCompare(b.label);
+    });
 }
 
 export const facets = {
@@ -734,6 +745,7 @@ export function publicDataset(work: Work): Record<string, string> {
     place: facetValue(work.geography),
     material: (work.materials.length ? work.materials : ['Material not yet recorded']).map(facetValue).join(' '),
     maker: facetValue(work.maker || 'Maker not yet recorded'),
+    movement: facetValue(work.movement),
     media: work.hasPreview ? 'model' : 'still',
   };
 }
