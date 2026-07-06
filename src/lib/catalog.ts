@@ -613,8 +613,17 @@ function relatedFor(work: Work, works: Work[]): string[] {
     .map((item) => item.slug);
 }
 
+export function compareWorksByDefaultOrder(a: Work, b: Work): number {
+  if (a.yearStart === null && b.yearStart === null) return a.index - b.index;
+  if (a.yearStart === null) return 1;
+  if (b.yearStart === null) return -1;
+  return a.yearStart - b.yearStart || a.index - b.index;
+}
+
 const normalized = rawWorks.map(normalize);
-export const works: Work[] = normalized.map((work) => ({ ...work, relatedWorks: relatedFor(work, normalized) }));
+export const works: Work[] = normalized
+  .map((work) => ({ ...work, relatedWorks: relatedFor(work, normalized) }))
+  .sort(compareWorksByDefaultOrder);
 export const worksBySlug = new Map(works.map((work) => [work.slug, work]));
 
 export function workBySlug(slug: string): Work | undefined {

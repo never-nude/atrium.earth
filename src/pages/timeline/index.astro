@@ -4,12 +4,7 @@ import WorkCard from '../../components/WorkCard.astro';
 import TimelineStrip from '../../components/TimelineStrip.astro';
 import { facets, formatYear, works } from '../../lib/catalog';
 
-const sorted = [...works].sort((a, b) => {
-  if (a.yearStart === null && b.yearStart === null) return a.index - b.index;
-  if (a.yearStart === null) return 1;
-  if (b.yearStart === null) return -1;
-  return a.yearStart - b.yearStart;
-});
+const sorted = works;
 
 const groups = facets.eras.map((facet) => ({
   ...facet,
