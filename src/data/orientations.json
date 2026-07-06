@@ -602,5 +602,143 @@
     "status": "reviewed",
     "confidence": 0.75,
     "note": "Manual review: rotate the Smithsonian GLB so Lincoln's beard/chin are down and the face remains readable from the thumbnail camera."
+  },
+  "roman/aion-louvre-threedscans": {
+    "upAxis": "y",
+    "modelRotation": [
+      -0.83,
+      0,
+      0.22
+    ],
+    "yaw": 0,
+    "status": "auto",
+    "confidence": 0.7,
+    "note": "Elongated (aspect 3.4); PCA long-axis aligned to vertical."
+  },
+  "egyptian/colchester-sphinx-threedscans": {
+    "upAxis": "y",
+    "modelRotation": [
+      -180,
+      0,
+      -179.99
+    ],
+    "yaw": 0,
+    "status": "auto",
+    "confidence": 0.67,
+    "note": "Stable-pose solve (pose 2, p=0.16, margin 0.38); confident."
+  },
+  "neoclassical/cupid-disguised-as-a-shepherd-walker-art-gallery": {
+    "upAxis": "y",
+    "modelRotation": [
+      -93.91,
+      -0.34,
+      -0.37
+    ],
+    "yaw": 0,
+    "status": "reviewed",
+    "confidence": 0.8,
+    "note": "Corrected 2026-07-06: the auto PCA solve (X=+86) stood the figure on its head with the plinth on top. Flipped 180deg about X (X=-93.91) so the base rests down and the shepherd stands upright."
+  },
+  "roman/glycon-threedscans": {
+    "upAxis": "y",
+    "modelRotation": [
+      -180,
+      0,
+      -180
+    ],
+    "yaw": 0,
+    "status": "auto",
+    "confidence": 0.84,
+    "note": "Stable-pose solve (pose 0, p=0.26, margin 0.75); confident."
+  },
+  "modern/bootleg-eve-threedscans": {
+    "upAxis": "y",
+    "modelRotation": [
+      -89.67,
+      3.37,
+      -3.39
+    ],
+    "yaw": 0,
+    "status": "auto",
+    "confidence": 0.63,
+    "note": "Elongated (aspect 2.9); PCA long-axis aligned to vertical."
+  },
+  "modern/bursche-im-sakko-photosculpture-albertina": {
+    "upAxis": "y",
+    "modelRotation": [
+      -90,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "status": "reviewed",
+    "confidence": 0.7,
+    "note": "Manual review 2026-07-06: the stable-pose solve laid the figure on its side (round base to the left). Rotate the long axis (source Z) to vertical so the figure stands on its socle."
+  },
+  "renaissance/grotesque-helmet-goldenes-dachl": {
+    "upAxis": "y",
+    "modelRotation": [
+      135.33,
+      0,
+      0.47
+    ],
+    "yaw": 0,
+    "status": "auto",
+    "confidence": 0.67,
+    "note": "Stable-pose solve (pose 0, p=0.19, margin 0.38); confident."
+  },
+  "renaissance/actaeon-threedscans": {
+    "upAxis": "y",
+    "modelRotation": [
+      0,
+      0,
+      180
+    ],
+    "yaw": 0,
+    "status": "reviewed",
+    "confidence": 0.75,
+    "note": "Manual review 2026-07-06: auto-orient rendered the figure inverted (head-down; the source stores the long head-to-toe axis along +Y with the head at -Y). The flagged stable-pose proposal added a spurious ~90deg roll, leaving the figure reclining diagonally. A plain 180deg roll about Z (view axis) stands the front-facing figure upright."
+  },
+  "americas/untitled-woman-and-child-selma-burke-smithsonian": {
+    "upAxis": "y",
+    "modelRotation": [
+      -0.45,
+      -0.01,
+      1.5
+    ],
+    "yaw": 0,
+    "status": "auto",
+    "confidence": 0.73,
+    "note": "Elongated (aspect 3.7); PCA long-axis aligned to vertical."
+  },
+  "greek/athena-alkyoneus-ge-nike-pergamon-smk-cast": {
+    "upAxis": "y",
+    "modelRotation": [
+      180,
+      0,
+      -93.88
+    ],
+    "yaw": 180,
+    "status": "reviewed",
+    "confidence": 0.7,
+    "note": "Manual review 2026-07-06: the stable-pose upright transform is correct but opened on the blank back of the relief; yaw 180deg brings the carved Gigantomachy face to the front and a near-frontal viewDirection (relief normal ~+X) squares the camera to the carved face instead of the oblique slab edge.",
+    "viewDirection": [
+      0.9,
+      0.2,
+      0.35
+    ],
+    "fit": 1.12
+  },
+  "modern/drame-au-desert-depot-des-sculptures-paris": {
+    "upAxis": "y",
+    "modelRotation": [
+      180,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "status": "reviewed",
+    "confidence": 0.7,
+    "note": "Manual review 2026-07-06: auto-orient placed the rocky ground slab on top with the animal hanging below. Flipped 180deg about X so the base rests down and the recumbent animal sits on top."
   }
 }
