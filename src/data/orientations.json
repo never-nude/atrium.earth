@@ -836,5 +836,15 @@
     "status": "reviewed",
     "confidence": 0.8,
     "note": "Manual review 2026-07-06: auto z-up floated the boards diagonally. Roll 135deg about Z so the two raking boards meet at a top-center apex with the carved openwork panel spanning between them (roof-gable presentation)."
+  },
+  "neoclassical/henri-iv-enfant-bosio-threedscans": {
+    "modelRotation": [
+      180,
+      0,
+      0
+    ],
+    "status": "fixed",
+    "note": "Manual review 2026-07-08: auto orientation rendered the figure upside down; flip 180deg about X.",
+    "yaw": 100
   }
 }
