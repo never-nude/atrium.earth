@@ -147,9 +147,9 @@
     ],
     "yaw": 0,
     "viewDirection": [
-      0.55,
-      0.34,
-      -0.9
+      1,
+      0.12,
+      0.08
     ],
     "status": "reviewed",
     "confidence": 1,
@@ -623,6 +623,11 @@
       -179.99
     ],
     "yaw": 0,
+    "viewDirection": [
+      0,
+      0.08,
+      1
+    ],
     "status": "auto",
     "confidence": 0.67,
     "note": "Stable-pose solve (pose 2, p=0.16, margin 0.38); confident."
@@ -723,9 +728,9 @@
     "confidence": 0.7,
     "note": "Manual review 2026-07-06: the stable-pose upright transform is correct but opened on the blank back of the relief; yaw 180deg brings the carved Gigantomachy face to the front and a near-frontal viewDirection (relief normal ~+X) squares the camera to the carved face instead of the oblique slab edge.",
     "viewDirection": [
-      0.9,
-      0.2,
-      0.35
+      1,
+      0.08,
+      0
     ],
     "fit": 1.12
   },
@@ -846,5 +851,234 @@
     "status": "fixed",
     "note": "Manual review 2026-07-08: auto orientation rendered the figure upside down; flip 180deg about X.",
     "yaw": 100
+  },
+  "neoclassical/gruppe-mit-zwei-windhunden-franzoni-threedscans": {
+    "upAxis": "y",
+    "modelRotation": [
+      180,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "viewDirection": [
+      0.55,
+      0.34,
+      -0.9
+    ],
+    "status": "reviewed",
+    "confidence": 0.95,
+    "note": "Manual review 2026-07-12: flip the source mesh 180deg about X so the rectangular plinth rests on the ground and the two greyhounds stand above it."
+  },
+  "neoclassical/napoleon-ier-bosio-threedscans": {
+    "upAxis": "auto",
+    "modelRotation": [
+      180,
+      0,
+      0
+    ],
+    "viewDirection": [
+      -0.55,
+      0.34,
+      -0.9
+    ],
+    "status": "reviewed",
+    "confidence": 0.9,
+    "note": "Manual review 2026-07-12: preserve the source Z-up bust orientation and open from the opposite side so Napoleon's face and drapery, rather than the hollow back, face the camera."
+  },
+  "asia/baluster-vase-f1980-192-smithsonian": {
+    "upAxis": "x",
+    "modelRotation": [
+      0,
+      0,
+      45
+    ],
+    "yaw": 0,
+    "status": "reviewed",
+    "confidence": 0.9,
+    "note": "Manual review 2026-07-12: align the vessel's diagonal source-X height to viewer Y so the foot rests level and the lid is above the body."
+  },
+  "asia/baluster-vase-f1980-191-smithsonian": {
+    "upAxis": "x",
+    "modelRotation": [
+      0,
+      0,
+      12
+    ],
+    "yaw": 0,
+    "status": "reviewed",
+    "confidence": 0.9,
+    "note": "Manual review 2026-07-12: align the vessel's diagonal source-X height to viewer Y so the foot rests level and the lid is above the body."
+  },
+  "asia/prasat-krahom-vishnu-narasimha-lintel-cast-guimet-threedscans": {
+    "upAxis": "auto",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "viewDirection": [
+      0,
+      0.08,
+      -1
+    ],
+    "status": "reviewed",
+    "confidence": 0.9,
+    "note": "Manual review 2026-07-12: open squarely on the carved lintel face instead of the blank reverse."
+  },
+  "asia/miss-umataka-dogu-nagaoka-commons": {
+    "upAxis": "x",
+    "modelRotation": [
+      0,
+      0,
+      180
+    ],
+    "yaw": 0,
+    "status": "reviewed",
+    "confidence": 0.8,
+    "note": "Manual review 2026-07-12: the figurine's height follows source X; stand it vertically instead of presenting it sideways."
+  },
+  "asia/hotei-water-basin-ana-hachimangu-commons": {
+    "upAxis": "z",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "status": "reviewed",
+    "confidence": 0.8,
+    "note": "Manual review 2026-07-12: use the source Z height so the masonry base rests down and Hotei sits upright beside the basin."
+  },
+  "asia/dainichi-nyorai-tower-juni-jinja-commons": {
+    "upAxis": "auto",
+    "viewDirection": [
+      -1,
+      0.08,
+      0
+    ],
+    "status": "reviewed",
+    "confidence": 0.85,
+    "note": "Manual review 2026-07-12: retain the upright stone and open on its inscribed front rather than its plain side/reverse."
+  },
+  "asia/bato-kannon-gohanzuka-commons": {
+    "upAxis": "auto",
+    "viewDirection": [
+      -1,
+      0.08,
+      0
+    ],
+    "status": "reviewed",
+    "confidence": 0.85,
+    "note": "Manual review 2026-07-12: retain the upright stone and open on its carved front rather than its plain side/reverse."
+  },
+  "egyptian/head-of-amenhotep-iii-cleveland": {
+    "upAxis": "auto",
+    "viewDirection": [
+      -0.55,
+      0.34,
+      -0.9
+    ],
+    "status": "reviewed",
+    "confidence": 0.9,
+    "note": "Manual review 2026-07-12: open from the opposite side so the king's face, rather than the back of the crown, faces the camera."
+  },
+  "americas/bowl-fearsome-deity-design-wcma": {
+    "upAxis": "y",
+    "viewDirection": [
+      0.55,
+      0.82,
+      0.9
+    ],
+    "status": "reviewed",
+    "confidence": 0.9,
+    "note": "Manual review 2026-07-12: keep the bowl's base down on source Y and open from above so the painted interior is visible instead of the accession-marked underside."
+  },
+  "asia/minai-bowl-courtly-scene-mia": {
+    "upAxis": "y",
+    "viewDirection": [
+      0.55,
+      0.82,
+      0.9
+    ],
+    "status": "reviewed",
+    "confidence": 0.9,
+    "note": "Manual review 2026-07-12: keep the bowl's base down on source Y and open from above so the courtly interior is visible instead of the underside."
+  },
+  "americas/stars-and-stripes-slippers-elizabeth-keckly-nmaahc": {
+    "upAxis": "auto",
+    "viewDirection": [
+      0.55,
+      0.7,
+      -0.9
+    ],
+    "status": "reviewed",
+    "confidence": 0.85,
+    "note": "Manual review 2026-07-12: open from above and the opposite side so the slipper uppers and decoration face the camera instead of the soles."
+  },
+  "americas/theodore-roosevelt-farnham-smithsonian": {
+    "upAxis": "auto",
+    "modelRotation": [
+      0,
+      0,
+      5
+    ],
+    "viewDirection": [
+      0,
+      0.08,
+      1
+    ],
+    "status": "reviewed",
+    "confidence": 0.9,
+    "note": "Manual review 2026-07-12: present the bronze relief square to the camera rather than at a steep diagonal."
+  },
+  "asia/gathering-of-buddhas-and-bodhisattvas-smithsonian": {
+    "upAxis": "auto",
+    "viewDirection": [
+      0,
+      0.08,
+      1
+    ],
+    "status": "reviewed",
+    "confidence": 0.9,
+    "note": "Manual review 2026-07-12: present the mural face nearly square to the camera."
+  },
+  "asia/western-paradise-buddha-amitabha-smithsonian": {
+    "upAxis": "auto",
+    "viewDirection": [
+      0,
+      0.08,
+      1
+    ],
+    "status": "reviewed",
+    "confidence": 0.9,
+    "note": "Manual review 2026-07-12: present the relief face nearly square to the camera."
+  },
+  "asia/garuda-terminal-mia-commons": {
+    "upAxis": "auto",
+    "viewDirection": [
+      1,
+      0.12,
+      0.08
+    ],
+    "status": "reviewed",
+    "confidence": 0.9,
+    "note": "Manual review 2026-07-12: open on the modeled Garuda face instead of the thin edge of the terminal."
+  },
+  "sub-saharan-africa/ashanti-terracotta-neck-face-yale-peabody": {
+    "upAxis": "auto",
+    "modelRotation": [
+      180,
+      0,
+      0
+    ],
+    "viewDirection": [
+      0,
+      0.18,
+      1
+    ],
+    "fit": 1.16,
+    "status": "reviewed",
+    "confidence": 0.95,
+    "note": "Manual review 2026-07-12: flip the portrait so its circular pedestal is down, then open on the modeled face instead of the hollow underside."
   }
 }
