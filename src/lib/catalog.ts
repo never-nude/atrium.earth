@@ -7,6 +7,7 @@ import rawAppearanceOverrides from '../data/appearance-overrides.json';
 
 type RawWork = {
   slug: string;
+  hidden?: boolean;
   collection?: string | null;
   title: string;
   artist?: string | null;
@@ -155,7 +156,8 @@ type AppearanceOverride = Partial<Omit<MaterialAppearance, 'key' | 'label' | 'ma
   profile?: string;
 };
 
-const rawWorks = rawCatalog as RawWork[];
+// Keep deferred scans in the source catalog, but exclude them from every public surface.
+const rawWorks = (rawCatalog as RawWork[]).filter((work) => !work.hidden);
 const previewMap = rawPreviews as Record<string, Preview>;
 const renderSet = new Set(rawRenders as string[]);
 const orientationMap = rawOrientations as Record<string, OrientationEntry>;

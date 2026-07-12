@@ -719,14 +719,14 @@
   "greek/athena-alkyoneus-ge-nike-pergamon-smk-cast": {
     "upAxis": "y",
     "modelRotation": [
-      180,
+      90,
       0,
       -93.88
     ],
     "yaw": 180,
     "status": "reviewed",
     "confidence": 0.7,
-    "note": "Manual review 2026-07-06: the stable-pose upright transform is correct but opened on the blank back of the relief; yaw 180deg brings the carved Gigantomachy face to the front and a near-frontal viewDirection (relief normal ~+X) squares the camera to the carved face instead of the oblique slab edge.",
+    "note": "Manual review 2026-07-12: rotate the relief 90 degrees clockwise from the prior presentation while retaining its carved Gigantomachy face toward the camera.",
     "viewDirection": [
       1,
       0.08,
@@ -886,16 +886,16 @@
     "note": "Manual review 2026-07-12: preserve the source Z-up bust orientation and open from the opposite side so Napoleon's face and drapery, rather than the hollow back, face the camera."
   },
   "asia/baluster-vase-f1980-192-smithsonian": {
-    "upAxis": "x",
+    "upAxis": "y",
     "modelRotation": [
-      0,
-      0,
-      45
+      -54.7,
+      28.98,
+      -53.09
     ],
     "yaw": 0,
     "status": "reviewed",
     "confidence": 0.9,
-    "note": "Manual review 2026-07-12: align the vessel's diagonal source-X height to viewer Y so the foot rests level and the lid is above the body."
+    "note": "Manual review 2026-07-12: use the vessel's measured diagonal principal axis to align it vertically without a residual tilt."
   },
   "asia/baluster-vase-f1980-191-smithsonian": {
     "upAxis": "x",
@@ -951,6 +951,11 @@
   },
   "asia/dainichi-nyorai-tower-juni-jinja-commons": {
     "upAxis": "auto",
+    "modelRotation": [
+      9.3,
+      0,
+      0
+    ],
     "viewDirection": [
       -1,
       0.08,
@@ -958,7 +963,7 @@
     ],
     "status": "reviewed",
     "confidence": 0.85,
-    "note": "Manual review 2026-07-12: retain the upright stone and open on its inscribed front rather than its plain side/reverse."
+    "note": "Manual review 2026-07-12: level the tower's measured post-Z-up lean, then open on its inscribed front rather than its plain side/reverse."
   },
   "asia/bato-kannon-gohanzuka-commons": {
     "upAxis": "auto",
@@ -1116,5 +1121,39 @@
     "status": "reviewed",
     "confidence": 0.95,
     "note": "Manual review 2026-07-12: open on the polychrome Eye of Ra face rather than the accession-marked reverse."
+  },
+  "asia/bayon-lion-guimet-threedscans": {
+    "upAxis": "y",
+    "modelRotation": [
+      180,
+      0,
+      0
+    ],
+    "status": "reviewed",
+    "confidence": 0.9,
+    "note": "Manual review 2026-07-12: flip the source mesh so the lion's base is down rather than above the figure."
+  },
+  "michelangelo/dawn": {
+    "upAxis": "y",
+    "viewDirection": [
+      0.55,
+      0.34,
+      0.9
+    ],
+    "status": "reviewed",
+    "confidence": 0.85,
+    "note": "Manual review 2026-07-12: retain source Y as vertical so the sarcophagus block is grounded and the reclining Dawn figure rests above it."
+  },
+  "americas/charlie-parker-alto-saxophone-nmaahc": {
+    "upAxis": "x",
+    "status": "reviewed",
+    "confidence": 0.95,
+    "note": "Manual review 2026-07-12: source X is the saxophone's long axis; align it to viewer Y so the instrument stands upright."
+  },
+  "americas/julius-erving-dr-j-sneakers-nmaahc": {
+    "upAxis": "x",
+    "status": "reviewed",
+    "confidence": 0.9,
+    "note": "Manual review 2026-07-12: align source X to viewer Y so the sneaker sits on its sole rather than standing on its toe."
   }
 }
