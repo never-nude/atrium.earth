@@ -4,6 +4,7 @@ import path from 'node:path';
 const repoRoot = path.resolve(import.meta.dirname, '..');
 const catalog = JSON.parse(await readFile(path.join(repoRoot, 'src/data/catalog.json'), 'utf8'));
 const outRoot = path.join(repoRoot, 'public/previews/posters');
+const renderRoot = path.join(repoRoot, 'public/previews/renders');
 
 // Night Atrium palette: deep navy base + a single warm raking light + a cool-chalk
 // figure. Subtle variation in navy depth and light hue (brass / gold / bronze) keeps
@@ -30,7 +31,7 @@ function escapeXml(value) {
     .replaceAll('"', '&quot;');
 }
 
-function posterSvg(work) {
+function placeholderPosterSvg(work) {
   const seed = seedFor(work.slug);
   const [base, field, glow, marble] = palettes[seed % palettes.length];
   const tilt = (seed % 13) - 6;
@@ -73,10 +74,32 @@ function posterSvg(work) {
 `;
 }
 
-for (const work of catalog) {
-  const dir = path.join(outRoot, work.slug);
-  await mkdir(dir, { recursive: true });
-  await writeFile(path.join(dir, 'poster.svg'), posterSvg(work));
+async function posterSvg(work) {
+  try {
+    const render = await readFile(path.join(renderRoot, work.slug, 'thumb.webp'));
+    return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 900" role="img" aria-labelledby="title desc">
+  <title id="title">${escapeXml(work.title)}</title>
+  <desc id="desc">Rendered 3D model preview for ${escapeXml(work.title)}.</desc>
+  <image width="720" height="900" href="data:image/webp;base64,${render.toString('base64')}" preserveAspectRatio="xMidYMid slice"/>
+</svg>
+`;
+  } catch (error) {
+    if (error?.code !== 'ENOENT') throw error;
+    return placeholderPosterSvg(work);
+  }
 }
 
-console.log(`Generated ${catalog.length} poster previews in ${outRoot}`);
+let works = catalog;
+if (process.env.ONLY) {
+  const only = new Set(process.env.ONLY.split(',').map((slug) => slug.trim()).filter(Boolean));
+  works = catalog.filter((work) => only.has(work.slug));
+}
+if (!works.length) throw new Error('No catalog works matched the poster request');
+
+for (const work of works) {
+  const dir = path.join(outRoot, work.slug);
+  await mkdir(dir, { recursive: true });
+  await writeFile(path.join(dir, 'poster.svg'), await posterSvg(work));
+}
+
+console.log(`Generated ${works.length} poster previews in ${outRoot}`);
