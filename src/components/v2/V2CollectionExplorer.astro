@@ -25,7 +25,7 @@ const { works } = Astro.props;
   </form>
 
   <div class="v2-collection-grid" data-v2-grid>
-    {works.map((work, index) => <V2WorkCard work={work} eager={index < 10} featured={index % 17 === 0} />)}
+    {works.map((work, index) => <V2WorkCard work={work} eager={index < 10} />)}
   </div>
 
   <div class="v2-empty" data-v2-empty hidden>

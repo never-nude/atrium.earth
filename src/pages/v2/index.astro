@@ -6,6 +6,19 @@ import { collectionCount, exhibitions, featuredWork, newToCollection, v2Exhibiti
 import { withBase } from '../../lib/urls';
 
 const randomRoutes = works.map((work) => withBase(v2WorkRoute(work)));
+const heroAppearance = {
+  ...featuredWork.materialAppearance,
+  exposure: Math.max(featuredWork.materialAppearance.exposure, 0.64),
+  keyLightIntensity: Math.max(featuredWork.materialAppearance.keyLightIntensity ?? 0, 1.4),
+  fillLightIntensity: Math.max(featuredWork.materialAppearance.fillLightIntensity ?? 0, 1.08),
+  rimLightIntensity: Math.max(featuredWork.materialAppearance.rimLightIntensity ?? 0, 1.42),
+  hemiLightIntensity: Math.max(featuredWork.materialAppearance.hemiLightIntensity ?? 0, 0.96),
+  backdropTop: '#202b40',
+  backdropBase: '#111827',
+  backdropGlow: '#c7b9ff',
+  backdropGlowStrength: 0.13,
+};
+const heroTransform = { ...featuredWork.modelTransform, fit: 1.06 };
 ---
 
 <V2Layout
@@ -23,19 +36,19 @@ const randomRoutes = works.map((work) => withBase(v2WorkRoute(work)));
         immersive={true}
         posterLoading="eager"
         upAxis={featuredWork.modelUpAxis}
-        modelTransform={featuredWork.modelTransform}
-        materialAppearance={featuredWork.materialAppearance}
+        modelTransform={heroTransform}
+        materialAppearance={heroAppearance}
       />
     </div>
 
     <div class="v2-hero__veil" aria-hidden="true"></div>
     <div class="v2-hero__copy">
-      <p class="v2-kicker">A borderless museum · {collectionCount} works</p>
-      <h1 id="v2-home-title">Sculpture,<br /><em>without distance.</em></h1>
-      <p>Turn it. Cross the light. Find the chisel marks. Reveal the wireframe. Every work is here to be explored—not kept behind glass.</p>
+      <p class="v2-kicker">Interactive sculpture · {collectionCount} works</p>
+      <h1 id="v2-home-title">David</h1>
+      <p>Drag to turn. Scroll to zoom. Open the full viewer to move the light, reveal the wireframe, and get as close as you like.</p>
       <div class="v2-actions">
-        <a class="v2-button v2-button--light" href={withBase(v2WorkRoute(featuredWork))}>Enter with David <span>↗</span></a>
-        <a class="v2-button v2-button--ghost" href={withBase('/v2/collection/')}>Explore all works</a>
+        <a class="v2-button v2-button--light" href={withBase(v2WorkRoute(featuredWork))}>Open the full 3D viewer <span>↗</span></a>
+        <a class="v2-button v2-button--ghost" href={withBase('/v2/collection/')}>Explore all {collectionCount} works</a>
       </div>
     </div>
 
@@ -44,7 +57,7 @@ const randomRoutes = works.map((work) => withBase(v2WorkRoute(work)));
       <strong>{featuredWork.title}</strong>
       <span>{featuredWork.maker} · {featuredWork.displayDate}</span>
     </div>
-    <p class="v2-hero__hint">Drag the sculpture now</p>
+    <p class="v2-hero__hint">Drag to rotate · Scroll to zoom</p>
   </section>
 
   <section class="v2-manifesto" aria-labelledby="manifesto-title">

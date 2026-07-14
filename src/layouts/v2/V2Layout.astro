@@ -24,7 +24,7 @@ const site = String(Astro.site ?? 'https://atrium.earth');
 const currentPath = withoutBase(Astro.url.pathname);
 const canonicalUrl = absoluteUrl(withoutBase(canonical), site);
 const imageUrl = absoluteUrl(image, site);
-const pageTitle = title === 'Atrium.Earth' ? 'Atrium.Earth — Sculpture, without distance' : `${title} — Atrium.Earth`;
+const pageTitle = title === 'Atrium.Earth' ? 'Atrium.Earth — Digital Sculpture Museum' : `${title} — Atrium.Earth`;
 ---
 
 <!doctype html>
@@ -58,7 +58,7 @@ const pageTitle = title === 'Atrium.Earth' ? 'Atrium.Earth — Sculpture, withou
     <main id="main"><slot /></main>
     {!immersive && (
       <footer class="v2-footer">
-        <div><strong>Atrium.Earth</strong><span>Sculpture, without distance.</span></div>
+        <div><strong>Atrium.Earth</strong><span>Digital sculpture museum</span></div>
         <nav aria-label="Footer">
           <a href={withBase('/v2/collection/')}>All {collectionCount} works</a>
           <a href={withBase('/v2/exhibitions/')}>Exhibitions</a>
