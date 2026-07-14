@@ -1,0 +1,42 @@
+---
+import type { Work } from '../../lib/catalog';
+import { publicDataset } from '../../lib/catalog';
+import { v2WorkRoute } from '../../lib/v2';
+import { withBase } from '../../lib/urls';
+
+type Props = { work: Work; eager?: boolean; featured?: boolean; sequence?: number };
+const { work, eager = false, featured = false, sequence } = Astro.props;
+const data = publicDataset(work);
+const detail = [work.maker || work.culture, work.displayDate].filter(Boolean).join(' · ');
+const alt = `${work.title}${detail ? ` — ${detail}` : ''}`;
+---
+
+<article
+  class:list={['v2-work-card', { 'v2-work-card--featured': featured }]}
+  data-v2-work-card
+  data-search={data.search}
+  data-year={data.year}
+  data-era={data.era}
+  data-place={data.place}
+  data-material={data.material}
+  data-maker={data.maker}
+>
+  <a href={withBase(v2WorkRoute(work))}>
+    <div class="v2-work-card__image">
+      <img
+        src={withBase(work.thumbnailImage)}
+        alt={alt}
+        width="720"
+        height="900"
+        loading={eager ? 'eager' : 'lazy'}
+        decoding="async"
+      />
+      <span class="v2-work-card__open" aria-hidden="true">Open in 3D <b>↗</b></span>
+      {typeof sequence === 'number' && <span class="v2-work-card__sequence">{String(sequence).padStart(2, '0')}</span>}
+    </div>
+    <div class="v2-work-card__copy">
+      <h3>{work.title}</h3>
+      {detail && <p>{detail}</p>}
+    </div>
+  </a>
+</article>

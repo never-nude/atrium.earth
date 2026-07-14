@@ -1,0 +1,21 @@
+---
+import V2CollectionExplorer from '../../../components/v2/V2CollectionExplorer.astro';
+import V2Layout from '../../../layouts/v2/V2Layout.astro';
+import { collectionCount, featuredWork, works } from '../../../lib/v2';
+---
+
+<V2Layout
+  title="Explore the collection"
+  description={`Search and wander through all ${collectionCount} sculptures in Atrium.Earth.`}
+  image={featuredWork.thumbnailImage}
+>
+  <header class="v2-page-hero v2-page-hero--collection">
+    <p class="v2-section-index">The collection / {collectionCount} works</p>
+    <h1>Find one.<br /><em>Then get closer.</em></h1>
+    <p>Search if you know what you want. Filter if you have a hunch. Or scroll until something stops you.</p>
+  </header>
+
+  <section class="v2-collection" aria-label="All works">
+    <V2CollectionExplorer works={works} />
+  </section>
+</V2Layout>

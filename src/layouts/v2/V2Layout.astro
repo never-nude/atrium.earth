@@ -1,0 +1,70 @@
+---
+import V2Header from '../../components/v2/V2Header.astro';
+import { collectionCount } from '../../lib/v2';
+import { absoluteUrl, withBase, withoutBase } from '../../lib/urls';
+import '../../styles/v2/v2.css';
+
+type Props = {
+  title?: string;
+  description?: string;
+  image?: string;
+  canonical?: string;
+  immersive?: boolean;
+};
+
+const {
+  title = 'Atrium.Earth',
+  description = 'A borderless digital museum for exploring sculpture in three dimensions.',
+  image = '/previews/renders/michelangelo/david/thumb.webp',
+  canonical = Astro.url.pathname,
+  immersive = false,
+} = Astro.props;
+
+const site = String(Astro.site ?? 'https://atrium.earth');
+const currentPath = withoutBase(Astro.url.pathname);
+const canonicalUrl = absoluteUrl(withoutBase(canonical), site);
+const imageUrl = absoluteUrl(image, site);
+const pageTitle = title === 'Atrium.Earth' ? 'Atrium.Earth — Sculpture, without distance' : `${title} — Atrium.Earth`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#080808" />
+    <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,300;6..72,400&display=swap" rel="stylesheet" />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={imageUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
+    <title>{pageTitle}</title>
+    <slot name="head" />
+  </head>
+  <body class:list={['v2-body', { 'v2-body--immersive': immersive }]}>
+    <a class="v2-skip" href="#main">Skip to the museum</a>
+    <V2Header currentPath={currentPath} />
+    <main id="main"><slot /></main>
+    {!immersive && (
+      <footer class="v2-footer">
+        <div><strong>Atrium.Earth</strong><span>Sculpture, without distance.</span></div>
+        <nav aria-label="Footer">
+          <a href={withBase('/v2/collection/')}>All {collectionCount} works</a>
+          <a href={withBase('/v2/exhibitions/')}>Exhibitions</a>
+          <a href={withBase('/')}>Original site</a>
+        </nav>
+      </footer>
+    )}
+  </body>
+</html>
