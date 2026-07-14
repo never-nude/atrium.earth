@@ -23,7 +23,7 @@ const seeds: ExhibitionSeed[] = [
     kicker: 'Gesture, force, balance',
     summary: 'Eleven bodies caught between one position and the next: turning, falling, wrestling, dancing, resisting, and walking.',
     invitation: 'Move around each figure. Look for the point where balance becomes effort—and where still material begins to feel alive.',
-    accent: '#d9ff43',
+    accent: '#b9a7ff',
     workSlugs: [
       'discobolus',
       'the-wrestlers',

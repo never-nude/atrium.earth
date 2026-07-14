@@ -5,9 +5,9 @@
   --v2-muted: #aaa8a2;
   --v2-line: rgba(242, 240, 234, 0.18);
   --v2-line-strong: rgba(242, 240, 234, 0.38);
-  --v2-acid: #d9ff43;
+  --v2-acid: #b9a7ff;
   --v2-sans: "Inter", "Helvetica Neue", Arial, sans-serif;
-  --v2-serif: "Newsreader", Iowan Old Style, Baskerville, Times New Roman, serif;
+  --v2-serif: var(--v2-sans);
   --v2-pad: clamp(20px, 3.5vw, 64px);
   --v2-max: 1720px;
 }
