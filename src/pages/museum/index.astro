@@ -4,7 +4,7 @@ import FacetExplorer from '../../components/FacetExplorer.astro';
 import WorkCard from '../../components/WorkCard.astro';
 import Viewer from '../../components/Viewer.astro';
 import TimelineStrip from '../../components/TimelineStrip.astro';
-import { collectionHighlights, facets, featuredWorkForDate, recentlyPrepared, works } from '../../lib/catalog';
+import { catalogCount, collectionHighlights, facets, featuredWorkForDate, recentlyPrepared, works } from '../../lib/catalog';
 import { withBase } from '../../lib/urls';
 
 const featured = featuredWorkForDate();
@@ -14,13 +14,13 @@ const newAdditions = recentlyPrepared(3);
 
 <BaseLayout
   title="Museum"
-  description={`Browse ${works.length} sculptures by era, place, material, and maker.`}
+  description={`Browse ${catalogCount} catalogued sculptures by era, place, material, and maker.`}
   image={featured.thumbnailImage}
 >
   <section class="page-shell" aria-labelledby="museum-title">
-    <p class="eyebrow">The museum · {works.length} works</p>
+    <p class="eyebrow">The museum · {catalogCount} works</p>
     <h1 id="museum-title">The collection.</h1>
-    <p class="lede">{works.length} works, antiquity to the present. Use the filters to narrow by era, place, material, or maker — or search by name.</p>
+    <p class="lede">{catalogCount} catalogued works, with {works.length} currently available to browse. Use the filters to narrow by era, place, material, or maker — or search by name.</p>
     <TimelineStrip />
   </section>
 
@@ -73,7 +73,7 @@ const newAdditions = recentlyPrepared(3);
       </div>
       <p class="lede">Narrow by era, place, material, maker, or media. Every change updates the grid right away.</p>
     </div>
-    <FacetExplorer works={works} />
+    <FacetExplorer works={works} totalCount={catalogCount} />
   </section>
 
   <section class="section" aria-labelledby="discovery-title">

@@ -5,14 +5,15 @@ import { facets } from '../lib/catalog';
 
 type Props = {
   works: Work[];
+  totalCount?: number;
 };
 
-const { works } = Astro.props;
+const { works, totalCount = works.length } = Astro.props;
 const modelCount = works.filter((work) => work.hasPreview).length;
 const stillCount = works.length - modelCount;
 ---
 
-<div data-museum-explorer>
+<div data-museum-explorer data-catalog-total={totalCount}>
   <form class="museum-tools" aria-label="Search and filter the collection" data-filter-form>
     <div class="filter-grid">
       <label class="field field--search">
@@ -63,7 +64,7 @@ const stillCount = works.length - modelCount;
     </div>
 
     <div class="result-row">
-      <span data-result-count>All records · <b>{works.length}</b></span>
+      <span data-result-count>Catalog records · <b>{totalCount}</b> · {works.length} available to browse</span>
       <button class="button subtle" type="reset" data-reset-filters>Reset</button>
     </div>
   </form>
@@ -74,7 +75,7 @@ const stillCount = works.length - modelCount;
 
   <div class="empty-state" data-empty hidden>
     <strong>No records match these filters.</strong>
-    <p class="fine">Try removing a filter, or <button type="button" class="text-link" data-reset-inline>reset all filters</button> to see all {works.length} records.</p>
+    <p class="fine">Try removing a filter, or <button type="button" class="text-link" data-reset-inline>reset all filters</button> to see all {works.length} published records.</p>
   </div>
 </div>
 
@@ -95,6 +96,7 @@ const stillCount = works.length - modelCount;
     }
 
     const total = cards.length;
+    const catalogTotal = Number(explorer.getAttribute('data-catalog-total')) || total;
 
     // Hydrate filters from the URL so a shared link reproduces the view.
     const params = new URLSearchParams(window.location.search);
@@ -140,8 +142,8 @@ const stillCount = works.length - modelCount;
 
       const anyFilter = Boolean(query) || selects.some((select) => select.value);
       count.innerHTML = anyFilter
-        ? `Showing <b>${visible}</b> of <b>${total}</b> records`
-        : `All records · <b>${total}</b>`;
+        ? `Showing <b>${visible}</b> of <b>${total}</b> published records · <b>${catalogTotal}</b> catalogued`
+        : `Catalog records · <b>${catalogTotal}</b> · ${total} available to browse`;
 
       const none = visible === 0;
       grid.classList.toggle('hidden', none);

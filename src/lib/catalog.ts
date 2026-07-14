@@ -156,6 +156,8 @@ type AppearanceOverride = Partial<Omit<MaterialAppearance, 'key' | 'label' | 'ma
   profile?: string;
 };
 
+export const catalogCount = (rawCatalog as RawWork[]).length;
+
 // Keep deferred scans in the source catalog, but exclude them from every public surface.
 const rawWorks = (rawCatalog as RawWork[]).filter((work) => !work.hidden);
 const previewMap = rawPreviews as Record<string, Preview>;
