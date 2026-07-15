@@ -7,7 +7,10 @@ export default defineConfig({
   site: process.env.SITE || 'https://atrium.earth',
   base: base === '/' ? undefined : base,
   output: 'static',
-  integrations: [sitemap()],
+  integrations: [
+    // /v3 is a noindexed staging preview; keep it out of the crawler sitemap.
+    sitemap({ filter: (page) => !page.includes('/v3/') }),
+  ],
   redirects: {
     // The immersive museum staged under /v2 is now the primary site.
     '/v2': '/',

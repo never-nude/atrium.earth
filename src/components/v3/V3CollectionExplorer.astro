@@ -1,0 +1,96 @@
+---
+import V3WorkCard from './V3WorkCard.astro';
+import type { Work } from '../../lib/catalog';
+import { facets } from '../../lib/catalog';
+
+type Props = { works: Work[] };
+const { works } = Astro.props;
+---
+
+<div class="v3-explorer" data-v3-explorer>
+  <form class="v3-explorer__tools" data-v3-filter-form aria-label="Search and filter all works">
+    <label class="v3-search">
+      <span class="v3-sr-only">Search the collection</span>
+      <input type="search" placeholder={`Search ${works.length} works, makers, places…`} autocomplete="off" data-v3-search />
+    </label>
+
+    <div class="v3-filter-row">
+      <label><span>Era</span><select data-v3-filter="era"><option value="">All eras</option>{facets.eras.map((item) => <option value={item.value}>{item.label}</option>)}</select></label>
+      <label><span>Place</span><select data-v3-filter="place"><option value="">Everywhere</option>{facets.geography.map((item) => <option value={item.value}>{item.label}</option>)}</select></label>
+      <label><span>Material</span><select data-v3-filter="material"><option value="">All materials</option>{facets.materials.map((item) => <option value={item.value}>{item.label}</option>)}</select></label>
+      <button type="reset" data-v3-reset>Clear</button>
+      <p aria-live="polite" data-v3-count>{works.length} works</p>
+    </div>
+  </form>
+
+  <div class="v3-grid" data-v3-grid>
+    {works.map((work, index) => <V3WorkCard work={work} eager={index < 10} />)}
+  </div>
+
+  <div class="v3-empty" data-v3-empty hidden>
+    <strong>Nothing surfaces.</strong>
+    <p>Widen the search, or clear the filters and wander instead.</p>
+    <button type="button" data-v3-empty-reset>Show all works</button>
+  </div>
+</div>
+
+<script>
+  for (const explorer of document.querySelectorAll('[data-v3-explorer]')) {
+    const form = explorer.querySelector('[data-v3-filter-form]');
+    const search = explorer.querySelector('[data-v3-search]');
+    const selects = [...explorer.querySelectorAll('[data-v3-filter]')];
+    const cards = [...explorer.querySelectorAll('[data-v3-card]')];
+    const grid = explorer.querySelector('[data-v3-grid]');
+    const empty = explorer.querySelector('[data-v3-empty]');
+    const count = explorer.querySelector('[data-v3-count]');
+    if (!(form instanceof HTMLFormElement) || !(search instanceof HTMLInputElement) || !grid || !empty || !count) continue;
+
+    const params = new URLSearchParams(window.location.search);
+    search.value = params.get('q') || '';
+    for (const select of selects) {
+      if (!(select instanceof HTMLSelectElement)) continue;
+      const key = select.dataset.v3Filter || '';
+      select.value = params.get(key) || '';
+    }
+
+    function update() {
+      const query = search.value.trim().toLowerCase();
+      let visible = 0;
+      for (const card of cards) {
+        const text = card.getAttribute('data-search') || '';
+        const matchesQuery = !query || text.includes(query);
+        const matchesFilters = selects.every((select) => {
+          if (!(select instanceof HTMLSelectElement) || !select.value) return true;
+          const key = select.dataset.v3Filter || '';
+          const cardValue = card.getAttribute(`data-${key}`) || '';
+          return key === 'material' ? cardValue.split(' ').includes(select.value) : cardValue === select.value;
+        });
+        const show = matchesQuery && matchesFilters;
+        card.toggleAttribute('hidden', !show);
+        if (show) visible += 1;
+      }
+
+      count.textContent = `${visible} ${visible === 1 ? 'work' : 'works'}`;
+      grid.toggleAttribute('hidden', visible === 0);
+      empty.toggleAttribute('hidden', visible !== 0);
+
+      const next = new URLSearchParams();
+      if (query) next.set('q', search.value.trim());
+      for (const select of selects) {
+        if (select instanceof HTMLSelectElement && select.value) next.set(select.dataset.v3Filter || '', select.value);
+      }
+      const suffix = next.toString();
+      history.replaceState({}, '', suffix ? `${location.pathname}?${suffix}` : location.pathname);
+    }
+
+    form.addEventListener('input', update);
+    form.addEventListener('change', update);
+    form.addEventListener('reset', () => setTimeout(update));
+    explorer.querySelector('[data-v3-empty-reset]')?.addEventListener('click', () => {
+      form.reset();
+      update();
+      search.focus();
+    });
+    update();
+  }
+</script>

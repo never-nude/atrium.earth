@@ -1,0 +1,102 @@
+---
+import V3Header from '../../components/v3/V3Header.astro';
+import { collectionCount } from '../../lib/v3';
+import { absoluteUrl, withBase, withoutBase } from '../../lib/urls';
+import '../../styles/v3/v3.css';
+
+type Props = {
+  title?: string;
+  description?: string;
+  image?: string;
+  canonical?: string;
+  immersive?: boolean;
+};
+
+const {
+  title = 'Atrium.Earth',
+  description = 'A borderless digital museum for exploring sculpture in three dimensions.',
+  image = '/previews/renders/michelangelo/david/thumb.webp',
+  canonical = Astro.url.pathname,
+  immersive = false,
+} = Astro.props;
+
+const site = String(Astro.site ?? 'https://atrium.earth');
+const currentPath = withoutBase(Astro.url.pathname);
+// v3 is a staged preview: canonical points at the primary route, and robots stay out.
+const canonicalPath = withoutBase(canonical).replace(/^\/v3(?=\/|$)/, '') || '/';
+const canonicalUrl = absoluteUrl(canonicalPath, site);
+const imageUrl = absoluteUrl(image, site);
+const pageTitle = title === 'Atrium.Earth' ? 'Atrium.Earth — Digital Sculpture Museum' : `${title} — Atrium.Earth`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#070a10" />
+    <meta name="robots" content="noindex" />
+    <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={imageUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
+    <title>{pageTitle}</title>
+    <script is:inline>document.documentElement.classList.add('v3-js');</script>
+    <slot name="head" />
+  </head>
+  <body class:list={['v3-body', { 'v3-body--immersive': immersive }]}>
+    <a class="v3-skip" href="#main">Skip to the museum</a>
+    <V3Header currentPath={currentPath} />
+    <main id="main"><slot /></main>
+    {!immersive && (
+      <footer class="v3-footer">
+        <div><strong>Atrium.Earth</strong><span>Digital sculpture museum · v3 preview</span></div>
+        <nav aria-label="Footer">
+          <a href={withBase('/v3/collection/')}>All {collectionCount} works</a>
+          <a href={withBase('/v3/exhibitions/')}>Exhibitions</a>
+          <a href={withBase('/')}>Current site</a>
+        </nav>
+      </footer>
+    )}
+    <script>
+      // Works surface as the visitor reaches them.
+      const revealed = document.querySelectorAll('.v3-reveal');
+      if (revealed.length && 'IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries) => {
+          for (const entry of entries) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-in');
+              io.unobserve(entry.target);
+            }
+          }
+        }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+        for (const el of revealed) io.observe(el);
+      } else {
+        for (const el of revealed) el.classList.add('is-in');
+      }
+
+      // The object label sheet behaves like a modal; Escape must close it
+      // and hand focus back to its toggle.
+      document.addEventListener('keydown', (event) => {
+        if (event.key !== 'Escape') return;
+        const sheet = document.querySelector('.v3-object-about[open]');
+        if (sheet instanceof HTMLDetailsElement) {
+          sheet.open = false;
+          sheet.querySelector('summary')?.focus();
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,158 @@
+---
+import Viewer from '../../components/Viewer.astro';
+import V3WorkCard from '../../components/v3/V3WorkCard.astro';
+import V3Layout from '../../layouts/v3/V3Layout.astro';
+import { collectionCount, exhibitions, featuredWork, newToCollection, pairings, v3ExhibitionRoute, v3WorkRoute, works } from '../../lib/v3';
+import { withBase } from '../../lib/urls';
+
+const randomRoutes = works.map((work) => withBase(v3WorkRoute(work)));
+const heroAppearance = {
+  ...featuredWork.materialAppearance,
+  exposure: Math.max(featuredWork.materialAppearance.exposure, 0.48),
+  keyLightIntensity: Math.max(featuredWork.materialAppearance.keyLightIntensity ?? 0, 1.22),
+  fillLightIntensity: Math.max(featuredWork.materialAppearance.fillLightIntensity ?? 0, 0.92),
+  rimLightIntensity: Math.max(featuredWork.materialAppearance.rimLightIntensity ?? 0, 1.24),
+  hemiLightIntensity: Math.max(featuredWork.materialAppearance.hemiLightIntensity ?? 0, 0.86),
+  backdropTop: '#1c2b41',
+  backdropBase: '#15243a',
+  backdropGlow: '#c7b9ff',
+  backdropGlowStrength: 0.08,
+};
+const heroTransform = { ...featuredWork.modelTransform, fit: 1.1 };
+---
+
+<V3Layout
+  title="Atrium.Earth"
+  description={`${collectionCount} sculptures in a borderless night museum. Turn, zoom, relight, and read every work in 3D.`}
+  image={featuredWork.thumbnailImage}
+>
+  <section class="v3-hero" aria-labelledby="v3-home-title">
+    <div class="v3-hero__viewer">
+      <Viewer
+        glb={withBase(featuredWork.modelGlb)}
+        poster={withBase(featuredWork.thumbnailImage)}
+        title={featuredWork.title}
+        hud={false}
+        immersive={true}
+        posterLoading="eager"
+        upAxis={featuredWork.modelUpAxis}
+        modelTransform={heroTransform}
+        materialAppearance={heroAppearance}
+        wheelZoom={false}
+      />
+    </div>
+
+    <div class="v3-hero__veil" aria-hidden="true"></div>
+    <div class="v3-hero__copy">
+      <p class="v3-kicker">A night museum · {collectionCount} works</p>
+      <h1 id="v3-home-title" class="v3-display">{featuredWork.title}</h1>
+      <p>The lights are off; the works are awake. Drag to turn the sculpture. Scroll to walk on.</p>
+      <div class="v3-actions">
+        <a class="v3-button v3-button--light" href={withBase(v3WorkRoute(featuredWork))}>Step closer <span>↗</span></a>
+        <a class="v3-button v3-button--ghost" href={withBase('/v3/collection/')}>All {collectionCount} works</a>
+      </div>
+    </div>
+
+    <div class="v3-hero__object">
+      <span>Now in the light</span>
+      <strong>{featuredWork.title}</strong>
+      <span>{[featuredWork.maker, featuredWork.displayDate].filter(Boolean).join(' · ')}</span>
+    </div>
+    <a class="v3-hero__continue" href="#v3-home-content">Walk on <span>↓</span></a>
+  </section>
+
+  <section class="v3-section v3-manifesto-wrap" id="v3-home-content" aria-labelledby="manifesto-title">
+    <div class="v3-manifesto">
+      <p class="v3-kicker">01 / The idea</p>
+      <div>
+        <h2 id="manifesto-title" class="v3-display">The work is the interface.</h2>
+        <p class="v3-editorial">No tickets, no glass, no closing time. Sculpture, lit and waiting — spend two minutes with one object or lose the night entirely.</p>
+      </div>
+      <div class="v3-manifesto__facts" aria-label="Museum facts">
+        <p><strong>{collectionCount}</strong><span>works in the dark</span></p>
+        <p><strong>360°</strong><span>every side, every work</span></p>
+        <p><strong>0</strong><span>walls between you and it</span></p>
+      </div>
+    </div>
+  </section>
+
+  {pairings.length > 0 && (
+  <section class="v3-section v3-section--line" aria-labelledby="pairs-title">
+    <div class="v3-section-head">
+      <p class="v3-kicker">02 / In conversation</p>
+      <h2 id="pairs-title" class="v3-display">Two works. One argument.</h2>
+    </div>
+    <div class="v3-pairs">
+      {pairings.map((pair) => (
+        <div class="v3-pair v3-reveal">
+          <a class="v3-pair__img v3-float v3-float--soft" href={withBase(v3WorkRoute(pair.a))} aria-label={pair.a.title}>
+            <img src={withBase(pair.a.thumbnailImage)} alt={pair.a.title} width="720" height="900" loading="lazy" decoding="async" />
+          </a>
+          <div class="v3-pair__copy">
+            <p class="v3-kicker">{pair.title}</p>
+            <p class="v3-wall">{pair.line}</p>
+            <p class="v3-pair__works">
+              <b>{pair.a.title}</b> · {pair.a.displayDate}<br />
+              <b>{pair.b.title}</b> · {pair.b.displayDate}
+            </p>
+          </div>
+          <a class="v3-pair__img v3-float v3-float--soft" href={withBase(v3WorkRoute(pair.b))} aria-label={pair.b.title}>
+            <img src={withBase(pair.b.thumbnailImage)} alt={pair.b.title} width="720" height="900" loading="lazy" decoding="async" />
+          </a>
+        </div>
+      ))}
+    </div>
+  </section>
+  )}
+
+  <section class="v3-section v3-section--line" aria-labelledby="exhibitions-home-title">
+    <div class="v3-section-head v3-section-head--split">
+      <div>
+        <p class="v3-kicker">03 / The rooms</p>
+        <h2 id="exhibitions-home-title" class="v3-display">Walk a narrated route.</h2>
+      </div>
+      <a href={withBase('/v3/exhibitions/')}>All exhibitions →</a>
+    </div>
+
+    <div class="v3-exlist">
+      {exhibitions.map((exhibition) => (
+        <a class="v3-exrow" href={withBase(v3ExhibitionRoute(exhibition))} style={`--ex-accent:${exhibition.accent}`}>
+          <span class="v3-exrow__no">{exhibition.number}</span>
+          <div>
+            <p class="v3-exrow__kicker">{exhibition.kicker}</p>
+            <h3>{exhibition.title}</h3>
+          </div>
+          <p class="v3-exrow__summary">{exhibition.summary}</p>
+          <span class="v3-exrow__img v3-float"><img src={withBase(exhibition.works[0].thumbnailImage)} alt="" width="240" height="300" loading="lazy" decoding="async" /></span>
+          <b aria-hidden="true">↗</b>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="v3-section v3-section--line" aria-labelledby="new-title">
+    <div class="v3-section-head v3-section-head--split">
+      <div><p class="v3-kicker">04 / Recently added</p><h2 id="new-title" class="v3-display">The museum keeps growing.</h2></div>
+      <a href={withBase('/v3/collection/')}>View all {collectionCount} →</a>
+    </div>
+    <div class="v3-rail">
+      {newToCollection.slice(0, 8).map((work, index) => <V3WorkCard work={work} eager={index < 3} />)}
+    </div>
+  </section>
+
+  <section class="v3-section v3-random" aria-labelledby="random-title">
+    <p class="v3-kicker">05 / Chance encounter</p>
+    <h2 id="random-title">Let the dark decide.</h2>
+    <p>The best museum moments begin with a wrong turn.</p>
+    <a class="v3-random__button" href={randomRoutes[0]} data-random-work>Surprise me <span>↗</span></a>
+  </section>
+
+  <script define:vars={{ randomRoutes }}>
+    const randomLink = document.querySelector('[data-random-work]');
+    randomLink?.addEventListener('click', (event) => {
+      event.preventDefault();
+      const next = randomRoutes[Math.floor(Math.random() * randomRoutes.length)];
+      window.location.href = next;
+    });
+  </script>
+</V3Layout>

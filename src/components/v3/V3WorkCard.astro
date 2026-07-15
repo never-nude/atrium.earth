@@ -1,0 +1,41 @@
+---
+import type { Work } from '../../lib/catalog';
+import { publicDataset } from '../../lib/catalog';
+import { v3WorkRoute } from '../../lib/v3';
+import { withBase } from '../../lib/urls';
+
+type Props = { work: Work; eager?: boolean; stop?: number };
+const { work, eager = false, stop } = Astro.props;
+const data = publicDataset(work);
+const detail = [work.maker || work.culture, work.displayDate].filter(Boolean).join(' · ');
+const alt = `${work.title}${detail ? ` — ${detail}` : ''}`;
+---
+
+<article
+  class="v3-card"
+  data-v3-card
+  data-search={data.search}
+  data-year={data.year}
+  data-era={data.era}
+  data-place={data.place}
+  data-material={data.material}
+  data-maker={data.maker}
+>
+  <a href={withBase(v3WorkRoute(work))}>
+    <div class="v3-card__image v3-float" style={`view-transition-name: w-${work.id};`}>
+      <img
+        src={withBase(work.thumbnailImage)}
+        alt={alt}
+        width="720"
+        height="900"
+        loading={eager ? 'eager' : 'lazy'}
+        decoding="async"
+      />
+      {typeof stop === 'number' && <span class="v3-card__stop" aria-hidden="true">{String(stop).padStart(2, '0')}</span>}
+    </div>
+    <div class="v3-card__copy">
+      <h3>{work.title}</h3>
+      {detail && <p>{detail}</p>}
+    </div>
+  </a>
+</article>
