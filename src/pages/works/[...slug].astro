@@ -70,6 +70,39 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
     <p class="v3-object-scroll">Scroll for the label ↓</p>
   </section>
 
+  <script>
+    // The interface recedes while the visitor handles the sculpture (see .is-engaged in v3.css).
+    const stageSection = document.querySelector('.v3-object-stage');
+    const canvasHost = stageSection?.querySelector('.model-stage');
+    let quietTimer = 0;
+    if (stageSection && canvasHost) {
+      // Track live pointers by id so a pinch (two fingers) stays engaged until the
+      // LAST finger lifts, and so toolbar taps (whose downs we never counted) are ignored.
+      const activePointers = new Set<number>();
+      const scheduleRelease = () => {
+        window.clearTimeout(quietTimer);
+        quietTimer = window.setTimeout(() => stageSection.classList.remove('is-engaged'), 900);
+      };
+      canvasHost.addEventListener('pointerdown', (event) => {
+        // Only handling the sculpture engages: the WebGL canvas itself, not the
+        // toolbar/activate buttons that also live inside .model-stage.
+        if (!(event.target instanceof Element) || !event.target.classList.contains('viewer-canvas')) return;
+        activePointers.add(event.pointerId);
+        window.clearTimeout(quietTimer);
+        stageSection.classList.add('is-engaged');
+      });
+      const releasePointer = (event: PointerEvent) => {
+        if (!activePointers.delete(event.pointerId)) return;
+        if (activePointers.size === 0) scheduleRelease();
+      };
+      // pointercancel (interrupted touch) and blur (focus lost mid-drag) can eat the
+      // pointerup; treat all of them as "the visitor let go" so the title always returns.
+      window.addEventListener('pointerup', releasePointer);
+      window.addEventListener('pointercancel', releasePointer);
+      window.addEventListener('blur', () => { activePointers.clear(); scheduleRelease(); });
+    }
+  </script>
+
   {wallNotes.length > 0 && (
     <section class="v3-object-wall" aria-label="What the curators wrote">
       {wallNotes.map((note) => (

@@ -97,7 +97,7 @@ const transformJson = JSON.stringify(modelTransform);
     </div>
   )}
 
-  {hasModel && <p class="stage-hint fine" data-hint hidden>Drag to orbit · right-drag or two-finger drag to pan · scroll or pinch to zoom · double-tap to reset</p>}
+  {hasModel && <p class="stage-hint fine" data-hint hidden>Drag to orbit · <span class="stage-hint__pan">right-drag or two-finger drag to pan · </span>scroll or pinch to zoom · double-tap to reset</p>}
 
   <noscript><p class="fine">Showing the still photo. Turn on JavaScript for the 3D model.</p></noscript>
 </div>
@@ -516,7 +516,17 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
         const viewer = await buildViewer(stage!, glb);
         if (loading) loading.hidden = true;
         stage!.classList.add('is-live');
-        if (hint) hint.hidden = false;
+        if (hint) {
+          // Show the gesture hint once, then let it get out of the way: it fades after
+          // a beat, or as soon as the visitor starts handling the model. Only canvas
+          // pointerdowns count — toolbar taps bubble through the stage and must not eat it.
+          hint.hidden = false;
+          const dismissHint = () => hint.classList.add('is-dismissed');
+          window.setTimeout(dismissHint, 7000);
+          stage!.addEventListener('pointerdown', (event) => {
+            if (event.target instanceof Element && event.target.classList.contains('viewer-canvas')) dismissHint();
+          });
+        }
         if (tools) {
           tools.hidden = false;
           const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
