@@ -1,0 +1,13 @@
+---
+import V2ExhibitionPage from '../../v2/exhibitions/[slug]/index.astro';
+import { exhibitions, type V2Exhibition } from '../../../lib/v2';
+
+export function getStaticPaths() {
+  return exhibitions.map((exhibition) => ({ params: { slug: exhibition.slug }, props: { exhibition } }));
+}
+
+type Props = { exhibition: V2Exhibition };
+const { exhibition } = Astro.props;
+---
+
+<V2ExhibitionPage exhibition={exhibition} />

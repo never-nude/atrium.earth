@@ -3,6 +3,7 @@ import { absoluteUrl } from '../lib/urls';
 
 const staticRoutes = [
   '/',
+  '/collection/',
   '/museum/',
   '/timeline/',
   '/geography/',
@@ -24,7 +25,7 @@ function escapeXml(value: string): string {
 }
 
 export function GET() {
-  const urls = [...staticRoutes, ...works.map((work) => work.route)]
+  const urls = [...staticRoutes, ...works.map((work) => `/works/${work.slug}/`)]
     .map((route) => `  <url><loc>${escapeXml(absoluteUrl(route, import.meta.env.SITE || 'https://atrium.earth'))}</loc></url>`)
     .join('\n');
   return new Response(`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`, {

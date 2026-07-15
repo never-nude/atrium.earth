@@ -11,6 +11,7 @@ type Props = {
   immersive?: boolean;
   posterLoading?: 'eager' | 'lazy';
   autoStart?: boolean;
+  wheelZoom?: boolean;
 };
 const {
   glb = '',
@@ -24,6 +25,7 @@ const {
   immersive = false,
   posterLoading = 'lazy',
   autoStart = true,
+  wheelZoom = true,
 } = Astro.props;
 const hasModel = Boolean(glb);
 const uid = Math.random().toString(36).slice(2, 8);
@@ -32,7 +34,7 @@ const transformJson = JSON.stringify(modelTransform);
 ---
 
 <div class:list={['viewer', { 'viewer--immersive': immersive }]} data-viewer data-auto-start={String(autoStart)}>
-  <div class="model-stage" data-stage data-glb={hasModel ? glb : ''} data-up-axis={upAxis} data-model-transform={transformJson} data-material-appearance={appearanceJson} data-immersive={String(immersive)} tabindex={hasModel ? '0' : undefined} aria-label={hasModel ? `Interactive 3D view of ${title}` : undefined}>
+  <div class="model-stage" data-stage data-glb={hasModel ? glb : ''} data-up-axis={upAxis} data-model-transform={transformJson} data-material-appearance={appearanceJson} data-immersive={String(immersive)} data-wheel-zoom={String(wheelZoom)} tabindex={hasModel ? '0' : undefined} aria-label={hasModel ? `Interactive 3D view of ${title}` : undefined}>
     <span class="stage-corner stage-corner--tl" aria-hidden="true"></span>
     <span class="stage-corner stage-corner--tr" aria-hidden="true"></span>
     <span class="stage-corner stage-corner--bl" aria-hidden="true"></span>
@@ -95,7 +97,7 @@ const transformJson = JSON.stringify(modelTransform);
     </div>
   )}
 
-  {hasModel && <p class="stage-hint fine" data-hint hidden>Drag to rotate · right-drag to pan · scroll to zoom · double-tap to reset</p>}
+  {hasModel && <p class="stage-hint fine" data-hint hidden>Drag to orbit · right-drag or two-finger drag to pan · scroll or pinch to zoom · double-tap to reset</p>}
 
   <noscript><p class="fine">Showing the still photo. Turn on JavaScript for the 3D model.</p></noscript>
 </div>
@@ -370,6 +372,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     controls.enableDamping = true;
     controls.dampingFactor = 0.08;
     controls.enablePan = true;
+    controls.enableZoom = stage.dataset.wheelZoom !== 'false';
     controls.rotateSpeed = 0.9;
     controls.zoomSpeed = immersive ? 1.35 : 0.8;
     controls.mouseButtons = { LEFT: THREE.MOUSE.ROTATE, MIDDLE: THREE.MOUSE.DOLLY, RIGHT: THREE.MOUSE.PAN };

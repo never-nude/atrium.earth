@@ -22,7 +22,8 @@ const {
 
 const site = String(Astro.site ?? 'https://atrium.earth');
 const currentPath = withoutBase(Astro.url.pathname);
-const canonicalUrl = absoluteUrl(withoutBase(canonical), site);
+const canonicalPath = withoutBase(canonical).replace(/^\/v2(?=\/|$)/, '') || '/';
+const canonicalUrl = absoluteUrl(canonicalPath, site);
 const imageUrl = absoluteUrl(image, site);
 const pageTitle = title === 'Atrium.Earth' ? 'Atrium.Earth — Digital Sculpture Museum' : `${title} — Atrium.Earth`;
 ---
@@ -60,9 +61,8 @@ const pageTitle = title === 'Atrium.Earth' ? 'Atrium.Earth — Digital Sculpture
       <footer class="v2-footer">
         <div><strong>Atrium.Earth</strong><span>Digital sculpture museum</span></div>
         <nav aria-label="Footer">
-          <a href={withBase('/v2/collection/')}>All {collectionCount} works</a>
-          <a href={withBase('/v2/exhibitions/')}>Exhibitions</a>
-          <a href={withBase('/')}>Original site</a>
+          <a href={withBase('/collection/')}>All {collectionCount} works</a>
+          <a href={withBase('/exhibitions/')}>Exhibitions</a>
         </nav>
       </footer>
     )}

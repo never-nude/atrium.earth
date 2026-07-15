@@ -137,19 +137,19 @@ export const exhibitions: V2Exhibition[] = seeds.map(({ workSlugs, ...seed }) =>
   works: resolveWorks(workSlugs),
 }));
 
-export const featuredWork = workBySlug('michelangelo/david') ?? works[0];
+export const featuredWork = workBySlug('castor-and-pollux') ?? workBySlug('medici-faun') ?? works[0];
 export const collectionCount = works.length;
 export const newToCollection = recentlyPrepared(10);
 export const v2Facets = facets;
 
 export function v2WorkRoute(work: Work | string): string {
   const slug = typeof work === 'string' ? work : work.slug;
-  return `/v2/works/${slug}/`;
+  return `/works/${slug}/`;
 }
 
 export function v2ExhibitionRoute(exhibition: V2Exhibition | string): string {
   const slug = typeof exhibition === 'string' ? exhibition : exhibition.slug;
-  return `/v2/exhibitions/${slug}/`;
+  return `/exhibitions/${slug}/`;
 }
 
 export function exhibitionBySlug(slug: string): V2Exhibition | undefined {
