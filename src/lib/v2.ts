@@ -144,12 +144,12 @@ export const v2Facets = facets;
 
 export function v2WorkRoute(work: Work | string): string {
   const slug = typeof work === 'string' ? work : work.slug;
-  return `/works/${slug}/`;
+  return `/v2/works/${slug}/`;
 }
 
 export function v2ExhibitionRoute(exhibition: V2Exhibition | string): string {
   const slug = typeof exhibition === 'string' ? exhibition : exhibition.slug;
-  return `/exhibitions/${slug}/`;
+  return `/v2/exhibitions/${slug}/`;
 }
 
 export function exhibitionBySlug(slug: string): V2Exhibition | undefined {

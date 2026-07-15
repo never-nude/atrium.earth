@@ -78,12 +78,12 @@ export const newToCollection = recentlyPrepared(10);
 
 export function v3WorkRoute(work: Work | string): string {
   const slug = typeof work === 'string' ? work : work.slug;
-  return `/v3/works/${slug}/`;
+  return `/works/${slug}/`;
 }
 
 export function v3ExhibitionRoute(exhibition: V3Exhibition | string): string {
   const slug = typeof exhibition === 'string' ? exhibition : exhibition.slug;
-  return `/v3/exhibitions/${slug}/`;
+  return `/exhibitions/${slug}/`;
 }
 
 export function exhibitionBySlug(slug: string): V3Exhibition | undefined {

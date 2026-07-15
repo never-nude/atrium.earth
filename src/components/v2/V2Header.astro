@@ -4,15 +4,14 @@ import { withBase } from '../../lib/urls';
 type Props = { currentPath: string };
 const { currentPath } = Astro.props;
 const nav = [
-  ['Explore', '/collection/'],
-  ['Exhibitions', '/exhibitions/'],
+  ['Explore', '/v2/collection/'],
+  ['Exhibitions', '/v2/exhibitions/'],
 ];
-const primaryPath = currentPath.replace(/^\/v2(?=\/|$)/, '') || '/';
-const current = (href: string) => primaryPath === href || primaryPath.startsWith(href);
+const current = (href: string) => currentPath === href || (href !== '/v2/' && currentPath.startsWith(href));
 ---
 
 <header class="v2-header" data-v2-header>
-  <a class="v2-brand" href={withBase('/')} aria-label="Atrium home">
+  <a class="v2-brand" href={withBase('/v2/')} aria-label="Atrium v2 home">
     <span>Atrium</span><sup>Earth</sup>
   </a>
 
@@ -25,7 +24,7 @@ const current = (href: string) => primaryPath === href || primaryPath.startsWith
   <details class="v2-menu">
     <summary aria-label="Open menu"><span>Menu</span><i aria-hidden="true"></i></summary>
     <nav aria-label="Mobile primary">
-      <a href={withBase('/')}>Home</a>
+      <a href={withBase('/v2/')}>Home</a>
       {nav.map(([label, href]) => <a href={withBase(href)}>{label}</a>)}
     </nav>
   </details>

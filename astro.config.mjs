@@ -8,16 +8,17 @@ export default defineConfig({
   base: base === '/' ? undefined : base,
   output: 'static',
   integrations: [
-    // /v3 is a noindexed staging preview; keep it out of the crawler sitemap.
-    sitemap({ filter: (page) => !page.includes('/v3/') }),
+    // /v2 is the archived previous design and /v3 was the staging alias;
+    // neither belongs in the crawler sitemap.
+    sitemap({ filter: (page) => !page.includes('/v2/') && !page.includes('/v3/') }),
   ],
   redirects: {
-    // The immersive museum staged under /v2 is now the primary site.
-    '/v2': '/',
-    '/v2/collection': '/collection',
-    '/v2/exhibitions': '/exhibitions',
-    '/v2/exhibitions/[slug]': '/exhibitions/[slug]',
-    '/v2/works/[...slug]': '/works/[...slug]',
+    // The Night Vitrine staged under /v3 is now the primary site.
+    '/v3': '/',
+    '/v3/collection': '/collection',
+    '/v3/exhibitions': '/exhibitions',
+    '/v3/exhibitions/[slug]': '/exhibitions/[slug]',
+    '/v3/works/[...slug]': '/works/[...slug]',
   },
   server: {
     // Honor the port assigned by the preview harness (via PORT); fall back to Astro's default.

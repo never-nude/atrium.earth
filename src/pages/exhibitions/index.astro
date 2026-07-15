@@ -1,34 +1,32 @@
 ---
-import V2Layout from '../../layouts/v2/V2Layout.astro';
-import { exhibitions, featuredWork, v2ExhibitionRoute } from '../../lib/v2';
+import V3Layout from '../../layouts/v3/V3Layout.astro';
+import { exhibitions, featuredWork, v3ExhibitionRoute } from '../../lib/v3';
 import { withBase } from '../../lib/urls';
 ---
 
-<V2Layout
+<V3Layout
   title="Exhibitions"
-  description="Curated routes through the Atrium.Earth sculpture collection."
+  description="Narrated routes through the Atrium.Earth sculpture collection."
   image={featuredWork.thumbnailImage}
 >
-  <header class="v2-page-hero v2-page-hero--exhibitions">
-    <p class="v2-section-index">Curated rooms / 05</p>
-    <h1>Not categories.<br /><span class="v2-headline-line">Arguments.</span></h1>
-    <p>Each exhibition brings distant works into conversation. Take one in order, or use it as a door into the wider museum.</p>
+  <header class="v3-page-hero">
+    <p class="v3-kicker">Curated rooms / {String(exhibitions.length).padStart(2, '0')}</p>
+    <h1 class="v3-display">Not categories.<br /><em>Arguments.</em></h1>
+    <p>Each exhibition is a walked route: numbered stops, wall text, a way out. Take one in order, or use any stop as a door into the wider museum.</p>
   </header>
 
-  <section class="v2-exhibitions-index" aria-label="Current exhibitions">
+  <section class="v3-exlist" style="margin: 0 var(--v3-pad) 140px;" aria-label="Current exhibitions">
     {exhibitions.map((exhibition) => (
-      <a class="v2-exhibition-card" href={withBase(v2ExhibitionRoute(exhibition))} style={`--ex-accent:${exhibition.accent}`}>
-        <div class="v2-exhibition-card__image">
-          <img src={withBase(exhibition.works[0].thumbnailImage)} alt="" width="720" height="900" loading="lazy" />
-          <span>{exhibition.number}</span>
+      <a class="v3-exrow" href={withBase(v3ExhibitionRoute(exhibition))} style={`--ex-accent:${exhibition.accent}`}>
+        <span class="v3-exrow__no">{exhibition.number}</span>
+        <div>
+          <p class="v3-exrow__kicker">{exhibition.kicker}</p>
+          <h3>{exhibition.title}</h3>
         </div>
-        <div class="v2-exhibition-card__copy">
-          <p>{exhibition.kicker}</p>
-          <h2>{exhibition.title}</h2>
-          <div><span>{exhibition.works.length} works</span><b>Enter exhibition ↗</b></div>
-        </div>
-        <p class="v2-exhibition-card__summary">{exhibition.summary}</p>
+        <p class="v3-exrow__summary">{exhibition.summary}</p>
+        <span class="v3-exrow__img v3-float"><img src={withBase(exhibition.works[0].thumbnailImage)} alt="" width="240" height="300" loading="lazy" decoding="async" /></span>
+        <b aria-hidden="true">↗</b>
       </a>
     ))}
   </section>
-</V2Layout>
+</V3Layout>

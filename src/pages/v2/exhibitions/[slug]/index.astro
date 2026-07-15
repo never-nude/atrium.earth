@@ -1,0 +1,44 @@
+---
+import V2WorkCard from '../../../../components/v2/V2WorkCard.astro';
+import V2Layout from '../../../../layouts/v2/V2Layout.astro';
+import { exhibitions, type V2Exhibition, v2WorkRoute } from '../../../../lib/v2';
+import { withBase } from '../../../../lib/urls';
+
+export function getStaticPaths() {
+  return exhibitions.map((exhibition) => ({ params: { slug: exhibition.slug }, props: { exhibition } }));
+}
+
+type Props = { exhibition: V2Exhibition };
+const { exhibition } = Astro.props;
+const lead = exhibition.works[0];
+---
+
+<V2Layout title={exhibition.title} description={exhibition.summary} image={lead.thumbnailImage}>
+  <header class="v2-exhibition-hero" style={`--ex-accent:${exhibition.accent}`}>
+    <img src={withBase(lead.thumbnailImage)} alt="" width="720" height="900" loading="eager" />
+    <div class="v2-exhibition-hero__wash" aria-hidden="true"></div>
+    <div class="v2-exhibition-hero__number">Exhibition {exhibition.number}</div>
+    <div class="v2-exhibition-hero__copy">
+      <p>{exhibition.kicker}</p>
+      <h1>{exhibition.title}</h1>
+      <p>{exhibition.summary}</p>
+      <a href={withBase(v2WorkRoute(lead))}>Begin with {lead.title} <span>↗</span></a>
+    </div>
+    <p class="v2-exhibition-hero__count">{exhibition.works.length} works · allow 15–30 minutes</p>
+  </header>
+
+  <section class="v2-exhibition-intro">
+    <p class="v2-section-index">A way of looking</p>
+    <p class="v2-editorial">{exhibition.invitation}</p>
+  </section>
+
+  <section class="v2-exhibition-works" aria-labelledby="exhibition-works-title">
+    <div class="v2-section-head v2-section-head--split">
+      <div><p class="v2-section-index">The works</p><h2 id="exhibition-works-title">Walk the room.</h2></div>
+      <p>Open any work for the full 3D viewer.</p>
+    </div>
+    <div class="v2-exhibition-works__grid">
+      {exhibition.works.map((work, index) => <V2WorkCard work={work} eager={index < 4} featured={index === 0 || index === 5} sequence={index + 1} />)}
+    </div>
+  </section>
+</V2Layout>

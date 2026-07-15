@@ -1,0 +1,34 @@
+---
+import V2Layout from '../../../layouts/v2/V2Layout.astro';
+import { exhibitions, featuredWork, v2ExhibitionRoute } from '../../../lib/v2';
+import { withBase } from '../../../lib/urls';
+---
+
+<V2Layout
+  title="Exhibitions"
+  description="Curated routes through the Atrium.Earth sculpture collection."
+  image={featuredWork.thumbnailImage}
+>
+  <header class="v2-page-hero v2-page-hero--exhibitions">
+    <p class="v2-section-index">Curated rooms / 05</p>
+    <h1>Not categories.<br /><span class="v2-headline-line">Arguments.</span></h1>
+    <p>Each exhibition brings distant works into conversation. Take one in order, or use it as a door into the wider museum.</p>
+  </header>
+
+  <section class="v2-exhibitions-index" aria-label="Current exhibitions">
+    {exhibitions.map((exhibition) => (
+      <a class="v2-exhibition-card" href={withBase(v2ExhibitionRoute(exhibition))} style={`--ex-accent:${exhibition.accent}`}>
+        <div class="v2-exhibition-card__image">
+          <img src={withBase(exhibition.works[0].thumbnailImage)} alt="" width="720" height="900" loading="lazy" />
+          <span>{exhibition.number}</span>
+        </div>
+        <div class="v2-exhibition-card__copy">
+          <p>{exhibition.kicker}</p>
+          <h2>{exhibition.title}</h2>
+          <div><span>{exhibition.works.length} works</span><b>Enter exhibition ↗</b></div>
+        </div>
+        <p class="v2-exhibition-card__summary">{exhibition.summary}</p>
+      </a>
+    ))}
+  </section>
+</V2Layout>

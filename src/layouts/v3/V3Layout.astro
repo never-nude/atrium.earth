@@ -22,7 +22,7 @@ const {
 
 const site = String(Astro.site ?? 'https://atrium.earth');
 const currentPath = withoutBase(Astro.url.pathname);
-// v3 is a staged preview: canonical points at the primary route, and robots stay out.
+// Strip any staged /v3 prefix so canonicals always point at the primary route.
 const canonicalPath = withoutBase(canonical).replace(/^\/v3(?=\/|$)/, '') || '/';
 const canonicalUrl = absoluteUrl(canonicalPath, site);
 const imageUrl = absoluteUrl(image, site);
@@ -37,11 +37,10 @@ const pageTitle = title === 'Atrium.Earth' ? 'Atrium.Earth — Digital Sculpture
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
     <meta name="theme-color" content="#070a10" />
-    <meta name="robots" content="noindex" />
     <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="canonical" href={canonicalUrl} />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={pageTitle} />
@@ -62,11 +61,11 @@ const pageTitle = title === 'Atrium.Earth' ? 'Atrium.Earth — Digital Sculpture
     <main id="main"><slot /></main>
     {!immersive && (
       <footer class="v3-footer">
-        <div><strong>Atrium.Earth</strong><span>Digital sculpture museum · v3 preview</span></div>
+        <div><strong>Atrium.Earth</strong><span>Digital sculpture museum</span></div>
         <nav aria-label="Footer">
-          <a href={withBase('/v3/collection/')}>All {collectionCount} works</a>
-          <a href={withBase('/v3/exhibitions/')}>Exhibitions</a>
-          <a href={withBase('/')}>Current site</a>
+          <a href={withBase('/collection/')}>All {collectionCount} works</a>
+          <a href={withBase('/exhibitions/')}>Exhibitions</a>
+          <a href={withBase('/v2/')}>Previous design</a>
         </nav>
       </footer>
     )}
