@@ -1,5 +1,143 @@
 ---
-import V2Home from './v2/index.astro';
+import Viewer from '../components/Viewer.astro';
+import V2WorkCard from '../components/v2/V2WorkCard.astro';
+import V2Layout from '../layouts/v2/V2Layout.astro';
+import { collectionCount, exhibitions, featuredWork, newToCollection, v2ExhibitionRoute, v2WorkRoute, works } from '../lib/v2';
+import { withBase } from '../lib/urls';
+
+const randomRoutes = works.map((work) => withBase(v2WorkRoute(work)));
+const heroAppearance = {
+  ...featuredWork.materialAppearance,
+  exposure: Math.max(featuredWork.materialAppearance.exposure, 0.48),
+  keyLightIntensity: Math.max(featuredWork.materialAppearance.keyLightIntensity ?? 0, 1.22),
+  fillLightIntensity: Math.max(featuredWork.materialAppearance.fillLightIntensity ?? 0, 0.92),
+  rimLightIntensity: Math.max(featuredWork.materialAppearance.rimLightIntensity ?? 0, 1.24),
+  hemiLightIntensity: Math.max(featuredWork.materialAppearance.hemiLightIntensity ?? 0, 0.86),
+  backdropTop: '#202b40',
+  backdropBase: '#111827',
+  backdropGlow: '#c7b9ff',
+  backdropGlowStrength: 0.1,
+};
+const heroTransform = { ...featuredWork.modelTransform, fit: 1.1 };
 ---
 
-<V2Home />
+<V2Layout
+  title="Atrium.Earth"
+  description={`${collectionCount} sculptures in a borderless digital museum. Turn, zoom, relight, and reveal every work in 3D.`}
+  image={featuredWork.thumbnailImage}
+>
+  <section class="v2-hero" aria-labelledby="v2-home-title">
+    <div class="v2-hero__viewer">
+      <Viewer
+        glb={withBase(featuredWork.modelGlb)}
+        poster={withBase(featuredWork.thumbnailImage)}
+        title={featuredWork.title}
+        hud={false}
+        immersive={true}
+        posterLoading="eager"
+        upAxis={featuredWork.modelUpAxis}
+        modelTransform={heroTransform}
+        materialAppearance={heroAppearance}
+        wheelZoom={false}
+      />
+    </div>
+
+    <div class="v2-hero__veil" aria-hidden="true"></div>
+    <div class="v2-hero__copy">
+      <p class="v2-kicker">Interactive sculpture · {collectionCount} works</p>
+      <h1 id="v2-home-title">{featuredWork.title}</h1>
+      <p>Drag to orbit. Right-drag to pan. Scroll to continue. Open the full viewer to zoom, reveal the wireframe, and get as close as you like.</p>
+      <div class="v2-actions">
+        <a class="v2-button v2-button--light" href={withBase(v2WorkRoute(featuredWork))}>Open the full 3D viewer <span>↗</span></a>
+        <a class="v2-button v2-button--ghost" href={withBase('/collection/')}>Explore all {collectionCount} works</a>
+      </div>
+    </div>
+
+    <div class="v2-hero__object">
+      <span>Now in view</span>
+      <strong>{featuredWork.title}</strong>
+      <span>{featuredWork.maker} · {featuredWork.displayDate}</span>
+    </div>
+    <p class="v2-hero__hint">Orbit · Pan · Scroll to continue</p>
+    <a class="v2-hero__continue" href="#v2-home-content">Continue <span>↓</span></a>
+  </section>
+
+  <section class="v2-manifesto" id="v2-home-content" aria-labelledby="manifesto-title">
+    <p class="v2-section-index">01 / The idea</p>
+    <div>
+      <h2 id="manifesto-title">The work is the interface.</h2>
+      <p class="v2-editorial">Atrium brings sculpture out from behind distance, tickets, glass, and geography. Spend two minutes with one object or lose an afternoon moving through five thousand years.</p>
+    </div>
+    <div class="v2-manifesto__facts" aria-label="Museum facts">
+      <p><strong>{collectionCount}</strong><span>scans to explore</span></p>
+      <p><strong>360°</strong><span>unrestricted viewing</span></p>
+      <p><strong>24/7</strong><span>no closing time</span></p>
+    </div>
+  </section>
+
+  <section class="v2-duration" aria-labelledby="duration-title">
+    <div class="v2-section-head">
+      <p class="v2-section-index">02 / Choose your pace</p>
+      <h2 id="duration-title">How long do you have?</h2>
+    </div>
+    <div class="v2-duration__grid">
+      <a href={withBase(v2WorkRoute(newToCollection[0]))}>
+        <span>Two minutes</span><strong>Meet one remarkable object.</strong><i>Start here ↗</i>
+      </a>
+      <a href={withBase(v2ExhibitionRoute(exhibitions[0]))}>
+        <span>Twenty minutes</span><strong>Take a focused exhibition.</strong><i>Enter the room ↗</i>
+      </a>
+      <a href={withBase('/collection/')}>
+        <span>No clock</span><strong>Wander through everything.</strong><i>Open the collection ↗</i>
+      </a>
+    </div>
+  </section>
+
+  <section class="v2-exhibitions-home" aria-labelledby="exhibitions-home-title">
+    <div class="v2-section-head v2-section-head--split">
+      <div>
+        <p class="v2-section-index">03 / Curated rooms</p>
+        <h2 id="exhibitions-home-title">Ideas worth walking into.</h2>
+      </div>
+      <a href={withBase('/exhibitions/')}>See every exhibition <span>→</span></a>
+    </div>
+
+    <div class="v2-exhibition-stack">
+      {exhibitions.slice(0, 4).map((exhibition) => (
+        <a class="v2-exhibition-strip" href={withBase(v2ExhibitionRoute(exhibition))} style={`--ex-accent:${exhibition.accent}`}>
+          <img src={withBase(exhibition.works[0].thumbnailImage)} alt="" width="720" height="900" loading="lazy" />
+          <span class="v2-exhibition-strip__number">{exhibition.number}</span>
+          <div><p>{exhibition.kicker}</p><h3>{exhibition.title}</h3></div>
+          <p>{exhibition.summary}</p>
+          <b aria-hidden="true">↗</b>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="v2-new" aria-labelledby="new-title">
+    <div class="v2-section-head v2-section-head--split">
+      <div><p class="v2-section-index">04 / Recently added</p><h2 id="new-title">The museum keeps growing.</h2></div>
+      <a href={withBase('/collection/')}>View all {collectionCount} <span>→</span></a>
+    </div>
+    <div class="v2-new__rail">
+      {newToCollection.slice(0, 8).map((work, index) => <V2WorkCard work={work} eager={index < 3} />)}
+    </div>
+  </section>
+
+  <section class="v2-random" aria-labelledby="random-title">
+    <p class="v2-section-index">05 / Chance encounter</p>
+    <h2 id="random-title">Let the museum choose.</h2>
+    <p>Some of the best museum moments begin with a wrong turn.</p>
+    <a class="v2-random__button" href={randomRoutes[0]} data-random-work>Surprise me <span>↗</span></a>
+  </section>
+
+  <script define:vars={{ randomRoutes }}>
+    const randomLink = document.querySelector('[data-random-work]');
+    randomLink?.addEventListener('click', (event) => {
+      event.preventDefault();
+      const next = randomRoutes[Math.floor(Math.random() * randomRoutes.length)];
+      window.location.href = next;
+    });
+  </script>
+</V2Layout>

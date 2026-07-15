@@ -1,6 +1,10 @@
 ---
-import V2WorkPage from '../v2/works/[...slug].astro';
-import { works, type Work } from '../../lib/catalog';
+import Viewer from '../../components/Viewer.astro';
+import V2WorkCard from '../../components/v2/V2WorkCard.astro';
+import V2Layout from '../../layouts/v2/V2Layout.astro';
+import { workBySlug, works, type Work } from '../../lib/catalog';
+import { exhibitions, neighborsFor, v2ExhibitionRoute, v2WorkRoute } from '../../lib/v2';
+import { withBase } from '../../lib/urls';
 
 export function getStaticPaths() {
   return works.map((work) => ({ params: { slug: work.slug }, props: { work } }));
@@ -8,6 +12,91 @@ export function getStaticPaths() {
 
 type Props = { work: Work };
 const { work } = Astro.props;
+const { previous, next } = neighborsFor(work);
+const related = work.relatedWorks.map((slug) => workBySlug(slug)).filter((candidate): candidate is Work => Boolean(candidate)).slice(0, 6);
+const rooms = exhibitions.filter((exhibition) => exhibition.works.some((candidate) => candidate.slug === work.slug));
+const facts = ([
+  ['Maker', work.maker || work.culture],
+  ['Date', work.displayDate],
+  ['Place', work.geography],
+  ['Material', work.medium || work.materials.join(', ')],
+  ['Dimensions', work.dimensions],
+  ['Current collection', work.museum],
+] as Array<[string, string]>).filter(([, value]) => Boolean(value && !/not yet recorded|unassigned/i.test(value)));
+const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUrl).hostname.replace(/^www\./, '') : '');
 ---
 
-<V2WorkPage work={work} />
+<V2Layout
+  title={work.title}
+  description={`${work.title}${work.maker ? ` by ${work.maker}` : ''}. Explore the sculpture in 3D.`}
+  image={work.thumbnailImage}
+  immersive={true}
+>
+  <section class="v2-object-stage" aria-labelledby="v2-object-title">
+    <Viewer
+      glb={withBase(work.modelGlb)}
+      poster={withBase(work.thumbnailImage)}
+      title={work.title}
+      hud={false}
+      immersive={true}
+      posterLoading="eager"
+      upAxis={work.modelUpAxis}
+      modelTransform={work.modelTransform}
+      materialAppearance={work.materialAppearance}
+    />
+
+    <div class="v2-object-title">
+      <p>{work.era} · {String(work.index).padStart(3, '0')}</p>
+      <h1 id="v2-object-title">{work.title}</h1>
+      <p>{[work.maker || work.culture, work.displayDate].filter(Boolean).join(' · ')}</p>
+    </div>
+
+    <details class="v2-object-about">
+      <summary>About <span>+</span></summary>
+      <div>
+        <p class="v2-section-index">Object record</p>
+        <h2>{work.title}</h2>
+        {work.description && <p class="v2-object-about__description">{work.description}</p>}
+        <dl>{facts.map(([label, value]) => <div><dt>{label}</dt><dd>{value}</dd></div>)}</dl>
+        {work.sourceUrl && <a href={work.sourceUrl}>Source: {sourceLabel} ↗</a>}
+      </div>
+    </details>
+
+    <nav class="v2-object-nav" aria-label="Previous and next sculptures">
+      <a href={withBase(v2WorkRoute(previous))} aria-label={`Previous work: ${previous.title}`}><span>←</span><i>{previous.title}</i></a>
+      <a href={withBase(v2WorkRoute(next))} aria-label={`Next work: ${next.title}`}><i>{next.title}</i><span>→</span></a>
+    </nav>
+    <p class="v2-object-scroll">Scroll for context ↓</p>
+  </section>
+
+  <section class="v2-object-record">
+    <div class="v2-object-record__intro">
+      <p class="v2-section-index">Look again</p>
+      <h2>There is no single front.</h2>
+      <p class="v2-editorial">Move around the work before deciding what it is. Zoom until the whole gives way to surface. Switch to mesh to see the digital object beneath the image.</p>
+    </div>
+
+    <dl class="v2-object-record__facts">
+      {facts.map(([label, value]) => <div><dt>{label}</dt><dd>{value}</dd></div>)}
+      {work.sourceUrl && <div><dt>Source</dt><dd><a href={work.sourceUrl}>{sourceLabel} ↗</a></dd></div>}
+      {work.rights && !/review pending/i.test(work.rights) && <div><dt>Rights</dt><dd>{work.rights}</dd></div>}
+    </dl>
+  </section>
+
+  {rooms.length > 0 && (
+    <section class="v2-object-rooms" aria-labelledby="rooms-title">
+      <p class="v2-section-index">Keep looking</p>
+      <h2 id="rooms-title">This work appears in</h2>
+      {rooms.map((room) => <a href={withBase(v2ExhibitionRoute(room))} style={`--ex-accent:${room.accent}`}><span>{room.number}</span><strong>{room.title}</strong><i>Enter ↗</i></a>)}
+    </section>
+  )}
+
+  {related.length > 0 && (
+    <section class="v2-object-related" aria-labelledby="related-title">
+      <div class="v2-section-head v2-section-head--split">
+        <div><p class="v2-section-index">Nearby</p><h2 id="related-title">Continue through the collection.</h2></div>
+      </div>
+      <div class="v2-new__rail">{related.map((candidate) => <V2WorkCard work={candidate} />)}</div>
+    </section>
+  )}
+</V2Layout>
