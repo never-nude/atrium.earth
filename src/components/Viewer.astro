@@ -12,6 +12,7 @@ type Props = {
   posterLoading?: 'eager' | 'lazy';
   autoStart?: boolean;
   wheelZoom?: boolean;
+  lightControls?: boolean;
 };
 const {
   glb = '',
@@ -26,6 +27,7 @@ const {
   posterLoading = 'lazy',
   autoStart = true,
   wheelZoom = true,
+  lightControls = false,
 } = Astro.props;
 const hasModel = Boolean(glb);
 const uid = Math.random().toString(36).slice(2, 8);
@@ -66,6 +68,16 @@ const transformJson = JSON.stringify(modelTransform);
         <button type="button" data-tool-reset title="Reset view">Reset</button>
         <button type="button" data-tool-fullscreen aria-pressed="false" title="Enter full screen">Expand</button>
       </div>
+    )}
+
+    {immersive && hasModel && lightControls && (
+      <details class="immersive-light" data-light-controls hidden>
+        <summary>Light <span>+</span></summary>
+        <div class="immersive-light__panel" aria-label="Lighting controls">
+          <label>Exposure <input type="range" min="5" max="120" step="1" value="20" data-exposure /></label>
+          <label>Angle <input type="range" min="0" max="100" step="1" value="15" data-light-angle /></label>
+        </div>
+      </details>
     )}
   </div>
 
@@ -504,6 +516,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     const activate = root.querySelector('[data-activate]') as HTMLButtonElement | null;
     const hud = root.querySelector('[data-hud-panel]') as HTMLElement | null;
     const tools = root.querySelector('[data-immersive-tools]') as HTMLElement | null;
+    const light = root.querySelector('[data-light-controls]') as HTMLElement | null;
     const hint = root.querySelector('[data-hint]') as HTMLElement | null;
     let started = false;
 
@@ -576,6 +589,16 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
             }
           });
         }
+        if (light) {
+          light.hidden = false;
+          const exposure = light.querySelector('[data-exposure]') as HTMLInputElement | null;
+          const angle = light.querySelector('[data-light-angle]') as HTMLInputElement | null;
+          if (exposure) {
+            exposure.value = String(viewer.defaults.exposure);
+            exposure.addEventListener('input', () => viewer.setBrightness(+exposure.value));
+          }
+          if (angle) angle.addEventListener('input', () => viewer.setLightAngle(+angle.value));
+        }
         if (hud) {
           hud.hidden = false;
           const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -596,7 +619,11 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
           if (wire) wire.addEventListener('change', () => viewer.setWireframe(wire.checked));
           if (reset) reset.addEventListener('click', () => viewer.reset());
         }
-        stage!.addEventListener('dblclick', () => viewer.reset());
+        stage!.addEventListener('dblclick', (event) => {
+          // Double-tap resets only on the model itself — a double-click on the light
+          // sliders (or any other control inside the stage) must not throw the view away.
+          if (event.target instanceof Element && event.target.classList.contains('viewer-canvas')) viewer.reset();
+        });
       } catch (err) {
         if (loading) loading.hidden = true;
         if (poster) poster.style.opacity = '1';
