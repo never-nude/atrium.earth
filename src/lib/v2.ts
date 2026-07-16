@@ -139,7 +139,10 @@ export const exhibitions: V2Exhibition[] = seeds.map(({ workSlugs, ...seed }) =>
 
 // Rotates every Sunday: the weekly deploy cron rebuilds the site, and
 // featuredWorkForDate picks deterministically from the Sunday-anchored week index.
-export const featuredWork = featuredWorkForDate();
+// Owner's pick for the rest of the week of 2026-07-12; expires on its own when the
+// Sunday 2026-07-19 rebuild lands (this line can be deleted any time after that).
+const pinnedUntil = Date.UTC(2026, 6, 19);
+export const featuredWork = (Date.now() < pinnedUntil ? workBySlug('discobolus') : undefined) ?? featuredWorkForDate();
 export const collectionCount = works.length;
 export const newToCollection = recentlyPrepared(10);
 export const v2Facets = facets;
