@@ -68,7 +68,7 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
       <a href={withBase(v3WorkRoute(previous))} aria-label={`Previous work: ${previous.title}`}><span>←</span><i>{previous.title}</i></a>
       <a href={withBase(v3WorkRoute(next))} aria-label={`Next work: ${next.title}`}><i>{next.title}</i><span>→</span></a>
     </nav>
-    <p class="v3-object-scroll">Scroll for the label ↓</p>
+    <p class="v3-object-scroll">Scroll for object details ↓</p>
   </section>
 
   <script>
@@ -117,9 +117,9 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
 
   <section class="v3-object-record">
     <div class="v3-object-record__intro">
-      <p class="v3-kicker">Look again</p>
-      <h2 class="v3-display">There is no single front.</h2>
-      <p class="v3-editorial">Turn the work before deciding what it is. Zoom until the whole gives way to surface. Rake the light and read the tool marks.</p>
+      <p class="v3-kicker">How to use the model</p>
+      <h2 class="v3-display">Examine the work from more than one angle.</h2>
+      <p class="v3-editorial">Use the 3D view to inspect the overall form, then zoom in to compare surface, joins, and tool marks. Lighting controls can make shallow carving and material changes easier to see.</p>
     </div>
 
     <dl class="v3-facts">
@@ -131,16 +131,16 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
 
   {rooms.length > 0 && (
     <section class="v3-object-rooms" aria-labelledby="rooms-title">
-      <p class="v3-kicker">Keep walking</p>
-      <h2 id="rooms-title" class="v3-display">This work hangs in</h2>
-      {rooms.map((room) => <a href={withBase(v3ExhibitionRoute(room))} style={`--ex-accent:${room.accent}`}><span>{room.number}</span><strong>{room.title}</strong><i>Enter ↗</i></a>)}
+      <p class="v3-kicker">Related exhibitions</p>
+      <h2 id="rooms-title" class="v3-display">This work appears in</h2>
+      {rooms.map((room) => <a href={withBase(v3ExhibitionRoute(room))} style={`--ex-accent:${room.accent}`}><span>{room.number}</span><strong>{room.title}</strong><i>View exhibition ↗</i></a>)}
     </section>
   )}
 
   {related.length > 0 && (
     <section class="v3-object-related" aria-labelledby="related-title">
       <div class="v3-section-head v3-section-head--split">
-        <div><p class="v3-kicker">Nearby in the dark</p><h2 id="related-title" class="v3-display">Continue through the collection.</h2></div>
+        <div><p class="v3-kicker">Related works</p><h2 id="related-title" class="v3-display">Continue exploring the collection.</h2></div>
       </div>
       <div class="v3-rail">{related.map((candidate) => <V3WorkCard work={candidate} />)}</div>
     </section>

@@ -23,7 +23,7 @@ const heroTransform = { ...featuredWork.modelTransform, fit: 1.1 };
 
 <V2Layout
   title="Atrium.Earth"
-  description={`${collectionCount} sculptures in a borderless digital museum. Turn, zoom, relight, and reveal every work in 3D.`}
+  description={`${collectionCount} sculptures with object records, images, and 3D views for close study.`}
   image={featuredWork.thumbnailImage}
 >
   <section class="v2-hero" aria-labelledby="v2-home-title">
@@ -46,49 +46,49 @@ const heroTransform = { ...featuredWork.modelTransform, fit: 1.1 };
     <div class="v2-hero__copy">
       <p class="v2-kicker">Interactive sculpture · {collectionCount} works</p>
       <h1 id="v2-home-title">{featuredWork.title}</h1>
-      <p>Drag to orbit. Right-drag to pan. Scroll to continue. Open the full viewer to zoom, reveal the wireframe, and get as close as you like.</p>
+      <p>Drag to rotate the model. Open the object record to zoom, inspect the surface, and view its available source information.</p>
       <div class="v2-actions">
-        <a class="v2-button v2-button--light" href={withBase(v2WorkRoute(featuredWork))}>Open the full 3D viewer <span>↗</span></a>
-        <a class="v2-button v2-button--ghost" href={withBase('/v2/collection/')}>Explore all {collectionCount} works</a>
+        <a class="v2-button v2-button--light" href={withBase(v2WorkRoute(featuredWork))}>View object <span>↗</span></a>
+        <a class="v2-button v2-button--ghost" href={withBase('/v2/collection/')}>Browse all {collectionCount} works</a>
       </div>
     </div>
 
     <div class="v2-hero__object">
-      <span>Now in view</span>
+      <span>Featured work</span>
       <strong>{featuredWork.title}</strong>
       <span>{featuredWork.maker} · {featuredWork.displayDate}</span>
     </div>
-    <p class="v2-hero__hint">Orbit · Pan · Scroll to continue</p>
-    <a class="v2-hero__continue" href="#v2-home-content">Continue <span>↓</span></a>
+    <p class="v2-hero__hint">Rotate · Pan · Scroll for more</p>
+    <a class="v2-hero__continue" href="#v2-home-content">Explore more <span>↓</span></a>
   </section>
 
   <section class="v2-manifesto" id="v2-home-content" aria-labelledby="manifesto-title">
-    <p class="v2-section-index">01 / The idea</p>
+    <p class="v2-section-index">01 / About the collection</p>
     <div>
-      <h2 id="manifesto-title">The work is the interface.</h2>
-      <p class="v2-editorial">Atrium brings sculpture out from behind distance, tickets, glass, and geography. Spend two minutes with one object or lose an afternoon moving through five thousand years.</p>
+      <h2 id="manifesto-title">Sculpture from more than one angle.</h2>
+      <p class="v2-editorial">Atrium combines object records, images, and 3D models from public collections. Use them to compare form, material, scale, and construction at your own pace.</p>
     </div>
     <div class="v2-manifesto__facts" aria-label="Museum facts">
-      <p><strong>{collectionCount}</strong><span>scans to explore</span></p>
-      <p><strong>360°</strong><span>unrestricted viewing</span></p>
-      <p><strong>24/7</strong><span>no closing time</span></p>
+      <p><strong>{collectionCount}</strong><span>works to explore</span></p>
+      <p><strong>3D</strong><span>views where available</span></p>
+      <p><strong>Open</strong><span>source records linked</span></p>
     </div>
   </section>
 
   <section class="v2-duration" aria-labelledby="duration-title">
     <div class="v2-section-head">
-      <p class="v2-section-index">02 / Choose your pace</p>
-      <h2 id="duration-title">How long do you have?</h2>
+      <p class="v2-section-index">02 / Ways to begin</p>
+      <h2 id="duration-title">Choose how to explore.</h2>
     </div>
     <div class="v2-duration__grid">
       <a href={withBase(v2WorkRoute(newToCollection[0]))}>
-        <span>Two minutes</span><strong>Meet one remarkable object.</strong><i>Start here ↗</i>
+        <span>One work</span><strong>Open a single object record.</strong><i>View a work ↗</i>
       </a>
       <a href={withBase(v2ExhibitionRoute(exhibitions[0]))}>
-        <span>Twenty minutes</span><strong>Take a focused exhibition.</strong><i>Enter the room ↗</i>
+        <span>One exhibition</span><strong>Compare a focused group of works.</strong><i>View exhibition ↗</i>
       </a>
       <a href={withBase('/v2/collection/')}>
-        <span>No clock</span><strong>Wander through everything.</strong><i>Open the collection ↗</i>
+        <span>Full collection</span><strong>Search and filter all available works.</strong><i>Browse collection ↗</i>
       </a>
     </div>
   </section>
@@ -96,8 +96,8 @@ const heroTransform = { ...featuredWork.modelTransform, fit: 1.1 };
   <section class="v2-exhibitions-home" aria-labelledby="exhibitions-home-title">
     <div class="v2-section-head v2-section-head--split">
       <div>
-        <p class="v2-section-index">03 / Curated rooms</p>
-        <h2 id="exhibitions-home-title">Ideas worth walking into.</h2>
+        <p class="v2-section-index">03 / Exhibitions</p>
+        <h2 id="exhibitions-home-title">Works considered together.</h2>
       </div>
       <a href={withBase('/v2/exhibitions/')}>See every exhibition <span>→</span></a>
     </div>
@@ -117,7 +117,7 @@ const heroTransform = { ...featuredWork.modelTransform, fit: 1.1 };
 
   <section class="v2-new" aria-labelledby="new-title">
     <div class="v2-section-head v2-section-head--split">
-      <div><p class="v2-section-index">04 / Recently added</p><h2 id="new-title">The museum keeps growing.</h2></div>
+      <div><p class="v2-section-index">04 / Recently added</p><h2 id="new-title">New works in the collection.</h2></div>
       <a href={withBase('/v2/collection/')}>View all {collectionCount} <span>→</span></a>
     </div>
     <div class="v2-new__rail">
@@ -126,10 +126,10 @@ const heroTransform = { ...featuredWork.modelTransform, fit: 1.1 };
   </section>
 
   <section class="v2-random" aria-labelledby="random-title">
-    <p class="v2-section-index">05 / Chance encounter</p>
-    <h2 id="random-title">Let the museum choose.</h2>
-    <p>Some of the best museum moments begin with a wrong turn.</p>
-    <a class="v2-random__button" href={randomRoutes[0]} data-random-work>Surprise me <span>↗</span></a>
+    <p class="v2-section-index">05 / Random selection</p>
+    <h2 id="random-title">Choose a work at random.</h2>
+    <p>A different starting point can change what you notice.</p>
+    <a class="v2-random__button" href={randomRoutes[0]} data-random-work>Choose a work <span>↗</span></a>
   </section>
 
   <script define:vars={{ randomRoutes }}>

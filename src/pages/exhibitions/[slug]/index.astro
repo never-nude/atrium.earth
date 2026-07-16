@@ -28,13 +28,13 @@ const stops = exhibition.works.map((work, index) => ({
       <p class="v3-kicker">Exhibition {exhibition.number} · {exhibition.kicker}</p>
       <h1 class="v3-display">{exhibition.title}</h1>
       <p class="v3-exhero__summary">{exhibition.summary}</p>
-      <p class="v3-exhero__meta"><span>{stops.length} stops</span><span>Allow 15–30 minutes</span><span>Every stop opens in 3D</span></p>
-      <a href="#stop-1">Begin the walk <span>↓</span></a>
+      <p class="v3-exhero__meta"><span>{stops.length} works</span><span>Allow 15–30 minutes</span><span>3D views and records</span></p>
+      <a href="#stop-1">Begin exhibition <span>↓</span></a>
     </div>
   </header>
 
   <section class="v3-exintro">
-    <p class="v3-kicker">Before you enter</p>
+    <p class="v3-kicker">About this exhibition</p>
     <p class="v3-editorial">{exhibition.invitation}</p>
   </section>
 
@@ -62,10 +62,10 @@ const stops = exhibition.works.map((work, index) => ({
   </div>
 
   <footer class="v3-coda" style={`--ex-accent:${exhibition.accent}`}>
-    <p class="v3-kicker">On the way out</p>
+    <p class="v3-kicker">Further consideration</p>
     {exhibition.coda && <p class="v3-wall">{exhibition.coda}</p>}
     <a class="v3-coda__next" href={withBase(v3ExhibitionRoute(next))}>
-      <span>Next room · Exhibition {next.number}</span>
+      <span>Next exhibition · {next.number}</span>
       <strong>{next.title} →</strong>
     </a>
   </footer>
