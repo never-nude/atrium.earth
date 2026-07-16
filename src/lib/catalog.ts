@@ -679,8 +679,9 @@ export function featuredWorkForDate(date = new Date()): Work {
 
 function utcWeekIndex(date: Date): number {
   const day = Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate());
-  const mondayEpoch = Date.UTC(1970, 0, 5);
-  return Math.floor((day - mondayEpoch) / (7 * 24 * 60 * 60 * 1000));
+  // Weeks run Sunday-Saturday (1970-01-04 was a Sunday), so the featured work flips every Sunday.
+  const sundayEpoch = Date.UTC(1970, 0, 4);
+  return Math.floor((day - sundayEpoch) / (7 * 24 * 60 * 60 * 1000));
 }
 
 function positiveMod(value: number, modulo: number): number {

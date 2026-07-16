@@ -5,8 +5,9 @@ on:
     branches:
       - main
   schedule:
-    # Rebuild weekly so the static featured sculpture rotates on Monday.
-    - cron: '17 9 * * 1'
+    # Rebuild weekly so the static featured sculpture rotates every Sunday
+    # (featuredWorkForDate flips on the Sunday-anchored UTC week index).
+    - cron: '17 9 * * 0'
   workflow_dispatch:
 
 permissions:

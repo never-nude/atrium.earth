@@ -1,4 +1,4 @@
-import { facets, recentlyPrepared, workBySlug, works, type Work } from './catalog';
+import { facets, featuredWorkForDate, recentlyPrepared, workBySlug, works, type Work } from './catalog';
 
 export type V2Exhibition = {
   slug: string;
@@ -137,7 +137,9 @@ export const exhibitions: V2Exhibition[] = seeds.map(({ workSlugs, ...seed }) =>
   works: resolveWorks(workSlugs),
 }));
 
-export const featuredWork = workBySlug('castor-and-pollux') ?? workBySlug('medici-faun') ?? works[0];
+// Rotates every Sunday: the weekly deploy cron rebuilds the site, and
+// featuredWorkForDate picks deterministically from the Sunday-anchored week index.
+export const featuredWork = featuredWorkForDate();
 export const collectionCount = works.length;
 export const newToCollection = recentlyPrepared(10);
 export const v2Facets = facets;
