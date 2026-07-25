@@ -848,9 +848,9 @@
   "neoclassical/gruppe-mit-zwei-windhunden-franzoni-threedscans": {
     "upAxis": "y",
     "modelRotation": [
-      180,
+      163,
       0,
-      0
+      -5
     ],
     "yaw": 0,
     "viewDirection": [
@@ -860,7 +860,7 @@
     ],
     "status": "reviewed",
     "confidence": 0.95,
-    "note": "Manual review 2026-07-12: flip the source mesh 180deg about X so the rectangular plinth rests on the ground and the two greyhounds stand above it."
+    "note": "Corrected 2026-07-25: numerical footprint leveling sets the rectangular plinth flush to the floor; the prior 180deg X flip left it riding on an edge."
   },
   "neoclassical/napoleon-ier-bosio-threedscans": {
     "upAxis": "auto",
