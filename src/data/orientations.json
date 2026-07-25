@@ -557,6 +557,18 @@
     "confidence": 0.85,
     "note": "Manual review: preserve the Smithsonian GLB source orientation so the jug stands upright; the stable-pose solve laid it on its side."
   },
+  "americas/colonoware-pot-cooper-river-smithsonian": {
+    "upAxis": "auto",
+    "modelRotation": [
+      90,
+      0,
+      0
+    ],
+    "yaw": 180,
+    "status": "reviewed",
+    "confidence": 0.85,
+    "note": "Manual review: rotate the Smithsonian GLB around X so the pot stands on its base, then yaw 180deg so the broken rim/opening faces the default camera."
+  },
   "americas/the-dying-tecumseh-smithsonian": {
     "upAxis": "y",
     "modelRotation": [
