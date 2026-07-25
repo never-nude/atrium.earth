@@ -1131,10 +1131,16 @@
     "note": "PCA-aligned 2026-07-25 in raw model space: stand the saxophone upright with the mouthpiece above the bell."
   },
   "americas/julius-erving-dr-j-sneakers-nmaahc": {
-    "upAxis": "x",
+    "upAxis": "y",
+    "modelRotation": [
+      -89,
+      0,
+      -15
+    ],
+    "yaw": 0,
     "status": "reviewed",
-    "confidence": 0.9,
-    "note": "Manual review 2026-07-12: align source X to viewer Y so the sneaker sits on its sole rather than standing on its toe."
+    "confidence": 0.95,
+    "note": "Flat-base solve 2026-07-25 in raw model space: rotate the high-top onto its sole and level it for an upright side view."
   },
   "oceania/maori-nguru-nose-flute-cuming-museum": {
     "upAxis": "y",
