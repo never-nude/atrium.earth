@@ -1119,10 +1119,16 @@
     "note": "Manual review 2026-07-12: flip the source mesh so the lion's base is down rather than above the figure."
   },
   "americas/charlie-parker-alto-saxophone-nmaahc": {
-    "upAxis": "x",
+    "upAxis": "y",
+    "modelRotation": [
+      178,
+      0,
+      90
+    ],
+    "yaw": 0,
     "status": "reviewed",
     "confidence": 0.95,
-    "note": "Manual review 2026-07-12: source X is the saxophone's long axis; align it to viewer Y so the instrument stands upright."
+    "note": "PCA-aligned 2026-07-25 in raw model space: stand the saxophone upright with the mouthpiece above the bell."
   },
   "americas/julius-erving-dr-j-sneakers-nmaahc": {
     "upAxis": "x",
