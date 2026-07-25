@@ -1006,20 +1006,21 @@
     "note": "Manual review 2026-07-12: open from above and the opposite side so the slipper uppers and decoration face the camera instead of the soles."
   },
   "americas/theodore-roosevelt-farnham-smithsonian": {
-    "upAxis": "auto",
+    "upAxis": "y",
     "modelRotation": [
       0,
       0,
-      5
+      -85
     ],
+    "yaw": 0,
     "viewDirection": [
       0,
-      0.08,
+      0,
       -1
     ],
     "status": "reviewed",
     "confidence": 0.9,
-    "note": "Flip view to the relief face; [0,0.08,1] showed the hollow back."
+    "note": "Corrected 2026-07-25: turn the relief 90deg counterclockwise from the prior view and face it squarely without forward pitch."
   },
   "asia/gathering-of-buddhas-and-bodhisattvas-smithsonian": {
     "upAxis": "auto",
