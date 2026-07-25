@@ -1360,6 +1360,17 @@
     "status": "reviewed",
     "note": "Solved numerically 2026-07-25 (probe-orientation.mjs) from user report."
   },
+  "americas/point-of-pines-plantation-cabin-nmaahc": {
+    "upAxis": "y",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "status": "reviewed",
+    "note": "Explicit Y-up suppresses the erroneous near-cubic auto-axis pre-rotation, placing the shadowed underside flush to the ground."
+  },
   "asia/ta-prohm-dancers-pediment-cast-guimet-threedscans": {
     "viewDirection": [
       0,
