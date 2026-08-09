@@ -199,6 +199,7 @@ const collectionGeography: Record<string, string> = {
   lorenzi: 'Europe',
   medieval: 'Europe',
   michelangelo: 'Europe',
+  neoclassical: 'Europe',
   palmyra: 'Ancient Near East',
   renaissance: 'Europe',
   rodin: 'Europe',
