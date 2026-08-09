@@ -191,6 +191,7 @@ const collectionGeography: Record<string, string> = {
   americas: 'Americas and Oceania',
   asia: 'Asia',
   assyrian: 'Ancient Near East',
+  baroque: 'Europe',
   bouchardon: 'Europe',
   donatello: 'Europe',
   egyptian: 'Ancient Near East and Egypt',
