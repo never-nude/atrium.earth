@@ -196,6 +196,7 @@ const collectionGeography: Record<string, string> = {
   egyptian: 'Ancient Near East and Egypt',
   greek: 'Mediterranean',
   lorenzi: 'Europe',
+  medieval: 'Europe',
   michelangelo: 'Europe',
   palmyra: 'Ancient Near East',
   rodin: 'Europe',
