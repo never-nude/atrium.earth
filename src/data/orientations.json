@@ -1654,5 +1654,21 @@
     ],
     "status": "reviewed",
     "note": "SMK source is native Z-up with a broad plinth at raw Z-min; PCA is avoided because the seated body, lyre, and wing mass can turn the figure onto its side."
+  },
+  "modern/seated-bear-skovgaard-smk": {
+    "upAxis": "z",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "viewDirection": [
+      0.55,
+      0.34,
+      0.9
+    ],
+    "status": "reviewed",
+    "note": "SMK source is native Z-up with the circular pedestal at raw Z-min; the positive-Z camera shows the snout while avoiding PCA's top-heavy flip."
   }
 }
