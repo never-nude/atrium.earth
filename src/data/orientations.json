@@ -1526,5 +1526,21 @@
     ],
     "status": "reviewed",
     "note": "SMK source-space Z-up pose retained; the raw relief back is on +X, so the camera is placed on -X to present the carved face."
+  },
+  "greek/rampin-rider-head-smk-cast": {
+    "upAxis": "z",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "viewDirection": [
+      0.55,
+      0.34,
+      0.9
+    ],
+    "status": "reviewed",
+    "note": "SMK source-space Z-up pose retained; PCA follows the fragment's diagonal neck and is not a reliable vertical cue for this head."
   }
 }
