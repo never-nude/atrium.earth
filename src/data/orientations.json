@@ -1542,5 +1542,21 @@
     ],
     "status": "reviewed",
     "note": "SMK source-space Z-up pose retained; PCA follows the fragment's diagonal neck and is not a reliable vertical cue for this head."
+  },
+  "greek/standing-warrior-aphaia-smk-cast": {
+    "upAxis": "y",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "viewDirection": [
+      0.55,
+      0.34,
+      0.9
+    ],
+    "status": "reviewed",
+    "note": "The SMK source is genuinely Y-up with a broad flat plinth at raw Y-min; the source pose is retained so the warrior stands flush without the auto solver's unnecessary 180-degree flip."
   }
 }
