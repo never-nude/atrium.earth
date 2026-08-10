@@ -1622,5 +1622,21 @@
     ],
     "status": "reviewed",
     "note": "SMK source is native Z-up; the carving projects toward raw -Y, which maps to the positive-Z camera side while preserving the lower edge as the base."
+  },
+  "renaissance/cosimo-i-de-medici-bandinelli-smk": {
+    "upAxis": "y",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "viewDirection": [
+      0.2,
+      0.3,
+      1
+    ],
+    "status": "reviewed",
+    "note": "SMK source is native Y-up with the decorated circular base at raw Y-min; no pitch correction is applied because the turned and bowed head is part of the sculpture."
   }
 }
