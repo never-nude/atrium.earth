@@ -11,6 +11,7 @@ type Props = {
   immersive?: boolean;
   posterLoading?: 'eager' | 'lazy';
   autoStart?: boolean;
+  autoRotate?: boolean;
   wheelZoom?: boolean;
   lightControls?: boolean;
 };
@@ -26,6 +27,7 @@ const {
   immersive = false,
   posterLoading = 'lazy',
   autoStart = true,
+  autoRotate = true,
   wheelZoom = true,
   lightControls = false,
 } = Astro.props;
@@ -36,7 +38,7 @@ const transformJson = JSON.stringify(modelTransform);
 ---
 
 <div class:list={['viewer', { 'viewer--immersive': immersive }]} data-viewer data-auto-start={String(autoStart)}>
-  <div class="model-stage" data-stage data-glb={hasModel ? glb : ''} data-up-axis={upAxis} data-model-transform={transformJson} data-material-appearance={appearanceJson} data-immersive={String(immersive)} data-wheel-zoom={String(wheelZoom)} tabindex={hasModel ? '0' : undefined} aria-label={hasModel ? `Interactive 3D view of ${title}` : undefined}>
+  <div class="model-stage" data-stage data-glb={hasModel ? glb : ''} data-up-axis={upAxis} data-model-transform={transformJson} data-material-appearance={appearanceJson} data-immersive={String(immersive)} data-auto-rotate={String(autoRotate)} data-wheel-zoom={String(wheelZoom)} tabindex={hasModel ? '0' : undefined} aria-label={hasModel ? `Interactive 3D view of ${title}` : undefined}>
     <span class="stage-corner stage-corner--tl" aria-hidden="true"></span>
     <span class="stage-corner stage-corner--tr" aria-hidden="true"></span>
     <span class="stage-corner stage-corner--bl" aria-hidden="true"></span>
@@ -64,7 +66,7 @@ const transformJson = JSON.stringify(modelTransform);
         <button type="button" data-zoom-in aria-label="Zoom in" title="Zoom in">+</button>
         <button type="button" data-zoom-out aria-label="Zoom out" title="Zoom out">−</button>
         <button type="button" data-tool-wire aria-pressed="false" title="Show wireframe">Mesh</button>
-        <button type="button" data-tool-rotate aria-pressed="true" title="Toggle rotation">Turn</button>
+        <button type="button" data-tool-rotate aria-pressed={String(autoRotate)} title="Toggle rotation">Turn</button>
         <button type="button" data-tool-reset title="Reset view">Reset</button>
         <button type="button" data-tool-fullscreen aria-pressed="false" title="Enter full screen">Expand</button>
       </div>
@@ -97,7 +99,7 @@ const transformJson = JSON.stringify(modelTransform);
       </div>
       <div class="hud-control hud-control--row">
         <label class="hud-switch">
-          <input type="checkbox" data-autorotate checked />
+          <input type="checkbox" data-autorotate checked={autoRotate} />
           <span>Auto-rotate</span>
         </label>
         <label class="hud-switch">
@@ -388,7 +390,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     controls.rotateSpeed = 0.9;
     controls.zoomSpeed = immersive ? 1.35 : 0.8;
     controls.mouseButtons = { LEFT: THREE.MOUSE.ROTATE, MIDDLE: THREE.MOUSE.DOLLY, RIGHT: THREE.MOUSE.PAN };
-    controls.autoRotate = !reduce;
+    controls.autoRotate = stage.dataset.autoRotate !== 'false' && !reduce;
     controls.autoRotateSpeed = 1.0;
 
     const loader = new GLTFLoader();
@@ -550,7 +552,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
           const reset = tools.querySelector('[data-tool-reset]') as HTMLButtonElement | null;
           const fullscreen = tools.querySelector('[data-tool-fullscreen]') as HTMLButtonElement | null;
           let wireOn = false;
-          let rotateOn = !reduce;
+          let rotateOn = stage?.dataset.autoRotate !== 'false' && !reduce;
           if (rotate) rotate.setAttribute('aria-pressed', String(rotateOn));
           zoomIn?.addEventListener('click', () => viewer.zoom(0.68));
           zoomOut?.addEventListener('click', () => viewer.zoom(1.46));
@@ -615,7 +617,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
           if (brightness) { viewer.setBrightness(+brightness.value); brightness.addEventListener('input', () => { viewer.setBrightness(+brightness.value); if (readB) readB.textContent = `${brightness.value}%`; }); }
           if (texture) { viewer.setTexture(+texture.value); texture.addEventListener('input', () => viewer.setTexture(+texture.value)); }
           if (light) { viewer.setLightAngle(+light.value); light.addEventListener('input', () => viewer.setLightAngle(+light.value)); }
-          if (autorotate) { if (reduce) autorotate.checked = false; viewer.setAutoRotate(autorotate.checked); autorotate.addEventListener('change', () => viewer.setAutoRotate(autorotate.checked)); }
+          if (autorotate) { autorotate.checked = stage?.dataset.autoRotate !== 'false' && !reduce; viewer.setAutoRotate(autorotate.checked); autorotate.addEventListener('change', () => viewer.setAutoRotate(autorotate.checked)); }
           if (wire) wire.addEventListener('change', () => viewer.setWireframe(wire.checked));
           if (reset) reset.addEventListener('click', () => viewer.reset());
         }

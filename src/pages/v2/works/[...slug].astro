@@ -39,6 +39,7 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
       title={work.title}
       hud={false}
       immersive={true}
+      autoRotate={work.slug !== 'europe/venus-of-willendorf-nhmw-44-686'}
       posterLoading="eager"
       upAxis={work.modelUpAxis}
       modelTransform={work.modelTransform}
