@@ -1847,8 +1847,88 @@
     "status": "reviewed",
     "note": "The archived GLB is native Y-up. The three-quarter view keeps the modeled head, bell-shaped body, geometric surface decoration, articulated legs, and modern support visible."
   },
-  "baroque/venus-callipyge-louvre-mr-1999": {
-    "upAxis": "y",
+  "michelangelo/rebellious-slave": {
+    "upAxis": "auto",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 90,
+    "viewDirection": [
+      0.55,
+      0.34,
+      0.9
+    ],
+    "status": "reviewed",
+    "note": "Reviewed 2026-08-12: quarter-turn the source pose so the face, chest, bent knee, and bound arms open toward the gallery."
+  },
+  "aphrodite-anadyomene": {
+    "upAxis": "auto",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 90,
+    "viewDirection": [
+      0.55,
+      0.34,
+      0.9
+    ],
+    "status": "reviewed",
+    "note": "Reviewed 2026-08-12: quarter-turn the standing figure so the face and torso present in a forward three-quarter view."
+  },
+  "pandora-james-pradier": {
+    "upAxis": "auto",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 90,
+    "viewDirection": [
+      0.55,
+      0.34,
+      0.9
+    ],
+    "status": "reviewed",
+    "note": "Reviewed 2026-08-12: quarter-turn the figure from strict profile to a forward three-quarter view while retaining the bowed head."
+  },
+  "penelope": {
+    "upAxis": "auto",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 90,
+    "viewDirection": [
+      0.55,
+      0.34,
+      0.9
+    ],
+    "status": "reviewed",
+    "note": "Reviewed 2026-08-12: present the seated figure from the forward three-quarter side so the face, hand, torso, and seat remain legible."
+  },
+  "statue-of-ur-ningirsu": {
+    "upAxis": "auto",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 90,
+    "viewDirection": [
+      0.55,
+      0.34,
+      0.9
+    ],
+    "status": "reviewed",
+    "note": "Reviewed 2026-08-12: turn the figure from profile so the modeled face, clasped hands, and robe open toward the gallery."
+  },
+  "sub-saharan-africa/female-figure-with-raised-arm": {
+    "upAxis": "auto",
     "modelRotation": [
       0,
       0,
@@ -1856,12 +1936,44 @@
     ],
     "yaw": 180,
     "viewDirection": [
-      0.35,
-      0.24,
-      1
+      0.55,
+      0.34,
+      0.9
     ],
     "status": "reviewed",
-    "note": "Rear three-quarter opening view selected to preserve the sculpture's defining backward glance, raised drapery, and turned hips."
+    "note": "Reviewed 2026-08-12: reverse the source opening so the face, breasts, raised arm, and standing silhouette present frontally."
+  },
+  "sub-saharan-africa/ngya-commemorative-post": {
+    "upAxis": "auto",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 180,
+    "viewDirection": [
+      0.55,
+      0.34,
+      0.9
+    ],
+    "status": "reviewed",
+    "note": "Reviewed 2026-08-12: reverse the opening view so the carved face and front of the commemorative figure are visible."
+  },
+  "baroque/venus-callipyge-louvre-mr-1999": {
+    "upAxis": "y",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "viewDirection": [
+      0.55,
+      0.34,
+      0.9
+    ],
+    "status": "reviewed",
+    "note": "Reviewed 2026-08-12: front three-quarter opening view keeps the backward glance and raised drapery legible while presenting the torso and face toward the gallery."
   },
   "modern/crouching-woman-rodin-hirshhorn-66-4342": {
     "upAxis": "z",
@@ -1872,12 +1984,12 @@
     ],
     "yaw": 0,
     "viewDirection": [
-      0.35,
-      0.24,
-      1
+      -0.55,
+      0.34,
+      -0.9
     ],
     "status": "reviewed",
-    "note": "The STL is native Z-up; the rear three-quarter camera centers the compressed back, hips, and folded legs."
+    "note": "Reviewed 2026-08-12: retain the native Z-up pose and open from the opposite three-quarter angle so the head, chest, and folded limbs read from the front."
   },
   "modern/bacchante-and-satyr-clesinger-mia-73-13": {
     "upAxis": "z",
@@ -1888,12 +2000,12 @@
     ],
     "yaw": 0,
     "viewDirection": [
-      0.35,
-      0.24,
-      1
+      -0.55,
+      0.34,
+      -0.9
     ],
     "status": "reviewed",
-    "note": "The STL is native Z-up; the reverse three-quarter view foregrounds the bacchante's back and hip while keeping the satyr legible."
+    "note": "Reviewed 2026-08-12: front three-quarter view gives the bacchante and satyr equal facial and gestural presence while preserving the group silhouette."
   },
   "roman/sleeping-hermaphroditus-louvre-ma-231": {
     "upAxis": "z",
@@ -1904,12 +2016,12 @@
     ],
     "yaw": 0,
     "viewDirection": [
-      0.35,
-      0.24,
-      1
+      -0.55,
+      0.34,
+      -0.9
     ],
     "status": "reviewed",
-    "note": "The reclining STL is native Z-up; the camera approaches from behind to present the back, buttocks, mattress, and head in one sweep."
+    "note": "Reviewed 2026-08-12: retain the reclining Z-up correction but open from the forward three-quarter side so the face and torso remain readable."
   },
   "europe/venus-of-lespugue-musee-de-l-homme": {
     "upAxis": "y",
@@ -1918,14 +2030,14 @@
       0,
       0
     ],
-    "yaw": 0,
+    "yaw": 180,
     "viewDirection": [
-      0.35,
-      0.24,
-      1
+      0.55,
+      0.34,
+      0.9
     ],
     "status": "reviewed",
-    "note": "Rear three-quarter opening view selected to emphasize the figurine's diamond silhouette and deeply modeled hips."
+    "note": "Reviewed 2026-08-12: reverse the opening view to present the figurine's head and torso frontally while retaining its diamond silhouette."
   },
   "neoclassical/venus-italica-canova-smk-kas-793": {
     "upAxis": "z",
@@ -1936,12 +2048,12 @@
     ],
     "yaw": 0,
     "viewDirection": [
-      0.35,
-      0.24,
-      1
+      -0.55,
+      0.34,
+      -0.9
     ],
     "status": "reviewed",
-    "note": "The SMK STL is native Z-up; the rear three-quarter view makes the shifted hip and gathered drapery the opening silhouette."
+    "note": "Reviewed 2026-08-12: retain the native Z-up correction and use the opposite three-quarter camera so Venus's face and torso open toward the gallery."
   },
   "modern/athlete-wrestling-python-leighton-tate-n01754": {
     "upAxis": "z",
@@ -1952,12 +2064,12 @@
     ],
     "yaw": 0,
     "viewDirection": [
-      0.35,
-      0.24,
-      1
+      -0.55,
+      0.34,
+      -0.9
     ],
     "status": "reviewed",
-    "note": "The STL is native Z-up; the rear three-quarter view follows the loaded gluteal and posterior thigh chain through the twisting struggle."
+    "note": "Reviewed 2026-08-12: front three-quarter view retains the twisting action and python while making the athlete's face and chest visible."
   },
   "modern/the-kiss-rodin-musee-rodin-s-1002": {
     "upAxis": "y",
@@ -1966,14 +2078,14 @@
       0,
       0
     ],
-    "yaw": 0,
+    "yaw": 180,
     "viewDirection": [
-      0.35,
-      0.24,
-      1
+      0.55,
+      0.34,
+      0.9
     ],
     "status": "reviewed",
-    "note": "The archived GLB is native Y-up; the rear-left opening view centers Francesca's turned pelvis and back within the embracing pair."
+    "note": "Reviewed 2026-08-12: reverse the native Y-up group to a front three-quarter opening that presents both faces and the embrace."
   },
   "europe/venus-of-willendorf-nhmw-44-686": {
     "upAxis": "y",
@@ -1982,14 +2094,14 @@
       0,
       0
     ],
-    "yaw": 180,
+    "yaw": 0,
     "viewDirection": [
-      0.35,
-      0.24,
-      1
+      0.55,
+      0.34,
+      0.9
     ],
     "status": "reviewed",
-    "note": "The STL is native Y-up; the rear three-quarter view preserves the compact figure's headdress, broad hips, and modeled back."
+    "note": "Reviewed 2026-08-12: native Y-up front three-quarter view presents the head, chest, folded arms, and compact silhouette."
   },
   "americas/nayarit-standing-female-ncma-g-58-8-2": {
     "upAxis": "y",
@@ -1998,13 +2110,29 @@
       0,
       0
     ],
-    "yaw": 180,
+    "yaw": 0,
     "viewDirection": [
-      0.35,
-      0.24,
-      1
+      0.55,
+      0.34,
+      0.9
     ],
     "status": "reviewed",
-    "note": "The archived GLB is native Y-up; the reverse three-quarter view keeps the cup and jewelry visible while giving the broad modeled hips priority."
+    "note": "Reviewed 2026-08-12: native Y-up front three-quarter view presents the modeled face, cup, jewelry, and full standing silhouette."
+  },
+  "baroque/veiled-woman-faith-corradini-louvre-rf-3088": {
+    "upAxis": "z",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "viewDirection": [
+      0.55,
+      0.34,
+      0.9
+    ],
+    "status": "reviewed",
+    "note": "Reviewed 2026-08-12: Z-up source rotated upright; front three-quarter view presents the veiled face, torso, hands, and complete standing silhouette."
   }
 }

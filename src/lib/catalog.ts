@@ -18,6 +18,7 @@ type RawWork = {
   museum?: string | null;
   displayed_at?: string | null;
   current_location?: string | null;
+  geography?: string | null;
   source_institution?: string | null;
   source_url?: string | null;
   scan_source?: string | null;
@@ -384,9 +385,11 @@ function eraFor(raw: RawWork): string {
 }
 
 function geographyFor(raw: RawWork): string {
+  const explicit = clean(raw.geography);
   const collection = clean(raw.collection);
   const search = `${raw.title ?? ''} ${raw.year ?? ''} ${raw.note ?? ''}`.toLowerCase();
 
+  if (explicit) return explicit;
   if (collectionGeography[collection]) return collectionGeography[collection];
   if (/cypriot|gudea|amarna|horus|egypt|assyrian|nimrud|nineveh|mesopotamia/.test(search)) {
     return 'Ancient Near East and Egypt';
