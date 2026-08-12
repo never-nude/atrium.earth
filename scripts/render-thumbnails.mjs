@@ -135,13 +135,13 @@ function profileForMaterial(material) {
   const text = material.toLowerCase();
   if (/black marble/.test(text)) return 'stone';
   if (/marble|ivory/.test(text)) return 'marble';
-  if (/plaster|cast/.test(text)) return 'plaster';
+  if (/plaster/.test(text)) return 'plaster';
   if (/limestone|dolomite/.test(text)) return 'limestone';
   if (/quartzite|metagraywacke|chlorite|diorite|andesite|basalt|sandstone|alabaster|stone/.test(text)) return 'stone';
   if (/silver/.test(text)) return 'silver';
-  if (/bronze|brass|copper|gilded|metal/.test(text)) return 'bronze-patina';
+  if (/wood|oak|mahogany|basswood|cottonwood|iroko|guaiacum|ebony|barkcloth|bamboo|fiber|fibre|rattan|plant|leaf|leaves|sago|shell|cloth|resin|organic/.test(text)) return 'wood';
+  if (/bronze|brass|copper|gilded|metal|iron|steel|zinc|alloy/.test(text)) return 'bronze-patina';
   if (/terracotta|ceramic|earthenware|clay/.test(text)) return 'ceramic';
-  if (/wood|oak|mahogany|basswood|cottonwood|iroko|guaiacum|barkcloth|bamboo|fiber|fibre|rattan|plant|leaf|leaves|sago|shell|cloth|resin|organic/.test(text)) return 'wood';
   return '';
 }
 
