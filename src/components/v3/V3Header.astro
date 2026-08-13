@@ -8,11 +8,12 @@ const nav = [
   ['Exhibitions', '/exhibitions/'],
 ];
 const current = (href: string) => currentPath === href || (href !== '/' && currentPath.startsWith(href));
+const easterRoute = withBase('/works/baroque/ecstasy-of-saint-teresa-bernini-cornaro-chapel/');
 ---
 
-<header class="v3-header" data-v3-header>
+<header class="v3-header" data-v3-header data-easter-route={easterRoute}>
   <a class="v3-brand" href={withBase('/')} aria-label="Atrium home">
-    <span>Atrium</span><sup>Earth</sup>
+    <span>Atrium</span><sup data-v3-easter>Earth</sup>
   </a>
 
   <nav class="v3-nav" aria-label="Primary">
@@ -39,4 +40,36 @@ const current = (href: string) => currentPath === href || (href !== '/' && curre
     header?.classList.toggle('is-hidden', y > lastY && y > 180);
     lastY = y;
   }, { passive: true });
+
+  // An unlisted chapel: type its saint's name, or tap the small Earth mark five
+  // times. The destination intentionally stays out of collection surfaces.
+  const easterRoute = header?.getAttribute('data-easter-route') || '';
+  let typed = '';
+  document.addEventListener('keydown', (event) => {
+    const target = event.target;
+    if (
+      event.metaKey || event.ctrlKey || event.altKey ||
+      target instanceof HTMLInputElement ||
+      target instanceof HTMLTextAreaElement ||
+      (target instanceof HTMLElement && target.isContentEditable) ||
+      event.key.length !== 1
+    ) return;
+    typed = `${typed}${event.key.toLowerCase()}`.slice(-6);
+    if (typed === 'teresa' && easterRoute) window.location.assign(easterRoute);
+  });
+
+  const easterMark = header?.querySelector('[data-v3-easter]');
+  let taps = 0;
+  let tapTimer = 0;
+  easterMark?.addEventListener('click', (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    taps += 1;
+    window.clearTimeout(tapTimer);
+    if (taps >= 5 && easterRoute) {
+      window.location.assign(easterRoute);
+      return;
+    }
+    tapTimer = window.setTimeout(() => { taps = 0; }, 2200);
+  });
 </script>
