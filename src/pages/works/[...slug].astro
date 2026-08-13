@@ -2,12 +2,12 @@
 import Viewer from '../../components/Viewer.astro';
 import V3WorkCard from '../../components/v3/V3WorkCard.astro';
 import V3Layout from '../../layouts/v3/V3Layout.astro';
-import { workBySlug, works, type Work } from '../../lib/catalog';
+import { routableWorks, workBySlug, type Work } from '../../lib/catalog';
 import { exhibitions, neighborsFor, v3ExhibitionRoute, v3WorkRoute, wallTextsForWork } from '../../lib/v3';
 import { withBase } from '../../lib/urls';
 
 export function getStaticPaths() {
-  return works.map((work) => ({ params: { slug: work.slug }, props: { work } }));
+  return routableWorks.map((work) => ({ params: { slug: work.slug }, props: { work } }));
 }
 
 type Props = { work: Work };
@@ -29,9 +29,12 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
 
 <V3Layout
   title={work.title}
-  description={`${work.title}${work.maker ? ` by ${work.maker}` : ''}. Explore the sculpture in 3D.`}
+  description={work.easterEgg
+    ? `${work.title} by ${work.maker}. Explore a partial high-resolution photogrammetric record of the chapel.`
+    : `${work.title}${work.maker ? ` by ${work.maker}` : ''}. Explore the sculpture in 3D.`}
   image={work.thumbnailImage}
   immersive={true}
+  robots={work.easterEgg ? 'noindex, nofollow' : undefined}
 >
   <section class="v3-object-stage" aria-labelledby="v3-object-title" style={`view-transition-name: w-${work.id};`}>
     <Viewer
@@ -40,6 +43,7 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
       title={work.title}
       hud={false}
       immersive={true}
+      autoStart={!work.easterEgg}
       autoRotate={work.slug !== 'europe/venus-of-willendorf-nhmw-44-686'}
       lightControls={true}
       posterLoading="eager"
@@ -51,6 +55,7 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
     <div class="v3-object-title">
       <p class="v3-kicker">{work.era} · № {String(work.index).padStart(3, '0')}</p>
       <h1 id="v3-object-title">{work.title}</h1>
+      {work.easterEgg && <p class="v3-object-rights">3D scan: CC BY-NC-SA 4.0 · Noncommercial · ShareAlike</p>}
       <p>{[work.maker || work.culture, work.displayDate].filter(Boolean).join(' · ')}</p>
     </div>
 
@@ -59,8 +64,11 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
       <div>
         <p class="v3-kicker">Object record</p>
         <h2>{work.title}</h2>
+        {work.easterEgg && <p class="v3-object-license">3D scan: CC BY-NC-SA 4.0 · Noncommercial · ShareAlike</p>}
         {work.description && <p class="v3-wall">{work.description}</p>}
         <dl>{facts.map(([label, value]) => <div><dt>{label}</dt><dd>{value}</dd></div>)}</dl>
+        {work.creditLine && <p class="v3-object-credit">{work.creditLine}</p>}
+        {work.licenseUrl && <a href={work.licenseUrl} rel="license">3D scan license: {work.rights} ↗</a>}
         {work.sourceUrl && <a href={work.sourceUrl}>Source: {sourceLabel} ↗</a>}
       </div>
     </details>
@@ -119,14 +127,22 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
   <section class="v3-object-record">
     <div class="v3-object-record__intro">
       <p class="v3-kicker">How to use the model</p>
-      <h2 class="v3-display">Examine the work from more than one angle.</h2>
-      <p class="v3-editorial">Use the 3D view to inspect the overall form, then zoom in to compare surface, joins, and tool marks. Lighting controls can make shallow carving and material changes easier to see.</p>
+      <h2 class="v3-display">{work.easterEgg ? 'Move through a surviving digital fragment.' : 'Examine the work from more than one angle.'}</h2>
+      <p class="v3-editorial">{work.easterEgg
+        ? 'This high-resolution capture is incomplete. Orbit slowly to read the surviving pieces of the chapel setting; gaps are missing scan data, not later simplification.'
+        : 'Use the 3D view to inspect the overall form, then zoom in to compare surface, joins, and tool marks. Lighting controls can make shallow carving and material changes easier to see.'}</p>
     </div>
 
     <dl class="v3-facts">
       {facts.map(([label, value]) => <div><dt>{label}</dt><dd>{value}</dd></div>)}
       {work.sourceUrl && <div><dt>Source</dt><dd><a href={work.sourceUrl}>{sourceLabel} ↗</a></dd></div>}
-      {work.rights && !/review pending/i.test(work.rights) && <div><dt>Rights</dt><dd>{work.rights}</dd></div>}
+      {work.creditLine && <div><dt>Credit</dt><dd>{work.creditLine}</dd></div>}
+      {work.rights && !/review pending/i.test(work.rights) && (
+        <div>
+          <dt>Rights</dt>
+          <dd>{work.licenseUrl ? <a href={work.licenseUrl} rel="license">3D scan: {work.rights} ↗</a> : work.rights}</dd>
+        </div>
+      )}
     </dl>
   </section>
 
