@@ -16,10 +16,14 @@ type RawWork = {
   material?: string | null;
   dimensions?: string | null;
   museum?: string | null;
+  original_location?: string | null;
   displayed_at?: string | null;
   current_location?: string | null;
+  department?: string | null;
   source_institution?: string | null;
   source_url?: string | null;
+  source_record_url?: string | null;
+  scan_author?: string | null;
   scan_source?: string | null;
   license?: string | null;
   license_url?: string | null;
@@ -27,6 +31,7 @@ type RawWork = {
   accession?: string | null;
   wikidata?: string | null;
   note?: string | null;
+  ai_training_restricted?: boolean | null;
   tier?: number | null;
   index?: number | null;
   total?: number | null;
@@ -88,6 +93,7 @@ export type Work = {
   geography: string;
   sourceMuseum: string;
   museum: string;
+  originalLocation: string;
   department: string;
   medium: string;
   materials: string[];
@@ -116,7 +122,10 @@ export type Work = {
   search: string;
   hasPreview: boolean;
   sourceUrl: string;
+  sourceRecordUrl: string;
+  scanAuthor: string;
   scanSource: string;
+  aiTrainingRestricted: boolean;
   internalModelSource: string;
 };
 
@@ -174,6 +183,7 @@ const appearanceOverrides = rawAppearanceOverrides as Record<string, AppearanceO
 const makerCollections = new Set(['michelangelo', 'donatello', 'verrocchio', 'lorenzi', 'bouchardon', 'rodin']);
 
 const collectionLabels: Record<string, string> = {
+  'ancient-near-east': 'Ancient Near East',
   americas: 'Americas and Oceania',
   asia: 'Asia',
   assyrian: 'Assyrian',
@@ -188,6 +198,7 @@ const collectionLabels: Record<string, string> = {
 };
 
 const collectionGeography: Record<string, string> = {
+  'ancient-near-east': 'Ancient Near East',
   americas: 'Americas and Oceania',
   asia: 'Asia',
   assyrian: 'Ancient Near East',
@@ -205,6 +216,7 @@ const collectionGeography: Record<string, string> = {
 };
 
 const collectionCulture: Record<string, string> = {
+  'ancient-near-east': 'Ancient Near Eastern',
   americas: 'Americas and Oceania',
   asia: 'Asian',
   assyrian: 'Assyrian',
@@ -213,6 +225,7 @@ const collectionCulture: Record<string, string> = {
 };
 
 const movementByCollection: Record<string, string> = {
+  'ancient-near-east': 'Ancient Near Eastern sculpture',
   americas: 'Indigenous and Pacific sculpture',
   asia: 'Asian sculpture',
   assyrian: 'Assyrian relief',
@@ -562,7 +575,8 @@ function normalize(raw: RawWork, fallbackIndex: number): Work {
     geography,
     sourceMuseum,
     museum,
-    department: '',
+    originalLocation: clean(raw.original_location),
+    department: clean(raw.department),
     medium,
     materials,
     materialProfile,
@@ -590,7 +604,10 @@ function normalize(raw: RawWork, fallbackIndex: number): Work {
     search: clean(raw.search) || `${title} ${maker} ${era} ${geography} ${materials.join(' ')}`.toLowerCase(),
     hasPreview: Boolean(preview?.url),
     sourceUrl: clean(raw.source_url),
+    sourceRecordUrl: clean(raw.source_record_url),
+    scanAuthor: clean(raw.scan_author),
     scanSource: clean(raw.scan_source),
+    aiTrainingRestricted: Boolean(raw.ai_training_restricted),
     internalModelSource: clean(raw.model?.sourcePath),
   };
 }

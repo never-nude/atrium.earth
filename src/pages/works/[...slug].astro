@@ -16,13 +16,18 @@ const { previous, next } = neighborsFor(work);
 const related = work.relatedWorks.map((slug) => workBySlug(slug)).filter((candidate): candidate is Work => Boolean(candidate)).slice(0, 6);
 const rooms = exhibitions.filter((exhibition) => exhibition.works.some((candidate) => candidate.slug === work.slug));
 const wallNotes = wallTextsForWork(work.slug);
+const originalLocation = work.originalLocation && work.originalLocation.toLowerCase() !== work.museum.toLowerCase()
+  ? work.originalLocation
+  : '';
 const facts = ([
   ['Maker', work.maker || work.culture],
   ['Date', work.displayDate],
   ['Place', work.geography],
   ['Material', work.medium || work.materials.join(', ')],
   ['Dimensions', work.dimensions],
+  ['Origin', originalLocation],
   ['Current collection', work.museum],
+  ['Department', work.department],
 ] as Array<[string, string]>).filter(([, value]) => Boolean(value && !/not yet recorded|unassigned/i.test(value)));
 const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUrl).hostname.replace(/^www\./, '') : '');
 ---
@@ -91,7 +96,11 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
     <dl class="v3-facts">
       {facts.map(([label, value]) => <div><dt>{label}</dt><dd>{value}</dd></div>)}
       {work.sourceUrl && <div><dt>Source</dt><dd><a href={work.sourceUrl}>{sourceLabel} ↗</a></dd></div>}
-      {work.rights && !/review pending/i.test(work.rights) && <div><dt>Rights</dt><dd>{work.rights}</dd></div>}
+      {work.sourceRecordUrl && <div><dt>Museum record</dt><dd><a href={work.sourceRecordUrl}>Collection record ↗</a></dd></div>}
+      {work.scanAuthor && <div><dt>3D capture</dt><dd>{work.scanAuthor}</dd></div>}
+      {work.creditLine && <div><dt>Credit</dt><dd>{work.creditLine}</dd></div>}
+      {work.rights && !/review pending/i.test(work.rights) && <div><dt>Rights</dt><dd>{work.licenseUrl ? <a href={work.licenseUrl}>{work.rights} ↗</a> : work.rights}</dd></div>}
+      {work.aiTrainingRestricted && <div><dt>AI use</dt><dd>Not licensed for AI training or generative-AI inputs</dd></div>}
     </dl>
   </section>
 
