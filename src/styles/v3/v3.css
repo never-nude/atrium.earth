@@ -253,10 +253,11 @@ em, i { font-style: normal; }
 .v3-object-stage { position: relative; height: max(680px, 100svh); min-height: 680px; overflow: hidden; background: radial-gradient(85% 70% at 55% 42%, var(--v3-glow), #05070c 80%); }
 .v3-object-stage > .viewer { position: absolute; inset: 0; }
 .v3-object-stage .model-stage { height: 100%; }
-.v3-object-stage::after { content: ""; position: absolute; z-index: 4; inset: 0; background: linear-gradient(0deg, rgba(4,5,8,.66), transparent 26%); pointer-events: none; }
-.v3-object-title { position: absolute; z-index: 10; left: var(--v3-pad); bottom: clamp(86px, 10vh, 120px); display: grid; gap: 10px; width: min(640px, calc(100% - 190px)); pointer-events: none; }
-.v3-object-title h1 { max-width: 14ch; margin: 0; font-family: var(--v3-serif); font-size: clamp(2.4rem, 4vw, 5rem); font-weight: 500; letter-spacing: -.035em; line-height: .98; text-wrap: balance; }
+.v3-object-stage::after { content: ""; position: absolute; z-index: 4; inset: 0; background: linear-gradient(0deg, rgba(4,5,8,.74), transparent 34%); pointer-events: none; }
+.v3-object-title { position: absolute; z-index: 10; left: var(--v3-pad); bottom: clamp(86px, 10vh, 120px); display: grid; gap: 10px; width: min(600px, calc(100% - 220px)); pointer-events: none; }
+.v3-object-title h1 { max-width: 14ch; margin: 0; font-family: var(--v3-serif); font-size: clamp(2.2rem, 3.6vw, 4.4rem); font-weight: 500; letter-spacing: -.035em; line-height: .98; text-wrap: balance; }
 .v3-object-title .v3-kicker { color: rgba(244,242,236,.6); }
+.v3-object-title .v3-object-rights { margin: 2px 0 0; color: var(--v3-signal); font-family: var(--v3-sans); font-size: .58rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
 .v3-object-title p:last-child { margin: 0; color: rgba(244,242,236,.66); font-family: var(--v3-serif); font-size: .95rem; }
 .v3-object-about { position: absolute; z-index: 30; top: 98px; right: var(--v3-pad); }
 .v3-object-about summary { display: flex; align-items: center; justify-content: space-between; gap: 32px; min-width: 110px; padding: 11px 15px; color: #fff; background: rgba(7,10,16,.6); border: 1px solid rgba(255,255,255,.24); border-radius: 999px; backdrop-filter: blur(14px); cursor: pointer; font-size: .64rem; font-weight: 600; letter-spacing: .1em; list-style: none; text-transform: uppercase; }
@@ -265,17 +266,38 @@ em, i { font-style: normal; }
 .v3-object-about > div { position: fixed; z-index: 100; top: 0; right: 0; bottom: 0; width: min(480px, 100vw); overflow-y: auto; padding: 118px 36px 50px; background: rgba(9,12,19,.96); border-left: 1px solid var(--v3-line); backdrop-filter: blur(30px); }
 .v3-object-about[open] summary { position: fixed; z-index: 101; top: 22px; right: 24px; }
 .v3-object-about h2 { margin: 14px 0 22px; font-family: var(--v3-serif); font-size: clamp(2rem, 3.6vw, 3.4rem); font-weight: 500; letter-spacing: -.035em; line-height: .96; }
+.v3-object-license { margin: -8px 0 22px; color: var(--v3-signal); font-size: .6rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
+.v3-object-credit { margin: 0 0 18px; color: var(--v3-muted); font-size: .78rem; line-height: 1.55; }
 .v3-object-about dl { margin: 32px 0; border-top: 1px solid var(--v3-line); }
 .v3-object-about dl div { display: grid; grid-template-columns: 110px 1fr; gap: 15px; padding: 13px 0; border-bottom: 1px solid var(--v3-line); }
 .v3-object-about dt { color: var(--v3-muted); font-size: .58rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
 .v3-object-about dd { margin: 0; font-family: var(--v3-serif); font-size: .98rem; line-height: 1.3; }
-.v3-object-about > div > a { color: var(--v3-signal); font-size: .7rem; font-weight: 600; letter-spacing: .06em; text-decoration: none; text-transform: uppercase; }
+.v3-object-about > div > a { display: block; margin-top: 10px; color: var(--v3-signal); font-size: .7rem; font-weight: 600; letter-spacing: .06em; text-decoration: none; text-transform: uppercase; }
+/* Light controls: a second whisper under the Label pill. Open on demand;
+   deliberately NOT part of the is-engaged fade — you adjust light while looking. */
+.immersive-light { position: absolute; z-index: 29; top: 150px; right: var(--v3-pad); }
+.immersive-light summary { display: flex; align-items: center; justify-content: space-between; gap: 32px; min-width: 110px; padding: 11px 15px; color: #fff; background: rgba(7,10,16,.6); border: 1px solid rgba(255,255,255,.24); border-radius: 999px; backdrop-filter: blur(14px); cursor: pointer; font-size: .64rem; font-weight: 600; letter-spacing: .1em; list-style: none; text-transform: uppercase; }
+.immersive-light summary::-webkit-details-marker { display: none; }
+.immersive-light summary span { transition: transform .2s; }
+.immersive-light[open] summary span { transform: rotate(45deg); }
+.immersive-light__panel { position: absolute; top: calc(100% + 10px); right: 0; display: grid; gap: 16px; width: 240px; padding: 18px; background: rgba(9,12,19,.92); border: 1px solid var(--v3-line); border-radius: 14px; backdrop-filter: blur(20px); }
+.immersive-light__panel label { display: grid; gap: 9px; color: var(--v3-muted); font-size: .56rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
+.immersive-light__panel input[type="range"] { width: 100%; height: 18px; margin: 0; accent-color: var(--v3-signal); cursor: pointer; }
+.viewer--immersive:fullscreen .immersive-light { top: 24px; }
+
 .v3-object-nav { position: absolute; z-index: 12; top: 50%; left: 18px; right: 18px; display: flex; justify-content: space-between; pointer-events: none; }
 .v3-object-nav a { display: flex; align-items: center; gap: 12px; max-width: 230px; padding: 10px; color: #fff; background: rgba(7,10,16,.34); border-radius: 999px; backdrop-filter: blur(12px); text-decoration: none; pointer-events: auto; }
 .v3-object-nav span { display: grid; place-items: center; width: 30px; height: 30px; flex: none; border: 1px solid rgba(255,255,255,.25); border-radius: 50%; }
 .v3-object-nav i { max-width: 0; overflow: hidden; font-size: .6rem; font-style: normal; font-weight: 600; letter-spacing: .06em; opacity: 0; text-overflow: ellipsis; text-transform: uppercase; white-space: nowrap; transition: max-width .3s, opacity .2s; }
 .v3-object-nav a:hover i { max-width: 160px; opacity: 1; }
 .v3-object-scroll { position: absolute; z-index: 10; right: var(--v3-pad); bottom: 24px; margin: 0; color: rgba(244,242,236,.5); font-size: .58rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
+
+/* While the visitor handles the sculpture, the interface recedes. */
+.v3-object-title, .v3-object-nav, .v3-object-scroll { transition: opacity .45s ease; }
+.v3-object-stage.is-engaged .v3-object-title,
+.v3-object-stage.is-engaged .v3-object-nav,
+.v3-object-stage.is-engaged .v3-object-scroll { opacity: 0; }
+.v3-object-stage.is-engaged .v3-object-nav a { pointer-events: none; }
 
 /* Wall text on the work page: what the curators wrote about this object. */
 .v3-object-wall { display: grid; gap: clamp(30px, 5vw, 60px); padding: clamp(100px, 13vw, 200px) var(--v3-pad); }
@@ -317,14 +339,15 @@ em, i { font-style: normal; }
 .spinner { width: 34px; height: 34px; border: 2px solid rgba(255,255,255,.2); border-top-color: var(--v3-signal); border-radius: 50%; animation: v3-spin .8s linear infinite; }
 .loading-text { display: none; }
 @keyframes v3-spin { to { transform: rotate(360deg); } }
-.stage-hint { position: absolute; z-index: 7; top: 102px; left: 50%; margin: 0; color: rgba(244,242,236,.5); transform: translateX(-50%); font-size: .56rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; pointer-events: none; }
+.stage-hint { position: absolute; z-index: 7; top: 102px; left: 50%; margin: 0; max-width: min(92vw, 720px); color: rgba(244,242,236,.5); transform: translateX(-50%); font-size: .56rem; font-weight: 600; letter-spacing: .12em; text-align: center; text-transform: uppercase; pointer-events: none; transition: opacity .6s ease; }
+.stage-hint.is-dismissed { opacity: 0; }
 .immersive-tools { position: absolute; z-index: 20; left: 50%; bottom: 24px; display: flex; align-items: center; gap: 4px; padding: 5px; background: rgba(7,10,16,.62); border: 1px solid rgba(255,255,255,.18); border-radius: 999px; backdrop-filter: blur(16px); transform: translateX(-50%); }
 .immersive-tools button { min-width: 42px; height: 38px; padding: 0 12px; color: rgba(255,255,255,.75); background: transparent; border: 0; border-radius: 999px; cursor: pointer; font-size: .6rem; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; }
 .immersive-tools button:first-child, .immersive-tools button:nth-child(2) { min-width: 38px; padding: 0; font-size: 1rem; }
 .immersive-tools button:hover, .immersive-tools button[aria-pressed="true"] { color: var(--v3-void); background: var(--v3-signal); }
 .viewer--immersive:fullscreen, .viewer--immersive:fullscreen .model-stage { width: 100vw; height: 100vh; background: var(--v3-void); }
 .viewer--immersive:fullscreen .immersive-tools { bottom: max(24px, env(safe-area-inset-bottom)); }
-.viewer--immersive:fullscreen .stage-hint { top: 24px; }
+.viewer--immersive:fullscreen .stage-hint { top: 24px; bottom: auto; }
 .viewer-hud { display: none; }
 
 /* Scroll reveals: works surface as the visitor reaches them.
@@ -335,6 +358,12 @@ em, i { font-style: normal; }
 }
 
 /* ——— Responsive ——— */
+@media (max-width: 1080px) {
+  /* Below ~1080px the full pan clause would run under the Label pill; the short
+     copy (orbit · zoom · reset) covers the essentials. */
+  .stage-hint__pan { display: none; }
+}
+
 @media (max-width: 1180px) {
   .v3-manifesto { grid-template-columns: .35fr 1.65fr; }
   .v3-manifesto__facts { grid-column: 2; }
@@ -381,17 +410,33 @@ em, i { font-style: normal; }
   .v3-exintro { grid-template-columns: 1fr; gap: 26px; }
   .v3-stop { grid-template-columns: 1fr; gap: 22px; }
   .v3-stop:nth-child(even) { direction: ltr; }
-  .v3-object-title { bottom: 116px; width: calc(100% - var(--v3-pad) * 2); }
-  .v3-object-title h1 { font-size: clamp(2.2rem, 9vw, 4.4rem); }
+  /* One clean bottom stack: tools + prev/next share the bottom line, the transient
+     gesture hint sits just above it, and the title clears them both. Nothing overlaps. */
+  .v3-object-title { bottom: 124px; width: calc(100% - var(--v3-pad) * 2); }
+  .v3-object-title h1 { font-size: clamp(1.9rem, 8vw, 3.4rem); }
+  .v3-object-title p:last-child { font-size: .85rem; }
   .v3-object-about { top: 80px; }
-  .v3-object-nav { top: auto; bottom: 104px; }
+  .immersive-light { top: 128px; }
+  .v3-object-nav { top: auto; bottom: 24px; left: 10px; right: 10px; }
+  .v3-object-nav a { padding: 8px; background: rgba(7,10,16,.55); }
+  .v3-object-nav span { width: 28px; height: 28px; }
   .v3-object-nav i { display: none; }
   .v3-object-scroll { display: none; }
+  .stage-hint { top: auto; bottom: 80px; }
   .immersive-tools { bottom: 22px; }
   .immersive-tools button { min-width: 36px; height: 36px; padding: 0 9px; }
+  /* Pinch zooms and double-tap resets on touch; drop the redundant buttons so the
+     toolbar leaves room for the prev/next arrows beside it. */
+  .v3-object-stage .immersive-tools [data-zoom-in],
+  .v3-object-stage .immersive-tools [data-zoom-out] { display: none; }
   .v3-object-rooms > a { grid-template-columns: 44px 1fr; }
   .v3-object-rooms > a i { display: none; }
   .v3-footer { align-items: flex-start; flex-direction: column; }
+}
+
+@media (max-width: 360px) {
+  /* Narrowest phones: double-tap already resets (the hint says so); keep the bottom line clear. */
+  .v3-object-stage .immersive-tools [data-tool-reset] { display: none; }
 }
 
 @media (max-width: 520px) {

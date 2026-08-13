@@ -44,6 +44,7 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
       title={work.title}
       hud={false}
       immersive={true}
+      autoRotate={work.slug !== 'europe/venus-of-willendorf-nhmw-44-686'}
       posterLoading="eager"
       upAxis={work.modelUpAxis}
       modelTransform={work.modelTransform}
@@ -71,39 +72,42 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
       <a href={withBase(v2WorkRoute(previous))} aria-label={`Previous work: ${previous.title}`}><span>←</span><i>{previous.title}</i></a>
       <a href={withBase(v2WorkRoute(next))} aria-label={`Next work: ${next.title}`}><i>{next.title}</i><span>→</span></a>
     </nav>
-    <p class="v2-object-scroll">Scroll for context ↓</p>
+    <p class="v2-object-scroll">Scroll for object details ↓</p>
   </section>
 
   <section class="v2-object-record">
     <div class="v2-object-record__intro">
-      <p class="v2-section-index">Look again</p>
-      <h2>There is no single front.</h2>
-      <p class="v2-editorial">Move around the work before deciding what it is. Zoom until the whole gives way to surface. Switch to mesh to see the digital object beneath the image.</p>
+      <p class="v2-section-index">How to use the model</p>
+      <h2>Examine the work from more than one angle.</h2>
+      <p class="v2-editorial">Use the model to inspect overall form, then zoom in to compare surface, joins, and tool marks. Wireframe is a viewing aid; the object record remains the source for documented facts.</p>
     </div>
 
     <dl class="v2-object-record__facts">
       {facts.map(([label, value]) => <div><dt>{label}</dt><dd>{value}</dd></div>)}
       {work.sourceUrl && <div><dt>Source</dt><dd><a href={work.sourceUrl}>{sourceLabel} ↗</a></dd></div>}
       {work.sourceRecordUrl && <div><dt>Museum record</dt><dd><a href={work.sourceRecordUrl}>Collection record ↗</a></dd></div>}
+      {work.relatedSourceRecordUrls.filter((url) => url !== work.sourceRecordUrl).map((url, index) => (
+        <div><dt>Related museum record</dt><dd><a href={url}>Collection record {index + 2} ↗</a></dd></div>
+      ))}
       {work.scanAuthor && <div><dt>3D capture</dt><dd>{work.scanAuthor}</dd></div>}
       {work.creditLine && <div><dt>Credit</dt><dd>{work.creditLine}</dd></div>}
-      {work.rights && !/review pending/i.test(work.rights) && <div><dt>Rights</dt><dd>{work.licenseUrl ? <a href={work.licenseUrl}>{work.rights} ↗</a> : work.rights}</dd></div>}
+      {work.rights && !/review pending/i.test(work.rights) && <div><dt>Rights</dt><dd>{work.licenseUrl ? <a href={work.licenseUrl} rel="license">3D scan: {work.rights} ↗</a> : work.rights}</dd></div>}
       {work.aiTrainingRestricted && <div><dt>AI use</dt><dd>Not licensed for AI training or generative-AI inputs</dd></div>}
     </dl>
   </section>
 
   {rooms.length > 0 && (
     <section class="v2-object-rooms" aria-labelledby="rooms-title">
-      <p class="v2-section-index">Keep looking</p>
+      <p class="v2-section-index">Related exhibitions</p>
       <h2 id="rooms-title">This work appears in</h2>
-      {rooms.map((room) => <a href={withBase(v2ExhibitionRoute(room))} style={`--ex-accent:${room.accent}`}><span>{room.number}</span><strong>{room.title}</strong><i>Enter ↗</i></a>)}
+      {rooms.map((room) => <a href={withBase(v2ExhibitionRoute(room))} style={`--ex-accent:${room.accent}`}><span>{room.number}</span><strong>{room.title}</strong><i>View exhibition ↗</i></a>)}
     </section>
   )}
 
   {related.length > 0 && (
     <section class="v2-object-related" aria-labelledby="related-title">
       <div class="v2-section-head v2-section-head--split">
-        <div><p class="v2-section-index">Nearby</p><h2 id="related-title">Continue through the collection.</h2></div>
+        <div><p class="v2-section-index">Related works</p><h2 id="related-title">Continue exploring the collection.</h2></div>
       </div>
       <div class="v2-new__rail">{related.map((candidate) => <V2WorkCard work={candidate} />)}</div>
     </section>

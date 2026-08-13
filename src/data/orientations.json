@@ -57,14 +57,15 @@
     "note": "Stand the bisj pole vertical to match its upright siblings (raw scan leaned ~6deg)."
   },
   "michelangelo/dawn": {
-    "upAxis": "auto",
+    "upAxis": "y",
     "viewDirection": [
-      0.2,
-      1.2,
+      0.55,
+      0.34,
       0.9
     ],
-    "status": "needs-refetch",
-    "note": "Mesh bundles an oversized plain base block larger than the figure; no camera/orientation fixes it. Needs a mesh trim or cleaner re-fetch. Reverted to prior view meanwhile."
+    "status": "reviewed",
+    "confidence": 0.85,
+    "note": "Manual review 2026-07-12: retain source Y as vertical so the sarcophagus block is grounded and the reclining Dawn figure rests above it."
   },
   "michelangelo/madonna-of-the-stairs": {
     "upAxis": "auto",
@@ -109,7 +110,7 @@
     "modelRotation": [
       0,
       0,
-      0
+      12
     ],
     "yaw": 0,
     "status": "reviewed",
@@ -265,12 +266,12 @@
   "egyptian/temple-of-dendur-met": {
     "upAxis": "y",
     "modelRotation": [
-      -175.44,
       0,
-      1.32
+      0,
+      0
     ],
     "yaw": 0,
-    "status": "auto",
+    "status": "reviewed",
     "confidence": 0.63,
     "note": "Stable-pose solve (pose 0, p=0.70, margin 0.29); confident."
   },
@@ -314,14 +315,13 @@
   "sub-saharan-africa/zoomorphic-headrest-nguni-met": {
     "upAxis": "y",
     "modelRotation": [
+      -7,
       0,
-      0,
-      0
+      -9
     ],
     "yaw": 0,
     "status": "reviewed",
-    "confidence": 0.9,
-    "note": "Corrected 2026-06-30: preserve the Met/VNTANA source Y-up pose so the top plank is horizontal and the supports sit below it. Stable-pose rotations made the headrest look fallen over."
+    "note": "Solved numerically 2026-07-25 (probe-orientation.mjs) from user report."
   },
   "americas/kero-beaker-tiwanaku-met": {
     "upAxis": "auto",
@@ -570,26 +570,20 @@
     "note": "Manual review: rotate the Smithsonian GLB around X so the pot stands on its base, then yaw 180deg so the broken rim/opening faces the default camera."
   },
   "americas/the-dying-tecumseh-smithsonian": {
-    "upAxis": "auto",
+    "upAxis": "y",
     "modelRotation": [
       0,
       0,
       0
     ],
     "yaw": 0,
-    "viewDirection": [
-      -0.55,
-      0.34,
-      -0.9
-    ],
     "status": "reviewed",
-    "confidence": 0.85,
-    "note": "Manual review: preserve the Smithsonian GLB source orientation and open the camera from the opposite side so the figure, not the underside of the base, faces the thumbnail."
+    "note": "Recumbent figure: plain y-up sits the sled flat; prior entry tilted the world and hid it with a camera angle."
   },
   "modern/abraham-lincoln-life-mask-npg-smithsonian": {
     "upAxis": "auto",
     "modelRotation": [
-      0,
+      -20,
       90,
       180
     ],
@@ -683,7 +677,7 @@
   "renaissance/grotesque-helmet-goldenes-dachl": {
     "upAxis": "y",
     "modelRotation": [
-      135.33,
+      126,
       0,
       0.47
     ],
@@ -749,14 +743,13 @@
   "sub-saharan-africa/nigerian-bird-figurine-threedscans": {
     "upAxis": "y",
     "modelRotation": [
-      180,
+      -174,
       0,
-      0
+      -4
     ],
     "yaw": 0,
     "status": "reviewed",
-    "confidence": 0.8,
-    "note": "Manual review 2026-07-06: stable-pose laid the figurine on its side. Long axis is source +Y with the base block at +Y; flip 180deg about X so the base rests down and the bird stands upright."
+    "note": "Solved numerically 2026-07-25 (probe-orientation.mjs) from user report."
   },
   "egyptian/hermanubis-vatican-museums-threedscans": {
     "upAxis": "y",
@@ -855,9 +848,9 @@
   "neoclassical/gruppe-mit-zwei-windhunden-franzoni-threedscans": {
     "upAxis": "y",
     "modelRotation": [
-      180,
+      163,
       0,
-      0
+      -5
     ],
     "yaw": 0,
     "viewDirection": [
@@ -867,7 +860,7 @@
     ],
     "status": "reviewed",
     "confidence": 0.95,
-    "note": "Manual review 2026-07-12: flip the source mesh 180deg about X so the rectangular plinth rests on the ground and the two greyhounds stand above it."
+    "note": "Corrected 2026-07-25: numerical footprint leveling sets the rectangular plinth flush to the floor; the prior 180deg X flip left it riding on an edge."
   },
   "neoclassical/napoleon-ier-bosio-threedscans": {
     "upAxis": "auto",
@@ -888,26 +881,24 @@
   "asia/baluster-vase-f1980-192-smithsonian": {
     "upAxis": "y",
     "modelRotation": [
-      -54.7,
-      28.98,
-      -53.09
+      134,
+      0,
+      -88
     ],
     "yaw": 0,
     "status": "reviewed",
-    "confidence": 0.9,
-    "note": "Manual review 2026-07-12: use the vessel's measured diagonal principal axis to align it vertically without a residual tilt."
+    "note": "Solved numerically 2026-07-25 (probe-orientation.mjs) from user report."
   },
   "asia/baluster-vase-f1980-191-smithsonian": {
-    "upAxis": "x",
+    "upAxis": "y",
     "modelRotation": [
+      26,
       0,
-      0,
-      12
+      90
     ],
     "yaw": 0,
     "status": "reviewed",
-    "confidence": 0.9,
-    "note": "Manual review 2026-07-12: align the vessel's diagonal source-X height to viewer Y so the foot rests level and the lid is above the body."
+    "note": "Solved numerically 2026-07-25 (probe-orientation.mjs) from user report."
   },
   "asia/prasat-krahom-vishnu-narasimha-lintel-cast-guimet-threedscans": {
     "upAxis": "auto",
@@ -968,13 +959,19 @@
   "asia/bato-kannon-gohanzuka-commons": {
     "upAxis": "auto",
     "viewDirection": [
-      -1,
+      1,
       0.08,
       0
     ],
     "status": "reviewed",
     "confidence": 0.85,
-    "note": "Manual review 2026-07-12: retain the upright stone and open on its carved front rather than its plain side/reverse."
+    "note": "Scan is upside down and shows its blank side by default: flip 180 about X and yaw 180 to present the inscribed front upright.",
+    "modelRotation": [
+      180,
+      0,
+      0
+    ],
+    "yaw": 180
   },
   "egyptian/head-of-amenhotep-iii-cleveland": {
     "upAxis": "auto",
@@ -1021,20 +1018,21 @@
     "note": "Manual review 2026-07-12: open from above and the opposite side so the slipper uppers and decoration face the camera instead of the soles."
   },
   "americas/theodore-roosevelt-farnham-smithsonian": {
-    "upAxis": "auto",
+    "upAxis": "y",
     "modelRotation": [
       0,
       0,
-      5
+      -85
     ],
+    "yaw": 0,
     "viewDirection": [
       0,
-      0.08,
-      1
+      0,
+      -1
     ],
     "status": "reviewed",
     "confidence": 0.9,
-    "note": "Manual review 2026-07-12: present the bronze relief square to the camera rather than at a steep diagonal."
+    "note": "Corrected 2026-07-25: turn the relief 90deg counterclockwise from the prior view and face it squarely without forward pitch."
   },
   "asia/gathering-of-buddhas-and-bodhisattvas-smithsonian": {
     "upAxis": "auto",
@@ -1070,11 +1068,11 @@
     "note": "Manual review 2026-07-12: open on the modeled Garuda face instead of the thin edge of the terminal."
   },
   "sub-saharan-africa/ashanti-terracotta-neck-face-yale-peabody": {
-    "upAxis": "auto",
+    "upAxis": "y",
     "modelRotation": [
-      180,
-      45,
-      0
+      34,
+      0,
+      14
     ],
     "viewDirection": [
       0,
@@ -1084,7 +1082,7 @@
     "fit": 1.16,
     "status": "reviewed",
     "confidence": 0.95,
-    "note": "Manual review 2026-07-12: flip and level the portrait so its neck base is down, then open on the modeled face instead of the hollow underside."
+    "note": "PCA alignment with the round-base flip corrected 2026-07-25: stand the pedestal down, keep the neck vertical, and present the modeled face."
   },
   "americas/village-scene-nayarit": {
     "upAxis": "y",
@@ -1133,34 +1131,43 @@
     "confidence": 0.9,
     "note": "Manual review 2026-07-12: flip the source mesh so the lion's base is down rather than above the figure."
   },
-  "michelangelo/dawn": {
-    "upAxis": "y",
-    "viewDirection": [
-      0.55,
-      0.34,
-      0.9
-    ],
-    "status": "reviewed",
-    "confidence": 0.85,
-    "note": "Manual review 2026-07-12: retain source Y as vertical so the sarcophagus block is grounded and the reclining Dawn figure rests above it."
-  },
   "americas/charlie-parker-alto-saxophone-nmaahc": {
-    "upAxis": "x",
+    "upAxis": "y",
+    "modelRotation": [
+      178,
+      0,
+      90
+    ],
+    "yaw": 0,
     "status": "reviewed",
     "confidence": 0.95,
-    "note": "Manual review 2026-07-12: source X is the saxophone's long axis; align it to viewer Y so the instrument stands upright."
+    "note": "PCA-aligned 2026-07-25 in raw model space: stand the saxophone upright with the mouthpiece above the bell."
   },
   "americas/julius-erving-dr-j-sneakers-nmaahc": {
-    "upAxis": "x",
+    "upAxis": "y",
+    "modelRotation": [
+      -89,
+      0,
+      -15
+    ],
+    "yaw": 0,
     "status": "reviewed",
-    "confidence": 0.9,
-    "note": "Manual review 2026-07-12: align source X to viewer Y so the sneaker sits on its sole rather than standing on its toe."
+    "confidence": 0.95,
+    "note": "Flat-base solve 2026-07-25 in raw model space: rotate the high-top onto its sole and level it for an upright side view."
   },
   "oceania/maori-nguru-nose-flute-cuming-museum": {
     "upAxis": "y",
-    "modelRotation": [0, 0, 0],
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
     "yaw": 0,
-    "viewDirection": [-0.55, 0.34, -0.9],
+    "viewDirection": [
+      -0.55,
+      0.34,
+      -0.9
+    ],
     "fit": 1.08,
     "status": "reviewed",
     "confidence": 0.95,
@@ -1168,7 +1175,11 @@
   },
   "americas/nayarit-ceramic-female-figure-unh": {
     "upAxis": "y",
-    "modelRotation": [0, 0, 0],
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
     "yaw": 0,
     "status": "reviewed",
     "confidence": 0.95,
@@ -1176,7 +1187,11 @@
   },
   "americas/spiro-mississippian-sun-gorget-mia": {
     "upAxis": "y",
-    "modelRotation": [0, 0, 0],
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
     "yaw": 0,
     "status": "reviewed",
     "confidence": 0.95,
@@ -1184,7 +1199,11 @@
   },
   "sub-saharan-africa/yoruba-gelede-mask-aarlcc": {
     "upAxis": "y",
-    "modelRotation": [0, 0, 0],
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
     "yaw": 0,
     "status": "reviewed",
     "confidence": 0.95,
@@ -1192,7 +1211,11 @@
   },
   "asia/shiva-nataraja-after-conservation-mia": {
     "upAxis": "y",
-    "modelRotation": [0, 0, 0],
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
     "yaw": 0,
     "status": "reviewed",
     "confidence": 0.95,
@@ -1200,7 +1223,11 @@
   },
   "asia/tang-flute-player-tomb-figure-mia": {
     "upAxis": "y",
-    "modelRotation": [0, 0, 0],
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
     "yaw": 0,
     "status": "reviewed",
     "confidence": 0.95,
@@ -1208,7 +1235,11 @@
   },
   "asia/cham-deified-king-mia": {
     "upAxis": "y",
-    "modelRotation": [0, 0, 0],
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
     "yaw": 0,
     "status": "reviewed",
     "confidence": 0.95,
@@ -1216,7 +1247,11 @@
   },
   "asia/rayy-ware-bowl-mia": {
     "upAxis": "y",
-    "modelRotation": [0, 0, 0],
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
     "yaw": 0,
     "status": "reviewed",
     "confidence": 0.95,
@@ -1224,7 +1259,11 @@
   },
   "egyptian/ptolemaic-ruler-hercules-mia": {
     "upAxis": "y",
-    "modelRotation": [0, 0, 0],
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
     "yaw": 0,
     "status": "reviewed",
     "confidence": 0.95,
@@ -1232,10 +1271,884 @@
   },
   "renaissance/le-transi-de-rene-de-chalon-threedscans": {
     "upAxis": "y",
-    "modelRotation": [0.79, 0.04, 6.18],
+    "modelRotation": [
+      0.79,
+      0.04,
+      6.18
+    ],
     "yaw": 0,
     "status": "reviewed",
     "confidence": 0.95,
     "note": "Manual review 2026-07-14: apply the slight scan correction so the figure and plinth are vertical and the raised heart is fully framed."
+  },
+  "asia/jue-wine-vessel-mia-commons": {
+    "upAxis": "z",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  "attis": {
+    "upAxis": "y",
+    "modelRotation": [
+      -90,
+      0,
+      0
+    ]
+  },
+  "assyrian/huntsmen-with-hounds-panel-13-bm": {
+    "upAxis": "y",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  "egyptian/false-door-irienakhet-mia": {
+    "upAxis": "y",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  "head-of-a-ruler": {
+    "upAxis": "y",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  "head-of-maxence": {
+    "upAxis": "y",
+    "modelRotation": [
+      0,
+      0,
+      6
+    ]
+  },
+  "sub-saharan-africa/seated-figure-middle-niger": {
+    "upAxis": "y",
+    "modelRotation": [
+      1,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "status": "reviewed",
+    "note": "Flat-base solve 2026-07-25 in raw model space: place the figure's broad support plane flush to the ground."
+  },
+  "americas/key-marco-cat": {
+    "viewDirection": [
+      -1,
+      0.18,
+      0
+    ],
+    "status": "reviewed",
+    "note": "Face the feline toward the camera."
+  },
+  "asia/shotoku-taishi-tower-santanda-inari-commons": {
+    "upAxis": "y",
+    "modelRotation": [
+      -80,
+      0,
+      60
+    ],
+    "yaw": 0,
+    "status": "reviewed",
+    "note": "Solved numerically 2026-07-25 (probe-orientation.mjs) from user report."
+  },
+  "greek/selene-horse-head-parthenon-smk-cast": {
+    "upAxis": "y",
+    "modelRotation": [
+      -90,
+      0,
+      -90
+    ],
+    "yaw": 0,
+    "status": "reviewed",
+    "note": "Cardinal-pose review against the museum display: rotate the long axis horizontal so the broad underside rests down and the horse's eye remains above its muzzle."
+  },
+  "americas/point-of-pines-plantation-cabin-nmaahc": {
+    "upAxis": "y",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "status": "reviewed",
+    "note": "Explicit Y-up suppresses the erroneous near-cubic auto-axis pre-rotation, placing the shadowed underside flush to the ground."
+  },
+  "asia/ta-prohm-dancers-pediment-cast-guimet-threedscans": {
+    "viewDirection": [
+      0,
+      0.18,
+      -1
+    ],
+    "status": "reviewed",
+    "note": "Default view showed the cast back; view from the carved relief side."
+  },
+  "egyptian/reclining-lion-soleb-smk-cast": {
+    "upAxis": "z",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "status": "reviewed",
+    "note": "SMK source-space Z-up pose retained so the intentionally reclining lion rests on its original support plane."
+  },
+  "assyrian/ashurbanipal-hunting-wild-asses-smk-cast": {
+    "upAxis": "z",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "viewDirection": [
+      0.55,
+      0.34,
+      -0.9
+    ],
+    "status": "reviewed",
+    "note": "SMK source-space Z-up pose retained for the upright panel; the camera is reversed from the blank back to the carved relief face."
+  },
+  "greek/artemis-and-iphigenia-smk-cast": {
+    "upAxis": "z",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "viewDirection": [
+      -0.55,
+      0.34,
+      -0.9
+    ],
+    "status": "reviewed",
+    "note": "SMK source-space Z-up pose retained; the multi-figure composition makes its diagonal principal axis unsuitable as a vertical cue, and the camera presents the figures from their modeled front."
+  },
+  "greek/niobid-chiaramonti-smk-cast": {
+    "upAxis": "z",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "status": "reviewed",
+    "note": "SMK source-space Z-up pose retained; the figure's dramatic lean makes its principal body axis unsuitable as a vertical cue."
+  },
+  "medieval/apostle-peter-saint-gilles-smk-cast": {
+    "upAxis": "z",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "status": "reviewed",
+    "note": "SMK source-space Z-up pose retained for the upright Romanesque facade relief; carved-face direction reviewed separately."
+  },
+  "medieval/presentation-and-flight-into-egypt-smk-cast": {
+    "upAxis": "z",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "status": "reviewed",
+    "note": "SMK source-space Z-up pose retained for the upright pulpit relief; carved-face direction reviewed separately."
+  },
+  "renaissance/beatrice-d-este-smk-cast": {
+    "upAxis": "z",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "status": "reviewed",
+    "note": "SMK source-space Z-up pose retained; the wide shoulders make the bust's longest principal axis a poor vertical cue."
+  },
+  "renaissance/matteo-palmieri-smk-cast": {
+    "upAxis": "z",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "status": "reviewed",
+    "note": "SMK source-space Z-up pose retained; the wide shoulders make the bust's longest principal axis a poor vertical cue."
+  },
+  "baroque/costanza-bonarelli-smk-cast": {
+    "upAxis": "z",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "status": "reviewed",
+    "note": "SMK source-space Z-up pose retained; the wide shoulders make the bust's longest principal axis a poor vertical cue."
+  },
+  "neoclassical/marie-antoinette-1783-smk-cast": {
+    "upAxis": "z",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "status": "reviewed",
+    "note": "SMK source-space Z-up pose retained; the wide shoulders make the portrait bust's longest principal axis a poor vertical cue."
+  },
+  "egyptian/queen-relief-ramses-ii-smk-cast": {
+    "upAxis": "z",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "viewDirection": [
+      -0.9,
+      0.34,
+      0.25
+    ],
+    "status": "reviewed",
+    "note": "SMK source-space Z-up pose retained; the raw relief back is on +X, so the camera is placed on -X to present the carved face."
+  },
+  "greek/rampin-rider-head-smk-cast": {
+    "upAxis": "z",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "viewDirection": [
+      0.55,
+      0.34,
+      0.9
+    ],
+    "status": "reviewed",
+    "note": "SMK source-space Z-up pose retained; PCA follows the fragment's diagonal neck and is not a reliable vertical cue for this head."
+  },
+  "greek/standing-warrior-aphaia-smk-cast": {
+    "upAxis": "y",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "viewDirection": [
+      0.55,
+      0.34,
+      0.9
+    ],
+    "status": "reviewed",
+    "note": "The SMK source is genuinely Y-up with a broad flat plinth at raw Y-min; the source pose is retained so the warrior stands flush without the auto solver's unnecessary 180-degree flip."
+  },
+  "greek/silenus-infant-dionysus-smk-cast": {
+    "upAxis": "z",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "viewDirection": [
+      0.55,
+      0.34,
+      0.9
+    ],
+    "status": "reviewed",
+    "note": "SMK source is native Z-up with the broad pedestal at raw Z-min; the multi-figure group makes PCA follow a diagonal rather than the true vertical."
+  },
+  "roman/horse-marcus-aurelius-smk-cast": {
+    "upAxis": "z",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "viewDirection": [
+      0.55,
+      0.34,
+      0.9
+    ],
+    "status": "reviewed",
+    "note": "SMK source is native Z-up with the broad cut base at raw Z-min; PCA follows the horse's long body instead of the true vertical."
+  },
+  "medieval/adoration-of-the-magi-siena-smk-cast": {
+    "upAxis": "z",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "viewDirection": [
+      0,
+      0.08,
+      1
+    ],
+    "status": "reviewed",
+    "note": "SMK source is native Z-up with its lower frame at raw Z-min; a near-frontal positive-Z camera shows the carved face rather than the planar back."
+  },
+  "renaissance/singing-boys-choir-book-smk-cast": {
+    "upAxis": "z",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "viewDirection": [
+      0.18,
+      0.24,
+      1
+    ],
+    "status": "reviewed",
+    "note": "SMK source is native Z-up; the carving projects toward raw -Y, which maps to the positive-Z camera side while preserving the lower edge as the base."
+  },
+  "renaissance/cosimo-i-de-medici-bandinelli-smk": {
+    "upAxis": "y",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "viewDirection": [
+      0.2,
+      0.3,
+      1
+    ],
+    "status": "reviewed",
+    "note": "SMK source is native Y-up with the decorated circular base at raw Y-min; no pitch correction is applied because the turned and bowed head is part of the sculpture."
+  },
+  "neoclassical/cupid-playing-the-lyre-thorvaldsen-smk": {
+    "upAxis": "z",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "viewDirection": [
+      0.55,
+      0.34,
+      0.9
+    ],
+    "status": "reviewed",
+    "note": "SMK source is native Z-up with a broad plinth at raw Z-min; PCA is avoided because the seated body, lyre, and wing mass can turn the figure onto its side."
+  },
+  "modern/seated-bear-skovgaard-smk": {
+    "upAxis": "z",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "viewDirection": [
+      0.55,
+      0.34,
+      0.9
+    ],
+    "status": "reviewed",
+    "note": "SMK source is native Z-up with the circular pedestal at raw Z-min; the positive-Z camera shows the snout while avoiding PCA's top-heavy flip."
+  },
+  "roman/three-graces-louvre-ma-287": {
+    "upAxis": "y",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 180,
+    "viewDirection": [
+      0.35,
+      0.24,
+      1
+    ],
+    "status": "reviewed",
+    "note": "The archived GLB is native Y-up with its plinth at raw Y-min. A 180-degree yaw opens on the Louvre's catalogued front, where two Graces face the viewer and the central figure turns away."
+  },
+  "greek/winged-victory-samothrace-louvre-ma-2369": {
+    "upAxis": "y",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "viewDirection": [
+      0.55,
+      0.34,
+      0.9
+    ],
+    "status": "reviewed",
+    "note": "The archived GLB is native Y-up. The default three-quarter camera keeps the forward torso, near wing, windblown drapery, and plinth legible without flattening the silhouette."
+  },
+  "roman/venus-of-arles-louvre-ma-439": {
+    "upAxis": "y",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "viewDirection": [
+      0.55,
+      0.34,
+      0.9
+    ],
+    "status": "reviewed",
+    "note": "The archived GLB is native Y-up. The source-facing three-quarter view shows the restored arms, torso, drapery, and base clearly."
+  },
+  "roman/artemis-rospigliosi-louvre-ma-559-1": {
+    "upAxis": "y",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "viewDirection": [
+      0.55,
+      0.34,
+      0.9
+    ],
+    "status": "reviewed",
+    "note": "The archived GLB is native Y-up. The opening angle preserves the huntress's forward step and face while keeping both legs and the support visible."
+  },
+  "renaissance/mercury-abducting-psyche-de-vries-louvre": {
+    "upAxis": "y",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "viewDirection": [
+      0.55,
+      0.34,
+      0.9
+    ],
+    "status": "reviewed",
+    "note": "The archived GLB is native Y-up. The reviewed three-quarter view separates Mercury and Psyche while retaining the bronze group's ascending spiral."
+  },
+  "baroque/saint-catherine-hope-regnaudin-louvre": {
+    "upAxis": "y",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "viewDirection": [
+      0.55,
+      0.34,
+      0.9
+    ],
+    "status": "reviewed",
+    "note": "The archived GLB is native Y-up. The reviewed front three-quarter view clearly shows the face, hand-to-heart gesture, anchor, and standing base."
+  },
+  "greek/seated-woman-funerary-stele-louvre-ma-3111": {
+    "upAxis": "y",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "viewDirection": [
+      0.55,
+      0.34,
+      0.9
+    ],
+    "status": "reviewed",
+    "note": "The archived GLB is native Y-up. A shallow three-quarter view makes the seated pose, surviving drapery, stool, and stele depth readable together."
+  },
+  "ancient-near-east/kaluraz-female-statue-vessel-louvre-ao-32465": {
+    "upAxis": "y",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "viewDirection": [
+      0.55,
+      0.34,
+      0.9
+    ],
+    "status": "reviewed",
+    "note": "The archived GLB is native Y-up. The reviewed three-quarter view presents the full vessel opening, ringed headdress, face, bent arms, broad hips, and paired feet as one continuous silhouette."
+  },
+  "renaissance/friendship-stati-louvre": {
+    "upAxis": "y",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "viewDirection": [
+      0.55,
+      0.34,
+      0.9
+    ],
+    "status": "reviewed",
+    "note": "The archived GLB is native Y-up. The front three-quarter view preserves the allegory's bowed head, hand gesture, crossed stance, support, and circular plinth."
+  },
+  "neoclassical/daphnis-and-chloe-cortot-louvre": {
+    "upAxis": "y",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "viewDirection": [
+      0.55,
+      0.34,
+      0.9
+    ],
+    "status": "reviewed",
+    "note": "The archived GLB is native Y-up. The reviewed opening view gives both faces equal weight and keeps the flute, linked arms, seated figure, and oval base distinct."
+  },
+  "greek/bell-idol-louvre-ca-573": {
+    "upAxis": "y",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "viewDirection": [
+      0.55,
+      0.34,
+      0.9
+    ],
+    "status": "reviewed",
+    "note": "The archived GLB is native Y-up. The three-quarter view keeps the modeled head, bell-shaped body, geometric surface decoration, articulated legs, and modern support visible."
+  },
+  "michelangelo/rebellious-slave": {
+    "upAxis": "auto",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 90,
+    "viewDirection": [
+      0.55,
+      0.34,
+      0.9
+    ],
+    "status": "reviewed",
+    "note": "Reviewed 2026-08-12: quarter-turn the source pose so the face, chest, bent knee, and bound arms open toward the gallery."
+  },
+  "aphrodite-anadyomene": {
+    "upAxis": "auto",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 90,
+    "viewDirection": [
+      0.55,
+      0.34,
+      0.9
+    ],
+    "status": "reviewed",
+    "note": "Reviewed 2026-08-12: quarter-turn the standing figure so the face and torso present in a forward three-quarter view."
+  },
+  "pandora-james-pradier": {
+    "upAxis": "auto",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 90,
+    "viewDirection": [
+      0.55,
+      0.34,
+      0.9
+    ],
+    "status": "reviewed",
+    "note": "Reviewed 2026-08-12: quarter-turn the figure from strict profile to a forward three-quarter view while retaining the bowed head."
+  },
+  "penelope": {
+    "upAxis": "auto",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 90,
+    "viewDirection": [
+      0.55,
+      0.34,
+      0.9
+    ],
+    "status": "reviewed",
+    "note": "Reviewed 2026-08-12: present the seated figure from the forward three-quarter side so the face, hand, torso, and seat remain legible."
+  },
+  "statue-of-ur-ningirsu": {
+    "upAxis": "auto",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 90,
+    "viewDirection": [
+      0.55,
+      0.34,
+      0.9
+    ],
+    "status": "reviewed",
+    "note": "Reviewed 2026-08-12: turn the figure from profile so the modeled face, clasped hands, and robe open toward the gallery."
+  },
+  "sub-saharan-africa/female-figure-with-raised-arm": {
+    "upAxis": "auto",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 180,
+    "viewDirection": [
+      0.55,
+      0.34,
+      0.9
+    ],
+    "status": "reviewed",
+    "note": "Reviewed 2026-08-12: reverse the source opening so the face, breasts, raised arm, and standing silhouette present frontally."
+  },
+  "sub-saharan-africa/ngya-commemorative-post": {
+    "upAxis": "auto",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 180,
+    "viewDirection": [
+      0.55,
+      0.34,
+      0.9
+    ],
+    "status": "reviewed",
+    "note": "Reviewed 2026-08-12: reverse the opening view so the carved face and front of the commemorative figure are visible."
+  },
+  "baroque/venus-callipyge-louvre-mr-1999": {
+    "upAxis": "y",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "viewDirection": [
+      0.55,
+      0.34,
+      0.9
+    ],
+    "status": "reviewed",
+    "note": "Reviewed 2026-08-12: front three-quarter opening view keeps the backward glance and raised drapery legible while presenting the torso and face toward the gallery."
+  },
+  "modern/crouching-woman-rodin-hirshhorn-66-4342": {
+    "upAxis": "z",
+    "modelRotation": [
+      0,
+      0,
+      180
+    ],
+    "yaw": 0,
+    "viewDirection": [
+      -0.55,
+      0.34,
+      -0.9
+    ],
+    "status": "reviewed",
+    "note": "Reviewed 2026-08-12: retain the native Z-up pose and open from the opposite three-quarter angle so the head, chest, and folded limbs read from the front."
+  },
+  "modern/bacchante-and-satyr-clesinger-mia-73-13": {
+    "upAxis": "z",
+    "modelRotation": [
+      0,
+      0,
+      180
+    ],
+    "yaw": 0,
+    "viewDirection": [
+      -0.55,
+      0.34,
+      -0.9
+    ],
+    "status": "reviewed",
+    "note": "Reviewed 2026-08-12: front three-quarter view gives the bacchante and satyr equal facial and gestural presence while preserving the group silhouette."
+  },
+  "roman/sleeping-hermaphroditus-louvre-ma-231": {
+    "upAxis": "z",
+    "modelRotation": [
+      0,
+      0,
+      180
+    ],
+    "yaw": 0,
+    "viewDirection": [
+      -0.55,
+      0.34,
+      -0.9
+    ],
+    "status": "reviewed",
+    "note": "Reviewed 2026-08-12: retain the reclining Z-up correction but open from the forward three-quarter side so the face and torso remain readable."
+  },
+  "europe/venus-of-lespugue-musee-de-l-homme": {
+    "upAxis": "y",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 180,
+    "viewDirection": [
+      0.55,
+      0.34,
+      0.9
+    ],
+    "status": "reviewed",
+    "note": "Reviewed 2026-08-12: reverse the opening view to present the figurine's head and torso frontally while retaining its diamond silhouette."
+  },
+  "neoclassical/venus-italica-canova-smk-kas-793": {
+    "upAxis": "z",
+    "modelRotation": [
+      0,
+      0,
+      180
+    ],
+    "yaw": 0,
+    "viewDirection": [
+      -0.55,
+      0.34,
+      -0.9
+    ],
+    "status": "reviewed",
+    "note": "Reviewed 2026-08-12: retain the native Z-up correction and use the opposite three-quarter camera so Venus's face and torso open toward the gallery."
+  },
+  "modern/athlete-wrestling-python-leighton-tate-n01754": {
+    "upAxis": "z",
+    "modelRotation": [
+      0,
+      0,
+      180
+    ],
+    "yaw": 0,
+    "viewDirection": [
+      -0.55,
+      0.34,
+      -0.9
+    ],
+    "status": "reviewed",
+    "note": "Reviewed 2026-08-12: front three-quarter view retains the twisting action and python while making the athlete's face and chest visible."
+  },
+  "modern/the-kiss-rodin-musee-rodin-s-1002": {
+    "upAxis": "y",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 180,
+    "viewDirection": [
+      0.55,
+      0.34,
+      0.9
+    ],
+    "status": "reviewed",
+    "note": "Reviewed 2026-08-12: reverse the native Y-up group to a front three-quarter opening that presents both faces and the embrace."
+  },
+  "europe/venus-of-willendorf-nhmw-44-686": {
+    "upAxis": "y",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "viewDirection": [
+      0.55,
+      0.34,
+      0.9
+    ],
+    "status": "reviewed",
+    "note": "Reviewed 2026-08-12: native Y-up front three-quarter view presents the head, chest, folded arms, and compact silhouette."
+  },
+  "americas/nayarit-standing-female-ncma-g-58-8-2": {
+    "upAxis": "y",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "viewDirection": [
+      0.55,
+      0.34,
+      0.9
+    ],
+    "status": "reviewed",
+    "note": "Reviewed 2026-08-12: native Y-up front three-quarter view presents the modeled face, cup, jewelry, and full standing silhouette."
+  },
+  "baroque/veiled-woman-faith-corradini-louvre-rf-3088": {
+    "upAxis": "z",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "viewDirection": [
+      0.55,
+      0.34,
+      0.9
+    ],
+    "status": "reviewed",
+    "note": "Reviewed 2026-08-12: Z-up source rotated upright; front three-quarter view presents the veiled face, torso, hands, and complete standing silhouette."
+  },
+  "baroque/ecstasy-of-saint-teresa-bernini-cornaro-chapel": {
+    "upAxis": "z",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "viewDirection": [
+      0.55,
+      0.34,
+      0.9
+    ],
+    "status": "reviewed",
+    "note": "Reviewed 2026-08-13: preserve the native Z-up capture and open on the largest surviving architectural fragments; missing central geometry is source-scan loss."
   }
 }

@@ -23,7 +23,7 @@ const heroTransform = { ...featuredWork.modelTransform, fit: 1.1 };
 
 <V3Layout
   title="Atrium.Earth"
-  description={`${collectionCount} sculptures in a borderless night museum. Turn, zoom, relight, and read every work in 3D.`}
+  description={`${collectionCount} sculptures with object records, images, and 3D views for close study.`}
   image={featuredWork.thumbnailImage}
 >
   <section class="v3-hero" aria-labelledby="v3-home-title">
@@ -44,34 +44,34 @@ const heroTransform = { ...featuredWork.modelTransform, fit: 1.1 };
 
     <div class="v3-hero__veil" aria-hidden="true"></div>
     <div class="v3-hero__copy">
-      <p class="v3-kicker">A night museum · {collectionCount} works</p>
+      <p class="v3-kicker">Digital sculpture museum · {collectionCount} works</p>
       <h1 id="v3-home-title" class="v3-display">{featuredWork.title}</h1>
-      <p>The lights are off; the works are awake. Drag to turn the sculpture. Scroll to walk on.</p>
+      <p>Examine the work from more than one angle. Drag to turn the model, then scroll for exhibitions and the full collection.</p>
       <div class="v3-actions">
-        <a class="v3-button v3-button--light" href={withBase(v3WorkRoute(featuredWork))}>Step closer <span>↗</span></a>
+        <a class="v3-button v3-button--light" href={withBase(v3WorkRoute(featuredWork))}>View object <span>↗</span></a>
         <a class="v3-button v3-button--ghost" href={withBase('/collection/')}>All {collectionCount} works</a>
       </div>
     </div>
 
     <div class="v3-hero__object">
-      <span>Now in the light</span>
+      <span>Featured work</span>
       <strong>{featuredWork.title}</strong>
       <span>{[featuredWork.maker, featuredWork.displayDate].filter(Boolean).join(' · ')}</span>
     </div>
-    <a class="v3-hero__continue" href="#v3-home-content">Walk on <span>↓</span></a>
+    <a class="v3-hero__continue" href="#v3-home-content">Explore more <span>↓</span></a>
   </section>
 
   <section class="v3-section v3-manifesto-wrap" id="v3-home-content" aria-labelledby="manifesto-title">
     <div class="v3-manifesto">
-      <p class="v3-kicker">01 / The idea</p>
+      <p class="v3-kicker">01 / About the collection</p>
       <div>
-        <h2 id="manifesto-title" class="v3-display">The work is the interface.</h2>
-        <p class="v3-editorial">No tickets, no glass, no closing time. Sculpture, lit and waiting — spend two minutes with one object or lose the night entirely.</p>
+        <h2 id="manifesto-title" class="v3-display">See sculpture from more than one side.</h2>
+        <p class="v3-editorial">Atrium brings together object records, images, and 3D models from public collections. Use them to compare form, material, scale, and construction at your own pace.</p>
       </div>
       <div class="v3-manifesto__facts" aria-label="Museum facts">
-        <p><strong>{collectionCount}</strong><span>works in the dark</span></p>
-        <p><strong>360°</strong><span>every side, every work</span></p>
-        <p><strong>0</strong><span>walls between you and it</span></p>
+        <p><strong>{collectionCount}</strong><span>works to explore</span></p>
+        <p><strong>3D</strong><span>views where model data is available</span></p>
+        <p><strong>Open</strong><span>source records linked throughout</span></p>
       </div>
     </div>
   </section>
@@ -79,8 +79,8 @@ const heroTransform = { ...featuredWork.modelTransform, fit: 1.1 };
   {pairings.length > 0 && (
   <section class="v3-section v3-section--line" aria-labelledby="pairs-title">
     <div class="v3-section-head">
-      <p class="v3-kicker">02 / In conversation</p>
-      <h2 id="pairs-title" class="v3-display">Two works. One argument.</h2>
+      <p class="v3-kicker">02 / Comparisons</p>
+      <h2 id="pairs-title" class="v3-display">Two works, considered together.</h2>
     </div>
     <div class="v3-pairs">
       {pairings.map((pair) => (
@@ -108,8 +108,8 @@ const heroTransform = { ...featuredWork.modelTransform, fit: 1.1 };
   <section class="v3-section v3-section--line" aria-labelledby="exhibitions-home-title">
     <div class="v3-section-head v3-section-head--split">
       <div>
-        <p class="v3-kicker">03 / The rooms</p>
-        <h2 id="exhibitions-home-title" class="v3-display">Walk a narrated route.</h2>
+        <p class="v3-kicker">03 / Exhibitions</p>
+        <h2 id="exhibitions-home-title" class="v3-display">Guided ways through the collection.</h2>
       </div>
       <a href={withBase('/exhibitions/')}>All exhibitions →</a>
     </div>
@@ -132,7 +132,7 @@ const heroTransform = { ...featuredWork.modelTransform, fit: 1.1 };
 
   <section class="v3-section v3-section--line" aria-labelledby="new-title">
     <div class="v3-section-head v3-section-head--split">
-      <div><p class="v3-kicker">04 / Recently added</p><h2 id="new-title" class="v3-display">The museum keeps growing.</h2></div>
+      <div><p class="v3-kicker">04 / Recently added</p><h2 id="new-title" class="v3-display">New works in the collection.</h2></div>
       <a href={withBase('/collection/')}>View all {collectionCount} →</a>
     </div>
     <div class="v3-rail">
@@ -141,10 +141,10 @@ const heroTransform = { ...featuredWork.modelTransform, fit: 1.1 };
   </section>
 
   <section class="v3-section v3-random" aria-labelledby="random-title">
-    <p class="v3-kicker">05 / Chance encounter</p>
-    <h2 id="random-title">Let the dark decide.</h2>
-    <p>The best museum moments begin with a wrong turn.</p>
-    <a class="v3-random__button" href={randomRoutes[0]} data-random-work>Surprise me <span>↗</span></a>
+    <p class="v3-kicker">05 / Random selection</p>
+    <h2 id="random-title">Choose a work at random.</h2>
+    <p>A different starting point can change what you notice.</p>
+    <a class="v3-random__button" href={randomRoutes[0]} data-random-work>Choose a work <span>↗</span></a>
   </section>
 
   <script define:vars={{ randomRoutes }}>

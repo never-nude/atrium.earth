@@ -2,12 +2,12 @@
 import Viewer from '../../components/Viewer.astro';
 import V3WorkCard from '../../components/v3/V3WorkCard.astro';
 import V3Layout from '../../layouts/v3/V3Layout.astro';
-import { workBySlug, works, type Work } from '../../lib/catalog';
+import { routableWorks, workBySlug, type Work } from '../../lib/catalog';
 import { exhibitions, neighborsFor, v3ExhibitionRoute, v3WorkRoute, wallTextsForWork } from '../../lib/v3';
 import { withBase } from '../../lib/urls';
 
 export function getStaticPaths() {
-  return works.map((work) => ({ params: { slug: work.slug }, props: { work } }));
+  return routableWorks.map((work) => ({ params: { slug: work.slug }, props: { work } }));
 }
 
 type Props = { work: Work };
@@ -34,9 +34,12 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
 
 <V3Layout
   title={work.title}
-  description={`${work.title}${work.maker ? ` by ${work.maker}` : ''}. Explore the sculpture in 3D.`}
+  description={work.easterEgg
+    ? `${work.title} by ${work.maker}. Explore a partial high-resolution photogrammetric record of the chapel.`
+    : `${work.title}${work.maker ? ` by ${work.maker}` : ''}. Explore the sculpture in 3D.`}
   image={work.thumbnailImage}
   immersive={true}
+  robots={work.easterEgg ? 'noindex, nofollow' : undefined}
 >
   <section class="v3-object-stage" aria-labelledby="v3-object-title" style={`view-transition-name: w-${work.id};`}>
     <Viewer
@@ -45,6 +48,9 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
       title={work.title}
       hud={false}
       immersive={true}
+      autoStart={!work.easterEgg}
+      autoRotate={work.slug !== 'europe/venus-of-willendorf-nhmw-44-686'}
+      lightControls={true}
       posterLoading="eager"
       upAxis={work.modelUpAxis}
       modelTransform={work.modelTransform}
@@ -54,6 +60,7 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
     <div class="v3-object-title">
       <p class="v3-kicker">{work.era} · № {String(work.index).padStart(3, '0')}</p>
       <h1 id="v3-object-title">{work.title}</h1>
+      {work.easterEgg && <p class="v3-object-rights">3D scan: CC BY-NC-SA 4.0 · Noncommercial · ShareAlike</p>}
       <p>{[work.maker || work.culture, work.displayDate].filter(Boolean).join(' · ')}</p>
     </div>
 
@@ -62,8 +69,11 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
       <div>
         <p class="v3-kicker">Object record</p>
         <h2>{work.title}</h2>
+        {work.easterEgg && <p class="v3-object-license">3D scan: CC BY-NC-SA 4.0 · Noncommercial · ShareAlike</p>}
         {work.description && <p class="v3-wall">{work.description}</p>}
         <dl>{facts.map(([label, value]) => <div><dt>{label}</dt><dd>{value}</dd></div>)}</dl>
+        {work.creditLine && <p class="v3-object-credit">{work.creditLine}</p>}
+        {work.licenseUrl && <a href={work.licenseUrl} rel="license">3D scan license: {work.rights} ↗</a>}
         {work.sourceUrl && <a href={work.sourceUrl}>Source: {sourceLabel} ↗</a>}
       </div>
     </details>
@@ -72,8 +82,41 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
       <a href={withBase(v3WorkRoute(previous))} aria-label={`Previous work: ${previous.title}`}><span>←</span><i>{previous.title}</i></a>
       <a href={withBase(v3WorkRoute(next))} aria-label={`Next work: ${next.title}`}><i>{next.title}</i><span>→</span></a>
     </nav>
-    <p class="v3-object-scroll">Scroll for the label ↓</p>
+    <p class="v3-object-scroll">Scroll for object details ↓</p>
   </section>
+
+  <script>
+    // The interface recedes while the visitor handles the sculpture (see .is-engaged in v3.css).
+    const stageSection = document.querySelector('.v3-object-stage');
+    const canvasHost = stageSection?.querySelector('.model-stage');
+    let quietTimer = 0;
+    if (stageSection && canvasHost) {
+      // Track live pointers by id so a pinch (two fingers) stays engaged until the
+      // LAST finger lifts, and so toolbar taps (whose downs we never counted) are ignored.
+      const activePointers = new Set<number>();
+      const scheduleRelease = () => {
+        window.clearTimeout(quietTimer);
+        quietTimer = window.setTimeout(() => stageSection.classList.remove('is-engaged'), 900);
+      };
+      canvasHost.addEventListener('pointerdown', (event) => {
+        // Only handling the sculpture engages: the WebGL canvas itself, not the
+        // toolbar/activate buttons that also live inside .model-stage.
+        if (!(event.target instanceof Element) || !event.target.classList.contains('viewer-canvas')) return;
+        activePointers.add(event.pointerId);
+        window.clearTimeout(quietTimer);
+        stageSection.classList.add('is-engaged');
+      });
+      const releasePointer = (event: PointerEvent) => {
+        if (!activePointers.delete(event.pointerId)) return;
+        if (activePointers.size === 0) scheduleRelease();
+      };
+      // pointercancel (interrupted touch) and blur (focus lost mid-drag) can eat the
+      // pointerup; treat all of them as "the visitor let go" so the title always returns.
+      window.addEventListener('pointerup', releasePointer);
+      window.addEventListener('pointercancel', releasePointer);
+      window.addEventListener('blur', () => { activePointers.clear(); scheduleRelease(); });
+    }
+  </script>
 
   {wallNotes.length > 0 && (
     <section class="v3-object-wall" aria-label="What the curators wrote">
@@ -88,34 +131,44 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
 
   <section class="v3-object-record">
     <div class="v3-object-record__intro">
-      <p class="v3-kicker">Look again</p>
-      <h2 class="v3-display">There is no single front.</h2>
-      <p class="v3-editorial">Turn the work before deciding what it is. Zoom until the whole gives way to surface. Rake the light and read the tool marks.</p>
+      <p class="v3-kicker">How to use the model</p>
+      <h2 class="v3-display">{work.easterEgg ? 'Move through a surviving digital fragment.' : 'Examine the work from more than one angle.'}</h2>
+      <p class="v3-editorial">{work.easterEgg
+        ? 'This high-resolution capture is incomplete. Orbit slowly to read the surviving pieces of the chapel setting; gaps are missing scan data, not later simplification.'
+        : 'Use the 3D view to inspect the overall form, then zoom in to compare surface, joins, and tool marks. Lighting controls can make shallow carving and material changes easier to see.'}</p>
     </div>
 
     <dl class="v3-facts">
       {facts.map(([label, value]) => <div><dt>{label}</dt><dd>{value}</dd></div>)}
       {work.sourceUrl && <div><dt>Source</dt><dd><a href={work.sourceUrl}>{sourceLabel} ↗</a></dd></div>}
       {work.sourceRecordUrl && <div><dt>Museum record</dt><dd><a href={work.sourceRecordUrl}>Collection record ↗</a></dd></div>}
+      {work.relatedSourceRecordUrls.filter((url) => url !== work.sourceRecordUrl).map((url, index) => (
+        <div><dt>Related museum record</dt><dd><a href={url}>Collection record {index + 2} ↗</a></dd></div>
+      ))}
       {work.scanAuthor && <div><dt>3D capture</dt><dd>{work.scanAuthor}</dd></div>}
       {work.creditLine && <div><dt>Credit</dt><dd>{work.creditLine}</dd></div>}
-      {work.rights && !/review pending/i.test(work.rights) && <div><dt>Rights</dt><dd>{work.licenseUrl ? <a href={work.licenseUrl}>{work.rights} ↗</a> : work.rights}</dd></div>}
+      {work.rights && !/review pending/i.test(work.rights) && (
+        <div>
+          <dt>Rights</dt>
+          <dd>{work.licenseUrl ? <a href={work.licenseUrl} rel="license">3D scan: {work.rights} ↗</a> : work.rights}</dd>
+        </div>
+      )}
       {work.aiTrainingRestricted && <div><dt>AI use</dt><dd>Not licensed for AI training or generative-AI inputs</dd></div>}
     </dl>
   </section>
 
   {rooms.length > 0 && (
     <section class="v3-object-rooms" aria-labelledby="rooms-title">
-      <p class="v3-kicker">Keep walking</p>
-      <h2 id="rooms-title" class="v3-display">This work hangs in</h2>
-      {rooms.map((room) => <a href={withBase(v3ExhibitionRoute(room))} style={`--ex-accent:${room.accent}`}><span>{room.number}</span><strong>{room.title}</strong><i>Enter ↗</i></a>)}
+      <p class="v3-kicker">Related exhibitions</p>
+      <h2 id="rooms-title" class="v3-display">This work appears in</h2>
+      {rooms.map((room) => <a href={withBase(v3ExhibitionRoute(room))} style={`--ex-accent:${room.accent}`}><span>{room.number}</span><strong>{room.title}</strong><i>View exhibition ↗</i></a>)}
     </section>
   )}
 
   {related.length > 0 && (
     <section class="v3-object-related" aria-labelledby="related-title">
       <div class="v3-section-head v3-section-head--split">
-        <div><p class="v3-kicker">Nearby in the dark</p><h2 id="related-title" class="v3-display">Continue through the collection.</h2></div>
+        <div><p class="v3-kicker">Related works</p><h2 id="related-title" class="v3-display">Continue exploring the collection.</h2></div>
       </div>
       <div class="v3-rail">{related.map((candidate) => <V3WorkCard work={candidate} />)}</div>
     </section>

@@ -11,7 +11,9 @@ type Props = {
   immersive?: boolean;
   posterLoading?: 'eager' | 'lazy';
   autoStart?: boolean;
+  autoRotate?: boolean;
   wheelZoom?: boolean;
+  lightControls?: boolean;
 };
 const {
   glb = '',
@@ -25,7 +27,9 @@ const {
   immersive = false,
   posterLoading = 'lazy',
   autoStart = true,
+  autoRotate = true,
   wheelZoom = true,
+  lightControls = false,
 } = Astro.props;
 const hasModel = Boolean(glb);
 const uid = Math.random().toString(36).slice(2, 8);
@@ -34,7 +38,7 @@ const transformJson = JSON.stringify(modelTransform);
 ---
 
 <div class:list={['viewer', { 'viewer--immersive': immersive }]} data-viewer data-auto-start={String(autoStart)}>
-  <div class="model-stage" data-stage data-glb={hasModel ? glb : ''} data-up-axis={upAxis} data-model-transform={transformJson} data-material-appearance={appearanceJson} data-immersive={String(immersive)} data-wheel-zoom={String(wheelZoom)} tabindex={hasModel ? '0' : undefined} aria-label={hasModel ? `Interactive 3D view of ${title}` : undefined}>
+  <div class="model-stage" data-stage data-glb={hasModel ? glb : ''} data-up-axis={upAxis} data-model-transform={transformJson} data-material-appearance={appearanceJson} data-immersive={String(immersive)} data-auto-rotate={String(autoRotate)} data-wheel-zoom={String(wheelZoom)} tabindex={hasModel ? '0' : undefined} aria-label={hasModel ? `Interactive 3D view of ${title}` : undefined}>
     <span class="stage-corner stage-corner--tl" aria-hidden="true"></span>
     <span class="stage-corner stage-corner--tr" aria-hidden="true"></span>
     <span class="stage-corner stage-corner--bl" aria-hidden="true"></span>
@@ -62,10 +66,20 @@ const transformJson = JSON.stringify(modelTransform);
         <button type="button" data-zoom-in aria-label="Zoom in" title="Zoom in">+</button>
         <button type="button" data-zoom-out aria-label="Zoom out" title="Zoom out">−</button>
         <button type="button" data-tool-wire aria-pressed="false" title="Show wireframe">Mesh</button>
-        <button type="button" data-tool-rotate aria-pressed="true" title="Toggle rotation">Turn</button>
+        <button type="button" data-tool-rotate aria-pressed={String(autoRotate)} title="Toggle rotation">Turn</button>
         <button type="button" data-tool-reset title="Reset view">Reset</button>
         <button type="button" data-tool-fullscreen aria-pressed="false" title="Enter full screen">Expand</button>
       </div>
+    )}
+
+    {immersive && hasModel && lightControls && (
+      <details class="immersive-light" data-light-controls hidden>
+        <summary>Light <span>+</span></summary>
+        <div class="immersive-light__panel" aria-label="Lighting controls">
+          <label>Exposure <input type="range" min="5" max="120" step="1" value="20" data-exposure /></label>
+          <label>Angle <input type="range" min="0" max="100" step="1" value="15" data-light-angle /></label>
+        </div>
+      </details>
     )}
   </div>
 
@@ -85,7 +99,7 @@ const transformJson = JSON.stringify(modelTransform);
       </div>
       <div class="hud-control hud-control--row">
         <label class="hud-switch">
-          <input type="checkbox" data-autorotate checked />
+          <input type="checkbox" data-autorotate checked={autoRotate} />
           <span>Auto-rotate</span>
         </label>
         <label class="hud-switch">
@@ -97,7 +111,7 @@ const transformJson = JSON.stringify(modelTransform);
     </div>
   )}
 
-  {hasModel && <p class="stage-hint fine" data-hint hidden>Drag to orbit · right-drag or two-finger drag to pan · scroll or pinch to zoom · double-tap to reset</p>}
+  {hasModel && <p class="stage-hint fine" data-hint hidden>Drag to orbit · <span class="stage-hint__pan">right-drag or two-finger drag to pan · </span>scroll or pinch to zoom · double-tap to reset</p>}
 
   <noscript><p class="fine">Showing the still photo. Turn on JavaScript for the 3D model.</p></noscript>
 </div>
@@ -376,7 +390,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     controls.rotateSpeed = 0.9;
     controls.zoomSpeed = immersive ? 1.35 : 0.8;
     controls.mouseButtons = { LEFT: THREE.MOUSE.ROTATE, MIDDLE: THREE.MOUSE.DOLLY, RIGHT: THREE.MOUSE.PAN };
-    controls.autoRotate = !reduce;
+    controls.autoRotate = stage.dataset.autoRotate !== 'false' && !reduce;
     controls.autoRotateSpeed = 1.0;
 
     const loader = new GLTFLoader();
@@ -510,6 +524,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     const activate = root.querySelector('[data-activate]') as HTMLButtonElement | null;
     const hud = root.querySelector('[data-hud-panel]') as HTMLElement | null;
     const tools = root.querySelector('[data-immersive-tools]') as HTMLElement | null;
+    const light = root.querySelector('[data-light-controls]') as HTMLElement | null;
     const hint = root.querySelector('[data-hint]') as HTMLElement | null;
     let started = false;
 
@@ -522,7 +537,17 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
         const viewer = await buildViewer(stage!, glb);
         if (loading) loading.hidden = true;
         stage!.classList.add('is-live');
-        if (hint) hint.hidden = false;
+        if (hint) {
+          // Show the gesture hint once, then let it get out of the way: it fades after
+          // a beat, or as soon as the visitor starts handling the model. Only canvas
+          // pointerdowns count — toolbar taps bubble through the stage and must not eat it.
+          hint.hidden = false;
+          const dismissHint = () => hint.classList.add('is-dismissed');
+          window.setTimeout(dismissHint, 7000);
+          stage!.addEventListener('pointerdown', (event) => {
+            if (event.target instanceof Element && event.target.classList.contains('viewer-canvas')) dismissHint();
+          });
+        }
         if (tools) {
           tools.hidden = false;
           const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -533,7 +558,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
           const reset = tools.querySelector('[data-tool-reset]') as HTMLButtonElement | null;
           const fullscreen = tools.querySelector('[data-tool-fullscreen]') as HTMLButtonElement | null;
           let wireOn = false;
-          let rotateOn = !reduce;
+          let rotateOn = stage?.dataset.autoRotate !== 'false' && !reduce;
           if (rotate) rotate.setAttribute('aria-pressed', String(rotateOn));
           zoomIn?.addEventListener('click', () => viewer.zoom(0.68));
           zoomOut?.addEventListener('click', () => viewer.zoom(1.46));
@@ -572,6 +597,16 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
             }
           });
         }
+        if (light) {
+          light.hidden = false;
+          const exposure = light.querySelector('[data-exposure]') as HTMLInputElement | null;
+          const angle = light.querySelector('[data-light-angle]') as HTMLInputElement | null;
+          if (exposure) {
+            exposure.value = String(viewer.defaults.exposure);
+            exposure.addEventListener('input', () => viewer.setBrightness(+exposure.value));
+          }
+          if (angle) angle.addEventListener('input', () => viewer.setLightAngle(+angle.value));
+        }
         if (hud) {
           hud.hidden = false;
           const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -588,11 +623,15 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
           if (brightness) { viewer.setBrightness(+brightness.value); brightness.addEventListener('input', () => { viewer.setBrightness(+brightness.value); if (readB) readB.textContent = `${brightness.value}%`; }); }
           if (texture) { viewer.setTexture(+texture.value); texture.addEventListener('input', () => viewer.setTexture(+texture.value)); }
           if (light) { viewer.setLightAngle(+light.value); light.addEventListener('input', () => viewer.setLightAngle(+light.value)); }
-          if (autorotate) { if (reduce) autorotate.checked = false; viewer.setAutoRotate(autorotate.checked); autorotate.addEventListener('change', () => viewer.setAutoRotate(autorotate.checked)); }
+          if (autorotate) { autorotate.checked = stage?.dataset.autoRotate !== 'false' && !reduce; viewer.setAutoRotate(autorotate.checked); autorotate.addEventListener('change', () => viewer.setAutoRotate(autorotate.checked)); }
           if (wire) wire.addEventListener('change', () => viewer.setWireframe(wire.checked));
           if (reset) reset.addEventListener('click', () => viewer.reset());
         }
-        stage!.addEventListener('dblclick', () => viewer.reset());
+        stage!.addEventListener('dblclick', (event) => {
+          // Double-tap resets only on the model itself — a double-click on the light
+          // sliders (or any other control inside the stage) must not throw the view away.
+          if (event.target instanceof Element && event.target.classList.contains('viewer-canvas')) viewer.reset();
+        });
       } catch (err) {
         if (loading) loading.hidden = true;
         if (poster) poster.style.opacity = '1';

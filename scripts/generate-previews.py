@@ -107,27 +107,63 @@ def optimize_glb(source_path: Path, output_path: Path, repo_root: Path, source_f
         raise FileNotFoundError(f"GLB optimizer missing: {executable}; run npm install")
 
     simplify_ratio = min(1.0, target_faces / source_faces) if source_faces else 1.0
-    subprocess.run(
-        [
-            str(executable),
-            "optimize",
-            str(source_path),
-            str(output_path),
-            "--compress",
-            "draco",
-            "--texture-compress",
-            "webp",
-            "--texture-size",
-            "2048",
-            "--simplify",
-            "true",
-            "--simplify-ratio",
-            str(simplify_ratio),
-            "--simplify-error",
-            "0.005",
-        ],
+    converted_path = output_path.with_name("preview-metalrough.glb")
+    try:
+        # Some Sketchfab downloads still use the deprecated spec/gloss extension,
+        # which current Three.js loaders no longer render. Normalize materials before
+        # simplification so the public preview keeps its diffuse texture.
+        subprocess.run(
+            [str(executable), "metalrough", str(source_path), str(converted_path)],
+            check=True,
+        )
+        subprocess.run(
+            [
+                str(executable),
+                "optimize",
+                str(converted_path),
+                str(output_path),
+                "--compress",
+                "draco",
+                "--texture-compress",
+                "webp",
+                "--texture-size",
+                "2048",
+                "--simplify",
+                "true",
+                "--simplify-ratio",
+                str(simplify_ratio),
+                "--simplify-error",
+                "0.005",
+            ],
+            check=True,
+        )
+    finally:
+        converted_path.unlink(missing_ok=True)
+
+
+def inspect_glb_faces(output_path: Path, repo_root: Path):
+    executable = repo_root / "node_modules" / ".bin" / "gltf-transform"
+    result = subprocess.run(
+        [str(executable), "inspect", str(output_path), "--format", "csv"],
         check=True,
+        capture_output=True,
+        text=True,
     )
+    total = 0
+    in_meshes = False
+    for line in result.stdout.splitlines():
+        if line == " MESHES":
+            in_meshes = True
+            continue
+        if in_meshes and line == " MATERIALS":
+            break
+        if in_meshes and line[:1].isdigit():
+            columns = line.split(",")
+            if len(columns) > 4 and columns[2] == "TRIANGLES":
+                total += int(columns[4])
+    if total <= 0:
+        raise ValueError(f"optimizer reported no triangles for {output_path}")
+    return total
 
 
 def export_preview(work, source_root: Path, repo_root: Path, target_faces: int, optimize_source_glb: bool):
@@ -148,6 +184,7 @@ def export_preview(work, source_root: Path, repo_root: Path, target_faces: int, 
 
     if source_path.suffix.lower() == ".glb" and optimize_source_glb:
         optimize_glb(source_path, output_path, repo_root, source_faces, target_faces)
+        output_faces = inspect_glb_faces(output_path, repo_root)
         meta_path.write_text(
             json.dumps(
                 {
@@ -155,8 +192,10 @@ def export_preview(work, source_root: Path, repo_root: Path, target_faces: int, 
                     "source": source_rel,
                     "sourceBytes": source_path.stat().st_size,
                     "sourceFaces": source_faces,
+                    "faces": output_faces,
                     "targetFaces": target_faces,
                     "optimizer": "@gltf-transform/cli",
+                    "materialWorkflow": "metallic-roughness",
                     "geometryCompression": "draco",
                     "textureFormat": "webp",
                     "textureMaxSize": 2048,

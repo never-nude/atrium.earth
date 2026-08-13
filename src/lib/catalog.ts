@@ -8,6 +8,7 @@ import rawAppearanceOverrides from '../data/appearance-overrides.json';
 type RawWork = {
   slug: string;
   hidden?: boolean;
+  easter_egg?: boolean;
   collection?: string | null;
   title: string;
   artist?: string | null;
@@ -20,9 +21,11 @@ type RawWork = {
   displayed_at?: string | null;
   current_location?: string | null;
   department?: string | null;
+  geography?: string | null;
   source_institution?: string | null;
   source_url?: string | null;
   source_record_url?: string | null;
+  related_source_record_urls?: string[] | null;
   scan_author?: string | null;
   scan_source?: string | null;
   license?: string | null;
@@ -121,8 +124,10 @@ export type Work = {
   index: number;
   search: string;
   hasPreview: boolean;
+  easterEgg: boolean;
   sourceUrl: string;
   sourceRecordUrl: string;
+  relatedSourceRecordUrls: string[];
   scanAuthor: string;
   scanSource: string;
   aiTrainingRestricted: boolean;
@@ -187,6 +192,7 @@ const collectionLabels: Record<string, string> = {
   americas: 'Americas and Oceania',
   asia: 'Asia',
   assyrian: 'Assyrian',
+  baroque: 'Baroque',
   bouchardon: 'Bouchardon',
   donatello: 'Donatello',
   lorenzi: 'Lorenzi',
@@ -202,13 +208,17 @@ const collectionGeography: Record<string, string> = {
   americas: 'Americas and Oceania',
   asia: 'Asia',
   assyrian: 'Ancient Near East',
+  baroque: 'Europe',
   bouchardon: 'Europe',
   donatello: 'Europe',
   egyptian: 'Ancient Near East and Egypt',
   greek: 'Mediterranean',
   lorenzi: 'Europe',
+  medieval: 'Europe',
   michelangelo: 'Europe',
+  neoclassical: 'Europe',
   palmyra: 'Ancient Near East',
+  renaissance: 'Europe',
   rodin: 'Europe',
   roman: 'Mediterranean',
   'sub-saharan-africa': 'Sub-Saharan Africa',
@@ -220,6 +230,7 @@ const collectionCulture: Record<string, string> = {
   americas: 'Americas and Oceania',
   asia: 'Asian',
   assyrian: 'Assyrian',
+  baroque: 'European',
   palmyra: 'Palmyrene',
   'sub-saharan-africa': 'Sub-Saharan African',
 };
@@ -229,6 +240,7 @@ const movementByCollection: Record<string, string> = {
   americas: 'Indigenous and Pacific sculpture',
   asia: 'Asian sculpture',
   assyrian: 'Assyrian relief',
+  baroque: 'Baroque sculpture',
   bouchardon: 'French neoclassical sculpture',
   donatello: 'Early Renaissance sculpture',
   lorenzi: 'Renaissance sculpture',
@@ -370,6 +382,10 @@ function eraFor(raw: RawWork): string {
   const year = sort ?? start;
   const collection = clean(raw.collection);
 
+  // Collection-level chronology wins where broad numeric cutoffs would erase
+  // an established period (for example, seventeenth-century Baroque works).
+  if (collection === 'baroque') return 'Baroque';
+
   if (year !== null) {
     if (year < 500) return 'Ancient';
     if (year < 1400) return 'Medieval';
@@ -393,9 +409,11 @@ function eraFor(raw: RawWork): string {
 }
 
 function geographyFor(raw: RawWork): string {
+  const explicit = clean(raw.geography);
   const collection = clean(raw.collection);
   const search = `${raw.title ?? ''} ${raw.year ?? ''} ${raw.note ?? ''}`.toLowerCase();
 
+  if (explicit) return explicit;
   if (collectionGeography[collection]) return collectionGeography[collection];
   if (/cypriot|gudea|amarna|horus|egypt|assyrian|nimrud|nineveh|mesopotamia/.test(search)) {
     return 'Ancient Near East and Egypt';
@@ -467,13 +485,13 @@ function profileForMaterial(material: string): string {
   const text = material.toLowerCase();
   if (/black marble/.test(text)) return 'stone';
   if (/marble|ivory/.test(text)) return 'marble';
-  if (/plaster|cast/.test(text)) return 'plaster';
+  if (/plaster/.test(text)) return 'plaster';
   if (/limestone|dolomite/.test(text)) return 'limestone';
   if (/quartzite|metagraywacke|chlorite|diorite|andesite|basalt|sandstone|alabaster|stone/.test(text)) return 'stone';
   if (/silver/.test(text)) return 'silver';
-  if (/bronze|brass|copper|gilded|metal/.test(text)) return 'bronze-patina';
+  if (/wood|oak|mahogany|basswood|cottonwood|iroko|guaiacum|ebony|barkcloth|bamboo|fiber|fibre|rattan|plant|leaf|leaves|sago|shell|cloth|resin|organic/.test(text)) return 'wood';
+  if (/bronze|brass|copper|gilded|metal|iron|steel|zinc|alloy/.test(text)) return 'bronze-patina';
   if (/terracotta|ceramic|earthenware|clay/.test(text)) return 'ceramic';
-  if (/wood|oak|mahogany|basswood|cottonwood|iroko|guaiacum|barkcloth|bamboo|fiber|fibre|rattan|plant|leaf|leaves|sago|shell|cloth|resin|organic/.test(text)) return 'wood';
   return '';
 }
 
@@ -603,8 +621,12 @@ function normalize(raw: RawWork, fallbackIndex: number): Work {
     index: raw.index || fallbackIndex + 1,
     search: clean(raw.search) || `${title} ${maker} ${era} ${geography} ${materials.join(' ')}`.toLowerCase(),
     hasPreview: Boolean(preview?.url),
+    easterEgg: Boolean(raw.easter_egg),
     sourceUrl: clean(raw.source_url),
     sourceRecordUrl: clean(raw.source_record_url),
+    relatedSourceRecordUrls: Array.isArray(raw.related_source_record_urls)
+      ? [...new Set(raw.related_source_record_urls.map(clean).filter(Boolean))]
+      : [],
     scanAuthor: clean(raw.scan_author),
     scanSource: clean(raw.scan_source),
     aiTrainingRestricted: Boolean(raw.ai_training_restricted),
@@ -642,9 +664,14 @@ export function compareWorksByDefaultOrder(a: Work, b: Work): number {
 }
 
 const normalized = rawWorks.map(normalize);
-export const works: Work[] = normalized
-  .map((work) => ({ ...work, relatedWorks: relatedFor(work, normalized) }))
+const publicNormalized = normalized.filter((work) => !work.easterEgg);
+export const works: Work[] = publicNormalized
+  .map((work) => ({ ...work, relatedWorks: relatedFor(work, publicNormalized) }))
   .sort(compareWorksByDefaultOrder);
+export const easterEggWorks: Work[] = normalized
+  .filter((work) => work.easterEgg)
+  .map((work) => ({ ...work, relatedWorks: relatedFor(work, publicNormalized) }));
+export const routableWorks: Work[] = [...works, ...easterEggWorks];
 export const worksBySlug = new Map(works.map((work) => [work.slug, work]));
 
 export function workBySlug(slug: string): Work | undefined {
@@ -696,8 +723,9 @@ export function featuredWorkForDate(date = new Date()): Work {
 
 function utcWeekIndex(date: Date): number {
   const day = Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate());
-  const mondayEpoch = Date.UTC(1970, 0, 5);
-  return Math.floor((day - mondayEpoch) / (7 * 24 * 60 * 60 * 1000));
+  // Weeks run Sunday-Saturday (1970-01-04 was a Sunday), so the featured work flips every Sunday.
+  const sundayEpoch = Date.UTC(1970, 0, 4);
+  return Math.floor((day - sundayEpoch) / (7 * 24 * 60 * 60 * 1000));
 }
 
 function positiveMod(value: number, modulo: number): number {
