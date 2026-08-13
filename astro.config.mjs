@@ -2,7 +2,6 @@ import sitemap from '@astrojs/sitemap';
 import { defineConfig } from 'astro/config';
 
 const base = process.env.BASE_PATH || '/';
-const easterEggRoute = '/works/baroque/ecstasy-of-saint-teresa-bernini-cornaro-chapel/';
 
 export default defineConfig({
   site: process.env.SITE || 'https://atrium.earth',
@@ -11,12 +10,7 @@ export default defineConfig({
   integrations: [
     // /v2 is the archived previous design and /v3 was the staging alias;
     // neither belongs in the crawler sitemap.
-    sitemap({
-      filter: (page) =>
-        !page.includes('/v2/') &&
-        !page.includes('/v3/') &&
-        !page.includes(easterEggRoute),
-    }),
+    sitemap({ filter: (page) => !page.includes('/v2/') && !page.includes('/v3/') }),
   ],
   redirects: {
     // The Night Vitrine staged under /v3 is now the primary site.

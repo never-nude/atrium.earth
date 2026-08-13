@@ -8,7 +8,6 @@ import rawAppearanceOverrides from '../data/appearance-overrides.json';
 type RawWork = {
   slug: string;
   hidden?: boolean;
-  easter_egg?: boolean;
   collection?: string | null;
   title: string;
   artist?: string | null;
@@ -124,7 +123,6 @@ export type Work = {
   index: number;
   search: string;
   hasPreview: boolean;
-  easterEgg: boolean;
   sourceUrl: string;
   sourceRecordUrl: string;
   relatedSourceRecordUrls: string[];
@@ -192,7 +190,6 @@ const collectionLabels: Record<string, string> = {
   americas: 'Americas and Oceania',
   asia: 'Asia',
   assyrian: 'Assyrian',
-  baroque: 'Baroque',
   bouchardon: 'Bouchardon',
   donatello: 'Donatello',
   lorenzi: 'Lorenzi',
@@ -230,7 +227,6 @@ const collectionCulture: Record<string, string> = {
   americas: 'Americas and Oceania',
   asia: 'Asian',
   assyrian: 'Assyrian',
-  baroque: 'European',
   palmyra: 'Palmyrene',
   'sub-saharan-africa': 'Sub-Saharan African',
 };
@@ -240,7 +236,6 @@ const movementByCollection: Record<string, string> = {
   americas: 'Indigenous and Pacific sculpture',
   asia: 'Asian sculpture',
   assyrian: 'Assyrian relief',
-  baroque: 'Baroque sculpture',
   bouchardon: 'French neoclassical sculpture',
   donatello: 'Early Renaissance sculpture',
   lorenzi: 'Renaissance sculpture',
@@ -381,10 +376,6 @@ function eraFor(raw: RawWork): string {
   const { start } = parseYearRange(raw);
   const year = sort ?? start;
   const collection = clean(raw.collection);
-
-  // Collection-level chronology wins where broad numeric cutoffs would erase
-  // an established period (for example, seventeenth-century Baroque works).
-  if (collection === 'baroque') return 'Baroque';
 
   if (year !== null) {
     if (year < 500) return 'Ancient';
@@ -621,7 +612,6 @@ function normalize(raw: RawWork, fallbackIndex: number): Work {
     index: raw.index || fallbackIndex + 1,
     search: clean(raw.search) || `${title} ${maker} ${era} ${geography} ${materials.join(' ')}`.toLowerCase(),
     hasPreview: Boolean(preview?.url),
-    easterEgg: Boolean(raw.easter_egg),
     sourceUrl: clean(raw.source_url),
     sourceRecordUrl: clean(raw.source_record_url),
     relatedSourceRecordUrls: Array.isArray(raw.related_source_record_urls)
@@ -664,14 +654,9 @@ export function compareWorksByDefaultOrder(a: Work, b: Work): number {
 }
 
 const normalized = rawWorks.map(normalize);
-const publicNormalized = normalized.filter((work) => !work.easterEgg);
-export const works: Work[] = publicNormalized
-  .map((work) => ({ ...work, relatedWorks: relatedFor(work, publicNormalized) }))
+export const works: Work[] = normalized
+  .map((work) => ({ ...work, relatedWorks: relatedFor(work, normalized) }))
   .sort(compareWorksByDefaultOrder);
-export const easterEggWorks: Work[] = normalized
-  .filter((work) => work.easterEgg)
-  .map((work) => ({ ...work, relatedWorks: relatedFor(work, publicNormalized) }));
-export const routableWorks: Work[] = [...works, ...easterEggWorks];
 export const worksBySlug = new Map(works.map((work) => [work.slug, work]));
 
 export function workBySlug(slug: string): Work | undefined {
