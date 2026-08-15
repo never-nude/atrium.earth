@@ -406,11 +406,17 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     const materials: any[] = [];
     const wireframeMeshes: any[] = [];
     model.traverse((obj: any) => {
-      if (/^(?:cubo|disco)(?:_|\.|$)/i.test(obj.name || '') || /^(?:cubo|disco)(?:_|\.|$)/i.test(obj.material?.name || '')) {
+      const elementCount = obj.geometry?.index?.count || obj.geometry?.getAttribute?.('position')?.count || 0;
+      const tinyCube = /^cube(?:_|\.|$)/i.test(obj.name || '') && elementCount / 3 <= 12;
+      if (/^(?:cubo|disco)(?:_|\.|$)/i.test(obj.name || '') || /^(?:cubo|disco)(?:_|\.|$)/i.test(obj.material?.name || '') || tinyCube) {
         scanHelpers.push(obj);
         return;
       }
       if (obj.isMesh && obj.material) {
+        if (!obj.geometry?.getAttribute('normal')) {
+          obj.geometry = obj.geometry.clone();
+          obj.geometry.computeVertexNormals();
+        }
         obj.castShadow = true;
         const hasMaterialArray = Array.isArray(obj.material);
         const list = hasMaterialArray ? obj.material : [obj.material];

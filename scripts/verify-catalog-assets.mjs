@@ -29,5 +29,9 @@ for (const work of catalog) {
 }
 
 console.log(`catalogCount=${catalog.length}`);
-if (problems.length) console.table(problems);
-else console.log('All catalog slugs have preview.glb, thumb.webp, and unique slugs.');
+if (problems.length) {
+  console.table(problems);
+  process.exitCode = 1;
+} else {
+  console.log('All catalog slugs have preview.glb, thumb.webp, and unique slugs.');
+}
