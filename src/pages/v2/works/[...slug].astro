@@ -62,7 +62,6 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
       <div>
         <p class="v2-section-index">Object record</p>
         <h2>{work.title}</h2>
-        {work.description && <p class="v2-object-about__description">{work.description}</p>}
         <dl>{facts.map(([label, value]) => <div><dt>{label}</dt><dd>{value}</dd></div>)}</dl>
         {work.sourceUrl && <a href={work.sourceUrl}>Source: {sourceLabel} ↗</a>}
       </div>
