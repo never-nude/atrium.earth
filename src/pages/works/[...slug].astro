@@ -3,7 +3,7 @@ import Viewer from '../../components/Viewer.astro';
 import V3WorkCard from '../../components/v3/V3WorkCard.astro';
 import V3Layout from '../../layouts/v3/V3Layout.astro';
 import { workBySlug, works, type Work } from '../../lib/catalog';
-import { exhibitions, neighborsFor, v3ExhibitionRoute, v3WorkRoute, wallTextsForWork } from '../../lib/v3';
+import { exhibitions, neighborsFor, v3ExhibitionRoute, v3WorkRoute } from '../../lib/v3';
 import { withBase } from '../../lib/urls';
 
 export function getStaticPaths() {
@@ -15,19 +15,18 @@ const { work } = Astro.props;
 const { previous, next } = neighborsFor(work);
 const related = work.relatedWorks.map((slug) => workBySlug(slug)).filter((candidate): candidate is Work => Boolean(candidate)).slice(0, 6);
 const rooms = exhibitions.filter((exhibition) => exhibition.works.some((candidate) => candidate.slug === work.slug));
-const wallNotes = wallTextsForWork(work.slug);
 const originalLocation = work.originalLocation && work.originalLocation.toLowerCase() !== work.museum.toLowerCase()
   ? work.originalLocation
   : '';
 const facts = ([
-  ['Maker', work.maker || work.culture],
+  ['Maker', work.maker],
   ['Date', work.displayDate],
-  ['Place', work.geography],
-  ['Material', work.medium || work.materials.join(', ')],
-  ['Dimensions', work.dimensions],
   ['Origin', originalLocation],
-  ['Current collection', work.museum],
+  ['Material', work.medium],
+  ['Dimensions', work.dimensions],
+  ['Location / collection', work.museum],
   ['Department', work.department],
+  ['Accession / inventory', work.accession],
 ] as Array<[string, string]>).filter(([, value]) => Boolean(value && !/not yet recorded|unassigned/i.test(value)));
 const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUrl).hostname.replace(/^www\./, '') : '');
 ---
@@ -56,17 +55,17 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
     <div class="v3-object-title">
       <p class="v3-kicker">{work.era} · № {String(work.index).padStart(3, '0')}</p>
       <h1 id="v3-object-title">{work.title}</h1>
-      <p>{[work.maker || work.culture, work.displayDate].filter(Boolean).join(' · ')}</p>
+      <p>{[work.maker, work.displayDate].filter(Boolean).join(' · ')}</p>
     </div>
 
     <details class="v3-object-about">
-      <summary>Label <span>+</span></summary>
+      <summary>Object record <span>+</span></summary>
       <div>
         <p class="v3-kicker">Object record</p>
         <h2>{work.title}</h2>
-        {work.description && <p class="v3-wall">{work.description}</p>}
         <dl>{facts.map(([label, value]) => <div><dt>{label}</dt><dd>{value}</dd></div>)}</dl>
-        {work.sourceUrl && <a href={work.sourceUrl}>Source: {sourceLabel} ↗</a>}
+        {work.sourceRecordUrl && <a href={work.sourceRecordUrl}>Museum record ↗</a>}
+        {!work.sourceRecordUrl && work.sourceUrl && <a href={work.sourceUrl}>3D model source: {sourceLabel} ↗</a>}
       </div>
     </details>
 
@@ -110,32 +109,21 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
     }
   </script>
 
-  {wallNotes.length > 0 && (
-    <section class="v3-object-wall" aria-label="What the curators wrote">
-      {wallNotes.map((note) => (
-        <figure style={`--ex-accent:${note.exhibition.accent}`}>
-          <blockquote class="v3-wall">{note.text}</blockquote>
-          <figcaption>Wall text from <a href={withBase(v3ExhibitionRoute(note.exhibition))}>{note.exhibition.title}</a></figcaption>
-        </figure>
-      ))}
-    </section>
-  )}
-
   <section class="v3-object-record">
     <div class="v3-object-record__intro">
-      <p class="v3-kicker">How to use the model</p>
-      <h2 class="v3-display">Examine the work from more than one angle.</h2>
-      <p class="v3-editorial">Use the 3D view to inspect the overall form, then zoom in to compare surface, joins, and tool marks. Lighting controls can make shallow carving and material changes easier to see.</p>
+      <p class="v3-kicker">Object record</p>
+      <h2 class="v3-display">{work.title}</h2>
     </div>
 
     <dl class="v3-facts">
       {facts.map(([label, value]) => <div><dt>{label}</dt><dd>{value}</dd></div>)}
-      {work.sourceUrl && <div><dt>Source</dt><dd><a href={work.sourceUrl}>{sourceLabel} ↗</a></dd></div>}
       {work.sourceRecordUrl && <div><dt>Museum record</dt><dd><a href={work.sourceRecordUrl}>Collection record ↗</a></dd></div>}
       {work.relatedSourceRecordUrls.filter((url) => url !== work.sourceRecordUrl).map((url, index) => (
-        <div><dt>Related museum record</dt><dd><a href={url}>Collection record {index + 2} ↗</a></dd></div>
+        <div><dt>Additional record</dt><dd><a href={url}>Collection record {index + 2} ↗</a></dd></div>
       ))}
-      {work.scanAuthor && <div><dt>3D capture</dt><dd>{work.scanAuthor}</dd></div>}
+      {work.sourceUrl && <div><dt>3D source</dt><dd><a href={work.sourceUrl}>{sourceLabel} ↗</a></dd></div>}
+      {work.scanSource && <div><dt>Model / capture</dt><dd>{work.scanSource}</dd></div>}
+      {work.scanAuthor && <div><dt>Captured by</dt><dd>{work.scanAuthor}</dd></div>}
       {work.creditLine && <div><dt>Credit</dt><dd>{work.creditLine}</dd></div>}
       {work.rights && !/review pending/i.test(work.rights) && (
         <div>
@@ -143,7 +131,7 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
           <dd>{work.licenseUrl ? <a href={work.licenseUrl} rel="license">3D scan: {work.rights} ↗</a> : work.rights}</dd>
         </div>
       )}
-      {work.aiTrainingRestricted && <div><dt>AI use</dt><dd>Not licensed for AI training or generative-AI inputs</dd></div>}
+      {work.aiTrainingRestricted && <div><dt>AI use</dt><dd>Source marked NoAI</dd></div>}
     </dl>
   </section>
 
