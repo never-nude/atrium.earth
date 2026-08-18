@@ -94,10 +94,3 @@ export function nextExhibition(current: V3Exhibition): V3Exhibition {
   const index = exhibitions.findIndex((exhibition) => exhibition.slug === current.slug);
   return exhibitions[(index + 1) % exhibitions.length];
 }
-
-/** Wall texts written for this work across all exhibitions it appears in. */
-export function wallTextsForWork(slug: string): Array<{ exhibition: V3Exhibition; text: string }> {
-  return exhibitions
-    .filter((exhibition) => exhibition.captions[slug])
-    .map((exhibition) => ({ exhibition, text: exhibition.captions[slug] }));
-}

@@ -51,9 +51,8 @@ const newAdditions = recentlyPrepared(3);
       <div>
         <p class="eyebrow">Featured this week</p>
         <h2 id="featured-object">{featured.title}</h2>
-        {featured.description && <p class="lede">{featured.description}</p>}
         <ul class="meta-line" aria-label="Details">
-          {[featured.displayDate, featured.maker, featured.geography, featured.materials[0]]
+          {[featured.maker, featured.displayDate, featured.originalLocation, featured.medium]
             .filter((v) => v && !/not yet recorded|unassigned/i.test(v))
             .map((f) => <li>{f}</li>)}
         </ul>
