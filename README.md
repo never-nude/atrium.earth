@@ -76,3 +76,12 @@ fallback and loads the web-detail GLB preview on object pages.
 - `AUDIT.md` summarizes the rebuild, verification status, assets, and review focus.
 - `CHATGPT_AUDIT_PROMPT.md` is a copy-paste prompt for a ChatGPT audit pass.
 - `COLLECTION-GROWTH.md` tracks the next open 3D source harvest, licensing policy, and acquisition order.
+
+## License
+
+Atrium.Earth's original website source code is licensed under the [MIT License](LICENSE).
+
+The museum collection is not covered by the MIT License. Third-party 3D scans,
+models, images, thumbnails derived from those assets, catalog metadata, and other
+collection materials remain subject to the rights and licenses stated in their
+source records. No additional rights to those materials are granted by this repository.
