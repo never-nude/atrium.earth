@@ -30,6 +30,8 @@ SOURCE_OVERRIDES = {
     "asia/tile-panel-architectural-niche-met": "asia/tile-panel-architectural-niche-met/tile-panel-architectural-niche-met_preview.glb",
     "egyptian/sarcophagus-of-harkhebit-met": "egyptian/sarcophagus-of-harkhebit-met/sarcophagus-of-harkhebit-met_preview.glb",
     "neoclassical/model-of-the-greek-slave-smithsonian": "neoclassical/model-of-the-greek-slave-smithsonian/greek-slave-smithsonian_preview.glb",
+    "baroque/apollo-and-daphne-soldani-after-bernini-cma": "baroque/apollo-and-daphne-soldani-after-bernini-cma/apollo-and-daphne-soldani-after-bernini-cma_preview.glb",
+    "baroque/bust-of-louis-xiv-bernini-versailles": "baroque/bust-of-louis-xiv-bernini-versailles/bust-of-louis-xiv-bernini-versailles_preview.glb",
 }
 DIRECT_COPY_PREVIEWS = {
     "americas/atingting-kon-slit-gong",
@@ -39,6 +41,11 @@ DIRECT_COPY_PREVIEWS = {
     "asia/cosmic-buddha",
     "asia/brazier-of-rasulid-sultan-met",
     "asia/tile-panel-architectural-niche-met",
+    "asia/ritual-wine-container-fangyi-smithsonian",
+    "baroque/anima-dannata-bernini-objaverse",
+    "baroque/apollo-and-daphne-soldani-after-bernini-cma",
+    "baroque/bust-of-louis-xiv-bernini-versailles",
+    "baroque/elephant-and-obelisk-bernini-ferrata-nardese",
     "limestone-head-of-a-bearded-man",
     "neoclassical/model-of-the-greek-slave-smithsonian",
     "sub-saharan-africa/kongo-maternity-figure",
@@ -177,6 +184,26 @@ def export_preview(work, source_root: Path, repo_root: Path, target_faces: int, 
         raise FileNotFoundError(source_path)
 
     output_dir.mkdir(parents=True, exist_ok=True)
+    if source_path.suffix.lower() == ".glb" and work["slug"] in DIRECT_COPY_PREVIEWS:
+        source_faces = inspect_glb_faces(source_path, repo_root)
+        shutil.copyfile(source_path, output_path)
+        meta_path.write_text(
+            json.dumps(
+                {
+                    "slug": work["slug"],
+                    "source": source_rel,
+                    "sourceBytes": source_path.stat().st_size,
+                    "sourceFaces": source_faces,
+                    "faces": source_faces,
+                    "targetFaces": source_faces,
+                    "directCopy": True,
+                },
+                indent=2,
+            )
+            + "\n"
+        )
+        return output_path
+
     force = "scene" if source_path.suffix.lower() in [".glb", ".gltf"] else "mesh"
     loaded = trimesh.load(source_path, force=force)
     mesh = as_mesh(loaded)

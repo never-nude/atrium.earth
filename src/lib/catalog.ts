@@ -188,12 +188,16 @@ const collectionLabels: Record<string, string> = {
   americas: 'Americas and Oceania',
   asia: 'Asia',
   assyrian: 'Assyrian',
+  baroque: 'Baroque',
   bouchardon: 'Bouchardon',
   donatello: 'Donatello',
   lorenzi: 'Lorenzi',
+  medieval: 'Medieval',
   michelangelo: 'Michelangelo',
   palmyra: 'Palmyra',
   rodin: 'Rodin',
+  renaissance: 'Renaissance',
+  roman: 'Roman',
   'sub-saharan-africa': 'Sub-Saharan Africa',
   verrocchio: 'Verrocchio',
 };
@@ -225,7 +229,11 @@ const collectionCulture: Record<string, string> = {
   americas: 'Americas and Oceania',
   asia: 'Asian',
   assyrian: 'Assyrian',
+  baroque: 'European',
+  medieval: 'European',
   palmyra: 'Palmyrene',
+  renaissance: 'European',
+  roman: 'Roman',
   'sub-saharan-africa': 'Sub-Saharan African',
 };
 
@@ -234,12 +242,16 @@ const movementByCollection: Record<string, string> = {
   americas: 'Indigenous and Pacific sculpture',
   asia: 'Asian sculpture',
   assyrian: 'Assyrian relief',
+  baroque: 'Baroque sculpture',
   bouchardon: 'French neoclassical sculpture',
   donatello: 'Early Renaissance sculpture',
   lorenzi: 'Renaissance sculpture',
+  medieval: 'Medieval sculpture',
   michelangelo: 'High Renaissance sculpture',
   palmyra: 'Palmyrene funerary sculpture',
   rodin: 'Modern sculpture',
+  renaissance: 'Renaissance sculpture',
+  roman: 'Roman sculpture',
   'sub-saharan-africa': 'African sculpture',
   verrocchio: 'Renaissance sculpture',
 };
@@ -374,6 +386,11 @@ function eraFor(raw: RawWork): string {
   const { start } = parseYearRange(raw);
   const year = sort ?? start;
   const collection = clean(raw.collection);
+
+  if (collection === 'baroque') return 'Baroque';
+  if (collection === 'medieval') return 'Medieval';
+  if (collection === 'renaissance') return 'Renaissance';
+  if (collection === 'roman') return 'Ancient';
 
   if (year !== null) {
     if (year < 500) return 'Ancient';

@@ -41,7 +41,11 @@ const TIER2_LICENSES = ['cc by'];
 
 const catalogPath = path.join(repoRoot, 'src/data/catalog.json');
 
-function periodFor(yearSort) {
+function periodFor(yearSort, collection) {
+  if (collection === 'baroque') return 'Baroque';
+  if (collection === 'medieval') return 'Medieval';
+  if (collection === 'renaissance') return 'Renaissance';
+  if (collection === 'roman') return 'Ancient';
   const year = Number(yearSort);
   if (Number.isFinite(year) && year < 500) return 'Ancient';
   if (Number.isFinite(year) && year < 1700) return 'Renaissance';
@@ -308,7 +312,7 @@ for (const m of additions) {
     ingested: new Date().toISOString().slice(0, 10),
     index: 0,
     total: 0,
-    period: periodFor(yearSort),
+    period: periodFor(yearSort, m.slug.split('/')[0]),
     model: { sourcePath: destRel, format: primary.format, sizeBytes },
     search: searchText(m),
     ...(dimensions ? { dimensions } : {}),
