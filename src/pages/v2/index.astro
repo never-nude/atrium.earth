@@ -2,10 +2,12 @@
 import Viewer from '../../components/Viewer.astro';
 import V2WorkCard from '../../components/v2/V2WorkCard.astro';
 import V2Layout from '../../layouts/v2/V2Layout.astro';
+import { labelMaker } from '../../lib/catalog';
 import { collectionCount, exhibitions, featuredWork, newToCollection, v2ExhibitionRoute, v2WorkRoute, works } from '../../lib/v2';
 import { withBase } from '../../lib/urls';
 
 const randomRoutes = works.map((work) => withBase(v2WorkRoute(work)));
+const featuredMaker = labelMaker(featuredWork);
 const heroAppearance = {
   ...featuredWork.materialAppearance,
   exposure: Math.max(featuredWork.materialAppearance.exposure, 0.48),
@@ -56,7 +58,7 @@ const heroTransform = { ...featuredWork.modelTransform, fit: 1.1 };
     <div class="v2-hero__object">
       <span>Featured work</span>
       <strong>{featuredWork.title}</strong>
-      <span>{featuredWork.maker} · {featuredWork.displayDate}</span>
+      <span>{[featuredMaker, featuredWork.displayDate].filter(Boolean).join(' · ')}</span>
     </div>
     <p class="v2-hero__hint">Rotate · Pan · Scroll for more</p>
     <a class="v2-hero__continue" href="#v2-home-content">Explore more <span>↓</span></a>

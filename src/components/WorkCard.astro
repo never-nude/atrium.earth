@@ -1,6 +1,6 @@
 ---
 import type { Work } from '../lib/catalog';
-import { publicDataset } from '../lib/catalog';
+import { labelMaker, publicDataset } from '../lib/catalog';
 import { withBase } from '../lib/urls';
 
 type Props = {
@@ -10,10 +10,9 @@ type Props = {
 
 const { work, eager = false } = Astro.props;
 const data = publicDataset(work);
-const maker = work.maker || '';
-const material = work.materials[0] || '';
-const recordNo = `№ ${String(work.index).padStart(3, '0')}`;
-const alt = `${work.title}${maker ? ', ' + maker : ''}${material ? ', ' + material : ''} — ${work.era}`;
+const maker = labelMaker(work);
+const material = work.medium;
+const alt = `${work.title}${maker ? ', ' + maker : ''}${material ? ', ' + material : ''} — ${work.displayDate}`;
 ---
 
 <article
@@ -38,16 +37,15 @@ const alt = `${work.title}${maker ? ', ' + maker : ''}${material ? ', ' + materi
         decoding="async"
       />
       <span class:list={['work-card__badge', { 'work-card__badge--undated': work.era === 'Undated' }]}>{work.era}</span>
-      <span class="work-card__date">{recordNo}</span>
+      {work.accession && <span class="work-card__date">{work.accession}</span>}
     </div>
     <div class="work-card__body">
       <h3>{work.title}</h3>
       {maker && <p class="work-card__maker">{maker}</p>}
-      {material && (
-        <ul class="meta-line" aria-label="Object summary">
-          <li>{material}</li>
-        </ul>
-      )}
+      <ul class="meta-line" aria-label="Object summary">
+        <li>{work.displayDate}</li>
+        {material && <li>{material}</li>}
+      </ul>
       {work.hasPreview && <span class="card-3d">3D model</span>}
     </div>
   </a>
