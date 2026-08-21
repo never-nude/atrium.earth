@@ -4,10 +4,11 @@ import FacetExplorer from '../../components/FacetExplorer.astro';
 import WorkCard from '../../components/WorkCard.astro';
 import Viewer from '../../components/Viewer.astro';
 import TimelineStrip from '../../components/TimelineStrip.astro';
-import { catalogCount, collectionHighlights, facets, featuredWorkForDate, recentlyPrepared, works } from '../../lib/catalog';
+import { catalogCount, collectionHighlights, facets, featuredWorkForDate, labelMaker, recentlyPrepared, works } from '../../lib/catalog';
 import { withBase } from '../../lib/urls';
 
 const featured = featuredWorkForDate();
+const featuredMaker = labelMaker(featured);
 const highlights = collectionHighlights().slice(0, 4);
 const newAdditions = recentlyPrepared(3);
 ---
@@ -52,7 +53,7 @@ const newAdditions = recentlyPrepared(3);
         <p class="eyebrow">Featured this week</p>
         <h2 id="featured-object">{featured.title}</h2>
         <ul class="meta-line" aria-label="Details">
-          {[featured.maker, featured.displayDate, featured.originalLocation, featured.medium]
+          {[featuredMaker, featured.displayDate, featured.medium, featured.accession]
             .filter((v) => v && !/not yet recorded|unassigned/i.test(v))
             .map((f) => <li>{f}</li>)}
         </ul>

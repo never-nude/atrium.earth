@@ -2,10 +2,12 @@
 import Viewer from '../components/Viewer.astro';
 import V3WorkCard from '../components/v3/V3WorkCard.astro';
 import V3Layout from '../layouts/v3/V3Layout.astro';
+import { labelMaker } from '../lib/catalog';
 import { collectionCount, exhibitions, featuredWork, newToCollection, pairings, v3ExhibitionRoute, v3WorkRoute, works } from '../lib/v3';
 import { withBase } from '../lib/urls';
 
 const randomRoutes = works.map((work) => withBase(v3WorkRoute(work)));
+const featuredMaker = labelMaker(featuredWork);
 const heroAppearance = {
   ...featuredWork.materialAppearance,
   exposure: Math.max(featuredWork.materialAppearance.exposure, 0.48),
@@ -56,7 +58,7 @@ const heroTransform = { ...featuredWork.modelTransform, fit: 1.1 };
     <div class="v3-hero__object">
       <span>Featured work</span>
       <strong>{featuredWork.title}</strong>
-      <span>{[featuredWork.maker, featuredWork.displayDate].filter(Boolean).join(' · ')}</span>
+      <span>{[featuredMaker, featuredWork.displayDate].filter(Boolean).join(' · ')}</span>
     </div>
     <a class="v3-hero__continue" href="#v3-home-content">Explore more <span>↓</span></a>
   </section>

@@ -1,13 +1,13 @@
 ---
 import type { Work } from '../../lib/catalog';
-import { publicDataset } from '../../lib/catalog';
+import { labelMaker, publicDataset } from '../../lib/catalog';
 import { v3WorkRoute } from '../../lib/v3';
 import { withBase } from '../../lib/urls';
 
 type Props = { work: Work; eager?: boolean; stop?: number };
 const { work, eager = false, stop } = Astro.props;
 const data = publicDataset(work);
-const detail = [work.maker || work.culture, work.displayDate].filter(Boolean).join(' · ');
+const detail = [labelMaker(work), work.displayDate].filter(Boolean).join(' · ');
 const alt = `${work.title}${detail ? ` — ${detail}` : ''}`;
 ---
 

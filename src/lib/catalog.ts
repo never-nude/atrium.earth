@@ -4,6 +4,7 @@ import rawRenders from '../data/renders.json';
 import rawOrientations from '../data/orientations.json';
 import rawMaterialAppearances from '../data/material-appearances.json';
 import rawAppearanceOverrides from '../data/appearance-overrides.json';
+import rawObjectLocations from '../data/object-locations.json';
 
 type RawWork = {
   slug: string;
@@ -54,6 +55,15 @@ type Preview = {
   sourceFaces?: number;
 };
 
+type ObjectLocation = {
+  origin?: string | null;
+  origin_type?: string | null;
+  current?: string | null;
+  current_type?: string | null;
+  source_url?: string | null;
+  checked?: string | null;
+};
+
 type OrientationEntry = string | {
   upAxis?: string;
   axis?: string;
@@ -95,7 +105,12 @@ export type Work = {
   geography: string;
   sourceMuseum: string;
   museum: string;
+  currentLocation: string;
+  currentLocationType: string;
   originalLocation: string;
+  originType: string;
+  locationSourceUrl: string;
+  locationChecked: string;
   department: string;
   medium: string;
   materials: string[];
@@ -106,7 +121,6 @@ export type Work = {
   creditLine: string;
   rights: string;
   licenseUrl: string;
-  provenance: string;
   tags: string[];
   relatedWorks: string[];
   posterImage: string;
@@ -179,6 +193,9 @@ const appearanceConfig = rawMaterialAppearances as {
   collectionDefaults: Record<string, string>;
   slugOverrides: Record<string, string>;
 };
+const objectLocations = (rawObjectLocations as {
+  works?: Record<string, ObjectLocation>;
+}).works ?? {};
 const appearanceOverrides = rawAppearanceOverrides as Record<string, AppearanceOverride>;
 
 const makerCollections = new Set(['michelangelo', 'donatello', 'verrocchio', 'lorenzi', 'bouchardon', 'rodin']);
@@ -345,6 +362,19 @@ export function yearLabel(work: Work): string {
     return `${formatYear(work.yearStart)}-${formatYear(work.yearEnd)}`;
   }
   return formatYear(work.yearStart);
+}
+
+/**
+ * Labels name a maker only when the catalog carries an actual attribution.
+ * Boilerplate such as "Unknown sculptor" is not object-specific information.
+ */
+export function labelMaker(work: Pick<Work, 'maker'>): string {
+  const maker = clean(work.maker);
+  if (/^(unknown|anonymous|unidentified)\b/i.test(maker)) return '';
+  const attributedHead = maker.split(/,\s*after\b/i)[0];
+  const genericCultureRole = /^.+(?:artist(?:\(s\)|s)?|sculptor(?:\(s\)|s)?|maker(?:s)?|craftsperson|artisan(?:s)?|manufacturer|woodcarver|stone carver)(?:,\s*.+)?$/i;
+  if (genericCultureRole.test(attributedHead) || /^[^,;]+ artist and nganga\b/i.test(maker)) return '';
+  return maker;
 }
 
 function parseYearRange(raw: RawWork): { start: number | null; end: number | null } {
@@ -551,7 +581,12 @@ function normalize(raw: RawWork, fallbackIndex: number): Work {
   const materialProfile = materialProfileFor(raw.slug, materials);
   const materialAppearance = effectiveAppearanceFor(raw.slug, materialProfile);
   const sourceMuseum = clean(raw.source_institution);
-  const museum = clean(raw.displayed_at) || clean(raw.current_location) || clean(raw.museum);
+  const documentedLocation = objectLocations[raw.slug] ?? {};
+  const currentLocation = clean(documentedLocation.current)
+    || clean(raw.displayed_at)
+    || clean(raw.current_location)
+    || clean(raw.museum);
+  const museum = clean(raw.displayed_at) || clean(raw.current_location) || clean(raw.museum) || currentLocation;
   const preview = previewMap[raw.slug];
   const movement = movementFor(raw, era);
   const medium = clean(raw.material);
@@ -587,7 +622,14 @@ function normalize(raw: RawWork, fallbackIndex: number): Work {
     geography,
     sourceMuseum,
     museum,
-    originalLocation: clean(raw.original_location),
+    currentLocation,
+    currentLocationType: clean(documentedLocation.current_type),
+    // `original_location` was historically overloaded with museum holdings.
+    // Only the audited location map is allowed to populate a public Origin label.
+    originalLocation: clean(documentedLocation.origin),
+    originType: clean(documentedLocation.origin_type),
+    locationSourceUrl: clean(documentedLocation.source_url),
+    locationChecked: clean(documentedLocation.checked),
     department: clean(raw.department),
     medium,
     materials,
@@ -598,7 +640,6 @@ function normalize(raw: RawWork, fallbackIndex: number): Work {
     creditLine: clean(raw.attribution),
     rights: clean(raw.license) || 'Rights review pending',
     licenseUrl: clean(raw.license_url),
-    provenance: '',
     tags: [...new Set(tags)],
     relatedWorks: [],
     posterImage: `/previews/posters/${raw.slug}/poster.svg`,
@@ -681,12 +722,12 @@ export const facets = {
   geography: facetCounts(works.map((work) => work.geography)),
   materials: facetCounts(works.flatMap((work) => (work.materials.length ? work.materials : ['Material not yet recorded']))),
   movements: facetCounts(works.map((work) => work.movement)),
-  makers: facetCounts(works.map((work) => work.maker || 'Maker not yet recorded')),
+  makers: facetCounts(works.map((work) => labelMaker(work) || 'Maker not yet recorded')),
 };
 
 export function worksForFacet(field: 'era' | 'geography' | 'movement' | 'maker', label: string): Work[] {
   return works.filter((work) => {
-    const value = field === 'maker' ? work.maker || 'Maker not yet recorded' : work[field];
+    const value = field === 'maker' ? labelMaker(work) || 'Maker not yet recorded' : work[field];
     return value === label;
   });
 }
@@ -769,15 +810,16 @@ export function timelinePercent(year: number | null): number {
 export function publicDataset(work: Work): Record<string, string> {
   // Canonical facet vocabulary, shared by cards (data-*) and the museum filter:
   // era · place · material · maker · media.
+  const maker = labelMaker(work);
   return {
     slug: work.slug,
     title: work.title,
-    search: `${work.title} ${work.maker} ${work.displayDate} ${work.era} ${work.geography} ${work.materials.join(' ')} ${work.movement}`.toLowerCase(),
+    search: `${work.title} ${maker} ${work.displayDate} ${work.era} ${work.geography} ${work.materials.join(' ')} ${work.movement}`.toLowerCase(),
     year: String(clampTimelineYear(work.yearStart) ?? ''),
     era: facetValue(work.era),
     place: facetValue(work.geography),
     material: (work.materials.length ? work.materials : ['Material not yet recorded']).map(facetValue).join(' '),
-    maker: facetValue(work.maker || 'Maker not yet recorded'),
+    maker: facetValue(maker || 'Maker not yet recorded'),
     media: work.hasPreview ? 'model' : 'still',
   };
 }
