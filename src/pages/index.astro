@@ -2,7 +2,7 @@
 import Viewer from '../components/Viewer.astro';
 import V3WorkCard from '../components/v3/V3WorkCard.astro';
 import V3Layout from '../layouts/v3/V3Layout.astro';
-import { collectionCount, exhibitions, featuredWork, newToCollection, pairings, v3ExhibitionRoute, v3WorkRoute, works } from '../lib/v3';
+import { collectionCount, exhibitions, homepageFeaturedWork as featuredWork, newToCollection, pairings, v3ExhibitionRoute, v3WorkRoute, works } from '../lib/v3';
 import { withBase } from '../lib/urls';
 
 const randomRoutes = works.map((work) => withBase(v3WorkRoute(work)));

@@ -684,11 +684,63 @@ export function featuredWorkForDate(date = new Date()): Work {
   return shuffled[positiveMod(thinkerIndex + weekOffset, shuffled.length)] || thinker;
 }
 
+const homepageHeroSlugs = [
+  'egyptian/goddess-sekhmet-mia',
+  'michelangelo/david',
+  'greek/winged-victory-samothrace-louvre-ma-2369',
+  'rodin/the-thinker',
+  'asia/shiva-nataraja-after-conservation-mia',
+  'assyrian/ashurnasirpal-lion-hunt',
+  'sub-saharan-africa/kongo-maternity-figure',
+  'americas/old-arrow-maker-edmonia-lewis-smithsonian',
+  'donatello/saint-george',
+  'roman/three-graces-louvre-ma-287',
+  'neoclassical/psyche-revived-by-cupids-kiss-canova-louvre',
+  'modern/seated-bear-skovgaard-smk',
+  'egyptian/portrait-of-nefertiti-smk-cast',
+  'head-of-gudea',
+  'greek/artemis-and-iphigenia-smk-cast',
+  'renaissance/saint-mary-magdalene-erhart-louvre-rf-1338',
+  'baroque/veiled-woman-faith-corradini-louvre-rf-3088',
+  'americas/girl-skating-eberle-smithsonian',
+  'asia/ganesha-mia',
+  'sub-saharan-africa/nkisi-power-figure',
+  'roman/heracles-and-telephus-louvre-ma-75',
+  'venus-de-milo',
+  'laocoon',
+] as const;
+
+export function homepageHeroWorkForDate(date = new Date()): Work {
+  const maxPreviewBytes = 15 * 1024 * 1024;
+  const pool = homepageHeroSlugs
+    .map((slug) => workBySlug(slug))
+    .filter((work): work is Work => Boolean(work?.hasPreview && (previewMap[work.slug]?.bytes || Infinity) <= maxPreviewBytes));
+  const anchorWork = workBySlug(homepageHeroSlugs[0]) || pool[0] || featuredWorkForDate(date);
+  if (!pool.length) return anchorWork;
+
+  const anchorIndex = Math.max(0, pool.findIndex((work) => work.slug === anchorWork.slug));
+  const anchorRotation = utcHeroRotationIndex(new Date(Date.UTC(2026, 7, 31)));
+  const rotationOffset = utcHeroRotationIndex(date) - anchorRotation;
+  return pool[positiveMod(anchorIndex + rotationOffset, pool.length)] || anchorWork;
+}
+
 function utcWeekIndex(date: Date): number {
   const day = Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate());
-  // Weeks run Sunday-Saturday (1970-01-04 was a Sunday), so the featured work flips every Sunday.
+  // Weeks run Sunday-Saturday (1970-01-04 was a Sunday).
   const sundayEpoch = Date.UTC(1970, 0, 4);
   return Math.floor((day - sundayEpoch) / (7 * 24 * 60 * 60 * 1000));
+}
+
+function utcHeroRotationIndex(date: Date): number {
+  const millisecondsPerDay = 24 * 60 * 60 * 1000;
+  const day = Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate());
+  const dayOfWeek = new Date(day).getUTCDay();
+  const daysSinceMonday = (dayOfWeek + 6) % 7;
+  const monday = day - daysSinceMonday * millisecondsPerDay;
+  const mondayEpoch = Date.UTC(1970, 0, 5);
+  const weekIndex = Math.floor((monday - mondayEpoch) / (7 * millisecondsPerDay));
+  const slot = daysSinceMonday >= 5 ? 2 : daysSinceMonday >= 3 ? 1 : 0;
+  return weekIndex * 3 + slot;
 }
 
 function positiveMod(value: number, modulo: number): number {

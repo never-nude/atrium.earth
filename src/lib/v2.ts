@@ -137,7 +137,7 @@ export const exhibitions: V2Exhibition[] = seeds.map(({ workSlugs, ...seed }) =>
   works: resolveWorks(workSlugs),
 }));
 
-// Keep the homepage feature suitable for general-audience previews and sharing.
+// Keep shared page metadata and the archived v2 homepage on a stable, reviewed work.
 export const featuredWork = workBySlug('egyptian/goddess-sekhmet-mia') ?? featuredWorkForDate();
 export const collectionCount = works.length;
 export const newToCollection = recentlyPrepared(10);
