@@ -52,21 +52,30 @@ body { background: var(--v3-void); }
 .v3-hero__object strong { display: none; } /* the h1 already carries the title */
 .v3-hero__continue { color: rgba(247, 245, 239, .78); background: var(--v3-chrome); border-color: rgba(236, 207, 122, .4); backdrop-filter: blur(10px); }
 
-/* ——— Hero on desktop: two columns instead of an overlay. The copy owns the
-   left column and the object the right one, so neither prints across the other
-   and short windows grow the hero rather than pushing the kicker into the header. ——— */
+/* ——— Hero on desktop: one ground, object first, copy beneath. No overlay,
+   no split: the object has the full width of the stage and the title, copy,
+   and actions follow it in normal flow, as they do on phones. ——— */
 @media (min-width: 801px) {
-  .v3-hero { height: auto; min-height: max(720px, 100svh); display: grid; grid-template-columns: minmax(320px, 42%) minmax(0, 1fr); align-items: stretch; }
-  .v3-hero__viewer { position: relative; inset: auto; grid-column: 2; grid-row: 1; min-height: max(720px, 100svh); }
-  .v3-hero__veil { grid-column: 1 / -1; grid-row: 1; background: linear-gradient(90deg, rgba(var(--v3-veil), .55) 0%, transparent 46%), linear-gradient(0deg, rgba(var(--v3-veil), .6), transparent 30%); }
-  .v3-hero__copy { position: relative; inset: auto; grid-column: 1; grid-row: 1; z-index: 8; align-self: end; width: auto; max-width: none; padding: 120px var(--v3-pad) clamp(96px, 14vh, 160px) var(--v3-pad); }
-  .v3-hero__copy h1 { max-width: 12ch; margin: 18px 0 20px; font-size: clamp(2.6rem, min(5.6vw, 9.5vh), 6.8rem); }
-  .v3-hero__copy > p:last-of-type { max-width: 40ch; }
+  .v3-hero { height: auto; min-height: 0; display: block; padding-bottom: clamp(56px, 7vh, 96px); background: radial-gradient(60% 55% at 50% 34%, var(--v3-glow) 0%, var(--v3-void) 72%); }
+  .v3-hero__viewer { position: relative; inset: auto; height: clamp(460px, 66vh, 800px); }
+  .v3-hero__veil { display: none; }
+  .v3-hero__copy { position: relative; inset: auto; width: auto; max-width: var(--v3-max); margin: -12px auto 0; padding: 0 var(--v3-pad); }
+  .v3-hero__copy h1 { max-width: 18ch; margin: 14px 0 18px; font-size: clamp(2.4rem, 4.4vw, 5rem); }
+  .v3-hero__copy > p:last-of-type { max-width: 46ch; }
+  .v3-actions { margin-top: 26px; }
+  .v3-hero__object { position: relative; inset: auto; display: flex; gap: 14px; justify-items: start; align-items: baseline; max-width: var(--v3-max); margin: 22px auto 0; padding: 0 var(--v3-pad); text-align: left; }
+  .v3-hero__object span + span::before { content: "·"; margin-right: 14px; color: var(--v3-faint); }
+  .v3-hero__continue { display: none; }
 }
 
-@media (min-width: 801px) and (orientation: portrait) {
-  /* Tall windows (tablets): centre the copy beside the object instead of leaving the top half empty. */
-  .v3-hero__copy { align-self: center; padding-bottom: 60px; }
+/* One ground under the hero: the viewer's own backdrop rectangle is suppressed
+   (it is set inline by the viewer script, hence !important) so the object and the
+   copy share the page's single radial glow; the poster fades at its edges while
+   the model loads. */
+.v3-hero__viewer .model-stage { background: transparent !important; }
+.v3-hero__viewer [data-poster] {
+  -webkit-mask-image: radial-gradient(ellipse farthest-side at 50% 50%, #000 52%, transparent 96%);
+  mask-image: radial-gradient(ellipse farthest-side at 50% 50%, #000 52%, transparent 96%);
 }
 
 /* ——— Buttons: same shapes, calmer surfaces ——— */
