@@ -52,6 +52,23 @@ body { background: var(--v3-void); }
 .v3-hero__object strong { display: none; } /* the h1 already carries the title */
 .v3-hero__continue { color: rgba(247, 245, 239, .78); background: var(--v3-chrome); border-color: rgba(236, 207, 122, .4); backdrop-filter: blur(10px); }
 
+/* ——— Hero on desktop: two columns instead of an overlay. The copy owns the
+   left column and the object the right one, so neither prints across the other
+   and short windows grow the hero rather than pushing the kicker into the header. ——— */
+@media (min-width: 801px) {
+  .v3-hero { height: auto; min-height: max(720px, 100svh); display: grid; grid-template-columns: minmax(320px, 42%) minmax(0, 1fr); align-items: stretch; }
+  .v3-hero__viewer { position: relative; inset: auto; grid-column: 2; grid-row: 1; min-height: max(720px, 100svh); }
+  .v3-hero__veil { grid-column: 1 / -1; grid-row: 1; background: linear-gradient(90deg, rgba(var(--v3-veil), .55) 0%, transparent 46%), linear-gradient(0deg, rgba(var(--v3-veil), .6), transparent 30%); }
+  .v3-hero__copy { position: relative; inset: auto; grid-column: 1; grid-row: 1; z-index: 8; align-self: end; width: auto; max-width: none; padding: 120px var(--v3-pad) clamp(96px, 14vh, 160px) var(--v3-pad); }
+  .v3-hero__copy h1 { max-width: 12ch; margin: 18px 0 20px; font-size: clamp(2.6rem, min(5.6vw, 9.5vh), 6.8rem); }
+  .v3-hero__copy > p:last-of-type { max-width: 40ch; }
+}
+
+@media (min-width: 801px) and (orientation: portrait) {
+  /* Tall windows (tablets): centre the copy beside the object instead of leaving the top half empty. */
+  .v3-hero__copy { align-self: center; padding-bottom: 60px; }
+}
+
 /* ——— Buttons: same shapes, calmer surfaces ——— */
 .v3-button { border-color: rgba(247, 245, 239, .3); }
 .v3-button--ghost { color: var(--v3-ink); background: rgba(var(--v3-veil), .4); backdrop-filter: blur(10px); }
