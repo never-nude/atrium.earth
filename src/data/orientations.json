@@ -2587,5 +2587,185 @@
     "status": "reviewed",
     "confidence": 0.95,
     "note": "Reviewed 2026-09-02: retain the stable upright pose and use a low frontal camera so the carved La Tene spirals read clearly without emphasizing the scan's open underside."
+  },
+  "medieval/apostle-thomas-saint-gilles-smk-cast": {
+    "upAxis": "y",
+    "modelRotation": [
+      -89.28,
+      1.09,
+      -1.1
+    ],
+    "yaw": 0,
+    "status": "auto",
+    "confidence": 0.66,
+    "note": "Elongated (aspect 3.1); PCA long-axis aligned to vertical."
+  },
+  "renaissance/niccolo-strozzi-mino-da-fiesole-smk-cast": {
+    "upAxis": "y",
+    "modelRotation": [
+      -90.03,
+      0,
+      53.06
+    ],
+    "yaw": 0,
+    "status": "auto",
+    "confidence": 0.77,
+    "note": "Stable-pose solve (pose 0, p=0.24, margin 0.59); confident."
+  },
+  "renaissance/pietro-mellini-benedetto-da-maiano-smk-cast": {
+    "upAxis": "y",
+    "modelRotation": [
+      -90,
+      0,
+      -5
+    ],
+    "yaw": 0,
+    "status": "reviewed",
+    "note": "Reviewed 2026-09-03: the automated -84-degree spin gave a pure profile; -5 degrees turns Mellini's face into the three-quarter view.",
+    "confidence": 0.9
+  },
+  "medieval/ox-relief-musee-de-la-romanite-threedscans": {
+    "upAxis": "y",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "viewDirection": [
+      0,
+      0.2,
+      1
+    ],
+    "fit": 1.05,
+    "status": "reviewed",
+    "note": "Reviewed 2026-09-03: native Y-up slab with a near-frontal camera. The inscribed face with the flanking carved legs is the display face; the reverse is blank (verified by depth histogram and render).",
+    "confidence": 0.9
+  },
+  "modern/pan-et-oursons-fremiet-orsay-threedscans": {
+    "upAxis": "y",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 90,
+    "status": "reviewed",
+    "note": "Reviewed 2026-09-03: the PCA solve stood the long group on end; native Y-up with a 90-degree yaw lays Pan and the bear cubs broadside to the camera on their base.",
+    "confidence": 0.9
+  },
+  "neoclassical/sleeping-shepherd-boy-john-gibson-walker-threedscans": {
+    "upAxis": "y",
+    "modelRotation": [
+      0,
+      0,
+      90
+    ],
+    "yaw": 0,
+    "status": "reviewed",
+    "note": "Reviewed 2026-09-03: the source is X-up; a 90-degree Z rotation stands it on its plinth. The flat-cut back reads as a slab behind the figure, so a raised camera looks down onto the sleeping boy.",
+    "confidence": 0.9,
+    "viewDirection": [
+      0.35,
+      0.55,
+      0.9
+    ],
+    "fit": 1.1
+  },
+  "greek/resting-goat-torlonia-threedscans": {
+    "upAxis": "y",
+    "modelRotation": [
+      -179.08,
+      0,
+      -180
+    ],
+    "yaw": 0,
+    "status": "auto",
+    "confidence": 0.74,
+    "note": "Stable-pose solve (pose 1, p=0.26, margin 0.54); confident."
+  },
+  "renaissance/theodoric-the-great-peter-vischer-hofkirche-threedscans": {
+    "upAxis": "y",
+    "modelRotation": [
+      -179.81,
+      0,
+      -0.81
+    ],
+    "yaw": 0,
+    "status": "auto",
+    "confidence": 0.83,
+    "note": "Stable-pose solve (pose 3, p=0.12, margin 0.72); confident."
+  },
+  "roman/townley-greyhounds-british-museum-threedscans": {
+    "upAxis": "y",
+    "modelRotation": [
+      -90,
+      0,
+      5.75
+    ],
+    "yaw": 0,
+    "status": "auto",
+    "confidence": 0.74,
+    "note": "Stable-pose solve (pose 2, p=0.18, margin 0.54); confident."
+  },
+  "baroque/oceanus-caspar-gras-ferdinandeum-threedscans": {
+    "upAxis": "y",
+    "modelRotation": [
+      180,
+      0,
+      0
+    ],
+    "yaw": 40,
+    "status": "reviewed",
+    "note": "Reviewed 2026-09-03: source arrived inverted; a 180-degree flip stands the bronze on its feet and a 40-degree yaw turns the leaning river god toward the camera. The figure was made to recline on a fountain rim, so the backward lean is intrinsic.",
+    "confidence": 0.9
+  },
+  "baroque/thetis-caspar-gras-ferdinandeum-threedscans": {
+    "upAxis": "y",
+    "modelRotation": [
+      180,
+      0,
+      0
+    ],
+    "yaw": 10,
+    "status": "reviewed",
+    "note": "Reviewed 2026-09-03: source arrived inverted; flipped upright and yawed 10 degrees so the sea nymph's face and torso read. Like Oceanus, the pose was designed for a fountain rim.",
+    "confidence": 0.9
+  },
+  "greek/alexander-the-great-as-helios-smk-cast": {
+    "upAxis": "y",
+    "modelRotation": [
+      -90,
+      0,
+      105
+    ],
+    "yaw": 0,
+    "status": "reviewed",
+    "note": "Reviewed 2026-09-03: SMK Z-up source converted with an explicit -90 X and a 105-degree spin so the idealized face meets the default three-quarter camera instead of showing a profile.",
+    "confidence": 0.9
+  },
+  "renaissance/reclining-pan-francesco-da-sangallo-slam-threedscans": {
+    "upAxis": "y",
+    "modelRotation": [
+      0,
+      0,
+      90
+    ],
+    "yaw": 180,
+    "status": "reviewed",
+    "note": "Reviewed 2026-09-03: the marble's long axis was standing on end; a 90-degree Z rotation lays the group down base-first and a 180-degree yaw brings Pan around from the rough back of the rock.",
+    "confidence": 0.9
+  },
+  "roman/ulysses-escaping-polyphemus-doria-pamphilj-threedscans": {
+    "upAxis": "y",
+    "modelRotation": [
+      -90,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "status": "reviewed",
+    "note": "Reviewed 2026-09-03: a -90 X rotation sets the base plate down so the ram stands with Ulysses clinging beneath it.",
+    "confidence": 0.9
   }
 }
