@@ -684,44 +684,26 @@ export function featuredWorkForDate(date = new Date()): Work {
   return shuffled[positiveMod(thinkerIndex + weekOffset, shuffled.length)] || thinker;
 }
 
-const homepageHeroSlugs = [
-  'egyptian/goddess-sekhmet-mia',
-  'michelangelo/david',
-  'greek/winged-victory-samothrace-louvre-ma-2369',
-  'rodin/the-thinker',
-  'asia/shiva-nataraja-after-conservation-mia',
-  'assyrian/ashurnasirpal-lion-hunt',
-  'sub-saharan-africa/kongo-maternity-figure',
-  'americas/old-arrow-maker-edmonia-lewis-smithsonian',
-  'donatello/saint-george',
-  'roman/three-graces-louvre-ma-287',
-  'neoclassical/psyche-revived-by-cupids-kiss-canova-louvre',
-  'modern/seated-bear-skovgaard-smk',
-  'egyptian/portrait-of-nefertiti-smk-cast',
-  'head-of-gudea',
-  'greek/artemis-and-iphigenia-smk-cast',
-  'renaissance/saint-mary-magdalene-erhart-louvre-rf-1338',
-  'baroque/veiled-woman-faith-corradini-louvre-rf-3088',
-  'americas/girl-skating-eberle-smithsonian',
-  'asia/ganesha-mia',
-  'sub-saharan-africa/nkisi-power-figure',
-  'roman/heracles-and-telephus-louvre-ma-75',
-  'venus-de-milo',
-  'laocoon',
-] as const;
+// A fixed entropy seed makes each scheduled draw random across the full eligible
+// collection while keeping a rebuild within the same slot visually stable.
+const homepageHeroSeed = 'c768ae08f8bdd3e1';
 
 export function homepageHeroWorkForDate(date = new Date()): Work {
   const maxPreviewBytes = 15 * 1024 * 1024;
-  const pool = homepageHeroSlugs
-    .map((slug) => workBySlug(slug))
-    .filter((work): work is Work => Boolean(work?.hasPreview && (previewMap[work.slug]?.bytes || Infinity) <= maxPreviewBytes));
-  const anchorWork = workBySlug(homepageHeroSlugs[0]) || pool[0] || featuredWorkForDate(date);
-  if (!pool.length) return anchorWork;
+  const pool = works.filter((work) => (
+    work.hasPreview
+    && renderSet.has(work.slug)
+    && (previewMap[work.slug]?.bytes || Infinity) <= maxPreviewBytes
+  ));
+  const fallback = workBySlug('rodin/the-thinker') || pool[0] || featuredWorkForDate(date);
+  if (!pool.length) return fallback;
 
-  const anchorIndex = Math.max(0, pool.findIndex((work) => work.slug === anchorWork.slug));
-  const anchorRotation = utcHeroRotationIndex(new Date(Date.UTC(2026, 7, 31)));
-  const rotationOffset = utcHeroRotationIndex(date) - anchorRotation;
-  return pool[positiveMod(anchorIndex + rotationOffset, pool.length)] || anchorWork;
+  const rotation = utcHeroRotationIndex(date);
+  return [...pool].sort((a, b) => (
+    stableHash(`${homepageHeroSeed}:${rotation}:${a.slug}`)
+      - stableHash(`${homepageHeroSeed}:${rotation}:${b.slug}`)
+    || a.slug.localeCompare(b.slug)
+  ))[0] || fallback;
 }
 
 function utcWeekIndex(date: Date): number {
