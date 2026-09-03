@@ -3,6 +3,7 @@ import V3Header from '../../components/v3/V3Header.astro';
 import { collectionCount } from '../../lib/v3';
 import { absoluteUrl, withBase, withoutBase } from '../../lib/urls';
 import '../../styles/v3/v3.css';
+import '../../styles/v3/v3-bright.css'; // brighter-vitrine layer — delete this line to undo
 
 type Props = {
   title?: string;
@@ -36,7 +37,7 @@ const pageTitle = title === 'Atrium.Earth' ? 'Atrium.Earth — Digital Sculpture
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#070a10" />
+    <meta name="theme-color" content="#0e1626" />
     <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

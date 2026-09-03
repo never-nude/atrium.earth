@@ -1,0 +1,145 @@
+/* Atrium v3 — "Brighter Vitrine" refinement layer.
+   Loaded after v3.css. To undo everything in this file, delete its single
+   import line in src/layouts/v3/V3Layout.astro (and restore the theme-color meta).
+
+   Intent: keep the night-museum identity, but lift the hall from near-black to a
+   deep slate that sits just under the thumbnails' baked backdrop (#15243a), raise
+   text contrast one step, and strip the glassy pills back to quiet type. */
+
+:root {
+  --v3-void: #0e1626;            /* was #070a10 — page ground, just below the render bake */
+  --v3-well: #172438;            /* was #0c1424 — inputs and raised surfaces */
+  --v3-ink: #f7f5ef;
+  --v3-muted: #c9c6bd;           /* was #a9a79f */
+  --v3-faint: #a3a099;           /* was #83827b */
+  --v3-line: rgba(247, 245, 239, 0.16);
+  --v3-line-strong: rgba(247, 245, 239, 0.42);
+  --v3-signal: #eccf7a;          /* brass, a touch warmer against the lighter ground */
+  --v3-chrome: rgba(14, 22, 38, 0.72);      /* floating controls */
+  --v3-chrome-solid: rgba(17, 26, 44, 0.97); /* sheets and menus */
+  --v3-veil: 14, 22, 38;                     /* rgb triplet for hero/stage fades */
+}
+
+html { background: var(--v3-void); }
+body { background: var(--v3-void); }
+::selection { background: var(--v3-signal); }
+
+/* ——— Type: one notch more presence on the lighter ground ——— */
+.v3-display { font-weight: 400; letter-spacing: -.04em; }
+.v3-page-hero h1 em { color: var(--v3-faint); }
+.v3-editorial, .v3-wall { color: #e4e1d8; }
+.v3-manifesto .v3-editorial { color: #e4e1d8; }
+.v3-kicker { color: var(--v3-muted); }
+
+/* ——— Header: plain type, no glass pill ——— */
+.v3-header.is-compact,
+.v3-header.is-hidden:focus-within { background: rgba(var(--v3-veil), .82); backdrop-filter: blur(14px); }
+.v3-nav { gap: clamp(22px, 2.6vw, 40px); padding: 0; border: 0; border-radius: 0; background: transparent; backdrop-filter: none; }
+.v3-nav a { color: rgba(247, 245, 239, .78); font-size: .72rem; }
+.v3-nav a:hover, .v3-nav a[aria-current="page"] { color: var(--v3-ink); }
+.v3-nav a[aria-current="page"]::after { bottom: -7px; }
+.v3-brand em { color: var(--v3-faint); }
+
+/* ——— Hero: fewer layers, one title ——— */
+.v3-hero { background: radial-gradient(90% 70% at 62% 40%, var(--v3-glow) 0%, var(--v3-void) 78%); }
+.v3-hero__veil {
+  background:
+    linear-gradient(90deg, rgba(var(--v3-veil), .86) 0%, rgba(var(--v3-veil), .48) 32%, transparent 56%),
+    linear-gradient(0deg, rgba(var(--v3-veil), .7), transparent 36%);
+}
+.v3-hero__copy > p:last-of-type { color: rgba(247, 245, 239, .8); }
+.v3-hero__object { color: rgba(247, 245, 239, .7); }
+.v3-hero__object strong { display: none; } /* the h1 already carries the title */
+.v3-hero__continue { color: rgba(247, 245, 239, .78); background: var(--v3-chrome); border-color: rgba(236, 207, 122, .4); backdrop-filter: blur(10px); }
+
+/* ——— Buttons: same shapes, calmer surfaces ——— */
+.v3-button { border-color: rgba(247, 245, 239, .3); }
+.v3-button--ghost { color: var(--v3-ink); background: rgba(var(--v3-veil), .4); backdrop-filter: blur(10px); }
+.v3-button--ghost:hover { border-color: var(--v3-ink); }
+.v3-button--light, .v3-random__button, .v3-empty button, .v3-exhero a { color: #0b1220; }
+
+/* ——— Rhythm: sections breathe without stranding the visitor in empty ground ——— */
+.v3-section { padding: clamp(80px, 9.5vw, 150px) var(--v3-pad); }
+.v3-section-head { margin-bottom: clamp(32px, 4.5vw, 64px); }
+.v3-pairs { gap: clamp(50px, 6.5vw, 100px); }
+.v3-object-wall, .v3-object-record, .v3-object-rooms, .v3-object-related { padding-top: clamp(80px, 9.5vw, 150px); padding-bottom: clamp(80px, 9.5vw, 150px); }
+.v3-exintro { padding: clamp(80px, 9.5vw, 150px) var(--v3-pad); }
+
+/* ——— Works float in slightly shallower pools ——— */
+.v3-float img {
+  -webkit-mask-image: radial-gradient(ellipse farthest-side at 50% 50%, #000 62%, transparent 98%);
+  mask-image: radial-gradient(ellipse farthest-side at 50% 50%, #000 62%, transparent 98%);
+}
+.v3-float--soft img {
+  -webkit-mask-image: radial-gradient(ellipse farthest-side at 50% 50%, #000 50%, transparent 96%);
+  mask-image: radial-gradient(ellipse farthest-side at 50% 50%, #000 50%, transparent 96%);
+}
+.v3-exrow__img { opacity: 1; }
+.v3-card__copy h3 { font-weight: 500; }
+.v3-card__copy p { color: var(--v3-muted); }
+.v3-pair__works { color: var(--v3-faint); }
+.v3-pair__works b { color: var(--v3-ink); }
+
+/* ——— Exhibitions table ——— */
+.v3-exrow__no { color: var(--v3-faint); }
+.v3-exrow__summary { color: var(--v3-muted); }
+
+/* ——— Collection explorer: a solid toolbar, not a smear of glass ——— */
+.v3-explorer__tools { background: rgba(var(--v3-veil), .94); backdrop-filter: blur(12px); }
+.v3-search input { color: var(--v3-ink); font-weight: 400; }
+.v3-search input::placeholder { color: var(--v3-faint); }
+.v3-filter-row select, .v3-filter-row button { background: var(--v3-well); border-color: var(--v3-line-strong); }
+.v3-filter-row label span, .v3-filter-row p { color: var(--v3-muted); }
+
+/* ——— Work page: the stage keeps its pool of light, the chrome quiets down ——— */
+.v3-object-stage { background: radial-gradient(85% 70% at 55% 42%, var(--v3-glow), #0b1220 82%); }
+.v3-object-stage::after { background: linear-gradient(0deg, rgba(var(--v3-veil), .78), transparent 34%); }
+.v3-object-title .v3-kicker { color: rgba(247, 245, 239, .68); }
+.v3-object-title p:last-child { color: rgba(247, 245, 239, .74); }
+.v3-object-about summary,
+.immersive-light summary,
+.stage-activate,
+.immersive-tools,
+.v3-menu summary { background: var(--v3-chrome); border-color: rgba(247, 245, 239, .26); }
+.v3-object-nav a { background: var(--v3-chrome); }
+.v3-object-nav span { border-color: rgba(247, 245, 239, .3); }
+.v3-object-about > div,
+.immersive-light__panel,
+.v3-menu nav { background: var(--v3-chrome-solid); }
+.v3-object-scroll { color: rgba(247, 245, 239, .58); }
+.stage-hint { color: rgba(247, 245, 239, .6); }
+.immersive-tools button { color: rgba(247, 245, 239, .82); }
+.model-stage { background: radial-gradient(100% 70% at 50% 12%, var(--v3-glow), var(--v3-void) 80%); }
+.viewer--immersive:fullscreen, .viewer--immersive:fullscreen .model-stage { background: var(--v3-void); }
+.v3-facts dd, .v3-object-about dd { color: var(--v3-ink); }
+.v3-object-rooms > a span, .v3-object-rooms > a i { color: var(--v3-muted); }
+
+/* ——— Footer ——— */
+.v3-footer span { color: var(--v3-faint); }
+.v3-footer nav a { color: var(--v3-muted); }
+
+@media (max-width: 800px) {
+  .v3-menu summary { background: var(--v3-chrome); border-color: rgba(247, 245, 239, .26); }
+  .v3-menu summary i, .v3-menu summary i::after { background: var(--v3-ink); }
+  .v3-object-nav a { background: var(--v3-chrome); }
+}
+
+/* Phones: the hero copy sits over the model, so the ground fade needs to carry it. */
+@media (max-width: 800px) {
+  .v3-hero__veil {
+    background:
+      linear-gradient(0deg, rgba(var(--v3-veil), .94) 0%, rgba(var(--v3-veil), .74) 38%, rgba(var(--v3-veil), .28) 62%, transparent 80%);
+  }
+}
+@media (max-width: 800px) {
+  /* Phones: stack the hero instead of layering it. The object gets the upper
+     screen to itself; the title and actions follow in normal flow beneath it. */
+  .v3-hero { height: auto; min-height: 0; display: flex; flex-direction: column; background: radial-gradient(120% 60% at 50% 28%, var(--v3-glow) 0%, var(--v3-void) 72%); }
+  .v3-hero__viewer { position: relative; inset: auto; height: 58svh; min-height: 380px; max-height: 560px; }
+  .v3-hero__veil { display: none; }
+  .v3-hero__copy { position: relative; inset: auto; width: auto; margin-top: -28px; padding: 0 var(--v3-pad); }
+  .v3-hero__copy h1 { max-width: none; margin: 14px 0 16px; font-size: clamp(2.6rem, 11vw, 4.6rem); }
+  .v3-hero__copy > p:last-of-type { max-width: 34ch; }
+  .v3-actions { margin-top: 22px; }
+  .v3-hero__continue { position: relative; left: auto; bottom: auto; margin: 26px auto 30px; transform: none; }
+}
