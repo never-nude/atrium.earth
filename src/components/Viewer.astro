@@ -50,8 +50,11 @@ const transformJson = JSON.stringify(modelTransform);
 
     <img src={poster} alt={posterAlt ?? `${title} — still image`} width="720" height="900" loading={posterLoading} decoding="async" data-poster />
 
+    {/* Rendered hidden: the script reveals it only when it is needed (auto-start
+        off, or the model failed to load). Crawlers, pre-hydration paint, and
+        no-JS visitors all get the still image with nothing offered on top of it. */}
     {hasModel && (
-      <button class="stage-activate" type="button" data-activate>
+      <button class="stage-activate" type="button" data-activate hidden>
         <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
           <path d="M12 2 4 6.5v9L12 20l8-4.5v-9L12 2z" />
           <path d="M4 6.5 12 11l8-4.5M12 11v9" />
@@ -654,6 +657,8 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     if (root.getAttribute('data-auto-start') === 'true') {
       if ('requestIdleCallback' in window) (window as any).requestIdleCallback(() => start(), { timeout: 1500 });
       else setTimeout(start, 300);
+    } else if (activate) {
+      activate.hidden = false;
     }
   }
 </script>
