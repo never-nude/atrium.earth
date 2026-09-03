@@ -19,6 +19,8 @@ export default defineConfig({
     '/v3/exhibitions': '/exhibitions',
     '/v3/exhibitions/[slug]': '/exhibitions/[slug]',
     '/v3/works/[...slug]': '/works/[...slug]',
+    '/works/egyptian/tepemankh-stela-e25408-louvre': '/works/egyptian/offering-menu-relief-tepemankh-e25408-louvre',
+    '/v2/works/egyptian/tepemankh-stela-e25408-louvre': '/v2/works/egyptian/offering-menu-relief-tepemankh-e25408-louvre',
   },
   server: {
     // Honor the port assigned by the preview harness (via PORT); fall back to Astro's default.

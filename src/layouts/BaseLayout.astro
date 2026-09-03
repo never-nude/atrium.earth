@@ -1,6 +1,7 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import GoogleAnalytics from '../components/GoogleAnalytics.astro';
 import { absoluteUrl, withBase, withoutBase } from '../lib/urls';
 import '../styles/global.css';
 
@@ -51,6 +52,7 @@ const pageTitle = title === 'Atrium.Earth' ? 'Atrium.Earth — Digital Sculpture
     <meta name="twitter:image" content={imageUrl} />
     <slot name="head" />
     <title>{pageTitle}</title>
+    <GoogleAnalytics />
     {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
   </head>
   <body>

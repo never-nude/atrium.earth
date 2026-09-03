@@ -16,11 +16,16 @@ type RawWork = {
   material?: string | null;
   dimensions?: string | null;
   museum?: string | null;
+  original_location?: string | null;
   displayed_at?: string | null;
   current_location?: string | null;
+  department?: string | null;
   geography?: string | null;
   source_institution?: string | null;
   source_url?: string | null;
+  source_record_url?: string | null;
+  related_source_record_urls?: string[] | null;
+  scan_author?: string | null;
   scan_source?: string | null;
   license?: string | null;
   license_url?: string | null;
@@ -28,6 +33,7 @@ type RawWork = {
   accession?: string | null;
   wikidata?: string | null;
   note?: string | null;
+  ai_training_restricted?: boolean | null;
   tier?: number | null;
   index?: number | null;
   total?: number | null;
@@ -89,6 +95,7 @@ export type Work = {
   geography: string;
   sourceMuseum: string;
   museum: string;
+  originalLocation: string;
   department: string;
   medium: string;
   materials: string[];
@@ -99,8 +106,6 @@ export type Work = {
   creditLine: string;
   rights: string;
   licenseUrl: string;
-  description: string;
-  curatorialNote: string;
   provenance: string;
   tags: string[];
   relatedWorks: string[];
@@ -117,7 +122,11 @@ export type Work = {
   search: string;
   hasPreview: boolean;
   sourceUrl: string;
+  sourceRecordUrl: string;
+  relatedSourceRecordUrls: string[];
+  scanAuthor: string;
   scanSource: string;
+  aiTrainingRestricted: boolean;
   internalModelSource: string;
 };
 
@@ -175,6 +184,7 @@ const appearanceOverrides = rawAppearanceOverrides as Record<string, AppearanceO
 const makerCollections = new Set(['michelangelo', 'donatello', 'verrocchio', 'lorenzi', 'bouchardon', 'rodin']);
 
 const collectionLabels: Record<string, string> = {
+  'ancient-near-east': 'Ancient Near East',
   americas: 'Americas and Oceania',
   asia: 'Asia',
   assyrian: 'Assyrian',
@@ -189,6 +199,7 @@ const collectionLabels: Record<string, string> = {
 };
 
 const collectionGeography: Record<string, string> = {
+  'ancient-near-east': 'Ancient Near East',
   americas: 'Americas and Oceania',
   asia: 'Asia',
   assyrian: 'Ancient Near East',
@@ -210,6 +221,7 @@ const collectionGeography: Record<string, string> = {
 };
 
 const collectionCulture: Record<string, string> = {
+  'ancient-near-east': 'Ancient Near Eastern',
   americas: 'Americas and Oceania',
   asia: 'Asian',
   assyrian: 'Assyrian',
@@ -218,6 +230,7 @@ const collectionCulture: Record<string, string> = {
 };
 
 const movementByCollection: Record<string, string> = {
+  'ancient-near-east': 'Ancient Near Eastern sculpture',
   americas: 'Indigenous and Pacific sculpture',
   asia: 'Asian sculpture',
   assyrian: 'Assyrian relief',
@@ -421,7 +434,7 @@ function materialsFor(raw: RawWork): string[] {
     }
   }
 
-  const text = `${raw.title ?? ''} ${raw.year ?? ''} ${publicNote(raw)}`.toLowerCase();
+  const text = `${raw.title ?? ''} ${raw.year ?? ''} ${noteForInference(raw)}`.toLowerCase();
   const inferred: Array<[RegExp, string]> = [
     [/bronze/, 'Bronze'],
     [/marble/, 'Marble'],
@@ -481,12 +494,24 @@ export function getEffectiveAppearance(work: Pick<Work, 'slug' | 'materialProfil
   return effectiveAppearanceFor(work.slug, work.materialProfile);
 }
 
-function publicNote(raw: RawWork): string {
+// Catalog notes are ingest and research material. They may help normalize sparse
+// source records, but they must never become visitor-facing object descriptions.
+function noteForInference(raw: RawWork): string {
   const note = clean(raw.note);
   if (!note) return '';
   const lower = note.toLowerCase();
   if (internalNotePatterns.some((pattern) => lower.includes(pattern))) return '';
   return note;
+}
+
+function scanSourceForDisplay(raw: RawWork): string {
+  const value = clean(raw.scan_source);
+  if (!value || /^https?:\/\//i.test(value)) return '';
+  return value
+    .split(';')
+    .map(clean)
+    .filter((clause) => clause && !/https?:\/\/|\b(?:archive|archived|bytes|polygons|preserv(?:ed|ation))\b/i.test(clause))
+    .join('; ');
 }
 
 function movementFor(raw: RawWork, era: string): string {
@@ -506,12 +531,6 @@ function makerFor(raw: RawWork): string {
   const collection = clean(raw.collection);
   if (makerCollections.has(collection)) return titleCaseSlug(collection);
   return '';
-}
-
-function summaryFor(raw: RawWork): string {
-  // Only ever a real, human note — never invented or bureaucratic filler.
-  // When there is no note, the page shows the facts and lets the work speak.
-  return publicNote(raw);
 }
 
 function modelStatsFor(preview: Preview | undefined, raw: RawWork): string {
@@ -535,8 +554,7 @@ function normalize(raw: RawWork, fallbackIndex: number): Work {
   const museum = clean(raw.displayed_at) || clean(raw.current_location) || clean(raw.museum);
   const preview = previewMap[raw.slug];
   const movement = movementFor(raw, era);
-  const description = summaryFor(raw);
-  const medium = clean(raw.material) || materials.join(', ');
+  const medium = clean(raw.material);
   const title = clean(raw.title) || titleCaseSlug(raw.slug);
   const modelTransform = modelTransformFor(orientationMap[raw.slug]);
 
@@ -569,7 +587,8 @@ function normalize(raw: RawWork, fallbackIndex: number): Work {
     geography,
     sourceMuseum,
     museum,
-    department: '',
+    originalLocation: clean(raw.original_location),
+    department: clean(raw.department),
     medium,
     materials,
     materialProfile,
@@ -579,8 +598,6 @@ function normalize(raw: RawWork, fallbackIndex: number): Work {
     creditLine: clean(raw.attribution),
     rights: clean(raw.license) || 'Rights review pending',
     licenseUrl: clean(raw.license_url),
-    description,
-    curatorialNote: publicNote(raw),
     provenance: '',
     tags: [...new Set(tags)],
     relatedWorks: [],
@@ -597,7 +614,13 @@ function normalize(raw: RawWork, fallbackIndex: number): Work {
     search: clean(raw.search) || `${title} ${maker} ${era} ${geography} ${materials.join(' ')}`.toLowerCase(),
     hasPreview: Boolean(preview?.url),
     sourceUrl: clean(raw.source_url),
-    scanSource: clean(raw.scan_source),
+    sourceRecordUrl: clean(raw.source_record_url),
+    relatedSourceRecordUrls: Array.isArray(raw.related_source_record_urls)
+      ? [...new Set(raw.related_source_record_urls.map(clean).filter(Boolean))]
+      : [],
+    scanAuthor: clean(raw.scan_author),
+    scanSource: scanSourceForDisplay(raw),
+    aiTrainingRestricted: Boolean(raw.ai_training_restricted),
     internalModelSource: clean(raw.model?.sourcePath),
   };
 }

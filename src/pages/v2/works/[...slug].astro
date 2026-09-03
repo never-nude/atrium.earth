@@ -15,13 +15,18 @@ const { work } = Astro.props;
 const { previous, next } = neighborsFor(work);
 const related = work.relatedWorks.map((slug) => workBySlug(slug)).filter((candidate): candidate is Work => Boolean(candidate)).slice(0, 6);
 const rooms = exhibitions.filter((exhibition) => exhibition.works.some((candidate) => candidate.slug === work.slug));
+const originalLocation = work.originalLocation && work.originalLocation.toLowerCase() !== work.museum.toLowerCase()
+  ? work.originalLocation
+  : '';
 const facts = ([
-  ['Maker', work.maker || work.culture],
+  ['Maker', work.maker],
   ['Date', work.displayDate],
-  ['Place', work.geography],
-  ['Material', work.medium || work.materials.join(', ')],
+  ['Origin', originalLocation],
+  ['Material', work.medium],
   ['Dimensions', work.dimensions],
-  ['Current collection', work.museum],
+  ['Location / collection', work.museum],
+  ['Department', work.department],
+  ['Accession / inventory', work.accession],
 ] as Array<[string, string]>).filter(([, value]) => Boolean(value && !/not yet recorded|unassigned/i.test(value)));
 const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUrl).hostname.replace(/^www\./, '') : '');
 ---
@@ -49,17 +54,17 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
     <div class="v2-object-title">
       <p>{work.era} · {String(work.index).padStart(3, '0')}</p>
       <h1 id="v2-object-title">{work.title}</h1>
-      <p>{[work.maker || work.culture, work.displayDate].filter(Boolean).join(' · ')}</p>
+      <p>{[work.maker, work.displayDate].filter(Boolean).join(' · ')}</p>
     </div>
 
     <details class="v2-object-about">
-      <summary>About <span>+</span></summary>
+      <summary>Object record <span>+</span></summary>
       <div>
         <p class="v2-section-index">Object record</p>
         <h2>{work.title}</h2>
-        {work.description && <p class="v2-object-about__description">{work.description}</p>}
         <dl>{facts.map(([label, value]) => <div><dt>{label}</dt><dd>{value}</dd></div>)}</dl>
-        {work.sourceUrl && <a href={work.sourceUrl}>Source: {sourceLabel} ↗</a>}
+        {work.sourceRecordUrl && <a href={work.sourceRecordUrl}>Museum record ↗</a>}
+        {!work.sourceRecordUrl && work.sourceUrl && <a href={work.sourceUrl}>3D model source: {sourceLabel} ↗</a>}
       </div>
     </details>
 
@@ -72,15 +77,22 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
 
   <section class="v2-object-record">
     <div class="v2-object-record__intro">
-      <p class="v2-section-index">How to use the model</p>
-      <h2>Examine the work from more than one angle.</h2>
-      <p class="v2-editorial">Use the model to inspect overall form, then zoom in to compare surface, joins, and tool marks. Wireframe is a viewing aid; the object record remains the source for documented facts.</p>
+      <p class="v2-section-index">Object record</p>
+      <h2>{work.title}</h2>
     </div>
 
     <dl class="v2-object-record__facts">
       {facts.map(([label, value]) => <div><dt>{label}</dt><dd>{value}</dd></div>)}
-      {work.sourceUrl && <div><dt>Source</dt><dd><a href={work.sourceUrl}>{sourceLabel} ↗</a></dd></div>}
-      {work.rights && !/review pending/i.test(work.rights) && <div><dt>Rights</dt><dd>{work.rights}</dd></div>}
+      {work.sourceRecordUrl && <div><dt>Museum record</dt><dd><a href={work.sourceRecordUrl}>Collection record ↗</a></dd></div>}
+      {work.relatedSourceRecordUrls.filter((url) => url !== work.sourceRecordUrl).map((url, index) => (
+        <div><dt>Additional record</dt><dd><a href={url}>Collection record {index + 2} ↗</a></dd></div>
+      ))}
+      {work.sourceUrl && <div><dt>3D source</dt><dd><a href={work.sourceUrl}>{sourceLabel} ↗</a></dd></div>}
+      {work.scanSource && <div><dt>Model / capture</dt><dd>{work.scanSource}</dd></div>}
+      {work.scanAuthor && <div><dt>Captured by</dt><dd>{work.scanAuthor}</dd></div>}
+      {work.creditLine && <div><dt>Credit</dt><dd>{work.creditLine}</dd></div>}
+      {work.rights && !/review pending/i.test(work.rights) && <div><dt>Rights</dt><dd>{work.licenseUrl ? <a href={work.licenseUrl} rel="license">3D scan: {work.rights} ↗</a> : work.rights}</dd></div>}
+      {work.aiTrainingRestricted && <div><dt>AI use</dt><dd>Source marked NoAI</dd></div>}
     </dl>
   </section>
 

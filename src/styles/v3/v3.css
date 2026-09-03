@@ -296,14 +296,6 @@ em, i { font-style: normal; }
 .v3-object-stage.is-engaged .v3-object-scroll { opacity: 0; }
 .v3-object-stage.is-engaged .v3-object-nav a { pointer-events: none; }
 
-/* Wall text on the work page: what the curators wrote about this object. */
-.v3-object-wall { display: grid; gap: clamp(30px, 5vw, 60px); padding: clamp(100px, 13vw, 200px) var(--v3-pad); }
-.v3-object-wall figure { display: grid; gap: 16px; max-width: 760px; margin: 0 auto; text-align: center; }
-.v3-object-wall blockquote { margin: 0; }
-.v3-object-wall figcaption { color: var(--v3-faint); font-size: .64rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
-.v3-object-wall figcaption a { color: var(--v3-muted); text-decoration: none; }
-.v3-object-wall figcaption a:hover { color: var(--ex-accent, var(--v3-signal)); }
-
 .v3-object-record { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(320px, .9fr); gap: clamp(60px, 10vw, 170px); padding: clamp(90px, 11vw, 180px) var(--v3-pad); border-top: 1px solid var(--v3-line); }
 .v3-object-record__intro h2 { max-width: 12ch; margin: 16px 0 36px; font-size: clamp(2.8rem, 6vw, 7rem); }
 .v3-object-record__intro .v3-editorial { max-width: 22ch; font-size: clamp(1.5rem, 2.5vw, 2.9rem); }

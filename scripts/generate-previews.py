@@ -3,6 +3,7 @@ import argparse
 import json
 import os
 import shutil
+import subprocess
 from pathlib import Path
 
 import trimesh
@@ -100,7 +101,72 @@ def collect_manifest(repo_root: Path, catalog_by_slug):
     return manifest
 
 
-def export_preview(work, source_root: Path, repo_root: Path, target_faces: int):
+def optimize_glb(source_path: Path, output_path: Path, repo_root: Path, source_faces: int, target_faces: int):
+    executable = repo_root / "node_modules" / ".bin" / "gltf-transform"
+    if not executable.exists():
+        raise FileNotFoundError(f"GLB optimizer missing: {executable}; run npm install")
+
+    simplify_ratio = min(1.0, target_faces / source_faces) if source_faces else 1.0
+    converted_path = output_path.with_name("preview-metalrough.glb")
+    try:
+        # Some Sketchfab downloads still use the deprecated spec/gloss extension,
+        # which current Three.js loaders no longer render. Normalize materials before
+        # simplification so the public preview keeps its diffuse texture.
+        subprocess.run(
+            [str(executable), "metalrough", str(source_path), str(converted_path)],
+            check=True,
+        )
+        subprocess.run(
+            [
+                str(executable),
+                "optimize",
+                str(converted_path),
+                str(output_path),
+                "--compress",
+                "draco",
+                "--texture-compress",
+                "webp",
+                "--texture-size",
+                "2048",
+                "--simplify",
+                "true",
+                "--simplify-ratio",
+                str(simplify_ratio),
+                "--simplify-error",
+                "0.005",
+            ],
+            check=True,
+        )
+    finally:
+        converted_path.unlink(missing_ok=True)
+
+
+def inspect_glb_faces(output_path: Path, repo_root: Path):
+    executable = repo_root / "node_modules" / ".bin" / "gltf-transform"
+    result = subprocess.run(
+        [str(executable), "inspect", str(output_path), "--format", "csv"],
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+    total = 0
+    in_meshes = False
+    for line in result.stdout.splitlines():
+        if line == " MESHES":
+            in_meshes = True
+            continue
+        if in_meshes and line == " MATERIALS":
+            break
+        if in_meshes and line[:1].isdigit():
+            columns = line.split(",")
+            if len(columns) > 4 and columns[2] == "TRIANGLES":
+                total += int(columns[4])
+    if total <= 0:
+        raise ValueError(f"optimizer reported no triangles for {output_path}")
+    return total
+
+
+def export_preview(work, source_root: Path, repo_root: Path, target_faces: int, optimize_source_glb: bool):
     source_rel = SOURCE_OVERRIDES.get(work["slug"], work["model"]["sourcePath"])
     source_path = source_root / source_rel
     output_dir = repo_root / "public/models/previews" / work["slug"]
@@ -115,6 +181,30 @@ def export_preview(work, source_root: Path, repo_root: Path, target_faces: int):
     loaded = trimesh.load(source_path, force=force)
     mesh = as_mesh(loaded)
     source_faces = int(len(mesh.faces))
+
+    if source_path.suffix.lower() == ".glb" and optimize_source_glb:
+        optimize_glb(source_path, output_path, repo_root, source_faces, target_faces)
+        output_faces = inspect_glb_faces(output_path, repo_root)
+        meta_path.write_text(
+            json.dumps(
+                {
+                    "slug": work["slug"],
+                    "source": source_rel,
+                    "sourceBytes": source_path.stat().st_size,
+                    "sourceFaces": source_faces,
+                    "faces": output_faces,
+                    "targetFaces": target_faces,
+                    "optimizer": "@gltf-transform/cli",
+                    "materialWorkflow": "metallic-roughness",
+                    "geometryCompression": "draco",
+                    "textureFormat": "webp",
+                    "textureMaxSize": 2048,
+                },
+                indent=2,
+            )
+            + "\n"
+        )
+        return output_path
 
     if source_path.suffix.lower() == ".glb" or work["slug"] in DIRECT_COPY_PREVIEWS:
         shutil.copyfile(source_path, output_path)
@@ -162,6 +252,11 @@ def main():
     # over-decimated meshes into low quality and shattered imperfect sources).
     parser.add_argument("--target-faces", type=int, default=400000)
     parser.add_argument("--slug", action="append", default=[])
+    parser.add_argument(
+        "--optimize-source-glb",
+        action="store_true",
+        help="Use glTF Transform to simplify and compress selected GLB sources instead of copying them verbatim.",
+    )
     args = parser.parse_args()
 
     repo_root = Path(__file__).resolve().parents[1]
@@ -181,7 +276,7 @@ def main():
     for slug in selected_slugs:
         work = catalog_by_slug[slug]
         try:
-            output = export_preview(work, args.source, repo_root, args.target_faces)
+            output = export_preview(work, args.source, repo_root, args.target_faces, args.optimize_source_glb)
             print(f"{slug}: {output.relative_to(repo_root)}")
         except Exception as error:
             print(f"{slug}: skipped ({error})")

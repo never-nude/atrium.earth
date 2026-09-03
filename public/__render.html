@@ -184,7 +184,11 @@ function applyMaterialAppearance(mesh, material, appearance) {
 function removeScanHelpers(model) {
   const helpers=[];
   model.traverse((obj)=>{
-    if (/^(?:cubo|disco)(?:_|\.|$)/i.test(obj.name || '') || /^(?:cubo|disco)(?:_|\.|$)/i.test(obj.material?.name || '')) helpers.push(obj);
+    const name=obj.name || '';
+    const materialName=obj.material?.name || '';
+    const elements=obj.geometry?.index?.count || obj.geometry?.getAttribute('position')?.count || 0;
+    const tinyCube=/^cube(?:_|\.|$)/i.test(name) && elements/3<=12;
+    if (/^(?:cubo|disco)(?:_|\.|$)/i.test(name) || /^(?:cubo|disco)(?:_|\.|$)/i.test(materialName) || tinyCube) helpers.push(obj);
   });
   for (const helper of helpers) helper.parent?.remove(helper);
 }
@@ -200,6 +204,10 @@ window.loadModel=(url, rawTransform='auto', rawAppearance='{}', upAxis='auto')=>
     removeScanHelpers(m);
     m.traverse((obj)=>{
       if(!obj.isMesh || !obj.material) return;
+      if(!obj.geometry?.getAttribute('normal')){
+        obj.geometry=obj.geometry.clone();
+        obj.geometry.computeVertexNormals();
+      }
       const list=Array.isArray(obj.material) ? obj.material : [obj.material];
       const prepared=list.map((material)=>prepareMaterial(material));
       obj.material=Array.isArray(obj.material) ? prepared : prepared[0];
