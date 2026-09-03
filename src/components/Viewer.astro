@@ -2,6 +2,8 @@
 type Props = {
   glb?: string;
   poster: string;
+  /** Alt text for the still image. Describe the work itself; the default only names it. */
+  posterAlt?: string;
   title: string;
   hud?: boolean;
   tag?: string;
@@ -18,6 +20,7 @@ type Props = {
 const {
   glb = '',
   poster,
+  posterAlt,
   title,
   hud = true,
   tag,
@@ -45,7 +48,7 @@ const transformJson = JSON.stringify(modelTransform);
     <span class="stage-corner stage-corner--br" aria-hidden="true"></span>
     <span class="stage-tag" aria-hidden="true">{tag ?? (hasModel ? '3D MODEL' : 'PHOTOGRAPH')}</span>
 
-    <img src={poster} alt={`${title} — still image`} width="720" height="900" loading={posterLoading} decoding="async" data-poster />
+    <img src={poster} alt={posterAlt ?? `${title} — still image`} width="720" height="900" loading={posterLoading} decoding="async" data-poster />
 
     {hasModel && (
       <button class="stage-activate" type="button" data-activate>
@@ -113,7 +116,13 @@ const transformJson = JSON.stringify(modelTransform);
 
   {hasModel && <p class="stage-hint fine" data-hint hidden>Drag to orbit · <span class="stage-hint__pan">right-drag or two-finger drag to pan · </span>scroll or pinch to zoom · double-tap to reset</p>}
 
-  <noscript><p class="fine">Showing the still photo. Turn on JavaScript for the 3D model.</p></noscript>
+  <noscript>
+    {/* Without JavaScript the still image is the presentation, not a fallback: hide
+        every affordance that promises an interaction the page cannot deliver. */}
+    <style is:inline>
+      .viewer .stage-tag, .viewer .stage-activate, .viewer .stage-loading, .viewer .stage-hint { display: none !important; }
+    </style>
+  </noscript>
 </div>
 
 <script>
