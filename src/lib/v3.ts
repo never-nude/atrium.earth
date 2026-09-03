@@ -1,5 +1,5 @@
 import v3Content from '../data/v3-content.json';
-import { recentlyPrepared, workBySlug, works, type Work } from './catalog';
+import { homepageHeroWorkForDate, recentlyPrepared, workBySlug, works, type Work } from './catalog';
 import { exhibitions as baseExhibitions, featuredWork, neighborsFor, type V2Exhibition } from './v2';
 
 export type V3Exhibition = V2Exhibition & {
@@ -72,6 +72,7 @@ export const pairings: V3Pairing[] = pairingSeeds
   })
   .filter((pair): pair is V3Pairing => Boolean(pair));
 
+export const homepageFeaturedWork = homepageHeroWorkForDate();
 export { featuredWork, neighborsFor, works };
 export const collectionCount = works.length;
 export const newToCollection = recentlyPrepared(10);

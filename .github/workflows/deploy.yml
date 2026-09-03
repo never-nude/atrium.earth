@@ -5,9 +5,9 @@ on:
     branches:
       - main
   schedule:
-    # Rebuild weekly so the static featured sculpture rotates every Sunday
-    # (featuredWorkForDate flips on the Sunday-anchored UTC week index).
-    - cron: '17 9 * * 0'
+    # Rebuild three times a week so the static homepage hero advances on
+    # Monday, Thursday, and Saturday mornings (09:17 UTC).
+    - cron: '17 9 * * 1,4,6'
   workflow_dispatch:
 
 permissions:

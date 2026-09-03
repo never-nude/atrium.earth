@@ -707,11 +707,45 @@ export function featuredWorkForDate(date = new Date()): Work {
   return shuffled[positiveMod(thinkerIndex + weekOffset, shuffled.length)] || thinker;
 }
 
+// A fixed entropy seed makes each scheduled draw random across the full eligible
+// collection while keeping a rebuild within the same slot visually stable.
+const homepageHeroSeed = 'c768ae08f8bdd3e1';
+
+export function homepageHeroWorkForDate(date = new Date()): Work {
+  const maxPreviewBytes = 15 * 1024 * 1024;
+  const pool = works.filter((work) => (
+    work.hasPreview
+    && renderSet.has(work.slug)
+    && (previewMap[work.slug]?.bytes || Infinity) <= maxPreviewBytes
+  ));
+  const fallback = workBySlug('rodin/the-thinker') || pool[0] || featuredWorkForDate(date);
+  if (!pool.length) return fallback;
+
+  const rotation = utcHeroRotationIndex(date);
+  return [...pool].sort((a, b) => (
+    stableHash(`${homepageHeroSeed}:${rotation}:${a.slug}`)
+      - stableHash(`${homepageHeroSeed}:${rotation}:${b.slug}`)
+    || a.slug.localeCompare(b.slug)
+  ))[0] || fallback;
+}
+
 function utcWeekIndex(date: Date): number {
   const day = Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate());
-  // Weeks run Sunday-Saturday (1970-01-04 was a Sunday), so the featured work flips every Sunday.
+  // Weeks run Sunday-Saturday (1970-01-04 was a Sunday).
   const sundayEpoch = Date.UTC(1970, 0, 4);
   return Math.floor((day - sundayEpoch) / (7 * 24 * 60 * 60 * 1000));
+}
+
+function utcHeroRotationIndex(date: Date): number {
+  const millisecondsPerDay = 24 * 60 * 60 * 1000;
+  const day = Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate());
+  const dayOfWeek = new Date(day).getUTCDay();
+  const daysSinceMonday = (dayOfWeek + 6) % 7;
+  const monday = day - daysSinceMonday * millisecondsPerDay;
+  const mondayEpoch = Date.UTC(1970, 0, 5);
+  const weekIndex = Math.floor((monday - mondayEpoch) / (7 * millisecondsPerDay));
+  const slot = daysSinceMonday >= 5 ? 2 : daysSinceMonday >= 3 ? 1 : 0;
+  return weekIndex * 3 + slot;
 }
 
 function positiveMod(value: number, modulo: number): number {
