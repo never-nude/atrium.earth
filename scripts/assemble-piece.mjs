@@ -54,6 +54,9 @@ function formatIntegrity(integrity) {
 
 function badIntegrity(integrity, candidate = {}) {
   if (!integrity) return true;
+  // The solve timed out before it could measure the mesh; the piece is held for
+  // human orientation review rather than judged on numbers we never computed.
+  if (integrity.skipped) return false;
   if (!Number.isFinite(Number(integrity.faces)) || Number(integrity.faces) <= 0) return true;
   if (Number(integrity.bratio) > 0.3) return true;
 
@@ -68,8 +71,26 @@ function badIntegrity(integrity, candidate = {}) {
 }
 
 async function proposeOrientation(sourcePath, slug) {
-  const result = await run(pythonCommand(), ['scripts/auto_orient.py', sourcePath, '--slug', slug], { capture: true });
-  return JSON.parse(result.stdout);
+  try {
+    const result = await run(pythonCommand(), ['scripts/auto_orient.py', sourcePath, '--slug', slug], {
+      capture: true,
+      timeoutMs: Number(process.env.ATRIUM_ORIENT_TIMEOUT_MS || 240000),
+    });
+    return JSON.parse(result.stdout);
+  } catch (error) {
+    if (!error.timedOut) throw error;
+    // Keep the piece in the batch; a human orients it in the review pass.
+    return {
+      slug,
+      upAxis: 'auto',
+      modelRotation: [0, 0, 0],
+      yaw: 0,
+      confidence: 0.2,
+      flag: 'review',
+      reason: 'Orientation solve exceeded its time limit; needs human orientation review.',
+      integrity: { faces: null, ncomp: null, bratio: null, skipped: true },
+    };
+  }
 }
 
 async function maybeRetryAlternate(candidate, firstProposal, report) {
