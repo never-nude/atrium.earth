@@ -2827,5 +2827,203 @@
     "status": "auto",
     "confidence": 0.86,
     "note": "Stable-pose solve (pose 0, p=0.15, margin 0.81); confident."
+  },
+  "medieval/archangel-gabriel-annunciation-group-cma": {
+    "upAxis": "y",
+    "modelRotation": [
+      -179.13,
+      0,
+      -180
+    ],
+    "yaw": 0,
+    "status": "auto",
+    "confidence": 0.73,
+    "note": "Stable-pose solve (pose 2, p=0.02, margin 0.51); confident."
+  },
+  "medieval/saint-jerome-and-the-lion-riemenschneider-cma": {
+    "upAxis": "y",
+    "modelRotation": [
+      179.19,
+      0,
+      179.29
+    ],
+    "yaw": 0,
+    "status": "auto",
+    "confidence": 0.81,
+    "note": "Stable-pose solve (pose 3, p=0.10, margin 0.68); confident."
+  },
+  "baroque/bust-of-a-cardinal-lorenzo-ottoni-smk": {
+    "upAxis": "y",
+    "modelRotation": [
+      -90,
+      0,
+      175
+    ],
+    "yaw": 0,
+    "status": "reviewed",
+    "confidence": 0.9,
+    "note": "Reviewed 2026-09-04: the SMK source is Z-up, so the bust arrived lying on its side; an explicit -90 X conversion stands it on its socle and a 175-degree spin turns the face to the default three-quarter camera."
+  },
+  "neoclassical/venus-with-the-apple-thorvaldsen-smk": {
+    "upAxis": "y",
+    "modelRotation": [
+      -90,
+      0,
+      25
+    ],
+    "yaw": 0,
+    "status": "reviewed",
+    "confidence": 0.9,
+    "note": "Reviewed 2026-09-04: Z-up SMK source converted with an explicit -90 X rotation so the figure stands on its plinth, then spun 25 degrees to present the front."
+  },
+  "modern/the-shadow-hansen-jacobsen-smk": {
+    "upAxis": "y",
+    "modelRotation": [
+      0,
+      0,
+      -90
+    ],
+    "yaw": -30,
+    "status": "reviewed",
+    "confidence": 0.9,
+    "note": "Reviewed 2026-09-04: the source lies along its X axis, so a -90 Z rotation stands the bronze upright, with a -30-degree yaw onto the modelled front."
+  },
+  "modern/death-and-the-mother-hansen-jacobsen-smk": {
+    "upAxis": "y",
+    "modelRotation": [
+      -90,
+      0,
+      -70
+    ],
+    "yaw": 0,
+    "status": "reviewed",
+    "confidence": 0.9,
+    "note": "Reviewed 2026-09-04: -90 X sets the group's base plane down and a -70-degree spin opens the composition; the camera is raised slightly to read the figures across the horizontal group.",
+    "viewDirection": [
+      0.6,
+      0.18,
+      0.9
+    ],
+    "fit": 1.12
+  },
+  "europe/anthropomorphic-female-statuette-suplacu-de-barcau-commons": {
+    "upAxis": "y",
+    "modelRotation": [
+      90,
+      0,
+      0
+    ],
+    "yaw": 175,
+    "status": "reviewed",
+    "confidence": 0.9,
+    "note": "Reviewed 2026-09-04: a 90-degree X rotation stands the figurine on its base; the surviving surface is largely featureless in this scan."
+  },
+  "medieval/last-judgement-tympanum-bamberg-smk-cast": {
+    "upAxis": "y",
+    "modelRotation": [
+      90,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "viewDirection": [
+      -1,
+      0,
+      -0.15
+    ],
+    "fit": 1.05,
+    "status": "reviewed",
+    "confidence": 0.9,
+    "note": "Reviewed 2026-09-04: the semicircular cast is rotated so its straight lintel edge sits level at the base and the arc rises above; the camera looks at the carved face (the reverse is a blank casting shell, confirmed by a per-cell depth measurement of both broad faces)."
+  },
+  "assyrian/saluting-protective-spirit-cma": {
+    "upAxis": "y",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "viewDirection": [
+      -1,
+      0,
+      -0.15
+    ],
+    "fit": 1.05,
+    "status": "reviewed",
+    "confidence": 0.9,
+    "note": "Reviewed 2026-09-04: the slab's carved face is on the opposite side from the viewer's default direction, so the camera is reversed onto the relief; the back is blank."
+  },
+  "assyrian/winged-genius-mia": {
+    "upAxis": "y",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "viewDirection": [
+      0,
+      0,
+      1
+    ],
+    "fit": 1.05,
+    "status": "reviewed",
+    "confidence": 0.9,
+    "note": "Reviewed 2026-09-04: camera set to the carved face of the panel; the low relief reads best face-on."
+  },
+  "baroque/triton-caspar-gras-ferdinandeum-innsbruck": {
+    "upAxis": "y",
+    "modelRotation": [
+      180,
+      0,
+      0
+    ],
+    "yaw": -65,
+    "status": "reviewed",
+    "confidence": 0.9,
+    "note": "Reviewed 2026-09-04: the source arrived inverted; a 180-degree flip stands the bronze upright and a -65-degree yaw turns the figure toward the camera. Like the Oceanus and Thetis from the same fountain, the leaning pose is intrinsic to a figure made for a fountain rim."
+  },
+  "americas/andrew-jackson-clark-mills-npg": {
+    "upAxis": "y",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 100,
+    "status": "reviewed",
+    "confidence": 0.9,
+    "note": "Reviewed 2026-09-04: native orientation retained, yawed 100 degrees so the rearing horse and rider are seen from the side rather than head-on."
+  },
+  "sub-saharan-africa/edo-tusk-mia": {
+    "upAxis": "y",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "status": "reviewed",
+    "confidence": 0.9,
+    "note": "Reviewed 2026-09-04: native orientation stands the tusk with its wide hollow end at the base and the carved shaft curving up, as the tusk is mounted for display."
+  },
+  "medieval/romanesque-crucifixion-spain-mia": {
+    "upAxis": "y",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "status": "reviewed",
+    "confidence": 0.9,
+    "note": "Reviewed 2026-09-04: the slab is upright in its native orientation and a frontal camera presents the carved Crucifixion; a yaw would have turned the relief away.",
+    "viewDirection": [
+      0,
+      0.15,
+      1
+    ],
+    "fit": 1.06
   }
 }
