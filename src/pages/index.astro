@@ -1,6 +1,7 @@
 ---
 import Viewer from '../components/Viewer.astro';
 import V3WorkCard from '../components/v3/V3WorkCard.astro';
+import V3WingGrid from '../components/v3/V3WingGrid.astro';
 import V3Layout from '../layouts/v3/V3Layout.astro';
 import { collectionCount, exhibitions, homepageFeaturedWork as featuredWork, newToCollection, pairings, v3ExhibitionRoute, v3WorkRoute, works } from '../lib/v3';
 import { withBase } from '../lib/urls';
@@ -76,10 +77,21 @@ const heroTransform = { ...featuredWork.modelTransform, fit: 1.1 };
     </div>
   </section>
 
+  <section class="v3-section v3-section--line" aria-labelledby="wings-home-title">
+    <div class="v3-section-head v3-section-head--split">
+      <div>
+        <p class="v3-kicker">02 / Wings</p>
+        <h2 id="wings-home-title" class="v3-display">A permanent place for every work.</h2>
+      </div>
+      <a href={withBase('/wings/')}>All wings →</a>
+    </div>
+    <V3WingGrid compact={true} />
+  </section>
+
   {pairings.length > 0 && (
   <section class="v3-section v3-section--line" aria-labelledby="pairs-title">
     <div class="v3-section-head">
-      <p class="v3-kicker">02 / Comparisons</p>
+      <p class="v3-kicker">03 / Comparisons</p>
       <h2 id="pairs-title" class="v3-display">Two works, considered together.</h2>
     </div>
     <div class="v3-pairs">
@@ -108,7 +120,7 @@ const heroTransform = { ...featuredWork.modelTransform, fit: 1.1 };
   <section class="v3-section v3-section--line" aria-labelledby="exhibitions-home-title">
     <div class="v3-section-head v3-section-head--split">
       <div>
-        <p class="v3-kicker">03 / Exhibitions</p>
+        <p class="v3-kicker">04 / Exhibitions</p>
         <h2 id="exhibitions-home-title" class="v3-display">Guided ways through the collection.</h2>
       </div>
       <a href={withBase('/exhibitions/')}>All exhibitions →</a>
@@ -132,7 +144,7 @@ const heroTransform = { ...featuredWork.modelTransform, fit: 1.1 };
 
   <section class="v3-section v3-section--line" aria-labelledby="new-title">
     <div class="v3-section-head v3-section-head--split">
-      <div><p class="v3-kicker">04 / Recently added</p><h2 id="new-title" class="v3-display">New works in the collection.</h2></div>
+      <div><p class="v3-kicker">05 / Recently added</p><h2 id="new-title" class="v3-display">New works in the collection.</h2></div>
       <a href={withBase('/collection/')}>View all {collectionCount} →</a>
     </div>
     <div class="v3-rail">
@@ -141,7 +153,7 @@ const heroTransform = { ...featuredWork.modelTransform, fit: 1.1 };
   </section>
 
   <section class="v3-section v3-random" aria-labelledby="random-title">
-    <p class="v3-kicker">05 / Random selection</p>
+    <p class="v3-kicker">06 / Random selection</p>
     <h2 id="random-title">Choose a work at random.</h2>
     <p>A different starting point can change what you notice.</p>
     <a class="v3-random__button" href={randomRoutes[0]} data-random-work>Choose a work <span>↗</span></a>

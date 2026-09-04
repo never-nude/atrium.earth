@@ -36,6 +36,7 @@ const targetFaces = Number(args['target-faces'] || process.env.ATRIUM_PREVIEW_TA
 const skipAssets = Boolean(args['skip-assets']);
 const dryRun = Boolean(args['dry-run']);
 const maxAlternateBytes = Number(args['max-alternate-bytes'] || process.env.ATRIUM_MAX_ALTERNATE_BYTES || 700_000_000);
+const wingIds = new Set(['near-east', 'greece-rome', 'europe', 'asia', 'africa', 'americas-oceania']);
 
 function pythonCommand() {
   if (process.env.PYTHON) return process.env.PYTHON;
@@ -138,6 +139,7 @@ function catalogEntry(candidate, archiveRel, sizeBytes) {
   const entry = {
     slug: candidate.slug,
     collection: candidate.collection || candidate.slug.split('/')[0],
+    ...(candidate.wing ? { wing: candidate.wing } : {}),
     title: candidate.title,
     artist: candidate.artist || '',
     year: candidate.year || '',
@@ -289,6 +291,10 @@ if (!candidates.length) {
 
 for (const originalCandidate of candidates) {
   let candidate = originalCandidate;
+  if (candidate.wing && !wingIds.has(candidate.wing)) {
+    report.rejected.push({ slug: candidate.slug, title: candidate.title, source: candidate.source, reason: `unknown wing override: ${candidate.wing}` });
+    continue;
+  }
   const knownBy = candidateIsKnown(candidate, indexes);
   if (knownBy) {
     report.rejected.push({ slug: candidate.slug, title: candidate.title, source: candidate.source, reason: `already in catalog by ${knownBy}` });

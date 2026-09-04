@@ -4,10 +4,13 @@ import rawRenders from '../data/renders.json';
 import rawOrientations from '../data/orientations.json';
 import rawMaterialAppearances from '../data/material-appearances.json';
 import rawAppearanceOverrides from '../data/appearance-overrides.json';
+import { assignWing } from './assignWing';
+import type { WingId } from '../data/wings';
 
 type RawWork = {
   slug: string;
   hidden?: boolean;
+  wing?: WingId | null;
   collection?: string | null;
   title: string;
   artist?: string | null;
@@ -80,6 +83,8 @@ export type ModelTransform = {
 export type Work = {
   id: string;
   slug: string;
+  collection: string;
+  wing: WingId | 'unfiled';
   route: string;
   legacyRoute: string;
   title: string;
@@ -207,11 +212,14 @@ const collectionGeography: Record<string, string> = {
   bouchardon: 'Europe',
   donatello: 'Europe',
   egyptian: 'Ancient Near East and Egypt',
+  europe: 'Europe',
   greek: 'Mediterranean',
   lorenzi: 'Europe',
   medieval: 'Europe',
   michelangelo: 'Europe',
+  modern: 'Europe',
   neoclassical: 'Europe',
+  oceania: 'Americas and Oceania',
   palmyra: 'Ancient Near East',
   renaissance: 'Europe',
   rodin: 'Europe',
@@ -546,6 +554,10 @@ function normalize(raw: RawWork, fallbackIndex: number): Work {
   const { start, end } = parseYearRange(raw);
   const era = eraFor(raw);
   const geography = geographyFor(raw);
+  const wing = assignWing({
+    slug: raw.slug,
+    data: { wing: raw.wing, region: collection, place: geography },
+  });
   const maker = makerFor(raw);
   const materials = materialsFor(raw);
   const materialProfile = materialProfileFor(raw.slug, materials);
@@ -572,6 +584,8 @@ function normalize(raw: RawWork, fallbackIndex: number): Work {
   return {
     id: raw.slug.replaceAll('/', '--'),
     slug: raw.slug,
+    collection,
+    wing,
     route: `/works/${raw.slug}/`,
     legacyRoute: `/${raw.slug}/`,
     title,
@@ -806,8 +820,9 @@ export function publicDataset(work: Work): Record<string, string> {
   return {
     slug: work.slug,
     title: work.title,
-    search: `${work.title} ${work.maker} ${work.displayDate} ${work.era} ${work.geography} ${work.materials.join(' ')} ${work.movement}`.toLowerCase(),
+    search: `${work.title} ${work.maker} ${work.displayDate} ${work.era} ${work.geography} ${work.materials.join(' ')} ${work.movement} ${work.wing}`.toLowerCase(),
     year: String(clampTimelineYear(work.yearStart) ?? ''),
+    wing: work.wing,
     era: facetValue(work.era),
     place: facetValue(work.geography),
     material: (work.materials.length ? work.materials : ['Material not yet recorded']).map(facetValue).join(' '),

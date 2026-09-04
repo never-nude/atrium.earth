@@ -2,6 +2,7 @@
 import V3WorkCard from './V3WorkCard.astro';
 import type { Work } from '../../lib/catalog';
 import { facets } from '../../lib/catalog';
+import { wings } from '../../data/wings';
 
 type Props = { works: Work[] };
 const { works } = Astro.props;
@@ -15,6 +16,7 @@ const { works } = Astro.props;
     </label>
 
     <div class="v3-filter-row">
+      <label><span>Wing</span><select data-v3-filter="wing"><option value="">All wings</option>{wings.map((wing) => <option value={wing.id}>{wing.name}</option>)}</select></label>
       <label><span>Era</span><select data-v3-filter="era"><option value="">All eras</option>{facets.eras.map((item) => <option value={item.value}>{item.label}</option>)}</select></label>
       <label><span>Place</span><select data-v3-filter="place"><option value="">Everywhere</option>{facets.geography.map((item) => <option value={item.value}>{item.label}</option>)}</select></label>
       <label><span>Material</span><select data-v3-filter="material"><option value="">All materials</option>{facets.materials.map((item) => <option value={item.value}>{item.label}</option>)}</select></label>
