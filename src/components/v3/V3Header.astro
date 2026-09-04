@@ -4,6 +4,8 @@ import { withBase } from '../../lib/urls';
 type Props = { currentPath: string };
 const { currentPath } = Astro.props;
 const nav = [
+  ['Home', '/'],
+  ['Wings', '/wings/'],
   ['Explore', '/collection/'],
   ['Exhibitions', '/exhibitions/'],
 ];
@@ -24,8 +26,9 @@ const current = (href: string) => currentPath === href || (href !== '/' && curre
   <details class="v3-menu">
     <summary aria-label="Open menu"><span>Menu</span><i aria-hidden="true"></i></summary>
     <nav aria-label="Mobile primary">
-      <a href={withBase('/')}>Home</a>
-      {nav.map(([label, href]) => <a href={withBase(href)}>{label}</a>)}
+      {nav.map(([label, href]) => (
+        <a href={withBase(href)} aria-current={current(href) ? 'page' : undefined}>{label}</a>
+      ))}
     </nav>
   </details>
 </header>

@@ -38,6 +38,7 @@ const only = (args.find((a) => a.startsWith('--only=')) || '').slice(7) || null;
 const SLUG_RE = /^[a-z0-9][a-z0-9-]*\/[a-z0-9][a-z0-9-]*$/;
 const TIER1_LICENSES = ['cc0', 'public domain', 'pdm', 'no restrictions', 'no known copyright'];
 const TIER2_LICENSES = ['cc by'];
+const WING_IDS = new Set(['near-east', 'greece-rome', 'europe', 'asia', 'africa', 'americas-oceania']);
 
 const catalogPath = path.join(repoRoot, 'src/data/catalog.json');
 
@@ -155,6 +156,7 @@ function validate(m, file) {
   if (m.year_sort !== null && m.year_sort !== undefined && !Number.isFinite(Number(m.year_sort))) {
     errs.push(`year_sort must be integer or null, got ${m.year_sort}`);
   }
+  if (m.wing && !WING_IDS.has(m.wing)) errs.push(`unknown wing override: ${m.wing}`);
   return errs.map((e) => `${file}: ${e}`);
 }
 
@@ -280,6 +282,7 @@ for (const m of additions) {
   catalog.push({
     slug: m.slug,
     collection: m.slug.split('/')[0],
+    ...(m.wing ? { wing: m.wing } : {}),
     title: m.title,
     artist: m.artist || '',
     year,

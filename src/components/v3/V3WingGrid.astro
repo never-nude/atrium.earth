@@ -1,0 +1,33 @@
+---
+import { wingSummaries, wingRoute } from '../../lib/wings';
+import { withBase } from '../../lib/urls';
+
+type Props = { compact?: boolean };
+const { compact = false } = Astro.props;
+---
+
+<div class:list={['v3-wings-grid', { 'v3-wings-grid--compact': compact }]}>
+  {wingSummaries.map(({ wing, count, featured }, index) => (
+    <a class="v3-wing-card v3-reveal" href={withBase(wingRoute(wing.id))}>
+      {featured && (
+        <span class="v3-wing-card__image v3-float v3-float--soft">
+          <img
+            src={withBase(featured.thumbnailImage)}
+            alt=""
+            width="720"
+            height="900"
+            loading={index < 2 && !compact ? 'eager' : 'lazy'}
+            decoding="async"
+          />
+        </span>
+      )}
+      <span class="v3-wing-card__number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+      <span class="v3-wing-card__copy">
+        <span class="v3-kicker">{count} {count === 1 ? 'work' : 'works'}</span>
+        <strong>{wing.name}</strong>
+        <span class="v3-wing-card__blurb">{wing.blurb}</span>
+        <span class="v3-wing-card__link">Enter wing <i aria-hidden="true">↗</i></span>
+      </span>
+    </a>
+  ))}
+</div>

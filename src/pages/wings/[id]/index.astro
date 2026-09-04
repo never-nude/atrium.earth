@@ -1,0 +1,118 @@
+---
+import Viewer from '../../../components/Viewer.astro';
+import V3WorkCard from '../../../components/v3/V3WorkCard.astro';
+import V3Layout from '../../../layouts/v3/V3Layout.astro';
+import { wings, wingIds } from '../../../data/wings';
+import { logWingBuildReport, featuredWorkForWing, wingById, worksForWing, type WingRouteId } from '../../../lib/wings';
+import { v3WorkRoute } from '../../../lib/v3';
+import { withBase } from '../../../lib/urls';
+
+export function getStaticPaths() {
+  logWingBuildReport();
+  return [...wingIds, 'unfiled'].map((id) => ({ params: { id } }));
+}
+
+const id = Astro.params.id as WingRouteId;
+const wing = wingById(id);
+const wingIndex = wing ? wings.findIndex((candidate) => candidate.id === wing.id) : -1;
+const wingWorks = worksForWing(id);
+const featured = wing ? featuredWorkForWing(wing) : undefined;
+const isUnfiled = id === 'unfiled';
+const name = wing?.name ?? 'Unfiled';
+const blurb = wing?.blurb ?? 'Works whose source region and place do not yet match a museum wing.';
+const eraOrder = ['Ancient', 'Medieval', 'Renaissance', 'Early modern', 'Modern', 'Contemporary', 'Undated'];
+const rooms = eraOrder
+  .map((era) => ({ era, works: wingWorks.filter((work) => work.era === era) }))
+  .filter((room) => room.works.length > 0);
+const showRooms = Boolean(wing && rooms.length > 1);
+const heroAppearance = featured ? {
+  ...featured.materialAppearance,
+  exposure: Math.max(featured.materialAppearance.exposure, 0.48),
+  keyLightIntensity: Math.max(featured.materialAppearance.keyLightIntensity ?? 0, 1.18),
+  fillLightIntensity: Math.max(featured.materialAppearance.fillLightIntensity ?? 0, 0.9),
+  rimLightIntensity: Math.max(featured.materialAppearance.rimLightIntensity ?? 0, 1.2),
+  hemiLightIntensity: Math.max(featured.materialAppearance.hemiLightIntensity ?? 0, 0.84),
+} : undefined;
+---
+
+<V3Layout
+  title={name}
+  description={blurb}
+  image={featured?.thumbnailImage}
+>
+  {isUnfiled && <meta slot="head" name="robots" content="noindex, nofollow" />}
+
+  {featured ? (
+    <section class="v3-wing-hero" aria-labelledby="wing-title">
+      <div class="v3-wing-hero__copy">
+        <p class="v3-kicker">Wing {String(wingIndex + 1).padStart(2, '0')} · {wingWorks.length} {wingWorks.length === 1 ? 'work' : 'works'}</p>
+        <h1 id="wing-title" class="v3-display">{name}</h1>
+        <p>{blurb}</p>
+        <div class="v3-wing-hero__meta">
+          <span>Featured in 3D</span>
+          <strong>{featured.title}</strong>
+          <span>{[featured.maker, featured.displayDate].filter(Boolean).join(' · ')}</span>
+        </div>
+        <div class="v3-actions">
+          <a class="v3-button v3-button--light" href={withBase(v3WorkRoute(featured))}>View object <span>↗</span></a>
+          <a class="v3-button v3-button--ghost" href="#wing-works">Browse the wing <span>↓</span></a>
+        </div>
+      </div>
+      <div class="v3-wing-hero__viewer">
+        <Viewer
+          glb={withBase(featured.modelGlb)}
+          poster={withBase(featured.thumbnailImage)}
+          title={featured.title}
+          hud={false}
+          immersive={true}
+          posterLoading="eager"
+          upAxis={featured.modelUpAxis}
+          modelTransform={featured.modelTransform}
+          materialAppearance={heroAppearance}
+          wheelZoom={false}
+        />
+      </div>
+    </section>
+  ) : (
+    <header class="v3-page-hero">
+      <p class="v3-kicker">Collection audit / {wingWorks.length} {wingWorks.length === 1 ? 'work' : 'works'}</p>
+      <h1 class="v3-display">{name}</h1>
+      <p>{blurb} This page remains outside the public navigation and search indexes.</p>
+    </header>
+  )}
+
+  <section class="v3-wing-works" id="wing-works" aria-labelledby="wing-works-title">
+    <div class="v3-wing-works__intro">
+      <div>
+        <p class="v3-kicker">The collection / chronological order</p>
+        <h2 id="wing-works-title" class="v3-display">{isUnfiled ? 'Waiting to be filed.' : `Inside ${name}.`}</h2>
+      </div>
+      {!isUnfiled && <a href={withBase('/wings/')}>All wings →</a>}
+    </div>
+
+    {wingWorks.length === 0 ? (
+      <p class="v3-wing-empty">Every public work currently has a wing.</p>
+    ) : showRooms ? (
+      <div class="v3-wing-rooms">
+        {rooms.map((room, roomIndex) => {
+          const preceding = rooms.slice(0, roomIndex).reduce((total, candidate) => total + candidate.works.length, 0);
+          return (
+            <section class="v3-wing-room" aria-labelledby={`room-${roomIndex}`}>
+              <header class="v3-wing-room__head">
+                <p class="v3-kicker">Room {String(roomIndex + 1).padStart(2, '0')} · {room.works.length} {room.works.length === 1 ? 'work' : 'works'}</p>
+                <h3 id={`room-${roomIndex}`} class="v3-display">{room.era}</h3>
+              </header>
+              <div class="v3-grid">
+                {room.works.map((work, index) => <V3WorkCard work={work} eager={preceding + index < 8} />)}
+              </div>
+            </section>
+          );
+        })}
+      </div>
+    ) : (
+      <div class="v3-grid">
+        {wingWorks.map((work, index) => <V3WorkCard work={work} eager={index < 8} />)}
+      </div>
+    )}
+  </section>
+</V3Layout>
