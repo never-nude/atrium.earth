@@ -721,9 +721,12 @@ export function featuredWorkForDate(date = new Date()): Work {
   return shuffled[positiveMod(thinkerIndex + weekOffset, shuffled.length)] || thinker;
 }
 
-// A fixed entropy seed makes each scheduled draw random across the full eligible
-// collection while keeping a rebuild within the same slot visually stable.
+// A fixed entropy seed creates one stable random ordering of the eligible hero
+// pool. Three-day slots walk that ordering from the Cosmic Buddha's debut, so
+// every scheduled change produces a different work without reshuffling on build.
 const homepageHeroSeed = 'c768ae08f8bdd3e1';
+const homepageHeroLaunchSlug = 'asia/cosmic-buddha';
+const homepageHeroRotationEpoch = Date.UTC(2026, 8, 4);
 
 export function homepageHeroWorkForDate(date = new Date()): Work {
   const maxPreviewBytes = 15 * 1024 * 1024;
@@ -732,15 +735,18 @@ export function homepageHeroWorkForDate(date = new Date()): Work {
     && renderSet.has(work.slug)
     && (previewMap[work.slug]?.bytes || Infinity) <= maxPreviewBytes
   ));
-  const fallback = workBySlug('rodin/the-thinker') || pool[0] || featuredWorkForDate(date);
+  const launchWork = workBySlug(homepageHeroLaunchSlug);
+  const fallback = launchWork || workBySlug('rodin/the-thinker') || pool[0] || featuredWorkForDate(date);
   if (!pool.length) return fallback;
 
-  const rotation = utcHeroRotationIndex(date);
-  return [...pool].sort((a, b) => (
-    stableHash(`${homepageHeroSeed}:${rotation}:${a.slug}`)
-      - stableHash(`${homepageHeroSeed}:${rotation}:${b.slug}`)
+  const shuffled = [...pool].sort((a, b) => (
+    stableHash(`${homepageHeroSeed}:${a.slug}`)
+      - stableHash(`${homepageHeroSeed}:${b.slug}`)
     || a.slug.localeCompare(b.slug)
-  ))[0] || fallback;
+  ));
+  const launchIndex = shuffled.findIndex((work) => work.slug === homepageHeroLaunchSlug);
+  const rotation = utcHeroRotationIndex(date);
+  return shuffled[positiveMod(Math.max(0, launchIndex) + rotation, shuffled.length)] || fallback;
 }
 
 function utcWeekIndex(date: Date): number {
@@ -753,13 +759,7 @@ function utcWeekIndex(date: Date): number {
 function utcHeroRotationIndex(date: Date): number {
   const millisecondsPerDay = 24 * 60 * 60 * 1000;
   const day = Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate());
-  const dayOfWeek = new Date(day).getUTCDay();
-  const daysSinceMonday = (dayOfWeek + 6) % 7;
-  const monday = day - daysSinceMonday * millisecondsPerDay;
-  const mondayEpoch = Date.UTC(1970, 0, 5);
-  const weekIndex = Math.floor((monday - mondayEpoch) / (7 * millisecondsPerDay));
-  const slot = daysSinceMonday >= 5 ? 2 : daysSinceMonday >= 3 ? 1 : 0;
-  return weekIndex * 3 + slot;
+  return Math.floor((day - homepageHeroRotationEpoch) / (3 * millisecondsPerDay));
 }
 
 function positiveMod(value: number, modulo: number): number {
