@@ -301,8 +301,21 @@ export function run(command, args = [], options = {}) {
       child.stdout.on('data', (chunk) => { stdout += chunk.toString(); });
       child.stderr.on('data', (chunk) => { stderr += chunk.toString(); });
     }
-    child.on('error', reject);
+    // Some solves (compute_stable_poses on awkward hulls) block inside native
+    // code where Python-level signals never land; kill from outside instead.
+    let timedOut = false;
+    const timer = options.timeoutMs
+      ? setTimeout(() => { timedOut = true; child.kill('SIGKILL'); }, options.timeoutMs)
+      : null;
+    child.on('error', (error) => { if (timer) clearTimeout(timer); reject(error); });
     child.on('close', (code) => {
+      if (timer) clearTimeout(timer);
+      if (timedOut) {
+        const error = new Error(`${command} ${args.join(' ')} timed out after ${options.timeoutMs}ms`);
+        error.timedOut = true;
+        reject(error);
+        return;
+      }
       if (code === 0) resolve({ stdout, stderr });
       else reject(new Error(`${command} ${args.join(' ')} exited ${code}${stderr ? `\n${stderr}` : ''}`));
     });
