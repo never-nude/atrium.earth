@@ -218,6 +218,7 @@ em, i { font-style: normal; }
 .v3-wing-card__blurb { max-width: 44ch; margin-top: 14px; color: var(--v3-muted); font-size: .84rem; line-height: 1.55; }
 .v3-wing-card__link { display: flex; justify-content: space-between; align-items: center; gap: 20px; margin-top: 26px; padding-top: 13px; border-top: 1px solid var(--v3-line); color: var(--v3-muted); font-size: .62rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
 .v3-wing-card__link i { color: var(--v3-signal); font-size: 1rem; }
+.v3-wings-grid--compact .v3-wing-card__image { aspect-ratio: 4 / 5; }
 .v3-wings-grid--compact .v3-wing-card__copy > strong { font-size: clamp(1.5rem, 2.3vw, 2.8rem); }
 
 .v3-wing-hero { min-height: min(900px, 100svh); display: grid; grid-template-columns: minmax(300px, .72fr) minmax(0, 1.28fr); align-items: center; gap: clamp(24px, 4vw, 72px); padding: 110px var(--v3-pad) 58px; background: radial-gradient(65% 70% at 72% 42%, var(--v3-glow), var(--v3-void) 76%); }
