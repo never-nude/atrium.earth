@@ -12,6 +12,7 @@ type Props = {
   posterLoading?: 'eager' | 'lazy';
   autoStart?: boolean;
   autoRotate?: boolean;
+  autoRotateSpeed?: number;
   wheelZoom?: boolean;
   lightControls?: boolean;
 };
@@ -28,6 +29,7 @@ const {
   posterLoading = 'lazy',
   autoStart = true,
   autoRotate = true,
+  autoRotateSpeed,
   wheelZoom = true,
   lightControls = false,
 } = Astro.props;
@@ -38,7 +40,7 @@ const transformJson = JSON.stringify(modelTransform);
 ---
 
 <div class:list={['viewer', { 'viewer--immersive': immersive }]} data-viewer data-auto-start={String(autoStart)}>
-  <div class="model-stage" data-stage data-glb={hasModel ? glb : ''} data-up-axis={upAxis} data-model-transform={transformJson} data-material-appearance={appearanceJson} data-immersive={String(immersive)} data-auto-rotate={String(autoRotate)} data-wheel-zoom={String(wheelZoom)} tabindex={hasModel ? '0' : undefined} aria-label={hasModel ? `Interactive 3D view of ${title}` : undefined}>
+  <div class="model-stage" data-stage data-glb={hasModel ? glb : ''} data-up-axis={upAxis} data-model-transform={transformJson} data-material-appearance={appearanceJson} data-immersive={String(immersive)} data-auto-rotate={String(autoRotate)} data-auto-rotate-speed={autoRotateSpeed} data-wheel-zoom={String(wheelZoom)} tabindex={hasModel ? '0' : undefined} aria-label={hasModel ? `Interactive 3D view of ${title}` : undefined}>
     <span class="stage-corner stage-corner--tl" aria-hidden="true"></span>
     <span class="stage-corner stage-corner--tr" aria-hidden="true"></span>
     <span class="stage-corner stage-corner--bl" aria-hidden="true"></span>
@@ -401,7 +403,9 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     controls.zoomSpeed = immersive ? 1.35 : 0.8;
     controls.mouseButtons = { LEFT: THREE.MOUSE.ROTATE, MIDDLE: THREE.MOUSE.DOLLY, RIGHT: THREE.MOUSE.PAN };
     controls.autoRotate = stage.dataset.autoRotate !== 'false' && !reduce;
-    controls.autoRotateSpeed = 1.0;
+    const timedRotation = stage.dataset.autoRotateSpeed !== undefined;
+    const rotationSpeed = Number(stage.dataset.autoRotateSpeed ?? 1);
+    controls.autoRotateSpeed = Number.isFinite(rotationSpeed) && rotationSpeed >= 0 ? rotationSpeed : 1;
 
     const loader = new GLTFLoader();
     loader.setMeshoptDecoder(MeshoptDecoder);
@@ -473,7 +477,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     controls.target.set(0, 0, 0);
     controls.minDistance = immersive ? 0.035 : 0.5;
     controls.maxDistance = immersive ? 24 : 8;
-    controls.update();
+    controls.update(timedRotation ? 0 : undefined);
 
     const grid = new THREE.GridHelper(4, 24, 0x3a557a, 0x22324a);
     grid.position.y = -size.y / 2 - 0.001;
@@ -496,7 +500,15 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     const home = { pos: camera.position.clone(), tgt: controls.target.clone() };
 
     let raf = 0;
-    function frame() { controls.update(); renderer.render(scene, camera); raf = requestAnimationFrame(frame); }
+    let previousFrameTime: number | undefined;
+    function frame(now = performance.now()) {
+      const elapsed = previousFrameTime === undefined ? 0 : Math.min(Math.max((now - previousFrameTime) / 1000, 0), 0.1);
+      previousFrameTime = now;
+      // Explicit speeds use elapsed seconds so high-refresh screens turn at the same rate.
+      controls.update(timedRotation ? elapsed : undefined);
+      renderer.render(scene, camera);
+      raf = requestAnimationFrame(frame);
+    }
     frame();
 
     const ro = new ResizeObserver(() => {
@@ -504,7 +516,10 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
       renderer.setSize(width, height); camera.aspect = width / height; camera.updateProjectionMatrix();
     });
     ro.observe(stage);
-    document.addEventListener('visibilitychange', () => { if (document.hidden) cancelAnimationFrame(raf); else frame(); });
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) cancelAnimationFrame(raf);
+      else { previousFrameTime = undefined; frame(); }
+    });
 
     return {
       texture: createTextureControl(materials),
@@ -519,9 +534,9 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
         const distance = Math.max(controls.minDistance, Math.min(controls.maxDistance, offset.length() * factor));
         offset.setLength(distance);
         camera.position.copy(controls.target).add(offset);
-        controls.update();
+        controls.update(timedRotation ? 0 : undefined);
       },
-      reset: () => { camera.position.copy(home.pos); controls.target.copy(home.tgt); controls.update(); },
+      reset: () => { camera.position.copy(home.pos); controls.target.copy(home.tgt); controls.update(timedRotation ? 0 : undefined); },
       defaults: { exposure: Math.round(appearance.exposure * 100), texture: appearance.textureDefault },
     };
   }
