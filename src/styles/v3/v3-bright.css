@@ -59,7 +59,7 @@ body { background: var(--v3-void); }
   .v3-hero { height: auto; min-height: 0; display: block; padding-bottom: clamp(56px, 7vh, 96px); background: radial-gradient(60% 55% at 50% 34%, var(--v3-glow) 0%, var(--v3-void) 72%); }
   .v3-hero__viewer { position: relative; inset: auto; height: clamp(460px, 66vh, 800px); }
   .v3-hero__veil { display: none; }
-  .v3-hero__copy { position: relative; inset: auto; width: auto; max-width: var(--v3-max); margin: -12px auto 0; padding: 0 var(--v3-pad); }
+  .v3-hero__copy { position: relative; inset: auto; width: auto; max-width: var(--v3-max); margin: 24px auto 0; padding: 0 var(--v3-pad); }
   .v3-hero__copy h1 { max-width: 18ch; margin: 14px 0 18px; font-size: clamp(2.4rem, 4.4vw, 5rem); }
   .v3-hero__copy > p:last-of-type { max-width: 46ch; }
   .v3-actions { margin-top: 26px; }
@@ -72,6 +72,8 @@ body { background: var(--v3-void); }
    (it is set inline by the viewer script, hence !important) so the object and the
    copy share the page's single radial glow; the poster fades at its edges while
    the model loads. */
+/* Keep the canvas inside its reserved row, including below the global 540px minimum. */
+.v3-hero__viewer .viewer, .v3-hero__viewer .model-stage { min-height: 0; }
 .v3-hero__viewer .model-stage { background: transparent !important; }
 /* The featured work starts turning on load; keep its pause control in plain type. */
 .v3-hero__viewer [data-rotation-control="simple"] .immersive-tools:not([hidden]) { display: flex !important; left: auto; right: var(--v3-pad); top: 92px; bottom: auto; padding: 0; transform: none; border: 0; border-radius: 0; background: transparent; backdrop-filter: none; }
@@ -79,8 +81,9 @@ body { background: var(--v3-void); }
 .v3-hero__viewer [data-rotation-control="simple"] [data-tool-rotate] { min-height: 44px; padding: 0 6px; color: var(--v3-muted); background: transparent; border-radius: 0; }
 .v3-hero__viewer [data-rotation-control="simple"] [data-tool-rotate]:hover { color: var(--v3-ink); text-decoration: underline; text-underline-offset: 4px; }
 .v3-hero__viewer [data-rotation-control="simple"] [data-tool-rotate]:focus-visible { outline: 2px solid var(--v3-signal); outline-offset: 3px; }
-.v3-wing-hero__viewer [data-zoom-in],
-.v3-wing-hero__viewer [data-zoom-out] { display: none; }
+/* Zoom by pinching or scrolling; keep the current viewers’ toolbar compact. */
+.immersive-tools [data-zoom-in],
+.immersive-tools [data-zoom-out] { display: none; }
 .v3-hero__viewer [data-poster] {
   -webkit-mask-image: radial-gradient(ellipse farthest-side at 50% 50%, #000 52%, transparent 96%);
   mask-image: radial-gradient(ellipse farthest-side at 50% 50%, #000 52%, transparent 96%);
@@ -172,20 +175,13 @@ body { background: var(--v3-void); }
   .v3-object-record-link { top: 80px; }
 }
 
-/* Phones: the hero copy sits over the model, so the ground fade needs to carry it. */
-@media (max-width: 800px) {
-  .v3-hero__veil {
-    background:
-      linear-gradient(0deg, rgba(var(--v3-veil), .94) 0%, rgba(var(--v3-veil), .74) 38%, rgba(var(--v3-veil), .28) 62%, transparent 80%);
-  }
-}
 @media (max-width: 800px) {
   /* Phones: stack the hero instead of layering it. The object gets the upper
      screen to itself; the title and actions follow in normal flow beneath it. */
   .v3-hero { height: auto; min-height: 0; display: flex; flex-direction: column; background: radial-gradient(120% 60% at 50% 28%, var(--v3-glow) 0%, var(--v3-void) 72%); }
   .v3-hero__viewer { position: relative; inset: auto; height: 58svh; min-height: 380px; max-height: 560px; }
   .v3-hero__veil { display: none; }
-  .v3-hero__copy { position: relative; inset: auto; width: auto; margin-top: -28px; padding: 0 var(--v3-pad); }
+  .v3-hero__copy { position: relative; inset: auto; width: auto; margin-top: 24px; padding: 0 var(--v3-pad); }
   .v3-hero__copy h1 { max-width: none; margin: 14px 0 16px; font-size: clamp(2.6rem, 11vw, 4.6rem); }
   .v3-hero__copy > p:last-of-type { max-width: 34ch; }
   .v3-actions { margin-top: 22px; }
@@ -237,8 +233,6 @@ body { background: var(--v3-void); }
   backdrop-filter: none;
 }
 .v3-exhibition-viewer .immersive-tools button { min-height: 44px; }
-.v3-exhibition-viewer [data-zoom-in],
-.v3-exhibition-viewer [data-zoom-out] { display: none; }
 .v3-exhibition-viewer .stage-hint { top: 12px; width: calc(100% - 24px); max-width: 620px; }
 .v3-exhibition-viewer .viewer:fullscreen { width: 100vw; height: 100dvh; background: var(--v3-void); }
 .v3-exhibition-viewer .viewer:fullscreen .model-stage { height: 100%; overflow: hidden; }

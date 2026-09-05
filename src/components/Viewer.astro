@@ -13,6 +13,8 @@ type Props = {
   autoStart?: boolean | 'visible';
   autoRotate?: boolean;
   autoRotateSpeed?: number;
+  // Positive values turn the sculpture counterclockwise when viewed from above.
+  turntableDegreesPerSecond?: number;
   respectReducedMotion?: boolean;
   rotationControl?: 'full' | 'simple';
   wheelZoom?: boolean;
@@ -32,6 +34,7 @@ const {
   autoStart = true,
   autoRotate = true,
   autoRotateSpeed,
+  turntableDegreesPerSecond,
   respectReducedMotion = true,
   rotationControl = 'full',
   wheelZoom = true,
@@ -44,7 +47,7 @@ const transformJson = JSON.stringify(modelTransform);
 ---
 
 <div class:list={['viewer', { 'viewer--immersive': immersive }]} data-viewer data-auto-start={String(autoStart)}>
-  <div class="model-stage" data-stage data-glb={hasModel ? glb : ''} data-up-axis={upAxis} data-model-transform={transformJson} data-material-appearance={appearanceJson} data-immersive={String(immersive)} data-auto-rotate={String(autoRotate)} data-auto-rotate-speed={autoRotateSpeed} data-respect-reduced-motion={respectReducedMotion ? undefined : 'false'} data-rotation-control={rotationControl === 'simple' ? 'simple' : undefined} data-wheel-zoom={String(wheelZoom)} tabindex={hasModel ? '0' : undefined} aria-label={hasModel ? `Interactive 3D view of ${title}` : undefined}>
+  <div class="model-stage" data-stage data-glb={hasModel ? glb : ''} data-up-axis={upAxis} data-model-transform={transformJson} data-material-appearance={appearanceJson} data-immersive={String(immersive)} data-auto-rotate={String(autoRotate)} data-auto-rotate-speed={autoRotateSpeed} data-turntable-degrees-per-second={turntableDegreesPerSecond} data-respect-reduced-motion={respectReducedMotion ? undefined : 'false'} data-rotation-control={rotationControl === 'simple' ? 'simple' : undefined} data-wheel-zoom={String(wheelZoom)} tabindex={hasModel ? '0' : undefined} aria-label={hasModel ? `Interactive 3D view of ${title}` : undefined}>
     <span class="stage-corner stage-corner--tl" aria-hidden="true"></span>
     <span class="stage-corner stage-corner--tr" aria-hidden="true"></span>
     <span class="stage-corner stage-corner--bl" aria-hidden="true"></span>
@@ -137,6 +140,7 @@ const transformJson = JSON.stringify(modelTransform);
     target: number[];
     autoRotate: boolean;
     wireframe: boolean;
+    turntableAngle?: number;
   };
 
   type Viewer = {
@@ -423,7 +427,10 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     controls.rotateSpeed = 0.9;
     controls.zoomSpeed = immersive ? 1.35 : 0.8;
     controls.mouseButtons = { LEFT: THREE.MOUSE.ROTATE, MIDDLE: THREE.MOUSE.DOLLY, RIGHT: THREE.MOUSE.PAN };
-    controls.autoRotate = rotateOnLoad;
+    const turntableSpeed = Number(stage.dataset.turntableDegreesPerSecond || 0);
+    const turnsModel = Number.isFinite(turntableSpeed) && turntableSpeed !== 0;
+    let rotating = saved?.autoRotate ?? rotateOnLoad;
+    controls.autoRotate = !turnsModel && rotating;
     const timedRotation = stage.dataset.autoRotateSpeed !== undefined;
     const rotationSpeed = Number(stage.dataset.autoRotateSpeed ?? 1);
     controls.autoRotateSpeed = Number.isFinite(rotationSpeed) && rotationSpeed >= 0 ? rotationSpeed : 1;
@@ -491,7 +498,14 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     const normalized = normalizeModel(THREE, model);
     const box = normalized.box;
     const size = normalized.size;
-    scene.add(model);
+    // normalizeModel positions the scan around world origin. Rotate a wrapper so
+    // the scan's original origin cannot move the sculpture off its base.
+    const turntable = new THREE.Group();
+    if (turnsModel) {
+      turntable.add(model);
+      turntable.rotation.y = saved?.turntableAngle ?? 0;
+      scene.add(turntable);
+    } else scene.add(model);
 
     // Tight orthographic shadow frustum: covers the normalized model plus its shadow
     // run-out on the floor, and tracks the key light as the Light slider swings it.
@@ -541,7 +555,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     if (saved) {
       camera.position.fromArray(saved.position);
       controls.target.fromArray(saved.target);
-      controls.autoRotate = saved.autoRotate;
+      controls.autoRotate = !turnsModel && saved.autoRotate;
       for (const item of wireframeMeshes) item.mesh.material = wireframe ? item.wireframeMaterial : item.solidMaterial;
       controls.update(timedRotation ? 0 : undefined);
     }
@@ -553,10 +567,14 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     function frame(now = performance.now()) {
       raf = 0;
       if (disposed || !visible || document.hidden) return;
-      const elapsed = previousFrameTime === undefined ? 0 : Math.min(Math.max((now - previousFrameTime) / 1000, 0), 0.1);
+      const elapsed = previousFrameTime === undefined ? 0 : Math.max((now - previousFrameTime) / 1000, 0);
       previousFrameTime = now;
-      // Explicit speeds use elapsed seconds so high-refresh screens turn at the same rate.
-      controls.update(timedRotation ? elapsed : undefined);
+      // The featured sculpture turns independently of orbit-control interaction state.
+      // Use elapsed time so a slow device does not turn it into a nearly still image.
+      if (turnsModel && rotating) {
+        turntable.rotation.y = (turntable.rotation.y + THREE.MathUtils.degToRad(turntableSpeed) * Math.min(elapsed, 1)) % (Math.PI * 2);
+      }
+      controls.update(timedRotation ? Math.min(elapsed, 0.1) : undefined);
       renderer.render(scene, camera);
       raf = requestAnimationFrame(frame);
     }
@@ -573,19 +591,21 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
       frame();
     }
     document.addEventListener('visibilitychange', updateRendering);
+    window.addEventListener('pageshow', updateRendering);
 
     // Keep pending cleanup attached through material setup and the first render.
     // If initialization throws, start() aborts the activation and releases its context.
     signal.removeEventListener('abort', releasePending);
     return {
       setVisible: (next) => { visible = next; updateRendering(); },
-      capture: () => ({ position: camera.position.toArray(), target: controls.target.toArray(), autoRotate: controls.autoRotate, wireframe }),
+      capture: () => ({ position: camera.position.toArray(), target: controls.target.toArray(), autoRotate: rotating, wireframe, turntableAngle: turntable.rotation.y }),
       dispose: () => {
         if (disposed) return;
         disposed = true;
         cancelAnimationFrame(raf);
         ro.disconnect();
         document.removeEventListener('visibilitychange', updateRendering);
+        window.removeEventListener('pageshow', updateRendering);
         controls.dispose();
         const geometries = new Set<any>();
         const surfaces = new Set<any>();
@@ -615,7 +635,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
       setTexture: (pct) => { const r = 1 - pct / 100; for (const m of materials) { m.roughness = r; m.needsUpdate = true; } },
       setLightAngle: (pct) => placeKey(pct),
       setWireframe: (on) => { wireframe = on; for (const item of wireframeMeshes) item.mesh.material = on ? item.wireframeMaterial : item.solidMaterial; },
-      setAutoRotate: (on) => { controls.autoRotate = on; },
+      setAutoRotate: (on) => { rotating = on; controls.autoRotate = !turnsModel && on; },
       zoom: (factor) => {
         const offset = camera.position.clone().sub(controls.target);
         const distance = Math.max(controls.minDistance, Math.min(controls.maxDistance, offset.length() * factor));
@@ -623,8 +643,8 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
         camera.position.copy(controls.target).add(offset);
         controls.update(timedRotation ? 0 : undefined);
       },
-      reset: () => { camera.position.copy(home.pos); controls.target.copy(home.tgt); controls.update(timedRotation ? 0 : undefined); },
-      defaults: { exposure: Math.round(appearance.exposure * 100), texture: appearance.textureDefault, autoRotate: controls.autoRotate },
+      reset: () => { turntable.rotation.y = 0; camera.position.copy(home.pos); controls.target.copy(home.tgt); controls.update(timedRotation ? 0 : undefined); },
+      defaults: { exposure: Math.round(appearance.exposure * 100), texture: appearance.textureDefault, autoRotate: rotating },
     };
   }
 
