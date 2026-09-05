@@ -58,12 +58,14 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
       <p>{[work.maker, work.displayDate].filter(Boolean).join(' · ')}</p>
     </div>
 
-    <a class="v3-object-record-link" href="#object-record">Object record <span aria-hidden="true">↓</span></a>
+    <div class="v3-object-actions">
+      <a class="v3-object-record-link" href="#object-record">Object record <span aria-hidden="true">↓</span></a>
 
-    <nav class="v3-object-nav" aria-label="Previous and next sculptures">
-      <a href={withBase(v3WorkRoute(previous))} aria-label={`Previous work: ${previous.title}`}><span>←</span><i>{previous.title}</i></a>
-      <a href={withBase(v3WorkRoute(next))} aria-label={`Next work: ${next.title}`}><i>{next.title}</i><span>→</span></a>
-    </nav>
+      <nav class="v3-object-nav" aria-label="Previous and next sculptures">
+        <a href={withBase(v3WorkRoute(previous))} aria-label={`Previous work: ${previous.title}`}><span>←</span><i>{previous.title}</i></a>
+        <a href={withBase(v3WorkRoute(next))} aria-label={`Next work: ${next.title}`}><i>{next.title}</i><span>→</span></a>
+      </nav>
+    </div>
     <p class="v3-object-scroll">Scroll for object details ↓</p>
   </section>
 
@@ -71,6 +73,18 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
     // The interface recedes while the visitor handles the sculpture (see .is-engaged in v3.css).
     const stageSection = document.querySelector('.v3-object-stage');
     const canvasHost = stageSection?.querySelector('.model-stage');
+    const viewerRoot = stageSection?.querySelector('.viewer');
+    // Keep controls within their viewer's event scope, but outside the measured
+    // canvas stage so mobile layout can give them their own expanding row.
+    if (viewerRoot && canvasHost) {
+      const controls = [viewerRoot.querySelector('[data-immersive-tools]'), viewerRoot.querySelector('[data-light-controls]')].filter((element): element is HTMLElement => element instanceof HTMLElement);
+      if (controls.length) {
+        const controlsRow = document.createElement('div');
+        controlsRow.className = 'v3-object-viewer-controls';
+        canvasHost.after(controlsRow);
+        controlsRow.append(...controls);
+      }
+    }
     let quietTimer = 0;
     if (stageSection && canvasHost) {
       // Track live pointers by id so a pinch (two fingers) stays engaged until the
