@@ -9,11 +9,6 @@ import { withBase } from '../lib/urls';
 const randomRoutes = works.map((work) => withBase(v3WorkRoute(work)));
 const heroAppearance = {
   ...featuredWork.materialAppearance,
-  exposure: Math.max(featuredWork.materialAppearance.exposure, 0.48),
-  keyLightIntensity: Math.max(featuredWork.materialAppearance.keyLightIntensity ?? 0, 1.22),
-  fillLightIntensity: Math.max(featuredWork.materialAppearance.fillLightIntensity ?? 0, 0.92),
-  rimLightIntensity: Math.max(featuredWork.materialAppearance.rimLightIntensity ?? 0, 1.24),
-  hemiLightIntensity: Math.max(featuredWork.materialAppearance.hemiLightIntensity ?? 0, 0.86),
   backdropTop: '#1c2b41',
   backdropBase: '#15243a',
   backdropGlow: '#c7b9ff',

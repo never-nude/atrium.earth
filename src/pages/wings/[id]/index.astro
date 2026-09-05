@@ -25,14 +25,6 @@ const rooms = eraOrder
   .map((era) => ({ era, works: wingWorks.filter((work) => work.era === era) }))
   .filter((room) => room.works.length > 0);
 const showRooms = Boolean(wing && rooms.length > 1);
-const heroAppearance = featured ? {
-  ...featured.materialAppearance,
-  exposure: Math.max(featured.materialAppearance.exposure, 0.48),
-  keyLightIntensity: Math.max(featured.materialAppearance.keyLightIntensity ?? 0, 1.18),
-  fillLightIntensity: Math.max(featured.materialAppearance.fillLightIntensity ?? 0, 0.9),
-  rimLightIntensity: Math.max(featured.materialAppearance.rimLightIntensity ?? 0, 1.2),
-  hemiLightIntensity: Math.max(featured.materialAppearance.hemiLightIntensity ?? 0, 0.84),
-} : undefined;
 ---
 
 <V3Layout
@@ -68,7 +60,7 @@ const heroAppearance = featured ? {
           posterLoading="eager"
           upAxis={featured.modelUpAxis}
           modelTransform={featured.modelTransform}
-          materialAppearance={heroAppearance}
+          materialAppearance={featured.materialAppearance}
           wheelZoom={false}
         />
       </div>
