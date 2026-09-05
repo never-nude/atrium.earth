@@ -15,6 +15,17 @@ const heroAppearance = {
   backdropGlowStrength: 0.08,
 };
 const heroTransform = { ...featuredWork.modelTransform, fit: 1.1 };
+
+// Alt text describes the work the way a wall label would: title, maker, date,
+// medium. Placeholder record values never make it into the description.
+const recorded = (value: string) => value && !/not yet recorded|pending|unassigned/i.test(value) ? value : '';
+const heroMaker = recorded(featuredWork.maker);
+const heroDate = recorded(featuredWork.displayDate);
+const heroMedium = recorded(featuredWork.medium);
+const heroAlt = [
+  `${[featuredWork.title, heroMaker, heroDate].filter(Boolean).join(', ')}.`,
+  heroMedium ? `${heroMedium} sculpture in a still view against a dark ground.` : 'Still view of the sculpture against a dark ground.',
+].join(' ');
 ---
 
 <V3Layout
@@ -27,6 +38,7 @@ const heroTransform = { ...featuredWork.modelTransform, fit: 1.1 };
       <Viewer
         glb={withBase(featuredWork.modelGlb)}
         poster={withBase(featuredWork.thumbnailImage)}
+        posterAlt={heroAlt}
         title={featuredWork.title}
         hud={false}
         immersive={true}
@@ -44,7 +56,12 @@ const heroTransform = { ...featuredWork.modelTransform, fit: 1.1 };
     <div class="v3-hero__copy">
       <p class="v3-kicker">Digital sculpture museum · {collectionCount} works</p>
       <h1 id="v3-home-title" class="v3-display">{featuredWork.title}</h1>
-      <p>Examine the work from more than one angle. Drag to turn the model, then scroll for exhibitions and the full collection.</p>
+      <p class="v3-hero__lede v3-hero__lede--live">Examine the work from more than one angle. Drag to turn the model, then scroll for exhibitions and the full collection.</p>
+      <noscript>
+        {/* No JavaScript: the still image is the presentation. Same invitation, no model. */}
+        <style is:inline>.v3-hero__lede--live { display: none; }</style>
+        <p class="v3-hero__lede">Examine the work up close. Scroll for exhibitions and the full collection.</p>
+      </noscript>
       <div class="v3-actions">
         <a class="v3-button v3-button--light" href={withBase(v3WorkRoute(featuredWork))}>View object <span>↗</span></a>
         <a class="v3-button v3-button--ghost" href={withBase('/collection/')}>All {collectionCount} works</a>
