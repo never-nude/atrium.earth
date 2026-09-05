@@ -3943,29 +3943,30 @@
   {
     "slug": "porcellino",
     "collection": "",
-    "title": "Porcellino",
+    "title": "Porcellino (plaster cast)",
     "artist": "",
-    "year": "3rd century BCE",
-    "year_sort": -250,
-    "material": "Marble",
+    "year": "",
+    "year_sort": null,
+    "material": "Plaster cast",
     "museum": "SMK — Royal Cast Collection",
     "source_institution": "SMK Open",
     "source_url": "https://open.smk.dk/en/artwork/image/KAS2157",
     "license": "Public Domain Mark 1.0",
-    "note": "",
+    "note": "SMK records this object as a plaster cast and links it to the seated boar at the Gallerie degli Uffizi (ORIG2796).",
     "tier": 3,
     "index": 144,
     "total": 515,
-    "period": "Ancient",
+    "period": "",
     "model": {
       "sourcePath": "porcellino/porcellino_source_small.stl",
       "format": "stl",
       "sizeBytes": 20002684
     },
-    "search": "porcellino 3rd century bce marble h 137 cm × w 154 cm × d 93 cm smk — royal cast collection smk open",
+    "search": "porcellino (plaster cast) plaster cast h 137 cm × w 154 cm × d 93 cm smk — royal cast collection smk open kas2157",
     "dimensions": "H 137 cm × W 154 cm × D 93 cm",
     "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
-    "accession": "KAS2157"
+    "accession": "KAS2157",
+    "source_record_url": "https://api.smk.dk/api/v1/art/?object_number=KAS2157"
   },
   {
     "slug": "portrait-of-antinoos",
@@ -16747,6 +16748,7 @@
   },
   {
     "slug": "americas/andrew-jackson-clark-mills-npg",
+    "hidden": true,
     "collection": "americas",
     "title": "Andrew Jackson",
     "artist": "Cast after Clark Mills (1810–1883); studio of Cornelius & Baker",

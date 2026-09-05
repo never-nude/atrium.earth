@@ -78,6 +78,13 @@ const transformJson = JSON.stringify(modelTransform);
         <div class="immersive-light__panel" aria-label="Lighting controls">
           <label>Exposure <input type="range" min="5" max="120" step="1" value="20" data-exposure /></label>
           <label>Angle <input type="range" min="0" max="100" step="1" value="15" data-light-angle /></label>
+          <div class="immersive-texture">
+            <div class="immersive-texture__label">
+              <label for={`texture-${uid}`}>Texture</label>
+              <button type="button" data-texture-reset aria-label="Restore original texture" disabled>Reset</button>
+            </div>
+            <input id={`texture-${uid}`} type="range" min="0" max="100" step="1" value="50" data-surface-texture />
+          </div>
         </div>
       </details>
     )}
@@ -117,6 +124,8 @@ const transformJson = JSON.stringify(modelTransform);
 </div>
 
 <script>
+  import { createTextureControl } from '../lib/viewerTexture';
+
   type Viewer = {
     setBrightness: (pct: number) => void;
     setTexture: (pct: number) => void;
@@ -125,6 +134,7 @@ const transformJson = JSON.stringify(modelTransform);
     setAutoRotate: (on: boolean) => void;
     zoom: (factor: number) => void;
     reset: () => void;
+    texture: ReturnType<typeof createTextureControl>;
     defaults: { exposure: number; texture: number };
   };
 
@@ -497,6 +507,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     document.addEventListener('visibilitychange', () => { if (document.hidden) cancelAnimationFrame(raf); else frame(); });
 
     return {
+      texture: createTextureControl(materials),
       setBrightness: (pct) => { renderer.toneMappingExposure = pct / 100; },
       // Slider runs rough (0) → shiny (100); roughness is the inverse.
       setTexture: (pct) => { const r = 1 - pct / 100; for (const m of materials) { m.roughness = r; m.needsUpdate = true; } },
@@ -601,11 +612,34 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
           light.hidden = false;
           const exposure = light.querySelector('[data-exposure]') as HTMLInputElement | null;
           const angle = light.querySelector('[data-light-angle]') as HTMLInputElement | null;
+          const texture = light.querySelector('[data-surface-texture]') as HTMLInputElement | null;
+          const resetTexture = light.querySelector('[data-texture-reset]') as HTMLButtonElement | null;
           if (exposure) {
             exposure.value = String(viewer.defaults.exposure);
             exposure.addEventListener('input', () => viewer.setBrightness(+exposure.value));
           }
           if (angle) angle.addEventListener('input', () => viewer.setLightAngle(+angle.value));
+          if (texture) {
+            const original = viewer.texture.defaultValue;
+            const updateTextureReadout = () => {
+              const value = +texture.value;
+              const finish = value === original ? 'original texture' : value > original ? 'glossier' : 'more matte';
+              texture.setAttribute('aria-valuetext', `${value}, ${finish}`);
+              if (resetTexture) resetTexture.disabled = value === original;
+            };
+            // Binding the control must not alter the scan's authored surface.
+            texture.value = String(original);
+            updateTextureReadout();
+            texture.addEventListener('input', () => {
+              viewer.texture.setValue(+texture.value);
+              updateTextureReadout();
+            });
+            resetTexture?.addEventListener('click', () => {
+              texture.value = String(original);
+              viewer.texture.setValue(original);
+              updateTextureReadout();
+            });
+          }
         }
         if (hud) {
           hud.hidden = false;

@@ -135,6 +135,13 @@ body { background: var(--v3-void); }
 .v3-object-scroll { color: rgba(247, 245, 239, .58); }
 .stage-hint { color: rgba(247, 245, 239, .6); }
 .immersive-tools button { color: rgba(247, 245, 239, .82); }
+.immersive-texture { display: grid; gap: 9px; }
+.immersive-texture input:focus-visible { outline: 2px solid var(--v3-signal); outline-offset: 3px; }
+.immersive-texture__label { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
+.immersive-texture__label button { padding: 0; border: 0; background: transparent; color: var(--v3-muted); font: inherit; font-size: .56rem; font-weight: 600; letter-spacing: .06em; cursor: pointer; }
+.immersive-texture__label button:hover:not(:disabled) { color: var(--v3-ink); }
+.immersive-texture__label button:focus-visible { outline: 2px solid var(--v3-signal); outline-offset: 4px; }
+.immersive-texture__label button:disabled { opacity: .4; cursor: default; }
 .model-stage { background: radial-gradient(100% 70% at 50% 12%, var(--v3-glow), var(--v3-void) 80%); }
 .viewer--immersive:fullscreen, .viewer--immersive:fullscreen .model-stage { background: var(--v3-void); }
 .v3-facts dd, .v3-object-about dd { color: var(--v3-ink); }
