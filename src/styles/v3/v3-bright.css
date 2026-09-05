@@ -73,6 +73,12 @@ body { background: var(--v3-void); }
    copy share the page's single radial glow; the poster fades at its edges while
    the model loads. */
 .v3-hero__viewer .model-stage { background: transparent !important; }
+/* The featured work starts turning on load; keep its pause control in plain type. */
+.v3-hero__viewer [data-rotation-control="simple"] .immersive-tools:not([hidden]) { display: flex !important; left: auto; right: var(--v3-pad); top: 92px; bottom: auto; padding: 0; transform: none; border: 0; border-radius: 0; background: transparent; backdrop-filter: none; }
+.v3-hero__viewer [data-rotation-control="simple"] .immersive-tools button:not([data-tool-rotate]) { display: none; }
+.v3-hero__viewer [data-rotation-control="simple"] [data-tool-rotate] { min-height: 44px; padding: 0 6px; color: var(--v3-muted); background: transparent; border-radius: 0; }
+.v3-hero__viewer [data-rotation-control="simple"] [data-tool-rotate]:hover { color: var(--v3-ink); text-decoration: underline; text-underline-offset: 4px; }
+.v3-hero__viewer [data-rotation-control="simple"] [data-tool-rotate]:focus-visible { outline: 2px solid var(--v3-signal); outline-offset: 3px; }
 .v3-hero__viewer [data-poster] {
   -webkit-mask-image: radial-gradient(ellipse farthest-side at 50% 50%, #000 52%, transparent 96%);
   mask-image: radial-gradient(ellipse farthest-side at 50% 50%, #000 52%, transparent 96%);

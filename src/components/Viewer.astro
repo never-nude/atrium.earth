@@ -13,6 +13,8 @@ type Props = {
   autoStart?: boolean;
   autoRotate?: boolean;
   autoRotateSpeed?: number;
+  respectReducedMotion?: boolean;
+  rotationControl?: 'full' | 'simple';
   wheelZoom?: boolean;
   lightControls?: boolean;
 };
@@ -30,6 +32,8 @@ const {
   autoStart = true,
   autoRotate = true,
   autoRotateSpeed,
+  respectReducedMotion = true,
+  rotationControl = 'full',
   wheelZoom = true,
   lightControls = false,
 } = Astro.props;
@@ -40,7 +44,7 @@ const transformJson = JSON.stringify(modelTransform);
 ---
 
 <div class:list={['viewer', { 'viewer--immersive': immersive }]} data-viewer data-auto-start={String(autoStart)}>
-  <div class="model-stage" data-stage data-glb={hasModel ? glb : ''} data-up-axis={upAxis} data-model-transform={transformJson} data-material-appearance={appearanceJson} data-immersive={String(immersive)} data-auto-rotate={String(autoRotate)} data-auto-rotate-speed={autoRotateSpeed} data-wheel-zoom={String(wheelZoom)} tabindex={hasModel ? '0' : undefined} aria-label={hasModel ? `Interactive 3D view of ${title}` : undefined}>
+  <div class="model-stage" data-stage data-glb={hasModel ? glb : ''} data-up-axis={upAxis} data-model-transform={transformJson} data-material-appearance={appearanceJson} data-immersive={String(immersive)} data-auto-rotate={String(autoRotate)} data-auto-rotate-speed={autoRotateSpeed} data-respect-reduced-motion={respectReducedMotion ? undefined : 'false'} data-rotation-control={rotationControl === 'simple' ? 'simple' : undefined} data-wheel-zoom={String(wheelZoom)} tabindex={hasModel ? '0' : undefined} aria-label={hasModel ? `Interactive 3D view of ${title}` : undefined}>
     <span class="stage-corner stage-corner--tl" aria-hidden="true"></span>
     <span class="stage-corner stage-corner--tr" aria-hidden="true"></span>
     <span class="stage-corner stage-corner--bl" aria-hidden="true"></span>
@@ -137,7 +141,7 @@ const transformJson = JSON.stringify(modelTransform);
     zoom: (factor: number) => void;
     reset: () => void;
     texture: ReturnType<typeof createTextureControl>;
-    defaults: { exposure: number; texture: number };
+    defaults: { exposure: number; texture: number; autoRotate: boolean };
   };
 
   type Appearance = {
@@ -352,6 +356,8 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     const { MeshoptDecoder } = await import('three/examples/jsm/libs/meshopt_decoder.module.js');
     const { applyModelTransform, frameCameraToBox, normalizeModel, parseModelTransform } = await import(`${import.meta.env.BASE_URL}model-render-utils.js`);
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const rotateOnLoad = stage.dataset.autoRotate !== 'false'
+      && (stage.dataset.respectReducedMotion === 'false' || !reduce);
 
     let width = stage.clientWidth || 600;
     let height = stage.clientHeight || 600;
@@ -402,7 +408,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     controls.rotateSpeed = 0.9;
     controls.zoomSpeed = immersive ? 1.35 : 0.8;
     controls.mouseButtons = { LEFT: THREE.MOUSE.ROTATE, MIDDLE: THREE.MOUSE.DOLLY, RIGHT: THREE.MOUSE.PAN };
-    controls.autoRotate = stage.dataset.autoRotate !== 'false' && !reduce;
+    controls.autoRotate = rotateOnLoad;
     const timedRotation = stage.dataset.autoRotateSpeed !== undefined;
     const rotationSpeed = Number(stage.dataset.autoRotateSpeed ?? 1);
     controls.autoRotateSpeed = Number.isFinite(rotationSpeed) && rotationSpeed >= 0 ? rotationSpeed : 1;
@@ -537,7 +543,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
         controls.update(timedRotation ? 0 : undefined);
       },
       reset: () => { camera.position.copy(home.pos); controls.target.copy(home.tgt); controls.update(timedRotation ? 0 : undefined); },
-      defaults: { exposure: Math.round(appearance.exposure * 100), texture: appearance.textureDefault },
+      defaults: { exposure: Math.round(appearance.exposure * 100), texture: appearance.textureDefault, autoRotate: rotateOnLoad },
     };
   }
 
@@ -576,7 +582,6 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
         }
         if (tools) {
           tools.hidden = false;
-          const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
           const zoomIn = tools.querySelector('[data-zoom-in]') as HTMLButtonElement | null;
           const zoomOut = tools.querySelector('[data-zoom-out]') as HTMLButtonElement | null;
           const wire = tools.querySelector('[data-tool-wire]') as HTMLButtonElement | null;
@@ -584,8 +589,20 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
           const reset = tools.querySelector('[data-tool-reset]') as HTMLButtonElement | null;
           const fullscreen = tools.querySelector('[data-tool-fullscreen]') as HTMLButtonElement | null;
           let wireOn = false;
-          let rotateOn = stage?.dataset.autoRotate !== 'false' && !reduce;
-          if (rotate) rotate.setAttribute('aria-pressed', String(rotateOn));
+          let rotateOn = viewer.defaults.autoRotate;
+          const syncRotationButton = () => {
+            if (!rotate) return;
+            if (stage?.dataset.rotationControl === 'simple') {
+              rotate.removeAttribute('aria-pressed');
+              const action = rotateOn ? 'Pause' : 'Resume';
+              rotate.textContent = action;
+              rotate.setAttribute('aria-label', `${action} rotation`);
+              rotate.title = `${action} rotation`;
+            } else {
+              rotate.setAttribute('aria-pressed', String(rotateOn));
+            }
+          };
+          syncRotationButton();
           zoomIn?.addEventListener('click', () => viewer.zoom(0.68));
           zoomOut?.addEventListener('click', () => viewer.zoom(1.46));
           wire?.addEventListener('click', () => {
@@ -595,7 +612,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
           });
           rotate?.addEventListener('click', () => {
             rotateOn = !rotateOn;
-            rotate.setAttribute('aria-pressed', String(rotateOn));
+            syncRotationButton();
             viewer.setAutoRotate(rotateOn);
           });
           reset?.addEventListener('click', () => viewer.reset());
@@ -658,7 +675,6 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
         }
         if (hud) {
           hud.hidden = false;
-          const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
           const brightness = hud.querySelector('[data-brightness]') as HTMLInputElement | null;
           const texture = hud.querySelector('[data-texture]') as HTMLInputElement | null;
           const light = hud.querySelector('[data-light]') as HTMLInputElement | null;
@@ -672,7 +688,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
           if (brightness) { viewer.setBrightness(+brightness.value); brightness.addEventListener('input', () => { viewer.setBrightness(+brightness.value); if (readB) readB.textContent = `${brightness.value}%`; }); }
           if (texture) { viewer.setTexture(+texture.value); texture.addEventListener('input', () => viewer.setTexture(+texture.value)); }
           if (light) { viewer.setLightAngle(+light.value); light.addEventListener('input', () => viewer.setLightAngle(+light.value)); }
-          if (autorotate) { autorotate.checked = stage?.dataset.autoRotate !== 'false' && !reduce; viewer.setAutoRotate(autorotate.checked); autorotate.addEventListener('change', () => viewer.setAutoRotate(autorotate.checked)); }
+          if (autorotate) { autorotate.checked = viewer.defaults.autoRotate; viewer.setAutoRotate(autorotate.checked); autorotate.addEventListener('change', () => viewer.setAutoRotate(autorotate.checked)); }
           if (wire) wire.addEventListener('change', () => viewer.setWireframe(wire.checked));
           if (reset) reset.addEventListener('click', () => viewer.reset());
         }
