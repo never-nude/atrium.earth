@@ -1,5 +1,6 @@
 ---
 import V3Layout from '../../../layouts/v3/V3Layout.astro';
+import Viewer from '../../../components/Viewer.astro';
 import { exhibitions, nextExhibition, type V3Exhibition, v3ExhibitionRoute, v3WorkRoute } from '../../../lib/v3';
 import { withBase } from '../../../lib/urls';
 
@@ -20,10 +21,23 @@ const stops = exhibition.works.map((work, index) => ({
 ---
 
 <V3Layout title={exhibition.title} description={exhibition.summary} image={lead.thumbnailImage}>
-  <header class="v3-exhero" style={`--ex-accent:${exhibition.accent}`}>
-    <span class="v3-exhero__img v3-float v3-float--soft" aria-hidden="true">
-      <img src={withBase(lead.thumbnailImage)} alt="" width="720" height="900" loading="eager" decoding="async" />
-    </span>
+  <header class="v3-exhero v3-exhero--interactive" style={`--ex-accent:${exhibition.accent}`}>
+    <div class="v3-exhero__viewer v3-exhibition-viewer v3-float v3-float--soft">
+      <Viewer
+        glb={lead.modelGlb ? withBase(lead.modelGlb) : ''}
+        poster={withBase(lead.thumbnailImage)}
+        title={lead.title}
+        hud={false}
+        immersive={true}
+        autoStart="visible"
+        autoRotate={true}
+        autoRotateSpeed={0.25}
+        posterLoading="eager"
+        upAxis={lead.modelUpAxis}
+        modelTransform={lead.modelTransform}
+        materialAppearance={lead.materialAppearance}
+      />
+    </div>
     <div class="v3-exhero__copy">
       <p class="v3-kicker">Exhibition {exhibition.number} · {exhibition.kicker}</p>
       <h1 class="v3-display">{exhibition.title}</h1>
@@ -47,15 +61,27 @@ const stops = exhibition.works.map((work, index) => ({
   <div class="v3-walk" style={`--ex-accent:${exhibition.accent}`}>
     {stops.map((stop) => (
       <article class="v3-stop v3-reveal" id={`stop-${stop.index}`} data-v3-stop={stop.index} aria-label={`Stop ${stop.index}: ${stop.work.title}`}>
-        <a class="v3-stop__image v3-float" href={withBase(v3WorkRoute(stop.work))} style={`view-transition-name: w-${stop.work.id};`}>
-          <img src={withBase(stop.work.thumbnailImage)} alt={stop.work.title} width="720" height="900" loading={stop.index <= 2 ? 'eager' : 'lazy'} decoding="async" />
-        </a>
+        <div class="v3-stop__viewer v3-exhibition-viewer v3-float" style={`view-transition-name: w-${stop.work.id};`}>
+          <Viewer
+            glb={stop.work.modelGlb ? withBase(stop.work.modelGlb) : ''}
+            poster={withBase(stop.work.thumbnailImage)}
+            title={stop.work.title}
+            hud={false}
+            immersive={true}
+            autoStart="visible"
+            autoRotate={false}
+            posterLoading="lazy"
+            upAxis={stop.work.modelUpAxis}
+            modelTransform={stop.work.modelTransform}
+            materialAppearance={stop.work.materialAppearance}
+          />
+        </div>
         <div class="v3-stop__copy">
           <span class="v3-stop__no" aria-hidden="true">{String(stop.index).padStart(2, '0')}</span>
           <h2>{stop.work.title}</h2>
           {stop.meta && <p class="v3-stop__meta">{stop.meta}</p>}
           {stop.text && <p class="v3-wall">{stop.text}</p>}
-          <a class="v3-stop__open" href={withBase(v3WorkRoute(stop.work))}>Examine in 3D <span>↗</span></a>
+          <a class="v3-stop__open" href={withBase(v3WorkRoute(stop.work))}>View object record <span>↗</span></a>
         </div>
       </article>
     ))}

@@ -10,7 +10,7 @@ type Props = {
   materialAppearance?: Record<string, unknown>;
   immersive?: boolean;
   posterLoading?: 'eager' | 'lazy';
-  autoStart?: boolean;
+  autoStart?: boolean | 'visible';
   autoRotate?: boolean;
   autoRotateSpeed?: number;
   respectReducedMotion?: boolean;
@@ -132,7 +132,17 @@ const transformJson = JSON.stringify(modelTransform);
 <script>
   import { createTextureControl } from '../lib/viewerTexture';
 
+  type ViewState = {
+    position: number[];
+    target: number[];
+    autoRotate: boolean;
+    wireframe: boolean;
+  };
+
   type Viewer = {
+    setVisible: (visible: boolean) => void;
+    capture: () => ViewState;
+    dispose: () => void;
     setBrightness: (pct: number) => void;
     setTexture: (pct: number) => void;
     setLightAngle: (pct: number) => void;
@@ -347,7 +357,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     material.needsUpdate = true;
   }
 
-  async function buildViewer(stage: HTMLElement, glb: string): Promise<Viewer> {
+  async function buildViewer(stage: HTMLElement, glb: string, saved: ViewState | undefined, signal: AbortSignal): Promise<Viewer> {
     const THREE = await import('three');
     const { DRACOLoader } = await import('three/examples/jsm/loaders/DRACOLoader.js');
     const { GLTFLoader } = await import('three/examples/jsm/loaders/GLTFLoader.js');
@@ -355,6 +365,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     const { RoomEnvironment } = await import('three/examples/jsm/environments/RoomEnvironment.js');
     const { MeshoptDecoder } = await import('three/examples/jsm/libs/meshopt_decoder.module.js');
     const { applyModelTransform, frameCameraToBox, normalizeModel, parseModelTransform } = await import(`${import.meta.env.BASE_URL}model-render-utils.js`);
+    signal.throwIfAborted();
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const rotateOnLoad = stage.dataset.autoRotate !== 'false'
       && (stage.dataset.respectReducedMotion === 'false' || !reduce);
@@ -381,7 +392,11 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     const camera = new THREE.PerspectiveCamera(35, width / height, immersive ? 0.001 : 0.01, 200);
 
     const pmrem = new THREE.PMREMGenerator(renderer);
-    scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+    const room = new RoomEnvironment();
+    const environment = pmrem.fromScene(room, 0.04);
+    scene.environment = environment.texture;
+    room.dispose();
+    pmrem.dispose();
 
     scene.add(new THREE.HemisphereLight(0xeaf0f7, 0x0b1220, appearance.hemiLightIntensity ?? 0.7));
     const key = new THREE.DirectionalLight(0xfff1dd, appearance.keyLightIntensity ?? 2.4);
@@ -418,7 +433,25 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     const dracoLoader = new DRACOLoader();
     dracoLoader.setDecoderPath(`${import.meta.env.BASE_URL}vendor/draco/`);
     loader.setDRACOLoader(dracoLoader);
-    const gltf = await loader.loadAsync(glb);
+    const releasePending = () => {
+      controls.dispose();
+      environment.dispose();
+      renderer.dispose();
+      renderer.forceContextLoss();
+      renderer.domElement.remove();
+    };
+    signal.addEventListener('abort', releasePending, { once: true });
+    let gltf;
+    try {
+      gltf = await loader.loadAsync(glb);
+    } catch (error) {
+      signal.removeEventListener('abort', releasePending);
+      if (!signal.aborted) releasePending();
+      throw error;
+    } finally {
+      dracoLoader.dispose();
+    }
+    signal.throwIfAborted();
     const model = gltf.scene;
     const transform = parseModelTransform(stage.dataset.modelTransform || stage.dataset.upAxis || 'auto', stage.dataset.upAxis || 'auto');
 
@@ -504,10 +537,22 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     scene.add(ground);
 
     const home = { pos: camera.position.clone(), tgt: controls.target.clone() };
+    let wireframe = saved?.wireframe ?? false;
+    if (saved) {
+      camera.position.fromArray(saved.position);
+      controls.target.fromArray(saved.target);
+      controls.autoRotate = saved.autoRotate;
+      for (const item of wireframeMeshes) item.mesh.material = wireframe ? item.wireframeMaterial : item.solidMaterial;
+      controls.update(timedRotation ? 0 : undefined);
+    }
 
+    let visible = true;
+    let disposed = false;
     let raf = 0;
     let previousFrameTime: number | undefined;
     function frame(now = performance.now()) {
+      raf = 0;
+      if (disposed || !visible || document.hidden) return;
       const elapsed = previousFrameTime === undefined ? 0 : Math.min(Math.max((now - previousFrameTime) / 1000, 0), 0.1);
       previousFrameTime = now;
       // Explicit speeds use elapsed seconds so high-refresh screens turn at the same rate.
@@ -522,18 +567,54 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
       renderer.setSize(width, height); camera.aspect = width / height; camera.updateProjectionMatrix();
     });
     ro.observe(stage);
-    document.addEventListener('visibilitychange', () => {
-      if (document.hidden) cancelAnimationFrame(raf);
-      else { previousFrameTime = undefined; frame(); }
-    });
+    function updateRendering() {
+      cancelAnimationFrame(raf);
+      previousFrameTime = undefined;
+      frame();
+    }
+    document.addEventListener('visibilitychange', updateRendering);
 
+    // Keep pending cleanup attached through material setup and the first render.
+    // If initialization throws, start() aborts the activation and releases its context.
+    signal.removeEventListener('abort', releasePending);
     return {
+      setVisible: (next) => { visible = next; updateRendering(); },
+      capture: () => ({ position: camera.position.toArray(), target: controls.target.toArray(), autoRotate: controls.autoRotate, wireframe }),
+      dispose: () => {
+        if (disposed) return;
+        disposed = true;
+        cancelAnimationFrame(raf);
+        ro.disconnect();
+        document.removeEventListener('visibilitychange', updateRendering);
+        controls.dispose();
+        const geometries = new Set<any>();
+        const surfaces = new Set<any>();
+        const textures = new Set<any>();
+        scene.traverse((object: any) => {
+          if (object.geometry) geometries.add(object.geometry);
+          for (const material of [object.material].flat()) if (material) surfaces.add(material);
+        });
+        for (const item of wireframeMeshes) {
+          for (const material of [item.solidMaterial, item.wireframeMaterial].flat()) surfaces.add(material);
+        }
+        for (const material of surfaces) {
+          for (const value of Object.values(material)) if ((value as any)?.isTexture) textures.add(value);
+          material.dispose();
+        }
+        for (const geometry of geometries) geometry.dispose();
+        for (const texture of textures) texture.dispose();
+        key.shadow.dispose();
+        environment.dispose();
+        renderer.dispose();
+        renderer.forceContextLoss();
+        renderer.domElement.remove();
+      },
       texture: createTextureControl(materials),
       setBrightness: (pct) => { renderer.toneMappingExposure = pct / 100; },
       // Slider runs rough (0) → shiny (100); roughness is the inverse.
       setTexture: (pct) => { const r = 1 - pct / 100; for (const m of materials) { m.roughness = r; m.needsUpdate = true; } },
       setLightAngle: (pct) => placeKey(pct),
-      setWireframe: (on) => { for (const item of wireframeMeshes) item.mesh.material = on ? item.wireframeMaterial : item.solidMaterial; },
+      setWireframe: (on) => { wireframe = on; for (const item of wireframeMeshes) item.mesh.material = on ? item.wireframeMaterial : item.solidMaterial; },
       setAutoRotate: (on) => { controls.autoRotate = on; },
       zoom: (factor) => {
         const offset = camera.position.clone().sub(controls.target);
@@ -543,8 +624,19 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
         controls.update(timedRotation ? 0 : undefined);
       },
       reset: () => { camera.position.copy(home.pos); controls.target.copy(home.tgt); controls.update(timedRotation ? 0 : undefined); },
-      defaults: { exposure: Math.round(appearance.exposure * 100), texture: appearance.textureDefault, autoRotate: rotateOnLoad },
+      defaults: { exposure: Math.round(appearance.exposure * 100), texture: appearance.textureDefault, autoRotate: controls.autoRotate },
     };
+  }
+
+  // Exhibition pages can contain many models. Keep four nearby/recent viewers,
+  // including in-flight loads; retain the visitor's camera when an old one is released.
+  const residents = new Map<Element, { visible: () => boolean; release: () => void }>();
+  function trimResidents() {
+    for (const [element, resident] of residents) {
+      if (residents.size <= 4) break;
+      if (resident.visible() || document.fullscreenElement === element || element.contains(document.activeElement)) continue;
+      resident.release();
+    }
   }
 
   for (const root of document.querySelectorAll('[data-viewer]')) {
@@ -558,15 +650,51 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     const tools = root.querySelector('[data-immersive-tools]') as HTMLElement | null;
     const light = root.querySelector('[data-light-controls]') as HTMLElement | null;
     const hint = root.querySelector('[data-hint]') as HTMLElement | null;
+    const lazy = root.getAttribute('data-auto-start') === 'visible' && 'IntersectionObserver' in window;
+    let visible = !lazy;
+    let activeViewer: Viewer | undefined;
+    let saved: ViewState | undefined;
+    let bindings: AbortController | undefined;
+    let hintTimer: number | undefined;
+    let generation = 0;
     let started = false;
+
+    function release() {
+      generation += 1;
+      if (activeViewer) saved = activeViewer.capture();
+      activeViewer?.dispose();
+      activeViewer = undefined;
+      bindings?.abort();
+      window.clearTimeout(hintTimer);
+      stage!.classList.remove('is-live');
+      for (const element of [loading, tools, light, hud, hint]) if (element) element.hidden = true;
+      if (poster) poster.style.opacity = '1';
+      if (activate) activate.hidden = false;
+      residents.delete(root);
+      started = false;
+    }
 
     async function start() {
       if (started) return; started = true;
+      const current = ++generation;
+      const events = new AbortController();
+      bindings = events;
+      if (lazy) {
+        residents.delete(root);
+        residents.set(root, { visible: () => visible, release });
+        trimResidents();
+      }
       if (activate) activate.hidden = true;
       if (poster) poster.style.opacity = '0';
       if (loading) loading.hidden = false;
       try {
-        const viewer = await buildViewer(stage!, glb);
+        const viewer = await buildViewer(stage!, glb, saved, events.signal);
+        if (current !== generation) { viewer.dispose(); return; }
+        activeViewer = viewer;
+        viewer.setVisible(visible);
+        function on<K extends keyof HTMLElementEventMap>(target: HTMLElement | Document | null, type: K, listener: (event: HTMLElementEventMap[K]) => void) {
+          target?.addEventListener(type, listener as EventListener, { signal: events.signal });
+        }
         if (loading) loading.hidden = true;
         stage!.classList.add('is-live');
         if (hint) {
@@ -575,8 +703,8 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
           // pointerdowns count — toolbar taps bubble through the stage and must not eat it.
           hint.hidden = false;
           const dismissHint = () => hint.classList.add('is-dismissed');
-          window.setTimeout(dismissHint, 7000);
-          stage!.addEventListener('pointerdown', (event) => {
+          hintTimer = window.setTimeout(dismissHint, 7000);
+          on(stage!, 'pointerdown', (event) => {
             if (event.target instanceof Element && event.target.classList.contains('viewer-canvas')) dismissHint();
           });
         }
@@ -588,7 +716,8 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
           const rotate = tools.querySelector('[data-tool-rotate]') as HTMLButtonElement | null;
           const reset = tools.querySelector('[data-tool-reset]') as HTMLButtonElement | null;
           const fullscreen = tools.querySelector('[data-tool-fullscreen]') as HTMLButtonElement | null;
-          let wireOn = false;
+          let wireOn = saved?.wireframe ?? false;
+          wire?.setAttribute('aria-pressed', String(wireOn));
           let rotateOn = viewer.defaults.autoRotate;
           const syncRotationButton = () => {
             if (!rotate) return;
@@ -603,24 +732,24 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
             }
           };
           syncRotationButton();
-          zoomIn?.addEventListener('click', () => viewer.zoom(0.68));
-          zoomOut?.addEventListener('click', () => viewer.zoom(1.46));
-          wire?.addEventListener('click', () => {
+          on(zoomIn, 'click', () => viewer.zoom(0.68));
+          on(zoomOut, 'click', () => viewer.zoom(1.46));
+          on(wire, 'click', () => {
             wireOn = !wireOn;
-            wire.setAttribute('aria-pressed', String(wireOn));
+            wire?.setAttribute('aria-pressed', String(wireOn));
             viewer.setWireframe(wireOn);
           });
-          rotate?.addEventListener('click', () => {
+          on(rotate, 'click', () => {
             rotateOn = !rotateOn;
             syncRotationButton();
             viewer.setAutoRotate(rotateOn);
           });
-          reset?.addEventListener('click', () => viewer.reset());
-          fullscreen?.addEventListener('click', async () => {
+          on(reset, 'click', () => viewer.reset());
+          on(fullscreen, 'click', async () => {
             if (document.fullscreenElement === root) await document.exitFullscreen();
             else await root.requestFullscreen?.();
           });
-          document.addEventListener('fullscreenchange', () => {
+          on(document, 'fullscreenchange', () => {
             const expanded = document.fullscreenElement === root;
             fullscreen?.setAttribute('aria-pressed', String(expanded));
             if (fullscreen) {
@@ -628,7 +757,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
               fullscreen.title = expanded ? 'Exit full screen' : 'Enter full screen';
             }
           });
-          stage!.addEventListener('keydown', (event) => {
+          on(stage!, 'keydown', (event) => {
             if (event.key === '+' || event.key === '=') { event.preventDefault(); viewer.zoom(0.68); }
             if (event.key === '-' || event.key === '_') { event.preventDefault(); viewer.zoom(1.46); }
             if (event.key === '0') { event.preventDefault(); viewer.reset(); }
@@ -648,9 +777,9 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
           const resetTexture = light.querySelector('[data-texture-reset]') as HTMLButtonElement | null;
           if (exposure) {
             exposure.value = String(viewer.defaults.exposure);
-            exposure.addEventListener('input', () => viewer.setBrightness(+exposure.value));
+            on(exposure, 'input', () => viewer.setBrightness(+exposure.value));
           }
-          if (angle) angle.addEventListener('input', () => viewer.setLightAngle(+angle.value));
+          if (angle) on(angle, 'input', () => viewer.setLightAngle(+angle.value));
           if (texture) {
             const original = viewer.texture.defaultValue;
             const updateTextureReadout = () => {
@@ -662,11 +791,11 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
             // Binding the control must not alter the scan's authored surface.
             texture.value = String(original);
             updateTextureReadout();
-            texture.addEventListener('input', () => {
+            on(texture, 'input', () => {
               viewer.texture.setValue(+texture.value);
               updateTextureReadout();
             });
-            resetTexture?.addEventListener('click', () => {
+            on(resetTexture, 'click', () => {
               texture.value = String(original);
               viewer.texture.setValue(original);
               updateTextureReadout();
@@ -685,19 +814,21 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
           if (brightness) brightness.value = String(viewer.defaults.exposure);
           if (texture) texture.value = String(viewer.defaults.texture);
           if (readB && brightness) readB.textContent = `${brightness.value}%`;
-          if (brightness) { viewer.setBrightness(+brightness.value); brightness.addEventListener('input', () => { viewer.setBrightness(+brightness.value); if (readB) readB.textContent = `${brightness.value}%`; }); }
-          if (texture) { viewer.setTexture(+texture.value); texture.addEventListener('input', () => viewer.setTexture(+texture.value)); }
-          if (light) { viewer.setLightAngle(+light.value); light.addEventListener('input', () => viewer.setLightAngle(+light.value)); }
-          if (autorotate) { autorotate.checked = viewer.defaults.autoRotate; viewer.setAutoRotate(autorotate.checked); autorotate.addEventListener('change', () => viewer.setAutoRotate(autorotate.checked)); }
-          if (wire) wire.addEventListener('change', () => viewer.setWireframe(wire.checked));
-          if (reset) reset.addEventListener('click', () => viewer.reset());
+          if (brightness) { viewer.setBrightness(+brightness.value); on(brightness, 'input', () => { viewer.setBrightness(+brightness.value); if (readB) readB.textContent = `${brightness.value}%`; }); }
+          if (texture) { viewer.setTexture(+texture.value); on(texture, 'input', () => viewer.setTexture(+texture.value)); }
+          if (light) { viewer.setLightAngle(+light.value); on(light, 'input', () => viewer.setLightAngle(+light.value)); }
+          if (autorotate) { autorotate.checked = viewer.defaults.autoRotate; viewer.setAutoRotate(autorotate.checked); on(autorotate, 'change', () => viewer.setAutoRotate(autorotate.checked)); }
+          if (wire) on(wire, 'change', () => viewer.setWireframe(wire.checked));
+          if (reset) on(reset, 'click', () => viewer.reset());
         }
-        stage!.addEventListener('dblclick', (event) => {
+        on(stage!, 'dblclick', (event) => {
           // Double-tap resets only on the model itself — a double-click on the light
           // sliders (or any other control inside the stage) must not throw the view away.
           if (event.target instanceof Element && event.target.classList.contains('viewer-canvas')) viewer.reset();
         });
       } catch (err) {
+        if (current !== generation) return;
+        release();
         if (loading) loading.hidden = true;
         if (poster) poster.style.opacity = '1';
         if (activate) activate.hidden = false;
@@ -706,7 +837,20 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     }
 
     if (activate) activate.addEventListener('click', start);
-    // Load on open (after first paint), per the 3D-first intent.
+    if (lazy && 'IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(([entry]) => {
+        visible = entry.isIntersecting;
+        activeViewer?.setVisible(visible);
+        if (visible) {
+          const resident = residents.get(root);
+          if (resident) { residents.delete(root); residents.set(root, resident); }
+          start();
+        }
+        trimResidents();
+      }, { rootMargin: '200px 0px' });
+      observer.observe(stage);
+    }
+    // Load single featured works after first paint; older browsers retain click activation.
     if (root.getAttribute('data-auto-start') === 'true') {
       if ('requestIdleCallback' in window) (window as any).requestIdleCallback(() => start(), { timeout: 1500 });
       else setTimeout(start, 300);
