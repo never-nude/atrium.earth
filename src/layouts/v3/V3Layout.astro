@@ -90,16 +90,6 @@ const pageTitle = title === 'Atrium.Earth' ? 'Atrium.Earth — Digital Sculpture
         for (const el of revealed) el.classList.add('is-in');
       }
 
-      // The object label sheet behaves like a modal; Escape must close it
-      // and hand focus back to its toggle.
-      document.addEventListener('keydown', (event) => {
-        if (event.key !== 'Escape') return;
-        const sheet = document.querySelector('.v3-object-about[open]');
-        if (sheet instanceof HTMLDetailsElement) {
-          sheet.open = false;
-          sheet.querySelector('summary')?.focus();
-        }
-      });
     </script>
   </body>
 </html>

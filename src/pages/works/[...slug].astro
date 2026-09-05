@@ -37,7 +37,7 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
   image={work.thumbnailImage}
   immersive={true}
 >
-  <section class="v3-object-stage" aria-labelledby="v3-object-title" style={`view-transition-name: w-${work.id};`}>
+  <section id="sculpture" class="v3-object-stage" aria-labelledby="v3-object-title" tabindex="-1" style={`view-transition-name: w-${work.id};`}>
     <Viewer
       glb={withBase(work.modelGlb)}
       poster={withBase(work.thumbnailImage)}
@@ -58,16 +58,7 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
       <p>{[work.maker, work.displayDate].filter(Boolean).join(' · ')}</p>
     </div>
 
-    <details class="v3-object-about">
-      <summary>Object record <span>+</span></summary>
-      <div>
-        <p class="v3-kicker">Object record</p>
-        <h2>{work.title}</h2>
-        <dl>{facts.map(([label, value]) => <div><dt>{label}</dt><dd>{value}</dd></div>)}</dl>
-        {work.sourceRecordUrl && <a href={work.sourceRecordUrl}>Museum record ↗</a>}
-        {!work.sourceRecordUrl && work.sourceUrl && <a href={work.sourceUrl}>3D model source: {sourceLabel} ↗</a>}
-      </div>
-    </details>
+    <a class="v3-object-record-link" href="#object-record">Object record <span aria-hidden="true">↓</span></a>
 
     <nav class="v3-object-nav" aria-label="Previous and next sculptures">
       <a href={withBase(v3WorkRoute(previous))} aria-label={`Previous work: ${previous.title}`}><span>←</span><i>{previous.title}</i></a>
@@ -109,10 +100,11 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
     }
   </script>
 
-  <section class="v3-object-record">
-    <div class="v3-object-record__intro">
+  <section class="v3-object-record" aria-labelledby="object-record-title">
+    <div id="object-record" class="v3-object-record__intro" tabindex="-1">
       <p class="v3-kicker">Object record</p>
-      <h2 class="v3-display">{work.title}</h2>
+      <h2 id="object-record-title" class="v3-display">{work.title}</h2>
+      <a class="v3-object-return" href="#sculpture">Back to sculpture <span aria-hidden="true">↑</span></a>
     </div>
 
     <dl class="v3-facts">
