@@ -2,14 +2,21 @@
 import V3CollectionExplorer from '../../components/v3/V3CollectionExplorer.astro';
 import V3Layout from '../../layouts/v3/V3Layout.astro';
 import { works } from '../../lib/catalog';
+import firstBatch from '../../../research/diverse-collections-20260907.json';
+import secondBatch from '../../../research/diverse-collections-round2-20260907.json';
 
 // Local review uses the production cards and object viewer. It emits no route
 // in a production build.
 export function getStaticPaths() {
-  return import.meta.env.DEV ? [{ params: { batch: 'diverse-collections' } }] : [];
+  return import.meta.env.DEV ? [
+    { params: { batch: 'diverse-collections' } },
+    { params: { batch: 'diverse-collections-round2' } },
+  ] : [];
 }
 
-const additions = works.filter((work) => work.ingested === '2026-09-07');
+const batch = Astro.params.batch === 'diverse-collections-round2' ? secondBatch : firstBatch;
+const batchSlugs = new Set(batch.works.map((work) => work.slug));
+const additions = works.filter((work) => batchSlugs.has(work.slug));
 ---
 
 <V3Layout title="New acquisitions · local preview" description="Review the latest additions to Atrium.">
