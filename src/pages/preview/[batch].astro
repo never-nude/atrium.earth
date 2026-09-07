@@ -1,0 +1,25 @@
+---
+import V3CollectionExplorer from '../../components/v3/V3CollectionExplorer.astro';
+import V3Layout from '../../layouts/v3/V3Layout.astro';
+import { works } from '../../lib/catalog';
+
+// Local review uses the production cards and object viewer. It emits no route
+// in a production build.
+export function getStaticPaths() {
+  return import.meta.env.DEV ? [{ params: { batch: 'diverse-collections' } }] : [];
+}
+
+const additions = works.filter((work) => work.ingested === '2026-09-07');
+---
+
+<V3Layout title="New acquisitions · local preview" description="Review the latest additions to Atrium.">
+  <meta slot="head" name="robots" content="noindex, nofollow" />
+  <header class="v3-page-hero">
+    <p class="v3-kicker">Local preview / {additions.length} new works</p>
+    <h1 class="v3-display">New to Atrium.</h1>
+    <p>African, American, Asian, and Oceanian works. Select a piece to explore it in three dimensions.</p>
+  </header>
+  <section class="v3-collection" aria-label="New works">
+    <V3CollectionExplorer works={additions} />
+  </section>
+</V3Layout>
