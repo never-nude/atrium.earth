@@ -1,3 +1,4 @@
+import { existsSync } from 'node:fs';
 import rawCatalog from '../data/catalog.json';
 import rawPreviews from '../data/previews.json';
 import rawRenders from '../data/renders.json';
@@ -12,6 +13,7 @@ type RawWork = {
   hidden?: boolean;
   wing?: WingId | null;
   collection?: string | null;
+  culture?: string | null;
   title: string;
   artist?: string | null;
   year?: string | null;
@@ -422,6 +424,7 @@ function geographyFor(raw: RawWork): string {
 }
 
 function cultureFor(raw: RawWork, geography: string): string {
+  if (clean(raw.culture)) return clean(raw.culture);
   const collection = clean(raw.collection);
   if (collectionCulture[collection]) return collectionCulture[collection];
   if (makerCollections.has(collection)) return 'European';
@@ -617,7 +620,10 @@ function normalize(raw: RawWork, fallbackIndex: number): Work {
     relatedWorks: [],
     posterImage: `/previews/posters/${raw.slug}/poster.svg`,
     thumbnailImage: renderSet.has(raw.slug) ? `/previews/renders/${raw.slug}/thumb.webp` : `/previews/posters/${raw.slug}/poster.svg`,
-    modelGlb: preview?.url || '',
+    // Local review can use a downloaded mirror without depending on R2 CORS.
+    modelGlb: import.meta.env?.DEV && existsSync(`public/models/previews/${raw.slug}/preview.glb`)
+      ? `/models/previews/${raw.slug}/preview.glb`
+      : preview?.url || '',
     modelUpAxis: legacyTransformString(modelTransform),
     modelTransform,
     modelStats: modelStatsFor(preview, raw),
