@@ -1,0 +1,681 @@
+{
+  "date": "2026-09-07",
+  "base_commit": "815f50a3d5a7d2ec2a75fd16aab62d9be2606ef9",
+  "scope": "Monumental and life-size sculpture from the second half of the twentieth century onward. Nine additions approved for publication on 7 September 2026.",
+  "rights_note": "Per-object model licenses verified against current primary metadata. Preserve artists’ credits and underlying artwork rights separately.",
+  "archive": "Public Objaverse 1.0 GLBs from allenai/objaverse on Hugging Face; each file matched by Sketchfab UID and SHA-256.",
+  "works": [
+    {
+      "uid": "929f40cb045647c19fc5cd881e5f6400",
+      "slug": "modern/valdes-la-mariposa",
+      "title": "La Mariposa",
+      "artist": "Manolo Valdés",
+      "year": "2016",
+      "year_sort": 2016,
+      "material": "Aluminium and epoxy paint",
+      "dimensions": "516 × 665 × 670 cm",
+      "museum": "City of Alicante, Plaza de Galicia",
+      "geography": "Spain",
+      "wing": "europe",
+      "source_record_url": "https://www.fundacionhortensiaherrero.org/memorias/2018/fundacionhortensiaherrero-memoria-2018.pdf",
+      "related": [
+        "https://www.fundacionhortensiaherrero.org/memorias/2017/fundacionhortensiaherrero-memoria-2017.pdf"
+      ],
+      "capture": "Independent capture of the monumental sculpture donated to Alicante by the Fundación Hortensia Herrero. Minor roughness at the butterfly edges remains in the scan.",
+      "evidence": "The foundation records the donation and permanent location; dimensions and 2016 date are recorded by the scan contributor.",
+      "collection": "modern",
+      "source_title": "\"La Mariposa\" de Manolo Valdés - Sculpture",
+      "source_model_url": "https://sketchfab.com/3d-models/la-mariposa-de-manolo-valdes-sculpture-929f40cb045647c19fc5cd881e5f6400",
+      "primary_metadata_url": "https://api.sketchfab.com/v3/models/929f40cb045647c19fc5cd881e5f6400",
+      "source_institution": "Ximo Vilaplana",
+      "primary_model_author": "Ximo Vilaplana",
+      "license": "CC BY 4.0",
+      "license_url": "http://creativecommons.org/licenses/by/4.0/",
+      "license_verified": "2026-09-07",
+      "model_published": "2020-10-05T10:11:57.602608",
+      "archive_path": "glbs/000-079/929f40cb045647c19fc5cd881e5f6400.glb",
+      "download_url": "https://huggingface.co/datasets/allenai/objaverse/resolve/main/glbs/000-079/929f40cb045647c19fc5cd881e5f6400.glb",
+      "source_sha256": "af8b5f232ec1319fd1d047fc11b6c68ea0e985fc0773d373036e371d745125d9",
+      "preview_sha256": "c3f12b78ed4855e7e9129a0cf6d7f4bccb94d1d0ead3cff42a032c99dddc6ce7",
+      "preview_bytes": 3216144,
+      "preview_faces": 547792,
+      "preparation": [
+        "Baked node transforms into geometry to make camera bounds tight while preserving shape and pose.",
+        "Optimized geometry for web display; maximum texture edge 2048 pixels, WebP and meshopt compression.",
+        "Simplified geometry within bounded error."
+      ],
+      "appearance": "Original surface textures retained",
+      "artwork_rights": "Underlying artwork rights remain with the credited artists and other rightsholders; the model license applies to the 3D file.",
+      "attribution": "La Mariposa, Manolo Valdés. 3D model by Ximo Vilaplana, CC BY 4.0. Atrium derivative: geometry and surface data optimized for browser display.",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0.3,
+          0.18,
+          1
+        ],
+        "status": "reviewed",
+        "note": "Upright pose, full captured extent and preferred view checked against the source reference and front, back and side renders; production viewer checked locally."
+      },
+      "thumbnail_sha256": "a16ac8df5a80675911c116baa1e9cdcea1f354c0c1c097bd14bfb404fa8f0e36",
+      "published_preview_url": "https://models.atrium.earth/models/previews/modern/valdes-la-mariposa/preview-c3f12b78ed48.glb"
+    },
+    {
+      "uid": "92a9a776561242bea28b6d55bae61df9",
+      "slug": "modern/valdes-cabeza-de-la-regina",
+      "title": "Cabeza de la Regina",
+      "artist": "Manolo Valdés",
+      "year": "2003",
+      "year_sort": 2003,
+      "material": "Bronze",
+      "dimensions": "Height: approximately 250 cm; weight: approximately 700 kg",
+      "museum": "City of Biarritz, Place Anton Tchekhov",
+      "geography": "France",
+      "wing": "europe",
+      "source_record_url": "https://www.destination-biarritz.fr/a-faire-a-biarritz/visiter-biarritz-a-pied/les-sculptures/",
+      "capture": "Independent 3D capture. The archived model contains no surface textures; a neutral material is used to show its geometry.",
+      "appearance": "No surface textures in the source archive; neutral material used.",
+      "collection": "modern",
+      "source_title": "La Cabesa de Regina",
+      "source_model_url": "https://sketchfab.com/3d-models/la-cabesa-de-regina-92a9a776561242bea28b6d55bae61df9",
+      "primary_metadata_url": "https://api.sketchfab.com/v3/models/92a9a776561242bea28b6d55bae61df9",
+      "source_institution": "pattarrian",
+      "primary_model_author": "pattarrian",
+      "license": "CC BY 4.0",
+      "license_url": "http://creativecommons.org/licenses/by/4.0/",
+      "license_verified": "2026-09-07",
+      "model_published": "2017-03-18T11:19:55.763391",
+      "archive_path": "glbs/000-096/92a9a776561242bea28b6d55bae61df9.glb",
+      "download_url": "https://huggingface.co/datasets/allenai/objaverse/resolve/main/glbs/000-096/92a9a776561242bea28b6d55bae61df9.glb",
+      "source_sha256": "61474edba24825dce18232a75a3a2336061f111b1a1aac093303727d5826ff05",
+      "preview_sha256": "a73c61bfc8466bd731fc35030b0d0efe4b6c08f1bdd52bbd12850e9e757a76ca",
+      "preview_bytes": 205128,
+      "preview_faces": 49522,
+      "preparation": [
+        "Baked node transforms into geometry to make camera bounds tight while preserving shape and pose.",
+        "Optimized geometry for web display; maximum texture edge 2048 pixels, WebP and meshopt compression."
+      ],
+      "artwork_rights": "Underlying artwork rights remain with the credited artists and other rightsholders; the model license applies to the 3D file.",
+      "attribution": "Cabeza de la Regina, Manolo Valdés. 3D model by pattarrian, CC BY 4.0. Atrium derivative: geometry and surface data optimized for browser display.",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0.3,
+          0.18,
+          1
+        ],
+        "status": "reviewed",
+        "note": "Upright pose, full captured extent and preferred view checked against the source reference and front, back and side renders; production viewer checked locally."
+      },
+      "thumbnail_sha256": "2dfe225b3762ccff76de2bf40819923c0730d417a324c86135f49fd3482f99e7",
+      "appearance_override": {
+        "profile": "neutral",
+        "tintStrength": 0,
+        "variation": 0,
+        "metalness": 0.1,
+        "roughness": 0.8,
+        "exposure": 1
+      },
+      "published_preview_url": "https://models.atrium.earth/models/previews/modern/valdes-cabeza-de-la-regina/preview-a73c61bfc846.glb"
+    },
+    {
+      "uid": "5acdf61e8cd040f787bdfbc919c2cb4e",
+      "slug": "modern/arman-accord-final",
+      "title": "Accord Final",
+      "artist": "Arman",
+      "year": "1981",
+      "year_sort": 1981,
+      "material": "Bronze",
+      "dimensions": "Life-size grand piano",
+      "museum": "Pratt Institute Sculpture Park, Brooklyn (loan from Corice Arman; capture location)",
+      "geography": "United States",
+      "wing": "americas-oceania",
+      "source_record_url": "https://gateway.pratt.edu/around-campus-sept/work-by-famous-sculptor-arman-in-pratt-sculpture-park.html",
+      "related": [
+        "https://www.pratt.edu/news/pratt_installs_sculpture_by_world-renowned_artist_arman_in_its_outdoor_scul/"
+      ],
+      "capture": "Independent scan of the broken bronze piano, also titled They Wouldn’t Let Me Play at Carnegie Hall. The captured ground and cast fragments are retained.",
+      "collection": "modern",
+      "source_title": "Accord final by Arman",
+      "source_model_url": "https://sketchfab.com/3d-models/accord-final-by-arman-5acdf61e8cd040f787bdfbc919c2cb4e",
+      "primary_metadata_url": "https://api.sketchfab.com/v3/models/5acdf61e8cd040f787bdfbc919c2cb4e",
+      "source_institution": "alban",
+      "primary_model_author": "alban",
+      "license": "CC BY 4.0",
+      "license_url": "http://creativecommons.org/licenses/by/4.0/",
+      "license_verified": "2026-09-07",
+      "model_published": "2016-07-30T20:43:12.492731",
+      "archive_path": "glbs/000-029/5acdf61e8cd040f787bdfbc919c2cb4e.glb",
+      "download_url": "https://huggingface.co/datasets/allenai/objaverse/resolve/main/glbs/000-029/5acdf61e8cd040f787bdfbc919c2cb4e.glb",
+      "source_sha256": "69b2650f5aec8f72138c2346d40455e5f9162e01350bd5577f950aa05038c655",
+      "preview_sha256": "715d7becfc43e4b90ca8fed4b6de476848996e023ce1b4e4302155c1057c68ca",
+      "preview_bytes": 1625860,
+      "preview_faces": 192899,
+      "preparation": [
+        "Baked node transforms into geometry to make camera bounds tight while preserving shape and pose.",
+        "Optimized geometry for web display; maximum texture edge 2048 pixels, WebP and meshopt compression."
+      ],
+      "appearance": "Original surface textures retained",
+      "artwork_rights": "Underlying artwork rights remain with the credited artists and other rightsholders; the model license applies to the 3D file.",
+      "attribution": "Accord Final, Arman. 3D model by alban, CC BY 4.0. Atrium derivative: geometry and surface data optimized for browser display.",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0.65,
+          0.65,
+          1
+        ],
+        "status": "reviewed",
+        "note": "Upright pose, full captured extent and preferred view checked against the source reference and front, back and side renders; production viewer checked locally.",
+        "fit": 1.12
+      },
+      "thumbnail_sha256": "08141039d4e9d32f559a2cd6b69ef0d0a1da4073dc3b0ed24ff454b17ec15d03",
+      "published_preview_url": "https://models.atrium.earth/models/previews/modern/arman-accord-final/preview-715d7becfc43.glb"
+    },
+    {
+      "uid": "42aa5dba93a44eecb1660048af7cd889",
+      "slug": "modern/arman-consigne-a-vie",
+      "title": "Consigne à vie",
+      "artist": "Arman",
+      "year": "1985",
+      "year_sort": 1985,
+      "material": "Welded bronze suitcases",
+      "dimensions": "Height: approximately 549 cm",
+      "museum": "Centre national des arts plastiques, Gare Saint-Lazare, Paris",
+      "geography": "France",
+      "wing": "europe",
+      "accession": "FNAC 10399",
+      "source_record_url": "https://www.cnap.fr/arman-lheure-de-tous-et-consigne-vie-1985",
+      "related": [
+        "https://www.arman-studio.com/RawFiles/002058.html",
+        "https://www.cnap.fr/public-art-collection"
+      ],
+      "capture": "Independent Polycam photo capture of the complete sculpture and pedestal. The shaded reverse is darker in the captured surface texture.",
+      "evidence": "Height follows the artist studio record, 5,486 mm, rather than the 7 m figure in secondary summaries.",
+      "collection": "modern",
+      "source_title": "\"Consigne a vie\" by Arman",
+      "source_model_url": "https://sketchfab.com/3d-models/consigne-a-vie-by-arman-42aa5dba93a44eecb1660048af7cd889",
+      "primary_metadata_url": "https://api.sketchfab.com/v3/models/42aa5dba93a44eecb1660048af7cd889",
+      "source_institution": "alban",
+      "primary_model_author": "alban",
+      "license": "CC BY 4.0",
+      "license_url": "http://creativecommons.org/licenses/by/4.0/",
+      "license_verified": "2026-09-07",
+      "model_published": "2021-09-28T09:39:25.629036",
+      "archive_path": "glbs/000-080/42aa5dba93a44eecb1660048af7cd889.glb",
+      "download_url": "https://huggingface.co/datasets/allenai/objaverse/resolve/main/glbs/000-080/42aa5dba93a44eecb1660048af7cd889.glb",
+      "source_sha256": "95fcbf6cdf9090babde9b1f1eb96def7e955cb6308977e0cbe0661c2b6dc9a0e",
+      "preview_sha256": "22fee7b707879ff7ca5e0f2797c876533b2cc1f26f16a53800670ad174c0efad",
+      "preview_bytes": 540668,
+      "preview_faces": 84577,
+      "preparation": [
+        "Baked node transforms into geometry to make camera bounds tight while preserving shape and pose.",
+        "Optimized geometry for web display; maximum texture edge 2048 pixels, WebP and meshopt compression."
+      ],
+      "appearance": "Original surface textures retained",
+      "artwork_rights": "Underlying artwork rights remain with the credited artists and other rightsholders; the model license applies to the 3D file.",
+      "attribution": "Consigne à vie, Arman. 3D model by alban, CC BY 4.0. Atrium derivative: geometry and surface data optimized for browser display.",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0.3,
+          0.18,
+          1
+        ],
+        "status": "reviewed",
+        "note": "Upright pose, full captured extent and preferred view checked against the source reference and front, back and side renders; production viewer checked locally."
+      },
+      "thumbnail_sha256": "7328375debe0345340cb2e5d4606c2b3c6866fb5fd9d1ef87ac0e87312582b37",
+      "published_preview_url": "https://models.atrium.earth/models/previews/modern/arman-consigne-a-vie/preview-22fee7b70787.glb"
+    },
+    {
+      "uid": "6ef5cd9e3cb44902a8369e5e138c9b04",
+      "slug": "modern/gaga-michael-the-brave-guruslau",
+      "title": "Monument to Michael the Brave, Guruslău",
+      "artist": "Victor Gaga",
+      "year": "1976",
+      "year_sort": 1976,
+      "material": "Reinforced concrete and travertine",
+      "dimensions": "Height: 26 m",
+      "museum": "Guruslău memorial site, Sălaj, Romania",
+      "geography": "Romania",
+      "wing": "europe",
+      "source_record_url": "https://sj.prefectura.mai.gov.ro/manifestare-de-omagiere-a-lui-mihai-viteazul-la-guruslau/",
+      "capture": "Official Institutul Național al Patrimoniului capture of the complete monument, including the relief-covered base, three vertical blades and a small patch of surrounding ground.",
+      "evidence": "Artist, inauguration on 21 October 1976, 26 m height and materials are recorded by Romania’s National Heritage Institute in the primary model metadata.",
+      "collection": "modern",
+      "source_title": "Monumentul lui Mihai Viteazu de la Guruslău",
+      "source_model_url": "https://sketchfab.com/3d-models/monumentul-lui-mihai-viteazu-de-la-guruslau-6ef5cd9e3cb44902a8369e5e138c9b04",
+      "primary_metadata_url": "https://api.sketchfab.com/v3/models/6ef5cd9e3cb44902a8369e5e138c9b04",
+      "source_institution": "Institutul Național al Patrimoniului",
+      "primary_model_author": "Institutul Național al Patrimoniului",
+      "license": "CC BY 4.0",
+      "license_url": "http://creativecommons.org/licenses/by/4.0/",
+      "license_verified": "2026-09-07",
+      "model_published": "2020-07-24T12:52:03.617554",
+      "archive_path": "glbs/000-144/6ef5cd9e3cb44902a8369e5e138c9b04.glb",
+      "download_url": "https://huggingface.co/datasets/allenai/objaverse/resolve/main/glbs/000-144/6ef5cd9e3cb44902a8369e5e138c9b04.glb",
+      "source_sha256": "629ff7200800d03ea94175e34dd05c925994183feddbfdfe8c47e4ec846b0197",
+      "preview_sha256": "7160d330b26f8010de8f2b4e06e805c8e11075ec2dcb3d8d2e90c26ead385b7a",
+      "preview_bytes": 1892248,
+      "preview_faces": 399999,
+      "preparation": [
+        "Baked node transforms into geometry to make camera bounds tight while preserving shape and pose.",
+        "Optimized geometry for web display; maximum texture edge 2048 pixels, WebP and meshopt compression.",
+        "Simplified geometry within bounded error."
+      ],
+      "appearance": "Original surface textures retained",
+      "artwork_rights": "Underlying artwork rights remain with the credited artists and other rightsholders; the model license applies to the 3D file.",
+      "attribution": "Monument to Michael the Brave, Guruslău, Victor Gaga. 3D model by Institutul Național al Patrimoniului, CC BY 4.0. Atrium derivative: geometry and surface data optimized for browser display.",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0.3,
+          0.18,
+          1
+        ],
+        "status": "reviewed",
+        "note": "Upright pose, full captured extent and preferred view checked against the source reference and front, back and side renders; production viewer checked locally."
+      },
+      "thumbnail_sha256": "557608bd166a98d12e1dcc49e80bc7b9b454d321e7a15a3ff3650d303419388d",
+      "published_preview_url": "https://models.atrium.earth/models/previews/modern/gaga-michael-the-brave-guruslau/preview-7160d330b26f.glb"
+    },
+    {
+      "uid": "5a0b82798dd8400ea6738d24c5512b49",
+      "slug": "modern/ronchi-le-cheval",
+      "title": "Le Cheval",
+      "artist": "Cesare Ronchi",
+      "year": "2002",
+      "year_sort": 2002,
+      "material": "Steel (as recorded by the source contributor)",
+      "dimensions": "Height: approximately 200 cm (source contributor)",
+      "museum": "Château de Petit-Leez sculpture park, Grand-Leez (capture location)",
+      "geography": "Belgium",
+      "wing": "europe",
+      "source_record_url": "https://sketchfab.com/3d-models/le-cheval-5a0b82798dd8400ea6738d24c5512b49",
+      "related": [
+        "https://www.visitgembloux.be/statues-exit11/",
+        "https://www.cesareronchi.it/cesareronchi/home"
+      ],
+      "capture": "Independent 3D capture from the sculpture park at Château de Petit-Leez. Original vertex colours are retained; the archive contains no image textures.",
+      "appearance": "Original vertex colors retained; no image textures in source.",
+      "evidence": "Title, artist, date, material and approximate scale are supplied by the scan contributor; the local tourism authority confirms the sculpture park. No separate institutional inventory located.",
+      "collection": "modern",
+      "source_title": "Le Cheval",
+      "source_model_url": "https://sketchfab.com/3d-models/le-cheval-5a0b82798dd8400ea6738d24c5512b49",
+      "primary_metadata_url": "https://api.sketchfab.com/v3/models/5a0b82798dd8400ea6738d24c5512b49",
+      "source_institution": "pattarrian",
+      "primary_model_author": "pattarrian",
+      "license": "CC BY 4.0",
+      "license_url": "http://creativecommons.org/licenses/by/4.0/",
+      "license_verified": "2026-09-07",
+      "model_published": "2019-11-11T08:19:33.022824",
+      "archive_path": "glbs/000-063/5a0b82798dd8400ea6738d24c5512b49.glb",
+      "download_url": "https://huggingface.co/datasets/allenai/objaverse/resolve/main/glbs/000-063/5a0b82798dd8400ea6738d24c5512b49.glb",
+      "source_sha256": "1aca55e6fe05c74a270b21b3eb1c459d99e01aa0b950c4512cf63a48160d8809",
+      "preview_sha256": "625dda9d1f2f0d5f770c9b330c703af727ecfd5092f55570a190aa5f31d0fce0",
+      "preview_bytes": 3737352,
+      "preview_faces": 399798,
+      "preparation": [
+        "Baked node transforms into geometry to make camera bounds tight while preserving shape and pose.",
+        "Optimized geometry for web display; maximum texture edge 2048 pixels, WebP and meshopt compression.",
+        "Simplified geometry within bounded error.",
+        "Simplification error bound 0.001, preserving surface shape and vertex colors.",
+        "Added an identity white base-color map and zero UVs to preserve source vertex colors through the existing Atrium viewer; no surface color has been invented."
+      ],
+      "artwork_rights": "Underlying artwork rights remain with the credited artists and other rightsholders; the model license applies to the 3D file.",
+      "attribution": "Le Cheval, Cesare Ronchi. 3D model by pattarrian, CC BY 4.0. Atrium derivative: geometry and surface data optimized for browser display.",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0.3,
+          0.18,
+          1
+        ],
+        "status": "reviewed",
+        "note": "Upright pose, full captured extent and preferred view checked against the source reference and front, back and side renders; production viewer checked locally."
+      },
+      "thumbnail_sha256": "bae55599b0831da2632e95cccd0af2934ea658b29b83dbe6dfa3ad4093c48453",
+      "appearance_override": {
+        "profile": "neutral",
+        "tintStrength": 0,
+        "variation": 0,
+        "exposure": 0.65
+      },
+      "published_preview_url": "https://models.atrium.earth/models/previews/modern/ronchi-le-cheval/preview-625dda9d1f2f.glb"
+    },
+    {
+      "uid": "9c9cff332bba4d33a0729cbd3dfb4a41",
+      "slug": "modern/de-juana-meteor",
+      "title": "Meteor",
+      "artist": "Eudald de Juana",
+      "year": "2019",
+      "year_sort": 2019,
+      "material": "Acrylic resin and oil paint",
+      "dimensions": "182 × 98 × 50 cm",
+      "museum": "Museu de l’Empordà, Figueres",
+      "geography": "Spain",
+      "wing": "europe",
+      "accession": "ME 2525",
+      "source_record_url": "https://www.museuemporda.org/?obres_autors=meteor",
+      "related": [
+        "https://www.figueres.cat/actualitat/noticies/el-museu-de-l-emporda-acull-l-exposicio-22230"
+      ],
+      "capture": "Giravolt capture by Aleix Barberà and Néstor Marqués, with documentation from the Museu de l’Empordà. This is a life-size gallery sculpture.",
+      "collection": "modern",
+      "source_title": "Meteor, Museu de l'Empordà",
+      "source_model_url": "https://sketchfab.com/3d-models/meteor-museu-de-lemporda-9c9cff332bba4d33a0729cbd3dfb4a41",
+      "primary_metadata_url": "https://api.sketchfab.com/v3/models/9c9cff332bba4d33a0729cbd3dfb4a41",
+      "source_institution": "Giravolt",
+      "primary_model_author": "Aleix Barberà and Néstor Marqués / Giravolt",
+      "license": "CC BY 4.0",
+      "license_url": "http://creativecommons.org/licenses/by/4.0/",
+      "license_verified": "2026-09-07",
+      "model_published": "2021-11-01T09:38:43.061267",
+      "archive_path": "glbs/000-018/9c9cff332bba4d33a0729cbd3dfb4a41.glb",
+      "download_url": "https://huggingface.co/datasets/allenai/objaverse/resolve/main/glbs/000-018/9c9cff332bba4d33a0729cbd3dfb4a41.glb",
+      "source_sha256": "aa8d1ad0ede8ca4fbc9487f873f950352ff404a9824ee06d99741a654a5aefe9",
+      "preview_sha256": "0ceaf1da2e7dfd7ba8c1bd6e199e6bcd9d45342316bc335266bb79783efc3f9e",
+      "preview_bytes": 744508,
+      "preview_faces": 50274,
+      "preparation": [
+        "Baked node transforms into geometry to make camera bounds tight while preserving shape and pose.",
+        "Optimized geometry for web display; maximum texture edge 2048 pixels, WebP and meshopt compression."
+      ],
+      "appearance": "Original surface textures retained",
+      "artwork_rights": "Underlying artwork rights remain with the credited artists and other rightsholders; the model license applies to the 3D file.",
+      "attribution": "Meteor, Eudald de Juana. 3D model by Aleix Barberà and Néstor Marqués / Giravolt, CC BY 4.0. Atrium derivative: geometry and surface data optimized for browser display.",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0.3,
+          0.18,
+          1
+        ],
+        "status": "reviewed",
+        "note": "Upright pose, full captured extent and preferred view checked against the source reference and front, back and side renders; production viewer checked locally."
+      },
+      "thumbnail_sha256": "473f923f088e38450ec4a1adf5071134be3cdad75abc36722c32cc125c4e9f75",
+      "published_preview_url": "https://models.atrium.earth/models/previews/modern/de-juana-meteor/preview-0ceaf1da2e7d.glb"
+    },
+    {
+      "uid": "1cd8a30ce7594f369fbf7f68fc336f02",
+      "slug": "modern/connolly-horse-outside",
+      "title": "Horse Outside",
+      "artist": "Angela Connolly with young participants in the Horse Outside project",
+      "year": "2011–2012",
+      "year_sort": 2011,
+      "material": "Painted fibreglass",
+      "dimensions": "Life-size horse",
+      "museum": "The Hunt Museum, Limerick",
+      "geography": "Ireland",
+      "wing": "europe",
+      "source_record_url": "https://sketchfab.com/3d-models/hunt-museum-horse-outside-1cd8a30ce7594f369fbf7f68fc336f02",
+      "capture": "Official museum scan of one of two life-size community sculptures designed and painted by young participants with Angela Connolly. The museum dates the project’s two horses to 2011 and 2012; this record retains that range.",
+      "collection": "modern",
+      "source_title": "Hunt Museum - Horse Outside",
+      "source_model_url": "https://sketchfab.com/3d-models/hunt-museum-horse-outside-1cd8a30ce7594f369fbf7f68fc336f02",
+      "primary_metadata_url": "https://api.sketchfab.com/v3/models/1cd8a30ce7594f369fbf7f68fc336f02",
+      "source_institution": "The Hunt Museum",
+      "primary_model_author": "The Hunt Museum",
+      "license": "CC0 1.0",
+      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/",
+      "license_verified": "2026-09-07",
+      "model_published": "2018-08-13T20:58:43.263847",
+      "archive_path": "glbs/000-028/1cd8a30ce7594f369fbf7f68fc336f02.glb",
+      "download_url": "https://huggingface.co/datasets/allenai/objaverse/resolve/main/glbs/000-028/1cd8a30ce7594f369fbf7f68fc336f02.glb",
+      "source_sha256": "bc77108897f13736d515bccc225801168f81b71b00cda3332d749893e7511e2f",
+      "preview_sha256": "a8e4f119a8dee5ed2ce340c56fa9ebce8fda7aef585e39b483e5bf4cbf04e9d3",
+      "preview_bytes": 2200412,
+      "preview_faces": 316099,
+      "preparation": [
+        "Baked node transforms into geometry to make camera bounds tight while preserving shape and pose.",
+        "Optimized geometry for web display; maximum texture edge 2048 pixels, WebP and meshopt compression."
+      ],
+      "appearance": "Original surface textures retained",
+      "artwork_rights": "Underlying artwork rights remain with the credited artists and other rightsholders; the model license applies to the 3D file.",
+      "attribution": "Horse Outside, Angela Connolly with young participants in the Horse Outside project. 3D model by The Hunt Museum, CC0 1.0. Atrium derivative: geometry and surface data optimized for browser display.",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          -0.3,
+          0.18,
+          -1
+        ],
+        "status": "reviewed",
+        "note": "All four legs, tail and ground base verified. Preferred view shows the yellow-maned side used in the museum reference."
+      },
+      "thumbnail_sha256": "704f871af5a6c07eb9d7f463cbdbad2b6d913f51b18305fa2de8c43fd27357ca",
+      "published_preview_url": "https://models.atrium.earth/models/previews/modern/connolly-horse-outside/preview-a8e4f119a8de.glb"
+    },
+    {
+      "uid": "ab9078bcddf14799bcb53cd01200704e",
+      "slug": "modern/donov-with-respect-to-the-driving-forces",
+      "title": "With Respect to the Driving Forces",
+      "artist": "Georgi Donov",
+      "year": "2005",
+      "year_sort": 2005,
+      "material": "Fired red clay",
+      "dimensions": "170 × 150 × 350 cm",
+      "museum": "National Gallery sculpture garden, Sofia (capture location)",
+      "geography": "Bulgaria",
+      "wing": "europe",
+      "source_record_url": "https://artprojectdepot.com/sites/default/files/2022-11/M-tel-Nominations-2005-Catalogue.pdf",
+      "related": [
+        "https://sbh.bg/bg/member/2239/georgi-donov",
+        "https://openartfiles.bg/en/people/2113-desislava-zafirova"
+      ],
+      "capture": "Independent photogrammetry of a full-size Trabant with a bust of Marcel Duchamp. The source model’s title, 1963 Trabant Sculpture, refers to the car, not the artwork’s date.",
+      "evidence": "The 2005 exhibition catalogue lists the work, fired red clay, 1.70 × 1.50 × 3.50 m, and 2005; the artist’s Bulgarian Artists Union page identifies the Duchamp bust.",
+      "collection": "modern",
+      "source_title": "1963 Trabant Sculpture",
+      "source_model_url": "https://sketchfab.com/3d-models/1963-trabant-sculpture-ab9078bcddf14799bcb53cd01200704e",
+      "primary_metadata_url": "https://api.sketchfab.com/v3/models/ab9078bcddf14799bcb53cd01200704e",
+      "source_institution": "antoniorumen",
+      "primary_model_author": "antoniorumen",
+      "license": "CC BY 4.0",
+      "license_url": "http://creativecommons.org/licenses/by/4.0/",
+      "license_verified": "2026-09-07",
+      "model_published": "2021-05-30T00:15:01.354962",
+      "archive_path": "glbs/000-132/ab9078bcddf14799bcb53cd01200704e.glb",
+      "download_url": "https://huggingface.co/datasets/allenai/objaverse/resolve/main/glbs/000-132/ab9078bcddf14799bcb53cd01200704e.glb",
+      "source_sha256": "9a2a4836e4fde28bce0584bc2565ae79b82269613103e019e0c90a6cb72ede64",
+      "preview_sha256": "1d9f21c6b3016508196bb02f9b4cafd9e8e163d1390f57ebc8d16668d82a28d5",
+      "preview_bytes": 1296188,
+      "preview_faces": 89776,
+      "preparation": [
+        "Baked node transforms into geometry to make camera bounds tight while preserving shape and pose.",
+        "Optimized geometry for web display; maximum texture edge 2048 pixels, WebP and meshopt compression.",
+        "Converted legacy specular/glossiness materials to metallic/roughness, preserving original diffuse texture."
+      ],
+      "appearance": "Original surface textures retained",
+      "artwork_rights": "Underlying artwork rights remain with the credited artists and other rightsholders; the model license applies to the 3D file.",
+      "attribution": "With Respect to the Driving Forces, Georgi Donov. 3D model by antoniorumen, CC BY 4.0. Atrium derivative: geometry and surface data optimized for browser display.",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          1,
+          0.45,
+          0.65
+        ],
+        "status": "reviewed",
+        "note": "Full car, roof bust and base verified from front, back and side. Three-quarter camera shows both side and front without cropping.",
+        "fit": 1.14
+      },
+      "thumbnail_sha256": "5eb116346860f067fa8c52d4fd8b1dd07b5db12fd3bbc7e83fb44a9d3775668c",
+      "appearance_override": {
+        "profile": "ceramic",
+        "exposure": 0.4
+      },
+      "published_preview_url": "https://models.atrium.earth/models/previews/modern/donov-with-respect-to-the-driving-forces/preview-1d9f21c6b301.glb"
+    }
+  ],
+  "excluded_candidates": [
+    {
+      "uid": "4bcad965c9b44f70ad231afc39a6e02e",
+      "title": "Two Forms (Divided Circle)",
+      "artist": "Barbara Hepworth",
+      "reason": "Geometric digital reconstruction, not a capture of a documented full-size cast."
+    },
+    {
+      "uid": "8a5e0eb0837a47988cb4e1fc8ccbb5b4",
+      "title": "ence pence",
+      "artist": "Ursula von Rydingsvard",
+      "reason": "Archive is a partial surface relief with a flat back and holes, not the complete sculpture."
+    },
+    {
+      "uid": "7aa8143786eb4be08398354803d776bf",
+      "title": "Per Adrian",
+      "artist": "Igor Mitoraj",
+      "reason": "Scale, location and identity of this particular cast remain unverified; source title/date differ from the documented Per Adriano in Angers. Retained as research only."
+    },
+    {
+      "uid": "36327c72013a46949dd0667dcc803ebb",
+      "artist": "Igor Mitoraj",
+      "reason": "Italian state archaeological site; set aside under COLLECTION-GROWTH.md."
+    },
+    {
+      "uid": "2c74974bf19c49e1ad03663e6ca121bf",
+      "title": "Tindaro Screpolato",
+      "artist": "Igor Mitoraj",
+      "reason": "Italian state museum garden; set aside under COLLECTION-GROWTH.md."
+    }
+  ],
+  "validation": {
+    "status": "passed",
+    "checked_at": "2026-09-07T16:55:06.278Z",
+    "public_catalog_count": 580,
+    "raw_catalog_count": 588,
+    "new_work_count": 9,
+    "total_preview_bytes": 15458508,
+    "wing_fixtures": "passed; zero unfiled works",
+    "asset_verification": "passed",
+    "production_build": "passed; 2081 pages; local preview routes excluded",
+    "browser": "All nine production WebGL viewers, posters, reviewed transforms and camera fits passed",
+    "gallery": "Nine cards; Europe filter 8; mobile width 390 without page overflow",
+    "integrity": "All source, optimized model and thumbnail SHA-256 values match; all pre-existing data entries unchanged",
+    "visual_review": "Source references compared with front, back, side and production page renders; preferred framing and appearance reviewed",
+    "local_preview": "http://127.0.0.1:4331/preview/modern-sculpture-round4/"
+  },
+  "publication": {
+    "user_approval": "great, push",
+    "approved_on": "2026-09-07",
+    "model_host": "https://models.atrium.earth",
+    "model_count": 9,
+    "total_preview_bytes": 15458508,
+    "asset_verification": "All nine remote files match reviewed SHA-256 values and byte lengths; model/gltf-binary MIME and production-origin CORS verified.",
+    "asset_verified_at": "2026-09-07T16:58:14.388Z",
+    "asset_keys": [
+      {
+        "slug": "modern/valdes-la-mariposa",
+        "key": "models/previews/modern/valdes-la-mariposa/preview-c3f12b78ed48.glb",
+        "sha256": "c3f12b78ed4855e7e9129a0cf6d7f4bccb94d1d0ead3cff42a032c99dddc6ce7",
+        "bytes": 3216144
+      },
+      {
+        "slug": "modern/valdes-cabeza-de-la-regina",
+        "key": "models/previews/modern/valdes-cabeza-de-la-regina/preview-a73c61bfc846.glb",
+        "sha256": "a73c61bfc8466bd731fc35030b0d0efe4b6c08f1bdd52bbd12850e9e757a76ca",
+        "bytes": 205128
+      },
+      {
+        "slug": "modern/arman-accord-final",
+        "key": "models/previews/modern/arman-accord-final/preview-715d7becfc43.glb",
+        "sha256": "715d7becfc43e4b90ca8fed4b6de476848996e023ce1b4e4302155c1057c68ca",
+        "bytes": 1625860
+      },
+      {
+        "slug": "modern/arman-consigne-a-vie",
+        "key": "models/previews/modern/arman-consigne-a-vie/preview-22fee7b70787.glb",
+        "sha256": "22fee7b707879ff7ca5e0f2797c876533b2cc1f26f16a53800670ad174c0efad",
+        "bytes": 540668
+      },
+      {
+        "slug": "modern/gaga-michael-the-brave-guruslau",
+        "key": "models/previews/modern/gaga-michael-the-brave-guruslau/preview-7160d330b26f.glb",
+        "sha256": "7160d330b26f8010de8f2b4e06e805c8e11075ec2dcb3d8d2e90c26ead385b7a",
+        "bytes": 1892248
+      },
+      {
+        "slug": "modern/ronchi-le-cheval",
+        "key": "models/previews/modern/ronchi-le-cheval/preview-625dda9d1f2f.glb",
+        "sha256": "625dda9d1f2f0d5f770c9b330c703af727ecfd5092f55570a190aa5f31d0fce0",
+        "bytes": 3737352
+      },
+      {
+        "slug": "modern/de-juana-meteor",
+        "key": "models/previews/modern/de-juana-meteor/preview-0ceaf1da2e7d.glb",
+        "sha256": "0ceaf1da2e7dfd7ba8c1bd6e199e6bcd9d45342316bc335266bb79783efc3f9e",
+        "bytes": 744508
+      },
+      {
+        "slug": "modern/connolly-horse-outside",
+        "key": "models/previews/modern/connolly-horse-outside/preview-a8e4f119a8de.glb",
+        "sha256": "a8e4f119a8dee5ed2ce340c56fa9ebce8fda7aef585e39b483e5bf4cbf04e9d3",
+        "bytes": 2200412
+      },
+      {
+        "slug": "modern/donov-with-respect-to-the-driving-forces",
+        "key": "models/previews/modern/donov-with-respect-to-the-driving-forces/preview-1d9f21c6b301.glb",
+        "sha256": "1d9f21c6b3016508196bb02f9b4cafd9e8e163d1390f57ebc8d16668d82a28d5",
+        "bytes": 1296188
+      }
+    ],
+    "production_browser_verification": "All nine production viewers rendered hosted models, decoded posters and matched reviewed orientation and camera fit; all nine present in the 580-card collection.",
+    "production_browser_verified_at": "2026-09-07T17:00:13.139Z"
+  }
+}
