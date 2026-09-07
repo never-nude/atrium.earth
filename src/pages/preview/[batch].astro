@@ -5,6 +5,7 @@ import { works } from '../../lib/catalog';
 import firstBatch from '../../../research/diverse-collections-20260907.json';
 import secondBatch from '../../../research/diverse-collections-round2-20260907.json';
 import sculptureBatch from '../../../research/modern-sculpture-round3-20260907.json';
+import nextSculptureBatch from '../../../research/modern-sculpture-round4-20260907.json';
 
 // Local review uses the production cards and object viewer. It emits no route
 // in a production build.
@@ -13,11 +14,13 @@ export function getStaticPaths() {
     { params: { batch: 'diverse-collections' } },
     { params: { batch: 'diverse-collections-round2' } },
     { params: { batch: 'modern-sculpture-round3' } },
+    { params: { batch: 'modern-sculpture-round4' } },
   ] : [];
 }
 
-const isSculptureBatch = Astro.params.batch === 'modern-sculpture-round3';
-const batch = isSculptureBatch ? sculptureBatch : Astro.params.batch === 'diverse-collections-round2' ? secondBatch : firstBatch;
+const isNextSculptureBatch = Astro.params.batch === 'modern-sculpture-round4';
+const isSculptureBatch = isNextSculptureBatch || Astro.params.batch === 'modern-sculpture-round3';
+const batch = isNextSculptureBatch ? nextSculptureBatch : isSculptureBatch ? sculptureBatch : Astro.params.batch === 'diverse-collections-round2' ? secondBatch : firstBatch;
 const batchSlugs = new Set(batch.works.map((work) => work.slug));
 const additions = works.filter((work) => batchSlugs.has(work.slug));
 ---
@@ -27,7 +30,7 @@ const additions = works.filter((work) => batchSlugs.has(work.slug));
   <header class="v3-page-hero">
     <p class="v3-kicker">Local preview / {additions.length} new works</p>
     <h1 class="v3-display">{isSculptureBatch ? 'Large-scale sculpture.' : 'New to Atrium.'}</h1>
-    <p>{isSculptureBatch ? 'Sculpture for plazas, gardens and public spaces, from 1958 to 2008. Select a work to explore it in three dimensions.' : 'African, American, Asian, and Oceanian works. Select a piece to explore it in three dimensions.'}</p>
+    <p>{isNextSculptureBatch ? 'Monumental and life-size sculpture from 1976 to 2019, from public spaces and museum collections. Select a work to explore it in three dimensions.' : isSculptureBatch ? 'Sculpture for plazas, gardens and public spaces, from 1958 to 2008. Select a work to explore it in three dimensions.' : 'African, American, Asian, and Oceanian works. Select a piece to explore it in three dimensions.'}</p>
   </header>
   <section class="v3-collection" aria-label="New works">
     <V3CollectionExplorer works={additions} />
