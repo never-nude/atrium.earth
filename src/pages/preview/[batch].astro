@@ -7,6 +7,7 @@ import secondBatch from '../../../research/diverse-collections-round2-20260907.j
 import sculptureBatch from '../../../research/modern-sculpture-round3-20260907.json';
 import nextSculptureBatch from '../../../research/modern-sculpture-round4-20260907.json';
 import contemporaryVoices from '../../../research/contemporary-voices-round5-20260907.json';
+import nextContemporaryVoices from '../../../research/contemporary-voices-round6-20260907.json';
 
 // Local review uses the production cards and object viewer. It emits no route
 // in a production build.
@@ -17,13 +18,15 @@ export function getStaticPaths() {
     { params: { batch: 'modern-sculpture-round3' } },
     { params: { batch: 'modern-sculpture-round4' } },
     { params: { batch: 'contemporary-voices-round5' } },
+    { params: { batch: 'contemporary-voices-round6' } },
   ] : [];
 }
 
 const isNextSculptureBatch = Astro.params.batch === 'modern-sculpture-round4';
-const isVoicesBatch = Astro.params.batch === 'contemporary-voices-round5';
+const isNextVoicesBatch = Astro.params.batch === 'contemporary-voices-round6';
+const isVoicesBatch = isNextVoicesBatch || Astro.params.batch === 'contemporary-voices-round5';
 const isSculptureBatch = isNextSculptureBatch || Astro.params.batch === 'modern-sculpture-round3';
-const batch = isVoicesBatch ? contemporaryVoices : isNextSculptureBatch ? nextSculptureBatch : isSculptureBatch ? sculptureBatch : Astro.params.batch === 'diverse-collections-round2' ? secondBatch : firstBatch;
+const batch = isNextVoicesBatch ? nextContemporaryVoices : isVoicesBatch ? contemporaryVoices : isNextSculptureBatch ? nextSculptureBatch : isSculptureBatch ? sculptureBatch : Astro.params.batch === 'diverse-collections-round2' ? secondBatch : firstBatch;
 const batchSlugs = new Set(batch.works.map((work) => work.slug));
 const additions = works.filter((work) => batchSlugs.has(work.slug));
 ---
@@ -33,7 +36,7 @@ const additions = works.filter((work) => batchSlugs.has(work.slug));
   <header class="v3-page-hero">
     <p class="v3-kicker">Local preview / {additions.length} new works</p>
     <h1 class="v3-display">{isVoicesBatch ? 'More voices in sculpture.' : isSculptureBatch ? 'Large-scale sculpture.' : 'New to Atrium.'}</h1>
-    <p>{isVoicesBatch ? 'Eleven works by thirteen artists new to Atrium. Stone, bronze, ceramics and digital sculpture, with work from Zimbabwe, India, Brazil, New Zealand, France and the United Kingdom. Select a piece to explore it in three dimensions.' : isNextSculptureBatch ? 'Monumental and life-size sculpture from 1976 to 2019, from public spaces and museum collections. Select a work to explore it in three dimensions.' : isSculptureBatch ? 'Sculpture for plazas, gardens and public spaces, from 1958 to 2008. Select a work to explore it in three dimensions.' : 'African, American, Asian, and Oceanian works. Select a piece to explore it in three dimensions.'}</p>
+    <p>{isNextVoicesBatch ? 'Nine works by nine artists new to Atrium. Public sculpture, studio work and ceramics from Czechia, Bulgaria, Australia, France and the United Kingdom. Select a piece to explore it in three dimensions.' : isVoicesBatch ? 'Eleven works by thirteen artists new to Atrium. Stone, bronze, ceramics and digital sculpture, with work from Zimbabwe, India, Brazil, New Zealand, France and the United Kingdom. Select a piece to explore it in three dimensions.' : isNextSculptureBatch ? 'Monumental and life-size sculpture from 1976 to 2019, from public spaces and museum collections. Select a work to explore it in three dimensions.' : isSculptureBatch ? 'Sculpture for plazas, gardens and public spaces, from 1958 to 2008. Select a work to explore it in three dimensions.' : 'African, American, Asian, and Oceanian works. Select a piece to explore it in three dimensions.'}</p>
   </header>
   <section class="v3-collection" aria-label="New works">
     <V3CollectionExplorer works={additions} />

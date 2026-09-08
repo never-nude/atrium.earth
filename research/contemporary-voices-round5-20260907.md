@@ -1,6 +1,6 @@
 # Contemporary voices — round 5 — local review
 
-Eleven works by thirteen principal artists new to Atrium. Prepared from published base `d43bfd0cc16a8574f2969c67ad0c34a435fe054d`. All eleven model files have current CC BY 4.0 licenses. This batch is local only; no upload or deployment.
+Eleven works by thirteen principal artists new to Atrium. Prepared from published base `d43bfd0cc16a8574f2969c67ad0c34a435fe054d`. All eleven model files have current CC BY 4.0 licenses. Publication authorized on 2026-09-08. Reviewed model files are hosted on models.atrium.earth with verified checksums and production CORS.
 
 [Open local preview](http://127.0.0.1:4334/preview/contemporary-voices-round5/). The cards and 3D object pages use the production interface.
 
@@ -51,3 +51,5 @@ Models total 33,918,340 bytes. Production catalog count would be 591 public work
 - David Posth-Kohler: Additional maquette from the same project; one selected to give this round more artist variety.
 - David Posth-Kohler: Additional maquette from the same project; one selected to give this round more artist variety.
 - Elizabeth Thomson: A second moth from the same collection; one selected to give this round more artist variety.
+
+The production build was checked with the hosted model URLs and production-origin CORS: all twenty viewers, reviewed transforms, decoded posters, WebGL, 600 collection cards and twenty new links passed.
