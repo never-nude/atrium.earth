@@ -18,6 +18,7 @@ type RawWork = {
   artist?: string | null;
   year?: string | null;
   year_sort?: number | null;
+  era?: string | null;
   material?: string | null;
   dimensions?: string | null;
   museum?: string | null;
@@ -395,6 +396,7 @@ function eraFor(raw: RawWork): string {
   }
 
   // No numeric date. Fall back only to facts the record actually carries — never invent a date.
+  if (clean(raw.era) === 'Contemporary') return 'Contemporary';
   if (['michelangelo', 'donatello', 'verrocchio', 'lorenzi'].includes(collection)) return 'Renaissance';
   if (collection === 'bouchardon') return 'Early modern';
   if (collection === 'rodin') return 'Modern';
