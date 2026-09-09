@@ -21,7 +21,8 @@
     "ingest:fetch": "node ./scripts/fetch-source.mjs",
     "ingest:assemble": "node ./scripts/assemble-piece.mjs",
     "ingest:auto": "npm run ingest:discover && npm run ingest:fetch && npm run ingest:assemble",
-    "test:model-normalization": "node ./scripts/test-model-normalization.mjs"
+    "test:model-normalization": "node ./scripts/test-model-normalization.mjs",
+    "test:spatial": "node ./scripts/test-spatial-viewer.mjs"
   },
   "devDependencies": {
     "@astrojs/sitemap": "^3.7.2",

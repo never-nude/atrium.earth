@@ -1,4 +1,5 @@
 ---
+import SpatialViewing from './SpatialViewing.astro';
 type Props = {
   glb?: string;
   poster: string;
@@ -19,6 +20,7 @@ type Props = {
   rotationControl?: 'full' | 'simple';
   wheelZoom?: boolean;
   lightControls?: boolean;
+  spatialViewing?: boolean;
 };
 const {
   glb = '',
@@ -39,6 +41,7 @@ const {
   rotationControl = 'full',
   wheelZoom = true,
   lightControls = false,
+  spatialViewing = false,
 } = Astro.props;
 const hasModel = Boolean(glb);
 const uid = Math.random().toString(36).slice(2, 8);
@@ -129,6 +132,8 @@ const transformJson = JSON.stringify(modelTransform);
 
   {hasModel && <p class="stage-hint fine" data-hint hidden>Drag to orbit · <span class="stage-hint__pan">right-drag or two-finger drag to pan · </span>scroll or pinch to zoom · double-tap to reset</p>}
 
+  {spatialViewing && hasModel && <SpatialViewing title={title} poster={poster} />}
+
   <noscript><p class="fine">Showing the still photo. Turn on JavaScript for the 3D model.</p></noscript>
 </div>
 
@@ -144,6 +149,7 @@ const transformJson = JSON.stringify(modelTransform);
   };
 
   type Viewer = {
+    spatial: any;
     setVisible: (visible: boolean) => void;
     capture: () => ViewState;
     dispose: () => void;
@@ -562,11 +568,12 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
 
     let visible = true;
     let disposed = false;
+    let suspended = false;
     let raf = 0;
     let previousFrameTime: number | undefined;
     function frame(now = performance.now()) {
       raf = 0;
-      if (disposed || !visible || document.hidden) return;
+      if (disposed || suspended || !visible || document.hidden) return;
       const elapsed = previousFrameTime === undefined ? 0 : Math.max((now - previousFrameTime) / 1000, 0);
       previousFrameTime = now;
       // The featured sculpture turns independently of orbit-control interaction state.
@@ -581,6 +588,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     frame();
 
     const ro = new ResizeObserver(() => {
+      if (suspended) return;
       width = stage.clientWidth; height = stage.clientHeight;
       renderer.setSize(width, height); camera.aspect = width / height; camera.updateProjectionMatrix();
     });
@@ -597,6 +605,24 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     // If initialization throws, start() aborts the activation and releases its context.
     signal.removeEventListener('abort', releasePending);
     return {
+      spatial: {
+        THREE, renderer, scene, camera, model, ground, grid, box,
+        suspend: () => {
+          if (suspended || disposed) throw new Error('Finish the current view before starting another.');
+          suspended = true;
+          cancelAnimationFrame(raf);
+          const controlsEnabled = controls.enabled;
+          controls.enabled = false;
+          return () => {
+            if (disposed) return;
+            suspended = false;
+            controls.enabled = controlsEnabled;
+            width = stage.clientWidth || width; height = stage.clientHeight || height;
+            renderer.setSize(width, height); camera.aspect = width / height; camera.updateProjectionMatrix();
+            updateRendering();
+          };
+        },
+      },
       setVisible: (next) => { visible = next; updateRendering(); },
       capture: () => ({ position: camera.position.toArray(), target: controls.target.toArray(), autoRotate: rotating, wireframe, turntableAngle: turntable.rotation.y }),
       dispose: () => {
@@ -712,6 +738,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
         if (current !== generation) { viewer.dispose(); return; }
         activeViewer = viewer;
         viewer.setVisible(visible);
+        root.dispatchEvent(new CustomEvent('atrium:viewer-ready'));
         function on<K extends keyof HTMLElementEventMap>(target: HTMLElement | Document | null, type: K, listener: (event: HTMLElementEventMap[K]) => void) {
           target?.addEventListener(type, listener as EventListener, { signal: events.signal });
         }
@@ -849,6 +876,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
       } catch (err) {
         if (current !== generation) return;
         release();
+        root.dispatchEvent(new CustomEvent('atrium:viewer-error'));
         if (loading) loading.hidden = true;
         if (poster) poster.style.opacity = '1';
         if (activate) activate.hidden = false;
@@ -856,6 +884,12 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
       }
     }
 
+    const spatial = root.querySelector('[data-spatial]');
+    if (spatial) {
+      void import('../lib/spatial-viewer.mjs').then(({ bindSpatialViewing }) => {
+        bindSpatialViewing(spatial, () => activeViewer?.spatial, start);
+      });
+    }
     if (activate) activate.addEventListener('click', start);
     if (lazy && 'IntersectionObserver' in window) {
       const observer = new IntersectionObserver(([entry]) => {
