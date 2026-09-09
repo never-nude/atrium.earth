@@ -1,0 +1,71 @@
+---
+type Props = { title: string; poster: string };
+const { title, poster } = Astro.props;
+---
+<div class="spatial-viewing" data-spatial data-title={title}>
+  <button type="button" class="spatial-open" data-spatial-open>
+    <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Z M4 7.5l8 4.5 8-4.5 M12 12v9" /></svg>
+    View in AR / VR
+  </button>
+  <dialog class="spatial-dialog" data-spatial-dialog aria-label={`View ${title} in AR or VR`}>
+    <div class="spatial-panel">
+      <div class="spatial-top"><span>BEYOND THE SCREEN</span><button type="button" data-spatial-close aria-label="Close AR and VR options">✕</button></div>
+      <h2>A sculpture.<br>In your space.</h2>
+      <p class="spatial-intro">Place <em>{title}</em> in your room, or step around it in a headset.</p>
+      <div class="spatial-options">
+        <section><span class="spatial-number">01 / AUGMENTED REALITY</span><h3>Bring it into the room</h3><p>Find a floor or table, place the sculpture, then walk around it.</p><button type="button" data-spatial-ar disabled>Checking your device…</button><a data-quick-look rel="ar" hidden><img src={poster} alt="" />Open in AR ↗</a><p class="spatial-support" data-ar-support></p></section>
+        <section><span class="spatial-number">02 / VIRTUAL REALITY</span><h3>See it from every side</h3><p>Open this page in your headset’s browser. Trigger to turn; thumbstick up or down to resize.</p><button type="button" data-spatial-vr disabled>Checking your device…</button><p class="spatial-support" data-vr-support></p></section>
+      </div>
+      <p class="spatial-status" data-spatial-status role="status" aria-live="polite"></p>
+      <div class="spatial-footer"><button type="button" data-spatial-share>Share this work ↗</button><p>Display size is adjustable and may differ from the original artwork.</p></div>
+    </div>
+    <div class="spatial-overlay" data-spatial-overlay hidden>
+      <div class="spatial-overlay-top"><strong>{title}</strong><button type="button" data-spatial-exit>Exit AR / VR</button></div>
+      <div class="spatial-overlay-controls">
+        <p data-spatial-instructions role="status"></p>
+        <label>Display size <input type="range" data-spatial-scale min="0.1" max="2" step="0.05" value="1" /></label>
+        <div><button type="button" data-spatial-turn>Turn 30°</button><button type="button" data-spatial-place>Place again</button></div>
+      </div>
+    </div>
+  </dialog>
+</div>
+<style>
+  .spatial-viewing { position: absolute; z-index: 31; top: 98px; left: var(--v3-pad, 28px); }
+  button, a { font: inherit; }
+  .spatial-open { display: inline-flex; align-items: center; gap: 9px; min-height: 40px; padding: 10px 15px; border: 1px solid #f7f5ef42; border-radius: 30px; color: #f7f5ef; background: var(--v3-chrome, #162339e8); backdrop-filter: blur(14px); font-size: .65rem; font-weight: 600; letter-spacing: .06em; cursor: pointer; }
+  .spatial-dialog { width: min(720px, calc(100vw - 32px)); max-height: calc(100dvh - 40px); padding: 0; margin: auto; border: 1px solid #c8bfac; border-radius: 12px; color: #24352c; background: #f4f1e8; overflow: auto; }
+  .spatial-dialog::backdrop { background: #06111ddd; backdrop-filter: blur(8px); }
+  .spatial-panel { padding: 30px; }
+  .spatial-top { display: flex; justify-content: space-between; align-items: center; font-size: 10px; letter-spacing: .15em; }
+  .spatial-top button { width: 44px; height: 44px; border: 0; background: transparent; color: inherit; cursor: pointer; font-size: 19px; }
+  h2 { font: normal clamp(36px, 6vw, 54px)/1.04 Georgia, serif; letter-spacing: -.035em; margin: 14px 0 18px; }
+  .spatial-intro { max-width: 500px; font-size: 16px; line-height: 1.55; color: #536153; }
+  .spatial-options { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 28px 0 10px; }
+  .spatial-options section { border-top: 1px solid #c5ccbe; padding-top: 18px; }
+  .spatial-number { font-size: 9px; letter-spacing: .12em; color: #61705d; }
+  h3 { font: normal 24px/1.2 Georgia, serif; margin: 13px 0; }
+  .spatial-options p { font-size: 13px; line-height: 1.55; color: #536153; }
+  .spatial-options button, .spatial-options a, .spatial-footer button { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 11px 16px; border: 1px solid #284d3c; border-radius: 5px; background: #284d3c; color: #fffdf5; text-decoration: none; cursor: pointer; font-size: 13px; }
+  .spatial-options button:disabled { background: transparent; color: #64715e; border-color: #c5ccbe; cursor: default; }
+  .spatial-options a img { width: 1px; height: 1px; position: absolute; opacity: 0; }
+  .spatial-options .spatial-support { font-size: 11px; min-height: 32px; }
+  .spatial-status { font-size: 13px; line-height: 1.5; min-height: 20px; }
+  .spatial-footer { border-top: 1px solid #c5ccbe; padding-top: 20px; margin-top: 20px; display: flex; gap: 24px; align-items: center; }
+  .spatial-footer button { background: transparent; color: #284d3c; white-space: nowrap; }
+  .spatial-footer p { font-size: 11px; line-height: 1.5; color: #61705d; }
+  button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid #be9348; outline-offset: 4px; }
+  [hidden] { display: none !important; }
+  .spatial-overlay { position: fixed; inset: 0; color: white; pointer-events: none; }
+  .spatial-overlay:fullscreen, .spatial-overlay:xr-overlay { background: transparent !important; }
+  .spatial-overlay-top, .spatial-overlay-controls { position: absolute; left: 16px; right: 16px; padding: 16px; border-radius: 8px; background: #10241ee8; pointer-events: auto; }
+  .spatial-overlay-top { top: max(16px, env(safe-area-inset-top)); display: flex; gap: 20px; justify-content: space-between; align-items: center; }
+  .spatial-overlay-top strong { font-size: 14px; }
+  .spatial-overlay-controls { bottom: max(16px, env(safe-area-inset-bottom)); max-width: 440px; margin: auto; }
+  .spatial-overlay-controls p { font-size: 14px; line-height: 1.5; margin: 0 0 15px; }
+  .spatial-overlay label { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; font-size: 12px; }
+  .spatial-overlay input { flex: 1; min-width: 0; }
+  .spatial-overlay button { min-height: 44px; padding: 8px 15px; border: 1px solid #c2d4bd99; border-radius: 5px; background: transparent; color: white; cursor: pointer; }
+  .spatial-overlay-controls > div { display: flex; gap: 10px; }
+  @media(max-width: 800px) { .spatial-viewing { top: 80px; left: var(--v3-pad, 20px); } .spatial-open { font-size: 10px; padding: 10px 12px; } }
+  @media(max-width: 540px) { .spatial-panel { padding: 20px; } .spatial-options { grid-template-columns: 1fr; gap: 18px; } .spatial-options .spatial-support { min-height: 0; } .spatial-footer { flex-direction: column; align-items: start; gap: 4px; } }
+</style>
