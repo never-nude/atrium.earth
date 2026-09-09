@@ -1,0 +1,72 @@
+{
+  "date": "2026-09-09",
+  "publicWorksEvaluated": 1050,
+  "topologyChecks": 1050,
+  "visualFrontChecks": 1050,
+  "multiAngleVisualChecks": 268,
+  "policy": "Only severe visible scan damage. Preserve historical fragments, minor holes, natural openings, and otherwise readable pieces with unscanned backs or undersides. Removal requires owner review.",
+  "proposedRemovals": [
+    {
+      "slug": "asia/parvati-cantor-stanford",
+      "catalogIndex": 674,
+      "title": "Parvati",
+      "decision": "remove",
+      "evidenceAngle": 180,
+      "reason": "Large torn sheets of captured wall surround the head and torso, and the reverse contains a broad missing surface with stretched triangles."
+    },
+    {
+      "slug": "europe/castlestrange-stone-ireland",
+      "catalogIndex": 454,
+      "title": "Castlestrange Stone",
+      "decision": "remove",
+      "evidenceAngle": 360,
+      "reason": "The top of the solid carved stone is almost entirely absent, leaving a large open shell with jagged scan edges."
+    },
+    {
+      "slug": "modern/plensa-sitting-tattoo-x",
+      "catalogIndex": 565,
+      "title": "Sitting Tattoo X",
+      "decision": "remove",
+      "evidenceAngle": 360,
+      "reason": "A large irregular hole removes the crown of the head, with another missing patch on the upper body. These omissions interrupt the main figure; filling them would require reconstructing unrecorded surfaces."
+    },
+    {
+      "slug": "neoclassical/cupid-and-psyche-thorvaldsen-copenhagen",
+      "catalogIndex": 666,
+      "title": "Cupid and Psyche",
+      "decision": "remove",
+      "evidenceAngle": 360,
+      "reason": "Broad open gaps remove the crowns and backs of both heads; torn capture surfaces surround the upper bodies. The museum's photograph shows complete heads."
+    }
+  ],
+  "removalsApplied": 0,
+  "recentOrientationScope": 450,
+  "orientationCorrections": 73,
+  "repairs": [
+    {
+      "slug": "asia/sutra-container-cleveland",
+      "catalogIndex": 897,
+      "title": "Sutra Container",
+      "decision": "repair",
+      "evidenceAngle": 0,
+      "reason": "Corrected a viewer bounds calculation for the articulated model and leveled its base. The intact container now fills the frame and stands upright."
+    },
+    {
+      "slug": "modern/the-kiss-rodin-musee-rodin-s-1002",
+      "catalogIndex": 411,
+      "title": "The Kiss",
+      "decision": "repair",
+      "evidenceAngle": 0,
+      "reason": "Local cleanup removes 304 isolated stray triangles above and beside the sculpture, preserving all retained surface attributes. Minor plinth capture remains."
+    }
+  ],
+  "meshRepair": {
+    "slug": "modern/the-kiss-rodin-musee-rodin-s-1002",
+    "removedTriangles": 304,
+    "totalTriangles": 1000098,
+    "method": "Remove only isolated components in two visually confirmed regions above/beside the sculpture. No filling, smoothing, or alteration of retained vertex attributes.",
+    "sha256": "94630787b4b03cc2bb4d555fe820b2c2b339bc4a17b88c4903afd27f3992ef72",
+    "bytes": 23685860,
+    "modelUrl": "https://models.atrium.earth/models/previews/modern/the-kiss-rodin-musee-rodin-s-1002/preview-94630787b4b0.glb"
+  }
+}

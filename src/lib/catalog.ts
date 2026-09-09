@@ -570,6 +570,9 @@ function normalize(raw: RawWork, fallbackIndex: number): Work {
   const sourceMuseum = clean(raw.source_institution);
   const museum = clean(raw.displayed_at) || clean(raw.current_location) || clean(raw.museum);
   const preview = previewMap[raw.slug];
+  const previewFilename = preview?.url?.split('/').at(-1) || '';
+  const localPreview = /^preview(?:-[a-f0-9]+)?\.glb$/.test(previewFilename)
+    ? `/models/previews/${raw.slug}/${previewFilename}` : '';
   const movement = movementFor(raw, era);
   const medium = clean(raw.material);
   const title = clean(raw.title) || titleCaseSlug(raw.slug);
@@ -622,9 +625,9 @@ function normalize(raw: RawWork, fallbackIndex: number): Work {
     relatedWorks: [],
     posterImage: `/previews/posters/${raw.slug}/poster.svg`,
     thumbnailImage: renderSet.has(raw.slug) ? `/previews/renders/${raw.slug}/thumb.webp` : `/previews/posters/${raw.slug}/poster.svg`,
-    // Local review can use a downloaded mirror without depending on R2 CORS.
-    modelGlb: import.meta.env?.DEV && existsSync(`public/models/previews/${raw.slug}/preview.glb`)
-      ? `/models/previews/${raw.slug}/preview.glb`
+    // Match the configured version so a stale local mirror cannot hide a repair.
+    modelGlb: import.meta.env?.DEV && localPreview && existsSync(`public${localPreview}`)
+      ? localPreview
       : preview?.url || '',
     modelUpAxis: legacyTransformString(modelTransform),
     modelTransform,
