@@ -5,6 +5,8 @@ import rawRenders from '../data/renders.json';
 import rawOrientations from '../data/orientations.json';
 import rawMaterialAppearances from '../data/material-appearances.json';
 import rawAppearanceOverrides from '../data/appearance-overrides.json';
+import rawPhysicalDimensions from '../data/physical-dimensions.json';
+import { physicalDimensionsFor } from './physical-dimensions.mjs';
 import { assignWing } from './assignWing';
 import type { WingId } from '../data/wings';
 
@@ -110,6 +112,11 @@ export type Work = {
   materialProfile: string;
   materialAppearance: MaterialAppearance;
   dimensions: string;
+  dimensionsNote: string;
+  dimensionsSourceUrl: string;
+  dimensionsBasis: string;
+  spatialReference: { axis: string; meters: number } | null;
+  spatialNote: string;
   accession: string;
   creditLine: string;
   rights: string;
@@ -615,7 +622,7 @@ function normalize(raw: RawWork, fallbackIndex: number): Work {
     materials,
     materialProfile,
     materialAppearance,
-    dimensions: clean(raw.dimensions),
+    ...physicalDimensionsFor(raw.dimensions, rawPhysicalDimensions[raw.slug], preview?.url, rawOrientations[raw.slug]),
     accession: clean(raw.accession),
     creditLine: clean(raw.attribution),
     rights: clean(raw.license) || 'Rights review pending',

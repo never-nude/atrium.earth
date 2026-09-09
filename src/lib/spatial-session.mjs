@@ -1,3 +1,5 @@
+import { referenceScaleFor } from './physical-dimensions.mjs';
+
 // WebXR owns the render loop only during an immersive session. Everything moved
 // into the room is restored on exit, including a denied or interrupted start.
 export async function startSpatialSession(context, sessionPromise, mode, overlay, options = {}) {
@@ -19,6 +21,15 @@ export async function startSpatialSession(context, sessionPromise, mode, overlay
     clearColor: renderer.getClearColor(new THREE.Color()), clearAlpha: renderer.getClearAlpha(),
   };
   const anchor = new THREE.Group();
+  const referenceScale = referenceScaleFor(box, options.reference);
+  let displayScale = 1;
+  const setScale = (value) => {
+    const number = Number(value);
+    displayScale = Number.isFinite(number) ? Math.max(0.1, Math.min(2, number)) : 1;
+    anchor.scale.setScalar(referenceScale * displayScale);
+    options.onScale?.(displayScale);
+  };
+  setScale(1);
   const content = new THREE.Group();
   content.position.y = -box.min.y;
   content.add(model);
@@ -113,8 +124,7 @@ export async function startSpatialSession(context, sessionPromise, mode, overlay
           const axes = source.gamepad?.axes || [];
           const axis = axes.length >= 4 ? axes[3] : axes[1];
           if (Math.abs(axis || 0) < 0.2) continue;
-          anchor.scale.setScalar(Math.max(0.1, Math.min(2, anchor.scale.x * Math.exp(-axis * elapsed))));
-          options.onScale?.(anchor.scale.x);
+          setScale(displayScale * Math.exp(-axis * elapsed));
           break;
         }
       }
@@ -137,7 +147,7 @@ export async function startSpatialSession(context, sessionPromise, mode, overlay
     });
     return {
       end: () => session.end(),
-      setScale: (value) => anchor.scale.setScalar(Math.max(0.1, Math.min(2, Number(value) || 1))),
+      setScale,
       rotate: (radians) => { anchor.rotation.y += radians; },
       reposition: () => {
         if (mode !== 'immersive-ar') return;
@@ -155,9 +165,11 @@ export async function startSpatialSession(context, sessionPromise, mode, overlay
 // Flatten the displayed pose into static meshes for Quick Look. This preserves
 // the placement of skinned scans and splits material groups the USDZ exporter
 // otherwise omits. Originals, textures, and the live viewer are never modified.
-export function makeQuickLookScene(THREE, model, box) {
+export function makeQuickLookScene(THREE, model, box, reference) {
   const result = new THREE.Group();
-  result.position.y = -box.min.y;
+  const scale = referenceScaleFor(box, reference);
+  result.scale.setScalar(scale);
+  result.position.y = -box.min.y * scale;
   const geometries = new Set();
   model.updateWorldMatrix(true, true);
   model.traverse((mesh) => {

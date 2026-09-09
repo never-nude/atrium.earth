@@ -173,4 +173,31 @@ function restored(context, state) {
   assert.ok(Math.abs(exportedBox.min.x - box.min.x) < 1e-6);
   converted.dispose();
 }
-console.log('Spatial checks passed: floor placement, scale, wall rejection, return to screen, permissions, interrupted sessions, and Quick Look geometry.');
+for (const meters of [0.09, 0.595, 2.277, 8]) {
+  for (const mode of ['immersive-ar', 'immersive-vr']) {
+    const context = fixture(), state = original(context), session = new Session();
+    const reference = { axis: 'y', meters };
+    let displayed;
+    const active = await startSpatialSession(context, Promise.resolve(session), mode, null, { reference, onScale: value => { displayed = value; } });
+    const height = () => {
+      context.scene.updateMatrixWorld(true);
+      return new THREE.Box3().setFromObject(context.model, true).getSize(new THREE.Vector3()).y;
+    };
+    assert.ok(Math.abs(height() - meters) < 1e-6, `${mode} starts at documented size`);
+    active.setScale(0.5);
+    assert.ok(Math.abs(height() - meters / 2) < 1e-6);
+    assert.equal(displayed, 0.5, 'UI scale is relative to the documented size');
+    active.setScale(1);
+    assert.ok(Math.abs(height() - meters) < 1e-6, 'Reset restores the original reference, not a one-meter default');
+    await active.end(); await tick(); restored(context, state);
+    const converted = makeQuickLookScene(THREE, context.model, context.box, reference);
+    const box = new THREE.Box3().setFromObject(converted.scene, true);
+    assert.ok(Math.abs(box.getSize(new THREE.Vector3()).y - meters) < 1e-6, 'Apple AR receives the same physical size');
+    assert.ok(Math.abs(box.min.y) < 1e-6, 'Export stays on the floor after physical scaling');
+    converted.dispose();
+    const again = await startSpatialSession(context, Promise.resolve(new Session()), mode, null, { reference });
+    assert.ok(Math.abs(height() - meters) < 1e-6, 'Repeated sessions do not compound physical scale');
+    await again.end(); await tick(); restored(context, state);
+  }
+}
+console.log('Spatial checks passed: physical size in WebXR and Quick Look, relative resizing, floor placement, return to screen, permissions and interrupted sessions.');

@@ -9,7 +9,7 @@ Each public sculpture page has a **View in AR / VR** button. The existing screen
 - **WebXR VR:** The sculpture stands on the floor two meters ahead of the initial reference origin. Walk around it, use a controller trigger to turn it, and move a controller thumbstick up/down to resize it. The headset's normal system controls can end the session; an Exit control is also available when the device supports DOM overlays.
 - **Screen:** Rotate, zoom, and inspect the original Three.js view as before. Unsupported AR/VR modes show instructions for opening the canonical work link on a compatible device.
 
-Display size is adjustable, with a default longest dimension of one meter. It is not claimed to reproduce the original artwork's physical measurements.
+Display size is adjustable. Works with a separately reviewed physical reference start at their documented size in WebXR and Apple Quick Look. For modern reproductions, the only physical reference is the original artwork, with an adjacent original-dimensions note and source link. Other works retain the one-metre display default and explicitly say their physical size is not yet calibrated. The [dimension audit](audits/physical-dimensions-2026-09-09.md) records source coverage and remaining gaps.
 
 ## Lifecycle and loading
 

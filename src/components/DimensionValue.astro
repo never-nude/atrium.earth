@@ -1,0 +1,10 @@
+---
+type Props = { value: string; note: string; sourceUrl: string };
+const { value, note, sourceUrl } = Astro.props;
+---
+<span>{value || 'Not yet verified'}</span>
+{(note || sourceUrl) && <small class="dimension-note">{note}{sourceUrl && <> <a href={sourceUrl}>Measurement source ↗</a></>}</small>}
+<style>
+  .dimension-note { display: block; margin-top: 7px; font-family: var(--v3-sans, sans-serif); font-size: 12px; line-height: 1.55; color: var(--v3-muted, #71776c); }
+  .dimension-note a { color: inherit; text-underline-offset: 3px; }
+</style>

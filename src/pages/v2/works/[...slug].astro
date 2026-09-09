@@ -1,5 +1,6 @@
 ---
 import Viewer from '../../../components/Viewer.astro';
+import DimensionValue from '../../../components/DimensionValue.astro';
 import V2WorkCard from '../../../components/v2/V2WorkCard.astro';
 import V2Layout from '../../../layouts/v2/V2Layout.astro';
 import { workBySlug, works, type Work } from '../../../lib/catalog';
@@ -23,7 +24,7 @@ const facts = ([
   ['Date', work.displayDate],
   ['Origin', originalLocation],
   ['Material', work.medium],
-  ['Dimensions', work.dimensions],
+  ['Dimensions', work.dimensions || (work.dimensionsNote ? 'Not yet verified' : '')],
   ['Location / collection', work.museum],
   ['Department', work.department],
   ['Accession / inventory', work.accession],
@@ -62,7 +63,7 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
       <div>
         <p class="v2-section-index">Object record</p>
         <h2>{work.title}</h2>
-        <dl>{facts.map(([label, value]) => <div><dt>{label}</dt><dd>{value}</dd></div>)}</dl>
+        <dl>{facts.map(([label, value]) => <div><dt>{label}</dt><dd>{label === 'Dimensions' ? <DimensionValue value={work.dimensions} note={work.dimensionsNote} sourceUrl={work.dimensionsSourceUrl} /> : value}</dd></div>)}</dl>
         {work.sourceRecordUrl && <a href={work.sourceRecordUrl}>Museum record ↗</a>}
         {!work.sourceRecordUrl && work.sourceUrl && <a href={work.sourceUrl}>3D model source: {sourceLabel} ↗</a>}
       </div>
@@ -82,7 +83,7 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
     </div>
 
     <dl class="v2-object-record__facts">
-      {facts.map(([label, value]) => <div><dt>{label}</dt><dd>{value}</dd></div>)}
+      {facts.map(([label, value]) => <div><dt>{label}</dt><dd>{label === 'Dimensions' ? <DimensionValue value={work.dimensions} note={work.dimensionsNote} sourceUrl={work.dimensionsSourceUrl} /> : value}</dd></div>)}
       {work.sourceRecordUrl && <div><dt>Museum record</dt><dd><a href={work.sourceRecordUrl}>Collection record ↗</a></dd></div>}
       {work.relatedSourceRecordUrls.filter((url) => url !== work.sourceRecordUrl).map((url, index) => (
         <div><dt>Additional record</dt><dd><a href={url}>Collection record {index + 2} ↗</a></dd></div>

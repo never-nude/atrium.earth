@@ -1,5 +1,6 @@
 ---
 import Viewer from '../../components/Viewer.astro';
+import DimensionValue from '../../components/DimensionValue.astro';
 import V3WorkCard from '../../components/v3/V3WorkCard.astro';
 import V3Layout from '../../layouts/v3/V3Layout.astro';
 import { workBySlug, works, type Work } from '../../lib/catalog';
@@ -23,7 +24,7 @@ const facts = ([
   ['Date', work.displayDate],
   ['Origin', originalLocation],
   ['Material', work.medium],
-  ['Dimensions', work.dimensions],
+  ['Dimensions', work.dimensions || (work.dimensionsNote ? 'Not yet verified' : '')],
   ['Location / collection', work.museum],
   ['Department', work.department],
   ['Accession / inventory', work.accession],
@@ -47,6 +48,8 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
       autoRotate={work.slug !== 'europe/venus-of-willendorf-nhmw-44-686'}
       lightControls={true}
       spatialViewing={true}
+      spatialReference={work.spatialReference}
+      spatialNote={work.spatialNote}
       posterLoading="eager"
       upAxis={work.modelUpAxis}
       modelTransform={work.modelTransform}
@@ -123,7 +126,9 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
     </div>
 
     <dl class="v3-facts">
-      {facts.map(([label, value]) => <div><dt>{label}</dt><dd>{value}</dd></div>)}
+      {facts.map(([label, value]) => <div><dt>{label}</dt><dd>{label === 'Dimensions'
+        ? <DimensionValue value={work.dimensions} note={work.dimensionsNote} sourceUrl={work.dimensionsSourceUrl} />
+        : value}</dd></div>)}
       {work.sourceRecordUrl && <div><dt>Museum record</dt><dd><a href={work.sourceRecordUrl}>Collection record ↗</a></dd></div>}
       {work.relatedSourceRecordUrls.filter((url) => url !== work.sourceRecordUrl).map((url, index) => (
         <div><dt>Additional record</dt><dd><a href={url}>Collection record {index + 2} ↗</a></dd></div>

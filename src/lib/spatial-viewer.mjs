@@ -10,6 +10,13 @@ export function bindSpatialViewing(element, getContext, activate) {
   const quickLook = find('[data-quick-look]');
   const status = find('[data-spatial-status]');
   const title = element.dataset.title;
+  const reference = element.dataset.referenceAxis ? {
+    axis: element.dataset.referenceAxis, meters: Number(element.dataset.referenceMeters),
+  } : null;
+  const showScale = (value) => {
+    find('[data-spatial-scale]').value = String(value);
+    find('[data-spatial-size]').textContent = `${Math.round(value * 100)}%`;
+  };
   const pageUrl = document.querySelector('link[rel="canonical"]')?.href || location.href;
   const xr = navigator.xr;
   const quickLookSupported = Boolean(document.createElement('a').relList?.supports?.('ar'));
@@ -40,7 +47,7 @@ export function bindSpatialViewing(element, getContext, activate) {
   const reset = () => {
     session = undefined; busy = false;
     overlay.hidden = true; panel.hidden = false;
-    find('[data-spatial-scale]').value = '1';
+    showScale(1);
     update();
   };
   const errorMessage = (error) => error?.name === 'NotAllowedError' || error?.name === 'SecurityError'
@@ -65,8 +72,9 @@ export function bindSpatialViewing(element, getContext, activate) {
     } catch (error) { reset(); say(errorMessage(error)); return; }
     void startSpatialSession(getContext(), request, mode, overlay, {
       signal: pending.signal,
+      reference,
       onStatus: (text) => { find('[data-spatial-instructions]').textContent = text; },
-      onScale: (value) => { find('[data-spatial-scale]').value = String(value); },
+      onScale: showScale,
       onEnd: () => { reset(); say('Back on screen. You can start another immersive view whenever you like.'); },
     }).then((active) => { session = active; }).catch((error) => { reset(); say(errorMessage(error)); });
   }
@@ -78,7 +86,7 @@ export function bindSpatialViewing(element, getContext, activate) {
     try {
       const context = getContext();
       const { USDZExporter } = await import('three/examples/jsm/exporters/USDZExporter.js');
-      converted = makeQuickLookScene(context.THREE, context.model, context.box);
+      converted = makeQuickLookScene(context.THREE, context.model, context.box, reference);
       const bytes = await new USDZExporter().parseAsync(converted.scene, { maxTextureSize: 2048, quickLookCompatible: true });
       if (modelUrl) URL.revokeObjectURL(modelUrl);
       modelUrl = URL.createObjectURL(new Blob([bytes], { type: 'model/vnd.usdz+zip' }));
@@ -107,6 +115,7 @@ export function bindSpatialViewing(element, getContext, activate) {
     if (event.target.closest('button, input, label')) event.preventDefault();
   });
   find('[data-spatial-scale]').addEventListener('input', (event) => session?.setScale(event.target.value));
+  find('[data-spatial-reset-size]').addEventListener('click', () => session?.setScale(1));
   find('[data-spatial-turn]').addEventListener('click', () => session?.rotate(Math.PI / 6));
   find('[data-spatial-place]').addEventListener('click', () => session?.reposition());
   ar.addEventListener('click', () => capabilities.ar ? enter('immersive-ar') : void prepareQuickLook());

@@ -1,0 +1,72 @@
+---
+import V3Layout from '../../../layouts/v3/V3Layout.astro';
+import { workBySlug } from '../../../lib/catalog';
+import { withBase } from '../../../lib/urls';
+import audit from '../../../../docs/audits/physical-dimensions-2026-09-09.json';
+
+export function getStaticPaths() {
+  return import.meta.env.DEV ? [{ params: { review: 'audit' } }] : [];
+}
+const rows = audit.records.map(record => ({ ...record, work: workBySlug(record.slug)! }));
+---
+<V3Layout title="Physical dimensions · local audit">
+  <meta slot="head" name="robots" content="noindex, nofollow" />
+  <header class="v3-page-hero">
+    <p class="v3-kicker">Local review / September 9, 2026</p>
+    <h1 class="v3-display">The size of the original.</h1>
+    <p>453 records flagged for missing dimensions, clarification or reproduction checks. 64 previously blank measurements filled; 11 originals matched to their casts. Nine models now start at documented physical size.</p>
+    <p>81 documented · 15 approximate · 356 unresolved · 1 with variable digital size. The other 593 catalogue records were outside this source review.</p>
+  </header>
+  <section class="audit-controls" aria-label="Filter dimension audit">
+    <label>Find a work <input type="search" data-audit-search placeholder="Title or collection" /></label>
+    <label>Measurement status <select data-audit-status><option value="">All records</option value="documented">Documented</option><option value="approximate">Approximate</option><option value="unresolved">Unresolved</option><option value="variable">Variable</option><option value="calibrated">AR / VR size applied</option></select></label>
+    <p data-audit-count role="status">453 works</p>
+  </section>
+  <section class="audit-grid" aria-label="Measurement review">
+    {rows.map(row => <article data-audit-row data-status={row.status} data-calibrated={Boolean(row.work.spatialReference)} data-search={`${row.title} ${row.slug} ${row.work.museum}`.toLowerCase()}>
+      <a class="audit-image" href={withBase(row.work.route)}><img src={withBase(row.work.thumbnailImage)} alt={row.title} width="300" height="375" loading="lazy" /></a>
+      <div class="audit-record">
+        <p class="v3-kicker">{row.status}{row.work.spatialReference ? ' · AR / VR size applied' : ''}</p>
+        <h2><a href={withBase(row.work.route)}>{row.title}</a></h2>
+        <p class="audit-dimensions">{row.dimensions || 'Dimensions not yet verified'}</p>
+        <p>{row.note || 'Dimensions published by the collection source.'}</p>
+        <p>{row.work.spatialNote}</p>
+        {row.sourceUrl && <a href={row.sourceUrl}>Measurement source ↗</a>}
+        <details><summary>Audit trail</summary><p>Previously: {row.previousDimensions || 'No dimensions recorded'}</p><p>{row.outstanding || 'Measurement documented. Physical sizing requires a separate scan check.'}</p><ul>{row.catalogSourceUrls.map(url => <li><a href={url}>Catalogue source ↗</a></li>)}</ul><p>{row.sourceChecks.length} public source requests / reviews recorded in the audit file.</p></details>
+      </div>
+    </article>)}
+  </section>
+  <script>
+    const search = document.querySelector<HTMLInputElement>('[data-audit-search]')!;
+    const status = document.querySelector<HTMLSelectElement>('[data-audit-status]')!;
+    const rows = [...document.querySelectorAll<HTMLElement>('[data-audit-row]')];
+    function filter() {
+      const query = search.value.trim().toLowerCase();
+      let count = 0;
+      for (const row of rows) {
+        const matchesStatus = !status.value || (status.value === 'calibrated' ? row.dataset.calibrated === 'true' : status.value === row.dataset.status);
+        row.hidden = !matchesStatus || !row.dataset.search!.includes(query);
+        if (!row.hidden) count++;
+      }
+      document.querySelector('[data-audit-count]')!.textContent = `${count} ${count === 1 ? 'work' : 'works'}`;
+    }
+    search.addEventListener('input', filter);
+    status.addEventListener('change', filter);
+  </script>
+</V3Layout>
+<style>
+  .audit-controls { display:flex; flex-wrap:wrap; align-items:end; gap:24px; margin:0 var(--v3-pad) 32px; }
+  label { display:grid; gap:8px; font-size:12px; }
+  input, select { min-height:44px; padding:10px; border:1px solid #aaa; background:#f9f7f0; color:#18342c; font:inherit; border-radius:4px; }
+  .audit-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px; margin:0 var(--v3-pad) 60px; }
+  article { display:grid; grid-template-columns:120px minmax(0,1fr); gap:24px; border-top:1px solid var(--v3-line); padding:24px 0; }
+  article[hidden] { display:none; }
+  img { width:100%; height:auto; border-radius:5px; }
+  h2 { font:normal 24px/1.2 var(--v3-serif); margin:12px 0; }
+  p, details, li { font-size:13px; line-height:1.5; }
+  .audit-dimensions { font-size:16px; font-weight:600; }
+  a { color:inherit; text-underline-offset:3px; }
+  summary { cursor:pointer; margin-top:16px; }
+  @media(max-width:900px) { .audit-grid { grid-template-columns:1fr; } }
+  @media(max-width:480px) { article { grid-template-columns:80px minmax(0,1fr); gap:16px; } input { max-width:100%; } }
+</style>
