@@ -3,25 +3,44 @@ import { mkdir } from 'node:fs/promises';
 import { chromium } from 'playwright';
 
 const base = process.env.ATRIUM_TEST_URL || 'http://127.0.0.1:4332';
-const output = '/private/tmp/atrium-spatial-tests';
+const output = process.env.ATRIUM_TEST_OUTPUT || '/private/tmp/atrium-spatial-tests';
 await mkdir(output, { recursive: true });
 const browser = await chromium.launch({ channel: 'chrome', headless: true, args: ['--enable-unsafe-swiftshader'] });
+async function allowLocalModelPreview(context) {
+  if (process.env.ATRIUM_LOCAL_MODEL_CORS !== '1') return;
+  assert.ok(['localhost', '127.0.0.1'].includes(new URL(base).hostname), 'CORS accommodation is local QA only');
+  await context.route('https://models.atrium.earth/**', async (route) => {
+    const response = await route.fetch({ timeout: 60000 });
+    assert.equal(response.status(), 200, 'Public model must be available without changing its contents');
+    await route.fulfill({ response, headers: { ...response.headers(), 'access-control-allow-origin': new URL(base).origin } });
+  });
+}
 try {
   const context = await browser.newContext({ viewport: { width: 1440, height: 1050 }, permissions: ['clipboard-read', 'clipboard-write'] });
+  await allowLocalModelPreview(context);
   await context.addInitScript(() => { Object.defineProperty(navigator, 'xr', { configurable: true, value: undefined }); Object.defineProperty(navigator, 'share', { configurable: true, value: undefined }); });
   const page = await context.newPage();
   const errors = [];
   page.on('pageerror', error => errors.push(error.message));
-  await page.goto(`${base}/works/modern/the-kiss-rodin-musee-rodin-s-1002/`);
+  await page.goto(`${base}/works/egyptian/green-painted-ushebti-smvk/`);
   await page.locator('[data-stage].is-live').waitFor({ timeout: 90000 });
   await page.locator('[data-spatial-open]').click();
   await page.getByRole('button', { name: 'Open on an AR phone', exact: true }).waitFor();
   assert.equal(await page.locator('[data-spatial-ar]').isDisabled(), true);
   assert.equal(await page.locator('[data-spatial-vr]').isDisabled(), true);
+  assert.equal(await page.locator('[data-support-mode]').inputValue(), 'auto');
+  await page.locator('[data-support-mode]').selectOption('surface');
+  assert.equal(await page.locator('[data-support-height-control]').isVisible(), false);
+  await page.locator('[data-support-mode]').selectOption('plinth');
+  assert.equal(await page.locator('[data-support-height-control]').isVisible(), true);
+  await page.locator('[data-support-height]').evaluate((input) => {
+    input.value = '0.65'; input.dispatchEvent(new Event('input', { bubbles: true }));
+  });
+  assert.equal(await page.locator('[data-support-height-value]').textContent(), '65 cm');
   await page.screenshot({ path: `${output}/desktop.png` });
   await page.locator('[data-spatial-share]').click();
   await page.waitForFunction(() => document.querySelector('[data-spatial-status]').textContent.includes('Link copied'));
-  assert.equal(await page.evaluate(() => navigator.clipboard.readText()), 'https://atrium.earth/works/modern/the-kiss-rodin-musee-rodin-s-1002/');
+  assert.equal(await page.evaluate(() => navigator.clipboard.readText()), 'https://atrium.earth/works/egyptian/green-painted-ushebti-smvk/');
   await page.keyboard.press('Escape');
   assert.equal(await page.locator('[data-spatial-dialog]').isVisible(), false);
   await page.locator('[data-tool-rotate]').click();
@@ -36,6 +55,7 @@ try {
   await context.close();
 
   const capable = await browser.newContext();
+  await allowLocalModelPreview(capable);
   await capable.addInitScript(() => {
     Object.defineProperty(navigator, 'xr', { configurable: true, value: {
       isSessionSupported: async () => true,
@@ -59,6 +79,7 @@ try {
   await capable.close();
 
   const apple = await browser.newContext();
+  await allowLocalModelPreview(apple);
   await apple.addInitScript(() => {
     Object.defineProperty(navigator, 'xr', { configurable: true, value: undefined });
     const supports = DOMTokenList.prototype.supports;
@@ -79,6 +100,18 @@ try {
   assert.deepEqual(exported.header, [80, 75]);
   assert.ok(exported.size > 100000);
   assert.equal(exported.firstChild, 'IMG');
+  assert.ok((await quick.locator('[data-quick-look]').getAttribute('href')).includes('allowsContentScaling=1'));
+  await quick.locator('[data-support-mode]').selectOption('plinth');
+  assert.equal(await quick.locator('[data-quick-look]').isVisible(), false, 'Changed furniture invalidates prepared Apple export');
+  assert.equal(await quick.locator('[data-spatial-ar]').isVisible(), true);
+  await quick.locator('[data-spatial-ar]').click();
+  await quick.locator('[data-quick-look]:not([hidden])').waitFor({ timeout: 90000 });
+  assert.ok((await quick.locator('[data-quick-look]').getAttribute('href')).includes('allowsContentScaling=0'), 'Apple cannot resize artwork and furniture together');
+  await quick.locator('[data-support-height]').evaluate((input) => {
+    input.value = '0.65'; input.dispatchEvent(new Event('input', { bubbles: true }));
+  });
+  assert.equal(await quick.locator('[data-quick-look]').isVisible(), false, 'Changing stand height invalidates prepared Apple export');
+  assert.equal(await quick.locator('[data-support-height-value]').textContent(), '65 cm');
   console.log('Apple AR export prepared successfully:', exported.size, 'bytes');
   await quick.screenshot({ path: `${output}/quick-look.png` });
   await quick.locator('[data-spatial-close]').click();

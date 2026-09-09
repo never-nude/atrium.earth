@@ -1,4 +1,5 @@
 import { referenceScaleFor } from './physical-dimensions.mjs';
+import { createDisplaySupport, supportLayoutFor } from './display-support.mjs';
 
 // WebXR owns the render loop only during an immersive session. Everything moved
 // into the room is restored on exit, including a denied or interrupted start.
@@ -15,25 +16,33 @@ export async function startSpatialSession(context, sessionPromise, mode, overlay
   const saved = {
     parent: model.parent, groundParent: ground.parent,
     groundPosition: ground.position.clone(), groundVisible: ground.visible,
+    groundScale: ground.scale.clone(),
     gridPosition: grid.position.clone(), gridVisible: grid.visible,
     background: scene.background, camera: camera.clone(),
     xrEnabled: renderer.xr.enabled,
     clearColor: renderer.getClearColor(new THREE.Color()), clearAlpha: renderer.getClearAlpha(),
   };
+  // Furniture lives in room metres. Only the artwork receives its reference scale.
   const anchor = new THREE.Group();
   const referenceScale = referenceScaleFor(box, options.reference);
+  const layout = supportLayoutFor(box, options.reference, { ...options.support, sessionMode: mode });
+  const placementSurface = layout.visible ? 'floor' : 'floor or table';
+  const support = createDisplaySupport(THREE, layout);
+  let supportHeight = layout.visible ? layout.height : 0;
+  const content = new THREE.Group();
   let displayScale = 1;
   const setScale = (value) => {
     const number = Number(value);
     displayScale = Number.isFinite(number) ? Math.max(0.1, Math.min(2, number)) : 1;
-    anchor.scale.setScalar(referenceScale * displayScale);
+    const scale = referenceScale * displayScale;
+    content.scale.setScalar(scale);
+    content.position.y = supportHeight - box.min.y * scale;
+    ground.scale.copy(saved.groundScale).multiplyScalar(scale);
     options.onScale?.(displayScale);
   };
   setScale(1);
-  const content = new THREE.Group();
-  content.position.y = -box.min.y;
   content.add(model);
-  anchor.add(content);
+  anchor.add(content, support.object);
   anchor.add(ground);
   ground.position.set(0, 0.001, 0);
   grid.position.y = 0;
@@ -41,6 +50,14 @@ export async function startSpatialSession(context, sessionPromise, mode, overlay
   anchor.position.set(0, 0, -2);
   anchor.visible = mode === 'immersive-vr';
   scene.add(anchor);
+  const showSupport = () => options.onSupport?.({ visible: layout.visible, height: supportHeight });
+  const setSupportHeight = (meters) => {
+    if (!layout.visible) return;
+    supportHeight = support.setHeight(meters);
+    content.position.y = supportHeight - box.min.y * referenceScale * displayScale;
+    showSupport();
+  };
+  showSupport();
   scene.background = mode === 'immersive-ar' ? null : new THREE.Color('#101c2c');
   renderer.setClearColor(mode === 'immersive-ar' ? 0 : '#101c2c', mode === 'immersive-ar' ? 0 : 1);
   const reticle = new THREE.Mesh(
@@ -69,12 +86,14 @@ export async function startSpatialSession(context, sessionPromise, mode, overlay
     saved.parent.add(model);
     saved.groundParent.add(ground);
     ground.position.copy(saved.groundPosition);
+    ground.scale.copy(saved.groundScale);
     ground.visible = saved.groundVisible;
     grid.position.copy(saved.gridPosition);
     grid.visible = saved.gridVisible;
     scene.remove(anchor, reticle);
     reticle.geometry.dispose();
     reticle.material.dispose();
+    support.dispose();
     scene.background = saved.background;
     camera.copy(saved.camera);
     renderer.xr.enabled = saved.xrEnabled;
@@ -113,7 +132,7 @@ export async function startSpatialSession(context, sessionPromise, mode, overlay
         hitSource.cancel();
         throw new DOMException('Viewing cancelled.', 'AbortError');
       }
-      setStatus('Move your phone to find a floor or table. Tap the ring to place the sculpture.');
+      setStatus(`Move your phone to find a ${placementSurface}. Tap the ring to place ${layout.visible ? 'the stand and sculpture' : 'the sculpture'}.`);
     } else setStatus('Walk around the sculpture. Trigger to turn; thumbstick up or down to resize.');
     renderer.setAnimationLoop((time, frame) => {
       if (ended) return;
@@ -140,7 +159,7 @@ export async function startSpatialSession(context, sessionPromise, mode, overlay
         }
         if (hasSurface !== reticle.visible) {
           hasSurface = reticle.visible;
-          setStatus(hasSurface ? 'Surface found. Tap to place the sculpture.' : 'Move your phone to find a floor or table.');
+          setStatus(hasSurface ? `Surface found. Tap to place ${layout.visible ? 'the stand and sculpture on the floor' : 'the sculpture'}.` : `Move your phone to find a ${placementSurface}.`);
         }
       }
       renderer.render(scene, camera);
@@ -148,11 +167,12 @@ export async function startSpatialSession(context, sessionPromise, mode, overlay
     return {
       end: () => session.end(),
       setScale,
+      setSupportHeight,
       rotate: (radians) => { anchor.rotation.y += radians; },
       reposition: () => {
         if (mode !== 'immersive-ar') return;
         placed = false; hasSurface = false; anchor.visible = false;
-        setStatus('Find a floor or table, then tap to place the sculpture again.');
+        setStatus(`Find a ${placementSurface}, then tap to place ${layout.visible ? 'the stand and sculpture' : 'the sculpture'} again.`);
       },
     };
   } catch (error) {
@@ -165,62 +185,81 @@ export async function startSpatialSession(context, sessionPromise, mode, overlay
 // Flatten the displayed pose into static meshes for Quick Look. This preserves
 // the placement of skinned scans and splits material groups the USDZ exporter
 // otherwise omits. Originals, textures, and the live viewer are never modified.
-export function makeQuickLookScene(THREE, model, box, reference) {
+export function makeQuickLookScene(THREE, model, box, reference, supportOptions = {}) {
   const result = new THREE.Group();
   const scale = referenceScaleFor(box, reference);
   result.scale.setScalar(scale);
   result.position.y = -box.min.y * scale;
+  const layout = supportLayoutFor(box, reference, { ...supportOptions, sessionMode: 'quick-look' });
+  const support = createDisplaySupport(THREE, layout);
+  const assembly = new THREE.Group();
+  assembly.name = 'Atrium display';
+  result.name = 'Artwork';
+  result.position.y += layout.visible ? layout.height : 0;
+  assembly.add(result);
+  if (layout.visible) assembly.add(support.object);
   const geometries = new Set();
-  model.updateWorldMatrix(true, true);
-  model.traverse((mesh) => {
-    if (!mesh.isMesh || !mesh.visible) return;
-    let parent = mesh.parent;
-    while (parent && parent !== model.parent) {
-      if (!parent.visible) return;
-      parent = parent.parent;
-    }
-    const geometry = mesh.geometry.clone();
-    geometries.add(geometry);
-    if (mesh.isSkinnedMesh || mesh.morphTargetInfluences?.some(Boolean)) {
-      mesh.skeleton?.update();
-      const position = geometry.getAttribute('position');
-      const point = new THREE.Vector3();
-      for (let i = 0; i < position.count; i++) {
-        mesh.getVertexPosition(i, point);
-        position.setXYZ(i, point.x, point.y, point.z);
+  const dispose = () => {
+    for (const geometry of geometries) geometry.dispose();
+    support.dispose();
+  };
+  try {
+    model.updateWorldMatrix(true, true);
+    model.traverse((mesh) => {
+      if (!mesh.isMesh || !mesh.visible) return;
+      let parent = mesh.parent;
+      while (parent && parent !== model.parent) {
+        if (!parent.visible) return;
+        parent = parent.parent;
       }
-      geometry.deleteAttribute('skinIndex'); geometry.deleteAttribute('skinWeight');
-      geometry.morphAttributes = {};
-      geometry.computeVertexNormals();
-    }
-    geometry.applyMatrix4(mesh.matrixWorld);
-    // Baking a mirrored transform removes Three's automatic front-face flip.
-    if (mesh.matrixWorld.determinant() < 0) {
-      if (!geometry.index) geometry.setIndex(Array.from({ length: geometry.attributes.position.count }, (_, i) => i));
-      const index = geometry.index;
-      for (let i = 0; i < index.count; i += 3) {
-        const second = index.getX(i + 1);
-        index.setX(i + 1, index.getX(i + 2)); index.setX(i + 2, second);
+      const geometry = mesh.geometry.clone();
+      geometries.add(geometry);
+      if (mesh.isSkinnedMesh || mesh.morphTargetInfluences?.some(Boolean)) {
+        mesh.skeleton?.update();
+        const position = geometry.getAttribute('position');
+        const point = new THREE.Vector3();
+        for (let i = 0; i < position.count; i++) {
+          mesh.getVertexPosition(i, point);
+          position.setXYZ(i, point.x, point.y, point.z);
+        }
+        geometry.deleteAttribute('skinIndex'); geometry.deleteAttribute('skinWeight');
+        geometry.morphAttributes = {};
+        geometry.computeVertexNormals();
       }
-    }
-    const materials = Array.isArray(mesh.material) ? mesh.material : [mesh.material];
-    const groups = Array.isArray(mesh.material) ? geometry.groups : [{ start: 0, count: geometry.index?.count ?? geometry.attributes.position.count, materialIndex: 0 }];
-    for (const group of groups) {
-      const material = materials[group.materialIndex ?? 0];
-      if (!material?.visible) continue;
-      if (!material.isMeshStandardMaterial) throw new Error('This surface cannot be exported to AR.');
-      let surface = geometry;
-      if (Array.isArray(mesh.material)) {
-        surface = geometry.clone();
-        const indexes = geometry.index ? Array.from(geometry.index.array).slice(group.start, group.start + group.count) : Array.from({ length: group.count }, (_, i) => group.start + i);
-        surface.setIndex(indexes); surface.clearGroups();
-        geometries.add(surface);
+      geometry.applyMatrix4(mesh.matrixWorld);
+      // Baking a mirrored transform removes Three's automatic front-face flip.
+      if (mesh.matrixWorld.determinant() < 0) {
+        if (!geometry.index) geometry.setIndex(Array.from({ length: geometry.attributes.position.count }, (_, i) => i));
+        const index = geometry.index;
+        for (let i = 0; i < index.count; i += 3) {
+          const second = index.getX(i + 1);
+          index.setX(i + 1, index.getX(i + 2)); index.setX(i + 2, second);
+        }
       }
-      const item = new THREE.Mesh(surface, material);
-      item.name = mesh.name;
-      result.add(item);
-    }
-  });
-  result.updateMatrixWorld(true);
-  return { scene: result, dispose: () => { for (const geometry of geometries) geometry.dispose(); } };
+      const materials = Array.isArray(mesh.material) ? mesh.material : [mesh.material];
+      const groups = Array.isArray(mesh.material) ? geometry.groups : [{ start: 0, count: geometry.index?.count ?? geometry.attributes.position.count, materialIndex: 0 }];
+      for (const group of groups) {
+        const material = materials[group.materialIndex ?? 0];
+        if (!material?.visible) continue;
+        if (!material.isMeshStandardMaterial) throw new Error('This surface cannot be exported to AR.');
+        let surface = geometry;
+        if (Array.isArray(mesh.material)) {
+          surface = geometry.clone();
+          const indexes = geometry.index ? Array.from(geometry.index.array).slice(group.start, group.start + group.count) : Array.from({ length: group.count }, (_, i) => group.start + i);
+          surface.setIndex(indexes); surface.clearGroups();
+          geometries.add(surface);
+        }
+        const item = new THREE.Mesh(surface, material);
+        item.name = mesh.name;
+        result.add(item);
+      }
+    });
+    assembly.updateMatrixWorld(true);
+    // USDZExporter serializes the root's children, not the root transform itself.
+    // An identity wrapper preserves physical scale even without furniture.
+    return { scene: assembly, hasSupport: layout.visible, dispose };
+  } catch (error) {
+    dispose();
+    throw error;
+  }
 }

@@ -9,6 +9,14 @@ export function bindSpatialViewing(element, getContext, activate) {
   const vr = find('[data-spatial-vr]');
   const quickLook = find('[data-quick-look]');
   const status = find('[data-spatial-status]');
+  const supportMode = find('[data-support-mode]');
+  const supportHeight = find('[data-support-height]');
+  const supportOptions = () => ({ mode: supportMode.value, height: Number(supportHeight.value) });
+  const showSupport = ({ visible, height }) => {
+    find('[data-spatial-support-control]').hidden = !visible;
+    find('[data-spatial-support-height]').value = String(height);
+    find('[data-spatial-support-value]').textContent = `${Math.round(height * 100)} cm`;
+  };
   const title = element.dataset.title;
   const reference = element.dataset.referenceAxis ? {
     axis: element.dataset.referenceAxis, meters: Number(element.dataset.referenceMeters),
@@ -25,9 +33,26 @@ export function bindSpatialViewing(element, getContext, activate) {
   let session;
   let pending;
   let modelUrl;
+  const invalidateQuickLook = () => {
+    if (modelUrl) URL.revokeObjectURL(modelUrl);
+    modelUrl = undefined;
+    quickLook.removeAttribute('href');
+    quickLook.hidden = true; ar.hidden = false;
+  };
+  const updateSupportChoice = () => {
+    find('[data-support-height-control]').hidden = supportMode.value === 'surface';
+    find('[data-support-height-value]').textContent = `${Math.round(Number(supportHeight.value) * 100)} cm`;
+    find('[data-support-note]').textContent = supportMode.value === 'plinth'
+      ? 'Place the virtual stand on the floor. In Apple AR, the artwork and stand keep their prepared size.'
+      : supportMode.value === 'surface'
+        ? 'Place the artwork directly on a real table or the floor. No virtual furniture is added.'
+        : 'Small pieces with a documented scale get a stand in VR. In AR, use a real table or choose a virtual stand.';
+  };
   const say = (message) => { status.textContent = message; };
   function update() {
     const ready = Boolean(getContext());
+    supportMode.disabled = busy;
+    supportHeight.disabled = busy;
     ar.disabled = busy || !ready || !(capabilities.ar || quickLookSupported);
     vr.disabled = busy || !ready || !capabilities.vr;
     ar.textContent = !capabilities.checked ? 'Checking your device…' : capabilities.ar ? 'Place in your room' : quickLookSupported ? 'Prepare AR view' : 'Open on an AR phone';
@@ -73,6 +98,8 @@ export function bindSpatialViewing(element, getContext, activate) {
     void startSpatialSession(getContext(), request, mode, overlay, {
       signal: pending.signal,
       reference,
+      support: supportOptions(),
+      onSupport: showSupport,
       onStatus: (text) => { find('[data-spatial-instructions]').textContent = text; },
       onScale: showScale,
       onEnd: () => { reset(); say('Back on screen. You can start another immersive view whenever you like.'); },
@@ -86,13 +113,15 @@ export function bindSpatialViewing(element, getContext, activate) {
     try {
       const context = getContext();
       const { USDZExporter } = await import('three/examples/jsm/exporters/USDZExporter.js');
-      converted = makeQuickLookScene(context.THREE, context.model, context.box, reference);
+      converted = makeQuickLookScene(context.THREE, context.model, context.box, reference, supportOptions());
       const bytes = await new USDZExporter().parseAsync(converted.scene, { maxTextureSize: 2048, quickLookCompatible: true });
       if (modelUrl) URL.revokeObjectURL(modelUrl);
       modelUrl = URL.createObjectURL(new Blob([bytes], { type: 'model/vnd.usdz+zip' }));
-      quickLook.href = `${modelUrl}#allowsContentScaling=1&canonicalWebPageURL=${encodeURIComponent(pageUrl)}`;
+      quickLook.href = `${modelUrl}#allowsContentScaling=${converted.hasSupport ? 0 : 1}&canonicalWebPageURL=${encodeURIComponent(pageUrl)}`;
       quickLook.hidden = false; ar.hidden = true;
-      say('Ready. Tap “Open in AR” to place the sculpture. Pinch to change its display size.');
+      say(converted.hasSupport
+        ? 'Ready. Tap “Open in AR” and place the stand on the floor. The artwork and stand keep their prepared size.'
+        : 'Ready. Tap “Open in AR” to place the sculpture. Pinch to change its display size.');
       quickLook.focus();
     } catch (error) {
       say('This sculpture could not be prepared for Apple AR. You can still explore it in 3D here.');
@@ -115,6 +144,15 @@ export function bindSpatialViewing(element, getContext, activate) {
     if (event.target.closest('button, input, label')) event.preventDefault();
   });
   find('[data-spatial-scale]').addEventListener('input', (event) => session?.setScale(event.target.value));
+  find('[data-spatial-support-height]').addEventListener('input', (event) => {
+    supportHeight.value = event.target.value;
+    updateSupportChoice();
+    invalidateQuickLook();
+    session?.setSupportHeight(event.target.value);
+  });
+  for (const control of [supportMode, supportHeight]) {
+    control.addEventListener('input', () => { updateSupportChoice(); invalidateQuickLook(); say(''); });
+  }
   find('[data-spatial-reset-size]').addEventListener('click', () => session?.setScale(1));
   find('[data-spatial-turn]').addEventListener('click', () => session?.rotate(Math.PI / 6));
   find('[data-spatial-place]').addEventListener('click', () => session?.reposition());
@@ -136,5 +174,6 @@ export function bindSpatialViewing(element, getContext, activate) {
     if (!event.persisted && modelUrl) URL.revokeObjectURL(modelUrl);
   });
   xr?.addEventListener?.('devicechange', checkCapabilities);
+  updateSupportChoice();
   void checkCapabilities();
 }

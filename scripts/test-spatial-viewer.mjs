@@ -34,7 +34,7 @@ class Session extends EventTarget {
   async requestHitTestSource() { return { cancel: () => this.cancelled++ }; }
 }
 function original(context) {
-  return { position: context.model.position.clone(), scale: context.model.scale.clone(), rotation: context.model.quaternion.clone(), camera: context.camera.position.clone(), ground: context.ground.position.clone() };
+  return { position: context.model.position.clone(), scale: context.model.scale.clone(), rotation: context.model.quaternion.clone(), camera: context.camera.position.clone(), ground: context.ground.position.clone(), groundScale: context.ground.scale.clone() };
 }
 function restored(context, state) {
   assert.equal(context.model.parent, context.scene);
@@ -44,6 +44,7 @@ function restored(context, state) {
   assert.ok(context.model.quaternion.equals(state.rotation));
   assert.ok(context.camera.position.equals(state.camera));
   assert.ok(context.ground.position.equals(state.ground));
+  assert.ok(context.ground.scale.equals(state.groundScale));
   assert.equal(context.paused, 0);
   assert.equal(context.renderer.xr.enabled, false);
   assert.equal(context.renderer.loop ?? null, null);
@@ -63,7 +64,7 @@ function restored(context, state) {
   assert.equal(context.model.parent.parent.rotation.y, Math.PI / 6);
   session.inputSources = [{ gamepad: { axes: [0, 0, 0, -0.8] } }];
   context.renderer.loop(0, null); context.renderer.loop(100, null);
-  assert.ok(context.model.parent.parent.scale.x > 0.4, 'VR thumbstick changes display size');
+  assert.ok(context.model.parent.scale.x > 0.4, 'VR thumbstick changes artwork display size');
   await active.end(); await tick(); restored(context, state);
 }
 {
@@ -128,8 +129,9 @@ function restored(context, state) {
   model.add(new THREE.Mesh(geometry, Array(6).fill(material)));
   const box = new THREE.Box3().setFromObject(model, true);
   const converted = makeQuickLookScene(THREE, model, box);
-  assert.equal(converted.scene.children.length, 6);
-  assert.equal(converted.scene.children.reduce((count, mesh) => count + mesh.geometry.index.count, 0), geometry.index.count);
+  const artwork = converted.scene.getObjectByName('Artwork');
+  assert.equal(artwork.children.length, 6);
+  assert.equal(artwork.children.reduce((count, mesh) => count + mesh.geometry.index.count, 0), geometry.index.count);
   converted.dispose();
 }
 {
@@ -145,7 +147,7 @@ function restored(context, state) {
   const context = fixture(); context.model.scale.x *= -1;
   const box = new THREE.Box3().setFromObject(context.model, true);
   const converted = makeQuickLookScene(THREE, context.model, box);
-  const geometry = converted.scene.children[0].geometry;
+  const geometry = converted.scene.getObjectByName('Artwork').children[0].geometry;
   const a = new THREE.Vector3().fromBufferAttribute(geometry.attributes.position, geometry.index.getX(0));
   const b = new THREE.Vector3().fromBufferAttribute(geometry.attributes.position, geometry.index.getX(1));
   const c = new THREE.Vector3().fromBufferAttribute(geometry.attributes.position, geometry.index.getX(2));
@@ -200,4 +202,56 @@ for (const meters of [0.09, 0.595, 2.277, 8]) {
     await again.end(); await tick(); restored(context, state);
   }
 }
-console.log('Spatial checks passed: physical size in WebXR and Quick Look, relative resizing, floor placement, return to screen, permissions and interrupted sessions.');
+for (const mode of ['immersive-vr', 'immersive-ar']) {
+  const context = fixture(), state = original(context), session = new Session();
+  const reference = { axis: 'y', meters: 0.09 };
+  const active = await startSpatialSession(context, Promise.resolve(session), mode, null,
+    { reference, support: { mode: 'plinth', height: 1 } });
+  const support = context.scene.getObjectByName('Atrium display support');
+  const mesh = support.children[0];
+  let geometryDisposals = 0, materialDisposals = 0;
+  mesh.geometry.addEventListener('dispose', () => geometryDisposals++);
+  mesh.material.addEventListener('dispose', () => materialDisposals++);
+  const measured = (object) => { context.scene.updateMatrixWorld(true); return new THREE.Box3().setFromObject(object, true); };
+  let surfaceY = 0;
+  if (mode === 'immersive-ar') {
+    surfaceY = -0.8;
+    const matrix = new THREE.Matrix4().makeTranslation(0.5, surfaceY, -2);
+    context.renderer.loop(0, { getHitTestResults: () => [{ getPose: () => ({ transform: { matrix: matrix.elements } }) }] });
+    session.dispatchEvent(new Event('select'));
+  }
+  assert.ok(Math.abs(measured(context.model).getSize(new THREE.Vector3()).y - 0.09) < 1e-6, 'A 9 cm sculpture stays 9 cm on its stand');
+  assert.ok(Math.abs(measured(context.model).min.y - surfaceY - 1) < 1e-6, 'Artwork rests on the top, above the selected surface');
+  assert.ok(Math.abs(measured(support).min.y - surfaceY) < 1e-6, 'Stand rests on the selected surface');
+  const furnitureSize = measured(support).getSize(new THREE.Vector3());
+  active.setScale(0.5);
+  assert.ok(Math.abs(measured(context.model).getSize(new THREE.Vector3()).y - 0.045) < 1e-6);
+  assert.ok(measured(support).getSize(new THREE.Vector3()).distanceTo(furnitureSize) < 1e-6, 'Artwork resizing never resizes furniture');
+  assert.ok(Math.abs(measured(context.model).min.y - measured(support).max.y) < 1e-6, 'Changing display size preserves contact with the top');
+  active.setSupportHeight(0.65);
+  assert.ok(Math.abs(measured(context.model).min.y - surfaceY - 0.65) < 1e-6);
+  assert.ok(Math.abs(measured(context.model).getSize(new THREE.Vector3()).y - 0.045) < 1e-6, 'Stand height never changes artwork size');
+  active.setScale(1);
+  active.rotate(Math.PI / 2);
+  assert.ok(Math.abs(measured(context.model).min.y - measured(support).max.y) < 1e-6);
+  await active.end(); await tick(); restored(context, state);
+  assert.equal(geometryDisposals, 1); assert.equal(materialDisposals, 1);
+  const converted = makeQuickLookScene(THREE, context.model, context.box, reference, { mode: 'plinth', height: 0.65 });
+  assert.equal(converted.hasSupport, true);
+  assert.deepEqual(converted.scene.scale.toArray(), [1, 1, 1], 'Apple assembly uses fixed room metres');
+  const appleArtwork = new THREE.Box3().setFromObject(converted.scene.getObjectByName('Artwork'), true);
+  const appleSupport = new THREE.Box3().setFromObject(converted.scene.getObjectByName('Atrium display support'), true);
+  assert.ok(Math.abs(appleArtwork.getSize(new THREE.Vector3()).y - 0.09) < 1e-6);
+  assert.ok(Math.abs(appleArtwork.min.y - 0.65) < 1e-6);
+  assert.ok(Math.abs(appleSupport.max.y - appleArtwork.min.y) < 1e-6, 'Apple support matches WebXR contact and height');
+  converted.dispose();
+  restored(context, state);
+}
+{
+  const context = fixture(), state = original(context), session = new Session();
+  session.requestHitTestSource = async () => { throw new Error('No surfaces'); };
+  await assert.rejects(startSpatialSession(context, Promise.resolve(session), 'immersive-ar', null,
+    { reference: { axis: 'y', meters: 0.09 }, support: { mode: 'plinth', height: 1 } }), /No surfaces/);
+  await tick(); restored(context, state);
+}
+console.log('Spatial checks passed: fixed-size furniture, adjustable height, physical artwork scale, WebXR/Quick Look parity, cleanup and session failures.');
