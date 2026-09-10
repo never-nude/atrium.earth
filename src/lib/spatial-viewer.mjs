@@ -53,11 +53,19 @@ export function bindSpatialViewing(element, getContext, activate) {
           : 'Small pieces with a documented scale get a stand in VR. In AR, use a real table or choose a virtual stand.';
   };
   const say = (message) => { status.textContent = message; };
+  async function sharePage() {
+    try {
+      if (navigator.share) await navigator.share({ title, text: `Explore ${title} in 3D on Atrium.Earth`, url: pageUrl });
+      else { await navigator.clipboard.writeText(pageUrl); say('Link copied. Open it on your phone or in your headset’s browser.'); }
+    } catch (error) {
+      if (error?.name !== 'AbortError') say(`Open this address on your device: ${pageUrl}`);
+    }
+  }
   function update() {
     const ready = Boolean(getContext());
     supportMode.disabled = busy;
     supportHeight.disabled = busy;
-    ar.disabled = busy || !ready || !(capabilities.ar || quickLookSupported);
+    ar.disabled = busy || ((capabilities.ar || quickLookSupported) && !ready);
     vr.disabled = busy || !ready || !capabilities.vr;
     ar.textContent = !capabilities.checked ? 'Checking your device…' : capabilities.ar ? 'Place in your room' : quickLookSupported ? 'Prepare AR view' : 'Open on an AR phone';
     vr.textContent = !capabilities.checked ? 'Checking your device…' : capabilities.vr ? 'Enter VR' : 'Open in a VR headset';
@@ -160,16 +168,13 @@ export function bindSpatialViewing(element, getContext, activate) {
   find('[data-spatial-reset-size]').addEventListener('click', () => session?.setScale(1));
   find('[data-spatial-turn]').addEventListener('click', () => session?.rotate(Math.PI / 6));
   find('[data-spatial-place]').addEventListener('click', () => session?.reposition());
-  ar.addEventListener('click', () => capabilities.ar ? enter('immersive-ar') : void prepareQuickLook());
-  vr.addEventListener('click', () => enter('immersive-vr'));
-  find('[data-spatial-share]').addEventListener('click', async () => {
-    try {
-      if (navigator.share) await navigator.share({ title, text: `Explore ${title} in 3D on Atrium.Earth`, url: pageUrl });
-      else { await navigator.clipboard.writeText(pageUrl); say('Link copied. Open it on your phone or in your headset’s browser.'); }
-    } catch (error) {
-      if (error?.name !== 'AbortError') say(`Open this address on your device: ${pageUrl}`);
-    }
+  ar.addEventListener('click', () => {
+    if (capabilities.ar) enter('immersive-ar');
+    else if (quickLookSupported) void prepareQuickLook();
+    else void sharePage();
   });
+  vr.addEventListener('click', () => enter('immersive-vr'));
+  find('[data-spatial-share]').addEventListener('click', sharePage);
   const root = element.closest('[data-viewer]');
   root.addEventListener('atrium:viewer-ready', () => { update(); if (!busy) say(''); });
   root.addEventListener('atrium:viewer-error', () => { update(); say('The sculpture could not load. Close this panel and choose “Examine in 3D” to retry.'); });

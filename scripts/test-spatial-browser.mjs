@@ -26,7 +26,7 @@ try {
   await page.locator('[data-stage].is-live').waitFor({ timeout: 90000 });
   await page.locator('[data-spatial-open]').click();
   await page.getByRole('button', { name: 'Open on an AR phone', exact: true }).waitFor();
-  assert.equal(await page.locator('[data-spatial-ar]').isDisabled(), true);
+  assert.equal(await page.locator('[data-spatial-ar]').isEnabled(), true);
   assert.equal(await page.locator('[data-spatial-vr]').isDisabled(), true);
   assert.equal(await page.locator('[data-support-mode]').inputValue(), 'auto');
   await page.locator('[data-support-mode]').selectOption('surface');
@@ -37,6 +37,9 @@ try {
     input.value = '0.65'; input.dispatchEvent(new Event('input', { bubbles: true }));
   });
   assert.equal(await page.locator('[data-support-height-value]').textContent(), '65 cm');
+  await page.locator('[data-spatial-ar]').click();
+  await page.waitForFunction(() => document.querySelector('[data-spatial-status]').textContent.includes('Link copied'));
+  assert.equal(await page.evaluate(() => navigator.clipboard.readText()), 'https://atrium.earth/works/egyptian/green-painted-ushebti-smvk/');
   await page.screenshot({ path: `${output}/desktop.png` });
   await page.locator('[data-spatial-share]').click();
   await page.waitForFunction(() => document.querySelector('[data-spatial-status]').textContent.includes('Link copied'));
