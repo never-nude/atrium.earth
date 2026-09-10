@@ -1,11 +1,13 @@
 # Atrium research and display update
 
-The collection audit contains356 researched records: 136 with documented dimensions, 28 approximate, 10 conflicting and 182 unresolved.
+All 227 records in this follow-up queue have now received a recorded public-source review. Across the full 356-record research batch, 136 have documented dimensions, 28 remain approximate, 10 have conflicting evidence, and 182 remain unresolved. These are research outcomes, not automatic scale approvals.
 
-This pass assessed167 of227 queued records; 60 remain explicitly queued. Unresolved records with completed public-source checks are retained as unresolved. No institution outreach was performed.
+The viewer has 41 confirmed physical references, including 32 added after inspecting the current models and their measurement scopes. Dubuffet’s La Chiffonnière has a separately labelled approximate starting height of 6.7 metres. No artwork is stretched to fit independent height, width and depth values.
 
-The working viewer now contains41 calibrated models, including32 newly reviewed references. Every new calibration names a source measurement, current asset, orientation and reviewed extent. 182 individual display recommendations are recorded. Plain viewing plinths are implemented; special fitted stands, cradles and wall mounts remain recorded recommendations.
+There are 183 individual display recommendations. Plain viewing plinths, floor placement and retaining existing bases are supported. Fitted stands, cradles and wall mounts are still recommendations awaiting implementation. Museum pedestals, missing parts and mismatched proportions remain explicit reasons to defer calibration.
 
-The artwork always uses one uniform scale factor. Original dimensions do not automatically calibrate casts, fragments or scans with modern pedestals. Conflicting proportions and differing restored extents remain blocked.
+Validation includes source references and unit conversions, model and orientation binding, numerical placement/export checks, a 3,725-page production build, and browser checks on eight representative published pages. Physical phone/headset testing is not yet recorded.
 
-The original local project and Claude handoff are preserved. These records accompany the viewer update; see the repository history for its publication.
+All 19 recovered handoff files retain their original checksums. The original local project remains untouched. No museum outreach was performed.
+
+The complete current dataset is `atrium-dimension-findings.json`; unresolved evidence and next leads are in `remaining-research.json`. Earlier pass files are preserved as history. Publication details are recorded separately in `publication.json`.
