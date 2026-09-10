@@ -41,7 +41,8 @@ export function bindSpatialViewing(element, getContext, activate) {
     quickLook.hidden = true; ar.hidden = false;
   };
   const updateSupportChoice = () => {
-    find('[data-support-height-control]').hidden = supportMode.value === 'surface';
+    find('[data-support-height-control]').hidden = supportMode.value === 'surface'
+      || (supportMode.value === 'auto' && recommendation && recommendation.kind !== 'plinth');
     find('[data-support-height-value]').textContent = `${Math.round(Number(supportHeight.value) * 100)} cm`;
     find('[data-support-note]').textContent = supportMode.value === 'plinth'
       ? 'Place the virtual stand on the floor. In Apple AR, the artwork and stand keep their prepared size.'

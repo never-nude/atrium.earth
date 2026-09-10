@@ -8,4 +8,4 @@ The working viewer now contains41 calibrated models, including32 newly reviewed 
 
 The artwork always uses one uniform scale factor. Original dimensions do not automatically calibrate casts, fragments or scans with modern pedestals. Conflicting proportions and differing restored extents remain blocked.
 
-The original local project and Claude handoff are preserved. Publication is pending final build and browser checks.
+The original local project and Claude handoff are preserved. These records accompany the viewer update; see the repository history for its publication.
