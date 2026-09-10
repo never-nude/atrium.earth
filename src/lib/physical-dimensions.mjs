@@ -2,13 +2,17 @@
 // both a sourced measurement and an explicit review of the displayed geometry.
 export function physicalDimensionsFor(fallback, record, previewUrl, orientation) {
   const calibration = record?.spatial;
-  const matched = record?.status === 'documented'
+  // An explicit reviewed estimate can establish a useful starting size, but
+  // remains labelled approximate and is never inferred from catalogue text.
+  const estimated = record?.status === 'approximate' && calibration?.estimated === true
+    && /^https?:/.test(record.sourceUrl || '');
+  const matched = (record?.status === 'documented' || estimated)
     && ['original', 'object'].includes(record.basis)
     && calibration?.previewUrl === previewUrl
     && JSON.stringify(calibration?.orientation ?? null) === JSON.stringify(orientation ?? null);
   const reference = matched && ['x', 'y', 'z'].includes(calibration.axis)
     && Number.isFinite(calibration.meters) && calibration.meters > 0
-    ? { axis: calibration.axis, meters: calibration.meters } : null;
+    ? { axis: calibration.axis, meters: calibration.meters, ...(estimated ? { estimated: true } : {}) } : null;
   return {
     dimensions: record ? record.dimensions : (fallback || '').trim(),
     dimensionsNote: record?.note || '',

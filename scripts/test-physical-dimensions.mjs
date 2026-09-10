@@ -5,7 +5,7 @@ import { physicalDimensionsFor, referenceScaleFor } from '../src/lib/physical-di
 const read = name => JSON.parse(readFileSync(new URL(`../src/data/${name}.json`, import.meta.url)));
 const records = read('physical-dimensions'), previews = read('previews'), orientations = read('orientations');
 const catalog = new Map(read('catalog').filter(row => !row.hidden).map(row => [row.slug, row]));
-let calibrated = 0;
+let calibrated = 0, estimatedReferences = 0;
 for (const [slug, record] of Object.entries(records)) {
   assert.ok(catalog.has(slug), `Unknown/hidden work: ${slug}`);
   assert.ok(['documented', 'approximate', 'unresolved', 'variable'].includes(record.status), slug);
@@ -21,8 +21,9 @@ for (const [slug, record] of Object.entries(records)) {
   if (!record.spatial) assert.equal(value.spatialReference, null, `Text alone cannot calibrate: ${slug}`);
   else {
     calibrated++;
+    if (record.spatial.estimated) estimatedReferences++;
     assert.ok(value.spatialReference, `Calibration no longer matches ${slug}`);
-    assert.equal(record.status, 'documented');
+    assert.ok(record.status === 'documented' || (record.status === 'approximate' && record.spatial.estimated === true));
     const measure = Number.isInteger(record.spatial.measurementIndex)
       ? record.measures[record.spatial.measurementIndex]
       : record.measures.find(m => m.axis === 'height' && !m.scope);
@@ -48,9 +49,15 @@ assert.equal(records['greek/crouching-aphrodite-with-eros-smk-cast'].spatial, un
 assert.equal(records['egyptian/portrait-of-nefertiti-smk-cast'].spatial, undefined, 'Added pedestal is not part of the original height');
 assert.equal(records['modern/the-panther-hunter-jerichau-smk'].basis, 'object', 'An artist’s bronze cast is an accessioned artwork');
 assert.equal(physicalDimensionsFor('H 20 cm').spatialReference, null, 'Existing text is not silently promoted to verified scale');
+const dubuffet = records['modern/dubuffet-la-chiffonniere'];
+const estimated = physicalDimensionsFor('', dubuffet, previews['modern/dubuffet-la-chiffonniere'].url, orientations['modern/dubuffet-la-chiffonniere']);
+assert.equal(estimated.spatialReference?.estimated, true, 'Dubuffet starting size remains explicitly approximate');
+assert.equal(estimated.spatialReference?.meters, 6.7056);
+assert.match(estimated.spatialNote, /approximate/i);
+assert.equal(physicalDimensionsFor('', { ...dubuffet, spatial: { ...dubuffet.spatial, estimated: false } }, previews['modern/dubuffet-la-chiffonniere'].url, orientations['modern/dubuffet-la-chiffonniere']).spatialReference, null, 'Approximate data cannot silently authorize a reference');
 const box = { min: { y: -0.25 }, max: { y: 0.25 } };
 assert.equal(referenceScaleFor(box, { axis: 'y', meters: 2.04 }), 4.08);
 for (const meters of [NaN, Infinity, -1, 0]) assert.equal(referenceScaleFor(box, { axis: 'y', meters }), 1);
 assert.equal(referenceScaleFor(box, { axis: 'height', meters: 1 }), 1);
 assert.equal(referenceScaleFor({ min: { y: 0 }, max: { y: 0 } }, { axis: 'y', meters: 1 }), 1);
-console.log(`Physical dimension checks passed: ${Object.keys(records).length} audited records, ${calibrated} calibrated models, original-only references, evidence and stale-model protection.`);
+console.log(`Physical dimension checks passed: ${Object.keys(records).length} audited records, ${calibrated - estimatedReferences} calibrated models, ${estimatedReferences} explicitly approximate starting sizes, original-only references, evidence and stale-model protection.`);
