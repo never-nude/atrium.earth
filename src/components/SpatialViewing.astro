@@ -1,8 +1,9 @@
 ---
-type Props = { title: string; poster: string; reference?: { axis: string; meters: number } | null; sizeNote?: string };
-const { title, poster, reference, sizeNote = 'Physical size is not yet calibrated. Display size is adjustable.' } = Astro.props;
+type Props = { title: string; poster: string; reference?: { axis: string; meters: number } | null; sizeNote?: string; displaySupport?: { kind: string; height?: number; note: string } | null };
+const { title, poster, reference, sizeNote = 'Physical size is not yet calibrated. Display size is adjustable.', displaySupport } = Astro.props;
+const standHeight = displaySupport?.height && displaySupport.height > 0 ? displaySupport.height : 1;
 ---
-<div class="spatial-viewing" data-spatial data-title={title} data-reference-axis={reference?.axis} data-reference-meters={reference?.meters}>
+<div class="spatial-viewing" data-spatial data-title={title} data-reference-axis={reference?.axis} data-reference-meters={reference?.meters} data-support-recommendation={displaySupport?.kind}>
   <button type="button" class="spatial-open" data-spatial-open>
     <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Z M4 7.5l8 4.5 8-4.5 M12 12v9" /></svg>
     View in AR / VR
@@ -21,10 +22,11 @@ const { title, poster, reference, sizeNote = 'Physical size is not yet calibrate
           </select>
         </label>
         <label data-support-height-control>Stand height
-          <input type="range" data-support-height min="0.2" max="1.4" step="0.05" value="1" />
-          <output data-support-height-value>100 cm</output>
+          <input type="range" data-support-height min="0.2" max="1.4" step="0.05" value={standHeight} />
+          <output data-support-height-value>{Math.round(standHeight * 100)} cm</output>
         </label>
         <p data-support-note>Small pieces with a documented scale get a stand in VR. In AR, use a real table or choose a virtual stand.</p>
+        {displaySupport?.note && <p data-display-recommendation>{displaySupport.note}</p>}
         <p>A virtual stand raises the artwork without changing its size or proportions. Any base already in the scan stays with the artwork.</p>
       </div>
       <div class="spatial-options">

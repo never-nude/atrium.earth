@@ -23,8 +23,17 @@ for (const [slug, record] of Object.entries(records)) {
     calibrated++;
     assert.ok(value.spatialReference, `Calibration no longer matches ${slug}`);
     assert.equal(record.status, 'documented');
-    const height = record.measures.find(m => m.axis === 'height' && !m.scope);
-    assert.equal(record.spatial.meters, height.value / 100);
+    const measure = Number.isInteger(record.spatial.measurementIndex)
+      ? record.measures[record.spatial.measurementIndex]
+      : record.measures.find(m => m.axis === 'height' && !m.scope);
+    assert.ok(measure, `Calibration must name a sourced measurement: ${slug}`);
+    const meters = measure.value * { mm: 0.001, cm: 0.01, m: 1 }[measure.unit];
+    assert.ok(Math.abs(record.spatial.meters - meters) < 1e-10, `Calibration must preserve source units: ${slug}`);
+    if (Number.isInteger(record.spatial.measurementIndex)) {
+      assert.match(record.spatial.assetSha256, /^[a-f0-9]{64}$/);
+      assert.ok(record.spatial.geometryReview && record.spatial.note, `Geometry review missing: ${slug}`);
+      assert.ok(measure.sourceUrls.length, `Source link missing for selected measurement: ${slug}`);
+    }
     assert.equal(physicalDimensionsFor('', record, 'different.glb', orientations[slug]).spatialReference, null);
     assert.equal(physicalDimensionsFor('', record, previews[slug].url, { upAxis: '-y' }).spatialReference, null);
   }
@@ -32,7 +41,8 @@ for (const [slug, record] of Object.entries(records)) {
 const venus = records['venus-de-milo'];
 assert.equal(physicalDimensionsFor('H 202 cm', venus, previews['venus-de-milo'].url).dimensions, 'H 204 cm');
 assert.equal(venus.basis, 'original');
-assert.equal(physicalDimensionsFor('Mesh bounds: H 130 source units', records['egyptian/portrait-of-pharaoh-amasis-smk-cast']).dimensions, '');
+assert.equal(records['egyptian/portrait-of-pharaoh-amasis-smk-cast'].status, 'approximate');
+assert.equal(physicalDimensionsFor('Mesh bounds: H 130 source units', records['egyptian/portrait-of-pharaoh-amasis-smk-cast']).spatialReference, null, 'Unlabelled scholarly measurements do not authorize a scale');
 assert.equal(physicalDimensionsFor('H 170 cm', records.discobolus).dimensions, '', 'Never fall back to cast dimensions for an unresolved original');
 assert.equal(records['greek/crouching-aphrodite-with-eros-smk-cast'].spatial, undefined, 'Restorations need a separate geometry check');
 assert.equal(records['egyptian/portrait-of-nefertiti-smk-cast'].spatial, undefined, 'Added pedestal is not part of the original height');

@@ -11,7 +11,8 @@ export function bindSpatialViewing(element, getContext, activate) {
   const status = find('[data-spatial-status]');
   const supportMode = find('[data-support-mode]');
   const supportHeight = find('[data-support-height]');
-  const supportOptions = () => ({ mode: supportMode.value, height: Number(supportHeight.value) });
+  const recommendation = element.dataset.supportRecommendation ? { kind: element.dataset.supportRecommendation } : undefined;
+  const supportOptions = () => ({ mode: supportMode.value, height: Number(supportHeight.value), recommendation });
   const showSupport = ({ visible, height }) => {
     find('[data-spatial-support-control]').hidden = !visible;
     find('[data-spatial-support-height]').value = String(height);
@@ -46,7 +47,9 @@ export function bindSpatialViewing(element, getContext, activate) {
       ? 'Place the virtual stand on the floor. In Apple AR, the artwork and stand keep their prepared size.'
       : supportMode.value === 'surface'
         ? 'Place the artwork directly on a real table or the floor. No virtual furniture is added.'
-        : 'Small pieces with a documented scale get a stand in VR. In AR, use a real table or choose a virtual stand.';
+        : recommendation
+          ? 'VR follows the display recommendation once the artwork’s size is calibrated. In AR, use a real surface or choose a virtual stand.'
+          : 'Small pieces with a documented scale get a stand in VR. In AR, use a real table or choose a virtual stand.';
   };
   const say = (message) => { status.textContent = message; };
   function update() {

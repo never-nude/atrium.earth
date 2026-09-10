@@ -7,7 +7,7 @@ const clampHeight = (value) => {
 
 // Bounds determine the furniture's fit, never evidence of an artwork's size.
 // Automatic supports require the same valid physical reference used by AR/VR.
-export function supportLayoutFor(box, reference, { mode = 'surface', sessionMode = 'immersive-vr', height = 1 } = {}) {
+export function supportLayoutFor(box, reference, { mode = 'surface', sessionMode = 'immersive-vr', height = 1, recommendation } = {}) {
   const axes = ['x', 'y', 'z'];
   const validBounds = axes.every((axis) => Number.isFinite(box?.min?.[axis])
     && Number.isFinite(box?.max?.[axis]) && box.max[axis] >= box.min[axis]);
@@ -18,8 +18,12 @@ export function supportLayoutFor(box, reference, { mode = 'surface', sessionMode
   const size = Object.fromEntries(axes.map((axis) => [axis,
     validBounds ? (box.max[axis] - box.min[axis]) * scale : 0,
   ]));
-  const automatic = mode === 'auto' && sessionMode === 'immersive-vr' && calibrated
-    && size.y > 0 && size.y <= 0.7 && size.x <= 1.2 && size.z <= 1.2;
+  // A reviewed floor placement, scanned pedestal or special mount takes priority
+  // over the generic small-object rule. Explicit user choices remain available.
+  const curated = ['plinth', 'floor', 'existing_base', 'wall_mount', 'stand', 'cradle'].includes(recommendation?.kind);
+  const needsPlinth = curated ? recommendation.kind === 'plinth'
+    : size.y > 0 && size.y <= 0.7 && size.x <= 1.2 && size.z <= 1.2;
+  const automatic = mode === 'auto' && sessionMode === 'immersive-vr' && calibrated && needsPlinth;
   return {
     visible: mode === 'plinth' || automatic,
     height: clampHeight(height),

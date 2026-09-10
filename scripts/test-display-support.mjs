@@ -10,6 +10,13 @@ const reference = { axis: 'y', meters: 0.09 };
 
 assert.equal(supportLayoutFor(small, reference).visible, false, 'Surface placement is the default');
 assert.equal(supportLayoutFor(small, reference, { mode: 'auto' }).visible, true, 'A calibrated small object gets a VR support');
+for (const kind of ['floor', 'existing_base', 'wall_mount', 'stand', 'cradle']) {
+  assert.equal(supportLayoutFor(small, reference, { mode: 'auto', recommendation: { kind } }).visible, false, 'Reviewed placement takes priority over the generic size rule');
+  assert.equal(supportLayoutFor(small, reference, { mode: 'plinth', recommendation: { kind } }).visible, true, 'Visitors can explicitly choose a plinth');
+}
+assert.equal(supportLayoutFor(small, { axis: 'y', meters: 0.8 }, { mode: 'auto', recommendation: { kind: 'plinth' } }).visible, true, 'An individually reviewed taller bust can receive a viewing plinth');
+assert.equal(supportLayoutFor(small, null, { mode: 'auto', recommendation: { kind: 'plinth' } }).visible, false, 'A display recommendation never fabricates physical calibration');
+assert.equal(supportLayoutFor(small, reference, { mode: 'auto', sessionMode: 'immersive-ar', recommendation: { kind: 'plinth' } }).visible, false, 'Recommendations preserve AR real-surface placement');
 for (const sessionMode of ['immersive-ar', 'quick-look']) {
   assert.equal(supportLayoutFor(small, reference, { mode: 'auto', sessionMode }).visible, false, 'Auto never assumes a detected surface is a floor');
   assert.equal(supportLayoutFor(small, null, { mode: 'plinth', sessionMode }).visible, true, 'Explicit furniture remains available without calibration');

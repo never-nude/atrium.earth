@@ -6,6 +6,8 @@ import rawOrientations from '../data/orientations.json';
 import rawMaterialAppearances from '../data/material-appearances.json';
 import rawAppearanceOverrides from '../data/appearance-overrides.json';
 import rawPhysicalDimensions from '../data/physical-dimensions.json';
+import rawDisplayRecommendations from '../data/display-recommendations.json';
+import rawIdentityCorrections from '../data/identity-corrections.json';
 import { physicalDimensionsFor } from './physical-dimensions.mjs';
 import { assignWing } from './assignWing';
 import type { WingId } from '../data/wings';
@@ -117,6 +119,7 @@ export type Work = {
   dimensionsBasis: string;
   spatialReference: { axis: string; meters: number } | null;
   spatialNote: string;
+  displaySupport: { kind: string; height?: number; note: string } | null;
   accession: string;
   creditLine: string;
   rights: string;
@@ -562,6 +565,8 @@ function modelStatsFor(preview: Preview | undefined, raw: RawWork): string {
 }
 
 function normalize(raw: RawWork, fallbackIndex: number): Work {
+  const correction = (rawIdentityCorrections as Record<string, { title: string; catalog?: Partial<RawWork> }>)[raw.slug];
+  if (correction?.catalog) raw = { ...raw, ...correction.catalog };
   const collection = clean(raw.collection);
   const { start, end } = parseYearRange(raw);
   const era = eraFor(raw);
@@ -582,7 +587,7 @@ function normalize(raw: RawWork, fallbackIndex: number): Work {
     ? `/models/previews/${raw.slug}/${previewFilename}` : '';
   const movement = movementFor(raw, era);
   const medium = clean(raw.material);
-  const title = clean(raw.title) || titleCaseSlug(raw.slug);
+  const title = clean(correction?.title || raw.title) || titleCaseSlug(raw.slug);
   const modelTransform = modelTransformFor(orientationMap[raw.slug]);
 
   const tags = [
@@ -623,6 +628,7 @@ function normalize(raw: RawWork, fallbackIndex: number): Work {
     materialProfile,
     materialAppearance,
     ...physicalDimensionsFor(raw.dimensions, rawPhysicalDimensions[raw.slug], preview?.url, rawOrientations[raw.slug]),
+    displaySupport: (rawDisplayRecommendations as Record<string, { kind: string; height?: number; note: string }>)[raw.slug] || null,
     accession: clean(raw.accession),
     creditLine: clean(raw.attribution),
     rights: clean(raw.license) || 'Rights review pending',
@@ -643,7 +649,7 @@ function normalize(raw: RawWork, fallbackIndex: number): Work {
     ingested: raw.ingested || undefined,
     heroCrop: 'center',
     index: raw.index || fallbackIndex + 1,
-    search: clean(raw.search) || `${title} ${maker} ${era} ${geography} ${materials.join(' ')}`.toLowerCase(),
+    search: `${title} ${clean(raw.search) || `${maker} ${era} ${geography} ${materials.join(' ')}`}`.toLowerCase(),
     hasPreview: Boolean(preview?.url),
     sourceUrl: clean(raw.source_url),
     sourceRecordUrl: clean(raw.source_record_url),
