@@ -3278,9 +3278,44 @@
     "sourceUrl": "https://embarcaderoplaza.com/tour/la-chiffonniere",
     "basis": "object",
     "status": "approximate",
-    "note": "Published height; the metric equivalent is rounded.",
+    "note": "Published height: 22 feet (about 6.7 metres). The scan includes a round base, so its starting physical size is approximate.",
     "checked": "2026-09-09",
-    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+    "spatialNote": "Starts at an approximate real-world height of 6.7 metres, including the base in this scan. Place it on the floor and step back to see the whole work.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 670.56,
+        "unit": "cm",
+        "sourceValue": 22,
+        "sourceUnit": "ft",
+        "sourceUrl": "https://embarcaderoplaza.com/tour/la-chiffonniere"
+      }
+    ],
+    "spatial": {
+      "axis": "y",
+      "meters": 6.7056,
+      "estimated": true,
+      "previewUrl": "https://models.atrium.earth/models/previews/modern/dubuffet-la-chiffonniere/preview-80c28fbe88a2.glb",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0.3,
+          0.18,
+          1
+        ],
+        "status": "reviewed",
+        "note": "Upright, complete captured extent and preferred front checked against source reference and front, back and side renders."
+      },
+      "assetSha256": "80c28fbe88a2917a71e90efb1e42b1c8a8acd5a1d8f34ee81a0e00836c03bd0b",
+      "reviewed": "2026-09-09",
+      "note": "The complete upright scan includes a low round base. Use the published22-foot height as an explicitly approximate whole-scan starting size; sculpture-only height and base inclusion are not independently established. Uniform scaling only."
+    }
   },
   "modern/eagle-preparing-to-defend-its-prey-cain-fontainebleau": {
     "dimensions": "",

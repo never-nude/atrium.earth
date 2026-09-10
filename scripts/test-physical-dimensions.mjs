@@ -22,7 +22,7 @@ for (const [slug, record] of Object.entries(records)) {
   else {
     calibrated++;
     assert.ok(value.spatialReference, `Calibration no longer matches ${slug}`);
-    assert.equal(record.status, 'documented');
+    assert.ok(record.status === 'documented' || (record.status === 'approximate' && record.spatial.estimated === true));
     const height = record.measures.find(m => m.axis === 'height' && !m.scope);
     assert.equal(record.spatial.meters, height.value / 100);
     assert.equal(physicalDimensionsFor('', record, 'different.glb', orientations[slug]).spatialReference, null);
@@ -38,6 +38,12 @@ assert.equal(records['greek/crouching-aphrodite-with-eros-smk-cast'].spatial, un
 assert.equal(records['egyptian/portrait-of-nefertiti-smk-cast'].spatial, undefined, 'Added pedestal is not part of the original height');
 assert.equal(records['modern/the-panther-hunter-jerichau-smk'].basis, 'object', 'An artist’s bronze cast is an accessioned artwork');
 assert.equal(physicalDimensionsFor('H 20 cm').spatialReference, null, 'Existing text is not silently promoted to verified scale');
+const dubuffet = records['modern/dubuffet-la-chiffonniere'];
+const estimated = physicalDimensionsFor('', dubuffet, previews['modern/dubuffet-la-chiffonniere'].url, orientations['modern/dubuffet-la-chiffonniere']);
+assert.equal(estimated.spatialReference?.estimated, true, 'Dubuffet starting size remains explicitly approximate');
+assert.equal(estimated.spatialReference?.meters, 6.7056);
+assert.match(estimated.spatialNote, /approximate/i);
+assert.equal(physicalDimensionsFor('', { ...dubuffet, spatial: { ...dubuffet.spatial, estimated: false } }, previews['modern/dubuffet-la-chiffonniere'].url, orientations['modern/dubuffet-la-chiffonniere']).spatialReference, null, 'Approximate data cannot silently authorize a reference');
 const box = { min: { y: -0.25 }, max: { y: 0.25 } };
 assert.equal(referenceScaleFor(box, { axis: 'y', meters: 2.04 }), 4.08);
 for (const meters of [NaN, Infinity, -1, 0]) assert.equal(referenceScaleFor(box, { axis: 'y', meters }), 1);

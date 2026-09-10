@@ -1,5 +1,5 @@
 ---
-type Props = { title: string; poster: string; reference?: { axis: string; meters: number } | null; sizeNote?: string };
+type Props = { title: string; poster: string; reference?: { axis: string; meters: number; estimated?: boolean } | null; sizeNote?: string };
 const { title, poster, reference, sizeNote = 'Physical size is not yet calibrated. Display size is adjustable.' } = Astro.props;
 ---
 <div class="spatial-viewing" data-spatial data-title={title} data-reference-axis={reference?.axis} data-reference-meters={reference?.meters}>
@@ -40,7 +40,7 @@ const { title, poster, reference, sizeNote = 'Physical size is not yet calibrate
         <p data-spatial-instructions role="status"></p>
         <label>Display size <input type="range" data-spatial-scale min="0.1" max="2" step="0.05" value="1" /><output data-spatial-size>100%</output></label>
         <label data-spatial-support-control hidden>Stand height <input type="range" data-spatial-support-height min="0.2" max="1.4" step="0.05" value="1" /><output data-spatial-support-value>100 cm</output></label>
-        <div><button type="button" data-spatial-turn>Turn 30°</button><button type="button" data-spatial-place>Place again</button><button type="button" data-spatial-reset-size>{reference ? 'Documented size' : 'Reset size'}</button></div>
+        <div><button type="button" data-spatial-turn>Turn 30°</button><button type="button" data-spatial-place>Place again</button><button type="button" data-spatial-reset-size>{reference?.estimated ? 'Approximate real size' : reference ? 'Documented size' : 'Reset size'}</button></div>
       </div>
     </div>
   </dialog>
