@@ -71,7 +71,6 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
         <a href={withBase(v3WorkRoute(next))} aria-label={`Next work: ${next.title}`}><i>{next.title}</i><span>→</span></a>
       </nav>
     </div>
-    <p class="v3-object-scroll">Scroll for object details ↓</p>
   </section>
 
   <script>
@@ -79,10 +78,10 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
     const stageSection = document.querySelector('.v3-object-stage');
     const canvasHost = stageSection?.querySelector('.model-stage');
     const viewerRoot = stageSection?.querySelector('.viewer');
-    // Keep controls within their viewer's event scope, but outside the measured
-    // canvas stage so mobile layout can give them their own expanding row.
+    // Keep controls within their viewer's event scope, with their own row
+    // outside the measured canvas so they do not cover the artwork.
     if (viewerRoot && canvasHost) {
-      const controls = [viewerRoot.querySelector('[data-immersive-tools]'), viewerRoot.querySelector('[data-light-controls]')].filter((element): element is HTMLElement => element instanceof HTMLElement);
+      const controls = [viewerRoot.querySelector('[data-immersive-tools]'), viewerRoot.querySelector('[data-light-controls]'), viewerRoot.querySelector('[data-spatial]')].filter((element): element is HTMLElement => element instanceof HTMLElement);
       if (controls.length) {
         const controlsRow = document.createElement('div');
         controlsRow.className = 'v3-object-viewer-controls';

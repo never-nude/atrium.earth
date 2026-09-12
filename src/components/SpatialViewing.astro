@@ -82,12 +82,12 @@ const standHeight = displaySupport?.height && displaySupport.height > 0 ? displa
     --spatial-muted: var(--v3-muted, #c9c6bd);
     --spatial-line: var(--v3-line, rgba(247,245,239,.16));
     --spatial-accent: var(--v3-signal, #eccf7a);
-    position: absolute; z-index: 31; top: 98px; left: var(--v3-pad, 28px);
+    position: relative; z-index: 31; flex: 0 0 auto;
     font-family: var(--v3-sans, var(--ui, sans-serif));
   }
   button, a, input, select { font: inherit; }
   button, summary, a { -webkit-tap-highlight-color: transparent; }
-  .spatial-open { display: inline-flex; align-items: center; gap: 9px; min-height: 44px; padding: 8px 0; border: 0; border-radius: 0; color: var(--spatial-ink); background: transparent; font-size: .7rem; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; cursor: pointer; }
+  .spatial-open { display: inline-flex; align-items: center; gap: 9px; min-height: 44px; padding: 8px 0; border: 0; border-radius: 0; color: var(--spatial-ink); background: transparent; font-size: .7rem; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; white-space: nowrap; cursor: pointer; }
   .spatial-open:hover { color: var(--spatial-accent); }
   .spatial-dialog { color-scheme: dark; width: min(740px, calc(100vw - 40px)); max-height: calc(100vh - 40px); max-height: calc(100dvh - 40px); padding: 0; margin: auto; border: 1px solid var(--spatial-line); border-radius: 4px; color: var(--spatial-ink); background: var(--spatial-bg); overflow: auto; overscroll-behavior: contain; }
   .spatial-dialog::backdrop { background: rgba(7,10,16,.82); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
@@ -148,7 +148,7 @@ const standHeight = displaySupport?.height && displaySupport.height > 0 ? displa
   .spatial-overlay input { flex: 1; min-width: 0; }
   .spatial-overlay button { min-height: 44px; padding: 8px 15px; border: 1px solid var(--spatial-line); border-radius: 3px; background: transparent; color: var(--spatial-ink); cursor: pointer; }
   .spatial-overlay-controls > div { display: flex; flex-wrap: wrap; gap: 10px; }
-  @media(max-width: 800px) { .spatial-viewing { top: 80px; left: var(--v3-pad, 20px); } .spatial-open { font-size: 10px; } }
+  @media(max-width: 800px) { .spatial-open { font-size: 10px; } }
   @media(max-width: 540px) {
     .spatial-dialog { width: calc(100vw - 20px); max-height: calc(100vh - 20px); max-height: calc(100dvh - 20px); }
     .spatial-panel { padding: 0 20px 20px; }
