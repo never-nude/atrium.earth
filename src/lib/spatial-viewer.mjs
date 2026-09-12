@@ -1,3 +1,4 @@
+import { spatialDevice, probeSpatialSupport } from './spatial-capabilities.mjs';
 import { makeQuickLookScene, startSpatialSession } from './spatial-session.mjs';
 
 export function bindSpatialViewing(element, getContext, activate) {
@@ -28,7 +29,23 @@ export function bindSpatialViewing(element, getContext, activate) {
   };
   const pageUrl = document.querySelector('link[rel="canonical"]')?.href || location.href;
   const xr = navigator.xr;
-  const quickLookSupported = Boolean(document.createElement('a').relList?.supports?.('ar'));
+  let relAR = false;
+  try { relAR = Boolean(document.createElement('a').relList?.supports?.('ar')); } catch {}
+  const device = spatialDevice({
+    userAgent: navigator.userAgent, platform: navigator.platform,
+    maxTouchPoints: navigator.maxTouchPoints, relAR,
+    webView: Boolean(window.webkit?.messageHandlers),
+  });
+  const quickLookSupported = device.quickLook;
+  const handoff = find('[data-spatial-handoff]');
+  const urlInput = find('[data-spatial-url]');
+  const linkStatus = find('[data-spatial-link-status]');
+  const retry = find('[data-spatial-retry]');
+  urlInput.value = pageUrl;
+  find('[data-spatial-share]').hidden = typeof navigator.share !== 'function';
+  let exportVersion = 0;
+  let checkVersion = 0;
+  let loadFailed = false;
   let capabilities = { ar: false, vr: false, checked: false };
   let busy = false;
   let session;
@@ -53,36 +70,82 @@ export function bindSpatialViewing(element, getContext, activate) {
           : 'Small pieces with a documented scale get a stand in VR. In AR, use a real table or choose a virtual stand.';
   };
   const say = (message) => { status.textContent = message; };
+  function showHandoff(mode) {
+    handoff.open = true;
+    find('[data-device-help]').textContent = mode === 'vr'
+      ? 'Open this link in your headset’s browser, then choose “Enter VR”. You can continue exploring in 3D here.'
+      : device.apple
+        ? 'Open this link in Safari on your iPhone or iPad. If you are inside another app, use its menu to open the page in Safari.'
+        : device.android
+          ? 'Open this link in Chrome on an AR-capable Android phone. If you are inside another app, open the page in Chrome.'
+          : 'Open this link in Safari on an iPhone or iPad, or Chrome on an AR-capable Android phone. For VR, use your headset’s browser.';
+    handoff.scrollIntoView({ block: 'nearest' });
+    urlInput.focus({ preventScroll: true });
+    urlInput.select();
+  }
+  async function copyPage() {
+    try {
+      await navigator.clipboard.writeText(pageUrl);
+      linkStatus.textContent = 'Link copied. Paste it into the browser on your other device.';
+    } catch {
+      urlInput.focus(); urlInput.select();
+      linkStatus.textContent = 'Select and copy the link above, then open it on your other device.';
+    }
+  }
   async function sharePage() {
     try {
-      if (navigator.share) await navigator.share({ title, text: `Explore ${title} in 3D on Atrium.Earth`, url: pageUrl });
-      else { await navigator.clipboard.writeText(pageUrl); say('Link copied. Open it on your phone or in your headset’s browser.'); }
+      if (typeof navigator.share !== 'function') { await copyPage(); return; }
+      await navigator.share({ title, text: `Explore ${title} in 3D on Atrium.Earth`, url: pageUrl });
+      linkStatus.textContent = 'Link shared.';
     } catch (error) {
-      if (error?.name !== 'AbortError') say(`Open this address on your device: ${pageUrl}`);
+      if (error?.name !== 'AbortError') await copyPage();
     }
   }
   function update() {
     const ready = Boolean(getContext());
+    const arAvailable = capabilities.ar || quickLookSupported;
     supportMode.disabled = busy;
     supportHeight.disabled = busy;
-    ar.disabled = busy || ((capabilities.ar || quickLookSupported) && !ready);
-    vr.disabled = busy || !ready || !capabilities.vr;
-    ar.textContent = !capabilities.checked ? 'Checking your device…' : capabilities.ar ? 'Place in your room' : quickLookSupported ? 'Prepare AR view' : 'Open on an AR phone';
-    vr.textContent = !capabilities.checked ? 'Checking your device…' : capabilities.vr ? 'Enter VR' : 'Open in a VR headset';
-    find('[data-ar-support]').textContent = capabilities.ar ? 'Uses your camera to find a surface. You choose when to start.' : quickLookSupported ? 'Opens in Apple Quick Look. Preparing a large sculpture may take a moment.' : 'Use Safari on an AR-capable iPhone or iPad, or an AR-capable Android browser.';
-    find('[data-vr-support]').textContent = capabilities.vr ? 'Your headset supports immersive viewing.' : 'Requires a headset browser with WebXR support. The screen view works on this device.';
+    ar.disabled = busy || !capabilities.checked || (arAvailable && !ready);
+    vr.disabled = busy || !capabilities.checked || (capabilities.vr && !ready);
+    ar.toggleAttribute('data-handoff', !arAvailable);
+    ar.textContent = !capabilities.checked ? 'Checking your device…'
+      : arAvailable && !ready ? loadFailed ? 'Sculpture unavailable' : 'Loading sculpture…'
+      : capabilities.ar ? 'Place in your room' : quickLookSupported ? 'Prepare AR view' : 'Use an AR phone';
+    vr.textContent = !capabilities.checked ? 'Checking your device…'
+      : capabilities.vr && !ready ? loadFailed ? 'Sculpture unavailable' : 'Loading sculpture…'
+      : capabilities.vr ? 'Enter VR' : 'Use a VR headset';
+    find('[data-ar-support]').textContent = capabilities.ar
+      ? 'Camera access begins when you choose to start.'
+      : quickLookSupported
+        ? 'Prepare the work, then tap Open in AR. If your browser cannot open it, try Safari.'
+        : device.embedded ? 'This app’s browser may block AR. Open this work in Safari on iPhone or Chrome on Android.'
+        : device.apple ? 'Try Safari on this iPhone or iPad to open the work in AR.'
+        : device.android ? 'Try Chrome on an AR-capable Android phone.'
+        : 'Move to an AR-capable phone or tablet using this work’s link.';
+    find('[data-vr-support]').textContent = capabilities.vr
+      ? 'Your headset is ready. Trigger to turn; thumbstick to resize.'
+      : 'Open the work in a headset browser that supports immersive viewing.';
+    retry.hidden = !loadFailed;
   }
   async function checkCapabilities() {
+    const version = ++checkVersion;
     if (window.isSecureContext && xr) {
-      const values = await Promise.allSettled([xr.isSessionSupported('immersive-ar'), xr.isSessionSupported('immersive-vr')]);
-      capabilities.ar = values[0].status === 'fulfilled' && values[0].value;
-      capabilities.vr = values[1].status === 'fulfilled' && values[1].value;
+      // Publish each result independently: a slow VR check must not block AR.
+      await Promise.all(['ar', 'vr'].map(async (mode) => {
+        const supported = await probeSpatialSupport(xr, `immersive-${mode}`);
+        if (version !== checkVersion) return;
+        capabilities[mode] = supported;
+        capabilities.checked = true;
+        update();
+      }));
     }
+    if (version !== checkVersion) return;
     capabilities.checked = true;
     update();
   }
   const reset = () => {
-    session = undefined; busy = false;
+    session = undefined; pending = undefined; busy = false;
     overlay.hidden = true; panel.hidden = false;
     showScale(1);
     update();
@@ -121,12 +184,14 @@ export function bindSpatialViewing(element, getContext, activate) {
   async function prepareQuickLook() {
     if (busy || !getContext()) return;
     busy = true; update(); say('Preparing the sculpture for AR…');
+    const version = ++exportVersion;
     let converted;
     try {
       const context = getContext();
       const { USDZExporter } = await import('three/examples/jsm/exporters/USDZExporter.js');
       converted = makeQuickLookScene(context.THREE, context.model, context.box, reference, supportOptions());
       const bytes = await new USDZExporter().parseAsync(converted.scene, { maxTextureSize: 2048, quickLookCompatible: true });
+      if (version !== exportVersion) return;
       if (modelUrl) URL.revokeObjectURL(modelUrl);
       modelUrl = URL.createObjectURL(new Blob([bytes], { type: 'model/vnd.usdz+zip' }));
       quickLook.href = `${modelUrl}#allowsContentScaling=${converted.hasSupport ? 0 : 1}&canonicalWebPageURL=${encodeURIComponent(pageUrl)}`;
@@ -136,21 +201,39 @@ export function bindSpatialViewing(element, getContext, activate) {
         : 'Ready. Tap “Open in AR” to place the sculpture. Pinch to change its display size.');
       quickLook.focus();
     } catch (error) {
+      if (version !== exportVersion) return;
       say('This sculpture could not be prepared for Apple AR. You can still explore it in 3D here.');
       console.warn('Atrium Quick Look preparation failed:', error);
-    } finally { converted?.dispose(); busy = false; update(); }
+    } finally {
+      converted?.dispose();
+      if (version === exportVersion) { busy = false; update(); }
+    }
   }
 
+  function loadModel() {
+    loadFailed = false; update();
+    say(getContext() ? '' : 'Loading the sculpture…');
+    void activate();
+  }
   find('[data-spatial-open]').addEventListener('click', () => {
-    dialog.showModal();
-    say(getContext() ? '' : 'Loading the sculpture. Immersive options will be ready in a moment…');
-    void activate(); update();
+    if (!dialog.open) dialog.showModal();
+    document.body.classList.add('spatial-modal-open');
+    find('[data-spatial-close]').focus({ preventScroll: true });
+    dialog.scrollTop = 0;
+    loadModel();
+    void checkCapabilities();
   });
+  retry.addEventListener('click', loadModel);
   find('[data-spatial-close]').addEventListener('click', () => dialog.close());
-  dialog.addEventListener('cancel', () => { pending?.abort(); });
-  find('[data-spatial-exit]').addEventListener('click', () => {
+  find('[data-spatial-screen]').addEventListener('click', () => dialog.close());
+  dialog.addEventListener('close', () => {
+    document.body.classList.remove('spatial-modal-open');
     pending?.abort();
+    exportVersion++;
+    if (!pending) { busy = false; update(); }
   });
+  dialog.addEventListener('cancel', () => { pending?.abort(); });
+  find('[data-spatial-exit]').addEventListener('click', () => { pending?.abort(); });
   // A tap on a DOM overlay button must not also place or rotate the sculpture.
   overlay.addEventListener('beforexrselect', (event) => {
     if (event.target.closest('button, input, label')) event.preventDefault();
@@ -171,16 +254,21 @@ export function bindSpatialViewing(element, getContext, activate) {
   ar.addEventListener('click', () => {
     if (capabilities.ar) enter('immersive-ar');
     else if (quickLookSupported) void prepareQuickLook();
-    else void sharePage();
+    else showHandoff('ar');
   });
-  vr.addEventListener('click', () => enter('immersive-vr'));
+  vr.addEventListener('click', () => {
+    if (capabilities.vr) enter('immersive-vr');
+    else showHandoff('vr');
+  });
+  find('[data-spatial-copy]').addEventListener('click', copyPage);
+  urlInput.addEventListener('click', () => urlInput.select());
   find('[data-spatial-share]').addEventListener('click', sharePage);
   const root = element.closest('[data-viewer]');
-  root.addEventListener('atrium:viewer-ready', () => { update(); if (!busy) say(''); });
-  root.addEventListener('atrium:viewer-error', () => { update(); say('The sculpture could not load. Close this panel and choose “Examine in 3D” to retry.'); });
+  root.addEventListener('atrium:viewer-ready', () => { loadFailed = false; update(); if (!busy && status.textContent === 'Loading the sculpture…') say(''); });
+  root.addEventListener('atrium:viewer-error', () => { loadFailed = true; update(); say('The sculpture could not load. Try again, or open this work on another device.'); });
   window.addEventListener('pagehide', (event) => {
     pending?.abort();
-    if (!event.persisted && modelUrl) URL.revokeObjectURL(modelUrl);
+    if (!event.persisted) { exportVersion++; invalidateQuickLook(); }
   });
   xr?.addEventListener?.('devicechange', checkCapabilities);
   updateSupportChoice();

@@ -10,31 +10,58 @@ const standHeight = displaySupport?.height && displaySupport.height > 0 ? displa
   </button>
   <dialog class="spatial-dialog" data-spatial-dialog aria-label={`View ${title} in AR or VR`}>
     <div class="spatial-panel">
-      <div class="spatial-top"><span>BEYOND THE SCREEN</span><button type="button" data-spatial-close aria-label="Close AR and VR options">✕</button></div>
-      <h2>A sculpture.<br>In your space.</h2>
-      <p class="spatial-intro">Place <em>{title}</em> in your room, or step around it in a headset.</p>
-      <div class="spatial-display">
-        <label>Display support
-          <select data-support-mode>
-            <option value="auto">Automatic in VR</option>
-            <option value="plinth">Use a virtual stand</option>
-            <option value="surface">Use the floor or a real table</option>
-          </select>
-        </label>
-        <label data-support-height-control>Stand height
-          <input type="range" data-support-height min="0.2" max="1.4" step="0.05" value={standHeight} />
-          <output data-support-height-value>{Math.round(standHeight * 100)} cm</output>
-        </label>
-        <p data-support-note>Small pieces with a documented scale get a stand in VR. In AR, use a real table or choose a virtual stand.</p>
-        {displaySupport?.note && <p data-display-recommendation>{displaySupport.note}</p>}
-        <p>A virtual stand raises the artwork without changing its size or proportions. Any base already in the scan stays with the artwork.</p>
-      </div>
+      <div class="spatial-top"><span>AR / VR · Beyond the screen</span><button type="button" data-spatial-close aria-label="Close AR and VR options" autofocus>✕</button></div>
+      <h2>View in your space.</h2>
+      <p class="spatial-intro">{title}</p>
+      <p class="spatial-size-note" data-spatial-size-note>{sizeNote}</p>
       <div class="spatial-options">
-        <section><span class="spatial-number">01 / AUGMENTED REALITY</span><h3>Bring it into the room</h3><p>Find a floor or table, place the sculpture, then walk around it.</p><button type="button" data-spatial-ar disabled>Checking your device…</button><a data-quick-look rel="ar" hidden><img src={poster} alt="" />Open in AR ↗</a><p class="spatial-support" data-ar-support></p></section>
-        <section><span class="spatial-number">02 / VIRTUAL REALITY</span><h3>See it from every side</h3><p>Open this page in your headset’s browser. Trigger to turn; thumbstick up or down to resize.</p><button type="button" data-spatial-vr disabled>Checking your device…</button><p class="spatial-support" data-vr-support></p></section>
+        <section>
+          <span class="spatial-number">01 / Augmented reality</span>
+          <h3>In your room</h3>
+          <p>Place the work on a floor or table and walk around it.</p>
+          <button type="button" data-spatial-ar disabled>Checking your device…</button>
+          <a data-quick-look rel="ar" download="artwork.usdz" aria-label="Open in AR" hidden><img src={poster} alt="" />Open in AR ↗</a>
+          <p class="spatial-support" data-ar-support></p>
+        </section>
+        <section>
+          <span class="spatial-number">02 / Virtual reality</span>
+          <h3>Inside a headset</h3>
+          <p>Explore the work from every side, at your own pace.</p>
+          <button type="button" data-spatial-vr disabled>Checking your device…</button>
+          <p class="spatial-support" data-vr-support></p>
+        </section>
       </div>
       <p class="spatial-status" data-spatial-status role="status" aria-live="polite"></p>
-      <div class="spatial-footer"><button type="button" data-spatial-share>Share this work ↗</button><p data-spatial-size-note>{sizeNote}</p></div>
+      <button type="button" class="spatial-text-button" data-spatial-retry hidden>Retry loading sculpture ↻</button>
+      <details class="spatial-display">
+        <summary>Placement &amp; stand <span aria-hidden="true">+</span></summary>
+        <div class="spatial-display-content">
+          <label>Display support
+            <select data-support-mode>
+              <option value="auto">Recommended in VR</option>
+              <option value="plinth">Use a virtual stand</option>
+              <option value="surface">Use the floor or a real table</option>
+            </select>
+          </label>
+          <label data-support-height-control>Stand height
+            <input type="range" data-support-height min="0.2" max="1.4" step="0.05" value={standHeight} />
+            <output data-support-height-value>{Math.round(standHeight * 100)} cm</output>
+          </label>
+          <p data-support-note>Small pieces with a documented scale get a stand in VR. In AR, use a real table or choose a virtual stand.</p>
+          {displaySupport?.note && <p data-display-recommendation>{displaySupport.note}</p>}
+          <p>A stand raises the work without changing its size or proportions. Any base in the scan stays with the artwork.</p>
+        </div>
+      </details>
+      <details class="spatial-handoff" data-spatial-handoff>
+        <summary>Open on another device <span aria-hidden="true">↗</span></summary>
+        <div class="spatial-handoff-content">
+          <p data-device-help>Open this work in Safari on an iPhone or iPad, Chrome on an AR-capable Android phone, or your headset’s browser.</p>
+          <label>Link to this work<input data-spatial-url type="url" readonly spellcheck="false" /></label>
+          <div class="spatial-link-actions"><button type="button" data-spatial-copy>Copy link</button><button type="button" data-spatial-share>Share link ↗</button></div>
+          <p data-spatial-link-status role="status" aria-live="polite"></p>
+        </div>
+      </details>
+      <div class="spatial-footer"><button type="button" data-spatial-screen>Continue in 3D <span aria-hidden="true">↗</span></button><p>Rotate and zoom in this browser.</p></div>
     </div>
     <div class="spatial-overlay" data-spatial-overlay hidden>
       <div class="spatial-overlay-top"><strong>{title}</strong><button type="button" data-spatial-exit>Exit AR / VR</button></div>
@@ -48,48 +75,87 @@ const standHeight = displaySupport?.height && displaySupport.height > 0 ? displa
   </dialog>
 </div>
 <style>
-  .spatial-viewing { position: absolute; z-index: 31; top: 98px; left: var(--v3-pad, 28px); }
-  button, a { font: inherit; }
-  .spatial-open { display: inline-flex; align-items: center; gap: 9px; min-height: 40px; padding: 10px 15px; border: 1px solid #f7f5ef42; border-radius: 30px; color: #f7f5ef; background: var(--v3-chrome, #162339e8); backdrop-filter: blur(14px); font-size: .65rem; font-weight: 600; letter-spacing: .06em; cursor: pointer; }
-  .spatial-dialog { width: min(720px, calc(100vw - 32px)); max-height: calc(100dvh - 40px); padding: 0; margin: auto; border: 1px solid #c8bfac; border-radius: 12px; color: #24352c; background: #f4f1e8; overflow: auto; }
-  .spatial-dialog::backdrop { background: #06111ddd; backdrop-filter: blur(8px); }
-  .spatial-panel { padding: 30px; }
-  .spatial-top { display: flex; justify-content: space-between; align-items: center; font-size: 10px; letter-spacing: .15em; }
-  .spatial-top button { width: 44px; height: 44px; border: 0; background: transparent; color: inherit; cursor: pointer; font-size: 19px; }
-  h2 { font: normal clamp(36px, 6vw, 54px)/1.04 Georgia, serif; letter-spacing: -.035em; margin: 14px 0 18px; }
-  .spatial-intro { max-width: 500px; font-size: 16px; line-height: 1.55; color: #536153; }
-  .spatial-display { margin-top: 24px; padding: 16px; border: 1px solid #c5ccbe; border-radius: 8px; }
-  .spatial-display label { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; font-size: 13px; }
-  .spatial-display select { flex: 1; min-width: 0; min-height: 44px; padding: 8px; border: 1px solid #899781; border-radius: 5px; background: #fffdf5; color: #24352c; font: inherit; }
-  .spatial-display input { flex: 1; min-width: 0; }
-  .spatial-display output, .spatial-overlay output { white-space: nowrap; font-variant-numeric: tabular-nums; }
-  .spatial-display p { font-size: 12px; line-height: 1.5; color: #536153; margin: 8px 0 0; }
-  .spatial-options { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 28px 0 10px; }
-  .spatial-options section { border-top: 1px solid #c5ccbe; padding-top: 18px; }
-  .spatial-number { font-size: 9px; letter-spacing: .12em; color: #61705d; }
-  h3 { font: normal 24px/1.2 Georgia, serif; margin: 13px 0; }
-  .spatial-options p { font-size: 13px; line-height: 1.55; color: #536153; }
-  .spatial-options button, .spatial-options a, .spatial-footer button { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 11px 16px; border: 1px solid #284d3c; border-radius: 5px; background: #284d3c; color: #fffdf5; text-decoration: none; cursor: pointer; font-size: 13px; }
-  .spatial-options button:disabled { background: transparent; color: #64715e; border-color: #c5ccbe; cursor: default; }
+  .spatial-viewing {
+    --spatial-bg: var(--v3-void, #0e1626);
+    --spatial-well: var(--v3-well, #172438);
+    --spatial-ink: var(--v3-ink, #f7f5ef);
+    --spatial-muted: var(--v3-muted, #c9c6bd);
+    --spatial-line: var(--v3-line, rgba(247,245,239,.16));
+    --spatial-accent: var(--v3-signal, #eccf7a);
+    position: absolute; z-index: 31; top: 98px; left: var(--v3-pad, 28px);
+    font-family: var(--v3-sans, var(--ui, sans-serif));
+  }
+  button, a, input, select { font: inherit; }
+  button, summary, a { -webkit-tap-highlight-color: transparent; }
+  .spatial-open { display: inline-flex; align-items: center; gap: 9px; min-height: 44px; padding: 8px 0; border: 0; border-radius: 0; color: var(--spatial-ink); background: transparent; font-size: .7rem; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; cursor: pointer; }
+  .spatial-open:hover { color: var(--spatial-accent); }
+  .spatial-dialog { color-scheme: dark; width: min(740px, calc(100vw - 40px)); max-height: calc(100vh - 40px); max-height: calc(100dvh - 40px); padding: 0; margin: auto; border: 1px solid var(--spatial-line); border-radius: 4px; color: var(--spatial-ink); background: var(--spatial-bg); overflow: auto; overscroll-behavior: contain; }
+  .spatial-dialog::backdrop { background: rgba(7,10,16,.82); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+  .spatial-panel { padding: 0 32px 24px; }
+  .spatial-top { position: sticky; top: 0; z-index: 2; display: flex; justify-content: space-between; align-items: center; gap: 12px; min-height: 66px; background: var(--spatial-bg); color: var(--spatial-muted); font-size: .63rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
+  .spatial-top button { flex: none; width: 44px; height: 44px; margin-right: -10px; border: 0; background: transparent; color: var(--spatial-ink); cursor: pointer; font-size: 19px; }
+  h2 { color: var(--spatial-ink); font: 400 clamp(30px, 5vw, 46px)/1.08 var(--v3-sans, var(--ui, sans-serif)); letter-spacing: -.04em; margin: 12px 0 16px; }
+  .spatial-intro { margin: 0 0 8px; font-size: 17px; line-height: 1.5; }
+  .spatial-size-note { margin: 0; color: var(--spatial-muted); font-size: 12px; line-height: 1.6; }
+  .spatial-options { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 28px; margin: 28px 0 0; }
+  .spatial-options section { border-top: 1px solid var(--spatial-line); padding-top: 18px; }
+  .spatial-number { font-size: .6rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--spatial-accent); }
+  h3 { color: var(--spatial-ink); font: 400 23px/1.2 var(--v3-sans, var(--ui, sans-serif)); letter-spacing: -.025em; margin: 12px 0; }
+  .spatial-options p { font-size: 13px; line-height: 1.6; color: var(--spatial-muted); margin: 0 0 18px; }
+  .spatial-options button, .spatial-options a, .spatial-link-actions button { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 11px 16px; border: 1px solid var(--spatial-accent); border-radius: 3px; background: var(--spatial-accent); color: var(--spatial-bg); text-decoration: none; cursor: pointer; font-size: 12px; font-weight: 600; }
+  .spatial-options button:disabled { background: var(--spatial-well); color: var(--spatial-muted); border-color: var(--spatial-line); cursor: wait; }
+  .spatial-options button[data-handoff], .spatial-options [data-spatial-vr] { color: var(--spatial-ink); background: transparent; border-color: var(--v3-line-strong, #677080); }
   .spatial-options a img { width: 1px; height: 1px; position: absolute; opacity: 0; }
-  .spatial-options .spatial-support { font-size: 11px; min-height: 32px; }
-  .spatial-status { font-size: 13px; line-height: 1.5; min-height: 20px; }
-  .spatial-footer { border-top: 1px solid #c5ccbe; padding-top: 20px; margin-top: 20px; display: flex; gap: 24px; align-items: center; }
-  .spatial-footer button { background: transparent; color: #284d3c; white-space: nowrap; }
-  .spatial-footer p { font-size: 11px; line-height: 1.5; color: #61705d; }
-  button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible { outline: 3px solid #be9348; outline-offset: 4px; }
+  .spatial-options section > p:not(.spatial-support) { min-height: 3.2em; }
+  .spatial-options .spatial-support { font-size: 12px; margin: 12px 0 0; }
+  .spatial-status { font-size: 13px; line-height: 1.6; color: var(--spatial-accent); margin: 18px 0; }
+  .spatial-status:empty { display: none; }
+  details { border-top: 1px solid var(--spatial-line); }
+  .spatial-display { margin-top: 26px; }
+  summary { display: flex; align-items: center; justify-content: space-between; min-height: 54px; list-style: none; cursor: pointer; font-size: 13px; font-weight: 500; }
+  summary::-webkit-details-marker { display: none; }
+  summary span { color: var(--spatial-muted); }
+  details[open] > summary span { transform: rotate(45deg); }
+  .spatial-handoff[open] > summary span { transform: none; }
+  .spatial-display-content, .spatial-handoff-content { padding: 0 0 20px; }
+  .spatial-display label { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; font-size: 12px; }
+  .spatial-display select, .spatial-handoff input { min-width: 0; min-height: 44px; padding: 8px 10px; border: 1px solid var(--v3-line-strong, #677080); border-radius: 3px; background: var(--spatial-well); color: var(--spatial-ink); font-size: 16px; }
+  .spatial-display select { flex: 1; }
+  input[type="range"] { accent-color: var(--spatial-accent); min-height: 32px; }
+  .spatial-display input { flex: 1; min-width: 0; }
+  output { white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .spatial-display p, .spatial-handoff p { font-size: 12px; line-height: 1.6; color: var(--spatial-muted); margin: 8px 0 0; }
+  .spatial-handoff label { display: grid; gap: 8px; margin: 16px 0 12px; font-size: 12px; }
+  .spatial-handoff input { width: 100%; }
+  .spatial-link-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+  .spatial-link-actions button { background: transparent; color: var(--spatial-ink); border-color: var(--v3-line-strong, #677080); }
+  .spatial-footer { border-top: 1px solid var(--spatial-line); padding-top: 12px; display: flex; flex-wrap: wrap; gap: 4px 20px; align-items: center; }
+  .spatial-footer button, .spatial-text-button { display: inline-flex; align-items: center; gap: 18px; min-height: 44px; padding: 8px 0; border: 0; background: transparent; color: var(--spatial-ink); cursor: pointer; font-size: 12px; }
+  .spatial-footer p { margin: 0; font-size: 12px; color: var(--spatial-muted); }
+  button:not(:disabled):hover, a:hover { filter: brightness(1.15); }
+  button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, summary:focus-visible { outline: 2px solid var(--spatial-accent); outline-offset: 3px; }
   [hidden] { display: none !important; }
-  .spatial-overlay { position: fixed; inset: 0; color: white; pointer-events: none; }
-  .spatial-overlay:fullscreen, .spatial-overlay:xr-overlay { background: transparent !important; }
-  .spatial-overlay-top, .spatial-overlay-controls { position: absolute; left: 16px; right: 16px; padding: 16px; border-radius: 8px; background: #10241ee8; pointer-events: auto; }
+  :global(body.spatial-modal-open) { overflow: hidden; }
+  .spatial-overlay { position: fixed; inset: 0; color: var(--spatial-ink); pointer-events: none; }
+  .spatial-overlay:fullscreen { background: transparent !important; }
+  .spatial-overlay:xr-overlay { background: transparent !important; }
+  .spatial-overlay-top, .spatial-overlay-controls { position: absolute; left: 16px; right: 16px; padding: 16px; border: 1px solid var(--spatial-line); border-radius: 4px; background: var(--v3-chrome-solid, #111a2cf7); pointer-events: auto; }
   .spatial-overlay-top { top: max(16px, env(safe-area-inset-top)); display: flex; gap: 20px; justify-content: space-between; align-items: center; }
-  .spatial-overlay-top strong { font-size: 14px; }
+  .spatial-overlay-top strong { font-size: 14px; font-weight: 500; }
   .spatial-overlay-controls { bottom: max(16px, env(safe-area-inset-bottom)); max-width: 440px; margin: auto; }
   .spatial-overlay-controls p { font-size: 14px; line-height: 1.5; margin: 0 0 15px; }
   .spatial-overlay label { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; font-size: 12px; }
   .spatial-overlay input { flex: 1; min-width: 0; }
-  .spatial-overlay button { min-height: 44px; padding: 8px 15px; border: 1px solid #c2d4bd99; border-radius: 5px; background: transparent; color: white; cursor: pointer; }
+  .spatial-overlay button { min-height: 44px; padding: 8px 15px; border: 1px solid var(--spatial-line); border-radius: 3px; background: transparent; color: var(--spatial-ink); cursor: pointer; }
   .spatial-overlay-controls > div { display: flex; flex-wrap: wrap; gap: 10px; }
-  @media(max-width: 800px) { .spatial-viewing { top: 80px; left: var(--v3-pad, 20px); } .spatial-open { font-size: 10px; padding: 10px 12px; } }
-  @media(max-width: 540px) { .spatial-panel { padding: 20px; } .spatial-options { grid-template-columns: 1fr; gap: 18px; } .spatial-options .spatial-support { min-height: 0; } .spatial-footer { flex-direction: column; align-items: start; gap: 4px; } }
+  @media(max-width: 800px) { .spatial-viewing { top: 80px; left: var(--v3-pad, 20px); } .spatial-open { font-size: 10px; } }
+  @media(max-width: 540px) {
+    .spatial-dialog { width: calc(100vw - 20px); max-height: calc(100vh - 20px); max-height: calc(100dvh - 20px); }
+    .spatial-panel { padding: 0 20px 20px; }
+    .spatial-options { grid-template-columns: 1fr; gap: 22px; }
+    .spatial-options button, .spatial-options a { width: 100%; }
+    .spatial-display label { flex-wrap: wrap; }
+    .spatial-display select { flex-basis: 100%; }
+    .spatial-footer { align-items: start; flex-direction: column; }
+  }
 </style>
