@@ -9,16 +9,16 @@
       "variable": 1
     },
     "scale": {
-      "calibrated": 373,
-      "unverified": 669,
+      "calibrated": 379,
+      "unverified": 663,
       "approximate": 4
     },
     "basis": {
-      "original": 164,
-      "object": 882
+      "original": 163,
+      "object": 883
     },
     "componentReferences": 2,
-    "documentedButUncalibrated": 391
+    "documentedButUncalibrated": 385
   },
   "entries": [
     {
@@ -127,13 +127,18 @@
       "title": "Laocoon and His Sons",
       "url": "https://atrium.earth/works/laocoon/",
       "dimensionStatus": "documented",
-      "basis": "original",
-      "dimensions": "Current marble group: H 208 × W 163 × D 112 cm.",
-      "sourceUrl": "https://www.digitalsculpture.org/laocoon/index02.html",
-      "scaleStatus": "unverified",
-      "sourceNote": "Dimensions of the present Vatican marble group; this cast may reproduce an earlier restored arrangement.",
-      "geometryReview": "The cast includes historical restored limbs, heads, accessories or a different state from the current original. Those differences can control extrema; map a documented unchanged anatomical extent before uniform scaling.",
-      "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+      "basis": "object",
+      "dimensions": "Full-size historical cast: H 242 cm.",
+      "sourceUrl": "https://open.smk.dk/en/artwork/image/KAS385",
+      "scaleStatus": "calibrated",
+      "reference": {
+        "axis": "y",
+        "meters": 2.42,
+        "assetSha256": "a307a155240874c79bf3b4a9bef44eac80be13520120640c1994d11feb0ee237"
+      },
+      "sourceNote": "This scan shows the older straight-arm restoration, calibrated to its full-size height of 242 cm. The current Vatican marble group, with a bent right arm, measures H 208 x W 163 x D 112 cm. Historical cast width/depth records disagree; the model retains its proportions.",
+      "geometryReview": "Complete historical straight-arm group, including its integral altar and low stepped base, without separate museum furniture. Full vertical extent runs from the underside of the base to the raised hand/serpent. The restored arm also controls the horizontal minimum, so neither the current Vatican height nor width applies to this cast. At H 242 cm the unchanged mesh measures about W 180.07 x D 106.89 cm in its current orientation. SMK records W 162.5 x D 103 cm and the Berlin master W 184 x D 100 cm; these disagree, so only the independently corroborated height calibrates the model and proportions are preserved.",
+      "spatialNote": "Calibrated to 2.42 m high: the full-size historical cast with the raised arm. The current Vatican group has a different arm restoration. Proportions are preserved."
     },
     {
       "slug": "germanicus",
@@ -4107,10 +4112,15 @@
       "basis": "object",
       "dimensions": "66 cm height",
       "sourceUrl": "https://threedscans.com/musee-de-la-romanite/enfant-au-chien/",
-      "scaleStatus": "unverified",
+      "scaleStatus": "calibrated",
+      "reference": {
+        "axis": "y",
+        "meters": 0.66,
+        "assetSha256": "5e84296d9e9c615d2de0ef20629ded8f6d56660465264ab99a47d350de2d74be"
+      },
       "sourceNote": "Dimensions published by the scan project. Axis order is retained from the source.",
-      "geometryReview": "Source text appears to contain a useful labeled overall height, and the mesh has an apparently complete sculptural extent, but no structured measures are present. Recheck the primary source and add an explicit sourced measurement before calibration; confirm integral-base scope.",
-      "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+      "geometryReview": "The source identifies this exact marble at the Musée de la Romanité and explicitly gives 66 cm height. The child, dog, draped tree support and molded sculptural foot are present in both the scan-publisher image and the complete current model; no added gallery support is included.",
+      "spatialNote": "Height is calibrated from the documented object at 66 cm, preserving the model’s proportions."
     },
     {
       "slug": "greek/athena-alkyoneus-ge-nike-pergamon-smk-cast",
@@ -4371,10 +4381,15 @@
       "basis": "object",
       "dimensions": "H 58.0 cm B 55.0 cm T 33.5 cm",
       "sourceUrl": "https://threedscans.com/ferdinandeum-innsbruck/gruppe-mit-zwei-windhunden/",
-      "scaleStatus": "unverified",
+      "scaleStatus": "calibrated",
+      "reference": {
+        "axis": "y",
+        "meters": 0.58,
+        "assetSha256": "fbee1b78d88e77984bee7abf72a6749627d6f2d3d3be53ecd0502cacb2a3b305"
+      },
       "sourceNote": "Dimensions published by the scan project. Axis order is retained from the source.",
-      "geometryReview": "Source text appears to contain a useful labeled overall height, and the mesh has an apparently complete sculptural extent, but no structured measures are present. Recheck the primary source and add an explicit sourced measurement before calibration; confirm integral-base scope.",
-      "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+      "geometryReview": "The scan publisher explicitly gives H 58 cm for this exact marble dog group. Both dogs and the single low sculptural foot match the source image and current model. The current orientation levels the foot. Use its reliable overall height uniformly; retain the source width/depth as separate evidence, without independently distorting the mesh.",
+      "spatialNote": "Height is calibrated to the documented 58 cm. Mesh width differs from the documented 55 cm (about 58.6 cm in the current orientation; about 57.9 cm near the source depth). All axes use one uniform scale; horizontal dimensions have not been independently matched."
     },
     {
       "slug": "neoclassical/henri-iv-enfant-bosio-threedscans",
@@ -4384,10 +4399,15 @@
       "basis": "object",
       "dimensions": "60 cm tall",
       "sourceUrl": "https://threedscans.com/uncategorized/henri-iv-enfant/",
-      "scaleStatus": "unverified",
+      "scaleStatus": "calibrated",
+      "reference": {
+        "axis": "y",
+        "meters": 0.6,
+        "assetSha256": "f9ecf623838df733d9414338304592b893889f0fc22a7d00ed722c8273803c32"
+      },
       "sourceNote": "Dimensions published by the scan project. Axis order is retained from the source.",
-      "geometryReview": "Source text appears to contain a useful labeled overall height, and the mesh has an apparently complete sculptural extent, but no structured measures are present. Recheck the primary source and add an explicit sourced measurement before calibration; confirm integral-base scope.",
-      "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+      "geometryReview": "The source identifies this exact Monaco bronze and explicitly gives 60 cm overall height. Its standing boy, sword and thin rectangular sculptural foot match the current complete model. No external gallery support or cropped anatomical extent is included.",
+      "spatialNote": "Height is calibrated from the documented object at 60 cm, preserving the model’s proportions."
     },
     {
       "slug": "neoclassical/napoleon-ier-bosio-threedscans",
@@ -4410,10 +4430,15 @@
       "basis": "object",
       "dimensions": "H. 35 cm, l. 22 cm, prof. 26 cm.",
       "sourceUrl": "https://threedscans.com/uncategorized/pan-and-bacchus/",
-      "scaleStatus": "unverified",
+      "scaleStatus": "calibrated",
+      "reference": {
+        "axis": "y",
+        "meters": 0.35,
+        "assetSha256": "40c3b5ab3969103f9f8ff1f8143ffa916c03d629e83e2f2a6489b032606b9f62"
+      },
       "sourceNote": "Dimensions published by the scan project. Axis order is retained from the source.",
-      "geometryReview": "Source text appears to contain a useful labeled overall height, and the mesh has an apparently complete sculptural extent, but no structured measures are present. Recheck the primary source and add an explicit sourced measurement before calibration; confirm integral-base scope.",
-      "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+      "geometryReview": "The scan publisher explicitly gives H 35 cm for this exact surviving fragment, with the adult head and an arm missing. Its remaining bodies, rock support and low oval sculptural foot match the publisher image; no external stand is present. This is a measurement of the surviving object, not a reconstructed intact Pan. Use its reliable overall height uniformly.",
+      "spatialNote": "Height is calibrated to the documented 35 cm of the surviving sculpture. Mesh width differs from the documented 22 cm (about 24.9 cm in the current orientation; about 23.7 cm in the closest plan comparison). Depth is about 26 cm in the current orientation. All axes use one uniform scale; horizontal dimensions have not been independently matched."
     },
     {
       "slug": "greek/antinoos-dionysos-smk-cast",
@@ -9878,10 +9903,15 @@
       "basis": "original",
       "dimensions": "H 155 cm (original marble, Musei Capitolini MC 1141); modern base 81 x 60 x 40 cm",
       "sourceUrl": "https://www.museicapitolini.org/sites/default/files/f_file/VENERE%20ESQUILINA.pdf",
-      "scaleStatus": "unverified",
+      "scaleStatus": "calibrated",
+      "reference": {
+        "axis": "y",
+        "meters": 1.55,
+        "assetSha256": "3defa179231e213c1694f9eda905a0651e7f094d9415dfa3f48aa1ede027cf97"
+      },
       "sourceNote": "Dimensions of the original marble in the Musei Capitolini, Rome (inv. MC 1141, H 155 cm excluding the modern base); this model was scanned from a plaster cast in the SMK Royal Cast Collection.",
-      "geometryReview": "The cast retains a sculptural/plinth support whose relationship to the original’s documented measurement is not yet established. Resolve source scope and the object/base boundary before applying whole-mesh height.",
-      "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+      "geometryReview": "The missing arms, tilted head, sandals, draped vase and cobra identify the Esquiline Venus. The official primary description explicitly places its feet on a quadrangular sculptural base and separately specifies the modern 81 × 60 × 40 cm display base. Three-angle inspection confirms the model includes the thin quadrangular sculptural foot but no modern display pedestal. The original sculpture's 155 cm surviving height therefore matches the whole modeled extent, as it does for the other Esquiline Venus route.",
+      "spatialNote": "Height is calibrated from the documented original sculpture at 155 cm, preserving the model’s proportions."
     },
     {
       "slug": "modern/torso-of-falling-man-rodin",

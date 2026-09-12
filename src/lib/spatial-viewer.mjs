@@ -196,11 +196,15 @@ export function bindSpatialViewing(element, getContext, activate) {
       if (version !== exportVersion) return;
       if (modelUrl) URL.revokeObjectURL(modelUrl);
       modelUrl = URL.createObjectURL(new Blob([bytes], { type: 'model/vnd.usdz+zip' }));
-      quickLook.href = `${modelUrl}#allowsContentScaling=${converted.hasSupport ? 0 : 1}&canonicalWebPageURL=${encodeURIComponent(pageUrl)}`;
+      // Preserve the physical reference in Apple's viewer, with or without a stand.
+      const fixedScale = Boolean(reference) || converted.hasSupport;
+      quickLook.href = `${modelUrl}#allowsContentScaling=${fixedScale ? 0 : 1}&canonicalWebPageURL=${encodeURIComponent(pageUrl)}`;
       quickLook.hidden = false; ar.hidden = true;
       say(converted.hasSupport
         ? 'Ready. Tap “Open in AR” and place the stand on the floor. The artwork and stand keep their prepared size.'
-        : 'Ready. Tap “Open in AR” to place the sculpture. Pinch to change its display size.');
+        : fixedScale
+          ? 'Ready. Tap “Open in AR” to place the sculpture. It keeps its prepared physical size as you walk around it.'
+          : 'Ready. Tap “Open in AR” to place the sculpture. Its physical size is not yet verified; pinch to adjust the display size.');
       quickLook.focus();
     } catch (error) {
       if (version !== exportVersion) return;

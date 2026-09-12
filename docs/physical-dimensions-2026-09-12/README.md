@@ -8,13 +8,15 @@ All 1,046 public collection entries now have an explicit dimension-review record
 | Approximate physical dimensions | 52 |
 | Unresolved dimensions or identity | 229 |
 | Variable dimensions | 1 |
-| Calibrated scan using documented dimensions | 373 |
+| Calibrated scan using documented dimensions | 379 |
 | Explicitly approximate starting scale | 4 |
-| Scale remains unverified | 669 |
+| Scale remains unverified | 663 |
 
-The previous release had 41 documented calibrations and one approximate starting scale. This release adds 332 documented calibrations and three approximate starting scales. Of the 669 entries without verified or approximate calibration, 391 have documented dimensions but still require matching geometry, support boundaries, measurement axes, or version identity.
+The previous release had 41 documented calibrations and one approximate starting scale. This release adds 338 documented calibrations and three approximate starting scales. Of the 663 entries without verified or approximate calibration, 385 have documented dimensions but still require matching geometry, support boundaries, measurement axes, or version identity.
 
 [coverage.json](coverage.json) lists every public entry, its dimension status, scale status, source, and remaining limitations. The canonical measurement records and accepted references are in [physical-dimensions.json](../../src/data/physical-dimensions.json). Archived files called proposals or reviews preserve the research process; the canonical records determine what the site actually uses.
+
+The [phone-scale follow-up](../phone-scale-2026-09-12/README.md) adds six of these calibrations, including Laocoön’s full-size historical restoration, and preserves prepared size in Apple Quick Look. Its additional geometry reviews supplement the initial audit below.
 
 ## Measurement policy
 

@@ -57,6 +57,11 @@ assert.equal(records['greek/crouching-aphrodite-with-eros-smk-cast'].spatial, un
 assert.equal(records['egyptian/portrait-of-nefertiti-smk-cast'].spatial, undefined, 'Added pedestal is not part of the original height');
 assert.equal(records['modern/the-panther-hunter-jerichau-smk'].basis, 'object', 'An artist’s bronze cast is an accessioned artwork');
 assert.equal(physicalDimensionsFor('H 20 cm').spatialReference, null, 'Existing text is not silently promoted to verified scale');
+const laocoon = records.laocoon;
+const laocoonReference = physicalDimensionsFor('', laocoon, previews.laocoon.url, orientations.laocoon).spatialReference;
+assert.equal(laocoonReference?.meters, 2.42, 'The complete straight-arm cast uses its documented full-size height');
+assert.equal(laocoon.measures[laocoon.spatial.measurementIndex].value, 242);
+assert.ok(laocoon.measures.some(m => m.value === 208 && /bent Pollak/.test(m.scope)), 'Keep current-original measurements distinct from the historical restoration');
 const dubuffet = records['modern/dubuffet-la-chiffonniere'];
 const estimated = physicalDimensionsFor('', dubuffet, previews['modern/dubuffet-la-chiffonniere'].url, orientations['modern/dubuffet-la-chiffonniere']);
 assert.equal(estimated.spatialReference?.estimated, true, 'Dubuffet starting size remains explicitly approximate');
@@ -78,4 +83,4 @@ for (const extentFraction of [0, -1, 1.01, NaN, Infinity, null]) {
 for (const meters of [NaN, Infinity, -1, 0]) assert.equal(referenceScaleFor(box, { axis: 'y', meters }), 1);
 assert.equal(referenceScaleFor(box, { axis: 'height', meters: 1 }), 1);
 assert.equal(referenceScaleFor({ min: { y: 0 }, max: { y: 0 } }, { axis: 'y', meters: 1 }), 1);
-console.log(`Physical dimension checks passed: ${Object.keys(records).length} audited records, ${calibrated - estimatedReferences} calibrated models, ${estimatedReferences} explicitly approximate starting sizes, original-only references, evidence and stale-model protection.`);
+console.log(`Physical dimension checks passed: ${Object.keys(records).length} audited records, ${calibrated - estimatedReferences} calibrated models, ${estimatedReferences} explicitly approximate starting sizes, scoped references, evidence and stale-model protection.`);

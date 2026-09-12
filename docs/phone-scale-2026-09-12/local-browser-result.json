@@ -1,0 +1,62 @@
+{
+  "slug": "laocoon",
+  "date": "2026-09-12",
+  "page": "http://127.0.0.1:4386/works/laocoon/",
+  "browser": "Real headless Chrome; iPhone Chrome user-agent selects production Quick Look path. Native Apple launch not tested.",
+  "assetDelivery": "Exact SHA-256-verified public GLB fulfilled from local audit cache because local preview is outside the public asset CORS policy.",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "assetSha256": "a307a155240874c79bf3b4a9bef44eac80be13520120640c1994d11feb0ee237",
+  "defaultSupportMode": "auto",
+  "virtualSupport": false,
+  "serializedPrimNames": [
+    "Artwork",
+    "Root",
+    "Scene",
+    "laocoon_source_smallstl"
+  ],
+  "dataset": {
+    "spatial": "",
+    "title": "Laocoon and His Sons",
+    "referenceAxis": "y",
+    "referenceMeters": "2.42",
+    "astroCidIwpjhhey": ""
+  },
+  "requests": [
+    "http://127.0.0.1:4386/_astro/spatial-viewer.B2QVMBDy.js",
+    "https://models.atrium.earth/models/previews/laocoon/preview.glb"
+  ],
+  "href": "blob:http://127.0.0.1:4386/8ca3eb47-37f7-45b4-aacd-c69d4815f797#allowsContentScaling=0&canonicalWebPageURL=https%3A%2F%2Fatrium.earth%2Fworks%2Flaocoon%2F",
+  "status": "Ready. Tap “Open in AR” to place the sculpture. It keeps its prepared physical size as you walk around it.",
+  "usdzBytes": 11778997,
+  "usdzSha256": "f22e4afa7db5ee1a74182600df42f5503dd89e5a4ec42bf5e582b50e29ab5a68",
+  "serializedComponent": {
+    "name": "laocoon_source_smallstl",
+    "sizeMeters": [
+      1.8007273240000001,
+      2.4200740520000004,
+      1.0689745
+    ],
+    "boundsMin": [
+      -0.9003636620000001,
+      -3.702599999999556e-05,
+      -0.53448725
+    ],
+    "boundsMax": [
+      0.9003636620000001,
+      2.420037026,
+      0.53448725
+    ]
+  },
+  "serializedUniformScale": 2.42,
+  "geometryToleranceMeters": 0.0001,
+  "serializedHeightResidualMeters": 7.405200000043521e-05,
+  "quantizationNote": "The source GLB uses normalized signed Int16 POSITION (componentType5122). Baking into the cloned normalized integer attribute rounds to a 1/32767 grid; the resulting 74-micrometer height residual is within 0.1 mm. The Artwork transform remains exactly uniform 2.42.",
+  "expectedSculptureHeightMeters": 2.42,
+  "referenceExtentFraction": 1,
+  "pass": true,
+  "errors": [],
+  "warnings": []
+}

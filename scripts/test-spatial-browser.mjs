@@ -158,6 +158,18 @@ try {
   await quick.screenshot({ path: `${output}/quick-look.png` });
   await quick.locator('[data-spatial-close]').click();
   assert.equal(await quick.locator('[data-stage].is-live canvas').count(), 1);
+  // A physically calibrated artwork must also keep its size without furniture.
+  await quick.goto(`${base}/works/egyptian/green-painted-ushebti-smvk/`);
+  await quick.locator('[data-stage].is-live').waitFor({ timeout: 90000 });
+  await quick.locator('[data-spatial-open]').click();
+  await quick.locator('.spatial-display > summary').click();
+  await quick.locator('[data-support-mode]').selectOption('surface');
+  await quick.getByRole('button', { name: 'Prepare AR view', exact: true }).click();
+  await quick.locator('[data-quick-look]:not([hidden])').waitFor({ timeout: 90000 });
+  assert.equal(await quick.locator('[data-spatial]').getAttribute('data-reference-meters'), '0.09');
+  assert.ok((await quick.locator('[data-quick-look]').getAttribute('href')).includes('allowsContentScaling=0'), 'Calibrated Apple AR keeps its prepared size without a stand');
+  assert.match(await quick.locator('[data-spatial-status]').textContent(), /keeps its prepared physical size/);
+  await quick.screenshot({ path: `${output}/quick-look-calibrated.png` });
   await apple.close();
   if (engine === 'chromium') {
     const recovery = await browser.newContext();
