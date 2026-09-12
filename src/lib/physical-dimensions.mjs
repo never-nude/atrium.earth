@@ -12,7 +12,10 @@ export function physicalDimensionsFor(fallback, record, previewUrl, orientation)
     && JSON.stringify(calibration?.orientation ?? null) === JSON.stringify(orientation ?? null);
   const reference = matched && ['x', 'y', 'z'].includes(calibration.axis)
     && Number.isFinite(calibration.meters) && calibration.meters > 0
-    ? { axis: calibration.axis, meters: calibration.meters, ...(estimated ? { estimated: true } : {}) } : null;
+    && validExtentFraction(calibration.extentFraction)
+    ? { axis: calibration.axis, meters: calibration.meters,
+      ...(calibration.extentFraction !== undefined ? { extentFraction: calibration.extentFraction } : {}),
+      ...(estimated ? { estimated: true } : {}) } : null;
   return {
     dimensions: record ? record.dimensions : (fallback || '').trim(),
     dimensionsNote: record?.note || '',
@@ -25,10 +28,18 @@ export function physicalDimensionsFor(fallback, record, previewUrl, orientation)
   };
 }
 
+function validExtentFraction(value) {
+  return value === undefined || (Number.isFinite(value) && value > 0 && value <= 1);
+}
+
 export function referenceScaleFor(box, reference) {
   if (!reference || !['x', 'y', 'z'].includes(reference.axis)
-    || !Number.isFinite(reference.meters) || reference.meters <= 0) return 1;
-  const extent = box?.max?.[reference.axis] - box?.min?.[reference.axis];
+    || !Number.isFinite(reference.meters) || reference.meters <= 0
+    || !validExtentFraction(reference.extentFraction)) return 1;
+  // A reviewed component can define the measurement while the scan retains
+  // its museum mount. This fraction is bound to the same asset and orientation.
+  const extent = (box?.max?.[reference.axis] - box?.min?.[reference.axis])
+    * (reference.extentFraction ?? 1);
   if (!Number.isFinite(extent) || extent <= 0) return 1;
   return reference.meters / extent;
 }

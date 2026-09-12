@@ -22,6 +22,8 @@ export function bindSpatialViewing(element, getContext, activate) {
   const title = element.dataset.title;
   const reference = element.dataset.referenceAxis ? {
     axis: element.dataset.referenceAxis, meters: Number(element.dataset.referenceMeters),
+    ...(element.dataset.referenceExtentFraction !== undefined
+      ? { extentFraction: Number(element.dataset.referenceExtentFraction) } : {}),
   } : null;
   const showScale = (value) => {
     find('[data-spatial-scale]').value = String(value);
@@ -231,6 +233,8 @@ export function bindSpatialViewing(element, getContext, activate) {
     pending?.abort();
     exportVersion++;
     if (!pending) { busy = false; update(); }
+    // Safari does not always focus the opening button after a pointer click.
+    find('[data-spatial-open]').focus({ preventScroll: true });
   });
   dialog.addEventListener('cancel', () => { pending?.abort(); });
   find('[data-spatial-exit]').addEventListener('click', () => { pending?.abort(); });

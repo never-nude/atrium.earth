@@ -1,0 +1,72 @@
+{
+  "assigned": 152,
+  "uniqueMuseumObjects": 151,
+  "statusCounts": {
+    "documented": 151,
+    "approximate": 1
+  },
+  "scopeReviewRequired": [
+    "sub-saharan-africa/swahili-staff-mia",
+    "renaissance/cassone-front-panel-mia",
+    "asia/vajra-warrior-nio-mia",
+    "asia/owl-zun-wine-vessel-mia",
+    "asia/avalokiteshvara-head-khmer-mia",
+    "asia/jomon-figurine-of-a-female-mia",
+    "sub-saharan-africa/edo-tusk-mia",
+    "asia/buddhist-votive-stele-678-mia",
+    "asia/musashi-plains-left-screen-mia",
+    "medieval/saint-martin-beggar-serra-mia",
+    "baroque/christ-among-doctors-giordano-mia",
+    "asia/libation-cup-rhinoceros-horn-mia",
+    "asia/mamluk-door-panel-mia",
+    "asia/celestial-horse-mia",
+    "asia/khmer-guardian-lion-mia",
+    "asia/deva-causeway-head-mia",
+    "asia/standing-arhat-mia",
+    "asia/carved-calligraphy-brush-mia",
+    "renaissance/augsburg-table-cabinet-mia"
+  ],
+  "correctableVrEnlargements": [
+    "asia/curled-rat-masanao-mia",
+    "asia/shoki-demon-hat-mia",
+    "egyptian/horus-falcon-amulet-mia",
+    "ancient-near-east/mesopotamian-cylinder-seal-mia",
+    "asia/embracing-couple-thailand-mia",
+    "asia/wolf-deer-leg-tomotada-netsuke-mia",
+    "egyptian/apis-bull-bronze-mia",
+    "asia/kappa-toad-leaf-masanao-netsuke-mia",
+    "asia/snake-turtle-netsuke-mia",
+    "asia/vishnu-on-garuda-mia"
+  ],
+  "corrections": [
+    {
+      "slug": "asia/ganesha-mia",
+      "field": "accession",
+      "current": "2002.31.1",
+      "proposed": "2003.198",
+      "sourceUrl": "https://search.artsmia.org/id/81675",
+      "reason": "Existing linked Mia object ID matches title/medium/dimensions and museum-authored scan; accession field in Atrium disagrees with museum."
+    }
+  ],
+  "duplicates": [
+    {
+      "museumObjectId": 81675,
+      "slugs": [
+        "asia/ganesha-mia",
+        "asia/ganesha-java-mia"
+      ],
+      "action": "Preserve both existing works; these are separate scan/mirror entries of the same accession, not two physical objects."
+    }
+  ],
+  "sourceCoverage": {
+    "museumApiRows": 152,
+    "mirrorRows": 146,
+    "directMuseumOwnedScanRows": 17
+  },
+  "axisPolicy": "Unlabelled published measurements retain axis=unlabelled, sourcePosition and sourceLine. CandidateAxis is an explicit inference and not a calibration approval. Only source-labelled axes are labelled. General Getty convention is not asserted as Mia policy.",
+  "axisConventionSource": "https://www.getty.edu/publications/categories-description-works-art/categories/object-architecture-group/6/",
+  "unresolvedExactDimensions": [
+    "ancient-near-east/mesopotamian-cylinder-seal-mia"
+  ],
+  "geometryCalibrationPerformed": false
+}

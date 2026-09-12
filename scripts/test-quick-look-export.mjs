@@ -96,4 +96,34 @@ for (const [mode, height] of [['surface', 1], ['auto', 1], ['plinth', 1], ['plin
   assert.deepEqual(mesh.geometry.attributes.position.array, originalPositions, 'Export preserves live geometry');
 }
 mesh.geometry.dispose(); mesh.material.dispose();
-console.log('Actual USDZ checks passed: nine-centimetre artwork, uniform proportions, exported floor/support contact, fixed-metre stand, and no stand in Apple automatic mode.');
+
+// Preserve a captured pedestal while applying the recorded height to the
+// sculpture component. Inspect the serialized USDZ, including both meshes.
+const mounted = new THREE.Group();
+const sculpture = new THREE.Mesh(new THREE.BoxGeometry(0.4, 0.8, 0.2), new THREE.MeshStandardMaterial());
+sculpture.name = 'Sculpture'; sculpture.position.y = 0.1;
+const pedestal = new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.2, 0.3), new THREE.MeshStandardMaterial());
+pedestal.name = 'CapturedPedestal'; pedestal.position.y = -0.4;
+mounted.add(sculpture, pedestal);
+const mountedBox = new THREE.Box3().setFromObject(mounted, true);
+const sculptureFraction = new THREE.Box3().setFromObject(sculpture, true).getSize(new THREE.Vector3()).y
+  / mountedBox.getSize(new THREE.Vector3()).y;
+const mountedExport = makeQuickLookScene(THREE, mounted, mountedBox,
+  { axis: 'y', meters: 0.535, extentFraction: sculptureFraction }, { mode: 'surface' });
+try {
+  const archive = unzipSync(await new USDZExporter().parseAsync(mountedExport.scene, { quickLookCompatible: true }));
+  const text = strFromU8(archive['model.usda']);
+  const matrix = transformFor(text, 'Artwork');
+  const objectBounds = exportedBounds(archive, text, 'Sculpture', matrix);
+  const pedestalBounds = exportedBounds(archive, text, 'CapturedPedestal', matrix);
+  near(objectBounds.getSize(new THREE.Vector3()).y, 0.535, 'Exported sculpture has its recorded height excluding pedestal');
+  near(objectBounds.getSize(new THREE.Vector3()).x, 0.2675, 'Component reference preserves sculpture proportions');
+  near(pedestalBounds.min.y, 0, 'Captured pedestal rests on floor');
+  near(pedestalBounds.max.y, objectBounds.min.y, 'Captured pedestal remains attached at original relative scale');
+  assert.ok(objectBounds.max.y > 0.535, 'Combined height includes the pedestal in addition to artwork height');
+} finally {
+  mountedExport.dispose();
+  sculpture.geometry.dispose(); sculpture.material.dispose();
+  pedestal.geometry.dispose(); pedestal.material.dispose();
+}
+console.log('Actual USDZ checks passed: physical artwork dimensions, uniform proportions, component measurement with captured pedestal, floor/support contact, fixed-metre stand, and no stand in Apple automatic mode.');

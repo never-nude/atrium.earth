@@ -5,6 +5,9 @@ import { physicalDimensionsFor, referenceScaleFor } from '../src/lib/physical-di
 const read = name => JSON.parse(readFileSync(new URL(`../src/data/${name}.json`, import.meta.url)));
 const records = read('physical-dimensions'), previews = read('previews'), orientations = read('orientations');
 const catalog = new Map(read('catalog').filter(row => !row.hidden).map(row => [row.slug, row]));
+for (const slug of catalog.keys()) {
+  assert.ok(Object.hasOwn(records, slug), `Public work needs an explicit dimension review status: ${slug}`);
+}
 let calibrated = 0, estimatedReferences = 0;
 for (const [slug, record] of Object.entries(records)) {
   assert.ok(catalog.has(slug), `Unknown/hidden work: ${slug}`);
@@ -35,6 +38,11 @@ for (const [slug, record] of Object.entries(records)) {
       assert.ok(record.spatial.geometryReview && record.spatial.note, `Geometry review missing: ${slug}`);
       assert.ok(measure.sourceUrls.length, `Source link missing for selected measurement: ${slug}`);
     }
+    if (record.spatial.extentFraction !== undefined) {
+      assert.ok(record.spatial.extentFraction > 0 && record.spatial.extentFraction <= 1, slug);
+      assert.ok(record.spatial.measurementRegion?.method && record.spatial.measurementRegion?.description,
+        `Component measurement needs a reproducible geometry region: ${slug}`);
+    }
     assert.equal(physicalDimensionsFor('', record, 'different.glb', orientations[slug]).spatialReference, null);
     assert.equal(physicalDimensionsFor('', record, previews[slug].url, { upAxis: '-y' }).spatialReference, null);
   }
@@ -57,6 +65,16 @@ assert.match(estimated.spatialNote, /approximate/i);
 assert.equal(physicalDimensionsFor('', { ...dubuffet, spatial: { ...dubuffet.spatial, estimated: false } }, previews['modern/dubuffet-la-chiffonniere'].url, orientations['modern/dubuffet-la-chiffonniere']).spatialReference, null, 'Approximate data cannot silently authorize a reference');
 const box = { min: { y: -0.25 }, max: { y: 0.25 } };
 assert.equal(referenceScaleFor(box, { axis: 'y', meters: 2.04 }), 4.08);
+// The sculpture occupies 80% of a scan that also contains a museum pedestal.
+// Its 53.5 cm height must apply to the sculpture, not the combined scan.
+const component = { ...venus, spatial: { ...venus.spatial, extentFraction: 0.8 } };
+assert.equal(physicalDimensionsFor('', component, venus.spatial.previewUrl, venus.spatial.orientation).spatialReference.extentFraction, 0.8);
+assert.ok(Math.abs(referenceScaleFor(box, { axis: 'y', meters: 0.535, extentFraction: 0.8 }) * 0.5 * 0.8 - 0.535) < 1e-10);
+for (const extentFraction of [0, -1, 1.01, NaN, Infinity, null]) {
+  assert.equal(referenceScaleFor(box, { axis: 'y', meters: 0.535, extentFraction }), 1);
+  assert.equal(physicalDimensionsFor('', { ...component, spatial: { ...component.spatial, extentFraction } },
+    venus.spatial.previewUrl, venus.spatial.orientation).spatialReference, null);
+}
 for (const meters of [NaN, Infinity, -1, 0]) assert.equal(referenceScaleFor(box, { axis: 'y', meters }), 1);
 assert.equal(referenceScaleFor(box, { axis: 'height', meters: 1 }), 1);
 assert.equal(referenceScaleFor({ min: { y: 0 }, max: { y: 0 } }, { axis: 'y', meters: 1 }), 1);

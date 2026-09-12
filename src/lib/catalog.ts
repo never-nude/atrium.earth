@@ -117,7 +117,7 @@ export type Work = {
   dimensionsNote: string;
   dimensionsSourceUrl: string;
   dimensionsBasis: string;
-  spatialReference: { axis: string; meters: number } | null;
+  spatialReference: { axis: string; meters: number; extentFraction?: number; estimated?: boolean } | null;
   spatialNote: string;
   displaySupport: { kind: string; height?: number; note: string } | null;
   accession: string;
@@ -565,7 +565,7 @@ function modelStatsFor(preview: Preview | undefined, raw: RawWork): string {
 }
 
 function normalize(raw: RawWork, fallbackIndex: number): Work {
-  const correction = (rawIdentityCorrections as Record<string, { title: string; catalog?: Partial<RawWork> }>)[raw.slug];
+  const correction = (rawIdentityCorrections as Record<string, { title?: string; catalog?: Partial<RawWork> }>)[raw.slug];
   if (correction?.catalog) raw = { ...raw, ...correction.catalog };
   const collection = clean(raw.collection);
   const { start, end } = parseYearRange(raw);

@@ -1,0 +1,144 @@
+{
+  "reviewedGroups": [
+    "Met",
+    "Smithsonian",
+    "Cleveland",
+    "Fitzwilliam",
+    "Toulouse",
+    "legacy",
+    "legacy components"
+  ],
+  "proposals": {
+    "asia/molded-plaque-couple-met": {
+      "oldRecommendation": null,
+      "automaticPlinthBefore": true,
+      "calibratedSizeMeters": [
+        0.07297457256896218,
+        0.129,
+        0.023850715170984457
+      ],
+      "reason": "Display this carved plaque upright on a wall or fitted panel. A fitted mount is still needed for immersive viewing.",
+      "geometryEvidence": "work/atrium-scale-all/met-geometry/renders/asia--molded-plaque-couple-met.png",
+      "calibrationNote": "Complete surviving molded couple plaque including its irregular original perimeter and back. No external mounting clips or stand."
+    },
+    "asia/kaba-tile-met": {
+      "oldRecommendation": null,
+      "automaticPlinthBefore": true,
+      "calibratedSizeMeters": [
+        0.26141850032044434,
+        0.35,
+        0.021149327066866053
+      ],
+      "reason": "Display this architectural tile upright on a wall or fitted panel. A fitted mount is still needed for immersive viewing.",
+      "geometryEvidence": "work/atrium-scale-all/met-geometry/renders/asia--kaba-tile-met.png",
+      "calibrationNote": "Complete Kaba tile with its original rectangular edges and full back. Width matches26.1cm; no stand extends the bounds."
+    },
+    "assyrian/foreign-groom-tributary-procession-khorsabad-met": {
+      "oldRecommendation": null,
+      "automaticPlinthBefore": true,
+      "calibratedSizeMeters": [
+        0.795,
+        0.5332351222575659,
+        0.10733603745097635
+      ],
+      "reason": "Retain the metal mounting straps already captured with this relief and display it on an upright panel. A fitted wall placement is still needed for immersive viewing.",
+      "geometryEvidence": "work/atrium-scale-all/met-geometry/renders/assyrian--foreign-groom-tributary-procession-khorsabad-met.png",
+      "calibrationNote": "Use horizontal artifact width, not height: modern metal mounting straps project above the relief. The leftmost and rightmost X extrema belong to the stone fragment, while the straps remain inside that width. This preserves sculpture scale without assigning49.3cm to the strap-extended height."
+    },
+    "palmyra/haliphat": {
+      "oldRecommendation": null,
+      "automaticPlinthBefore": true,
+      "calibratedSizeMeters": [
+        0.5428203680532242,
+        0.601,
+        0.22584041871395
+      ],
+      "reason": "Display the funerary relief upright on a wall or fitted panel. A fitted mount is still needed for immersive viewing.",
+      "geometryEvidence": "work/atrium-scale-all/smithsonian-geometry/renders/palmyra--haliphat.png",
+      "calibrationNote": "Complete surviving relief bust and original broken stone block; no external support. The current official overall height maps to full Y. Overall width and depth agree within 2.4% after yaw, resolving the smaller older catalog dimensions."
+    },
+    "americas/dundees-fifth-st-gym-ringside-bell-nmaahc": {
+      "oldRecommendation": null,
+      "automaticPlinthBefore": true,
+      "calibratedSizeMeters": [
+        0.36213748564224985,
+        0.292,
+        0.08828524225065831
+      ],
+      "reason": "Retain the bell’s original backing plate and display it upright on a wall or panel. A fitted wall placement is still needed for immersive viewing.",
+      "geometryEvidence": "work/atrium-scale-all/smithsonian-geometry/renders/americas--dundees-fifth-st-gym-ringside-bell-nmaahc.png",
+      "calibrationNote": "Use the labelled 29.2 cm height of the complete bell and its original black backing/control plate. In all three views, the top and bottom Y extrema belong to that rigid assembly; the coiled cable remains within its height. Do not use the full cord-extended scene width or infer an axis for the unlabelled 6 cm value."
+    },
+    "americas/stela-fragment-cleveland": {
+      "oldRecommendation": null,
+      "automaticPlinthBefore": true,
+      "calibratedSizeMeters": [
+        0.30367558824427016,
+        0.318,
+        0.12826947843867315
+      ],
+      "reason": "Display the surviving stela relief fragment upright on a fitted panel. A fitted mount is still needed for immersive viewing.",
+      "geometryEvidence": "work/atrium-scale-all/cleveland-geometry/renders/americas--stela-fragment-cleveland.png",
+      "calibrationNote": "Scan shows a single complete surviving stela fragment; museum EACH measurements apply to one fragment, not reconstructed full stela."
+    },
+    "palmyra/mother-child-relief-fitzwilliam": {
+      "oldRecommendation": null,
+      "automaticPlinthBefore": true,
+      "calibratedSizeMeters": [
+        0.4318112240297307,
+        0.57,
+        0.3519627098064647
+      ],
+      "reason": "Display the funerary relief fragment upright on a wall or fitted panel. A fitted mount is still needed for immersive viewing.",
+      "geometryEvidence": "work/atrium-scale-all/fitz-geometry/renders/palmyra--mother-child-relief-fitzwilliam.png",
+      "calibrationNote": "Whole surviving mother-and-child relief; source height57cm applies to this surviving fragment, not reconstructed original monument."
+    },
+    "americas/anne-sullivan-macy-ruotolo-smithsonian": {
+      "oldRecommendation": null,
+      "automaticPlinthBefore": true,
+      "calibratedSizeMeters": [
+        0.23759628118834658,
+        0.505,
+        0.28099736254128554
+      ],
+      "reason": "Keep the tapered base already captured with the bust. The calibrated height includes this base.",
+      "geometryEvidence": "work/atrium-scale-all/smithsonian-geometry/renders/americas--anne-sullivan-macy-ruotolo-smithsonian.png",
+      "calibrationNote": "Complete Anne Sullivan Macy head with its catalogued tapered base. Use source With Base position 1 (50.5 cm), not the 27.3 cm head-only value. The other assembled dimensions match the yaw-adjusted bounds within 0.5%; the source axes remain unlabelled."
+    },
+    "americas/helen-adams-keller-ruotolo-smithsonian": {
+      "oldRecommendation": {
+        "kind": "plinth",
+        "height": 0.75,
+        "note": "Use a plain viewing plinth to raise the piece while keeping its documented size and proportions."
+      },
+      "automaticPlinthBefore": true,
+      "calibratedSizeMeters": [
+        0.23645579096362804,
+        0.505,
+        0.2966563043692641
+      ],
+      "reason": "Keep the tapered base already captured with the bust. The calibrated height includes this base.",
+      "geometryEvidence": "work/atrium-scale-all/smithsonian-geometry/renders/americas--helen-adams-keller-ruotolo-smithsonian.png",
+      "calibrationNote": "Complete Helen Adams Keller head with its catalogued tapered base. Use source With Base position 1 (50.5 cm), not head-only or base-only values. Three-angle review and horizontal bounds corroborate the assembled set within 2%; source axes remain unlabelled."
+    },
+    "americas/zemi-cohoba-stand": {
+      "oldRecommendation": null,
+      "automaticPlinthBefore": true,
+      "calibratedSizeMeters": [
+        0.23092566928874161,
+        0.685,
+        0.23657027870498656
+      ],
+      "reason": "Place the ritual stand on the floor using its own integral feet, preserving its documented height.",
+      "geometryEvidence": "work/atrium-scale-all/met-geometry/renders/americas--zemi-cohoba-stand.png",
+      "calibrationNote": "Entire zemi/cohoba stand, including integral feet and bowl atop the figure. No external display furniture."
+    }
+  },
+  "unchangedNotes": [
+    "No override for integral artistic feet, socles, vessel bases or miniature objects: raising those remains appropriate.",
+    "Toulouse calibrated reliefs are all taller than the automatic 0.7 m threshold; no override needed for this bounded check.",
+    "Casimir is approximately 3.035 m overall including captured gallery and cannot trigger an automatic plinth. The coin already has a fitted-stand recommendation.",
+    "Mia and other groups were excluded as assigned to another reviewer.",
+    "Independent image inspection shows the Cleveland Archangel Gabriel is a fully carved kneeling figure with its own lower footprint, not simply a flat wall panel; retain ordinary raised display."
+  ]
+}
