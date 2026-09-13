@@ -20,6 +20,8 @@ export function bindSpatialViewing(element, getContext, activate) {
     find('[data-spatial-support-value]').textContent = `${Math.round(height * 100)} cm`;
   };
   const title = element.dataset.title;
+  const verifiedReference = element.dataset.verifiedReference === 'true';
+  const verifiedModel = () => !verifiedReference || getContext()?.verifiedAsset === true;
   const reference = element.dataset.referenceAxis ? {
     axis: element.dataset.referenceAxis, meters: Number(element.dataset.referenceMeters),
     ...(element.dataset.referenceExtentFraction !== undefined
@@ -110,6 +112,10 @@ export function bindSpatialViewing(element, getContext, activate) {
     supportHeight.disabled = busy;
     ar.disabled = busy || !capabilities.checked || (arAvailable && !ready);
     vr.disabled = busy || !capabilities.checked || (capabilities.vr && !ready);
+    if (ready && !verifiedModel()) {
+      ar.disabled = true; vr.disabled = true;
+      say('AR / VR is unavailable because this version of the model could not be matched to its verified size reference. You can continue exploring in 3D.');
+    }
     ar.toggleAttribute('data-handoff', !arAvailable);
     ar.textContent = !capabilities.checked ? 'Checking your device…'
       : arAvailable && !ready ? loadFailed ? 'Sculpture unavailable' : 'Loading sculpture…'
@@ -126,7 +132,7 @@ export function bindSpatialViewing(element, getContext, activate) {
         : device.android ? 'Try Chrome on an AR-capable Android phone.'
         : 'Move to an AR-capable phone or tablet using this work’s link.';
     find('[data-vr-support]').textContent = capabilities.vr
-      ? 'Your headset is ready. Trigger to turn; thumbstick to resize.'
+      ? verifiedReference ? 'Your headset is ready. Trigger to turn. The documented size stays fixed.' : 'Your headset is ready. Trigger to turn; thumbstick to resize.'
       : 'Open the work in a headset browser that supports immersive viewing.';
     retry.hidden = !loadFailed;
   }
@@ -159,7 +165,7 @@ export function bindSpatialViewing(element, getContext, activate) {
       : 'Immersive viewing could not start on this device. Please try again, or use the screen view.';
 
   function enter(mode) {
-    if (busy || !getContext()) return;
+    if (busy || !getContext() || !verifiedModel()) return;
     busy = true; update();
     pending = new AbortController();
     panel.hidden = true; overlay.hidden = false;
@@ -179,12 +185,13 @@ export function bindSpatialViewing(element, getContext, activate) {
       onSupport: showSupport,
       onStatus: (text) => { find('[data-spatial-instructions]').textContent = text; },
       onScale: showScale,
+      fixedScale: verifiedReference,
       onEnd: () => { reset(); say('Back on screen. You can start another immersive view whenever you like.'); },
     }).then((active) => { session = active; }).catch((error) => { reset(); say(errorMessage(error)); });
   }
 
   async function prepareQuickLook() {
-    if (busy || !getContext()) return;
+    if (busy || !getContext() || !verifiedModel()) return;
     busy = true; update(); say('Preparing the sculpture for AR…');
     const version = ++exportVersion;
     let converted;
@@ -221,14 +228,18 @@ export function bindSpatialViewing(element, getContext, activate) {
     say(getContext() ? '' : 'Loading the sculpture…');
     void activate();
   }
-  find('[data-spatial-open]').addEventListener('click', () => {
+  function openOptions() {
     if (!dialog.open) dialog.showModal();
     document.body.classList.add('spatial-modal-open');
     find('[data-spatial-close]').focus({ preventScroll: true });
     dialog.scrollTop = 0;
     loadModel();
     void checkCapabilities();
-  });
+  }
+  find('[data-spatial-open]').addEventListener('click', openOptions);
+  window.addEventListener('hashchange', () => { if (location.hash === '#ar-vr') openOptions(); });
+  // Deep links open options only; entering AR or VR still needs a user gesture.
+  if (location.hash === '#ar-vr') openOptions();
   retry.addEventListener('click', loadModel);
   find('[data-spatial-close]').addEventListener('click', () => dialog.close());
   find('[data-spatial-screen]').addEventListener('click', () => dialog.close());

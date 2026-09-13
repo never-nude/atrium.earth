@@ -6,9 +6,11 @@ import rawOrientations from '../data/orientations.json';
 import rawMaterialAppearances from '../data/material-appearances.json';
 import rawAppearanceOverrides from '../data/appearance-overrides.json';
 import rawPhysicalDimensions from '../data/physical-dimensions.json';
+import rawSpatialEligibility from '../data/spatial-eligibility.json';
 import rawDisplayRecommendations from '../data/display-recommendations.json';
 import rawIdentityCorrections from '../data/identity-corrections.json';
 import { physicalDimensionsFor } from './physical-dimensions.mjs';
+import { spatialEligibilityFor } from './spatial-eligibility.mjs';
 import { assignWing } from './assignWing';
 import type { WingId } from '../data/wings';
 
@@ -119,6 +121,14 @@ export type Work = {
   dimensionsBasis: string;
   spatialReference: { axis: string; meters: number; extentFraction?: number; estimated?: boolean } | null;
   spatialNote: string;
+  spatialEligibility: {
+    enabled: boolean;
+    kind: 'original' | 'object' | 'cast' | null;
+    label: string;
+    sizeLabel: string;
+    reason: string;
+    assetSha256?: string;
+  };
   displaySupport: { kind: string; height?: number; note: string } | null;
   accession: string;
   creditLine: string;
@@ -589,6 +599,15 @@ function normalize(raw: RawWork, fallbackIndex: number): Work {
   const medium = clean(raw.material);
   const title = clean(correction?.title || raw.title) || titleCaseSlug(raw.slug);
   const modelTransform = modelTransformFor(orientationMap[raw.slug]);
+  const dimensionRecord = rawPhysicalDimensions[raw.slug];
+  const physicalDimensions = physicalDimensionsFor(raw.dimensions, dimensionRecord, preview?.url, rawOrientations[raw.slug]);
+  const spatialEligibility = spatialEligibilityFor({
+    slug: raw.slug,
+    record: dimensionRecord,
+    previewUrl: preview?.url,
+    orientation: rawOrientations[raw.slug],
+    spatialReference: physicalDimensions.spatialReference,
+  }, rawSpatialEligibility[raw.slug]);
 
   const tags = [
     era,
@@ -627,7 +646,8 @@ function normalize(raw: RawWork, fallbackIndex: number): Work {
     materials,
     materialProfile,
     materialAppearance,
-    ...physicalDimensionsFor(raw.dimensions, rawPhysicalDimensions[raw.slug], preview?.url, rawOrientations[raw.slug]),
+    ...physicalDimensions,
+    spatialEligibility,
     displaySupport: (rawDisplayRecommendations as Record<string, { kind: string; height?: number; note: string }>)[raw.slug] || null,
     accession: clean(raw.accession),
     creditLine: clean(raw.attribution),

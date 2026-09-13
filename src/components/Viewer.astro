@@ -21,6 +21,9 @@ type Props = {
   wheelZoom?: boolean;
   lightControls?: boolean;
   spatialViewing?: boolean;
+  spatialAssetSha256?: string;
+  spatialLabel?: string;
+  spatialUnavailableNote?: string;
   spatialReference?: { axis: string; meters: number } | null;
   spatialNote?: string;
   displaySupport?: { kind: string; height?: number; note: string } | null;
@@ -45,6 +48,9 @@ const {
   wheelZoom = true,
   lightControls = false,
   spatialViewing = false,
+  spatialAssetSha256,
+  spatialLabel,
+  spatialUnavailableNote,
   spatialReference = null,
   spatialNote,
   displaySupport,
@@ -56,7 +62,7 @@ const transformJson = JSON.stringify(modelTransform);
 ---
 
 <div class:list={['viewer', { 'viewer--immersive': immersive }]} data-viewer data-auto-start={String(autoStart)}>
-  <div class="model-stage" data-stage data-glb={hasModel ? glb : ''} data-up-axis={upAxis} data-model-transform={transformJson} data-material-appearance={appearanceJson} data-immersive={String(immersive)} data-auto-rotate={String(autoRotate)} data-auto-rotate-speed={autoRotateSpeed} data-turntable-degrees-per-second={turntableDegreesPerSecond} data-respect-reduced-motion={respectReducedMotion ? undefined : 'false'} data-rotation-control={rotationControl === 'simple' ? 'simple' : undefined} data-wheel-zoom={String(wheelZoom)} tabindex={hasModel ? '0' : undefined} aria-label={hasModel ? `Interactive 3D view of ${title}` : undefined}>
+  <div class="model-stage" data-stage data-glb={hasModel ? glb : ''} data-spatial-asset-sha256={spatialViewing ? spatialAssetSha256 : undefined} data-up-axis={upAxis} data-model-transform={transformJson} data-material-appearance={appearanceJson} data-immersive={String(immersive)} data-auto-rotate={String(autoRotate)} data-auto-rotate-speed={autoRotateSpeed} data-turntable-degrees-per-second={turntableDegreesPerSecond} data-respect-reduced-motion={respectReducedMotion ? undefined : 'false'} data-rotation-control={rotationControl === 'simple' ? 'simple' : undefined} data-wheel-zoom={String(wheelZoom)} tabindex={hasModel ? '0' : undefined} aria-label={hasModel ? `Interactive 3D view of ${title}` : undefined}>
     <span class="stage-corner stage-corner--tl" aria-hidden="true"></span>
     <span class="stage-corner stage-corner--tr" aria-hidden="true"></span>
     <span class="stage-corner stage-corner--bl" aria-hidden="true"></span>
@@ -138,7 +144,8 @@ const transformJson = JSON.stringify(modelTransform);
 
   {hasModel && <p class="stage-hint fine" data-hint hidden>Drag to orbit · <span class="stage-hint__pan">right-drag or two-finger drag to pan · </span>scroll or pinch to zoom · double-tap to reset</p>}
 
-  {spatialViewing && hasModel && <SpatialViewing title={title} poster={poster} reference={spatialReference} sizeNote={spatialNote} displaySupport={displaySupport} />}
+  {spatialViewing && hasModel && <SpatialViewing title={title} poster={poster} reference={spatialReference} sizeNote={spatialNote} displaySupport={displaySupport} verified={Boolean(spatialAssetSha256)} referenceLabel={spatialLabel} />}
+  {!spatialViewing && spatialUnavailableNote && <a id="ar-vr" class="spatial-unavailable" data-spatial-unavailable href="#size-verification" title={spatialUnavailableNote}>AR / VR unavailable · Size unverified <span aria-hidden="true">↓</span></a>}
 
   <noscript><p class="fine">Showing the still photo. Turn on JavaScript for the 3D model.</p></noscript>
 </div>
@@ -461,8 +468,25 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     };
     signal.addEventListener('abort', releasePending, { once: true });
     let gltf;
+    let verifiedAsset = false;
     try {
-      gltf = await loader.loadAsync(glb);
+      if (stage.dataset.spatialAssetSha256) {
+        // Verify the bytes actually displayed, including models with mutable URLs.
+        // A mismatch keeps ordinary 3D available while preventing an AR launch.
+        const response = await fetch(glb, { signal });
+        if (!response.ok) throw new Error(`Model request failed: ${response.status}`);
+        const bytes = await response.arrayBuffer();
+        if (crypto.subtle) {
+          try {
+            const digest = new Uint8Array(await crypto.subtle.digest('SHA-256', bytes));
+            verifiedAsset = Array.from(digest, value => value.toString(16).padStart(2, '0')).join('') === stage.dataset.spatialAssetSha256;
+          } catch {
+            // A browser unable to verify the model can still offer ordinary 3D.
+            verifiedAsset = false;
+          }
+        }
+        gltf = await loader.parseAsync(bytes, new URL('.', new URL(glb, location.href)).href);
+      } else gltf = await loader.loadAsync(glb);
     } catch (error) {
       signal.removeEventListener('abort', releasePending);
       if (!signal.aborted) releasePending();
@@ -612,7 +636,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     signal.removeEventListener('abort', releasePending);
     return {
       spatial: {
-        THREE, renderer, scene, camera, model, ground, grid, box,
+        THREE, renderer, scene, camera, model, ground, grid, box, verifiedAsset,
         suspend: () => {
           if (suspended || disposed) throw new Error('Finish the current view before starting another.');
           suspended = true;
@@ -917,3 +941,9 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     }
   }
 </script>
+
+<style>
+  .spatial-unavailable { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; color: var(--v3-muted, #c9c6bd); font: 500 11px/1.5 var(--v3-sans, sans-serif); text-decoration: none; }
+  .spatial-unavailable:hover { color: var(--v3-ink, #f7f5ef); text-decoration: underline; text-underline-offset: 4px; }
+  .spatial-unavailable:focus-visible { outline: 2px solid var(--v3-signal, #eccf7a); outline-offset: 4px; }
+</style>

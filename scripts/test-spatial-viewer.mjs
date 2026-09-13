@@ -51,6 +51,20 @@ function restored(context, state) {
   assert.equal(context.scene.children.length, 3);
 }
 
+for (const mode of ['immersive-ar', 'immersive-vr']) {
+  const context = fixture(), state = original(context), session = new Session();
+  const active = await startSpatialSession(context, Promise.resolve(session), mode, null, {
+    reference: { axis: 'y', meters: 1.74 }, fixedScale: true,
+  });
+  active.setScale(0.4);
+  session.inputSources = [{ gamepad: { axes: [0, 0, 0, -0.8] } }];
+  context.renderer.loop(0, null); context.renderer.loop(100, null);
+  context.scene.updateMatrixWorld(true);
+  const measured = new THREE.Box3().setFromObject(context.model, true).getSize(new THREE.Vector3());
+  assert.ok(Math.abs(measured.y - 1.74) < 1e-6, 'Verified AR/VR size stays fixed after slider or thumbstick input');
+  await active.end(); await tick(); restored(context, state);
+}
+
 {
   const context = fixture(), state = original(context), session = new Session();
   const active = await startSpatialSession(context, Promise.resolve(session), 'immersive-vr', null);

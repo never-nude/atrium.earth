@@ -3,13 +3,22 @@ import V3WorkCard from './V3WorkCard.astro';
 import type { Work } from '../../lib/catalog';
 import { facets } from '../../lib/catalog';
 import { wings } from '../../data/wings';
+import { collectionCount } from '../../lib/v3';
+import { arVrCount } from '../../lib/spatial-catalog';
+import { withBase } from '../../lib/urls';
 
-type Props = { works: Work[] };
-const { works } = Astro.props;
+type Props = { works: Work[]; spatial?: boolean; collectionNavigation?: boolean };
+const { works, spatial = false, collectionNavigation = false } = Astro.props;
 ---
 
 <div class="v3-explorer" data-v3-explorer>
-  <form class="v3-explorer__tools" data-v3-filter-form aria-label="Search and filter all works">
+  <form class="v3-explorer__tools" data-v3-filter-form aria-label={spatial ? 'Search and filter AR and VR works' : 'Search and filter works'}>
+    {collectionNavigation && (
+      <nav class="v3-collection-switch" aria-label="Collection view">
+        <a href={withBase('/collection/')} data-v3-collection-view aria-current={!spatial ? 'page' : undefined}>All works <span>{collectionCount}</span></a>
+        <a href={withBase('/ar-vr/')} data-v3-collection-view aria-current={spatial ? 'page' : undefined}>AR / VR <span>{arVrCount}</span></a>
+      </nav>
+    )}
     <label class="v3-search">
       <span class="v3-sr-only">Search the collection</span>
       <input type="search" placeholder={`Search ${works.length} works, makers, places…`} autocomplete="off" data-v3-search />
@@ -26,12 +35,12 @@ const { works } = Astro.props;
   </form>
 
   <div class="v3-grid" data-v3-grid>
-    {works.map((work, index) => <V3WorkCard work={work} eager={index < 10} />)}
+    {works.map((work, index) => <V3WorkCard work={work} eager={index < 8} spatial={spatial} />)}
   </div>
 
   <div class="v3-empty" data-v3-empty hidden>
-    <strong>Nothing surfaces.</strong>
-    <p>Try a broader search or clear the filters to return to the full collection.</p>
+    <strong>No matching works.</strong>
+    <p>{spatial ? 'Try a broader search or clear the filters to see all available AR / VR works.' : 'Try a broader search or clear the filters to see all works in this view.'}</p>
     <button type="button" data-v3-empty-reset>Clear filters</button>
   </div>
 </div>
@@ -82,7 +91,13 @@ const { works } = Astro.props;
         if (select instanceof HTMLSelectElement && select.value) next.set(select.dataset.v3Filter || '', select.value);
       }
       const suffix = next.toString();
-      history.replaceState({}, '', suffix ? `${location.pathname}?${suffix}` : location.pathname);
+      history.replaceState({}, '', `${location.pathname}${suffix ? `?${suffix}` : ''}${location.hash}`);
+      for (const link of explorer.querySelectorAll('[data-v3-collection-view]')) {
+        if (!(link instanceof HTMLAnchorElement)) continue;
+        const destination = new URL(link.href);
+        destination.search = suffix;
+        link.href = destination.href;
+      }
     }
 
     form.addEventListener('input', update);

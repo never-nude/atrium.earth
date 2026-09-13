@@ -4,11 +4,12 @@ import { publicDataset } from '../../lib/catalog';
 import { v3WorkRoute } from '../../lib/v3';
 import { withBase } from '../../lib/urls';
 
-type Props = { work: Work; eager?: boolean; stop?: number };
-const { work, eager = false, stop } = Astro.props;
+type Props = { work: Work; eager?: boolean; stop?: number; spatial?: boolean };
+const { work, eager = false, stop, spatial = false } = Astro.props;
 const data = publicDataset(work);
 const detail = [work.maker || work.culture, work.displayDate].filter(Boolean).join(' · ');
 const alt = `${work.title}${detail ? ` — ${detail}` : ''}`;
+const spatialReference = work.spatialEligibility?.enabled ? work.spatialEligibility : null;
 ---
 
 <article
@@ -37,6 +38,17 @@ const alt = `${work.title}${detail ? ` — ${detail}` : ''}`;
     <div class="v3-card__copy">
       <h3>{work.title}</h3>
       {detail && <p>{detail}</p>}
+      {spatialReference && (
+        <div class="v3-card__spatial-reference">
+          <span>{!spatial && 'AR / VR · '}{spatialReference.label}</span>
+          <span>{spatialReference.sizeLabel}</span>
+        </div>
+      )}
     </div>
   </a>
+  {spatial && spatialReference && (
+    <a class="v3-card__spatial-link" href={withBase(`${v3WorkRoute(work)}#ar-vr`)} aria-label={`View ${work.title} in AR or VR`}>
+      View in AR / VR <span aria-hidden="true">↗</span>
+    </a>
+  )}
 </article>

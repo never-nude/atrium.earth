@@ -9,13 +9,13 @@ import { collectionCount, featuredWork, works } from '../../lib/v3';
   description={`Search ${collectionCount} sculptures by title, maker, place, period, and material.`}
   image={featuredWork.thumbnailImage}
 >
-  <header class="v3-page-hero">
+  <header class="v3-page-hero v3-discovery-hero">
     <p class="v3-kicker">The collection / {collectionCount} works</p>
-    <h1 class="v3-display">Explore the collection.<br /><em>Choose a starting point.</em></h1>
-    <p>Search by title or maker, or use filters to compare works by wing, period, place, and material.</p>
+    <h1 class="v3-display">Explore the collection.</h1>
+    <p>Find a work by title, maker, place or material. Choose AR / VR to explore works with verified size references.</p>
   </header>
 
   <section class="v3-collection" aria-label="All works">
-    <V3CollectionExplorer works={works} />
+    <V3CollectionExplorer works={works} collectionNavigation={true} />
   </section>
 </V3Layout>

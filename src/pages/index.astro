@@ -5,6 +5,7 @@ import V3WingGrid from '../components/v3/V3WingGrid.astro';
 import V3Layout from '../layouts/v3/V3Layout.astro';
 import { collectionCount, exhibitions, homepageFeaturedWork as featuredWork, newToCollection, pairings, v3ExhibitionRoute, v3WorkRoute, works } from '../lib/v3';
 import { withBase } from '../lib/urls';
+import { arVrFeatured, arVrCount } from '../lib/spatial-catalog';
 
 const randomRoutes = works.map((work) => withBase(v3WorkRoute(work)));
 const heroAppearance = {
@@ -19,7 +20,7 @@ const heroTransform = { ...featuredWork.modelTransform, fit: 1.1 };
 
 <V3Layout
   title="Atrium.Earth"
-  description={`${collectionCount} sculptures with object records, images, and 3D views for close study.`}
+  description={`Explore ${collectionCount} works in 3D, with selected works available in AR and VR at reviewed size references.`}
   image={featuredWork.thumbnailImage}
 >
   <section class="v3-hero" aria-labelledby="v3-home-title">
@@ -45,10 +46,10 @@ const heroTransform = { ...featuredWork.modelTransform, fit: 1.1 };
     <div class="v3-hero__copy">
       <p class="v3-kicker">Digital sculpture museum · {collectionCount} works</p>
       <h1 id="v3-home-title" class="v3-display">{featuredWork.title}</h1>
-      <p>Examine the work from more than one angle. Drag to turn the model, then scroll for exhibitions and the full collection.</p>
+      <p>Turn the work to look closer. Discover sculpture in your own space with AR, or step around it in VR.</p>
       <div class="v3-actions">
-        <a class="v3-button v3-button--light" href={withBase(v3WorkRoute(featuredWork))}>View object <span>↗</span></a>
-        <a class="v3-button v3-button--ghost" href={withBase('/collection/')}>All {collectionCount} works</a>
+        <a class="v3-button v3-button--light" href={withBase('/ar-vr/')}>Explore AR / VR <span aria-hidden="true">↗</span></a>
+        <a class="v3-button v3-button--ghost" href={withBase('/collection/')}>Browse all {collectionCount} works</a>
       </div>
     </div>
 
@@ -56,22 +57,25 @@ const heroTransform = { ...featuredWork.modelTransform, fit: 1.1 };
       <span>Featured work</span>
       <strong>{featuredWork.title}</strong>
       <span>{[featuredWork.maker, featuredWork.displayDate].filter(Boolean).join(' · ')}</span>
+      <a class="v3-hero__record-link" href={withBase(v3WorkRoute(featuredWork))}>View this work <span aria-hidden="true">↗</span></a>
     </div>
     <a class="v3-hero__continue" href="#v3-home-content">Explore more <span>↓</span></a>
   </section>
 
-  <section class="v3-section v3-manifesto-wrap" id="v3-home-content" aria-labelledby="manifesto-title">
-    <div class="v3-manifesto">
-      <p class="v3-kicker">01 / About the collection</p>
+  <section class="v3-section v3-spatial-feature v3-section--line" id="v3-home-content" aria-labelledby="spatial-feature-title">
+    <div class="v3-section-head v3-section-head--split">
       <div>
-        <h2 id="manifesto-title" class="v3-display">See sculpture from more than one side.</h2>
-        <p class="v3-editorial">Atrium brings together object records, images, and 3D models from public collections. Use them to compare form, material, scale, and construction at your own pace.</p>
+        <p class="v3-kicker">01 / AR / VR</p>
+        <h2 id="spatial-feature-title" class="v3-display">See sculpture<br />in your space.</h2>
       </div>
-      <div class="v3-manifesto__facts" aria-label="Museum facts">
-        <p><strong>{collectionCount}</strong><span>works to explore</span></p>
-        <p><strong>3D</strong><span>views where model data is available</span></p>
-        <p><strong>Open</strong><span>source records linked throughout</span></p>
-      </div>
+      <a href={withBase('/ar-vr/')}>Explore {arVrCount} works <span aria-hidden="true">→</span></a>
+    </div>
+    <div class="v3-spatial-feature__intro">
+      <p class="v3-editorial">Open a work in AR on a compatible phone, or explore it in VR. Each available work includes a verified size reference.</p>
+      <p class="v3-spatial-feature__note">Object records link to the measurement sources. Where the reference is a cast, its documented cast size is labeled separately.</p>
+    </div>
+    <div class="v3-spatial-feature__works">
+      {arVrFeatured.map((work) => <V3WorkCard work={work} spatial={true} />)}
     </div>
   </section>
 

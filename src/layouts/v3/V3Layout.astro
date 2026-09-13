@@ -5,6 +5,7 @@ import { collectionCount } from '../../lib/v3';
 import { absoluteUrl, withBase, withoutBase } from '../../lib/urls';
 import '../../styles/v3/v3.css';
 import '../../styles/v3/v3-bright.css'; // brighter-vitrine layer — delete this line to undo
+import '../../styles/v3/spatial-discovery.css';
 
 type Props = {
   title?: string;
@@ -67,6 +68,7 @@ const pageTitle = title === 'Atrium.Earth' ? 'Atrium.Earth — Digital Sculpture
         <div><strong>Atrium.Earth</strong><span>Digital sculpture museum</span></div>
         <nav aria-label="Footer">
           <a href={withBase('/collection/')}>All {collectionCount} works</a>
+          <a href={withBase('/ar-vr/')}>AR / VR</a>
           <a href={withBase('/wings/')}>Wings</a>
           <a href={withBase('/exhibitions/')}>Exhibitions</a>
           <a href={withBase('/v2/')}>Previous design</a>

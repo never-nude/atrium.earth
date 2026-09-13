@@ -1,0 +1,22 @@
+---
+import V3CollectionExplorer from '../../components/v3/V3CollectionExplorer.astro';
+import V3Layout from '../../layouts/v3/V3Layout.astro';
+import { arVrWorks, arVrFeatured, arVrCount } from '../../lib/spatial-catalog';
+---
+
+<V3Layout
+  title="Art in AR / VR"
+  description={`Explore ${arVrCount} works in AR or VR with verified size references. Documented cast sizes are labeled separately.`}
+  image={arVrFeatured[0]?.thumbnailImage}
+>
+  <header class="v3-page-hero v3-discovery-hero">
+    <p class="v3-kicker">AR / VR · Verified size references</p>
+    <h1 class="v3-display">Sculpture, <em>beyond the screen.</em></h1>
+    <p>Bring a work into your room with a compatible phone, or explore it inside a headset.</p>
+    <p class="v3-discovery-note">Each work lists its reviewed size reference. Cast measurements are labeled “Documented cast size.” Sources and measurement details remain with the object record.</p>
+  </header>
+
+  <section class="v3-collection" aria-label="Works available in AR and VR">
+    <V3CollectionExplorer works={arVrWorks} spatial={true} collectionNavigation={true} />
+  </section>
+</V3Layout>

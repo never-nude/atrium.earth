@@ -47,7 +47,10 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
       immersive={true}
       autoRotate={work.slug !== 'europe/venus-of-willendorf-nhmw-44-686'}
       lightControls={true}
-      spatialViewing={true}
+      spatialViewing={work.spatialEligibility.enabled}
+      spatialAssetSha256={work.spatialEligibility.assetSha256}
+      spatialLabel={work.spatialEligibility.label}
+      spatialUnavailableNote={work.spatialEligibility.enabled ? undefined : work.spatialEligibility.reason}
       spatialReference={work.spatialReference}
       displaySupport={work.displaySupport}
       spatialNote={work.spatialNote}
@@ -81,7 +84,7 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
     // Keep controls within their viewer's event scope, with their own row
     // outside the measured canvas so they do not cover the artwork.
     if (viewerRoot && canvasHost) {
-      const controls = [viewerRoot.querySelector('[data-immersive-tools]'), viewerRoot.querySelector('[data-light-controls]'), viewerRoot.querySelector('[data-spatial]')].filter((element): element is HTMLElement => element instanceof HTMLElement);
+      const controls = [viewerRoot.querySelector('[data-immersive-tools]'), viewerRoot.querySelector('[data-light-controls]'), viewerRoot.querySelector('[data-spatial]'), viewerRoot.querySelector('[data-spatial-unavailable]')].filter((element): element is HTMLElement => element instanceof HTMLElement);
       if (controls.length) {
         const controlsRow = document.createElement('div');
         controlsRow.className = 'v3-object-viewer-controls';
@@ -126,6 +129,9 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
     </div>
 
     <dl class="v3-facts">
+      <div id="size-verification" tabindex="-1"><dt>AR / VR</dt><dd>{work.spatialEligibility.enabled
+        ? `${work.spatialEligibility.label} · ${work.spatialEligibility.sizeLabel}. ${work.spatialEligibility.reason}`
+        : work.spatialEligibility.reason}</dd></div>
       {facts.map(([label, value]) => <div><dt>{label}</dt><dd>{label === 'Dimensions'
         ? <DimensionValue value={work.dimensions} note={work.dimensionsNote} sourceUrl={work.dimensionsSourceUrl} />
         : value}</dd></div>)}

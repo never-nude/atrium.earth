@@ -34,7 +34,7 @@ export async function startSpatialSession(context, sessionPromise, mode, overlay
   let displayScale = 1;
   const setScale = (value) => {
     const number = Number(value);
-    displayScale = Number.isFinite(number) ? Math.max(0.1, Math.min(2, number)) : 1;
+    displayScale = options.fixedScale ? 1 : Number.isFinite(number) ? Math.max(0.1, Math.min(2, number)) : 1;
     const scale = referenceScale * displayScale;
     content.scale.setScalar(scale);
     content.position.y = supportHeight - box.min.y * scale;
@@ -111,7 +111,7 @@ export async function startSpatialSession(context, sessionPromise, mode, overlay
       anchor.visible = true;
       placed = true;
       reticle.visible = false;
-      setStatus('Placed. Walk around the sculpture, or adjust its size and direction.');
+      setStatus(options.fixedScale ? 'Placed at the documented size. Walk around the sculpture or turn it.' : 'Placed. Walk around the sculpture, or adjust its size and direction.');
     } else if (mode === 'immersive-vr') {
       anchor.rotation.y += Math.PI / 6;
     }
@@ -134,12 +134,12 @@ export async function startSpatialSession(context, sessionPromise, mode, overlay
         throw new DOMException('Viewing cancelled.', 'AbortError');
       }
       setStatus(`Move your phone to find a ${placementSurface}. Tap the ring to place ${layout.visible ? 'the stand and sculpture' : 'the sculpture'}.`);
-    } else setStatus('Walk around the sculpture. Trigger to turn; thumbstick up or down to resize.');
+    } else setStatus(options.fixedScale ? 'Walk around the sculpture at its documented size. Trigger to turn.' : 'Walk around the sculpture. Trigger to turn; thumbstick up or down to resize.');
     renderer.setAnimationLoop((time, frame) => {
       if (ended) return;
       const elapsed = lastFrame === undefined ? 0 : Math.min(0.1, Math.max(0, (time - lastFrame) / 1000));
       lastFrame = time;
-      if (mode === 'immersive-vr') {
+      if (mode === 'immersive-vr' && !options.fixedScale) {
         for (const source of session.inputSources || []) {
           const axes = source.gamepad?.axes || [];
           const axis = axes.length >= 4 ? axes[3] : axes[1];

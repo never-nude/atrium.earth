@@ -1,0 +1,159 @@
+/* AR / VR discovery shares the museum's type, ground and artwork cards. */
+.v3-hero__object { flex-wrap: wrap; }
+.v3-hero__record-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  color: var(--v3-signal);
+  text-decoration: none;
+}
+.v3-hero__record-link:hover { text-decoration: underline; text-underline-offset: 5px; }
+
+.v3-spatial-feature { padding-block: clamp(56px, 6vw, 96px); }
+.v3-spatial-feature .v3-section-head { margin-bottom: 28px; }
+.v3-spatial-feature .v3-section-head > a { min-height: 44px; display: inline-flex; align-items: center; gap: 12px; }
+.v3-spatial-feature__intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, .65fr);
+  align-items: start;
+  gap: clamp(24px, 6vw, 96px);
+  max-width: 1100px;
+}
+.v3-spatial-feature__intro p { margin: 0; }
+.v3-spatial-feature__intro .v3-editorial { max-width: 47ch; font-size: clamp(1.25rem, 2vw, 1.75rem); line-height: 1.4; }
+.v3-spatial-feature__note { max-width: 42ch; color: var(--v3-muted); font-size: .84rem; line-height: 1.65; }
+.v3-spatial-feature__works {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(20px, 4vw, 64px);
+  margin-top: clamp(32px, 4vw, 64px);
+}
+
+.v3-page-hero.v3-discovery-hero {
+  min-height: 0;
+  padding-top: 126px;
+  padding-bottom: 28px;
+  gap: 0;
+}
+.v3-discovery-hero h1 {
+  max-width: 20ch;
+  margin: 16px 0 20px;
+  font-size: clamp(2.8rem, 5.4vw, 5.8rem);
+  line-height: 1.03;
+}
+.v3-discovery-hero > p:not(.v3-kicker) {
+  max-width: 65ch;
+  margin: 0;
+  color: var(--v3-muted);
+  font-size: clamp(.95rem, 1.3vw, 1.12rem);
+  line-height: 1.5;
+}
+.v3-discovery-hero > p.v3-discovery-note {
+  max-width: 84ch;
+  margin-top: 12px;
+  font-size: .8rem;
+  line-height: 1.55;
+}
+.v3-collection-switch {
+  display: flex;
+  align-items: center;
+  gap: clamp(18px, 3vw, 40px);
+  border-bottom: 1px solid var(--v3-line);
+}
+.v3-collection-switch a {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+  margin-bottom: -1px;
+  border-bottom: 2px solid transparent;
+  color: var(--v3-muted);
+  font-size: .8rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+.v3-collection-switch a span { color: var(--v3-faint); font-size: .7rem; font-variant-numeric: tabular-nums; }
+.v3-collection-switch a:hover { color: var(--v3-ink); }
+.v3-collection-switch a[aria-current="page"] { color: var(--v3-ink); border-bottom-color: var(--v3-signal); }
+.v3-explorer:has(.v3-collection-switch) .v3-explorer__tools { top: 72px; margin-bottom: 28px; }
+.v3-explorer:has(.v3-collection-switch) .v3-filter-row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) auto auto;
+  min-width: 0;
+}
+.v3-explorer:has(.v3-collection-switch) .v3-filter-row label { min-width: 0; }
+.v3-explorer:has(.v3-collection-switch) .v3-filter-row select { width: 100%; max-width: none; min-width: 0; }
+.v3-explorer:has(.v3-collection-switch) .v3-filter-row select,
+.v3-explorer:has(.v3-collection-switch) .v3-filter-row button { min-height: 44px; }
+
+.v3-card > a, .v3-card__image, .v3-card__copy { min-width: 0; }
+.v3-card__copy { overflow-wrap: anywhere; }
+.v3-card__spatial-reference {
+  display: grid;
+  gap: 3px;
+  margin-top: 12px;
+  font-size: .72rem;
+  line-height: 1.5;
+  letter-spacing: .015em;
+}
+.v3-card__spatial-reference > span:first-child { color: var(--v3-signal); }
+.v3-card__spatial-reference > span:last-child { color: var(--v3-muted); }
+.v3-card > .v3-card__spatial-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 44px;
+  margin: 8px 6px 0;
+  padding: 0 0 4px;
+  border-bottom: 1px solid var(--v3-line-strong);
+  color: var(--v3-ink);
+  font-size: .72rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+.v3-card > .v3-card__spatial-link:hover { color: var(--v3-signal); border-color: var(--v3-signal); }
+.v3-card > .v3-card__spatial-link span { font-size: 1rem; }
+.v3-collection-switch a:focus-visible,
+.v3-card__spatial-link:focus-visible,
+.v3-hero__record-link:focus-visible { outline: 2px solid var(--v3-signal); outline-offset: 4px; }
+
+@media (min-width: 801px) and (max-width: 1050px) {
+  .v3-nav { gap: 20px; }
+}
+@media (max-width: 800px) {
+  .v3-hero__object {
+    position: relative;
+    inset: auto;
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-start;
+    gap: 4px 12px;
+    margin: 18px var(--v3-pad) 0;
+    text-align: left;
+  }
+  .v3-hero__record-link { flex-basis: 100%; }
+  .v3-spatial-feature .v3-section-head { align-items: flex-start; flex-direction: column; gap: 16px; }
+  .v3-spatial-feature__intro { grid-template-columns: 1fr; gap: 16px; }
+  .v3-spatial-feature__note { max-width: 57ch; }
+  .v3-spatial-feature__works { gap: 28px; }
+  .v3-spatial-feature__works .v3-card__copy { padding: 0; }
+  .v3-page-hero.v3-discovery-hero { padding-top: 102px; padding-bottom: 20px; }
+  .v3-discovery-hero h1 { font-size: clamp(2.45rem, 8.8vw, 4.4rem); }
+}
+@media (max-width: 600px) {
+  .v3-section-head--split { flex-wrap: wrap; }
+  .v3-explorer:has(.v3-collection-switch) .v3-filter-row { display: flex; }
+  .v3-explorer:has(.v3-collection-switch) .v3-filter-row label { min-width: 140px; }
+  .v3-spatial-feature__works { grid-template-columns: 1fr; }
+  .v3-spatial-feature__works .v3-card { padding-top: 18px; border-top: 1px solid var(--v3-line); }
+  .v3-spatial-feature__works .v3-card > a:not(.v3-card__spatial-link) {
+    grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
+    align-items: center;
+    gap: 16px;
+  }
+  .v3-spatial-feature__works .v3-card > .v3-card__spatial-link { margin-left: calc((100% - 16px) * .4 + 16px); }
+  .v3-card__spatial-reference { font-size: .7rem; }
+  .v3-collection-switch { gap: 24px; }
+}
