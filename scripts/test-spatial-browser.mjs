@@ -171,14 +171,14 @@ try {
   assert.ok((await quick.locator('[data-quick-look]').getAttribute('href')).includes('allowsContentScaling=0'), 'Calibrated Apple AR keeps its prepared size without a stand');
   assert.match(await quick.locator('[data-spatial-status]').textContent(), /keeps its prepared physical size/);
   await quick.screenshot({ path: `${output}/quick-look-calibrated.png` });
+  const independentAR = await quick.locator('[data-quick-look]').getAttribute('href');
   await quick.locator('[data-spatial-close]').click();
   await quick.locator('[data-exposure]').evaluate(input => {
     input.value = '35'; input.dispatchEvent(new Event('input', { bubbles: true }));
   });
   await quick.locator('[data-spatial-open]').click();
-  assert.equal(await quick.locator('[data-quick-look]').isVisible(), false, 'Changing page exposure invalidates the old Apple export');
-  await quick.getByRole('button', { name: 'Prepare AR view', exact: true }).click();
-  await quick.locator('[data-quick-look]:not([hidden])').waitFor({ timeout: 90000 });
+  assert.equal(await quick.locator('[data-quick-look]').isVisible(), true, 'Native AR remains independent of page exposure');
+  assert.equal(await quick.locator('[data-quick-look]').getAttribute('href'), independentAR, 'Web camera exposure does not recolor or regenerate the native AR surface');
   await apple.close();
   if (engine === 'chromium') {
     const recovery = await browser.newContext();

@@ -1,5 +1,7 @@
 # AR/VR exposure — 13 September 2026
 
+The page-exposure multiplication described below was subsequently found to darken native AR incorrectly. It is superseded by the [native AR lighting correction](../ar-native-lighting-2026-09-13/README.md). The emissive-intensity fix remains in use. This document records the earlier release and its tests.
+
 Apple Quick Look creates its own renderer. Previously, the USDZ export retained surface materials but omitted the page's tone-mapping exposure, so a work configured at 0.2 exposure could appear much brighter in AR. Quick Look now gets a private copy of each material with that work's current exposure applied once to its linear base colour. Texture colour space, UV settings, normal/occlusion maps, roughness and metallic properties remain intact. Source materials and physical geometry are unchanged.
 
 The exporter also omits `emissiveIntensity` when a material has a constant emissive colour. That intensity is now baked once for constant and textured emission, so a faint emissive contribution cannot export at full strength. A previously prepared AR file is invalidated when page exposure changes or the model is reloaded.
