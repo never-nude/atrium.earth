@@ -53,8 +53,18 @@ assert.equal(venus.basis, 'original');
 assert.equal(records['egyptian/portrait-of-pharaoh-amasis-smk-cast'].status, 'approximate');
 assert.equal(physicalDimensionsFor('Mesh bounds: H 130 source units', records['egyptian/portrait-of-pharaoh-amasis-smk-cast']).spatialReference, null, 'Unlabelled scholarly measurements do not authorize a scale');
 assert.equal(physicalDimensionsFor('H 170 cm', records.discobolus).dimensions, '', 'Never fall back to cast dimensions for an unresolved original');
-assert.equal(records['greek/crouching-aphrodite-with-eros-smk-cast'].spatial, undefined, 'Restorations need a separate geometry check');
-assert.equal(records['egyptian/portrait-of-nefertiti-smk-cast'].spatial, undefined, 'Added pedestal is not part of the original height');
+const crouchingCast = records['greek/crouching-aphrodite-with-eros-smk-cast'];
+assert.equal(crouchingCast.basis, 'object', 'The restored cast is not the ancient fragment');
+assert.equal(crouchingCast.spatial.meters, 1.11, 'The separately reviewed complete cast uses its documented assembly height');
+assert.equal(crouchingCast.originalSizeResearch.basis, 'original', 'Preserve the original-fragment research separately');
+assert.match(crouchingCast.spatialNote, /cast/i, 'Visitors can distinguish the measured cast from the original');
+assert.equal(records['michelangelo/pieta'].spatial.meters, 1.74, 'Use original height when the complete original extent survives in the cast');
+assert.equal(records['donatello/saint-george'].spatial.meters, 2.04, 'Horizontal scan disagreement does not override the matching original height');
+const nefertiti = records['egyptian/portrait-of-nefertiti-smk-cast'];
+assert.equal(nefertiti.spatial.axis, 'z', 'The crown-to-nose depth avoids the added pedestal');
+assert.ok(Math.abs(nefertiti.spatial.meters - 0.35) < 1e-10, 'Use the original 35 cm depth, not whole-scan height');
+assert.equal(records['michelangelo/battle-of-the-centaurs'].spatial.meters, 0.805);
+assert.deepEqual(orientations['michelangelo/battle-of-the-centaurs'].modelRotation, [-90, 0, 0], 'The unfinished strip belongs above the figures');
 assert.equal(records['modern/the-panther-hunter-jerichau-smk'].basis, 'object', 'An artist’s bronze cast is an accessioned artwork');
 assert.equal(physicalDimensionsFor('H 20 cm').spatialReference, null, 'Existing text is not silently promoted to verified scale');
 const laocoon = records.laocoon;
@@ -74,6 +84,11 @@ assert.equal(referenceScaleFor(box, { axis: 'y', meters: 2.04 }), 4.08);
 // Its 53.5 cm height must apply to the sculpture, not the combined scan.
 const component = { ...venus, spatial: { ...venus.spatial, extentFraction: 0.8 } };
 assert.equal(physicalDimensionsFor('', component, venus.spatial.previewUrl, venus.spatial.orientation).spatialReference.extentFraction, 0.8);
+const estimatedBoundary = { ...component, spatial: { ...component.spatial, estimated: true } };
+assert.equal(physicalDimensionsFor('', estimatedBoundary, venus.spatial.previewUrl, venus.spatial.orientation).spatialReference.estimated, true,
+  'An approximate sculpture/pedestal boundary remains labelled approximate even when the source dimension is documented');
+assert.equal(physicalDimensionsFor('', { ...estimatedBoundary, status: 'unresolved' }, venus.spatial.previewUrl, venus.spatial.orientation).spatialReference, null,
+  'An estimate flag cannot authorize unresolved evidence');
 assert.ok(Math.abs(referenceScaleFor(box, { axis: 'y', meters: 0.535, extentFraction: 0.8 }) * 0.5 * 0.8 - 0.535) < 1e-10);
 for (const extentFraction of [0, -1, 1.01, NaN, Infinity, null]) {
   assert.equal(referenceScaleFor(box, { axis: 'y', meters: 0.535, extentFraction }), 1);

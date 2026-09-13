@@ -140,7 +140,8 @@ try {
   assert.deepEqual(exported.header, [80, 75]);
   assert.ok(exported.size > 100000);
   assert.equal(exported.firstChild, 'IMG');
-  assert.ok((await quick.locator('[data-quick-look]').getAttribute('href')).includes('allowsContentScaling=1'));
+  assert.equal(await quick.locator('[data-spatial]').getAttribute('data-reference-meters'), '0.102');
+  assert.ok((await quick.locator('[data-quick-look]').getAttribute('href')).includes('allowsContentScaling=0'), 'The sutra container now uses its documented 10.2 cm reference');
   assert.equal(await quick.locator('[data-quick-look]').getAttribute('download'), 'artwork.usdz');
   await quick.locator('.spatial-display > summary').click();
   await quick.locator('[data-support-mode]').selectOption('plinth');

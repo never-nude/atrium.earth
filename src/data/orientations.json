@@ -2755,14 +2755,18 @@
   "renaissance/reclining-pan-francesco-da-sangallo-slam-threedscans": {
     "upAxis": "y",
     "modelRotation": [
-      0,
+      -90,
       0,
       90
     ],
     "yaw": 180,
     "status": "reviewed",
-    "note": "Reviewed 2026-09-03: the marble's long axis was standing on end; a 90-degree Z rotation lays the group down base-first and a 180-degree yaw brings Pan around from the rough back of the rock.",
-    "confidence": 0.9
+    "viewDirection": [
+      0,
+      0.1,
+      1
+    ],
+    "note": "The original rocky base is placed horizontally, with Pan reclining face-up. The earlier pose placed the base vertically; verified in three fresh views."
   },
   "roman/ulysses-escaping-polyphemus-doria-pamphilj-threedscans": {
     "upAxis": "y",
@@ -11682,5 +11686,21 @@
     "fit": 1.12,
     "status": "reviewed",
     "yaw": 0
+  },
+  "michelangelo/battle-of-the-centaurs": {
+    "upAxis": "y",
+    "modelRotation": [
+      -90,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "status": "reviewed",
+    "viewDirection": [
+      1,
+      0.1,
+      0
+    ],
+    "note": "Negative quarter-turn about X puts the unfinished strip above the upright figures, matching the official SMK photograph and Casa Buonarroti description of the upper strip. The earlier positive quarter-turn was upside down."
   }
 }

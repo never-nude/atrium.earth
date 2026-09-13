@@ -4,9 +4,11 @@ export function physicalDimensionsFor(fallback, record, previewUrl, orientation)
   const calibration = record?.spatial;
   // An explicit reviewed estimate can establish a useful starting size, but
   // remains labelled approximate and is never inferred from catalogue text.
-  const estimated = record?.status === 'approximate' && calibration?.estimated === true
+  // A museum measurement can be documented while its boundary in a scan is
+  // approximate (for example, a sculpture fused to its display pedestal).
+  const estimated = calibration?.estimated === true
     && /^https?:/.test(record.sourceUrl || '');
-  const matched = (record?.status === 'documented' || estimated)
+  const matched = (record?.status === 'documented' || (record?.status === 'approximate' && estimated))
     && ['original', 'object'].includes(record.basis)
     && calibration?.previewUrl === previewUrl
     && JSON.stringify(calibration?.orientation ?? null) === JSON.stringify(orientation ?? null);
