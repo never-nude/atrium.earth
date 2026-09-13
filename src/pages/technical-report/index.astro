@@ -1,0 +1,45 @@
+---
+import V3Layout from '../../layouts/v3/V3Layout.astro';
+import { withBase } from '../../lib/urls';
+
+const pdfUrl = withBase('/documents/atrium-technical-report-2026-09-13.pdf');
+const sourceUrl = 'https://github.com/never-nude/atrium.earth/tree/541669e476adc7e2747b729cc73fd1efe0194b58';
+---
+
+<V3Layout
+  title="Technical report"
+  description="AI-written documentation of Atrium’s architecture, AR/VR implementation, measurement references and chosen display sizes, with evidence and testing limits."
+>
+  <article class="report-page" aria-labelledby="report-title">
+    <p class="v3-kicker">Documentation · AI-written</p>
+    <h1 id="report-title" class="v3-display">Technical report</h1>
+    <p class="report-intro">How Atrium’s architecture, AR/VR viewing, measurement references and chosen display sizes work.</p>
+    <p class="report-note">Written by OpenAI Codex (AI), at the project creator’s request, from project source records and recorded checks. The report explains its evidence and testing limits; it is not an independent hardware audit.</p>
+
+    <dl class="report-details">
+      <div><dt>Snapshot</dt><dd><time datetime="2026-09-13">13 September 2026</time></dd></div>
+      <div><dt>Source revision</dt><dd><code>541669e</code></dd></div>
+      <div><dt>PDF</dt><dd>14 pages · approximately 1.1 MB</dd></div>
+    </dl>
+
+    <div class="report-actions">
+      <a class="v3-button v3-button--light" href={pdfUrl} download="atrium-technical-report-2026-09-13.pdf">Download PDF <span aria-hidden="true">↓</span></a>
+      <a class="report-source" href={sourceUrl}>View source snapshot <span aria-hidden="true">↗</span></a>
+    </div>
+  </article>
+</V3Layout>
+
+<style>
+  .report-page { max-width: 1060px; padding: clamp(120px, 13vw, 180px) var(--v3-pad) 48px; }
+  .report-page h1 { margin: 18px 0 24px; font-size: clamp(2.6rem, 6vw, 5.5rem); line-height: 1.05; }
+  .report-intro { max-width: 42ch; margin: 0 0 20px; font-size: clamp(1.15rem, 2vw, 1.65rem); line-height: 1.45; }
+  .report-note { max-width: 70ch; margin: 0; color: var(--v3-muted); font-size: .9rem; line-height: 1.65; }
+  .report-details { display: flex; flex-wrap: wrap; gap: 24px 48px; margin: 34px 0; padding-top: 22px; border-top: 1px solid var(--v3-line); }
+  .report-details dt { margin-bottom: 7px; color: var(--v3-muted); font-size: .62rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
+  .report-details dd { margin: 0; font-size: .85rem; }
+  .report-details code { font-size: .85rem; }
+  .report-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 18px 28px; }
+  .report-source { display: inline-flex; align-items: center; gap: 12px; min-height: 44px; color: var(--v3-signal); font-size: .8rem; text-decoration: none; }
+  .report-source:hover { text-decoration: underline; text-underline-offset: 5px; }
+  .report-actions a:focus-visible { outline: 2px solid var(--v3-signal); outline-offset: 5px; }
+</style>
