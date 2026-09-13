@@ -24,7 +24,7 @@ export function worksForWing(id: WingRouteId): Work[] {
 export function featuredWorkForWing(wing: Wing): Work | undefined {
   const preferred = wing.featured
     .map((slug) => workBySlug(slug))
-    .find((work): work is Work => Boolean(work?.hasPreview));
+    .find((work): work is Work => Boolean(work?.hasPreview && work.wing === wing.id));
   return preferred ?? worksForWing(wing.id).find((work) => work.hasPreview) ?? worksForWing(wing.id)[0];
 }
 

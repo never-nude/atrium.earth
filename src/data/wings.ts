@@ -114,9 +114,6 @@ const classicalLegacySlugs = [
   'venus-de-milo',
   'vulcan',
   'young-bacchus-bronze',
-  // This work now has a folder, but remains here to document the intended
-  // Anatolian Neolithic grouping. Its catalog override takes precedence.
-  'ancient-near-east/stargazer-cleveland',
 ];
 
 const europeanLegacySlugs = [
@@ -153,7 +150,7 @@ export const wings: Wing[] = [
   {
     id: 'near-east',
     name: 'Egypt & the Ancient Near East',
-    blurb: 'Egypt, Mesopotamia, Assyria, Persia, and the Levant, from the Old Kingdom to Palmyra.',
+    blurb: 'Ancient Egypt, Anatolia, Mesopotamia and the Levant, with Cypriot and Palmyrene sculpture.',
     featured: [
       'egyptian/portrait-of-nefertiti-smk-cast',
       'assyrian/winged-genius-mia',
@@ -167,7 +164,7 @@ export const wings: Wing[] = [
   {
     id: 'greece-rome',
     name: 'Greece & Rome',
-    blurb: 'Aegean figurines, Archaic and Classical Greece, the Hellenistic world, and Rome. Originals and the casts made after them.',
+    blurb: 'Aegean figurines, Archaic and Classical Greece, the Hellenistic world, and Rome through late antiquity. Originals and the casts made after them.',
     featured: [
       'roman/horse-marcus-aurelius-smk-cast',
       'laocoon',
@@ -181,7 +178,7 @@ export const wings: Wing[] = [
   {
     id: 'europe',
     name: 'Europe',
-    blurb: 'Everything European that is not Greek or Roman, from Paleolithic figurines through Romanesque, Renaissance, Baroque, and Rodin.',
+    blurb: 'European art from prehistoric figures through medieval carving, Renaissance and Baroque sculpture, modern monuments and contemporary works.',
     featured: [
       'michelangelo/david',
       'modern/the-kiss-rodin-musee-rodin-s-1002',
@@ -216,7 +213,7 @@ export const wings: Wing[] = [
   {
     id: 'asia',
     name: 'Asia',
-    blurb: 'China, Japan, India, the Khmer and Cham kingdoms, and the Islamic world.',
+    blurb: 'Sculpture, vessels and sacred objects from East, South, Southeast and West Asia.',
     featured: [
       'asia/shiva-nataraja-after-conservation-mia',
       'asia/cosmic-buddha',
@@ -229,20 +226,20 @@ export const wings: Wing[] = [
   {
     id: 'africa',
     name: 'Africa',
-    blurb: 'West and Central African figures, masks, posts, and carved ivory, mostly 19th and 20th century.',
+    blurb: 'Masks, figures, vessels and architecture from North, West, Central, East and Southern Africa, from medieval traditions to contemporary sculpture.',
     featured: [
       'sub-saharan-africa/nkisi-power-figure',
       'sub-saharan-africa/kongo-maternity-figure',
     ],
     match: {
-      region: ['sub-saharan-africa'],
+      region: ['sub-saharan-africa', 'africa', 'north-africa'],
       place: ['Sub-Saharan Africa'],
     },
   },
   {
     id: 'americas-oceania',
     name: 'The Americas & Oceania',
-    blurb: 'Moche and Nayarit ceramics, Mississippian and Taíno carving, Pacific ancestor poles and masks, and North American sculpture into the twentieth century.',
+    blurb: 'Indigenous art and everyday objects from the Americas and Pacific, alongside modern and contemporary sculpture.',
     featured: [
       'americas/key-marco-cat',
       'americas/bisj-ancestor-pole-1978-412-1251',

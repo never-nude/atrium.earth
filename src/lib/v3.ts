@@ -14,7 +14,7 @@ export type V3Pairing = {
   b: Work;
 };
 
-type WallText = { invitation: string; coda: string; captions: Array<{ slug: string; text: string }> };
+type WallText = { invitation: string; coda: string; captions: Array<{ slug: string; text: string }>; workSlugs?: string[]; summary?: string };
 type NewExhibitionSeed = {
   slug: string; title: string; kicker: string; summary: string;
   invitation: string; coda: string; accent: string;
@@ -32,8 +32,13 @@ function captionMap(entries: Array<{ slug: string; text: string }>): Record<stri
 
 const enriched: V3Exhibition[] = baseExhibitions.map((exhibition) => {
   const wall = wallTexts[exhibition.slug];
+  const selectedWorks = wall?.workSlugs
+    ? wall.workSlugs.map((slug) => workBySlug(slug)).filter((work): work is Work => Boolean(work))
+    : exhibition.works;
   return {
     ...exhibition,
+    works: selectedWorks,
+    summary: wall?.summary || exhibition.summary,
     invitation: wall?.invitation || exhibition.invitation,
     coda: wall?.coda || '',
     captions: wall ? captionMap(wall.captions) : {},

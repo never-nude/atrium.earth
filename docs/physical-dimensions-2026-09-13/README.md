@@ -26,4 +26,6 @@ The [built-page check](built-page-check.json) verified AR/VR references and esti
 
 These checks do not simulate native iPhone AR placement. The installed USDZ exporter emitted its existing double-sided-material warning on Ugolino and Ancestor I; no JavaScript errors occurred in the four page checks. Physical-device lighting and placement remain native-system behavior.
 
+The release was deployed as commit `97f4b59`. The same four production-page AR export checks subsequently passed against `https://atrium.earth/`, with public assets and current material appearance; [live results](live-browser-result.json).
+
 Reproducible scripts, exact-model caches, component evidence and renders are retained in the task workspace under `work/atrium-ar-vr-correction-2026-09-13/`. The earlier [exposure release](../ar-exposure-2026-09-13/README.md) remains intact.

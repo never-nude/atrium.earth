@@ -1,0 +1,41 @@
+{
+  "reviewed": "2026-09-13",
+  "result": "clean",
+  "actionableFindings": [],
+  "reviewer": "dimensions_met",
+  "scope": "Read-only review of actual applied current-exhibition data and adapter. No build, browser, commit or site edits.",
+  "files": {
+    "src/lib/v3.ts": "760bbb2841ca1bce1f0295dcd58eb58abfdccad611f0c307f402009777e753fa",
+    "src/data/v3-content.json": "460d6d3f68474749a9ac9f194a698e892114eb89e5c1fdf1eed32390d6482c4b"
+  },
+  "checks": {
+    "matchesAcceptedProposalExactly": true,
+    "allSixExhibitsHave12PublicResolvableStops": true,
+    "everyExistingStopPreservedInRelativeOrder": true,
+    "allLeadWorksUnchanged": true,
+    "captionsFollowStopOrderAndAreNonEmpty": true,
+    "nineNewStopsMatchAcceptedPlacement": true,
+    "otherKingdomUnchanged": true,
+    "optionalRotationsNotApplied": true,
+    "pairingsUnchanged": true,
+    "sharedV2SeedsAndArchivedExhibitionRouteUnchanged": true,
+    "archivedRouteImportsV2NotV3": true,
+    "updatedSummariesMatchExpandedScopeAndCounts": true,
+    "adapterUsesCurrentWorkBySlugNormalizationAndIdentityCorrections": true,
+    "adapterPreservesFallbackForWallTextsWithoutOverrides": true
+  },
+  "captionEvidenceReview": [
+    "WalkingBuddha: Mia accession31.115 museum text and inspected stepping pose support Sukhothai/calmteaching comparison.",
+    "Dinar: exact Finnish museumVK5738:5 record supports mint, reign/date and21mm original diameter; scale bar explicitly distinguished.",
+    "Clava: SURDOC1-2799 explicitly identifies insignia de mando and incised/pierced carvedstone form; caption avoids a more specific unsupported culture/date.",
+    "Abbasid tombstone: official Hamburg2021.47 upload supports830CE, marble, Arabic and Egypt/probablyFustat; uncertainty retained.",
+    "ShrinewithPietà: museum record/catalog evidence supports cottagefrontChochołów placement and wholeenclosure; no whole-shrine/figure scale confusion introduced.",
+    "Lespugue: official MNHN record supports1922 discovery and tool damage; scan publisher identifies a mold of the original.",
+    "Iznikjug: FitzwilliamM.16-1948 description/label supports Englishsilver-giltmounts around1592 for protection/luxury.",
+    "Rongorongo: official MNHN scan description supportsRapaNui,1580glyphs and undeciphered writing; no translation or claimed exact physical size added.",
+    "Nasridcasket: officialMEV17829 text supports carved/drilledivory overgoldleaf and later15thcenturypainting.",
+    "Queenhead correction matches exactBerlinÄM21245 evidence; removes unsupported daughter attribution and intact elongated-cranium/lostbody claims, preservesKiya/Meritaten uncertainty."
+  ],
+  "runtimeReview": "v3.ts substitutes only current exhibit works/summary from optional wallText fields. Current lookup resolves everylistedslug; worknormalization remains shared, and no mutation of baseExhibitions or v2 seedarrays occurs. Six-room navigation remains unchanged.",
+  "limits": "This is source/data/runtime-path review, not execution of an applied build or browser interaction; root owns those checks."
+}

@@ -1,0 +1,191 @@
+{
+  "reviewed": "2026-09-13",
+  "scope": {
+    "publicWorks": 1046,
+    "newSinceWingIntroduction": 540,
+    "existingVisible": 506
+  },
+  "before": {
+    "near-east": 86,
+    "greece-rome": 173,
+    "europe": 323,
+    "asia": 193,
+    "africa": 79,
+    "americas-oceania": 192
+  },
+  "after": {
+    "near-east": 87,
+    "greece-rome": 173,
+    "europe": 319,
+    "asia": 192,
+    "africa": 80,
+    "americas-oceania": 195
+  },
+  "changes": [
+    {
+      "slug": "modern/torso-callender-saam",
+      "title": "Torso",
+      "recent": true,
+      "from": "europe",
+      "set": {
+        "wing": "americas-oceania"
+      },
+      "kind": "clear-reassignment",
+      "rationale": "The catalog explicitly identifies Bessie Stough Callender and the United States. The modern collection folder currently overrides that context and files Torso in Europe. The Americas wing already includes American sculptors working in European traditions.",
+      "sources": [
+        "https://americanart.si.edu/artwork/torso-3712"
+      ],
+      "preserve": [
+        "slug",
+        "collection",
+        "model",
+        "dimensions",
+        "source records"
+      ]
+    },
+    {
+      "slug": "modern/venus-jim-dine-sixth-avenue",
+      "title": "Looking Toward the Avenue (Venus)",
+      "recent": true,
+      "from": "europe",
+      "set": {
+        "wing": "americas-oceania"
+      },
+      "kind": "clear-reassignment",
+      "rationale": "Jim Dine’s contemporary New York public sculpture is filed in Europe solely through modern. Its current title, maker, geography and exact plaza source support the Americas, irrespective of its quotation of Venus de Milo.",
+      "sources": [
+        "https://apops.mas.org/pops/m050030/"
+      ],
+      "preserve": [
+        "slug",
+        "collection",
+        "model",
+        "dimensions",
+        "source records"
+      ]
+    },
+    {
+      "slug": "medieval/birds-with-foliage-mosaic-mia",
+      "title": "Birds with Foliage",
+      "recent": true,
+      "from": "europe",
+      "set": {
+        "wing": "greece-rome"
+      },
+      "kind": "clear-reassignment",
+      "rationale": "Mia’s exact object API identifies Roman nationality, Byzantine style and Byzantine Empire (Antioch), dated late fourth to mid-fifth century. File with the companion Antioch mosaic Elephant Attacking a Feline, already in Greece & Rome, and describe the wing as extending into late antiquity. A medieval folder is insufficient grounds to split these closely related works.",
+      "sources": [
+        "https://search.artsmia.org/id/1739",
+        "https://collections.artsmia.org/art/1739",
+        "https://collections.artsmia.org/art/1740"
+      ],
+      "preserve": [
+        "slug",
+        "collection",
+        "model",
+        "dimensions",
+        "source records"
+      ]
+    },
+    {
+      "slug": "modern/puck-harriet-hosmer-walker-threedscans",
+      "title": "Puck",
+      "recent": false,
+      "from": "europe",
+      "set": {
+        "wing": "americas-oceania"
+      },
+      "kind": "clear-reassignment",
+      "rationale": "Older inconsistency exposed by the review: Hosmer’s Puck is in Europe through modern, while her Zenobia in Chains has an explicit Americas override. Both are works by the American sculptor made in Rome; the present museum’s location should not determine the wing.",
+      "sources": [
+        "https://www.liverpoolmuseums.org.uk/artifact/puck",
+        "https://threedscans.com/walker-art-gallery/puck/"
+      ],
+      "preserve": [
+        "slug",
+        "collection",
+        "model",
+        "dimensions",
+        "source records"
+      ]
+    },
+    {
+      "slug": "asia/mamluk-door-panel-mia",
+      "title": "Door Panel",
+      "recent": true,
+      "from": "asia",
+      "set": {
+        "wing": "africa"
+      },
+      "kind": "geographic-consistency",
+      "rationale": "Mia’s exact object API records Egypt and Africa. Group this fourteenth-century Mamluk panel with the newly acquired Islamic Egyptian woodwork and monuments already in Africa. This follows geographic wings plus cross-wing Islamic exhibits, and requires revising Asia’s old claim to encompass the whole Islamic world.",
+      "sources": [
+        "https://search.artsmia.org/id/3216",
+        "https://collections.artsmia.org/art/3216"
+      ],
+      "preserve": [
+        "slug",
+        "collection",
+        "model",
+        "dimensions",
+        "source records"
+      ]
+    },
+    {
+      "slug": "ancient-near-east/stargazer-cleveland",
+      "title": "Statuette of a Woman: The Stargazer",
+      "recent": false,
+      "from": "greece-rome",
+      "set": {
+        "wing": "near-east"
+      },
+      "kind": "museum-aligned-curatorial-revision",
+      "rationale": "The old explicit override deliberately put this Western Anatolian statuette in Greece & Rome. Current Cleveland evidence identifies early Bronze Age Western Anatolia, Near Eastern collection, Egyptian and Ancient Near Eastern department, and Ancient Near East gallery. Returning it to the Near East better fits that identity; remove the obsolete legacy-list entry/comment describing an Anatolian Neolithic grouping.",
+      "sources": [
+        "https://www.clevelandart.org/art/1993.165"
+      ],
+      "preserve": [
+        "slug",
+        "collection",
+        "model",
+        "dimensions",
+        "source records"
+      ]
+    }
+  ],
+  "withheld": [
+    {
+      "slugs": [
+        "modern/venus-teniszfelhold-glen-cram",
+        "modern/hollow-venus-glen-cram"
+      ],
+      "reason": "The exact publisher profile identifies Toronto and links cramberry.com; Glen Cram’s own biography confirms a Canadian artistic context. However these exact model descriptions do not establish authorship or place of manufacture (one only says Stone age goddess, the other is blank). Do not turn a publisher’s location into an artwork origin. Keep pending until an exact work entry establishes maker/context.",
+      "sources": [
+        "https://api.sketchfab.com/v3/users/27590dba3aba4f58a54f3ee610152a90",
+        "https://glencram.com/author/gcrambo/"
+      ]
+    },
+    {
+      "slugs": [
+        "contemporary/punishment-hercules-deepak"
+      ],
+      "reason": "The exact creator describes his own digital study of Farnese Hercules, but the creator profile has no country, biography or website. Europe comes from the modern folder and is not independently supported. Do not infer Asia from the maker’s name or Greece & Rome from the copied subject. A geography-unconfirmed modern/digital grouping or later evidence is needed.",
+      "sources": [
+        "https://api.sketchfab.com/v3/models/0b36d63fd4e44ab6b59088438d4da441",
+        "https://api.sketchfab.com/v3/users/9907162745fc425a803f08eeebc8b501"
+      ]
+    },
+    {
+      "slugs": [
+        "europe/venus-of-selhariz-flaviense"
+      ],
+      "reason": "Do not move this figure to Greece & Rome merely because its title says Venus. The exact source/canonical catalog lacks a creation date or secure Roman attribution. Europe is defensible pending stronger museum evidence."
+    },
+    {
+      "slugs": [
+        "africa/wooden-mashrabiya"
+      ],
+      "reason": "Africa is an explicit current choice but the exact catalog records only Islamic world, precise location unrecorded. Keep this uncertainty visible in internal review; do not assert Egyptian origin merely because the uploader also scanned Cairo architecture."
+    }
+  ]
+}

@@ -53,13 +53,41 @@ assert.equal(
 const catalog = JSON.parse(
   await readFile(new URL('../src/data/catalog.json', import.meta.url), 'utf8'),
 ) as CatalogRecord[];
-const visible = catalog.filter((work) => !work.hidden);
+const corrections = JSON.parse(
+  await readFile(new URL('../src/data/identity-corrections.json', import.meta.url), 'utf8'),
+) as Record<string, { catalog?: Partial<CatalogRecord> }>;
+// Match production: hide deferred records, then apply reviewed identity fields.
+const visible = catalog
+  .filter((work) => !work.hidden)
+  .map((work) => ({ ...work, ...corrections[work.slug]?.catalog }));
 const assignments = visible.map((work) => ({
   slug: work.slug,
   wing: assignWing(work),
 }));
 const unfiled = assignments.filter((work) => work.wing === 'unfiled');
 assert.deepEqual(unfiled, [], `current catalog has unfiled works: ${unfiled.map((work) => work.slug).join(', ')}`);
+
+// These works retain their historical folders while their reviewed wings win.
+const reviewedAssignments = {
+  'modern/torso-callender-saam': 'americas-oceania',
+  'modern/venus-jim-dine-sixth-avenue': 'americas-oceania',
+  'modern/puck-harriet-hosmer-walker-threedscans': 'americas-oceania',
+  'medieval/birds-with-foliage-mosaic-mia': 'greece-rome',
+  'asia/mamluk-door-panel-mia': 'africa',
+  'ancient-near-east/stargazer-cleveland': 'near-east',
+};
+for (const [slug, wing] of Object.entries(reviewedAssignments)) {
+  assert.equal(assignments.find((work) => work.slug === slug)?.wing, wing, slug);
+}
+for (const wing of wings) {
+  for (const slug of wing.featured) {
+    assert.equal(
+      assignments.find((work) => work.slug === slug)?.wing,
+      wing.id,
+      `${slug} must belong to its featured wing`,
+    );
+  }
+}
 
 const counts = Object.fromEntries(
   [...wingIds, 'unfiled'].map((id) => [id, assignments.filter((work) => work.wing === id).length]),
