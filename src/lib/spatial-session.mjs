@@ -1,5 +1,6 @@
 import { referenceScaleFor } from './physical-dimensions.mjs';
 import { createDisplaySupport, supportLayoutFor } from './display-support.mjs';
+import { prepareQuickLookMaterial, quickLookExposure } from './spatial-appearance.mjs';
 
 // WebXR owns the render loop only during an immersive session. Everything moved
 // into the room is restored on exit, including a denied or interrupted start.
@@ -185,7 +186,7 @@ export async function startSpatialSession(context, sessionPromise, mode, overlay
 // Flatten the displayed pose into static meshes for Quick Look. This preserves
 // the placement of skinned scans and splits material groups the USDZ exporter
 // otherwise omits. Originals, textures, and the live viewer are never modified.
-export function makeQuickLookScene(THREE, model, box, reference, supportOptions = {}) {
+export function makeQuickLookScene(THREE, model, box, reference, supportOptions = {}, appearance = {}) {
   const result = new THREE.Group();
   const scale = referenceScaleFor(box, reference);
   result.scale.setScalar(scale);
@@ -199,8 +200,11 @@ export function makeQuickLookScene(THREE, model, box, reference, supportOptions 
   assembly.add(result);
   if (layout.visible) assembly.add(support.object);
   const geometries = new Set();
+  const exportedMaterials = new Map();
+  const exposure = quickLookExposure(appearance.exposure);
   const dispose = () => {
     for (const geometry of geometries) geometry.dispose();
+    for (const material of exportedMaterials.values()) material.dispose();
     support.dispose();
   };
   try {
@@ -242,6 +246,7 @@ export function makeQuickLookScene(THREE, model, box, reference, supportOptions 
         const material = materials[group.materialIndex ?? 0];
         if (!material?.visible) continue;
         if (!material.isMeshStandardMaterial) throw new Error('This surface cannot be exported to AR.');
+        if (!exportedMaterials.has(material)) exportedMaterials.set(material, prepareQuickLookMaterial(material, exposure));
         let surface = geometry;
         if (Array.isArray(mesh.material)) {
           surface = geometry.clone();
@@ -249,7 +254,7 @@ export function makeQuickLookScene(THREE, model, box, reference, supportOptions 
           surface.setIndex(indexes); surface.clearGroups();
           geometries.add(surface);
         }
-        const item = new THREE.Mesh(surface, material);
+        const item = new THREE.Mesh(surface, exportedMaterials.get(material));
         item.name = mesh.name;
         result.add(item);
       }
@@ -257,7 +262,7 @@ export function makeQuickLookScene(THREE, model, box, reference, supportOptions 
     assembly.updateMatrixWorld(true);
     // USDZExporter serializes the root's children, not the root transform itself.
     // An identity wrapper preserves physical scale even without furniture.
-    return { scene: assembly, hasSupport: layout.visible, dispose };
+    return { scene: assembly, hasSupport: layout.visible, exposure, dispose };
   } catch (error) {
     dispose();
     throw error;

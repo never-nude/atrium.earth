@@ -53,9 +53,11 @@ export function bindSpatialViewing(element, getContext, activate) {
   let session;
   let pending;
   let modelUrl;
+  let preparedExposure;
   const invalidateQuickLook = () => {
     if (modelUrl) URL.revokeObjectURL(modelUrl);
     modelUrl = undefined;
+    preparedExposure = undefined;
     quickLook.removeAttribute('href');
     quickLook.hidden = true; ar.hidden = false;
   };
@@ -191,11 +193,14 @@ export function bindSpatialViewing(element, getContext, activate) {
     try {
       const context = getContext();
       const { USDZExporter } = await import('three/examples/jsm/exporters/USDZExporter.js');
-      converted = makeQuickLookScene(context.THREE, context.model, context.box, reference, supportOptions());
+      converted = makeQuickLookScene(context.THREE, context.model, context.box, reference, supportOptions(), {
+        exposure: context.renderer.toneMappingExposure,
+      });
       const bytes = await new USDZExporter().parseAsync(converted.scene, { maxTextureSize: 2048, quickLookCompatible: true });
       if (version !== exportVersion) return;
       if (modelUrl) URL.revokeObjectURL(modelUrl);
       modelUrl = URL.createObjectURL(new Blob([bytes], { type: 'model/vnd.usdz+zip' }));
+      preparedExposure = converted.exposure;
       // Preserve the physical reference in Apple's viewer, with or without a stand.
       const fixedScale = Boolean(reference) || converted.hasSupport;
       quickLook.href = `${modelUrl}#allowsContentScaling=${fixedScale ? 0 : 1}&canonicalWebPageURL=${encodeURIComponent(pageUrl)}`;
@@ -222,6 +227,7 @@ export function bindSpatialViewing(element, getContext, activate) {
     void activate();
   }
   find('[data-spatial-open]').addEventListener('click', () => {
+    if (modelUrl && preparedExposure !== getContext()?.renderer.toneMappingExposure) invalidateQuickLook();
     if (!dialog.open) dialog.showModal();
     document.body.classList.add('spatial-modal-open');
     find('[data-spatial-close]').focus({ preventScroll: true });
@@ -272,7 +278,7 @@ export function bindSpatialViewing(element, getContext, activate) {
   urlInput.addEventListener('click', () => urlInput.select());
   find('[data-spatial-share]').addEventListener('click', sharePage);
   const root = element.closest('[data-viewer]');
-  root.addEventListener('atrium:viewer-ready', () => { loadFailed = false; update(); if (!busy && status.textContent === 'Loading the sculpture…') say(''); });
+  root.addEventListener('atrium:viewer-ready', () => { invalidateQuickLook(); loadFailed = false; update(); if (!busy && status.textContent === 'Loading the sculpture…') say(''); });
   root.addEventListener('atrium:viewer-error', () => { loadFailed = true; update(); say('The sculpture could not load. Try again, or open this work on another device.'); });
   window.addEventListener('pagehide', (event) => {
     pending?.abort();
