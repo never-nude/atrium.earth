@@ -3,6 +3,7 @@ import * as THREE from 'three';
 import { USDZExporter } from 'three/examples/jsm/exporters/USDZExporter.js';
 import { unzipSync, strFromU8 } from 'three/examples/jsm/libs/fflate.module.js';
 import { makeQuickLookScene } from '../src/lib/spatial-session.mjs';
+import { displayReferenceFor } from '../src/lib/spatial-access.mjs';
 
 const near = (actual, expected, message) => assert.ok(Math.abs(actual - expected) < 1e-7, `${message}: ${actual} != ${expected}`);
 const numbers = (text) => Array.from(text.matchAll(/[-+]?(?:\d+\.?\d*|\.\d+)(?:[eE][-+]?\d+)?/g), (match) => Number(match[0]));
@@ -127,3 +128,24 @@ try {
   pedestal.geometry.dispose(); pedestal.material.dispose();
 }
 console.log('Actual USDZ checks passed: physical artwork dimensions, uniform proportions, component measurement with captured pedestal, floor/support contact, fixed-metre stand, and no stand in Apple automatic mode.');
+
+// A default uses the longest actual model dimension, without asserting that it
+// is a physical measurement. Test wide, tall and deep models in serialized USDZ.
+for (const axis of ['x', 'y', 'z']) {
+  const sizes = {x:.4,y:.4,z:.4}; sizes[axis]=2;
+  const model = new THREE.Group();
+  const mesh = new THREE.Mesh(new THREE.BoxGeometry(sizes.x,sizes.y,sizes.z),new THREE.MeshStandardMaterial());
+  mesh.name='DefaultDisplay'; model.add(mesh);
+  const bounds=new THREE.Box3().setFromObject(model,true);
+  const reference=displayReferenceFor(bounds,.6);
+  const converted=makeQuickLookScene(THREE,model,bounds,reference,{mode:'auto'});
+  try {
+    const archive=unzipSync(await new USDZExporter().parseAsync(converted.scene,{quickLookCompatible:true}));
+    const text=strFromU8(archive['model.usda']);
+    const actual=exportedBounds(archive,text,'DefaultDisplay',transformFor(text,'Artwork'));
+    near(actual.getSize(new THREE.Vector3())[axis],.6,'Default is exactly 60 cm on its longest side');
+    near(actual.min.y,0,'Default display rests on the placement surface');
+    assert.equal(converted.hasSupport,false,'Automatic Apple defaults add no virtual stand');
+  }finally{converted.dispose();mesh.geometry.dispose();mesh.material.dispose();}
+}
+console.log('Default-size USDZ checks passed: wide, tall and deep models preserve proportions at the chosen longest extent.');

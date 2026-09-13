@@ -39,7 +39,7 @@ for (const work of catalog) {
   }
   if (record.spatial?.estimated || record.status === 'approximate' && record.spatial) {
     estimates++;
-    assert.equal(value.enabled, false, `Approximate extent cannot launch: ${work.slug}`);
+    assert.equal(value.enabled, false, `Approximate extent cannot claim verified size: ${work.slug}`);
     assert.match(value.reason, /approximate/);
   }
 }
@@ -54,7 +54,7 @@ assert.equal(evaluate(slug).kind, 'original');
 assert.equal(evaluate('michelangelo/david').enabled, true);
 assert.equal(evaluate('diadoumenos-bust').kind, 'cast');
 assert.equal(evaluate('not-a-catalogue-work').enabled, false);
-assert.equal(evaluate(slug, {}, null).enabled, false, 'A calibrated number alone cannot authorize AR');
+assert.equal(evaluate(slug, {}, null).enabled, false, 'A calibrated number alone cannot authorize verified size');
 assert.equal(evaluate(slug, {}, { ...decisions[slug], policyVersion: 99 }).enabled, false);
 assert.equal(evaluate(slug, {}, { ...decisions[slug], kind: 'cast' }).enabled, false, 'A representation label is part of the review');
 assert.equal(evaluate(slug, { previewUrl: `${previews[slug].url}?new-version=1` }).enabled, false);
@@ -102,4 +102,4 @@ assert.equal(evaluate('sub-saharan-africa/idimu-mask-with-two-opposing-faces-yal
 assert.equal(evaluate('americas/diaguita-zigzag-bowl-mnhn').sizeLabel, 'Maximum diameter 240 mm');
 assert.equal(evaluate('ugolino-and-his-sons').sizeLabel, 'Measured component height 197.5 cm');
 assert.equal(evaluate('americas/digital-heart-rhythm-monitor-haywood-nmaahc').sizeLabel, 'Measured component width 58.4 cm');
-console.log(`Spatial eligibility checks passed: ${enabled} eligible (${casts} measured casts), ${unknown} unverified and ${estimates} approximate excluded; full evidence/model/orientation bindings and scope labels verified.`);
+console.log(`Spatial eligibility checks passed: ${enabled} strict size references (${casts} measured casts), ${unknown} unverified and ${estimates} approximate excluded from verification; full evidence/model/orientation bindings and scope labels verified.`);

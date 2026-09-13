@@ -1,20 +1,22 @@
 ---
-type Props = { title: string; poster: string; reference?: { axis: string; meters: number; extentFraction?: number; estimated?: boolean } | null; sizeNote?: string; displaySupport?: { kind: string; height?: number; note: string } | null; verified?: boolean; referenceLabel?: string };
-const { title, poster, reference, sizeNote = 'Physical size is not yet calibrated. Display size is adjustable.', displaySupport, verified = false, referenceLabel } = Astro.props;
+type Props = { title: string; poster: string; reference?: { axis: string; meters: number; extentFraction?: number; estimated?: boolean } | null; sizeNote?: string; displaySupport?: { kind: string; height?: number; note: string } | null; verified?: boolean; referenceLabel?: string; defaultMaxExtentMeters?: number };
+const { title, poster, reference, sizeNote = 'Physical size is not yet calibrated. Display size is adjustable.', displaySupport, verified = false, referenceLabel, defaultMaxExtentMeters } = Astro.props;
 const standHeight = displaySupport?.height && displaySupport.height > 0 ? displaySupport.height : 1;
+const defaultSize = defaultMaxExtentMeters && defaultMaxExtentMeters < 1 ? `${Math.round(defaultMaxExtentMeters * 100)} cm` : `${defaultMaxExtentMeters || 1} m`;
 ---
-<div id="ar-vr" class="spatial-viewing" data-spatial data-verified-reference={String(verified)} data-title={title} data-reference-axis={reference?.axis} data-reference-meters={reference?.meters} data-reference-extent-fraction={reference?.extentFraction} data-support-recommendation={displaySupport?.kind}>
-  <button type="button" class="spatial-open" data-spatial-open>
+<div id="ar-vr" class="spatial-viewing" data-spatial data-verified-reference={String(verified)} data-title={title} data-reference-axis={verified ? reference?.axis : undefined} data-reference-meters={verified ? reference?.meters : undefined} data-reference-extent-fraction={verified ? reference?.extentFraction : undefined} data-default-max-extent-meters={!verified ? defaultMaxExtentMeters || 1 : undefined} data-support-recommendation={displaySupport?.kind}>
+  <button type="button" class="spatial-open" data-spatial-open aria-describedby={!verified ? 'spatial-default-warning' : undefined}>
     <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Z M4 7.5l8 4.5 8-4.5 M12 12v9" /></svg>
     View in AR / VR
   </button>
+  {!verified && <span id="spatial-default-warning" class="spatial-default-badge" data-spatial-default-warning>Size unverified · Starts at {defaultSize} on longest side</span>}
   <dialog class="spatial-dialog" data-spatial-dialog aria-label={`View ${title} in AR or VR`}>
     <div class="spatial-panel">
       <div class="spatial-top"><span>AR / VR · Beyond the screen</span><button type="button" data-spatial-close aria-label="Close AR and VR options" autofocus>✕</button></div>
       <h2>View in your space.</h2>
       <p class="spatial-intro">{title}</p>
-      {referenceLabel && <p class="spatial-reference-label">{referenceLabel}</p>}
-      <p class="spatial-size-note" data-spatial-size-note>{sizeNote}</p>
+      {referenceLabel && <p class:list={['spatial-reference-label', { 'spatial-size-unverified': !verified }]}>{!verified && <span aria-hidden="true">⚠ </span>}{referenceLabel}</p>}
+      <p class:list={['spatial-size-note', { 'spatial-size-unverified': !verified }]} data-spatial-size-note>{sizeNote}</p>
       <div class="spatial-options">
         <section>
           <span class="spatial-number">01 / Augmented reality</span>
@@ -48,7 +50,7 @@ const standHeight = displaySupport?.height && displaySupport.height > 0 ? displa
             <input type="range" data-support-height min="0.2" max="1.4" step="0.05" value={standHeight} />
             <output data-support-height-value>{Math.round(standHeight * 100)} cm</output>
           </label>
-          <p data-support-note>Small pieces with a documented scale get a stand in VR. In AR, use a real table or choose a virtual stand.</p>
+          <p data-support-note>Small displayed pieces get a stand in VR. In AR, use a real table or choose a virtual stand.</p>
           {displaySupport?.note && <p data-display-recommendation>{displaySupport.note}</p>}
           <p>A stand raises the work without changing its size or proportions. Any base in the scan stays with the artwork.</p>
         </div>
@@ -67,10 +69,11 @@ const standHeight = displaySupport?.height && displaySupport.height > 0 ? displa
     <div class="spatial-overlay" data-spatial-overlay hidden>
       <div class="spatial-overlay-top"><strong>{title}</strong><button type="button" data-spatial-exit>Exit AR / VR</button></div>
       <div class="spatial-overlay-controls">
+        {!verified && <p class="spatial-size-unverified">Size unverified · Default {defaultSize} on longest side. Display size is adjustable.</p>}
         <p data-spatial-instructions role="status"></p>
         <label hidden={verified}>Display size <input type="range" data-spatial-scale min="0.1" max="2" step="0.05" value="1" /><output data-spatial-size>100%</output></label>
         <label data-spatial-support-control hidden>Stand height <input type="range" data-spatial-support-height min="0.2" max="1.4" step="0.05" value="1" /><output data-spatial-support-value>100 cm</output></label>
-        <div><button type="button" data-spatial-turn>Turn 30°</button><button type="button" data-spatial-place>Place again</button><button type="button" data-spatial-reset-size>{reference?.estimated ? 'Approximate real size' : reference ? 'Documented size' : 'Reset size'}</button></div>
+        <div><button type="button" data-spatial-turn>Turn 30°</button><button type="button" data-spatial-place>Place again</button><button type="button" data-spatial-reset-size>{verified ? 'Documented size' : 'Reset display size'}</button></div>
       </div>
     </div>
   </dialog>
@@ -90,6 +93,8 @@ const standHeight = displaySupport?.height && displaySupport.height > 0 ? displa
   button, summary, a { -webkit-tap-highlight-color: transparent; }
   .spatial-open { display: inline-flex; align-items: center; gap: 9px; min-height: 44px; padding: 8px 0; border: 0; border-radius: 0; color: var(--spatial-ink); background: transparent; font-size: .7rem; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; white-space: nowrap; cursor: pointer; }
   .spatial-open:hover { color: var(--spatial-accent); }
+  .spatial-default-badge { display: block; max-width: 29ch; color: #ffaaa3; font-size: 10px; line-height: 1.4; padding-bottom: 7px; }
+  .spatial-size-unverified { color: #ffaaa3 !important; }
   .spatial-dialog { color-scheme: dark; width: min(740px, calc(100vw - 40px)); max-height: calc(100vh - 40px); max-height: calc(100dvh - 40px); padding: 0; margin: auto; border: 1px solid var(--spatial-line); border-radius: 4px; color: var(--spatial-ink); background: var(--spatial-bg); overflow: auto; overscroll-behavior: contain; }
   .spatial-dialog::backdrop { background: rgba(7,10,16,.82); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
   .spatial-panel { padding: 0 32px 24px; }

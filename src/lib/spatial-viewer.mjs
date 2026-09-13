@@ -1,5 +1,6 @@
 import { spatialDevice, probeSpatialSupport } from './spatial-capabilities.mjs';
 import { makeQuickLookScene, startSpatialSession } from './spatial-session.mjs';
+import { displayReferenceFor } from './spatial-access.mjs';
 
 export function bindSpatialViewing(element, getContext, activate) {
   const find = (selector) => element.querySelector(selector);
@@ -22,11 +23,13 @@ export function bindSpatialViewing(element, getContext, activate) {
   const title = element.dataset.title;
   const verifiedReference = element.dataset.verifiedReference === 'true';
   const verifiedModel = () => !verifiedReference || getContext()?.verifiedAsset === true;
-  const reference = element.dataset.referenceAxis ? {
+  const reference = verifiedReference && element.dataset.referenceAxis ? {
     axis: element.dataset.referenceAxis, meters: Number(element.dataset.referenceMeters),
     ...(element.dataset.referenceExtentFraction !== undefined
       ? { extentFraction: Number(element.dataset.referenceExtentFraction) } : {}),
   } : null;
+  const defaultMaxExtentMeters = Number(element.dataset.defaultMaxExtentMeters) || 1;
+  const viewingReference = () => verifiedReference ? reference : displayReferenceFor(getContext()?.box, defaultMaxExtentMeters);
   const showScale = (value) => {
     find('[data-spatial-scale]').value = String(value);
     find('[data-spatial-size]').textContent = `${Math.round(value * 100)}%`;
@@ -70,8 +73,8 @@ export function bindSpatialViewing(element, getContext, activate) {
       : supportMode.value === 'surface'
         ? 'Place the artwork directly on a real table or the floor. No virtual furniture is added.'
         : recommendation
-          ? 'VR follows the display recommendation once the artwork’s size is calibrated. In AR, use a real surface or choose a virtual stand.'
-          : 'Small pieces with a documented scale get a stand in VR. In AR, use a real table or choose a virtual stand.';
+          ? 'VR follows the display recommendation at the selected starting size. In AR, use a real surface or choose a virtual stand.'
+          : 'Small displayed pieces get a stand in VR. In AR, use a real table or choose a virtual stand.';
   };
   const say = (message) => { status.textContent = message; };
   function showHandoff(mode) {
@@ -180,7 +183,7 @@ export function bindSpatialViewing(element, getContext, activate) {
     } catch (error) { reset(); say(errorMessage(error)); return; }
     void startSpatialSession(getContext(), request, mode, overlay, {
       signal: pending.signal,
-      reference,
+      reference: viewingReference(),
       support: supportOptions(),
       onSupport: showSupport,
       onStatus: (text) => { find('[data-spatial-instructions]').textContent = text; },
@@ -198,16 +201,20 @@ export function bindSpatialViewing(element, getContext, activate) {
     try {
       const context = getContext();
       const { USDZExporter } = await import('three/examples/jsm/exporters/USDZExporter.js');
-      converted = makeQuickLookScene(context.THREE, context.model, context.box, reference, supportOptions());
+      converted = makeQuickLookScene(context.THREE, context.model, context.box, viewingReference(), supportOptions());
       const bytes = await new USDZExporter().parseAsync(converted.scene, { maxTextureSize: 2048, quickLookCompatible: true });
       if (version !== exportVersion) return;
       if (modelUrl) URL.revokeObjectURL(modelUrl);
       modelUrl = URL.createObjectURL(new Blob([bytes], { type: 'model/vnd.usdz+zip' }));
       // Preserve the physical reference in Apple's viewer, with or without a stand.
-      const fixedScale = Boolean(reference) || converted.hasSupport;
+      const fixedScale = verifiedReference || converted.hasSupport;
       quickLook.href = `${modelUrl}#allowsContentScaling=${fixedScale ? 0 : 1}&canonicalWebPageURL=${encodeURIComponent(pageUrl)}`;
       quickLook.hidden = false; ar.hidden = true;
-      say(converted.hasSupport
+      say(!verifiedReference
+        ? converted.hasSupport
+          ? 'Size unverified. Ready at the chosen default display size. Tap “Open in AR” to place the stand. The artwork and stand keep their prepared size.'
+          : 'Size unverified. Ready at the chosen default display size. Tap “Open in AR” to place the work; pinch to resize it.'
+        : converted.hasSupport
         ? 'Ready. Tap “Open in AR” and place the stand on the floor. The artwork and stand keep their prepared size.'
         : fixedScale
           ? 'Ready. Tap “Open in AR” to place the sculpture. It keeps its prepared physical size as you walk around it.'

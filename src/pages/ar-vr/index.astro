@@ -1,19 +1,20 @@
 ---
 import V3CollectionExplorer from '../../components/v3/V3CollectionExplorer.astro';
 import V3Layout from '../../layouts/v3/V3Layout.astro';
-import { arVrWorks, arVrFeatured, arVrCount } from '../../lib/spatial-catalog';
+import { arVrWorks, arVrFeatured, arVrCount, arVrVerifiedCount, arVrUnverifiedCount } from '../../lib/spatial-catalog';
 ---
 
 <V3Layout
   title="Art in AR / VR"
-  description={`Explore ${arVrCount} works in AR or VR with verified size references. Documented cast sizes are labeled separately.`}
+  description={`Explore all ${arVrCount} compatible models in AR or VR. ${arVrVerifiedCount} have reviewed size references; the others show clearly labeled default display dimensions.`}
   image={arVrFeatured[0]?.thumbnailImage}
 >
   <header class="v3-page-hero v3-discovery-hero">
-    <p class="v3-kicker">AR / VR · Verified size references</p>
+    <p class="v3-kicker">AR / VR · All compatible models</p>
     <h1 class="v3-display">Sculpture, <em>beyond the screen.</em></h1>
     <p>Bring a work into your room with a compatible phone, or explore it inside a headset.</p>
-    <p class="v3-discovery-note">Each work lists its reviewed size reference. Cast measurements are labeled “Documented cast size.” Sources and measurement details remain with the object record.</p>
+    <p class="v3-discovery-note">All {arVrCount} compatible models are available. {arVrVerifiedCount} have reviewed size references, with measured casts labeled “Documented cast size.”</p>
+    <p class="v3-discovery-note"><strong class="v3-size-unverified">Size unverified</strong> marks the other {arVrUnverifiedCount} models. Their stated default dimension is a chosen display size, not a claim about the artwork’s actual dimensions.</p>
   </header>
 
   <section class="v3-collection" aria-label="Works available in AR and VR">

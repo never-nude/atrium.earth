@@ -12,13 +12,13 @@ const sourceAxes = {
   diameter: 'Diameter', maximum_diameter: 'Maximum diameter', thickness: 'Thickness',
 };
 const unavailableReasons = {
-  unverified: 'AR/VR is unavailable because a matching physical measurement has not been verified.',
-  estimate: 'AR/VR is unavailable because the current size or measurement boundary is approximate.',
-  mismatch: 'AR/VR is unavailable while the published dimensions and the scanned proportions or represented version are reconciled.',
-  axis: 'AR/VR is unavailable until the source measurement’s direction is verified for this model.',
-  geometry: 'AR/VR is unavailable pending a further check of the scanned geometry and measurement scope.',
-  review: 'AR/VR is unavailable because physical size verification is incomplete.',
-  changed: 'AR/VR is unavailable because the model or dimension evidence has changed since its size review.',
+  unverified: 'Verified-size presentation is unavailable because a matching physical measurement has not been verified.',
+  estimate: 'Verified-size presentation is unavailable because the current size or measurement boundary is approximate.',
+  mismatch: 'Verified-size presentation is unavailable while the published dimensions and the scanned proportions or represented version are reconciled.',
+  axis: 'Verified-size presentation is unavailable until the source measurement’s direction is verified for this model.',
+  geometry: 'Verified-size presentation is unavailable pending a further check of the scanned geometry and measurement scope.',
+  review: 'Verified-size presentation is unavailable because physical size verification is incomplete.',
+  changed: 'Verified-size presentation is unavailable because the model or dimension evidence has changed since its size review.',
 };
 
 function canonical(value) {

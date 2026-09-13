@@ -25,6 +25,7 @@ const { works, spatial = false, collectionNavigation = false } = Astro.props;
     </label>
 
     <div class="v3-filter-row">
+      {collectionNavigation && <label><span>Size reference</span><select data-v3-filter="size"><option value="">Any size status</option><option value="verified">Reviewed size</option><option value="unverified">Size unverified</option></select></label>}
       <label><span>Wing</span><select data-v3-filter="wing"><option value="">All wings</option>{wings.map((wing) => <option value={wing.id}>{wing.name}</option>)}</select></label>
       <label><span>Era</span><select data-v3-filter="era"><option value="">All eras</option>{facets.eras.map((item) => <option value={item.value}>{item.label}</option>)}</select></label>
       <label><span>Place</span><select data-v3-filter="place"><option value="">Everywhere</option>{facets.geography.map((item) => <option value={item.value}>{item.label}</option>)}</select></label>

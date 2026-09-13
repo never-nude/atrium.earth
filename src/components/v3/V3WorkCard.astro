@@ -9,7 +9,7 @@ const { work, eager = false, stop, spatial = false } = Astro.props;
 const data = publicDataset(work);
 const detail = [work.maker || work.culture, work.displayDate].filter(Boolean).join(' · ');
 const alt = `${work.title}${detail ? ` — ${detail}` : ''}`;
-const spatialReference = work.spatialEligibility?.enabled ? work.spatialEligibility : null;
+const spatialAccess = work.spatialAccess?.enabled ? work.spatialAccess : null;
 ---
 
 <article
@@ -22,6 +22,7 @@ const spatialReference = work.spatialEligibility?.enabled ? work.spatialEligibil
   data-place={data.place}
   data-material={data.material}
   data-maker={data.maker}
+  data-size={spatialAccess ? (spatialAccess.verified ? 'verified' : 'unverified') : undefined}
 >
   <a href={withBase(v3WorkRoute(work))}>
     <div class="v3-card__image v3-float" style={`view-transition-name: w-${work.id};`}>
@@ -38,16 +39,17 @@ const spatialReference = work.spatialEligibility?.enabled ? work.spatialEligibil
     <div class="v3-card__copy">
       <h3>{work.title}</h3>
       {detail && <p>{detail}</p>}
-      {spatialReference && (
-        <div class="v3-card__spatial-reference">
-          <span>{!spatial && 'AR / VR · '}{spatialReference.label}</span>
-          <span>{spatialReference.sizeLabel}</span>
+      {spatialAccess && (
+        <div class:list={['v3-card__spatial-reference', { 'v3-card__spatial-reference--unverified': !spatialAccess.verified }]}>
+          <span>{!spatial && 'AR / VR · '}{spatialAccess.label}</span>
+          <span>{spatialAccess.sizeLabel}</span>
+          {!spatialAccess.verified && <span class="v3-card__spatial-note">Chosen display size; actual dimensions unverified.</span>}
         </div>
       )}
     </div>
   </a>
-  {spatial && spatialReference && (
-    <a class="v3-card__spatial-link" href={withBase(`${v3WorkRoute(work)}#ar-vr`)} aria-label={`View ${work.title} in AR or VR`}>
+  {spatial && spatialAccess && (
+    <a class="v3-card__spatial-link" href={withBase(`${v3WorkRoute(work)}#ar-vr`)} aria-label={`View ${work.title} in AR or VR${spatialAccess.verified ? '' : ' — size unverified'}`}>
       View in AR / VR <span aria-hidden="true">↗</span>
     </a>
   )}

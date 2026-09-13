@@ -1,4 +1,6 @@
 /* AR / VR discovery shares the museum's type, ground and artwork cards. */
+:root { --v3-size-unverified: #ffada8; }
+.v3-size-unverified { color: var(--v3-size-unverified); font-weight: 600; }
 .v3-hero__object { flex-wrap: wrap; }
 .v3-hero__record-link {
   display: inline-flex;
@@ -79,7 +81,7 @@
 .v3-explorer:has(.v3-collection-switch) .v3-explorer__tools { top: 72px; margin-bottom: 28px; }
 .v3-explorer:has(.v3-collection-switch) .v3-filter-row {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr)) auto auto;
+  grid-template-columns: repeat(5, minmax(0, 1fr)) auto auto;
   min-width: 0;
 }
 .v3-explorer:has(.v3-collection-switch) .v3-filter-row label { min-width: 0; }
@@ -99,6 +101,9 @@
 }
 .v3-card__spatial-reference > span:first-child { color: var(--v3-signal); }
 .v3-card__spatial-reference > span:last-child { color: var(--v3-muted); }
+.v3-card__spatial-reference--unverified > span { color: var(--v3-size-unverified); }
+.v3-card__spatial-reference--unverified > span:first-child { color: var(--v3-size-unverified); font-weight: 600; }
+.v3-card__spatial-reference--unverified .v3-card__spatial-note { color: var(--v3-muted); font-size: .68rem; }
 .v3-card > .v3-card__spatial-link {
   display: inline-flex;
   align-items: center;

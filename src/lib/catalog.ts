@@ -7,10 +7,12 @@ import rawMaterialAppearances from '../data/material-appearances.json';
 import rawAppearanceOverrides from '../data/appearance-overrides.json';
 import rawPhysicalDimensions from '../data/physical-dimensions.json';
 import rawSpatialEligibility from '../data/spatial-eligibility.json';
+import rawSpatialDisplayDefaults from '../data/spatial-display-defaults.json';
 import rawDisplayRecommendations from '../data/display-recommendations.json';
 import rawIdentityCorrections from '../data/identity-corrections.json';
 import { physicalDimensionsFor } from './physical-dimensions.mjs';
 import { spatialEligibilityFor } from './spatial-eligibility.mjs';
+import { spatialAccessFor } from './spatial-access.mjs';
 import { assignWing } from './assignWing';
 import type { WingId } from '../data/wings';
 
@@ -130,6 +132,7 @@ export type Work = {
     assetSha256?: string;
   };
   displaySupport: { kind: string; height?: number; note: string } | null;
+  spatialAccess: { enabled: boolean; verified: boolean; label: string; sizeLabel: string; note: string; defaultMaxExtentMeters?: number; assetSha256?: string };
   accession: string;
   creditLine: string;
   rights: string;
@@ -648,6 +651,7 @@ function normalize(raw: RawWork, fallbackIndex: number): Work {
     materialAppearance,
     ...physicalDimensions,
     spatialEligibility,
+    spatialAccess: spatialAccessFor(spatialEligibility, preview?.url, (rawSpatialDisplayDefaults as Record<string, { maxExtentMeters: number }>)[raw.slug]),
     displaySupport: (rawDisplayRecommendations as Record<string, { kind: string; height?: number; note: string }>)[raw.slug] || null,
     accession: clean(raw.accession),
     creditLine: clean(raw.attribution),

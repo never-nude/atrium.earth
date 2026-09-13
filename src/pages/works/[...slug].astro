@@ -47,13 +47,14 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
       immersive={true}
       autoRotate={work.slug !== 'europe/venus-of-willendorf-nhmw-44-686'}
       lightControls={true}
-      spatialViewing={work.spatialEligibility.enabled}
-      spatialAssetSha256={work.spatialEligibility.assetSha256}
-      spatialLabel={work.spatialEligibility.label}
-      spatialUnavailableNote={work.spatialEligibility.enabled ? undefined : work.spatialEligibility.reason}
-      spatialReference={work.spatialReference}
+      spatialViewing={work.spatialAccess.enabled}
+      spatialAssetSha256={work.spatialAccess.assetSha256}
+      spatialLabel={work.spatialAccess.label}
+      spatialDefaultMaxExtentMeters={work.spatialAccess.defaultMaxExtentMeters}
+      spatialUnavailableNote={work.spatialAccess.enabled ? undefined : work.spatialAccess.note}
+      spatialReference={work.spatialAccess.verified ? work.spatialReference : null}
       displaySupport={work.displaySupport}
-      spatialNote={work.spatialNote}
+      spatialNote={work.spatialAccess.verified ? `${work.spatialAccess.sizeLabel}. ${work.spatialNote}` : work.spatialAccess.note}
       posterLoading="eager"
       upAxis={work.modelUpAxis}
       modelTransform={work.modelTransform}
@@ -129,9 +130,7 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
     </div>
 
     <dl class="v3-facts">
-      <div id="size-verification" tabindex="-1"><dt>AR / VR</dt><dd>{work.spatialEligibility.enabled
-        ? `${work.spatialEligibility.label} · ${work.spatialEligibility.sizeLabel}. ${work.spatialEligibility.reason}`
-        : work.spatialEligibility.reason}</dd></div>
+      <div id="size-verification" tabindex="-1"><dt>AR / VR</dt><dd><strong style={!work.spatialAccess.verified && work.spatialAccess.enabled ? 'color: #ffaaa3' : undefined}>{work.spatialAccess.label}</strong>{work.spatialAccess.enabled && ` · ${work.spatialAccess.sizeLabel}.`} {work.spatialAccess.note}</dd></div>
       {facts.map(([label, value]) => <div><dt>{label}</dt><dd>{label === 'Dimensions'
         ? <DimensionValue value={work.dimensions} note={work.dimensionsNote} sourceUrl={work.dimensionsSourceUrl} />
         : value}</dd></div>)}
