@@ -8,8 +8,7 @@ export default defineConfig({
   base: base === '/' ? undefined : base,
   output: 'static',
   integrations: [
-    // /v2 is the archived previous design and /v3 was the staging alias;
-    // neither belongs in the crawler sitemap.
+    // Keep retired design URLs and staging aliases out of the crawler sitemap.
     sitemap({ filter: (page) => !page.includes('/v2/') && !page.includes('/v3/') && !page.includes('/wings/unfiled/') }),
   ],
   redirects: {
@@ -20,7 +19,6 @@ export default defineConfig({
     '/v3/exhibitions/[slug]': '/exhibitions/[slug]',
     '/v3/works/[...slug]': '/works/[...slug]',
     '/works/egyptian/tepemankh-stela-e25408-louvre': '/works/egyptian/offering-menu-relief-tepemankh-e25408-louvre',
-    '/v2/works/egyptian/tepemankh-stela-e25408-louvre': '/v2/works/egyptian/offering-menu-relief-tepemankh-e25408-louvre',
   },
   server: {
     // Honor the port assigned by the preview harness (via PORT); fall back to Astro's default.
