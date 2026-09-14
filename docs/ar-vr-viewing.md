@@ -19,6 +19,60 @@ WebXR support probes are independent, catch errors from incomplete APIs, and sto
 
 AR still depends on device hardware and browser support. Android uses the existing WebXR path; this change does not send uncalibrated source GLBs to Scene Viewer. Apple browser recognition does not guarantee that every app version can launch Quick Look.
 
+## Artwork labels and photos
+
+The immersive label now retains **title, time period, region, maker and material**.
+`artworkLabelFor` reads the normalized catalogue, uses the displayed date (or era
+when no date is recorded), and uses the recorded medium rather than the renderer's
+material profile. Empty and placeholder fields are omitted. It adds no dimensions,
+institution, interpretation or new factual claims.
+
+On phones with WebXR DOM overlays, a small translucent slate label sits at the
+lower left, above collapsible placement controls. It uses Atrium's Inter type,
+warm white text, brass rule and hairline border. The controls close after placement;
+the label remains through rotation, resizing and repositioning. Headsets without
+DOM overlays receive a camera-relative Three.js label that does not affect the
+sculpture's physical dimensions or bounds.
+
+**Take photo** is available once placement and a tracked camera view are ready.
+WebXR AR requests optional `camera-access`: where granted, the shutter copies the
+camera texture inside the XR frame, renders the sculpture from that same view,
+composites them, and bakes the five-field label into the image pixels. The camera
+background is never assumed to be in the transparent XR canvas. Capture preserves
+tone mapping and restores renderer state even on failure. It reads camera pixels
+only when the visitor requests a photo. VR can capture its rendered scene without
+camera access. A completed photo can be reviewed, downloaded or shared; taking it
+does not reset the sculpture placement. Photos remain on the visitor's device.
+
+**Apple Quick Look:** the USDZ link supplies a custom HTTPS banner generated at
+`/ar-label/<work slug>/`, with exactly the same catalogue fields and visual style.
+These pages are static, contain no analytics or interactive actions, and are
+excluded from the sitemap. Apple controls the banner's position, visibility and
+native shutter. Its native photo output cannot be intercepted by this website;
+the supported fallback is **Add label to photo** after returning to Atrium, then
+choosing the saved photo. This is an explicit extra step, not automatic iPhone
+photo stamping. A screenshot can retain the visible WebXR label on devices that
+do not expose camera pixels.
+
+The photo importer preserves aspect ratio and applies browser image orientation,
+limits the longest side to 4096 pixels, and exports JPEG at 94% quality. Direct
+immersive snapshots are limited to 2048 pixels on the longest side. Invalid images
+and cancelled/interrupted capture do not silently return an unlabeled or
+camera-free AR image.
+
+`npm run test:spatial-label` verifies field selection, omissions, wrapping and
+Quick Look URLs. `npm run test:spatial-label-browser` starts its own local Astro
+server and checks mobile portrait/landscape layouts, the longest Apple banners,
+photo import/error handling, stamped pixels, real WebGL camera composition,
+orientation, transparency, tone mapping and state restoration with synthetic
+camera fixtures. `ATRIUM_TEST_EXECUTABLE` may select an installed Chromium binary.
+The existing spatial and actual USDZ export checks also pass. Physical iPhone,
+Android AR and headset acceptance testing remains outstanding; simulated tests
+cannot validate native Quick Look banner behavior or actual camera tracking.
+
+References: [Apple custom banners](https://developer.apple.com/documentation/arkit/adding-an-apple-pay-button-or-a-custom-action-in-ar-quick-look),
+[WebXR raw camera access](https://immersive-web.github.io/raw-camera-access/).
+
 ## Lifecycle and loading
 
 Capability detection does not request an immersive session. `requestSession` runs directly in the user's button event. While WebXR owns the renderer, the screen animation and orbit controls pause. Ending, denying, cancelling, or interrupting a session restores the original model hierarchy, camera, floor, background, and screen rendering. AR wall hits do not place sculptures sideways. DOM overlay controls suppress duplicate XR select events.
