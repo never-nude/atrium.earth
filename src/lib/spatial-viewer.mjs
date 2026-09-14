@@ -14,8 +14,8 @@ export function bindSpatialViewing(element, getContext, activate) {
   const quickLook = find('[data-quick-look]');
   const quickLookOptions = find('[data-quick-look-options]');
   const quickLookLabel = find('[data-quick-look-label]');
-  // Do not restore an opted-in banner from browser form history on a new visit.
-  quickLookLabel.checked = false;
+  // Start each page visit with the artwork label, including after form restoration.
+  quickLookLabel.checked = quickLookLabel.defaultChecked;
   const status = find('[data-spatial-status]');
   const supportMode = find('[data-support-mode]');
   const supportHeight = find('[data-support-height]');

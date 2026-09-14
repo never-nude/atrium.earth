@@ -100,10 +100,10 @@ export function stampArtworkPhoto(canvas, label) {
 
 export const quickLookLabelHeight = (label = {}) => Object.values(label).join(' ').length > 190 ? 'large' : 'medium';
 
-export function quickLookLabelFragment({ fixedScale, pageUrl, bannerUrl, showLabel = false, label }) {
+export function quickLookLabelFragment({ fixedScale, pageUrl, bannerUrl, showLabel = true, label }) {
   const params = new URLSearchParams({ allowsContentScaling: fixedScale ? '0' : '1', canonicalWebPageURL: pageUrl });
-  // Apple's bottom banner occupies the native camera controls. Keep the normal
-  // camera UI by default; a visitor must explicitly choose the label view.
+  // Keep catalogue information visible by default. Visitors can explicitly hide
+  // Apple's bottom banner before launching AR to use the native camera controls.
   // Quick Look requires an absolute HTTPS document, not a blob or data URL.
   if (showLabel && bannerUrl && new URL(bannerUrl).protocol === 'https:') {
     params.set('custom', bannerUrl);

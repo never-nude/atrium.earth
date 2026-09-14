@@ -46,10 +46,12 @@ only when the visitor requests a photo. VR can capture its rendered scene withou
 camera access. A completed photo can be reviewed, downloaded or shared; taking it
 does not reset the sculpture placement. Photos remain on the visitor's device.
 
-**Apple Quick Look:** the default USDZ link has no custom banner, preserving the
-native camera controls. The previously mandatory banner covered the shutter on a
-user's iPhone. **Show artwork label in Apple AR** is now an explicit, unchecked
-option with an explanation of this tradeoff. It supplies a custom HTTPS banner at
+**Apple Quick Look:** the default USDZ link includes the artwork label.
+**Show artwork label in Apple AR** starts checked on each page visit. Turning it
+off before launching AR preserves Apple's native camera controls, which the banner
+can cover. The options explain this tradeoff; hiding the banner is an explicit
+choice for taking photos, rather than the default viewing experience.
+The label uses a custom HTTPS banner at
 `/ar-label/<work slug>/` with the same five catalogue fields and visual style.
 Typical labels request Apple's 121-point height; longer records retain 161 points
 to keep every field readable. These static pages contain no analytics or interactive

@@ -4,7 +4,7 @@ import { dev } from 'astro';
 import { chromium } from 'playwright';
 
 // Runs server + browser together, including environments with per-command networks.
-const server = await dev({ root: new URL('../', import.meta.url), server: { host: '127.0.0.1', port: 4334 }, vite: { server: { watch: null } }, logLevel: 'error' });
+const server = await dev({ root: new URL('../', import.meta.url), server: { host: '127.0.0.1', port: 4334 }, vite: { server: { watch: null, hmr: false } }, logLevel: 'error' });
 const base = 'http://127.0.0.1:4334';
 const output = process.env.ATRIUM_TEST_OUTPUT || '/tmp/atrium-artwork-label-tests';
 await mkdir(output, { recursive: true });
@@ -19,6 +19,8 @@ try {
   await page.goto(`${base}/works/modern/dubuffet-la-chiffonniere/`);
   await page.locator('[data-spatial-open]').click();
   await page.locator('[data-spatial-dialog][open]').waitFor();
+  // Let Vite finish lazy viewer imports before exercising the photo controls.
+  await page.waitForLoadState('networkidle');
   const label = await page.locator('[data-spatial]').evaluate(el => JSON.parse(el.dataset.artworkLabelJson));
   assert.equal(label.title, 'La Chiffonnière');
   assert.equal(label.maker, 'Jean Dubuffet');
@@ -133,20 +135,25 @@ try {
     bindSpatialViewing(fixture,()=>({THREE,model,box,verifiedAsset:true}),()=>{});
   });
   await native.locator('[data-spatial-open]').click();
-  assert.equal(await native.locator('[data-quick-look-label]').isChecked(),false);
+  assert.equal(await native.locator('[data-quick-look-label]').isChecked(),true,'The artwork label starts enabled on iPhone');
   await native.locator('[data-spatial-ar]').click();
   await native.locator('[data-quick-look]:not([hidden])').waitFor();
   const href=await native.locator('[data-quick-look]').getAttribute('href');
   const fragment=url=>new URLSearchParams(url.split('#')[1]);
-  assert.equal(fragment(href).has('custom'),false,'Default iPhone launch does not install a banner over the shutter');
-  await native.locator('[data-quick-look-label]').check();
-  const labeled=await native.locator('[data-quick-look]').getAttribute('href');
-  assert.equal(labeled.split('#')[0],href.split('#')[0],'Changing labels reuses the prepared USDZ');
-  assert.equal(fragment(labeled).get('allowsContentScaling'),fragment(href).get('allowsContentScaling'));
-  assert.equal(fragment(labeled).get('customHeight'),'medium');
+  assert.equal(fragment(href).get('custom'),'https://atrium.earth/ar-label/europe/venus-of-willendorf-nhmw-44-686/','Default iPhone launch includes the correct artwork label');
+  assert.equal(fragment(href).get('customHeight'),'medium');
   await native.locator('[data-quick-look-label]').uncheck();
-  assert.equal(await native.locator('[data-quick-look]').getAttribute('href'),href,'The native camera can be restored without re-exporting');
+  const camera=await native.locator('[data-quick-look]').getAttribute('href');
+  assert.equal(fragment(camera).has('custom'),false,'The native camera remains available by turning the label off');
+  assert.equal(camera.split('#')[0],href.split('#')[0],'Changing labels reuses the prepared USDZ');
+  assert.equal(fragment(camera).get('allowsContentScaling'),fragment(href).get('allowsContentScaling'));
+  await native.locator('[data-quick-look-label]').check();
+  assert.equal(await native.locator('[data-quick-look]').getAttribute('href'),href,'The artwork label can be restored without re-exporting');
   await native.screenshot({path:`${output}/apple-camera-options.png`});
+  await native.locator('[data-quick-look-label]').uncheck();
+  await native.reload();
+  await native.locator('[data-spatial-open]').click();
+  assert.equal(await native.locator('[data-quick-look-label]').isChecked(),true,'A fresh page visit restores the artwork label default');
   await apple.close();
 
   // Exercise real WebGL copying/composition with an asymmetric camera image.
@@ -207,5 +214,5 @@ try {
   assert.ok(gpu.alpha>.4 && gpu.alpha<.6);
   assert.ok(gpu.translucentPixel.slice(0,3).every((n,i)=>Math.abs(n-gpu.expectedTranslucent[i])<=2),'Transparent surfaces composite correctly over the camera');
   await writeFile(`${output}/camera-capture.png`,Buffer.from(gpu.data.split(',')[1],'base64'));
-  console.log('Browser label checks passed: unobstructed shutter through rotation, opt-in Apple banner and real USDZ export, compact Venus label, EXIF landscape photo stamping, missing fields, failed import, camera/3D composition, tone mapping, HUD disposal and capture fallback.');
+  console.log('Browser label checks passed: unobstructed web shutter through rotation, Apple label enabled by default with camera opt-out and real USDZ export, compact Venus label, EXIF landscape photo stamping, missing fields, failed import, camera/3D composition, tone mapping, HUD disposal and capture fallback.');
 } finally { await browser.close(); await server.stop(); }
