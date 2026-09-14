@@ -4,16 +4,18 @@ import { dev } from 'astro';
 import { chromium } from 'playwright';
 
 // Runs server + browser together, including environments with per-command networks.
-const server = await dev({ root: new URL('../', import.meta.url), server: { host: '127.0.0.1', port: 4334 }, logLevel: 'error' });
+const server = await dev({ root: new URL('../', import.meta.url), server: { host: '127.0.0.1', port: 4334 }, vite: { server: { watch: null } }, logLevel: 'error' });
 const base = 'http://127.0.0.1:4334';
 const output = process.env.ATRIUM_TEST_OUTPUT || '/tmp/atrium-artwork-label-tests';
 await mkdir(output, { recursive: true });
 const browser = await chromium.launch({ ...(process.env.ATRIUM_TEST_EXECUTABLE ? { executablePath: process.env.ATRIUM_TEST_EXECUTABLE } : {}), headless: true, args: ['--enable-unsafe-swiftshader'] });
 try {
   const context = await browser.newContext({ viewport: { width: 390, height: 844 } });
+  context.setDefaultTimeout(30000);
   // Layout and capture fixtures need no remote model, tracking hardware or uploads.
   await context.route(/^https?:\/\/(?!127\.0\.0\.1)/, route => route.abort());
   const page = await context.newPage();
+  page.on('pageerror',error=>console.error('Page error:',error.message));
   await page.goto(`${base}/works/modern/dubuffet-la-chiffonniere/`);
   await page.locator('[data-spatial-open]').click();
   await page.locator('[data-spatial-dialog][open]').waitFor();
@@ -41,6 +43,34 @@ try {
   assert.ok(result.corner[0] < result.top[0], 'Label is baked into decoded photo pixels');
   await writeFile(`${output}/stamped-photo.png`, Buffer.from(result.data.split(',')[1],'base64'));
   await page.screenshot({ path: `${output}/photo-panel.png` });
+  // iPhone JPEGs may store portrait pixels with EXIF rotation for a landscape photo.
+  const jpeg = await page.evaluate(() => {
+    const canvas = document.createElement('canvas'); canvas.width=600; canvas.height=900;
+    const ctx=canvas.getContext('2d');
+    for (const [color,x,y] of [['#c81414',0,0],['#14c814',300,0],['#dcc814',0,450],['#14c8dc',300,450]]) {
+      ctx.fillStyle=color; ctx.fillRect(x,y,300,450);
+    }
+    return canvas.toDataURL('image/jpeg',1);
+  });
+  const jpegBytes=Buffer.from(jpeg.split(',')[1],'base64');
+  // APP1 Exif, little-endian TIFF, one SHORT Orientation tag = 6 (90° clockwise).
+  const exif=Buffer.from('ffe1002245786966000049492a0008000000010012010300010000000600000000000000','hex');
+  await page.locator('[data-spatial-photo-input]').setInputFiles({name:'landscape.jpg',mimeType:'image/jpeg',buffer:Buffer.concat([jpegBytes.subarray(0,2),exif,jpegBytes.subarray(2)])});
+  await page.waitForFunction(() => {
+    const img=document.querySelector('[data-spatial-photo-preview]');
+    return !document.querySelector('[data-spatial-photo-result]').hidden && img.naturalWidth===900;
+  });
+  const landscapePhoto=await page.evaluate(async () => {
+    const img=document.querySelector('[data-spatial-photo-preview]'); await img.decode();
+    const canvas=document.createElement('canvas'); canvas.width=img.naturalWidth;canvas.height=img.naturalHeight;
+    const ctx=canvas.getContext('2d');ctx.drawImage(img,0,0);
+    return {width:canvas.width,height:canvas.height,topLeft:[...ctx.getImageData(20,20,1,1).data],topRight:[...ctx.getImageData(880,20,1,1).data],label:[...ctx.getImageData(30,550,1,1).data],data:canvas.toDataURL()};
+  });
+  assert.equal(landscapePhoto.height,600,'Landscape import follows EXIF orientation');
+  assert.ok(landscapePhoto.topLeft[0]>180 && landscapePhoto.topLeft[1]>180 && landscapePhoto.topLeft[2]<40);
+  assert.ok(landscapePhoto.topRight[0]>180 && landscapePhoto.topRight[1]<40 && landscapePhoto.topRight[2]<40);
+  assert.ok(landscapePhoto.label[0]<100,'Landscape output has the label baked into its lower left');
+  await writeFile(`${output}/stamped-landscape.png`,Buffer.from(landscapePhoto.data.split(',')[1],'base64'));
   await page.locator('[data-spatial-photo-input]').setInputFiles({name:'broken.png',mimeType:'image/png',buffer:Buffer.from('invalid')});
   await page.waitForFunction(() => document.querySelector('[data-spatial-photo-status]').textContent.includes('could not be opened'));
   assert.equal(await page.locator('[data-spatial-photo-result]').isVisible(),false, 'A failed new import must not offer the previous photo');
@@ -53,11 +83,22 @@ try {
     document.querySelector('[data-spatial-photo-capture]').disabled=false;
     document.querySelector('[data-spatial-overlay]').style.background='linear-gradient(150deg, #799ba2, #d4ceb9)';
   });
-  for (const [width,height] of [[390,844],[320,640],[844,390]]) {
+  for (const [width,height] of [[390,844],[320,640],[844,390],[568,320],[390,844]]) {
     await page.setViewportSize({width,height});
     const box = await page.locator('[data-artwork-label]').boundingBox();
     assert.ok(box.x>=0 && box.y>=0 && box.x+box.width<=width && box.y+box.height<=height);
     assert.ok(await page.locator('[data-artwork-label]').evaluate(el=>el.scrollWidth<=el.clientWidth));
+    const shutter=await page.locator('[data-spatial-photo-capture]').boundingBox();
+    assert.ok(shutter.x>=0 && shutter.y>=0 && shutter.x+shutter.width<=width && shutter.y+shutter.height<=height);
+    assert.ok(shutter.x>=box.x+box.width || shutter.y>=box.y+box.height,'Artwork label does not overlap the shutter after rotation');
+    assert.ok(await page.locator('[data-spatial-photo-capture]').evaluate(el=>{
+      const r=el.getBoundingClientRect();return el.contains(document.elementFromPoint(r.x+r.width/2,r.y+r.height/2));
+    }),'The shutter remains reachable by touch');
+    await page.locator('.spatial-overlay-controls').evaluate(el=>el.open=true);
+    assert.ok(await page.locator('[data-spatial-photo-capture]').evaluate(el=>{
+      const r=el.getBoundingClientRect();return el.contains(document.elementFromPoint(r.x+r.width/2,r.y+r.height/2));
+    }),'Opening placement controls does not cover the shutter');
+    await page.locator('.spatial-overlay-controls').evaluate(el=>el.open=false);
     await page.screenshot({path:`${output}/overlay-${width}.png`});
   }
   await page.setViewportSize({width:320,height:640});
@@ -65,10 +106,48 @@ try {
   assert.equal(await page.locator('.artwork-label-maker').count(),0, 'Unknown maker is omitted from Apple banner');
   assert.ok(await page.locator('[data-artwork-label]').evaluate(el=>el.getBoundingClientRect().height<=161));
   await page.screenshot({path:`${output}/apple-banner.png`});
+  await page.goto(`${base}/ar-label/europe/venus-of-willendorf-nhmw-44-686/`);
+  assert.ok(await page.locator('[data-artwork-label]').evaluate(el=>el.getBoundingClientRect().height<=121),'The reported Venus label uses the shorter banner without truncating text');
+  await page.screenshot({path:`${output}/apple-venus-banner.png`});
   for (const slug of ['sub-saharan-africa/nkisi-power-figure','americas/digital-heart-rhythm-monitor-haywood-nmaahc','asia/asad-al-lat-new-palmyra-commons','asia/prasat-krahom-vishnu-narasimha-lintel-cast-guimet-threedscans']) {
     await page.goto(`${base}/ar-label/${slug}/`);
     assert.ok(await page.locator('[data-artwork-label]').evaluate(el=>el.getBoundingClientRect().height<=161),`Long Apple banner fits: ${slug}`);
   }
+
+  // Exercise the real native-launch binding and USDZ export with a small fixture.
+  // This verifies URLs and controls, not Apple's native UI or device rotation.
+  const apple=await browser.newContext({viewport:{width:390,height:844},hasTouch:true,userAgent:'Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 CriOS/140.0 Mobile/15E148 Safari/604.1'});
+  await apple.route(/^https?:\/\/(?!127\.0\.0\.1)/,route=>route.abort());
+  await apple.addInitScript(()=>Object.defineProperty(navigator,'xr',{configurable:true,value:undefined}));
+  const native=await apple.newPage();
+  await native.goto(`${base}/works/europe/venus-of-willendorf-nhmw-44-686/`);
+  await native.locator('[data-spatial-open]').waitFor();
+  await native.evaluate(async () => {
+    const THREE=await import('/node_modules/three/build/three.module.js');
+    const {bindSpatialViewing}=await import('/src/lib/spatial-viewer.mjs');
+    const original=document.querySelector('[data-spatial]');
+    const fixture=original.cloneNode(true);original.replaceWith(fixture);
+    fixture.dataset.artworkLabelUrl='https://atrium.earth/ar-label/europe/venus-of-willendorf-nhmw-44-686/';
+    const model=new THREE.Group();model.add(new THREE.Mesh(new THREE.BoxGeometry(.1,.2,.1),new THREE.MeshStandardMaterial()));
+    const box=new THREE.Box3().setFromObject(model);
+    bindSpatialViewing(fixture,()=>({THREE,model,box,verifiedAsset:true}),()=>{});
+  });
+  await native.locator('[data-spatial-open]').click();
+  assert.equal(await native.locator('[data-quick-look-label]').isChecked(),false);
+  await native.locator('[data-spatial-ar]').click();
+  await native.locator('[data-quick-look]:not([hidden])').waitFor();
+  const href=await native.locator('[data-quick-look]').getAttribute('href');
+  const fragment=url=>new URLSearchParams(url.split('#')[1]);
+  assert.equal(fragment(href).has('custom'),false,'Default iPhone launch does not install a banner over the shutter');
+  await native.locator('[data-quick-look-label]').check();
+  const labeled=await native.locator('[data-quick-look]').getAttribute('href');
+  assert.equal(labeled.split('#')[0],href.split('#')[0],'Changing labels reuses the prepared USDZ');
+  assert.equal(fragment(labeled).get('allowsContentScaling'),fragment(href).get('allowsContentScaling'));
+  assert.equal(fragment(labeled).get('customHeight'),'medium');
+  await native.locator('[data-quick-look-label]').uncheck();
+  assert.equal(await native.locator('[data-quick-look]').getAttribute('href'),href,'The native camera can be restored without re-exporting');
+  await native.screenshot({path:`${output}/apple-camera-options.png`});
+  await apple.close();
 
   // Exercise real WebGL copying/composition with an asymmetric camera image.
   const gpu = await page.evaluate(async () => {
@@ -128,5 +207,5 @@ try {
   assert.ok(gpu.alpha>.4 && gpu.alpha<.6);
   assert.ok(gpu.translucentPixel.slice(0,3).every((n,i)=>Math.abs(n-gpu.expectedTranslucent[i])<=2),'Transparent surfaces composite correctly over the camera');
   await writeFile(`${output}/camera-capture.png`,Buffer.from(gpu.data.split(',')[1],'base64'));
-  console.log('Browser label checks passed: responsive overlays, missing fields, native photo import and failed import, stamped pixels, actual camera/3D composition, orientation, tone mapping, HUD disposal and capture fallback.');
+  console.log('Browser label checks passed: unobstructed shutter through rotation, opt-in Apple banner and real USDZ export, compact Venus label, EXIF landscape photo stamping, missing fields, failed import, camera/3D composition, tone mapping, HUD disposal and capture fallback.');
 } finally { await browser.close(); await server.stop(); }

@@ -30,7 +30,9 @@ institution, interpretation or new factual claims.
 On phones with WebXR DOM overlays, a small translucent slate label sits at the
 lower left, above collapsible placement controls. It uses Atrium's Inter type,
 warm white text, brass rule and hairline border. The controls close after placement;
-the label remains through rotation, resizing and repositioning. Headsets without
+the label remains through rotation, resizing and repositioning. In phone landscape,
+the shutter and photo review occupy a separate right-hand column; the label and
+placement controls stay on the left and can scroll on short screens. Headsets without
 DOM overlays receive a camera-relative Three.js label that does not affect the
 sculpture's physical dimensions or bounds.
 
@@ -44,11 +46,18 @@ only when the visitor requests a photo. VR can capture its rendered scene withou
 camera access. A completed photo can be reviewed, downloaded or shared; taking it
 does not reset the sculpture placement. Photos remain on the visitor's device.
 
-**Apple Quick Look:** the USDZ link supplies a custom HTTPS banner generated at
-`/ar-label/<work slug>/`, with exactly the same catalogue fields and visual style.
-These pages are static, contain no analytics or interactive actions, and are
-excluded from the sitemap. Apple controls the banner's position, visibility and
-native shutter. Its native photo output cannot be intercepted by this website;
+**Apple Quick Look:** the default USDZ link has no custom banner, preserving the
+native camera controls. The previously mandatory banner covered the shutter on a
+user's iPhone. **Show artwork label in Apple AR** is now an explicit, unchecked
+option with an explanation of this tradeoff. It supplies a custom HTTPS banner at
+`/ar-label/<work slug>/` with the same five catalogue fields and visual style.
+Typical labels request Apple's 121-point height; longer records retain 161 points
+to keep every field readable. These static pages contain no analytics or interactive
+actions and are excluded from the sitemap. Changing the option updates the next
+launch URL without re-exporting the USDZ or changing scale. Apple controls the
+banner's position, visibility, native shutter and supported screen orientations;
+the website cannot move the banner above the shutter or force native landscape.
+The native photo output cannot be intercepted by this website;
 the supported fallback is **Add label to photo** after returning to Atrium, then
 choosing the saved photo. This is an explicit extra step, not automatic iPhone
 photo stamping. A screenshot can retain the visible WebXR label on devices that

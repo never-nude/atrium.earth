@@ -98,12 +98,16 @@ export function stampArtworkPhoto(canvas, label) {
   return canvas;
 }
 
-export function quickLookLabelFragment({ fixedScale, pageUrl, bannerUrl }) {
+export const quickLookLabelHeight = (label = {}) => Object.values(label).join(' ').length > 190 ? 'large' : 'medium';
+
+export function quickLookLabelFragment({ fixedScale, pageUrl, bannerUrl, showLabel = false, label }) {
   const params = new URLSearchParams({ allowsContentScaling: fixedScale ? '0' : '1', canonicalWebPageURL: pageUrl });
+  // Apple's bottom banner occupies the native camera controls. Keep the normal
+  // camera UI by default; a visitor must explicitly choose the label view.
   // Quick Look requires an absolute HTTPS document, not a blob or data URL.
-  if (bannerUrl && new URL(bannerUrl).protocol === 'https:') {
+  if (showLabel && bannerUrl && new URL(bannerUrl).protocol === 'https:') {
     params.set('custom', bannerUrl);
-    params.set('customHeight', 'large');
+    params.set('customHeight', quickLookLabelHeight(label));
   }
   return params.toString();
 }

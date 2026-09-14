@@ -12,6 +12,10 @@ export function bindSpatialViewing(element, getContext, activate) {
   const ar = find('[data-spatial-ar]');
   const vr = find('[data-spatial-vr]');
   const quickLook = find('[data-quick-look]');
+  const quickLookOptions = find('[data-quick-look-options]');
+  const quickLookLabel = find('[data-quick-look-label]');
+  // Do not restore an opted-in banner from browser form history on a new visit.
+  quickLookLabel.checked = false;
   const status = find('[data-spatial-status]');
   const supportMode = find('[data-support-mode]');
   const supportHeight = find('[data-support-height]');
@@ -54,7 +58,7 @@ export function bindSpatialViewing(element, getContext, activate) {
     webView: Boolean(window.webkit?.messageHandlers),
   });
   const quickLookSupported = device.quickLook;
-  if (quickLookSupported) find('[data-spatial-photo-help]').textContent = 'Apple’s AR camera saves photos without the artwork banner. After taking a photo, return here and choose it to add the label. The photo stays on your device.';
+  if (quickLookSupported) find('[data-spatial-photo-help]').textContent = 'Take a photo in Apple AR with “Show artwork label” turned off. Return here and choose the saved photo to add the title, time period, region, maker and material. Portrait and landscape photos keep their orientation. The photo stays on your device.';
   const handoff = find('[data-spatial-handoff]');
   const urlInput = find('[data-spatial-url]');
   const linkStatus = find('[data-spatial-link-status]');
@@ -69,6 +73,15 @@ export function bindSpatialViewing(element, getContext, activate) {
   let session;
   let pending;
   let modelUrl;
+  let quickLookFixedScale = false;
+  const updateQuickLookLink = () => {
+    if (!modelUrl) return;
+    quickLook.href = `${modelUrl}#${quickLookLabelFragment({
+      fixedScale: quickLookFixedScale, pageUrl, label: artworkLabel,
+      showLabel: quickLookLabel.checked,
+      bannerUrl: element.dataset.artworkLabelUrl ? new URL(element.dataset.artworkLabelUrl, location.href).href : undefined,
+    })}`;
+  };
   const invalidateQuickLook = () => {
     if (modelUrl) URL.revokeObjectURL(modelUrl);
     modelUrl = undefined;
@@ -124,6 +137,8 @@ export function bindSpatialViewing(element, getContext, activate) {
     const arAvailable = capabilities.ar || quickLookSupported;
     supportMode.disabled = busy;
     supportHeight.disabled = busy;
+    quickLookOptions.hidden = !quickLookSupported || capabilities.ar;
+    quickLookLabel.disabled = busy;
     ar.disabled = busy || !capabilities.checked || (arAvailable && !ready);
     vr.disabled = busy || !capabilities.checked || (capabilities.vr && !ready);
     if (ready && !verifiedModel()) {
@@ -235,9 +250,8 @@ export function bindSpatialViewing(element, getContext, activate) {
       modelUrl = URL.createObjectURL(new Blob([bytes], { type: 'model/vnd.usdz+zip' }));
       // Preserve the physical reference in Apple's viewer, with or without a stand.
       const fixedScale = verifiedReference || converted.hasSupport;
-      quickLook.href = `${modelUrl}#${quickLookLabelFragment({ fixedScale, pageUrl,
-        bannerUrl: element.dataset.artworkLabelUrl ? new URL(element.dataset.artworkLabelUrl, location.href).href : undefined,
-      })}`;
+      quickLookFixedScale = fixedScale;
+      updateQuickLookLink();
       quickLook.hidden = false; ar.hidden = true;
       say(!verifiedReference
         ? converted.hasSupport
@@ -328,6 +342,8 @@ export function bindSpatialViewing(element, getContext, activate) {
   for (const control of [supportMode, supportHeight]) {
     control.addEventListener('input', () => { updateSupportChoice(); invalidateQuickLook(); say(''); });
   }
+  // This changes only the next native launch; it never re-exports or resizes the model.
+  quickLookLabel.addEventListener('change', updateQuickLookLink);
   find('[data-spatial-reset-size]').addEventListener('click', () => session?.setScale(1));
   find('[data-spatial-turn]').addEventListener('click', () => session?.rotate(Math.PI / 6));
   find('[data-spatial-place]').addEventListener('click', () => session?.reposition());

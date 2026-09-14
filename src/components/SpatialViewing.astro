@@ -25,6 +25,10 @@ const defaultSize = defaultMaxExtentMeters && defaultMaxExtentMeters < 1 ? `${Ma
           <p>Place the work on a floor or table and walk around it.</p>
           <button type="button" data-spatial-ar disabled>Checking your device…</button>
           <a data-quick-look rel="ar" download="artwork.usdz" aria-label="Open in AR" hidden><img src={poster} alt="" />Open in AR ↗</a>
+          <div class="spatial-quick-look-options" data-quick-look-options hidden>
+            <label><input type="checkbox" data-quick-look-label aria-describedby="quick-look-label-help" />Show artwork label in Apple AR</label>
+            <p id="quick-look-label-help">The label occupies Apple’s camera controls. Leave it off to take photos, then use “Add label to photo” below.</p>
+          </div>
           <p class="spatial-support" data-ar-support></p>
         </section>
         <section>
@@ -137,6 +141,10 @@ const defaultSize = defaultMaxExtentMeters && defaultMaxExtentMeters < 1 ? `${Ma
   .spatial-options a img { width: 1px; height: 1px; position: absolute; opacity: 0; }
   .spatial-options section > p:not(.spatial-support) { min-height: 3.2em; }
   .spatial-options .spatial-support { font-size: 12px; margin: 12px 0 0; }
+  .spatial-quick-look-options { margin-top: 12px; }
+  .spatial-quick-look-options label { display: flex; align-items: center; gap: 10px; min-height: 44px; font-size: 12px; cursor: pointer; }
+  .spatial-quick-look-options input { flex: none; width: 18px; height: 18px; margin: 0; accent-color: var(--spatial-accent); }
+  .spatial-quick-look-options p { font-size: 12px; margin: 4px 0 0; }
   .spatial-status { font-size: 13px; line-height: 1.6; color: var(--spatial-accent); margin: 18px 0; }
   .spatial-status:empty { display: none; }
   details { border-top: 1px solid var(--spatial-line); }
@@ -189,10 +197,10 @@ const defaultSize = defaultMaxExtentMeters && defaultMaxExtentMeters < 1 ? `${Ma
   .spatial-photo-content [role="status"] { margin: 12px 0; }
   [data-spatial-photo-preview] { width: 100%; max-height: 50dvh; object-fit: contain; margin: 12px 0; }
   @media(orientation: landscape) and (max-height: 540px) {
-    .spatial-overlay-bottom { width: min(320px, 48vw); gap: 5px; }
+    .spatial-overlay-bottom { width: min(340px, calc(100vw - 180px - env(safe-area-inset-left) - env(safe-area-inset-right))); max-height: calc(100dvh - max(16px, env(safe-area-inset-top)) - max(16px, env(safe-area-inset-bottom))); overflow-y: auto; pointer-events: auto; gap: 5px; }
     .spatial-overlay-bottom :global(.artwork-label) { padding: 10px 12px; }
     .spatial-overlay-bottom :global(.artwork-label-title) { font-size: 15px; }
-    .spatial-overlay-controls[open] { position: fixed; right: max(16px, env(safe-area-inset-right)); bottom: max(16px, env(safe-area-inset-bottom)); width: min(340px, 44vw); }
+    .spatial-photo-actions { position: fixed; right: max(16px, env(safe-area-inset-right)); bottom: max(16px, env(safe-area-inset-bottom)); width: 140px; flex-direction: column; }
   }
   .spatial-overlay label { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; font-size: 12px; }
   .spatial-overlay input { flex: 1; min-width: 0; }
