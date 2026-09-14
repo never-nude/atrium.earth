@@ -1,0 +1,21 @@
+import assert from 'node:assert/strict';
+import { artworkLabelFor, artworkLabelFacts, layoutArtworkLabel, quickLookLabelFragment } from '../src/lib/spatial-artwork-label.mjs';
+
+const work = { title: 'La Chiffonnière', displayDate: '1978', era: 'Modern', geography: 'France', maker: 'Jean Dubuffet', medium: 'Stainless steel with black coating', materialAppearance: { material: 'plaster' } };
+const label = artworkLabelFor(work);
+assert.deepEqual(label, { title: 'La Chiffonnière', period: '1978', region: 'France', maker: 'Jean Dubuffet', material: 'Stainless steel with black coating' });
+assert.equal(artworkLabelFacts(label), '1978 · France · Stainless steel with black coating');
+assert.deepEqual(artworkLabelFor({ title: 'Object', displayDate: 'Date not yet recorded', era: 'Ancient', geography: 'Unassigned', maker: '', medium: 'Material not yet recorded', materials: ['Bronze'] }), { title: 'Object', period: 'Ancient', region: '', maker: '', material: '' });
+assert.deepEqual(artworkLabelFor({ title: 'Object', era: 'Undated' }), { title: 'Object', period: '', region: '', maker: '', material: '' });
+const measuringContext = { measureText: text => ({ width: Array.from(text).length * 8 }) };
+const long = { ...label, title: 'A very long sculpture title including 東京 and ' + 'W'.repeat(90) };
+const layout = layoutArtworkLabel(measuringContext, long, 288);
+assert.ok(layout.rows.every(row => measuringContext.measureText(row.text).width <= 256));
+assert.equal(layout.rows.filter(row => row.font.startsWith('500')).map(row => row.text).join('').replace(/\s/g, ''), long.title.replace(/\s/g, ''));
+const params = new URLSearchParams(quickLookLabelFragment({ fixedScale: true, pageUrl: 'https://atrium.earth/works/a/?x=1&y=2', bannerUrl: 'https://atrium.earth/ar-label/a/' }));
+assert.equal(params.get('allowsContentScaling'), '0');
+assert.equal(params.get('canonicalWebPageURL'), 'https://atrium.earth/works/a/?x=1&y=2');
+assert.equal(params.get('custom'), 'https://atrium.earth/ar-label/a/');
+assert.equal(params.get('customHeight'), 'large');
+assert.equal(new URLSearchParams(quickLookLabelFragment({ fixedScale: false, pageUrl: 'https://atrium.earth/works/a/', bannerUrl: 'http://localhost/ar-label/a/' })).has('custom'), false);
+console.log('Artwork labels passed: exactly five catalogue facts, unknown fields, date fallback, authentic material, full-text wrapping, encoded Apple banner URL and fixed scale.');

@@ -1,10 +1,11 @@
 ---
-type Props = { title: string; poster: string; reference?: { axis: string; meters: number; extentFraction?: number; estimated?: boolean } | null; sizeNote?: string; displaySupport?: { kind: string; height?: number; note: string } | null; verified?: boolean; referenceLabel?: string; defaultMaxExtentMeters?: number };
-const { title, poster, reference, sizeNote = 'Physical size is not yet calibrated. Display size is adjustable.', displaySupport, verified = false, referenceLabel, defaultMaxExtentMeters } = Astro.props;
+import ArtworkLabel from './ArtworkLabel.astro';
+type Props = { title: string; artworkLabel?: { title: string; period: string; region: string; maker: string; material: string }; artworkLabelUrl?: string; poster: string; reference?: { axis: string; meters: number; extentFraction?: number; estimated?: boolean } | null; sizeNote?: string; displaySupport?: { kind: string; height?: number; note: string } | null; verified?: boolean; referenceLabel?: string; defaultMaxExtentMeters?: number };
+const { title, artworkLabel = { title, period: '', region: '', maker: '', material: '' }, artworkLabelUrl, poster, reference, sizeNote = 'Physical size is not yet calibrated. Display size is adjustable.', displaySupport, verified = false, referenceLabel, defaultMaxExtentMeters } = Astro.props;
 const standHeight = displaySupport?.height && displaySupport.height > 0 ? displaySupport.height : 1;
 const defaultSize = defaultMaxExtentMeters && defaultMaxExtentMeters < 1 ? `${Math.round(defaultMaxExtentMeters * 100)} cm` : `${defaultMaxExtentMeters || 1} m`;
 ---
-<div id="ar-vr" class="spatial-viewing" data-spatial data-verified-reference={String(verified)} data-title={title} data-reference-axis={verified ? reference?.axis : undefined} data-reference-meters={verified ? reference?.meters : undefined} data-reference-extent-fraction={verified ? reference?.extentFraction : undefined} data-default-max-extent-meters={!verified ? defaultMaxExtentMeters || 1 : undefined} data-support-recommendation={displaySupport?.kind}>
+<div id="ar-vr" class="spatial-viewing" data-spatial data-artwork-label-json={JSON.stringify(artworkLabel)} data-artwork-label-url={artworkLabelUrl} data-verified-reference={String(verified)} data-title={title} data-reference-axis={verified ? reference?.axis : undefined} data-reference-meters={verified ? reference?.meters : undefined} data-reference-extent-fraction={verified ? reference?.extentFraction : undefined} data-default-max-extent-meters={!verified ? defaultMaxExtentMeters || 1 : undefined} data-support-recommendation={displaySupport?.kind}>
   <button type="button" class="spatial-open" data-spatial-open aria-describedby={!verified ? 'spatial-default-warning' : undefined}>
     <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Z M4 7.5l8 4.5 8-4.5 M12 12v9" /></svg>
     View in AR / VR
@@ -36,6 +37,19 @@ const defaultSize = defaultMaxExtentMeters && defaultMaxExtentMeters < 1 ? `${Ma
       </div>
       <p class="spatial-status" data-spatial-status role="status" aria-live="polite"></p>
       <button type="button" class="spatial-text-button" data-spatial-retry hidden>Retry loading sculpture ↻</button>
+      <details class="spatial-photo" data-spatial-photo-panel>
+        <summary>Add label to photo <span aria-hidden="true">+</span></summary>
+        <div class="spatial-photo-content">
+          <p data-spatial-photo-help>Choose a saved AR photo to add this work’s label. The photo stays on your device.</p>
+          <button type="button" data-spatial-photo-choose>Choose photo</button>
+          <input type="file" accept="image/*" data-spatial-photo-input hidden aria-label="Choose a saved AR photo" />
+          <p data-spatial-photo-status role="status" aria-live="polite"></p>
+          <div data-spatial-photo-result hidden>
+            <img data-spatial-photo-preview alt={`Photo with the artwork label for ${title}`} />
+            <div class="spatial-link-actions"><a data-spatial-photo-save download="atrium-artwork.jpg">Download photo</a><button type="button" data-spatial-photo-share hidden>Share / Save photo ↗</button></div>
+          </div>
+        </div>
+      </details>
       <details class="spatial-display">
         <summary>Placement &amp; stand <span aria-hidden="true">+</span></summary>
         <div class="spatial-display-content">
@@ -67,13 +81,21 @@ const defaultSize = defaultMaxExtentMeters && defaultMaxExtentMeters < 1 ? `${Ma
       <div class="spatial-footer"><button type="button" data-spatial-screen>Continue in 3D <span aria-hidden="true">↗</span></button><p>Rotate and zoom in this browser.</p></div>
     </div>
     <div class="spatial-overlay" data-spatial-overlay hidden>
-      <div class="spatial-overlay-top"><strong>{title}</strong><button type="button" data-spatial-exit>Exit AR / VR</button></div>
-      <div class="spatial-overlay-controls">
+      <div class="spatial-overlay-top"><button type="button" data-spatial-exit>Exit AR / VR</button></div>
+      <div class="spatial-overlay-bottom">
+        <ArtworkLabel label={artworkLabel} />
+        <div class="spatial-photo-actions"><button type="button" data-spatial-photo-capture hidden disabled>Take photo</button><button type="button" data-spatial-photo-review hidden>View photo ↗</button></div>
+        <p class="spatial-capture-status" data-spatial-capture-status role="status" aria-live="polite"></p>
+      <details class="spatial-overlay-controls">
+        <summary>Placement &amp; size <span aria-hidden="true">+</span></summary>
+        <div class="spatial-placement-options">
         {!verified && <p class="spatial-size-unverified">Size unverified · Default {defaultSize} on longest side. Display size is adjustable.</p>}
         <p data-spatial-instructions role="status"></p>
         <label hidden={verified}>Display size <input type="range" data-spatial-scale min="0.1" max="2" step="0.05" value="1" /><output data-spatial-size>100%</output></label>
         <label data-spatial-support-control hidden>Stand height <input type="range" data-spatial-support-height min="0.2" max="1.4" step="0.05" value="1" /><output data-spatial-support-value>100 cm</output></label>
         <div><button type="button" data-spatial-turn>Turn 30°</button><button type="button" data-spatial-place>Place again</button><button type="button" data-spatial-reset-size>{verified ? 'Documented size' : 'Reset display size'}</button></div>
+        </div>
+      </details>
       </div>
     </div>
   </dialog>
@@ -146,15 +168,35 @@ const defaultSize = defaultMaxExtentMeters && defaultMaxExtentMeters < 1 ? `${Ma
   .spatial-overlay { position: fixed; inset: 0; color: var(--spatial-ink); pointer-events: none; }
   .spatial-overlay:fullscreen { background: transparent !important; }
   .spatial-overlay:xr-overlay { background: transparent !important; }
-  .spatial-overlay-top, .spatial-overlay-controls { position: absolute; left: 16px; right: 16px; padding: 16px; border: 1px solid var(--spatial-line); border-radius: 4px; background: var(--v3-chrome-solid, #111a2cf7); pointer-events: auto; }
-  .spatial-overlay-top { top: max(16px, env(safe-area-inset-top)); display: flex; gap: 20px; justify-content: space-between; align-items: center; }
-  .spatial-overlay-top strong { font-size: 14px; font-weight: 500; }
-  .spatial-overlay-controls { bottom: max(16px, env(safe-area-inset-bottom)); max-width: 440px; margin: auto; }
-  .spatial-overlay-controls p { font-size: 14px; line-height: 1.5; margin: 0 0 15px; }
+  .spatial-overlay-top { position: absolute; top: max(16px, env(safe-area-inset-top)); right: max(16px, env(safe-area-inset-right)); pointer-events: auto; }
+  .spatial-overlay .spatial-overlay-top button { background: var(--v3-chrome-solid, #111a2cf7); }
+  .spatial-overlay-bottom { position: absolute; left: max(16px, env(safe-area-inset-left)); bottom: max(16px, env(safe-area-inset-bottom)); width: min(340px, calc(100% - max(16px, env(safe-area-inset-left)) - max(16px, env(safe-area-inset-right)))); display: grid; gap: 8px; }
+  .spatial-overlay-controls { padding: 0 14px; border: 1px solid var(--spatial-line); border-radius: 3px; background: var(--v3-chrome-solid, #111a2cf7); pointer-events: auto; }
+  .spatial-overlay-controls summary { min-height: 44px; }
+  .spatial-placement-options { max-height: min(240px, 32dvh); overflow: auto; padding-bottom: 12px; }
+  .spatial-placement-options > div { display: flex; flex-wrap: wrap; gap: 8px; }
+  .spatial-overlay-controls p { font-size: 12px; line-height: 1.5; margin: 0 0 12px; }
+  .spatial-photo-actions { display: flex; flex-wrap: wrap; gap: 8px; pointer-events: auto; }
+  .spatial-photo-actions:has(> [hidden]:only-child), .spatial-photo-actions:not(:has(> :not([hidden]))) { display: none; }
+  .spatial-photo-actions button { background: var(--v3-chrome-solid, #111a2cf7); font-size: 12px; }
+  .spatial-photo-actions button[data-spatial-photo-capture] { background: var(--spatial-accent); color: var(--spatial-bg); border-color: var(--spatial-accent); }
+  .spatial-photo-actions button:disabled { opacity: .55; cursor: wait; }
+  .spatial-capture-status { margin: 0; padding: 8px 12px; color: var(--spatial-ink); background: var(--v3-chrome-solid, #111a2cf7); font-size: 12px; line-height: 1.4; }
+  .spatial-capture-status:empty { display: none; }
+  .spatial-photo-content { padding-bottom: 20px; }
+  .spatial-photo-content p { margin: 0 0 12px; color: var(--spatial-muted); font-size: 12px; line-height: 1.5; }
+  .spatial-photo-content button, .spatial-photo-content a { display: inline-flex; align-items: center; min-height: 44px; padding: 8px 12px; border: 1px solid var(--spatial-line); border-radius: 3px; background: var(--spatial-well); color: var(--spatial-ink); font-size: 12px; text-decoration: none; cursor: pointer; }
+  .spatial-photo-content [role="status"] { margin: 12px 0; }
+  [data-spatial-photo-preview] { width: 100%; max-height: 50dvh; object-fit: contain; margin: 12px 0; }
+  @media(orientation: landscape) and (max-height: 540px) {
+    .spatial-overlay-bottom { width: min(320px, 48vw); gap: 5px; }
+    .spatial-overlay-bottom :global(.artwork-label) { padding: 10px 12px; }
+    .spatial-overlay-bottom :global(.artwork-label-title) { font-size: 15px; }
+    .spatial-overlay-controls[open] { position: fixed; right: max(16px, env(safe-area-inset-right)); bottom: max(16px, env(safe-area-inset-bottom)); width: min(340px, 44vw); }
+  }
   .spatial-overlay label { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; font-size: 12px; }
   .spatial-overlay input { flex: 1; min-width: 0; }
   .spatial-overlay button { min-height: 44px; padding: 8px 15px; border: 1px solid var(--spatial-line); border-radius: 3px; background: transparent; color: var(--spatial-ink); cursor: pointer; }
-  .spatial-overlay-controls > div { display: flex; flex-wrap: wrap; gap: 10px; }
   @media(max-width: 800px) { .spatial-open { font-size: 10px; } }
   @media(max-width: 540px) {
     .spatial-dialog { width: calc(100vw - 20px); max-height: calc(100vh - 20px); max-height: calc(100dvh - 20px); }
