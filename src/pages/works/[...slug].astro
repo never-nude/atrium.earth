@@ -51,10 +51,12 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
       spatialViewing={work.spatialAccess.enabled}
       museumLabel={museumLabelFor(work)}
       spatialAssetSha256={work.spatialAccess.assetSha256}
+      spatialDimensionStatus={work.spatialAccess.status}
       spatialLabel={work.spatialAccess.label}
+      spatialSizeLabel={work.spatialAccess.sizeLabel}
       spatialDefaultMaxExtentMeters={work.spatialAccess.defaultMaxExtentMeters}
       spatialUnavailableNote={work.spatialAccess.enabled ? undefined : work.spatialAccess.note}
-      spatialReference={work.spatialAccess.verified ? work.spatialReference : null}
+      spatialReference={work.spatialAccess.reference}
       displaySupport={work.displaySupport}
       spatialNote={work.spatialAccess.verified ? `${work.spatialAccess.sizeLabel}. ${work.spatialNote}` : work.spatialAccess.note}
       posterLoading="eager"
@@ -132,7 +134,7 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
     </div>
 
     <dl class="v3-facts">
-      <div id="size-verification" tabindex="-1"><dt>AR / VR</dt><dd><strong style={!work.spatialAccess.verified && work.spatialAccess.enabled ? 'color: #ffaaa3' : undefined}>{work.spatialAccess.label}</strong>{work.spatialAccess.enabled && ` · ${work.spatialAccess.sizeLabel}.`} {work.spatialAccess.note}</dd></div>
+      <div id="size-verification" tabindex="-1"><dt>AR / VR</dt><dd><strong class="v3-dimension-status" data-dimension-status={work.spatialAccess.status}>{work.spatialAccess.label}{work.spatialAccess.enabled && ` · ${work.spatialAccess.sizeLabel}`}</strong>. {work.spatialAccess.note}{work.spatialAccess.status === 'approximate' && work.spatialAccess.sourceText && <small class="v3-estimate-evidence">Listed dimensions / description: {work.spatialAccess.sourceText}{work.spatialAccess.sourceUrl && <> <a href={work.spatialAccess.sourceUrl}>Source ↗</a></>}</small>}</dd></div>
       {facts.map(([label, value]) => <div><dt>{label}</dt><dd>{label === 'Dimensions'
         ? <DimensionValue value={work.dimensions} note={work.dimensionsNote} sourceUrl={work.dimensionsSourceUrl} />
         : value}</dd></div>)}
@@ -171,3 +173,7 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
     </section>
   )}
 </V3Layout>
+
+<style>
+  .v3-estimate-evidence { display: block; margin-top: 8px; font-size: 12px; line-height: 1.6; color: var(--v3-muted); }
+</style>

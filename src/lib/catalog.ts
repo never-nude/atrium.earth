@@ -13,6 +13,7 @@ import rawIdentityCorrections from '../data/identity-corrections.json';
 import { physicalDimensionsFor } from './physical-dimensions.mjs';
 import { spatialEligibilityFor } from './spatial-eligibility.mjs';
 import { spatialAccessFor } from './spatial-access.mjs';
+import { approximateDimensionsFor } from './approximate-dimensions.mjs';
 import { assignWing } from './assignWing';
 import type { WingId } from '../data/wings';
 
@@ -132,7 +133,7 @@ export type Work = {
     assetSha256?: string;
   };
   displaySupport: { kind: string; height?: number; note: string } | null;
-  spatialAccess: { enabled: boolean; verified: boolean; label: string; sizeLabel: string; note: string; defaultMaxExtentMeters?: number; assetSha256?: string };
+  spatialAccess: { enabled: boolean; verified: boolean; status: 'verified' | 'approximate' | 'unknown'; label: string; sizeLabel: string; note: string; defaultMaxExtentMeters?: number; assetSha256?: string; reference?: { axis: string; meters: number; extentFraction?: number; estimated?: boolean }; sourceText?: string; sourceUrl?: string };
   accession: string;
   creditLine: string;
   rights: string;
@@ -611,6 +612,10 @@ function normalize(raw: RawWork, fallbackIndex: number): Work {
     orientation: rawOrientations[raw.slug],
     spatialReference: physicalDimensions.spatialReference,
   }, rawSpatialEligibility[raw.slug]);
+  const approximation = spatialEligibility.enabled ? null : approximateDimensionsFor({
+    work: raw, record: dimensionRecord, previewUrl: preview?.url,
+    orientation: rawOrientations[raw.slug], spatialReference: physicalDimensions.spatialReference,
+  });
 
   const tags = [
     era,
@@ -651,7 +656,7 @@ function normalize(raw: RawWork, fallbackIndex: number): Work {
     materialAppearance,
     ...physicalDimensions,
     spatialEligibility,
-    spatialAccess: spatialAccessFor(spatialEligibility, preview?.url, (rawSpatialDisplayDefaults as Record<string, { maxExtentMeters: number }>)[raw.slug]),
+    spatialAccess: spatialAccessFor(spatialEligibility, preview?.url, (rawSpatialDisplayDefaults as Record<string, { maxExtentMeters: number }>)[raw.slug], approximation, physicalDimensions.spatialReference),
     displaySupport: (rawDisplayRecommendations as Record<string, { kind: string; height?: number; note: string }>)[raw.slug] || null,
     accession: clean(raw.accession),
     creditLine: clean(raw.attribution),

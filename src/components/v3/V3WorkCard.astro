@@ -22,7 +22,7 @@ const spatialAccess = work.spatialAccess?.enabled ? work.spatialAccess : null;
   data-place={data.place}
   data-material={data.material}
   data-maker={data.maker}
-  data-size={spatialAccess ? (spatialAccess.verified ? 'verified' : 'unverified') : undefined}
+  data-size={spatialAccess?.status}
 >
   <a href={withBase(v3WorkRoute(work))}>
     <div class="v3-card__image v3-float" style={`view-transition-name: w-${work.id};`}>
@@ -40,16 +40,16 @@ const spatialAccess = work.spatialAccess?.enabled ? work.spatialAccess : null;
       <h3>{work.title}</h3>
       {detail && <p>{detail}</p>}
       {spatialAccess && (
-        <div class:list={['v3-card__spatial-reference', { 'v3-card__spatial-reference--unverified': !spatialAccess.verified }]}>
+        <div class="v3-card__spatial-reference" data-dimension-status={spatialAccess.status}>
           <span>{!spatial && 'AR / VR · '}{spatialAccess.label}</span>
           <span>{spatialAccess.sizeLabel}</span>
-          {!spatialAccess.verified && <span class="v3-card__spatial-note">Chosen display size; actual dimensions unverified.</span>}
+          {!spatialAccess.verified && <span class="v3-card__spatial-note">{spatialAccess.status === 'approximate' ? 'Estimated from listed dimensions; actual size may vary.' : 'Chosen display size; actual dimensions unknown.'}</span>}
         </div>
       )}
     </div>
   </a>
   {spatial && spatialAccess && (
-    <a class="v3-card__spatial-link" href={withBase(`${v3WorkRoute(work)}#ar-vr`)} aria-label={`View ${work.title} in AR or VR${spatialAccess.verified ? '' : ' — size unverified'}`}>
+    <a class="v3-card__spatial-link" href={withBase(`${v3WorkRoute(work)}#ar-vr`)} aria-label={`View ${work.title} in AR or VR — ${spatialAccess.label}`}>
       View in AR / VR <span aria-hidden="true">↗</span>
     </a>
   )}
