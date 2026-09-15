@@ -223,12 +223,14 @@ export function bindSpatialViewing(element, getContext, activate) {
     try {
       const context = getContext();
       const { USDZExporter } = await import('three/examples/jsm/exporters/USDZExporter.js');
+      const { finishQuickLookAppearance } = await import('./quick-look-appearance-export.mjs');
       const { addQuickLookMuseumLabel } = await import('./quick-look-museum-label.mjs');
-      converted = makeQuickLookScene(context.THREE, context.model, context.box, viewingReference(), supportOptions());
+      converted = makeQuickLookScene(context.THREE, context.model, context.box, viewingReference(), supportOptions(), { exposure: context.renderer?.toneMappingExposure });
       await document.fonts.ready;
       if (version !== exportVersion) return;
       sceneLabel = addQuickLookMuseumLabel(context.THREE, converted.scene, { ...museumLabel, title: museumLabel.title || title });
-      const bytes = await new USDZExporter().parseAsync(converted.scene, { maxTextureSize: 2048, quickLookCompatible: true });
+      const exported = await new USDZExporter().parseAsync(converted.scene, { maxTextureSize: 2048, quickLookCompatible: true });
+      const bytes = finishQuickLookAppearance(exported, converted.scene);
       if (version !== exportVersion) return;
       if (modelUrl) URL.revokeObjectURL(modelUrl);
       modelUrl = URL.createObjectURL(new Blob([bytes], { type: 'model/vnd.usdz+zip' }));
@@ -319,6 +321,7 @@ export function bindSpatialViewing(element, getContext, activate) {
   urlInput.addEventListener('click', () => urlInput.select());
   find('[data-spatial-share]').addEventListener('click', sharePage);
   const root = element.closest('[data-viewer]');
+  root.addEventListener('atrium:appearance-change', () => { exportVersion++; busy = false; invalidateQuickLook(); update(); });
   root.addEventListener('atrium:viewer-ready', () => { invalidateQuickLook(); loadFailed = false; update(); if (!busy && status.textContent === 'Loading the sculpture…') say(''); });
   root.addEventListener('atrium:viewer-error', () => { loadFailed = true; update(); say('The sculpture could not load. Try again, or open this work on another device.'); });
   window.addEventListener('pagehide', (event) => {

@@ -40,7 +40,10 @@ try {
     const model = new THREE.Group();
     const mesh = new THREE.Mesh(new THREE.BoxGeometry(.1, .2, .08), new THREE.MeshStandardMaterial({ color: 0xf7f5ef }));
     mesh.name = 'SculptureFixture'; model.add(mesh);
-    window.modelFixture = { THREE, model, box: new THREE.Box3().setFromObject(model), verifiedAsset: true };
+    mesh.material.vertexColors = true;
+    const colors = new Float32Array(mesh.geometry.attributes.position.count * 3).fill(0.5);
+    mesh.geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+    window.modelFixture = { THREE, renderer: { toneMappingExposure: 0.2 }, model, box: new THREE.Box3().setFromObject(model), verifiedAsset: true };
     bindSpatialViewing(element, () => window.modelFixture, () => {});
   });
   await page.locator('[data-spatial-open]').tap();
@@ -64,6 +67,9 @@ try {
   const archive = unzipSync(bytes);
   const usd = strFromU8(archive['model.usda']);
   assert.match(usd, /def Xform "Artwork"/);
+  assert.match(usd, /def Shader "AtriumVertexColor"/);
+  assert.match(usd, /inputs:diffuseColor.connect = <\/Materials\/Material_\d+\/AtriumVertexColor.outputs:result>/);
+  assert.match(usd, /float4 inputs:scale = \(1, 1, 1, 1\)/, 'Label texture remains full brightness');
   assert.match(usd, /def Xform "SculptureFixture"/);
   assert.match(usd, /def Xform "AtriumMuseumLabel"/);
   assert.match(usd, /def Xform "MuseumLabelFront"/);

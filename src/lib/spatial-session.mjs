@@ -190,7 +190,7 @@ export async function startSpatialSession(context, sessionPromise, mode, overlay
 // Flatten the displayed pose into static meshes for Quick Look. This preserves
 // the placement of skinned scans and splits material groups the USDZ exporter
 // otherwise omits. Originals, textures, and the live viewer are never modified.
-export function makeQuickLookScene(THREE, model, box, reference, supportOptions = {}) {
+export function makeQuickLookScene(THREE, model, box, reference, supportOptions = {}, appearance = {}) {
   const result = new THREE.Group();
   const scale = referenceScaleFor(box, reference);
   result.scale.setScalar(scale);
@@ -249,15 +249,32 @@ export function makeQuickLookScene(THREE, model, box, reference, supportOptions 
         const material = materials[group.materialIndex ?? 0];
         if (!material?.visible) continue;
         if (!material.isMeshStandardMaterial) throw new Error('This surface cannot be exported to AR.');
-        if (!exportedMaterials.has(material)) exportedMaterials.set(material, prepareQuickLookMaterial(material));
+        const colored = material.vertexColors && geometry.hasAttribute('color') && !material.map;
+        const materialKey = `${material.id}:${Boolean(colored)}`;
+        if (!exportedMaterials.has(materialKey)) {
+          const prepared = prepareQuickLookMaterial(material, appearance.exposure);
+          prepared.userData.atriumDisplayColor = Boolean(colored);
+          if (colored) prepared.color.setRGB(1, 1, 1);
+          exportedMaterials.set(materialKey, prepared);
+        }
         let surface = geometry;
-        if (Array.isArray(mesh.material)) {
+        if (Array.isArray(mesh.material) || geometry.hasAttribute('color')) {
           surface = geometry.clone();
-          const indexes = geometry.index ? Array.from(geometry.index.array).slice(group.start, group.start + group.count) : Array.from({ length: group.count }, (_, i) => group.start + i);
-          surface.setIndex(indexes); surface.clearGroups();
           geometries.add(surface);
         }
-        const item = new THREE.Mesh(surface, exportedMaterials.get(material));
+        if (Array.isArray(mesh.material)) {
+          const indexes = geometry.index ? Array.from(geometry.index.array).slice(group.start, group.start + group.count) : Array.from({ length: group.count }, (_, i) => group.start + i);
+          surface.setIndex(indexes); surface.clearGroups();
+        }
+        if (colored) {
+          const gain = Number.isFinite(appearance.exposure) && appearance.exposure >= 0 ? appearance.exposure : 1;
+          const colors = surface.getAttribute('color');
+          for (let i = 0; i < colors.count; i++) colors.setXYZ(i,
+            colors.getX(i) * material.color.r * gain,
+            colors.getY(i) * material.color.g * gain,
+            colors.getZ(i) * material.color.b * gain);
+        } else if (!material.vertexColors) surface.deleteAttribute('color');
+        const item = new THREE.Mesh(surface, exportedMaterials.get(materialKey));
         item.name = mesh.name;
         result.add(item);
       }

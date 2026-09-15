@@ -8,6 +8,12 @@ The core AR implementation follows the accepted **Milestone Venus** build, prese
 
 Portrait entry works directly; the site neither locks orientation nor requires turning the phone before starting. Native camera orientation and placement belong to Quick Look. Turning the page to landscape and back does not invalidate its prepared sculpture or force another export. WebXR still delegates camera poses and projection to the device. Actual iPhone rotation, placement, and photography require a physical-device check; a resized browser fixture is not evidence of native AR tracking quality.
 
+## Artwork appearance
+
+Native export copies the resolved page materials, including color added to STL geometry, and applies the current page exposure to artwork diffuse color and emission. Untextured vertex coloring is multiplied by the page material color and explicitly connected to the USD surface through `displayColor`; exporting an unbound primvar is insufficient. Textures, UVs, roughness, and metalness remain intact. The native label and display stand are not exposure-adjusted. Changing page brightness invalidates the prepared AR file.
+
+This addresses color loss and washed-out defaults; Quick Look still supplies its own lighting and tone mapping, so the same work can look different under different real-world illumination. WebXR retains the page renderer and must not receive export compensation a second time. Check native results on an iPhone, particularly The Thinker (bronze/patina) and The Wrestlers (marble), in both orientations.
+
 ## Museum labels
 
 The shared artwork label uses title, maker, period, region, and material from the catalogue, omitting unknown placeholders. It appears beside the AR launch with Atrium's Inter typography. It does not add new historical claims or include renderer material profiles, institutions, or display-size defaults.
