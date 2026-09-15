@@ -43,8 +43,9 @@ export function addQuickLookArtworkLabel(THREE, scene, label) {
 // Apple Preliminary USD behaviors, supported by AR Quick Look:
 // https://developer.apple.com/documentation/usd/lookatcameraaction
 // https://developer.apple.com/documentation/usd/groupaction
-// Free look (zero upVector) also follows camera elevation, useful above small works:
-// https://engine.needle.tools/docs/how-to-guides/everywhere-actions/
+// Match the stage's Y-up axis so the plaque turns horizontally without banking
+// or pitching as the camera moves. Zero allows the unwanted free-look tilt.
+// https://developer.apple.com/documentation/usd/upvector
 function cameraFacingBehavior(name) {
   if (!/^AtriumArtworkLabel_[A-Za-z0-9_]+$/.test(name)) throw new Error('Invalid artwork label target');
   return `
@@ -67,7 +68,7 @@ function cameraFacingBehavior(name) {
             rel affectedObjects = [ </Root/Scenes/Scene/${name}> ]
             uniform double duration = 1
             uniform vector3d front = (0, 0, 1)
-            uniform vector3d upVector = (0, 0, 0)
+            uniform vector3d upVector = (0, 1, 0)
           }
         }
       }

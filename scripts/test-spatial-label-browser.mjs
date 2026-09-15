@@ -157,6 +157,7 @@ try {
   const usd=strFromU8(archive['model.usda']);
   assert.match(usd,/def Xform "AtriumArtworkLabel_[^"]+"/,'Label is inside the actual USDZ');
   assert.match(usd,/info:id = "LookAtCamera"/);
+  assert.match(usd,/uniform vector3d upVector = \(0, 1, 0\)/,'The native label turns around the vertical axis without free-look tilt');
   assert.match(usd,/uniform bool loops = true/,'Label keeps facing the camera throughout the session');
   assert.match(usd,/rel affectedObjects = \[ <\/Root\/Scenes\/Scene\/AtriumArtworkLabel_[^>]+> \]/,'Camera action targets only the label');
   assert.match(usd,/inputs:emissiveColor.connect/,'Label remains readable independently of room lighting');
@@ -218,7 +219,10 @@ try {
       const fov=Math.min(camera.fov*Math.PI/180,2*Math.atan(Math.tan(camera.fov*Math.PI/360)*width/height));
       const distance=radius/Math.sin(fov/2)*1.15;
       camera.position.copy(center).add(new THREE.Vector3(Math.sin(angle),.35,Math.cos(angle)).normalize().multiplyScalar(distance));
-      camera.lookAt(center);plaque.object.lookAt(camera.position);
+      camera.lookAt(center);
+      // Preview the exported Y-axis constraint: the plaque stays upright even
+      // when the camera is above it. Apple executes this in the native viewer.
+      plaque.object.lookAt(new THREE.Vector3(camera.position.x,plaque.object.position.y,camera.position.z));
       renderer.setSize(width,height);renderer.render(scene,camera);
       const projected=new THREE.Box3().setFromObject(plaque.object);
       let inFrame=true;

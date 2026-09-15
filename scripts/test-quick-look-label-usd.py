@@ -4,7 +4,7 @@ Run test:spatial-label-browser first, then pass its apple-labeled.usdz here.
 This validates USD composition; it does not emulate Apple's native AR runtime.
 """
 import sys
-from pxr import Usd
+from pxr import Usd, UsdGeom
 
 stage = Usd.Stage.Open(sys.argv[1])
 assert stage and stage.GetDefaultPrim().GetName() == "Root"
@@ -20,6 +20,8 @@ assert trigger.GetAttribute("type").Get() == "enter"
 assert group.GetAttribute("loops").Get() is True
 assert group.GetAttribute("performCount").Get() == 0
 assert action.GetAttribute("info:id").Get() == "LookAtCamera"
+assert UsdGeom.GetStageUpAxis(stage) == "Y"
+assert tuple(action.GetAttribute("upVector").Get()) == (0, 1, 0), "Label rotation must preserve the stage's vertical axis"
 targets = action.GetRelationship("affectedObjects").GetTargets()
 assert len(targets) == 1
 label = stage.GetPrimAtPath(targets[0])

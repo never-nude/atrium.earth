@@ -51,8 +51,10 @@ sculpture. It embeds the same five facts in a canvas texture with Atrium typogra
 and the brass accent. The label is a separate scene object, outside the artwork's
 physical-scale transform; the sculpture and any stand keep their exact dimensions.
 An Apple Preliminary USD `SceneTransition` trigger starts a looping
-`LookAtCamera` action targeting only the label. The zero up-vector allows the label
-to face elevated camera views as well as views around the sculpture.
+`LookAtCamera` action targeting only the label. Its up-vector matches the stage's
+vertical Y axis: the plaque stays upright and turns horizontally toward the camera,
+without the unrestricted pitch and banking of the former zero up-vector. Like a
+physical upright plaque, it can still appear foreshortened from above or below.
 
 **Show artwork label beside the sculpture** starts checked. Changing it invalidates
 the prepared USDZ so the next export includes or omits the scene object. Neither
