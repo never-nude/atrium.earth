@@ -1,7 +1,6 @@
 import { referenceScaleFor } from './physical-dimensions.mjs';
 import { createDisplaySupport, supportLayoutFor } from './display-support.mjs';
 import { createScreenArtworkLabel } from './spatial-screen-label.mjs';
-import { bindArtworkGestures } from './spatial-browser-ar-gestures.mjs';
 
 // XR8 supplies real camera frames, 6DoF poses and hit tests on iOS Safari. Atrium
 // owns the UI and draws on the SAME WebGL canvas as the camera. Do not substitute
@@ -79,34 +78,15 @@ export async function startBrowserARSession(context, XR8, overlay, options = {})
   canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none;pointer-events:auto';
   overlay.prepend(canvas);
   const hud = createScreenArtworkLabel(overlay, options.artworkLabel, { visible: false });
-  const labelCorners = [];
-  for (const x of [box.min.x, box.max.x]) for (const y of [box.min.y, box.max.y]) for (const z of [box.min.z, box.max.z]) labelCorners.push(new THREE.Vector3(x, y, z));
-  const labelPoint = new THREE.Vector3();
-  let lastLabelUpdate = -Infinity;
-  const updateLabelPlacement = () => {
-    const now = performance.now();
-    if (!placed || now - lastLabelUpdate < 100) return;
-    lastLabelUpdate = now;
-    const { width, height } = overlay.getBoundingClientRect();
-    const bounds = { left: Infinity, right: -Infinity, top: Infinity, bottom: -Infinity };
-    for (const corner of labelCorners) {
-      labelPoint.copy(corner).applyMatrix4(content.matrixWorld).applyMatrix4(camera.matrixWorldInverse);
-      // A box crossing the camera plane has no reliable finite screen bounds.
-      if (labelPoint.z >= -camera.near) { hud.updatePlacement(null, now); return; }
-      labelPoint.applyMatrix4(camera.projectionMatrix);
-      const x = (labelPoint.x + 1) * width / 2, y = (1 - labelPoint.y) * height / 2;
-      bounds.left = Math.min(bounds.left, x); bounds.right = Math.max(bounds.right, x);
-      bounds.top = Math.min(bounds.top, y); bounds.bottom = Math.max(bounds.bottom, y);
-    }
-    hud.updatePlacement(bounds, now);
-  };
   const reticle = new THREE.Mesh(new THREE.RingGeometry(.07, .09, 40).rotateX(-Math.PI / 2),
     new THREE.MeshBasicMaterial({ color: 0xeccf7a, side: THREE.DoubleSide, depthTest: false }));
   reticle.visible = false; scene.add(reticle);
   let ended = false, started = false, placed = false, tracking = false, captureReady = false;
-  let frameReady = false, stableFrames = 0, viewportDirty = true;
-  // Use the engine's orientation, not a separately sampled motion sensor. Safari
-  // can deliver orientation, video-size and viewport changes on different frames.
+  let frameReady = false, orientationChanged = false, trackingLostAt;
+  const initialLandscape = overlay.clientWidth > overlay.clientHeight;
+  // Start tracking in the chosen orientation. A physical rotation ends this map
+  // and offers a fresh placement; it never silently carries an unreliable pose
+  // into another view. Do not infer tracker readiness from projection ratios.
   let orientation = Number.isFinite(window.orientation) ? window.orientation : window.screen.orientation?.angle;
   let captureRequest, startupTimer, resolveStart, rejectStart;
   let lastStatus = '';
@@ -119,7 +99,7 @@ export async function startBrowserARSession(context, XR8, overlay, options = {})
   };
   const status = text => { if (text !== lastStatus) { lastStatus = text; options.onStatus?.(text); } };
   const captureAvailability = () => {
-    const available = started && placed && tracking && frameReady && !ended;
+    const available = started && placed && tracking && frameReady && !orientationChanged && !ended;
     if (available !== captureReady) { captureReady = available; options.onCaptureAvailable?.(available); }
   };
   const cancelCapture = () => {
@@ -128,7 +108,7 @@ export async function startBrowserARSession(context, XR8, overlay, options = {})
     captureRequest.reject(new DOMException('Photo cancelled.', 'AbortError'));
     captureRequest = undefined;
   };
-  const cleanup = () => {
+  const cleanup = (reason = 'ended') => {
     if (ended) return;
     ended = true;
     clearTimeout(startupTimer);
@@ -136,7 +116,6 @@ export async function startBrowserARSession(context, XR8, overlay, options = {})
     options.signal?.removeEventListener('abort', onAbort);
     document.removeEventListener('visibilitychange', onVisibility);
     resizeObserver.disconnect();
-    gestures.dispose();
     XR8.stop(); XR8.clearCameraPipelineModules();
     hud.dispose();
     setPreview(false);
@@ -153,14 +132,14 @@ export async function startBrowserARSession(context, XR8, overlay, options = {})
     if (saved.canvasStyle === null) canvas.removeAttribute('style'); else canvas.setAttribute('style', saved.canvasStyle);
     saved.canvasParent.insertBefore(canvas, saved.canvasNext);
     resume();
-    options.onEnd?.();
+    options.onEnd?.({ reason });
   };
-  const fail = (error) => { rejectStart?.(error); cleanup(); options.onError?.(error); };
+  const fail = (error) => { if (ended) return; rejectStart?.(error); cleanup('error'); options.onError?.(error); };
   const onAbort = () => { rejectStart?.(new DOMException('Viewing cancelled.', 'AbortError')); cleanup(); };
   const onVisibility = () => { if (document.hidden) onAbort(); };
   const findSurface = () => {
     if (!tracking || !frameReady) return null;
-    const hits = XR8.XrController.hitTest(.5, .58, ['FEATURE_POINT']);
+    const hits = XR8.XrController.hitTest(initialLandscape ? .6 : .5, .58, ['FEATURE_POINT']);
     return hits.find(hit => {
       if (!hit.position || !['x', 'y', 'z'].every(axis => Number.isFinite(hit.position[axis]))
         || !(hit.distance > .1 && hit.distance < 15)
@@ -192,26 +171,31 @@ export async function startBrowserARSession(context, XR8, overlay, options = {})
     status('Placed.');
     captureAvailability();
   };
-  const gestures = bindArtworkGestures({ THREE, canvas, camera, model, anchor,
-    canEdit: () => placed && tracking && frameReady && !ended,
-    getScale: () => displayScale, setScale });
-  const invalidateViewport = () => {
-    frameReady = false; stableFrames = 0; viewportDirty = true;
-    gestures.cancel(); cancelCapture(); captureAvailability();
+  const finishForRotation = () => {
+    if (ended || orientationChanged) return;
+    orientationChanged = true;
+    tracking = false;
+    anchor.visible = false; reticle.visible = false;
+    cancelCapture(); captureAvailability();
+    // Let the engine finish dispatching its current callback before stopping it.
+    queueMicrotask(() => {
+      rejectStart?.(new DOMException('The view rotated.', 'AbortError'));
+      cleanup('orientation');
+    });
   };
   const resize = () => {
+    if (ended || orientationChanged) return;
     const rect = overlay.getBoundingClientRect();
-    if (Number.isFinite(orientation) && (Math.abs(orientation % 180) === 90) !== (rect.width > rect.height)) return false;
+    if ((rect.width > rect.height) !== initialLandscape) { finishForRotation(); return; }
     const ratio = Math.min(2, window.devicePixelRatio || 1);
     const width = Math.max(1, Math.round(rect.width * ratio)), height = Math.max(1, Math.round(rect.height * ratio));
-    viewportDirty = false;
     if (canvas.width !== width || canvas.height !== height) {
       renderer.setSize(width, height, false);
-      return false; // The current pose was computed for the old canvas.
     }
-    return true;
+    // Address-bar/viewport height changes stay in this session. XR8 updates its
+    // own calibrated intrinsics when it observes the canvas size change.
   };
-  const resizeObserver = new ResizeObserver(invalidateViewport);
+  const resizeObserver = new ResizeObserver(resize);
   resizeObserver.observe(overlay); resize();
   document.addEventListener('visibilitychange', onVisibility);
   options.signal?.addEventListener('abort', onAbort, { once: true });
@@ -223,7 +207,6 @@ export async function startBrowserARSession(context, XR8, overlay, options = {})
     end: async () => cleanup(), setScale, setSupportHeight, place,
     rotate: (radians) => { anchor.rotation.y += radians; },
     reposition: () => {
-      gestures.cancel();
       placed = false; anchor.visible = false; cancelCapture(); captureAvailability();
       setPreview(true);
       hud.setVisible(false); placementAvailability(false);
@@ -237,9 +220,8 @@ export async function startBrowserARSession(context, XR8, overlay, options = {})
   try {
     XR8.clearCameraPipelineModules();
     XR8.XrController.configure({ disableWorldTracking: false, scale: 'absolute' });
-    const cameraPipeline = XR8.GlTextureRenderer.pipelineModule();
     XR8.addCameraPipelineModules([
-      { ...cameraPipeline, onRender: (...args) => { if (frameReady) cameraPipeline.onRender?.(...args); } },
+      XR8.GlTextureRenderer.pipelineModule(),
       XR8.XrController.pipelineModule(),
       {
         name: 'atrium-browser-ar',
@@ -255,32 +237,22 @@ export async function startBrowserARSession(context, XR8, overlay, options = {})
           resolveStart(active);
         },
         onDeviceOrientationChange: ({ orientation: engineOrientation }) => {
-          orientation = engineOrientation; invalidateViewport();
+          if (Number.isFinite(engineOrientation) && Number.isFinite(orientation)
+            && ((engineOrientation - orientation) % 360) !== 0) finishForRotation();
         },
-        onCanvasSizeChange: () => { invalidateViewport(); },
-        onVideoSizeChange: () => { invalidateViewport(); },
         onCameraStatusChange: ({ status: cameraStatus, stream }) => {
           if (ended) { stream?.getTracks().forEach(track => track.stop()); return; }
           if (cameraStatus === 'failed') fail(new DOMException('Camera access failed.', 'NotAllowedError'));
         },
         onException: error => fail(error),
-        onUpdate: ({ processCpuResult, frameStartResult }) => {
-          if (ended) return;
+        onUpdate: ({ processCpuResult }) => {
+          if (ended || orientationChanged) return;
           const reality = processCpuResult?.reality;
-          // XR8's pipeline can still contain a pose from the preceding video
-          // orientation. Never draw that pose over a newly rotated camera frame.
-          // Wait for matching display geometry and flush two pipeline updates.
-          const sized = !viewportDirty || resize();
-          const intrinsics = reality?.intrinsics;
-          const projectionAspect = intrinsics && Math.abs(intrinsics[5] / intrinsics[0]);
-          const matches = sized && Number.isFinite(projectionAspect)
-            && Math.abs(projectionAspect / (canvas.width / canvas.height) - 1) < .05;
-          if (!matches) stableFrames = 0;
-          else if (!frameStartResult?.repeatFrame) stableFrames = Math.min(2, stableFrames + 1);
-          frameReady = matches && stableFrames >= 2;
-          if (!frameReady) { tracking = false; captureAvailability(); placementAvailability(false); return; }
-          tracking = reality?.trackingStatus === 'NORMAL';
-          if (reality?.intrinsics && reality.position && reality.rotation) {
+          frameReady = reality?.intrinsics?.length === 16 && reality.position && reality.rotation
+            && [...reality.intrinsics, ...['x', 'y', 'z'].map(axis => reality.position[axis]),
+              ...['x', 'y', 'z', 'w'].map(axis => reality.rotation[axis])].every(Number.isFinite);
+          tracking = Boolean(frameReady && reality.trackingStatus === 'NORMAL');
+          if (frameReady) {
             camera.projectionMatrix.fromArray(reality.intrinsics);
             camera.projectionMatrixInverse.copy(camera.projectionMatrix).invert();
             camera.position.copy(reality.position); camera.quaternion.copy(reality.rotation);
@@ -297,17 +269,24 @@ export async function startBrowserARSession(context, XR8, overlay, options = {})
               status('Surface found. Place when ready.');
             }
             else status('Move slowly to find a surface.');
-          } else if (!tracking) status('Tracking paused. Move slowly.');
-          else if (lastStatus.startsWith('Tracking paused')) status('Placed.');
+          } else if (!tracking) {
+            trackingLostAt ??= performance.now();
+            // Never leave a drifting sculpture on the camera during sustained
+            // tracking loss. The existing anchor can return if tracking recovers.
+            if (performance.now() - trackingLostAt > 400) anchor.visible = false;
+            status('Move slowly to recover tracking.');
+          } else {
+            trackingLostAt = undefined; anchor.visible = true;
+            if (lastStatus.startsWith('Move slowly to recover')) status('Placed.');
+          }
           captureAvailability();
         },
         onRender: () => {
-          if (ended || !started || !frameReady) return;
+          if (ended || !started || !frameReady || orientationChanged) return;
           // The preceding GlTextureRenderer has already drawn the real camera.
           // Reset Three's GL cache, then clear DEPTH only, retaining those pixels.
           renderer.resetState(); renderer.setViewport(0, 0, canvas.width, canvas.height);
           renderer.clearDepth(); renderer.render(scene, camera);
-          updateLabelPlacement();
           if (!captureRequest) return;
           const request = captureRequest; captureRequest = undefined; clearTimeout(request.timer);
           try {

@@ -140,6 +140,7 @@ try {
     bindSpatialViewing(fixture,()=>({THREE,model,box,verifiedAsset:true}),()=>{});
   });
   await native.locator('[data-spatial-open]').click();
+  await native.locator('[data-spatial-viewing-options]').click();
   await native.locator('[data-quick-look-prepare]').click();
   await native.locator('[data-quick-look]:not([hidden])').waitFor();
   const href = await native.locator('[data-quick-look]').getAttribute('href');

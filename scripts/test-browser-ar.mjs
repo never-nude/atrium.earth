@@ -37,7 +37,7 @@ try {
     const original = document.querySelector('[data-spatial]');
     const fixture = original.cloneNode(true); original.replaceWith(fixture);
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setSize(390, 400); fixture.closest('[data-viewer]').append(renderer.domElement);
+    renderer.setSize(390, 400); renderer.domElement.style.maxWidth = '100%'; fixture.closest('[data-viewer]').append(renderer.domElement);
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(60, 390 / 400, .01, 100);
     camera.position.set(0, .4, 1);
@@ -48,21 +48,33 @@ try {
     const grid = new THREE.GridHelper(2, 10);
     scene.add(model, ground, grid, new THREE.HemisphereLight(0xffffff, 0x888888, 3));
     const saved = { parent: model.parent, canvasParent: renderer.domElement.parentNode, camera: camera.clone(), material: model.children[0].material, exposure: renderer.toneMappingExposure };
-    window.fixture = { THREE, renderer, scene, camera, model, box, ground, grid, verifiedAsset: true, suspend() { window.suspended = true; return () => { window.suspended = false; }; } };
+    window.fixture = { THREE, renderer, scene, camera, model, box, ground, grid, verifiedAsset: true, suspend() {
+      window.suspended = true;
+      return () => {
+        window.suspended = false;
+        // Match the ordinary viewer's responsive resume, so a stale fixed-size
+        // test canvas cannot expand Safari's layout viewport after AR exits.
+        const width = fixture.closest('[data-viewer]').clientWidth;
+        renderer.setSize(width, 400); camera.aspect = width / 400; camera.updateProjectionMatrix();
+      };
+    } };
     window.fixtureSaved = saved;
     bindSpatialViewing(fixture, () => window.fixture, () => {});
   });
   await page.locator('[data-spatial-open]').click();
-  assert.match(await page.locator('[data-spatial-ar]').textContent(), /Place in your room/);
-  // Load the REAL pinned engine and compile its SLAM WebAssembly locally.
-  const version = await page.evaluate(async () => {
-    const { loadBrowserAREngine } = await import('/src/lib/spatial-browser-ar-loader.mjs');
-    const engine = await loadBrowserAREngine();
-    return { version: engine.version(), initialized: engine.isInitialized() };
-  });
+  assert.ok(await page.locator('[data-spatial-browser-setup]').isVisible(), 'iPhone opens the focused landscape setup');
+  assert.equal(await page.locator('[data-spatial-start-browser]').isEnabled(), false);
+  assert.equal(await page.evaluate(() => Boolean(window.XR8)), false, 'Opening the setup does not initialize a camera engine');
+  await page.screenshot({ path: `${output}/setup-portrait.png` });
+  await page.setViewportSize({ width: 844, height: 390 });
+  await page.waitForFunction(() => !document.querySelector('[data-spatial-start-browser]').disabled);
+  await page.screenshot({ path: `${output}/setup-landscape.png` });
+  // Start the real camera directly through the public landscape entry flow.
+  await page.locator('[data-spatial-start-browser]').tap();
+  await page.waitForFunction(() => Boolean(document.querySelector('[data-browser-ar-canvas]')), null, { timeout: 45000 });
+  const version = await page.evaluate(() => ({ version: window.XR8.version(), initialized: window.XR8.isInitialized() }));
   console.log('Real engine:', version);
   assert.equal(version.initialized, true);
-  await page.locator('[data-spatial-ar]').click();
   await page.waitForFunction(() => document.querySelector('[data-spatial-instructions]').textContent !== 'Loading the camera…', { timeout: 30000 });
   await page.waitForTimeout(1200);
   const real = await page.evaluate(() => ({ status: document.querySelector('[data-spatial-status]').textContent, instruction: document.querySelector('[data-spatial-instructions]').textContent, overlay: !document.querySelector('[data-spatial-overlay]').hidden, camera: Boolean(document.querySelector('[data-browser-ar-canvas]')), suspended: window.suspended }));
@@ -73,9 +85,20 @@ try {
     const { camera, renderer } = window.fixture;
     return Math.abs(camera.projectionMatrix.elements[5] / camera.projectionMatrix.elements[0]
       / (renderer.domElement.width / renderer.domElement.height) - 1) < .05;
-  }), 'The real engine supplies a matching projection and renders through the orientation guard');
+  }), 'The real engine starts directly with landscape camera geometry');
   await page.locator('[data-spatial-exit]').click();
   assert.equal(await page.evaluate(() => window.suspended), false);
+  // The real engine must also be able to clean up and start a fresh landscape
+  // camera session; deterministic callbacks alone cannot verify its lifecycle.
+  await page.locator('[data-spatial-ar]').tap();
+  await page.locator('[data-spatial-start-browser]').tap();
+  await page.waitForFunction(() => Boolean(document.querySelector('[data-browser-ar-canvas]')), null, { timeout: 30000 });
+  await page.waitForFunction(() => {
+    const m = window.fixture.camera.projectionMatrix.elements;
+    return Math.abs(m[5] / m[0] - 844 / 390) < .05;
+  });
+  await page.locator('[data-spatial-exit]').tap();
+  assert.equal(await page.evaluate(() => window.suspended), false, 'Real engine restart releases the camera and scene again');
 
   // Deterministic pose/hit fixtures verify app behavior that needs a moving
   // phone. The real-engine smoke test above is separate; this is not an ARKit test.
@@ -103,7 +126,7 @@ try {
         gl.clearColor(.25, .55, .6, 1); gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
       } }) },
       run({ canvas }) {
-        running = true; window.projectionResets = 0; window.fixtureRenderCount = 0;
+        running = true; window.fixtureRuns = (window.fixtureRuns || 0) + 1; window.projectionResets = 0; window.fixtureRenderCount = 0;
         window.fixtureProjectionAspect = undefined;
         window.fixtureOrientation = innerWidth > innerHeight ? 90 : 0;
         window.rotateFixture = angle => {
@@ -124,7 +147,7 @@ try {
           raf = requestAnimationFrame(tick);
         }; tick();
       },
-      stop() { running = false; cancelAnimationFrame(raf); },
+      stop() { running = false; window.fixtureStops = (window.fixtureStops || 0) + 1; cancelAnimationFrame(raf); },
     };
     // The loader caches the already verified engine object. Replace just its
     // public pipeline methods for deterministic frame and lifecycle testing.
@@ -147,6 +170,7 @@ try {
     console.log('Browser AR viewport:', width, height);
     await page.setViewportSize({ width, height });
     await page.locator('[data-spatial-ar]').click();
+    await page.locator(width > height ? '[data-spatial-start-browser]' : '[data-spatial-start-portrait]').tap();
     await page.waitForFunction(() => window.fixtureRenderCount >= 4 && !document.querySelector('[data-spatial-confirm-placement]').disabled, null, { timeout: 5000 });
     const label = page.locator('[data-spatial-screen-label]');
     const place = page.locator('[data-spatial-confirm-placement]');
@@ -219,7 +243,8 @@ try {
     await page.evaluate(() => window.readArtworkPixel());
     assert.equal(await page.locator('[data-spatial-size]').textContent(), '100%');
     await adjust.tap();
-    if (width === 390) {
+    if (width === 844) {
+      await page.screenshot({ path: `${output}/landscape-adjustments.png` });
       const center = await page.evaluate(() => {
         const { THREE, model, camera } = window.fixture;
         const p = new THREE.Box3().setFromObject(model).getCenter(new THREE.Vector3()).project(camera);
@@ -228,59 +253,29 @@ try {
       const initial = await page.evaluate(() => window.fixture.model.parent.parent.position.toArray());
       await page.mouse.move(center.x, center.y); await page.mouse.down();
       await page.mouse.move(center.x + 24, center.y, { steps: 4 }); await page.mouse.up();
-      const dragged = await page.evaluate(() => window.fixture.model.parent.parent.position.toArray());
-      assert.ok(Math.abs(dragged[0] - initial[0]) > .01, 'Dragging the actual sculpture moves its world position');
-      assert.equal(dragged[1], initial[1], 'Dragging preserves the support surface height');
-      const cdp = await context.newCDPSession(page);
-      const touches = spread => [center.x - spread, center.x + spread].map((x, id) => ({ x, y: center.y, id, radiusX: 1, radiusY: 1, force: 1 }));
-      await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: touches(24) });
-      await cdp.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: touches(36) });
-      await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
-      assert.equal(await page.locator('[data-spatial-size]').textContent(), '150%', 'Two-finger pinch resizes the already placed work');
-      await cdp.detach();
-      await adjust.tap(); await page.locator('[data-spatial-reset-size]').tap(); await adjust.tap();
+      assert.deepEqual(await page.evaluate(() => window.fixture.model.parent.parent.position.toArray()), initial,
+        'Handling the phone or swiping the camera cannot move a placed work');
+      await page.evaluate(() => { window.fixturePose.trackingStatus = 'LIMITED'; });
+      await page.waitForFunction(() => !window.fixture.model.parent.parent.visible);
+      assert.equal(await page.locator('[data-spatial-photo-capture]').isEnabled(), false);
+      assert.ok(await label.isVisible(), 'The objective label remains available when tracking is temporarily lost');
+      const message = await page.locator('[data-spatial-capture-status]').boundingBox();
+      const card = await label.boundingBox();
+      assert.ok(message.y >= card.y + card.height, 'Tracking guidance stays below the label in its corner');
+      await page.evaluate(() => { window.fixturePose.trackingStatus = 'NORMAL'; });
+      await page.waitForFunction(() => window.fixture.model.parent.parent.visible && !document.querySelector('[data-spatial-photo-capture]').disabled);
     }
     const before = await label.boundingBox();
     const footer = await page.locator('[data-spatial-photo-capture]').boundingBox();
     assert.ok(before.y > 0 && before.y + before.height <= footer.y - 12, 'Bottom label stays above and clear of the shutter row');
     assert.ok((await page.locator('[data-spatial-exit]').boundingBox()).y >= height - 78, 'Exit is in the bottom row; no HUD control remains at the top');
-    if (width === 844) {
-      const adaptive = await page.evaluate(async () => {
-        const { createScreenArtworkLabel } = await import('/src/lib/spatial-screen-label.mjs');
-        const overlay = document.querySelector('[data-spatial-overlay]');
-        const metadata = JSON.parse(document.querySelector('[data-spatial]').dataset.artworkLabelJson);
-        const hud = createScreenArtworkLabel(overlay, metadata), canvas = overlay.lastElementChild;
-        const read = () => ({ side: canvas.dataset.labelPosition, ...canvas.getBoundingClientRect().toJSON() });
-        const rightWork = { left: 550, right: 700, top: 110, bottom: 270 };
-        const leftWork = { left: 100, right: 250, top: 110, bottom: 270 };
-        const wideWork = { left: 160, right: 684, top: 85, bottom: 145 };
-        hud.updatePlacement(rightWork, 0); const left = read();
-        hud.updatePlacement(leftWork, 100); hud.updatePlacement(leftWork, 300); const pending = read();
-        hud.updatePlacement(leftWork, 500); const right = read();
-        hud.updatePlacement({ ...leftWork, left: 104, right: 254 }, 900); const steady = read();
-        hud.updatePlacement(wideWork, 1000); hud.updatePlacement(wideWork, 1400); const below = read();
-        const crowdedWork = { left: 0, right: 844, top: 0, bottom: 390 };
-        hud.updatePlacement(crowdedWork, 1500); hud.updatePlacement(crowdedWork, 1900); const crowded = read();
-        const lowWork = { left: 550, right: 700, top: 260, bottom: 290 };
-        hud.updatePlacement(lowWork, 2000); hud.updatePlacement(lowWork, 2800); const low = read();
-        hud.dispose();
-        return { left, pending, right, steady, below, crowded, low };
-      });
-      assert.equal(adaptive.left.side, 'left'); assert.ok(adaptive.left.right <= 550 - 24);
-      assert.deepEqual(adaptive.pending, adaptive.left, 'Brief changes do not make the label jump');
-      assert.equal(adaptive.right.side, 'right'); assert.ok(adaptive.right.left >= 250 + 24);
-      assert.deepEqual(adaptive.steady, adaptive.right, 'Minor camera motion preserves a clear label position');
-      assert.equal(adaptive.below.side, 'below'); assert.ok(adaptive.below.top >= 145 + 24);
-      assert.ok(adaptive.crowded.top > 100 && adaptive.crowded.bottom <= footer.y - 12, 'Crowded views use the bottom, never a top banner or the shutter row');
-      assert.equal(adaptive.low.side, 'left'); assert.ok(adaptive.low.right <= 550 - 24 && adaptive.low.bottom >= 260, 'Side space remains usable when the sculpture is low in a landscape view');
-    }
     await page.evaluate(() => { window.fixturePose.position.x = .1; window.fixturePose.rotation.y = .1; window.fixturePose.rotation.w = Math.sqrt(.99); });
     await page.locator('.spatial-overlay-controls').evaluate(element => { element.open = true; });
     await page.locator('[data-spatial-turn]').click();
     await page.locator('.spatial-overlay-controls').evaluate(element => { element.open = false; });
     const moved = await label.boundingBox();
-    assert.equal(moved.width, before.width); assert.equal(moved.height, before.height);
-    assert.equal(await label.evaluate(element => getComputedStyle(element).transform), 'none', 'Adaptive label stays upright while the camera and sculpture move');
+    assert.deepEqual(moved, before, 'The label stays in its lower corner as the camera and work move');
+    assert.equal(await label.evaluate(element => getComputedStyle(element).transform), 'none', 'The fixed label stays upright while the camera and sculpture move');
     await page.waitForTimeout(800);
     const shutter = page.locator('[data-spatial-photo-capture]');
     assert.ok(await shutter.evaluate(element => { const rect = element.getBoundingClientRect(); return element.contains(document.elementFromPoint(rect.x + rect.width / 2, rect.y + rect.height / 2)); }), 'Shutter is touchable');
@@ -325,59 +320,84 @@ try {
       assert.deepEqual(catalogue.failures, [], 'Every enabled artwork label fits the small landscape viewport above the controls');
       console.log('Catalogue HUDs checked:', catalogue.count);
     }
-    if (width === 390) {
+    if (width === 844) {
       const anchor = await page.evaluate(() => window.fixture.model.parent.parent.position.toArray());
-      // Safari can report the new viewport before the orientation/video/pose.
-      await page.evaluate(() => { window.fixtureProjectionAspect = 390 / 844; });
+      await page.setViewportSize({ width: 844, height: 340 });
+      await page.waitForFunction(() => document.querySelector('[data-browser-ar-canvas]')?.height === 340);
+      assert.deepEqual(await page.evaluate(() => window.fixture.model.parent.parent.position.toArray()), anchor,
+        'Safari toolbar height changes preserve placement');
+      assert.equal(await page.evaluate(() => window.projectionResets), 1, 'Toolbar changes do not recenter the camera');
       await page.setViewportSize({ width: 844, height: 390 });
-      await page.waitForTimeout(100);
-      assert.equal(await page.locator('[data-spatial-photo-capture]').isEnabled(), false, 'Capture pauses while display and engine orientations disagree');
-      await page.evaluate(() => { window.rotateFixture(90); });
-      await page.waitForFunction(() => { const c = document.querySelector('[data-browser-ar-canvas]'); return c.width > c.height; });
-      const frames = await page.evaluate(() => window.fixtureRenderCount);
-      await page.waitForTimeout(100);
-      assert.equal(await page.evaluate(() => window.fixtureRenderCount), frames, 'A stale portrait projection is never drawn over the landscape camera');
-      await page.evaluate(() => { window.fixtureProjectionAspect = undefined; });
-      await page.waitForFunction(() => !document.querySelector('[data-spatial-photo-capture]').disabled);
-      assert.deepEqual(await page.evaluate(() => window.fixture.model.parent.parent.position.toArray()), anchor, 'Live phone rotation preserves the placed world anchor');
-      assert.equal(await page.evaluate(() => window.projectionResets), 1, 'Rotation never resets the tracked camera origin');
-      assert.ok(await page.evaluate(() => {
-        const { camera, renderer } = window.fixture;
-        const viewport = renderer.getViewport(new window.fixture.THREE.Vector4());
-        return Math.abs(camera.projectionMatrix.elements[5] / camera.projectionMatrix.elements[0] - 844 / 390) < 1e-6
-          && viewport.z === renderer.domElement.width && viewport.w === renderer.domElement.height;
-      }), 'The sculpture projection and renderer viewport match the rotated camera');
-      await page.locator('[data-spatial-photo-capture]').tap();
-      await page.waitForFunction(() => { const img = document.querySelector('[data-spatial-photo-preview]'); return !document.querySelector('[data-spatial-photo-result]').hidden && img.naturalWidth > img.naturalHeight; });
-      await page.screenshot({ path: `${output}/live-rotation.png` });
-      // Also exercise orientation arriving before the viewport, then return to
-      // portrait with the same anchor, scale and active session.
+      const runs = await page.evaluate(() => window.fixtureRuns);
+      // Orientation may arrive before viewport resize. End the old map and
+      // explicitly offer another placement rather than leave a drifting model.
       await page.evaluate(() => { window.rotateFixture(0); });
-      await page.waitForTimeout(80);
-      assert.equal(await page.locator('[data-spatial-photo-capture]').isEnabled(), false);
+      await page.waitForFunction(() => !document.querySelector('[data-spatial-browser-setup]').hidden);
+      assert.equal(await page.locator('[data-browser-ar-canvas]').count(), 0);
+      assert.equal(await page.evaluate(() => window.suspended), false);
       await page.setViewportSize({ width: 390, height: 844 });
-      await page.waitForFunction(() => !document.querySelector('[data-spatial-photo-capture]').disabled);
-      assert.deepEqual(await page.evaluate(() => window.fixture.model.parent.parent.position.toArray()), anchor);
-      await page.evaluate(() => { document.querySelector('.spatial-overlay-controls').open = true; });
+      await page.waitForFunction(() => document.querySelector('[data-spatial-start-browser]').disabled);
+      assert.equal(await page.locator('[data-spatial-start-browser]').isEnabled(), false);
+      assert.match(await page.locator('[data-spatial-setup-status]').textContent(), /view rotated/i);
+      assert.equal(await page.evaluate(() => window.fixtureRuns), runs, 'Rotation never silently restarts the camera');
+      await page.setViewportSize({ width: 844, height: 390 });
+      await page.locator('[data-spatial-start-browser]').tap();
+      await page.waitForFunction(() => !document.querySelector('[data-spatial-confirm-placement]').disabled);
+      assert.equal(await label.isVisible(), false, 'The restarted landscape session requires a fresh placement');
+      await place.tap();
+      assert.equal(await page.evaluate(() => window.fixtureRuns), runs + 1);
+      await page.screenshot({ path: `${output}/landscape-restarted.png` });
+    }
+    if (width === 390) {
+      // The opposite event order is also safe: a viewport change alone is enough
+      // to retire the old pose, even before the engine's orientation callback.
+      await page.setViewportSize({ width: 844, height: 390 });
+      await page.waitForFunction(() => !document.querySelector('[data-spatial-browser-setup]').hidden);
+      assert.equal(await page.locator('[data-browser-ar-canvas]').count(), 0);
+      await page.locator('[data-spatial-start-browser]').tap();
+      await page.waitForFunction(() => !document.querySelector('[data-spatial-confirm-placement]').disabled);
+      await place.tap();
+    }
+    if (width === 844) {
+      await adjust.tap();
       await page.locator('[data-spatial-scale]').evaluate(input => { input.value = '1.25'; input.dispatchEvent(new Event('input', { bubbles: true })); });
       await page.evaluate(() => { window.fixtureHits[0].position = { x: .15, y: .03, z: -.8 }; });
       await page.locator('[data-spatial-place]').tap();
       await page.waitForFunction(() => !document.querySelector('[data-spatial-confirm-placement]').disabled);
-      assert.equal(await label.isVisible(), false, 'Reposition returns to the preview state');
-      assert.ok(await page.evaluate(() => window.fixture.model.children[0].material.opacity < .5));
+      assert.equal(await label.isVisible(), false, 'Move work returns to deliberate placement');
       await place.tap();
-      assert.deepEqual(await page.evaluate(() => window.fixture.model.parent.parent.position.toArray()), [.15, .03, -.8], 'Move work confirms a new surface position after rotation');
-      assert.equal(await page.locator('[data-spatial-size]').textContent(), '125%', 'Moving a work preserves the chosen size');
+      assert.deepEqual(await page.evaluate(() => window.fixture.model.parent.parent.position.toArray()), [.15, .03, -.8]);
+      assert.equal(await page.locator('[data-spatial-size]').textContent(), '125%', 'Explicit repositioning preserves the chosen size');
       await page.evaluate(() => { window.fixtureHits[0].position = { x: 0, y: 0, z: -1 }; });
     }
     await page.locator('[data-spatial-exit]').tap();
     assert.ok(await page.evaluate(() => !window.suspended && window.fixture.model.parent === window.fixtureSaved.parent && window.fixture.renderer.domElement.parentNode === window.fixtureSaved.canvasParent), 'Exit restores model and canvas to the ordinary viewer');
   }
-  await page.evaluate(() => { window.XR8.run = () => { throw new DOMException('Camera denied.', 'NotAllowedError'); }; });
-  await page.locator('[data-spatial-ar]').click();
-  await page.waitForFunction(() => !document.querySelector('.spatial-panel').hidden && document.querySelector('[data-spatial-status]').textContent.includes('Permission'));
+  await page.locator('[data-spatial-ar]').tap();
+  await page.evaluate(() => {
+    window.savedMotion = window.DeviceMotionEvent;
+    window.DeviceMotionEvent = { requestPermission: () => new Promise(resolve => { window.resolveMotion = resolve; }) };
+  });
+  await page.locator('[data-spatial-start-portrait]').tap();
+  assert.match(await page.locator('[data-spatial-setup-status]').textContent(), /Starting the camera/);
+  assert.equal(await page.locator('[data-spatial-start-portrait]').isEnabled(), false, 'Pending permission has visible progress and prevents repeated starts');
+  await page.evaluate(() => { window.resolveMotion('denied'); });
+  await page.waitForFunction(() => document.querySelector('[data-spatial-setup-status]').textContent.includes('Permission'));
+  assert.ok(await page.locator('[data-spatial-setup-status]').isVisible(), 'Permission failures are visible beside Start AR');
+  await page.evaluate(() => { window.DeviceMotionEvent = { requestPermission() { throw new DOMException('Motion denied.', 'NotAllowedError'); } }; });
+  await page.locator('[data-spatial-start-portrait]').tap();
+  assert.match(await page.locator('[data-spatial-setup-status]').textContent(), /Permission/);
+  assert.equal(await page.locator('[data-spatial-start-portrait]').isEnabled(), true, 'Synchronous permission failures can be retried');
+  await page.screenshot({ path: `${output}/entry-permission-error.png` });
+  assert.ok(await page.locator('[data-spatial-browser-setup]').evaluate(element => element.scrollWidth <= element.clientWidth), 'The small-phone error screen wraps without horizontal overflow');
+  const close = await page.locator('[data-spatial-setup-close]').boundingBox();
+  assert.ok(close.x >= 0 && close.x + close.width <= 320, 'The close control remains reachable on a small phone');
+  await page.evaluate(() => { window.DeviceMotionEvent = window.savedMotion; window.XR8.run = () => { throw new DOMException('Camera denied.', 'NotAllowedError'); }; });
+  await page.locator('[data-spatial-start-portrait]').tap();
+  await page.waitForFunction(() => !document.querySelector('[data-spatial-browser-setup]').hidden && document.querySelector('[data-spatial-setup-status]').textContent.includes('Permission'));
   assert.equal(await page.evaluate(() => window.suspended), false, 'Camera startup failure restores the normal viewer');
-  assert.ok(await page.locator('[data-quick-look-prepare]').isVisible(), 'Apple AR fallback remains available after a camera failure');
+  await page.locator('[data-spatial-viewing-options]').tap();
+  assert.ok(await page.locator('[data-quick-look-prepare]').isVisible(), 'Apple AR remains available under More viewing options');
   assert.deepEqual(errors, []);
-  console.log('Browser AR HUD, capture, placement and cleanup checks passed. Physical iPhone tracking still requires device validation.');
+  console.log('Landscape entry, fixed labels, camera capture, deliberate controls, orientation restart and failure recovery passed. Physical iPhone tracking still requires device validation.');
 } finally { await browser.close(); await server.stop(); }

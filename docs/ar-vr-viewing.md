@@ -52,7 +52,14 @@ only when the visitor requests a photo. VR can capture its rendered scene withou
 camera access. A completed photo can be reviewed, downloaded or shared; taking it
 does not reset the sculpture placement. Photos remain on the visitor's device.
 
-**iPhone browser AR:** scanning shows one short instruction and a dim, disabled
+**iPhone browser AR:** the initial screen focuses on the work and landscape setup.
+Turn the phone sideways, then explicitly tap **Start AR**; **Use portrait** is a
+secondary option. The camera engine is not initialized merely by opening options.
+Starting/progress and permission errors appear beside the Start button. The fuller
+VR, Apple AR and photo options are available through **More viewing options**.
+The documented/default starting size is retained.
+
+Once the camera starts, scanning shows one short instruction and a dim, disabled
 **Place work** button. Normal tracking and a valid placement point below the camera enable
 the gold button, a faint sculpture preview, and its proposed height × width ×
 depth. Dimensions come from the oriented model bounds at the prepared display
@@ -71,39 +78,37 @@ and the placement button permanently disabled. Missing/zero feature-point rotati
 are accepted; supplied steep rotations, invalid coordinates/distances, points above
 the camera and lost tracking are rejected. The sculpture always stays upright.
 
-Only after placement, the small translucent HUD appears beside or below the work.
-The eight corners of the sculpture's oriented bounds are projected into the camera
-view, and the label picks the largest free region to its left, right or below it,
-with a 24-pixel gap. The upper fifth of the camera view and bottom control row stay
-clear. The label remains still within a usable area; another area must offer 30%
-more space for 650 ms before it switches. An obstructed label can move after 350 ms.
-When the work fills the view, the bottom corner with the least overlap is used.
-The label stays upright and uses the same compact width in portrait and landscape,
-with safe-area insets; longer records use smaller type. A round shutter sits at bottom
-center, with a compact **Move / size** control on the left and photo review and exit
-on the right. Its drawer contains the size slider, current display dimensions,
-**Move work**, turn and reset controls. A drag beginning on the sculpture moves it
-along its existing horizontal surface; a two-finger pinch resizes it. The model's
-base stays on the surface when resized, and separate furniture is not scaled.
-**Move work** returns to surface detection for placement elsewhere; confirming a
-new location preserves the chosen size. Placement
-guidance and dimensions clear after placement; repositioning restores the preview
-flow. Camera motion can change the label's chosen screen area, but never rotates
-its text. Rotation cancels an unfinished gesture and waits for the engine's
-orientation and the viewport to agree before resizing the canvas. Camera and
-sculpture rendering resume together after the projection matches the canvas and
-two fresh pipeline updates have cleared pending frames. This handles Safari
-delivering viewport, orientation and video-size changes at different times;
-the camera origin is configured only at session start, and the world anchor and
-display size are never changed by rotation. Capture pauses during the transition.
-Capture copies the composited camera and sculpture in the render
-callback, then stamps the HUD's exact pixels at its measured screen position.
-Photo encoding does not stamp a second label. Exit, interruption and startup errors
-stop the camera and restore the ordinary viewer's model, canvas and rendering state.
+Only after placement, the compact translucent label appears in a fixed lower-left
+corner, above the control row. It retains title, maker, time period, region and
+material where recorded, using Atrium's Inter typography, slate background, warm
+white text and thin brass rule. It never follows or rotates with the sculpture.
+Landscape hit testing aims slightly right of center to leave room for the label.
+The top stays clear. Tracking guidance stays below the label in the same corner.
+The shutter remains unobstructed at bottom center; **Move / size**, photo review
+and exit are secondary controls. The closed adjustment drawer retains the slider,
+current display dimensions, explicit repositioning, turn and reset actions.
+Dragging or pinching the camera view does not manipulate the work.
+
+A browser AR session starts tracking in its selected orientation. A physical
+orientation change ends the old session, restores the ordinary viewer, and shows
+**Start AR** with an explanation that the work needs to be placed again. Neither
+viewport-first nor engine-orientation-first event ordering carries an old pose
+into the new orientation. A new camera session requires an explicit Start tap.
+Safari toolbar height changes within the same orientation only resize the canvas;
+they do not end the session or reset the anchor. The earlier projection-aspect
+heuristic and camera rendering gate were removed; the engine owns its calibrated
+camera projection and camera rendering. Sustained tracking loss hides the work
+after 400 ms and disables capture until normal tracking recovers, retaining the
+label and placement. This avoids presenting a drifting work as a valid placement.
+
+Capture copies the composited camera and sculpture in the render callback, then
+stamps the label's exact pixels in its fixed corner. Photo encoding does not stamp
+a second label. Exit, interruption and startup errors stop the camera and restore
+the ordinary viewer's model, canvas and rendering state.
 
 The runtime is pinned to `@8thwall/engine-binary@1.0.0`. `predev` and `prebuild`
 copy its unmodified distribution and licence to `public/external/xr/`; the browser
-loads the SLAM chunk only when opening iPhone AR options. Camera and motion access
+loads the SLAM chunk only after the explicit Start AR tap. Camera and motion access
 begin on the visitor's explicit start gesture. No account or hosted runtime is
 required. The implementation uses the documented
 [camera pipeline](https://8thwall.org/docs/api/engine/camerapipelinemodule),
@@ -139,10 +144,11 @@ After `npm run build`, `npm run test:browser-ar` loads the actual self-hosted en
 compiles its SLAM WebAssembly and starts its camera pipeline with Chromium's test
 camera. Separate deterministic camera-pose and hit-test fixtures check deliberate
 placement with zero/missing hit rotations, rejected wall/lost/stale hits, proposed
-dimensions, rendered preview/placed pixels, adaptive HUD spacing and stability,
-post-placement slider and touch-pinch resizing, dragging, moving to another
-surface, both orderings of viewport/orientation events, rejection of stale
-projection frames, photo pixels, all enabled catalogue
+dimensions, rendered preview/placed pixels, fixed label position, slider resizing,
+non-manipulating camera gestures, explicit repositioning, tracking-loss visibility,
+both orderings of orientation changes with explicit session restart, same-orientation
+toolbar resizing, visible synchronous/asynchronous entry failures, photo pixels,
+all enabled catalogue
 labels on a small landscape screen, startup failure and viewer restoration. These
 fixtures do not validate physical iPhone tracking. Real-device acceptance testing
 remains necessary; no iPhone or iOS simulator is available in the workspace.
