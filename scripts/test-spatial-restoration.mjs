@@ -49,7 +49,10 @@ try {
   assert.ok(await prepare.isEnabled(), 'Portrait entry needs no orientation/setup step');
   await prepare.tap();
   const link = page.locator('[data-quick-look]:not([hidden])');
-  await link.waitFor();
+  await link.waitFor().catch(async error => {
+    console.error('Native preparation state:', await page.locator('[data-spatial-status]').textContent(), errors);
+    throw error;
+  });
   const href = await link.getAttribute('href');
   const parameters = new URLSearchParams(href.split('#')[1]);
   assert.deepEqual([...parameters.keys()].sort(), ['allowsContentScaling', 'canonicalWebPageURL']);
@@ -62,9 +65,13 @@ try {
   const usd = strFromU8(archive['model.usda']);
   assert.match(usd, /def Xform "Artwork"/);
   assert.match(usd, /def Xform "SculptureFixture"/);
-  assert.doesNotMatch(usd, /AtriumArtworkLabel|LookAtCamera|Displayfurniture/);
-  assert.ok(Object.keys(archive).every(name => !name.startsWith('textures/')), 'Untextured sculpture adds no label image to USDZ');
-  await writeFile(`${output}/sculpture-only.usdz`, bytes);
+  assert.match(usd, /def Xform "AtriumMuseumLabel"/);
+  assert.match(usd, /def Xform "MuseumLabelFront"/);
+  assert.match(usd, /def Xform "MuseumLabelBack"/);
+  assert.doesNotMatch(usd, /LookAtCamera|Preliminary_Behavior|Displayfurniture/);
+  assert.equal(Object.keys(archive).filter(name => name.startsWith('textures/')).length, 1, 'The native scene includes one shared label texture');
+  assert.equal(await page.locator('[data-museum-photo-actions]').isVisible(), false, 'Native photography needs no separate label-import step');
+  await writeFile(`${output}/sculpture-with-upright-label.usdz`, bytes);
 
   for (const [width, height, angle] of [[390,844,0],[844,390,90],[568,320,-90],[320,568,0],[390,844,0]]) {
     await page.setViewportSize({ width, height });
@@ -91,17 +98,8 @@ try {
   await page.waitForFunction(() => !document.querySelector('[data-spatial-dialog]').open);
   await page.locator('[data-spatial-open]').tap();
   assert.equal(await link.getAttribute('href'), href, 'Closing/reopening options preserves the prepared export');
-  const photo = await page.evaluate(() => {
-    const canvas = document.createElement('canvas'); canvas.width=300; canvas.height=400;
-    const context = canvas.getContext('2d'); context.fillStyle='#567'; context.fillRect(0,0,300,400);
-    return canvas.toDataURL('image/png');
-  });
-  await page.locator('[data-museum-photo-input]').setInputFiles({name:'ar-photo.png',mimeType:'image/png',buffer:Buffer.from(photo.split(',')[1],'base64')});
-  await page.locator('[data-museum-photo-save]:not([hidden])').waitFor();
-  await page.locator('[data-museum-photo-back]').tap();
-  assert.equal(await link.getAttribute('href'), href, 'Labeling a saved photo never invalidates or rebuilds the native AR sculpture');
   assert.equal(await page.locator('[data-spatial-museum-hud]').isVisible(), false, 'Native AR cannot show the browser-only HUD');
   assert.deepEqual(errors, []);
-  console.log('Restoration checks passed: direct portrait entry, landscape/portrait layout, unchanged native export through rotation and photo labeling, sculpture-only USDZ, and no custom native labels/camera runtime.');
+  console.log('Native AR checks passed: portrait/landscape entry, unchanged USDZ through rotation, upright scene label, no banner, no photo-import step, and no replacement camera runtime.');
   console.log('Native iPhone rotation, tracking and shutter use still require physical-device validation.');
 } finally { await browser.close(); await server.stop(); }

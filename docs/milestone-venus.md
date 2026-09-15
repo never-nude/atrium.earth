@@ -9,7 +9,17 @@ The owner accepted the restored native AR build on 15 September 2026 and named i
 - Separate collection search/header fix retained.
 - Prior label experiments and failures: [archived findings](archive/ar-label-experiments-2026-09-15.md).
 
-## Label design after this checkpoint
+## Current simple label — 15 September 2026
+
+After rejecting the separate photo-labeling workflow and the scope of a native App Clip, the owner requested a return to a simple label beside each work. It must line up with the sculpture, leave a visible gap, and give portrait and landscape equal priority. This explicitly supersedes the earlier fixed-screen requirement for Apple AR.
+
+The current native export adds an upright XY-plane label in the same Y-up scene as the sculpture. It is a sibling of Artwork, so scan corrections and physical scale cannot rotate or skew it. The earlier `LookAtCamera` behavior is not used. Front and back faces are authored geometry with readable text. The label uses warm-white Inter on a compact slate background, retains title/maker/period/region/material, and measures clearance beyond the sculpture and any stand. Flat works keep their labels above the support surface.
+
+The native viewer, horizontal surface placement, documented dimensions, camera, and shutter remain the Milestone Venus path. Native photos include visible scene geometry, including the label; there is no separate photo-import step on iPhone. A physical label has ordinary perspective and turns with the entire scene, unlike a screen HUD. No website orientation listener changes the prepared sculpture or its label.
+
+`test:quick-look-label` checks all catalogue text and eight actual USDZ exports for world-aligned planes, level edges, separation, and unchanged artwork transforms. `test:spatial-restoration` checks the real entry/export path and preservation of the same native URL through portrait/landscape changes. Calibration previews cover both orientations equally. Physical iPhone tracking, shutter access, and saved photographs remain a device-validation step; desktop rendering is not proof of those behaviors.
+
+## Previous companion-label release (`6075f76`)
 
 The label is a companion to native AR. It uses the same five catalogue facts everywhere: title, maker, period, region, material. Unknown placeholders are omitted, and rendering profiles are never presented as an artwork's material.
 

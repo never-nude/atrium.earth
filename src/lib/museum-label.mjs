@@ -14,7 +14,7 @@ export const museumLabelLines = label => [
 ].filter(Boolean);
 export const museumLabelFont = '"Inter", "Helvetica Neue", Arial, sans-serif';
 
-function wrap(context, text, width) {
+export function wrapMuseumLabelText(context, text, width) {
   const lines = [];
   let line = '';
   for (const word of text.split(/\s+/).filter(Boolean)) {
@@ -44,7 +44,7 @@ export function layoutMuseumPhotoLabel(context, label, width, height, corner = '
       const font = `${weight} ${size * scale * factor}px ${museumLabelFont}`;
       context.font = font;
       if (rows.length) y += 3 * scale * factor;
-      for (const line of wrap(context, text, available)) {
+      for (const line of wrapMuseumLabelText(context, text, available)) {
         rows.push({ text: line, y, font, size: size * scale * factor });
         y += size * scale * factor * 1.4;
       }

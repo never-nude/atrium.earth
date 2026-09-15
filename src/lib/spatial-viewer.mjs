@@ -57,6 +57,8 @@ export function bindSpatialViewing(element, getContext, activate) {
     webView: Boolean(window.webkit?.messageHandlers),
   });
   const quickLookSupported = device.quickLook;
+  // Native AR photographs the scene label directly; no photo-import step.
+  find('[data-museum-photo-actions]').hidden = quickLookSupported;
   const handoff = find('[data-spatial-handoff]');
   const urlInput = find('[data-spatial-url]');
   const linkStatus = find('[data-spatial-link-status]');
@@ -142,7 +144,7 @@ export function bindSpatialViewing(element, getContext, activate) {
     find('[data-ar-support]').textContent = capabilities.ar
       ? 'Camera access begins when you choose to start.'
       : quickLookSupported
-        ? 'Prepare the work, then tap Open in AR. If your browser cannot open it, try Safari.'
+        ? 'The label appears beside the work and is included in AR photos.'
         : device.embedded ? 'This app’s browser may block AR. Open this work in Safari on iPhone or Chrome on Android.'
         : device.apple ? 'Try Safari on this iPhone or iPad to open the work in AR.'
         : device.android ? 'Try Chrome on an AR-capable Android phone.'
@@ -214,10 +216,15 @@ export function bindSpatialViewing(element, getContext, activate) {
     busy = true; update(); say('Preparing the sculpture for AR…');
     const version = ++exportVersion;
     let converted;
+    let sceneLabel;
     try {
       const context = getContext();
       const { USDZExporter } = await import('three/examples/jsm/exporters/USDZExporter.js');
+      const { addQuickLookMuseumLabel } = await import('./quick-look-museum-label.mjs');
       converted = makeQuickLookScene(context.THREE, context.model, context.box, viewingReference(), supportOptions());
+      await document.fonts.ready;
+      if (version !== exportVersion) return;
+      sceneLabel = addQuickLookMuseumLabel(context.THREE, converted.scene, { ...museumLabel, title: museumLabel.title || title });
       const bytes = await new USDZExporter().parseAsync(converted.scene, { maxTextureSize: 2048, quickLookCompatible: true });
       if (version !== exportVersion) return;
       if (modelUrl) URL.revokeObjectURL(modelUrl);
@@ -241,6 +248,7 @@ export function bindSpatialViewing(element, getContext, activate) {
       say('This sculpture could not be prepared for Apple AR. You can still explore it in 3D here.');
       console.warn('Atrium Quick Look preparation failed:', error);
     } finally {
+      sceneLabel?.dispose();
       converted?.dispose();
       if (version === exportVersion) { busy = false; update(); }
     }

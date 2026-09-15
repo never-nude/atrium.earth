@@ -27,8 +27,10 @@ const defaultSize = defaultMaxExtentMeters && defaultMaxExtentMeters < 1 ? `${Ma
           <button type="button" data-spatial-ar disabled>Checking your device…</button>
           <a data-quick-look rel="ar" download="artwork.usdz" aria-label="Open in AR" hidden><img src={poster} alt="" />Open in AR ↗</a>
           <p class="spatial-support" data-ar-support></p>
-          <button type="button" class="spatial-photo-link" data-museum-photo-choose>Label a photo <span aria-hidden="true">↗</span></button>
-          <p class="spatial-photo-help">Take a photo in AR, then return here to add its label.</p>
+          <div data-museum-photo-actions>
+            <button type="button" class="spatial-photo-link" data-museum-photo-choose>Label a photo <span aria-hidden="true">↗</span></button>
+            <p class="spatial-photo-help">Add the artwork label to a saved photo.</p>
+          </div>
         </section>
         <section>
           <span class="spatial-number">02 / Virtual reality</span>
