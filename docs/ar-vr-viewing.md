@@ -12,6 +12,11 @@ Each public sculpture page has a **View in AR / VR** button. The existing screen
 
 Display size is adjustable. Works with a separately reviewed physical reference start at their documented size in WebXR and Apple Quick Look. For modern reproductions, the only physical reference is the original artwork, with an adjacent original-dimensions note and source link. Other works retain the one-metre display default and explicitly say their physical size is not yet calibrated. The [dimension audit](audits/physical-dimensions-2026-09-09.md) records source coverage and remaining gaps.
 
+In Atrium's browser AR and WebXR modes, a documented reference is the initial and
+reset size, not a resizing lock. Every work can be adjusted from 10% to 200% of its
+initial size. The physical reference records and source models remain unchanged.
+Apple Quick Look retains its existing prepared-size policy.
+
 ## Browser compatibility and interface
 
 The shared panel and immersive overlay use the public site’s Inter type, slate surfaces, brass accent, and hairline dividers. The physical-size note is visible before choosing a mode. Placement and stand controls are available in a disclosure; their recommendations and scaling behavior are unchanged. The dialog has a visible close control, mobile scrolling, keyboard focus restoration, and an explicit screen-view action.
@@ -75,12 +80,23 @@ more space for 650 ms before it switches. An obstructed label can move after 350
 When the work fills the view, the bottom corner with the least overlap is used.
 The label stays upright and uses the same compact width in portrait and landscape,
 with safe-area insets; longer records use smaller type. A round shutter sits at bottom
-center, with the collapsed adjustment icon on the left and photo review and exit
-on the right. Placement
+center, with a compact **Move / size** control on the left and photo review and exit
+on the right. Its drawer contains the size slider, current display dimensions,
+**Move work**, turn and reset controls. A drag beginning on the sculpture moves it
+along its existing horizontal surface; a two-finger pinch resizes it. The model's
+base stays on the surface when resized, and separate furniture is not scaled.
+**Move work** returns to surface detection for placement elsewhere; confirming a
+new location preserves the chosen size. Placement
 guidance and dimensions clear after placement; repositioning restores the preview
 flow. Camera motion can change the label's chosen screen area, but never rotates
-its text. Changing orientation resizes the camera canvas without recentering
-the world anchor. Capture copies the composited camera and sculpture in the render
+its text. Rotation cancels an unfinished gesture and waits for the engine's
+orientation and the viewport to agree before resizing the canvas. Camera and
+sculpture rendering resume together after the projection matches the canvas and
+two fresh pipeline updates have cleared pending frames. This handles Safari
+delivering viewport, orientation and video-size changes at different times;
+the camera origin is configured only at session start, and the world anchor and
+display size are never changed by rotation. Capture pauses during the transition.
+Capture copies the composited camera and sculpture in the render
 callback, then stamps the HUD's exact pixels at its measured screen position.
 Photo encoding does not stamp a second label. Exit, interruption and startup errors
 stop the camera and restore the ordinary viewer's model, canvas and rendering state.
@@ -124,7 +140,9 @@ compiles its SLAM WebAssembly and starts its camera pipeline with Chromium's tes
 camera. Separate deterministic camera-pose and hit-test fixtures check deliberate
 placement with zero/missing hit rotations, rejected wall/lost/stale hits, proposed
 dimensions, rendered preview/placed pixels, adaptive HUD spacing and stability,
-live orientation changes, photo pixels, all enabled catalogue
+post-placement slider and touch-pinch resizing, dragging, moving to another
+surface, both orderings of viewport/orientation events, rejection of stale
+projection frames, photo pixels, all enabled catalogue
 labels on a small landscape screen, startup failure and viewer restoration. These
 fixtures do not validate physical iPhone tracking. Real-device acceptance testing
 remains necessary; no iPhone or iOS simulator is available in the workspace.

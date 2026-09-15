@@ -38,8 +38,9 @@ export function bindSpatialViewing(element, getContext, activate) {
   const showDimensions = ({ height, width, depth }) => {
     const meters = Math.max(height, width, depth) >= 1;
     const format = new Intl.NumberFormat('en', { maximumFractionDigits: meters ? 2 : 1 });
-    find('[data-spatial-dimensions]').textContent = [height, width, depth]
+    const dimensions = [height, width, depth]
       .map(value => format.format(value * (meters ? 1 : 100))).join(' × ') + (meters ? ' m' : ' cm');
+    element.querySelectorAll('[data-spatial-dimensions]').forEach(output => { output.textContent = dimensions; });
   };
   let capturing = false;
   let captureReady = false;
@@ -243,7 +244,7 @@ export function bindSpatialViewing(element, getContext, activate) {
         if (available && !capturing) captureStatus.textContent = '';
       },
       onScale: showScale,
-      fixedScale: verifiedReference,
+      fixedScale: false,
       onEnd: () => { reset(); say('Back on screen. You can start another immersive view whenever you like.'); },
     }).then((active) => { session = active; }).catch((error) => { reset(); say(errorMessage(error)); });
   }
@@ -269,7 +270,7 @@ export function bindSpatialViewing(element, getContext, activate) {
       if (controller.signal.aborted) throw new DOMException('Viewing cancelled.', 'AbortError');
       const active = await module.startBrowserARSession(getContext(), engine, overlay, {
         signal: controller.signal, reference: viewingReference(), support: supportOptions(), artworkLabel,
-        fixedScale: verifiedReference, onScale: showScale, onSupport: showSupport,
+        fixedScale: false, onScale: showScale, onSupport: showSupport,
         onDimensions: showDimensions,
         onPlacementChange: ({ placed, available }) => {
           browserPlaced = placed;
@@ -280,7 +281,8 @@ export function bindSpatialViewing(element, getContext, activate) {
           capture.hidden = !placed;
         },
         onStatus: (text) => {
-          find('[data-spatial-instructions]').textContent = text;
+          find('[data-spatial-instructions]').textContent = text.startsWith('Placed')
+            ? 'Drag the work to move it. Pinch to resize. Choose Move work for another surface.' : text;
           captureStatus.classList.remove('spatial-status-quiet');
           if (!capturing) captureStatus.textContent = text.startsWith('Placed') || text.startsWith('Surface found') ? '' : text;
           if (text.startsWith('Placed')) find('.spatial-overlay-controls').open = false;
