@@ -78,7 +78,23 @@
 .v3-collection-switch a span { color: var(--v3-faint); font-size: .7rem; font-variant-numeric: tabular-nums; }
 .v3-collection-switch a:hover { color: var(--v3-ink); }
 .v3-collection-switch a[aria-current="page"] { color: var(--v3-ink); border-bottom-color: var(--v3-signal); }
-.v3-explorer:has(.v3-collection-switch) .v3-explorer__tools { top: 72px; margin-bottom: 28px; }
+/* Keep collection navigation and search joined at the viewport edge. The shared
+   header normally hides on downward scroll, leaving artwork in the sticky gap. */
+body:has(.v3-collection-switch) { --v3-collection-header-height: calc(72px + env(safe-area-inset-top, 0px)); }
+body:has(.v3-collection-switch) .v3-header {
+  height: var(--v3-collection-header-height);
+  min-height: var(--v3-collection-header-height);
+  padding-top: calc(12px + env(safe-area-inset-top, 0px));
+  padding-bottom: 12px;
+  transform: none;
+  background: var(--v3-void);
+  pointer-events: auto;
+}
+.v3-explorer:has(.v3-collection-switch) .v3-explorer__tools {
+  top: var(--v3-collection-header-height);
+  margin-bottom: 28px;
+  background: var(--v3-void);
+}
 .v3-explorer:has(.v3-collection-switch) .v3-filter-row {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr)) auto auto;
@@ -128,6 +144,7 @@
   .v3-nav { gap: 20px; }
 }
 @media (max-width: 800px) {
+  body:has(.v3-collection-switch) { --v3-collection-header-height: calc(64px + env(safe-area-inset-top, 0px)); }
   .v3-hero__object {
     position: relative;
     inset: auto;
