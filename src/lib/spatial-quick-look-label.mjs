@@ -25,8 +25,10 @@ export function addQuickLookArtworkLabel(THREE, scene, label) {
   });
   const object = new THREE.Mesh(geometry, material);
   object.name = `AtriumArtworkLabel_${object.uuid.replaceAll('-', '_')}`;
+  // Leave breathing room beyond the outermost limb, including as the plaque turns.
+  const gap = Math.max(0.05, extent * 0.3);
   object.position.set(
-    bounds.max.x + Math.max(0.025, extent * 0.1) + width / 2,
+    bounds.max.x + gap + width / 2,
     Math.max(bounds.min.y + height / 2, bounds.min.y + size.y * 0.65),
     bounds.getCenter(new THREE.Vector3()).z,
   );
