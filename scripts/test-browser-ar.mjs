@@ -82,7 +82,10 @@ try {
     const rotation = { x: 0, y: 0, z: 0, w: 1 };
     const position = { x: 0, y: .25, z: 0 };
     window.fixturePose = { rotation, position, trackingStatus: 'NORMAL' };
-    window.fixtureHits = [{ type: 'FEATURE_POINT', distance: 1, position: { x: 0, y: 0, z: -1 }, rotation: { x: 0, y: 0, z: 0, w: 1 } }];
+    // The engine's setHitResult populates position and distance, leaving the
+    // rotation unset (all four components default to zero in Quaternion32f).
+    // An identity quaternion here concealed the real iPhone placement failure.
+    window.fixtureHits = [{ type: 'FEATURE_POINT', distance: 1, position: { x: 0, y: 0, z: -1 }, rotation: { x: 0, y: 0, z: 0, w: 0 } }];
     const fake = {
       initialize: async () => {}, clearCameraPipelineModules: () => { modules = []; },
       addCameraPipelineModules: value => { modules = value; },
@@ -109,26 +112,49 @@ try {
     // The loader caches the already verified engine object. Replace just its
     // public pipeline methods for deterministic frame and lifecycle testing.
     for (const key of Object.keys(fake)) engine[key] = fake[key];
+    window.readArtworkPixel = () => new Promise((resolve, reject) => {
+      const { THREE, scene, model, camera, renderer } = window.fixture;
+      const previous = scene.onAfterRender;
+      const timer = setTimeout(() => { scene.onAfterRender = previous; reject(new Error('Sculpture did not render')); }, 2000);
+      scene.onAfterRender = () => {
+        clearTimeout(timer); scene.onAfterRender = previous;
+        const center = new THREE.Box3().setFromObject(model).getCenter(new THREE.Vector3()).project(camera);
+        const canvas = renderer.domElement, gl = renderer.getContext(), pixel = new Uint8Array(4);
+        gl.readPixels(Math.floor((center.x + 1) * canvas.width / 2), Math.floor((center.y + 1) * canvas.height / 2), 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, pixel);
+        resolve([...pixel]);
+      };
+    });
   });
   for (const [width, height] of [[390, 844], [844, 390], [568, 320], [320, 568]]) {
     await page.setViewportSize({ width, height });
     await page.locator('[data-spatial-ar]').click();
-    await page.waitForFunction(() => document.querySelector('[data-spatial-instructions]').textContent.includes('Surface found'));
+    await page.waitForFunction(() => document.querySelector('[data-spatial-instructions]').textContent.includes('Surface found'), null, { timeout: 5000 });
     const label = page.locator('[data-spatial-screen-label]');
     const place = page.locator('[data-spatial-confirm-placement]');
     assert.equal(await label.isVisible(), false, 'The five-field label is hidden before placement');
-    assert.equal(await place.isEnabled(), true, 'A horizontal surface enables Place work');
+    assert.equal(await place.isEnabled(), true, 'A tracked feature point with a zero rotation enables Place work');
     assert.equal(await page.locator('[data-spatial-proposed-size]').isVisible(), true);
     assert.match(await page.locator('[data-spatial-dimensions]').textContent(), /^11 × 5.5 × 4.4 cm$/, 'Proposed H × W × D follows the actual model bounds and physical reference');
     assert.ok(await place.evaluate(element => getComputedStyle(element).backgroundColor === 'rgb(236, 207, 122)'), 'Ready button lights up in Atrium gold');
     assert.ok(await page.evaluate(() => window.fixture.model.children[0].material.opacity < .5 && window.fixture.renderer.toneMappingExposure === window.fixtureSaved.exposure), 'Preview is faint without changing camera or renderer exposure');
     assert.ok(await page.evaluate(() => window.fixture.model.children[0].material.alphaTest < window.fixture.model.children[0].material.opacity), 'Cutout materials remain visible in the faint preview');
+    const previewPixel = await page.evaluate(() => window.readArtworkPixel());
+    assert.ok(previewPixel[0] > 75, 'The faint sculpture is actually drawn over the camera pixels');
     if (width === 390) {
       await page.evaluate(() => { window.savedHits = window.fixtureHits; window.fixtureHits = []; });
       await page.waitForFunction(() => document.querySelector('[data-spatial-confirm-placement]').disabled);
       assert.equal(await page.locator('[data-spatial-proposed-size]').isVisible(), false, 'No dimensions are shown without a suitable surface');
       assert.equal(await page.evaluate(() => window.fixture.model.parent.parent.visible), false);
       await page.screenshot({ path: `${output}/scanning.png` });
+      await page.evaluate(() => { window.fixtureHits = [{ ...window.savedHits[0], rotation: undefined }]; });
+      await page.waitForFunction(() => !document.querySelector('[data-spatial-confirm-placement]').disabled);
+      assert.equal(await page.evaluate(() => window.fixture.model.parent.parent.visible), true, 'Missing orientation also permits a valid feature-point preview');
+      await page.evaluate(() => { window.fixtureHits = [{ ...window.savedHits[0], position: { x: 0, y: .5, z: -1 } }]; });
+      await page.waitForFunction(() => document.querySelector('[data-spatial-confirm-placement]').disabled);
+      assert.equal(await page.evaluate(() => window.fixture.model.parent.parent.visible), false, 'Points above the phone do not enable floor/table placement');
+      await page.evaluate(() => { window.fixtureHits = [{ ...window.savedHits[0], rotation: { x: NaN, y: 0, z: 0, w: 1 } }]; });
+      await page.waitForTimeout(100);
+      assert.equal(await place.isEnabled(), false, 'Malformed orientation is rejected instead of silently treated as unknown');
       await page.evaluate(() => { window.fixtureHits = [{ ...window.savedHits[0], rotation: { x: Math.SQRT1_2, y: 0, z: 0, w: Math.SQRT1_2 } }]; });
       await page.waitForTimeout(100);
       assert.equal(await place.isEnabled(), false, 'A wall estimate cannot enable placement');
@@ -151,16 +177,58 @@ try {
     assert.equal(await page.locator('[data-spatial-proposed-size]').isVisible(), false, 'Dimensions clear once the work is placed');
     assert.equal(await place.isVisible(), false);
     assert.ok(await page.evaluate(() => window.fixture.model.children[0].material === window.fixtureSaved.material && window.fixture.renderer.toneMappingExposure === window.fixtureSaved.exposure), 'Placement restores the exact original material and normal exposure');
+    const placedPixel = await page.evaluate(() => window.readArtworkPixel());
+    assert.ok(placedPixel[0] > previewPixel[0] + 30, 'The placed sculpture is visibly restored to normal brightness');
     const before = await label.boundingBox();
+    const footer = await page.locator('[data-spatial-photo-capture]').boundingBox();
+    assert.ok(before.y > 0 && before.y + before.height <= footer.y - 12, 'Bottom label stays above and clear of the shutter row');
+    assert.ok((await page.locator('[data-spatial-exit]').boundingBox()).y >= height - 78, 'Exit is in the bottom row; no HUD control remains at the top');
+    if (width === 844) {
+      const adaptive = await page.evaluate(async () => {
+        const { createScreenArtworkLabel } = await import('/src/lib/spatial-screen-label.mjs');
+        const overlay = document.querySelector('[data-spatial-overlay]');
+        const metadata = JSON.parse(document.querySelector('[data-spatial]').dataset.artworkLabelJson);
+        const hud = createScreenArtworkLabel(overlay, metadata), canvas = overlay.lastElementChild;
+        const read = () => ({ side: canvas.dataset.labelPosition, ...canvas.getBoundingClientRect().toJSON() });
+        const rightWork = { left: 550, right: 700, top: 110, bottom: 270 };
+        const leftWork = { left: 100, right: 250, top: 110, bottom: 270 };
+        const wideWork = { left: 160, right: 684, top: 85, bottom: 145 };
+        hud.updatePlacement(rightWork, 0); const left = read();
+        hud.updatePlacement(leftWork, 100); hud.updatePlacement(leftWork, 300); const pending = read();
+        hud.updatePlacement(leftWork, 500); const right = read();
+        hud.updatePlacement({ ...leftWork, left: 104, right: 254 }, 900); const steady = read();
+        hud.updatePlacement(wideWork, 1000); hud.updatePlacement(wideWork, 1400); const below = read();
+        const crowdedWork = { left: 0, right: 844, top: 0, bottom: 390 };
+        hud.updatePlacement(crowdedWork, 1500); hud.updatePlacement(crowdedWork, 1900); const crowded = read();
+        const lowWork = { left: 550, right: 700, top: 260, bottom: 290 };
+        hud.updatePlacement(lowWork, 2000); hud.updatePlacement(lowWork, 2800); const low = read();
+        hud.dispose();
+        return { left, pending, right, steady, below, crowded, low };
+      });
+      assert.equal(adaptive.left.side, 'left'); assert.ok(adaptive.left.right <= 550 - 24);
+      assert.deepEqual(adaptive.pending, adaptive.left, 'Brief changes do not make the label jump');
+      assert.equal(adaptive.right.side, 'right'); assert.ok(adaptive.right.left >= 250 + 24);
+      assert.deepEqual(adaptive.steady, adaptive.right, 'Minor camera motion preserves a clear label position');
+      assert.equal(adaptive.below.side, 'below'); assert.ok(adaptive.below.top >= 145 + 24);
+      assert.ok(adaptive.crowded.top > 100 && adaptive.crowded.bottom <= footer.y - 12, 'Crowded views use the bottom, never a top banner or the shutter row');
+      assert.equal(adaptive.low.side, 'left'); assert.ok(adaptive.low.right <= 550 - 24 && adaptive.low.bottom >= 260, 'Side space remains usable when the sculpture is low in a landscape view');
+    }
     await page.evaluate(() => { window.fixturePose.position.x = .1; window.fixturePose.rotation.y = .1; window.fixturePose.rotation.w = Math.sqrt(.99); });
     await page.locator('.spatial-overlay-controls').evaluate(element => { element.open = true; });
     await page.locator('[data-spatial-turn]').click();
     await page.locator('.spatial-overlay-controls').evaluate(element => { element.open = false; });
-    assert.deepEqual(await label.boundingBox(), before, 'HUD stays at a fixed screen position as the camera and sculpture move');
+    const moved = await label.boundingBox();
+    assert.equal(moved.width, before.width); assert.equal(moved.height, before.height);
+    assert.equal(await label.evaluate(element => getComputedStyle(element).transform), 'none', 'Adaptive label stays upright while the camera and sculpture move');
+    await page.waitForTimeout(800);
     const shutter = page.locator('[data-spatial-photo-capture]');
     assert.ok(await shutter.evaluate(element => { const rect = element.getBoundingClientRect(); return element.contains(document.elementFromPoint(rect.x + rect.width / 2, rect.y + rect.height / 2)); }), 'Shutter is touchable');
     await shutter.tap();
     await page.locator('[data-spatial-photo-review]:not([hidden])').waitFor();
+    for (const control of ['[data-spatial-photo-review]', '[data-spatial-exit]']) assert.ok(await page.locator(control).evaluate(element => {
+      const rect = element.getBoundingClientRect();
+      return element.contains(document.elementFromPoint(rect.x + rect.width / 2, rect.y + rect.height / 2));
+    }), 'Photo review and exit are independently touchable in the bottom row');
     const result = await page.evaluate(async () => {
       const image = document.querySelector('[data-spatial-photo-preview]'); await image.decode();
       const photo = document.createElement('canvas'); photo.width = image.naturalWidth; photo.height = image.naturalHeight;
@@ -180,14 +248,14 @@ try {
         const overlay = document.querySelector('[data-spatial-overlay]');
         const decoder = document.createElement('textarea');
         const failures = [];
-        const maxBottom = innerHeight - 100;
+        const maxBottom = document.querySelector('[data-spatial-photo-capture]').getBoundingClientRect().top - 12;
         for (const encoded of labels) {
           decoder.innerHTML = encoded;
           const label = JSON.parse(decoder.value);
           const hud = createScreenArtworkLabel(overlay, label);
           const canvas = overlay.lastElementChild;
           const rect = canvas.getBoundingClientRect();
-          if (rect.bottom > maxBottom || rect.left < 0 || rect.right > innerWidth) failures.push(label.title);
+          if (rect.top < 0 || rect.bottom > maxBottom || rect.left < 0 || rect.right > innerWidth) failures.push(label.title);
           hud.dispose();
         }
         return { count: labels.length, failures };

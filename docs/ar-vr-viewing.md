@@ -48,7 +48,7 @@ camera access. A completed photo can be reviewed, downloaded or shared; taking i
 does not reset the sculpture placement. Photos remain on the visitor's device.
 
 **iPhone browser AR:** scanning shows one short instruction and a dim, disabled
-**Place work** button. Normal tracking and a horizontal surface estimate enable
+**Place work** button. Normal tracking and a valid placement point below the camera enable
 the gold button, a faint sculpture preview, and its proposed height × width ×
 depth. Dimensions come from the oriented model bounds at the prepared display
 scale, including any scanned base but excluding a separate virtual stand. They
@@ -58,14 +58,28 @@ The button rechecks the hit when tapped; camera taps never place the work.
 Committing placement restores the exact original materials at normal brightness;
 camera exposure and scene lighting are never changed for the preview.
 
-Only after placement, the small translucent HUD appears in the upper-left of the
-screen. It uses the same compact width in portrait and landscape, with safe-area
-insets and space beside the small exit icon. Longer records use smaller type to
-fit above the bottom controls. A round shutter sits at bottom center, with the
-collapsed adjustment icon on the left and photo review on the right. Placement
+Feature points do not guarantee a surface normal. The engine's
+[hit-result implementation](https://github.com/8thwall/8thwall/blob/main/reality/engine/hittest/hit-test-performer.cc)
+can leave rotation unset, which the JavaScript wrapper returns as a zero quaternion.
+Those valid points must not be discarded: this previously kept the sculpture hidden
+and the placement button permanently disabled. Missing/zero feature-point rotations
+are accepted; supplied steep rotations, invalid coordinates/distances, points above
+the camera and lost tracking are rejected. The sculpture always stays upright.
+
+Only after placement, the small translucent HUD appears beside or below the work.
+The eight corners of the sculpture's oriented bounds are projected into the camera
+view, and the label picks the largest free region to its left, right or below it,
+with a 24-pixel gap. The upper fifth of the camera view and bottom control row stay
+clear. The label remains still within a usable area; another area must offer 30%
+more space for 650 ms before it switches. An obstructed label can move after 350 ms.
+When the work fills the view, the bottom corner with the least overlap is used.
+The label stays upright and uses the same compact width in portrait and landscape,
+with safe-area insets; longer records use smaller type. A round shutter sits at bottom
+center, with the collapsed adjustment icon on the left and photo review and exit
+on the right. Placement
 guidance and dimensions clear after placement; repositioning restores the preview
-flow. Neither camera motion nor sculpture rotation changes the HUD's
-screen position. Changing orientation resizes the camera canvas without recentering
+flow. Camera motion can change the label's chosen screen area, but never rotates
+its text. Changing orientation resizes the camera canvas without recentering
 the world anchor. Capture copies the composited camera and sculpture in the render
 callback, then stamps the HUD's exact pixels at its measured screen position.
 Photo encoding does not stamp a second label. Exit, interruption and startup errors
@@ -108,8 +122,9 @@ camera fixtures. `ATRIUM_TEST_EXECUTABLE` may select an installed Chromium binar
 After `npm run build`, `npm run test:browser-ar` loads the actual self-hosted engine,
 compiles its SLAM WebAssembly and starts its camera pipeline with Chromium's test
 camera. Separate deterministic camera-pose and hit-test fixtures check deliberate
-placement, rejected wall/lost/stale hits, proposed dimensions, preview brightness,
-HUD independence, live orientation changes, photo pixels, all enabled catalogue
+placement with zero/missing hit rotations, rejected wall/lost/stale hits, proposed
+dimensions, rendered preview/placed pixels, adaptive HUD spacing and stability,
+live orientation changes, photo pixels, all enabled catalogue
 labels on a small landscape screen, startup failure and viewer restoration. These
 fixtures do not validate physical iPhone tracking. Real-device acceptance testing
 remains necessary; no iPhone or iOS simulator is available in the workspace.

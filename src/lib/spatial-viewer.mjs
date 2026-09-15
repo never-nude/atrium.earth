@@ -68,7 +68,7 @@ export function bindSpatialViewing(element, getContext, activate) {
   });
   const quickLookSupported = device.quickLook;
   const browserARSupported = device.apple && !device.embedded && window.isSecureContext && Boolean(navigator.mediaDevices?.getUserMedia);
-  if (quickLookSupported) find('[data-spatial-photo-help]').textContent = 'Atrium AR photos already include the fixed artwork label. For photos taken in Apple AR, choose the saved photo here to add its label. Portrait and landscape photos keep their orientation.';
+  if (quickLookSupported) find('[data-spatial-photo-help]').textContent = 'Atrium AR photos already include the on-screen artwork label. For photos taken in Apple AR, choose the saved photo here to add its label. Portrait and landscape photos keep their orientation.';
   const handoff = find('[data-spatial-handoff]');
   const urlInput = find('[data-spatial-url]');
   const linkStatus = find('[data-spatial-link-status]');
@@ -161,7 +161,7 @@ export function bindSpatialViewing(element, getContext, activate) {
       : capabilities.vr && !ready ? loadFailed ? 'Sculpture unavailable' : 'Loading sculpture…'
       : capabilities.vr ? 'Enter VR' : 'Use a VR headset';
     find('[data-ar-support]').textContent = capabilities.ar || browserARSupported
-      ? 'The artwork label stays fixed on screen and is included in your photo. Allow camera and motion access to begin.'
+      ? 'The artwork label stays on screen and is included in your photo. Allow camera and motion access to begin.'
       : quickLookSupported
         ? 'Prepare the work, then tap Open in AR. If your browser cannot open it, try Safari.'
         : device.embedded ? 'This app’s browser may block AR. Open this work in Safari on iPhone or Chrome on Android.'
@@ -196,6 +196,7 @@ export function bindSpatialViewing(element, getContext, activate) {
     captureVersion++; capturing = false; captureReady = false;
     capture.hidden = true; capture.disabled = true;
     captureStatus.textContent = '';
+    captureStatus.classList.remove('spatial-status-quiet');
     session = undefined; pending = undefined; busy = false;
     overlay.hidden = true; panel.hidden = false;
     dialog.classList.remove('spatial-browser-ar');
@@ -280,6 +281,7 @@ export function bindSpatialViewing(element, getContext, activate) {
         },
         onStatus: (text) => {
           find('[data-spatial-instructions]').textContent = text;
+          captureStatus.classList.remove('spatial-status-quiet');
           if (!capturing) captureStatus.textContent = text.startsWith('Placed') || text.startsWith('Surface found') ? '' : text;
           if (text.startsWith('Placed')) find('.spatial-overlay-controls').open = false;
         },
@@ -379,6 +381,7 @@ export function bindSpatialViewing(element, getContext, activate) {
     const version = ++captureVersion;
     clearTimeout(photoStatusTimer);
     capturing = true; capture.disabled = true;
+    captureStatus.classList.remove('spatial-status-quiet');
     reviewPhoto.hidden = true;
     captureStatus.textContent = 'Taking photo…';
     try {
@@ -389,6 +392,7 @@ export function bindSpatialViewing(element, getContext, activate) {
       if (!prepared) throw new Error('Photo could not be prepared');
       reviewPhoto.hidden = false;
       const browserAR = dialog.classList.contains('spatial-browser-ar');
+      captureStatus.classList.toggle('spatial-status-quiet', browserAR);
       captureStatus.textContent = browserAR ? 'Photo ready' : 'Photo ready. View it to save or share.';
       if (browserAR) photoStatusTimer = setTimeout(() => {
         if (version === captureVersion && captureReady && captureStatus.textContent === 'Photo ready') captureStatus.textContent = '';

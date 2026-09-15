@@ -78,6 +78,27 @@ export async function startBrowserARSession(context, XR8, overlay, options = {})
   canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none;pointer-events:auto';
   overlay.prepend(canvas);
   const hud = createScreenArtworkLabel(overlay, options.artworkLabel, { visible: false });
+  const labelCorners = [];
+  for (const x of [box.min.x, box.max.x]) for (const y of [box.min.y, box.max.y]) for (const z of [box.min.z, box.max.z]) labelCorners.push(new THREE.Vector3(x, y, z));
+  const labelPoint = new THREE.Vector3();
+  let lastLabelUpdate = -Infinity;
+  const updateLabelPlacement = () => {
+    const now = performance.now();
+    if (!placed || now - lastLabelUpdate < 100) return;
+    lastLabelUpdate = now;
+    const { width, height } = overlay.getBoundingClientRect();
+    const bounds = { left: Infinity, right: -Infinity, top: Infinity, bottom: -Infinity };
+    for (const corner of labelCorners) {
+      labelPoint.copy(corner).applyMatrix4(content.matrixWorld).applyMatrix4(camera.matrixWorldInverse);
+      // A box crossing the camera plane has no reliable finite screen bounds.
+      if (labelPoint.z >= -camera.near) { hud.updatePlacement(null, now); return; }
+      labelPoint.applyMatrix4(camera.projectionMatrix);
+      const x = (labelPoint.x + 1) * width / 2, y = (1 - labelPoint.y) * height / 2;
+      bounds.left = Math.min(bounds.left, x); bounds.right = Math.max(bounds.right, x);
+      bounds.top = Math.min(bounds.top, y); bounds.bottom = Math.max(bounds.bottom, y);
+    }
+    hud.updatePlacement(bounds, now);
+  };
   const reticle = new THREE.Mesh(new THREE.RingGeometry(.07, .09, 40).rotateX(-Math.PI / 2),
     new THREE.MeshBasicMaterial({ color: 0xeccf7a, side: THREE.DoubleSide, depthTest: false }));
   reticle.visible = false; scene.add(reticle);
@@ -136,11 +157,18 @@ export async function startBrowserARSession(context, XR8, overlay, options = {})
     const hits = XR8.XrController.hitTest(.5, .58, ['FEATURE_POINT']);
     return hits.find(hit => {
       if (!hit.position || !['x', 'y', 'z'].every(axis => Number.isFinite(hit.position[axis]))
-        || !(hit.distance > .1 && hit.distance < 15)) return false;
-      // Reject steep surface estimates so a wall does not enable placement.
+        || !(hit.distance > .1 && hit.distance < 15)
+        || hit.position.y >= camera.position.y - .025) return false;
+      // FEATURE_POINT hits can carry no rotation: the engine's setHitResult
+      // writes only position and distance, leaving Quaternion32f at all zeros.
+      // That is an unknown orientation, not an invalid placement point. Keep
+      // the sculpture upright ourselves; only reject a supplied steep estimate.
+      // See 8thwall/8thwall reality/engine/hittest/hit-test-performer.cc.
       const q = hit.rotation;
-      if (!q || !['x', 'y', 'z', 'w'].every(axis => Number.isFinite(q[axis]))) return false;
+      if (!q) return hit.type === 'FEATURE_POINT';
+      if (!['x', 'y', 'z', 'w'].every(axis => Number.isFinite(q[axis]))) return false;
       const norm = q.x ** 2 + q.y ** 2 + q.z ** 2 + q.w ** 2;
+      if (norm === 0) return hit.type === 'FEATURE_POINT';
       return norm > .5 && 1 - 2 * (q.x ** 2 + q.z ** 2) / norm >= .85;
     }) || null;
   };
@@ -241,6 +269,7 @@ export async function startBrowserARSession(context, XR8, overlay, options = {})
           // The preceding GlTextureRenderer has already drawn the real camera.
           // Reset Three's GL cache, then clear DEPTH only, retaining those pixels.
           renderer.resetState(); renderer.clearDepth(); renderer.render(scene, camera);
+          updateLabelPlacement();
           if (!captureRequest) return;
           const request = captureRequest; captureRequest = undefined; clearTimeout(request.timer);
           try {

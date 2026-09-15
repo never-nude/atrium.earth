@@ -217,9 +217,9 @@ const defaultSize = defaultMaxExtentMeters && defaultMaxExtentMeters < 1 ? `${Ma
      The label never participates in the model's 3D transforms or control stack. */
   .spatial-dialog.spatial-browser-ar { position: fixed; inset: 0; margin: 0; width: 100%; height: 100%; height: 100dvh; max-width: none; max-height: none; padding: 0; border: 0; border-radius: 0; overflow: hidden; background: #000; }
   .spatial-browser-ar .spatial-overlay { position: absolute; isolation: isolate; }
-  .spatial-browser-ar .spatial-overlay-top { z-index: 3; }
+  .spatial-browser-ar .spatial-overlay-top { z-index: 3; top: auto; bottom: max(16px, env(safe-area-inset-bottom)); }
   .spatial-browser-ar :global([data-browser-ar-canvas]) { z-index: 0; }
-  .spatial-browser-ar :global(.spatial-screen-label) { position: absolute; z-index: 1; top: max(16px, env(safe-area-inset-top)); left: max(16px, env(safe-area-inset-left)); width: min(240px, calc(100% - max(16px, env(safe-area-inset-left)) - max(16px, env(safe-area-inset-right)) - 56px)); pointer-events: none; }
+  .spatial-browser-ar :global(.spatial-screen-label) { position: absolute; z-index: 1; bottom: calc(max(16px, env(safe-area-inset-bottom)) + 76px); left: max(16px, env(safe-area-inset-left)); width: min(240px, calc(100% - max(16px, env(safe-area-inset-left)) - max(16px, env(safe-area-inset-right)))); pointer-events: none; }
   .spatial-browser-ar .spatial-overlay-bottom { z-index: 2; inset: 0; width: auto; max-height: none; overflow: visible; display: block; pointer-events: none; }
   .spatial-browser-ar .spatial-overlay-bottom :global(.artwork-label) { display: none; }
   .spatial-browser-ar .spatial-camera-icon { display: block; }
@@ -231,11 +231,12 @@ const defaultSize = defaultMaxExtentMeters && defaultMaxExtentMeters < 1 ? `${Ma
   .spatial-browser-ar [data-spatial-confirm-placement]:disabled { background: rgba(14,22,38,.45); color: var(--spatial-muted); border-color: var(--spatial-line); opacity: .65; cursor: default; }
   .spatial-browser-ar .spatial-photo-actions [data-spatial-photo-capture] { left: 50%; transform: translateX(-50%); width: 60px; height: 60px; min-height: 60px; padding: 4px; border-radius: 50%; border: 2px solid var(--spatial-ink); background: rgba(14,22,38,.25); }
   .spatial-browser-ar [data-spatial-photo-capture]::after { content: ''; display: block; width: 100%; height: 100%; border-radius: 50%; background: var(--spatial-ink); }
-  .spatial-browser-ar [data-spatial-photo-review] { right: max(16px, env(safe-area-inset-right)); }
+  .spatial-browser-ar [data-spatial-photo-review] { right: calc(max(16px, env(safe-area-inset-right)) + 56px); }
   .spatial-browser-ar .spatial-proposed-size { position: absolute; bottom: calc(max(16px, env(safe-area-inset-bottom)) + 60px); left: 50%; transform: translateX(-50%); margin: 0; padding: 5px 12px; max-width: calc(100% - 32px); border-radius: 3px; background: rgba(14,22,38,.45); color: var(--spatial-ink); text-align: center; text-shadow: 0 1px 3px #000; }
   .spatial-proposed-size span { display: block; margin-bottom: 2px; font-size: 10px; }
   .spatial-proposed-size output { font-size: 13px; }
   .spatial-browser-ar .spatial-capture-status { position: absolute; bottom: calc(max(16px, env(safe-area-inset-bottom)) + 74px); left: 50%; transform: translateX(-50%); width: max-content; max-width: calc(100% - 32px); padding: 4px 8px; background: rgba(14,22,38,.35); border-radius: 3px; font-size: 11px; text-align: center; text-shadow: 0 1px 3px #000; }
+  .spatial-browser-ar .spatial-capture-status.spatial-status-quiet { width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
   .spatial-browser-ar .spatial-overlay-controls { position: absolute; left: max(16px, env(safe-area-inset-left)); bottom: max(16px, env(safe-area-inset-bottom)); width: 44px; height: 44px; padding: 0; border-radius: 50%; background: rgba(14,22,38,.45); }
   .spatial-browser-ar .spatial-overlay-controls summary { width: 42px; min-height: 42px; justify-content: center; }
   .spatial-browser-ar .spatial-placement-options { position: absolute; left: 0; bottom: 58px; width: min(300px, calc(100vw - 32px - env(safe-area-inset-left) - env(safe-area-inset-right))); max-height: min(240px, calc(100dvh - 150px)); padding: 14px; border: 1px solid var(--spatial-line); border-radius: 3px; background: rgba(14,22,38,.94); }
