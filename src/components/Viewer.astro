@@ -159,6 +159,7 @@ const transformJson = JSON.stringify(modelTransform);
 </div>
 
 <script>
+  import { rememberSpatialAppearance } from '../lib/spatial-materials.mjs';
   import { createTextureControl } from '../lib/viewerTexture';
 
   type ViewState = {
@@ -186,6 +187,7 @@ const transformJson = JSON.stringify(modelTransform);
   };
 
   type Appearance = {
+    key?: string;
     baseColor: string;
     secondaryColor: string;
     tintStrength: number;
@@ -295,6 +297,7 @@ const transformJson = JSON.stringify(modelTransform);
     }
 
     mesh.geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+    mesh.geometry.userData.atriumPaletteBase = appearance.baseColor;
     material.vertexColors = true;
   }
 
@@ -374,6 +377,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
       return;
     }
 
+    rememberSpatialAppearance(material, appearance);
     const target = new THREE.Color(appearance.baseColor);
     material.color.lerp(target, appearance.tintStrength);
     if ('metalness' in material) material.metalness = appearance.metalness;

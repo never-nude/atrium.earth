@@ -4,6 +4,7 @@ import { USDZExporter } from 'three/examples/jsm/exporters/USDZExporter.js';
 import { unzipSync, strFromU8 } from 'three/examples/jsm/libs/fflate.module.js';
 import { makeQuickLookScene, startSpatialSession } from '../src/lib/spatial-session.mjs';
 import { finishQuickLookAppearance } from '../src/lib/quick-look-appearance-export.mjs';
+import { rememberSpatialAppearance, spatialPaletteColor } from '../src/lib/spatial-materials.mjs';
 import { prepareQuickLookMaterial } from '../src/lib/spatial-appearance.mjs';
 
 // Page exposure must have no effect on native AR, even if passed by an old caller.
@@ -13,8 +14,9 @@ const model = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), source);
 const box = new THREE.Box3().setFromObject(model);
 for (const exposure of [0.2, 0.74, 0.66, 1]) {
   const converted = makeQuickLookScene(THREE, model, box, { axis: 'y', meters: 2.42 }, { mode: 'surface' }, { exposure });
-  const archive = unzipSync(await new USDZExporter().parseAsync(converted.scene));
+  const archive = unzipSync(finishQuickLookAppearance(await new USDZExporter().parseAsync(converted.scene), converted.scene));
   const text = strFromU8(archive['model.usda']);
+  assert.match(text, /int preferredIblVersion = 2/);
   const values = name => text.match(new RegExp(`color3f inputs:${name} = \\(([^)]+)\\)`))[1].split(',').map(Number);
   for (const [j, channel] of ['r', 'g', 'b'].entries()) {
     assert.ok(Math.abs(values('diffuseColor')[j] - originalColor[channel]) < 1e-10);
@@ -62,6 +64,27 @@ for (const exposure of [0.2, 0.74, 0.66, 1]) {
   }
   converted.dispose(); group.children.forEach(mesh => mesh.geometry.dispose()); material.dispose();
 }
+// The page palette is present in both material and vertex channels. Native
+// export must apply the AR palette once, including when no vertex attribute is
+// generated for a very large mesh. It must not recolor an authored texture.
+for (const key of ['marble', 'limestone', 'bronze-patina']) {
+  const appearance = { key, baseColor: key === 'bronze-patina' ? '#6B4F31' : '#B4A78F', roughness: 0.7, metalness: key === 'bronze-patina' ? 0.58 : 0 };
+  const color = new THREE.Color(appearance.baseColor);
+  const geometry = new THREE.BoxGeometry();
+  const colors = new Float32Array(geometry.attributes.position.count * 3);
+  for(let i=0;i<colors.length;i+=3)colors.set(color.toArray(),i);
+  geometry.setAttribute('color', new THREE.BufferAttribute(colors.slice(),3));
+  const material = new THREE.MeshStandardMaterial({color:0x333333,vertexColors:true});
+  rememberSpatialAppearance(material,appearance);
+  const mesh = new THREE.Mesh(geometry,material);
+  const converted = makeQuickLookScene(THREE,mesh,new THREE.Box3().setFromObject(mesh),null,{mode:'surface'});
+  const exported = converted.scene.children[0].children[0];
+  const expected = spatialPaletteColor(THREE,appearance), actual = exported.geometry.getAttribute('color');
+  assert.ok(Math.abs(actual.getX(0)-expected.r)<1e-6, 'Generated color is not multiplied by the dark page material');
+  assert.ok(Math.abs(actual.getY(0)-expected.g)<1e-6);
+  assert.deepEqual(geometry.attributes.color.array,colors,'Source geometry stays unchanged');
+  converted.dispose();geometry.dispose();material.dispose();
+}
 const maps = ['map', 'normalMap', 'aoMap', 'emissiveMap', 'roughnessMap', 'metalnessMap', 'alphaMap'];
 for (const key of maps) source[key] = new THREE.Texture();
 const mapped = prepareQuickLookMaterial(source, 0.66);
@@ -72,8 +95,8 @@ mapped.dispose();
 for (const key of maps) source[key].dispose();
 model.geometry.dispose(); source.dispose();
 
-// WebXR already renders through the page renderer. Protect that invariant for
-// both modes: do not also apply the Quick Look material compensation there.
+// WebXR uses its own bounded lighting/exposure while active and restores the
+// exact page materials and renderer settings on exit.
 for (const mode of ['immersive-ar', 'immersive-vr']) {
   class Session extends EventTarget {
     async end() { this.dispatchEvent(new Event('end')); }
@@ -85,14 +108,22 @@ for (const mode of ['immersive-ar', 'immersive-vr']) {
   const model = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), material);
   const ground = new THREE.Object3D(), grid = new THREE.Object3D(); scene.add(model, ground, grid);
   const environment = scene.environment, color = material.color.clone();
+  const originalGeometry = model.geometry;
+  const light = new THREE.DirectionalLight(0xffffff, 3); scene.add(light);
+  const hiddenLight = new THREE.HemisphereLight(); hiddenLight.visible = false; scene.add(hiddenLight);
   const renderer = { toneMapping: THREE.ACESFilmicToneMapping, toneMappingExposure: 0.2,
     xr: { enabled: false, setReferenceSpaceType() {}, async setSession() {}, getReferenceSpace() { return {}; } },
     getClearColor: v => v.set(0), getClearAlpha: () => 0, setClearColor() {}, setAnimationLoop() {}, render() {} };
   const active = await startSpatialSession({ THREE, scene, model, ground, grid, box: new THREE.Box3().setFromObject(model), renderer, camera: new THREE.PerspectiveCamera(), suspend: () => () => {} }, Promise.resolve(new Session()), mode, null);
-  assert.equal(renderer.toneMappingExposure, 0.2); assert.equal(renderer.toneMapping, THREE.ACESFilmicToneMapping);
-  assert.equal(scene.environment, environment); assert.equal(model.material, material); assert.ok(material.color.equals(color));
+  assert.equal(renderer.toneMappingExposure, 0.72); assert.equal(renderer.toneMapping, THREE.ACESFilmicToneMapping);
+  assert.equal(scene.environment, environment); assert.notEqual(model.material, material); assert.ok(material.color.equals(color));
+  assert.equal(scene.environmentIntensity, 0.35);
+  assert.equal(light.visible, false);
   await active.end(); await new Promise(resolve => queueMicrotask(resolve));
   assert.equal(renderer.toneMappingExposure, 0.2); assert.ok(material.color.equals(color));
+  assert.equal(model.material, material); assert.equal(scene.environmentIntensity, 1);
+  assert.equal(model.geometry, originalGeometry); assert.equal(light.visible, true); assert.equal(hiddenLight.visible, false);
+  assert.equal(scene.getObjectByName("Atrium spatial lighting"), undefined);
   model.geometry.dispose(); material.dispose(); environment.dispose();
 }
-console.log('Spatial appearance checks passed: independent native appearance and bound STL vertex colors, constant/mapped emission, source textures, unchanged dimensions and page materials, and per-work WebXR lighting retained.');
+console.log('Spatial appearance checks passed: independent native appearance and bound STL vertex colors, constant/mapped emission, source textures, unchanged dimensions and page materials, and independent WebXR lighting with exact page restoration.');

@@ -7,7 +7,6 @@ export function finishQuickLookAppearance(bytes, scene) {
   scene.traverse(object => {
     if (object.isMesh && object.material?.userData.atriumDisplayColor) materials.add(object.material.id);
   });
-  if (!materials.size) return bytes;
   const view = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength);
   const files = {};
   let offset = 0;
@@ -22,6 +21,10 @@ export function finishQuickLookAppearance(bytes, scene) {
   }
   if (!files['model.usda']) throw new Error('Missing USDZ scene');
   let text = strFromU8(files['model.usda']);
+  // Apple's documented modern lighting profile supplies stronger definition;
+  // do not leave its selection dependent on the archive's creation timestamp.
+  if (!/customLayerData\s*=\s*\{/.test(text)) throw new Error('Missing USD layer metadata');
+  text = text.replace(/customLayerData\s*=\s*\{/, 'customLayerData = {\n        dictionary Apple = {\n            int preferredIblVersion = 2\n        }');
   for (const id of materials) {
     const start = text.indexOf(`def Material "Material_${id}"`);
     if (start < 0) throw new Error('Missing artwork material');

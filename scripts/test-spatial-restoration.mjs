@@ -26,6 +26,7 @@ try {
   const page = await context.newPage();
   const errors = [], cameraRequests = [];
   page.on('pageerror', error => errors.push(error.message));
+  page.on('console', async msg => { if (msg.type() === 'warning' && msg.text().includes('Quick Look')) console.error('Export warning:', await Promise.all(msg.args().map(arg => arg.evaluate(v => v instanceof Error ? v.message + '\n' + v.stack : String(v))))); });
   page.on('request', request => { if (/external\/xr|8thwall|spatial-browser-ar/.test(request.url())) cameraRequests.push(request.url()); });
   await page.goto('http://127.0.0.1:4337/works/europe/venus-of-willendorf-nhmw-44-686/');
   await page.waitForFunction(() => Boolean(document.querySelector('[data-spatial-url]')?.value));
@@ -67,9 +68,12 @@ try {
   const archive = unzipSync(bytes);
   const usd = strFromU8(archive['model.usda']);
   assert.match(usd, /def Xform "Artwork"/);
+  assert.equal((usd.match(/customLayerData/g) || []).length, 1);
+  assert.match(usd, /dictionary Apple/);
+  assert.match(usd, /int preferredIblVersion = 2/);
   assert.match(usd, /def Shader "AtriumVertexColor"/);
   assert.match(usd, /inputs:diffuseColor.connect = <\/Materials\/Material_\d+\/AtriumVertexColor.outputs:result>/);
-  assert.match(usd, /float4 inputs:scale = \(1, 1, 1, 1\)/, 'Label texture remains full brightness');
+  assert.match(usd, /float4 inputs:scale = \(1, 1, 1, 1(?:\.0)?\)/, 'Label texture remains full brightness');
   assert.match(usd, /def Xform "SculptureFixture"/);
   assert.match(usd, /def Xform "AtriumMuseumLabel"/);
   assert.match(usd, /def Xform "MuseumLabelFront"/);

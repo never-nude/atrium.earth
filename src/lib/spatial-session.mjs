@@ -1,3 +1,4 @@
+import { prepareSpatialSurface, startSpatialAppearance } from './spatial-materials.mjs';
 import { referenceScaleFor } from './physical-dimensions.mjs';
 import { createDisplaySupport, supportLayoutFor } from './display-support.mjs';
 import { prepareQuickLookMaterial, quickLookDiffuseGain } from './spatial-appearance.mjs';
@@ -12,6 +13,7 @@ export async function startSpatialSession(context, sessionPromise, mode, overlay
     throw new DOMException('Viewing cancelled.', 'AbortError');
   }
   let resume;
+  let restoreAppearance;
   try { resume = suspend(); }
   catch (error) { await session.end(); throw error; }
   const saved = {
@@ -99,6 +101,7 @@ export async function startSpatialSession(context, sessionPromise, mode, overlay
     camera.copy(saved.camera);
     renderer.xr.enabled = saved.xrEnabled;
     renderer.setClearColor(saved.clearColor, saved.clearAlpha);
+    restoreAppearance?.();
     resume();
     options.onPlacement?.(false);
     options.onEnd?.();
@@ -122,6 +125,7 @@ export async function startSpatialSession(context, sessionPromise, mode, overlay
   session.addEventListener('select', onSelect);
   options.signal?.addEventListener('abort', onAbort, { once: true });
   try {
+    restoreAppearance = startSpatialAppearance(THREE, model, scene, renderer);
     renderer.xr.enabled = true;
     renderer.xr.setReferenceSpaceType(mode === 'immersive-ar' ? 'local' : 'local-floor');
     await renderer.xr.setSession(session);
@@ -250,13 +254,6 @@ export function makeQuickLookScene(THREE, model, box, reference, supportOptions 
         if (!material?.visible) continue;
         if (!material.isMeshStandardMaterial) throw new Error('This surface cannot be exported to AR.');
         const colored = material.vertexColors && geometry.hasAttribute('color') && !material.map;
-        const materialKey = `${material.id}:${Boolean(colored)}`;
-        if (!exportedMaterials.has(materialKey)) {
-          const prepared = prepareQuickLookMaterial(material);
-          prepared.userData.atriumDisplayColor = Boolean(colored);
-          if (colored) prepared.color.setRGB(1, 1, 1);
-          exportedMaterials.set(materialKey, prepared);
-        }
         let surface = geometry;
         if (Array.isArray(mesh.material) || geometry.hasAttribute('color')) {
           surface = geometry.clone();
@@ -266,17 +263,24 @@ export function makeQuickLookScene(THREE, model, box, reference, supportOptions 
           const indexes = geometry.index ? Array.from(geometry.index.array).slice(group.start, group.start + group.count) : Array.from({ length: group.count }, (_, i) => group.start + i);
           surface.setIndex(indexes); surface.clearGroups();
         }
+        const preparedSurface = prepareSpatialSurface(THREE, material, surface);
+        const prepared = prepareQuickLookMaterial(preparedSurface.material);
+        if (colored) prepared.color.copy(preparedSurface.material.color);
+        preparedSurface.material.dispose();
+        prepared.userData.atriumDisplayColor = Boolean(colored);
+        exportedMaterials.set(prepared.id, prepared);
         if (colored) {
           const colors = surface.getAttribute('color');
           for (let i = 0; i < colors.count; i++) {
-            const r = colors.getX(i) * material.color.r;
-            const g = colors.getY(i) * material.color.g;
-            const b = colors.getZ(i) * material.color.b;
-            const gain = quickLookDiffuseGain(r, g, b, material);
+            const r = colors.getX(i) * prepared.color.r;
+            const g = colors.getY(i) * prepared.color.g;
+            const b = colors.getZ(i) * prepared.color.b;
+            const gain = quickLookDiffuseGain(r, g, b, prepared);
             colors.setXYZ(i, r * gain, g * gain, b * gain);
           }
+          prepared.color.setRGB(1, 1, 1);
         } else if (!material.vertexColors) surface.deleteAttribute('color');
-        const item = new THREE.Mesh(surface, exportedMaterials.get(materialKey));
+        const item = new THREE.Mesh(surface, prepared);
         item.name = mesh.name;
         result.add(item);
       }

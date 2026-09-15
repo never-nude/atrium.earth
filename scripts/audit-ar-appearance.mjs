@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { readdir, readFile, writeFile } from 'node:fs/promises';
 import * as THREE from 'three';
+import { rememberSpatialAppearance, prepareSpatialSurface, spatialPaletteColor } from '../src/lib/spatial-materials.mjs';
 import { prepareQuickLookMaterial, quickLookDiffuseGain, AR_DIFFUSE_CEILING } from '../src/lib/spatial-appearance.mjs';
 
 // Catalogue/profile audit, not a claim to have visually inspected remote scans.
@@ -15,11 +16,15 @@ for (const path of (await readdir(root, { recursive: true })).filter(p => p.ends
   const appearance = JSON.parse(decode(match[1]));
   const material = new THREE.MeshStandardMaterial({ color: appearance.baseColor, roughness: appearance.roughness, metalness: appearance.metalness });
   const before = material.color.clone();
-  const native = prepareQuickLookMaterial(material);
-  const obsolete = prepareQuickLookMaterial(material, appearance.exposure);
+  rememberSpatialAppearance(material, appearance);
+  const geometry = new THREE.BoxGeometry();
+  const surface = prepareSpatialSurface(THREE, material, geometry).material;
+  const native = prepareQuickLookMaterial(surface);
+  const obsolete = prepareQuickLookMaterial(surface, appearance.exposure);
+  assert.ok(surface.color.equals(spatialPaletteColor(THREE, appearance)));
   assert.ok(native.color.equals(obsolete.color), `${path}: independent of page exposure`);
   assert.ok(material.color.equals(before), `${path}: page unchanged`);
-  assert.equal(native.roughness, material.roughness);
+  assert.ok(native.roughness >= 0.48 && native.roughness <= 0.85);
   assert.equal(native.metalness, material.metalness);
   for (const channel of ['r', 'g', 'b']) assert.ok(Number.isFinite(native.color[channel]) && native.color[channel] >= 0);
   // Exercise generated vertex tint ranges using this work's actual resolved
@@ -31,8 +36,8 @@ for (const path of (await readdir(root, { recursive: true })).filter(p => p.ends
     if (Math.max(tint.r, tint.g, tint.b) <= AR_DIFFUSE_CEILING || material.metalness > 0.1) assert.equal(gain, 1);
   }
   profiles[appearance.key] = (profiles[appearance.key] || 0) + 1;
-  works.push({ slug: path.replace(/\/index.html$/, ''), profile: appearance.key, pageExposureIgnored: appearance.exposure, arPolicy: 'source colors; untextured dielectric peak ceiling 0.8; no exposure transfer' });
-  native.dispose(); obsolete.dispose(); material.dispose();
+  works.push({ slug: path.replace(/\/index.html$/, ''), profile: appearance.key, pageExposureIgnored: appearance.exposure, arPolicy: 'single generated palette with material-specific luminance bounds; source textures preserved; independent immersive lighting' });
+  native.dispose(); obsolete.dispose(); surface.dispose(); geometry.dispose(); material.dispose();
 }
 assert.ok(works.length > 1000, 'Full built catalogue is required');
 assert.ok(works.some(w => w.slug.includes('venus-of-willendorf')));
