@@ -24,10 +24,10 @@ const defaultSize = defaultMaxExtentMeters && defaultMaxExtentMeters < 1 ? `${Ma
           <h3>In your room</h3>
           <p>Place the work on a floor or table and walk around it.</p>
           <button type="button" data-spatial-ar disabled>Checking your device…</button>
-          <a data-quick-look rel="ar" download="artwork.usdz" aria-label="Open in AR" hidden><img src={poster} alt="" />Open in AR ↗</a>
           <div class="spatial-quick-look-options" data-quick-look-options hidden>
-            <label><input type="checkbox" data-quick-look-label aria-describedby="quick-look-label-help" checked />Show artwork label beside the sculpture</label>
-            <p id="quick-look-label-help">Keep the sculpture and label in frame, vertically or horizontally. Use Apple’s camera button to photograph both.</p>
+            <button type="button" data-quick-look-prepare>Use Apple AR instead</button>
+            <a data-quick-look rel="ar" download="artwork.usdz" aria-label="Open in Apple AR" hidden><img src={poster} alt="" />Open in Apple AR ↗</a>
+            <p>Apple AR shows the sculpture without a label. Use its camera button, then return here to add the label to your saved photo.</p>
           </div>
           <p class="spatial-support" data-ar-support></p>
         </section>
@@ -205,6 +205,24 @@ const defaultSize = defaultMaxExtentMeters && defaultMaxExtentMeters < 1 ? `${Ma
   .spatial-overlay label { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; font-size: 12px; }
   .spatial-overlay input { flex: 1; min-width: 0; }
   .spatial-overlay button { min-height: 44px; padding: 8px 15px; border: 1px solid var(--spatial-line); border-radius: 3px; background: transparent; color: var(--spatial-ink); cursor: pointer; }
+  .spatial-quick-look-options [data-quick-look-prepare] { color: var(--spatial-muted); background: transparent; border-color: var(--spatial-line); }
+  /* The browser camera and HUD live in a full-screen dialog, above page chrome.
+     The label never participates in the model's 3D transforms or control stack. */
+  .spatial-dialog.spatial-browser-ar { position: fixed; inset: 0; margin: 0; width: 100%; height: 100%; height: 100dvh; max-width: none; max-height: none; padding: 0; border: 0; border-radius: 0; overflow: hidden; background: #000; }
+  .spatial-browser-ar .spatial-overlay { position: absolute; isolation: isolate; }
+  .spatial-browser-ar .spatial-overlay-top { z-index: 3; }
+  .spatial-browser-ar :global([data-browser-ar-canvas]) { z-index: 0; }
+  .spatial-browser-ar :global(.spatial-screen-label) { position: absolute; z-index: 1; top: calc(max(16px, env(safe-area-inset-top)) + 56px); left: max(16px, env(safe-area-inset-left)); width: min(300px, calc(100% - max(16px, env(safe-area-inset-left)) - max(16px, env(safe-area-inset-right)))); pointer-events: none; }
+  .spatial-browser-ar .spatial-overlay-bottom { z-index: 2; width: min(280px, calc(100% - 32px)); bottom: calc(max(16px, env(safe-area-inset-bottom)) + 124px); max-height: none; overflow: visible; pointer-events: none; }
+  .spatial-browser-ar .spatial-overlay-bottom :global(.artwork-label) { display: none; }
+  .spatial-browser-ar .spatial-photo-actions { position: fixed; right: max(16px, env(safe-area-inset-right)); bottom: max(16px, env(safe-area-inset-bottom)); width: 140px; flex-direction: column; }
+  .spatial-browser-ar .spatial-photo-actions [data-spatial-photo-capture] { min-height: 56px; }
+  .spatial-browser-ar .spatial-placement-options { max-height: 24dvh; }
+  @media(orientation: landscape) {
+    .spatial-browser-ar :global(.spatial-screen-label) { top: max(16px, env(safe-area-inset-top)); width: min(340px, calc(100% - 190px)); }
+    .spatial-browser-ar .spatial-overlay-bottom { bottom: max(16px, env(safe-area-inset-bottom)); width: min(280px, calc(100% - 190px)); }
+    .spatial-browser-ar .spatial-placement-options { max-height: 28dvh; }
+  }
   @media(max-width: 800px) { .spatial-open { font-size: 10px; } }
   @media(max-width: 540px) {
     .spatial-dialog { width: calc(100vw - 20px); max-height: calc(100vh - 20px); max-height: calc(100dvh - 20px); }

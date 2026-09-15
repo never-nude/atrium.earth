@@ -1,4 +1,4 @@
-// Use the same five catalogue facts in the live label, Apple AR scene and photo.
+// Use the same five catalogue facts in the live screen label and saved photo.
 // In particular, materialAppearance describes a rendering, not the artwork.
 const fact = (value) => typeof value === 'string'
   && !/not yet recorded|unassigned|pending|^unknown(?: maker| artist| material| date| region)?$|^undated$|^n\/a$/i.test(value.trim())
@@ -102,7 +102,7 @@ export const quickLookLabelHeight = (label = {}) => Object.values(label).join(' 
 
 export function quickLookLabelFragment({ fixedScale, pageUrl }) {
   const params = new URLSearchParams({ allowsContentScaling: fixedScale ? '0' : '1', canonicalWebPageURL: pageUrl });
-  // The label is in the USDZ scene. Never request Apple's bottom custom banner:
+  // Quick Look is the sculpture-only fallback. Never request its bottom banner:
   // it occupies the native shutter area, even when its HTML ignores pointer events.
   return params.toString();
 }

@@ -3,6 +3,7 @@ import { makeQuickLookScene, startSpatialSession } from './spatial-session.mjs';
 import { displayReferenceFor } from './spatial-access.mjs';
 import { quickLookLabelFragment } from './spatial-artwork-label.mjs';
 import { bindSpatialPhotos } from './spatial-photo.mjs';
+import { loadBrowserAREngine, requestBrowserARMotion } from './spatial-browser-ar-loader.mjs';
 
 export function bindSpatialViewing(element, getContext, activate) {
   const find = (selector) => element.querySelector(selector);
@@ -13,9 +14,7 @@ export function bindSpatialViewing(element, getContext, activate) {
   const vr = find('[data-spatial-vr]');
   const quickLook = find('[data-quick-look]');
   const quickLookOptions = find('[data-quick-look-options]');
-  const quickLookLabel = find('[data-quick-look-label]');
-  // Start each page visit with the artwork label, including after form restoration.
-  quickLookLabel.checked = quickLookLabel.defaultChecked;
+  const quickLookPrepare = find('[data-quick-look-prepare]');
   const status = find('[data-spatial-status]');
   const supportMode = find('[data-support-mode]');
   const supportHeight = find('[data-support-height]');
@@ -58,7 +57,8 @@ export function bindSpatialViewing(element, getContext, activate) {
     webView: Boolean(window.webkit?.messageHandlers),
   });
   const quickLookSupported = device.quickLook;
-  if (quickLookSupported) find('[data-spatial-photo-help]').textContent = 'The label beside the sculpture is included when you photograph it in Apple AR. For a photo taken without a label, choose it here to add one. Portrait and landscape photos keep their orientation. The photo stays on your device.';
+  const browserARSupported = device.apple && !device.embedded && window.isSecureContext && Boolean(navigator.mediaDevices?.getUserMedia);
+  if (quickLookSupported) find('[data-spatial-photo-help]').textContent = 'Atrium AR photos already include the fixed artwork label. For photos taken in Apple AR, choose the saved photo here to add its label. Portrait and landscape photos keep their orientation.';
   const handoff = find('[data-spatial-handoff]');
   const urlInput = find('[data-spatial-url]');
   const linkStatus = find('[data-spatial-link-status]');
@@ -132,11 +132,11 @@ export function bindSpatialViewing(element, getContext, activate) {
   }
   function update() {
     const ready = Boolean(getContext());
-    const arAvailable = capabilities.ar || quickLookSupported;
+    const arAvailable = capabilities.ar || browserARSupported || quickLookSupported;
     supportMode.disabled = busy;
     supportHeight.disabled = busy;
     quickLookOptions.hidden = !quickLookSupported || capabilities.ar;
-    quickLookLabel.disabled = busy;
+    quickLookPrepare.disabled = busy || !ready || !verifiedModel();
     ar.disabled = busy || !capabilities.checked || (arAvailable && !ready);
     vr.disabled = busy || !capabilities.checked || (capabilities.vr && !ready);
     if (ready && !verifiedModel()) {
@@ -146,12 +146,12 @@ export function bindSpatialViewing(element, getContext, activate) {
     ar.toggleAttribute('data-handoff', !arAvailable);
     ar.textContent = !capabilities.checked ? 'Checking your device…'
       : arAvailable && !ready ? loadFailed ? 'Sculpture unavailable' : 'Loading sculpture…'
-      : capabilities.ar ? 'Place in your room' : quickLookSupported ? 'Prepare AR view' : 'Use an AR phone';
+      : capabilities.ar || browserARSupported ? 'Place in your room' : quickLookSupported ? 'Prepare Apple AR' : 'Use an AR phone';
     vr.textContent = !capabilities.checked ? 'Checking your device…'
       : capabilities.vr && !ready ? loadFailed ? 'Sculpture unavailable' : 'Loading sculpture…'
       : capabilities.vr ? 'Enter VR' : 'Use a VR headset';
-    find('[data-ar-support]').textContent = capabilities.ar
-      ? 'Camera access begins when you choose to start.'
+    find('[data-ar-support]').textContent = capabilities.ar || browserARSupported
+      ? 'The artwork label stays fixed on screen and is included in your photo. Allow camera and motion access to begin.'
       : quickLookSupported
         ? 'Prepare the work, then tap Open in AR. If your browser cannot open it, try Safari.'
         : device.embedded ? 'This app’s browser may block AR. Open this work in Safari on iPhone or Chrome on Android.'
@@ -185,6 +185,7 @@ export function bindSpatialViewing(element, getContext, activate) {
     captureStatus.textContent = '';
     session = undefined; pending = undefined; busy = false;
     overlay.hidden = true; panel.hidden = false;
+    dialog.classList.remove('spatial-browser-ar');
     showScale(1);
     update();
   };
@@ -233,23 +234,56 @@ export function bindSpatialViewing(element, getContext, activate) {
     }).then((active) => { session = active; }).catch((error) => { reset(); say(errorMessage(error)); });
   }
 
+  function enterBrowserAR() {
+    if (busy || !getContext() || !verifiedModel()) return;
+    // Ask for motion inside this click, before loading the camera runtime.
+    let motion;
+    try { motion = requestBrowserARMotion(); } catch (error) { say(errorMessage(error)); return; }
+    busy = true; update();
+    const controller = new AbortController(); pending = controller;
+    controller.signal.addEventListener('abort', () => {
+      if (pending === controller && !session) reset();
+    }, { once: true });
+    panel.hidden = true; overlay.hidden = false; dialog.classList.add('spatial-browser-ar');
+    find('.spatial-overlay-controls').open = false;
+    find('[data-spatial-place]').hidden = false;
+    find('[data-spatial-instructions]').textContent = 'Loading the camera…';
+    captureStatus.textContent = 'Loading the camera…';
+    void Promise.all([motion, loadBrowserAREngine(), import('./spatial-browser-ar.mjs')]).then(async ([, engine, module]) => {
+      if (controller.signal.aborted) throw new DOMException('Viewing cancelled.', 'AbortError');
+      const active = await module.startBrowserARSession(getContext(), engine, overlay, {
+        signal: controller.signal, reference: viewingReference(), support: supportOptions(), artworkLabel,
+        fixedScale: verifiedReference, onScale: showScale, onSupport: showSupport,
+        onStatus: (text) => {
+          find('[data-spatial-instructions]').textContent = text;
+          if (!capturing) captureStatus.textContent = text.startsWith('Placed') ? '' : text;
+          if (text.startsWith('Placed')) find('.spatial-overlay-controls').open = false;
+        },
+        onCaptureAvailable: (available) => {
+          captureReady = available; capture.hidden = false; capture.disabled = !available || capturing;
+        },
+        onEnd: () => { if (pending === controller) { reset(); say('Back on screen. Your photos are ready below.'); } },
+        onError: (error) => { say(`${errorMessage(error)} You can also choose Apple AR below.`); },
+      });
+      if (controller.signal.aborted || pending !== controller) await active.end(); else session = active;
+    }).catch((error) => {
+      if (pending === controller) reset();
+      say(`${errorMessage(error)}${error?.name === 'AbortError' ? '' : ' You can also choose Apple AR below.'}`);
+    });
+  }
+
   async function prepareQuickLook() {
     if (busy || !getContext() || !verifiedModel()) return;
     busy = true; update(); say('Preparing the sculpture for AR…');
     const version = ++exportVersion;
     let converted;
-    let sceneLabel;
     try {
       const context = getContext();
       const { USDZExporter } = await import('three/examples/jsm/exporters/USDZExporter.js');
-      const { addQuickLookArtworkLabel, faceQuickLookLabelToCamera } = await import('./spatial-quick-look-label.mjs');
       converted = makeQuickLookScene(context.THREE, context.model, context.box, viewingReference(), supportOptions());
-      if (quickLookLabel.checked) {
-        await document.fonts.ready;
-        sceneLabel = addQuickLookArtworkLabel(context.THREE, converted.scene, artworkLabel);
-      }
-      let bytes = await new USDZExporter().parseAsync(converted.scene, { maxTextureSize: 2048, quickLookCompatible: true });
-      if (sceneLabel) bytes = faceQuickLookLabelToCamera(bytes, sceneLabel.object.name);
+      // Quick Look has no screen-space HUD. Export just the work and optional
+      // stand: no rotating plaque or bottom banner covering Apple's shutter.
+      const bytes = await new USDZExporter().parseAsync(converted.scene, { maxTextureSize: 2048, quickLookCompatible: true });
       if (version !== exportVersion) return;
       if (modelUrl) URL.revokeObjectURL(modelUrl);
       modelUrl = URL.createObjectURL(new Blob([bytes], { type: 'model/vnd.usdz+zip' }));
@@ -257,7 +291,7 @@ export function bindSpatialViewing(element, getContext, activate) {
       const fixedScale = verifiedReference || converted.hasSupport;
       quickLookFixedScale = fixedScale;
       updateQuickLookLink();
-      quickLook.hidden = false; ar.hidden = true;
+      quickLook.hidden = false; ar.hidden = !browserARSupported;
       say(!verifiedReference
         ? converted.hasSupport
           ? 'Size unverified. Ready at the chosen default display size. Tap “Open in AR” to place the stand. The artwork and stand keep their prepared size.'
@@ -273,7 +307,6 @@ export function bindSpatialViewing(element, getContext, activate) {
       say('This sculpture could not be prepared for Apple AR. You can still explore it in 3D here.');
       console.warn('Atrium Quick Look preparation failed:', error);
     } finally {
-      sceneLabel?.dispose();
       converted?.dispose();
       if (version === exportVersion) { busy = false; update(); }
     }
@@ -290,6 +323,7 @@ export function bindSpatialViewing(element, getContext, activate) {
     find('[data-spatial-close]').focus({ preventScroll: true });
     dialog.scrollTop = 0;
     loadModel();
+    if (browserARSupported) void loadBrowserAREngine().catch(() => {});
     void checkCapabilities();
   }
   find('[data-spatial-open]').addEventListener('click', openOptions);
@@ -308,7 +342,10 @@ export function bindSpatialViewing(element, getContext, activate) {
     find('[data-spatial-open]').focus({ preventScroll: true });
   });
   dialog.addEventListener('cancel', () => { pending?.abort(); });
-  find('[data-spatial-exit]').addEventListener('click', () => { pending?.abort(); });
+  find('[data-spatial-exit]').addEventListener('click', () => {
+    pending?.abort();
+    if (dialog.classList.contains('spatial-browser-ar')) reset();
+  });
   // A tap on a DOM overlay button must not also place or rotate the sculpture.
   overlay.addEventListener('beforexrselect', (event) => {
     if (event.target.closest('button, input, label, summary, details')) event.preventDefault();
@@ -320,8 +357,9 @@ export function bindSpatialViewing(element, getContext, activate) {
     reviewPhoto.hidden = true;
     captureStatus.textContent = 'Taking photo…';
     try {
+      const labelled = Boolean(session.photoIncludesLabel);
       const canvas = await session.capturePhoto();
-      const prepared = await photos.prepare(() => canvas);
+      const prepared = await photos.prepare(() => canvas, { labelled });
       if (version !== captureVersion) return;
       if (!prepared) throw new Error('Photo could not be prepared');
       reviewPhoto.hidden = false;
@@ -348,13 +386,13 @@ export function bindSpatialViewing(element, getContext, activate) {
   for (const control of [supportMode, supportHeight]) {
     control.addEventListener('input', () => { updateSupportChoice(); invalidateQuickLook(); say(''); });
   }
-  // Prepare the next native scene with this choice; preserve the live model's size.
-  quickLookLabel.addEventListener('change', () => { invalidateQuickLook(); say(''); });
+  quickLookPrepare.addEventListener('click', () => void prepareQuickLook());
   find('[data-spatial-reset-size]').addEventListener('click', () => session?.setScale(1));
   find('[data-spatial-turn]').addEventListener('click', () => session?.rotate(Math.PI / 6));
   find('[data-spatial-place]').addEventListener('click', () => session?.reposition());
   ar.addEventListener('click', () => {
     if (capabilities.ar) enter('immersive-ar');
+    else if (browserARSupported) enterBrowserAR();
     else if (quickLookSupported) void prepareQuickLook();
     else showHandoff('ar');
   });

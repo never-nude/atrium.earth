@@ -27,7 +27,7 @@ export function bindSpatialPhotos(element, label) {
   const filename = `atrium-${(label.title || 'artwork').normalize('NFKD').replace(/[^a-z0-9]+/gi, '-').replace(/^-|-$/g, '').slice(0, 80) || 'artwork'}.jpg`;
   const show = () => { panel.open = true; panel.scrollIntoView({ block: 'nearest' }); };
   const cancel = () => { version++; };
-  const prepare = async (getCanvas) => {
+  const prepare = async (getCanvas, { labelled = false } = {}) => {
     const current = ++version;
     status.textContent = 'Adding the artwork label…';
     result.hidden = true;
@@ -38,7 +38,7 @@ export function bindSpatialPhotos(element, label) {
       const canvas = await getCanvas();
       await document.fonts?.ready;
       if (current !== version) return false;
-      stampArtworkPhoto(canvas, label);
+      if (!labelled) stampArtworkPhoto(canvas, label);
       const blob = await new Promise((resolve) => canvas.toBlob(resolve, 'image/jpeg', 0.94));
       if (current !== version) return false;
       if (!blob) throw new Error('Could not encode photo');
