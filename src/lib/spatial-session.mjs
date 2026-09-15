@@ -1,8 +1,6 @@
 import { referenceScaleFor } from './physical-dimensions.mjs';
 import { createDisplaySupport, supportLayoutFor } from './display-support.mjs';
 import { prepareQuickLookMaterial } from './spatial-appearance.mjs';
-import { captureSpatialFrame } from './spatial-capture.mjs';
-import { createSpatialLabelHUD } from './spatial-label-hud.mjs';
 
 // WebXR owns the render loop only during an immersive session. Everything moved
 // into the room is restored on exit, including a denied or interrupted start.
@@ -76,24 +74,11 @@ export async function startSpatialSession(context, sessionPromise, mode, overlay
   let placed = mode === 'immersive-vr';
   let hasSurface = false;
   let lastFrame;
-  let labelHUD;
-  let captureBinding;
-  let captureRequest;
-  let captureAvailable = false;
-  const cancelCapture = () => {
-    if (!captureRequest) return;
-    clearTimeout(captureRequest.timer);
-    captureRequest.reject(new DOMException('Photo cancelled.', 'AbortError'));
-    captureRequest = undefined;
-  };
   const setStatus = (message) => options.onStatus?.(message);
   const cleanup = () => {
     if (cleaned) return;
     cleaned = true;
     ended = true;
-    cancelCapture();
-    labelHUD?.dispose();
-    options.onCaptureAvailable?.(false);
     hitSource?.cancel();
     renderer.setAnimationLoop(null);
     session.removeEventListener('end', onEnd);
@@ -139,13 +124,6 @@ export async function startSpatialSession(context, sessionPromise, mode, overlay
     renderer.xr.setReferenceSpaceType(mode === 'immersive-ar' ? 'local' : 'local-floor');
     await renderer.xr.setSession(session);
     if (ended || options.signal?.aborted) throw new DOMException('Viewing cancelled.', 'AbortError');
-    if (options.artworkLabel && !session.domOverlayState && typeof document !== 'undefined') {
-      labelHUD = createSpatialLabelHUD(THREE, options.artworkLabel, mode);
-      scene.add(labelHUD.object);
-    }
-    if (mode === 'immersive-ar' && typeof XRWebGLBinding !== 'undefined') {
-      try { captureBinding = new XRWebGLBinding(session, renderer.getContext()); } catch {}
-    }
     if (mode === 'immersive-ar') {
       const viewerSpace = await session.requestReferenceSpace('viewer');
       if (ended || options.signal?.aborted) throw new DOMException('Viewing cancelled.', 'AbortError');
@@ -159,8 +137,6 @@ export async function startSpatialSession(context, sessionPromise, mode, overlay
     } else setStatus(options.fixedScale ? 'Walk around the sculpture at its documented size. Trigger to turn.' : 'Walk around the sculpture. Trigger to turn; thumbstick up or down to resize.');
     renderer.setAnimationLoop((time, frame) => {
       if (ended) return;
-      const pose = frame?.getViewerPose?.(renderer.xr.getReferenceSpace());
-      labelHUD?.update(pose);
       const elapsed = lastFrame === undefined ? 0 : Math.min(0.1, Math.max(0, (time - lastFrame) / 1000));
       lastFrame = time;
       if (mode === 'immersive-vr' && !options.fixedScale) {
@@ -188,37 +164,15 @@ export async function startSpatialSession(context, sessionPromise, mode, overlay
         }
       }
       renderer.render(scene, camera);
-      const available = placed && Boolean(pose?.views?.length) && (mode === 'immersive-vr'
-        || (pose.views.length === 1 && pose.views[0].camera && captureBinding?.getCameraImage));
-      if (available !== captureAvailable) {
-        captureAvailable = available;
-        options.onCaptureAvailable?.(available);
-      }
-      if (captureRequest) {
-        const request = captureRequest;
-        captureRequest = undefined;
-        clearTimeout(request.timer);
-        try {
-          if (!available) throw new Error('Camera capture is not available in this frame');
-          request.resolve(captureSpatialFrame(context, pose.views[0], mode, captureBinding, [reticle, labelHUD?.object]));
-        } catch (error) { request.reject(error); }
-      }
     });
     return {
       end: () => session.end(),
       setScale,
       setSupportHeight,
-      capturePhoto: () => {
-        if (ended || !captureAvailable || captureRequest) return Promise.reject(new Error('Photo capture is not ready'));
-        return new Promise((resolve, reject) => {
-          captureRequest = { resolve, reject, timer: setTimeout(cancelCapture, 3000) };
-        });
-      },
       rotate: (radians) => { anchor.rotation.y += radians; },
       reposition: () => {
         if (mode !== 'immersive-ar') return;
         placed = false; hasSurface = false; anchor.visible = false;
-        cancelCapture(); captureAvailable = false; options.onCaptureAvailable?.(false);
         setStatus(`Find a ${placementSurface}, then tap to place ${layout.visible ? 'the stand and sculpture' : 'the sculpture'} again.`);
       },
     };

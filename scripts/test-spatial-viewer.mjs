@@ -51,21 +51,6 @@ function restored(context, state) {
   assert.equal(context.scene.children.length, 3);
 }
 
-{
-  const context = fixture(), state = original(context), session = new Session();
-  const availability = [];
-  const active = await startSpatialSession(context, Promise.resolve(session), 'immersive-vr', null, {
-    onCaptureAvailable: value => availability.push(value),
-  });
-  await assert.rejects(active.capturePhoto(), /not ready/, 'No shutter until a tracked view exists');
-  context.renderer.loop(0, { getViewerPose: () => ({ views: [{}] }) });
-  const capture = active.capturePhoto();
-  const cancelled = assert.rejects(capture, { name: 'AbortError' });
-  await active.end(); await cancelled; await tick();
-  assert.deepEqual(availability, [true, false]);
-  restored(context, state);
-}
-
 for (const mode of ['immersive-ar', 'immersive-vr']) {
   const context = fixture(), state = original(context), session = new Session();
   const active = await startSpatialSession(context, Promise.resolve(session), mode, null, {

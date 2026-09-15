@@ -4,9 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "predev": "node ./scripts/prepare-browser-ar.mjs",
     "dev": "astro dev",
-    "prebuild": "node ./scripts/prepare-browser-ar.mjs",
     "build": "astro build && node ./scripts/write-redirects.mjs && node ./scripts/prune-remote-assets.mjs",
     "test:wings": "node --experimental-strip-types ./scripts/test-wings.ts",
     "preview": "astro preview",
@@ -25,14 +23,12 @@
     "ingest:auto": "npm run ingest:discover && npm run ingest:fetch && npm run ingest:assemble",
     "test:model-normalization": "node ./scripts/test-model-normalization.mjs",
     "test:spatial": "node ./scripts/test-spatial-capabilities.mjs && node ./scripts/test-spatial-viewer.mjs && node ./scripts/test-spatial-appearance.mjs",
-    "test:spatial-label": "node ./scripts/test-spatial-artwork-label.mjs",
-    "test:spatial-label-browser": "node ./scripts/test-spatial-label-browser.mjs",
+    "test:spatial-restoration": "node ./scripts/test-spatial-restoration.mjs",
     "test:spatial-eligibility": "node ./scripts/test-spatial-eligibility.mjs",
     "test:spatial-access": "node ./scripts/test-spatial-access.mjs",
     "test:display-support": "node ./scripts/test-display-support.mjs",
     "test:quick-look-export": "node ./scripts/test-quick-look-export.mjs",
-    "test:dimensions": "node ./scripts/test-physical-dimensions.mjs",
-    "test:browser-ar": "node scripts/test-browser-ar.mjs"
+    "test:dimensions": "node ./scripts/test-physical-dimensions.mjs"
   },
   "devDependencies": {
     "@astrojs/sitemap": "^3.7.2",
@@ -41,7 +37,6 @@
     "playwright": "^1.61.1"
   },
   "dependencies": {
-    "@8thwall/engine-binary": "1.0.0",
     "@google/model-viewer": "^4.2.0",
     "lucide": "^1.14.0",
     "three": "^0.182.0"

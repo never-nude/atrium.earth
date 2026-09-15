@@ -1,9 +1,6 @@
 import { spatialDevice, probeSpatialSupport } from './spatial-capabilities.mjs';
 import { makeQuickLookScene, startSpatialSession } from './spatial-session.mjs';
 import { displayReferenceFor } from './spatial-access.mjs';
-import { quickLookLabelFragment } from './spatial-artwork-label.mjs';
-import { bindSpatialPhotos } from './spatial-photo.mjs';
-import { loadBrowserAREngine, requestBrowserARMotion } from './spatial-browser-ar-loader.mjs';
 
 export function bindSpatialViewing(element, getContext, activate) {
   const find = (selector) => element.querySelector(selector);
@@ -13,8 +10,6 @@ export function bindSpatialViewing(element, getContext, activate) {
   const ar = find('[data-spatial-ar]');
   const vr = find('[data-spatial-vr]');
   const quickLook = find('[data-quick-look]');
-  const quickLookOptions = find('[data-quick-look-options]');
-  const quickLookPrepare = find('[data-quick-look-prepare]');
   const status = find('[data-spatial-status]');
   const supportMode = find('[data-support-mode]');
   const supportHeight = find('[data-support-height]');
@@ -26,31 +21,6 @@ export function bindSpatialViewing(element, getContext, activate) {
     find('[data-spatial-support-value]').textContent = `${Math.round(height * 100)} cm`;
   };
   const title = element.dataset.title;
-  const artworkLabel = JSON.parse(element.dataset.artworkLabelJson || JSON.stringify({ title }));
-  const photos = bindSpatialPhotos(element, artworkLabel);
-  const capture = find('[data-spatial-photo-capture]');
-  const captureStatus = find('[data-spatial-capture-status]');
-  const reviewPhoto = find('[data-spatial-photo-review]');
-  const confirmPlacement = find('[data-spatial-confirm-placement]');
-  const proposedSize = find('[data-spatial-proposed-size]');
-  const overlayControls = find('.spatial-overlay-controls');
-  const browserSetup = find('[data-spatial-browser-setup]');
-  const startBrowser = find('[data-spatial-start-browser]');
-  const startPortrait = find('[data-spatial-start-portrait]');
-  const setupStatus = find('[data-spatial-setup-status]');
-  let setupOpen = false;
-  const landscape = () => window.innerWidth > window.innerHeight;
-  let browserPlaced = false, photoStatusTimer;
-  const showDimensions = ({ height, width, depth }) => {
-    const meters = Math.max(height, width, depth) >= 1;
-    const format = new Intl.NumberFormat('en', { maximumFractionDigits: meters ? 2 : 1 });
-    const dimensions = [height, width, depth]
-      .map(value => format.format(value * (meters ? 1 : 100))).join(' × ') + (meters ? ' m' : ' cm');
-    element.querySelectorAll('[data-spatial-dimensions]').forEach(output => { output.textContent = dimensions; });
-  };
-  let capturing = false;
-  let captureReady = false;
-  let captureVersion = 0;
   const verifiedReference = element.dataset.verifiedReference === 'true';
   const verifiedModel = () => !verifiedReference || getContext()?.verifiedAsset === true;
   const reference = verifiedReference && element.dataset.referenceAxis ? {
@@ -74,8 +44,6 @@ export function bindSpatialViewing(element, getContext, activate) {
     webView: Boolean(window.webkit?.messageHandlers),
   });
   const quickLookSupported = device.quickLook;
-  const browserARSupported = device.apple && !device.embedded && window.isSecureContext && Boolean(navigator.mediaDevices?.getUserMedia);
-  if (quickLookSupported) find('[data-spatial-photo-help]').textContent = 'Atrium AR photos already include the on-screen artwork label. For photos taken in Apple AR, choose the saved photo here to add its label. Portrait and landscape photos keep their orientation.';
   const handoff = find('[data-spatial-handoff]');
   const urlInput = find('[data-spatial-url]');
   const linkStatus = find('[data-spatial-link-status]');
@@ -90,13 +58,6 @@ export function bindSpatialViewing(element, getContext, activate) {
   let session;
   let pending;
   let modelUrl;
-  let quickLookFixedScale = false;
-  const updateQuickLookLink = () => {
-    if (!modelUrl) return;
-    quickLook.href = `${modelUrl}#${quickLookLabelFragment({
-      fixedScale: quickLookFixedScale, pageUrl,
-    })}`;
-  };
   const invalidateQuickLook = () => {
     if (modelUrl) URL.revokeObjectURL(modelUrl);
     modelUrl = undefined;
@@ -115,28 +76,7 @@ export function bindSpatialViewing(element, getContext, activate) {
           ? 'VR follows the display recommendation at the selected starting size. In AR, use a real surface or choose a virtual stand.'
           : 'Small displayed pieces get a stand in VR. In AR, use a real table or choose a virtual stand.';
   };
-  const say = (message) => { status.textContent = message; setupStatus.textContent = message; };
-  function updateBrowserSetup() {
-    if (!setupOpen) return;
-    const ready = Boolean(getContext()) && verifiedModel();
-    startBrowser.disabled = busy || !ready || !landscape();
-    startBrowser.textContent = busy ? 'Starting camera…' : !ready
-      ? loadFailed || getContext() ? 'AR unavailable' : 'Loading sculpture…' : 'Start AR';
-    startPortrait.hidden = landscape(); startPortrait.disabled = busy || !ready;
-    find('[data-spatial-setup-heading]').textContent = landscape() ? 'Ready for landscape AR.' : 'Turn your phone sideways.';
-    find('[data-spatial-setup-guidance]').textContent = landscape()
-      ? 'Start the camera, find a surface, then tap Place work.'
-      : 'Landscape gives the work and its label more space. If the screen does not turn, check Portrait Orientation Lock.';
-    find('[data-spatial-viewing-options]').disabled = busy;
-  }
-  function showBrowserSetup(rotated = false) {
-    setupOpen = true; browserSetup.hidden = false;
-    panel.hidden = true; overlay.hidden = true;
-    dialog.classList.add('spatial-preparing-ar'); dialog.classList.remove('spatial-browser-ar');
-    dialog.scrollTop = 0;
-    say(rotated ? 'The view rotated. Start AR to place the work again.' : '');
-    update();
-  }
+  const say = (message) => { status.textContent = message; };
   function showHandoff(mode) {
     handoff.open = true;
     find('[data-device-help]').textContent = mode === 'vr'
@@ -170,11 +110,9 @@ export function bindSpatialViewing(element, getContext, activate) {
   }
   function update() {
     const ready = Boolean(getContext());
-    const arAvailable = capabilities.ar || browserARSupported || quickLookSupported;
+    const arAvailable = capabilities.ar || quickLookSupported;
     supportMode.disabled = busy;
     supportHeight.disabled = busy;
-    quickLookOptions.hidden = !quickLookSupported || capabilities.ar;
-    quickLookPrepare.disabled = busy || !ready || !verifiedModel();
     ar.disabled = busy || !capabilities.checked || (arAvailable && !ready);
     vr.disabled = busy || !capabilities.checked || (capabilities.vr && !ready);
     if (ready && !verifiedModel()) {
@@ -182,14 +120,14 @@ export function bindSpatialViewing(element, getContext, activate) {
       say('AR / VR is unavailable because this version of the model could not be matched to its verified size reference. You can continue exploring in 3D.');
     }
     ar.toggleAttribute('data-handoff', !arAvailable);
-    ar.textContent = busy ? 'Starting…' : !capabilities.checked ? 'Checking your device…'
+    ar.textContent = !capabilities.checked ? 'Checking your device…'
       : arAvailable && !ready ? loadFailed ? 'Sculpture unavailable' : 'Loading sculpture…'
-      : capabilities.ar || browserARSupported ? 'Place in your room' : quickLookSupported ? 'Prepare Apple AR' : 'Use an AR phone';
+      : capabilities.ar ? 'Place in your room' : quickLookSupported ? 'Prepare AR view' : 'Use an AR phone';
     vr.textContent = !capabilities.checked ? 'Checking your device…'
       : capabilities.vr && !ready ? loadFailed ? 'Sculpture unavailable' : 'Loading sculpture…'
       : capabilities.vr ? 'Enter VR' : 'Use a VR headset';
-    find('[data-ar-support]').textContent = capabilities.ar || browserARSupported
-      ? 'The artwork label stays on screen and is included in your photo. Allow camera and motion access to begin.'
+    find('[data-ar-support]').textContent = capabilities.ar
+      ? 'Camera access begins when you choose to start.'
       : quickLookSupported
         ? 'Prepare the work, then tap Open in AR. If your browser cannot open it, try Safari.'
         : device.embedded ? 'This app’s browser may block AR. Open this work in Safari on iPhone or Chrome on Android.'
@@ -197,10 +135,9 @@ export function bindSpatialViewing(element, getContext, activate) {
         : device.android ? 'Try Chrome on an AR-capable Android phone.'
         : 'Move to an AR-capable phone or tablet using this work’s link.';
     find('[data-vr-support]').textContent = capabilities.vr
-      ? 'Your headset is ready. Trigger to turn; thumbstick to resize.'
+      ? verifiedReference ? 'Your headset is ready. Trigger to turn. The documented size stays fixed.' : 'Your headset is ready. Trigger to turn; thumbstick to resize.'
       : 'Open the work in a headset browser that supports immersive viewing.';
     retry.hidden = !loadFailed;
-    updateBrowserSetup();
   }
   async function checkCapabilities() {
     const version = ++checkVersion;
@@ -219,17 +156,8 @@ export function bindSpatialViewing(element, getContext, activate) {
     update();
   }
   const reset = () => {
-    clearTimeout(photoStatusTimer); browserPlaced = false;
-    confirmPlacement.hidden = true; confirmPlacement.disabled = true; proposedSize.hidden = true;
-    overlayControls.hidden = false;
-    captureVersion++; capturing = false; captureReady = false;
-    capture.hidden = true; capture.disabled = true;
-    captureStatus.textContent = '';
-    captureStatus.classList.remove('spatial-status-quiet');
     session = undefined; pending = undefined; busy = false;
     overlay.hidden = true; panel.hidden = false;
-    setupOpen = false; browserSetup.hidden = true;
-    dialog.classList.remove('spatial-browser-ar', 'spatial-preparing-ar');
     showScale(1);
     update();
   };
@@ -244,106 +172,25 @@ export function bindSpatialViewing(element, getContext, activate) {
     busy = true; update();
     pending = new AbortController();
     panel.hidden = true; overlay.hidden = false;
-    find('.spatial-overlay-controls').open = true;
-    captureStatus.textContent = '';
     find('[data-spatial-place]').hidden = mode !== 'immersive-ar';
     find('[data-spatial-instructions]').textContent = 'Starting immersive view…';
     // requestSession must run directly inside the click, before imports or awaits.
     let request;
     try {
       request = xr.requestSession(mode, mode === 'immersive-ar'
-        ? { requiredFeatures: ['hit-test'], optionalFeatures: ['dom-overlay', 'camera-access'], domOverlay: { root: overlay } }
+        ? { requiredFeatures: ['hit-test'], optionalFeatures: ['dom-overlay'], domOverlay: { root: overlay } }
         : { requiredFeatures: ['local-floor'], optionalFeatures: ['hand-tracking', 'dom-overlay'], domOverlay: { root: overlay } });
     } catch (error) { reset(); say(errorMessage(error)); return; }
     void startSpatialSession(getContext(), request, mode, overlay, {
       signal: pending.signal,
       reference: viewingReference(),
       support: supportOptions(),
-      artworkLabel,
       onSupport: showSupport,
-      onStatus: (text) => {
-        find('[data-spatial-instructions]').textContent = text;
-        if (text.startsWith('Placed')) {
-          find('.spatial-overlay-controls').open = false;
-          if (!captureReady) captureStatus.textContent = 'You can also save this view with a screenshot.';
-        }
-      },
-      onCaptureAvailable: (available) => {
-        captureReady = available; capture.hidden = !available; capture.disabled = !available || capturing;
-        if (available && !capturing) captureStatus.textContent = '';
-      },
+      onStatus: (text) => { find('[data-spatial-instructions]').textContent = text; },
       onScale: showScale,
-      fixedScale: false,
+      fixedScale: verifiedReference,
       onEnd: () => { reset(); say('Back on screen. You can start another immersive view whenever you like.'); },
     }).then((active) => { session = active; }).catch((error) => { reset(); say(errorMessage(error)); });
-  }
-
-  function enterBrowserAR(allowPortrait = false) {
-    if (busy) return;
-    if (!getContext() || !verifiedModel()) { update(); return; }
-    if (!landscape() && !allowPortrait) { updateBrowserSetup(); return; }
-    const preparedLandscape = landscape();
-    busy = true; update(); say('Starting the camera…');
-    const controller = new AbortController(); pending = controller;
-    controller.signal.addEventListener('abort', () => {
-      if (pending === controller && !session) reset();
-    }, { once: true });
-    // Still inside the explicit Start tap. Keep progress/errors next to that
-    // button while motion permission and the camera runtime are loading.
-    let motion;
-    try { motion = requestBrowserARMotion(); } catch (error) {
-      controller.abort(); showBrowserSetup(); say(errorMessage(error)); return;
-    }
-    void Promise.all([motion, loadBrowserAREngine(), import('./spatial-browser-ar.mjs')]).then(async ([, engine, module]) => {
-      if (controller.signal.aborted) throw new DOMException('Viewing cancelled.', 'AbortError');
-      if (landscape() !== preparedLandscape) {
-        controller.abort(); showBrowserSetup(true); return;
-      }
-      setupOpen = false; browserSetup.hidden = true;
-      panel.hidden = true; overlay.hidden = false;
-      dialog.classList.remove('spatial-preparing-ar'); dialog.classList.add('spatial-browser-ar');
-      browserPlaced = false; reviewPhoto.hidden = true;
-      overlayControls.open = false; overlayControls.hidden = true;
-      confirmPlacement.hidden = false; confirmPlacement.disabled = true; proposedSize.hidden = true;
-      find('[data-spatial-place]').hidden = false;
-      find('[data-spatial-instructions]').textContent = 'Loading the camera…';
-      captureStatus.textContent = 'Loading the camera…';
-      const active = await module.startBrowserARSession(getContext(), engine, overlay, {
-        signal: controller.signal, reference: viewingReference(), support: supportOptions(), artworkLabel,
-        fixedScale: false, onScale: showScale, onSupport: showSupport,
-        onDimensions: showDimensions,
-        onPlacementChange: ({ placed, available }) => {
-          browserPlaced = placed;
-          confirmPlacement.hidden = placed; confirmPlacement.disabled = !available;
-          proposedSize.hidden = placed || !available;
-          overlayControls.hidden = !placed;
-          if (!placed) overlayControls.open = false;
-          capture.hidden = !placed;
-        },
-        onStatus: (text) => {
-          find('[data-spatial-instructions]').textContent = text.startsWith('Placed')
-            ? 'Use the size slider or choose Move work to place it elsewhere.' : text;
-          captureStatus.classList.remove('spatial-status-quiet');
-          if (!capturing) captureStatus.textContent = text.startsWith('Placed') || text.startsWith('Surface found') ? '' : text;
-          if (text.startsWith('Placed')) find('.spatial-overlay-controls').open = false;
-        },
-        onCaptureAvailable: (available) => {
-          captureReady = available; capture.hidden = !browserPlaced; capture.disabled = !available || capturing;
-        },
-        onEnd: ({ reason } = {}) => {
-          if (pending !== controller) return;
-          reset();
-          if (reason === 'orientation' || reason === 'error') showBrowserSetup(reason === 'orientation');
-          else say('Back on screen. Your photos are ready below.');
-        },
-        onError: (error) => { say(`${errorMessage(error)} Apple AR is available in More viewing options.`); },
-      });
-      if (controller.signal.aborted || pending !== controller) await active.end(); else session = active;
-    }).catch((error) => {
-      if (pending !== controller) return;
-      reset(); showBrowserSetup();
-      say(`${errorMessage(error)}${error?.name === 'AbortError' ? '' : ' Apple AR is available in More viewing options.'}`);
-    });
   }
 
   async function prepareQuickLook() {
@@ -355,17 +202,14 @@ export function bindSpatialViewing(element, getContext, activate) {
       const context = getContext();
       const { USDZExporter } = await import('three/examples/jsm/exporters/USDZExporter.js');
       converted = makeQuickLookScene(context.THREE, context.model, context.box, viewingReference(), supportOptions());
-      // Quick Look has no screen-space HUD. Export just the work and optional
-      // stand: no rotating plaque or bottom banner covering Apple's shutter.
       const bytes = await new USDZExporter().parseAsync(converted.scene, { maxTextureSize: 2048, quickLookCompatible: true });
       if (version !== exportVersion) return;
       if (modelUrl) URL.revokeObjectURL(modelUrl);
       modelUrl = URL.createObjectURL(new Blob([bytes], { type: 'model/vnd.usdz+zip' }));
       // Preserve the physical reference in Apple's viewer, with or without a stand.
       const fixedScale = verifiedReference || converted.hasSupport;
-      quickLookFixedScale = fixedScale;
-      updateQuickLookLink();
-      quickLook.hidden = false; ar.hidden = !browserARSupported;
+      quickLook.href = `${modelUrl}#allowsContentScaling=${fixedScale ? 0 : 1}&canonicalWebPageURL=${encodeURIComponent(pageUrl)}`;
+      quickLook.hidden = false; ar.hidden = true;
       say(!verifiedReference
         ? converted.hasSupport
           ? 'Size unverified. Ready at the chosen default display size. Tap “Open in AR” to place the stand. The artwork and stand keep their prepared size.'
@@ -397,7 +241,6 @@ export function bindSpatialViewing(element, getContext, activate) {
     find('[data-spatial-close]').focus({ preventScroll: true });
     dialog.scrollTop = 0;
     loadModel();
-    if (browserARSupported && !capabilities.ar) showBrowserSetup();
     void checkCapabilities();
   }
   find('[data-spatial-open]').addEventListener('click', openOptions);
@@ -406,16 +249,6 @@ export function bindSpatialViewing(element, getContext, activate) {
   if (location.hash === '#ar-vr') openOptions();
   retry.addEventListener('click', loadModel);
   find('[data-spatial-close]').addEventListener('click', () => dialog.close());
-  find('[data-spatial-setup-close]').addEventListener('click', () => dialog.close());
-  find('[data-spatial-viewing-options]').addEventListener('click', () => {
-    if (busy) return;
-    setupOpen = false; browserSetup.hidden = true; panel.hidden = false;
-    dialog.classList.remove('spatial-preparing-ar'); dialog.scrollTop = 0;
-    say(''); update();
-  });
-  startBrowser.addEventListener('click', () => enterBrowserAR());
-  startPortrait.addEventListener('click', () => enterBrowserAR(true));
-  window.addEventListener('resize', updateBrowserSetup);
   find('[data-spatial-screen]').addEventListener('click', () => dialog.close());
   dialog.addEventListener('close', () => {
     document.body.classList.remove('spatial-modal-open');
@@ -426,46 +259,10 @@ export function bindSpatialViewing(element, getContext, activate) {
     find('[data-spatial-open]').focus({ preventScroll: true });
   });
   dialog.addEventListener('cancel', () => { pending?.abort(); });
-  find('[data-spatial-exit]').addEventListener('click', () => {
-    pending?.abort();
-    if (dialog.classList.contains('spatial-browser-ar')) reset();
-  });
+  find('[data-spatial-exit]').addEventListener('click', () => { pending?.abort(); });
   // A tap on a DOM overlay button must not also place or rotate the sculpture.
   overlay.addEventListener('beforexrselect', (event) => {
-    if (event.target.closest('button, input, label, summary, details')) event.preventDefault();
-  });
-  capture.addEventListener('click', async () => {
-    if (!session || !captureReady || capturing) return;
-    const version = ++captureVersion;
-    clearTimeout(photoStatusTimer);
-    capturing = true; capture.disabled = true;
-    captureStatus.classList.remove('spatial-status-quiet');
-    reviewPhoto.hidden = true;
-    captureStatus.textContent = 'Taking photo…';
-    try {
-      const labelled = Boolean(session.photoIncludesLabel);
-      const canvas = await session.capturePhoto();
-      const prepared = await photos.prepare(() => canvas, { labelled });
-      if (version !== captureVersion) return;
-      if (!prepared) throw new Error('Photo could not be prepared');
-      reviewPhoto.hidden = false;
-      const browserAR = dialog.classList.contains('spatial-browser-ar');
-      captureStatus.classList.toggle('spatial-status-quiet', browserAR);
-      captureStatus.textContent = browserAR ? 'Photo ready' : 'Photo ready. View it to save or share.';
-      if (browserAR) photoStatusTimer = setTimeout(() => {
-        if (version === captureVersion && captureReady && captureStatus.textContent === 'Photo ready') captureStatus.textContent = '';
-      }, 2200);
-    } catch (error) {
-      if (version !== captureVersion) return;
-      captureStatus.textContent = 'The photo could not be captured. Try again, or save this view with a screenshot.';
-    } finally {
-      if (version === captureVersion) { capturing = false; capture.disabled = !captureReady; }
-    }
-  });
-  reviewPhoto.addEventListener('click', async () => {
-    if (capturing) return;
-    try { await session?.end(); } catch { return; }
-    photos.show();
+    if (event.target.closest('button, input, label')) event.preventDefault();
   });
   find('[data-spatial-scale]').addEventListener('input', (event) => session?.setScale(event.target.value));
   find('[data-spatial-support-height]').addEventListener('input', (event) => {
@@ -477,14 +274,11 @@ export function bindSpatialViewing(element, getContext, activate) {
   for (const control of [supportMode, supportHeight]) {
     control.addEventListener('input', () => { updateSupportChoice(); invalidateQuickLook(); say(''); });
   }
-  quickLookPrepare.addEventListener('click', () => void prepareQuickLook());
   find('[data-spatial-reset-size]').addEventListener('click', () => session?.setScale(1));
   find('[data-spatial-turn]').addEventListener('click', () => session?.rotate(Math.PI / 6));
   find('[data-spatial-place]').addEventListener('click', () => session?.reposition());
-  confirmPlacement.addEventListener('click', () => session?.place());
   ar.addEventListener('click', () => {
     if (capabilities.ar) enter('immersive-ar');
-    else if (browserARSupported) showBrowserSetup();
     else if (quickLookSupported) void prepareQuickLook();
     else showHandoff('ar');
   });
