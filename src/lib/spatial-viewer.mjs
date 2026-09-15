@@ -1,6 +1,6 @@
 import { spatialDevice, probeSpatialSupport } from './spatial-capabilities.mjs';
 import { makeQuickLookScene, startSpatialSession } from './spatial-session.mjs';
-import { displayReferenceFor } from './spatial-access.mjs';
+import { viewingReferenceFor } from './spatial-access.mjs';
 import { bindMuseumPhotos } from './museum-photo.mjs';
 
 export function bindSpatialViewing(element, getContext, activate) {
@@ -35,14 +35,17 @@ export function bindSpatialViewing(element, getContext, activate) {
   };
   labelToggle.addEventListener('change', () => { museumHUD.hidden = !artworkPlaced || !labelToggle.checked; });
   const verifiedReference = element.dataset.verifiedReference === 'true';
-  const verifiedModel = () => !verifiedReference || getContext()?.verifiedAsset === true;
-  const reference = verifiedReference && element.dataset.referenceAxis ? {
+  const approximate = element.dataset.dimensionStatus === 'approximate';
+  const requiresAssetCheck = element.dataset.requiresAssetCheck === 'true' || verifiedReference;
+  const verifiedModel = () => !requiresAssetCheck || getContext()?.verifiedAsset === true;
+  const reference = element.dataset.referenceAxis ? {
     axis: element.dataset.referenceAxis, meters: Number(element.dataset.referenceMeters),
+    ...(approximate ? { estimated: true } : {}),
     ...(element.dataset.referenceExtentFraction !== undefined
       ? { extentFraction: Number(element.dataset.referenceExtentFraction) } : {}),
   } : null;
   const defaultMaxExtentMeters = Number(element.dataset.defaultMaxExtentMeters) || 1;
-  const viewingReference = () => verifiedReference ? reference : displayReferenceFor(getContext()?.box, defaultMaxExtentMeters);
+  const viewingReference = () => viewingReferenceFor(getContext()?.box, reference, defaultMaxExtentMeters);
   const showScale = (value) => {
     find('[data-spatial-scale]').value = String(value);
     find('[data-spatial-size]').textContent = `${Math.round(value * 100)}%`;
@@ -132,7 +135,7 @@ export function bindSpatialViewing(element, getContext, activate) {
     vr.disabled = busy || !capabilities.checked || (capabilities.vr && !ready);
     if (ready && !verifiedModel()) {
       ar.disabled = true; vr.disabled = true;
-      say('AR / VR is unavailable because this version of the model could not be matched to its verified size reference. You can continue exploring in 3D.');
+      say('AR / VR is unavailable because this version of the model could not be matched to its size reference. You can continue exploring in 3D.');
     }
     ar.toggleAttribute('data-handoff', !arAvailable);
     ar.textContent = !capabilities.checked ? 'Checking your device…'
@@ -233,10 +236,12 @@ export function bindSpatialViewing(element, getContext, activate) {
       const fixedScale = verifiedReference || converted.hasSupport;
       quickLook.href = `${modelUrl}#allowsContentScaling=${fixedScale ? 0 : 1}&canonicalWebPageURL=${encodeURIComponent(pageUrl)}`;
       quickLook.hidden = false; ar.hidden = true;
-      say(!verifiedReference
+      say(approximate
+        ? `Approximate dimensions. Ready at Atrium’s estimated size. Tap “Open in AR” to place the work.${converted.hasSupport ? ' The artwork and stand keep their prepared size.' : ' Pinch to resize it.'}`
+        : !verifiedReference
         ? converted.hasSupport
-          ? 'Size unverified. Ready at the chosen default display size. Tap “Open in AR” to place the stand. The artwork and stand keep their prepared size.'
-          : 'Size unverified. Ready at the chosen default display size. Tap “Open in AR” to place the work; pinch to resize it.'
+          ? 'Dimensions unknown. Ready at the chosen default display size. Tap “Open in AR” to place the stand. The artwork and stand keep their prepared size.'
+          : 'Dimensions unknown. Ready at the chosen default display size. Tap “Open in AR” to place the work; pinch to resize it.'
         : converted.hasSupport
         ? 'Ready. Tap “Open in AR” and place the stand on the floor. The artwork and stand keep their prepared size.'
         : fixedScale

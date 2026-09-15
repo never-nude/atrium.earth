@@ -1,20 +1,23 @@
 ---
 import V3CollectionExplorer from '../../components/v3/V3CollectionExplorer.astro';
 import V3Layout from '../../layouts/v3/V3Layout.astro';
-import { arVrWorks, arVrFeatured, arVrCount, arVrVerifiedCount, arVrUnverifiedCount } from '../../lib/spatial-catalog';
+import { arVrWorks, arVrFeatured, arVrCount, arVrVerifiedCount, arVrApproximateCount, arVrUnknownCount } from '../../lib/spatial-catalog';
 ---
 
 <V3Layout
   title="Art in AR / VR"
-  description={`Explore all ${arVrCount} compatible models in AR or VR. ${arVrVerifiedCount} have reviewed size references; the others show clearly labeled default display dimensions.`}
+  description={`Explore all ${arVrCount} compatible models in AR or VR, with verified, approximate and unknown dimensions clearly labeled.`}
   image={arVrFeatured[0]?.thumbnailImage}
 >
   <header class="v3-page-hero v3-discovery-hero">
     <p class="v3-kicker">AR / VR · All compatible models</p>
     <h1 class="v3-display">Sculpture, <em>beyond the screen.</em></h1>
     <p>Bring a work into your room with a compatible phone, or explore it inside a headset.</p>
-    <p class="v3-discovery-note">All {arVrCount} compatible models are available. {arVrVerifiedCount} have reviewed size references, with measured casts labeled “Documented cast size.”</p>
-    <p class="v3-discovery-note"><strong class="v3-size-unverified">Size unverified</strong> marks the other {arVrUnverifiedCount} models. Their stated default dimension is a chosen display size, not a claim about the artwork’s actual dimensions.</p>
+    <div class="v3-dimension-legend" aria-label="Dimension status guide">
+      <p><strong class="v3-dimension-status" data-dimension-status="verified">Verified dimensions · {arVrVerifiedCount}</strong> — Source measurements matched to the model. Measured casts are identified.</p>
+      <p><strong class="v3-dimension-status" data-dimension-status="approximate">Approximate dimensions · {arVrApproximateCount}</strong> — Scaled to Atrium’s best estimate from listed dimensions and work descriptions; actual size may vary.</p>
+      <p><strong class="v3-dimension-status" data-dimension-status="unknown">Dimensions unknown · {arVrUnknownCount}</strong> — No usable real-world dimensions established. Opens at an adjustable display size.</p>
+    </div>
   </header>
 
   <section class="v3-collection" aria-label="Works available in AR and VR">

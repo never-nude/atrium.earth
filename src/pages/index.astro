@@ -20,7 +20,7 @@ const heroTransform = { ...featuredWork.modelTransform, fit: 1.1 };
 
 <V3Layout
   title="Atrium.Earth"
-  description={`Explore ${collectionCount} works in 3D and all ${arVrCount} compatible models in AR and VR. Reviewed size references and unverified default dimensions are clearly labeled.`}
+  description={`Explore ${collectionCount} works in 3D and all ${arVrCount} compatible models in AR and VR. Verified, approximate and unknown dimensions are clearly labeled.`}
   image={featuredWork.thumbnailImage}
 >
   <section class="v3-hero" aria-labelledby="v3-home-title">
@@ -72,7 +72,7 @@ const heroTransform = { ...featuredWork.modelTransform, fit: 1.1 };
     </div>
     <div class="v3-spatial-feature__intro">
       <p class="v3-editorial">Explore all {arVrCount} compatible models in AR on your phone or in VR. {arVrVerifiedCount} carry reviewed size references, including clearly labeled cast measurements.</p>
-      <p class="v3-spatial-feature__note">Other models are marked <strong class="v3-size-unverified">Size unverified</strong>. Their default dimension is a chosen display size; the artwork’s actual dimensions remain unverified.</p>
+      <p class="v3-spatial-feature__note"><strong class="v3-dimension-status" data-dimension-status="verified">Verified dimensions</strong> use reviewed measurements. <strong class="v3-dimension-status" data-dimension-status="approximate">Approximate dimensions</strong> use the best available estimate. <strong class="v3-dimension-status" data-dimension-status="unknown">Dimensions unknown</strong> use an adjustable display size.</p>
     </div>
     <div class="v3-spatial-feature__works">
       {arVrFeatured.map((work) => <V3WorkCard work={work} spatial={true} />)}

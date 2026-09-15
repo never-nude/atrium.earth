@@ -3,7 +3,8 @@ import * as THREE from 'three';
 import { USDZExporter } from 'three/examples/jsm/exporters/USDZExporter.js';
 import { unzipSync, strFromU8 } from 'three/examples/jsm/libs/fflate.module.js';
 import { makeQuickLookScene } from '../src/lib/spatial-session.mjs';
-import { displayReferenceFor } from '../src/lib/spatial-access.mjs';
+import { displayReferenceFor, viewingReferenceFor } from '../src/lib/spatial-access.mjs';
+import { readFileSync } from 'node:fs';
 
 const near = (actual, expected, message) => assert.ok(Math.abs(actual - expected) < 1e-7, `${message}: ${actual} != ${expected}`);
 const numbers = (text) => Array.from(text.matchAll(/[-+]?(?:\d+\.?\d*|\.\d+)(?:[eE][-+]?\d+)?/g), (match) => Number(match[0]));
@@ -149,3 +150,28 @@ for (const axis of ['x', 'y', 'z']) {
   }finally{converted.dispose();mesh.geometry.dispose();mesh.material.dispose();}
 }
 console.log('Default-size USDZ checks passed: wide, tall and deep models preserve proportions at the chosen longest extent.');
+
+// Follow the resolved references through the production exporter and inspect
+// serialized points. This catches accidentally applying the former 1.5 m
+// display default to an approximate reference such as La Chiffonnière.
+const dimensionCoverage = JSON.parse(readFileSync(new URL('../docs/approximate-dimensions-2026-09-15/coverage.json', import.meta.url)));
+for (const slug of ['modern/dubuffet-la-chiffonniere', 'asia/yunnan-drum-yale-ant052625']) {
+  const row = dimensionCoverage.works.find(work => work.slug === slug);
+  assert.equal(row.status, 'approximate');
+  const model = new THREE.Group();
+  const mesh = new THREE.Mesh(new THREE.BoxGeometry(2, 3, 1), new THREE.MeshStandardMaterial());
+  mesh.name = 'EstimatedArtwork'; model.add(mesh);
+  const bounds = new THREE.Box3().setFromObject(model, true);
+  const reference = viewingReferenceFor(bounds, row.reference);
+  const converted = makeQuickLookScene(THREE, model, bounds, reference, { mode: 'surface' });
+  try {
+    const archive = unzipSync(await new USDZExporter().parseAsync(converted.scene, { quickLookCompatible: true }));
+    const text = strFromU8(archive['model.usda']);
+    const actual = exportedBounds(archive, text, 'EstimatedArtwork', transformFor(text, 'Artwork'));
+    const size = actual.getSize(new THREE.Vector3());
+    near(size[reference.axis], reference.meters, `${slug}: estimated extent survives USDZ serialization`);
+    near(size.x / size.y, 2 / 3, 'Estimates preserve proportions');
+    near(actual.min.y, 0, 'Estimated work rests on the placement surface');
+  } finally { converted.dispose(); mesh.geometry.dispose(); mesh.material.dispose(); }
+}
+console.log('Approximate-size USDZ checks passed: Dubuffet 6.7056 m height and the drum 0.254 m longest extent, with uniform proportions.');

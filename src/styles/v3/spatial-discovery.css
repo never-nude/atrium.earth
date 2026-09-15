@@ -1,6 +1,11 @@
 /* AR / VR discovery shares the museum's type, ground and artwork cards. */
-:root { --v3-size-unverified: #ffada8; }
-.v3-size-unverified { color: var(--v3-size-unverified); font-weight: 600; }
+:root { --v3-size-verified: #96ddb3; --v3-size-approximate: #f2d477; --v3-size-unknown: #ffada8; }
+[data-dimension-status="verified"] { --dimension-color: var(--v3-size-verified); }
+[data-dimension-status="approximate"] { --dimension-color: var(--v3-size-approximate); }
+[data-dimension-status="unknown"] { --dimension-color: var(--v3-size-unknown); }
+.v3-dimension-status { color: var(--dimension-color); }
+.v3-dimension-legend { display: grid; gap: 10px; margin-top: 18px; max-width: 70ch; font-size: .875rem; line-height: 1.6; }
+.v3-dimension-legend p { margin: 0; }
 .v3-hero__object { flex-wrap: wrap; }
 .v3-hero__record-link {
   display: inline-flex;
@@ -115,11 +120,9 @@ body:has(.v3-collection-switch) .v3-header {
   line-height: 1.5;
   letter-spacing: .015em;
 }
-.v3-card__spatial-reference > span:first-child { color: var(--v3-signal); }
-.v3-card__spatial-reference > span:last-child { color: var(--v3-muted); }
-.v3-card__spatial-reference--unverified > span { color: var(--v3-size-unverified); }
-.v3-card__spatial-reference--unverified > span:first-child { color: var(--v3-size-unverified); font-weight: 600; }
-.v3-card__spatial-reference--unverified .v3-card__spatial-note { color: var(--v3-muted); font-size: .68rem; }
+.v3-card__spatial-reference > span { color: var(--dimension-color); }
+.v3-card__spatial-reference > span:first-child { font-weight: 600; }
+.v3-card__spatial-reference .v3-card__spatial-note { color: var(--v3-muted); font-size: .75rem; }
 .v3-card > .v3-card__spatial-link {
   display: inline-flex;
   align-items: center;

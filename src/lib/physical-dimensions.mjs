@@ -1,5 +1,6 @@
-// Catalogue text is never parsed into a scale. A physical reference requires
-// both a sourced measurement and an explicit review of the displayed geometry.
+// Reviewed physical references require sourced measurements and an explicit
+// geometry review. Catalogue-only estimates live in approximate-dimensions.mjs
+// and cannot authorize a verified reference here.
 export function physicalDimensionsFor(fallback, record, previewUrl, orientation) {
   const calibration = record?.spatial;
   // An explicit reviewed estimate can establish a useful starting size, but
