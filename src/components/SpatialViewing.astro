@@ -85,13 +85,18 @@ const defaultSize = defaultMaxExtentMeters && defaultMaxExtentMeters < 1 ? `${Ma
       <div class="spatial-footer"><button type="button" data-spatial-screen>Continue in 3D <span aria-hidden="true">↗</span></button><p>Rotate and zoom in this browser.</p></div>
     </div>
     <div class="spatial-overlay" data-spatial-overlay hidden>
-      <div class="spatial-overlay-top"><button type="button" data-spatial-exit>Exit AR / VR</button></div>
+      <div class="spatial-overlay-top"><button type="button" data-spatial-exit aria-label="Exit AR / VR" title="Exit AR / VR"><svg class="spatial-camera-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" /></svg><span class="spatial-camera-control-text">Exit AR / VR</span></button></div>
       <div class="spatial-overlay-bottom">
         <ArtworkLabel label={artworkLabel} />
-        <div class="spatial-photo-actions"><button type="button" data-spatial-photo-capture hidden disabled>Take photo</button><button type="button" data-spatial-photo-review hidden>View photo ↗</button></div>
+        <div class="spatial-photo-actions">
+          <button type="button" data-spatial-confirm-placement hidden disabled>Place work</button>
+          <button type="button" data-spatial-photo-capture aria-label="Take photo" title="Take photo" hidden disabled><span class="spatial-camera-control-text">Take photo</span></button>
+          <button type="button" data-spatial-photo-review aria-label="View photo" title="View photo" hidden><svg class="spatial-camera-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" /><circle cx="8" cy="8" r="1" /><path d="m3 17 5-5 4 4 4-6 5 7" /></svg><span class="spatial-camera-control-text">View photo ↗</span></button>
+        </div>
+        <p class="spatial-proposed-size" data-spatial-proposed-size hidden><span>Proposed H × W × D</span><output data-spatial-dimensions></output></p>
         <p class="spatial-capture-status" data-spatial-capture-status role="status" aria-live="polite"></p>
       <details class="spatial-overlay-controls">
-        <summary>Placement &amp; size <span aria-hidden="true">+</span></summary>
+        <summary aria-label="Placement and size" title="Placement and size"><svg class="spatial-camera-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h5m4 0h7M4 17h9m4 0h3" /><circle cx="11" cy="7" r="2" /><circle cx="15" cy="17" r="2" /></svg><span class="spatial-camera-control-text">Placement &amp; size</span><span class="spatial-camera-control-text" aria-hidden="true">+</span></summary>
         <div class="spatial-placement-options">
         {!verified && <p class="spatial-size-unverified">Size unverified · Default {defaultSize} on longest side. Display size is adjustable.</p>}
         <p data-spatial-instructions role="status"></p>
@@ -181,6 +186,7 @@ const defaultSize = defaultMaxExtentMeters && defaultMaxExtentMeters < 1 ? `${Ma
   .spatial-overlay-bottom { position: absolute; left: max(16px, env(safe-area-inset-left)); bottom: max(16px, env(safe-area-inset-bottom)); width: min(340px, calc(100% - max(16px, env(safe-area-inset-left)) - max(16px, env(safe-area-inset-right)))); display: grid; gap: 8px; }
   .spatial-overlay-controls { padding: 0 14px; border: 1px solid var(--spatial-line); border-radius: 3px; background: var(--v3-chrome-solid, #111a2cf7); pointer-events: auto; }
   .spatial-overlay-controls summary { min-height: 44px; }
+  .spatial-overlay-controls[open] > summary span:first-of-type { transform: none; }
   .spatial-placement-options { max-height: min(240px, 32dvh); overflow: auto; padding-bottom: 12px; }
   .spatial-placement-options > div { display: flex; flex-wrap: wrap; gap: 8px; }
   .spatial-overlay-controls p { font-size: 12px; line-height: 1.5; margin: 0 0 12px; }
@@ -205,6 +211,7 @@ const defaultSize = defaultMaxExtentMeters && defaultMaxExtentMeters < 1 ? `${Ma
   .spatial-overlay label { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; font-size: 12px; }
   .spatial-overlay input { flex: 1; min-width: 0; }
   .spatial-overlay button { min-height: 44px; padding: 8px 15px; border: 1px solid var(--spatial-line); border-radius: 3px; background: transparent; color: var(--spatial-ink); cursor: pointer; }
+  .spatial-camera-icon { display: none; width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
   .spatial-quick-look-options [data-quick-look-prepare] { color: var(--spatial-muted); background: transparent; border-color: var(--spatial-line); }
   /* The browser camera and HUD live in a full-screen dialog, above page chrome.
      The label never participates in the model's 3D transforms or control stack. */
@@ -212,17 +219,27 @@ const defaultSize = defaultMaxExtentMeters && defaultMaxExtentMeters < 1 ? `${Ma
   .spatial-browser-ar .spatial-overlay { position: absolute; isolation: isolate; }
   .spatial-browser-ar .spatial-overlay-top { z-index: 3; }
   .spatial-browser-ar :global([data-browser-ar-canvas]) { z-index: 0; }
-  .spatial-browser-ar :global(.spatial-screen-label) { position: absolute; z-index: 1; top: calc(max(16px, env(safe-area-inset-top)) + 56px); left: max(16px, env(safe-area-inset-left)); width: min(300px, calc(100% - max(16px, env(safe-area-inset-left)) - max(16px, env(safe-area-inset-right)))); pointer-events: none; }
-  .spatial-browser-ar .spatial-overlay-bottom { z-index: 2; width: min(280px, calc(100% - 32px)); bottom: calc(max(16px, env(safe-area-inset-bottom)) + 124px); max-height: none; overflow: visible; pointer-events: none; }
+  .spatial-browser-ar :global(.spatial-screen-label) { position: absolute; z-index: 1; top: max(16px, env(safe-area-inset-top)); left: max(16px, env(safe-area-inset-left)); width: min(240px, calc(100% - max(16px, env(safe-area-inset-left)) - max(16px, env(safe-area-inset-right)) - 56px)); pointer-events: none; }
+  .spatial-browser-ar .spatial-overlay-bottom { z-index: 2; inset: 0; width: auto; max-height: none; overflow: visible; display: block; pointer-events: none; }
   .spatial-browser-ar .spatial-overlay-bottom :global(.artwork-label) { display: none; }
-  .spatial-browser-ar .spatial-photo-actions { position: fixed; right: max(16px, env(safe-area-inset-right)); bottom: max(16px, env(safe-area-inset-bottom)); width: 140px; flex-direction: column; }
-  .spatial-browser-ar .spatial-photo-actions [data-spatial-photo-capture] { min-height: 56px; }
-  .spatial-browser-ar .spatial-placement-options { max-height: 24dvh; }
-  @media(orientation: landscape) {
-    .spatial-browser-ar :global(.spatial-screen-label) { top: max(16px, env(safe-area-inset-top)); width: min(340px, calc(100% - 190px)); }
-    .spatial-browser-ar .spatial-overlay-bottom { bottom: max(16px, env(safe-area-inset-bottom)); width: min(280px, calc(100% - 190px)); }
-    .spatial-browser-ar .spatial-placement-options { max-height: 28dvh; }
-  }
+  .spatial-browser-ar .spatial-camera-icon { display: block; }
+  .spatial-browser-ar .spatial-camera-control-text { display: none; }
+  .spatial-browser-ar .spatial-overlay-top button, .spatial-browser-ar [data-spatial-photo-review] { width: 44px; height: 44px; padding: 0; display: grid; place-items: center; border-radius: 50%; background: rgba(14,22,38,.45); }
+  .spatial-browser-ar .spatial-photo-actions { display: contents; }
+  .spatial-browser-ar .spatial-photo-actions button { position: absolute; bottom: max(16px, env(safe-area-inset-bottom)); pointer-events: auto; }
+  .spatial-browser-ar [data-spatial-confirm-placement] { left: 50%; transform: translateX(-50%); min-width: 132px; height: 48px; border-radius: 28px; font-weight: 600; background: var(--spatial-accent); border-color: var(--spatial-accent); color: var(--spatial-bg); }
+  .spatial-browser-ar [data-spatial-confirm-placement]:disabled { background: rgba(14,22,38,.45); color: var(--spatial-muted); border-color: var(--spatial-line); opacity: .65; cursor: default; }
+  .spatial-browser-ar .spatial-photo-actions [data-spatial-photo-capture] { left: 50%; transform: translateX(-50%); width: 60px; height: 60px; min-height: 60px; padding: 4px; border-radius: 50%; border: 2px solid var(--spatial-ink); background: rgba(14,22,38,.25); }
+  .spatial-browser-ar [data-spatial-photo-capture]::after { content: ''; display: block; width: 100%; height: 100%; border-radius: 50%; background: var(--spatial-ink); }
+  .spatial-browser-ar [data-spatial-photo-review] { right: max(16px, env(safe-area-inset-right)); }
+  .spatial-browser-ar .spatial-proposed-size { position: absolute; bottom: calc(max(16px, env(safe-area-inset-bottom)) + 60px); left: 50%; transform: translateX(-50%); margin: 0; padding: 5px 12px; max-width: calc(100% - 32px); border-radius: 3px; background: rgba(14,22,38,.45); color: var(--spatial-ink); text-align: center; text-shadow: 0 1px 3px #000; }
+  .spatial-proposed-size span { display: block; margin-bottom: 2px; font-size: 10px; }
+  .spatial-proposed-size output { font-size: 13px; }
+  .spatial-browser-ar .spatial-capture-status { position: absolute; bottom: calc(max(16px, env(safe-area-inset-bottom)) + 74px); left: 50%; transform: translateX(-50%); width: max-content; max-width: calc(100% - 32px); padding: 4px 8px; background: rgba(14,22,38,.35); border-radius: 3px; font-size: 11px; text-align: center; text-shadow: 0 1px 3px #000; }
+  .spatial-browser-ar .spatial-overlay-controls { position: absolute; left: max(16px, env(safe-area-inset-left)); bottom: max(16px, env(safe-area-inset-bottom)); width: 44px; height: 44px; padding: 0; border-radius: 50%; background: rgba(14,22,38,.45); }
+  .spatial-browser-ar .spatial-overlay-controls summary { width: 42px; min-height: 42px; justify-content: center; }
+  .spatial-browser-ar .spatial-placement-options { position: absolute; left: 0; bottom: 58px; width: min(300px, calc(100vw - 32px - env(safe-area-inset-left) - env(safe-area-inset-right))); max-height: min(240px, calc(100dvh - 150px)); padding: 14px; border: 1px solid var(--spatial-line); border-radius: 3px; background: rgba(14,22,38,.94); }
+  .spatial-browser-ar .spatial-overlay-bottom:has(.spatial-overlay-controls[open]) .spatial-capture-status { display: none; }
   @media(max-width: 800px) { .spatial-open { font-size: 10px; } }
   @media(max-width: 540px) {
     .spatial-dialog { width: calc(100vw - 20px); max-height: calc(100vh - 20px); max-height: calc(100dvh - 20px); }

@@ -31,6 +31,16 @@ export function bindSpatialViewing(element, getContext, activate) {
   const capture = find('[data-spatial-photo-capture]');
   const captureStatus = find('[data-spatial-capture-status]');
   const reviewPhoto = find('[data-spatial-photo-review]');
+  const confirmPlacement = find('[data-spatial-confirm-placement]');
+  const proposedSize = find('[data-spatial-proposed-size]');
+  const overlayControls = find('.spatial-overlay-controls');
+  let browserPlaced = false, photoStatusTimer;
+  const showDimensions = ({ height, width, depth }) => {
+    const meters = Math.max(height, width, depth) >= 1;
+    const format = new Intl.NumberFormat('en', { maximumFractionDigits: meters ? 2 : 1 });
+    find('[data-spatial-dimensions]').textContent = [height, width, depth]
+      .map(value => format.format(value * (meters ? 1 : 100))).join(' × ') + (meters ? ' m' : ' cm');
+  };
   let capturing = false;
   let captureReady = false;
   let captureVersion = 0;
@@ -180,6 +190,9 @@ export function bindSpatialViewing(element, getContext, activate) {
     update();
   }
   const reset = () => {
+    clearTimeout(photoStatusTimer); browserPlaced = false;
+    confirmPlacement.hidden = true; confirmPlacement.disabled = true; proposedSize.hidden = true;
+    overlayControls.hidden = false;
     captureVersion++; capturing = false; captureReady = false;
     capture.hidden = true; capture.disabled = true;
     captureStatus.textContent = '';
@@ -245,7 +258,9 @@ export function bindSpatialViewing(element, getContext, activate) {
       if (pending === controller && !session) reset();
     }, { once: true });
     panel.hidden = true; overlay.hidden = false; dialog.classList.add('spatial-browser-ar');
-    find('.spatial-overlay-controls').open = false;
+    browserPlaced = false; reviewPhoto.hidden = true;
+    overlayControls.open = false; overlayControls.hidden = true;
+    confirmPlacement.hidden = false; confirmPlacement.disabled = true; proposedSize.hidden = true;
     find('[data-spatial-place]').hidden = false;
     find('[data-spatial-instructions]').textContent = 'Loading the camera…';
     captureStatus.textContent = 'Loading the camera…';
@@ -254,13 +269,22 @@ export function bindSpatialViewing(element, getContext, activate) {
       const active = await module.startBrowserARSession(getContext(), engine, overlay, {
         signal: controller.signal, reference: viewingReference(), support: supportOptions(), artworkLabel,
         fixedScale: verifiedReference, onScale: showScale, onSupport: showSupport,
+        onDimensions: showDimensions,
+        onPlacementChange: ({ placed, available }) => {
+          browserPlaced = placed;
+          confirmPlacement.hidden = placed; confirmPlacement.disabled = !available;
+          proposedSize.hidden = placed || !available;
+          overlayControls.hidden = !placed;
+          if (!placed) overlayControls.open = false;
+          capture.hidden = !placed;
+        },
         onStatus: (text) => {
           find('[data-spatial-instructions]').textContent = text;
-          if (!capturing) captureStatus.textContent = text.startsWith('Placed') ? '' : text;
+          if (!capturing) captureStatus.textContent = text.startsWith('Placed') || text.startsWith('Surface found') ? '' : text;
           if (text.startsWith('Placed')) find('.spatial-overlay-controls').open = false;
         },
         onCaptureAvailable: (available) => {
-          captureReady = available; capture.hidden = false; capture.disabled = !available || capturing;
+          captureReady = available; capture.hidden = !browserPlaced; capture.disabled = !available || capturing;
         },
         onEnd: () => { if (pending === controller) { reset(); say('Back on screen. Your photos are ready below.'); } },
         onError: (error) => { say(`${errorMessage(error)} You can also choose Apple AR below.`); },
@@ -353,6 +377,7 @@ export function bindSpatialViewing(element, getContext, activate) {
   capture.addEventListener('click', async () => {
     if (!session || !captureReady || capturing) return;
     const version = ++captureVersion;
+    clearTimeout(photoStatusTimer);
     capturing = true; capture.disabled = true;
     reviewPhoto.hidden = true;
     captureStatus.textContent = 'Taking photo…';
@@ -363,7 +388,11 @@ export function bindSpatialViewing(element, getContext, activate) {
       if (version !== captureVersion) return;
       if (!prepared) throw new Error('Photo could not be prepared');
       reviewPhoto.hidden = false;
-      captureStatus.textContent = 'Photo ready. View it to save or share.';
+      const browserAR = dialog.classList.contains('spatial-browser-ar');
+      captureStatus.textContent = browserAR ? 'Photo ready' : 'Photo ready. View it to save or share.';
+      if (browserAR) photoStatusTimer = setTimeout(() => {
+        if (version === captureVersion && captureReady && captureStatus.textContent === 'Photo ready') captureStatus.textContent = '';
+      }, 2200);
     } catch (error) {
       if (version !== captureVersion) return;
       captureStatus.textContent = 'The photo could not be captured. Try again, or save this view with a screenshot.';
@@ -390,6 +419,7 @@ export function bindSpatialViewing(element, getContext, activate) {
   find('[data-spatial-reset-size]').addEventListener('click', () => session?.setScale(1));
   find('[data-spatial-turn]').addEventListener('click', () => session?.rotate(Math.PI / 6));
   find('[data-spatial-place]').addEventListener('click', () => session?.reposition());
+  confirmPlacement.addEventListener('click', () => session?.place());
   ar.addEventListener('click', () => {
     if (capabilities.ar) enter('immersive-ar');
     else if (browserARSupported) enterBrowserAR();

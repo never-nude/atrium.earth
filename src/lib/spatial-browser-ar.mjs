@@ -22,6 +22,30 @@ export async function startBrowserARSession(context, XR8, overlay, options = {})
   const referenceScale = referenceScaleFor(box, options.reference);
   const layout = supportLayoutFor(box, options.reference, { ...options.support, sessionMode: 'immersive-ar' });
   const support = createDisplaySupport(THREE, layout);
+  // Preview only the virtual object at reduced opacity. Never change camera
+  // exposure, scene lights or the artwork's original materials.
+  const previewMaterials = new Map(), previewMeshes = [];
+  const previewMaterial = material => {
+    if (!previewMaterials.has(material)) {
+      const preview = material.clone();
+      preview.transparent = true; preview.opacity *= .32; preview.depthWrite = false;
+      // Keep cutout textures visible at the same relative alpha threshold.
+      preview.alphaTest *= .32;
+      previewMaterials.set(material, preview);
+    }
+    return previewMaterials.get(material);
+  };
+  for (const object of [model, support.object]) object.traverse(mesh => {
+    if (!mesh.material) return;
+    const original = mesh.material;
+    const preview = Array.isArray(original) ? original.map(previewMaterial) : previewMaterial(original);
+    previewMeshes.push({ mesh, original, preview });
+  });
+  const setPreview = preview => {
+    for (const item of previewMeshes) item.mesh.material = preview ? item.preview : item.original;
+    ground.visible = !preview && saved.groundVisible;
+  };
+  setPreview(true);
   let supportHeight = layout.visible ? layout.height : 0, displayScale = 1;
   const setScale = (value) => {
     const number = Number(value);
@@ -30,6 +54,11 @@ export async function startBrowserARSession(context, XR8, overlay, options = {})
     content.position.y = supportHeight - box.min.y * referenceScale * displayScale;
     ground.scale.copy(saved.groundScale).multiplyScalar(referenceScale * displayScale);
     options.onScale?.(displayScale);
+    options.onDimensions?.({
+      height: (box.max.y - box.min.y) * referenceScale * displayScale,
+      width: (box.max.x - box.min.x) * referenceScale * displayScale,
+      depth: (box.max.z - box.min.z) * referenceScale * displayScale,
+    });
   };
   const setSupportHeight = (value) => {
     if (layout.visible) supportHeight = support.setHeight(value);
@@ -48,13 +77,20 @@ export async function startBrowserARSession(context, XR8, overlay, options = {})
   canvas.dataset.browserArCanvas = '';
   canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none;pointer-events:auto';
   overlay.prepend(canvas);
-  const hud = createScreenArtworkLabel(overlay, options.artworkLabel);
+  const hud = createScreenArtworkLabel(overlay, options.artworkLabel, { visible: false });
   const reticle = new THREE.Mesh(new THREE.RingGeometry(.07, .09, 40).rotateX(-Math.PI / 2),
     new THREE.MeshBasicMaterial({ color: 0xeccf7a, side: THREE.DoubleSide, depthTest: false }));
   reticle.visible = false; scene.add(reticle);
   let ended = false, started = false, placed = false, tracking = false, captureReady = false;
   let captureRequest, startupTimer, resolveStart, rejectStart;
   let lastStatus = '';
+  let placementState = '';
+  const placementAvailability = (available) => {
+    const next = `${placed}:${available}`;
+    if (next === placementState) return;
+    placementState = next;
+    options.onPlacementChange?.({ placed, available: !placed && available });
+  };
   const status = text => { if (text !== lastStatus) { lastStatus = text; options.onStatus?.(text); } };
   const captureAvailability = () => {
     const available = started && placed && tracking && !ended;
@@ -72,11 +108,12 @@ export async function startBrowserARSession(context, XR8, overlay, options = {})
     clearTimeout(startupTimer);
     cancelCapture(); options.onCaptureAvailable?.(false);
     options.signal?.removeEventListener('abort', onAbort);
-    canvas.removeEventListener('click', place);
     document.removeEventListener('visibilitychange', onVisibility);
     resizeObserver.disconnect();
     XR8.stop(); XR8.clearCameraPipelineModules();
     hud.dispose();
+    setPreview(false);
+    previewMaterials.forEach(material => material.dispose());
     saved.modelParent.add(model); saved.groundParent.add(ground);
     ground.position.copy(saved.groundPosition); ground.scale.copy(saved.groundScale); ground.visible = saved.groundVisible;
     grid.visible = saved.gridVisible; scene.remove(anchor, reticle);
@@ -97,18 +134,28 @@ export async function startBrowserARSession(context, XR8, overlay, options = {})
   const findSurface = () => {
     if (!tracking) return null;
     const hits = XR8.XrController.hitTest(.5, .58, ['FEATURE_POINT']);
-    return hits.find(hit => hit.position && ['x', 'y', 'z'].every(axis => Number.isFinite(hit.position[axis]))
-      && hit.distance > .1 && hit.distance < 15) || null;
+    return hits.find(hit => {
+      if (!hit.position || !['x', 'y', 'z'].every(axis => Number.isFinite(hit.position[axis]))
+        || !(hit.distance > .1 && hit.distance < 15)) return false;
+      // Reject steep surface estimates so a wall does not enable placement.
+      const q = hit.rotation;
+      if (!q || !['x', 'y', 'z', 'w'].every(axis => Number.isFinite(q[axis]))) return false;
+      const norm = q.x ** 2 + q.y ** 2 + q.z ** 2 + q.w ** 2;
+      return norm > .5 && 1 - 2 * (q.x ** 2 + q.z ** 2) / norm >= .85;
+    }) || null;
   };
   const place = () => {
     if (placed || ended) return;
     const hit = findSurface();
-    if (!hit) { status('Move your phone slowly and aim at a textured floor or table.'); return; }
+    if (!hit) { anchor.visible = false; reticle.visible = false; placementAvailability(false); status('Move slowly to find a surface.'); return; }
     // Ground the model at the hit point and preserve its upright orientation.
     anchor.position.copy(hit.position);
     anchor.rotation.set(0, Math.atan2(camera.position.x - anchor.position.x, camera.position.z - anchor.position.z), 0);
     anchor.visible = true; placed = true; reticle.visible = false;
-    status(options.fixedScale ? 'Placed at the documented size. Walk around the sculpture or turn it.' : 'Placed. Walk around the sculpture, or adjust its size and direction.');
+    setPreview(false);
+    hud.setVisible(true);
+    placementAvailability(false);
+    status('Placed.');
     captureAvailability();
   };
   const resize = () => {
@@ -121,18 +168,20 @@ export async function startBrowserARSession(context, XR8, overlay, options = {})
   };
   const resizeObserver = new ResizeObserver(resize);
   resizeObserver.observe(overlay); resize();
-  canvas.addEventListener('click', place);
   document.addEventListener('visibilitychange', onVisibility);
   options.signal?.addEventListener('abort', onAbort, { once: true });
   setScale(1); setSupportHeight(supportHeight);
+  placementAvailability(false);
   const ready = new Promise((resolve, reject) => { resolveStart = resolve; rejectStart = reject; });
   const active = {
     photoIncludesLabel: true,
-    end: async () => cleanup(), setScale, setSupportHeight,
+    end: async () => cleanup(), setScale, setSupportHeight, place,
     rotate: (radians) => { anchor.rotation.y += radians; },
     reposition: () => {
       placed = false; anchor.visible = false; cancelCapture(); captureAvailability();
-      status('Aim at a floor or table, then tap the camera view to place again.');
+      setPreview(true);
+      hud.setVisible(false); placementAvailability(false);
+      status('Move slowly to find a surface.');
     },
     capturePhoto: () => {
       if (!captureReady || captureRequest) return Promise.reject(new Error('Photo capture is not ready.'));
@@ -154,7 +203,7 @@ export async function startBrowserARSession(context, XR8, overlay, options = {})
             origin: camera.position, facing: camera.quaternion,
             cam: { pixelRectWidth: canvas.width, pixelRectHeight: canvas.height, nearClipPlane: camera.near, farClipPlane: camera.far },
           });
-          status('Move your phone slowly. Aim at a floor or table, then tap to place the sculpture.');
+          status('Move slowly to find a surface.');
           resolveStart(active);
         },
         onCameraStatusChange: ({ status: cameraStatus, stream }) => {
@@ -175,10 +224,16 @@ export async function startBrowserARSession(context, XR8, overlay, options = {})
           if (!placed) {
             const hit = findSurface();
             reticle.visible = Boolean(hit);
-            if (hit) { reticle.position.copy(hit.position); status('Surface found. Tap the camera view to place the sculpture.'); }
-            else status('Move your phone slowly and aim at a textured floor or table.');
-          } else if (!tracking) status('Tracking paused. Move your phone slowly to find the sculpture again.');
-          else if (lastStatus.startsWith('Tracking paused')) status('Placed. You can take a photo or walk around the sculpture.');
+            anchor.visible = Boolean(hit);
+            placementAvailability(Boolean(hit));
+            if (hit) {
+              reticle.position.copy(hit.position); anchor.position.copy(hit.position);
+              anchor.rotation.set(0, Math.atan2(camera.position.x - anchor.position.x, camera.position.z - anchor.position.z), 0);
+              status('Surface found. Place when ready.');
+            }
+            else status('Move slowly to find a surface.');
+          } else if (!tracking) status('Tracking paused. Move slowly.');
+          else if (lastStatus.startsWith('Tracking paused')) status('Placed.');
           captureAvailability();
         },
         onRender: () => {

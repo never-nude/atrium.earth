@@ -47,11 +47,24 @@ only when the visitor requests a photo. VR can capture its rendered scene withou
 camera access. A completed photo can be reviewed, downloaded or shared; taking it
 does not reset the sculpture placement. Photos remain on the visitor's device.
 
-**iPhone browser AR:** the small HUD is fixed to the upper-left of the screen,
-below the top controls in portrait. Landscape uses the same corner and a wider
-text column. Safe-area insets keep it away from the camera cutout. Longer records
-use smaller type to fit above the bottom controls. The shutter occupies a separate
-bottom-right area. Neither camera motion nor sculpture rotation changes the HUD's
+**iPhone browser AR:** scanning shows one short instruction and a dim, disabled
+**Place work** button. Normal tracking and a horizontal surface estimate enable
+the gold button, a faint sculpture preview, and its proposed height × width ×
+depth. Dimensions come from the oriented model bounds at the prepared display
+scale, including any scanned base but excluding a separate virtual stand. They
+describe the proposed placement, not newly verified museum measurements. Losing
+the surface or tracking hides the preview and dimensions and disables placement.
+The button rechecks the hit when tapped; camera taps never place the work.
+Committing placement restores the exact original materials at normal brightness;
+camera exposure and scene lighting are never changed for the preview.
+
+Only after placement, the small translucent HUD appears in the upper-left of the
+screen. It uses the same compact width in portrait and landscape, with safe-area
+insets and space beside the small exit icon. Longer records use smaller type to
+fit above the bottom controls. A round shutter sits at bottom center, with the
+collapsed adjustment icon on the left and photo review on the right. Placement
+guidance and dimensions clear after placement; repositioning restores the preview
+flow. Neither camera motion nor sculpture rotation changes the HUD's
 screen position. Changing orientation resizes the camera canvas without recentering
 the world anchor. Capture copies the composited camera and sculpture in the render
 callback, then stamps the HUD's exact pixels at its measured screen position.
@@ -94,15 +107,12 @@ orientation, transparency, tone mapping and state restoration with synthetic
 camera fixtures. `ATRIUM_TEST_EXECUTABLE` may select an installed Chromium binary.
 After `npm run build`, `npm run test:browser-ar` loads the actual self-hosted engine,
 compiles its SLAM WebAssembly and starts its camera pipeline with Chromium's test
-camera. Separate deterministic camera-pose and hit-test fixtures check placement,
+camera. Separate deterministic camera-pose and hit-test fixtures check deliberate
+placement, rejected wall/lost/stale hits, proposed dimensions, preview brightness,
 HUD independence, live orientation changes, photo pixels, all enabled catalogue
 labels on a small landscape screen, startup failure and viewer restoration. These
 fixtures do not validate physical iPhone tracking. Real-device acceptance testing
 remains necessary; no iPhone or iOS simulator is available in the workspace.
-
-For independent USD syntax/composition validation, install the Python `usd-core`
-package and run `python scripts/test-quick-look-label-usd.py /tmp/atrium-artwork-label-tests/apple-labeled.usdz` after the browser checks. This
-opens the actual packaged scene and resolves the behavior and label targets.
 
 References: [Apple camera-facing actions](https://developer.apple.com/documentation/usd/lookatcameraaction),
 [Apple looping actions](https://developer.apple.com/documentation/usd/groupaction),

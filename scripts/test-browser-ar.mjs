@@ -42,12 +42,12 @@ try {
     const camera = new THREE.PerspectiveCamera(60, 390 / 400, .01, 100);
     camera.position.set(0, .4, 1);
     const model = new THREE.Group();
-    model.add(new THREE.Mesh(new THREE.SphereGeometry(.1, 24, 16), new THREE.MeshStandardMaterial({ color: 0xf7f5ef })));
+    model.add(new THREE.Mesh(new THREE.BoxGeometry(.1, .2, .08), new THREE.MeshStandardMaterial({ color: 0xf7f5ef, alphaTest: .5 })));
     const box = new THREE.Box3().setFromObject(model);
     const ground = new THREE.Mesh(new THREE.PlaneGeometry(2, 2).rotateX(-Math.PI / 2), new THREE.ShadowMaterial({ opacity: .15 }));
     const grid = new THREE.GridHelper(2, 10);
     scene.add(model, ground, grid, new THREE.HemisphereLight(0xffffff, 0x888888, 3));
-    const saved = { parent: model.parent, canvasParent: renderer.domElement.parentNode, camera: camera.clone() };
+    const saved = { parent: model.parent, canvasParent: renderer.domElement.parentNode, camera: camera.clone(), material: model.children[0].material, exposure: renderer.toneMappingExposure };
     window.fixture = { THREE, renderer, scene, camera, model, box, ground, grid, verifiedAsset: true, suspend() { window.suspended = true; return () => { window.suspended = false; }; } };
     window.fixtureSaved = saved;
     bindSpatialViewing(fixture, () => window.fixture, () => {});
@@ -82,12 +82,13 @@ try {
     const rotation = { x: 0, y: 0, z: 0, w: 1 };
     const position = { x: 0, y: .25, z: 0 };
     window.fixturePose = { rotation, position, trackingStatus: 'NORMAL' };
+    window.fixtureHits = [{ type: 'FEATURE_POINT', distance: 1, position: { x: 0, y: 0, z: -1 }, rotation: { x: 0, y: 0, z: 0, w: 1 } }];
     const fake = {
       initialize: async () => {}, clearCameraPipelineModules: () => { modules = []; },
       addCameraPipelineModules: value => { modules = value; },
       XrConfig: { device: () => ({ MOBILE: 'mobile' }), camera: () => ({ BACK: 'back' }) },
       XrController: { configure: config => { window.trackingConfig = config; }, updateCameraProjectionMatrix() {},
-        pipelineModule: () => ({ name: 'reality' }), hitTest: () => [{ type: 'FEATURE_POINT', distance: 1, position: { x: 0, y: 0, z: -1 }, rotation }] },
+        pipelineModule: () => ({ name: 'reality' }), hitTest: () => window.fixtureHits },
       GlTextureRenderer: { pipelineModule: () => ({ name: 'camera', onRender() {
         const gl = window.fixture.renderer.getContext();
         gl.bindFramebuffer(gl.FRAMEBUFFER, null); gl.disable(gl.SCISSOR_TEST); gl.colorMask(true, true, true, true);
@@ -114,9 +115,43 @@ try {
     await page.locator('[data-spatial-ar]').click();
     await page.waitForFunction(() => document.querySelector('[data-spatial-instructions]').textContent.includes('Surface found'));
     const label = page.locator('[data-spatial-screen-label]');
-    const before = await label.boundingBox();
+    const place = page.locator('[data-spatial-confirm-placement]');
+    assert.equal(await label.isVisible(), false, 'The five-field label is hidden before placement');
+    assert.equal(await place.isEnabled(), true, 'A horizontal surface enables Place work');
+    assert.equal(await page.locator('[data-spatial-proposed-size]').isVisible(), true);
+    assert.match(await page.locator('[data-spatial-dimensions]').textContent(), /^11 × 5.5 × 4.4 cm$/, 'Proposed H × W × D follows the actual model bounds and physical reference');
+    assert.ok(await place.evaluate(element => getComputedStyle(element).backgroundColor === 'rgb(236, 207, 122)'), 'Ready button lights up in Atrium gold');
+    assert.ok(await page.evaluate(() => window.fixture.model.children[0].material.opacity < .5 && window.fixture.renderer.toneMappingExposure === window.fixtureSaved.exposure), 'Preview is faint without changing camera or renderer exposure');
+    assert.ok(await page.evaluate(() => window.fixture.model.children[0].material.alphaTest < window.fixture.model.children[0].material.opacity), 'Cutout materials remain visible in the faint preview');
+    if (width === 390) {
+      await page.evaluate(() => { window.savedHits = window.fixtureHits; window.fixtureHits = []; });
+      await page.waitForFunction(() => document.querySelector('[data-spatial-confirm-placement]').disabled);
+      assert.equal(await page.locator('[data-spatial-proposed-size]').isVisible(), false, 'No dimensions are shown without a suitable surface');
+      assert.equal(await page.evaluate(() => window.fixture.model.parent.parent.visible), false);
+      await page.screenshot({ path: `${output}/scanning.png` });
+      await page.evaluate(() => { window.fixtureHits = [{ ...window.savedHits[0], rotation: { x: Math.SQRT1_2, y: 0, z: 0, w: Math.SQRT1_2 } }]; });
+      await page.waitForTimeout(100);
+      assert.equal(await place.isEnabled(), false, 'A wall estimate cannot enable placement');
+      await page.evaluate(() => { window.fixtureHits = window.savedHits; window.fixturePose.trackingStatus = 'LIMITED'; });
+      await page.waitForTimeout(100);
+      assert.equal(await place.isEnabled(), false, 'Tracking must be normal before placement');
+      await page.evaluate(() => { window.fixturePose.trackingStatus = 'NORMAL'; });
+      await page.waitForFunction(() => !document.querySelector('[data-spatial-confirm-placement]').disabled);
+      await page.evaluate(() => { window.fixtureHits = []; document.querySelector('[data-spatial-confirm-placement]').click(); });
+      assert.equal(await label.isVisible(), false, 'A stale enabled button rechecks the surface at the tap');
+      assert.equal(await place.isEnabled(), false);
+      await page.evaluate(() => { window.fixtureHits = window.savedHits; });
+      await page.waitForFunction(() => !document.querySelector('[data-spatial-confirm-placement]').disabled);
+    }
+    await page.screenshot({ path: `${output}/ready-${width}.png` });
     await page.locator('[data-browser-ar-canvas]').tap({ position: { x: width / 2, y: height * .58 } });
+    assert.equal(await label.isVisible(), false, 'Incidental camera taps never commit placement');
+    await place.tap();
     await page.waitForFunction(() => !document.querySelector('[data-spatial-photo-capture]').disabled);
+    assert.equal(await page.locator('[data-spatial-proposed-size]').isVisible(), false, 'Dimensions clear once the work is placed');
+    assert.equal(await place.isVisible(), false);
+    assert.ok(await page.evaluate(() => window.fixture.model.children[0].material === window.fixtureSaved.material && window.fixture.renderer.toneMappingExposure === window.fixtureSaved.exposure), 'Placement restores the exact original material and normal exposure');
+    const before = await label.boundingBox();
     await page.evaluate(() => { window.fixturePose.position.x = .1; window.fixturePose.rotation.y = .1; window.fixturePose.rotation.w = Math.sqrt(.99); });
     await page.locator('.spatial-overlay-controls').evaluate(element => { element.open = true; });
     await page.locator('[data-spatial-turn]').click();
@@ -133,10 +168,10 @@ try {
       const rect = document.querySelector('[data-spatial-screen-label]').getBoundingClientRect();
       const view = document.querySelector('[data-browser-ar-canvas]').getBoundingClientRect();
       const scale = photo.width / view.width;
-      return { width: photo.width, height: photo.height, label: [...ctx.getImageData((rect.x + 8) * scale, (rect.y + 8) * scale, 1, 1).data], camera: [...ctx.getImageData(5, photo.height / 2, 1, 1).data], data: photo.toDataURL() };
+      return { width: photo.width, height: photo.height, label: [...ctx.getImageData((rect.x + 4) * scale, (rect.y + 4) * scale, 1, 1).data], camera: [...ctx.getImageData(5, photo.height / 2, 1, 1).data], data: photo.toDataURL() };
     });
     assert.equal(Math.round(result.width / result.height * 100), Math.round(width / height * 100), 'Photo follows the current phone orientation');
-    assert.ok(result.camera[1] > 100 && result.label[1] < 80, 'Camera pixels and fixed-position HUD are both captured');
+    assert.ok(result.camera[1] > 100 && result.camera[1] - result.label[1] > 30, 'Camera pixels and fixed-position HUD are both captured');
     await writeFile(`${output}/photo-${width}.png`, Buffer.from(result.data.split(',')[1], 'base64'));
     await page.screenshot({ path: `${output}/hud-${width}.png` });
     if (width === 568) {
@@ -145,7 +180,7 @@ try {
         const overlay = document.querySelector('[data-spatial-overlay]');
         const decoder = document.createElement('textarea');
         const failures = [];
-        const maxBottom = document.querySelector('.spatial-capture-status').getBoundingClientRect().top;
+        const maxBottom = innerHeight - 100;
         for (const encoded of labels) {
           decoder.innerHTML = encoded;
           const label = JSON.parse(decoder.value);
@@ -169,6 +204,12 @@ try {
       await page.locator('[data-spatial-photo-capture]').tap();
       await page.waitForFunction(() => { const img = document.querySelector('[data-spatial-photo-preview]'); return !document.querySelector('[data-spatial-photo-result]').hidden && img.naturalWidth > img.naturalHeight; });
       await page.screenshot({ path: `${output}/live-rotation.png` });
+      await page.evaluate(() => { document.querySelector('.spatial-overlay-controls').open = true; });
+      await page.locator('[data-spatial-place]').tap();
+      await page.waitForFunction(() => !document.querySelector('[data-spatial-confirm-placement]').disabled);
+      assert.equal(await label.isVisible(), false, 'Reposition returns to the preview state');
+      assert.ok(await page.evaluate(() => window.fixture.model.children[0].material.opacity < .5));
+      await place.tap();
     }
     await page.locator('[data-spatial-exit]').tap();
     assert.ok(await page.evaluate(() => !window.suspended && window.fixture.model.parent === window.fixtureSaved.parent && window.fixture.renderer.domElement.parentNode === window.fixtureSaved.canvasParent), 'Exit restores model and canvas to the ordinary viewer');

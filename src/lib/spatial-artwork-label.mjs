@@ -36,36 +36,43 @@ function wrapText(context, text, width) {
   return lines;
 }
 
-export function layoutArtworkLabel(context, label, width, scale = 1) {
-  const padding = 16 * scale;
+export function layoutArtworkLabel(context, label, width, scale = 1, style = {}) {
+  const padding = (style.padding ?? 16) * scale;
   const rows = [];
   let y = padding;
   const add = (text, size, weight, color) => {
     if (!text) return;
     const font = `${weight} ${size * scale}px ${labelFont}`;
     context.font = font;
-    if (rows.length) y += 5 * scale;
+    if (rows.length) y += (style.gap ?? 5) * scale;
     for (const textLine of wrapText(context, text, Math.max(1, width - padding * 2))) {
       rows.push({ text: textLine, x: padding, y, font, color });
       y += size * scale * 1.35;
     }
   };
-  add(label.title, 18, 500, '#f7f5ef');
-  add(label.maker, 12, 400, '#f7f5ef');
-  add(artworkLabelFacts(label), 12, 400, '#c9c6bd');
+  add(label.title, style.titleSize ?? 18, 500, '#f7f5ef');
+  add(label.maker, style.detailSize ?? 12, 400, '#f7f5ef');
+  add(artworkLabelFacts(label), style.detailSize ?? 12, 400, '#c9c6bd');
   return { width, height: Math.ceil(y + padding), rows, scale };
 }
 
-export function paintArtworkLabel(context, layout, x = 0, y = 0) {
+export function paintArtworkLabel(context, layout, x = 0, y = 0, style = {}) {
   context.save();
   context.translate(x, y);
-  context.fillStyle = 'rgba(14,22,38,0.88)';
+  context.fillStyle = style.background ?? 'rgba(14,22,38,0.88)';
   context.fillRect(0, 0, layout.width, layout.height);
-  context.strokeStyle = 'rgba(247,245,239,0.16)';
-  context.lineWidth = layout.scale;
-  context.strokeRect(layout.scale / 2, layout.scale / 2, layout.width - layout.scale, layout.height - layout.scale);
+  if (style.border !== false) {
+    context.strokeStyle = 'rgba(247,245,239,0.16)';
+    context.lineWidth = layout.scale;
+    context.strokeRect(layout.scale / 2, layout.scale / 2, layout.width - layout.scale, layout.height - layout.scale);
+  }
   context.fillStyle = '#eccf7a';
-  context.fillRect(0, 0, 2 * layout.scale, layout.height);
+  context.fillRect(0, 0, (style.accentWidth ?? 2) * layout.scale, layout.height);
+  if (style.textShadow) {
+    context.shadowColor = 'rgba(0,0,0,.7)';
+    context.shadowBlur = 2 * layout.scale;
+    context.shadowOffsetY = layout.scale;
+  }
   context.textBaseline = 'top';
   for (const row of layout.rows) {
     context.fillStyle = row.color; context.font = row.font;
