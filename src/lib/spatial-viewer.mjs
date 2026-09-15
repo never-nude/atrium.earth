@@ -58,7 +58,7 @@ export function bindSpatialViewing(element, getContext, activate) {
     webView: Boolean(window.webkit?.messageHandlers),
   });
   const quickLookSupported = device.quickLook;
-  if (quickLookSupported) find('[data-spatial-photo-help]').textContent = 'Take a photo in Apple AR with “Show artwork label” turned off. Return here and choose the saved photo to add the title, time period, region, maker and material. Portrait and landscape photos keep their orientation. The photo stays on your device.';
+  if (quickLookSupported) find('[data-spatial-photo-help]').textContent = 'The label beside the sculpture is included when you photograph it in Apple AR. For a photo taken without a label, choose it here to add one. Portrait and landscape photos keep their orientation. The photo stays on your device.';
   const handoff = find('[data-spatial-handoff]');
   const urlInput = find('[data-spatial-url]');
   const linkStatus = find('[data-spatial-link-status]');
@@ -77,9 +77,7 @@ export function bindSpatialViewing(element, getContext, activate) {
   const updateQuickLookLink = () => {
     if (!modelUrl) return;
     quickLook.href = `${modelUrl}#${quickLookLabelFragment({
-      fixedScale: quickLookFixedScale, pageUrl, label: artworkLabel,
-      showLabel: quickLookLabel.checked,
-      bannerUrl: element.dataset.artworkLabelUrl ? new URL(element.dataset.artworkLabelUrl, location.href).href : undefined,
+      fixedScale: quickLookFixedScale, pageUrl,
     })}`;
   };
   const invalidateQuickLook = () => {
@@ -240,11 +238,18 @@ export function bindSpatialViewing(element, getContext, activate) {
     busy = true; update(); say('Preparing the sculpture for AR…');
     const version = ++exportVersion;
     let converted;
+    let sceneLabel;
     try {
       const context = getContext();
       const { USDZExporter } = await import('three/examples/jsm/exporters/USDZExporter.js');
+      const { addQuickLookArtworkLabel, faceQuickLookLabelToCamera } = await import('./spatial-quick-look-label.mjs');
       converted = makeQuickLookScene(context.THREE, context.model, context.box, viewingReference(), supportOptions());
-      const bytes = await new USDZExporter().parseAsync(converted.scene, { maxTextureSize: 2048, quickLookCompatible: true });
+      if (quickLookLabel.checked) {
+        await document.fonts.ready;
+        sceneLabel = addQuickLookArtworkLabel(context.THREE, converted.scene, artworkLabel);
+      }
+      let bytes = await new USDZExporter().parseAsync(converted.scene, { maxTextureSize: 2048, quickLookCompatible: true });
+      if (sceneLabel) bytes = faceQuickLookLabelToCamera(bytes, sceneLabel.object.name);
       if (version !== exportVersion) return;
       if (modelUrl) URL.revokeObjectURL(modelUrl);
       modelUrl = URL.createObjectURL(new Blob([bytes], { type: 'model/vnd.usdz+zip' }));
@@ -268,6 +273,7 @@ export function bindSpatialViewing(element, getContext, activate) {
       say('This sculpture could not be prepared for Apple AR. You can still explore it in 3D here.');
       console.warn('Atrium Quick Look preparation failed:', error);
     } finally {
+      sceneLabel?.dispose();
       converted?.dispose();
       if (version === exportVersion) { busy = false; update(); }
     }
@@ -342,8 +348,8 @@ export function bindSpatialViewing(element, getContext, activate) {
   for (const control of [supportMode, supportHeight]) {
     control.addEventListener('input', () => { updateSupportChoice(); invalidateQuickLook(); say(''); });
   }
-  // This changes only the next native launch; it never re-exports or resizes the model.
-  quickLookLabel.addEventListener('change', updateQuickLookLink);
+  // Prepare the next native scene with this choice; preserve the live model's size.
+  quickLookLabel.addEventListener('change', () => { invalidateQuickLook(); say(''); });
   find('[data-spatial-reset-size]').addEventListener('click', () => session?.setScale(1));
   find('[data-spatial-turn]').addEventListener('click', () => session?.rotate(Math.PI / 6));
   find('[data-spatial-place]').addEventListener('click', () => session?.reposition());

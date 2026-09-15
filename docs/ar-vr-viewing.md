@@ -46,24 +46,27 @@ only when the visitor requests a photo. VR can capture its rendered scene withou
 camera access. A completed photo can be reviewed, downloaded or shared; taking it
 does not reset the sculpture placement. Photos remain on the visitor's device.
 
-**Apple Quick Look:** the default USDZ link includes the artwork label.
-**Show artwork label in Apple AR** starts checked on each page visit. Turning it
-off before launching AR preserves Apple's native camera controls, which the banner
-can cover. The options explain this tradeoff; hiding the banner is an explicit
-choice for taking photos, rather than the default viewing experience.
-The label uses a custom HTTPS banner at
-`/ar-label/<work slug>/` with the same five catalogue fields and visual style.
-Typical labels request Apple's 121-point height; longer records retain 161 points
-to keep every field readable. These static pages contain no analytics or interactive
-actions and are excluded from the sitemap. Changing the option updates the next
-launch URL without re-exporting the USDZ or changing scale. Apple controls the
-banner's position, visibility, native shutter and supported screen orientations;
-the website cannot move the banner above the shutter or force native landscape.
-The native photo output cannot be intercepted by this website;
-the supported fallback is **Add label to photo** after returning to Atrium, then
-choosing the saved photo. This is an explicit extra step, not automatic iPhone
-photo stamping. A screenshot can retain the visible WebXR label on devices that
-do not expose camera pixels.
+**Apple Quick Look:** the default USDZ contains a small slate label beside the
+sculpture. It embeds the same five facts in a canvas texture with Atrium typography
+and the brass accent. The label is a separate scene object, outside the artwork's
+physical-scale transform; the sculpture and any stand keep their exact dimensions.
+An Apple Preliminary USD `SceneTransition` trigger starts a looping
+`LookAtCamera` action targeting only the label. The zero up-vector allows the label
+to face elevated camera views as well as views around the sculpture.
+
+**Show artwork label beside the sculpture** starts checked. Changing it invalidates
+the prepared USDZ so the next export includes or omits the scene object. Neither
+setting adds `custom` or `customHeight` to the launch URL. Removing that native
+banner leaves Apple's shutter controls available while the label is present.
+The label is scene content and is included in native photos when it is in frame;
+it is not a fixed screen overlay. Visitors can frame the sculpture and label in
+portrait or landscape, and move closer to read it. Apple owns the native viewer's
+orientation and controls. The old `/ar-label/` documents remain available for old
+links but are no longer used by the AR launcher.
+
+**Add label to photo** remains available for existing photos without labels. It
+is no longer the required way to combine an Apple AR photo with the artwork facts.
+A screenshot can retain the visible WebXR label on devices without camera access.
 
 The photo importer preserves aspect ratio and applies browser image orientation,
 limits the longest side to 4096 pixels, and exports JPEG at 94% quality. Direct
@@ -73,15 +76,24 @@ camera-free AR image.
 
 `npm run test:spatial-label` verifies field selection, omissions, wrapping and
 Quick Look URLs. `npm run test:spatial-label-browser` starts its own local Astro
-server and checks mobile portrait/landscape layouts, the longest Apple banners,
+server and checks mobile portrait/landscape layouts, the actual native-launch USDZ,
+its embedded label, camera-facing behavior, uncompressed 64-byte ZIP alignment,
+preserved sculpture geometry/scale, label toggling, legacy banner layouts,
 photo import/error handling, stamped pixels, real WebGL camera composition,
 orientation, transparency, tone mapping and state restoration with synthetic
 camera fixtures. `ATRIUM_TEST_EXECUTABLE` may select an installed Chromium binary.
 The existing spatial and actual USDZ export checks also pass. Physical iPhone,
 Android AR and headset acceptance testing remains outstanding; simulated tests
-cannot validate native Quick Look banner behavior or actual camera tracking.
+cannot validate native Quick Look action playback, shutter operation or camera tracking.
 
-References: [Apple custom banners](https://developer.apple.com/documentation/arkit/adding-an-apple-pay-button-or-a-custom-action-in-ar-quick-look),
+For independent USD syntax/composition validation, install the Python `usd-core`
+package and run `python scripts/test-quick-look-label-usd.py /tmp/atrium-artwork-label-tests/apple-labeled.usdz` after the browser checks. This
+opens the actual packaged scene and resolves the behavior and label targets.
+
+References: [Apple camera-facing actions](https://developer.apple.com/documentation/usd/lookatcameraaction),
+[Apple looping actions](https://developer.apple.com/documentation/usd/groupaction),
+[Quick Look behavior support](https://engine.needle.tools/docs/how-to-guides/everywhere-actions/),
+[Apple custom banners](https://developer.apple.com/documentation/arkit/adding-an-apple-pay-button-or-a-custom-action-in-ar-quick-look),
 [WebXR raw camera access](https://immersive-web.github.io/raw-camera-access/).
 
 ## Lifecycle and loading

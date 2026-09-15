@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { dev } from 'astro';
 import { chromium } from 'playwright';
+import { unzipSync, strFromU8 } from 'three/examples/jsm/libs/fflate.module.js';
 
 // Runs server + browser together, including environments with per-command networks.
 const server = await dev({ root: new URL('../', import.meta.url), server: { host: '127.0.0.1', port: 4334 }, vite: { server: { watch: null, hmr: false } }, logLevel: 'error' });
@@ -17,6 +18,7 @@ try {
   const page = await context.newPage();
   page.on('pageerror',error=>console.error('Page error:',error.message));
   await page.goto(`${base}/works/modern/dubuffet-la-chiffonniere/`);
+  await page.waitForFunction(()=>Boolean(document.querySelector('[data-spatial-url]')?.value));
   await page.locator('[data-spatial-open]').click();
   await page.locator('[data-spatial-dialog][open]').waitFor();
   // Let Vite finish lazy viewer imports before exercising the photo controls.
@@ -122,8 +124,11 @@ try {
   await apple.route(/^https?:\/\/(?!127\.0\.0\.1)/,route=>route.abort());
   await apple.addInitScript(()=>Object.defineProperty(navigator,'xr',{configurable:true,value:undefined}));
   const native=await apple.newPage();
+  native.on('console',message=>{if(message.type()==='warning') console.warn('Native fixture:',message.text());});
+  native.on('pageerror',error=>console.error('Native error:',error.message));
   await native.goto(`${base}/works/europe/venus-of-willendorf-nhmw-44-686/`);
-  await native.locator('[data-spatial-open]').waitFor();
+  await native.waitForFunction(()=>Boolean(document.querySelector('[data-spatial-url]')?.value));
+  await native.waitForLoadState('networkidle');
   await native.evaluate(async () => {
     const THREE=await import('/node_modules/three/build/three.module.js');
     const {bindSpatialViewing}=await import('/src/lib/spatial-viewer.mjs');
@@ -140,20 +145,95 @@ try {
   await native.locator('[data-quick-look]:not([hidden])').waitFor();
   const href=await native.locator('[data-quick-look]').getAttribute('href');
   const fragment=url=>new URLSearchParams(url.split('#')[1]);
-  assert.equal(fragment(href).get('custom'),'https://atrium.earth/ar-label/europe/venus-of-willendorf-nhmw-44-686/','Default iPhone launch includes the correct artwork label');
-  assert.equal(fragment(href).get('customHeight'),'medium');
+  assert.equal(fragment(href).has('custom'),false,'Default labeled launch preserves the native shutter');
+  assert.equal(fragment(href).has('customHeight'),false);
+  const exportedBytes = async () => Buffer.from(await native.evaluate(async () => {
+    const url=document.querySelector('[data-quick-look]').href.split('#')[0];
+    return [...new Uint8Array(await (await fetch(url)).arrayBuffer())];
+  }));
+  const labeledBytes=await exportedBytes();
+  await writeFile(`${output}/apple-labeled.usdz`,labeledBytes);
+  const archive=unzipSync(labeledBytes);
+  const usd=strFromU8(archive['model.usda']);
+  assert.match(usd,/def Xform "AtriumArtworkLabel_[^"]+"/,'Label is inside the actual USDZ');
+  assert.match(usd,/info:id = "LookAtCamera"/);
+  assert.match(usd,/uniform bool loops = true/,'Label keeps facing the camera throughout the session');
+  assert.match(usd,/rel affectedObjects = \[ <\/Root\/Scenes\/Scene\/AtriumArtworkLabel_[^>]+> \]/,'Camera action targets only the label');
+  assert.match(usd,/inputs:emissiveColor.connect/,'Label remains readable independently of room lighting');
+  assert.ok(Object.keys(archive).some(name=>name.startsWith('textures/')),'All label text is embedded in a texture');
+  let zipOffset=0;
+  while(labeledBytes.readUInt32LE(zipOffset)===0x04034b50) {
+    assert.equal(labeledBytes.readUInt16LE(zipOffset+8),0,'USDZ entries are uncompressed');
+    const start=zipOffset+30+labeledBytes.readUInt16LE(zipOffset+26)+labeledBytes.readUInt16LE(zipOffset+28);
+    assert.equal(start%64,0,'Every USDZ entry is aligned to 64 bytes after behavior insertion');
+    zipOffset=start+labeledBytes.readUInt32LE(zipOffset+18);
+  }
   await native.locator('[data-quick-look-label]').uncheck();
+  assert.equal(await native.locator('[data-quick-look]').isVisible(),false,'Changing the scene invalidates the prepared export');
+  await native.locator('[data-spatial-ar]').click();
+  await native.locator('[data-quick-look]:not([hidden])').waitFor();
   const camera=await native.locator('[data-quick-look]').getAttribute('href');
-  assert.equal(fragment(camera).has('custom'),false,'The native camera remains available by turning the label off');
-  assert.equal(camera.split('#')[0],href.split('#')[0],'Changing labels reuses the prepared USDZ');
+  assert.equal(fragment(camera).has('custom'),false,'Unlabeled launch also preserves native controls');
+  assert.notEqual(camera.split('#')[0],href.split('#')[0],'Changing labels prepares a new USDZ');
   assert.equal(fragment(camera).get('allowsContentScaling'),fragment(href).get('allowsContentScaling'));
+  const unlabelled=unzipSync(await exportedBytes());
+  const plainUsd=strFromU8(unlabelled['model.usda']);
+  assert.ok(!plainUsd.includes('AtriumArtworkLabel_'),'The optional unlabeled scene omits the plaque');
+  // The label is a sibling: every original geometry and Artwork transform survives.
+  for(const [name,data] of Object.entries(unlabelled)) if(name.startsWith('geometries/')) assert.ok(Object.entries(archive).some(([other,bytes])=>other.startsWith('geometries/') && Buffer.from(bytes).equals(Buffer.from(data))),'Label does not change exported sculpture geometry');
+  const artworkTransform=text=>text.match(/def Xform "Artwork"\s*\{\s*(matrix4d[^\n]+)/)[1];
+  assert.equal(artworkTransform(usd),artworkTransform(plainUsd),'Label does not alter physical scale or placement');
   await native.locator('[data-quick-look-label]').check();
-  assert.equal(await native.locator('[data-quick-look]').getAttribute('href'),href,'The artwork label can be restored without re-exporting');
+  await native.locator('[data-spatial-ar]').click();
+  await native.locator('[data-quick-look]:not([hidden])').waitFor();
+  assert.match(strFromU8(unzipSync(await exportedBytes())['model.usda']),/AtriumArtworkLabel_/,'Restoring the label embeds it again');
   await native.screenshot({path:`${output}/apple-camera-options.png`});
   await native.locator('[data-quick-look-label]').uncheck();
   await native.reload();
+  await native.waitForFunction(()=>Boolean(document.querySelector('[data-spatial-url]')?.value));
   await native.locator('[data-spatial-open]').click();
   assert.equal(await native.locator('[data-quick-look-label]').isChecked(),true,'A fresh page visit restores the artwork label default');
+
+  // Render the scene plaque at phone aspect ratios, including an elevated side
+  // view. Three lookAt previews the intended native action, not Apple playback.
+  const sceneViews=await native.evaluate(async () => {
+    const THREE=await import('/node_modules/three/build/three.module.js');
+    const {makeQuickLookScene}=await import('/src/lib/spatial-session.mjs');
+    const {addQuickLookArtworkLabel}=await import('/src/lib/spatial-quick-look-label.mjs');
+    const label=JSON.parse(document.querySelector('[data-spatial]').dataset.artworkLabelJson);
+    const model=new THREE.Group();
+    const mesh=new THREE.Mesh(new THREE.SphereGeometry(.05,24,16),new THREE.MeshStandardMaterial({color:'#d5ceb9'}));
+    mesh.scale.set(.65,1.1,.55);model.add(mesh);
+    const box=new THREE.Box3().setFromObject(model);
+    const converted=makeQuickLookScene(THREE,model,box,{axis:'y',meters:.11},{mode:'surface'});
+    const plaque=addQuickLookArtworkLabel(THREE,converted.scene,label);
+    const scene=new THREE.Scene();scene.background=new THREE.Color('#99a7ad');scene.add(converted.scene,new THREE.HemisphereLight(0xffffff,0x555555,3));
+    const bounds=new THREE.Box3().setFromObject(converted.scene);
+    const center=bounds.getCenter(new THREE.Vector3());
+    const radius=bounds.getBoundingSphere(new THREE.Sphere()).radius;
+    const renderer=new THREE.WebGLRenderer({preserveDrawingBuffer:true});
+    const views=[];
+    for(const [width,height,angle] of [[390,844,0],[844,390,0],[844,390,.5]]) {
+      const camera=new THREE.PerspectiveCamera(45,width/height,.001,100);
+      const fov=Math.min(camera.fov*Math.PI/180,2*Math.atan(Math.tan(camera.fov*Math.PI/360)*width/height));
+      const distance=radius/Math.sin(fov/2)*1.15;
+      camera.position.copy(center).add(new THREE.Vector3(Math.sin(angle),.35,Math.cos(angle)).normalize().multiplyScalar(distance));
+      camera.lookAt(center);plaque.object.lookAt(camera.position);
+      renderer.setSize(width,height);renderer.render(scene,camera);
+      const projected=new THREE.Box3().setFromObject(plaque.object);
+      let inFrame=true;
+      for(const x of [projected.min.x,projected.max.x]) for(const y of [projected.min.y,projected.max.y]) for(const z of [projected.min.z,projected.max.z]) {
+        const p=new THREE.Vector3(x,y,z).project(camera);inFrame &&= Math.abs(p.x)<1 && Math.abs(p.y)<1;
+      }
+      views.push({name:`scene-label-${width}-${angle}`,inFrame,data:renderer.domElement.toDataURL()});
+    }
+    plaque.dispose();converted.dispose();mesh.geometry.dispose();mesh.material.dispose();renderer.dispose();
+    return views;
+  });
+  for(const view of sceneViews) {
+    assert.ok(view.inFrame,'Scene label can be framed in portrait and landscape');
+    await writeFile(`${output}/${view.name}.png`,Buffer.from(view.data.split(',')[1],'base64'));
+  }
   await apple.close();
 
   // Exercise real WebGL copying/composition with an asymmetric camera image.
@@ -214,5 +294,5 @@ try {
   assert.ok(gpu.alpha>.4 && gpu.alpha<.6);
   assert.ok(gpu.translucentPixel.slice(0,3).every((n,i)=>Math.abs(n-gpu.expectedTranslucent[i])<=2),'Transparent surfaces composite correctly over the camera');
   await writeFile(`${output}/camera-capture.png`,Buffer.from(gpu.data.split(',')[1],'base64'));
-  console.log('Browser label checks passed: unobstructed web shutter through rotation, Apple label enabled by default with camera opt-out and real USDZ export, compact Venus label, EXIF landscape photo stamping, missing fields, failed import, camera/3D composition, tone mapping, HUD disposal and capture fallback.');
+  console.log('Browser label checks passed: unobstructed web shutter through rotation, Apple scene label enabled by default without a banner, camera-facing behavior, aligned USDZ archive, preserved sculpture geometry/scale, label toggling, EXIF landscape photo stamping, camera/3D composition and capture fallback.');
 } finally { await browser.close(); await server.stop(); }

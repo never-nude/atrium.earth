@@ -1,4 +1,4 @@
-// Use the same five catalogue facts in the live label, Apple banner and photo.
+// Use the same five catalogue facts in the live label, Apple AR scene and photo.
 // In particular, materialAppearance describes a rendering, not the artwork.
 const fact = (value) => typeof value === 'string'
   && !/not yet recorded|unassigned|pending|^unknown(?: maker| artist| material| date| region)?$|^undated$|^n\/a$/i.test(value.trim())
@@ -100,14 +100,9 @@ export function stampArtworkPhoto(canvas, label) {
 
 export const quickLookLabelHeight = (label = {}) => Object.values(label).join(' ').length > 190 ? 'large' : 'medium';
 
-export function quickLookLabelFragment({ fixedScale, pageUrl, bannerUrl, showLabel = true, label }) {
+export function quickLookLabelFragment({ fixedScale, pageUrl }) {
   const params = new URLSearchParams({ allowsContentScaling: fixedScale ? '0' : '1', canonicalWebPageURL: pageUrl });
-  // Keep catalogue information visible by default. Visitors can explicitly hide
-  // Apple's bottom banner before launching AR to use the native camera controls.
-  // Quick Look requires an absolute HTTPS document, not a blob or data URL.
-  if (showLabel && bannerUrl && new URL(bannerUrl).protocol === 'https:') {
-    params.set('custom', bannerUrl);
-    params.set('customHeight', quickLookLabelHeight(label));
-  }
+  // The label is in the USDZ scene. Never request Apple's bottom custom banner:
+  // it occupies the native shutter area, even when its HTML ignores pointer events.
   return params.toString();
 }
