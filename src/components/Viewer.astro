@@ -694,10 +694,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
         renderer.domElement.remove();
       },
       texture: createTextureControl(materials),
-      setBrightness: (pct) => {
-        renderer.toneMappingExposure = pct / 100;
-        stage.closest('[data-viewer]')?.dispatchEvent(new Event('atrium:appearance-change'));
-      },
+      setBrightness: (pct) => { renderer.toneMappingExposure = pct / 100; },
       // Slider runs rough (0) → shiny (100); roughness is the inverse.
       setTexture: (pct) => { const r = 1 - pct / 100; for (const m of materials) { m.roughness = r; m.needsUpdate = true; } },
       setLightAngle: (pct) => placeKey(pct),

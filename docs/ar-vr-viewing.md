@@ -10,9 +10,11 @@ Portrait entry works directly; the site neither locks orientation nor requires t
 
 ## Artwork appearance
 
-Native export copies the resolved page materials, including color added to STL geometry, and applies the current page exposure to artwork diffuse color and emission. Untextured vertex coloring is multiplied by the page material color and explicitly connected to the USD surface through `displayColor`; exporting an unbound primvar is insufficient. Textures, UVs, roughness, and metalness remain intact. The native label and display stand are not exposure-adjusted. Changing page brightness invalidates the prepared AR file.
+Native AR appearance is independent of page exposure and its brightness slider. The previous transfer of page exposure into artwork color caused dark AR results and has been removed. Export preserves textures, hue, roughness, metalness, and authored emission. Untextured vertex coloring remains explicitly bound to the USD surface, including the source material multiplier once.
 
-This addresses color loss and washed-out defaults; Quick Look still supplies its own lighting and tone mapping, so the same work can look different under different real-world illumination. WebXR retains the page renderer and must not receive export compensation a second time. Check native results on an iPhone, particularly The Thinker (bronze/patina) and The Wrestlers (marble), in both orientations.
+For untextured nonmetal surfaces only, the AR export limits peak linear diffuse reflectance to 0.8 using a uniform RGB multiplier, retaining hue. This is a conservative artistic default, not device-calibrated exposure. Darker colors, metals and texture-based surfaces are not dimmed. There is no blanket brightening, emission lift, or page-exposure multiplier. Labels and stands remain outside artwork preparation. WebXR retains its existing renderer.
+
+`scripts/audit-ar-appearance.mjs` checks every generated work page and exercises each resolved profile and override through the native material policy. Its report distinguishes catalogue/profile coverage from visual device validation. Quick Look supplies its own lighting and tone mapping: review on an iPhone in both orientations, especially Venus of Willendorf, The Thinker, and The Wrestlers. A catalogue audit cannot certify each scan's appearance in every room.
 
 ## Museum labels
 

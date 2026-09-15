@@ -1,6 +1,6 @@
 import { referenceScaleFor } from './physical-dimensions.mjs';
 import { createDisplaySupport, supportLayoutFor } from './display-support.mjs';
-import { prepareQuickLookMaterial } from './spatial-appearance.mjs';
+import { prepareQuickLookMaterial, quickLookDiffuseGain } from './spatial-appearance.mjs';
 
 // WebXR owns the render loop only during an immersive session. Everything moved
 // into the room is restored on exit, including a denied or interrupted start.
@@ -190,7 +190,7 @@ export async function startSpatialSession(context, sessionPromise, mode, overlay
 // Flatten the displayed pose into static meshes for Quick Look. This preserves
 // the placement of skinned scans and splits material groups the USDZ exporter
 // otherwise omits. Originals, textures, and the live viewer are never modified.
-export function makeQuickLookScene(THREE, model, box, reference, supportOptions = {}, appearance = {}) {
+export function makeQuickLookScene(THREE, model, box, reference, supportOptions = {}) {
   const result = new THREE.Group();
   const scale = referenceScaleFor(box, reference);
   result.scale.setScalar(scale);
@@ -252,7 +252,7 @@ export function makeQuickLookScene(THREE, model, box, reference, supportOptions 
         const colored = material.vertexColors && geometry.hasAttribute('color') && !material.map;
         const materialKey = `${material.id}:${Boolean(colored)}`;
         if (!exportedMaterials.has(materialKey)) {
-          const prepared = prepareQuickLookMaterial(material, appearance.exposure);
+          const prepared = prepareQuickLookMaterial(material);
           prepared.userData.atriumDisplayColor = Boolean(colored);
           if (colored) prepared.color.setRGB(1, 1, 1);
           exportedMaterials.set(materialKey, prepared);
@@ -267,12 +267,14 @@ export function makeQuickLookScene(THREE, model, box, reference, supportOptions 
           surface.setIndex(indexes); surface.clearGroups();
         }
         if (colored) {
-          const gain = Number.isFinite(appearance.exposure) && appearance.exposure >= 0 ? appearance.exposure : 1;
           const colors = surface.getAttribute('color');
-          for (let i = 0; i < colors.count; i++) colors.setXYZ(i,
-            colors.getX(i) * material.color.r * gain,
-            colors.getY(i) * material.color.g * gain,
-            colors.getZ(i) * material.color.b * gain);
+          for (let i = 0; i < colors.count; i++) {
+            const r = colors.getX(i) * material.color.r;
+            const g = colors.getY(i) * material.color.g;
+            const b = colors.getZ(i) * material.color.b;
+            const gain = quickLookDiffuseGain(r, g, b, material);
+            colors.setXYZ(i, r * gain, g * gain, b * gain);
+          }
         } else if (!material.vertexColors) surface.deleteAttribute('color');
         const item = new THREE.Mesh(surface, exportedMaterials.get(materialKey));
         item.name = mesh.name;

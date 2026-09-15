@@ -1,7 +1,7 @@
 import { strFromU8, strToU8, zipSync } from 'three/examples/jsm/libs/fflate.module.js';
 
 // displayColor is only a geometry primvar; explicitly connect it to the bound
-// USD surface shader. Geometry already contains vertex tint × material × exposure.
+// USD surface shader. Geometry already contains vertex tint × material, with independent AR highlight limiting.
 export function finishQuickLookAppearance(bytes, scene) {
   const materials = new Set();
   scene.traverse(object => {
