@@ -2,13 +2,21 @@
 
 Each public sculpture page has a **View in AR / VR** button. The existing screen viewer remains available on computers, tablets, and phones, including devices without immersive support. The feature reuses the loaded sculpture, its authored surfaces, and the reviewed orientation.
 
-## Restored baseline — 15 September 2026
+## Native AR baseline — Milestone Venus
 
-The shipped implementation is restored to `5fbcfa2`, immediately before the first artwork-label change. On iPhone, **Prepare AR view → Open in AR** again opens Apple Quick Look. The custom browser camera, labels, photo stamping, landscape setup, and restart-on-rotation logic are removed. The independent collection search/header fix remains. Experimental code is preserved in Git history, and the [label experiment findings](archive/ar-label-experiments-2026-09-15.md) are retained for future work.
+The core AR implementation follows the accepted **Milestone Venus** build, preserved at `8962b38` on the `milestone-venus` branch. On iPhone, **Prepare AR view → Open in AR** opens Apple Quick Look. The custom browser camera, landscape setup, restart-on-rotation logic, native banners, and sculpture-attached labels remain removed. The independent collection search/header fix remains. Earlier experimental code is preserved in Git history, and the [label experiment findings](archive/ar-label-experiments-2026-09-15.md) are retained for future work.
 
 Portrait entry works directly; the site neither locks orientation nor requires turning the phone before starting. Native camera orientation and placement belong to Quick Look. Turning the page to landscape and back does not invalidate its prepared sculpture or force another export. WebXR still delegates camera poses and projection to the device. Actual iPhone rotation, placement, and photography require a physical-device check; a resized browser fixture is not evidence of native AR tracking quality.
 
-The follow-up request for small white text on a transparent background in a fixed HUD corner is preserved in the findings. It is not active in this restoration: Quick Look's documented custom HTML is confined to a native banner, with a minimum height of 81 points, and the earlier banner caused shutter problems on the user's phone. Revisit the label only when it can coexist with the native camera, rotation, and shutter; do not quietly replace the restored iPhone viewer to obtain an HTML HUD.
+## Museum labels
+
+The shared artwork label uses title, maker, period, region, and material from the catalogue, omitting unknown placeholders. It appears beside the AR launch with Atrium's Inter typography. It does not add new historical claims or include renderer material profiles, institutions, or display-size defaults.
+
+**iPhone:** the native Apple AR camera remains sculpture-only. After taking a native photo, return to the existing options and choose **Label a photo**. The editor adds small white lettering on a transparent background, fixed at the lower left by default with a lower-right option. It reflows for the photo's portrait or landscape orientation and previews the actual exported copy. No image is uploaded; the original stays unchanged. Sharing and downloading save a new JPEG, with a maximum long edge of 4096 pixels. This is a saved-photo workflow, not an overlay inside Apple's camera. Apple's documented custom HTML is confined to a native banner; that earlier banner caused shutter problems on the user's phone.
+
+**WebXR with DOM overlays:** the matching screen-fixed label appears after placement, at the lower left. Placement controls stay in a closed disclosure and hide the label while open. Visitors can also turn the label off there. Repositioning hides the label until placement is confirmed again. No label geometry is added to the sculpture or scene, and orientation changes do not alter the tracked anchor. Headsets without DOM overlay support retain their existing behavior.
+
+The [Milestone Venus design record](milestone-venus.md) records the design choices, platform boundaries, and validation.
 
 ## Viewing modes
 
@@ -38,6 +46,8 @@ Quick Look loads its exporter only when requested and creates a local blob URL. 
 `npm run test:spatial` checks browser recognition, missing/throwing/rejected/timed-out XR APIs, and floor contact at different scales, wall rejection, controller actions, session errors and cancellation, return to the original screen state, and Quick Look geometry for skinned, mirrored, and multi-material meshes.
 
 `npm run test:spatial-restoration` checks the restored iPhone entry in portrait and landscape, real USDZ generation from a local sculpture fixture, preservation of the same prepared export through rotation, and removal of custom labels/camera UI and runtime requests. Set `ATRIUM_TEST_EXECUTABLE` if Chromium is installed outside Playwright's default location. It uses the actual page markup and AR handler with a deterministic local model, not an iPhone camera simulation.
+
+`npm run test:museum-labels` checks all catalogue labels at portrait and landscape photo sizes, transparent-background text, intact factual content, EXIF rotation, source-preserving corner changes, editor layout down to 320-pixel portrait and 568-pixel landscape, share/error handling, and a WebXR placement fixture. The browser tests check software behavior; actual iPhone and headset tracking and capture require device validation.
 
 With an Astro preview running, `ATRIUM_TEST_URL=http://127.0.0.1:4332 node scripts/test-spatial-browser.mjs` checks real screen rendering, desktop/mobile layouts, unsupported-device messages, canonical link copying, permission rejection, and an actual USDZ export of the Sutra Container. Set `ATRIUM_TEST_BROWSER=chromium`, `firefox`, or `webkit` to select a browser engine. All three passed screen rendering, mobile layout down to 320 px, keyboard dismissal, denied permissions, device handoff, blocked sharing/clipboard, and real USDZ export (including furniture). Chromium also checks failed-load recovery on Dubuffet. Use `ATRIUM_LOCAL_MODEL_CORS=1` only for localhost preview QA when the asset host restricts origins. The browser tests emulate capability responses; they do not substitute for a physical headset or AR phone test. Real hardware testing remains outstanding.
 

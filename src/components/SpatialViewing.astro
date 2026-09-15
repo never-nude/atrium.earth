@@ -1,10 +1,12 @@
 ---
-type Props = { title: string; poster: string; reference?: { axis: string; meters: number; extentFraction?: number; estimated?: boolean } | null; sizeNote?: string; displaySupport?: { kind: string; height?: number; note: string } | null; verified?: boolean; referenceLabel?: string; defaultMaxExtentMeters?: number };
-const { title, poster, reference, sizeNote = 'Physical size is not yet calibrated. Display size is adjustable.', displaySupport, verified = false, referenceLabel, defaultMaxExtentMeters } = Astro.props;
+import MuseumLabel from './MuseumLabel.astro';
+import MuseumPhotoEditor from './MuseumPhotoEditor.astro';
+type Props = { title: string; poster: string; museumLabel?: Record<string, string>; reference?: { axis: string; meters: number; extentFraction?: number; estimated?: boolean } | null; sizeNote?: string; displaySupport?: { kind: string; height?: number; note: string } | null; verified?: boolean; referenceLabel?: string; defaultMaxExtentMeters?: number };
+const { title, poster, museumLabel = { title }, reference, sizeNote = 'Physical size is not yet calibrated. Display size is adjustable.', displaySupport, verified = false, referenceLabel, defaultMaxExtentMeters } = Astro.props;
 const standHeight = displaySupport?.height && displaySupport.height > 0 ? displaySupport.height : 1;
 const defaultSize = defaultMaxExtentMeters && defaultMaxExtentMeters < 1 ? `${Math.round(defaultMaxExtentMeters * 100)} cm` : `${defaultMaxExtentMeters || 1} m`;
 ---
-<div id="ar-vr" class="spatial-viewing" data-spatial data-verified-reference={String(verified)} data-title={title} data-reference-axis={verified ? reference?.axis : undefined} data-reference-meters={verified ? reference?.meters : undefined} data-reference-extent-fraction={verified ? reference?.extentFraction : undefined} data-default-max-extent-meters={!verified ? defaultMaxExtentMeters || 1 : undefined} data-support-recommendation={displaySupport?.kind}>
+<div id="ar-vr" class="spatial-viewing" data-spatial data-museum-label-json={JSON.stringify(museumLabel)} data-verified-reference={String(verified)} data-title={title} data-reference-axis={verified ? reference?.axis : undefined} data-reference-meters={verified ? reference?.meters : undefined} data-reference-extent-fraction={verified ? reference?.extentFraction : undefined} data-default-max-extent-meters={!verified ? defaultMaxExtentMeters || 1 : undefined} data-support-recommendation={displaySupport?.kind}>
   <button type="button" class="spatial-open" data-spatial-open aria-describedby={!verified ? 'spatial-default-warning' : undefined}>
     <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Z M4 7.5l8 4.5 8-4.5 M12 12v9" /></svg>
     View in AR / VR
@@ -14,7 +16,7 @@ const defaultSize = defaultMaxExtentMeters && defaultMaxExtentMeters < 1 ? `${Ma
     <div class="spatial-panel">
       <div class="spatial-top"><span>AR / VR · Beyond the screen</span><button type="button" data-spatial-close aria-label="Close AR and VR options" autofocus>✕</button></div>
       <h2>View in your space.</h2>
-      <p class="spatial-intro">{title}</p>
+      <div class="spatial-artwork-label"><MuseumLabel label={museumLabel} /></div>
       {referenceLabel && <p class:list={['spatial-reference-label', { 'spatial-size-unverified': !verified }]}>{!verified && <span aria-hidden="true">⚠ </span>}{referenceLabel}</p>}
       <p class:list={['spatial-size-note', { 'spatial-size-unverified': !verified }]} data-spatial-size-note>{sizeNote}</p>
       <div class="spatial-options">
@@ -25,6 +27,8 @@ const defaultSize = defaultMaxExtentMeters && defaultMaxExtentMeters < 1 ? `${Ma
           <button type="button" data-spatial-ar disabled>Checking your device…</button>
           <a data-quick-look rel="ar" download="artwork.usdz" aria-label="Open in AR" hidden><img src={poster} alt="" />Open in AR ↗</a>
           <p class="spatial-support" data-ar-support></p>
+          <button type="button" class="spatial-photo-link" data-museum-photo-choose>Label a photo <span aria-hidden="true">↗</span></button>
+          <p class="spatial-photo-help">Take a photo in AR, then return here to add its label.</p>
         </section>
         <section>
           <span class="spatial-number">02 / Virtual reality</span>
@@ -66,14 +70,22 @@ const defaultSize = defaultMaxExtentMeters && defaultMaxExtentMeters < 1 ? `${Ma
       </details>
       <div class="spatial-footer"><button type="button" data-spatial-screen>Continue in 3D <span aria-hidden="true">↗</span></button><p>Rotate and zoom in this browser.</p></div>
     </div>
+    <MuseumPhotoEditor title={title} />
     <div class="spatial-overlay" data-spatial-overlay hidden>
-      <div class="spatial-overlay-top"><strong>{title}</strong><button type="button" data-spatial-exit>Exit AR / VR</button></div>
+      <div class="spatial-overlay-top"><button type="button" data-spatial-exit>Exit AR / VR</button></div>
+      <div class="spatial-hud-label" data-spatial-museum-hud hidden><MuseumLabel label={museumLabel} hud /></div>
+      <p class="spatial-placement-message" data-spatial-instructions role="status"></p>
       <div class="spatial-overlay-controls">
+        <details data-spatial-adjust>
+          <summary>Placement &amp; size <span aria-hidden="true">+</span></summary>
+          <div class="spatial-adjust-content">
         {!verified && <p class="spatial-size-unverified">Size unverified · Default {defaultSize} on longest side. Display size is adjustable.</p>}
-        <p data-spatial-instructions role="status"></p>
         <label hidden={verified}>Display size <input type="range" data-spatial-scale min="0.1" max="2" step="0.05" value="1" /><output data-spatial-size>100%</output></label>
         <label data-spatial-support-control hidden>Stand height <input type="range" data-spatial-support-height min="0.2" max="1.4" step="0.05" value="1" /><output data-spatial-support-value>100 cm</output></label>
         <div><button type="button" data-spatial-turn>Turn 30°</button><button type="button" data-spatial-place>Place again</button><button type="button" data-spatial-reset-size>{verified ? 'Documented size' : 'Reset display size'}</button></div>
+        <label class="spatial-label-choice"><input type="checkbox" data-spatial-label-toggle checked />Show artwork label</label>
+          </div>
+        </details>
       </div>
     </div>
   </dialog>
@@ -102,6 +114,8 @@ const defaultSize = defaultMaxExtentMeters && defaultMaxExtentMeters < 1 ? `${Ma
   .spatial-top button { flex: none; width: 44px; height: 44px; margin-right: -10px; border: 0; background: transparent; color: var(--spatial-ink); cursor: pointer; font-size: 19px; }
   h2 { color: var(--spatial-ink); font: 400 clamp(30px, 5vw, 46px)/1.08 var(--v3-sans, var(--ui, sans-serif)); letter-spacing: -.04em; margin: 12px 0 16px; }
   .spatial-intro { margin: 0 0 8px; font-size: 17px; line-height: 1.5; }
+  .spatial-artwork-label { margin-bottom: 18px; }
+  .spatial-dialog.is-photo-editor { width: min(1000px, calc(100vw - 40px)); }
   .spatial-size-note { margin: 0; color: var(--spatial-muted); font-size: 12px; line-height: 1.6; }
   .spatial-reference-label { margin: 0 0 8px; color: var(--spatial-accent); font-size: 12px; }
   .spatial-options { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 28px; margin: 28px 0 0; }
@@ -115,6 +129,8 @@ const defaultSize = defaultMaxExtentMeters && defaultMaxExtentMeters < 1 ? `${Ma
   .spatial-options a img { width: 1px; height: 1px; position: absolute; opacity: 0; }
   .spatial-options section > p:not(.spatial-support) { min-height: 3.2em; }
   .spatial-options .spatial-support { font-size: 12px; margin: 12px 0 0; }
+  .spatial-options .spatial-photo-link { width: auto; justify-content: flex-start; gap: 14px; margin-top: 14px; padding: 8px 0; border: 0; background: transparent; color: var(--spatial-ink); font-size: 12px; font-weight: 400; text-decoration: underline; text-underline-offset: 4px; }
+  .spatial-options .spatial-photo-help { min-height: 0 !important; margin: 0; font-size: 11px; line-height: 1.5; }
   .spatial-status { font-size: 13px; line-height: 1.6; color: var(--spatial-accent); margin: 18px 0; }
   .spatial-status:empty { display: none; }
   details { border-top: 1px solid var(--spatial-line); }
@@ -146,10 +162,25 @@ const defaultSize = defaultMaxExtentMeters && defaultMaxExtentMeters < 1 ? `${Ma
   .spatial-overlay { position: fixed; inset: 0; color: var(--spatial-ink); pointer-events: none; }
   .spatial-overlay:fullscreen { background: transparent !important; }
   .spatial-overlay:xr-overlay { background: transparent !important; }
+  .spatial-dialog:has(> [data-spatial-overlay]:not([hidden])) { width: 100%; height: 100%; max-width: none; max-height: none; margin: 0; border: 0; background: transparent; overflow: visible; }
+  .spatial-dialog:has(> [data-spatial-overlay]:not([hidden]))::backdrop { background: transparent; -webkit-backdrop-filter: none; backdrop-filter: none; }
   .spatial-overlay-top, .spatial-overlay-controls { position: absolute; left: 16px; right: 16px; padding: 16px; border: 1px solid var(--spatial-line); border-radius: 4px; background: var(--v3-chrome-solid, #111a2cf7); pointer-events: auto; }
-  .spatial-overlay-top { top: max(16px, env(safe-area-inset-top)); display: flex; gap: 20px; justify-content: space-between; align-items: center; }
+  .spatial-overlay-top { top: max(16px, env(safe-area-inset-top)); left: auto; right: max(16px, env(safe-area-inset-right)); padding: 0; border: 0; background: transparent; }
   .spatial-overlay-top strong { font-size: 14px; font-weight: 500; }
-  .spatial-overlay-controls { bottom: max(16px, env(safe-area-inset-bottom)); max-width: 440px; margin: auto; }
+  .spatial-overlay-controls { bottom: max(16px, env(safe-area-inset-bottom)); left: auto; right: max(16px, env(safe-area-inset-right)); width: min(310px, calc(100% - 32px)); padding: 0; margin: 0; }
+  .spatial-overlay-controls details { border: 0; }
+  .spatial-overlay-controls summary { min-height: 48px; padding: 0 16px; }
+  .spatial-adjust-content { max-height: calc(100dvh - 146px); overflow-y: auto; padding: 0 16px 10px; }
+  .spatial-adjust-content > div { display: flex; flex-wrap: wrap; gap: 8px; }
+  .spatial-hud-label, .spatial-placement-message { position: absolute; bottom: calc(max(16px, env(safe-area-inset-bottom)) + 72px); left: max(20px, env(safe-area-inset-left)); width: min(320px, calc(100% - 40px)); pointer-events: none; }
+  .spatial-placement-message { margin: 0; color: #fff; font-size: 13px; line-height: 1.5; text-shadow: 0 1px 3px #000; }
+  .spatial-overlay:has([data-spatial-adjust][open]) .spatial-hud-label { visibility: hidden; }
+  .spatial-overlay .spatial-label-choice { min-height: 44px; margin: 12px 0 0; gap: 8px; }
+  .spatial-overlay .spatial-label-choice input { flex: none; min-height: 24px; width: 18px; accent-color: var(--spatial-accent); }
+  @media (orientation: landscape) {
+    .spatial-overlay-controls { width: 230px; }
+    .spatial-hud-label, .spatial-placement-message { bottom: max(20px, env(safe-area-inset-bottom)); width: min(320px, calc(100% - 290px)); }
+  }
   .spatial-overlay-controls p { font-size: 14px; line-height: 1.5; margin: 0 0 15px; }
   .spatial-overlay label { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; font-size: 12px; }
   .spatial-overlay input { flex: 1; min-width: 0; }

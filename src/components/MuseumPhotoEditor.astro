@@ -1,0 +1,79 @@
+---
+const { title } = Astro.props;
+---
+<section class="museum-photo-editor" data-museum-photo-editor aria-label="Label your AR photo" hidden>
+  <header class="museum-photo-top">
+    <button type="button" data-museum-photo-back aria-label="Back to AR options"><span aria-hidden="true">←</span> Back</button>
+    <span>Label a photo</span>
+  </header>
+  <div class="museum-photo-layout">
+    <div class="museum-photo-frame">
+      <div class="museum-photo-image" data-museum-photo-result hidden><img data-museum-photo-preview alt={`Your photo with the artwork label for ${title}`} /></div>
+    </div>
+    <div class="museum-photo-controls">
+      <p class="museum-photo-work">{title}</p>
+      <p class="museum-photo-note">Choose the corner that leaves the work clear.</p>
+      <fieldset>
+        <legend>Label position</legend>
+        <div class="museum-photo-positions">
+          <button type="button" data-museum-photo-position="left" aria-pressed="true" disabled>Lower left</button>
+          <button type="button" data-museum-photo-position="right" aria-pressed="false" disabled>Lower right</button>
+        </div>
+      </fieldset>
+      <p class="museum-photo-status" data-museum-photo-status role="status" aria-live="polite"></p>
+      <div class="museum-photo-actions">
+        <button type="button" data-museum-photo-share hidden>Share photo</button>
+        <a data-museum-photo-save hidden>Download photo <span aria-hidden="true">↓</span></a>
+      </div>
+      <button type="button" class="museum-photo-replace" data-museum-photo-choose>Choose another photo</button>
+      <p class="museum-photo-private">Your photo stays on this device.</p>
+    </div>
+  </div>
+  <input type="file" data-museum-photo-input accept="image/*" aria-label="Choose a saved AR photo" hidden />
+</section>
+<style>
+  .museum-photo-editor { color: var(--spatial-ink, #f7f5ef); }
+  [hidden] { display: none !important; }
+  .museum-photo-top { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 8px 24px; height: 64px; box-sizing: border-box; }
+  .museum-photo-top > span { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--spatial-muted, #c9c6bd); }
+  button, a { font: inherit; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+  button { cursor: pointer; }
+  .museum-photo-top button, .museum-photo-replace { min-height: 44px; background: transparent; border: 0; padding: 0; color: inherit; font-size: 12px; }
+  .museum-photo-top button span { margin-right: 8px; }
+  .museum-photo-layout { display: grid; grid-template-columns: minmax(0, 1fr) 240px; gap: 24px; padding: 0 24px 24px; }
+  .museum-photo-frame { display: flex; align-items: center; justify-content: center; min-width: 0; min-height: 160px; background: #090e18; border: 1px solid rgba(247,245,239,.1); }
+  .museum-photo-image { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+  .museum-photo-image img { display: block; width: 100%; height: 100%; max-height: 70dvh; object-fit: contain; }
+  .museum-photo-controls { min-width: 0; }
+  .museum-photo-work { margin: 0 0 10px; font-size: 19px; line-height: 1.25; letter-spacing: -.025em; text-wrap: pretty; }
+  .museum-photo-note, .museum-photo-status { margin: 0 0 16px; font-size: 12px; line-height: 1.5; color: var(--spatial-muted, #c9c6bd); }
+  fieldset { border: 0; padding: 0; margin: 22px 0 14px; min-width: 0; }
+  legend { padding: 0; margin-bottom: 9px; font-size: 11px; color: var(--spatial-muted, #c9c6bd); }
+  .museum-photo-positions { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .museum-photo-positions button { min-height: 44px; padding: 6px; border: 1px solid rgba(247,245,239,.25); border-radius: 3px; background: transparent; color: inherit; font-size: 11px; }
+  .museum-photo-positions button[aria-pressed="true"] { border-color: var(--spatial-accent, #eccf7a); color: var(--spatial-accent, #eccf7a); }
+  button:disabled { opacity: .45; cursor: wait; }
+  .museum-photo-status { margin: 0 0 14px; }
+  .museum-photo-actions { display: grid; gap: 8px; }
+  .museum-photo-actions button, .museum-photo-actions a { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; border: 1px solid var(--spatial-accent, #eccf7a); border-radius: 3px; background: var(--spatial-accent, #eccf7a); color: #0e1626; text-decoration: none; font-size: 12px; font-weight: 500; }
+  .museum-photo-actions button:not([hidden]) + a { background: transparent; color: var(--spatial-ink, #f7f5ef); border-color: rgba(247,245,239,.25); }
+  .museum-photo-replace { margin-top: 5px; text-decoration: underline; text-underline-offset: 4px; }
+  .museum-photo-private { margin: 2px 0 0; font-size: 10px; line-height: 1.5; color: var(--spatial-muted, #c9c6bd); }
+  button:focus-visible, a:focus-visible { outline: 2px solid var(--spatial-accent, #eccf7a); outline-offset: 3px; }
+  @media (max-width: 600px) and (orientation: portrait) {
+    .museum-photo-layout { grid-template-columns: minmax(0, 1fr); gap: 20px; padding: 0 16px 20px; }
+    .museum-photo-top { padding-inline: 16px; }
+    .museum-photo-image img { max-height: 52dvh; }
+    .museum-photo-work { font-size: 17px; }
+    fieldset { margin-top: 16px; }
+  }
+  @media (orientation: landscape) and (max-height: 600px) {
+    .museum-photo-top { height: 54px; padding-inline: 16px; }
+    .museum-photo-layout { grid-template-columns: minmax(0, 1fr) 216px; gap: 16px; padding: 0 16px 16px; height: calc(100dvh - 94px); }
+    .museum-photo-frame { min-height: 0; }
+    .museum-photo-image img { max-height: 100%; }
+    .museum-photo-controls { overflow-y: auto; overscroll-behavior: contain; padding: 2px; }
+    .museum-photo-work { font-size: 17px; }
+    fieldset { margin-top: 14px; }
+  }
+</style>

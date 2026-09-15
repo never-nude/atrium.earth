@@ -6,6 +6,7 @@ import V3Layout from '../../layouts/v3/V3Layout.astro';
 import { workBySlug, works, type Work } from '../../lib/catalog';
 import { exhibitions, neighborsFor, v3ExhibitionRoute, v3WorkRoute } from '../../lib/v3';
 import { withBase } from '../../lib/urls';
+import { museumLabelFor } from '../../lib/museum-label.mjs';
 
 export function getStaticPaths() {
   return works.map((work) => ({ params: { slug: work.slug }, props: { work } }));
@@ -48,6 +49,7 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
       autoRotate={work.slug !== 'europe/venus-of-willendorf-nhmw-44-686'}
       lightControls={true}
       spatialViewing={work.spatialAccess.enabled}
+      museumLabel={museumLabelFor(work)}
       spatialAssetSha256={work.spatialAccess.assetSha256}
       spatialLabel={work.spatialAccess.label}
       spatialDefaultMaxExtentMeters={work.spatialAccess.defaultMaxExtentMeters}

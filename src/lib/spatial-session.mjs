@@ -100,6 +100,7 @@ export async function startSpatialSession(context, sessionPromise, mode, overlay
     renderer.xr.enabled = saved.xrEnabled;
     renderer.setClearColor(saved.clearColor, saved.clearAlpha);
     resume();
+    options.onPlacement?.(false);
     options.onEnd?.();
   };
   // Three's session-end listener also restores the framebuffer and viewport.
@@ -110,6 +111,7 @@ export async function startSpatialSession(context, sessionPromise, mode, overlay
       anchor.position.setFromMatrixPosition(reticle.matrix);
       anchor.visible = true;
       placed = true;
+      options.onPlacement?.(true);
       reticle.visible = false;
       setStatus(options.fixedScale ? 'Placed at the documented size. Walk around the sculpture or turn it.' : 'Placed. Walk around the sculpture, or adjust its size and direction.');
     } else if (mode === 'immersive-vr') {
@@ -135,6 +137,7 @@ export async function startSpatialSession(context, sessionPromise, mode, overlay
       }
       setStatus(`Move your phone to find a ${placementSurface}. Tap the ring to place ${layout.visible ? 'the stand and sculpture' : 'the sculpture'}.`);
     } else setStatus(options.fixedScale ? 'Walk around the sculpture at its documented size. Trigger to turn.' : 'Walk around the sculpture. Trigger to turn; thumbstick up or down to resize.');
+    options.onPlacement?.(placed);
     renderer.setAnimationLoop((time, frame) => {
       if (ended) return;
       const elapsed = lastFrame === undefined ? 0 : Math.min(0.1, Math.max(0, (time - lastFrame) / 1000));
@@ -173,6 +176,7 @@ export async function startSpatialSession(context, sessionPromise, mode, overlay
       reposition: () => {
         if (mode !== 'immersive-ar') return;
         placed = false; hasSurface = false; anchor.visible = false;
+        options.onPlacement?.(false);
         setStatus(`Find a ${placementSurface}, then tap to place ${layout.visible ? 'the stand and sculpture' : 'the sculpture'} again.`);
       },
     };

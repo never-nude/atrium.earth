@@ -83,7 +83,8 @@ for (const mode of ['immersive-ar', 'immersive-vr']) {
 }
 {
   const context = fixture(), state = original(context), session = new Session();
-  const active = await startSpatialSession(context, Promise.resolve(session), 'immersive-ar', null);
+  const placements = [];
+  const active = await startSpatialSession(context, Promise.resolve(session), 'immersive-ar', null, { onPlacement: placed => placements.push(placed) });
   const anchor = context.model.parent.parent;
   assert.equal(anchor.visible, false);
   const wall = new THREE.Matrix4().makeRotationX(Math.PI / 2);
@@ -94,9 +95,11 @@ for (const mode of ['immersive-ar', 'immersive-vr']) {
   context.renderer.loop(0, frame(floor)); session.dispatchEvent(new Event('select'));
   assert.equal(anchor.visible, true);
   assert.deepEqual(anchor.position.toArray(), [0.5, -0.8, -2]);
+  assert.deepEqual(placements, [false, true], 'Label visibility follows confirmed placement without moving the anchor');
   active.setScale(0.5); context.scene.updateMatrixWorld(true);
   assert.ok(Math.abs(new THREE.Box3().setFromObject(context.model, true).min.y + 0.8) < 1e-6);
   active.reposition(); assert.equal(anchor.visible, false);
+  assert.deepEqual(placements, [false, true, false], 'Label is hidden while finding a new placement');
   await active.end(); await tick(); restored(context, state);
   assert.equal(session.cancelled, 1);
 }

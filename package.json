@@ -24,6 +24,7 @@
     "test:model-normalization": "node ./scripts/test-model-normalization.mjs",
     "test:spatial": "node ./scripts/test-spatial-capabilities.mjs && node ./scripts/test-spatial-viewer.mjs && node ./scripts/test-spatial-appearance.mjs",
     "test:spatial-restoration": "node ./scripts/test-spatial-restoration.mjs",
+    "test:museum-labels": "node ./scripts/test-museum-labels.mjs",
     "test:spatial-eligibility": "node ./scripts/test-spatial-eligibility.mjs",
     "test:spatial-access": "node ./scripts/test-spatial-access.mjs",
     "test:display-support": "node ./scripts/test-display-support.mjs",

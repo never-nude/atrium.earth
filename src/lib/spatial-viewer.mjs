@@ -1,6 +1,7 @@
 import { spatialDevice, probeSpatialSupport } from './spatial-capabilities.mjs';
 import { makeQuickLookScene, startSpatialSession } from './spatial-session.mjs';
 import { displayReferenceFor } from './spatial-access.mjs';
+import { bindMuseumPhotos } from './museum-photo.mjs';
 
 export function bindSpatialViewing(element, getContext, activate) {
   const find = (selector) => element.querySelector(selector);
@@ -21,6 +22,18 @@ export function bindSpatialViewing(element, getContext, activate) {
     find('[data-spatial-support-value]').textContent = `${Math.round(height * 100)} cm`;
   };
   const title = element.dataset.title;
+  const museumLabel = JSON.parse(element.dataset.museumLabelJson || '{}');
+  bindMuseumPhotos(element, { title, ...museumLabel });
+  const museumHUD = find('[data-spatial-museum-hud]');
+  const labelToggle = find('[data-spatial-label-toggle]');
+  let artworkPlaced = false;
+  const showPlacement = (placed) => {
+    artworkPlaced = placed;
+    museumHUD.hidden = !placed || !labelToggle.checked;
+    find('[data-spatial-instructions]').hidden = placed;
+    find('[data-spatial-adjust]').open = false;
+  };
+  labelToggle.addEventListener('change', () => { museumHUD.hidden = !artworkPlaced || !labelToggle.checked; });
   const verifiedReference = element.dataset.verifiedReference === 'true';
   const verifiedModel = () => !verifiedReference || getContext()?.verifiedAsset === true;
   const reference = verifiedReference && element.dataset.referenceAxis ? {
@@ -158,6 +171,7 @@ export function bindSpatialViewing(element, getContext, activate) {
   const reset = () => {
     session = undefined; pending = undefined; busy = false;
     overlay.hidden = true; panel.hidden = false;
+    showPlacement(false);
     showScale(1);
     update();
   };
@@ -174,6 +188,7 @@ export function bindSpatialViewing(element, getContext, activate) {
     panel.hidden = true; overlay.hidden = false;
     find('[data-spatial-place]').hidden = mode !== 'immersive-ar';
     find('[data-spatial-instructions]').textContent = 'Starting immersive view…';
+    showPlacement(false);
     // requestSession must run directly inside the click, before imports or awaits.
     let request;
     try {
@@ -189,6 +204,7 @@ export function bindSpatialViewing(element, getContext, activate) {
       onStatus: (text) => { find('[data-spatial-instructions]').textContent = text; },
       onScale: showScale,
       fixedScale: verifiedReference,
+      onPlacement: showPlacement,
       onEnd: () => { reset(); say('Back on screen. You can start another immersive view whenever you like.'); },
     }).then((active) => { session = active; }).catch((error) => { reset(); say(errorMessage(error)); });
   }

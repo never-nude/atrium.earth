@@ -91,7 +91,17 @@ try {
   await page.waitForFunction(() => !document.querySelector('[data-spatial-dialog]').open);
   await page.locator('[data-spatial-open]').tap();
   assert.equal(await link.getAttribute('href'), href, 'Closing/reopening options preserves the prepared export');
+  const photo = await page.evaluate(() => {
+    const canvas = document.createElement('canvas'); canvas.width=300; canvas.height=400;
+    const context = canvas.getContext('2d'); context.fillStyle='#567'; context.fillRect(0,0,300,400);
+    return canvas.toDataURL('image/png');
+  });
+  await page.locator('[data-museum-photo-input]').setInputFiles({name:'ar-photo.png',mimeType:'image/png',buffer:Buffer.from(photo.split(',')[1],'base64')});
+  await page.locator('[data-museum-photo-save]:not([hidden])').waitFor();
+  await page.locator('[data-museum-photo-back]').tap();
+  assert.equal(await link.getAttribute('href'), href, 'Labeling a saved photo never invalidates or rebuilds the native AR sculpture');
+  assert.equal(await page.locator('[data-spatial-museum-hud]').isVisible(), false, 'Native AR cannot show the browser-only HUD');
   assert.deepEqual(errors, []);
-  console.log('Restoration checks passed: direct portrait entry, landscape/portrait layout, unchanged native export through rotation, sculpture-only USDZ, and no custom labels/camera runtime.');
+  console.log('Restoration checks passed: direct portrait entry, landscape/portrait layout, unchanged native export through rotation and photo labeling, sculpture-only USDZ, and no custom native labels/camera runtime.');
   console.log('Native iPhone rotation, tracking and shutter use still require physical-device validation.');
 } finally { await browser.close(); await server.stop(); }
