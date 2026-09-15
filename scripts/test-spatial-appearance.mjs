@@ -1,6 +1,8 @@
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import * as THREE from 'three';
 import { USDZExporter } from 'three/examples/jsm/exporters/USDZExporter.js';
+import { USDLoader } from 'three/examples/jsm/loaders/USDLoader.js';
 import { unzipSync, strFromU8 } from 'three/examples/jsm/libs/fflate.module.js';
 import { makeQuickLookScene, startSpatialSession } from '../src/lib/spatial-session.mjs';
 import { finishQuickLookAppearance } from '../src/lib/quick-look-appearance-export.mjs';
@@ -27,7 +29,7 @@ for (const exposure of [0.2, 0.74, 0.66, 1]) {
   converted.dispose();
   assert.ok(source.color.equals(originalColor)); assert.ok(source.emissive.equals(originalEmissive));
 }
-// STL-style procedural vertex tints must be bound to the actual USD surface,
+// Authored (not Atrium-generated) vertex tints retain their original USD graph,
 // including the source material multiplier exactly once. Sharing a material
 // with an uncolored mesh must not cause its shader to read a missing primvar.
 {
@@ -64,25 +66,39 @@ for (const exposure of [0.2, 0.74, 0.66, 1]) {
   }
   converted.dispose(); group.children.forEach(mesh => mesh.geometry.dispose()); material.dispose();
 }
-// The page palette is present in both material and vertex channels. Native
-// export must apply the AR palette once, including when no vertex attribute is
-// generated for a very large mesh. It must not recolor an authored texture.
-for (const key of ['marble', 'limestone', 'bronze-patina']) {
-  const appearance = { key, baseColor: key === 'bronze-patina' ? '#6B4F31' : '#B4A78F', roughness: 0.7, metalness: key === 'bronze-patina' ? 0.58 : 0 };
+// Generated palettes must survive serialization and reimport as standard USD
+// materials, without depending on a custom vertex-color reader. Exercise every
+// catalogue profile, with and without the optional procedural vertex attribute.
+const profiles = JSON.parse(readFileSync(new URL('../src/data/material-appearances.json', import.meta.url))).profiles;
+for (const appearance of Object.values(profiles)) for (const vertexColors of [true, false]) {
   const color = new THREE.Color(appearance.baseColor);
   const geometry = new THREE.BoxGeometry();
   const colors = new Float32Array(geometry.attributes.position.count * 3);
   for(let i=0;i<colors.length;i+=3)colors.set(color.toArray(),i);
-  geometry.setAttribute('color', new THREE.BufferAttribute(colors.slice(),3));
-  const material = new THREE.MeshStandardMaterial({color:0x333333,vertexColors:true});
+  if (vertexColors) geometry.setAttribute('color', new THREE.BufferAttribute(colors.slice(),3));
+  const material = new THREE.MeshStandardMaterial({color:0x333333,vertexColors});
   rememberSpatialAppearance(material,appearance);
   const mesh = new THREE.Mesh(geometry,material);
   const converted = makeQuickLookScene(THREE,mesh,new THREE.Box3().setFromObject(mesh),null,{mode:'surface'});
   const exported = converted.scene.children[0].children[0];
-  const expected = spatialPaletteColor(THREE,appearance), actual = exported.geometry.getAttribute('color');
-  assert.ok(Math.abs(actual.getX(0)-expected.r)<1e-6, 'Generated color is not multiplied by the dark page material');
-  assert.ok(Math.abs(actual.getY(0)-expected.g)<1e-6);
-  assert.deepEqual(geometry.attributes.color.array,colors,'Source geometry stays unchanged');
+  const expected = spatialPaletteColor(THREE,appearance);
+  assert.ok(exported.material.color.equals(expected), 'Native palette is present in the material itself');
+  assert.equal(exported.material.vertexColors, false);
+  assert.equal(exported.geometry.hasAttribute('color'), false, 'No competing native vertex palette');
+  const bytes = finishQuickLookAppearance(await new USDZExporter().parseAsync(converted.scene), converted.scene);
+  const archive = unzipSync(bytes), usd = strFromU8(archive['model.usda']);
+  assert.doesNotMatch(usd, /AtriumVertexColor|UsdPrimvarReader_float3/);
+  assert.match(usd, new RegExp(`rel material:binding = </Materials/Material_${exported.material.id}>`));
+  const restored = new USDLoader().parse(bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength));
+  let restoredMesh;
+  restored.traverse(object => { if (object.isMesh) restoredMesh = object; });
+  assert.ok(restoredMesh, 'Serialized native model can be reimported');
+  for (const channel of ['r', 'g', 'b']) assert.ok(Math.abs(restoredMesh.material.color[channel] - expected[channel]) < 1e-6, `${appearance.key}: native ${channel} survives round trip`);
+  assert.equal(restoredMesh.material.metalness, appearance.metalness);
+  assert.equal(restoredMesh.material.roughness, Math.max(.48, Math.min(.85, appearance.roughness)));
+  assert.ok(material.color.equals(new THREE.Color(0x333333)), 'Page material stays unchanged');
+  if (vertexColors) assert.deepEqual(geometry.attributes.color.array,colors,'Source geometry stays unchanged');
+  restored.traverse(object => { if (object.isMesh) { object.geometry.dispose(); object.material.dispose(); } });
   converted.dispose();geometry.dispose();material.dispose();
 }
 const maps = ['map', 'normalMap', 'aoMap', 'emissiveMap', 'roughnessMap', 'metalnessMap', 'alphaMap'];
@@ -126,4 +142,4 @@ for (const mode of ['immersive-ar', 'immersive-vr']) {
   assert.equal(scene.getObjectByName("Atrium spatial lighting"), undefined);
   model.geometry.dispose(); material.dispose(); environment.dispose();
 }
-console.log('Spatial appearance checks passed: independent native appearance and bound STL vertex colors, constant/mapped emission, source textures, unchanged dimensions and page materials, and independent WebXR lighting with exact page restoration.');
+console.log('Spatial appearance checks passed: native palette serialization/reimport for every generated profile, preserved authored colors/textures and emission, unchanged dimensions/page materials, and independent WebXR lighting with exact restoration.');

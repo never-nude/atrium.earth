@@ -1,7 +1,8 @@
 import { strFromU8, strToU8, zipSync } from 'three/examples/jsm/libs/fflate.module.js';
 
-// displayColor is only a geometry primvar; explicitly connect it to the bound
-// USD surface shader. Geometry already contains vertex tint × material, with independent AR highlight limiting.
+// Retain source vertex-color graphs for authored, untextured scans. Generated
+// Atrium stone/bronze palettes use standard constant diffuseColor instead:
+// Quick Look did not reliably resolve this custom displayColor connection.
 export function finishQuickLookAppearance(bytes, scene) {
   const materials = new Set();
   scene.traverse(object => {

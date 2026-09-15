@@ -36,12 +36,14 @@ try {
   await page.evaluate(async () => {
     const THREE = await import('/node_modules/three/build/three.module.js');
     const { bindSpatialViewing } = await import('/src/lib/spatial-viewer.mjs');
+    const { rememberSpatialAppearance } = await import('/src/lib/spatial-materials.mjs');
     const original = document.querySelector('[data-spatial]');
     const element = original.cloneNode(true); original.replaceWith(element);
     const model = new THREE.Group();
     const mesh = new THREE.Mesh(new THREE.BoxGeometry(.1, .2, .08), new THREE.MeshStandardMaterial({ color: 0xf7f5ef }));
     mesh.name = 'SculptureFixture'; model.add(mesh);
     mesh.material.vertexColors = true;
+    rememberSpatialAppearance(mesh.material, JSON.parse(document.querySelector('[data-material-appearance]').dataset.materialAppearance));
     const colors = new Float32Array(mesh.geometry.attributes.position.count * 3).fill(0.5);
     mesh.geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
     window.modelFixture = { THREE, renderer: { toneMappingExposure: 0.2 }, model, box: new THREE.Box3().setFromObject(model), verifiedAsset: true };
@@ -71,8 +73,10 @@ try {
   assert.equal((usd.match(/customLayerData/g) || []).length, 1);
   assert.match(usd, /dictionary Apple/);
   assert.match(usd, /int preferredIblVersion = 2/);
-  assert.match(usd, /def Shader "AtriumVertexColor"/);
-  assert.match(usd, /inputs:diffuseColor.connect = <\/Materials\/Material_\d+\/AtriumVertexColor.outputs:result>/);
+  assert.doesNotMatch(usd, /AtriumVertexColor|UsdPrimvarReader_float3/);
+  const stone = usd.match(/color3f inputs:diffuseColor = \(([^)]+)\)/)[1].split(',').map(Number);
+  assert.ok(stone[0] > stone[1] && stone[1] > stone[2], 'Native limestone has its warm hue directly in the material');
+  assert.ok(.2126 * stone[0] + .7152 * stone[1] + .0722 * stone[2] >= .459, 'Native Venus retains the intended light stone albedo');
   assert.match(usd, /float4 inputs:scale = \(1, 1, 1, 1(?:\.0)?\)/, 'Label texture remains full brightness');
   assert.match(usd, /def Xform "SculptureFixture"/);
   assert.match(usd, /def Xform "AtriumMuseumLabel"/);

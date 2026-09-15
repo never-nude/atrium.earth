@@ -253,7 +253,6 @@ export function makeQuickLookScene(THREE, model, box, reference, supportOptions 
         const material = materials[group.materialIndex ?? 0];
         if (!material?.visible) continue;
         if (!material.isMeshStandardMaterial) throw new Error('This surface cannot be exported to AR.');
-        const colored = material.vertexColors && geometry.hasAttribute('color') && !material.map;
         let surface = geometry;
         if (Array.isArray(mesh.material) || geometry.hasAttribute('color')) {
           surface = geometry.clone();
@@ -263,7 +262,8 @@ export function makeQuickLookScene(THREE, model, box, reference, supportOptions 
           const indexes = geometry.index ? Array.from(geometry.index.array).slice(group.start, group.start + group.count) : Array.from({ length: group.count }, (_, i) => group.start + i);
           surface.setIndex(indexes); surface.clearGroups();
         }
-        const preparedSurface = prepareSpatialSurface(THREE, material, surface);
+        const preparedSurface = prepareSpatialSurface(THREE, material, surface, { native: true });
+        const { colored } = preparedSurface;
         const prepared = prepareQuickLookMaterial(preparedSurface.material);
         if (colored) prepared.color.copy(preparedSurface.material.color);
         preparedSurface.material.dispose();

@@ -22,10 +22,10 @@ export function spatialPaletteColor(THREE, appearance) {
   if (peak > 0.8) color.multiplyScalar(0.8 / peak);
   return color;
 }
-export function prepareSpatialSurface(THREE, source, geometry) {
+export function prepareSpatialSurface(THREE, source, geometry, { native = false } = {}) {
   const material = source.clone();
   const generated = source.userData.atriumGeneratedAppearance;
-  const colored = Boolean(source.vertexColors && geometry.hasAttribute('color') && !source.map);
+  let colored = Boolean(source.vertexColors && geometry.hasAttribute('color') && !source.map);
   if (generated && !source.map) {
     const base = new THREE.Color(geometry.userData.atriumPaletteBase || generated.baseColor);
     const target = spatialPaletteColor(THREE, generated);
@@ -35,6 +35,15 @@ export function prepareSpatialSurface(THREE, source, geometry) {
     material.envMapIntensity = 1;
     material.emissive.setRGB(0, 0, 0);
     material.emissiveIntensity = 0;
+    if (native) {
+      // Quick Look can lose the custom displayColor shader connection and show
+      // its gray fallback. Put generated stone/bronze palettes directly in the
+      // standard surface material. Keep normals and physical material shading;
+      // procedural vertex patina remains in the page and WebXR only.
+      material.vertexColors = false;
+      geometry.deleteAttribute('color');
+      colored = false;
+    }
     if (colored) {
       const colors = geometry.getAttribute('color');
       // The existing vertex colors contain the palette already. Transfer their

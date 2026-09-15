@@ -1,0 +1,73 @@
+{
+  "scope": "Actual page/Viewer/AR handoff using byte-verified archived models. Serialized material checks, not native Apple rendering.",
+  "results": [
+    {
+      "slug": "rodin/the-thinker",
+      "sourceSha256": "43c0be045d923aa905bb59b45b9741374eab98cd37ff4ce6c8f376c0914dd43c",
+      "surfaces": [
+        {
+          "diffuse": [
+            0.2467034239317354,
+            0.1311940643835435,
+            0.051535418628847064
+          ],
+          "metallic": 0.58,
+          "roughness": 0.52
+        }
+      ],
+      "textures": 1,
+      "rotationKeepsFile": true,
+      "openUsdBoundArtworkMeshes": 1
+    },
+    {
+      "slug": "europe/venus-of-willendorf-nhmw-44-686",
+      "sourceSha256": "d3a407ad0785c924ebd7fe60e9f23846dd619f148d31a0cd326bed4bd1a419a9",
+      "surfaces": [
+        {
+          "diffuse": [
+            0.5338968460729199,
+            0.4520343406473042,
+            0.32130983509619565
+          ],
+          "metallic": 0,
+          "roughness": 0.78
+        }
+      ],
+      "textures": 1,
+      "rotationKeepsFile": true,
+      "openUsdBoundArtworkMeshes": 1
+    },
+    {
+      "slug": "michelangelo/david",
+      "sourceSha256": "0fe2f0eca690f42f2e7ce0a6b440892f793410295dadbcfef9a0b3c62168f8b7",
+      "surfaces": [
+        {
+          "diffuse": [
+            0.5388553627216343,
+            0.49515272701934143,
+            0.43360276345079773
+          ],
+          "metallic": 0,
+          "roughness": 0.58
+        }
+      ],
+      "textures": 1,
+      "rotationKeepsFile": true,
+      "openUsdBoundArtworkMeshes": 1
+    },
+    {
+      "slug": "egyptian/seated-scribe-e3023-louvre",
+      "sourceSha256": "fec62129a23d3088379495b1baac02ec8e639441b0f3b0e9fb9adf9c5ad2d5e6",
+      "surfaces": [
+        {
+          "textured": true
+        }
+      ],
+      "textures": 2,
+      "rotationKeepsFile": true,
+      "openUsdBoundArtworkMeshes": 1
+    }
+  ],
+  "nativeAppleRenderingValidated": false,
+  "venusAssetNote": "Archived uncompressed Venus was meshopt-compressed with glTF Transform 4.4.2; resulting SHA-256 exactly matches the live page asset reference. No integrity check was bypassed."
+}
