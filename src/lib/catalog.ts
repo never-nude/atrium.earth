@@ -782,6 +782,14 @@ const homepageHeroLaunchSlug = 'asia/cosmic-buddha';
 const homepageHeroRotationEpoch = Date.UTC(2026, 8, 4);
 
 export function homepageHeroWorkForDate(date = new Date()): Work {
+  // Temporary spotlight through the weekend; Monday's scheduled rebuild
+  // resumes the existing rotation without shifting its seed or epoch.
+  if (date.getTime() >= Date.UTC(2026, 8, 17)
+    && date.getTime() < Date.UTC(2026, 8, 21)) {
+    const spotlight = workBySlug('europe/venus-of-willendorf-nhmw-44-686');
+    if (spotlight?.hasPreview) return spotlight;
+  }
+
   const maxPreviewBytes = 15 * 1024 * 1024;
   const pool = works.filter((work) => (
     work.hasPreview
