@@ -121,3 +121,7 @@ An independent audit confirmed that all 1,224 existing records and prior runtime
 The other publication used danyelon’s Sketchfab scan for Pauline. The approved MTP/Polycam capture has clearer facial detail and more complete decorated couch and plinth geometry. It replaces that scan on the existing page; no duplicate composition is added. The previous source and metadata are preserved in [replacement history](pauline-replaced-scan-history.json). The other 1,269 earlier records remain unchanged.
 
 The final reconciliation also passed wing routing, newest-addition grouping and asset checks. The seven new works appear in Newest Additions; the upgraded Pauline page keeps its existing canonical URL and ingestion history.
+
+## Live confirmation
+
+Publication commit `46de11f4f4fafaa9acda6279fd5661f575c15c83` is live. [GitHub Pages deployment](https://github.com/never-nude/atrium.earth/actions/runs/35446937659) succeeded. Live checks found exactly seven new works in Newest Additions, verified all eight canonical pages and their full credits, and matched all eight model and thumbnail hashes to the approved assets. See [verification record](live-verification.json).
