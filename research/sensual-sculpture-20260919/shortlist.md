@@ -1,6 +1,6 @@
 # Atrium: 55 sensual sculpture candidates
 
-Researched 19 September 2026. **55 curatorial candidates; 5 open 3D leads, 2 additional model leads held for underlying-work rights, and 1 restricted model.** The remaining 47 have no reusable 3D model located in this research. This is a discovery shortlist, not an import-ready batch.
+Researched 19 September 2026. **55 candidates: The Eternal Idol is now imported as a 3D work.** Five other open-license scan listings await authenticated download; two Maillol leads remain on a rights hold and one Claudel model is restricted. No reusable model was located for the remaining 46 candidates. [Import report](../../docs/ingest/sensual-sculpture-20260919/acquisition.json).
 
 Checked against the 1,205-record repository catalog. No exact object-URL, model-ID, or title-and-maker duplicate was found. Near-duplicates such as Rodin’s *The Kiss*, *Eternal Spring*, Clésinger’s *Reclining Bacchante*, and Canova’s *Three Graces* were left out. The Pradier and Carpeaux works below are different compositions.
 
@@ -87,7 +87,7 @@ A downloadable flag means the provider currently advertises a download. Acquisit
 
 ## Rights and source notes
 
-The JSON companion records image rights, model IDs, exact model licenses, publishers, face counts and the catalog check. Most museum photographs have not been cleared. This research package has been prepared for repository publication; no new artwork asset is included without acquisition and viewer QA. See [verified metadata](publication-metadata.md) for the five open-license leads.
+The JSON companion records image rights, model IDs, exact model licenses, publishers, face counts and the catalog check. Most museum photographs have not been cleared. A later acquisition pass found and reviewed an openly licensed scan of The Eternal Idol; the other 54 candidates remain unimported. See [verified metadata](publication-metadata.md) for the five open-license leads.
 
 - **Claudel’s The Waltz:** the located scan is CC BY-NC-ND 4.0. Keep that file out of the ordinary Atrium conversion/publication pipeline. The artwork remains a strong target for an open alternative.
 - **Maillol’s The River and L’Air:** the scan uploaders offer CC BY 4.0, while the consulted museum records carry ARS rights notices for the artworks. They remain on hold.

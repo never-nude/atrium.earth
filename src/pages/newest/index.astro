@@ -13,7 +13,7 @@ const recentWorks = latestAddition?.works ?? [];
     </div>
   </section>
   <section class="v3-additions-works" aria-labelledby="recent-works-title">
-    <div class="v3-additions-count"><h2 id="recent-works-title">{recentWorks.length} recent works</h2><span>Explore in 3D</span></div>
+    <div class="v3-additions-count"><h2 id="recent-works-title">{recentWorks.length} recent {recentWorks.length === 1 ? 'work' : 'works'}</h2><span>Explore in 3D</span></div>
     <div class="v3-grid">{recentWorks.map((work, i) => <V3WorkCard work={work} eager={i < 4} />)}</div>
   </section>
 </V3Layout>

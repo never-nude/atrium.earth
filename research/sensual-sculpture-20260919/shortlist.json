@@ -23,11 +23,17 @@
       "object_url": "https://museecamilleclaudel.fr/en/Eternal-Idol",
       "fit": "Core",
       "curatorial_note": "An intimate adult couple arranged around a kneeling gesture and a strongly vertical seated figure.",
-      "model_status": "Not located in this research",
+      "model_status": "Acquired from Polytech on Polycam under CC BY 4.0",
       "image_rights": "Not verified",
-      "acquisition_status": "Research target",
+      "acquisition_status": "Imported: Harvard Art Museums marble variant",
       "catalog_match_slugs": [],
-      "catalog_status": "No match found in 1,205-record snapshot"
+      "catalog_status": "No match found in 1,205-record snapshot",
+      "imported_slug": "rodin/the-eternal-idol-harvard",
+      "acquired_variant": {
+        "date": "1893",
+        "institution": "Harvard Art Museums / Fogg Museum",
+        "object_url": "https://www.harvardartmuseums.org/collections/object/230060"
+      }
     },
     {
       "id": 2,
@@ -1008,9 +1014,13 @@
     }
   ],
   "publication": {
-    "status": "Research only",
-    "models_acquired": 0,
-    "works_added_to_live_catalog": 0,
-    "acquisition_report": "acquisition.json"
+    "status": "One model imported for deployment",
+    "models_acquired": 1,
+    "works_added_to_catalog": 1,
+    "slugs": [
+      "rodin/the-eternal-idol-harvard"
+    ],
+    "remaining_candidates": 54,
+    "report": "../../docs/ingest/sensual-sculpture-20260919/acquisition.json"
   }
 }
