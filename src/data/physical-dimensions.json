@@ -32983,7 +32983,7 @@
       "measurementRegion": {
         "method": "position-welded connected triangles",
         "description": "The sculpture is separate from the modern pedestal. Connected components ranks 0, 1 and 3 contain the marble group; rank 2 is the rectangular pedestal. Their union runs from normalized Y -0.1190040436654394 to 0.5. Use the confirmed 197.5 cm height of the marble group, retaining the pedestal at the same uniform scale.",
-        "weldToleranceNormalizedUnits": 0.000001,
+        "weldToleranceNormalizedUnits": 1e-06,
         "ranksByDescendingTriangleCount": [
           0,
           1,
@@ -68937,7 +68937,7 @@
       "measurementRegion": {
         "method": "position-welded connected triangles",
         "description": "Connected component rank 0 is the rigid monitor body; all display/button components remain within its lateral body endpoints. Hanging cable components extend farther left and below and are excluded from the reference. Use the museum body-only width 58.4 cm for the rank-0 X span, retaining all cables at that scale.",
-        "weldToleranceNormalizedUnits": 0.000001,
+        "weldToleranceNormalizedUnits": 1e-06,
         "ranksByDescendingTriangleCount": [
           0
         ],
@@ -76604,7 +76604,7 @@
       "measurementRegion": {
         "method": "position-welded connected triangles",
         "description": "Connected component rank 0 is the complete sculpture, including its lowest foot/curved lower edge; rank 1 is the added green platform. All other sculpture fragments and the apple are within rank-0 height. Use the scan creator’s explicitly approximate 57 cm sculpture height, excluding the green platform from the reference while retaining it in the scene.",
-        "weldToleranceNormalizedUnits": 0.000001,
+        "weldToleranceNormalizedUnits": 1e-06,
         "ranksByDescendingTriangleCount": [
           0
         ],
@@ -83457,6 +83457,321 @@
     "checked": "2026-09-19",
     "note": "The exact loaned cast has no published dimensions in the exhibition label. No measurements have been borrowed from other casts.",
     "geometryReviewNote": "Reviewed three angles against source museum photograph. Whole sculpture and square display base framed upright; intentionally absent head and arm match the Rodin composition. Limited untextured scan detail; already Y-up. Physical scale is not calibrated.",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+  },
+  "modern/nymph-fountain-hauser-klosterneuburg": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "object",
+    "sourceUrl": "https://sketchfab.com/3d-models/760c6a9e48e14d11a4a190921de4eb95",
+    "note": "Physical dimensions of the exact object have not been verified; no measurements are inferred from the model or borrowed from another version.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+  },
+  "modern/reclining-woman-kolbe-berlin": {
+    "dimensions": "H 145 × L 290 cm (figure)",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://bildhauerei-in-berlin.de/bildwerk/ruhende-7246/",
+    "note": "Municipal sculpture inventory documents the bronze figure’s height and length; these measurements exclude the limestone support.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+  },
+  "contemporary/rain-is-over-3dladnik": {
+    "dimensions": "Variable",
+    "status": "variable",
+    "basis": "object",
+    "sourceUrl": "https://3dladnik.wixsite.com/workshop/therainisover",
+    "note": "Original digital sculpture with no single documented physical size.",
+    "checked": "2026-09-19",
+    "spatialNote": "This digital sculpture has no single physical size. Display size is adjustable."
+  },
+  "europe/embracing-couple-pipe-tamper-wmid-56125c": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "object",
+    "sourceUrl": "https://finds.org.uk/database/artefacts/record/id/1073393",
+    "note": "Physical dimensions of the exact object have not been verified; no measurements are inferred from the model or borrowed from another version.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+  },
+  "europe/pauline-bonaparte-canova-borghese": {
+    "dimensions": "160 × 120 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://galleriaborghese.cultura.gov.it/archivio-schede/paolina-borghese-come-venere-vincitrice/",
+    "note": "The official Galleria Borghese record documents 160 × 120 cm for this work. Axis labels are not added where the cited record does not specify them.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+  },
+  "modern/first-shiver-baucour-montsouris": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "object",
+    "sourceUrl": "https://www.paris.fr/pages/ce-que-vous-ignoriez-surement-sur-le-parc-montsouris-7927",
+    "note": "Physical dimensions of the exact object have not been verified; no measurements are inferred from the model or borrowed from another version.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+  },
+  "modern/shepherd-mermaid-albert-de-puig": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "object",
+    "sourceUrl": "https://sketchfab.com/3d-models/b1afae4a673e46e4ad04a30bf2bf9bbd",
+    "note": "The heritage publisher gives an ambiguously punctuated measurement (44,6x34.23 cm). It is not promoted to a verified measurement without clarification.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+  },
+  "asia/column-base-dancers-gujarat-british-museum": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "object",
+    "sourceUrl": "https://sketchfab.com/3d-models/column-base-gujurat-western-india-937a401d910b43f99d906c37661ac42f",
+    "note": "Physical dimensions of the exact object have not been verified; no measurements are inferred from the model or borrowed from another version.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+  },
+  "modern/mars-venus-i-kolbe-berlin": {
+    "dimensions": "H 230 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://sammlung.georg-kolbe-museum.de/de/objekte/mars-und-venus-i/62980",
+    "note": "The source documents the height of the Mars and Venus sculpture. No scale has been matched to the browser model.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+  },
+  "europe/leda-swan-miel-nordhausen": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "object",
+    "sourceUrl": "https://www.nordhausen.de/_daten/mm_objekte/2009/01/4029_0109_81359662.pdf",
+    "note": "Physical dimensions of the exact object have not been verified; no measurements are inferred from the model or borrowed from another version.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+  },
+  "modern/dawn-real-del-sarte-biarritz": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "object",
+    "sourceUrl": "https://sketchfab.com/3d-models/8326f7ce27cd4f0c8308a955f44ed09a",
+    "note": "The scanner describes an approximate two-metre overall height including the base; an exact figure or assembly measurement has not been verified.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+  },
+  "modern/female-torso-shaun-gagg": {
+    "dimensions": "28 × 12 × 10 in. (reference sculpture)",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.georgethorntonart.com/browse-art/female-torso",
+    "note": "The representing gallery documents H 28 × W 12 × D 10 inches for the reference physical sculpture. This digital reproduction is not calibrated to those measurements.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+  },
+  "modern/leda-swan-kai-nielsen-smk": {
+    "dimensions": "110 × 82.5 × 72.5 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://open.smk.dk/artwork/image/KMS5808",
+    "note": "SMK documents 110 × 82.5 × 72.5 cm for Kai Nielsen’s sandstone Leda, KMS5808.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+  },
+  "contemporary/moment-in-time-marielle-heessels": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "object",
+    "sourceUrl": "https://sketchfab.com/3d-models/mariel-le-heessels-a-moment-in-time-ddd491e7210744faa0aa7dca03a0bc43",
+    "note": "Physical dimensions of the exact object have not been verified; no measurements are inferred from the model or borrowed from another version.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+  },
+  "contemporary/dynamic-female-torso-polycosm": {
+    "dimensions": "Variable",
+    "status": "variable",
+    "basis": "object",
+    "sourceUrl": "https://sketchfab.com/3d-models/15b290a29e15482ebcbeb39581aeed63",
+    "note": "Original digital sculpture with no single documented physical size.",
+    "checked": "2026-09-19",
+    "spatialNote": "This digital sculpture has no single physical size. Display size is adjustable."
+  },
+  "americas/amantes-luis-carlos": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "object",
+    "sourceUrl": "https://sketchfab.com/3d-models/escultura-amantes-por-escultor-luis-carlos-a2c19566666d41f2a93d727194afa0ba",
+    "note": "Physical dimensions of the exact object have not been verified; no measurements are inferred from the model or borrowed from another version.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+  },
+  "modern/dressing-hair-macken-middelheim": {
+    "dimensions": "126 × 68 × 90 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://collectie-in-het-park.middelheimmuseum.be/openluchtdepot/opschik",
+    "note": "The Middelheim collection record documents 126 × 68 × 90 cm for accession MID.B.101.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+  },
+  "contemporary/spiral-of-my-3d-self-lotaif": {
+    "dimensions": "Variable",
+    "status": "variable",
+    "basis": "object",
+    "sourceUrl": "https://sketchfab.com/3d-models/spiral-of-my-3d-self-1c90c3c99ae94ec8968465fcf4873551",
+    "note": "Original digital sculpture with no single documented physical size.",
+    "checked": "2026-09-19",
+    "spatialNote": "This digital sculpture has no single physical size. Display size is adjustable."
+  },
+  "roman/wounded-amazon-walters": {
+    "dimensions": "Figure: H 157.48 × W 53.34 × D 55.88 cm; base: H 59.69 × W 72.39 × D 72.39 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://art.thewalters.org/object/23.92.1/",
+    "note": "The Walters publishes figure and base dimensions separately for accession 23.92.1. No correspondence between those extents and the browser mesh has been calibrated.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+  },
+  "europe/amphitrite-coysevox-louvre": {
+    "dimensions": "181 × 152 × 111 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://collections.louvre.fr/ark:/53355/cl010094810",
+    "note": "The Louvre records 181 × 152 × 111 cm for Antoine Coysevox’s Amphitrite, RF 3005.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+  },
+  "contemporary/woman-kiza-position-ceramic": {
+    "dimensions": "H 36 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://sketchfab.com/3d-models/fc2c99cfea904abd8008191fd8b8dd0f",
+    "note": "The owner and scan publisher records a height of 36 cm for the hollow ceramic sculpture. The source is a first-person object description; no model scale is calibrated.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+  },
+  "modern/dawn-kolbe-villar-reconstruction": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "object",
+    "sourceUrl": "https://miesbcn.com/the-pavilion/",
+    "note": "This is a digital reconstruction after Kolbe’s physical sculpture. Matching dimensions for the represented version and the reconstruction’s extent have not been verified.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+  },
+  "roman/aphrodite-pudica-glyptotek": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "object",
+    "sourceUrl": "https://sketchfab.com/3d-models/bd30c047af57425e8c613aabd02cd960",
+    "note": "Physical dimensions of the exact object have not been verified; no measurements are inferred from the model or borrowed from another version.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+  },
+  "europe/surprised-houdon-collegium-maius": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "object",
+    "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/2851",
+    "note": "Physical dimensions of the exact object have not been verified; no measurements are inferred from the model or borrowed from another version.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+  },
+  "modern/kneeling-woman-kolbe-berlin": {
+    "dimensions": "H 196 cm (figure)",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://bildhauerei-in-berlin.de/bildwerk/kniende-10151/",
+    "note": "Municipal sculpture inventory documents the bronze figure’s height, excluding its plinth and pedestal.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+  },
+  "modern/torso-irimescu-plaster": {
+    "dimensions": "Approximately H 45 cm",
+    "status": "approximate",
+    "basis": "object",
+    "sourceUrl": "https://sketchfab.com/3d-models/c8bcbb55445a4439a6a693a218e0981e",
+    "note": "Romania’s National Institute of Heritage gives an approximate height of 45 cm for this exact plaster. The approximation is preserved; no exact measurement or spatial calibration is claimed.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+  },
+  "europe/amphitrite-prou-louvre": {
+    "dimensions": "97 × 173 × 65 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://collections.louvre.fr/ark:/53355/cl010094828",
+    "note": "The Louvre records 97 × 173 × 65 cm for Jacques Prou’s Amphitrite, RF 3027.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+  },
+  "americas/embracing-peace-seward-johnson": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "object",
+    "sourceUrl": "https://sewardjohnsonatelier.org/icons-revisited/",
+    "note": "The exact Times Square version’s dimensions have not been verified. Measurements from other Seward Johnson versions are not transferred.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+  },
+  "roman/leda-swan-glyptotek": {
+    "dimensions": "H 130 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.ny-carlsbergfondet.dk/da/leda-med-svanen",
+    "note": "The Ny Carlsberg Foundation documents height 130 cm for Glyptotek sculpture IN 1834. No base or stand measurement is inferred.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+  },
+  "roman/aphrodite-removing-sandal-karlsruhe": {
+    "dimensions": "25.9 × 11.4 × 10.7 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://sketchfab.com/3d-models/bfbeb4132ca540a8b0bfb42c9a155c65",
+    "note": "The official Badisches Landesmuseum model record documents H 25.9 × W 11.4 × D 10.7 cm for accession 66/9.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+  },
+  "europe/apollo-daphne-stanetti-belvedere": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "object",
+    "sourceUrl": "https://sketchfab.com/3d-models/2d77409f93c249cca9c52a8c54e9607a",
+    "note": "Physical dimensions of the exact object have not been verified; no measurements are inferred from the model or borrowed from another version.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+  },
+  "europe/centauress-faun-courtet-lyon": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "object",
+    "sourceUrl": "https://anosgrandshommes.musee-orsay.fr/index.php/Detail/objects/1742",
+    "note": "Physical dimensions of the exact object have not been verified; no measurements are inferred from the model or borrowed from another version.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+  },
+  "modern/morning-zarins-riga": {
+    "dimensions": "H 125 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.rigaspieminekli.lv/?id=28&lapa=piemineklis&rajons=6&zanrs=3",
+    "note": "Riga’s monument authority documents the granite figure’s height as 1.25 m. The park ground is not part of this measurement.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+  },
+  "asia/lovers-ashkenazi-hagoshrim": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "object",
+    "sourceUrl": "https://sketchfab.com/3d-models/lovers-626caadfc8e34042805f9eb230fd7246",
+    "note": "The exact HaGoshrim sculpture’s dimensions have not been verified; clearing captured ground does not establish physical scale.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+  },
+  "oceania/tender-embrace-llew-summers": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "object",
+    "sourceUrl": "https://sketchfab.com/3d-models/c234fec7958d4e5b9eb674ad1b814ed4",
+    "note": "The exact scanned sculpture’s dimensions have not been verified; garden and display-foundation cleanup does not establish physical scale.",
+    "checked": "2026-09-19",
     "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
   }
 }

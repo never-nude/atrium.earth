@@ -10,6 +10,7 @@ type CatalogRecord = {
   geography?: string;
   wing?: string;
   hidden?: boolean;
+  wing_unfiled_reason?: string;
 };
 
 for (const wing of wings) {
@@ -65,7 +66,18 @@ const assignments = visible.map((work) => ({
   wing: assignWing(work),
 }));
 const unfiled = assignments.filter((work) => work.wing === 'unfiled');
-assert.deepEqual(unfiled, [], `current catalog has unfiled works: ${unfiled.map((work) => work.slug).join(', ')}`);
+// Some reviewed sources do not establish a place of production. Require an
+// explicit explanation for that supported route; accidental fallthrough fails.
+for (const { slug } of unfiled) {
+  const record = visible.find((work) => work.slug === slug)!;
+  assert.ok(
+    record.wing_unfiled_reason && record.wing_unfiled_reason.trim().length >= 30,
+    `${slug} is unfiled without a reviewed provenance explanation`,
+  );
+}
+for (const record of visible.filter((work) => work.wing_unfiled_reason)) {
+  assert.equal(assignWing(record), 'unfiled', `${record.slug} has a stale unfiled explanation`);
+}
 
 // These works retain their historical folders while their reviewed wings win.
 const reviewedAssignments = {
@@ -93,4 +105,4 @@ const counts = Object.fromEntries(
   [...wingIds, 'unfiled'].map((id) => [id, assignments.filter((work) => work.wing === id).length]),
 );
 console.table(counts);
-console.log(`Wing acceptance fixtures passed; ${visible.length} public works are filed.`);
+console.log(`Wing acceptance fixtures passed; ${visible.length - unfiled.length} public works are filed, ${unfiled.length} have documented unknown origins.`);
