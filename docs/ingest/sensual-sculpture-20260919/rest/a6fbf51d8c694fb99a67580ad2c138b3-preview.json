@@ -1,0 +1,56 @@
+{
+  "uid": "a6fbf51d8c694fb99a67580ad2c138b3",
+  "title": "Bacchante",
+  "source_glb": "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/pipeline/a6fbf51d8c694fb99a67580ad2c138b3/source-packed.glb",
+  "source": {
+    "bytes": 35512356,
+    "faces": 210063,
+    "sha256": "3c2bd055efaaceac7e701e920dd4d0841bdd743aa13afb71507b87fea1364bc5",
+    "self_contained": true,
+    "extensions_used": [
+      "KHR_materials_specular"
+    ]
+  },
+  "preview_glb": "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/pipeline/a6fbf51d8c694fb99a67580ad2c138b3/preview.glb",
+  "preview": {
+    "bytes": 2631792,
+    "faces": 210063,
+    "sha256": "7ecc780a25aa41ddf2b2ebc99f147a2a92fd2c0abb3c8b788ebf6564c520fba2",
+    "self_contained": true,
+    "extensions_used": [
+      "EXT_texture_webp",
+      "KHR_draco_mesh_compression",
+      "KHR_materials_specular"
+    ]
+  },
+  "modifications": "Converted deprecated specular-glossiness materials to metallic-roughness where present; retained original geometry or simplified toward 250,000 triangles with error tolerance 0.002; resized textures to maximum 2048 pixels, encoded WebP textures and Draco-compressed geometry.",
+  "commands": [
+    [
+      "/Users/michael/Documents/Atrium.earth/.tmp/sensual-sculpture-20260919/node_modules/.bin/gltf-transform",
+      "metalrough",
+      "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/pipeline/a6fbf51d8c694fb99a67580ad2c138b3/source-packed.glb",
+      "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/pipeline/a6fbf51d8c694fb99a67580ad2c138b3/source-metalrough.glb"
+    ],
+    [
+      "/Users/michael/Documents/Atrium.earth/.tmp/sensual-sculpture-20260919/node_modules/.bin/gltf-transform",
+      "optimize",
+      "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/pipeline/a6fbf51d8c694fb99a67580ad2c138b3/source-metalrough.glb",
+      "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/pipeline/a6fbf51d8c694fb99a67580ad2c138b3/preview.glb",
+      "--compress",
+      "draco",
+      "--texture-compress",
+      "webp",
+      "--texture-size",
+      "2048",
+      "--simplify",
+      "true",
+      "--simplify-ratio",
+      "1",
+      "--simplify-error",
+      "0.002"
+    ]
+  ],
+  "license_file": "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/pipeline/a6fbf51d8c694fb99a67580ad2c138b3/license.txt",
+  "archive_provenance": "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/pipeline/a6fbf51d8c694fb99a67580ad2c138b3-acquired.json",
+  "visual_review": "Not performed; root must inspect orientation, framing, texture/material and capture quality."
+}

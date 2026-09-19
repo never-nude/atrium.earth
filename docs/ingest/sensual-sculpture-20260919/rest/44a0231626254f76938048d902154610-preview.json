@@ -1,0 +1,72 @@
+{
+  "uid": "44a0231626254f76938048d902154610",
+  "title": "Les Trois Grâces, c. 1872 CE",
+  "source_glb": "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/pipeline/44a0231626254f76938048d902154610/source-packed.glb",
+  "source": {
+    "bytes": 355226516,
+    "faces": 1499999,
+    "sha256": "a4e5ee046a887409e2657c68f0387ba06bd80e506cb247bde8ced756e9514238",
+    "self_contained": true,
+    "extensions_used": [
+      "KHR_materials_pbrSpecularGlossiness"
+    ]
+  },
+  "preview_glb": "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/pipeline/44a0231626254f76938048d902154610/preview.glb",
+  "preview": {
+    "bytes": 3681988,
+    "faces": 249999,
+    "sha256": "a2137aba43a56986739113bceb9b8af72d570dcfd5f5a76b085f5f9d3c12711f",
+    "self_contained": true,
+    "extensions_used": [
+      "EXT_texture_webp",
+      "KHR_draco_mesh_compression",
+      "KHR_materials_ior",
+      "KHR_materials_specular"
+    ]
+  },
+  "modifications": "Converted deprecated specular-glossiness material to metallic-roughness. Joined source partitions. Removed unused duplicate TEXCOORD_1 and triangle-specific TANGENT attributes; renderer derives tangent basis for the retained normal texture. Canonicalized nearly-identical normals only at identical position/UV coordinates when their Euclidean difference was <=0.001, preserving larger shading discontinuities; welded duplicate vertices without moving positions. Simplified to 249,999 triangles at glTF Transform tolerance 0.002. Textures resized to max 2048 pixels and WebP encoded; geometry Draco compressed.",
+  "commands": [
+    [
+      "/Users/michael/Documents/Atrium.earth/.tmp/sensual-sculpture-20260919/node_modules/.bin/gltf-transform",
+      "metalrough",
+      "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/pipeline/44a0231626254f76938048d902154610/source-packed.glb",
+      "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/pipeline/44a0231626254f76938048d902154610/source-metalrough.glb"
+    ],
+    [
+      "node",
+      "--max-old-space-size=6144",
+      "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/pipeline/repair-graces.mjs"
+    ],
+    [
+      "/Users/michael/Documents/Atrium.earth/.tmp/sensual-sculpture-20260919/node_modules/.bin/gltf-transform",
+      "optimize",
+      "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/pipeline/44a0231626254f76938048d902154610/source-welded.glb",
+      "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/pipeline/44a0231626254f76938048d902154610/preview-fixed.glb",
+      "--compress",
+      "draco",
+      "--texture-compress",
+      "webp",
+      "--texture-size",
+      "2048",
+      "--simplify",
+      "true",
+      "--simplify-ratio",
+      "0.16666677777785185",
+      "--simplify-error",
+      "0.002"
+    ]
+  ],
+  "license_file": "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/pipeline/44a0231626254f76938048d902154610/license.txt",
+  "archive_provenance": "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/pipeline/44a0231626254f76938048d902154610-acquired.json",
+  "visual_review": "Not performed; root must inspect orientation, framing, texture/material and capture quality.",
+  "normal_weld_report": {
+    "verticesBefore": 4499991,
+    "verticesAfter": 802657,
+    "normalizedCopies": 3697334,
+    "maxNormalEuclideanDifference": 1.1547303622600273,
+    "unusedDuplicateUV1Removed": 1,
+    "tangentAttributesRemoved": 1
+  },
+  "retained_unsimplified_preview": "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/pipeline/44a0231626254f76938048d902154610/preview-unsimplified.glb",
+  "geometry_validation": "GLB parses, all assets embedded, expected triangle count; visual comparison remains required."
+}

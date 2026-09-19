@@ -1,6 +1,6 @@
 # Atrium: 55 sensual sculpture candidates
 
-Researched 19 September 2026. **55 candidates: The Eternal Idol is now imported as a 3D work.** Five other open-license scan listings await authenticated download; two Maillol leads remain on a rights hold and one Claudel model is restricted. No reusable model was located for the remaining 46 candidates. [Import report](../../docs/ingest/sensual-sculpture-20260919/acquisition.json).
+Researched 19 September 2026. **12 works are now imported in this batch; 43 candidates remain unpublished.** The imports include alternate museum versions and an anonymous Odalisque inspired by Pradier, identified in their object records. [Publication manifest](../../docs/ingest/sensual-sculpture-20260919/rest/publication-manifest.json).
 
 Checked against the 1,205-record repository catalog. No exact object-URL, model-ID, or title-and-maker duplicate was found. Near-duplicates such as Rodin’s *The Kiss*, *Eternal Spring*, Clésinger’s *Reclining Bacchante*, and Canova’s *Three Graces* were left out. The Pradier and Carpeaux works below are different compositions.
 

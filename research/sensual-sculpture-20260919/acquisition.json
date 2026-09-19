@@ -1,12 +1,7 @@
 {
   "checked_at": "2026-09-19",
-  "acquired_count": 0,
-  "status": "No model file acquired; not ingest-ready.",
-  "checks": {
-    "objaverse": "All five exact UIDs absent from 798,759-object object-paths.json.gz mapping.",
-    "sketchfab_official_ui": "Aphrodite page offers Download 3D Model but clicking opens Log in to Sketchfab. No signed-in session. No authentication bypass attempted.",
-    "zenodo": "Web searches of UIDs and titles did not locate matching archives. Direct Zenodo API search timed out; this does not establish archive absence."
-  },
+  "acquired_count": 5,
+  "status": "All five initial Sketchfab leads acquired from the public CC backup archive and imported. See the newer batch manifest.",
   "items": [
     {
       "sketchfab_uid": "50080844b44d4e1eb244ba33fc00a452",
@@ -25,10 +20,10 @@
       "source_metadata_path": "sources/model-50080844b44d4e1eb244ba33fc00a452.json",
       "source_metadata_sha256": "47d3b04f3e6969a54f839f226bb4719572da04e2ffb9cf43b9ebe5fd3671c146",
       "objaverse_mapping_found": false,
-      "status": "not_acquired",
-      "asset_path": null,
-      "asset_sha256": null,
-      "notes": "Official Cleveland Museum object page exposes only the same Sketchfab model; no GLB or glTF link. Official Sketchfab Download 3D Model button opens a login dialog; no authenticated browser session is available."
+      "status": "imported",
+      "asset_path": "greek/aphrodite-cleveland-1927-489",
+      "asset_sha256": "d9fa5974dc5dad59a201ac8395980d8b51f15bb2e1264f49ac9203c2034abf87",
+      "notes": "Acquired official glTF export from public Creative Commons backup archive. Original embedded license retained; optimized preview and multi-angle review completed."
     },
     {
       "sketchfab_uid": "b875536cc0c741349fe632b32e4ec975",
@@ -47,10 +42,10 @@
       "source_metadata_path": "sources/model-b875536cc0c741349fe632b32e4ec975.json",
       "source_metadata_sha256": "117384c9372170ee34a80112fa2eddd5c9c82b95df55ee9968b516b5efc1737b",
       "objaverse_mapping_found": false,
-      "status": "not_acquired",
-      "asset_path": null,
-      "asset_sha256": null,
-      "notes": "No public file found through the museum object records, museum API or official Kintsugi public asset index. Authenticated Sketchfab download remains the usable next route. The absence of a located file does not imply no archive exists."
+      "status": "imported",
+      "asset_path": "europe/eve-tempted-carpeaux-mia",
+      "asset_sha256": "9c1d93ab01df3131c151ec08bf67a38ae5d06feedcac7f87bd8f75fb3bcd37eb",
+      "notes": "Acquired official glTF export from public Creative Commons backup archive. Original embedded license retained; optimized preview and multi-angle review completed."
     },
     {
       "sketchfab_uid": "44a0231626254f76938048d902154610",
@@ -69,10 +64,10 @@
       "source_metadata_path": "sources/model-44a0231626254f76938048d902154610.json",
       "source_metadata_sha256": "83be4cda293a2f3cab4805749b1a95e1b5626563cd6ef2209633ee82e65456a7",
       "objaverse_mapping_found": false,
-      "status": "not_acquired",
-      "asset_path": null,
-      "asset_sha256": null,
-      "notes": "No public file found through the museum object records, museum API or official Kintsugi public asset index. Authenticated Sketchfab download remains the usable next route. The absence of a located file does not imply no archive exists."
+      "status": "imported",
+      "asset_path": "europe/three-graces-carpeaux-mia",
+      "asset_sha256": "a2137aba43a56986739113bceb9b8af72d570dcfd5f5a76b085f5f9d3c12711f",
+      "notes": "Acquired official glTF export from public Creative Commons backup archive. Original embedded license retained; optimized preview and multi-angle review completed."
     },
     {
       "sketchfab_uid": "a6fbf51d8c694fb99a67580ad2c138b3",
@@ -91,10 +86,10 @@
       "source_metadata_path": "sources/model-a6fbf51d8c694fb99a67580ad2c138b3.json",
       "source_metadata_sha256": "90d875bafad21a1cf5317006071a87381f354a84733eed131b67be185d13d644",
       "objaverse_mapping_found": false,
-      "status": "not_acquired",
-      "asset_path": null,
-      "asset_sha256": null,
-      "notes": "Official public API record https://api.muzea.malopolska.pl/api/object/2 exposes the matching Sketchfab embed. additionalImages[].files arrays empty; no separate model download."
+      "status": "imported",
+      "asset_path": "europe/bacchante-rygier-krakow",
+      "asset_sha256": "7ecc780a25aa41ddf2b2ebc99f147a2a92fd2c0abb3c8b788ebf6564c520fba2",
+      "notes": "Acquired official glTF export from public Creative Commons backup archive. Original embedded license retained; optimized preview and multi-angle review completed."
     },
     {
       "sketchfab_uid": "0bf828410cc14c959fdf732e213742de",
@@ -113,10 +108,16 @@
       "source_metadata_path": "sources/model-0bf828410cc14c959fdf732e213742de.json",
       "source_metadata_sha256": "9eaa74ffaf3af41d96ebe67b36d46978224381548e1310a1be505340a2bf8ad1",
       "objaverse_mapping_found": false,
-      "status": "not_acquired",
-      "asset_path": null,
-      "asset_sha256": null,
-      "notes": "Author description identifies Polycam capture but provides no public Polycam download link. No matching licensed public archive identified."
+      "status": "imported",
+      "asset_path": "rodin/psyche-mfa-boston",
+      "asset_sha256": "67935ea21da150192a69a0e443875eccd174cf8503b4dc7b94662a4cc2808256",
+      "notes": "Acquired official glTF export from public Creative Commons backup archive. Original embedded license retained; optimized preview and multi-angle review completed."
     }
-  ]
+  ],
+  "historical_checks": {
+    "objaverse": "All five exact UIDs absent from 798,759-object object-paths.json.gz mapping.",
+    "sketchfab_official_ui": "Aphrodite page offers Download 3D Model but clicking opens Log in to Sketchfab. No signed-in session. No authentication bypass attempted.",
+    "zenodo": "Web searches of UIDs and titles did not locate matching archives. Direct Zenodo API search timed out; this does not establish archive absence."
+  },
+  "superseded_by": "../../docs/ingest/sensual-sculpture-20260919/rest/publication-manifest.json"
 }

@@ -1,0 +1,56 @@
+{
+  "uid": "0bf828410cc14c959fdf732e213742de",
+  "title": "Psyche by Auguste Rodin",
+  "source_glb": "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/pipeline/0bf828410cc14c959fdf732e213742de/source-packed.glb",
+  "source": {
+    "bytes": 3690104,
+    "faces": 46230,
+    "sha256": "64fb3dc1c410e9a6eacc9c66e4d597d4cb7902ac5a12092900db406b1d9cdf51",
+    "self_contained": true,
+    "extensions_used": [
+      "KHR_materials_unlit"
+    ]
+  },
+  "preview_glb": "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/pipeline/0bf828410cc14c959fdf732e213742de/preview.glb",
+  "preview": {
+    "bytes": 307228,
+    "faces": 46230,
+    "sha256": "67935ea21da150192a69a0e443875eccd174cf8503b4dc7b94662a4cc2808256",
+    "self_contained": true,
+    "extensions_used": [
+      "EXT_texture_webp",
+      "KHR_draco_mesh_compression",
+      "KHR_materials_unlit"
+    ]
+  },
+  "modifications": "Converted deprecated specular-glossiness materials to metallic-roughness where present; retained original geometry or simplified toward 250,000 triangles with error tolerance 0.002; resized textures to maximum 2048 pixels, encoded WebP textures and Draco-compressed geometry.",
+  "commands": [
+    [
+      "/Users/michael/Documents/Atrium.earth/.tmp/sensual-sculpture-20260919/node_modules/.bin/gltf-transform",
+      "metalrough",
+      "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/pipeline/0bf828410cc14c959fdf732e213742de/source-packed.glb",
+      "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/pipeline/0bf828410cc14c959fdf732e213742de/source-metalrough.glb"
+    ],
+    [
+      "/Users/michael/Documents/Atrium.earth/.tmp/sensual-sculpture-20260919/node_modules/.bin/gltf-transform",
+      "optimize",
+      "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/pipeline/0bf828410cc14c959fdf732e213742de/source-metalrough.glb",
+      "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/pipeline/0bf828410cc14c959fdf732e213742de/preview.glb",
+      "--compress",
+      "draco",
+      "--texture-compress",
+      "webp",
+      "--texture-size",
+      "2048",
+      "--simplify",
+      "true",
+      "--simplify-ratio",
+      "1",
+      "--simplify-error",
+      "0.002"
+    ]
+  ],
+  "license_file": "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/pipeline/0bf828410cc14c959fdf732e213742de/license.txt",
+  "archive_provenance": "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/pipeline/0bf828410cc14c959fdf732e213742de-acquired.json",
+  "visual_review": "Not performed; root must inspect orientation, framing, texture/material and capture quality."
+}

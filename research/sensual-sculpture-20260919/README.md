@@ -1,20 +1,15 @@
 # Sensual sculpture research — 19 September 2026
 
-**55 candidates researched; one model acquired, reviewed and imported: Rodin’s The Eternal Idol (Harvard marble, 1893).** The other 54 candidates remain unimported. See the [import report](../../docs/ingest/sensual-sculpture-20260919/acquisition.json).
+**12 works imported; 43 shortlist candidates remain unpublished.** The latest import adds 11 reviewed models to the already published Eternal Idol. Some are alternate museum versions; the Odalisque is an anonymous nineteenth-century marble inspired by Pradier. The live object records identify the captured versions.
 
-- [Curatorial shortlist](shortlist.md): all 55 objects, museum links, priorities and exclusions.
-- [Structured shortlist](shortlist.json): image-rights notes, scan licenses and duplicate checks.
-- [Verified metadata for five open-license leads](publication-metadata.md): dates, materials, dimensions, identity and attribution requirements.
-- [Structured metadata](publication-metadata.json).
-- [Acquisition findings](acquisition.json): download routes checked and unresolved access.
-- `sources/`: selected provider and museum evidence fields, without copied curatorial essays.
+- [Curatorial shortlist](shortlist.md): all 55 targets.
+- [Structured shortlist](shortlist.json): updated per-work acquisition status.
+- [Latest publication manifest](../../docs/ingest/sensual-sculpture-20260919/rest/publication-manifest.json): files, hashes, licenses, source records and visual review.
+- [Latest import report](../../docs/ingest/sensual-sculpture-20260919/rest/README.md).
+- [Original Eternal Idol report](../../docs/ingest/sensual-sculpture-20260919/acquisition.json).
 
-The shortlist was checked against all 1,205 catalog records at commit `345462faf340a199dd570736ad101e8fabae17ff`. No exact object-URL, model-ID or title-and-maker match was found. That was the pre-import baseline. The subsequent Eternal Idol import adds one catalog record with a new batch identity.
+The initial five Sketchfab leads were recovered from a public Creative Commons backup archive, with original embedded licenses. Four additional compositions and Inner Voice were acquired from public savable Polycam captures under CC BY 4.0. The Odalisque STL came from the publisher’s CC0 MyMiniFactory download.
 
-Five listings offer CC0, CC BY or CC BY-SA scans of historical works. Authenticated Sketchfab download was unavailable, the existing Objaverse map contained none of their exact IDs, and the institutional routes checked did not expose separate model files. No claim is made that alternative archives cannot exist. Preserve Mia’s CC BY-SA conditions when making model derivatives.
+Mia derivatives and their rendered thumbnails retain CC BY-SA 4.0. Maillol’s Night uses an independently licensed community scan; it does not use the museum’s photograph. The later River and Air remain on their existing rights hold. Restricted Claudel scans remain excluded. Unpublished targets need usable source files, reuse rights, or both; they have no placeholder live work pages.
 
-The Waltz scan remains held for its NC/ND terms. The two later Maillol works remain held for underlying-work rights. The remaining 46 objects are acquisition targets with no reusable model located in this research.
-
-For Rygier’s Bacchante, the holding museum reports 199 × 93 × 73 cm, while the digitization partner’s API reports 200 × 90 × 80 cm. The verified metadata follows the holding museum; reconcile this discrepancy before calibrating a 3D asset.
-
-Validation: 55 unique candidates, 5 acquisition records, 8 model-license evidence records; source evidence paths and SHA-256 checks verified. Existing wing, addition-grouping and catalog-asset checks passed, and the production build completed. The subsequent Eternal Idol acquisition has separate geometry, source-integrity and multi-angle visual review in its import report.
+The pre-import catalog baseline was 1,205 records at commit `345462faf340a199dd570736ad101e8fabae17ff`. It is now 1,217 records (1,205 public), including these 12 additions. Earlier records and batch timestamps are preserved except for a sourced accession and execution-credit correction to the Eternal Idol.

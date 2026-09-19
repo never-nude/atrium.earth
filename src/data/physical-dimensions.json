@@ -83050,5 +83050,287 @@
     ],
     "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
     "geometryReviewNote": "The sculpture and integral marble base are complete in the scan. No source-to-geometry scale calibration is claimed."
+  },
+  "rodin/inner-voice-vam": {
+    "dimensions": "H 144.5 × W 77 × D 57 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://api.vam.ac.uk/v2/museumobject/O135947",
+    "checked": "2026-09-19",
+    "note": "V&A bronze A.36-1914; museum display support is not included in these object dimensions.",
+    "geometryReviewNote": "Source Y is upright. Reviewed front, side and rear; intentionally absent arms and partial legs match Rodin’s composition. Detached floor fragments removed; displayed pedestal retained. No physical scale calibration claimed.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 144.5,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://api.vam.ac.uk/v2/museumobject/O135947"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 77,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://api.vam.ac.uk/v2/museumobject/O135947"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 57,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://api.vam.ac.uk/v2/museumobject/O135947"
+        ]
+      }
+    ],
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+  },
+  "greek/aphrodite-cleveland-1927-489": {
+    "dimensions": "Height: 43.5 cm (17 1/8 in.)",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.clevelandart.org/art/1927.489",
+    "checked": "2026-09-19",
+    "note": "Published dimensions of the accessioned sculpture; source-to-geometry scale is not calibrated.",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "researchStatus": "verified",
+    "identifiedObject": {
+      "title": "Aphrodite",
+      "institution": "Cleveland Museum of Art",
+      "accession": "1927.489",
+      "version_or_date": "400–200 BCE",
+      "record_url": "https://www.clevelandart.org/art/1927.489",
+      "identity_confidence": "high",
+      "match_explanation": "Museum accession, model title, material and image all agree."
+    },
+    "measures": [
+      {
+        "axis": "height",
+        "value": 43.5,
+        "unit": "cm",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://www.clevelandart.org/art/1927.489"
+        ]
+      }
+    ],
+    "geometryReviewNote": "Reviewed front, side and rear. Complete sculpture geometry is framed upright. No physical scale calibration claimed.",
+    "calibrationBlockers": [
+      "No source-to-geometry physical scale calibration."
+    ]
+  },
+  "europe/eve-tempted-carpeaux-mia": {
+    "dimensions": "Approximately 71.44 × 24.13 × 24.13 cm (28 1/8 × 9 1/2 × 9 1/2 in.)",
+    "status": "approximate",
+    "basis": "object",
+    "sourceUrl": "https://collections.artsmia.org/art/124351/eve-tempted-jean-baptiste-carpeaux",
+    "checked": "2026-09-19",
+    "note": "Published dimensions of the accessioned sculpture; source-to-geometry scale is not calibrated.",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "researchStatus": "verified",
+    "identifiedObject": {
+      "title": "Eve Tempted",
+      "institution": "Minneapolis Institute of Art",
+      "accession": "2016.33.29",
+      "version_or_date": "1874",
+      "record_url": "https://collections.artsmia.org/art/124351/eve-tempted-jean-baptiste-carpeaux",
+      "identity_confidence": "high",
+      "match_explanation": "Museum object directly linked by museum-published scan; inscription and bronze appearance agree. Use museum date 1874 rather than scan title’s c.1874."
+    },
+    "measures": [
+      {
+        "axis": "height",
+        "value": 71.44,
+        "unit": "cm",
+        "qualifier": "approximate",
+        "sourceUrls": [
+          "https://collections.artsmia.org/art/124351/eve-tempted-jean-baptiste-carpeaux",
+          "https://search.artsmia.org/id/124351",
+          "https://raw.githubusercontent.com/artsmia/collection/main/objects/124/124351.json"
+        ]
+      }
+    ],
+    "geometryReviewNote": "Reviewed front, side and rear. Complete sculpture geometry is framed upright. No physical scale calibration claimed.",
+    "calibrationBlockers": [
+      "No source-to-geometry physical scale calibration."
+    ]
+  },
+  "europe/three-graces-carpeaux-mia": {
+    "dimensions": "82.55 × 46.99 cm (32 1/2 × 18 1/2 in.)",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://collections.artsmia.org/art/2224/les-trois-graces-jean-baptiste-carpeaux",
+    "checked": "2026-09-19",
+    "note": "Published dimensions of the accessioned sculpture; source-to-geometry scale is not calibrated.",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "researchStatus": "verified",
+    "identifiedObject": {
+      "title": "Les Trois Grâces (The Three Graces)",
+      "institution": "Minneapolis Institute of Art",
+      "accession": "75.52a, b",
+      "version_or_date": "c. 1872",
+      "record_url": "https://collections.artsmia.org/art/2224/les-trois-graces-jean-baptiste-carpeaux",
+      "identity_confidence": "high",
+      "match_explanation": "Scan’s tinyurl.com/3wvzxfue resolves to Mia object 2224. This is the Mia plaster, not the Musée d’Orsay or Petit Palais object."
+    },
+    "measures": [
+      {
+        "axis": "height",
+        "value": 82.55,
+        "unit": "cm",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://collections.artsmia.org/art/2224/les-trois-graces-jean-baptiste-carpeaux",
+          "https://search.artsmia.org/id/2224",
+          "https://raw.githubusercontent.com/artsmia/collection/main/objects/2/2224.json"
+        ]
+      }
+    ],
+    "geometryReviewNote": "Reviewed front, side and rear. Complete sculpture geometry is framed upright. No physical scale calibration claimed.",
+    "calibrationBlockers": [
+      "No source-to-geometry physical scale calibration."
+    ]
+  },
+  "europe/bacchante-rygier-krakow": {
+    "dimensions": "199 × 93 × 73 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.imnk.pl/gallerybox.php?dir=SU491&lang=EN&more=1",
+    "checked": "2026-09-19",
+    "note": "Published dimensions of the accessioned sculpture; source-to-geometry scale is not calibrated.",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "researchStatus": "verified",
+    "identifiedObject": {
+      "title": "Bacchante",
+      "institution": "National Museum in Kraków, Gallery of 19th-Century Polish Art in Sukiennice",
+      "accession": "MNK II-rz-276",
+      "version_or_date": "1887",
+      "record_url": "https://www.imnk.pl/gallerybox.php?dir=SU491&lang=EN&more=1",
+      "identity_confidence": "high",
+      "match_explanation": "Scan description identifies accession MNK II-rz-276 and Sukiennice collection; museum title, artist, date, material and image agree."
+    },
+    "measures": [
+      {
+        "axis": "height",
+        "value": 199,
+        "unit": "cm",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://www.imnk.pl/gallerybox.php?dir=SU491&lang=EN&more=1",
+          "https://muzea.malopolska.pl/en/objects-list/2"
+        ]
+      }
+    ],
+    "geometryReviewNote": "Reviewed front, side and rear. Complete sculpture geometry is framed upright. No physical scale calibration claimed.",
+    "calibrationBlockers": [
+      "No source-to-geometry physical scale calibration."
+    ]
+  },
+  "rodin/psyche-mfa-boston": {
+    "dimensions": "73.66 × 68.58 × 38.1 cm (29 × 27 × 15 in.)",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.frenchsculpture.org/index.php/Detail/objects/29564",
+    "checked": "2026-09-19",
+    "note": "Published dimensions of the accessioned sculpture; source-to-geometry scale is not calibrated.",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "researchStatus": "verified",
+    "identifiedObject": {
+      "title": "Psyche",
+      "institution": "Museum of Fine Arts, Boston",
+      "accession": "1975.738",
+      "version_or_date": "1899",
+      "record_url": "https://www.frenchsculpture.org/index.php/Detail/objects/29564",
+      "identity_confidence": "medium",
+      "match_explanation": "Community scan title, museum location and visible composition agree with MFA Psyche, accession 1975.738. Mesh quality still requires acquisition QA; source listing has 46,230 faces."
+    },
+    "measures": [
+      {
+        "axis": "height",
+        "value": 73.66,
+        "unit": "cm",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://www.frenchsculpture.org/index.php/Detail/objects/29564",
+          "https://www.mfa.org/collections/object/psyche-58080",
+          "https://www.mfa.org/news/impressionism-gallery",
+          "https://www.getty.edu/cona/CONAFullSubject.aspx?subid=700000333"
+        ]
+      }
+    ],
+    "geometryReviewNote": "Reviewed front, side and rear. Complete sculpture geometry is framed upright. Source has modest surface detail and an irregular museum mounting slab, retained without invented repair. No physical scale calibration claimed.",
+    "calibrationBlockers": [
+      "No source-to-geometry physical scale calibration."
+    ]
+  },
+  "europe/winter-houdon-met": {
+    "dimensions": "143.5 × 39.1 × 50.5 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.metmuseum.org/art/collection/search/202614",
+    "checked": "2026-09-19",
+    "note": "Published dimensions for this museum version.",
+    "geometryReviewNote": "Reviewed front, side and rear. Complete sculpture geometry is framed upright. No physical scale calibration claimed.",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+  },
+  "europe/night-maillol-met": {
+    "dimensions": "104.8 × 57.2 × 108 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.metmuseum.org/art/collection/search/209221",
+    "checked": "2026-09-19",
+    "note": "Published dimensions for this museum version.",
+    "geometryReviewNote": "Reviewed front, side and rear. Complete sculpture geometry is framed upright. Sculpture body is intact; source gaps at the base edge are disclosed in the object record. No physical scale calibration claimed.",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+  },
+  "europe/sluggard-leighton-royal-academy": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "object",
+    "sourceUrl": "https://journals.openedition.org/insitu/28407",
+    "checked": "2026-09-19",
+    "note": "The exact Royal Academy plaster or bronze version has not been resolved. Dimensions and medium are deliberately omitted.",
+    "geometryReviewNote": "Reviewed front, side and rear. Complete sculpture geometry is framed upright. No physical scale calibration claimed.",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+  },
+  "americas/undine-ives-high-museum": {
+    "dimensions": "60 × 18 × 16 in. (152.4 × 45.7 × 40.6 cm)",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://high.org/collection/undine-rising-from-the-waters/",
+    "checked": "2026-09-19",
+    "note": "Published dimensions for this museum version.",
+    "geometryReviewNote": "Reviewed front, side and rear. Complete sculpture geometry is framed upright. No physical scale calibration claimed.",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+  },
+  "europe/odalisque-christies-2019": {
+    "dimensions": "71.7 cm high × 58.5 cm wide; depth unrecorded",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.christies.com/en/lot/lot-6228789",
+    "checked": "2026-09-19",
+    "note": "Auction dimensions, Christie’s 2019 lot793; no depth recorded.",
+    "geometryReviewNote": "Source negative X is upright; Z rotation of -90 degrees corrects the STL orientation. Reviewed three angles against the auction photograph; complete figure and carved base retained. STL units are not calibrated.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 71.7,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://www.christies.com/en/lot/lot-6228789"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 58.5,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://www.christies.com/en/lot/lot-6228789"
+        ]
+      }
+    ],
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
   }
 }
