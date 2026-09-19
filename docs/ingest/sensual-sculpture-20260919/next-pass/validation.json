@@ -1,0 +1,25 @@
+{
+  "checked_at": "2026-09-19T11:07:08.772266+00:00",
+  "publication_status": "reviewed_and_user_approved",
+  "checks": {
+    "test:wings": "Passed; 1,220 local public works filed.",
+    "test:additions": "passed",
+    "verify:assets": "Passed; 1,232 catalog records.",
+    "git_diff_check": "passed",
+    "production_build": "Passed; 3,217 static pages.",
+    "whole_model_render_qa": "Passed; eight models at three angles, including original/cleaned comparisons for two models.",
+    "local_http": "Passed; newest lists eight works; eight work pages, GLBs and thumbnail hashes verified.",
+    "independent_audit": "Passed with no findings: all 1,224 existing catalog records and all old runtime map entries unchanged; eight new GLB hashes, sizes and triangle counts and thumbnail hashes match the manifest; complete credits are present in built pages."
+  },
+  "browser_clickthrough": "Not performed: CUA reported the Mac locked. Local model renders and HTTP checks completed independently.",
+  "preview_url": "http://127.0.0.1:4321/newest/",
+  "notes": [
+    "User approved publication after reviewing the local preview.",
+    "The eight new GLB files are included explicitly in this change.",
+    "Deployment and post-deployment live checks follow this recorded local validation."
+  ],
+  "publication_approval": {
+    "message": "push",
+    "recorded_at": "2026-09-19T13:46:13.480398+00:00"
+  }
+}

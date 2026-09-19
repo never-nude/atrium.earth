@@ -1,0 +1,166 @@
+{
+  "stage": "local_preparation_only_user_approval_required",
+  "publishable": false,
+  "sketchfab_uid": "d083d51df07449f1a575f43675dca140",
+  "catalog_record": {
+    "title": "Le Repos (Rest)",
+    "slug": "europe/le-repos-boucher-pau",
+    "artist": "Alfred Boucher",
+    "year": "1892",
+    "year_sort": 1892,
+    "material": "Marble",
+    "dimensions": "H 59.6 × L 182.8 × D 83 cm",
+    "museum": "Musée d’Orsay, deposited at Musée des Beaux-Arts de Pau",
+    "accession": "RF 3896 (LUX 101)",
+    "geography": "France",
+    "culture": "French",
+    "original_location": "France",
+    "source_url": "https://sketchfab.com/3d-models/le-repos-d083d51df07449f1a575f43675dca140",
+    "source_record_url": "https://www.musee-orsay.fr/en/artworks/le-repos-5088",
+    "source_institution": "Musée d’Orsay",
+    "scan_author": "pattarrian",
+    "scan_source": "Independent photogrammetric scan at Musée des Beaux-Arts de Pau; public Objaverse archive of the licensed Sketchfab model",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "note": "An adult woman reclines on a cushioned bed with her arms behind her head. Boucher carved the marble in 1892; it entered the French national collection that year and has been deposited in Pau since 1978.",
+    "collection": "europe",
+    "license_tier": 2,
+    "tier": 3,
+    "related_source_record_urls": [
+      "https://www.musee-orsay.fr/en/artworks/le-repos-5088",
+      "https://sketchfab.com/3d-models/le-repos-d083d51df07449f1a575f43675dca140"
+    ],
+    "ingest_batch": "sensual-sculpture-20260919-next-pass",
+    "attribution": "Le Repos, Alfred Boucher, 1892, marble. Musée d’Orsay RF 3896, deposited at Musée des Beaux-Arts de Pau. 3D scan by pattarrian, via Sketchfab / Objaverse, CC BY 4.0; processed by Atrium. Reduced the source mesh from 3,407,429 to 250,001 triangles and applied Draco compression. Retained source vertex colors; no cropping, reconstruction, rotation or physical scaling."
+  },
+  "physical_dimensions_record": {
+    "dimensions": "H 59.6 × L 182.8 × D 83 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.musee-orsay.fr/en/artworks/le-repos-5088",
+    "checked": "2026-09-19",
+    "note": "Exact marble RF3896/LUX101 dimensions from Musée d’Orsay; Pau is its deposit location. No geometry scale assigned.",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "researchStatus": "verified",
+    "identifiedObject": {
+      "title": "Le Repos",
+      "institution": "Musée d’Orsay, deposited at Musée des Beaux-Arts de Pau",
+      "accession": "RF 3896 (LUX 101)",
+      "version_or_date": "1892 marble",
+      "record_url": "https://www.musee-orsay.fr/en/artworks/le-repos-5088",
+      "identity_confidence": "high",
+      "match_explanation": "Scan creator identifies Alfred Boucher,1892,marble,in Pau; official Orsay record confirms exact work deposited in Pau. Source reference matches the reclining nude on a cushioned bed."
+    },
+    "geometryReviewNote": "Multi-angle optimized-model review pending. Published dimensions are for the original sculpture, not an inferred native GLB unit.",
+    "calibrationBlockers": [
+      "Model orientation and extent review pending."
+    ],
+    "measures": [
+      {
+        "axis": "height",
+        "value": 59.6,
+        "unit": "cm",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://www.musee-orsay.fr/en/artworks/le-repos-5088"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 182.8,
+        "unit": "cm",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://www.musee-orsay.fr/en/artworks/le-repos-5088"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 83,
+        "unit": "cm",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://www.musee-orsay.fr/en/artworks/le-repos-5088"
+        ]
+      }
+    ]
+  },
+  "spatial_eligibility_record": {
+    "enabled": false,
+    "policyVersion": 1,
+    "reason": "geometry"
+  },
+  "source_review": {
+    "identity_assessment": "Scan creator identifies Alfred Boucher,1892,marble,in Pau; official Orsay record confirms exact work deposited in Pau. Source reference matches the reclining nude on a cushioned bed.",
+    "content_assessment": "Full-figure museum sculpture of an adult reclining female nude. Source visual shows mature adult proportions, a resting pose, and no sexual act, coercion, child, or animal. Suitable as historical sensual sculpture.",
+    "artwork_rights": "1892 composition publicly exhibited at the 1892 Salon; artist died 1934. Historical underlying artwork; separate scan licensed CC BY4.0. Museum photograph rights are not being relied on.",
+    "review_limits": [
+      "Use official Orsay measurements, not the differing rounded dimensions in the scan description.",
+      "Pau is the deposit location; Orsay is the responsible collection.",
+      "Only the independent CC BY scan is reused; Orsay photography is all-rights-reserved.",
+      "Full mesh normalization/optimization and multi-angle render QA remain for pipeline."
+    ],
+    "source_archive_url": "https://huggingface.co/datasets/allenai/objaverse/resolve/main/glbs/000-098/d083d51df07449f1a575f43675dca140.glb",
+    "source_archive_bytes": 126717732,
+    "source_archive_sha256": "6aafa26b2adff185b049e7468e7001116df7cda89168713b7eb019f997e881da",
+    "license_evidence_file": "research/sensual-sculpture-20260919/next-pass/models/model-d083d51df07449f1a575f43675dca140.json",
+    "duplicate_review": {
+      "catalog_path": ".tmp/sensual-sculpture-20260919/src/data/catalog.json",
+      "catalogRecordsChecked": 1224,
+      "checkedTerms": [
+        "Boucher",
+        "Le Repos",
+        "Rest",
+        "d083d51df07449f1a575f43675dca140"
+      ],
+      "matchingSlugs": [],
+      "result": "No artist/composition/source UID match."
+    },
+    "source_visual_reference": "research/sensual-sculpture-20260919/next-pass/models/boucher-le-repos-reference.jpeg"
+  },
+  "license_requirements": {
+    "attribution_requirement": "Retain title, scan author, source link, license link and modification notice.",
+    "source_model_url": "https://sketchfab.com/3d-models/le-repos-d083d51df07449f1a575f43675dca140",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "adapted_model_license": "CC BY 4.0",
+    "rendered_thumbnail_license": "CC BY 4.0",
+    "share_alike_applies_to_model_and_derivative_renders": false,
+    "modifications_recorded": true,
+    "modification_notice": "Reduced the source mesh from 3,407,429 to 250,001 triangles and applied Draco compression. Retained source vertex colors; no cropping, reconstruction, rotation or physical scaling."
+  },
+  "assets": {
+    "source_glb": "research/sensual-sculpture-20260919/next-pass/models/boucher-le-repos.glb",
+    "source": {
+      "path": "research/sensual-sculpture-20260919/next-pass/models/boucher-le-repos.glb",
+      "bytes": 126717732,
+      "sha256": "6aafa26b2adff185b049e7468e7001116df7cda89168713b7eb019f997e881da",
+      "faces": 3407429,
+      "extensions_used": [],
+      "self_contained": true
+    },
+    "preview_glb": "research/sensual-sculpture-20260919/next-pass/models/boucher-le-repos-preview.glb",
+    "preview": {
+      "path": "research/sensual-sculpture-20260919/next-pass/models/boucher-le-repos-preview.glb",
+      "bytes": 1001144,
+      "sha256": "599c395b885f5059b807d1c3bea0087b536522f2e35e70ce7ec0640a8e2a7d72",
+      "faces": 250001,
+      "extensions_used": [
+        "KHR_draco_mesh_compression"
+      ],
+      "self_contained": true
+    },
+    "preview_report": "research/sensual-sculpture-20260919/next-pass/models/boucher-le-repos-preview-report.json",
+    "source_acquisition_report": "research/sensual-sculpture-20260919/next-pass/models/boucher-le-repos-inspection.json"
+  },
+  "missing_runtime_fields": [
+    "index",
+    "ingestion_timestamp",
+    "runtime_model_path",
+    "reviewed_orientation",
+    "reviewed_appearance",
+    "three_angle_visual_qa",
+    "rendered_thumbnail",
+    "uploaded_asset_urls",
+    "user_permission_before_live_push"
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "uid": "37af26962fde41d08a3975601f641a48",
+  "title": "Yogini with a jar, early 10th C CE",
+  "source_glb": "research/sensual-sculpture-20260919/next-pass/pipeline/37af26962fde41d08a3975601f641a48/source-packed.glb",
+  "source": {
+    "bytes": 112570992,
+    "faces": 125483,
+    "sha256": "38a756bb4bc6598a452e09e2b29ceb1d1da3f28f1fb630099d629ef859af690b",
+    "self_contained": true,
+    "extensions_used": [
+      "KHR_materials_pbrSpecularGlossiness"
+    ]
+  },
+  "preview_glb": "research/sensual-sculpture-20260919/next-pass/pipeline/37af26962fde41d08a3975601f641a48/preview.glb",
+  "preview": {
+    "bytes": 3827304,
+    "faces": 125483,
+    "sha256": "29fa42aec55a4ecd9e6f28994a14ea8247dd0790ca795a4c62c773051a112719",
+    "self_contained": true,
+    "extensions_used": [
+      "EXT_texture_webp",
+      "KHR_draco_mesh_compression",
+      "KHR_materials_ior",
+      "KHR_materials_specular"
+    ],
+    "textures": [
+      {
+        "width": 2048,
+        "height": 2048,
+        "format": "WEBP"
+      },
+      {
+        "width": 2048,
+        "height": 2048,
+        "format": "WEBP"
+      },
+      {
+        "width": 2048,
+        "height": 2048,
+        "format": "WEBP"
+      },
+      {
+        "width": 2048,
+        "height": 2048,
+        "format": "WEBP"
+      },
+      {
+        "width": 2048,
+        "height": 2048,
+        "format": "WEBP"
+      },
+      {
+        "width": 2048,
+        "height": 2048,
+        "format": "WEBP"
+      }
+    ]
+  },
+  "modifications": "Converted deprecated specular-glossiness materials to metallic-roughness where present; preserved all source faces with simplification disabled; resized textures to maximum 2048 pixels, encoded WebP textures and Draco-compressed geometry.",
+  "commands": [
+    [
+      "node_modules/.bin/gltf-transform",
+      "metalrough",
+      "research/sensual-sculpture-20260919/next-pass/pipeline/37af26962fde41d08a3975601f641a48/source-packed.glb",
+      "research/sensual-sculpture-20260919/next-pass/pipeline/37af26962fde41d08a3975601f641a48/source-metalrough.glb"
+    ],
+    [
+      "node_modules/.bin/gltf-transform",
+      "optimize",
+      "research/sensual-sculpture-20260919/next-pass/pipeline/37af26962fde41d08a3975601f641a48/source-metalrough.glb",
+      "research/sensual-sculpture-20260919/next-pass/pipeline/37af26962fde41d08a3975601f641a48/preview.glb",
+      "--compress",
+      "draco",
+      "--texture-compress",
+      "webp",
+      "--texture-size",
+      "2048",
+      "--simplify",
+      "false"
+    ]
+  ],
+  "license_file": "research/sensual-sculpture-20260919/next-pass/pipeline/37af26962fde41d08a3975601f641a48/license.txt",
+  "archive_provenance": "research/sensual-sculpture-20260919/next-pass/pipeline/37af26962fde41d08a3975601f641a48-acquired.json",
+  "visual_review": "Not performed; root must inspect orientation, framing, texture/material and capture quality."
+}

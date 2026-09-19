@@ -1,0 +1,50 @@
+{
+  "stage": "prepared_not_published",
+  "uid": "d083d51df07449f1a575f43675dca140",
+  "title": "Le Repos",
+  "source": {
+    "path": "research/sensual-sculpture-20260919/next-pass/models/boucher-le-repos.glb",
+    "bytes": 126717732,
+    "sha256": "6aafa26b2adff185b049e7468e7001116df7cda89168713b7eb019f997e881da",
+    "faces": 3407429,
+    "extensions_used": [],
+    "self_contained": true
+  },
+  "preview": {
+    "path": "research/sensual-sculpture-20260919/next-pass/models/boucher-le-repos-preview.glb",
+    "bytes": 1001144,
+    "sha256": "599c395b885f5059b807d1c3bea0087b536522f2e35e70ce7ec0640a8e2a7d72",
+    "faces": 250001,
+    "extensions_used": [
+      "KHR_draco_mesh_compression"
+    ],
+    "self_contained": true
+  },
+  "source_url": "https://sketchfab.com/3d-models/le-repos-d083d51df07449f1a575f43675dca140",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "scan_author": "pattarrian",
+  "modifications": [
+    "Consolidated source mesh primitives and welded duplicate vertices using glTF Transform optimize.",
+    "Simplified 3,407,429 source triangles to 250,001 triangles at simplification error tolerance 0.002.",
+    "Draco geometry compression; retained source vertex color attributes.",
+    "No deliberate rotation, scaling, cropping, filling or generated geometry."
+  ],
+  "source_retained": true,
+  "geometry_visual_qa": "Pending root three-angle viewer review; source artifact and full model bounds need comparison.",
+  "physical_scale": "Uncalibrated; source native units not assigned as physical dimensions.",
+  "command": [
+    "gltf-transform",
+    "optimize",
+    "research/sensual-sculpture-20260919/next-pass/models/boucher-le-repos.glb",
+    "research/sensual-sculpture-20260919/next-pass/models/boucher-le-repos-preview.glb",
+    "--compress",
+    "draco",
+    "--simplify",
+    "true",
+    "--simplify-ratio",
+    "0.07337",
+    "--simplify-error",
+    "0.002"
+  ]
+}

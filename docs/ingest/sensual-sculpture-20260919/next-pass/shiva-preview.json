@@ -1,0 +1,56 @@
+{
+  "uid": "01706633673a4392ba1446f9e1a3d813",
+  "title": "Shiva with Garland, Seated under Maithuna Couple",
+  "source_glb": "research/sensual-sculpture-20260919/next-pass/pipeline/01706633673a4392ba1446f9e1a3d813/source-packed.glb",
+  "source": {
+    "bytes": 12171136,
+    "faces": 197086,
+    "sha256": "ef45cb7adf40802d045d4b7f4c9a7419b64a8a2aa6583df0489360858bb1f193",
+    "self_contained": true,
+    "extensions_used": []
+  },
+  "preview_glb": "research/sensual-sculpture-20260919/next-pass/pipeline/01706633673a4392ba1446f9e1a3d813/preview.glb",
+  "preview": {
+    "bytes": 812936,
+    "faces": 197086,
+    "sha256": "2796fa46d9ebb9255f916ba2310776c74e0db21cbb78d995d40f744f4e81181a",
+    "self_contained": true,
+    "extensions_used": [
+      "EXT_texture_webp",
+      "KHR_draco_mesh_compression"
+    ],
+    "textures": [
+      {
+        "width": 2048,
+        "height": 2048,
+        "format": "WEBP"
+      }
+    ]
+  },
+  "modifications": "Converted deprecated specular-glossiness materials to metallic-roughness where present; preserved all source faces with simplification disabled; resized textures to maximum 2048 pixels, encoded WebP textures and Draco-compressed geometry.",
+  "commands": [
+    [
+      "node_modules/.bin/gltf-transform",
+      "metalrough",
+      "research/sensual-sculpture-20260919/next-pass/pipeline/01706633673a4392ba1446f9e1a3d813/source-packed.glb",
+      "research/sensual-sculpture-20260919/next-pass/pipeline/01706633673a4392ba1446f9e1a3d813/source-metalrough.glb"
+    ],
+    [
+      "node_modules/.bin/gltf-transform",
+      "optimize",
+      "research/sensual-sculpture-20260919/next-pass/pipeline/01706633673a4392ba1446f9e1a3d813/source-metalrough.glb",
+      "research/sensual-sculpture-20260919/next-pass/pipeline/01706633673a4392ba1446f9e1a3d813/preview.glb",
+      "--compress",
+      "draco",
+      "--texture-compress",
+      "webp",
+      "--texture-size",
+      "2048",
+      "--simplify",
+      "false"
+    ]
+  ],
+  "license_file": "research/sensual-sculpture-20260919/next-pass/pipeline/01706633673a4392ba1446f9e1a3d813/license.txt",
+  "archive_provenance": "research/sensual-sculpture-20260919/next-pass/pipeline/01706633673a4392ba1446f9e1a3d813-acquired.json",
+  "visual_review": "Not performed; root must inspect orientation, framing, texture/material and capture quality."
+}

@@ -1,0 +1,303 @@
+{
+  "stage": "local_cleanup_candidate_not_published",
+  "source": {
+    "path": "research/sensual-sculpture-20260919/next-pass/metadata/493ACDC9-3ABC-4041-96BC-D27BA74E85E0/source.glb",
+    "bytes": 32701348,
+    "sha256": "b546ae23698c5deb5e5fe32d5201f59545c739ff31bdfffae60f02dd28c489ad",
+    "faces": 528705,
+    "extensionsUsed": []
+  },
+  "cleaned_source": {
+    "path": "research/sensual-sculpture-20260919/next-pass/metadata/493ACDC9-3ABC-4041-96BC-D27BA74E85E0/cleaned-source.glb",
+    "bytes": 30144264,
+    "sha256": "e2f4c67201487a7593aedd110ea473acf37e7afad6d72a3e6dfb826af8ced95f",
+    "faces": 315607,
+    "extensionsUsed": []
+  },
+  "preview": {
+    "path": "research/sensual-sculpture-20260919/next-pass/metadata/493ACDC9-3ABC-4041-96BC-D27BA74E85E0/cleaned-preview.glb",
+    "bytes": 1712188,
+    "sha256": "4ccd0a7c7becb35cb28b700a5d83bde2c527a79ce45e5547cd49ea8b7e178961",
+    "faces": 315607,
+    "extensionsUsed": [
+      "EXT_texture_webp",
+      "KHR_draco_mesh_compression"
+    ]
+  },
+  "analysis": {
+    "source": "source.glb",
+    "stage": "conservative_context_cleanup_candidate",
+    "method": "Only remove low triangles whose three vertices lie wholly outside the conservative convex footprint of the display plinth. Retain all higher geometry and boundary-crossing faces.",
+    "floor_plane_y_ax_bz_c": [
+      0.028092196002290525,
+      0.03508122824667102,
+      0.17086504670511418
+    ],
+    "support_slice_height_above_plane": [
+      0.012,
+      0.05
+    ],
+    "remove_only_below_height": 0.01,
+    "outward_footprint_margin": 0.006,
+    "footprint_outline_xz": [
+      [
+        0.824735701084137,
+        -0.148092120885849
+      ],
+      [
+        0.8264705538749695,
+        -0.04380461946129799
+      ],
+      [
+        0.8264092206954956,
+        -0.0433129258453846
+      ],
+      [
+        0.8263237476348877,
+        -0.04285377636551857
+      ],
+      [
+        0.8256920576095581,
+        -0.04153864085674286
+      ],
+      [
+        0.8252071142196655,
+        -0.04113097861409187
+      ],
+      [
+        0.8239936828613281,
+        -0.04055660590529442
+      ],
+      [
+        0.8184468150138855,
+        -0.040206633508205414
+      ],
+      [
+        0.7581420540809631,
+        -0.03781241551041603
+      ],
+      [
+        0.6371100544929504,
+        -0.03337489441037178
+      ],
+      [
+        0.4819265305995941,
+        -0.028176015242934227
+      ],
+      [
+        0.30739057064056396,
+        -0.022507905960083008
+      ],
+      [
+        -0.3386668860912323,
+        -0.003493053140118718
+      ],
+      [
+        -0.3424113690853119,
+        -0.0034383099991828203
+      ],
+      [
+        -0.35199448466300964,
+        -0.0038280754815787077
+      ],
+      [
+        -0.35297131538391113,
+        -0.0038856621831655502
+      ],
+      [
+        -0.35506221652030945,
+        -0.006272185128182173
+      ],
+      [
+        -0.3554520606994629,
+        -0.008266877382993698
+      ],
+      [
+        -0.3563374876976013,
+        -0.01727869361639023
+      ],
+      [
+        -0.35707762837409973,
+        -0.029075512662529945
+      ],
+      [
+        -0.3574236333370209,
+        -0.036095939576625824
+      ],
+      [
+        -0.3589269518852234,
+        -0.07742983847856522
+      ],
+      [
+        -0.3641713559627533,
+        -0.24688971042633057
+      ],
+      [
+        -0.3719743490219116,
+        -0.5366495847702026
+      ],
+      [
+        -0.3722760081291199,
+        -0.5482476949691772
+      ],
+      [
+        -0.3724254071712494,
+        -0.5553716421127319
+      ],
+      [
+        -0.37256115674972534,
+        -0.5626181364059448
+      ],
+      [
+        -0.37409353256225586,
+        -0.6482041478157043
+      ],
+      [
+        -0.3732275664806366,
+        -0.6572919487953186
+      ],
+      [
+        -0.3725584149360657,
+        -0.6588016748428345
+      ],
+      [
+        -0.37176060676574707,
+        -0.6594392657279968
+      ],
+      [
+        -0.37014564871788025,
+        -0.6597107648849487
+      ],
+      [
+        -0.36377984285354614,
+        -0.6602863669395447
+      ],
+      [
+        -0.23312260210514069,
+        -0.6643579006195068
+      ],
+      [
+        0.17974500358104706,
+        -0.6758202910423279
+      ],
+      [
+        0.40494394302368164,
+        -0.6818627715110779
+      ],
+      [
+        0.44682660698890686,
+        -0.682945728302002
+      ],
+      [
+        0.579363226890564,
+        -0.6863630414009094
+      ],
+      [
+        0.7927804589271545,
+        -0.6909659504890442
+      ],
+      [
+        0.7971194386482239,
+        -0.6910544037818909
+      ],
+      [
+        0.8032596111297607,
+        -0.6909547448158264
+      ],
+      [
+        0.8061543703079224,
+        -0.6905263066291809
+      ],
+      [
+        0.8079533576965332,
+        -0.6902063488960266
+      ],
+      [
+        0.8127217292785645,
+        -0.6880437135696411
+      ],
+      [
+        0.8168507814407349,
+        -0.5077967643737793
+      ]
+    ],
+    "original_positions_uvs_normals_textures_retained": true,
+    "faces": [
+      {
+        "mesh": 0,
+        "primitive": 0,
+        "mask_path": "research/sensual-sculpture-20260919/next-pass/metadata/493ACDC9-3ABC-4041-96BC-D27BA74E85E0/keep-faces-0-0.bin",
+        "source_faces": 273336,
+        "retained_faces": 155810,
+        "removed_faces": 117526,
+        "removed_bounds": {
+          "min": [
+            -0.6274782419204712,
+            0.12344968318939209,
+            -1.035811424255371
+          ],
+          "max": [
+            1.0967668294906616,
+            0.21756510436534882,
+            0.32650071382522583
+          ]
+        }
+      },
+      {
+        "mesh": 0,
+        "primitive": 1,
+        "mask_path": "research/sensual-sculpture-20260919/next-pass/metadata/493ACDC9-3ABC-4041-96BC-D27BA74E85E0/keep-faces-0-1.bin",
+        "source_faces": 255369,
+        "retained_faces": 159797,
+        "removed_faces": 95572,
+        "removed_bounds": {
+          "min": [
+            -0.6307993531227112,
+            0.1197509765625,
+            -1.0335209369659424
+          ],
+          "max": [
+            1.0974050760269165,
+            0.21941585838794708,
+            0.3239435851573944
+          ]
+        }
+      }
+    ],
+    "viewer_review": "Pending root comparison; do not replace source original.",
+    "source_faces": 528705,
+    "retained_faces": 315607,
+    "removed_faces": 213098
+  },
+  "commands": [
+    [
+      "python3",
+      "research/sensual-sculpture-20260919/next-pass/metadata/clean-context-masks.py"
+    ],
+    [
+      "node",
+      "research/sensual-sculpture-20260919/next-pass/metadata/apply-context-masks.mjs"
+    ],
+    [
+      "node_modules/.bin/gltf-transform",
+      "optimize",
+      "research/sensual-sculpture-20260919/next-pass/metadata/493ACDC9-3ABC-4041-96BC-D27BA74E85E0/cleaned-source.glb",
+      "research/sensual-sculpture-20260919/next-pass/metadata/493ACDC9-3ABC-4041-96BC-D27BA74E85E0/cleaned-preview.glb",
+      "--compress",
+      "draco",
+      "--texture-compress",
+      "webp",
+      "--texture-size",
+      "2048",
+      "--simplify",
+      "false"
+    ]
+  ],
+  "modifications": [
+    "Removed only low context triangles wholly outside a conservatively padded plinth footprint; masks and geometric thresholds retained.",
+    "All remaining source faces, original positions, UVs, normals and sculpture/support geometry preserved before compression; no simplification, reconstruction or scaling.",
+    "Draco geometry compression and maximum-2048-pixel WebP textures."
+  ],
+  "visual_review": "Root must compare source and cleaned preview, including all sides of the display plinth, before accepting the derivative.",
+  "source_original_retained": true
+}
