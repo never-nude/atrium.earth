@@ -85877,5 +85877,1273 @@
         ]
       }
     ]
+  },
+  "americas/alexander-calder-peau-rouge-indiana": {
+    "status": "approximate",
+    "basis": "object",
+    "dimensions": "Overall 472 × 396 × 240 in",
+    "sourceUrl": "https://news.iu.edu/live/news/47922-iconic-red-calder-sculpture-gets-comprehensive",
+    "note": "Indiana University records an overall size of 472 × 396 × 240 inches and describes a height of approximately 40 feet. The scan retains lawn and footings, which are included in its approximate starting size.",
+    "checked": "2026-09-19",
+    "spatialNote": "Approximately 40 feet high, based on Indiana University documentation. Captured ground is included in this approximate starting scale.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 40,
+        "unit": "ft",
+        "scope": "sculpture approximate height; captured ground included in starting scale",
+        "sourceUrls": [
+          "https://news.iu.edu/live/news/47922-iconic-red-calder-sculpture-gets-comprehensive"
+        ]
+      }
+    ],
+    "spatial": {
+      "axis": "y",
+      "meters": 12.192,
+      "measurementIndex": 0,
+      "previewUrl": "/models/previews/americas/alexander-calder-peau-rouge-indiana/preview.glb",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "fit": 1.1,
+        "viewDirection": [
+          -1,
+          0.2,
+          0
+        ]
+      },
+      "assetSha256": "ebed8baa8da290d5078667bd4c94a0b982cbc7696cb9152e4376fb27feabcdb0",
+      "reviewed": "2026-09-19",
+      "estimated": true,
+      "geometryReview": "The university describes a height of approximately 40 feet. The optimized scan has a full Y extent of 12.16148 source units and retains a shallow, uneven lawn patch and footings. A uniform starting scale puts that full vertical extent at 40 feet; the ground boundary is approximate and this is not a verified sculpture-only measurement. The source proportions are preserved.",
+      "note": "The university describes a height of approximately 40 feet. The optimized scan has a full Y extent of 12.16148 source units and retains a shallow, uneven lawn patch and footings. A uniform starting scale puts that full vertical extent at 40 feet; the ground boundary is approximate and this is not a verified sculpture-only measurement. The source proportions are preserved."
+    }
+  },
+  "americas/andy-goldsworthy-sapsucker-cairn": {
+    "status": "unresolved",
+    "basis": "object",
+    "dimensions": "",
+    "sourceUrl": "https://news.cornell.edu/stories/2008/04/goldsworthy-builds-cairn-cornells-sapsucker-woods",
+    "note": "The matching Cornell account does not provide numerical measurements.",
+    "checked": "2026-09-19",
+    "spatialNote": "Starts at a chosen display size; actual physical size remains unverified."
+  },
+  "europe/henry-moore-reclining-figure-tate": {
+    "status": "documented",
+    "basis": "object",
+    "dimensions": "H105.4 × W227.3 × D89.2 cm",
+    "sourceUrl": "https://www.tate.org.uk/art/artworks/moore-reclining-figure-t02270",
+    "note": "Tate records H105.4 × W227.3 × D89.2 cm. Starting size uses the estimated figure height, excluding the thin captured display board.",
+    "checked": "2026-09-19",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 105.4,
+        "unit": "cm",
+        "scope": "plaster-and-string figure, excluding captured board/support",
+        "sourceUrls": [
+          "https://www.tate.org.uk/art/artworks/moore-reclining-figure-t02270"
+        ]
+      }
+    ],
+    "spatialNote": "Approximate starting size from the documented sculpture measurement and a reviewed sculpture region. Captured support is retained at the same uniform scale.",
+    "spatial": {
+      "axis": "y",
+      "meters": 1.054,
+      "measurementIndex": 0,
+      "extentFraction": 0.95,
+      "previewUrl": "/models/previews/europe/henry-moore-reclining-figure-tate/preview.glb",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "fit": 1.1,
+        "viewDirection": [
+          1,
+          0.2,
+          0
+        ]
+      },
+      "assetSha256": "2afe7f938efa2e74233e349ddc9928d5b5a30b47b48f2d7e02b808045a82c668",
+      "reviewed": "2026-09-19",
+      "estimated": true,
+      "geometryReview": "Decoded the exact optimized GLB with normalized accessors and world transforms; inspected orthographic X and Z projections with fractional-height guides and four-angle renders. The captured board/support occupies roughly the lowest 4–6% of the model height in the two orthographic views. Use a midpoint of 5% to exclude that support, matching the upper 95% to Tate’s documented 105.4 cm sculpture height. Full retained height starts at approximately 110.95 cm. This support boundary is estimated; the board is not a separately isolated component, and Tate’s measurement scope is not independently metrologically verified. The model is diagonal in X/Z, so neither axis-aligned horizontal extent should be assigned the catalogue width directly.",
+      "note": "The captured board/support occupies roughly the lowest 4–6% of the model height in the two orthographic views. Use a midpoint of 5% to exclude that support, matching the upper 95% to Tate’s documented 105.4 cm sculpture height. Full retained height starts at approximately 110.95 cm. This support boundary is estimated; the board is not a separately isolated component, and Tate’s measurement scope is not independently metrologically verified. The model is diagonal in X/Z, so neither axis-aligned horizontal extent should be assigned the catalogue width directly.",
+      "measurementRegion": {
+        "method": "reviewed-orthographic-component-height-estimate",
+        "axis": "y",
+        "lowerBoundaryFraction": 0.05,
+        "upperBoundaryFraction": 1,
+        "worldYBoundary": 0.7382353572793151,
+        "wholeModelMin": [
+          -1.241968035697937,
+          0.6858139533408644,
+          -0.7987782140993518
+        ],
+        "wholeModelMax": [
+          0.9794250130653381,
+          1.7342420321098801,
+          1.2989592334055349
+        ],
+        "boundaryStatus": "estimated",
+        "evidenceFiles": [
+          "ad6c1762a7ce44868bb252d3356703d6-x.png",
+          "ad6c1762a7ce44868bb252d3356703d6-z.png"
+        ]
+      }
+    }
+  },
+  "makers/niki-de-saint-phalle-the-mermaid-la-sirene": {
+    "dimensions": "Unknown",
+    "status": "unknown",
+    "basis": "object",
+    "sourceUrl": "https://www.paris.fr/pages/la-fontaine-stravinsky-retrouve-son-eclat-decouvrez-ses-secrets-24204",
+    "note": "No trustworthy object-specific dimensions or verified metric source units found. Display size is adjustable.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "europe/henry-moore-reclining-mother-child-noma": {
+    "status": "documented",
+    "basis": "object",
+    "dimensions": "94½ × 53½ × 47½ in (museum order)",
+    "sourceUrl": "https://noma.org/collection/reclining-mother-and-child/",
+    "note": "NOMA publishes measurements without axis labels; preserve published order, do not infer height from first value.",
+    "checked": "2026-09-19",
+    "spatialNote": "Approximate starting size from catalogued measurements; any captured support is included."
+  },
+  "europe/henry-moore-draped-reclining-woman-ago": {
+    "status": "documented",
+    "basis": "object",
+    "dimensions": "Length 216 cm",
+    "sourceUrl": "https://ago.ca/collection/object/74/2",
+    "note": "The Art Gallery of Ontario records a length of 216 cm. Starting size uses the estimated length of the figure; the display surface is retained.",
+    "checked": "2026-09-19",
+    "measures": [
+      {
+        "axis": "length",
+        "value": 216,
+        "unit": "cm",
+        "scope": "original plaster figure, excluding captured gallery slab",
+        "sourceUrls": [
+          "https://ago.ca/collection/object/74/2"
+        ]
+      }
+    ],
+    "spatialNote": "Approximate starting size from the documented sculpture measurement and a reviewed sculpture region. Captured support is retained at the same uniform scale.",
+    "spatial": {
+      "axis": "z",
+      "meters": 2.16,
+      "measurementIndex": 0,
+      "extentFraction": 0.9184545576572418,
+      "previewUrl": "/models/previews/europe/henry-moore-draped-reclining-woman-ago/preview.glb",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "fit": 1.16,
+        "viewDirection": [
+          -1,
+          0.2,
+          0
+        ]
+      },
+      "assetSha256": "c38bbb9d4fe465b3d3039122cdd22a314059c39e73409208c538ba2c2a38f4f8",
+      "reviewed": "2026-09-19",
+      "estimated": true,
+      "geometryReview": "Decoded the exact optimized GLB with normalized accessors and world transforms; inspected orthographic X and Z projections with fractional-height guides and four-angle renders. The gallery slab top lies within approximately the lowest 5% of the cleaned scan height. Vertices above that boundary span 2.158403 source units along Z, versus 2.350038 for the slab-inclusive full scan. Match the reviewed figure span, fraction 0.918454558, to AGO’s documented length of 216 cm. The implied retained full length is about 2.352 m. The seam and the endpoints are approximate because figure and support share one mesh. Source proportions are preserved.",
+      "note": "The gallery slab top lies within approximately the lowest 5% of the cleaned scan height. Vertices above that boundary span 2.158403 source units along Z, versus 2.350038 for the slab-inclusive full scan. Match the reviewed figure span, fraction 0.918454558, to AGO’s documented length of 216 cm. The implied retained full length is about 2.352 m. The seam and the endpoints are approximate because figure and support share one mesh. Source proportions are preserved.",
+      "measurementRegion": {
+        "method": "vertex-bounds-above-reviewed-support-boundary",
+        "axis": "z",
+        "worldYBoundary": -0.27541411661626514,
+        "wholeModelMin": [
+          -0.6149243561854405,
+          -0.34500369970743044,
+          -1.175019025802612
+        ],
+        "wholeModelMax": [
+          0.6652715608157393,
+          1.046787962115875,
+          1.175019025802612
+        ],
+        "worldMin": [
+          -0.4373106142992853,
+          -0.2752922179285204,
+          -1.0784843698657196
+        ],
+        "worldMax": [
+          0.46284280396361765,
+          1.046787962115875,
+          1.079918789299043
+        ],
+        "boundaryStatus": "estimated",
+        "evidenceFiles": [
+          "11f00dd54aec44d1aca745d44908057d-x.png",
+          "11f00dd54aec44d1aca745d44908057d-z.png"
+        ],
+        "extentFractionFormula": "2.1584031591647626 / 2.350038051605224"
+      }
+    }
+  },
+  "europe/henry-moore-warrior-shield-arnhem": {
+    "status": "unresolved",
+    "basis": "object",
+    "dimensions": "",
+    "sourceUrl": "https://henry-moore.org/discover-and-research/discover-henry-moore/timeline/",
+    "note": "Do not borrow measurements of another cast. Henry Moore Foundation artwork catalogue object15202 identifies Arnhem, but its page currently returns403.",
+    "checked": "2026-09-19",
+    "spatialNote": "Starts at a chosen display size; actual physical size remains unverified."
+  },
+  "europe/henry-moore-atom-piece-ago": {
+    "status": "unresolved",
+    "basis": "object",
+    "dimensions": "",
+    "sourceUrl": "https://app.pch.gc.ca/application/artefacts_hum/liste_list.app?in=Art+Gallery+of+Ontario&l=l&lang=en&pID=18&r=10&t=1",
+    "note": "Secondary postcard source quotes119.4×81.3×76.2cm, but no primary page retrieved yet; do not use until verified.",
+    "checked": "2026-09-19",
+    "spatialNote": "Starts at a chosen display size; actual physical size remains unverified."
+  },
+  "modern/working-model-locking-piece-moore-duisburg": {
+    "status": "documented",
+    "basis": "object",
+    "dimensions": "H106 × W80 × D96 cm",
+    "sourceUrl": "https://skulpturen.kulturraum.nrw/duisburg/henry-moore/locking-piece.html",
+    "note": "The museum records a bronze height of 106 cm. Starting size uses the estimated boundary between the bronze and its retained stone pedestal.",
+    "checked": "2026-09-19",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 106,
+        "unit": "cm",
+        "scope": "bronze working model including bronze footplate, excluding stone pedestal",
+        "sourceUrls": [
+          "https://skulpturen.kulturraum.nrw/duisburg/henry-moore/locking-piece.html"
+        ]
+      }
+    ],
+    "spatialNote": "Approximate starting size from the documented sculpture measurement and a reviewed sculpture region. Captured support is retained at the same uniform scale.",
+    "spatial": {
+      "axis": "y",
+      "meters": 1.06,
+      "measurementIndex": 0,
+      "extentFraction": 0.8,
+      "previewUrl": "/models/previews/modern/working-model-locking-piece-moore-duisburg/preview.glb",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "fit": 1.16,
+        "viewDirection": [
+          0.35,
+          0.2,
+          1
+        ]
+      },
+      "assetSha256": "55a7809f988ba19f1552982e95eed1340b66c9f5ec0108c2a37d83bb77198e58",
+      "reviewed": "2026-09-19",
+      "estimated": true,
+      "geometryReview": "Decoded the exact optimized GLB with normalized accessors and world transforms; inspected orthographic X and Z projections with fractional-height guides and four-angle renders. The bronze-to-stone pedestal boundary falls at approximately 20% of the cleaned model height in both orthographic views. The upper 80% is 1.061739 source units and includes the bronze footplate. Match that region to the documented 106 cm working-model height. This implies about 1.325 m total including the retained pedestal. The manually reviewed seam is estimated, not a separately isolated mesh boundary.",
+      "note": "The bronze-to-stone pedestal boundary falls at approximately 20% of the cleaned model height in both orthographic views. The upper 80% is 1.061739 source units and includes the bronze footplate. Match that region to the documented 106 cm working-model height. This implies about 1.325 m total including the retained pedestal. The manually reviewed seam is estimated, not a separately isolated mesh boundary.",
+      "measurementRegion": {
+        "method": "reviewed-orthographic-component-height-estimate",
+        "axis": "y",
+        "lowerBoundaryFraction": 0.2,
+        "upperBoundaryFraction": 1,
+        "worldYBoundary": 0.3304118567423068,
+        "wholeModelMin": [
+          -0.7182909815802923,
+          0.06497705872125792,
+          -0.7522037029266357
+        ],
+        "wholeModelMax": [
+          0.6968081563010564,
+          1.392151048826502,
+          0.6712361574172974
+        ],
+        "boundaryStatus": "estimated",
+        "evidenceFiles": [
+          "8cac8372b31d4042a08aae6f65ed97f0-x.png",
+          "8cac8372b31d4042a08aae6f65ed97f0-z.png"
+        ]
+      }
+    }
+  },
+  "modern/rush-hour-george-segal": {
+    "dimensions": "Dimensions unconfirmed",
+    "status": "unknown",
+    "basis": "unknown",
+    "sourceUrl": "https://segalfoundation.org/public-sculpture/",
+    "note": "No reliable dimensions for this exact object/cast verified. No dimensions inferred from model bounds.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+  },
+  "modern/horse-alvear-monument-bourdelle": {
+    "dimensions": "Dimensions unconfirmed",
+    "status": "unknown",
+    "basis": "unknown",
+    "sourceUrl": "https://www.bourdelle.paris.fr/decouvrir/le-musee/des-espaces-singuliers/jardin-sur-rue",
+    "note": "No reliable dimensions for this exact object/cast verified. No dimensions inferred from model bounds.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+  },
+  "modern/mountain-maillol-tuileries": {
+    "dimensions": "H168 × W184 × D80 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://collections.louvre.fr/ark:/53355/cl010095702",
+    "note": "Published object dimensions recorded; model not calibrated to those measurements.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 168,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://collections.louvre.fr/ark:/53355/cl010095702"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 184,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://collections.louvre.fr/ark:/53355/cl010095702"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 80,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://collections.louvre.fr/ark:/53355/cl010095702"
+        ]
+      }
+    ]
+  },
+  "modern/bust-woman-1931-picasso-arken": {
+    "dimensions": "H78 × W44.5 × D50 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://cep.museepicassoparis.fr/explorer/buste-de-femme-mp299",
+    "note": "Published object dimensions recorded; model not calibrated to those measurements.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 78,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://cep.museepicassoparis.fr/explorer/buste-de-femme-mp299"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 44.5,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://cep.museepicassoparis.fr/explorer/buste-de-femme-mp299"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 50,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://cep.museepicassoparis.fr/explorer/buste-de-femme-mp299"
+        ]
+      }
+    ]
+  },
+  "modern/spider-calder-reconstruction": {
+    "dimensions": "H203.5 × W224.5 × D92.6 cm",
+    "status": "documented",
+    "basis": "reference_artwork",
+    "sourceUrl": "https://www.moma.org/collection/works/81431",
+    "note": "Dimensions belong to MoMA artwork. This separately authored reconstruction has not been measured against the original.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 203.5,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://www.moma.org/collection/works/81431"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 224.5,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://www.moma.org/collection/works/81431"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 92.6,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://www.moma.org/collection/works/81431"
+        ]
+      }
+    ]
+  },
+  "modern/river-maillol-middelheim": {
+    "dimensions": "Dimensions unconfirmed",
+    "status": "unknown",
+    "basis": "unknown",
+    "sourceUrl": "https://collectie-in-het-park.middelheimmuseum.be/versmelting/lariviere",
+    "note": "No reliable dimensions for this exact object/cast verified. No dimensions inferred from model bounds.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+  },
+  "modern/small-maternity-gargallo-emporda": {
+    "dimensions": "19.5 × 18.3 × 22 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://sketchfab.com/3d-models/66a5a505dcc044b18fd6574372b6f903",
+    "note": "Official museum gives 19.5 × 18.3 × 22 cm without named axes; recorded without assigning height, width or depth.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+  },
+  "modern/large-ballerina-gargallo-mnac": {
+    "dimensions": "H123 × W70 × D50 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.museunacional.cat/en/colleccio/large-ballerina/pablo-gargallo/108413-000",
+    "note": "Published object dimensions recorded; model not calibrated to those measurements.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 123,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://www.museunacional.cat/en/colleccio/large-ballerina/pablo-gargallo/108413-000"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 70,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://www.museunacional.cat/en/colleccio/large-ballerina/pablo-gargallo/108413-000"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 50,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://www.museunacional.cat/en/colleccio/large-ballerina/pablo-gargallo/108413-000"
+        ]
+      }
+    ]
+  },
+  "makers/marisol-portrait-of-georgia-okeeffe": {
+    "dimensions": "Unknown",
+    "status": "unknown",
+    "basis": "object",
+    "sourceUrl": "https://www.si.edu/object/portrait-georgia-okeeffe-sculpture%3Asiris_ari_318535",
+    "note": "No trustworthy object-specific dimensions or verified metric source units found. Display size is adjustable.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "makers/yayoi-kusama-toko-chan-digital-reconstruction": {
+    "dimensions": "H80 × W48 × D101 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.nga.gov/content/dam/ngaweb/press/exh/4874/4874-list.pdf",
+    "note": "Published original-object dimensions are recorded; the model has not been calibrated. NGA exhibition checklist establishes title, maker, 2013 date, medium and original dimensions. Indexed official PDF was readable in search results; direct file URL currently returns 404. Original measurements are not a claim of accurate reconstruction scale.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 80,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://www.nga.gov/content/dam/ngaweb/press/exh/4874/4874-list.pdf"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 48,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://www.nga.gov/content/dam/ngaweb/press/exh/4874/4874-list.pdf"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 101,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://www.nga.gov/content/dam/ngaweb/press/exh/4874/4874-list.pdf"
+        ]
+      }
+    ]
+  },
+  "makers/niki-de-saint-phalle-the-snake-le-serpent": {
+    "dimensions": "Unknown",
+    "status": "unknown",
+    "basis": "object",
+    "sourceUrl": "https://www.paris.fr/pages/la-fontaine-stravinsky-retrouve-son-eclat-decouvrez-ses-secrets-24204",
+    "note": "No trustworthy object-specific dimensions or verified metric source units found. Display size is adjustable.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "makers/niki-de-saint-phalle-the-heart-le-cur": {
+    "dimensions": "Unknown",
+    "status": "unknown",
+    "basis": "object",
+    "sourceUrl": "https://www.paris.fr/pages/la-fontaine-stravinsky-retrouve-son-eclat-decouvrez-ses-secrets-24204",
+    "note": "No trustworthy object-specific dimensions or verified metric source units found. Display size is adjustable.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "makers/niki-de-saint-phalle-the-nightingale-le-rossignol": {
+    "dimensions": "Unknown",
+    "status": "unknown",
+    "basis": "object",
+    "sourceUrl": "https://www.paris.fr/pages/la-fontaine-stravinsky-retrouve-son-eclat-decouvrez-ses-secrets-24204",
+    "note": "No trustworthy object-specific dimensions or verified metric source units found. Display size is adjustable.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "makers/edmonia-lewis-indian-combat": {
+    "dimensions": "H76.2 × W48.3 × D36.5 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.clevelandart.org/art/2011.110",
+    "note": "Published original-object dimensions are recorded; the model has not been calibrated. ",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 76.2,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://www.clevelandart.org/art/2011.110"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 48.3,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://www.clevelandart.org/art/2011.110"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 36.5,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://www.clevelandart.org/art/2011.110"
+        ]
+      }
+    ]
+  },
+  "makers/katarzyna-kobro-spatial-composition-2-digital-reconstruction": {
+    "dimensions": "H50 × W50 × D50 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://zasoby.msl.org.pl/arts/view/262",
+    "note": "Published original-object dimensions are recorded; the model has not been calibrated. Museum record verifies original title, maker, date, medium and dimensions. Original measurements do not assert the accuracy of the digital reconstruction.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 50,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://zasoby.msl.org.pl/arts/view/262"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 50,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://zasoby.msl.org.pl/arts/view/262"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 50,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://zasoby.msl.org.pl/arts/view/262"
+        ]
+      }
+    ]
+  },
+  "makers/katarzyna-kobro-spatial-composition-6-digital-reconstruction": {
+    "dimensions": "H64 × W25 × D15 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://zasoby.msl.org.pl/arts/view/259",
+    "note": "Published original-object dimensions are recorded; the model has not been calibrated. Museum record verifies original title, maker, date, medium and dimensions. Original measurements do not assert the accuracy of the digital reconstruction.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 64,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://zasoby.msl.org.pl/arts/view/259"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 25,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://zasoby.msl.org.pl/arts/view/259"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 15,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://zasoby.msl.org.pl/arts/view/259"
+        ]
+      }
+    ]
+  },
+  "makers/katarzyna-kobro-spatial-composition-7-digital-reconstruction": {
+    "dimensions": "H12 × W64 × D16 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://zasoby.msl.org.pl/arts/view/177",
+    "note": "Published original-object dimensions are recorded; the model has not been calibrated. Museum record documents the 1973 Janusz Zagrodzki reconstruction of Kobro’s lost 1931 work; dimensions refer to that museum reconstruction.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 12,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://zasoby.msl.org.pl/arts/view/177"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 64,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://zasoby.msl.org.pl/arts/view/177"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 16,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://zasoby.msl.org.pl/arts/view/177"
+        ]
+      }
+    ]
+  },
+  "makers/katarzyna-kobro-spatial-composition-8-digital-reconstruction": {
+    "dimensions": "H10 × W24 × D15 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://zasoby.msl.org.pl/arts/view/269",
+    "note": "Published original-object dimensions are recorded; the model has not been calibrated. Museum record verifies original title, maker, date, medium and dimensions. Original measurements do not assert the accuracy of the digital reconstruction.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 10,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://zasoby.msl.org.pl/arts/view/269"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 24,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://zasoby.msl.org.pl/arts/view/269"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 15,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://zasoby.msl.org.pl/arts/view/269"
+        ]
+      }
+    ]
+  },
+  "makers/takamura-koun-monkey-performing-sanbaso": {
+    "dimensions": "H41 × W39 × D28 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://collection.shozokan.nich.go.jp/?at=detail&id=555",
+    "note": "Published original-object dimensions are recorded; the model has not been calibrated. Current museum record dates the work 1923, correcting uploader 1922. Body dimensions are H41 W39 D28 cm; separate display stand is H12 W48 D35 cm. Do not scale the entire model using stand-inclusive dimensions.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 41,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://collection.shozokan.nich.go.jp/?at=detail&id=555"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 39,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://collection.shozokan.nich.go.jp/?at=detail&id=555"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 28,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://collection.shozokan.nich.go.jp/?at=detail&id=555"
+        ]
+      }
+    ]
+  },
+  "makers/takamura-koun-kusunoki-masashige": {
+    "dimensions": "Unknown",
+    "status": "unknown",
+    "basis": "object",
+    "sourceUrl": "https://www.env.go.jp/garden/kokyogaien/english/statue_of_kusunoki_masashige.html",
+    "note": "No trustworthy object-specific dimensions or verified metric source units found. Display size is adjustable.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "makers/takamura-koun-old-monkey-aged-monkey": {
+    "dimensions": "H108.5 × W103.5 × D76 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://emuseum.nich.go.jp/detail?content_base_id=100422&langId=en",
+    "note": "Published original-object dimensions are recorded; the model has not been calibrated. Owner e-Museum and Art Platform Japan report H108.5 W103.5 D76.0; this takes precedence over the different NGA 2019 checklist dimensions H113 W93 D76.5. Measurements exclude the modern display plinth, and the model is not calibrated.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 108.5,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://www.tnm.jp/modules/r_collection/index.php?colid=C232&controller=dtl&lang=en",
+          "https://emuseum.nich.go.jp/detail?content_base_id=100422&langId=en",
+          "https://artplatform.go.jp/collections/W117850"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 103.5,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://www.tnm.jp/modules/r_collection/index.php?colid=C232&controller=dtl&lang=en",
+          "https://emuseum.nich.go.jp/detail?content_base_id=100422&langId=en",
+          "https://artplatform.go.jp/collections/W117850"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 76,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://www.tnm.jp/modules/r_collection/index.php?colid=C232&controller=dtl&lang=en",
+          "https://emuseum.nich.go.jp/detail?content_base_id=100422&langId=en",
+          "https://artplatform.go.jp/collections/W117850"
+        ]
+      }
+    ]
+  },
+  "makers/takamura-koun-saigo-takamori": {
+    "dimensions": "Unknown",
+    "status": "unknown",
+    "basis": "object",
+    "sourceUrl": "https://www.geidai.ac.jp/museum/exhibit/2012/collection2012sp/collection_spring.pdf",
+    "note": "No trustworthy object-specific dimensions or verified metric source units found. Display size is adjustable.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "makers/fernando-botero-la-maternidad": {
+    "dimensions": "Unknown",
+    "status": "unknown",
+    "basis": "object",
+    "sourceUrl": "https://www.oviedoiniciodelcamino.com/docerutas/pdf/Oviedo%20Mirada%20Femenino.pdf",
+    "note": "No trustworthy object-specific dimensions or verified metric source units found. Display size is adjustable.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "europe/damned-soul-bernini": {
+    "dimensions": "",
+    "status": "unknown",
+    "basis": "unknown",
+    "sourceUrl": "https://www.museodelprado.es/en/whats-on/exhibition/berninis-souls-art-in-rome-for-the-spanish-court/586e263b-134e-4591-b9d4-66f0dbceb907",
+    "note": "No reliably matched dimensions for this scanned version. Original or alternate cast measurements are not substituted.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "europe/bust-paris-canova-glyptotek": {
+    "dimensions": "",
+    "status": "unknown",
+    "basis": "unknown",
+    "sourceUrl": "https://www.artic.edu/files/699c4b19-d705-4b21-a2e7-962cefd2c4ba/AIC_MuseumStudies_15-1_UPDF.pdf",
+    "note": "No reliably matched dimensions for this scanned version. Original or alternate cast measurements are not substituted.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "europe/david-verrocchio-plaster-cast": {
+    "dimensions": "",
+    "status": "unknown",
+    "basis": "unknown",
+    "sourceUrl": "https://catalogo.beniculturali.it/detail/HistoricOrArtisticProperty/0900006745",
+    "note": "No reliably matched dimensions for this scanned version. Original or alternate cast measurements are not substituted.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "europe/maria-barjatinskaja-thorvaldsen-plaster": {
+    "dimensions": "H180 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://kataloget.thorvaldsensmuseum.dk/en/A172",
+    "note": "Published object dimensions recorded; digital model is not calibrated to physical scale.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 180,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://kataloget.thorvaldsensmuseum.dk/en/A172"
+        ]
+      }
+    ]
+  },
+  "europe/goddess-hope-thorvaldsen-plaster": {
+    "dimensions": "H160.8 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://sketchfab.com/3d-models/e376915a420548bba5e8217bd5ab1c14",
+    "note": "Published object dimensions recorded; digital model is not calibrated to physical scale.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 160.8,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://sketchfab.com/3d-models/e376915a420548bba5e8217bd5ab1c14"
+        ]
+      }
+    ]
+  },
+  "europe/countess-armand-carpeaux": {
+    "dimensions": "",
+    "status": "unknown",
+    "basis": "unknown",
+    "sourceUrl": "https://collections.louvre.fr/ark:/53355/cl020117401",
+    "note": "No reliably matched dimensions for this scanned version. Original or alternate cast measurements are not substituted.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "europe/why-born-enslaved-carpeaux-glyptotek": {
+    "dimensions": "",
+    "status": "unknown",
+    "basis": "unknown",
+    "sourceUrl": "https://tidsskrift.dk/periskop/article/download/128292/174454/271456",
+    "note": "No reliably matched dimensions for this scanned version. Original or alternate cast measurements are not substituted.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "europe/lion-serpent-barye": {
+    "dimensions": "",
+    "status": "unknown",
+    "basis": "unknown",
+    "sourceUrl": "https://collections.louvre.fr/ark:/53355/cl010091396",
+    "note": "No reliably matched dimensions for this scanned version. Original or alternate cast measurements are not substituted.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "europe/sophie-arnould-houdon-weimar": {
+    "dimensions": "H83 × W54 × D26.5 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.klassik-stiftung.de/startseite/digital/sammlungshighlights/jean-antoine-houdon/",
+    "note": "Published object dimensions recorded; digital model is not calibrated to physical scale.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 83,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://www.klassik-stiftung.de/startseite/digital/sammlungshighlights/jean-antoine-houdon/"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 54,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://www.klassik-stiftung.de/startseite/digital/sammlungshighlights/jean-antoine-houdon/"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 26.5,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://www.klassik-stiftung.de/startseite/digital/sammlungshighlights/jean-antoine-houdon/"
+        ]
+      }
+    ]
+  },
+  "europe/gluck-houdon-weimar": {
+    "dimensions": "H94 × W64 × D41 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.klassik-stiftung.de/startseite/digital/sammlungshighlights/jean-antoine-houdon/",
+    "note": "Published object dimensions recorded; digital model is not calibrated to physical scale.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 94,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://www.klassik-stiftung.de/startseite/digital/sammlungshighlights/jean-antoine-houdon/"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 64,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://www.klassik-stiftung.de/startseite/digital/sammlungshighlights/jean-antoine-houdon/"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 41,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://www.klassik-stiftung.de/startseite/digital/sammlungshighlights/jean-antoine-houdon/"
+        ]
+      }
+    ]
+  },
+  "europe/benjamin-franklin-houdon-met": {
+    "dimensions": "H58.7 × W36.8 × D28.6 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.metmuseum.org/art/collection/search/208578",
+    "note": "Published object dimensions recorded; digital model is not calibrated to physical scale.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 58.7,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://www.metmuseum.org/art/collection/search/208578"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 36.8,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://www.metmuseum.org/art/collection/search/208578"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 28.6,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://www.metmuseum.org/art/collection/search/208578"
+        ]
+      }
+    ]
+  },
+  "europe/peasant-woman-frascati-houdon": {
+    "dimensions": "H50.7 × W21.5 × D29 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.parismuseescollections.paris.fr/de/node/185742",
+    "note": "Published object dimensions recorded; digital model is not calibrated to physical scale.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 50.7,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://www.parismuseescollections.paris.fr/de/node/185742"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 21.5,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://www.parismuseescollections.paris.fr/de/node/185742"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 29,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://www.parismuseescollections.paris.fr/de/node/185742"
+        ]
+      }
+    ]
+  },
+  "europe/character-head-6-messerschmidt": {
+    "dimensions": "H43.5 × W27 × D23.5 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.webumenia.sk/dielo/SVK:SNG.P_2227",
+    "note": "Published object dimensions recorded; digital model is not calibrated to physical scale.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 43.5,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://www.webumenia.sk/dielo/SVK:SNG.P_2227"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 27,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://www.webumenia.sk/dielo/SVK:SNG.P_2227"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 23.5,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://www.webumenia.sk/dielo/SVK:SNG.P_2227"
+        ]
+      }
+    ]
+  },
+  "europe/marly-horse-coustou-louvre": {
+    "dimensions": "H340 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://collections.louvre.fr/ark:/53355/cl010091993",
+    "note": "Published object dimensions recorded; digital model is not calibrated to physical scale.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 340,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://collections.louvre.fr/ark:/53355/cl010091993"
+        ]
+      }
+    ]
+  },
+  "europe/neptune-coysevox-louvre": {
+    "dimensions": "H185.5 × W177 × D111 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://collections.louvre.fr/ark:/53355/cl010094811",
+    "note": "Published object dimensions recorded; digital model is not calibrated to physical scale.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 185.5,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://collections.louvre.fr/ark:/53355/cl010094811"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 177,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://collections.louvre.fr/ark:/53355/cl010094811"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 111,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://collections.louvre.fr/ark:/53355/cl010094811"
+        ]
+      }
+    ]
+  },
+  "europe/french-peasant-mother-dalou-fitzwilliam": {
+    "dimensions": "H49 × W26 × D27.5 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://data.fitzmuseum.cam.ac.uk/id/object/29862",
+    "note": "Published object dimensions recorded; digital model is not calibrated to physical scale.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 49,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://data.fitzmuseum.cam.ac.uk/id/object/29862"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 26,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://data.fitzmuseum.cam.ac.uk/id/object/29862"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 27.5,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://data.fitzmuseum.cam.ac.uk/id/object/29862"
+        ]
+      }
+    ]
+  },
+  "europe/fame-pegasus-coysevox-louvre": {
+    "dimensions": "H315 × W291 × D128 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://collections.louvre.fr/ark:/53355/cl010092011",
+    "note": "Published object dimensions recorded; digital model is not calibrated to physical scale.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 315,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://collections.louvre.fr/ark:/53355/cl010092011"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 291,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://collections.louvre.fr/ark:/53355/cl010092011"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 128,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://collections.louvre.fr/ark:/53355/cl010092011"
+        ]
+      }
+    ]
+  },
+  "europe/mercury-pegasus-coysevox-louvre": {
+    "dimensions": "H315 × W291 × D128 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://collections.louvre.fr/ark:/53355/cl010092009",
+    "note": "Published object dimensions recorded; digital model is not calibrated to physical scale.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 315,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://collections.louvre.fr/ark:/53355/cl010092009"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 291,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://collections.louvre.fr/ark:/53355/cl010092009"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 128,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://collections.louvre.fr/ark:/53355/cl010092009"
+        ]
+      }
+    ]
   }
 }
