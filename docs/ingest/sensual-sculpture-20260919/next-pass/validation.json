@@ -21,5 +21,21 @@
   "publication_approval": {
     "message": "push",
     "recorded_at": "2026-09-19T13:46:13.480398+00:00"
+  },
+  "publication_validation": {
+    "checked_at": "2026-09-19T13:49:43.947465+00:00",
+    "reconciled_baseline": "b831aae67f559b7655c8d12a6ac38547d6a1a61b",
+    "catalog_records": 1277,
+    "public_records": 1265,
+    "new_works": 7,
+    "scan_replacements": 1,
+    "wing_assignment": "passed",
+    "newest_grouping": "passed",
+    "catalog_assets": "passed",
+    "build": "passed;3,359 static pages",
+    "local_http": "Seven newest links; all eight canonical pages and model/thumbnail hashes verified.",
+    "independent_audit": "Passed; all 1,269 other prior catalog records and old runtime map entries unchanged; approved Pauline replacement preserves canonical URL, index and ingestion history.",
+    "browser": "Not performed; Mac locked. Whole-model renders were reviewed before approval.",
+    "museum_labels": "Passed using installed Google Chrome: 3,795 catalogue photo layouts plus caption/share/WebXR lifecycle checks. The first attempt ran before build completion; the second lacked the default Playwright browser executable. The final rerun used the supported ATRIUM_TEST_EXECUTABLE override."
   }
 }

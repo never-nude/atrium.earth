@@ -1,4 +1,4 @@
-# Eight reviewed sculpture additions
+# Seven sculpture additions and one reviewed scan upgrade
 
 **The user approved publication of these eight reviewed works with “push” on 19 September 2026.**
 
@@ -10,7 +10,7 @@ Five European works are the strongest matches for the adult-nude and intimate-gr
 
 Antonio Canova · 1804–1808 · Galleria Borghese, Rome
 
-[View in 3D](https://atrium.earth/works/europe/paolina-borghese-venus-canova/) · [Object source](https://www.collezionegalleriaborghese.it/opere/paolina-borghese-bonaparte-come-venere-vincitrice) · [Scan source](https://poly.cam/explore/capture/493ACDC9-3ABC-4041-96BC-D27BA74E85E0/Statue%2Bof%2BPaolina%2BBorghese%2Bcomo%2BVenere%2Bvincitrice%2Bby%2BAntonio%2BCanova%2C%2BGalleria%2BBorghese%2C%2BRoma) · [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+[View in 3D](https://atrium.earth/works/europe/pauline-bonaparte-canova-borghese/) · [Object source](https://www.collezionegalleriaborghese.it/opere/paolina-borghese-bonaparte-come-venere-vincitrice) · [Scan source](https://poly.cam/explore/capture/493ACDC9-3ABC-4041-96BC-D27BA74E85E0/Statue%2Bof%2BPaolina%2BBorghese%2Bcomo%2BVenere%2Bvincitrice%2Bby%2BAntonio%2BCanova%2C%2BGalleria%2BBorghese%2C%2BRoma) · [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 
 Canova portrays Paolina Bonaparte as Venus, reclining on an intricately carved bed and holding the apple awarded to the goddess in the Judgment of Paris.
 
@@ -108,10 +108,16 @@ Whole-object model renders checked at three angles, with original/cleaned compar
 
 Seven scans and their derivative renders are CC BY 4.0. Yogini and its derivative model/renders are CC BY-SA 4.0. Source credit, license links and modification notices remain in the visible object credits.
 
-This change adds eight works to the 1,224-record baseline, for 1,232 catalog records and 1,220 public works. It preserves all earlier records and their runtime metadata.
+Concurrent publication added 46 works while this batch awaited approval, including a different scan of Pauline Borghese. This change preserves those additions, adds seven new works, and upgrades Pauline’s existing page with the clearer reviewed scan. Her canonical URL, index and original ingestion metadata remain unchanged. The resulting catalog contains 1,277 records and 1,265 public works. Newest Additions lists the seven new works.
 
-Wing assignment, newest-additions grouping, catalog-asset validation, whitespace checks and production build passed. The build produced 3,217 static pages. Local HTTP checks verified all eight work pages, model files and thumbnails against their recorded hashes.
+Wing assignment, newest-additions grouping, catalog-asset validation, whitespace checks and production build passed. The original review build produced 3,217 static pages; the reconciled publication build produces 3,359. Local HTTP checks verified all eight work pages, model files and thumbnails against their recorded hashes.
 
 Interactive browser click-through was unavailable because the Mac was locked. Whole-model headless renders completed successfully. See [validation details](validation.json).
 
 An independent audit confirmed that all 1,224 existing records and prior runtime metadata are unchanged, and that all eight additions match their model and thumbnail manifests.
+
+## Concurrent publication reconciliation
+
+The other publication used danyelon’s Sketchfab scan for Pauline. The approved MTP/Polycam capture has clearer facial detail and more complete decorated couch and plinth geometry. It replaces that scan on the existing page; no duplicate composition is added. The previous source and metadata are preserved in [replacement history](pauline-replaced-scan-history.json). The other 1,269 earlier records remain unchanged.
+
+The final reconciliation also passed wing routing, newest-addition grouping and asset checks. The seven new works appear in Newest Additions; the upgraded Pauline page keeps its existing canonical URL and ingestion history.

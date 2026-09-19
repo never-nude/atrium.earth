@@ -1,0 +1,57 @@
+{
+  "reason": "Concurrent task published the same composition with a different scan before this batch was pushed. Keep one canonical artwork page and upgrade it with the user-reviewed clearer capture.",
+  "canonical_slug": "europe/pauline-bonaparte-canova-borghese",
+  "prior_commit": "b831aae67f559b7655c8d12a6ac38547d6a1a61b",
+  "prior_catalog_record": {
+    "title": "Pauline Bonaparte as Venus Victrix",
+    "artist": "Antonio Canova",
+    "material": "Carrara marble",
+    "dimensions": "160 × 120 cm",
+    "museum": "Galleria Borghese, Rome",
+    "culture": "",
+    "accession": "LIV",
+    "slug": "europe/pauline-bonaparte-canova-borghese",
+    "collection": "europe",
+    "year": "1804–1808",
+    "year_sort": 1808,
+    "geography": "Italy",
+    "original_location": "Italy",
+    "source_institution": "danyelon",
+    "source_url": "https://sketchfab.com/3d-models/0a295145539040d0bcb70cfeeb2f1095",
+    "source_record_url": "https://galleriaborghese.cultura.gov.it/archivio-schede/paolina-borghese-come-venere-vincitrice/",
+    "scan_author": "danyelon",
+    "scan_source": "Photogrammetric model of the physical sculpture, preserved in the openly licensed Objaverse archive. Browser geometry optimized from that exact source. Atrium removed extraneous captured ground or detached scan debris; no missing sculptural surfaces were reconstructed.",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "license_tier": 2,
+    "tier": 3,
+    "note": "Pauline Borghese reclines as Venus, holding the apple awarded to the goddess for her beauty. Canova turns an identifiable woman into a mythological victor while retaining the intimacy of a portrait. Her body, cushions and couch are carefully differentiated in marble.",
+    "model": {
+      "sourcePath": "europe/pauline-bonaparte-canova-borghese/0a295145539040d0bcb70cfeeb2f1095.glb",
+      "format": "glb",
+      "sizeBytes": 26547976
+    },
+    "related_source_record_urls": [
+      "https://galleriaborghese.cultura.gov.it/archivio-schede/paolina-borghese-come-venere-vincitrice/",
+      "https://galleriaborghese.cultura.gov.it/exhibition/canova-e-la-venere-vincitrice/",
+      "https://huggingface.co/datasets/allenai/objaverse/blob/21e4e142159e2153706c23a3a02e55cec5591cea/glbs/000-085/0a295145539040d0bcb70cfeeb2f1095.glb"
+    ],
+    "attribution": "Pauline Bonaparte as Venus Victrix. Artwork: Antonio Canova. 3D model: danyelon; CC BY 4.0. Atrium derivative: geometry optimized for browser display. Atrium removed extraneous captured ground or detached scan debris; no missing sculptural surfaces were reconstructed.",
+    "ingest_batch": "new-additions-20260919",
+    "ingested_at": "2026-09-19T11:08:17.833Z",
+    "ingested": "2026-09-19",
+    "index": 1251
+  },
+  "prior_preview_record": {
+    "url": "/models/previews/europe/pauline-bonaparte-canova-borghese/preview.glb",
+    "bytes": 1821012,
+    "sourceBytes": 26547976,
+    "sourceFormat": "glb",
+    "faces": 178102,
+    "sourceFaces": 523276
+  },
+  "approved_replacement_source": "https://poly.cam/explore/capture/493ACDC9-3ABC-4041-96BC-D27BA74E85E0/Statue%2Bof%2BPaolina%2BBorghese%2Bcomo%2BVenere%2Bvincitrice%2Bby%2BAntonio%2BCanova%2C%2BGalleria%2BBorghese%2C%2BRoma",
+  "approved_replacement_license": "CC BY 4.0",
+  "approved_replacement_sha256": "4ccd0a7c7becb35cb28b700a5d83bde2c527a79ce45e5547cd49ea8b7e178961",
+  "original_catalog_index_and_ingestion_preserved": true
+}

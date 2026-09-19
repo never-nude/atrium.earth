@@ -2,16 +2,16 @@
   "batch": "sensual-sculpture-20260919-next",
   "status": "reviewed_and_user_approved",
   "user_permission_required_before_live_push": false,
-  "baseline_commit": "4633a40134cb79a7cc1c3cde44d6993944669dbf",
-  "baseline_catalog_records": 1224,
-  "new_count": 8,
-  "local_catalog_records": 1232,
-  "local_public_records": 1220,
+  "baseline_commit": "b831aae67f559b7655c8d12a6ac38547d6a1a61b",
+  "baseline_catalog_records": 1270,
+  "new_count": 7,
+  "local_catalog_records": 1277,
+  "local_public_records": 1265,
   "acquisition_constraint": "All sources downloaded publicly; login-dependent downloads skipped.",
   "evidence_note": "Prepared input records document acquisition-stage state; this final review manifest and current runtime data supersede their pending visual-review fields.",
   "works": [
     {
-      "slug": "europe/paolina-borghese-venus-canova",
+      "slug": "europe/pauline-bonaparte-canova-borghese",
       "title": "Paolina Borghese Bonaparte as Venus Victorious",
       "selection_role": "core adult nude or intimate group",
       "source_url": "https://poly.cam/explore/capture/493ACDC9-3ABC-4041-96BC-D27BA74E85E0/Statue%2Bof%2BPaolina%2BBorghese%2Bcomo%2BVenere%2Bvincitrice%2Bby%2BAntonio%2BCanova%2C%2BGalleria%2BBorghese%2C%2BRoma",
@@ -44,7 +44,9 @@
       },
       "visual_review": "Reviewed three angles before and after conservative floor removal. Figure, carved couch and stepped display plinth retained. Rough detail around the crown of the head and a thin uneven lower edge remain from the source capture; no sculpture geometry reconstructed.",
       "content_review": "Whole sculpture reviewed from three angles; adult non-graphic historical art.",
-      "scale_calibrated": false
+      "scale_calibrated": false,
+      "reviewed_draft_slug": "europe/paolina-borghese-venus-canova",
+      "publication_action": "replace_existing_scan"
     },
     {
       "slug": "europe/reclining-nymph-small-dog-harvard",
@@ -80,7 +82,8 @@
       },
       "visual_review": "Reviewed three angles. Complete surviving reclining figure, companion dog, drapery and rectangular display base are upright and readable; museum-qualified authorship and lead material retained.",
       "content_review": "Whole sculpture reviewed from three angles; adult non-graphic historical art.",
-      "scale_calibrated": false
+      "scale_calibrated": false,
+      "publication_action": "add_new_work"
     },
     {
       "slug": "europe/mars-and-venus-sergel-nationalmuseum",
@@ -116,7 +119,8 @@
       },
       "visual_review": "Reviewed three angles. Both adult figures, drapery and round base retained and upright; the subject follows the museum’s account of Mars supporting the wounded Venus.",
       "content_review": "Whole sculpture reviewed from three angles; adult non-graphic historical art.",
-      "scale_calibrated": false
+      "scale_calibrated": false,
+      "publication_action": "add_new_work"
     },
     {
       "slug": "europe/bacchante-female-satyr-clodion-mag",
@@ -152,7 +156,8 @@
       },
       "visual_review": "Reviewed three angles before and after conservative context removal. Both figures and ornate display base retained; slight irregular margins remain at the base perimeter. The group is mounted on the base; its authorship is not separately asserted.",
       "content_review": "Whole sculpture reviewed from three angles; adult non-graphic historical art.",
-      "scale_calibrated": false
+      "scale_calibrated": false,
+      "publication_action": "add_new_work"
     },
     {
       "slug": "europe/le-repos-boucher-pau",
@@ -188,7 +193,8 @@
       },
       "visual_review": "Reviewed three angles and final lower-exposure front view. Entire reclining figure and bed slab retained. Source colors are pale and fine facial detail is limited; the model does not reconstruct absent detail.",
       "content_review": "Whole sculpture reviewed from three angles; adult non-graphic historical art.",
-      "scale_calibrated": false
+      "scale_calibrated": false,
+      "publication_action": "add_new_work"
     },
     {
       "slug": "asia/yogini-with-a-jar-mia",
@@ -224,7 +230,8 @@
       },
       "visual_review": "Reviewed front, side and rear. Complete surviving sculpture extent retained; historical broken limbs are not reconstructed. Rear texture is mottled with pale horizontal bands retained from the source scan.",
       "content_review": "Whole sculpture reviewed from three angles; adult non-graphic historical art.",
-      "scale_calibrated": false
+      "scale_calibrated": false,
+      "publication_action": "add_new_work"
     },
     {
       "slug": "asia/devata-of-angkor-wilch",
@@ -260,7 +267,8 @@
       },
       "visual_review": "Reviewed front, side and rear and selected a frontal hero view. Partial architectural relief ends below the hips at the source boundary; reverse and sides contain flat dark closure surfaces, not a documented record of the wall behind it. Exact temple and date remain unverified.",
       "content_review": "Whole sculpture reviewed from three angles; adult non-graphic historical art.",
-      "scale_calibrated": false
+      "scale_calibrated": false,
+      "publication_action": "add_new_work"
     },
     {
       "slug": "asia/shiva-maithuna-couple-grinnell",
@@ -296,12 +304,18 @@
       },
       "visual_review": "Reviewed front, side and rear. Surviving relief and modern mounting pedestal retained. Upper pair is side by side in a non-graphic intimate group; facial and surface detail is soft in the source scan.",
       "content_review": "Whole sculpture reviewed from three angles; adult non-graphic historical art.",
-      "scale_calibrated": false
+      "scale_calibrated": false,
+      "publication_action": "add_new_work"
     }
   ],
   "publication_approval": {
     "message": "push",
     "recorded_at": "2026-09-19T13:46:13.480398+00:00",
     "scope": "Publish the eight works reviewed in the local preview."
-  }
+  },
+  "review_baseline_commit": "4633a40134cb79a7cc1c3cde44d6993944669dbf",
+  "review_baseline_catalog_records": 1224,
+  "replacement_count": 1,
+  "reviewed_work_count": 8,
+  "concurrent_reconciliation": "Preserved all 46 concurrently published additions. The independently reviewed MTP/Polycam capture replaces the other scan of Canova’s accession LIV under its existing canonical URL, index and original ingestion metadata. Seven other reviewed works are new. Latest additions therefore lists seven works."
 }
