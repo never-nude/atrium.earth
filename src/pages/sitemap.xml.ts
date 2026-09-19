@@ -1,4 +1,3 @@
-import { additionBatches, additionRoute } from '../lib/additions';
 import { works } from '../lib/catalog';
 import { absoluteUrl } from '../lib/urls';
 import { wings } from '../data/wings';
@@ -7,7 +6,6 @@ const staticRoutes = [
   '/',
   '/collection/',
   '/newest/',
-  ...additionBatches.map(additionRoute),
   '/wings/',
   ...wings.map((wing) => `/wings/${wing.id}/`),
   '/museum/',

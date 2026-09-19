@@ -9,7 +9,7 @@ export default defineConfig({
   output: 'static',
   integrations: [
     // Keep retired design URLs and staging aliases out of the crawler sitemap.
-    sitemap({ filter: (page) => !page.includes('/v2/') && !page.includes('/v3/') && !page.includes('/wings/unfiled/') && !page.includes('/exhibitions/the-space-between') && !page.includes('/exhibitions/where-is-the-work') }),
+    sitemap({ filter: (page) => !/\/newest\/[^/]+\/?$/.test(new URL(page).pathname) && !page.includes('/v2/') && !page.includes('/v3/') && !page.includes('/wings/unfiled/') && !page.includes('/exhibitions/the-space-between') && !page.includes('/exhibitions/where-is-the-work') }),
   ],
   redirects: {
     '/exhibitions/the-space-between': '/exhibitions/the-price-of-victory/',

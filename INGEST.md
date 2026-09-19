@@ -98,12 +98,17 @@ words. They must not begin or end with a hyphen. Reuse an ID only when adding to
 that same batch; a new import should normally receive a new ID. Each continuation
 keeps the original works' timestamps and stamps only the newly accepted works.
 
-The Newest Additions pages group the actual public catalog membership. Optional
-curated titles, summaries, and `highlightSlugs` belong in `src/data/additions.json`,
-keyed by batch ID; curated metadata is not required for a batch to appear. Keep
-highlight slugs within that batch. Historical records without an ID use day-based
-fallback groups. Existing `docs/ingest/` reports retain their provenance role and
-are not a required input for future additions to appear.
+The Newest Additions page displays only the actual public works from the latest
+batch, with direct links to their work pages. The homepage previews up to four of
+those same pieces. Neither page displays import titles, themes, or summaries.
+Older batches are hidden from Newest Additions; their works remain in the catalog,
+and former batch URLs redirect to `/newest/`. Each new import replaces the current
+selection automatically. Continuing the current batch adds to that selection.
+
+Optional metadata in `src/data/additions.json` and historical batch identities
+remain internal records, not public acquisition pages. Historical records without
+an ID use day-based fallback groups. Existing `docs/ingest/` reports retain their
+provenance role and are not required for future additions to appear.
 
 Manual imports must use the same fields: assign one stable `ingest_batch` ID to
 the accepted batch, one ISO UTC `ingested_at` value to its new records, and the

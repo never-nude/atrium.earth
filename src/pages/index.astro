@@ -1,7 +1,6 @@
 ---
 import Viewer from '../components/Viewer.astro';
 import V3WorkCard from '../components/v3/V3WorkCard.astro';
-import V3AdditionCard from '../components/v3/V3AdditionCard.astro';
 import { latestAddition } from '../lib/additions';
 import V3WingGrid from '../components/v3/V3WingGrid.astro';
 import V3Layout from '../layouts/v3/V3Layout.astro';
@@ -68,9 +67,9 @@ const heroTransform = { ...featuredWork.modelTransform, fit: 1.1 };
     <section class="v3-section v3-section--line v3-additions-home" id="v3-home-content" aria-labelledby="new-title">
       <div class="v3-section-head v3-section-head--split">
         <div><p class="v3-kicker">01 / Newest additions</p><h2 id="new-title" class="v3-display">Just arrived.</h2></div>
-        <a href={withBase('/newest/')}>All newest additions <span aria-hidden="true">→</span></a>
+        <a href={withBase('/newest/')}>View newest additions <span aria-hidden="true">→</span></a>
       </div>
-      <V3AdditionCard batch={latestAddition} featured={true} />
+      <div class="v3-grid">{latestAddition.works.slice(0, 4).map((work) => <V3WorkCard work={work} />)}</div>
     </section>
   )}
 

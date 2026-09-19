@@ -1,17 +1,19 @@
 ---
 import V3Layout from '../../layouts/v3/V3Layout.astro';
-import V3AdditionCard from '../../components/v3/V3AdditionCard.astro';
-import { additionBatches } from '../../lib/additions';
+import V3WorkCard from '../../components/v3/V3WorkCard.astro';
+import { latestAddition } from '../../lib/additions';
+const recentWorks = latestAddition?.works ?? [];
 ---
-<V3Layout title="Newest Additions" description="Discover the latest sculpture added to Atrium. Explore each new group of works and browse the additions archive." image={additionBatches[0]?.highlights[0]?.thumbnailImage}>
+<V3Layout title="Newest Additions" description="Explore the most recent sculptures added to Atrium, each in 3D." image={recentWorks[0]?.thumbnailImage}>
   <section class="v3-page-hero v3-additions-hero" aria-labelledby="additions-title">
     <div>
       <p class="v3-kicker">The collection, growing</p>
       <h1 id="additions-title" class="v3-display">Newest<br />additions.</h1>
-      <p class="v3-editorial">Fresh arrivals, new connections. Explore each addition to the collection, from the latest group back through the archive.</p>
+      <p class="v3-editorial">The latest works to enter the collection. Choose a piece to explore it in 3D.</p>
     </div>
   </section>
-  <section class="v3-additions-archive" aria-label="Additions, newest first">
-    {additionBatches.map((batch, index) => <V3AdditionCard batch={batch} featured={index === 0} />)}
+  <section class="v3-additions-works" aria-labelledby="recent-works-title">
+    <div class="v3-additions-count"><h2 id="recent-works-title">{recentWorks.length} recent works</h2><span>Explore in 3D</span></div>
+    <div class="v3-grid">{recentWorks.map((work, i) => <V3WorkCard work={work} eager={i < 4} />)}</div>
   </section>
 </V3Layout>
