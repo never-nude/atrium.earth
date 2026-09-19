@@ -12,7 +12,7 @@
     "sha256": "ff951cee54400f74c4c5350c2589fcb211ffae01c4a5d38e60cf26f207cf7012"
   },
   "deduplication": "Object URLs, model IDs, titles and makers checked; named near-duplicates reviewed. A different cast of an already represented composition was not counted merely to increase the total. Final accession-level matching remains part of ingest.",
-  "verification_limits": "Object/source research and model-license metadata verified; source thumbnails for the five open-license leads visually inspected. No mesh acquisition, geometric QA or orientation review completed. Publication-metadata.json contains detailed object and scan attribution checks.",
+  "verification_limits": "Published works have acquired model bytes, license evidence, metadata review, multi-angle geometry review, optimized previews and real thumbnails. Unpublished shortlist entries remain research candidates; a model absent from searched sources is not proven unavailable everywhere.",
   "works": [
     {
       "id": 1,
@@ -45,11 +45,18 @@
       "object_url": "https://collections.musee-rodin.fr/en/document/fugit-amor/6385d6c705c32181005ce893",
       "fit": "Core",
       "curatorial_note": "Interlaced adult bodies; an unusually strong composition to examine from several angles.",
-      "model_status": "Not located in this research",
+      "model_status": "Acquired, visually reviewed and imported under CC BY 4.0",
       "image_rights": "Not verified",
-      "acquisition_status": "Research target",
+      "acquisition_status": "Imported: Cantor Foundation bronze, scanned at Portland Art Museum in 2017",
       "catalog_match_slugs": [],
-      "catalog_status": "No match found in 1,205-record snapshot"
+      "catalog_status": "Imported in sensual-sculpture-20260919",
+      "imported_slug": "rodin/fugitive-love-cantor-portland",
+      "acquired_variant": {
+        "title": "Fugitive Love (Fugit Amor)",
+        "date": "Modeled before 1887; cast date unknown",
+        "institution": "Iris & B. Gerald Cantor Foundation",
+        "object_url": "https://portlandartmuseum.org/wp-content/uploads/2023/12/Rodin-Large-Print-Labels.pdf#page=64"
+      }
     },
     {
       "id": 3,
@@ -279,16 +286,17 @@
       "curatorial_note": "A seated adult nude with a turning pose and fallen drapery; contextualize its nineteenth-century Orientalism.",
       "model_status": "Acquired, visually reviewed and imported under CC0 1.0",
       "image_rights": "Not verified",
-      "acquisition_status": "Imported: related anonymous marble inspired by Pradier",
+      "acquisition_status": "Substitute imported: anonymous Figure of an Odalisque inspired by Pradier; exact original target remains unpublished",
       "catalog_match_slugs": [],
-      "catalog_status": "Imported in sensual-sculpture-20260919",
+      "catalog_status": "Thematic substitute imported; exact Pradier work remains a research target",
       "imported_slug": "europe/odalisque-christies-2019",
       "acquired_variant": {
         "title": "Figure of an Odalisque",
         "date": "1825–1850",
         "institution": "Current collection unknown",
         "object_url": "https://www.christies.com/en/lot/lot-6228789"
-      }
+      },
+      "selection_match": "thematic substitute; not the exact Pradier sculpture"
     },
     {
       "id": 15,
@@ -1092,10 +1100,14 @@
     }
   ],
   "publication": {
-    "imported_count": 12,
-    "remaining_candidates": 43,
+    "imported_count": 19,
+    "original_shortlist_compositions_published": 12,
+    "thematic_additions_and_substitutions": 7,
+    "remaining_original_candidates": 43,
+    "addressed_shortlist_slots_including_odalisque_substitute": 13,
+    "unfilled_shortlist_slots": 42,
     "batch": "sensual-sculpture-20260919",
-    "report": "../../docs/ingest/sensual-sculpture-20260919/rest/publication-manifest.json",
-    "note": "Includes museum/cast variants of shortlisted compositions and one anonymous Odalisque inspired by Pradier. Current work records identify the actual captured versions. Remaining candidates are not published."
+    "report": "../../docs/ingest/sensual-sculpture-20260919/final-pass/publication-manifest.json",
+    "note": "The original 55 were a shortlist, not 55 acquired models. Published total includes six new thematic additions and the earlier anonymous Odalisque inspired by Pradier. Exact captured versions are identified in the work records. Login-dependent downloads skipped."
   }
 }

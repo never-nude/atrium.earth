@@ -1,0 +1,71 @@
+{
+  "artist": "Auguste Rodin",
+  "artist_life_dates": "1840–1917",
+  "material": "Bronze",
+  "cast_number": null,
+  "dimensions": null,
+  "accession": null,
+  "scan_venue": "Portland Art Museum",
+  "exhibition": "Rodin: The Human Experience—Selections from the Iris and B. Gerald Cantor Collections",
+  "exhibition_dates": "January 21–April 16, 2017",
+  "scan_creator": "Adam McGee (WWWdotPDXDDDdotCOM / Portland 3D LLC)",
+  "source_url": "https://www.thingiverse.com/thing:2134760",
+  "scan_license": "CC BY 4.0",
+  "scan_license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "scan_license_evidence": "Root verified original Thingiverse 2134760 page in native browser on 2026-09-19, including explicit CC BY link to https://creativecommons.org/licenses/by/4.0/, and used the public Download flow. Downloaded archive LICENSE.txt independently confirms the creator WWWdotPDXDDDdotCOM and Creative Commons Attribution license.",
+  "scan_context": "Creator states Portland Art Museum commissioned scanning of these Cantor loan bronzes in 2017.",
+  "institution_sources": [
+    {
+      "url": "https://portlandartmuseum.org/event/rodin-the-human-experience/",
+      "supports": "Exhibition title/dates and scan venue; Portland 3D Printing Lab collaboration."
+    },
+    {
+      "url": "https://portlandartmuseum.org/wp-content/uploads/2023/12/Rodin-Large-Print-Labels.pdf#page=50",
+      "page": 50,
+      "pdf_zero_based_page": 49,
+      "supports": "Exact exhibition cast: title, model date, bronze material, foundry, cast date where known, lender."
+    },
+    {
+      "url": "https://cantorfoundation.org/the-benedictions/",
+      "supports": "Composition designed in1894 for the unrealized Tower of Labor."
+    }
+  ],
+  "metadata_cautions": [
+    "Portland Art Museum was the 2017 scan venue, not the collection owner.",
+    "Measurements and cast IDs from other museums must not be reused.",
+    "Source STL size in filename is print scaling, not the original bronze dimensions."
+  ],
+  "evidence_capture_note": "Official Portland PDF text retrieved via web open/find. Direct filesystem request returned HTTP403; no local PDF claimed.",
+  "duplicate_check": {
+    "catalog_path": ".tmp/sensual-sculpture-20260919/src/data/catalog.json",
+    "result": "No matching Rodin composition found by titles and aliases.",
+    "catalogRecordsChecked": 1222,
+    "checkedTerms": [
+      "Benedictions",
+      "Bénédictions",
+      "2134760"
+    ],
+    "matchingSlugs": []
+  },
+  "status": "Publication metadata and primary CC BY 4.0 scan license verified; public download and geometry QA handled by root/pipeline.",
+  "slug": "benedictions",
+  "title": "The Benedictions",
+  "date": "Modeled 1894; cast 1955",
+  "cast_date": 1955,
+  "foundry": "Georges Rudier Foundry",
+  "collection": "Iris & B. Gerald Cantor Foundation",
+  "credit_line": "Lent by Iris & B. Gerald Cantor Foundation",
+  "description": "Two winged female figures descend together, their bodies and sweeping wings forming a flowing silhouette. Rodin designed the group to crown an unrealized monument celebrating labor. This bronze was cast in 1955 and scanned during its loan to Portland Art Museum in 2017.",
+  "adult_art_context": "Creator museum photograph shows two adult female bodies with mature proportions and breasts. Their close pose and nudity are non-graphic; no sexual act is depicted. Allegorical winged spirits, not child cherubs.",
+  "primary_pdf_page": 50,
+  "secondary_listing": "https://cults3d.com/en/3d-model/art/benedictions-rodin-portland-art-museum",
+  "secondary_license_note": "Syndicated Cults listing by ArtNerd3D explicitly displays CC BY; Cults license explanation maps CC BY to4.0. Primary Thingiverse must still be checked. MMF28973 displays NC-SA and is not the license route.",
+  "expected_source_file": "Benedictions_10inch_20170218.stl",
+  "artwork_rights": "Rodin composition modeled in 1894; historical work. The 1955 posthumous bronze cast is disclosed. The separate 3D scan is licensed CC BY 4.0.",
+  "attribution": "The Benedictions, Auguste Rodin, modeled 1894, cast 1955, bronze, Georges Rudier Foundry. Lent by Iris & B. Gerald Cantor Foundation to Portland Art Museum, 2017. 3D scan by Adam McGee (WWWdotPDXDDDdotCOM / Portland 3D LLC), via Thingiverse, CC BY 4.0; processed by Atrium.",
+  "visual_reference": "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/final-pass/models/benedictions-reference.jpg",
+  "scan_license_evidence_files": [
+    "../benedictions/LICENSE.txt",
+    "../benedictions/acquired.json"
+  ]
+}

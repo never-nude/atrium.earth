@@ -1,0 +1,53 @@
+{
+  "uid": "63ea41533ffa46c4a925a448d294a3f8",
+  "title": "Drum-frieze from Amaravati",
+  "source_glb": "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/final-pass/pipeline/63ea41533ffa46c4a925a448d294a3f8/source-packed.glb",
+  "source": {
+    "bytes": 56979712,
+    "faces": 1000008,
+    "sha256": "c2d060adc2c248505261ad164d12e3b969614271be8a40230bd7fc8acafff83f",
+    "self_contained": true,
+    "extensions_used": []
+  },
+  "preview_glb": "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/final-pass/pipeline/63ea41533ffa46c4a925a448d294a3f8/preview.glb",
+  "preview": {
+    "bytes": 1831112,
+    "faces": 249997,
+    "sha256": "25085add44a3b80357c2986fb7ab67cad1692a3424bc35cf9919dba3669e045e",
+    "self_contained": true,
+    "extensions_used": [
+      "EXT_texture_webp",
+      "KHR_draco_mesh_compression"
+    ]
+  },
+  "modifications": "Converted deprecated specular-glossiness materials to metallic-roughness where present; retained original geometry or simplified toward 250,000 triangles with error tolerance 0.002; resized textures to maximum 2048 pixels, encoded WebP textures and Draco-compressed geometry.",
+  "commands": [
+    [
+      "/Users/michael/Documents/Atrium.earth/.tmp/sensual-sculpture-20260919/node_modules/.bin/gltf-transform",
+      "metalrough",
+      "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/final-pass/pipeline/63ea41533ffa46c4a925a448d294a3f8/source-packed.glb",
+      "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/final-pass/pipeline/63ea41533ffa46c4a925a448d294a3f8/source-metalrough.glb"
+    ],
+    [
+      "/Users/michael/Documents/Atrium.earth/.tmp/sensual-sculpture-20260919/node_modules/.bin/gltf-transform",
+      "optimize",
+      "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/final-pass/pipeline/63ea41533ffa46c4a925a448d294a3f8/source-metalrough.glb",
+      "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/final-pass/pipeline/63ea41533ffa46c4a925a448d294a3f8/preview.glb",
+      "--compress",
+      "draco",
+      "--texture-compress",
+      "webp",
+      "--texture-size",
+      "2048",
+      "--simplify",
+      "true",
+      "--simplify-ratio",
+      "0.24999800001599987",
+      "--simplify-error",
+      "0.002"
+    ]
+  ],
+  "license_file": "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/final-pass/pipeline/63ea41533ffa46c4a925a448d294a3f8/license.txt",
+  "archive_provenance": "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/final-pass/pipeline/63ea41533ffa46c4a925a448d294a3f8-acquired.json",
+  "visual_review": "Not performed; root must inspect orientation, framing, texture/material and capture quality."
+}

@@ -1,0 +1,54 @@
+{
+  "stage": "acquired_preview_not_published",
+  "prepared_on": "2026-09-19",
+  "source": {
+    "path": "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/final-pass/metadata/F0465034-999C-4AF0-8996-A28F47FF67F4/source.glb",
+    "bytes": 5554992,
+    "sha256": "b3bdec2c5722a719f81df30a3dccb6579b040990a3eb1670b1cc7e97fb7df0ef",
+    "triangles": 177209,
+    "extensionsUsed": [],
+    "externalReferences": []
+  },
+  "preview": {
+    "path": "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/final-pass/metadata/F0465034-999C-4AF0-8996-A28F47FF67F4/preview.glb",
+    "bytes": 528072,
+    "sha256": "c4be5e83176d17946f5c6258c45020ec5498e91d55f28ce58202aec42900a9e1",
+    "triangles": 177209,
+    "extensionsUsed": [
+      "EXT_texture_webp",
+      "KHR_draco_mesh_compression"
+    ],
+    "externalReferences": [],
+    "textures": [
+      {
+        "width": 2048,
+        "height": 1392,
+        "format": "WEBP"
+      }
+    ]
+  },
+  "command": [
+    "/Users/michael/Documents/Atrium.earth/.tmp/sensual-sculpture-20260919/node_modules/.bin/gltf-transform",
+    "optimize",
+    "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/final-pass/metadata/F0465034-999C-4AF0-8996-A28F47FF67F4/source.glb",
+    "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/final-pass/metadata/F0465034-999C-4AF0-8996-A28F47FF67F4/preview.glb",
+    "--compress",
+    "draco",
+    "--texture-compress",
+    "webp",
+    "--texture-size",
+    "2048",
+    "--simplify",
+    "false"
+  ],
+  "transforms": [
+    "gltf-transform optimize with simplification disabled",
+    "Draco geometry compression",
+    "Textures resized to at most 2048 pixels and converted to WebP"
+  ],
+  "orientation": "No deliberate rotation or physical scaling; source scene orientation retained. Viewer QA pending.",
+  "geometry": "No crop, generated geometry, physical scaling, or deliberate simplification.",
+  "calibration": "Not calibrated to physical dimensions.",
+  "visual_qa": "Pending root viewer review.",
+  "all_faces_preserved": true
+}

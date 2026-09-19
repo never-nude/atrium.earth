@@ -1,6 +1,6 @@
 # Atrium: 55 sensual sculpture candidates
 
-Researched 19 September 2026. **12 works are now imported in this batch; 43 candidates remain unpublished.** The imports include alternate museum versions and an anonymous Odalisque inspired by Pradier, identified in their object records. [Publication manifest](../../docs/ingest/sensual-sculpture-20260919/rest/publication-manifest.json).
+Researched 19 September 2026. **19 works are imported in this batch: 12 original shortlist compositions and seven thematic additions or substitutes.** Forty-three exact original selections remain unpublished; the earlier anonymous Odalisque addresses one slot as a clearly identified substitute. [Publication manifest](../../docs/ingest/sensual-sculpture-20260919/final-pass/publication-manifest.json).
 
 Checked against the 1,205-record repository catalog. No exact object-URL, model-ID, or title-and-maker duplicate was found. Near-duplicates such as Rodin’s *The Kiss*, *Eternal Spring*, Clésinger’s *Reclining Bacchante*, and Canova’s *Three Graces* were left out. The Pradier and Carpeaux works below are different compositions.
 
@@ -14,16 +14,16 @@ Checked against the 1,205-record repository catalog. No exact object-URL, model-
 
 | No. | Work | Model publisher | Model license | Acquisition note |
 | --- | --- | --- | --- | --- |
-| 41 | [Aphrodite](https://sketchfab.com/3d-models/1927489-aphrodite-50080844b44d4e1eb244ba33fc00a452) | Cleveland Museum of Art | CC0 Public Domain | Not acquired; download access required |
-| 38 | [Eve Tempted](https://sketchfab.com/3d-models/eve-tempted-c-1874-by-jean-baptiste-carpeaux-b875536cc0c741349fe632b32e4ec975) | Minneapolis Institute of Art | Creative Commons Attribution-ShareAlike | Not acquired; download access required |
-| 39 | [The Three Graces](https://sketchfab.com/3d-models/les-trois-graces-c-1872-ce-44a0231626254f76938048d902154610) | Minneapolis Institute of Art | Creative Commons Attribution-ShareAlike | Not acquired; download access required |
-| 40 | [Bacchante](https://sketchfab.com/3d-models/bacchante-a6fbf51d8c694fb99a67580ad2c138b3) | Virtual Museums of Małopolska | Creative Commons Attribution | Not acquired; download access required |
-| 10 | [Psyche](https://sketchfab.com/3d-models/psyche-by-auguste-rodin-0bf828410cc14c959fdf732e213742de) | avi | Creative Commons Attribution | Not acquired; download access required |
+| 41 | [Aphrodite](https://sketchfab.com/3d-models/1927489-aphrodite-50080844b44d4e1eb244ba33fc00a452) | Cleveland Museum of Art | CC0 Public Domain | Acquired from public archive; reviewed and imported |
+| 38 | [Eve Tempted](https://sketchfab.com/3d-models/eve-tempted-c-1874-by-jean-baptiste-carpeaux-b875536cc0c741349fe632b32e4ec975) | Minneapolis Institute of Art | Creative Commons Attribution-ShareAlike | Acquired from public archive; reviewed and imported |
+| 39 | [The Three Graces](https://sketchfab.com/3d-models/les-trois-graces-c-1872-ce-44a0231626254f76938048d902154610) | Minneapolis Institute of Art | Creative Commons Attribution-ShareAlike | Acquired from public archive; reviewed and imported |
+| 40 | [Bacchante](https://sketchfab.com/3d-models/bacchante-a6fbf51d8c694fb99a67580ad2c138b3) | Virtual Museums of Małopolska | Creative Commons Attribution | Acquired from public archive; reviewed and imported |
+| 10 | [Psyche](https://sketchfab.com/3d-models/psyche-by-auguste-rodin-0bf828410cc14c959fdf732e213742de) | avi | Creative Commons Attribution | Acquired from public archive; reviewed and imported |
 | 36 | [The River](https://sketchfab.com/3d-models/aristide-maillol-de-rivier-2955b1aeb601465a931f3b9806b08d7d) | all3d.world | Creative Commons Attribution | Hold: underlying-work rights require review |
 | 37 | [L’Air](https://sketchfab.com/3d-models/l-air-0fb0fa35d2dc420c91fed126da303888) | pattarrian | Creative Commons Attribution | Hold: underlying-work rights require review |
 | 11 | [The Waltz](https://sketchfab.com/3d-models/la-valse-8534af4c08854ebd8e1c87ff065c6c93) | Alienor.org, Conseil des musées | CC Attribution-NonCommercial-NoDerivs | Hold this model; seek an open alternative |
 
-A downloadable flag means the provider currently advertises a download. Acquisition was attempted for all five open-license leads: no model bytes were obtained. Source thumbnails and object identity were reviewed; mesh quality and orientation remain unreviewed. See [download findings](acquisition.json) and [verified metadata](publication-metadata.md).
+All five initial open-license leads were acquired from a public Creative Commons archive and published after geometry and orientation review. Fugitive Love was subsequently acquired through a public Thingiverse download. Six additional thematic works were added in the final pass; see the publication manifest above. Login-dependent downloads were skipped at the user’s request. See [initial acquisition findings](acquisition.json) and [verified metadata](publication-metadata.md).
 
 ## All 55 works
 

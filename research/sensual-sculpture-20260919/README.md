@@ -1,15 +1,17 @@
 # Sensual sculpture research — 19 September 2026
 
-**12 works imported; 43 shortlist candidates remain unpublished.** The latest import adds 11 reviewed models to the already published Eternal Idol. Some are alternate museum versions; the Odalisque is an anonymous nineteenth-century marble inspired by Pradier. The live object records identify the captured versions.
+**19 works imported in total.** The final pass adds seven reviewed public-download models: Fugitive Love, Naiad, Île-de-France, Yakshi, an Amaravati drum frieze, The Benedictions and Iris.
 
-- [Curatorial shortlist](shortlist.md): all 55 targets.
-- [Structured shortlist](shortlist.json): updated per-work acquisition status.
-- [Latest publication manifest](../../docs/ingest/sensual-sculpture-20260919/rest/publication-manifest.json): files, hashes, licenses, source records and visual review.
-- [Latest import report](../../docs/ingest/sensual-sculpture-20260919/rest/README.md).
-- [Original Eternal Idol report](../../docs/ingest/sensual-sculpture-20260919/acquisition.json).
+Twelve published works match original shortlist compositions, including alternate museum versions. Seven are thematic additions or substitutes, including the earlier anonymous Odalisque inspired by Pradier. Forty-three exact original selections remain unpublished; counting the Odalisque substitution gives 13 addressed shortlist slots and 42 unfilled slots. The original 55 were research candidates, not acquired models.
 
-The initial five Sketchfab leads were recovered from a public Creative Commons backup archive, with original embedded licenses. Four additional compositions and Inner Voice were acquired from public savable Polycam captures under CC BY 4.0. The Odalisque STL came from the publisher’s CC0 MyMiniFactory download.
+- [Curatorial shortlist](shortlist.md): all 55 original targets.
+- [Structured shortlist](shortlist.json): acquisition status and substitution notes.
+- [Latest publication manifest](../../docs/ingest/sensual-sculpture-20260919/final-pass/publication-manifest.json): seven new derivatives, hashes, licenses and visual review.
+- [Latest import report](../../docs/ingest/sensual-sculpture-20260919/final-pass/README.md).
+- [Previous 11-work report](../../docs/ingest/sensual-sculpture-20260919/rest/README.md).
 
-Mia derivatives and their rendered thumbnails retain CC BY-SA 4.0. Maillol’s Night uses an independently licensed community scan; it does not use the museum’s photograph. The later River and Air remain on their existing rights hold. Restricted Claudel scans remain excluded. Unpublished targets need usable source files, reuse rights, or both; they have no placeholder live work pages.
+All final-pass downloads used public access. Login-dependent downloads were skipped at the user’s request. Exact targets still need usable, appropriately licensed model files; some searched candidates have restrictive licenses, unresolved identity or poor geometry. Search coverage does not establish that no other source exists.
 
-The pre-import catalog baseline was 1,205 records at commit `345462faf340a199dd570736ad101e8fabae17ff`. It is now 1,217 records (1,205 public), including these 12 additions. Earlier records and batch timestamps are preserved except for a sourced accession and execution-credit correction to the Eternal Idol.
+Each public record credits the scan separately from the historical artwork. Rodin’s three untextured scans have limited surface detail. The Amaravati scan records the carved front with an incomplete reverse. Yakshi’s date and origin remain undocumented. Later Maillol works The River and L’Air retain their rights-review hold.
+
+The catalog now has 1,224 records (1,212 public), including this 19-work batch. All 1,217 records present before the final pass, their timestamps and existing runtime metadata are unchanged.

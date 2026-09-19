@@ -1,0 +1,97 @@
+{
+  "reviewed_on": "2026-09-19",
+  "slug": "asia/yakshi-wesleyan-ceas-1988-4-1",
+  "recommendation": "pass_for_catalogue_display_with_scan_limitations",
+  "model_path": "/Users/michael/Documents/Atrium.earth/.tmp/sensual-sculpture-20260919/public/models/previews/asia/yakshi-wesleyan-ceas-1988-4-1/preview.glb",
+  "sha256": "500f4611596eb5b210e81e5c35be945c445efcc2e1c2c982c93d5e8a493aaf2f",
+  "recommended_transform": {
+    "upAxis": "y",
+    "modelRotation": [
+      -90,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "viewDirection": [
+      0.15,
+      0.12,
+      1
+    ],
+    "fit": 1.13
+  },
+  "hero_image": "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/final-pass/metadata/yakshi-orientation/rxneg90/thumb.webp",
+  "alternative_straight_front": {
+    "viewDirection": [
+      0,
+      0.06,
+      1
+    ],
+    "image": "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/final-pass/metadata/yakshi-orientation/front/thumb.webp"
+  },
+  "orientation_finding": "The surviving fragment is upright after a -90-degree X rotation. The previous +90 X setting presented its undecorated back; turning it to the front revealed an upside-down carved figure. The final transform is verified by the head, raised arm/tree, drapery and architectural border.",
+  "rotation_logic": "Source scene has nested Sketchfab_model -90 X rotation. Viewer adds modelRotation and yaw to the parent Euler rotation, in XYZ order. After a 90-degree X rotation, changing Euler Y yaw does not turn around the upright world Y axis; this explains the old three views all showing the back at rotated angles. Keep yaw zero and vary viewDirection for independent side/rear checks.",
+  "framing": "Whole surviving sculptural fragment, including lateral broken continuation, is in frame. No floor fragment, museum support or loose scan fragment visible. Face, torso and draped legs are readable on the principal front; do not crop to only the female figure.",
+  "geometry_review": {
+    "front": "Main relief surface and carved figure are present and coherent in near-frontal and both oblique views. Historic worn/broken areas are preserved; no geometry invented.",
+    "side": "Thickness and broken edge visible. Small dark gaps on rear edge and lower corner remain in source scan. No large detached sheet or environment context.",
+    "rear": "Mostly flat roughly worked backing with inventory paint visible. Several dark/open-looking triangular gaps and seams occur near the lower edge and across the rear ridges. These are scan limitations and prevent a claim of watertight or complete archival geometry, but do not obscure the carved front."
+  },
+  "inspected_corrected_views": [
+    {
+      "name": "hero",
+      "camera": [
+        0.15,
+        0.12,
+        1
+      ],
+      "path": "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/final-pass/metadata/yakshi-orientation/rxneg90/thumb.webp"
+    },
+    {
+      "name": "front",
+      "camera": [
+        0,
+        0.06,
+        1
+      ],
+      "path": "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/final-pass/metadata/yakshi-orientation/front/thumb.webp"
+    },
+    {
+      "name": "right-oblique",
+      "camera": [
+        0.8,
+        0.2,
+        1
+      ],
+      "path": "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/final-pass/metadata/yakshi-orientation/right-oblique/thumb.webp"
+    },
+    {
+      "name": "left-oblique",
+      "camera": [
+        -0.8,
+        0.2,
+        1
+      ],
+      "path": "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/final-pass/metadata/yakshi-orientation/left-oblique/thumb.webp"
+    },
+    {
+      "name": "side",
+      "camera": [
+        1,
+        0.15,
+        0.05
+      ],
+      "path": "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/final-pass/metadata/yakshi-orientation/side/thumb.webp"
+    },
+    {
+      "name": "rear",
+      "camera": [
+        -0.35,
+        0.2,
+        -1
+      ],
+      "path": "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/final-pass/metadata/yakshi-orientation/rear/thumb.webp"
+    }
+  ],
+  "method": "Independent scratch renderer copied from render-thumbnails.mjs, on separate local port/profile/output path, using current model-render-utils.js and appearance profile. No shared orientations.json, public model or public thumbnail changed.",
+  "scope": "Visual orientation and catalogue presentation audit, not a conservation or manufacturing geometry assessment."
+}
