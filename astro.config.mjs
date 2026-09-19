@@ -9,9 +9,10 @@ export default defineConfig({
   output: 'static',
   integrations: [
     // Keep retired design URLs and staging aliases out of the crawler sitemap.
-    sitemap({ filter: (page) => !page.includes('/v2/') && !page.includes('/v3/') && !page.includes('/wings/unfiled/') }),
+    sitemap({ filter: (page) => !page.includes('/v2/') && !page.includes('/v3/') && !page.includes('/wings/unfiled/') && !page.includes('/exhibitions/the-space-between') }),
   ],
   redirects: {
+    '/exhibitions/the-space-between': '/exhibitions/where-is-the-work/',
     // The Night Vitrine staged under /v3 is now the primary site.
     '/v3': '/',
     '/v3/collection': '/collection',
