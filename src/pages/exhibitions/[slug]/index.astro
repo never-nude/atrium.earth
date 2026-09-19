@@ -1,6 +1,7 @@
 ---
 import V3Layout from '../../../layouts/v3/V3Layout.astro';
 import Viewer from '../../../components/Viewer.astro';
+import ExhibitionComparisons from '../../../components/ExhibitionComparisons.astro';
 import { exhibitions, nextExhibition, type V3Exhibition, v3ExhibitionRoute, v3WorkRoute } from '../../../lib/v3';
 import { withBase } from '../../../lib/urls';
 
@@ -12,6 +13,9 @@ type Props = { exhibition: V3Exhibition };
 const { exhibition } = Astro.props;
 const lead = exhibition.works[0];
 const next = nextExhibition(exhibition);
+const comparisons = exhibition.comparisons ?? [];
+const firstStop = comparisons.length ? '#pair-1' : '#stop-1';
+const progressCount = comparisons.length || exhibition.works.length;
 const stops = exhibition.works.map((work, index) => ({
   work,
   index: index + 1,
@@ -22,7 +26,16 @@ const stops = exhibition.works.map((work, index) => ({
 
 <V3Layout title={exhibition.title} description={exhibition.summary} image={lead.thumbnailImage}>
   <header class="v3-exhero v3-exhero--interactive" style={`--ex-accent:${exhibition.accent}`}>
-    <div class="v3-exhero__viewer v3-exhibition-viewer v3-float v3-float--soft">
+    {comparisons.length ? (
+      <div class="exhibition-duet" aria-label="Featured works, side by side">
+        {comparisons[0].works.map((work) => (
+          <figure class="v3-float v3-float--soft">
+            <img src={withBase(work.thumbnailImage)} alt={work.title} width="720" height="900" loading="eager" decoding="async" />
+            <figcaption>{exhibition.workNotes?.[work.slug]?.artist || work.maker} · {work.title}</figcaption>
+          </figure>
+        ))}
+      </div>
+    ) : <div class="v3-exhero__viewer v3-exhibition-viewer v3-float v3-float--soft">
       <Viewer
         glb={lead.modelGlb ? withBase(lead.modelGlb) : ''}
         poster={withBase(lead.thumbnailImage)}
@@ -37,28 +50,36 @@ const stops = exhibition.works.map((work, index) => ({
         modelTransform={lead.modelTransform}
         materialAppearance={lead.materialAppearance}
       />
-    </div>
+    </div>}
     <div class="v3-exhero__copy">
       <p class="v3-kicker">Exhibition {exhibition.number} · {exhibition.kicker}</p>
       <h1 class="v3-display">{exhibition.title}</h1>
       <p class="v3-exhero__summary">{exhibition.summary}</p>
-      <p class="v3-exhero__meta"><span>{stops.length} works</span><span>Allow 15–30 minutes</span><span>3D views and records</span></p>
-      <a href="#stop-1">Begin exhibition <span>↓</span></a>
+      <p class="v3-exhero__meta"><span>{stops.length} works{comparisons.length ? ` · ${comparisons.length} pairings` : ''}</span><span>Allow 15–30 minutes</span><span>3D views and records</span></p>
+      <a href={firstStop}>Begin exhibition <span>↓</span></a>
     </div>
   </header>
 
   <section class="v3-exintro">
     <p class="v3-kicker">About this exhibition</p>
-    <p class="v3-editorial">{exhibition.invitation}</p>
+    <div>
+      <p class="v3-editorial">{exhibition.invitation}</p>
+      {exhibition.viewingNote && <p class="exhibition-viewing-note">{exhibition.viewingNote}</p>}
+      {comparisons.length > 0 && (
+        <nav class="exhibition-pair-index" aria-label="Exhibition pairings">
+          {comparisons.map((pair, index) => <a href={`#pair-${index + 1}`}><span>{String(index + 1).padStart(2, '0')}</span>{pair.title}</a>)}
+        </nav>
+      )}
+    </div>
   </section>
 
   <nav class="v3-progress" data-v3-progress aria-hidden="true" style={`--ex-accent:${exhibition.accent}`}>
-    <span class="v3-progress__count"><b data-v3-progress-now>1</b>/{stops.length}</span>
+    <span class="v3-progress__count"><b data-v3-progress-now>1</b>/{progressCount}</span>
     <span class="v3-progress__track"><span class="v3-progress__fill" data-v3-progress-fill></span></span>
     <span class="v3-progress__label">{exhibition.shortTitle}</span>
   </nav>
 
-  <div class="v3-walk" style={`--ex-accent:${exhibition.accent}`}>
+  {comparisons.length ? <ExhibitionComparisons exhibition={exhibition} /> : <div class="v3-walk" style={`--ex-accent:${exhibition.accent}`}>
     {stops.map((stop) => (
       <article class="v3-stop v3-reveal" id={`stop-${stop.index}`} data-v3-stop={stop.index} aria-label={`Stop ${stop.index}: ${stop.work.title}`}>
         <div class="v3-stop__viewer v3-exhibition-viewer v3-float" style={`view-transition-name: w-${stop.work.id};`}>
@@ -85,7 +106,7 @@ const stops = exhibition.works.map((work, index) => ({
         </div>
       </article>
     ))}
-  </div>
+  </div>}
 
   <footer class="v3-coda" style={`--ex-accent:${exhibition.accent}`}>
     <p class="v3-kicker">Further consideration</p>
@@ -122,3 +143,20 @@ const stops = exhibition.works.map((work, index) => ({
     }
   </script>
 </V3Layout>
+
+<style>
+  .exhibition-duet { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(16px, 4vw, 60px); width: min(100%, 1100px); margin: 0 auto; }
+  .exhibition-duet figure { min-width: 0; margin: 0; }
+  .exhibition-duet img { display: block; width: 100%; height: clamp(240px, 52svh, 620px); object-fit: contain; }
+  .exhibition-duet figcaption { margin-top: 12px; color: var(--v3-muted); font-size: .7rem; line-height: 1.5; text-align: center; }
+  .exhibition-viewing-note { max-width: 64ch; margin: 28px 0 0; color: var(--v3-muted); font-size: .92rem; line-height: 1.6; }
+  .exhibition-pair-index { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 24px; max-width: 800px; margin-top: 36px; }
+  .exhibition-pair-index a { display: flex; gap: 16px; align-items: baseline; min-height: 44px; padding: 14px 0; border-top: 1px solid var(--v3-line); color: var(--v3-ink); font-size: .85rem; line-height: 1.4; text-decoration: none; }
+  .exhibition-pair-index a:hover { color: var(--v3-signal); }
+  .exhibition-pair-index span { color: var(--v3-muted); font-size: .67rem; }
+  @media (max-width: 650px) {
+    .exhibition-duet img { height: clamp(215px, 72vw, 390px); }
+    .exhibition-duet figcaption { font-size: .62rem; }
+    .exhibition-pair-index { grid-template-columns: 1fr; }
+  }
+</style>

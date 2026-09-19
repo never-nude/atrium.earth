@@ -5,7 +5,20 @@ import { exhibitions as baseExhibitions, featuredWork, neighborsFor, type V2Exhi
 export type V3Exhibition = V2Exhibition & {
   coda: string;
   captions: Record<string, string>;
+  comparisons?: V3ExhibitionComparison[];
+  workNotes?: Record<string, ExhibitionWorkNote>;
+  viewingNote?: string;
 };
+
+type ExhibitionWorkNote = { artist?: string; medium?: string; modelNote?: string };
+type ComparisonSeed = {
+  title: string;
+  summary: string;
+  lookFor: string;
+  workSlugs: [string, string];
+  sources: Array<{ title: string; url: string }>;
+};
+export type V3ExhibitionComparison = Omit<ComparisonSeed, 'workSlugs'> & { works: [Work, Work] };
 
 export type V3Pairing = {
   title: string;
@@ -18,7 +31,9 @@ type WallText = { invitation: string; coda: string; captions: Array<{ slug: stri
 type NewExhibitionSeed = {
   slug: string; title: string; shortTitle?: string; kicker: string; summary: string;
   invitation: string; coda: string; accent: string;
-  works: Array<{ slug: string; text: string }>;
+  works: Array<{ slug: string; text: string } & ExhibitionWorkNote>;
+  comparisons?: ComparisonSeed[];
+  viewingNote?: string;
 };
 type PairingSeed = { title: string; a: string; b: string; line: string };
 
@@ -29,6 +44,22 @@ const pairingSeeds = (v3Content as { pairings: PairingSeed[] }).pairings;
 
 function captionMap(entries: Array<{ slug: string; text: string }>): Record<string, string> {
   return Object.fromEntries(entries.map((entry) => [entry.slug, entry.text]));
+}
+
+function resolveComparisons(seed: NewExhibitionSeed): V3ExhibitionComparison[] | undefined {
+  if (!seed.comparisons?.length) return undefined;
+  const selected = seed.works.map((entry) => entry.slug);
+  const paired = seed.comparisons.flatMap((pair) => pair.workSlugs);
+  if (new Set(paired).size !== paired.length || paired.length !== selected.length || selected.some((slug) => !paired.includes(slug))) {
+    throw new Error(`Exhibition ${seed.slug}: each selected work must appear in exactly one comparison.`);
+  }
+  return seed.comparisons.map(({ workSlugs, ...pair }) => {
+    const [a, b] = workSlugs.map((slug) => workBySlug(slug));
+    if (workSlugs.length !== 2 || !a?.modelGlb || !b?.modelGlb) {
+      throw new Error(`Exhibition ${seed.slug}: comparison "${pair.title}" requires two available 3D works.`);
+    }
+    return { ...pair, works: [a, b] };
+  });
 }
 
 const enriched: V3Exhibition[] = baseExhibitions.map((exhibition) => {
@@ -70,6 +101,8 @@ const additionalExhibitions: V3Exhibition[] = additionalExhibitionSeeds.map((see
   shortTitle: seed.shortTitle || seed.title,
   works: seed.works.map((entry) => workBySlug(entry.slug)).filter((work): work is Work => Boolean(work)),
   captions: captionMap(seed.works),
+  comparisons: resolveComparisons(seed),
+  workNotes: Object.fromEntries(seed.works.map(({ slug, artist, medium, modelNote }) => [slug, { artist, medium, modelNote }])),
 }));
 
 // Guard the build against future catalog re-slugs: a room with no resolvable

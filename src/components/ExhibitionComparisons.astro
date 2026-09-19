@@ -1,0 +1,109 @@
+---
+import Viewer from './Viewer.astro';
+import { type V3Exhibition, v3WorkRoute } from '../lib/v3';
+import { withBase } from '../lib/urls';
+
+type Props = { exhibition: V3Exhibition };
+const { exhibition } = Astro.props;
+const comparisons = exhibition.comparisons ?? [];
+---
+
+<div class="v3-walk comparison-walk" style={`--ex-accent:${exhibition.accent}`}>
+  {comparisons.map((pair, index) => (
+    <section class="comparison v3-reveal" id={`pair-${index + 1}`} data-v3-stop={index + 1} aria-labelledby={`pair-title-${index + 1}`}>
+      <header class="comparison__heading">
+        <p class="v3-kicker">Pairing {String(index + 1).padStart(2, '0')} / {String(comparisons.length).padStart(2, '0')}</p>
+        <h2 id={`pair-title-${index + 1}`}>{pair.title}</h2>
+        <p class="comparison__summary v3-wall">{pair.summary}</p>
+      </header>
+
+      <div class="comparison__models">
+        {pair.works.map((work) => (
+          <figure class="comparison__work" aria-labelledby={`pair-work-${work.id}`}>
+            <figcaption>
+              <p class="comparison__artist">{exhibition.workNotes?.[work.slug]?.artist || work.maker}</p>
+              <h3 id={`pair-work-${work.id}`}>{work.title}</h3>
+            </figcaption>
+            <div class="comparison__viewer v3-exhibition-viewer v3-float">
+              <Viewer
+                glb={withBase(work.modelGlb)}
+                poster={withBase(work.thumbnailImage)}
+                title={work.title}
+                hud={false}
+                immersive={true}
+                autoStart="visible"
+                autoRotate={false}
+                wheelZoom={false}
+                posterLoading="lazy"
+                upAxis={work.modelUpAxis}
+                modelTransform={work.modelTransform}
+                materialAppearance={work.materialAppearance}
+              />
+            </div>
+          </figure>
+        ))}
+      </div>
+
+      <p class="comparison__look"><span>Look closely</span>{pair.lookFor}</p>
+
+      <div class="comparison__notes">
+        {pair.works.map((work) => (
+          <div class="comparison__note">
+            <h3>{work.title}</h3>
+            <p class="comparison__meta">{[work.displayDate, exhibition.workNotes?.[work.slug]?.medium || work.medium].filter(Boolean).join(' · ')}</p>
+            <p class="v3-wall">{exhibition.captions[work.slug]}</p>
+            {exhibition.workNotes?.[work.slug]?.modelNote && <p class="comparison__model-note">{exhibition.workNotes[work.slug].modelNote}</p>}
+            <a class="v3-stop__open" href={withBase(v3WorkRoute(work))} aria-label={`View object record: ${work.title}`}>View object record <span aria-hidden="true">↗</span></a>
+          </div>
+        ))}
+      </div>
+
+      {pair.sources.length > 0 && (
+        <details class="comparison__sources">
+          <summary>Sources &amp; further reading</summary>
+          <ul>{pair.sources.map((source) => <li><a href={source.url}>{source.title}</a></li>)}</ul>
+        </details>
+      )}
+    </section>
+  ))}
+</div>
+
+<style>
+  .comparison-walk { gap: clamp(90px, 12vw, 180px); }
+  .comparison { width: 100%; max-width: 1440px; margin: 0 auto; padding-top: 30px; border-top: 1px solid var(--v3-line); scroll-margin-top: 80px; }
+  .comparison__heading { max-width: 940px; margin-bottom: 36px; }
+  .comparison__heading .v3-kicker { color: var(--ex-accent); }
+  .comparison__heading h2 { margin: 18px 0 24px; font-family: var(--v3-serif); font-size: clamp(2.2rem, 4.7vw, 5rem); font-weight: 500; line-height: 1.04; letter-spacing: -.035em; text-wrap: balance; }
+  .comparison__summary { max-width: 64ch; line-height: 1.5; }
+  .comparison__models, .comparison__notes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(16px, 4vw, 64px); }
+  .comparison__work { min-width: 0; margin: 0; }
+  .comparison__work figcaption { min-height: 100px; padding: 16px 0; border-top: 1px solid var(--v3-line); }
+  .comparison__artist { margin: 0 0 10px; color: var(--ex-accent); font-size: .68rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+  .comparison__work h3 { margin: 0; color: var(--v3-ink); font-family: var(--v3-serif); font-size: clamp(1.15rem, 2vw, 2.1rem); font-weight: 500; line-height: 1.12; }
+  .comparison__viewer { height: clamp(300px, 48vw, 630px); min-width: 0; }
+  .comparison__viewer :global([data-tool-wire]) { display: none; }
+  .comparison__look { margin: 28px 0 40px; padding: 20px 0; border-top: 1px solid var(--v3-line); border-bottom: 1px solid var(--v3-line); color: var(--v3-ink); font-family: var(--v3-serif); font-size: clamp(1.05rem, 1.5vw, 1.35rem); line-height: 1.5; }
+  .comparison__look span { display: block; margin-bottom: 9px; color: var(--ex-accent); font-family: var(--v3-sans); font-size: .63rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
+  .comparison__note { min-width: 0; }
+  .comparison__note h3 { margin: 0 0 10px; font-family: var(--v3-serif); font-size: clamp(1.4rem, 2vw, 2rem); font-weight: 500; }
+  .comparison__meta { margin: 0 0 18px; color: var(--v3-muted); font-size: .76rem; line-height: 1.5; }
+  .comparison__note .v3-wall { max-width: 48ch; line-height: 1.55; }
+  .comparison__model-note { margin: 18px 0 8px; color: var(--v3-muted); font-size: .83rem; line-height: 1.5; }
+  .comparison__sources { margin-top: 36px; color: var(--v3-muted); font-size: .83rem; line-height: 1.6; }
+  .comparison__sources summary { width: fit-content; min-height: 44px; padding: 10px 0; cursor: pointer; }
+  .comparison__sources ul { margin: 0; padding-left: 20px; }
+  .comparison__sources a { color: var(--v3-muted); text-underline-offset: 3px; }
+  .comparison__sources a:hover { color: var(--ex-accent); }
+  @media (max-width: 650px) {
+    .comparison__heading { margin-bottom: 26px; }
+    .comparison__models { gap: 12px; }
+    .comparison__work figcaption { min-height: 128px; }
+    .comparison__artist { font-size: .57rem; letter-spacing: .04em; }
+    .comparison__viewer { height: clamp(235px, 76vw, 430px); }
+    .comparison__viewer :global([data-tool-rotate]) { display: none; }
+    .comparison__viewer :global(.immersive-tools) { gap: 4px; width: 100%; justify-content: center; }
+    .comparison__viewer :global(.immersive-tools button) { padding-inline: 8px; min-width: 44px; font-size: .58rem; }
+    .comparison__notes { grid-template-columns: 1fr; gap: 36px; }
+    .comparison__look { margin-top: 20px; }
+  }
+</style>
