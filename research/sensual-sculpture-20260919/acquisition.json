@@ -1,0 +1,122 @@
+{
+  "checked_at": "2026-09-19",
+  "acquired_count": 0,
+  "status": "No model file acquired; not ingest-ready.",
+  "checks": {
+    "objaverse": "All five exact UIDs absent from 798,759-object object-paths.json.gz mapping.",
+    "sketchfab_official_ui": "Aphrodite page offers Download 3D Model but clicking opens Log in to Sketchfab. No signed-in session. No authentication bypass attempted.",
+    "zenodo": "Web searches of UIDs and titles did not locate matching archives. Direct Zenodo API search timed out; this does not establish archive absence."
+  },
+  "items": [
+    {
+      "sketchfab_uid": "50080844b44d4e1eb244ba33fc00a452",
+      "title": "1927.489 Aphrodite",
+      "source_model_url": "https://sketchfab.com/3d-models/1927489-aphrodite-50080844b44d4e1eb244ba33fc00a452",
+      "creator": "Cleveland Museum of Art",
+      "creator_url": "https://sketchfab.com/clevelandart",
+      "license": {
+        "uri": "https://api.sketchfab.com/v3/licenses/7c23a1ba438d4306920229c12afcb5f9",
+        "label": "CC0 Public Domain",
+        "fullName": "CC0 Public Domain",
+        "requirements": "Credit is not mandatory. Commercial use is allowed.",
+        "url": "http://creativecommons.org/publicdomain/zero/1.0/",
+        "slug": "cc0"
+      },
+      "source_metadata_path": "sources/model-50080844b44d4e1eb244ba33fc00a452.json",
+      "source_metadata_sha256": "47d3b04f3e6969a54f839f226bb4719572da04e2ffb9cf43b9ebe5fd3671c146",
+      "objaverse_mapping_found": false,
+      "status": "not_acquired",
+      "asset_path": null,
+      "asset_sha256": null,
+      "notes": "Official Cleveland Museum object page exposes only the same Sketchfab model; no GLB or glTF link. Official Sketchfab Download 3D Model button opens a login dialog; no authenticated browser session is available."
+    },
+    {
+      "sketchfab_uid": "b875536cc0c741349fe632b32e4ec975",
+      "title": "Eve Tempted, c. 1874 by Jean-Baptiste Carpeaux",
+      "source_model_url": "https://sketchfab.com/3d-models/eve-tempted-c-1874-by-jean-baptiste-carpeaux-b875536cc0c741349fe632b32e4ec975",
+      "creator": "Minneapolis Institute of Art",
+      "creator_url": "https://sketchfab.com/artsmia",
+      "license": {
+        "uri": "https://api.sketchfab.com/v3/licenses/b9ddc40b93e34cdca1fc152f39b9f375",
+        "label": "CC Attribution-ShareAlike",
+        "fullName": "Creative Commons Attribution-ShareAlike",
+        "requirements": "Author must be credited. Modified versions must have the same license. Commercial use is allowed.",
+        "url": "http://creativecommons.org/licenses/by-sa/4.0/",
+        "slug": "by-sa"
+      },
+      "source_metadata_path": "sources/model-b875536cc0c741349fe632b32e4ec975.json",
+      "source_metadata_sha256": "117384c9372170ee34a80112fa2eddd5c9c82b95df55ee9968b516b5efc1737b",
+      "objaverse_mapping_found": false,
+      "status": "not_acquired",
+      "asset_path": null,
+      "asset_sha256": null,
+      "notes": "No public file found through the museum object records, museum API or official Kintsugi public asset index. Authenticated Sketchfab download remains the usable next route. The absence of a located file does not imply no archive exists."
+    },
+    {
+      "sketchfab_uid": "44a0231626254f76938048d902154610",
+      "title": "Les Trois Grâces, c. 1872 CE",
+      "source_model_url": "https://sketchfab.com/3d-models/les-trois-graces-c-1872-ce-44a0231626254f76938048d902154610",
+      "creator": "Minneapolis Institute of Art",
+      "creator_url": "https://sketchfab.com/artsmia",
+      "license": {
+        "uri": "https://api.sketchfab.com/v3/licenses/b9ddc40b93e34cdca1fc152f39b9f375",
+        "label": "CC Attribution-ShareAlike",
+        "fullName": "Creative Commons Attribution-ShareAlike",
+        "requirements": "Author must be credited. Modified versions must have the same license. Commercial use is allowed.",
+        "url": "http://creativecommons.org/licenses/by-sa/4.0/",
+        "slug": "by-sa"
+      },
+      "source_metadata_path": "sources/model-44a0231626254f76938048d902154610.json",
+      "source_metadata_sha256": "83be4cda293a2f3cab4805749b1a95e1b5626563cd6ef2209633ee82e65456a7",
+      "objaverse_mapping_found": false,
+      "status": "not_acquired",
+      "asset_path": null,
+      "asset_sha256": null,
+      "notes": "No public file found through the museum object records, museum API or official Kintsugi public asset index. Authenticated Sketchfab download remains the usable next route. The absence of a located file does not imply no archive exists."
+    },
+    {
+      "sketchfab_uid": "a6fbf51d8c694fb99a67580ad2c138b3",
+      "title": "Bacchante",
+      "source_model_url": "https://sketchfab.com/3d-models/bacchante-a6fbf51d8c694fb99a67580ad2c138b3",
+      "creator": "Virtual Museums of Małopolska",
+      "creator_url": "https://sketchfab.com/WirtualneMuzeaMalopolski",
+      "license": {
+        "uri": "https://api.sketchfab.com/v3/licenses/322a749bcfa841b29dff1e8a1bb74b0b",
+        "label": "CC Attribution",
+        "fullName": "Creative Commons Attribution",
+        "requirements": "Author must be credited. Commercial use is allowed.",
+        "url": "http://creativecommons.org/licenses/by/4.0/",
+        "slug": "by"
+      },
+      "source_metadata_path": "sources/model-a6fbf51d8c694fb99a67580ad2c138b3.json",
+      "source_metadata_sha256": "90d875bafad21a1cf5317006071a87381f354a84733eed131b67be185d13d644",
+      "objaverse_mapping_found": false,
+      "status": "not_acquired",
+      "asset_path": null,
+      "asset_sha256": null,
+      "notes": "Official public API record https://api.muzea.malopolska.pl/api/object/2 exposes the matching Sketchfab embed. additionalImages[].files arrays empty; no separate model download."
+    },
+    {
+      "sketchfab_uid": "0bf828410cc14c959fdf732e213742de",
+      "title": "Psyche by Auguste Rodin",
+      "source_model_url": "https://sketchfab.com/3d-models/psyche-by-auguste-rodin-0bf828410cc14c959fdf732e213742de",
+      "creator": "avi",
+      "creator_url": "https://sketchfab.com/avi",
+      "license": {
+        "uri": "https://api.sketchfab.com/v3/licenses/322a749bcfa841b29dff1e8a1bb74b0b",
+        "label": "CC Attribution",
+        "fullName": "Creative Commons Attribution",
+        "requirements": "Author must be credited. Commercial use is allowed.",
+        "url": "http://creativecommons.org/licenses/by/4.0/",
+        "slug": "by"
+      },
+      "source_metadata_path": "sources/model-0bf828410cc14c959fdf732e213742de.json",
+      "source_metadata_sha256": "9eaa74ffaf3af41d96ebe67b36d46978224381548e1310a1be505340a2bf8ad1",
+      "objaverse_mapping_found": false,
+      "status": "not_acquired",
+      "asset_path": null,
+      "asset_sha256": null,
+      "notes": "Author description identifies Polycam capture but provides no public Polycam download link. No matching licensed public archive identified."
+    }
+  ]
+}
