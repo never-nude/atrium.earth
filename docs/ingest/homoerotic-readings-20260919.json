@@ -1,0 +1,298 @@
+{
+  "batch": "homoerotic-readings-20260919",
+  "date": "2026-09-19",
+  "ingested_at": "2026-09-19T06:46:38.429Z",
+  "requested_count": 60,
+  "added": 3,
+  "scope_adjustment": "User explicitly chose 3D only; fewer than 60 if needed.",
+  "selection_basis": "Documented homoerotic iconography or later queer reception, distinct from claims about original intent or personal identity.",
+  "license_policy": "CC0/Public Domain/CC BY only; exact archived license and checksum retained for the Hercules model.",
+  "records": [
+    {
+      "record": {
+        "slug": "europe/saint-sebastian-cleveland",
+        "collection": "europe",
+        "title": "Saint Sebastian",
+        "artist": "Unknown German sculptor",
+        "year": "c. 1600–1620",
+        "year_sort": 1610,
+        "material": "Painted and gilded wood",
+        "dimensions": "H 139.5 × W 54.6 × D 45.1 cm",
+        "museum": "The Cleveland Museum of Art",
+        "geography": "Germany",
+        "original_location": "Germany",
+        "source_institution": "The Cleveland Museum of Art",
+        "source_url": "https://sketchfab.com/3d-models/71ac4b0c1d8145fcaa28bab36903853d",
+        "source_record_url": "https://www.clevelandart.org/art/1980.41",
+        "related_source_record_urls": [
+          "https://www.clevelandart.org/art/1980.41",
+          "https://www.vam.ac.uk/articles/va-trail-out-in-the-museum",
+          "https://huggingface.co/datasets/allenai/objaverse/blob/21e4e142159e2153706c23a3a02e55cec5591cea/glbs/000-072/71ac4b0c1d8145fcaa28bab36903853d.glb"
+        ],
+        "accession": "1980.41",
+        "scan_source": "Photogrammetric scan of the painted and gilded wooden sculpture.",
+        "scan_author": "Cleveland Museum of Art / Dale Utt",
+        "license": "CC0 1.0",
+        "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "license_tier": 1,
+        "tier": 3,
+        "note": "The adult martyr twists against the tree to which he is bound. This German devotional carving brings together a flowing pose and sharply cut hair and drapery. Saint Sebastian later became a recurring figure in homoerotic art and queer reception; that later reading is distinct from this work’s original religious purpose.",
+        "ingest_batch": "homoerotic-readings-20260919",
+        "ingested_at": "2026-09-19T06:46:38.429Z",
+        "ingested": "2026-09-19",
+        "attribution": "Saint Sebastian. Artwork: Unknown German sculptor. 3D model: Cleveland Museum of Art / Dale Utt; CC0 1.0. Atrium derivative: geometry optimized for browser display.",
+        "model": {
+          "sourcePath": "europe/saint-sebastian-cleveland/71ac4b0c1d8145fcaa28bab36903853d.glb",
+          "format": "glb",
+          "sizeBytes": 5116808
+        },
+        "index": 1179
+      },
+      "context": {
+        "source_url": "https://www.vam.ac.uk/articles/va-trail-out-in-the-museum",
+        "evidence": "The V&A discusses Saint Sebastian’s established homoerotic reception. This is iconographic/reception context for the adult martyr, not a claim about the Cleveland sculptor’s original intent.",
+        "strength": "iconographic reception, not exact-object scholarship"
+      },
+      "source_download": "https://huggingface.co/datasets/allenai/objaverse/resolve/21e4e142159e2153706c23a3a02e55cec5591cea/glbs/000-072/71ac4b0c1d8145fcaa28bab36903853d.glb",
+      "source_integrity": {
+        "uid": "71ac4b0c1d8145fcaa28bab36903853d",
+        "download_url": "https://huggingface.co/datasets/allenai/objaverse/resolve/21e4e142159e2153706c23a3a02e55cec5591cea/glbs/000-072/71ac4b0c1d8145fcaa28bab36903853d.glb",
+        "archive_revision": "21e4e142159e2153706c23a3a02e55cec5591cea",
+        "archive_license": "cc0",
+        "checksum": "sha256:55478be6877dbe77aea2725d3126a7b3d1194bb60e37b9d1a92db8f94c84b623",
+        "sha256": "55478be6877dbe77aea2725d3126a7b3d1194bb60e37b9d1a92db8f94c84b623",
+        "bytes": 5116808,
+        "faces": 19990,
+        "self_contained": true,
+        "checked_at": "2026-09-19"
+      },
+      "preview": {
+        "sha256": "920ce05223b39468fb7442e22483975643c6a8dcfcbbfcfa6e00ded21882c9a1",
+        "bytes": 944244,
+        "faces": 19990
+      },
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "fit": 1.16,
+        "viewDirection": [
+          0.35,
+          0.2,
+          1
+        ]
+      },
+      "visual_review": "Four angles checked; complete sculpture, correct orientation, real rendered WebP thumbnail."
+    },
+    {
+      "record": {
+        "slug": "europe/hercules-wrestling-antaeus-smk",
+        "collection": "europe",
+        "title": "Hercules Wrestling with Antaeus",
+        "artist": "Unknown Netherlandish artist",
+        "year": "c.1600 (1598–1602)",
+        "year_sort": 1600,
+        "material": "Alabaster",
+        "dimensions": "H53.3 × W19.5 × D25cm",
+        "museum": "SMK – National Gallery of Denmark, Copenhagen",
+        "geography": "Netherlands, probably Southern Netherlands",
+        "original_location": "Netherlands, probably Southern Netherlands",
+        "source_institution": "SMK – National Gallery of Denmark, Copenhagen",
+        "source_url": "https://sketchfab.com/3d-models/b1c98260b8ce472bb62b960f205fa8f9",
+        "source_record_url": "https://open.smk.dk/artwork/image/KMS5513",
+        "related_source_record_urls": [
+          "https://open.smk.dk/artwork/image/KMS5513",
+          "https://www.vam.ac.uk/articles/va-trail-out-in-the-museum",
+          "https://api.smk.dk/api/v1/art/?object_number=KMS5513",
+          "https://huggingface.co/datasets/allenai/objaverse/blob/21e4e142159e2153706c23a3a02e55cec5591cea/glbs/000-027/b1c98260b8ce472bb62b960f205fa8f9.glb"
+        ],
+        "accession": "KMS5513",
+        "scan_source": "Photogrammetric scan of the alabaster sculpture and its base.",
+        "scan_author": "Geoffrey Marchal",
+        "license": "CC BY 4.0",
+        "license_url": "https://creativecommons.org/licenses/by/4.0/",
+        "license_tier": 2,
+        "tier": 3,
+        "note": "Hercules lifts Antaeus from the earth, the source of the giant’s strength. Their interlocked bodies give the combat a striking physical intimacy. Renaissance statuettes of this subject have a documented history as signifiers of same-sex attraction; this is a contextual reading, rather than proof of this particular maker’s intention.",
+        "ingest_batch": "homoerotic-readings-20260919",
+        "ingested_at": "2026-09-19T06:46:38.429Z",
+        "ingested": "2026-09-19",
+        "attribution": "Hercules Wrestling with Antaeus. Artwork: Unknown Netherlandish artist. 3D model: Geoffrey Marchal; CC BY 4.0. Atrium derivative: geometry optimized for browser display. Exact model archived under CC BY 4.0 in Objaverse; the current Sketchfab listing carries different terms.",
+        "model": {
+          "sourcePath": "europe/hercules-wrestling-antaeus-smk/b1c98260b8ce472bb62b960f205fa8f9.glb",
+          "format": "glb",
+          "sizeBytes": 11113920
+        },
+        "index": 1180
+      },
+      "context": {
+        "source_url": "https://www.vam.ac.uk/articles/va-trail-out-in-the-museum",
+        "evidence": "The V&A identifies Renaissance collector statuettes of Hercules, including its Hercules and Antaeus, as historical signifiers of same-sex attraction. This SMK alabaster is a different version of the same adult wrestling subject; label the connection as a contextual reading, not exact-work proven intention.",
+        "strength": "subject/type-level Renaissance context"
+      },
+      "source_download": "https://huggingface.co/datasets/allenai/objaverse/resolve/21e4e142159e2153706c23a3a02e55cec5591cea/glbs/000-027/b1c98260b8ce472bb62b960f205fa8f9.glb",
+      "source_integrity": {
+        "uid": "b1c98260b8ce472bb62b960f205fa8f9",
+        "download_url": "https://huggingface.co/datasets/allenai/objaverse/resolve/21e4e142159e2153706c23a3a02e55cec5591cea/glbs/000-027/b1c98260b8ce472bb62b960f205fa8f9.glb",
+        "archive_revision": "21e4e142159e2153706c23a3a02e55cec5591cea",
+        "archive_license": "by",
+        "checksum": "sha256:a45d76dae5dfb767e611e04492b36084ac5ef2bbd5aa30ff2244a6ca2a3eeeb2",
+        "sha256": "a45d76dae5dfb767e611e04492b36084ac5ef2bbd5aa30ff2244a6ca2a3eeeb2",
+        "bytes": 11113920,
+        "faces": 305402,
+        "self_contained": true,
+        "checked_at": "2026-09-19"
+      },
+      "preview": {
+        "sha256": "5f01ff651064d06f096cbc6807d486fae486791b6fd74ef537c42c4bc2ebf68c",
+        "bytes": 1384500,
+        "faces": 179995
+      },
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "fit": 1.16,
+        "viewDirection": [
+          0.35,
+          0.2,
+          1
+        ]
+      },
+      "visual_review": "Four angles checked; complete sculpture, correct orientation, real rendered WebP thumbnail."
+    },
+    {
+      "record": {
+        "slug": "michelangelo/bearded-captive-smk-cast",
+        "collection": "michelangelo",
+        "title": "Bearded Captive (SMK cast)",
+        "artist": "Michelangelo Buonarroti; plaster cast after the original",
+        "year": "c. 1530–1534 (original); cast 2002",
+        "year_sort": 1532,
+        "material": "Plaster cast after marble original",
+        "dimensions": "H 259 × W 88 × D 99 cm (cast)",
+        "museum": "SMK – National Gallery of Denmark, Royal Cast Collection",
+        "geography": "Italy; cast in Florence for SMK, Denmark",
+        "original_location": "Galleria dell’Accademia, Florence",
+        "source_institution": "SMK – National Gallery of Denmark, Royal Cast Collection",
+        "source_url": "https://open.smk.dk/en/artwork/3d/KAS2359",
+        "source_record_url": "https://api.smk.dk/api/v1/art/?object_number=KAS2359",
+        "related_source_record_urls": [
+          "https://api.smk.dk/api/v1/art/?object_number=KAS2359",
+          "https://smarthistory.org/reframing-art-history/an-art-history-of-gender-identity-and-sexuality/",
+          "https://www.galleriaaccademiafirenze.it/en/collections/",
+          "https://www.galleriaaccademiafirenze.it/opere/prigione-barbuto-michelangelo/"
+        ],
+        "accession": "KAS2359",
+        "scan_source": "3D scan of SMK’s 2002 plaster cast after the marble original; untextured geometry, displayed with a neutral plaster material.",
+        "scan_author": "SMK / Scan the World",
+        "license": "Public Domain Mark 1.0",
+        "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "license_tier": 1,
+        "tier": 3,
+        "note": "A mature male figure twists within an unfinished block. The tension between the emerging body and rough stone has invited readings of confinement, desire and release, including queer art-historical readings of Michelangelo’s Captives. This scan records SMK’s plaster cast; it does not record the marble original directly.",
+        "ingest_batch": "homoerotic-readings-20260919",
+        "ingested_at": "2026-09-19T06:46:38.429Z",
+        "ingested": "2026-09-19",
+        "attribution": "Bearded Captive (SMK cast). Artwork: Michelangelo Buonarroti; plaster cast after the original. 3D model: SMK / Scan the World; Public Domain Mark 1.0. Atrium derivative: geometry optimized for browser display.",
+        "model": {
+          "sourcePath": "michelangelo/bearded-captive-smk-cast/SMK-KAS2359.stl",
+          "format": "stl",
+          "sizeBytes": 20000084
+        },
+        "index": 1181
+      },
+      "context": {
+        "source_url": "https://smarthistory.org/reframing-art-history/an-art-history-of-gender-identity-and-sexuality/",
+        "evidence": "Art historian Bryan C. Keene proposes a queer perspective on Michelangelo’s illustrated Captives series. Series-level queer reception, not an asserted portrait of a lover.",
+        "strength": "scholarly series-level interpretation"
+      },
+      "source_download": "https://api.smk.dk/api/v1/download-3d/70795d22k_KAS2359_small.stl",
+      "source_integrity": {
+        "uid": "SMK-KAS2359",
+        "download_url": "https://api.smk.dk/api/v1/download-3d/70795d22k_KAS2359_small.stl",
+        "source_format": "stl",
+        "sha256": "26a9f1db6ddf75c2b7abf673e3b8ab9d77590896f784bfda2f82d996978552db",
+        "bytes": 20000084,
+        "faces": 400000,
+        "bounds": [
+          [
+            -0.0037003126926720142,
+            -0.0044134873896837234,
+            0.0003065863566007465
+          ],
+          [
+            36.4911994934082,
+            48.945674896240234,
+            129.99923706054688
+          ]
+        ],
+        "self_contained": true,
+        "license": "Public Domain Mark 1.0",
+        "conversion": "Binary STL to GLB with source positions and facet normals; neutral display material, no captured texture."
+      },
+      "preview": {
+        "sha256": "44a642adee5bc760544425c7eca4126a618322e9159fd1d37dd1ae71f2ba2c10",
+        "bytes": 7420068,
+        "faces": 400000
+      },
+      "orientation": {
+        "upAxis": "z",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "fit": 1.16,
+        "viewDirection": [
+          0.35,
+          0.2,
+          1
+        ]
+      },
+      "visual_review": "Four angles checked; complete sculpture, correct orientation, real rendered WebP thumbnail."
+    }
+  ],
+  "exhibition_placements": [
+    {
+      "exhibition": "sacred-forms",
+      "slug": "europe/saint-sebastian-cleveland",
+      "caption": "Painted skin and gilded drapery make the martyr’s body vivid against the branching tree. This was a devotional image; its later queer reception is a separate chapter in how Saint Sebastian has been viewed."
+    },
+    {
+      "exhibition": "bodies-in-motion",
+      "slug": "europe/hercules-wrestling-antaeus-smk",
+      "caption": "Hercules must hold Antaeus clear of the earth to defeat him. Turning the group reveals the grips and counterweights that keep two struggling bodies suspended above a small base."
+    },
+    {
+      "exhibition": "the-work-of-the-surface",
+      "slug": "michelangelo/bearded-captive-smk-cast",
+      "caption": "The torso emerges from rough, unfinished stone. SMK’s plaster cast preserves that contrast in relief, allowing the viewer to trace the transition between worked anatomy and the surrounding block."
+    }
+  ],
+  "not_added": [
+    {
+      "work": "Jason with the Golden Fleece",
+      "reason": "Large missing areas in archived mesh; exact-model quality review failed."
+    },
+    {
+      "work": "The Gates of Hell, Stanford scan",
+      "reason": "Missing summit and extensive holes; attached unrelated sculpture fragments."
+    },
+    {
+      "work": "Gay Liberation",
+      "reason": "Available official 3D data is CC BY-NC-SA, outside current import filter."
+    },
+    {
+      "work": "San Ildefonso group / Castor and Pollux",
+      "reason": "Already represented in Atrium; another similarly titled scan depicts a different horse-taming group."
+    }
+  ],
+  "female_couple_search": "Strong relevant works were found, but none yet passed all availability, open-license, duplicate and completeness checks. They were not replaced with unrelated female nudes."
+}
