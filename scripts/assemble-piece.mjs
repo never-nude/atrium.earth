@@ -2,6 +2,7 @@
 import { copyFile, mkdir, writeFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
+import { batchIdFromArgs, createIngestBatch } from './ingest-batch.mjs';
 import {
   catalogIndexes,
   candidateIsKnown,
@@ -26,6 +27,7 @@ import {
 } from './ingest-utils.mjs';
 
 const args = parseArgs();
+const ingestBatch = createIngestBatch({ id: batchIdFromArgs(process.argv.slice(2)) });
 const stageDir = path.resolve(repoRoot, args.stage || process.env.ATRIUM_INGEST_DIR || defaultStageDir);
 const inputPath = path.resolve(repoRoot, args.input || path.join(stageDir, 'fetched.json'));
 const reportPath = path.resolve(repoRoot, args.report || path.join(stageDir, 'last-report.md'));
@@ -162,7 +164,7 @@ function catalogEntry(candidate, archiveRel, sizeBytes) {
     dimensions: candidate.dimensions || '',
     tier: 3,
     license_tier: candidate.license_tier || licenseTier(`${candidate.license || ''} ${candidate.license_url || ''}`),
-    ingested: new Date().toISOString().slice(0, 10),
+    ...ingestBatch,
     index: 0,
     total: 0,
     period: candidate.period || periodFor(yearSort),
@@ -271,6 +273,7 @@ const indexes = catalogIndexes(catalog);
 const report = {
   schema: 'atrium-auto-ingest-report/1',
   generated_at: new Date().toISOString(),
+  ...ingestBatch,
   accepted: [],
   rejected: [],
   needs_orientation: [],

@@ -75,6 +75,42 @@ works only where the theme fits, with a caption explaining that connection.
 Distinguish scans, reconstructions, details, and virtual impressions in the record.
 Do not use a scan's publication or collection date as the artwork's creation date.
 
+## Newest Additions batches
+
+Both `npm run ingest` and `npm run ingest:assemble` automatically give every
+newly accepted work the same `ingest_batch` ID and full UTC `ingested_at` timestamp
+for that run. The existing `ingested` field remains the corresponding UTC date.
+Generated IDs include the timestamp and a unique suffix, so separate imports on
+the same day remain separate additions. Duplicate or rejected works are not
+restamped; dry runs and runs with no accepted additions do not change the catalog.
+
+To name a batch or deliberately continue it across several imports, pass the
+same ID to each command:
+
+```bash
+npm run ingest -- --batch=geometric-sculpture-2026-09-19
+npm run ingest:assemble -- --batch=geometric-sculpture-2026-09-19
+```
+
+`ATRIUM_INGEST_BATCH` is the environment equivalent; `--batch` takes precedence.
+IDs must contain 1–120 lowercase letters or digits, with single hyphens between
+words. They must not begin or end with a hyphen. Reuse an ID only when adding to
+that same batch; a new import should normally receive a new ID. Each continuation
+keeps the original works' timestamps and stamps only the newly accepted works.
+
+The Newest Additions pages group the actual public catalog membership. Optional
+curated titles, summaries, and `highlightSlugs` belong in `src/data/additions.json`,
+keyed by batch ID; curated metadata is not required for a batch to appear. Keep
+highlight slugs within that batch. Historical records without an ID use day-based
+fallback groups. Existing `docs/ingest/` reports retain their provenance role and
+are not a required input for future additions to appear.
+
+Manual imports must use the same fields: assign one stable `ingest_batch` ID to
+the accepted batch, one ISO UTC `ingested_at` value to its new records, and the
+matching `YYYY-MM-DD` value in `ingested`. Include these fields in the catalog
+commit alongside the new records. Do not change existing import identities when
+repairing metadata, rerendering thumbnails, or replacing a model derivative.
+
 ## Field semantics
 
 - `tier` = curatorial prominence (1 featured … 3 default). Ingest always sets 3; promote by hand.
@@ -89,4 +125,5 @@ Do not use a scan's publication or collection date as the artwork's creation dat
 | `SOURCE_ATRIUM_DIR` | `../atrium` | raw model archive (also read by models:preview) |
 | `ATRIUM_VAULT_REPO` | `never-nude/atrium-vault` | release asset downloads |
 | `GITHUB_TOKEN` | — | required for private vault downloads |
+| `ATRIUM_INGEST_BATCH` | generated unique ID | intentionally name or continue an import batch; overridden by `--batch` |
 | `CHROME_BIN` | macOS Chrome path | renderer for images:renders |

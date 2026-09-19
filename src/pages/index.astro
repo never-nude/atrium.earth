@@ -1,9 +1,11 @@
 ---
 import Viewer from '../components/Viewer.astro';
 import V3WorkCard from '../components/v3/V3WorkCard.astro';
+import V3AdditionCard from '../components/v3/V3AdditionCard.astro';
+import { latestAddition } from '../lib/additions';
 import V3WingGrid from '../components/v3/V3WingGrid.astro';
 import V3Layout from '../layouts/v3/V3Layout.astro';
-import { collectionCount, exhibitions, homepageFeaturedWork as featuredWork, newToCollection, pairings, v3ExhibitionRoute, v3WorkRoute, works } from '../lib/v3';
+import { collectionCount, exhibitions, homepageFeaturedWork as featuredWork, pairings, v3ExhibitionRoute, v3WorkRoute, works } from '../lib/v3';
 import { withBase } from '../lib/urls';
 import { arVrFeatured, arVrCount, arVrVerifiedCount } from '../lib/spatial-catalog';
 
@@ -62,10 +64,20 @@ const heroTransform = { ...featuredWork.modelTransform, fit: 1.1 };
     <a class="v3-hero__continue" href="#v3-home-content">Explore more <span>↓</span></a>
   </section>
 
-  <section class="v3-section v3-spatial-feature v3-section--line" id="v3-home-content" aria-labelledby="spatial-feature-title">
+  {latestAddition && (
+    <section class="v3-section v3-section--line v3-additions-home" id="v3-home-content" aria-labelledby="new-title">
+      <div class="v3-section-head v3-section-head--split">
+        <div><p class="v3-kicker">01 / Newest additions</p><h2 id="new-title" class="v3-display">Just arrived.</h2></div>
+        <a href={withBase('/newest/')}>All newest additions <span aria-hidden="true">→</span></a>
+      </div>
+      <V3AdditionCard batch={latestAddition} featured={true} />
+    </section>
+  )}
+
+  <section class="v3-section v3-spatial-feature v3-section--line" aria-labelledby="spatial-feature-title">
     <div class="v3-section-head v3-section-head--split">
       <div>
-        <p class="v3-kicker">01 / AR / VR</p>
+        <p class="v3-kicker">02 / AR / VR</p>
         <h2 id="spatial-feature-title" class="v3-display">See sculpture<br />in your space.</h2>
       </div>
       <a href={withBase('/ar-vr/')}>Explore {arVrCount} works <span aria-hidden="true">→</span></a>
@@ -82,7 +94,7 @@ const heroTransform = { ...featuredWork.modelTransform, fit: 1.1 };
   <section class="v3-section v3-section--line" aria-labelledby="wings-home-title">
     <div class="v3-section-head v3-section-head--split">
       <div>
-        <p class="v3-kicker">02 / Wings</p>
+        <p class="v3-kicker">03 / Wings</p>
         <h2 id="wings-home-title" class="v3-display">A permanent place for every work.</h2>
       </div>
       <a href={withBase('/wings/')}>All wings →</a>
@@ -93,7 +105,7 @@ const heroTransform = { ...featuredWork.modelTransform, fit: 1.1 };
   {pairings.length > 0 && (
   <section class="v3-section v3-section--line" aria-labelledby="pairs-title">
     <div class="v3-section-head">
-      <p class="v3-kicker">03 / Comparisons</p>
+      <p class="v3-kicker">04 / Comparisons</p>
       <h2 id="pairs-title" class="v3-display">Two works, considered together.</h2>
     </div>
     <div class="v3-pairs">
@@ -122,7 +134,7 @@ const heroTransform = { ...featuredWork.modelTransform, fit: 1.1 };
   <section class="v3-section v3-section--line" aria-labelledby="exhibitions-home-title">
     <div class="v3-section-head v3-section-head--split">
       <div>
-        <p class="v3-kicker">04 / Exhibitions</p>
+        <p class="v3-kicker">05 / Exhibitions</p>
         <h2 id="exhibitions-home-title" class="v3-display">Guided ways through the collection.</h2>
       </div>
       <a href={withBase('/exhibitions/')}>All exhibitions →</a>
@@ -144,15 +156,6 @@ const heroTransform = { ...featuredWork.modelTransform, fit: 1.1 };
     </div>
   </section>
 
-  <section class="v3-section v3-section--line" aria-labelledby="new-title">
-    <div class="v3-section-head v3-section-head--split">
-      <div><p class="v3-kicker">05 / Recently added</p><h2 id="new-title" class="v3-display">New works in the collection.</h2></div>
-      <a href={withBase('/collection/')}>View all {collectionCount} →</a>
-    </div>
-    <div class="v3-rail">
-      {newToCollection.slice(0, 8).map((work, index) => <V3WorkCard work={work} eager={index < 3} />)}
-    </div>
-  </section>
 
   <section class="v3-section v3-random" aria-labelledby="random-title">
     <p class="v3-kicker">06 / Random selection</p>

@@ -1,0 +1,17 @@
+---
+import V3Layout from '../../layouts/v3/V3Layout.astro';
+import V3AdditionCard from '../../components/v3/V3AdditionCard.astro';
+import { additionBatches } from '../../lib/additions';
+---
+<V3Layout title="Newest Additions" description="Discover the latest sculpture added to Atrium. Explore each new group of works and browse the additions archive." image={additionBatches[0]?.highlights[0]?.thumbnailImage}>
+  <section class="v3-page-hero v3-additions-hero" aria-labelledby="additions-title">
+    <div>
+      <p class="v3-kicker">The collection, growing</p>
+      <h1 id="additions-title" class="v3-display">Newest<br />additions.</h1>
+      <p class="v3-editorial">Fresh arrivals, new connections. Explore each addition to the collection, from the latest group back through the archive.</p>
+    </div>
+  </section>
+  <section class="v3-additions-archive" aria-label="Additions, newest first">
+    {additionBatches.map((batch, index) => <V3AdditionCard batch={batch} featured={index === 0} />)}
+  </section>
+</V3Layout>

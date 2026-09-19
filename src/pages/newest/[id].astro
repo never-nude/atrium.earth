@@ -1,0 +1,31 @@
+---
+import V3Layout from '../../layouts/v3/V3Layout.astro';
+import V3WorkCard from '../../components/v3/V3WorkCard.astro';
+import { additionBatches, additionRoute, formatAdditionDate, type AdditionBatch } from '../../lib/additions';
+import { withBase } from '../../lib/urls';
+export function getStaticPaths() {
+  return additionBatches.map((batch, index) => ({ params: { id: batch.id }, props: { batch, index } }));
+}
+type Props = { batch: AdditionBatch; index: number };
+const { batch, index } = Astro.props;
+const newer = additionBatches[index - 1];
+const older = additionBatches[index + 1];
+---
+<V3Layout title={batch.title} description={`${batch.summary} Explore ${batch.works.length} works added ${formatAdditionDate(batch.date)}.`} image={batch.highlights[0]?.thumbnailImage}>
+  <section class="v3-page-hero v3-additions-hero" aria-labelledby="batch-title">
+    <div>
+      <a class="v3-additions-back" href={withBase('/newest/')}>← All newest additions</a>
+      <p class="v3-kicker"><time datetime={batch.date}>{formatAdditionDate(batch.date)}</time> · {batch.works.length} works</p>
+      <h1 id="batch-title" class="v3-display">{batch.title}</h1>
+      <p class="v3-editorial">{batch.summary}</p>
+    </div>
+  </section>
+  <section class="v3-additions-works" aria-labelledby="batch-works-title">
+    <div class="v3-additions-count"><h2 id="batch-works-title">All {batch.works.length} works</h2><span>Explore in 3D</span></div>
+    <div class="v3-grid">{batch.works.map((work, i) => <V3WorkCard work={work} eager={i < 4} />)}</div>
+  </section>
+  <nav class="v3-additions-pagination" aria-label="More additions">
+    {newer ? <a href={withBase(additionRoute(newer))}><span>← Newer addition</span><strong>{newer.title}</strong></a> : <a href={withBase('/newest/')}><span>← Browse the archive</span><strong>All newest additions</strong></a>}
+    {older && <a href={withBase(additionRoute(older))}><span>Earlier addition →</span><strong>{older.title}</strong></a>}
+  </nav>
+</V3Layout>

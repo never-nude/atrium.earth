@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build && node ./scripts/write-redirects.mjs && node ./scripts/prune-remote-assets.mjs",
+    "test:additions": "node ./scripts/test-additions.mjs",
     "test:wings": "node --experimental-strip-types ./scripts/test-wings.ts",
     "preview": "astro preview",
     "data:smk": "node ./scripts/enrich-smk.mjs",
