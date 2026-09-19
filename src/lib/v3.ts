@@ -16,7 +16,7 @@ export type V3Pairing = {
 
 type WallText = { invitation: string; coda: string; captions: Array<{ slug: string; text: string }>; workSlugs?: string[]; summary?: string };
 type NewExhibitionSeed = {
-  slug: string; title: string; kicker: string; summary: string;
+  slug: string; title: string; shortTitle?: string; kicker: string; summary: string;
   invitation: string; coda: string; accent: string;
   works: Array<{ slug: string; text: string }>;
 };
@@ -24,6 +24,7 @@ type PairingSeed = { title: string; a: string; b: string; line: string };
 
 const wallTexts = (v3Content as { wallTexts: Record<string, WallText> }).wallTexts;
 const newExhibitionSeed = (v3Content as { newExhibition: NewExhibitionSeed }).newExhibition;
+const additionalExhibitionSeeds = (v3Content as { additionalExhibitions?: NewExhibitionSeed[] }).additionalExhibitions ?? [];
 const pairingSeeds = (v3Content as { pairings: PairingSeed[] }).pairings;
 
 function captionMap(entries: Array<{ slug: string; text: string }>): Record<string, string> {
@@ -63,9 +64,17 @@ const otherKingdom: V3Exhibition = {
   captions: captionMap(newExhibitionSeed.works),
 };
 
+const additionalExhibitions: V3Exhibition[] = additionalExhibitionSeeds.map((seed, index) => ({
+  ...seed,
+  number: String(enriched.length + 2 + index).padStart(2, '0'),
+  shortTitle: seed.shortTitle || seed.title,
+  works: seed.works.map((entry) => workBySlug(entry.slug)).filter((work): work is Work => Boolean(work)),
+  captions: captionMap(seed.works),
+}));
+
 // Guard the build against future catalog re-slugs: a room with no resolvable
 // works drops out gracefully instead of throwing at prerender (works[0]).
-export const exhibitions: V3Exhibition[] = [...enriched, otherKingdom].filter(
+export const exhibitions: V3Exhibition[] = [...enriched, otherKingdom, ...additionalExhibitions].filter(
   (exhibition) => exhibition.works.length > 0,
 );
 
