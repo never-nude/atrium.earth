@@ -61,6 +61,20 @@ reported but skipped at fetch time. The generated PR body lives at
 `.atrium-ingest/last-report.md` and lists provenance, license, integrity, and
 orientation decisions for every accepted or rejected candidate.
 
+## Acquisition priorities (owner direction, September 2026)
+
+Future batches should broaden the collection across regions, cultures, periods,
+artists, and materials, with substantial contemporary representation. Prefer
+artists associated with Dia Beacon when suitable openly licensed models are
+available; their works may come from other collections. This is a preference,
+not a reason to relax source, license, duplicate, or visual-quality checks.
+
+Assign every addition through the existing wing rules using the work's origin,
+not the location of the holding museum. Review the curated exhibitions and add
+works only where the theme fits, with a caption explaining that connection.
+Distinguish scans, reconstructions, details, and virtual impressions in the record.
+Do not use a scan's publication or collection date as the artwork's creation date.
+
 ## Field semantics
 
 - `tier` = curatorial prominence (1 featured … 3 default). Ingest always sets 3; promote by hand.
