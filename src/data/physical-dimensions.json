@@ -84226,5 +84226,1656 @@
     "note": "Publisher’s approximate height for the complete monument; not a measured calibration.",
     "checked": "2026-09-19",
     "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+  },
+  "asia/amitabha-hancui-british-museum": {
+    "dimensions": "Height 5.78 m",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.britishmuseum.org/collection/object/A_1938-0715-1",
+    "note": "The museum dimensions field records 5.78 m. The model contains the full extant statue and lotus base without a tall modern pedestal or captured floor. Its complete Y span is therefore the reference. Missing hands are historical object losses, not omitted scan regions. The curator prose on the same record loosely says almost 8 m; the explicit dimensions field is used.",
+    "checked": "2026-09-19",
+    "spatialNote": "Starting scale uses a documented museum measurement and a reviewed model extent. Proportions are preserved.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 5.78,
+        "unit": "m",
+        "scope": "whole extant statue including lotus base",
+        "sourceUrls": [
+          "https://www.britishmuseum.org/collection/object/A_1938-0715-1"
+        ]
+      }
+    ],
+    "spatial": {
+      "axis": "y",
+      "meters": 5.78,
+      "measurementIndex": 0,
+      "previewUrl": "/models/previews/asia/amitabha-hancui-british-museum/preview.glb",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "fit": 1.16,
+        "viewDirection": [
+          0.35,
+          0.2,
+          1
+        ]
+      },
+      "assetSha256": "8c5a78ae143c6cdd401ffa3649ad6efe3868c587bdea4281f228a8ca90e58af4",
+      "reviewed": "2026-09-19",
+      "geometryReview": "Exact optimized GLB decoded with normalized accessors and node world matrices. Four-angle renders plus orthographic XY and ZY vertex projections were visually reviewed. The museum dimensions field records 5.78 m. The model contains the full extant statue and lotus base without a tall modern pedestal or captured floor. Its complete Y span is therefore the reference. Missing hands are historical object losses, not omitted scan regions. The curator prose on the same record loosely says almost 8 m; the explicit dimensions field is used.",
+      "note": "The museum dimensions field records 5.78 m. The model contains the full extant statue and lotus base without a tall modern pedestal or captured floor. Its complete Y span is therefore the reference. Missing hands are historical object losses, not omitted scan regions. The curator prose on the same record loosely says almost 8 m; the explicit dimensions field is used.",
+      "measurementRegion": {
+        "method": "whole-object",
+        "description": "whole extant statue including lotus base",
+        "wholeModelSize": [
+          1.9037251234273722,
+          6.448294073121578,
+          1.8452080127873
+        ],
+        "worldMin": [
+          -0.9790316876825835,
+          -2.6052903266766667,
+          -0.9241364960425383
+        ],
+        "worldMax": [
+          0.9246934357447887,
+          3.843003746444911,
+          0.9210715167447617
+        ],
+        "axisFractionMin": 0,
+        "axisFractionMax": 1,
+        "axisWorldMin": -2.6052903266766667,
+        "axisWorldMax": 3.843003746444911
+      }
+    }
+  },
+  "medieval/pisa-pulpit-va-cast": {
+    "dimensions": "Cast height 4.15 m; base width 3.71 m",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://collections.vam.ac.uk/item/O127948/pulpit-pisano-nicola/",
+    "note": "The V&A API for O127948 records height 415 cm, base width 371 cm and depth 259.5 cm. Orthographic projections place the floor-to-raised-base transition at about 5.5% of the full scan height. Using the upper 94.5% includes the raised black base but excludes the gallery floor; that manually reviewed boundary makes the starting scale approximate. The scan publisher states the interior was not scanned and uppermost surfaces were approximated or capped; it is an exterior experience, not a documented walk-in reconstruction.",
+    "checked": "2026-09-19",
+    "spatialNote": "Starting scale is approximate, using a museum measurement and a reviewed model region. Proportions are preserved.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 4.15,
+        "unit": "m",
+        "scope": "V&A cast from the underside of its raised base to the top rail, excluding captured gallery floor",
+        "sourceUrls": [
+          "https://collections.vam.ac.uk/item/O127948/pulpit-pisano-nicola/"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 371,
+        "unit": "cm",
+        "scope": "base of cast",
+        "sourceUrls": [
+          "https://collections.vam.ac.uk/item/O127948/pulpit-pisano-nicola/"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 259.5,
+        "unit": "cm",
+        "scope": "cast",
+        "sourceUrls": [
+          "https://collections.vam.ac.uk/item/O127948/pulpit-pisano-nicola/"
+        ]
+      }
+    ],
+    "spatial": {
+      "axis": "y",
+      "meters": 4.15,
+      "measurementIndex": 0,
+      "previewUrl": "/models/previews/medieval/pisa-pulpit-va-cast/preview.glb",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "fit": 1.16,
+        "viewDirection": [
+          0.35,
+          0.2,
+          1
+        ]
+      },
+      "assetSha256": "d9d3ad2aed854a33b8d84ba0ed7f9eeda84724d7ed612488303dc20da9a239e5",
+      "reviewed": "2026-09-19",
+      "geometryReview": "Exact optimized GLB decoded with normalized accessors and node world matrices. Four-angle renders plus orthographic XY and ZY vertex projections were visually reviewed. The V&A API for O127948 records height 415 cm, base width 371 cm and depth 259.5 cm. Orthographic projections place the floor-to-raised-base transition at about 5.5% of the full scan height. Using the upper 94.5% includes the raised black base but excludes the gallery floor; that manually reviewed boundary makes the starting scale approximate. The scan publisher states the interior was not scanned and uppermost surfaces were approximated or capped; it is an exterior experience, not a documented walk-in reconstruction.",
+      "note": "The V&A API for O127948 records height 415 cm, base width 371 cm and depth 259.5 cm. Orthographic projections place the floor-to-raised-base transition at about 5.5% of the full scan height. Using the upper 94.5% includes the raised black base but excludes the gallery floor; that manually reviewed boundary makes the starting scale approximate. The scan publisher states the interior was not scanned and uppermost surfaces were approximated or capped; it is an exterior experience, not a documented walk-in reconstruction.",
+      "measurementRegion": {
+        "method": "reviewed-horizontal-boundary",
+        "description": "V&A cast from the underside of its raised base to the top rail, excluding captured gallery floor",
+        "wholeModelSize": [
+          0.21830871856715994,
+          0.18297400744816628,
+          0.16596845876114763
+        ],
+        "worldMin": [
+          -0.11386839125408521,
+          -22.404854033309114,
+          -2.3334546872840343
+        ],
+        "worldMax": [
+          0.10444032731307473,
+          -22.221880025860948,
+          -2.1674862285228866
+        ],
+        "axisFractionMin": 0.055,
+        "axisFractionMax": 1,
+        "axisWorldMin": -22.394790462899465,
+        "axisWorldMax": -22.221880025860948
+      },
+      "extentFraction": 0.945,
+      "estimated": true
+    }
+  },
+  "europe/rhinoceros-jacquemart-orsay": {
+    "dimensions": "Sculpture H 300 × L 350 × D 230 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.musee-orsay.fr/fr/oeuvres/rhinoceros-16045",
+    "note": "The scan retains modern support and paving. Two orthographic side views place the sculpture-plinth-to-modern-support seam between approximately 12% and 16% of the full vertical span because the scan and seam are tilted. A reviewed midpoint at 14% gives an approximate sculpture extent of 86%; use the museum’s 300 cm sculpture height for that region. This is explicitly an estimated starting scale, not an exact metrological reconstruction. The museum’s other dimensions are not independently corroborated by this irregular scan.",
+    "checked": "2026-09-19",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 300,
+        "unit": "cm",
+        "scope": "cast-iron sculpture and original sculpted rock/plinth; exclude modern support and paving",
+        "sourceUrls": [
+          "https://www.musee-orsay.fr/fr/oeuvres/rhinoceros-16045"
+        ]
+      },
+      {
+        "axis": "length",
+        "value": 350,
+        "unit": "cm",
+        "scope": "sculpture",
+        "sourceUrls": [
+          "https://www.musee-orsay.fr/fr/oeuvres/rhinoceros-16045"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 230,
+        "unit": "cm",
+        "scope": "sculpture",
+        "sourceUrls": [
+          "https://www.musee-orsay.fr/fr/oeuvres/rhinoceros-16045"
+        ]
+      }
+    ],
+    "spatialNote": "Approximate starting scale from museum dimensions; the sculpture boundary in this scan is estimated. The model keeps its captured proportions.",
+    "spatial": {
+      "axis": "y",
+      "meters": 3.0,
+      "measurementIndex": 0,
+      "previewUrl": "/models/previews/europe/rhinoceros-jacquemart-orsay/preview.glb",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "fit": 1.16,
+        "viewDirection": [
+          0.35,
+          0.2,
+          1
+        ]
+      },
+      "assetSha256": "436c2bcfb6de6fbac055f5f392cc8bf79dff4e17dce151f105b640898cde8484",
+      "reviewed": "2026-09-19",
+      "geometryReview": "Exact optimized GLB decoded with normalized integer accessors and node world matrices; full vertex bounds checked against the production Y-up orientation. Existing four-angle renders were reviewed; supplementary orthographic X/Z views with fractional-height guides are in acquisition-museums-50/ar-calibration. The scan retains modern support and paving. Two orthographic side views place the sculpture-plinth-to-modern-support seam between approximately 12% and 16% of the full vertical span because the scan and seam are tilted. A reviewed midpoint at 14% gives an approximate sculpture extent of 86%; use the museum’s 300 cm sculpture height for that region. This is explicitly an estimated starting scale, not an exact metrological reconstruction. The museum’s other dimensions are not independently corroborated by this irregular scan.",
+      "note": "The scan retains modern support and paving. Two orthographic side views place the sculpture-plinth-to-modern-support seam between approximately 12% and 16% of the full vertical span because the scan and seam are tilted. A reviewed midpoint at 14% gives an approximate sculpture extent of 86%; use the museum’s 300 cm sculpture height for that region. This is explicitly an estimated starting scale, not an exact metrological reconstruction. The museum’s other dimensions are not independently corroborated by this irregular scan.",
+      "estimated": true,
+      "extentFraction": 0.86,
+      "measurementRegion": {
+        "method": "reviewed-orthographic-component-height-estimate",
+        "description": "The scan retains modern support and paving. Two orthographic side views place the sculpture-plinth-to-modern-support seam between approximately 12% and 16% of the full vertical span because the scan and seam are tilted. A reviewed midpoint at 14% gives an approximate sculpture extent of 86%; use the museum’s 300 cm sculpture height for that region. This is explicitly an estimated starting scale, not an exact metrological reconstruction. The museum’s other dimensions are not independently corroborated by this irregular scan.",
+        "axis": "y",
+        "wholeModelMin": [
+          -17.732960700988755,
+          -0.4742445233983883,
+          -29.088106089262276
+        ],
+        "wholeModelMax": [
+          17.657349586486788,
+          24.56910150572164,
+          4.686435156492513
+        ],
+        "wholeModelSize": [
+          35.39031028747554,
+          25.04334602912003,
+          33.77454124575479
+        ],
+        "lowerBoundaryFraction": 0.14,
+        "upperBoundaryFraction": 1,
+        "worldYBoundary": 3.0318239206784163,
+        "extentFractionFormula": "1 - 0.140000",
+        "evidenceFiles": [
+          "b824332212fc48e2adfff4eab46d9485-x.png",
+          "b824332212fc48e2adfff4eab46d9485-z.png"
+        ],
+        "boundaryStatus": "estimated; visual seam review, not an isolated mesh component"
+      }
+    }
+  },
+  "europe/demonstrators-trsar-middelheim": {
+    "dimensions": "Sculpture H 168 × W 306 × D 43 cm; museum pedestal H 36 × W 199 × D 70 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://search.middelheimmuseum.be/details/collect/148310",
+    "note": "The outermost figures define the full Z span of 211.42148358561099 model units. The narrower thin base does not enlarge that span. Scaling this to the documented 306 cm width produces a retained height of 170.77 cm, close to the separately documented 168 cm sculpture height plus its thin plate. The museum pedestal is not represented at its documented height; it is not used as a scale reference.",
+    "checked": "2026-09-19",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 168,
+        "unit": "cm",
+        "scope": "bronze sculpture",
+        "sourceUrls": [
+          "https://search.middelheimmuseum.be/details/collect/148310"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 306,
+        "unit": "cm",
+        "scope": "bronze sculpture",
+        "sourceUrls": [
+          "https://search.middelheimmuseum.be/details/collect/148310"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 43,
+        "unit": "cm",
+        "scope": "bronze sculpture",
+        "sourceUrls": [
+          "https://search.middelheimmuseum.be/details/collect/148310"
+        ]
+      },
+      {
+        "axis": "height",
+        "value": 36,
+        "unit": "cm",
+        "scope": "museum pedestal",
+        "sourceUrls": [
+          "https://search.middelheimmuseum.be/details/collect/148310"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 199,
+        "unit": "cm",
+        "scope": "museum pedestal",
+        "sourceUrls": [
+          "https://search.middelheimmuseum.be/details/collect/148310"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 70,
+        "unit": "cm",
+        "scope": "museum pedestal",
+        "sourceUrls": [
+          "https://search.middelheimmuseum.be/details/collect/148310"
+        ]
+      }
+    ],
+    "spatialNote": "Starting scale uses a documented museum measurement and a reviewed model extent. Proportions are preserved.",
+    "spatial": {
+      "axis": "z",
+      "meters": 3.06,
+      "measurementIndex": 1,
+      "previewUrl": "/models/previews/europe/demonstrators-trsar-middelheim/preview.glb",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "fit": 1.16,
+        "viewDirection": [
+          1,
+          0.2,
+          0
+        ]
+      },
+      "assetSha256": "b9d6186537e0e5b6d17fde93f6d828eefc45bd60bd94f98e503e0134bfd94a90",
+      "reviewed": "2026-09-19",
+      "geometryReview": "Exact optimized GLB decoded with normalized integer accessors and node world matrices; full vertex bounds checked against the production Y-up orientation. Existing four-angle renders were reviewed; supplementary orthographic X/Z views with fractional-height guides are in acquisition-museums-50/ar-calibration. The outermost figures define the full Z span of 211.42148358561099 model units. The narrower thin base does not enlarge that span. Scaling this to the documented 306 cm width produces a retained height of 170.77 cm, close to the separately documented 168 cm sculpture height plus its thin plate. The museum pedestal is not represented at its documented height; it is not used as a scale reference.",
+      "note": "The outermost figures define the full Z span of 211.42148358561099 model units. The narrower thin base does not enlarge that span. Scaling this to the documented 306 cm width produces a retained height of 170.77 cm, close to the separately documented 168 cm sculpture height plus its thin plate. The museum pedestal is not represented at its documented height; it is not used as a scale reference."
+    }
+  },
+  "assyrian/ashurnasirpal-ii-room-g6-british-museum": {
+    "dimensions": "H232.41 × W224.79 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://sketchfab.com/3d-models/b17f15e07cd844089269e7409ae24e50",
+    "note": "Published object dimensions are recorded; the model has not yet been calibrated to those measurements.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 232.41,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://sketchfab.com/3d-models/b17f15e07cd844089269e7409ae24e50"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 224.79,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://sketchfab.com/3d-models/b17f15e07cd844089269e7409ae24e50"
+        ]
+      }
+    ]
+  },
+  "assyrian/ugallu-protective-deity-british-museum": {
+    "dimensions": "H262.89 × W285.75 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://artsandculture.google.com/asset/stone-relief-from-the-south-west-palace-of-sennacherib-room-32/xwFZXkcse51nGg?hl=en",
+    "note": "Published object dimensions are recorded; the model has not yet been calibrated to those measurements.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 262.89,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://artsandculture.google.com/asset/stone-relief-from-the-south-west-palace-of-sennacherib-room-32/xwFZXkcse51nGg?hl=en"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 285.75,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://artsandculture.google.com/asset/stone-relief-from-the-south-west-palace-of-sennacherib-room-32/xwFZXkcse51nGg?hl=en"
+        ]
+      }
+    ]
+  },
+  "assyrian/lion-lioness-garden-british-museum": {
+    "dimensions": "H98 × W178 × D10 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.britishmuseum.org/collection/object/W_1856-0909-23",
+    "note": "Published object dimensions are recorded; the model has not yet been calibrated to those measurements.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 98,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://www.britishmuseum.org/collection/object/W_1856-0909-23"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 178,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://www.britishmuseum.org/collection/object/W_1856-0909-23"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 10,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://www.britishmuseum.org/collection/object/W_1856-0909-23"
+        ]
+      }
+    ]
+  },
+  "africa/ram-amun-taharqa-ashmolean": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "object",
+    "sourceUrl": "https://ashmolean.org/ram-of-amun-re",
+    "note": "Reliable measurements of this exact object were not confirmed.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+  },
+  "europe/horse-harrow-rouillard-orsay": {
+    "dimensions": "Sculpture H 340 × L 225 × D 220 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.musee-orsay.fr/en/artworks/cheval-la-herse-16017",
+    "note": "The sculpture and granite display pedestal are fused into one mesh. Orthographic X and Z views locate their seam at approximately 22.4% of full model height. Match the remaining 77.6% to the documented 340 cm sculpture height and retain the pedestal at the same uniform scale. This yields a sculpture region about 218.8 × 216.8 cm horizontally, reasonably close to the separately documented 225 × 220 cm. The seam placement is approximate, so starting scale is explicitly estimated.",
+    "checked": "2026-09-19",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 340,
+        "unit": "cm",
+        "scope": "cast-iron sculpture including original sculpted rock/plinth; exclude modern granite pedestal",
+        "sourceUrls": [
+          "https://www.musee-orsay.fr/en/artworks/cheval-la-herse-16017"
+        ]
+      },
+      {
+        "axis": "length",
+        "value": 225,
+        "unit": "cm",
+        "scope": "sculpture",
+        "sourceUrls": [
+          "https://www.musee-orsay.fr/en/artworks/cheval-la-herse-16017"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 220,
+        "unit": "cm",
+        "scope": "sculpture",
+        "sourceUrls": [
+          "https://www.musee-orsay.fr/en/artworks/cheval-la-herse-16017"
+        ]
+      }
+    ],
+    "spatialNote": "Approximate starting scale from museum dimensions; the sculpture boundary in this scan is estimated. The model keeps its captured proportions.",
+    "spatial": {
+      "axis": "y",
+      "meters": 3.4,
+      "measurementIndex": 0,
+      "previewUrl": "/models/previews/europe/horse-harrow-rouillard-orsay/preview.glb",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "fit": 1.16,
+        "viewDirection": [
+          0.35,
+          0.2,
+          1
+        ]
+      },
+      "assetSha256": "227d9bfd39d402a32c495ea83958a2921db2ae5e75e7ec503fb9054a37c715d1",
+      "reviewed": "2026-09-19",
+      "geometryReview": "Exact optimized GLB decoded with normalized integer accessors and node world matrices; full vertex bounds checked against the production Y-up orientation. Existing four-angle renders were reviewed; supplementary orthographic X/Z views with fractional-height guides are in acquisition-museums-50/ar-calibration. The sculpture and granite display pedestal are fused into one mesh. Orthographic X and Z views locate their seam at approximately 22.4% of full model height. Match the remaining 77.6% to the documented 340 cm sculpture height and retain the pedestal at the same uniform scale. This yields a sculpture region about 218.8 × 216.8 cm horizontally, reasonably close to the separately documented 225 × 220 cm. The seam placement is approximate, so starting scale is explicitly estimated.",
+      "note": "The sculpture and granite display pedestal are fused into one mesh. Orthographic X and Z views locate their seam at approximately 22.4% of full model height. Match the remaining 77.6% to the documented 340 cm sculpture height and retain the pedestal at the same uniform scale. This yields a sculpture region about 218.8 × 216.8 cm horizontally, reasonably close to the separately documented 225 × 220 cm. The seam placement is approximate, so starting scale is explicitly estimated.",
+      "estimated": true,
+      "extentFraction": 0.776,
+      "measurementRegion": {
+        "method": "reviewed-orthographic-component-height-estimate",
+        "description": "The sculpture and granite display pedestal are fused into one mesh. Orthographic X and Z views locate their seam at approximately 22.4% of full model height. Match the remaining 77.6% to the documented 340 cm sculpture height and retain the pedestal at the same uniform scale. This yields a sculpture region about 218.8 × 216.8 cm horizontally, reasonably close to the separately documented 225 × 220 cm. The seam placement is approximate, so starting scale is explicitly estimated.",
+        "axis": "y",
+        "wholeModelMin": [
+          -0.3286495865663294,
+          -0.5132890946507747,
+          -0.051772573181648185
+        ],
+        "wholeModelMax": [
+          0.17468329382741493,
+          0.45189609464174,
+          0.4403664731052067
+        ],
+        "wholeModelSize": [
+          0.5033328803937444,
+          0.9651851892925147,
+          0.4921390462868549
+        ],
+        "lowerBoundaryFraction": 0.22399999999999998,
+        "upperBoundaryFraction": 1,
+        "worldYBoundary": -0.2970876122492514,
+        "extentFractionFormula": "1 - 0.224000",
+        "evidenceFiles": [
+          "63eab66000f2463993791b3417aca911-x.png",
+          "63eab66000f2463993791b3417aca911-z.png"
+        ],
+        "boundaryStatus": "estimated; visual seam review, not an isolated mesh component"
+      }
+    }
+  },
+  "europe/paired-torcheres-carrier-belleuse-orsay": {
+    "dimensions": "Each group H 260 cm; Tambourin W 140 × D 120 cm; Couronne W 145 × D 120 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.musee-orsay.fr/en/artworks/torchere-au-tambourin-15041",
+    "note": "Both independently catalogued plaster groups are 260 cm high. The scan retains two groups without modern museum pedestals and has small floating artifacts. Use the taller group on the positive-Z side, bounded by its substantial connected surfaces, as a 260 cm starting reference. The other retained group becomes about 251 cm tall despite the same documented 260 cm height; unevenly preserved scan edges and the precise catalogue measurement scope remain uncertain. This is explicitly an estimated scale, with one uniform factor for the whole paired scene.",
+    "checked": "2026-09-19",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 260,
+        "unit": "cm",
+        "scope": "each original plaster sculptural group, excluding modern museum supports",
+        "sourceUrls": [
+          "https://www.musee-orsay.fr/en/artworks/torchere-au-tambourin-15041",
+          "https://www.musee-orsay.fr/en/artworks/torchere-la-couronne-15040"
+        ]
+      }
+    ],
+    "spatialNote": "Approximate starting scale from museum dimensions; the sculpture boundary in this scan is estimated. The model keeps its captured proportions.",
+    "spatial": {
+      "axis": "y",
+      "meters": 2.6,
+      "measurementIndex": 0,
+      "previewUrl": "/models/previews/europe/paired-torcheres-carrier-belleuse-orsay/preview.glb",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "fit": 1.16,
+        "viewDirection": [
+          -1,
+          0.2,
+          0
+        ]
+      },
+      "assetSha256": "870579164b2e5db0cee2d7e38b039d4e5df3ef7ffce8a81f75527655357dedb2",
+      "reviewed": "2026-09-19",
+      "geometryReview": "Exact current GLB connected-component bounds from decoded normalized accessors and world transforms, compared with existing four-angle renders. The 31 substantial components on the positive-Z side span 69.95592048017056 model units vertically, versus 72.79771423339844 for the complete scene including small floating fragments. Both independently catalogued plaster groups are 260 cm high. The scan retains two groups without modern museum pedestals and has small floating artifacts. Use the taller group on the positive-Z side, bounded by its substantial connected surfaces, as a 260 cm starting reference. The other retained group becomes about 251 cm tall despite the same documented 260 cm height; unevenly preserved scan edges and the precise catalogue measurement scope remain uncertain. This is explicitly an estimated scale, with one uniform factor for the whole paired scene.",
+      "note": "Both independently catalogued plaster groups are 260 cm high. The scan retains two groups without modern museum pedestals and has small floating artifacts. Use the taller group on the positive-Z side, bounded by its substantial connected surfaces, as a 260 cm starting reference. The other retained group becomes about 251 cm tall despite the same documented 260 cm height; unevenly preserved scan edges and the precise catalogue measurement scope remain uncertain. This is explicitly an estimated scale, with one uniform factor for the whole paired scene.",
+      "estimated": true,
+      "extentFraction": 0.9609631458466301,
+      "measurementRegion": {
+        "method": "connected-component-world-vertex-bounds",
+        "description": "Taller group on positive-Z side; aggregate components with at least 100 welded positions and bounding-box centerZ greater than 12 source units. The 100-position threshold removes small floating scan fragments. Because the two source heights should be equal but retained extents differ, calibration remains approximate.",
+        "componentRoots": [
+          950,
+          71479,
+          70517,
+          90542,
+          53970,
+          77211,
+          56566,
+          80170,
+          57463,
+          35699,
+          55490,
+          90895,
+          56186,
+          74257,
+          70075,
+          79097,
+          54064,
+          74637,
+          93020,
+          92022,
+          75824,
+          80439,
+          78185,
+          28613,
+          74557,
+          76294,
+          77282,
+          74502,
+          56864,
+          816,
+          27952
+        ],
+        "worldMin": [
+          -1.419338533445904,
+          -31.62498903274537,
+          16.82191390442879
+        ],
+        "worldMax": [
+          25.594774602122875,
+          38.33093144742519,
+          45.50908594308718
+        ],
+        "wholeModelMin": [
+          -2.4724137782541202,
+          -31.62498903274537,
+          -20.60201188826519
+        ],
+        "wholeModelMax": [
+          25.594774602122875,
+          41.17272520065307,
+          45.50908594308718
+        ],
+        "extentFractionFormula": "(38.33093144742519 - -31.62498903274537) / (41.17272520065307 - -31.62498903274537)",
+        "connectedComponentMethod": "Triangles joined by positions rounded to 0.00001 world units after decoding normalized accessors and applying node world matrices.",
+        "evidenceFile": "torcheres-connected-components.json"
+      }
+    }
+  },
+  "greek/portrait-pergamene-king-berlin": {
+    "dimensions": "H39.5 cm (head, excluding modern mount)",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://search.smb.museum/object/obj-684146",
+    "note": "Museum height describes the original head and excludes the modern mount in the scan.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 39.5,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://search.smb.museum/object/obj-684146"
+        ]
+      }
+    ]
+  },
+  "ancient-near-east/foundation-inscription-rusa-ii-berlin": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "object",
+    "sourceUrl": "https://sketchfab.com/3d-models/57ce566c5471482a9b1e38f219a3287e",
+    "note": "Reliable measurements of this exact object were not confirmed.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+  },
+  "europe/suffren-houdon-rijksmuseum": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "object",
+    "sourceUrl": "https://www.mauritshuis.nl/de/sammlung-entdecken/kollektion/373-bust-of-pierre-andre-de-suffren-1726-1788",
+    "note": "Reliable measurements of this exact object were not confirmed.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+  },
+  "europe/william-orange-lying-in-state-rijksmuseum": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "object",
+    "sourceUrl": "https://www.rijksmuseum.nl/en/collection/object/William-I-Prince-of-Orange-Lying-in-State--f07cb5a3d4b04b45486e51dffa44d55e",
+    "note": "Reliable measurements of this exact object were not confirmed.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+  },
+  "europe/willem-van-liere-verhulst-rijksmuseum": {
+    "dimensions": "H51 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.rijksmuseum.nl/en/collection/object/Portrait-of-Baron-Willem-van-Liere--d3d7584ad10fb8621dd3658d76a6e861",
+    "note": "Published object dimensions are recorded; the model has not yet been calibrated to those measurements.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 51,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://www.rijksmuseum.nl/en/collection/object/Portrait-of-Baron-Willem-van-Liere--d3d7584ad10fb8621dd3658d76a6e861"
+        ]
+      }
+    ]
+  },
+  "europe/pieter-spiering-dieussart-rijksmuseum": {
+    "dimensions": "H89 × W65 × D32 cm (including socle)",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.rijksmuseum.nl/en/collection/object/Portrait-of-Pieter-Spiering--ef10d07a6a36a022d15cf9adc2bc6602",
+    "note": "Published object dimensions are recorded; the model has not yet been calibrated to those measurements.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 89,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://www.rijksmuseum.nl/en/collection/object/Portrait-of-Pieter-Spiering--ef10d07a6a36a022d15cf9adc2bc6602"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 65,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://www.rijksmuseum.nl/en/collection/object/Portrait-of-Pieter-Spiering--ef10d07a6a36a022d15cf9adc2bc6602"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 32,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://www.rijksmuseum.nl/en/collection/object/Portrait-of-Pieter-Spiering--ef10d07a6a36a022d15cf9adc2bc6602"
+        ]
+      }
+    ]
+  },
+  "europe/virgin-child-alabaster-rijksmuseum": {
+    "dimensions": "H69 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.rijksmuseum.nl/en/collection/object/Virgin-and-Child--b5321b8b7906187d3ee3bca0431c6a43",
+    "note": "Published object dimensions are recorded; the model has not yet been calibrated to those measurements.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 69,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://www.rijksmuseum.nl/en/collection/object/Virgin-and-Child--b5321b8b7906187d3ee3bca0431c6a43"
+        ]
+      }
+    ]
+  },
+  "asia/buddha-head-gandhara-rijksmuseum": {
+    "dimensions": "H24 × W15 × D11.8 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.rijksmuseum.nl/en/collection/object/Head-of-the-Buddha--c21a9b4469c2d0f078c8c1d237dbf8b2",
+    "note": "Published object dimensions are recorded; the model has not yet been calibrated to those measurements.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 24,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://www.rijksmuseum.nl/en/collection/object/Head-of-the-Buddha--c21a9b4469c2d0f078c8c1d237dbf8b2"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 15,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://www.rijksmuseum.nl/en/collection/object/Head-of-the-Buddha--c21a9b4469c2d0f078c8c1d237dbf8b2"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 11.8,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://www.rijksmuseum.nl/en/collection/object/Head-of-the-Buddha--c21a9b4469c2d0f078c8c1d237dbf8b2"
+        ]
+      }
+    ]
+  },
+  "europe/seated-lion-barye-glyptotek": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "object",
+    "sourceUrl": "https://sketchfab.com/3d-models/e7e957b26c4b480ab2daf47fe93beede",
+    "note": "Reliable measurements of this exact object were not confirmed.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+  },
+  "roman/seated-poet-glyptotek": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "object",
+    "sourceUrl": "https://sketchfab.com/3d-models/e935cba74f814d6690fe90e17bd44928",
+    "note": "Reliable measurements of this exact object were not confirmed.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+  },
+  "egyptian/decree-neferirkare-mfa-boston": {
+    "dimensions": "H106.3 × W65 × D26 cm (unframed)",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://sketchfab.com/3d-models/c1eddf7490fa4c88b9e4503b1c2899fd",
+    "note": "Recorded unframed object dimensions; the scan is a frontal documentation surface with coarse rear closure and is held from AR.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 106.3,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://sketchfab.com/3d-models/c1eddf7490fa4c88b9e4503b1c2899fd"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 65,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://sketchfab.com/3d-models/c1eddf7490fa4c88b9e4503b1c2899fd"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 26,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://sketchfab.com/3d-models/c1eddf7490fa4c88b9e4503b1c2899fd"
+        ]
+      }
+    ]
+  },
+  "europe/fountain-sea-horses-philadelphia": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "object",
+    "sourceUrl": "https://www.si.edu/object/fountain-sea-horses-sculpture%3Asiris_ari_307304",
+    "note": "Reliable measurements of this exact object were not confirmed.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+  },
+  "asia/buddha-head-art-institute-chicago": {
+    "dimensions": "H27.8 × W16.4 × D19.6 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.artic.edu/artworks/49217/head-of-buddha",
+    "note": "Published object dimensions are recorded; the model has not yet been calibrated to those measurements.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 27.8,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://www.artic.edu/artworks/49217/head-of-buddha"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 16.4,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://www.artic.edu/artworks/49217/head-of-buddha"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 19.6,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://www.artic.edu/artworks/49217/head-of-buddha"
+        ]
+      }
+    ]
+  },
+  "europe/serf-matisse-sfmoma": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "object",
+    "sourceUrl": "https://www.sfmoma.org/artwork/50.6095/",
+    "note": "Reliable measurements of this exact object were not confirmed.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+  },
+  "egyptian/jackal-statuette-art-institute-chicago": {
+    "dimensions": "H9.5 × W17.5 × D5.1 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.artic.edu/artworks/78159/statuette-of-a-jackal",
+    "note": "Published object dimensions are recorded; the model has not yet been calibrated to those measurements.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 9.5,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://www.artic.edu/artworks/78159/statuette-of-a-jackal"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 17.5,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://www.artic.edu/artworks/78159/statuette-of-a-jackal"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 5.1,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://www.artic.edu/artworks/78159/statuette-of-a-jackal"
+        ]
+      }
+    ]
+  },
+  "europe/diana-joseph-gott-philadelphia": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "object",
+    "sourceUrl": "https://www.philamuseum.org/collections/permanent/83126.html",
+    "note": "Reliable measurements of this exact object were not confirmed.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+  },
+  "europe/pieta-buyster-attributed-soumaya": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "object",
+    "sourceUrl": "https://sketchfab.com/3d-models/99854804de594bf88d115c9590ca2a06",
+    "note": "Reliable measurements of this exact object were not confirmed.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+  },
+  "roman/funerary-altar-gaius-valerius-merida": {
+    "dimensions": "H110 × W70 × D39 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://sketchfab.com/3d-models/541fdc73e519401da1d9971765b028fd",
+    "note": "Object measurements exclude the modern display support captured in the model.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 110,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://sketchfab.com/3d-models/541fdc73e519401da1d9971765b028fd"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 70,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://sketchfab.com/3d-models/541fdc73e519401da1d9971765b028fd"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 39,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://sketchfab.com/3d-models/541fdc73e519401da1d9971765b028fd"
+        ]
+      }
+    ]
+  },
+  "roman/cylindrical-altar-bucrania-merida": {
+    "dimensions": "H140 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://sketchfab.com/3d-models/a2781cec427246c98d1d50f25ce3fa49",
+    "note": "Published object dimensions are recorded; the model has not yet been calibrated to those measurements.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 140,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://sketchfab.com/3d-models/a2781cec427246c98d1d50f25ce3fa49"
+        ]
+      }
+    ]
+  },
+  "europe/sleeping-reaper-jerichau-glyptotek": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "object",
+    "sourceUrl": "https://sketchfab.com/3d-models/9c83ff7845fd4f8394aaa5e7428a5a85",
+    "note": "Reliable measurements of this exact object were not confirmed.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+  },
+  "europe/brunhild-bissen-glyptotek": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "object",
+    "sourceUrl": "https://sketchfab.com/3d-models/af04a4133a784b53a9b9bf3f7a72d13d",
+    "note": "Reliable measurements of this exact object were not confirmed.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+  },
+  "palmyra/beauty-of-palmyra-glyptotek": {
+    "dimensions": "H57 × W39 × D20 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://sketchfab.com/3d-models/1c1d6311981542289de7a6cc49bcab57",
+    "note": "Published object dimensions are recorded; the model has not yet been calibrated to those measurements.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 57,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://sketchfab.com/3d-models/1c1d6311981542289de7a6cc49bcab57"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 39,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://sketchfab.com/3d-models/1c1d6311981542289de7a6cc49bcab57"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 20,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://sketchfab.com/3d-models/1c1d6311981542289de7a6cc49bcab57"
+        ]
+      }
+    ]
+  },
+  "europe/minton-fountain-charles-toft-va": {
+    "dimensions": "Museum record: overall H 139.8 cm; greatest diameter 92.7 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://collections.vam.ac.uk/item/O305715/",
+    "note": "The complete circular bowl supplies the maximum horizontal X diameter; X and Z spans differ by only 0.04%. Use its individually documented 92.7 cm diameter, not an inferred overall height. This uniform scale produces a retained assembly height of about 153.5 cm, which disagrees with the museum’s 139.8 cm overall-height entry. The measurements are dated 1999 and the museum describes reassembly in 2005; this timing may explain the difference but is not proof. The discrepancy is preserved and the model is not distorted.",
+    "checked": "2026-09-19",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 139.8,
+        "unit": "cm",
+        "scope": "overall fountain; recorded 1999",
+        "sourceUrls": [
+          "https://collections.vam.ac.uk/item/O305715/"
+        ]
+      },
+      {
+        "axis": "diameter",
+        "value": 92.7,
+        "unit": "cm",
+        "scope": "fountain greatest width / large bowl; recorded 1999",
+        "sourceUrls": [
+          "https://collections.vam.ac.uk/item/O305715/"
+        ]
+      }
+    ],
+    "spatialNote": "Approximate starting scale from the documented bowl diameter. The model’s total height differs from the museum measurement; its proportions are preserved.",
+    "spatial": {
+      "axis": "x",
+      "meters": 0.927,
+      "measurementIndex": 1,
+      "previewUrl": "/models/previews/europe/minton-fountain-charles-toft-va/preview.glb",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "fit": 1.16,
+        "viewDirection": [
+          0.35,
+          0.2,
+          1
+        ]
+      },
+      "assetSha256": "a9cdf84dd4a654d5c51b022130aa3e7ad2eba172dbab64860cbf9e0dea3d1920",
+      "reviewed": "2026-09-19",
+      "geometryReview": "Exact optimized GLB decoded with normalized integer accessors and node world matrices; full vertex bounds checked against the production Y-up orientation. Existing four-angle renders were reviewed; supplementary orthographic X/Z views with fractional-height guides are in acquisition-museums-50/ar-calibration. The complete circular bowl supplies the maximum horizontal X diameter; X and Z spans differ by only 0.04%. Use its individually documented 92.7 cm diameter, not an inferred overall height. This uniform scale produces a retained assembly height of about 153.5 cm, which disagrees with the museum’s 139.8 cm overall-height entry. The measurements are dated 1999 and the museum describes reassembly in 2005; this timing may explain the difference but is not proof. The discrepancy is preserved and the model is not distorted.",
+      "note": "The complete circular bowl supplies the maximum horizontal X diameter; X and Z spans differ by only 0.04%. Use its individually documented 92.7 cm diameter, not an inferred overall height. This uniform scale produces a retained assembly height of about 153.5 cm, which disagrees with the museum’s 139.8 cm overall-height entry. The measurements are dated 1999 and the museum describes reassembly in 2005; this timing may explain the difference but is not proof. The discrepancy is preserved and the model is not distorted.",
+      "estimated": true
+    }
+  },
+  "europe/two-pregnant-women-leplae-middelheim": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "object",
+    "sourceUrl": "https://collectie-in-het-park.middelheimmuseum.be/menselijkenatuur/tweezwangerevrouwen",
+    "note": "Reliable measurements of this exact object were not confirmed.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+  },
+  "europe/three-standing-figures-dodeigne-middelheim": {
+    "dimensions": "Figures H 180, 190 and 180 cm; floor slab H 16 × W 205 × D 155 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://search.middelheimmuseum.be/details/collect/148298",
+    "note": "The tallest figure rises from the floor-slab top, approximately 3.5% above the retained model bottom in two orthographic views. Match its remaining 96.5% vertical extent to the documented 190 cm figure height. Do not assign 206 cm to the full scan: the captured slab is visibly thinner than the documented 16 cm, possibly because its lower portion is omitted or buried. The surface boundary is approximate; starting scale is explicitly estimated.",
+    "checked": "2026-09-19",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 180,
+        "unit": "cm",
+        "scope": "figure 1",
+        "sourceUrls": [
+          "https://search.middelheimmuseum.be/details/collect/148298"
+        ]
+      },
+      {
+        "axis": "height",
+        "value": 190,
+        "unit": "cm",
+        "scope": "figure 2, tallest",
+        "sourceUrls": [
+          "https://search.middelheimmuseum.be/details/collect/148298"
+        ]
+      },
+      {
+        "axis": "height",
+        "value": 180,
+        "unit": "cm",
+        "scope": "figure 3",
+        "sourceUrls": [
+          "https://search.middelheimmuseum.be/details/collect/148298"
+        ]
+      },
+      {
+        "axis": "height",
+        "value": 16,
+        "unit": "cm",
+        "scope": "floor slab",
+        "sourceUrls": [
+          "https://search.middelheimmuseum.be/details/collect/148298"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 205,
+        "unit": "cm",
+        "scope": "floor slab",
+        "sourceUrls": [
+          "https://search.middelheimmuseum.be/details/collect/148298"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 155,
+        "unit": "cm",
+        "scope": "floor slab",
+        "sourceUrls": [
+          "https://search.middelheimmuseum.be/details/collect/148298"
+        ]
+      }
+    ],
+    "spatialNote": "Approximate starting scale from museum dimensions; the sculpture boundary in this scan is estimated. The model keeps its captured proportions.",
+    "spatial": {
+      "axis": "y",
+      "meters": 1.9,
+      "measurementIndex": 1,
+      "previewUrl": "/models/previews/europe/three-standing-figures-dodeigne-middelheim/preview.glb",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "fit": 1.16,
+        "viewDirection": [
+          1,
+          0.2,
+          0
+        ]
+      },
+      "assetSha256": "7d5d75a0d86f388589389158a168f36c0ec59252050e933cfc0c5aa41857e4c7",
+      "reviewed": "2026-09-19",
+      "geometryReview": "Exact optimized GLB decoded with normalized integer accessors and node world matrices; full vertex bounds checked against the production Y-up orientation. Existing four-angle renders were reviewed; supplementary orthographic X/Z views with fractional-height guides are in acquisition-museums-50/ar-calibration. The tallest figure rises from the floor-slab top, approximately 3.5% above the retained model bottom in two orthographic views. Match its remaining 96.5% vertical extent to the documented 190 cm figure height. Do not assign 206 cm to the full scan: the captured slab is visibly thinner than the documented 16 cm, possibly because its lower portion is omitted or buried. The surface boundary is approximate; starting scale is explicitly estimated.",
+      "note": "The tallest figure rises from the floor-slab top, approximately 3.5% above the retained model bottom in two orthographic views. Match its remaining 96.5% vertical extent to the documented 190 cm figure height. Do not assign 206 cm to the full scan: the captured slab is visibly thinner than the documented 16 cm, possibly because its lower portion is omitted or buried. The surface boundary is approximate; starting scale is explicitly estimated.",
+      "estimated": true,
+      "extentFraction": 0.965,
+      "measurementRegion": {
+        "method": "reviewed-orthographic-component-height-estimate",
+        "description": "The tallest figure rises from the floor-slab top, approximately 3.5% above the retained model bottom in two orthographic views. Match its remaining 96.5% vertical extent to the documented 190 cm figure height. Do not assign 206 cm to the full scan: the captured slab is visibly thinner than the documented 16 cm, possibly because its lower portion is omitted or buried. The surface boundary is approximate; starting scale is explicitly estimated.",
+        "axis": "y",
+        "wholeModelMin": [
+          20.4041805267334,
+          1.172459037777159,
+          -139.4526993559318
+        ],
+        "wholeModelMax": [
+          164.0083465576172,
+          141.86658856106163,
+          -4.5260518266243395
+        ],
+        "wholeModelSize": [
+          143.6041660308838,
+          140.69412952328446,
+          134.92664752930744
+        ],
+        "lowerBoundaryFraction": 0.03500000000000003,
+        "upperBoundaryFraction": 1,
+        "worldYBoundary": 6.09675357109212,
+        "extentFractionFormula": "1 - 0.035000",
+        "evidenceFiles": [
+          "47aed1390b3c462a8820417571e21e99-x.png",
+          "47aed1390b3c462a8820417571e21e99-z.png"
+        ],
+        "boundaryStatus": "estimated; visual seam review, not an isolated mesh component"
+      }
+    }
+  },
+  "roman/phaedra-hippolytus-sarcophagus-uffizi": {
+    "dimensions": "Complete sarcophagus H57.5 × L212 × D66 cm; scan records front face only",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.uffizi.it/en/artworks/sarcophagus-phaedra-hippolytus",
+    "note": "Museum dimensions describe the whole sarcophagus. The acquired model captures only its front relief; the box, interior, back and original depth are absent. A full-object scale reference has not been verified.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 57.5,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://www.uffizi.it/en/artworks/sarcophagus-phaedra-hippolytus"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 212,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://www.uffizi.it/en/artworks/sarcophagus-phaedra-hippolytus"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 66,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://www.uffizi.it/en/artworks/sarcophagus-phaedra-hippolytus"
+        ]
+      }
+    ]
+  },
+  "egyptian/horus-falcon-british-museum": {
+    "dimensions": "Height 45.8 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.britishmuseum.org/collection/object/Y_EA1226",
+    "note": "Catalogue measurement; scan extent has not been calibrated.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 45.8,
+        "unit": "cm",
+        "scope": "falcon figure",
+        "sourceUrls": [
+          "https://www.britishmuseum.org/collection/object/Y_EA1226"
+        ]
+      }
+    ]
+  },
+  "oceania/iatmul-house-post-british-museum": {
+    "dimensions": "Approximate height 2.54 m",
+    "status": "approximate",
+    "basis": "object",
+    "sourceUrl": "https://www.britishmuseum.org/collection/object/E_Oc1964-06-1",
+    "note": "The museum gives an approximate 254 cm height for this surviving upper section. The scan shows the complete extant section with no separate display stand or floor. This is not the height of the original complete architectural post.",
+    "checked": "2026-09-19",
+    "spatialNote": "Starting scale is approximate, using a museum measurement and a reviewed model region. Proportions are preserved.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 2.54,
+        "unit": "m",
+        "scope": "whole surviving upper section of the house post",
+        "sourceUrls": [
+          "https://www.britishmuseum.org/collection/object/E_Oc1964-06-1"
+        ],
+        "qualifier": "approximate"
+      }
+    ],
+    "spatial": {
+      "axis": "y",
+      "meters": 2.54,
+      "measurementIndex": 0,
+      "previewUrl": "/models/previews/oceania/iatmul-house-post-british-museum/preview.glb",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "fit": 1.16,
+        "viewDirection": [
+          0.35,
+          0.2,
+          1
+        ]
+      },
+      "assetSha256": "22143d1158cea19afbdd470be0ee210caa352ba3737ea20a593c61bf894f3754",
+      "reviewed": "2026-09-19",
+      "geometryReview": "Exact optimized GLB decoded with normalized accessors and node world matrices. Four-angle renders plus orthographic XY and ZY vertex projections were visually reviewed. The museum gives an approximate 254 cm height for this surviving upper section. The scan shows the complete extant section with no separate display stand or floor. This is not the height of the original complete architectural post.",
+      "note": "The museum gives an approximate 254 cm height for this surviving upper section. The scan shows the complete extant section with no separate display stand or floor. This is not the height of the original complete architectural post.",
+      "measurementRegion": {
+        "method": "whole-object",
+        "description": "whole surviving upper section of the house post",
+        "wholeModelSize": [
+          6.450191966621542,
+          23.356552124023438,
+          3.9831663951244556
+        ],
+        "worldMin": [
+          -3.37262355880363,
+          -10.792940139770508,
+          -0.7211351983232615
+        ],
+        "worldMax": [
+          3.077568407817912,
+          12.56361198425293,
+          3.2620311968011944
+        ],
+        "axisFractionMin": 0,
+        "axisFractionMax": 1,
+        "axisWorldMin": -10.792940139770508,
+        "axisWorldMax": 12.56361198425293
+      },
+      "estimated": true
+    }
+  },
+  "asia/seated-buddha-sarnath-british-museum": {
+    "dimensions": "Height 1.18 m",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.britishmuseum.org/collection/object/A_1880-7",
+    "note": "The scan includes a modern rear support and base; no reviewed exclusion boundary has been established for physical scaling.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 1.18,
+        "unit": "m",
+        "scope": "seated Buddha",
+        "sourceUrls": [
+          "https://www.britishmuseum.org/collection/object/A_1880-7"
+        ]
+      }
+    ]
+  },
+  "roman/asklepios-national-museum-scotland": {
+    "dimensions": "Dimensions not yet verified",
+    "status": "unresolved",
+    "basis": "object",
+    "sourceUrl": "https://sketchfab.com/3d-models/105a3db383874f858ea8ec37568b7de5",
+    "note": "No securely matched primary measurement has been established for this scan.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+  },
+  "asia/manjushri-british-museum": {
+    "dimensions": "Height 89.9 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.britishmuseum.org/collection/object/A_1982-0401-1",
+    "note": "Catalogue measurement; scan extent has not been calibrated.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 89.9,
+        "unit": "cm",
+        "scope": "bodhisattva figure",
+        "sourceUrls": [
+          "https://www.britishmuseum.org/collection/object/A_1982-0401-1"
+        ]
+      }
+    ]
+  },
+  "asia/amida-rosehaugh-national-museum-scotland": {
+    "dimensions": "Dimensions not yet verified",
+    "status": "unresolved",
+    "basis": "object",
+    "sourceUrl": "https://www.nms.ac.uk/explore-our-collections/collection-search-results/figure/311693",
+    "note": "The National Museums Scotland record identifies the Amida bronze and its Rosehaugh provenance, but no numerical height has been verified. Monumental appearance does not establish a physical scale.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+  },
+  "egyptian/falcon-headed-sphinx-abu-simbel-british-museum": {
+    "dimensions": "Dimensions not yet verified",
+    "status": "unresolved",
+    "basis": "object",
+    "sourceUrl": "https://www.britishmuseum.org/collection/object/Y_EA13",
+    "note": "No securely matched primary measurement has been established for this scan.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+  },
+  "roman/sarcophagus-haydon-square-british-museum": {
+    "dimensions": "Dimensions not yet verified",
+    "status": "unresolved",
+    "basis": "object",
+    "sourceUrl": "https://sketchfab.com/3d-models/738e8a78b318483397c8375eda7c6cb0",
+    "note": "No securely matched primary measurement has been established for this scan.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+  },
+  "greek/recumbent-bull-dipylon-british-museum": {
+    "dimensions": "Dimensions not yet verified",
+    "status": "unresolved",
+    "basis": "object",
+    "sourceUrl": "https://sketchfab.com/3d-models/9bdfc53272bc40ffb7b655601f076995",
+    "note": "No securely matched primary measurement has been established for this scan.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+  },
+  "oceania/hoa-hakananai-a-british-museum": {
+    "dimensions": "Statue height 2.42 m",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://artsandculture.google.com/asset/hoa-hakananai-a/kwHuDcNF0g4yRg",
+    "note": "The British Museum’s Arts & Culture record gives height 2.42 m for Oc1869,1005.1. The independent scan retains a ragged floor patch. XY and ZY projections put the statue-to-floor interface near 8.5% of the entire Y span; the upper 91.5% is the reviewed statue-height reference. The interface is uneven, so this is an estimated starting scale. No alteration of the source geometry or nonuniform scaling is applied.",
+    "checked": "2026-09-19",
+    "spatialNote": "Starting scale is approximate, using a museum measurement and a reviewed model region. Proportions are preserved.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 2.42,
+        "unit": "m",
+        "scope": "Hoa Hakananaiʻa statue above the captured floor patch",
+        "sourceUrls": [
+          "https://artsandculture.google.com/asset/hoa-hakananai-a/kwHuDcNF0g4yRg"
+        ]
+      }
+    ],
+    "spatial": {
+      "axis": "y",
+      "meters": 2.42,
+      "measurementIndex": 0,
+      "previewUrl": "/models/previews/oceania/hoa-hakananai-a-british-museum/preview.glb",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "fit": 1.16,
+        "viewDirection": [
+          0.35,
+          0.2,
+          1
+        ]
+      },
+      "assetSha256": "0a4f955479717b080ebf149353716cf450a265366245397f385ad811a1339212",
+      "reviewed": "2026-09-19",
+      "geometryReview": "Exact optimized GLB decoded with normalized accessors and node world matrices. Four-angle renders plus orthographic XY and ZY vertex projections were visually reviewed. The British Museum’s Arts & Culture record gives height 2.42 m for Oc1869,1005.1. The independent scan retains a ragged floor patch. XY and ZY projections put the statue-to-floor interface near 8.5% of the entire Y span; the upper 91.5% is the reviewed statue-height reference. The interface is uneven, so this is an estimated starting scale. No alteration of the source geometry or nonuniform scaling is applied.",
+      "note": "The British Museum’s Arts & Culture record gives height 2.42 m for Oc1869,1005.1. The independent scan retains a ragged floor patch. XY and ZY projections put the statue-to-floor interface near 8.5% of the entire Y span; the upper 91.5% is the reviewed statue-height reference. The interface is uneven, so this is an estimated starting scale. No alteration of the source geometry or nonuniform scaling is applied.",
+      "measurementRegion": {
+        "method": "reviewed-horizontal-boundary",
+        "description": "Hoa Hakananaiʻa statue above the captured floor patch",
+        "wholeModelSize": [
+          18.24529770678166,
+          26.559025764465332,
+          14.040206436111589
+        ],
+        "worldMin": [
+          -10.056802887051719,
+          -2.216671943664551,
+          -9.1880068797837
+        ],
+        "worldMax": [
+          8.188494819729941,
+          24.34235382080078,
+          4.852199556327889
+        ],
+        "axisFractionMin": 0.085,
+        "axisFractionMax": 1,
+        "axisWorldMin": 0.040845246315001305,
+        "axisWorldMax": 24.34235382080078
+      },
+      "extentFraction": 0.915,
+      "estimated": true
+    }
+  },
+  "greek/sarcophagus-grotta-dipinta-british-museum": {
+    "dimensions": "Dimensions not yet verified",
+    "status": "unresolved",
+    "basis": "object",
+    "sourceUrl": "https://sketchfab.com/3d-models/b88757d7925443a4a75218c7ea4b0c45",
+    "note": "No securely matched primary measurement has been established for this scan.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable."
+  },
+  "asia/buddha-mihrab-panel-british-museum": {
+    "dimensions": "Height 84.1 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.britishmuseum.org/collection/object/A_1880-145",
+    "note": "Catalogue measurement; the modern support must be excluded before physical scaling.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 84.1,
+        "unit": "cm",
+        "scope": "carved panel",
+        "sourceUrls": [
+          "https://www.britishmuseum.org/collection/object/A_1880-145"
+        ]
+      }
+    ]
+  },
+  "greek/dynastic-figures-mausoleum-halikarnassos": {
+    "dimensions": "Male figure height 3 m (paired scan)",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.britishmuseum.org/collection/object/G_1857-1220-232",
+    "note": "The museum records height 3 m for the male statue, accession 1857,1220.232. The taller male head supplies the highest Y point in this paired scan. The shared modern plinth occupies about 6% of the whole vertical extent and is excluded from the reference. The manually reviewed boundary is approximate; the second figure is retained at the scan’s relative scale. Neither identification as Maussollos nor as Artemisia is certain.",
+    "checked": "2026-09-19",
+    "spatialNote": "Starting scale is approximate, using a museum measurement and a reviewed model region. Proportions are preserved.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 3,
+        "unit": "m",
+        "scope": "male dynastic figure only, from feet above shared modern plinth to top of head",
+        "sourceUrls": [
+          "https://www.britishmuseum.org/collection/object/G_1857-1220-232"
+        ]
+      }
+    ],
+    "spatial": {
+      "axis": "y",
+      "meters": 3,
+      "measurementIndex": 0,
+      "previewUrl": "/models/previews/greek/dynastic-figures-mausoleum-halikarnassos/preview.glb",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "fit": 1.16,
+        "viewDirection": [
+          0.35,
+          0.2,
+          1
+        ]
+      },
+      "assetSha256": "2419ed58069a11c9b0788a17ae6e9a8dfb0e6d032aa3a3743cffda76483d9766",
+      "reviewed": "2026-09-19",
+      "geometryReview": "Exact optimized GLB decoded with normalized accessors and node world matrices. Four-angle renders plus orthographic XY and ZY vertex projections were visually reviewed. The museum records height 3 m for the male statue, accession 1857,1220.232. The taller male head supplies the highest Y point in this paired scan. The shared modern plinth occupies about 6% of the whole vertical extent and is excluded from the reference. The manually reviewed boundary is approximate; the second figure is retained at the scan’s relative scale. Neither identification as Maussollos nor as Artemisia is certain.",
+      "note": "The museum records height 3 m for the male statue, accession 1857,1220.232. The taller male head supplies the highest Y point in this paired scan. The shared modern plinth occupies about 6% of the whole vertical extent and is excluded from the reference. The manually reviewed boundary is approximate; the second figure is retained at the scan’s relative scale. Neither identification as Maussollos nor as Artemisia is certain.",
+      "measurementRegion": {
+        "method": "reviewed-horizontal-boundary",
+        "description": "male dynastic figure only, from feet above shared modern plinth to top of head",
+        "wholeModelSize": [
+          8.793633937835693,
+          8.175312681914388,
+          3.1230054058837844
+        ],
+        "worldMin": [
+          -4.780415058135986,
+          -4.363987884879619,
+          -0.826057680358886
+        ],
+        "worldMax": [
+          4.013218879699707,
+          3.8113247970347697,
+          2.2969477255248982
+        ],
+        "axisFractionMin": 0.06,
+        "axisFractionMax": 1,
+        "axisWorldMin": -3.8734691239647554,
+        "axisWorldMax": 3.8113247970347697
+      },
+      "extentFraction": 0.94,
+      "estimated": true
+    }
+  },
+  "egyptian/paser-altar-british-museum": {
+    "dimensions": "H 83 × L 52 × W 29.5 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.britishmuseum.org/collection/object/Y_EA1376",
+    "note": "Catalogue measurements; the modern white display support is not part of these dimensions and has not been calibrated.",
+    "checked": "2026-09-19",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 83,
+        "unit": "cm",
+        "scope": "Paser and altar",
+        "sourceUrls": [
+          "https://www.britishmuseum.org/collection/object/Y_EA1376"
+        ]
+      },
+      {
+        "axis": "length",
+        "value": 52,
+        "unit": "cm",
+        "scope": "Paser and altar",
+        "sourceUrls": [
+          "https://www.britishmuseum.org/collection/object/Y_EA1376"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 29.5,
+        "unit": "cm",
+        "scope": "Paser and altar",
+        "sourceUrls": [
+          "https://www.britishmuseum.org/collection/object/Y_EA1376"
+        ]
+      }
+    ]
   }
 }
