@@ -208,3 +208,9 @@ Acquisition commit `6f56f0311a4ea6bc2f58f8a6120c58af0da03790` is deployment-veri
 - Marked this work hidden using the existing public-catalog filter, removed its newest highlight and cleared its public dimension/AR eligibility entries. The other five additions remain published. Source metadata and assets are preserved for provenance; the public object route and all collection listings will exclude the withdrawn work.
 - Additions checks and the production build passed. Generated Newest Additions contains exactly the five remaining works; Turrell’s canonical and legacy pages are absent, with no references in generated HTML, sitemaps or redirects. All other catalog records are unchanged. Next: publish the tested tree and confirm these removals live.
 - The broader spatial-eligibility test fails on a pre-existing 211-record coverage gap (1,314 decisions / 1,525 public works before; 1,313 / 1,524 after). The gap is unchanged, and a focused comparison confirms only Turrell was removed from both public dimension maps.
+
+### Turrell withdrawal — live confirmation
+
+- Commit `89d537b7012be63791f1e298f73b6f7ecce07be1` is deployment-verified; [Pages run 36395692745](https://github.com/never-nude/atrium.earth/actions/runs/36395692745) succeeded.
+- The old Turrell object page now returns HTTP 404. Newest Additions shows exactly the five remaining works, all five pages return HTTP 200, and collection, AR/VR and sitemap checks contain no Turrell reference. Public collection: 1,524 works.
+- Withdrawal is complete; no publishing action remains. Source history and assets are retained. The existing dimension-review backlog is unchanged.
