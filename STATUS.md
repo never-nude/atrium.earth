@@ -201,3 +201,10 @@ Acquisition commit `6f56f0311a4ea6bc2f58f8a6120c58af0da03790` is deployment-veri
 - Completion email sent to the user through their connected Gmail account, message `1a0e6f9fcc0445b7`.
 - Serra and Greg Bailey searches produced no eligible downloadable 3D models; Stella’s Indian Birds scan failed original/optimized geometry review. These are preserved as holds, not acquired works.
 - Batch evidence and source archives remain in `work/acquisition-spatial-20260928` outside the public deployment. This acquisition is complete; no further publication is pending.
+
+## 2026-09-28 — Withdraw the Turrell crater model
+
+- This local Codex session owns branch `codex/remove-turrell-20260928`. The user requested removing James Turrell’s Irish Sky Garden crater-interior model because it is awkward.
+- Marked this work hidden using the existing public-catalog filter, removed its newest highlight and cleared its public dimension/AR eligibility entries. The other five additions remain published. Source metadata and assets are preserved for provenance; the public object route and all collection listings will exclude the withdrawn work.
+- Additions checks and the production build passed. Generated Newest Additions contains exactly the five remaining works; Turrell’s canonical and legacy pages are absent, with no references in generated HTML, sitemaps or redirects. All other catalog records are unchanged. Next: publish the tested tree and confirm these removals live.
+- The broader spatial-eligibility test fails on a pre-existing 211-record coverage gap (1,314 decisions / 1,525 public works before; 1,313 / 1,524 after). The gap is unchanged, and a focused comparison confirms only Turrell was removed from both public dimension maps.
