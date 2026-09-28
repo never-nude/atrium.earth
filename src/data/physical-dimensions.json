@@ -88955,5 +88955,122 @@
     "checked": "2026-09-27",
     "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
     "measures": []
+  },
+  "europe/james-turrell-irish-sky-garden-crater-interior-3d-model": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "unknown",
+    "sourceUrl": "https://lissardestate.ie/",
+    "note": "The estate publishes an elliptical crater extent of 50 × 25 m and a 32 m entrance passage. Those dimensions do not establish the extent of this partial model, whose boundary differs; no metric scale is assigned. The chosen starting display size is not a measurement of the artwork. Model coordinates are not calibrated to these measurements.",
+    "checked": "2026-09-28",
+    "spatialNote": "Physical size is not documented. Display size is adjustable."
+  },
+  "americas-oceania/isamu-noguchi-illusion-of-the-fifth-stone": {
+    "dimensions": "121 × 168.9 × 144.8 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://noguchi.whirlihost.com/Detail/artwork/1044",
+    "note": "Catalogue raisonné dimensions for the sculpture. A few ground-contact remnants remain in the scan. Model coordinates are not calibrated to these measurements.",
+    "checked": "2026-09-28",
+    "spatialNote": "Physical size is approximate and adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 121,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://noguchi.whirlihost.com/Detail/artwork/1044"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 168.9,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://noguchi.whirlihost.com/Detail/artwork/1044"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 144.8,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://noguchi.whirlihost.com/Detail/artwork/1044"
+        ]
+      }
+    ]
+  },
+  "americas-oceania/isamu-noguchi-woman": {
+    "dimensions": "Sculpture: 168.3 × 145.4 × 114.3 cm; base: 34.6 × 126.4 × 131.1 cm",
+    "status": "approximate",
+    "basis": "object",
+    "sourceUrl": "https://noguchi.whirlihost.com/Detail/artwork/1302",
+    "note": "The catalogue gives separate sculpture and granite-base dimensions. Their published heights total 202.9 cm, a derived overall estimate; the scan includes both. Model coordinates are not calibrated to these measurements. The approximate AR starting height uses that derived total, including the base; it does not use the body-only height.",
+    "checked": "2026-09-28",
+    "spatialNote": "Physical size is approximate and adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 202.9,
+        "unit": "cm",
+        "scope": "Overall height, derived by adding separately catalogued sculpture and base heights",
+        "sourceUrls": [
+          "https://noguchi.whirlihost.com/Detail/artwork/1302"
+        ]
+      }
+    ]
+  },
+  "europe/jean-hans-arp-small-leaning-figure-called-egyptian-woman": {
+    "dimensions": "26 × 23 × 12 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.nasjonalmuseet.no/en/collection/object/NMK.2022.0388",
+    "note": "Object dimensions from the museum accession record NMK.2022.0388. Model coordinates are not calibrated to these measurements.",
+    "checked": "2026-09-28",
+    "spatialNote": "Physical size is approximate and adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 26,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://www.nasjonalmuseet.no/en/collection/object/NMK.2022.0388"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 23,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://www.nasjonalmuseet.no/en/collection/object/NMK.2022.0388"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 12,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://www.nasjonalmuseet.no/en/collection/object/NMK.2022.0388"
+        ]
+      }
+    ]
+  },
+  "americas-oceania/do-ho-suh-fallen-star-digital-reconstruction": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "unknown",
+    "sourceUrl": "https://stuartcollection.ucsd.edu/artist/suh.html",
+    "note": "UCSD documents a 15 by 18 foot house, but this model includes a simplified garden and support block. Those house-only dimensions are retained as research context and are not applied to the full model. The reconstruction has not been calibrated to physical measurements.",
+    "checked": "2026-09-28",
+    "spatialNote": "Uncalibrated digital reconstruction. Display size is adjustable."
+  },
+  "europe/carlos-cruz-diez-inducao-do-amarelo-digital-reconstruction": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "unknown",
+    "sourceUrl": "https://miec.cm-stirso.pt/colecao/inducao-do-amarelo/",
+    "note": "No verified measurements for the complete three-panel arrangement were located in the primary record. Neither the human reference figure nor SketchUp model units establish physical calibration. The contextual ground block is included in the model bounds.",
+    "checked": "2026-09-28",
+    "spatialNote": "Uncalibrated digital reconstruction. Display size is adjustable."
   }
 }
