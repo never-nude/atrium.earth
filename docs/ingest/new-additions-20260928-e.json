@@ -1,0 +1,309 @@
+{
+  "batch": {
+    "ingest_batch": "new-additions-20260928-e",
+    "ingested_at": "2026-09-28T15:46:43.276Z"
+  },
+  "base_commit": "4e09261d335e16923a2cb0997a41e3d5ae4ee25d",
+  "requested_count": 2,
+  "accepted_count": 2,
+  "scope": "Publish two artist-supplied works by Michael Conor Kushman (Tetra; Songbird, supplied as Oscen.usdz and retitled by the artist) and apply the artist’s corrections to Dragon’s Mouth before resuming African acquisitions. Heights were supplied in inches and are displayed in metric.",
+  "newest_behavior": "Rolling 24 latest public works by import time; neutral page.",
+  "records": [
+    {
+      "uid": "0d2eda2c1133cf4e23f2731b6ffe1113",
+      "record": {
+        "title": "Tetra",
+        "artist": "Michael Conor Kushman",
+        "year": "2023",
+        "year_sort": 2023,
+        "material": "Aluminum, acrylic, and spray paint",
+        "museum": "",
+        "geography": "United States",
+        "culture": "",
+        "original_location": "United States",
+        "slug": "artist-submissions/michael-conor-kushman-tetra",
+        "collection": "artist-submissions",
+        "wing": "americas-oceania",
+        "dimensions": "Approx. 18.5 × 22.6 × 26.2 cm (H × W × D)",
+        "note": "Crumpled aluminum gathers into a compact, many-faceted mass. Pale blue, magenta, violet, and pink paint moves across the folds, with pale gray streaks in the creases.",
+        "source_url": "",
+        "source_record_url": "",
+        "source_institution": "Artist-supplied",
+        "scan_author": "",
+        "scan_source": "3D file supplied directly by the artist. Original captured color, surface detail, and geometry retained in the web version. Display scale is estimated from the approximate height supplied by the artist.",
+        "license": "Displayed with permission of the artist; all rights retained.",
+        "license_url": "",
+        "license_tier": 3,
+        "tier": 3,
+        "accession": "",
+        "model": {
+          "sourcePath": "artist-submissions/michael-conor-kushman-tetra/tetra.glb",
+          "format": "glb",
+          "sizeBytes": 8835076
+        },
+        "attribution": "Tetra by Michael Conor Kushman. Aluminum, acrylic, and spray paint. 3D file supplied by the artist; displayed with permission. All rights retained.",
+        "ingest_batch": "new-additions-20260928-e",
+        "ingested_at": "2026-09-28T15:46:43.276Z",
+        "ingested": "2026-09-28",
+        "index": 1547
+      },
+      "source_integrity": {
+        "bytes": 8835076,
+        "faces": 16300,
+        "sha256": "a6949cc7b2589674f492cd25ab155ca12dfd9827647424cd2753a298c09f873a"
+      },
+      "license_evidence": {
+        "uid": "0d2eda2c1133cf4e23f2731b6ffe1113",
+        "title": "Tetra",
+        "original_filename": "Tetra.usdz",
+        "original_sha256": "0d2eda2c1133cf4e23f2731b6ffe1113ffe8b4aa1deec003a34e146f4515c4cf",
+        "sha256": "a6949cc7b2589674f492cd25ab155ca12dfd9827647424cd2753a298c09f873a",
+        "bytes": 8835076,
+        "self_contained": true,
+        "artist_permission": true,
+        "license_basis": "The artist supplied this file and explicitly requested publication to Atrium; this is display permission, not a Creative Commons grant.",
+        "source_acquisition": "Direct artist-supplied USDZ attachment (RealityKit Object Capture 3.9.4).",
+        "source_textures_sha256": {
+          "basecolor": "66fdf8eb77d028856191699cc5ff3fed7280d2825ed576d13dbbbf5e75af4e3b",
+          "normal": "d5826df14eea718ef3bb671601a113efa2fbba83c2665ddff27a31de2b08a195",
+          "ao": "412a8aa50f1c39dbad93becf9342c395562cdf6bd9a3a6ee6b03461bbfc58a95"
+        },
+        "derivative_provenance": "Opened the USDZ with Pixar USD (usd-core 26.8). Copied every triangle, point, vertex normal and faceVarying UV unchanged into a self-contained GLB, flipping V only for glTF’s top-left texture origin; embedded the three PNG textures byte-for-byte. UsdPreviewSurface mapped to glTF metallic-roughness (baseColor, normal and occlusion textures; roughness 0.9; metallic 0). Applied one uniform scale about the ground-plane origin so the height equals the artist’s stated height. Internal capture paths, capture identifiers and layer metadata were not carried over. Optimized with glTF-Transform 4.4.2 (meshopt, 2048-pixel WebP textures) without geometry simplification.",
+        "optimized_sha256": "e7eb552fd59c7e0aebdf9e26ff21c8892cb23b6dc718f3bbc332457f8aabfc6a",
+        "dimensions_basis": "Artist-supplied approximate height of 7.3 in (18.54 cm, shown as 18.5 cm). Source model height 0.3845 units; uniform scale 0.4822411228905652. Width is the X extent and depth the Z extent of the model’s axis-aligned bounds, relative to the opening view from +Z. Creation year 2023 and American origin supplied by the artist.",
+        "dedup_review": "Artist name and title checked against all 1,546 baseline records; the only prior Michael Conor Kushman work is Dragon’s Mouth, a different composition.",
+        "converter": "scripts/convert-object-capture-usdz.py"
+      },
+      "preview": {
+        "bytes": 425844,
+        "faces": 16300,
+        "sha256": "e7eb552fd59c7e0aebdf9e26ff21c8892cb23b6dc718f3bbc332457f8aabfc6a"
+      },
+      "thumbnail": {
+        "sha256": "a62a596abdf106bfa98f01b75e042fb62e80eac33ebcc710a4f239e5efeba14f",
+        "size": "900x1125",
+        "renderer": "scripts/render-thumbnails.mjs (production __render.html), downscaled from 1000x1250 with Lanczos"
+      },
+      "visual_review": {
+        "geometry_status": "four_angle_review_pass",
+        "geometry_notes": "Converted and optimized models reviewed from front, right, rear, left, top and underside through the production render page. Compact crumpled aluminum form; pale blue, magenta, violet and pink paint with silvery streaks retained. The scan has no floor, plinth or mount; nothing was removed, generated or filled. Darker underside recesses are part of the folded sheet as captured.",
+        "source_faces": 16300,
+        "optimization": "No triangle simplification; texture compression and meshopt only.",
+        "hero_status": "production_900x1125_inspected_pass",
+        "conversion_audit": "16300 triangles and 8152 source points retained; GLB vertices are the unique (point, UV) corner pairs."
+      },
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "viewDirection": [
+          0,
+          0.4,
+          1
+        ],
+        "fit": 1.16,
+        "status": "verified"
+      },
+      "dimensions_review": {
+        "status": "approximate",
+        "basis": "object",
+        "dimensions": "Approx. 18.5 × 22.6 × 26.2 cm (H × W × D)",
+        "sourceUrl": "",
+        "note": "Height is approximate and supplied by the artist. Width and depth are estimated from the scan’s proportions relative to the opening view; these are not independent physical measurements.",
+        "measures": [
+          {
+            "axis": "height",
+            "value": 18.5,
+            "unit": "cm",
+            "source": "Artist-provided approximate height"
+          },
+          {
+            "axis": "width",
+            "value": 22.6,
+            "unit": "cm",
+            "source": "Estimated from scan proportions"
+          },
+          {
+            "axis": "depth",
+            "value": 26.2,
+            "unit": "cm",
+            "source": "Estimated from scan proportions"
+          }
+        ],
+        "spatialNote": "Approximate height supplied by the artist; the model’s proportions are preserved."
+      }
+    },
+    {
+      "uid": "9f1d9e790c4ec33ef42e9b5c069e6770",
+      "record": {
+        "title": "Songbird",
+        "artist": "Michael Conor Kushman",
+        "year": "2023",
+        "year_sort": 2023,
+        "material": "Aluminum, acrylic, and spray paint",
+        "museum": "",
+        "geography": "United States",
+        "culture": "",
+        "original_location": "United States",
+        "slug": "artist-submissions/michael-conor-kushman-songbird",
+        "collection": "artist-submissions",
+        "wing": "americas-oceania",
+        "dimensions": "Approx. 14.7 × 15.5 × 20.9 cm (H × W × D)",
+        "note": "A crumpled aluminum sheet folds into a low, open arch. Mottled red, orange, blue, green, pink, and cream paint covers the creased surfaces, and a red-orange hollow opens on one side.",
+        "source_url": "",
+        "source_record_url": "",
+        "source_institution": "Artist-supplied",
+        "scan_author": "",
+        "scan_source": "3D file supplied directly by the artist. Original captured color, surface detail, and geometry retained in the web version. Display scale is estimated from the approximate height supplied by the artist.",
+        "license": "Displayed with permission of the artist; all rights retained.",
+        "license_url": "",
+        "license_tier": 3,
+        "tier": 3,
+        "accession": "",
+        "model": {
+          "sourcePath": "artist-submissions/michael-conor-kushman-songbird/songbird.glb",
+          "format": "glb",
+          "sizeBytes": 8776164
+        },
+        "attribution": "Songbird by Michael Conor Kushman. Aluminum, acrylic, and spray paint. 3D file supplied by the artist; displayed with permission. All rights retained.",
+        "ingest_batch": "new-additions-20260928-e",
+        "ingested_at": "2026-09-28T15:46:43.276Z",
+        "ingested": "2026-09-28",
+        "index": 1548
+      },
+      "source_integrity": {
+        "bytes": 8776164,
+        "faces": 18686,
+        "sha256": "9f64e803f3e70d75fd406c774f893565b0bdd2185178d18dff9ea4ce22e6477e"
+      },
+      "license_evidence": {
+        "uid": "9f1d9e790c4ec33ef42e9b5c069e6770",
+        "title": "Songbird",
+        "original_filename": "Oscen.usdz",
+        "original_sha256": "9f1d9e790c4ec33ef42e9b5c069e67701e4e912e644fd1a69072808e888830da",
+        "sha256": "9f64e803f3e70d75fd406c774f893565b0bdd2185178d18dff9ea4ce22e6477e",
+        "bytes": 8776164,
+        "self_contained": true,
+        "artist_permission": true,
+        "license_basis": "The artist supplied this file and explicitly requested publication to Atrium; this is display permission, not a Creative Commons grant.",
+        "source_acquisition": "Direct artist-supplied USDZ attachment (RealityKit Object Capture 3.9.4).",
+        "source_textures_sha256": {
+          "basecolor": "217720c7d3ac3e4c6913bfa4db6711e8015918f5da3acb286df5ef4ef2e247e8",
+          "normal": "15fe2f11fd1d700e04d3596b39988c3cedc0f0e129114627408b90e2d6041730",
+          "ao": "0155edb26e8a8f47bc41d461a0cc8677e1974f6dd02b5b6f5caec17dbf76b841"
+        },
+        "derivative_provenance": "Opened the USDZ with Pixar USD (usd-core 26.8). Copied every triangle, point, vertex normal and faceVarying UV unchanged into a self-contained GLB, flipping V only for glTF’s top-left texture origin; embedded the three PNG textures byte-for-byte. UsdPreviewSurface mapped to glTF metallic-roughness (baseColor, normal and occlusion textures; roughness 0.9; metallic 0). Applied one uniform scale about the ground-plane origin so the height equals the artist’s stated height. Internal capture paths, capture identifiers and layer metadata were not carried over. Optimized with glTF-Transform 4.4.2 (meshopt, 2048-pixel WebP textures) without geometry simplification.",
+        "optimized_sha256": "0e2ea3af884da09455ec0de6bcb1cdefc6071d874858cb2c7bd50d53e7e00773",
+        "dimensions_basis": "Artist-supplied approximate height of 5.8 in (14.73 cm, shown as 14.7 cm). Source model height 0.4706 units; uniform scale 0.3130637025811846. The opening view looks from +X, so width is the Z extent and depth the X extent of the model’s axis-aligned bounds. Creation year 2023 and American origin supplied by the artist.",
+        "dedup_review": "Artist name and title checked against all 1,546 baseline records; the only prior Michael Conor Kushman work is Dragon’s Mouth, a different composition.",
+        "converter": "scripts/convert-object-capture-usdz.py"
+      },
+      "preview": {
+        "bytes": 442088,
+        "faces": 18686,
+        "sha256": "0e2ea3af884da09455ec0de6bcb1cdefc6071d874858cb2c7bd50d53e7e00773"
+      },
+      "thumbnail": {
+        "sha256": "3ee6b645a454dc002af8d348755a77e88ca70274ca734ac00406329db5904f2a",
+        "size": "900x1125",
+        "renderer": "scripts/render-thumbnails.mjs (production __render.html), downscaled from 1000x1250 with Lanczos"
+      },
+      "visual_review": {
+        "geometry_status": "four_angle_review_pass",
+        "geometry_notes": "Converted and optimized models reviewed from front, right, rear, left, top and underside through the production render page. Low, open crumpled aluminum arch; mottled red, orange, blue, green, pink and cream paint retained, including the red-orange hollow. The scan has no floor, plinth or mount; nothing was removed, generated or filled. A small perforation visible on one face is retained as captured.",
+        "source_faces": 18686,
+        "optimization": "No triangle simplification; texture compression and meshopt only.",
+        "hero_status": "production_900x1125_inspected_pass",
+        "conversion_audit": "18686 triangles and 9335 source points retained; GLB vertices are the unique (point, UV) corner pairs."
+      },
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "viewDirection": [
+          1,
+          0.4,
+          0.3
+        ],
+        "fit": 1.16,
+        "status": "verified"
+      },
+      "dimensions_review": {
+        "status": "approximate",
+        "basis": "object",
+        "dimensions": "Approx. 14.7 × 15.5 × 20.9 cm (H × W × D)",
+        "sourceUrl": "",
+        "note": "Height is approximate and supplied by the artist. Width and depth are estimated from the scan’s proportions relative to the opening view; these are not independent physical measurements.",
+        "measures": [
+          {
+            "axis": "height",
+            "value": 14.7,
+            "unit": "cm",
+            "source": "Artist-provided approximate height"
+          },
+          {
+            "axis": "width",
+            "value": 15.5,
+            "unit": "cm",
+            "source": "Estimated from scan proportions"
+          },
+          {
+            "axis": "depth",
+            "value": 20.9,
+            "unit": "cm",
+            "source": "Estimated from scan proportions"
+          }
+        ],
+        "spatialNote": "Approximate height supplied by the artist; the model’s proportions are preserved."
+      }
+    }
+  ],
+  "corrections": [
+    {
+      "slug": "artist-submissions/michael-conor-kushman-dragons-mouth",
+      "requested_by": "artist",
+      "changes": {
+        "year": [
+          "",
+          "2023"
+        ],
+        "year_sort": [
+          null,
+          2023
+        ],
+        "geography": [
+          "",
+          "United States"
+        ],
+        "original_location": [
+          "",
+          "United States"
+        ],
+        "wing_unfiled_reason": [
+          "Artist-supplied work; the country of creation has not yet been provided.",
+          null
+        ],
+        "wing": [
+          null,
+          "americas-oceania"
+        ]
+      },
+      "note": "The artist supplied the 2023 creation year and American origin. The canonical URL, model, thumbnail, dimensions and import identity are unchanged."
+    }
+  ],
+  "exhibition_placements": [],
+  "exhibition_note": "No new placements. Dragon’s Mouth already represents this artist in The Work of the Surface; adding two closely related works by the same artist would crowd that exhibition.",
+  "excluded_or_held": [
+    {
+      "topic": "African acquisitions",
+      "status": "handoff sources remain on the owner’s local computer; not published in this change",
+      "published": false
+    }
+  ]
+}
