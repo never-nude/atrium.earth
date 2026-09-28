@@ -87145,5 +87145,1815 @@
         ]
       }
     ]
+  },
+  "europe/maurizio-cattelan-comedian-digital-reconstruction": {
+    "dimensions": "Variable installation dimensions",
+    "status": "variable",
+    "basis": "object",
+    "sourceUrl": "https://www.perrotin.com/en/events/art-basel-miami-2019-miami",
+    "note": "Perrotin describes installation dimensions as variable. Its catalogue reference size is not applied to this independent model. The chosen 0.6 m longest-side display extent includes the entire panel and is only a viewing default, not physical calibration.",
+    "checked": "2026-09-27",
+    "spatialNote": "Variable installation dimensions. Default display: 60 cm on the whole panel’s longest side; size is adjustable.",
+    "measures": []
+  },
+  "europe/xavier-veilhan-le-lion-blue-lion": {
+    "dimensions": "Height: approximately 6 m; length: approximately 8 m",
+    "status": "approximate",
+    "basis": "object",
+    "sourceUrl": "https://www.bordeaux-metropole.fr/a-votre-service/services-aux-particuliers/decouvrir-sortir/art-patrimoine/creations-artistiques-18",
+    "note": "Bordeaux Métropole publishes rounded dimensions of approximately 6 m high and 8 m long for this installation. A reviewed estimate uses the sculpture height above its captured ground slab.",
+    "checked": "2026-09-27",
+    "spatialNote": "Approximate 6 m sculpture height. The thin captured ground slab is retained at the same scale; size remains adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 6,
+        "unit": "m",
+        "sourceUrls": [
+          "https://www.bordeaux-metropole.fr/a-votre-service/services-aux-particuliers/decouvrir-sortir/art-patrimoine/creations-artistiques-18"
+        ]
+      },
+      {
+        "axis": "length",
+        "value": 8,
+        "unit": "m",
+        "sourceUrls": [
+          "https://www.bordeaux-metropole.fr/a-votre-service/services-aux-particuliers/decouvrir-sortir/art-patrimoine/creations-artistiques-18"
+        ]
+      }
+    ],
+    "calibrationStatus": "calibrated",
+    "geometryStatus": "approximate-reference",
+    "calibrationReady": true,
+    "calibrationBlockers": [],
+    "spatial": {
+      "axis": "y",
+      "meters": 6,
+      "measurementIndex": 0,
+      "extentFraction": 0.97,
+      "previewUrl": "/models/previews/europe/xavier-veilhan-le-lion-blue-lion/preview.glb",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "fit": 1.16,
+        "viewDirection": [
+          0.35,
+          0.2,
+          1
+        ]
+      },
+      "assetSha256": "6650df028459107181085271cbcb1276d0c913759ddecf0fb3d1a4525a4ba04b",
+      "reviewed": "2026-09-27",
+      "estimated": true,
+      "geometryReview": "Root inspected all four rendered views and orthographic X/Z projections with fractional-height guides. The complete lion, paws, tail and rock are retained. The ground slab occupies approximately the bottom 3% of the oriented total height; the remaining 97% is fitted to the published rounded 6 m sculpture height. This is an approximate starting scale, not survey calibration.",
+      "note": "Root inspected all four rendered views and orthographic X/Z projections with fractional-height guides. The complete lion, paws, tail and rock are retained. The ground slab occupies approximately the bottom 3% of the oriented total height; the remaining 97% is fitted to the published rounded 6 m sculpture height. This is an approximate starting scale, not survey calibration.",
+      "measurementRegion": {
+        "method": "visually-reviewed-fractional-height",
+        "excludedLowerFraction": 0.03,
+        "boundaryStatus": "estimated",
+        "evidenceFiles": [
+          "65437644a0014cc18e404de30c739624-x.png",
+          "65437644a0014cc18e404de30c739624-z.png"
+        ]
+      }
+    }
+  },
+  "global/green-tara-d2e466c9": {
+    "dimensions": "47.8 × 29.2 × 27.3 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://collections.artsmia.org/art/31183/green-tara-tibet",
+    "note": "Museum measurements retained in their published order; axes not independently established. The model includes museum-documented digital closures over losses in the upper legs.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "europe/barry-flanagan-the-drummer": {
+    "dimensions": "243.8 × 172.7 × 91.4 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://music.si.edu/node/1367",
+    "note": "Hirshhorn collection data identify this composition as 1989–1990, despite a conflicting 1996 date in the article introduction. Model coordinates are not calibrated to these measurements.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is approximate and adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 243.8,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://music.si.edu/node/1367"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 172.7,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://music.si.edu/node/1367"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 91.4,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://music.si.edu/node/1367"
+        ]
+      }
+    ]
+  },
+  "europe/covered-tureen-meissonnier-cleveland": {
+    "status": "approximate",
+    "basis": "object",
+    "dimensions": "Overall 36.9 × 38.4 × 31.8 cm",
+    "sourceUrl": "https://zenodo.org/records/10243097",
+    "note": "Archived museum metadata gives an overall sequence of 36.9 × 38.4 × 31.8 cm. Its longest measurement provides an approximate display size; metric model units are not verified.",
+    "checked": "2026-09-27",
+    "spatialNote": "Starting size is estimated from the museum’s overall measurements.",
+    "measures": [
+      {
+        "axis": "longest",
+        "value": 38.4,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://zenodo.org/records/10243097",
+          "https://www.clevelandart.org/art/1977.182"
+        ]
+      }
+    ]
+  },
+  "europe/ion-irimescu-the-critic-criticul": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "unknown",
+    "sourceUrl": "https://sketchfab.com/3d-models/3ef4001616e54f26b109238cbc75fb66",
+    "note": "The institutional model publisher provides no measurements. Model coordinates are not calibrated to these measurements.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not documented. Display size is adjustable."
+  },
+  "europe/igor-mitoraj-fallen-icarus-ikaro-caduto": {
+    "dimensions": "256 × 494 × 257 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.fondazioneroma.it/documenti/Brochure_FR.pdf",
+    "note": "Dimensions from the Fondazione Roma exhibition brochure; surrounding ground in the model has not been calibrated to these measurements. Model coordinates are not calibrated to these measurements.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is approximate and adjustable."
+  },
+  "europe/eugene-dodeigne-saint-bernard": {
+    "dimensions": "Height: 180 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://presse.signesetsens.com/sites/default/files/dp_-_fondation_maeght_-_expo_collection_-_dec_2017_-_mars_2018.pdf",
+    "note": "The foundation exhibition press kit gives 180 cm and Soignies stone, superseding the scan publisher’s approximate 170 cm and sandstone description. Model coordinates are not calibrated to these measurements.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is approximate and adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 180,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://presse.signesetsens.com/sites/default/files/dp_-_fondation_maeght_-_expo_collection_-_dec_2017_-_mars_2018.pdf"
+        ]
+      }
+    ]
+  },
+  "europe/carl-milles-paulus": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "unknown",
+    "sourceUrl": "https://digitaltmuseum.se/011025188513/skulptur",
+    "note": "No measurements are supplied by the model publisher; the linked museum catalogue was unavailable during review. Model coordinates are not calibrated to these measurements.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not documented. Display size is adjustable."
+  },
+  "europe/axel-wallenberg-lyrtradet-the-lyre-tree": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "unknown",
+    "sourceUrl": "https://www.mynewsdesk.com/se/halmstadskommun/pressreleases/street-art-svensk-skulptur-och-konst-fraan-cykelsadeln-nu-drar-konstpromenaderna-igaang-1940271",
+    "note": "No verified measurements were located. Model coordinates are not calibrated to these measurements.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not documented. Display size is adjustable."
+  },
+  "europe/fritz-klimsch-emil-fischer-monument": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "unknown",
+    "sourceUrl": "https://bildhauerei-in-berlin.de/bildwerk/emil-fischer-denkmal-7893/",
+    "note": "No verified measurements were located. The model includes the pedestal but omits the broad two-step pavement beneath it. Model coordinates are not calibrated to these measurements.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not documented. Display size is adjustable."
+  },
+  "europe/ernst-barlach-the-book-reader-der-buchleser": {
+    "dimensions": "Approximately 24 cm high (publisher estimate)",
+    "status": "approximate",
+    "basis": "object",
+    "sourceUrl": "https://sketchfab.com/3d-models/fccf6d522e134de1a00d71a6cbf2abd1",
+    "note": "Publisher reports an approximate height of 24 cm. This is not a verified museum measurement. Model coordinates are not calibrated to these measurements.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is approximate and adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 24,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://sketchfab.com/3d-models/fccf6d522e134de1a00d71a6cbf2abd1"
+        ]
+      }
+    ]
+  },
+  "americas-oceania/daniel-chester-french-lincoln-memorial-early-sketch-model": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "unknown",
+    "sourceUrl": "https://home.nps.gov/articles/chesterwood-the-workshop-of-an-american-sculptor-teaching-with-historic-places.htm",
+    "note": "Approximately 7 in high (reference sketch). The National Park Service describes the first clay sketch as about seven inches high; the scanned plaster example is not independently measured. Model coordinates are not calibrated to these measurements.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not documented. Display size is adjustable."
+  },
+  "americas-oceania/gutzon-borglum-thomas-paine-monument": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "unknown",
+    "sourceUrl": "https://www.positiveatheism.org/hist/lewis/lewtp101.htm",
+    "note": "No verified dimensions were located; sources disagree on the exact 1930s creation date. Model coordinates are not calibrated to these measurements.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not documented. Display size is adjustable."
+  },
+  "americas-oceania/jeff-koons-ushering-in-banality": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "unknown",
+    "sourceUrl": "https://stedelijkstudies.com/curatorial-activism-through-a-feminist-lens/",
+    "note": "No cast-specific measurements were verified during acquisition. Model coordinates are not calibrated to these measurements.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not documented. Display size is adjustable."
+  },
+  "americas-oceania/richard-stankiewicz-anybodys-aunt": {
+    "dimensions": "21.5 × 24.1 × 15.8 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.christies.com/en/lot/lot-5792683",
+    "note": "Dimensions identify the sculpture, excluding the retained display surface. Model coordinates are not calibrated to these measurements.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is approximate and adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 21.5,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://www.christies.com/en/lot/lot-5792683"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 24.1,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://www.christies.com/en/lot/lot-5792683"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 15.8,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://www.christies.com/en/lot/lot-5792683"
+        ]
+      }
+    ]
+  },
+  "europe/kenneth-armitage-the-prophet-der-prophet": {
+    "dimensions": "169 × 110 × 92.5 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://skulpturen.kulturraum.nrw/duisburg/kenneth-armitage/der-prophet.html",
+    "note": "Published sculpture dimensions exclude the paving captured around its base. Model coordinates are not calibrated to these measurements.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is approximate and adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 169,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://skulpturen.kulturraum.nrw/duisburg/kenneth-armitage/der-prophet.html"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 110,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://skulpturen.kulturraum.nrw/duisburg/kenneth-armitage/der-prophet.html"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 92.5,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://skulpturen.kulturraum.nrw/duisburg/kenneth-armitage/der-prophet.html"
+        ]
+      }
+    ]
+  },
+  "europe/alfred-hrdlicka-adolf-scharf-monument": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "unknown",
+    "sourceUrl": "https://austria-forum.org/attach/Wissenssammlungen/Denkmale/Denkmale.pdf",
+    "note": "Vienna’s municipal monument inventory confirms attribution and installation date but gives no dimensions. Model coordinates are not calibrated to these measurements.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not documented. Display size is adjustable."
+  },
+  "americas-oceania/jeff-koons-play-doh": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "unknown",
+    "sourceUrl": "https://www.jeffkoons.com/artwork/celebration",
+    "note": "Reference dimensions: 315 × 386.7 × 348 cm. Artist’s published dimensions for the work; the Station F version has not been independently measured. Model coordinates are not calibrated to these measurements.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not documented. Display size is adjustable."
+  },
+  "europe/bruno-catalano-van-gogh": {
+    "dimensions": "Approximately 4.11 m high (publisher measurement)",
+    "status": "approximate",
+    "basis": "object",
+    "sourceUrl": "https://sketchfab.com/3d-models/7c1c2cb2738e476abc28967ba5af81b1",
+    "note": "Model publisher supplies 4.11 m; exact measurement and pedestal inclusion are not independently verified. Model coordinates are not calibrated to these measurements.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is approximate and adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 4.11,
+        "unit": "m",
+        "sourceUrls": [
+          "https://sketchfab.com/3d-models/7c1c2cb2738e476abc28967ba5af81b1"
+        ]
+      }
+    ]
+  },
+  "europe/bruno-catalano-pierre-david-triptyque": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "unknown",
+    "sourceUrl": "https://brunocatalano.com/2022_textes_info/Dossier-artistique-bruno-catalano2.pdf",
+    "note": "Artist’s published element heights are 300, 269 and 53 cm; the publisher gives 300, 260 and 53 cm for this display. Neither these conflicting values nor an overall triptych size are used for AR scale. Model coordinates are not calibrated to these measurements.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not documented. Display size is adjustable."
+  },
+  "europe/apelles-fenosa-orlando-furioso": {
+    "dimensions": "Approximately 3 m high (publisher estimate)",
+    "status": "approximate",
+    "basis": "object",
+    "sourceUrl": "https://sketchfab.com/3d-models/73d9b434f93f449dbfbe58e6239b6dd0",
+    "note": "Approximate height reported by the scan publisher; support inclusion is not verified. Model coordinates are not calibrated to these measurements.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is approximate and adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 3,
+        "unit": "m",
+        "sourceUrls": [
+          "https://sketchfab.com/3d-models/73d9b434f93f449dbfbe58e6239b6dd0"
+        ]
+      }
+    ]
+  },
+  "europe/jean-michel-folon-loin": {
+    "dimensions": "Approximately 3 m high including pedestal (publisher estimate)",
+    "status": "approximate",
+    "basis": "object",
+    "sourceUrl": "https://sketchfab.com/3d-models/f1d28eda002844df98d409e752238beb",
+    "note": "Publisher estimate for the displayed sculpture and pedestal. Model coordinates are not calibrated to these measurements.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is approximate and adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 3,
+        "unit": "m",
+        "sourceUrls": [
+          "https://sketchfab.com/3d-models/f1d28eda002844df98d409e752238beb"
+        ]
+      }
+    ]
+  },
+  "europe/jean-michel-folon-le-secret": {
+    "dimensions": "Approximately 2 m high (publisher estimate)",
+    "status": "approximate",
+    "basis": "object",
+    "sourceUrl": "https://sketchfab.com/3d-models/2301819cd4dd46f48e649a1d0fc1f18f",
+    "note": "Publisher’s approximate height; precise boundary and base inclusion unverified. Model coordinates are not calibrated to these measurements.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is approximate and adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 2,
+        "unit": "m",
+        "sourceUrls": [
+          "https://sketchfab.com/3d-models/2301819cd4dd46f48e649a1d0fc1f18f"
+        ]
+      }
+    ]
+  },
+  "europe/jean-michel-folon-angelo-custode": {
+    "dimensions": "Approximately 2.5 m high including pedestal (publisher estimate)",
+    "status": "approximate",
+    "basis": "object",
+    "sourceUrl": "https://sketchfab.com/3d-models/da4d5a5c5c1b4b05b950974a08610699",
+    "note": "Publisher estimate for the scanned display. Dimensions or acquisition dates of the Vatican example are not transferred. Model coordinates are not calibrated to these measurements.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is approximate and adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 2.5,
+        "unit": "m",
+        "sourceUrls": [
+          "https://sketchfab.com/3d-models/da4d5a5c5c1b4b05b950974a08610699"
+        ]
+      }
+    ]
+  },
+  "europe/hilde-uray-theodor-korner-monument": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "unknown",
+    "sourceUrl": "https://austria-forum.org/attach/Wissenssammlungen/Denkmale/Denkmale.pdf",
+    "note": "No verified object dimensions were located. Model coordinates are not calibrated to these measurements.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not documented. Display size is adjustable."
+  },
+  "europe/ulrike-truger-wachterin-guardian": {
+    "dimensions": "Height: approximately 3 m",
+    "status": "approximate",
+    "basis": "object",
+    "sourceUrl": "https://www.ulriketruger.at/monumentale-widerstaende",
+    "note": "Artist’s site gives a rounded height of three metres. The model includes a low support slab. Model coordinates are not calibrated to these measurements.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is approximate and adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 3,
+        "unit": "m",
+        "sourceUrls": [
+          "https://www.ulriketruger.at/monumentale-widerstaende"
+        ]
+      }
+    ]
+  },
+  "americas-oceania/agustin-cardenas-grande-amapola": {
+    "dimensions": "Approximately 2 m high including pedestal (publisher estimate)",
+    "status": "approximate",
+    "basis": "object",
+    "sourceUrl": "https://sketchfab.com/3d-models/b41393dd84f542acbf3f89e9d731d09b",
+    "note": "Publisher estimate includes the cylindrical display pedestal. Model coordinates are not calibrated to these measurements.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is approximate and adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 2,
+        "unit": "m",
+        "sourceUrls": [
+          "https://sketchfab.com/3d-models/b41393dd84f542acbf3f89e9d731d09b"
+        ]
+      }
+    ]
+  },
+  "europe/otto-eder-kamel-camel": {
+    "dimensions": "Height: approximately 2 m",
+    "status": "approximate",
+    "basis": "object",
+    "sourceUrl": "https://www.wienerwohnen.at/info/hof-informationen/75/Chopinhof.html",
+    "note": "The municipal housing owner describes the camel as two metres high; rounded published size, not a survey of model bounds. Model coordinates are not calibrated to these measurements.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is approximate and adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 2,
+        "unit": "m",
+        "sourceUrls": [
+          "https://www.wienerwohnen.at/info/hof-informationen/75/Chopinhof.html"
+        ]
+      }
+    ]
+  },
+  "europe/francisco-leiro-la-femme-basque": {
+    "dimensions": "Approximately 3 m high (publisher measurement)",
+    "status": "approximate",
+    "basis": "object",
+    "sourceUrl": "https://sketchfab.com/3d-models/a4d6364227c34116926489caa7165b50",
+    "note": "Publisher reports three metres; base inclusion and survey precision are unverified. Model coordinates are not calibrated to these measurements.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is approximate and adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 3,
+        "unit": "m",
+        "sourceUrls": [
+          "https://sketchfab.com/3d-models/a4d6364227c34116926489caa7165b50"
+        ]
+      }
+    ]
+  },
+  "europe/gertrude-fronius-sitzender-eisbar-seated-polar-bear": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "unknown",
+    "sourceUrl": "https://www.wienerwohnen.at/info/hof-informationen/1431/Johann-Boehm-Wohnhausanlage.html",
+    "note": "The municipal owner verifies the work and date but provides no dimensions. Model coordinates are not calibrated to these measurements.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not documented. Display size is adjustable."
+  },
+  "europe/josef-engelhart-fiakerdenkmal-coachman-monument": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "unknown",
+    "sourceUrl": "https://www.sav.sk/journals/uploads/11261154ars2024-2_2_K%C3%B6rner.pdf",
+    "note": "No verified object dimensions were located. Model coordinates are not calibrated to these measurements.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not documented. Display size is adjustable."
+  },
+  "europe/zigor-kepa-akixo-urkulu": {
+    "dimensions": "Approximately 3 × 3 × 1.8 m including basin (publisher estimate)",
+    "status": "approximate",
+    "basis": "object",
+    "sourceUrl": "https://sketchfab.com/3d-models/09d0705e720b47ccbbb47ccf41532c21",
+    "note": "Publisher estimate explicitly includes the water area surrounding the bronze. Not an object-only sculpture measurement. Model coordinates are not calibrated to these measurements.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is approximate and adjustable."
+  },
+  "europe/zigor-kepa-akixo-txoria-bird": {
+    "dimensions": "Height: approximately 4 m on its support",
+    "status": "approximate",
+    "basis": "object",
+    "sourceUrl": "https://web.archive.org/web/20110511032854/http://www.anglet.fr/184-articles/1357-loiseau-dacier-de-zigor.html",
+    "note": "Anglet’s 2011 announcement gives four metres on a support, superseding the publisher’s approximate 4.5 m. Rounded municipal description, not a measured model calibration. Model coordinates are not calibrated to these measurements.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is approximate and adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 4,
+        "unit": "m",
+        "sourceUrls": [
+          "https://web.archive.org/web/20110511032854/http://www.anglet.fr/184-articles/1357-loiseau-dacier-de-zigor.html"
+        ]
+      }
+    ]
+  },
+  "europe/maarten-stuer-tourbillon": {
+    "dimensions": "Approximately 145 × 120 × 100 cm (publisher measurements)",
+    "status": "approximate",
+    "basis": "object",
+    "sourceUrl": "https://sketchfab.com/3d-models/c3d3741531ee4cc7997a49bca371c474",
+    "note": "Dimensions supplied by the model publisher, not independently verified against an accession record. Model coordinates are not calibrated to these measurements.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is approximate and adjustable."
+  },
+  "europe/jesus-echevarria-la-danse-rituelle-du-feu": {
+    "dimensions": "Approximately 250 cm high (publisher measurement)",
+    "status": "approximate",
+    "basis": "object",
+    "sourceUrl": "https://sketchfab.com/3d-models/959c6a1f907f4f39adb0ecdd04a9385d",
+    "note": "Publisher gives 250 cm; whether the stepped pedestal is included is unverified. Model coordinates are not calibrated to these measurements.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is approximate and adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 250,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://sketchfab.com/3d-models/959c6a1f907f4f39adb0ecdd04a9385d"
+        ]
+      }
+    ]
+  },
+  "europe/jesus-echevarria-la-pierre-du-sacrifice": {
+    "dimensions": "Approximately 145 cm high (publisher measurement)",
+    "status": "approximate",
+    "basis": "object",
+    "sourceUrl": "https://sketchfab.com/3d-models/8732d07701ba4b7d877a194392440795",
+    "note": "Publisher-supplied height; not independently measured. Model coordinates are not calibrated to these measurements.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is approximate and adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 145,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://sketchfab.com/3d-models/8732d07701ba4b7d877a194392440795"
+        ]
+      }
+    ]
+  },
+  "europe/rudolf-kedl-elefant-elephant": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "unknown",
+    "sourceUrl": "https://stadtundgruen.de/artikel/formen-materialien-und-denkmalwert-spielplastiken-im-wien-der-nachkriegszeit-20478",
+    "note": "No verified object dimensions were located. Model coordinates are not calibrated to these measurements.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not documented. Display size is adjustable."
+  },
+  "europe/jean-michel-folon-premiere-pensee": {
+    "dimensions": "Approximately 2 m high (publisher estimate)",
+    "status": "approximate",
+    "basis": "object",
+    "sourceUrl": "https://sketchfab.com/3d-models/7d2f30f7c2354c01a605bbdbf21552bc",
+    "note": "Approximate height from the scan publisher; exact cast size and pedestal inclusion unverified. Model coordinates are not calibrated to these measurements.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is approximate and adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 2,
+        "unit": "m",
+        "sourceUrls": [
+          "https://sketchfab.com/3d-models/7d2f30f7c2354c01a605bbdbf21552bc"
+        ]
+      }
+    ]
+  },
+  "europe/jean-michel-folon-evasion": {
+    "dimensions": "Approximately 2 m high including pedestal (publisher estimate)",
+    "status": "approximate",
+    "basis": "object",
+    "sourceUrl": "https://sketchfab.com/3d-models/db84313b080047528c7bee89cdc211c6",
+    "note": "Publisher estimate includes the inscribed pedestal. Model coordinates are not calibrated to these measurements.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is approximate and adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 2,
+        "unit": "m",
+        "sourceUrls": [
+          "https://sketchfab.com/3d-models/db84313b080047528c7bee89cdc211c6"
+        ]
+      }
+    ]
+  },
+  "europe/jean-michel-folon-le-reveur": {
+    "dimensions": "Approximately 2 m high (publisher estimate)",
+    "status": "approximate",
+    "basis": "object",
+    "sourceUrl": "https://sketchfab.com/3d-models/beb1f16f6c684836a9dea20c9467deff",
+    "note": "Publisher estimate; exact boundary and base inclusion unverified. Model coordinates are not calibrated to these measurements.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is approximate and adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 2,
+        "unit": "m",
+        "sourceUrls": [
+          "https://sketchfab.com/3d-models/beb1f16f6c684836a9dea20c9467deff"
+        ]
+      }
+    ]
+  },
+  "europe/jean-michel-folon-la-lecture": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "unknown",
+    "sourceUrl": "https://www.provincedeliege.be/es/evenement/43/12149",
+    "note": "No verified object dimensions were located. Model coordinates are not calibrated to these measurements.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not documented. Display size is adjustable."
+  },
+  "global/nataraja-shiva-as-the-lord-of-dance-6862a3c6": {
+    "dimensions": "113 × 102 × 30 cm (overall); base 35 × 24 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.clevelandart.org/art/1930.331",
+    "note": "Museum overall and base measurements recorded separately. Digital model is not calibrated.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "global/water-moon-guanyin-f3316610": {
+    "dimensions": "102.9 × 85.1 × 50.8 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://collections.artsmia.org/art/32122/seated-guanyin-china",
+    "note": "Published object dimensions are recorded; the model has not been calibrated to physical scale.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "global/colima-dog-c401f8de": {
+    "dimensions": "24.1 × 15.4 × 33.2 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://collections.artsmia.org/art/5992/dog-colima",
+    "note": "Published object dimensions are recorded; the model has not been calibrated to physical scale.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "global/stele-with-sakyamuni-and-bodhisattvas-ead841ad": {
+    "dimensions": "77.5 × 44.4 cm (overall)",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.clevelandart.org/art/1914.567",
+    "note": "Published object dimensions are recorded; the model has not been calibrated to physical scale.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "global/basin-with-inscribed-figures-and-calligraphy-4655f17b": {
+    "dimensions": "17 cm overall; mouth diameter with rim 21.7 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.clevelandart.org/art/1985.112",
+    "note": "Published object dimensions are recorded; the model has not been calibrated to physical scale.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "global/bottle-with-incised-and-sgraffito-fish-design-250c1384": {
+    "dimensions": "30.6 cm overall; outer diameter 17 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.clevelandart.org/art/1962.153",
+    "note": "Published object dimensions are recorded; the model has not been calibrated to physical scale.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "global/amitabha-triad-40c2bc86": {
+    "dimensions": "40.6 × 16.5 × 54.6 cm (museum published order)",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.clevelandart.org/art/1918.501",
+    "note": "Published object dimensions are recorded; the model has not been calibrated to physical scale.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "global/standing-bodhisattva-1a57a0d6": {
+    "dimensions": "48.6 × 15.6 × 18.2 cm (overall)",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.clevelandart.org/art/1997.11",
+    "note": "Published object dimensions are recorded; the model has not been calibrated to physical scale.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "global/courtesan-with-heron-and-squirrel-806582ad": {
+    "dimensions": "16.2 cm overall",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.clevelandart.org/art/1964.240",
+    "note": "Published object dimensions are recorded; the model has not been calibrated to physical scale.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "global/drum-on-a-caryatid-9152b019": {
+    "dimensions": "Unknown",
+    "status": "unresolved",
+    "basis": "unknown",
+    "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/1897",
+    "note": "No object-specific physical measurements or verified metric model units established. Display size is adjustable.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "global/staff-of-office-54584c25": {
+    "dimensions": "170 cm overall",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.clevelandart.org/art/2004.85",
+    "note": "Published object dimensions are recorded; the model has not been calibrated to physical scale.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "global/seal-form-serving-bowl-50ce0772": {
+    "dimensions": "Length 30 cm; height 9.5 cm; width 13.5 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://collections.smvk.se/carlotta-em/web/object/1066414",
+    "note": "Published object dimensions are recorded; the model has not been calibrated to physical scale.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [
+      {
+        "axis": "length",
+        "value": 30,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://collections.smvk.se/carlotta-em/web/object/1066414"
+        ]
+      },
+      {
+        "axis": "height",
+        "value": 9.5,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://collections.smvk.se/carlotta-em/web/object/1066414"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 13.5,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://collections.smvk.se/carlotta-em/web/object/1066414"
+        ]
+      }
+    ]
+  },
+  "global/bear-and-shaman-figure-group-d2c6d60e": {
+    "dimensions": "Unknown",
+    "status": "unresolved",
+    "basis": "unknown",
+    "sourceUrl": "https://collections.smvk.se/carlotta-em/web/object/1067513",
+    "note": "No object-specific physical measurements or verified metric model units established. Display size is adjustable.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "global/bear-crest-head-dress-frontlet-68ddc808": {
+    "dimensions": "Height 191 mm; width 156 mm; depth 76 mm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.sainsburycentre.ac.uk/art-and-objects/590-head-dress-frontlet/",
+    "note": "Published object dimensions are recorded; the model has not been calibrated to physical scale.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 191,
+        "unit": "mm",
+        "sourceUrls": [
+          "https://www.sainsburycentre.ac.uk/art-and-objects/590-head-dress-frontlet/"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 156,
+        "unit": "mm",
+        "sourceUrls": [
+          "https://www.sainsburycentre.ac.uk/art-and-objects/590-head-dress-frontlet/"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 76,
+        "unit": "mm",
+        "sourceUrls": [
+          "https://www.sainsburycentre.ac.uk/art-and-objects/590-head-dress-frontlet/"
+        ]
+      }
+    ]
+  },
+  "global/scraper-handle-with-incised-figures-d6e0b99e": {
+    "dimensions": "Length 111 mm; width 43 mm; depth 47 mm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.sainsburycentre.ac.uk/art-and-objects/918-scraper-handle/",
+    "note": "Published object dimensions are recorded; the model has not been calibrated to physical scale.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [
+      {
+        "axis": "length",
+        "value": 111,
+        "unit": "mm",
+        "sourceUrls": [
+          "https://www.sainsburycentre.ac.uk/art-and-objects/918-scraper-handle/"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 43,
+        "unit": "mm",
+        "sourceUrls": [
+          "https://www.sainsburycentre.ac.uk/art-and-objects/918-scraper-handle/"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 47,
+        "unit": "mm",
+        "sourceUrls": [
+          "https://www.sainsburycentre.ac.uk/art-and-objects/918-scraper-handle/"
+        ]
+      }
+    ]
+  },
+  "global/seal-figure-52751694": {
+    "dimensions": "Length 5.4 cm; height 1.5 cm; width 1.8 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://collections.smvk.se/carlotta-em/web/object/1039902",
+    "note": "Published object dimensions are recorded; the model has not been calibrated to physical scale.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [
+      {
+        "axis": "length",
+        "value": 5.4,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://collections.smvk.se/carlotta-em/web/object/1039902"
+        ]
+      },
+      {
+        "axis": "height",
+        "value": 1.5,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://collections.smvk.se/carlotta-em/web/object/1039902"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 1.8,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://collections.smvk.se/carlotta-em/web/object/1039902"
+        ]
+      }
+    ]
+  },
+  "global/heiltsuk-ceremonial-frontlet-7acaa584": {
+    "dimensions": "Height 22 cm; width 15 cm; depth 13 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://collections.smvk.se/carlotta-em/web/object/1068137",
+    "note": "Published object dimensions are recorded; the model has not been calibrated to physical scale.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 22,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://collections.smvk.se/carlotta-em/web/object/1068137"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 15,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://collections.smvk.se/carlotta-em/web/object/1068137"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 13,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://collections.smvk.se/carlotta-em/web/object/1068137"
+        ]
+      }
+    ]
+  },
+  "global/nguru-nose-flute-79152b81": {
+    "dimensions": "100 × 100 mm (museum published order)",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://heritage.southwark.gov.uk/objects/6695/whistle",
+    "note": "Published object dimensions are recorded; the model has not been calibrated to physical scale.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "global/malanggan-figure-58aeeabf": {
+    "dimensions": "Unknown",
+    "status": "unresolved",
+    "basis": "unknown",
+    "sourceUrl": "https://sketchfab.com/3d-models/58aeeabf0eaa4eaaaaf5a52a5c1c83b7",
+    "note": "No object-specific physical measurements or verified metric model units established. Display size is adjustable.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "global/carved-fish-hook-fd72f17b": {
+    "dimensions": "Height 6 cm; width 5 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://collections.smvk.se/carlotta-em/web/object/1260731",
+    "note": "Published object dimensions are recorded; the model has not been calibrated to physical scale.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 6,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://collections.smvk.se/carlotta-em/web/object/1260731"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 5,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://collections.smvk.se/carlotta-em/web/object/1260731"
+        ]
+      }
+    ]
+  },
+  "global/stool-panel-with-four-soldiers-30301928": {
+    "dimensions": "Height 42 cm; width 15 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://collections.smvk.se/carlotta-em/web/object/1306309",
+    "note": "Published object dimensions are recorded; the model has not been calibrated to physical scale.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 42,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://collections.smvk.se/carlotta-em/web/object/1306309"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 15,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://collections.smvk.se/carlotta-em/web/object/1306309"
+        ]
+      }
+    ]
+  },
+  "global/into-the-southern-hemisphere-tupaia-aa9ebaad": {
+    "dimensions": "Unknown",
+    "status": "unresolved",
+    "basis": "unknown",
+    "sourceUrl": "https://collection.tairawhitimuseum.org.nz/objects/16411/tupaia",
+    "note": "No object-specific physical measurements or verified metric model units established. Display size is adjustable.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "global/moche-portrait-stirrup-spouted-vessel-167cdacf": {
+    "dimensions": "Unknown",
+    "status": "unresolved",
+    "basis": "unknown",
+    "sourceUrl": "https://sketchfab.com/3d-models/167cdacff1034d5682e89e089fb381c3",
+    "note": "No object-specific physical measurements or verified metric model units established. Display size is adjustable.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "global/moche-owl-vessel-34ffa74a": {
+    "dimensions": "Unknown",
+    "status": "unresolved",
+    "basis": "unknown",
+    "sourceUrl": "https://sketchfab.com/3d-models/34ffa74ae0354c53bf5b88b437fd6c7b",
+    "note": "No object-specific physical measurements or verified metric model units established. Display size is adjustable.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "global/moche-vessel-with-mythical-combat-relief-10c8b6e6": {
+    "dimensions": "Unknown",
+    "status": "unresolved",
+    "basis": "unknown",
+    "sourceUrl": "https://sketchfab.com/3d-models/10c8b6e681f94b9ca272da9c36369f18",
+    "note": "No object-specific physical measurements or verified metric model units established. Display size is adjustable.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "global/moche-figure-vessel-with-flared-headdress-48281af8": {
+    "dimensions": "Unknown",
+    "status": "unresolved",
+    "basis": "unknown",
+    "sourceUrl": "https://sketchfab.com/3d-models/48281af8513246d0a25b61c2652ef507",
+    "note": "No object-specific physical measurements or verified metric model units established. Display size is adjustable.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "global/moche-figure-vessel-with-large-ear-ornaments-ad5a5371": {
+    "dimensions": "Unknown",
+    "status": "unresolved",
+    "basis": "unknown",
+    "sourceUrl": "https://sketchfab.com/3d-models/ad5a5371047e476f93fdce167bd028b9",
+    "note": "No object-specific physical measurements or verified metric model units established. Display size is adjustable.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "global/moche-figure-vessel-with-folded-arms-4ea2a82f": {
+    "dimensions": "Unknown",
+    "status": "unresolved",
+    "basis": "unknown",
+    "sourceUrl": "https://sketchfab.com/3d-models/4ea2a82fa93447d6a0273574f5cff19f",
+    "note": "No object-specific physical measurements or verified metric model units established. Display size is adjustable.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "global/moche-prisoner-vessel-9d01ba3e": {
+    "dimensions": "Unknown",
+    "status": "unresolved",
+    "basis": "unknown",
+    "sourceUrl": "https://sketchfab.com/3d-models/9d01ba3e406846df9473f8276c0193f1",
+    "note": "No object-specific physical measurements or verified metric model units established. Display size is adjustable.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "global/moche-figure-vessel-with-white-headdress-73baec4c": {
+    "dimensions": "Unknown",
+    "status": "unresolved",
+    "basis": "unknown",
+    "sourceUrl": "https://sketchfab.com/3d-models/73baec4c4b294daf970f83267a21f998",
+    "note": "No object-specific physical measurements or verified metric model units established. Display size is adjustable.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "global/nazca-cup-with-mask-and-face-motifs-510faa51": {
+    "dimensions": "Unknown",
+    "status": "unresolved",
+    "basis": "unknown",
+    "sourceUrl": "https://sketchfab.com/3d-models/510faa51eab44c1d933244fb02947da5",
+    "note": "No object-specific physical measurements or verified metric model units established. Display size is adjustable.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "global/nazca-double-spout-bridge-vessel-94428022": {
+    "dimensions": "Unknown",
+    "status": "unresolved",
+    "basis": "unknown",
+    "sourceUrl": "https://sketchfab.com/3d-models/9442802276c14842a8e217e1b083227f",
+    "note": "No object-specific physical measurements or verified metric model units established. Display size is adjustable.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "global/nazca-cup-with-polychrome-painting-c90ce020": {
+    "dimensions": "Unknown",
+    "status": "unresolved",
+    "basis": "unknown",
+    "sourceUrl": "https://sketchfab.com/3d-models/c90ce02091a040f286927c1d358c7388",
+    "note": "No object-specific physical measurements or verified metric model units established. Display size is adjustable.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "global/nazca-anthropomorphic-cup-a9a29512": {
+    "dimensions": "Unknown",
+    "status": "unresolved",
+    "basis": "unknown",
+    "sourceUrl": "https://sketchfab.com/3d-models/a9a295125564465fb960d1cf5549b74c",
+    "note": "No object-specific physical measurements or verified metric model units established. Display size is adjustable.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "global/olmec-style-stone-effigy-26ad7a1d": {
+    "dimensions": "Unknown",
+    "status": "unresolved",
+    "basis": "unknown",
+    "sourceUrl": "https://sketchfab.com/3d-models/26ad7a1d00954e1faf0f185c8c398894",
+    "note": "No object-specific physical measurements or verified metric model units established. Display size is adjustable.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "global/frog-shaped-pitcher-2ae0935d": {
+    "dimensions": "Unknown",
+    "status": "unresolved",
+    "basis": "unknown",
+    "sourceUrl": "https://sketchfab.com/3d-models/2ae0935d6d444996bdfaa0d93b6d943a",
+    "note": "No object-specific physical measurements or verified metric model units established. Display size is adjustable.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "global/moche-rattle-vessel-92909107": {
+    "dimensions": "Unknown",
+    "status": "unresolved",
+    "basis": "unknown",
+    "sourceUrl": "https://sketchfab.com/3d-models/9290910774e7487db11f39585f936d66",
+    "note": "No object-specific physical measurements or verified metric model units established. Display size is adjustable.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "global/zapotec-effigy-urn-with-crossed-hands-3c39c6a1": {
+    "dimensions": "Unknown",
+    "status": "unresolved",
+    "basis": "unknown",
+    "sourceUrl": "https://sketchfab.com/3d-models/3c39c6a17f7940eaa5a439333db36b8e",
+    "note": "No object-specific physical measurements or verified metric model units established. Display size is adjustable.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "global/zapotec-effigy-urn-with-tall-headdress-5297a612": {
+    "dimensions": "Unknown",
+    "status": "unresolved",
+    "basis": "unknown",
+    "sourceUrl": "https://sketchfab.com/3d-models/5297a61205024d408b2af78ec7919d1a",
+    "note": "No object-specific physical measurements or verified metric model units established. Display size is adjustable.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "global/arayori-a-peasant-woman-7d1af573": {
+    "dimensions": "Height 133 cm; width 53.3 cm; depth 61 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://art.thewalters.org/object/25.2/",
+    "note": "Published object dimensions are recorded; the model has not been calibrated to physical scale.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 133,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://art.thewalters.org/object/25.2/"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 53.3,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://art.thewalters.org/object/25.2/"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 61,
+        "unit": "cm",
+        "sourceUrls": [
+          "https://art.thewalters.org/object/25.2/"
+        ]
+      }
+    ]
+  },
+  "global/thunder-god-with-demon-child-on-his-back-e0b63a47": {
+    "dimensions": "Unknown",
+    "status": "unresolved",
+    "basis": "unknown",
+    "sourceUrl": "https://jsmacollection.uoregon.edu/mwebimages/CollectionPhotos/PUBLICATIONS/1998/1998%20-%20Made%20in%20Meiji.pdf",
+    "note": "No object-specific physical measurements or verified metric model units established. Display size is adjustable.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "global/harihara-reunited-figure-7cc686bb": {
+    "dimensions": "Unknown",
+    "status": "unresolved",
+    "basis": "unknown",
+    "sourceUrl": "https://sketchfab.com/3d-models/7cc686bbf01749fdb4be2f21b524155e",
+    "note": "Published 202 × 80 × 51.5 cm model-record dimensions are not applied: the exact scope of measurements across restored components and museum supports is unresolved. Physical dimensions and metric model calibration remain unknown.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "global/bust-of-prince-ankhhaf-47b515e6": {
+    "dimensions": "Unknown",
+    "status": "unresolved",
+    "basis": "unknown",
+    "sourceUrl": "https://www.mfa.org/gallery/masterpieces-of-egyptian-sculpture-from-the-pyramid-age",
+    "note": "No object-specific physical measurements or verified metric model units established. Display size is adjustable.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "global/bi-disc-museum-digital-reconstruction-d763ec3d": {
+    "dimensions": "Outer diameter 28.89 cm; inner diameter 5.72 cm; thickness 0.32 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://collections.artsmia.org/art/1055/bi-disc-china",
+    "note": "Measurements describe the original museum object. Reconstructed geometry is not independently calibrated to those dimensions.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "europe/a-victorious-danish-soldier-89f206": {
+    "dimensions": "220 cm high",
+    "status": "documented",
+    "basis": "museum_or_scan_publisher",
+    "sourceUrl": "https://open.smk.dk/en/artwork/image/KMS5032",
+    "note": "Published object measurements are retained as catalog facts; model scale has not been physically calibrated.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "europe/saint-stanislaus-or-saint-martin-of-tours-b558c9": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "unknown",
+    "sourceUrl": "https://muzea.malopolska.pl/pl/lista-obiektow/184",
+    "note": "No reliably matched dimensions for this scanned version. Alternate cast measurements are not substituted.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "europe/saint-catherine-of-alexandria-c0b8da": {
+    "dimensions": "93 × 26.5 × 23 cm; 10.8 kg",
+    "status": "documented",
+    "basis": "museum_or_scan_publisher",
+    "sourceUrl": "https://wb.britishmuseum.org/MCN10792",
+    "note": "Published object measurements are retained as catalog facts; model scale has not been physically calibrated.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "europe/the-holy-thorn-reliquary-20f391": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "unknown",
+    "sourceUrl": "https://wb.britishmuseum.org/MCN341",
+    "note": "No reliably matched dimensions for this scanned version. Alternate cast measurements are not substituted.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "europe/bell-shrine-of-saint-conall-cael-c19c99": {
+    "dimensions": "21.9 × 15.5 × 12.7 cm; 1092.4 g",
+    "status": "documented",
+    "basis": "museum_or_scan_publisher",
+    "sourceUrl": "https://www.britishmuseum.org/collection/object/H_1889-0902-23",
+    "note": "Published object measurements are retained as catalog facts; model scale has not been physically calibrated.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "europe/loveden-hill-cremation-urn-f2272d": {
+    "dimensions": "15.5 cm high; 18 cm diameter",
+    "status": "documented",
+    "basis": "museum_or_scan_publisher",
+    "sourceUrl": "https://sketchfab.com/3d-models/anglo-saxon-cremation-urn-f2272d1abab64ad2a4a1706b43278181",
+    "note": "Published object measurements are retained as catalog facts; model scale has not been physically calibrated.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "europe/hunter-overcoming-a-boar-e04400": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "unknown",
+    "sourceUrl": "https://collections.louvre.fr/en/ark:/53355/cl010201524",
+    "note": "No reliably matched dimensions for this scanned version. Alternate cast measurements are not substituted.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "europe/saint-roch-5d0bee": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "unknown",
+    "sourceUrl": "https://cataleg.museumares.bcn.cat/fitxa/seccio_escultura/H302777/",
+    "note": "No reliably matched dimensions for this scanned version. Alternate cast measurements are not substituted.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "europe/portrait-presumed-to-be-juliette-recamier-68f0f8": {
+    "dimensions": "63 × 44 × 20 cm",
+    "status": "documented",
+    "basis": "museum_or_scan_publisher",
+    "sourceUrl": "https://parismuseescollections.paris.fr/en/node/185721",
+    "note": "Published object measurements are retained as catalog facts; model scale has not been physically calibrated.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "europe/bust-of-adam-mickiewicz-0526d2": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "unknown",
+    "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/16",
+    "note": "No reliably matched dimensions for this scanned version. Alternate cast measurements are not substituted.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "europe/rectors-election-ballot-box-dfec32": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "unknown",
+    "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/2844",
+    "note": "No reliably matched dimensions for this scanned version. Alternate cast measurements are not substituted.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "europe/saint-peter-of-alcantara-1a74f5": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "unknown",
+    "sourceUrl": "https://cataleg.museumares.bcn.cat/fitxa/seccio_escultura/H305274/",
+    "note": "No reliably matched dimensions for this scanned version. Alternate cast measurements are not substituted.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "roman/head-of-plato-1df837": {
+    "dimensions": "35.5 cm high",
+    "status": "documented",
+    "basis": "museum_or_scan_publisher",
+    "sourceUrl": "https://data.fitzmuseum.cam.ac.uk/id/object/65492",
+    "note": "Published object measurements are retained as catalog facts; model scale has not been physically calibrated.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "europe/over-a-grave-5de3e5": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "unknown",
+    "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/3",
+    "note": "No reliably matched dimensions for this scanned version. Alternate cast measurements are not substituted.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "roman/lion-overpowering-a-ram-e95907": {
+    "dimensions": "45 cm high; 65 cm long",
+    "status": "documented",
+    "basis": "museum_or_scan_publisher",
+    "sourceUrl": "https://www.britishmuseum.org/collection/object/H_1969-0701-1_1",
+    "note": "Published object measurements are retained as catalog facts; model scale has not been physically calibrated.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "europe/sheffield-cross-shaft-124a7b": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "unknown",
+    "sourceUrl": "https://www.britishmuseum.org/collection/object/H_1924-1015-1",
+    "note": "No reliably matched dimensions for this scanned version. Alternate cast measurements are not substituted.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "roman/limestone-head-of-a-woman-from-towcester-0daefe": {
+    "dimensions": "57 cm high; 34.5 cm wide; 31 cm diameter",
+    "status": "documented",
+    "basis": "museum_or_scan_publisher",
+    "sourceUrl": "https://www.britishmuseum.org/collection/object/H_1903-1121-1",
+    "note": "Published object measurements are retained as catalog facts; model scale has not been physically calibrated.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "roman/altar-of-gaius-cornelius-peregrinus-0d6143": {
+    "dimensions": "152 cm high",
+    "status": "documented",
+    "basis": "museum_or_scan_publisher",
+    "sourceUrl": "https://www.britishmuseum.org/collection/object/H_1969-0701-3",
+    "note": "Published object measurements are retained as catalog facts; model scale has not been physically calibrated.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "europe/napoleon-on-a-horse-d4d067": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "unknown",
+    "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/17",
+    "note": "No reliably matched dimensions for this scanned version. Alternate cast measurements are not substituted.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "europe/our-lady-of-sorrows-e601c9": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "unknown",
+    "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/319",
+    "note": "No reliably matched dimensions for this scanned version. Alternate cast measurements are not substituted.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "europe/bust-of-a-saint-086cef": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "unknown",
+    "sourceUrl": "https://sketchfab.com/3d-models/086cef6dd2ff4921959b6ec656c2c36a",
+    "note": "No reliably matched dimensions for this scanned version. Alternate cast measurements are not substituted.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "europe/bust-of-a-woman-from-the-sant-pere-altarpiece-26358d": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "unknown",
+    "sourceUrl": "https://sketchfab.com/3d-models/26358d9a5b034ca696843dbb822fb58c",
+    "note": "No reliably matched dimensions for this scanned version. Alternate cast measurements are not substituted.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "europe/seated-apostle-probably-saint-matthew-418484": {
+    "dimensions": "65 cm high; base 42 × 28 cm",
+    "status": "documented",
+    "basis": "museum_or_scan_publisher",
+    "sourceUrl": "https://objektkatalog.gnm.de/objekt/Pl.O.234",
+    "note": "Published object measurements are retained as catalog facts; model scale has not been physically calibrated.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "europe/aquamanile-in-the-form-of-a-kneeling-man-48d8d1": {
+    "dimensions": "26.4 cm high; 1763.4 g",
+    "status": "documented",
+    "basis": "museum_or_scan_publisher",
+    "sourceUrl": "https://objektkatalog.gnm.de/objekt/KG488",
+    "note": "Published object measurements are retained as catalog facts; model scale has not been physically calibrated.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "europe/toy-poodle-4352d9": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "unknown",
+    "sourceUrl": "https://objektkatalog.gnm.de/objekt/HG8684",
+    "note": "No reliably matched dimensions for this scanned version. Alternate cast measurements are not substituted.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "europe/hallstatt-bull-57dea4": {
+    "dimensions": "6.5 cm long; 8 cm high",
+    "status": "documented",
+    "basis": "museum_or_scan_publisher",
+    "sourceUrl": "https://objektkatalog.gnm.de/objekt/Va1194",
+    "note": "Published object measurements are retained as catalog facts; model scale has not been physically calibrated.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "europe/natural-cast-of-a-lizard-b330d6": {
+    "dimensions": "7 × 3.8 × 2.9 cm",
+    "status": "documented",
+    "basis": "museum_or_scan_publisher",
+    "sourceUrl": "https://objektkatalog.gnm.de/objekt/HG11135",
+    "note": "Published object measurements are retained as catalog facts; model scale has not been physically calibrated.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "europe/memento-mori-4116e3": {
+    "dimensions": "13.5 × 24.8 × 24.8 cm",
+    "status": "documented",
+    "basis": "museum_or_scan_publisher",
+    "sourceUrl": "https://objektkatalog.gnm.de/objekt/Pl.O.3211",
+    "note": "Published object measurements are retained as catalog facts; model scale has not been physically calibrated.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "europe/parsberg-mask-brooch-f0fc6d": {
+    "dimensions": "8.5 cm long",
+    "status": "documented",
+    "basis": "museum_or_scan_publisher",
+    "sourceUrl": "https://objektkatalog.gnm.de/objekt/Vb1817",
+    "note": "Published object measurements are retained as catalog facts; model scale has not been physically calibrated.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "europe/closed-helmet-7677d8": {
+    "dimensions": "22 cm high; 2030 g",
+    "status": "documented",
+    "basis": "museum_or_scan_publisher",
+    "sourceUrl": "https://objektkatalog.gnm.de/objekt/W1922",
+    "note": "Published object measurements are retained as catalog facts; model scale has not been physically calibrated.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "europe/beer-cup-with-quatrefoil-rim-a8d436": {
+    "dimensions": "17 cm high; maximum diameter 14.6 cm; foot diameter 6.4 cm",
+    "status": "documented",
+    "basis": "museum_or_scan_publisher",
+    "sourceUrl": "https://objektkatalog.gnm.de/objekt/Ke3402",
+    "note": "Published object measurements are retained as catalog facts; model scale has not been physically calibrated.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "europe/turkey-england-and-france-831291": {
+    "dimensions": "26 × 20 × 7.5 cm",
+    "status": "documented",
+    "basis": "museum_or_scan_publisher",
+    "sourceUrl": "https://data.fitzmuseum.cam.ac.uk/id/object/71129",
+    "note": "Published object measurements are retained as catalog facts; model scale has not been physically calibrated.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "roman/grave-altar-of-titus-statilius-hermes-271a38": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "unknown",
+    "sourceUrl": "https://sketchfab.com/3d-models/271a38de842f4a1486ee6d85d4532041",
+    "note": "No reliably matched dimensions for this scanned version. Alternate cast measurements are not substituted.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "roman/cinerary-urn-of-aelia-postumia-36841f": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "unknown",
+    "sourceUrl": "https://data.fitzmuseum.cam.ac.uk/id/object/65527",
+    "note": "No reliably matched dimensions for this scanned version. Alternate cast measurements are not substituted.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "europe/relief-portrait-of-an-unknown-emperor-d92d73": {
+    "dimensions": "46.7 × 32 × 7.5 cm",
+    "status": "documented",
+    "basis": "museum_or_scan_publisher",
+    "sourceUrl": "https://data.fitzmuseum.cam.ac.uk/id/object/288396",
+    "note": "Published object measurements are retained as catalog facts; model scale has not been physically calibrated.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "roman/roman-comic-mask-7eefa3": {
+    "dimensions": "26.7 cm high",
+    "status": "documented",
+    "basis": "museum_or_scan_publisher",
+    "sourceUrl": "https://data.fitzmuseum.cam.ac.uk/id/object/65764",
+    "note": "Published object measurements are retained as catalog facts; model scale has not been physically calibrated.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "roman/statuette-of-serapis-82b80e": {
+    "dimensions": "41 cm high",
+    "status": "documented",
+    "basis": "museum_or_scan_publisher",
+    "sourceUrl": "https://data.fitzmuseum.cam.ac.uk/id/object/68050",
+    "note": "Published object measurements are retained as catalog facts; model scale has not been physically calibrated.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "roman/double-herm-of-dionysos-and-a-silen-ce9c81": {
+    "dimensions": "28 cm high; maximum width 17 cm; maximum depth 18.5 cm; base 11 × 12 cm",
+    "status": "documented",
+    "basis": "museum_or_scan_publisher",
+    "sourceUrl": "https://data.fitzmuseum.cam.ac.uk/id/object/65489",
+    "note": "Published object measurements are retained as catalog facts; model scale has not been physically calibrated.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "europe/willemstad-figurine-5241eb": {
+    "dimensions": "12.4 × 5.1 × 3.1 cm",
+    "status": "documented",
+    "basis": "museum_or_scan_publisher",
+    "sourceUrl": "https://hdl.handle.net/21.12126/156346",
+    "note": "Published object measurements are retained as catalog facts; model scale has not been physically calibrated.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "roman/grave-altar-of-faenius-favor-93d8f8": {
+    "dimensions": "81 × 53 × 53 cm",
+    "status": "documented",
+    "basis": "museum_or_scan_publisher",
+    "sourceUrl": "https://sketchfab.com/3d-models/93d8f8f127534a2a9169ba077ff3cf79",
+    "note": "Published object measurements are retained as catalog facts; model scale has not been physically calibrated.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "roman/hekate-triformis-f0f37d": {
+    "dimensions": "75.5 cm high; diameter 24.5 cm; 56 kg",
+    "status": "documented",
+    "basis": "museum_or_scan_publisher",
+    "sourceUrl": "https://hdl.handle.net/21.12126/49154",
+    "note": "Published object measurements are retained as catalog facts; model scale has not been physically calibrated.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "roman/gemma-constantiniana-a4a7fc": {
+    "dimensions": "30 × 22 × approximately 3.6 cm including mount; 3.027 kg",
+    "status": "documented",
+    "basis": "museum_or_scan_publisher",
+    "sourceUrl": "https://hdl.handle.net/21.12126/199587",
+    "note": "Published object measurements are retained as catalog facts; model scale has not been physically calibrated.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "greek/black-figure-neck-amphora-0bb252": {
+    "dimensions": "39.8 cm high; diameter 29 cm",
+    "status": "documented",
+    "basis": "museum_or_scan_publisher",
+    "sourceUrl": "https://www.clevelandart.org/art/1970.16",
+    "note": "Published object measurements are retained as catalog facts; model scale has not been physically calibrated.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "ancient-near-east/the-cyrus-cylinder-f8d0a4": {
+    "dimensions": "21.9–22.8 cm long; maximum diameter 10 cm",
+    "status": "documented",
+    "basis": "museum_or_scan_publisher",
+    "sourceUrl": "https://www.britishmuseum.org/collection/object/W_1880-0617-1941",
+    "note": "Published object measurements are retained as catalog facts; model scale has not been physically calibrated.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "europe/philopoemen-f21d99": {
+    "dimensions": "229.7 × 91 × 98 cm; height with accessory 246 cm",
+    "status": "documented",
+    "basis": "museum_or_scan_publisher",
+    "sourceUrl": "https://collections.louvre.fr/ark:/53355/cl010091414",
+    "note": "Published object measurements are retained as catalog facts; model scale has not been physically calibrated.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "europe/aeneas-carrying-anchises-accompanied-by-ascanius-6af179": {
+    "dimensions": "264 × 114 × 110 cm",
+    "status": "documented",
+    "basis": "museum_or_scan_publisher",
+    "sourceUrl": "https://collections.louvre.fr/ark:/53355/cl010092119",
+    "note": "Published object measurements are retained as catalog facts; model scale has not been physically calibrated.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "roman/etruscan-tomb-marker-base-with-dancers-290e64": {
+    "dimensions": "52.5 × 34.5 × 36 cm",
+    "status": "documented",
+    "basis": "museum_or_scan_publisher",
+    "sourceUrl": "https://www.britishmuseum.org/collection/object/G_1865-0729-4",
+    "note": "Published object measurements are retained as catalog facts; model scale has not been physically calibrated.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "greek/kore-holding-a-bird-6cd170": {
+    "dimensions": "39 cm high",
+    "status": "documented",
+    "basis": "museum_or_scan_publisher",
+    "sourceUrl": "https://www.britishmuseum.org/collection/object/G_1889-0522-2",
+    "note": "Published object measurements are retained as catalog facts; model scale has not been physically calibrated.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
+  },
+  "roman/cinerary-urn-in-the-form-of-a-seated-man-094dfe": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "unknown",
+    "sourceUrl": "https://www.britishmuseum.org/collection/object/G_1847-1127-1",
+    "note": "No reliably matched dimensions for this scanned version. Alternate cast measurements are not substituted.",
+    "checked": "2026-09-27",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": []
   }
 }
