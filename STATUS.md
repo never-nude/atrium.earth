@@ -259,3 +259,9 @@ Acquisition commit `6f56f0311a4ea6bc2f58f8a6120c58af0da03790` is deployment-veri
 - Batch integrity/preservation, material compatibility, additions, wings, asset completeness, built pages and whitespace checks passed. Production build: 4,135 pages. The 1,541 baseline records and all 16 withdrawals are preserved; catalog is now 1,545 total / 1,529 public. Newest remains exactly the ordered latest 24 public works. Le Faune mordu joins Bodies in Motion with a caption explaining resistance and balance.
 - Sarah Lucas’s NUD25 is an account-download hold; other restricted, duplicate, unidentified or incomplete models remain documented research leads, not acquisitions. Existing dimension-review and unknown-origin backlogs are unchanged.
 - Next: publish the exact validated tree against freshly fetched main, verify Pages and all eight model/thumbnail hashes plus the four pages and newest order, then send the authorized completion email. No deployment success is claimed in this preparation entry.
+
+### Further intimacy and surrealist acquisitions — live confirmation
+
+- Acquisition commit `f49a9afb6f5f92efdc0773bffc58edcd3a288163` is deployment-verified; [GitHub Pages run 36436594818](https://github.com/never-nude/atrium.earth/actions/runs/36436594818) succeeded. The published tree `d4c3bcc1ffc7a7569f0b80fb5966a0c967bc73ad` matches the tested local tree.
+- Live verification passed for all four new pages, all eight model/thumbnail SHA-256 checks, the exact ordered rolling 24-work newest list, and the Le Faune mordu placement in Bodies in Motion. Catalog: 1,545 records / 1,529 public works. No physical AR hardware test is claimed.
+- The authorized completion email was sent after verification. This four-work acquisition is complete; no publishing action remains. Source evidence and held candidates remain in the local acquisition archive. Sarah Lucas remains an account-access hold; existing catalog backlogs are unchanged.
