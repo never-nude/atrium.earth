@@ -192,3 +192,12 @@ Acquisition commit `6f56f0311a4ea6bc2f58f8a6120c58af0da03790` is deployment-veri
 - All 1532 baseline catalog records and their settings remain preserved. Newest Additions stays neutral and shows only this batch; works are filed through origin-based wing rules. AR size access comprises 3 approximate references and 3 clearly labeled chosen display sizes. No unverified scale is presented as exact.
 - Batch integrity, additions, wings, assets, material compatibility and whitespace checks pass. Production build passed: 4,122 pages in 13.95 seconds. Live verification is recorded below after completion. Existing dimension-review and unknown-origin backlogs remain unchanged.
 - Next: publish the exact validated tree against freshly fetched main, confirm Pages success, verify every new page and model/thumbnail hash, then send the completion email. No deployment success is claimed in this preparation entry.
+
+### Production confirmation — 2026-09-28
+
+- Published six reviewed works in commit `3fd683f7bdc7310e9853691a9909909553c6e418`; GitHub Pages run [36392843046](https://github.com/never-nude/atrium.earth/actions/runs/36392843046) completed successfully. Catalog: 1,538 total / 1,525 public.
+- Production verification passed for all six object pages, all twelve model and thumbnail SHA-256 checks, exact six-work Newest Additions membership, and both placements in The Work of the Surface.
+- Live browser review confirmed the neutral six-work Newest Additions page, rendered Turrell crater model, and truthful unknown-size AR/VR disclosure. Physical AR hardware was not tested.
+- Completion email sent to the user through their connected Gmail account, message `1a0e6f9fcc0445b7`.
+- Serra and Greg Bailey searches produced no eligible downloadable 3D models; Stella’s Indian Birds scan failed original/optimized geometry review. These are preserved as holds, not acquired works.
+- Batch evidence and source archives remain in `work/acquisition-spatial-20260928` outside the public deployment. This acquisition is complete; no further publication is pending.
