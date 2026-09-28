@@ -221,3 +221,10 @@ Acquisition commit `6f56f0311a4ea6bc2f58f8a6120c58af0da03790` is deployment-veri
 - Both records are hidden through the existing public catalog filter; their public dimension/AR eligibility entries are removed. Cruz-Diez’s placement and caption in The Work of the Surface are removed. Source records and assets remain preserved; all other catalog records are unchanged.
 - Newest Additions will show a rolling set of 24 public works ordered by each work’s import time, independent of batch grouping. The homepage will use the same list for its four newest cards; historical batch links continue to redirect to the neutral newest page.
 - Focused newest tests passed for cross-batch imports, continuations, timestamp/date fallbacks, deterministic ties, hidden works, duplicates and the 24-item cap. The production build passed; independent output checks confirm the exact 24 works across two imports, matching homepage first four, both withdrawn pages absent and no references in generated HTML, collection, AR, sitemap or the affected exhibition. All other catalog records and dimension entries are preserved. Next: publish and verify live. Existing dimension-review coverage backlog remains outside this change.
+
+### Rolling 24 newest works — live confirmation
+
+- Commit `c84b049483c3bbd867929169fd7ef1eeed3e1a70` is deployment-verified; [Pages run 36399134435](https://github.com/never-nude/atrium.earth/actions/runs/36399134435) succeeded. The production build generated 4,113 pages.
+- Live Newest Additions contains exactly the expected 24 newest public works in order across two imports. The homepage shows the same first four. All 24 work pages return HTTP 200.
+- Do Ho Suh’s Fallen Star and Carlos Cruz-Diez’s Indução do Amarelo object routes return HTTP 404. Both are absent from live collection, AR/VR and sitemap pages; Cruz-Diez is also absent from The Work of the Surface. Public collection: 1,522 works.
+- Implementation, publication and live verification are complete. No publishing action remains.
