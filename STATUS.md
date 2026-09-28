@@ -244,3 +244,18 @@ Acquisition commit `6f56f0311a4ea6bc2f58f8a6120c58af0da03790` is deployment-veri
 - Acquisition commit `6c204cfb51d32d41858ecda69ebd46c5d58da8ce` is deployment-verified; [GitHub Pages run 36432904260](https://github.com/never-nude/atrium.earth/actions/runs/36432904260) succeeded. The published tree `4ff8221490a499fe253dcb126bf853082f5dbdd5` exactly matches the tested local tree.
 - Live verification passed for all three new work pages, all six model/thumbnail SHA-256 checks, the exact ordered rolling 24-work newest list, and Smith’s placement in The Work of the Surface. Catalog: 1,541 records / 1,525 public works. Actual AR hardware was not tested; size labels remain approximate or unknown as documented.
 - The requested completion email was sent after successful verification. The three-work acquisition and publication are complete; no publishing action remains. Other research leads remain documented holds, and the existing dimension-review/unknown-origin backlogs are unchanged.
+
+
+## 2026-09-28 — Further intimacy and surrealist sculpture research
+
+- This local Codex session owns branch `codex/intimacy-expansion-20260928`, based on `e71d20d`. The user requested a further group of provocative fine-art 3D works, following the adult-intimacy acquisitions. Standing publication and completion-email authorization remains applicable.
+- Source discovery, creator identity, licensing, composition duplicates and geometry review are underway in a separate local acquisition folder. No candidate is counted as acquired before its source asset and visual review pass.
+- Preserve the 1,541 baseline catalog records, all existing withdrawals, origin-based wings and rolling 24 public newest works. Next: finish source review, prepare qualifying records/assets, test and publish the exact reviewed batch.
+
+### Reviewed acquisition batch
+
+- Four new works are accepted: Jef Lambeaux’s Le Faune mordu and Adam and Eve Expelled from Paradise, Jane Aypel’s Le Couple, and Maria Martins’s Orpheus. Adult figure context, artist/work identity, permissive licensing and composition duplicates were reviewed. The Adam/Eve title corrects the uploader’s L’étreinte identification using a photographed heritage survey; Martins’s modeled cast remains explicitly unverified.
+- Source GLBs are retained locally with independent SHA-256 checks. All four derivatives passed source-versus-final four-angle review and inspected 900×1125 production thumbnails. The Aypel ground apron is conservatively cropped with a narrow fringe retained. Three vertex-colored scans use neutral white textures to preserve authored colors through the existing material path; source colors and material factors are retained. All four AR sizes remain clearly adjustable and unverified.
+- Batch integrity/preservation, material compatibility, additions, wings, asset completeness, built pages and whitespace checks passed. Production build: 4,135 pages. The 1,541 baseline records and all 16 withdrawals are preserved; catalog is now 1,545 total / 1,529 public. Newest remains exactly the ordered latest 24 public works. Le Faune mordu joins Bodies in Motion with a caption explaining resistance and balance.
+- Sarah Lucas’s NUD25 is an account-download hold; other restricted, duplicate, unidentified or incomplete models remain documented research leads, not acquisitions. Existing dimension-review and unknown-origin backlogs are unchanged.
+- Next: publish the exact validated tree against freshly fetched main, verify Pages and all eight model/thumbnail hashes plus the four pages and newest order, then send the authorized completion email. No deployment success is claimed in this preparation entry.
