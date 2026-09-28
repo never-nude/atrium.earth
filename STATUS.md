@@ -214,3 +214,10 @@ Acquisition commit `6f56f0311a4ea6bc2f58f8a6120c58af0da03790` is deployment-veri
 - Commit `89d537b7012be63791f1e298f73b6f7ecce07be1` is deployment-verified; [Pages run 36395692745](https://github.com/never-nude/atrium.earth/actions/runs/36395692745) succeeded.
 - The old Turrell object page now returns HTTP 404. Newest Additions shows exactly the five remaining works, all five pages return HTTP 200, and collection, AR/VR and sitemap checks contain no Turrell reference. Public collection: 1,524 works.
 - Withdrawal is complete; no publishing action remains. Source history and assets are retained. The existing dimension-review backlog is unchanged.
+
+## 2026-09-28 — Rolling 24 newest works and two withdrawals
+
+- This local Codex session owns branch `codex/newest-24-20260928`, based on `1abaad98f6c568f46d8e3779202201b6e61a5dcc`. The user requested removing Do Ho Suh’s Fallen Star and Carlos Cruz-Diez’s Indução do Amarelo digital reconstructions and showing the 24 most recent works across imports.
+- Both records are hidden through the existing public catalog filter; their public dimension/AR eligibility entries are removed. Cruz-Diez’s placement and caption in The Work of the Surface are removed. Source records and assets remain preserved; all other catalog records are unchanged.
+- Newest Additions will show a rolling set of 24 public works ordered by each work’s import time, independent of batch grouping. The homepage will use the same list for its four newest cards; historical batch links continue to redirect to the neutral newest page.
+- Focused newest tests passed for cross-batch imports, continuations, timestamp/date fallbacks, deterministic ties, hidden works, duplicates and the 24-item cap. The production build passed; independent output checks confirm the exact 24 works across two imports, matching homepage first four, both withdrawn pages absent and no references in generated HTML, collection, AR, sitemap or the affected exhibition. All other catalog records and dimension entries are preserved. Next: publish and verify live. Existing dimension-review coverage backlog remains outside this change.

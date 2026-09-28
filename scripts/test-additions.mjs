@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { buildAdditionBatches } from '../src/lib/addition-batches.mjs';
+import { buildAdditionBatches, buildNewestWorks } from '../src/lib/addition-batches.mjs';
 const visible = ['a', 'b', 'c', 'd', 'e'].map((slug) => ({ slug, title: slug }));
 const records = [
   { slug: 'a', ingested: '2026-09-19', ingest_batch: 'morning', ingested_at: '2026-09-19T10:00:00.000Z' },
@@ -26,3 +26,32 @@ assert.equal(continued[1].id, 'morning');
 assert.equal(continued[1].date, '2026-09-19');
 assert.deepEqual(continued[1].works.map((work) => work.slug), ['a', 'e']);
 console.log('Addition grouping: same-day imports, public membership, legacy history, highlights, invalid dates and continuation passed.');
+
+// A later continuation leads Newest even though its archive batch keeps its original date.
+const continuedRecords = [...records, { slug: 'e', ingest_batch: 'morning', ingested_at: '2026-09-20T10:00:00.000Z' }];
+assert.deepEqual(buildNewestWorks(continuedRecords, visible).map(work => work.slug), ['e', 'b', 'a', 'd', 'c']);
+
+// Compare actual instants; invalid timestamps fall back to a valid ingestion day.
+const dated = [
+  { slug: 'a', ingested_at: '2026-09-20T01:30:00+02:00' },
+  { slug: 'b', ingested_at: '2026-09-20T00:00:00Z' },
+  { slug: 'c', ingested_at: '2030-02-30T10:00:00Z', ingested: '2026-09-21' },
+  { slug: 'd', ingested_at: '2030-01-01Tinvalid', ingested: '2026-09-18' },
+  { slug: 'e', ingested: '2026-02-30' },
+];
+assert.deepEqual(buildNewestWorks(dated, visible).map(work => work.slug), ['c', 'b', 'a', 'd', 'e']);
+
+// Public, unique works fill all 24 positions, with catalog index breaking equal-date ties.
+const many = Array.from({ length: 30 }, (_, i) => ({
+  slug: `work-${i + 1}`, index: i + 1, ingested: '2026-09-20', ingest_batch: `batch-${i % 3}`,
+})).reverse();
+const manyPublic = [...many.map(({ slug }) => ({ slug })), { slug: 'hidden' }];
+many.push(
+  { slug: 'hidden', hidden: true, index: 100, ingested: '2026-09-22' },
+  { slug: 'excluded', index: 101, ingested: '2026-09-22' },
+  { ...many[0] },
+);
+assert.deepEqual(buildNewestWorks(many, manyPublic).map(work => work.slug),
+  Array.from({ length: 24 }, (_, i) => `work-${30 - i}`));
+assert.deepEqual(buildNewestWorks([], visible), []);
+console.log('Newest works: cross-batch continuations, timestamps, date fallback, catalog tie-breaks, exclusions, uniqueness and 24-work limit passed.');

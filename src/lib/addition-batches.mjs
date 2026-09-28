@@ -1,3 +1,29 @@
+/** Newest public imports, independent of their batch's original publication date. */
+export function buildNewestWorks(records, publicWorks) {
+  const published = new Map(publicWorks.map((work) => [work.slug, work]));
+  const candidates = records.flatMap((record, order) => {
+    const work = published.get(record.slug);
+    if (!work || record.hidden) return [];
+    const timestamp = typeof record.ingested_at === 'string'
+      && validDay(record.ingested_at.slice(0, 10))
+      ? Date.parse(record.ingested_at) : Number.NaN;
+    const day = validDay(record.ingested);
+    return [{
+      work,
+      importedAt: Number.isFinite(timestamp) ? timestamp : day ? Date.parse(`${day}T00:00:00Z`) : -Infinity,
+      catalogIndex: Number.isFinite(record.index) ? record.index : order,
+      order,
+    }];
+  });
+  candidates.sort((a, b) => b.importedAt - a.importedAt || b.catalogIndex - a.catalogIndex || b.order - a.order);
+  const seen = new Set();
+  return candidates.filter(({ work }) => {
+    if (seen.has(work.slug)) return false;
+    seen.add(work.slug);
+    return true;
+  }).slice(0, 24).map(({ work }) => work);
+}
+
 /** Group only published works. Membership lives in the catalog, never in a second list. */
 export function buildAdditionBatches(records, publicWorks, metadata = {}) {
   const published = new Map(publicWorks.map((work) => [work.slug, work]));
