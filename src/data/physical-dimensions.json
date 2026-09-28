@@ -89045,5 +89045,36 @@
         ]
       }
     ]
+  },
+  "europe/ismael-smith-el-peto-the-kiss": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "unknown",
+    "sourceUrl": "https://sketchfab.com/3d-models/el-peto-dismael-smith-museu-art-cerdanyola-e7cfe65dffa04d2d9b6c8f9d823c19f1",
+    "note": "No physical measurements found in the institutional digitization description or museum pages checked. Model coordinates are not treated as verified scale.",
+    "checked": "2026-09-28",
+    "spatialNote": "Physical size is not documented. Display size is adjustable."
+  },
+  "europe/tauno-kangro-a-moment-before-the-kiss": {
+    "dimensions": "Approximately 2.1 m high",
+    "status": "approximate",
+    "basis": "object",
+    "sourceUrl": "https://taunokangro.com/en/artworks/",
+    "height_m": 2.1,
+    "note": "Height-based approximate AR start is reasonable for this exact trimmed model; the lowest captured grass is not precisely the stone plinth bottom. Do not call this scan metrically calibrated or infer real-world scale from source coordinate units.",
+    "checked": "2026-09-28",
+    "spatialNote": "Approximate height based on the artist’s published 2.1 m dimension. The captured base edge includes a narrow grass collar.",
+    "reference_height_model_extent": 2.0357874631881714
+  },
+  "europe/tauno-kangro-a-moment-after-the-kiss": {
+    "dimensions": "Approximately 1.75 m high",
+    "status": "approximate",
+    "basis": "object",
+    "sourceUrl": "https://taunokangro.com/en/artworks/",
+    "height_m": 1.75,
+    "note": "Official artist page lists 1.68 × 60 × 1.75 m. The middle value is inconsistent as printed; it is not silently corrected and no depth is inferred. Approximate height-based AR start uses the published 1.75 m dimension for the complete sculpture and plinth. The retained pavement fringe means the model lower bound differs from the plinth underside; this is not precise metric calibration.",
+    "checked": "2026-09-28",
+    "spatialNote": "Approximate height based on the artist’s published 1.75 m dimension. The captured base edge includes a narrow pavement fringe.",
+    "reference_height_model_extent": 0.9009639447134916
   }
 }

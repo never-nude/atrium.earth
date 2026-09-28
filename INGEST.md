@@ -98,12 +98,13 @@ words. They must not begin or end with a hyphen. Reuse an ID only when adding to
 that same batch; a new import should normally receive a new ID. Each continuation
 keeps the original works' timestamps and stamps only the newly accepted works.
 
-The Newest Additions page displays only the actual public works from the latest
-batch, with direct links to their work pages. The homepage previews up to four of
-those same pieces. Neither page displays import titles, themes, or summaries.
-Older batches are hidden from Newest Additions; their works remain in the catalog,
-and former batch URLs redirect to `/newest/`. Each new import replaces the current
-selection automatically. Continuing the current batch adds to that selection.
+The Newest Additions page displays the 24 most recently imported public works
+across batches, ordered by each work's `ingested_at` timestamp, with `ingested`
+as the date fallback. The homepage previews the first four of those same pieces.
+Neither page displays import titles, themes, or summaries. Older works leave this
+rolling selection as new works arrive but remain in the catalog. Continuing a
+batch promotes only the newly imported works; it does not refresh older members.
+Former batch URLs redirect to `/newest/`.
 
 Optional metadata in `src/data/additions.json` and historical batch identities
 remain internal records, not public acquisition pages. Historical records without

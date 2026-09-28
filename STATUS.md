@@ -228,3 +228,13 @@ Acquisition commit `6f56f0311a4ea6bc2f58f8a6120c58af0da03790` is deployment-veri
 - Live Newest Additions contains exactly the expected 24 newest public works in order across two imports. The homepage shows the same first four. All 24 work pages return HTTP 200.
 - Do Ho Suh’s Fallen Star and Carlos Cruz-Diez’s Indução do Amarelo object routes return HTTP 404. Both are absent from live collection, AR/VR and sitemap pages; Cruz-Diez is also absent from The Work of the Surface. Public collection: 1,522 works.
 - Implementation, publication and live verification are complete. No publishing action remains.
+
+
+## 2026-09-28 — Adult intimacy acquisitions
+
+- This local Codex session owns branch `codex/adult-intimacy-20260928`, based on `f45f32a`. The user asked for more daring depictions of adult intimacy, retaining 3D-only acquisitions and standing publication/completion-email authorization.
+- The accepted batch contains three new licensed scans: Ismael Smith’s El petó (The Kiss), and Tauno Kangro’s A Moment Before the Kiss and A Moment After the Kiss. Official museum interpretation supports Smith’s unsettling, unequal embrace; the Kangro identities were matched to the artist’s named photographs. Adult subjects, exact source IDs, permissions, metadata and composition duplicates were reviewed.
+- Actual source bytes and optimized assets are archived with hashes. All three models passed four-angle visual review, material checks and inspected production thumbnails. Extraneous ground around the Kangro plinths was conservatively trimmed; narrow remaining capture fringes are disclosed. Original photographic color is retained. AR uses approximate artist-published heights of 2.1 m and 1.75 m for Kangro and a clearly labeled adjustable display size for Smith; no unverified size is claimed as exact.
+- All 1,538 baseline catalog records are preserved, including earlier withdrawals. Newest Additions remains the rolling 24 most recent public works across batches; ingest documentation now describes that behavior. Smith joins The Work of the Surface. Brâncuși, Claudel and Gargallo are recorded as license/download holds rather than acquired works.
+- Batch integrity and preservation, additions, wings, asset completeness, material compatibility, built-page order, exhibition placement and whitespace checks passed. Production build passed: 4,123 pages. Catalog: 1,541 total / 1,525 public. Existing dimension-review and unknown-origin backlogs remain unchanged.
+- Next: publish this exact validated tree against freshly fetched main, confirm Pages success, verify all three new pages and six asset hashes plus the rolling newest list, then send the completion email. No deployment success is claimed in this preparation entry.
