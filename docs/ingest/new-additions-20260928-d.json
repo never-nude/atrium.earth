@@ -1,0 +1,143 @@
+{
+  "batch": {
+    "ingest_batch": "new-additions-20260928-d",
+    "ingested_at": "2026-09-28T15:13:23.034Z"
+  },
+  "base_commit": "315b3cbad2c150d5e5dff7b09eaa25e242714168",
+  "requested_count": "as many qualifying works as practical",
+  "accepted_count": 1,
+  "scope": "Publish the artist-supplied Dragon’s Mouth by Michael Conor Kushman before resuming African acquisitions. Estimate dimensions from an approximate 25.4 cm height and display metric units.",
+  "newest_behavior": "Rolling 24 latest public works by import time; neutral page.",
+  "records": [
+    {
+      "uid": "25ebc53d025863639dbc26e6954caf38",
+      "record": {
+        "title": "Dragon’s Mouth",
+        "artist": "Michael Conor Kushman",
+        "year": "",
+        "year_sort": null,
+        "material": "Aluminum, acrylic, and spray paint",
+        "museum": "",
+        "geography": "",
+        "culture": "",
+        "original_location": "",
+        "slug": "artist-submissions/michael-conor-kushman-dragons-mouth",
+        "collection": "artist-submissions",
+        "wing_unfiled_reason": "Artist-supplied work; the country of creation has not yet been provided.",
+        "dimensions": "Approx. 25.4 × 19.7 × 21.1 cm (H × W × D)",
+        "note": "Folded aluminum opens into a jagged, hollow form. Pale painted planes and pink accents contrast with the darker recesses and reverse.",
+        "source_url": "",
+        "source_record_url": "",
+        "source_institution": "Artist-supplied",
+        "scan_author": "",
+        "scan_source": "3D file supplied directly by the artist. Original captured color, surface detail, and geometry retained in the web version. Display scale is estimated from the approximate height supplied by the artist.",
+        "license": "Displayed with permission of the artist; all rights retained.",
+        "license_url": "",
+        "license_tier": 3,
+        "tier": 3,
+        "accession": "",
+        "model": {
+          "sourcePath": "artist-submissions/michael-conor-kushman-dragons-mouth/dragons-mouth.glb",
+          "format": "glb",
+          "sizeBytes": 12156812
+        },
+        "attribution": "Dragon’s Mouth by Michael Conor Kushman. Aluminum, acrylic, and spray paint. 3D file supplied by the artist; displayed with permission. All rights retained.",
+        "ingest_batch": "new-additions-20260928-d",
+        "ingested_at": "2026-09-28T15:13:23.034Z",
+        "ingested": "2026-09-28",
+        "index": 1546
+      },
+      "source_integrity": {
+        "bytes": 12156812,
+        "faces": 19918,
+        "sha256": "f6abf62fa92914091969a9666dcd246049a7e73de08b17aa5c5ecf9578a65c9c"
+      },
+      "license_evidence": {
+        "uid": "25ebc53d025863639dbc26e6954caf38",
+        "title": "Dragon’s Mouth",
+        "original_filename": "Dragon's Mouth.usdz",
+        "original_sha256": "25ebc53d025863639dbc26e6954caf38c6d6a217c3c4672bfcf3ed629c236825",
+        "sha256": "f6abf62fa92914091969a9666dcd246049a7e73de08b17aa5c5ecf9578a65c9c",
+        "bytes": 12156812,
+        "self_contained": true,
+        "artist_permission": true,
+        "license_basis": "The artist supplied this file and explicitly requested publication to Atrium; this is display permission, not a Creative Commons grant.",
+        "source_acquisition": "Direct artist-supplied USDZ attachment.",
+        "derivative_provenance": "Converted the USD crate to equivalent ASCII with Apple usdcat, preserving meshes and texture bytes; imported with Three.js USDLoader and exported as self-contained GLB. Removed internal capture paths and metadata. Applied uniform scale to the artist-stated approximate height. Optimized with meshopt and 2048-pixel WebP textures without geometry simplification.",
+        "optimized_sha256": "1e9cec4e430ce8bdb0536af7708d6fabb576f08c69efc35bfc33d15666017f88",
+        "dimensions_basis": "Approximate artist-supplied height of 25.4 cm; width and depth estimated from model proportions. Creation year and country not supplied.",
+        "dedup_review": "Artist name and title checked against all1545 baseline records; no prior Michael Conor Kushman work or this composition."
+      },
+      "preview": {
+        "bytes": 419104,
+        "faces": 19918,
+        "sha256": "1e9cec4e430ce8bdb0536af7708d6fabb576f08c69efc35bfc33d15666017f88"
+      },
+      "visual_review": {
+        "geometry_status": "four_angle_review_pass",
+        "geometry_notes": "Original converted model and optimized model reviewed from front, rear and both sides. Continuous crumpled and folded metal form; pale/pink surfaces, dark reverse and cavities retained. No surrounding floor or mount was removed; no generated geometry or filled surfaces.",
+        "source_faces": 19918,
+        "optimization": "No triangle simplification; texture compression and meshopt only.",
+        "hero_status": "production_900x1125_inspected_pass",
+        "conversion_audit": "USD19,918faces retained; expanded positions bit-exact, normals/UVs agree within3e-8 float rounding; basecolor/normal/AO2048² pixels match before optimization after expected textureflip."
+      },
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "viewDirection": [
+          -0.55,
+          0.4,
+          -1
+        ],
+        "fit": 1.16,
+        "status": "verified"
+      },
+      "dimensions_review": {
+        "status": "approximate",
+        "basis": "object",
+        "dimensions": "Approx. 25.4 × 19.7 × 21.1 cm (H × W × D)",
+        "sourceUrl": "",
+        "note": "Height is approximate and supplied by the artist. Width and depth are estimated from the scan’s proportions; these are not independent physical measurements.",
+        "measures": [
+          {
+            "axis": "height",
+            "value": 25.4,
+            "unit": "cm",
+            "source": "Artist-provided approximate height"
+          },
+          {
+            "axis": "width",
+            "value": 19.7,
+            "unit": "cm",
+            "source": "Estimated from scan proportions"
+          },
+          {
+            "axis": "depth",
+            "value": 21.1,
+            "unit": "cm",
+            "source": "Estimated from scan proportions"
+          }
+        ],
+        "spatialNote": "Approximate height supplied by the artist; the model’s proportions are preserved."
+      }
+    }
+  ],
+  "exhibition_placements": [
+    {
+      "slug": "artist-submissions/michael-conor-kushman-dragons-mouth",
+      "exhibition": "the-work-of-the-surface",
+      "text": "Michael Conor Kushman’s folded aluminum sets pale paint and pink accents against darker recesses. Ridges, creases, and the open cavity turn the painted surface into a changing sequence of planes."
+    }
+  ],
+  "excluded_or_held": [
+    {
+      "topic": "African acquisitions",
+      "status": "paused at user request; sources and review progress retained locally",
+      "published": false
+    }
+  ]
+}
