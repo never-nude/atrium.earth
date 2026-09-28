@@ -105,7 +105,7 @@ gl_images = []; textures = []
 tex_index = {}
 for slot, (p, data) in images.items():
     view = add_view(data)
-    gl_images.append({'bufferView': view, 'mimeType': 'image/png', 'name': p.split('/')[-1].rsplit('.', 1)[0]})
+    gl_images.append({'bufferView': view, 'mimeType': 'image/png'})
     textures.append({'sampler': 0, 'source': len(gl_images) - 1})
     tex_index[slot] = len(textures) - 1
 material = {'pbrMetallicRoughness': {'metallicFactor': metallic, 'roughnessFactor': roughness}}

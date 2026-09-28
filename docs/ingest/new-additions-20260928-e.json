@@ -39,7 +39,7 @@
         "model": {
           "sourcePath": "artist-submissions/michael-conor-kushman-tetra/tetra.glb",
           "format": "glb",
-          "sizeBytes": 8835176
+          "sizeBytes": 8835076
         },
         "attribution": "Tetra by Michael Conor Kushman. Aluminum, acrylic, and spray paint. 3D file supplied by the artist; displayed with permission. All rights retained.",
         "ingest_batch": "new-additions-20260928-e",
@@ -48,17 +48,17 @@
         "index": 1547
       },
       "source_integrity": {
-        "bytes": 8835176,
+        "bytes": 8835076,
         "faces": 16300,
-        "sha256": "234018554776ae54eaaf4981749553a093171cf4f95e07324f89f092e8c7c641"
+        "sha256": "a6949cc7b2589674f492cd25ab155ca12dfd9827647424cd2753a298c09f873a"
       },
       "license_evidence": {
         "uid": "0d2eda2c1133cf4e23f2731b6ffe1113",
         "title": "Tetra",
         "original_filename": "Tetra.usdz",
         "original_sha256": "0d2eda2c1133cf4e23f2731b6ffe1113ffe8b4aa1deec003a34e146f4515c4cf",
-        "sha256": "234018554776ae54eaaf4981749553a093171cf4f95e07324f89f092e8c7c641",
-        "bytes": 8835176,
+        "sha256": "a6949cc7b2589674f492cd25ab155ca12dfd9827647424cd2753a298c09f873a",
+        "bytes": 8835076,
         "self_contained": true,
         "artist_permission": true,
         "license_basis": "The artist supplied this file and explicitly requested publication to Atrium; this is display permission, not a Creative Commons grant.",
@@ -68,16 +68,16 @@
           "normal": "d5826df14eea718ef3bb671601a113efa2fbba83c2665ddff27a31de2b08a195",
           "ao": "412a8aa50f1c39dbad93becf9342c395562cdf6bd9a3a6ee6b03461bbfc58a95"
         },
-        "derivative_provenance": "Opened the USDZ with Pixar USD (usd-core 26.8). Copied every triangle, point, vertex normal and faceVarying UV unchanged into a self-contained GLB, flipping V only for glTF’s top-left texture origin; embedded the three PNG textures byte-for-byte. UsdPreviewSurface mapped to glTF metallic-roughness (baseColor, normal and occlusion textures; roughness 0.9; metallic 0). Applied one uniform scale about the ground-plane origin so the height equals the artist’s stated height. Internal capture paths and layer metadata were not carried over. Optimized with glTF-Transform 4.4.2 (meshopt, 2048-pixel WebP textures) without geometry simplification.",
-        "optimized_sha256": "a36f69cd500c28096745517b7927b7ff9ddb43ccc24303167f935d85d991cc0c",
+        "derivative_provenance": "Opened the USDZ with Pixar USD (usd-core 26.8). Copied every triangle, point, vertex normal and faceVarying UV unchanged into a self-contained GLB, flipping V only for glTF’s top-left texture origin; embedded the three PNG textures byte-for-byte. UsdPreviewSurface mapped to glTF metallic-roughness (baseColor, normal and occlusion textures; roughness 0.9; metallic 0). Applied one uniform scale about the ground-plane origin so the height equals the artist’s stated height. Internal capture paths, capture identifiers and layer metadata were not carried over. Optimized with glTF-Transform 4.4.2 (meshopt, 2048-pixel WebP textures) without geometry simplification.",
+        "optimized_sha256": "e7eb552fd59c7e0aebdf9e26ff21c8892cb23b6dc718f3bbc332457f8aabfc6a",
         "dimensions_basis": "Artist-supplied approximate height of 7.3 in (18.54 cm, shown as 18.5 cm). Source model height 0.3845 units; uniform scale 0.4822411228905652. Width is the X extent and depth the Z extent of the model’s axis-aligned bounds, relative to the opening view from +Z. Creation year 2023 and American origin supplied by the artist.",
         "dedup_review": "Artist name and title checked against all 1,546 baseline records; the only prior Michael Conor Kushman work is Dragon’s Mouth, a different composition.",
         "converter": "scripts/convert-object-capture-usdz.py"
       },
       "preview": {
-        "bytes": 425948,
+        "bytes": 425844,
         "faces": 16300,
-        "sha256": "a36f69cd500c28096745517b7927b7ff9ddb43ccc24303167f935d85d991cc0c"
+        "sha256": "e7eb552fd59c7e0aebdf9e26ff21c8892cb23b6dc718f3bbc332457f8aabfc6a"
       },
       "thumbnail": {
         "sha256": "fafc6d2047e98e6fbe31e5fecb8ae3a98329f918d5393a720c5bb2e533b7c35c",
@@ -166,7 +166,7 @@
         "model": {
           "sourcePath": "artist-submissions/michael-conor-kushman-songbird/songbird.glb",
           "format": "glb",
-          "sizeBytes": 8776268
+          "sizeBytes": 8776164
         },
         "attribution": "Songbird by Michael Conor Kushman. Aluminum, acrylic, and spray paint. 3D file supplied by the artist; displayed with permission. All rights retained.",
         "ingest_batch": "new-additions-20260928-e",
@@ -175,17 +175,17 @@
         "index": 1548
       },
       "source_integrity": {
-        "bytes": 8776268,
+        "bytes": 8776164,
         "faces": 18686,
-        "sha256": "f12c54f77dd46ab60d8f0f01194f1506862ac3740cccfbf42eb363c7b0916577"
+        "sha256": "9f64e803f3e70d75fd406c774f893565b0bdd2185178d18dff9ea4ce22e6477e"
       },
       "license_evidence": {
         "uid": "9f1d9e790c4ec33ef42e9b5c069e6770",
         "title": "Songbird",
         "original_filename": "Oscen.usdz",
         "original_sha256": "9f1d9e790c4ec33ef42e9b5c069e67701e4e912e644fd1a69072808e888830da",
-        "sha256": "f12c54f77dd46ab60d8f0f01194f1506862ac3740cccfbf42eb363c7b0916577",
-        "bytes": 8776268,
+        "sha256": "9f64e803f3e70d75fd406c774f893565b0bdd2185178d18dff9ea4ce22e6477e",
+        "bytes": 8776164,
         "self_contained": true,
         "artist_permission": true,
         "license_basis": "The artist supplied this file and explicitly requested publication to Atrium; this is display permission, not a Creative Commons grant.",
@@ -195,16 +195,16 @@
           "normal": "15fe2f11fd1d700e04d3596b39988c3cedc0f0e129114627408b90e2d6041730",
           "ao": "0155edb26e8a8f47bc41d461a0cc8677e1974f6dd02b5b6f5caec17dbf76b841"
         },
-        "derivative_provenance": "Opened the USDZ with Pixar USD (usd-core 26.8). Copied every triangle, point, vertex normal and faceVarying UV unchanged into a self-contained GLB, flipping V only for glTF’s top-left texture origin; embedded the three PNG textures byte-for-byte. UsdPreviewSurface mapped to glTF metallic-roughness (baseColor, normal and occlusion textures; roughness 0.9; metallic 0). Applied one uniform scale about the ground-plane origin so the height equals the artist’s stated height. Internal capture paths and layer metadata were not carried over. Optimized with glTF-Transform 4.4.2 (meshopt, 2048-pixel WebP textures) without geometry simplification.",
-        "optimized_sha256": "80a24e83e21663df1c219ad1d49c0c15dbecb64e5abc6047fa2b966db9cdb9b0",
+        "derivative_provenance": "Opened the USDZ with Pixar USD (usd-core 26.8). Copied every triangle, point, vertex normal and faceVarying UV unchanged into a self-contained GLB, flipping V only for glTF’s top-left texture origin; embedded the three PNG textures byte-for-byte. UsdPreviewSurface mapped to glTF metallic-roughness (baseColor, normal and occlusion textures; roughness 0.9; metallic 0). Applied one uniform scale about the ground-plane origin so the height equals the artist’s stated height. Internal capture paths, capture identifiers and layer metadata were not carried over. Optimized with glTF-Transform 4.4.2 (meshopt, 2048-pixel WebP textures) without geometry simplification.",
+        "optimized_sha256": "0e2ea3af884da09455ec0de6bcb1cdefc6071d874858cb2c7bd50d53e7e00773",
         "dimensions_basis": "Artist-supplied approximate height of 5.8 in (14.73 cm, shown as 14.7 cm). Source model height 0.4706 units; uniform scale 0.3130637025811846. The opening view looks from +X, so width is the Z extent and depth the X extent of the model’s axis-aligned bounds. Creation year 2023 and American origin supplied by the artist.",
         "dedup_review": "Artist name and title checked against all 1,546 baseline records; the only prior Michael Conor Kushman work is Dragon’s Mouth, a different composition.",
         "converter": "scripts/convert-object-capture-usdz.py"
       },
       "preview": {
-        "bytes": 442188,
+        "bytes": 442088,
         "faces": 18686,
-        "sha256": "80a24e83e21663df1c219ad1d49c0c15dbecb64e5abc6047fa2b966db9cdb9b0"
+        "sha256": "0e2ea3af884da09455ec0de6bcb1cdefc6071d874858cb2c7bd50d53e7e00773"
       },
       "thumbnail": {
         "sha256": "3ee6b645a454dc002af8d348755a77e88ca70274ca734ac00406329db5904f2a",
