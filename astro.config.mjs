@@ -8,11 +8,12 @@ export default defineConfig({
   base: base === '/' ? undefined : base,
   output: 'static',
   integrations: [
-    // /v2 is the archived previous design and /v3 was the staging alias;
-    // neither belongs in the crawler sitemap.
-    sitemap({ filter: (page) => !page.includes('/v2/') && !page.includes('/v3/') }),
+    // Keep retired design URLs and staging aliases out of the crawler sitemap.
+    sitemap({ filter: (page) => !/\/newest\/[^/]+\/?$/.test(new URL(page).pathname) && !page.includes('/v2/') && !page.includes('/v3/') && !page.includes('/wings/unfiled/') && !page.includes('/exhibitions/the-space-between') && !page.includes('/exhibitions/where-is-the-work') }),
   ],
   redirects: {
+    '/exhibitions/the-space-between': '/exhibitions/the-price-of-victory/',
+    '/exhibitions/where-is-the-work': '/exhibitions/the-price-of-victory/',
     // The Night Vitrine staged under /v3 is now the primary site.
     '/v3': '/',
     '/v3/collection': '/collection',
@@ -20,7 +21,6 @@ export default defineConfig({
     '/v3/exhibitions/[slug]': '/exhibitions/[slug]',
     '/v3/works/[...slug]': '/works/[...slug]',
     '/works/egyptian/tepemankh-stela-e25408-louvre': '/works/egyptian/offering-menu-relief-tepemankh-e25408-louvre',
-    '/v2/works/egyptian/tepemankh-stela-e25408-louvre': '/v2/works/egyptian/offering-menu-relief-tepemankh-e25408-louvre',
   },
   server: {
     // Honor the port assigned by the preview harness (via PORT); fall back to Astro's default.

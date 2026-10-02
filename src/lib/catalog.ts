@@ -1,18 +1,33 @@
+import { existsSync } from 'node:fs';
 import rawCatalog from '../data/catalog.json';
 import rawPreviews from '../data/previews.json';
 import rawRenders from '../data/renders.json';
 import rawOrientations from '../data/orientations.json';
 import rawMaterialAppearances from '../data/material-appearances.json';
 import rawAppearanceOverrides from '../data/appearance-overrides.json';
+import rawPhysicalDimensions from '../data/physical-dimensions.json';
+import rawSpatialEligibility from '../data/spatial-eligibility.json';
+import rawSpatialDisplayDefaults from '../data/spatial-display-defaults.json';
+import rawDisplayRecommendations from '../data/display-recommendations.json';
+import rawIdentityCorrections from '../data/identity-corrections.json';
+import { physicalDimensionsFor } from './physical-dimensions.mjs';
+import { spatialEligibilityFor } from './spatial-eligibility.mjs';
+import { spatialAccessFor } from './spatial-access.mjs';
+import { approximateDimensionsFor } from './approximate-dimensions.mjs';
+import { assignWing } from './assignWing';
+import type { WingId } from '../data/wings';
 
 type RawWork = {
   slug: string;
   hidden?: boolean;
+  wing?: WingId | null;
   collection?: string | null;
+  culture?: string | null;
   title: string;
   artist?: string | null;
   year?: string | null;
   year_sort?: number | null;
+  era?: string | null;
   material?: string | null;
   dimensions?: string | null;
   museum?: string | null;
@@ -80,6 +95,8 @@ export type ModelTransform = {
 export type Work = {
   id: string;
   slug: string;
+  collection: string;
+  wing: WingId | 'unfiled';
   route: string;
   legacyRoute: string;
   title: string;
@@ -102,6 +119,21 @@ export type Work = {
   materialProfile: string;
   materialAppearance: MaterialAppearance;
   dimensions: string;
+  dimensionsNote: string;
+  dimensionsSourceUrl: string;
+  dimensionsBasis: string;
+  spatialReference: { axis: string; meters: number; extentFraction?: number; estimated?: boolean } | null;
+  spatialNote: string;
+  spatialEligibility: {
+    enabled: boolean;
+    kind: 'original' | 'object' | 'cast' | null;
+    label: string;
+    sizeLabel: string;
+    reason: string;
+    assetSha256?: string;
+  };
+  displaySupport: { kind: string; height?: number; note: string } | null;
+  spatialAccess: { enabled: boolean; verified: boolean; status: 'verified' | 'approximate' | 'unknown'; label: string; sizeLabel: string; note: string; defaultMaxExtentMeters?: number; assetSha256?: string; reference?: { axis: string; meters: number; extentFraction?: number; estimated?: boolean }; sourceText?: string; sourceUrl?: string };
   accession: string;
   creditLine: string;
   rights: string;
@@ -207,11 +239,14 @@ const collectionGeography: Record<string, string> = {
   bouchardon: 'Europe',
   donatello: 'Europe',
   egyptian: 'Ancient Near East and Egypt',
+  europe: 'Europe',
   greek: 'Mediterranean',
   lorenzi: 'Europe',
   medieval: 'Europe',
   michelangelo: 'Europe',
+  modern: 'Europe',
   neoclassical: 'Europe',
+  oceania: 'Americas and Oceania',
   palmyra: 'Ancient Near East',
   renaissance: 'Europe',
   rodin: 'Europe',
@@ -385,6 +420,7 @@ function eraFor(raw: RawWork): string {
   }
 
   // No numeric date. Fall back only to facts the record actually carries — never invent a date.
+  if (clean(raw.era) === 'Contemporary') return 'Contemporary';
   if (['michelangelo', 'donatello', 'verrocchio', 'lorenzi'].includes(collection)) return 'Renaissance';
   if (collection === 'bouchardon') return 'Early modern';
   if (collection === 'rodin') return 'Modern';
@@ -414,6 +450,7 @@ function geographyFor(raw: RawWork): string {
 }
 
 function cultureFor(raw: RawWork, geography: string): string {
+  if (clean(raw.culture)) return clean(raw.culture);
   const collection = clean(raw.collection);
   if (collectionCulture[collection]) return collectionCulture[collection];
   if (makerCollections.has(collection)) return 'European';
@@ -542,10 +579,16 @@ function modelStatsFor(preview: Preview | undefined, raw: RawWork): string {
 }
 
 function normalize(raw: RawWork, fallbackIndex: number): Work {
+  const correction = (rawIdentityCorrections as Record<string, { title?: string; catalog?: Partial<RawWork> }>)[raw.slug];
+  if (correction?.catalog) raw = { ...raw, ...correction.catalog };
   const collection = clean(raw.collection);
   const { start, end } = parseYearRange(raw);
   const era = eraFor(raw);
   const geography = geographyFor(raw);
+  const wing = assignWing({
+    slug: raw.slug,
+    data: { wing: raw.wing, region: collection, place: geography },
+  });
   const maker = makerFor(raw);
   const materials = materialsFor(raw);
   const materialProfile = materialProfileFor(raw.slug, materials);
@@ -553,10 +596,26 @@ function normalize(raw: RawWork, fallbackIndex: number): Work {
   const sourceMuseum = clean(raw.source_institution);
   const museum = clean(raw.displayed_at) || clean(raw.current_location) || clean(raw.museum);
   const preview = previewMap[raw.slug];
+  const previewFilename = preview?.url?.split('/').at(-1) || '';
+  const localPreview = /^preview(?:-[a-f0-9]+)?\.glb$/.test(previewFilename)
+    ? `/models/previews/${raw.slug}/${previewFilename}` : '';
   const movement = movementFor(raw, era);
   const medium = clean(raw.material);
-  const title = clean(raw.title) || titleCaseSlug(raw.slug);
+  const title = clean(correction?.title || raw.title) || titleCaseSlug(raw.slug);
   const modelTransform = modelTransformFor(orientationMap[raw.slug]);
+  const dimensionRecord = rawPhysicalDimensions[raw.slug];
+  const physicalDimensions = physicalDimensionsFor(raw.dimensions, dimensionRecord, preview?.url, rawOrientations[raw.slug]);
+  const spatialEligibility = spatialEligibilityFor({
+    slug: raw.slug,
+    record: dimensionRecord,
+    previewUrl: preview?.url,
+    orientation: rawOrientations[raw.slug],
+    spatialReference: physicalDimensions.spatialReference,
+  }, rawSpatialEligibility[raw.slug]);
+  const approximation = spatialEligibility.enabled ? null : approximateDimensionsFor({
+    work: raw, record: dimensionRecord, previewUrl: preview?.url,
+    orientation: rawOrientations[raw.slug], spatialReference: physicalDimensions.spatialReference,
+  });
 
   const tags = [
     era,
@@ -572,6 +631,8 @@ function normalize(raw: RawWork, fallbackIndex: number): Work {
   return {
     id: raw.slug.replaceAll('/', '--'),
     slug: raw.slug,
+    collection,
+    wing,
     route: `/works/${raw.slug}/`,
     legacyRoute: `/${raw.slug}/`,
     title,
@@ -593,7 +654,10 @@ function normalize(raw: RawWork, fallbackIndex: number): Work {
     materials,
     materialProfile,
     materialAppearance,
-    dimensions: clean(raw.dimensions),
+    ...physicalDimensions,
+    spatialEligibility,
+    spatialAccess: spatialAccessFor(spatialEligibility, preview?.url, (rawSpatialDisplayDefaults as Record<string, { maxExtentMeters: number }>)[raw.slug], approximation, physicalDimensions.spatialReference),
+    displaySupport: (rawDisplayRecommendations as Record<string, { kind: string; height?: number; note: string }>)[raw.slug] || null,
     accession: clean(raw.accession),
     creditLine: clean(raw.attribution),
     rights: clean(raw.license) || 'Rights review pending',
@@ -603,7 +667,10 @@ function normalize(raw: RawWork, fallbackIndex: number): Work {
     relatedWorks: [],
     posterImage: `/previews/posters/${raw.slug}/poster.svg`,
     thumbnailImage: renderSet.has(raw.slug) ? `/previews/renders/${raw.slug}/thumb.webp` : `/previews/posters/${raw.slug}/poster.svg`,
-    modelGlb: preview?.url || '',
+    // Match the configured version so a stale local mirror cannot hide a repair.
+    modelGlb: import.meta.env?.DEV && localPreview && existsSync(`public${localPreview}`)
+      ? localPreview
+      : preview?.url || '',
     modelUpAxis: legacyTransformString(modelTransform),
     modelTransform,
     modelStats: modelStatsFor(preview, raw),
@@ -611,7 +678,7 @@ function normalize(raw: RawWork, fallbackIndex: number): Work {
     ingested: raw.ingested || undefined,
     heroCrop: 'center',
     index: raw.index || fallbackIndex + 1,
-    search: clean(raw.search) || `${title} ${maker} ${era} ${geography} ${materials.join(' ')}`.toLowerCase(),
+    search: `${title} ${clean(raw.search) || `${maker} ${era} ${geography} ${materials.join(' ')}`}`.toLowerCase(),
     hasPreview: Boolean(preview?.url),
     sourceUrl: clean(raw.source_url),
     sourceRecordUrl: clean(raw.source_record_url),
@@ -707,26 +774,40 @@ export function featuredWorkForDate(date = new Date()): Work {
   return shuffled[positiveMod(thinkerIndex + weekOffset, shuffled.length)] || thinker;
 }
 
-// A fixed entropy seed makes each scheduled draw random across the full eligible
-// collection while keeping a rebuild within the same slot visually stable.
+// A fixed entropy seed creates one stable random ordering of the eligible hero
+// pool. Three-day slots walk that ordering from the Cosmic Buddha's debut, so
+// every scheduled change produces a different work without reshuffling on build.
 const homepageHeroSeed = 'c768ae08f8bdd3e1';
+const homepageHeroLaunchSlug = 'asia/cosmic-buddha';
+const homepageHeroRotationEpoch = Date.UTC(2026, 8, 4);
 
 export function homepageHeroWorkForDate(date = new Date()): Work {
+  // Temporary spotlight through the weekend; Monday's scheduled rebuild
+  // resumes the existing rotation without shifting its seed or epoch.
+  if (date.getTime() >= Date.UTC(2026, 8, 17)
+    && date.getTime() < Date.UTC(2026, 8, 21)) {
+    const spotlight = workBySlug('europe/venus-of-willendorf-nhmw-44-686');
+    if (spotlight?.hasPreview) return spotlight;
+  }
+
   const maxPreviewBytes = 15 * 1024 * 1024;
   const pool = works.filter((work) => (
     work.hasPreview
     && renderSet.has(work.slug)
     && (previewMap[work.slug]?.bytes || Infinity) <= maxPreviewBytes
   ));
-  const fallback = workBySlug('rodin/the-thinker') || pool[0] || featuredWorkForDate(date);
+  const launchWork = workBySlug(homepageHeroLaunchSlug);
+  const fallback = launchWork || workBySlug('rodin/the-thinker') || pool[0] || featuredWorkForDate(date);
   if (!pool.length) return fallback;
 
-  const rotation = utcHeroRotationIndex(date);
-  return [...pool].sort((a, b) => (
-    stableHash(`${homepageHeroSeed}:${rotation}:${a.slug}`)
-      - stableHash(`${homepageHeroSeed}:${rotation}:${b.slug}`)
+  const shuffled = [...pool].sort((a, b) => (
+    stableHash(`${homepageHeroSeed}:${a.slug}`)
+      - stableHash(`${homepageHeroSeed}:${b.slug}`)
     || a.slug.localeCompare(b.slug)
-  ))[0] || fallback;
+  ));
+  const launchIndex = shuffled.findIndex((work) => work.slug === homepageHeroLaunchSlug);
+  const rotation = utcHeroRotationIndex(date);
+  return shuffled[positiveMod(Math.max(0, launchIndex) + rotation, shuffled.length)] || fallback;
 }
 
 function utcWeekIndex(date: Date): number {
@@ -739,13 +820,7 @@ function utcWeekIndex(date: Date): number {
 function utcHeroRotationIndex(date: Date): number {
   const millisecondsPerDay = 24 * 60 * 60 * 1000;
   const day = Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate());
-  const dayOfWeek = new Date(day).getUTCDay();
-  const daysSinceMonday = (dayOfWeek + 6) % 7;
-  const monday = day - daysSinceMonday * millisecondsPerDay;
-  const mondayEpoch = Date.UTC(1970, 0, 5);
-  const weekIndex = Math.floor((monday - mondayEpoch) / (7 * millisecondsPerDay));
-  const slot = daysSinceMonday >= 5 ? 2 : daysSinceMonday >= 3 ? 1 : 0;
-  return weekIndex * 3 + slot;
+  return Math.floor((day - homepageHeroRotationEpoch) / (3 * millisecondsPerDay));
 }
 
 function positiveMod(value: number, modulo: number): number {
@@ -806,8 +881,9 @@ export function publicDataset(work: Work): Record<string, string> {
   return {
     slug: work.slug,
     title: work.title,
-    search: `${work.title} ${work.maker} ${work.displayDate} ${work.era} ${work.geography} ${work.materials.join(' ')} ${work.movement}`.toLowerCase(),
+    search: `${work.title} ${work.maker} ${work.displayDate} ${work.era} ${work.geography} ${work.materials.join(' ')} ${work.movement} ${work.wing}`.toLowerCase(),
     year: String(clampTimelineYear(work.yearStart) ?? ''),
+    wing: work.wing,
     era: facetValue(work.era),
     place: facetValue(work.geography),
     material: (work.materials.length ? work.materials : ['Material not yet recorded']).map(facetValue).join(' '),

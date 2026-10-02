@@ -1,0 +1,168 @@
+{
+  "base": "http://127.0.0.1:4386",
+  "exhibitions": [
+    {
+      "slug": "bodies-in-motion",
+      "stopCount": 12,
+      "captions": 12,
+      "pass": true
+    },
+    {
+      "slug": "power-and-presence",
+      "stopCount": 12,
+      "captions": 12,
+      "pass": true
+    },
+    {
+      "slug": "sacred-forms",
+      "stopCount": 12,
+      "captions": 12,
+      "pass": true
+    },
+    {
+      "slug": "what-survives",
+      "stopCount": 12,
+      "captions": 12,
+      "pass": true
+    },
+    {
+      "slug": "the-work-of-the-surface",
+      "stopCount": 12,
+      "captions": 12,
+      "pass": true
+    },
+    {
+      "slug": "the-other-kingdom",
+      "stopCount": 12,
+      "captions": 12,
+      "pass": true
+    }
+  ],
+  "wings": [
+    {
+      "wing": "near-east",
+      "count": 87,
+      "featured": "egyptian/portrait-of-nefertiti-smk-cast",
+      "pass": true
+    },
+    {
+      "wing": "greece-rome",
+      "count": 173,
+      "featured": "roman/horse-marcus-aurelius-smk-cast",
+      "pass": true
+    },
+    {
+      "wing": "europe",
+      "count": 319,
+      "featured": "michelangelo/david",
+      "pass": true
+    },
+    {
+      "wing": "asia",
+      "count": 192,
+      "featured": "asia/shiva-nataraja-after-conservation-mia",
+      "pass": true
+    },
+    {
+      "wing": "africa",
+      "count": 80,
+      "featured": "sub-saharan-africa/nkisi-power-figure",
+      "pass": true
+    },
+    {
+      "wing": "americas-oceania",
+      "count": 195,
+      "featured": "americas/key-marco-cat",
+      "pass": true
+    }
+  ],
+  "renderedAdditions": [
+    {
+      "exhibition": "bodies-in-motion",
+      "slug": "asia/walking-shakyamuni-buddha-mia",
+      "stop": 8,
+      "width": 390,
+      "pass": true
+    },
+    {
+      "exhibition": "power-and-presence",
+      "slug": "asia/abbasid-gold-dinar-al-muktafi",
+      "stop": 6,
+      "width": 390,
+      "pass": true
+    },
+    {
+      "exhibition": "power-and-presence",
+      "slug": "americas/clava-quintero-mnhn",
+      "stop": 10,
+      "width": 390,
+      "pass": true
+    },
+    {
+      "exhibition": "sacred-forms",
+      "slug": "africa/abbasid-tombstone-830-hamburg",
+      "stop": 3,
+      "width": 390,
+      "pass": true
+    },
+    {
+      "exhibition": "sacred-forms",
+      "slug": "europe/shrine-pieta-chocholow-tatra",
+      "stop": 11,
+      "width": 390,
+      "pass": true
+    },
+    {
+      "exhibition": "what-survives",
+      "slug": "europe/venus-of-lespugue-musee-de-l-homme",
+      "stop": 3,
+      "width": 390,
+      "pass": true
+    },
+    {
+      "exhibition": "what-survives",
+      "slug": "asia/iznik-jug-english-mounts-fitzwilliam",
+      "stop": 12,
+      "width": 390,
+      "pass": true
+    },
+    {
+      "exhibition": "the-work-of-the-surface",
+      "slug": "americas/rongorongo-long-tablet-mnhn",
+      "stop": 3,
+      "width": 390,
+      "pass": true
+    },
+    {
+      "exhibition": "the-work-of-the-surface",
+      "slug": "europe/nasrid-casket-mev",
+      "stop": 12,
+      "width": 390,
+      "pass": true
+    }
+  ],
+  "layouts": [
+    {
+      "route": "/wings/",
+      "width": 390,
+      "pass": true
+    },
+    {
+      "route": "/exhibitions/",
+      "width": 390,
+      "pass": true
+    },
+    {
+      "route": "/wings/",
+      "width": 1440,
+      "pass": true
+    },
+    {
+      "route": "/exhibitions/",
+      "width": 1440,
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "pass": true
+}

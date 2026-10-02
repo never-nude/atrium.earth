@@ -21,7 +21,7 @@ Deps: trimesh, numpy, scipy, networkx (fast_simplification not required here).
 Note: pass an UNCOMPRESSED source mesh (STL/OBJ/plain GLB). For Draco/meshopt
 GLBs, decode first (e.g. `gltf-transform cp in.glb out.glb`).
 """
-import sys, json, math, argparse
+import os, sys, json, math, argparse
 import numpy as np
 import trimesh
 
@@ -106,8 +106,26 @@ def propose(m):
                       f"Elongated (aspect {aspect_long:.1f}); PCA long-axis aligned to vertical.")
 
     # --- general => stable-pose solve, pick the upright candidate ---
+    # compute_stable_poses can run for tens of minutes on meshes whose convex hull
+    # has very many facets; cap it and fall back to needs-review rather than hang.
     try:
-        transforms, probs = trimesh.poses.compute_stable_poses(m, n_samples=2, threshold=0.0)
+        import signal
+
+        class _SolveTimeout(Exception):
+            pass
+
+        def _on_alarm(signum, frame):
+            raise _SolveTimeout()
+
+        prev = signal.signal(signal.SIGALRM, _on_alarm)
+        signal.alarm(int(os.environ.get("ATRIUM_POSE_TIMEOUT", "120")))
+        try:
+            transforms, probs = trimesh.poses.compute_stable_poses(m, n_samples=2, threshold=0.0)
+        finally:
+            signal.alarm(0)
+            signal.signal(signal.SIGALRM, prev)
+    except _SolveTimeout:
+        return _entry("auto", [0, 0, 0], 0.2, "review", "Stable-pose solve exceeded its time limit; needs human orientation review.")
     except Exception as e:
         return _entry("auto", [0, 0, 0], 0.2, "review", f"Stable-pose solve failed ({e}).")
     if len(transforms) == 0:

@@ -4,11 +4,12 @@ import { publicDataset } from '../../lib/catalog';
 import { v3WorkRoute } from '../../lib/v3';
 import { withBase } from '../../lib/urls';
 
-type Props = { work: Work; eager?: boolean; stop?: number };
-const { work, eager = false, stop } = Astro.props;
+type Props = { work: Work; eager?: boolean; stop?: number; spatial?: boolean };
+const { work, eager = false, stop, spatial = false } = Astro.props;
 const data = publicDataset(work);
 const detail = [work.maker || work.culture, work.displayDate].filter(Boolean).join(' · ');
 const alt = `${work.title}${detail ? ` — ${detail}` : ''}`;
+const spatialAccess = work.spatialAccess?.enabled ? work.spatialAccess : null;
 ---
 
 <article
@@ -16,10 +17,12 @@ const alt = `${work.title}${detail ? ` — ${detail}` : ''}`;
   data-v3-card
   data-search={data.search}
   data-year={data.year}
+  data-wing={data.wing}
   data-era={data.era}
   data-place={data.place}
   data-material={data.material}
   data-maker={data.maker}
+  data-size={spatialAccess?.status}
 >
   <a href={withBase(v3WorkRoute(work))}>
     <div class="v3-card__image v3-float" style={`view-transition-name: w-${work.id};`}>
@@ -36,6 +39,18 @@ const alt = `${work.title}${detail ? ` — ${detail}` : ''}`;
     <div class="v3-card__copy">
       <h3>{work.title}</h3>
       {detail && <p>{detail}</p>}
+      {spatialAccess && (
+        <div class="v3-card__spatial-reference" data-dimension-status={spatialAccess.status}>
+          <span>{!spatial && 'AR / VR · '}{spatialAccess.label}</span>
+          <span>{spatialAccess.sizeLabel}</span>
+          {!spatialAccess.verified && <span class="v3-card__spatial-note">{spatialAccess.status === 'approximate' ? 'Estimated from listed dimensions; actual size may vary.' : 'Chosen display size; actual dimensions unknown.'}</span>}
+        </div>
+      )}
     </div>
   </a>
+  {spatial && spatialAccess && (
+    <a class="v3-card__spatial-link" href={withBase(`${v3WorkRoute(work)}#ar-vr`)} aria-label={`View ${work.title} in AR or VR — ${spatialAccess.label}`}>
+      View in AR / VR <span aria-hidden="true">↗</span>
+    </a>
+  )}
 </article>

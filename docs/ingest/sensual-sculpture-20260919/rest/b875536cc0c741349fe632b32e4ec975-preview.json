@@ -1,0 +1,57 @@
+{
+  "uid": "b875536cc0c741349fe632b32e4ec975",
+  "title": "Eve Tempted, c. 1874 by Jean-Baptiste Carpeaux",
+  "source_glb": "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/pipeline/b875536cc0c741349fe632b32e4ec975/source-packed.glb",
+  "source": {
+    "bytes": 198134616,
+    "faces": 250000,
+    "sha256": "4fb482fb98657118e45ced9684a19f694eee6074bd3eb16a3b226c274ead1f2e",
+    "self_contained": true,
+    "extensions_used": [
+      "KHR_materials_pbrSpecularGlossiness"
+    ]
+  },
+  "preview_glb": "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/pipeline/b875536cc0c741349fe632b32e4ec975/preview.glb",
+  "preview": {
+    "bytes": 2947148,
+    "faces": 250000,
+    "sha256": "9c1d93ab01df3131c151ec08bf67a38ae5d06feedcac7f87bd8f75fb3bcd37eb",
+    "self_contained": true,
+    "extensions_used": [
+      "EXT_texture_webp",
+      "KHR_draco_mesh_compression",
+      "KHR_materials_ior",
+      "KHR_materials_specular"
+    ]
+  },
+  "modifications": "Converted deprecated specular-glossiness materials to metallic-roughness where present; retained original geometry or simplified toward 250,000 triangles with error tolerance 0.002; resized textures to maximum 2048 pixels, encoded WebP textures and Draco-compressed geometry.",
+  "commands": [
+    [
+      "/Users/michael/Documents/Atrium.earth/.tmp/sensual-sculpture-20260919/node_modules/.bin/gltf-transform",
+      "metalrough",
+      "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/pipeline/b875536cc0c741349fe632b32e4ec975/source-packed.glb",
+      "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/pipeline/b875536cc0c741349fe632b32e4ec975/source-metalrough.glb"
+    ],
+    [
+      "/Users/michael/Documents/Atrium.earth/.tmp/sensual-sculpture-20260919/node_modules/.bin/gltf-transform",
+      "optimize",
+      "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/pipeline/b875536cc0c741349fe632b32e4ec975/source-metalrough.glb",
+      "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/pipeline/b875536cc0c741349fe632b32e4ec975/preview.glb",
+      "--compress",
+      "draco",
+      "--texture-compress",
+      "webp",
+      "--texture-size",
+      "2048",
+      "--simplify",
+      "true",
+      "--simplify-ratio",
+      "1",
+      "--simplify-error",
+      "0.002"
+    ]
+  ],
+  "license_file": "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/pipeline/b875536cc0c741349fe632b32e4ec975/license.txt",
+  "archive_provenance": "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/pipeline/b875536cc0c741349fe632b32e4ec975-acquired.json",
+  "visual_review": "Not performed; root must inspect orientation, framing, texture/material and capture quality."
+}

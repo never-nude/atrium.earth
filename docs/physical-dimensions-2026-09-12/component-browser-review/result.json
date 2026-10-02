@@ -1,0 +1,58 @@
+{
+  "slug": "baroque/casimir-restorer-tyniec",
+  "date": "2026-09-12",
+  "page": "http://127.0.0.1:4380/works/baroque/casimir-restorer-tyniec/",
+  "browser": "Real headless Chrome; iPhone Chrome user-agent selects production Quick Look path. Native Apple launch not tested.",
+  "assetDelivery": "Exact SHA-256-verified public GLB fulfilled from local audit cache because R2 CORS excludes local port 4380; production atrium.earth origin independently verified allowed.",
+  "dataset": {
+    "spatial": "",
+    "title": "Casimir I the Restorer",
+    "referenceAxis": "y",
+    "referenceMeters": "2.5810000000000004",
+    "referenceExtentFraction": "0.8504572914097793",
+    "astroCidIwpjhhey": "",
+    "astroSourceFile": "work/atrium-browser-cleanup/src/components/SpatialViewing.astro",
+    "astroSourceLoc": "6:252"
+  },
+  "requests": [
+    "http://127.0.0.1:4380/src/lib/spatial-viewer.mjs",
+    "http://127.0.0.1:4380/src/lib/spatial-capabilities.mjs",
+    "http://127.0.0.1:4380/src/lib/spatial-session.mjs",
+    "https://models.atrium.earth/models/previews/baroque/casimir-restorer-tyniec/preview-59ff9d1afc46.glb"
+  ],
+  "href": "blob:http://127.0.0.1:4380/7d20fce8-b6f3-4f3f-a78e-8d56bbb0b94a#allowsContentScaling=1&canonicalWebPageURL=https%3A%2F%2Fatrium.earth%2Fworks%2Fbaroque%2Fcasimir-restorer-tyniec%2F",
+  "status": "Ready. Tap “Open in AR” to place the sculpture. Pinch to change its display size.",
+  "usdzBytes": 23945624,
+  "usdzSha256": "a66a9dfe21a43fbb1bb304b59a9c1dadef16dd4f98e6b694fab56fed8a72325a",
+  "serializedComponent": {
+    "name": "RZ_10_2012_KazO__uv_zbr_4_1__4K_txtr_RZ_10_2012_KazO__uv_zbr_4_1__4K_txtr_0",
+    "sizeMeters": [
+      1.4567073098360583,
+      2.58100609574568,
+      1.1737572352930992
+    ],
+    "boundsMin": [
+      -0.8706160808764701,
+      0.23288981680864507,
+      -0.4818026671518856
+    ],
+    "boundsMax": [
+      0.5860912289595881,
+      2.813895912554325,
+      0.6919545681412136
+    ]
+  },
+  "serializedUniformScale": 3.03483787612844,
+  "expectedSculptureHeightMeters": 2.5810000000000004,
+  "referenceExtentFraction": 0.8504572914097793,
+  "pass": true,
+  "errors": [],
+  "warnings": [
+    "Failed to load resource: the server responded with a status of 504 (Outdated Optimize Dep)",
+    "[vite] failed to connect to websocket.\nyour current setup:\n  (browser) 127.0.0.1:4380/ <--[HTTP]--> 127.0.0.1:4380/ (server)\n  (browser) 127.0.0.1:4380/ <--[WebSocket (failing)]--> 127.0.0.1:4380/ (server)\nCheck out your Vite / network configuration and https://vite.dev/config/server-options.html#server-hmr .",
+    "THREE.USDZExporter: USDZ does not support double sided materials MeshStandardMaterial",
+    "THREE.USDZExporter: USDZ does not support double sided materials MeshStandardMaterial",
+    "THREE.USDZExporter: USDZ does not support double sided materials MeshStandardMaterial",
+    "THREE.USDZExporter: USDZ does not support double sided materials MeshStandardMaterial"
+  ]
+}

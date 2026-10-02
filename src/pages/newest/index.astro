@@ -1,0 +1,18 @@
+---
+import V3Layout from '../../layouts/v3/V3Layout.astro';
+import V3WorkCard from '../../components/v3/V3WorkCard.astro';
+import { newestWorks } from '../../lib/additions';
+---
+<V3Layout title="Newest Additions" description="Explore the 24 most recently added sculptures in Atrium, each in 3D." image={newestWorks[0]?.thumbnailImage}>
+  <section class="v3-page-hero v3-additions-hero" aria-labelledby="additions-title">
+    <div>
+      <p class="v3-kicker">The collection, growing</p>
+      <h1 id="additions-title" class="v3-display">Newest<br />additions.</h1>
+      <p class="v3-editorial">The 24 most recently added works. Choose a piece to explore it in 3D.</p>
+    </div>
+  </section>
+  <section class="v3-additions-works" aria-labelledby="recent-works-title">
+    <div class="v3-additions-count"><h2 id="recent-works-title">{newestWorks.length} recent {newestWorks.length === 1 ? 'work' : 'works'}</h2><span>Explore in 3D</span></div>
+    <div class="v3-grid">{newestWorks.map((work, i) => <V3WorkCard work={work} eager={i < 4} />)}</div>
+  </section>
+</V3Layout>

@@ -1,0 +1,191 @@
+{
+  "checkedOn": "2026-09-19",
+  "scope": "Shortlist IDs2–17 and42–44; Eternal Idol already live and excluded from this pass. This is coverage, not a claim that the remaining works are impossible to obtain.",
+  "acquired": [
+    {
+      "shortlistId": 6,
+      "metadataPath": "3C1686DD-3499-406D-8699-B9963554F15B/acquisition.json",
+      "glbPath": "3C1686DD-3499-406D-8699-B9963554F15B/source.glb"
+    }
+  ],
+  "searchEvidence": {
+    "method": "Polycam public Explore search-only Algolia index, with primary public savable metadata verified for acquired capture. Final artist searches used exact terms (queryType prefixNone, no typo tolerance), included all tags, all results fit in one100-hit page.",
+    "artistHitCounts": {
+      "Rodin": 85,
+      "Claudel": 3,
+      "Pradier": 0,
+      "Dalou": 2
+    },
+    "files": [
+      "polycam-search-exact-Rodin.json",
+      "polycam-search-exact-Claudel.json",
+      "polycam-search-exact-Pradier.json",
+      "polycam-search-exact-Dalou.json"
+    ]
+  },
+  "usefulOutstandingUrls": [
+    "https://www.myminifactory.com/object/3d-print-figure-of-an-odalisque-126874",
+    "https://sketchfab.com/3d-models/psyche-by-auguste-rodin-0bf828410cc14c959fdf732e213742de"
+  ],
+  "restrictedPrimarySources": [
+    {
+      "url": "https://rodin.nmwa.go.jp/3d-models/fugit-amor-fugitive-love/",
+      "rightsUrl": "https://rodin.nmwa.go.jp/privacy/",
+      "finding": "Institution reserves site contents and requires permission beyond stated classroom/private use exceptions; not an open license."
+    }
+  ],
+  "works": [
+    {
+      "shortlistId": 2,
+      "title": "Fugit Amor",
+      "artist": "Auguste Rodin",
+      "status": "no_eligible_file_acquired",
+      "finding": "No savable public Polycam match. Official NMWA 3D viewer exists but reuse is restricted; do not acquire without permission.",
+      "objectUrl": "https://collections.musee-rodin.fr/en/document/fugit-amor/6385d6c705c32181005ce893"
+    },
+    {
+      "shortlistId": 3,
+      "title": "Paolo and Francesca",
+      "artist": "Auguste Rodin",
+      "status": "no_eligible_file_acquired",
+      "finding": "No downloadable eligible model located in focused public Polycam, Sketchfab or web search.",
+      "objectUrl": "https://collections.musee-rodin.fr/en/document/paolo-et-francesca/6385d6c205c32181005c8ebf"
+    },
+    {
+      "shortlistId": 4,
+      "title": "Pygmalion and Galatea",
+      "artist": "Auguste Rodin",
+      "status": "no_eligible_file_acquired",
+      "finding": "No downloadable eligible model located. Generic Rodin at the MET capture depicts a ballerina, not this composition.",
+      "objectUrl": "https://www.metmuseum.org/art/collection/search/191292"
+    },
+    {
+      "shortlistId": 5,
+      "title": "Torso of Adèle",
+      "artist": "Auguste Rodin",
+      "status": "no_eligible_file_acquired",
+      "finding": "No eligible match. Polytech Torso of a Young Woman (ca.1909 bronze) is a different upright torso, visually inspected and excluded.",
+      "objectUrl": "https://www.musee-rodin.fr/en/musee/collections/oeuvres/torso-adele"
+    },
+    {
+      "shortlistId": 6,
+      "title": "Meditation, or The Inner Voice",
+      "artist": "Auguste Rodin",
+      "status": "acquired_pending_visual_QA",
+      "finding": "Acquired exact composition in an alternate institutional version: V&A A.36-1914, bronze. Public savable Polycam capture packaged as GLB; root performing visual QA.",
+      "objectUrl": "https://www.musee-rodin.fr/en/musee/collections/oeuvres/meditation-or-inner-voice"
+    },
+    {
+      "shortlistId": 7,
+      "title": "Venus at Her Toilet",
+      "artist": "Auguste Rodin",
+      "status": "no_eligible_file_acquired",
+      "finding": "No savable public Polycam match. Official NMWA 3D viewer exists but reuse is restricted; do not acquire without permission.",
+      "objectUrl": "https://collection.nmwa.go.jp/S.1959-0053.html"
+    },
+    {
+      "shortlistId": 8,
+      "title": "The Sirens",
+      "artist": "Auguste Rodin",
+      "status": "no_eligible_file_acquired",
+      "finding": "No eligible exact composition located; Sirens/Sirène searches did not identify Rodin trio.",
+      "objectUrl": "https://www.clevelandart.org/art/1946.350"
+    },
+    {
+      "shortlistId": 9,
+      "title": "The Fallen Angel, or Illusions Received by the Earth",
+      "artist": "Auguste Rodin",
+      "status": "no_eligible_file_acquired",
+      "finding": "No eligible exact composition located. Fallen Angel Polycam results identify Salvatore Albano or other unrelated subjects.",
+      "objectUrl": "https://www.brooklynmuseum.org/zh-CN/objects/111465"
+    },
+    {
+      "shortlistId": 10,
+      "title": "Psyche",
+      "artist": "Auguste Rodin",
+      "status": "known_eligible_lead_root_downloading",
+      "finding": "Known CC BY4 Sketchfab lead retained; root now handles authenticated browser download after user signed in. No Polycam substitute located.",
+      "objectUrl": "https://www.frenchsculpture.org/index.php/Detail/objects/29564"
+    },
+    {
+      "shortlistId": 11,
+      "title": "The Waltz",
+      "artist": "Camille Claudel",
+      "status": "no_eligible_file_acquired",
+      "finding": "No savable Polycam exact composition; Claudel index contains Age of Maturity and portrait only. Known Alienor La Valse is CC BY-NC-ND and held.",
+      "objectUrl": "https://musee-camille-claudel.org/en/Wattz"
+    },
+    {
+      "shortlistId": 12,
+      "title": "The Abandonment (Sakuntala / Vertumnus and Pomona composition)",
+      "artist": "Camille Claudel",
+      "status": "no_eligible_file_acquired",
+      "finding": "No eligible exact composition. Polycam Vertumnus and Pomona V&A is Delvaux, not Claudel, excluded.",
+      "objectUrl": "https://www.musee-camille-claudel.fr/en/collections/abandonment"
+    },
+    {
+      "shortlistId": 13,
+      "title": "The Wave, or The Bathers",
+      "artist": "Camille Claudel",
+      "status": "no_eligible_file_acquired",
+      "finding": "No eligible exact composition located after Claudel, Wave/La Vague/Bathers discovery checks.",
+      "objectUrl": "https://www.musee-rodin.fr/en/musee/collections/oeuvres/wave-or-bathers"
+    },
+    {
+      "shortlistId": 14,
+      "title": "Odalisque",
+      "artist": "James Pradier",
+      "status": "no_eligible_file_acquired",
+      "finding": "No Polycam match; Sketchfab Odaliske 1841 is nondownloadable. MyMiniFactory Figure of an Odalisque126874 Janim is an unverified potential alternate; source fetch403 and browser unavailable to this agent, no download.",
+      "objectUrl": "https://www.mba-lyon.fr/en/fiche-oeuvre/odalisque"
+    },
+    {
+      "shortlistId": 15,
+      "title": "Phryné",
+      "artist": "James Pradier",
+      "status": "no_eligible_file_acquired",
+      "finding": "No eligible exact composition located in Polycam, existing Sketchfab or focused web search.",
+      "objectUrl": "https://www.museedegrenoble.fr/oeuvre/520/1922-phryne.htm"
+    },
+    {
+      "shortlistId": 16,
+      "title": "The Toilet of Atalanta (La Toilette d’Atalante)",
+      "artist": "James Pradier",
+      "status": "no_eligible_file_acquired",
+      "finding": "No Polycam match; Sketchfab model3e24009e35cb4dc8be4d55d1036a3076 by godardparis is nondownloadable with no license.",
+      "objectUrl": "https://collections.louvre.fr/en/ark%3A/53355/cl010091589"
+    },
+    {
+      "shortlistId": 17,
+      "title": "Reclining Bacchante",
+      "artist": "James Pradier",
+      "status": "no_eligible_file_acquired",
+      "finding": "No Polycam match. Known Sketchfab Bacchante couchée424f7f152eab4b59a4c868ee62a5b7c8 is CC BY-NC-SA and held. La Bacchante RODARIX is a standing figure beside a bust and excluded.",
+      "objectUrl": "https://mbarouen.fr/en/oeuvres/reclining-bacchante"
+    },
+    {
+      "shortlistId": 42,
+      "title": "Woman Removing Her Stocking",
+      "artist": "Aimé-Jules Dalou",
+      "status": "no_eligible_file_acquired",
+      "finding": "No eligible exact composition located. Polycam Dalou is AGH Ironworker, visually inspected and excluded.",
+      "objectUrl": "https://parismuseescollections.paris.fr/fr/petit-palais/oeuvres/femme-retirant-son-bas"
+    },
+    {
+      "shortlistId": 43,
+      "title": "Woman with a Mirror",
+      "artist": "Aimé-Jules Dalou",
+      "status": "no_eligible_file_acquired",
+      "finding": "No eligible exact composition located. Polycam Dalou is AGH Ironworker, visually inspected and excluded.",
+      "objectUrl": "https://www.parismuseescollections.paris.fr/en/node/227736"
+    },
+    {
+      "shortlistId": 44,
+      "title": "Bather Drying Her Right Foot",
+      "artist": "Aimé-Jules Dalou",
+      "status": "no_eligible_file_acquired",
+      "finding": "No eligible exact composition located. Existing Sketchfab Baigneuse Rmn-GrandPalais5a0052d269cf43b5b44d8682a38377c2 is nondownloadable with no license.",
+      "objectUrl": "https://parismuseescollections.paris.fr/fr/petit-palais/oeuvres/baigneuse-s-essuyant-le-pied-droit-0"
+    }
+  ]
+}

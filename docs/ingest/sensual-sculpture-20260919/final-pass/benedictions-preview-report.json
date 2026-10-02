@@ -1,0 +1,113 @@
+{
+  "title": "Benedictions",
+  "source_url": "https://www.thingiverse.com/thing:2134760",
+  "scan_creator": "Adam McGee (WWWdotPDXDDDdotCOM)",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "license_evidence": [
+    "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/final-pass/benedictions/LICENSE.txt",
+    "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/final-pass/benedictions/acquired.json"
+  ],
+  "source": {
+    "path": "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/final-pass/benedictions/Benedictions_10inch_20170218.stl",
+    "bytes": 3036184,
+    "sha256": "4a04789c04fb8c5084ec1f43023fc24bbd5f2ce3439cc7c9990caa04383ab97f"
+  },
+  "source_faces": 60722,
+  "source_vertices_after_load": 30357,
+  "source_glb": {
+    "path": "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/final-pass/benedictions/source-packed.glb",
+    "bytes": 1458544,
+    "sha256": "03f53e87e8d37f786d0a36cbe904e8fe673f5817401e3410c097bb610b0fd2ba"
+  },
+  "preview": {
+    "path": "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/final-pass/benedictions/preview.glb",
+    "bytes": 146716,
+    "sha256": "d56b1d93d41ff9f2cfcb0ff1a2b5148f7799e0af96ad08cec10369b094f9740f"
+  },
+  "preview_faces": 60722,
+  "preview_vertices": 30357,
+  "source_bounds_native_units": [
+    [
+      -98.208251953125,
+      4.247483253479004,
+      -111.29711151123047
+    ],
+    [
+      121.31159973144531,
+      258.2474670410156,
+      59.349891662597656
+    ]
+  ],
+  "preview_bounds_native_units": [
+    [
+      -98.208251953125,
+      4.247483253479004,
+      -111.29711151123047
+    ],
+    [
+      121.31159973144531,
+      258.2474670410156,
+      59.349891662597656
+    ]
+  ],
+  "source_up_axis": "Y",
+  "preview_up_axis": "Y",
+  "upright_evidence": "1769 vertices lie within 1 native unit of minimum Y. The dominant flat underside has a nearly -Y face normal (approximately [0,-1,0.02]); the source bronze photographs show this rectangular base below the figures. The STL is already approximately Y-up, unlike the Fugitive Love source. The archive slicer render displays it sideways because that renderer assumes Z-up.",
+  "rigid_transform_matrix": [
+    [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      1.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "modifications": [
+    "Loaded STL and welded duplicate vertices through trimesh.",
+    "Preserved all 60,722 triangles; no simplification, cropping, filling, reconstruction, or scaling.",
+    "No rotation required: the source is already approximately glTF Y-up; identity transform retained.",
+    "Calculated smooth vertex normals for neutral untextured shading.",
+    "Draco geometry compression using glTF Transform4.4.2."
+  ],
+  "self_contained": true,
+  "visual_review": "Source scan render and actual sculpture photograph inspected; final interactive viewer and camera orientation QA remain with root.",
+  "limitations": [
+    "STL is untextured and the source scan has visibly limited surface detail.",
+    "Native units are not calibrated to the actual bronze; physical dimensions are unknown.",
+    "Rectangular source artwork base retained; slight scan tilt remains for root viewer orientation QA."
+  ],
+  "commands": [
+    [
+      "python3",
+      "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/final-pass/benedictions/convert.py"
+    ],
+    [
+      "/Users/michael/Documents/Atrium.earth/.tmp/sensual-sculpture-20260919/node_modules/.bin/gltf-transform",
+      "optimize",
+      "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/final-pass/benedictions/preview-uncompressed.glb",
+      "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/final-pass/benedictions/preview.glb",
+      "--compress",
+      "draco",
+      "--simplify",
+      "false"
+    ]
+  ]
+}

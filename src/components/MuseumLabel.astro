@@ -1,0 +1,21 @@
+---
+type Props = { label: Record<string, string>; hud?: boolean };
+const { label, hud = false } = Astro.props;
+---
+<div class:list={['museum-label', { 'museum-label--hud': hud }]} data-museum-label role="group" aria-label="Artwork label">
+  {label.title && <p class="museum-label-title" data-museum-title>{label.title}</p>}
+  {label.maker && <p class="museum-label-maker" data-museum-maker>{label.maker}</p>}
+  {(label.period || label.region) && <p class="museum-label-detail" data-museum-origin>{[label.period, label.region].filter(Boolean).join(' · ')}</p>}
+  {label.material && <p class="museum-label-detail" data-museum-material>{label.material}</p>}
+</div>
+<style>
+  .museum-label { font-family: var(--v3-sans, "Inter", "Helvetica Neue", Arial, sans-serif); color: var(--v3-ink, #f7f5ef); overflow-wrap: anywhere; }
+  .museum-label p { margin: 0; }
+  .museum-label-title { font-size: 21px; line-height: 1.25; font-weight: 500; letter-spacing: -.025em; text-wrap: pretty; }
+  .museum-label-maker { margin-top: 7px !important; font-size: 14px; line-height: 1.45; }
+  .museum-label-detail { margin-top: 4px !important; color: var(--v3-muted, #c9c6bd); font-size: 12px; line-height: 1.5; }
+  .museum-label--hud { color: #fff; pointer-events: none; text-shadow: 0 1px 3px #000, 0 0 2px #000; }
+  .museum-label--hud .museum-label-title { font-size: 16px; line-height: 1.35; }
+  .museum-label--hud .museum-label-maker { font-size: 11px; margin-top: 4px !important; }
+  .museum-label--hud .museum-label-detail { font-size: 10.5px; color: #fff; margin-top: 3px !important; }
+</style>

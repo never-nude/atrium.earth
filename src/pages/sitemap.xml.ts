@@ -1,9 +1,13 @@
 import { works } from '../lib/catalog';
 import { absoluteUrl } from '../lib/urls';
+import { wings } from '../data/wings';
 
 const staticRoutes = [
   '/',
   '/collection/',
+  '/newest/',
+  '/wings/',
+  ...wings.map((wing) => `/wings/${wing.id}/`),
   '/museum/',
   '/timeline/',
   '/geography/',

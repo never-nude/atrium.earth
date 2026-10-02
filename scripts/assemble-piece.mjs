@@ -2,6 +2,7 @@
 import { copyFile, mkdir, writeFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
+import { batchIdFromArgs, createIngestBatch } from './ingest-batch.mjs';
 import {
   catalogIndexes,
   candidateIsKnown,
@@ -26,6 +27,7 @@ import {
 } from './ingest-utils.mjs';
 
 const args = parseArgs();
+const ingestBatch = createIngestBatch({ id: batchIdFromArgs(process.argv.slice(2)) });
 const stageDir = path.resolve(repoRoot, args.stage || process.env.ATRIUM_INGEST_DIR || defaultStageDir);
 const inputPath = path.resolve(repoRoot, args.input || path.join(stageDir, 'fetched.json'));
 const reportPath = path.resolve(repoRoot, args.report || path.join(stageDir, 'last-report.md'));
@@ -36,6 +38,7 @@ const targetFaces = Number(args['target-faces'] || process.env.ATRIUM_PREVIEW_TA
 const skipAssets = Boolean(args['skip-assets']);
 const dryRun = Boolean(args['dry-run']);
 const maxAlternateBytes = Number(args['max-alternate-bytes'] || process.env.ATRIUM_MAX_ALTERNATE_BYTES || 700_000_000);
+const wingIds = new Set(['near-east', 'greece-rome', 'europe', 'asia', 'africa', 'americas-oceania']);
 
 function pythonCommand() {
   if (process.env.PYTHON) return process.env.PYTHON;
@@ -54,6 +57,9 @@ function formatIntegrity(integrity) {
 
 function badIntegrity(integrity, candidate = {}) {
   if (!integrity) return true;
+  // The solve timed out before it could measure the mesh; the piece is held for
+  // human orientation review rather than judged on numbers we never computed.
+  if (integrity.skipped) return false;
   if (!Number.isFinite(Number(integrity.faces)) || Number(integrity.faces) <= 0) return true;
   if (Number(integrity.bratio) > 0.3) return true;
 
@@ -68,8 +74,26 @@ function badIntegrity(integrity, candidate = {}) {
 }
 
 async function proposeOrientation(sourcePath, slug) {
-  const result = await run(pythonCommand(), ['scripts/auto_orient.py', sourcePath, '--slug', slug], { capture: true });
-  return JSON.parse(result.stdout);
+  try {
+    const result = await run(pythonCommand(), ['scripts/auto_orient.py', sourcePath, '--slug', slug], {
+      capture: true,
+      timeoutMs: Number(process.env.ATRIUM_ORIENT_TIMEOUT_MS || 240000),
+    });
+    return JSON.parse(result.stdout);
+  } catch (error) {
+    if (!error.timedOut) throw error;
+    // Keep the piece in the batch; a human orients it in the review pass.
+    return {
+      slug,
+      upAxis: 'auto',
+      modelRotation: [0, 0, 0],
+      yaw: 0,
+      confidence: 0.2,
+      flag: 'review',
+      reason: 'Orientation solve exceeded its time limit; needs human orientation review.',
+      integrity: { faces: null, ncomp: null, bratio: null, skipped: true },
+    };
+  }
 }
 
 async function maybeRetryAlternate(candidate, firstProposal, report) {
@@ -117,6 +141,7 @@ function catalogEntry(candidate, archiveRel, sizeBytes) {
   const entry = {
     slug: candidate.slug,
     collection: candidate.collection || candidate.slug.split('/')[0],
+    ...(candidate.wing ? { wing: candidate.wing } : {}),
     title: candidate.title,
     artist: candidate.artist || '',
     year: candidate.year || '',
@@ -139,7 +164,7 @@ function catalogEntry(candidate, archiveRel, sizeBytes) {
     dimensions: candidate.dimensions || '',
     tier: 3,
     license_tier: candidate.license_tier || licenseTier(`${candidate.license || ''} ${candidate.license_url || ''}`),
-    ingested: new Date().toISOString().slice(0, 10),
+    ...ingestBatch,
     index: 0,
     total: 0,
     period: candidate.period || periodFor(yearSort),
@@ -248,6 +273,7 @@ const indexes = catalogIndexes(catalog);
 const report = {
   schema: 'atrium-auto-ingest-report/1',
   generated_at: new Date().toISOString(),
+  ...ingestBatch,
   accepted: [],
   rejected: [],
   needs_orientation: [],
@@ -268,6 +294,10 @@ if (!candidates.length) {
 
 for (const originalCandidate of candidates) {
   let candidate = originalCandidate;
+  if (candidate.wing && !wingIds.has(candidate.wing)) {
+    report.rejected.push({ slug: candidate.slug, title: candidate.title, source: candidate.source, reason: `unknown wing override: ${candidate.wing}` });
+    continue;
+  }
   const knownBy = candidateIsKnown(candidate, indexes);
   if (knownBy) {
     report.rejected.push({ slug: candidate.slug, title: candidate.title, source: candidate.source, reason: `already in catalog by ${knownBy}` });

@@ -1,0 +1,118 @@
+{
+  "title": "Iris, Messenger of the Gods",
+  "source_url": "https://www.thingiverse.com/thing:2134727",
+  "scan_creator": "Adam McGee (WWWdotPDXDDDdotCOM)",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "license_evidence": [
+    "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/final-pass/iris/LICENSE.txt",
+    "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/final-pass/iris/acquired.json"
+  ],
+  "source": {
+    "path": "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/final-pass/iris/Iris_29179220_8_inch.stl",
+    "bytes": 6867684,
+    "sha256": "0d082efacb0f2a24f4f2e7dc3549868668bc316b08d81c1fee2cc5cd7554b260"
+  },
+  "source_faces": 137352,
+  "source_vertices_after_load": 68682,
+  "source_glb": {
+    "path": "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/final-pass/iris/source-packed.glb",
+    "bytes": 3297856,
+    "sha256": "9a9063a7502a1818bf5683ae92293484908563f0b4037999a4031c7af3782b04"
+  },
+  "preview": {
+    "path": "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/final-pass/iris/preview.glb",
+    "bytes": 254688,
+    "sha256": "bec7787e4a612d9d8e5e3dd6480a758ea53efa57534c4c2abcdb7781f4ae9eff"
+  },
+  "preview_faces": 137352,
+  "preview_vertices": 68682,
+  "source_bounds_native_units": [
+    [
+      -86.05364227294922,
+      6.100383281707764,
+      -44.773460388183594
+    ],
+    [
+      83.913818359375,
+      209.14727783203125,
+      71.12938690185547
+    ]
+  ],
+  "source_extents_native_units_xyz": [
+    169.96746063232422,
+    203.0468945503235,
+    115.90284729003906
+  ],
+  "preview_bounds_native_units": [
+    [
+      -86.05364227294922,
+      6.100383281707764,
+      -44.773460388183594
+    ],
+    [
+      83.913818359375,
+      209.14727783203125,
+      71.12938690185547
+    ]
+  ],
+  "source_up_axis": "Y",
+  "preview_up_axis": "Y",
+  "upright_evidence": "12868 vertices lie within 0.01 native unit of minimum Y. The dominant flat base underside has -Y face normal [0,-1,0]. The archive museum photograph shows the foot support over a square display base beneath the suspended figure, matching the source Y-up orientation. The archive slicer render shows it sideways because that renderer assumes Z-up.",
+  "rigid_transform_matrix": [
+    [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      1.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "modifications": [
+    "Loaded STL and welded duplicate vertices through trimesh.",
+    "Preserved all 137,352 triangles; no simplification, cropping, filling, reconstruction, or scaling.",
+    "No rotation required: the source is already approximately glTF Y-up; identity transform retained.",
+    "Calculated smooth vertex normals for neutral untextured shading.",
+    "Draco geometry compression using glTF Transform4.4.2."
+  ],
+  "self_contained": true,
+  "visual_review": "Source scan render and actual sculpture photograph inspected; final interactive viewer and camera orientation QA remain with root.",
+  "limitations": [
+    "STL is untextured and the source scan has visibly limited surface detail.",
+    "Native units are not calibrated to the actual bronze; physical dimensions are unknown.",
+    "Rectangular source display base and mounting support retained. Scan is untextured and omits fine bronze surface details."
+  ],
+  "commands": [
+    [
+      "python3",
+      "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/final-pass/iris/convert.py"
+    ],
+    [
+      "/Users/michael/Documents/Atrium.earth/.tmp/sensual-sculpture-20260919/node_modules/.bin/gltf-transform",
+      "optimize",
+      "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/final-pass/iris/preview-uncompressed.glb",
+      "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/final-pass/iris/preview.glb",
+      "--compress",
+      "draco",
+      "--simplify",
+      "false"
+    ]
+  ]
+}

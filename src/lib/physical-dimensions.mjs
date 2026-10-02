@@ -1,0 +1,48 @@
+// Reviewed physical references require sourced measurements and an explicit
+// geometry review. Catalogue-only estimates live in approximate-dimensions.mjs
+// and cannot authorize a verified reference here.
+export function physicalDimensionsFor(fallback, record, previewUrl, orientation) {
+  const calibration = record?.spatial;
+  // An explicit reviewed estimate can establish a useful starting size, but
+  // remains labelled approximate and is never inferred from catalogue text.
+  // A museum measurement can be documented while its boundary in a scan is
+  // approximate (for example, a sculpture fused to its display pedestal).
+  const estimated = calibration?.estimated === true
+    && /^https?:/.test(record.sourceUrl || '');
+  const matched = (record?.status === 'documented' || (record?.status === 'approximate' && estimated))
+    && ['original', 'object'].includes(record.basis)
+    && calibration?.previewUrl === previewUrl
+    && JSON.stringify(calibration?.orientation ?? null) === JSON.stringify(orientation ?? null);
+  const reference = matched && ['x', 'y', 'z'].includes(calibration.axis)
+    && Number.isFinite(calibration.meters) && calibration.meters > 0
+    && validExtentFraction(calibration.extentFraction)
+    ? { axis: calibration.axis, meters: calibration.meters,
+      ...(calibration.extentFraction !== undefined ? { extentFraction: calibration.extentFraction } : {}),
+      ...(estimated ? { estimated: true } : {}) } : null;
+  return {
+    dimensions: record ? record.dimensions : (fallback || '').trim(),
+    dimensionsNote: record?.note || '',
+    dimensionsSourceUrl: record?.sourceUrl || '',
+    dimensionsBasis: record?.basis || 'object',
+    spatialReference: reference,
+    spatialNote: calibration && !reference
+      ? 'Physical size needs a check for this version of the model. Display size is adjustable.'
+      : record?.spatialNote || 'Physical size is not yet calibrated. Display size is adjustable.',
+  };
+}
+
+function validExtentFraction(value) {
+  return value === undefined || (Number.isFinite(value) && value > 0 && value <= 1);
+}
+
+export function referenceScaleFor(box, reference) {
+  if (!reference || !['x', 'y', 'z'].includes(reference.axis)
+    || !Number.isFinite(reference.meters) || reference.meters <= 0
+    || !validExtentFraction(reference.extentFraction)) return 1;
+  // A reviewed component can define the measurement while the scan retains
+  // its museum mount. This fraction is bound to the same asset and orientation.
+  const extent = (box?.max?.[reference.axis] - box?.min?.[reference.axis])
+    * (reference.extentFraction ?? 1);
+  if (!Number.isFinite(extent) || extent <= 0) return 1;
+  return reference.meters / extent;
+}

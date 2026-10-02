@@ -1,0 +1,19 @@
+---
+import { additionRoute, formatAdditionDate, type AdditionBatch } from '../../lib/additions';
+import { withBase } from '../../lib/urls';
+type Props = { batch: AdditionBatch; featured?: boolean };
+const { batch, featured = false } = Astro.props;
+---
+<a class:list={['v3-addition', { 'v3-addition--featured': featured }]} href={withBase(additionRoute(batch))} data-addition-batch={batch.id}>
+  <div class="v3-addition__images" aria-hidden="true">
+    {batch.highlights.slice(0, 3).map((work) => (
+      <img src={withBase(work.thumbnailImage)} alt="" width="720" height="900" loading="lazy" decoding="async" />
+    ))}
+  </div>
+  <div class="v3-addition__copy">
+    <p class="v3-kicker">{featured && <span class="v3-addition__latest">Latest addition</span>}<time datetime={batch.date}>{formatAdditionDate(batch.date)}</time><span>{batch.works.length} works</span></p>
+    <h3>{batch.title}</h3>
+    <p>{batch.summary}</p>
+    <span class="v3-addition__link">Explore all {batch.works.length} works <b aria-hidden="true">↗</b></span>
+  </div>
+</a>

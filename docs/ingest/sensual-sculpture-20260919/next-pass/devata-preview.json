@@ -1,0 +1,61 @@
+{
+  "uid": "581b8e3311264abea6a59b1ad905d28e",
+  "title": "Devata of Angkor",
+  "source_glb": "research/sensual-sculpture-20260919/next-pass/pipeline/581b8e3311264abea6a59b1ad905d28e/source-packed.glb",
+  "source": {
+    "bytes": 21441000,
+    "faces": 37872,
+    "sha256": "a306f9cf720449a24c8460e24ac51adb45846ac86aa479451880f9980efa3c2d",
+    "self_contained": true,
+    "extensions_used": []
+  },
+  "preview_glb": "research/sensual-sculpture-20260919/next-pass/pipeline/581b8e3311264abea6a59b1ad905d28e/preview.glb",
+  "preview": {
+    "bytes": 1052704,
+    "faces": 37872,
+    "sha256": "e26c4605d74800f66ea50c8fed259b35feafee830ef957051f0a24d7a2167cdf",
+    "self_contained": true,
+    "extensions_used": [
+      "EXT_texture_webp",
+      "KHR_draco_mesh_compression"
+    ],
+    "textures": [
+      {
+        "width": 2048,
+        "height": 2048,
+        "format": "WEBP"
+      },
+      {
+        "width": 2048,
+        "height": 2048,
+        "format": "WEBP"
+      }
+    ]
+  },
+  "modifications": "Converted deprecated specular-glossiness materials to metallic-roughness where present; preserved all source faces with simplification disabled; resized textures to maximum 2048 pixels, encoded WebP textures and Draco-compressed geometry.",
+  "commands": [
+    [
+      "node_modules/.bin/gltf-transform",
+      "metalrough",
+      "research/sensual-sculpture-20260919/next-pass/pipeline/581b8e3311264abea6a59b1ad905d28e/source-packed.glb",
+      "research/sensual-sculpture-20260919/next-pass/pipeline/581b8e3311264abea6a59b1ad905d28e/source-metalrough.glb"
+    ],
+    [
+      "node_modules/.bin/gltf-transform",
+      "optimize",
+      "research/sensual-sculpture-20260919/next-pass/pipeline/581b8e3311264abea6a59b1ad905d28e/source-metalrough.glb",
+      "research/sensual-sculpture-20260919/next-pass/pipeline/581b8e3311264abea6a59b1ad905d28e/preview.glb",
+      "--compress",
+      "draco",
+      "--texture-compress",
+      "webp",
+      "--texture-size",
+      "2048",
+      "--simplify",
+      "false"
+    ]
+  ],
+  "license_file": "research/sensual-sculpture-20260919/next-pass/pipeline/581b8e3311264abea6a59b1ad905d28e/license.txt",
+  "archive_provenance": "research/sensual-sculpture-20260919/next-pass/pipeline/581b8e3311264abea6a59b1ad905d28e-acquired.json",
+  "visual_review": "Not performed; root must inspect orientation, framing, texture/material and capture quality."
+}

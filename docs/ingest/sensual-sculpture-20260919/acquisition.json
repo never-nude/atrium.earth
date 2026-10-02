@@ -1,0 +1,85 @@
+{
+  "checked_at": "2026-09-19",
+  "acquired_count": 1,
+  "items": [
+    {
+      "shortlist_id": 1,
+      "title": "Eternal Idol",
+      "artist": "Auguste Rodin",
+      "variant": "Harvard Art Museums/Fogg Museum marble, 1893",
+      "source_model_url": "https://poly.cam/explore/capture/B003D6D2-342B-4597-8198-89C6458B240C/Eternal+Idol+by+Auguste+Rodin+1893+Marble",
+      "creator": "Polytech",
+      "capture_id": "B003D6D2-342B-4597-8198-89C6458B240C",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "license_evidence_url": "https://learn.poly.cam/hc/en-us/articles/27646853145748-Usage-Rights-and-Ownership",
+      "license_evidence_excerpt": "all savable content is licensed under the Creative Commons 4.0 license",
+      "license_evidence_detail": "The next sentence and link explicitly identify Creative Commons BY 4.0. Page verified via web browser tool 2026-09-19.",
+      "publication_flags": {
+        "savable": true,
+        "visibility": "public"
+      },
+      "access_method": "Downloaded glTF, geometry, and JPG via public artifact URLs supplied by the public capture page; no credentials or gated download endpoint used.",
+      "source_file_checks": "All downloaded artifact MD5s match the public source metadata.",
+      "local_glb": "public/models/previews/rodin/the-eternal-idol-harvard/preview.glb",
+      "sha256": "7ea04fd8c3cf49e357496de62103d8ccba34b0e480baf10f25e9dc76d39466b6",
+      "bytes": 6238616,
+      "triangles": 180901,
+      "vertices": 102578,
+      "format": "Self-contained glTF2 binary with embedded JPG",
+      "modifications": "Repackaged public glTF+binary+JPG into one GLB; geometry and texture unchanged; added attribution copyright field.",
+      "attribution": "Eternal Idol, scan by Polytech (Polycam), CC BY 4.0. Original sculpture by Auguste Rodin. Packaged for Atrium.",
+      "qa": "Source hashes, self-contained GLB structure, complete-object framing and upright orientation verified. Front, side and rear renders inspected: two adult figures, integral marble base, no captured room, no gross missing surfaces. Community photogrammetry has softer facial detail than an institutional high-resolution scan.",
+      "source_metadata": "eternal-idol-metadata.json",
+      "downloads_manifest": "eternal-idol-downloads.json",
+      "slug": "rodin/the-eternal-idol-harvard",
+      "source_record_url": "https://www.harvardartmuseums.org/collections/object/230060",
+      "museum_metadata_url": "https://artsandculture.google.com/asset/eternal-idol/SwHlQYxvVlBhAQ?hl=en",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 120,
+        "viewDirection": [
+          0.55,
+          0.34,
+          0.9
+        ],
+        "fit": 1.16,
+        "status": "reviewed",
+        "note": "Source Y is upright. Reviewed front, side and rear. The chosen three-quarter view reveals both adult figures and the complete marble base."
+      },
+      "ingested_at": "2026-09-19T09:51:32.364Z"
+    }
+  ],
+  "alternate_search_rejections": [
+    {
+      "title": "Fugit Amor (NMWA)",
+      "url": "https://rodin.nmwa.go.jp/3d-models/fugit-amor-fugitive-love/",
+      "reason": "Official site rights restrict reuse; https://rodin.nmwa.go.jp/privacy/ . No open-license model acquired."
+    }
+  ],
+  "ingest_batch": "sensual-sculpture-20260919",
+  "catalog_before": 1205,
+  "catalog_after": 1206,
+  "validation": {
+    "catalog_integrity": "Existing catalog entries and model/orientation/size records unchanged",
+    "local_browser": "Work page rendered WebGL stage is-live; 1000px thumbnail decoded; correct model URL; credits and museum record present",
+    "thumbnail_angles_reviewed": [
+      0,
+      120,
+      240
+    ],
+    "selected_yaw": 120,
+    "checks": [
+      "test:wings",
+      "test:additions",
+      "verify:assets",
+      "production build"
+    ],
+    "physical_size": "Museum dimensions documented; no verified spatial calibration claimed"
+  }
+}

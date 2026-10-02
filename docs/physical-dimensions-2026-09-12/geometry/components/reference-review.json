@@ -1,0 +1,120 @@
+[
+  {
+    "slug": "asia/abbasid-gold-dinar-al-muktafi",
+    "status": "approved-reference-fraction",
+    "spatial": {
+      "axis": "y",
+      "meters": 0.021,
+      "measurementIndex": 0,
+      "extentFraction": 0.7304524268823647,
+      "previewUrl": "https://models.atrium.earth/models/previews/asia/abbasid-gold-dinar-al-muktafi/preview-380ad228d18e.glb",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "viewDirection": [
+          0,
+          0.85,
+          1
+        ],
+        "fit": 1.12,
+        "status": "reviewed"
+      },
+      "assetSha256": "380ad228d18e96701dee05e67dd19a8a5230de5fa5e3f3de01d2cfb92d6fabcc",
+      "reviewed": "2026-09-12",
+      "geometryReview": "Individually compared original textured and component-colored three-angle renders. The complete sculpture occupies exactly one separately named connected mesh; exact transformed vertex bounds determine the reference fraction. No manual crop or eyeballed fraction. See geometry/components/reference-review.json and audit.json. All model geometry is retained.",
+      "note": "The entire coin is the connected Object_4 mesh, visually green in the component render; the centimeter bar is the distinct orange Object_38. Apply the original 21 mm diameter to the coin vertical diameter only. Its horizontal diameter then becomes 20.75 mm, corroborating an irregular circular edge. The ruler is retained but excluded from the scale reference."
+    },
+    "reference": {
+      "meshName": "Object_4",
+      "componentIndex": 0,
+      "vertices": 2219643,
+      "normalizedMin": [
+        -0.2273172101689868,
+        -0.14491619186674545,
+        -0.15208627814472103
+      ],
+      "normalizedMax": [
+        0.22646435470087597,
+        0.31441671894546475,
+        -0.11075953870524237
+      ],
+      "normalizedSize": [
+        0.45378156486986276,
+        0.45933291081221017,
+        0.04132673943947866
+      ],
+      "wholeModelSize": [
+        1,
+        0.6288334378909295,
+        0.30417255628944206
+      ],
+      "extentFractionFormula": "(0.31441671894546475 - -0.14491619186674545) / 0.6288334378909295",
+      "connectedComponentMethod": "Triangles joined through shared positions rounded to 1e-7 in normalized world coordinates; the approved reference is the whole named mesh, so no component-subset threshold controls its bounds."
+    },
+    "render": "renders/asia--abbasid-gold-dinar-al-muktafi.png",
+    "sourceUrl": "https://www.finna.fi/Record/museovirasto.C5258483054FA25BBAAE156C2C95FF41"
+  },
+  {
+    "slug": "baroque/casimir-restorer-tyniec",
+    "status": "approved-reference-fraction",
+    "spatial": {
+      "axis": "y",
+      "meters": 2.5810000000000004,
+      "measurementIndex": 0,
+      "extentFraction": 0.8504572914097793,
+      "previewUrl": "https://models.atrium.earth/models/previews/baroque/casimir-restorer-tyniec/preview-59ff9d1afc46.glb",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "viewDirection": [
+          0,
+          0.16,
+          1
+        ],
+        "fit": 1.12,
+        "status": "reviewed"
+      },
+      "assetSha256": "59ff9d1afc463081a5c8b9ba7de90b24b4892c20b6b44d524861cb230f445f9a",
+      "reviewed": "2026-09-12",
+      "geometryReview": "Individually compared original textured and component-colored three-angle renders. The complete sculpture occupies exactly one separately named connected mesh; exact transformed vertex bounds determine the reference fraction. No manual crop or eyeballed fraction. See geometry/components/reference-review.json and audit.json. All model geometry is retained.",
+      "note": "The complete king, crown, crucifix, sword, clothing, feet and original small wooden foot block are one connected named mesh, visually green in all three component views. The scanned wall and floor are separate low-poly outbox/bbox meshes shown in other colors. Match only the sculpture bottom-to-crown extent to its documented 258.1 cm height, retaining the surrounding geometry without letting it control scale."
+    },
+    "reference": {
+      "meshName": "RZ_10_2012_KazO__uv_zbr_4_1__4K_txtr_RZ_10_2012_KazO__uv_zbr_4_1__4K_txtr_0",
+      "componentIndex": 0,
+      "vertices": 135707,
+      "normalizedMin": [
+        -0.28687603404358064,
+        -0.42326874394466674,
+        -0.1587507893353775
+      ],
+      "normalizedMax": [
+        0.19312998259915315,
+        0.4271885474651126,
+        0.2280000300651512
+      ],
+      "normalizedSize": [
+        0.4800060166427338,
+        0.8504572914097793,
+        0.3867508194005287
+      ],
+      "wholeModelSize": [
+        0.6627342809180222,
+        1,
+        0.45600006013030236
+      ],
+      "extentFractionFormula": "(0.4271885474651126 - -0.42326874394466674) / 1",
+      "connectedComponentMethod": "Triangles joined through shared positions rounded to 1e-7 in normalized world coordinates; the approved reference is the whole named mesh, so no component-subset threshold controls its bounds."
+    },
+    "render": "renders/baroque--casimir-restorer-tyniec.png",
+    "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/2327"
+  }
+]

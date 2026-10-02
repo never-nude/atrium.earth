@@ -1,0 +1,113 @@
+{
+  "title": "Fugitive Love (Fugit Amor)",
+  "source_url": "https://www.thingiverse.com/thing:2134750",
+  "scan_creator": "Adam McGee (WWWdotPDXDDDdotCOM)",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "license_evidence": [
+    "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/final-pass/fugitive-love/LICENSE.txt",
+    "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/final-pass/fugitive-love/acquired.json"
+  ],
+  "source": {
+    "path": "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/final-pass/fugitive-love/Fugutive_Love_5_20170220.stl",
+    "bytes": 4612284,
+    "sha256": "203c154f533bf58a09b831ee0f7de7786c58158e5e2c461a2b47dc45852b4c01"
+  },
+  "source_faces": 92244,
+  "source_vertices_after_load": 46110,
+  "source_glb": {
+    "path": "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/final-pass/fugitive-love/source-packed.glb",
+    "bytes": 2214816,
+    "sha256": "aa113eaa187079f38e56d20389520eecad0563e5d00da7329be0ba7012b9aec4"
+  },
+  "preview": {
+    "path": "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/final-pass/fugitive-love/preview.glb",
+    "bytes": 218668,
+    "sha256": "cb4f0c6c0505fb33e10b8729192c1d9fe8126bd12d4f4de6a16f1d88245e89f4"
+  },
+  "preview_faces": 92244,
+  "preview_vertices": 46110,
+  "source_bounds_native_units": [
+    [
+      -107.9453125,
+      -65.72291564941406,
+      2.308945417404175
+    ],
+    [
+      125.14383697509766,
+      61.277061462402344,
+      110.24229431152344
+    ]
+  ],
+  "preview_bounds_native_units": [
+    [
+      -107.9453125,
+      2.3089454174041713,
+      -61.27706146240234
+    ],
+    [
+      125.14383697509766,
+      110.24229431152344,
+      65.72291564941406
+    ]
+  ],
+  "source_up_axis": "Z",
+  "preview_up_axis": "Y",
+  "upright_evidence": "6990 vertices within0.01nativeunits of source minimumZ form a planar base; source image PNG and bronze photograph show this base below intertwined figures.",
+  "rigid_transform_matrix": [
+    [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      6.123233995736766e-17,
+      1.0,
+      0.0
+    ],
+    [
+      0.0,
+      -1.0,
+      6.123233995736766e-17,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "modifications": [
+    "Loaded STL and welded duplicate vertices through trimesh.",
+    "Preserved all 92,244 triangles; no simplification, cropping, filling, reconstruction, or scaling.",
+    "Rigid rotation -90 degrees around X converts source Z-up to glTF Y-up.",
+    "Calculated smooth vertex normals for neutral untextured shading.",
+    "Draco geometry compression using glTF Transform4.4.2."
+  ],
+  "self_contained": true,
+  "visual_review": "Source scan render and actual sculpture photograph inspected; final interactive viewer and camera orientation QA remain with root.",
+  "limitations": [
+    "STL is untextured and the source scan has visibly limited surface detail.",
+    "Native units are not calibrated to the actual bronze; physical dimensions are unknown.",
+    "Rectangular source display/print base retained."
+  ],
+  "commands": [
+    [
+      "python3",
+      "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/final-pass/fugitive-love/convert.py"
+    ],
+    [
+      "/Users/michael/Documents/Atrium.earth/.tmp/sensual-sculpture-20260919/node_modules/.bin/gltf-transform",
+      "optimize",
+      "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/final-pass/fugitive-love/preview-uncompressed.glb",
+      "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/final-pass/fugitive-love/preview.glb",
+      "--compress",
+      "draco",
+      "--simplify",
+      "false"
+    ]
+  ]
+}

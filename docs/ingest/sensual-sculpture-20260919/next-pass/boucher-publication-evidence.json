@@ -1,0 +1,57 @@
+{
+  "title": "Le Repos (Rest)",
+  "slug": "le-repos-boucher-pau",
+  "artist": "Alfred Boucher",
+  "artist_life_dates": "1850–1934",
+  "date": "1892",
+  "material": "Marble",
+  "collection": "Musée d’Orsay, deposited at Musée des Beaux-Arts de Pau",
+  "accession": "RF 3896 (LUX 101)",
+  "dimensions": {
+    "height_cm": 59.6,
+    "length_cm": 182.8,
+    "depth_cm": 83
+  },
+  "description": "An adult woman reclines on a cushioned bed with her arms behind her head. Boucher carved the marble in 1892; it entered the French national collection that year and has been deposited in Pau since 1978.",
+  "adult_art_context": "Full-figure museum sculpture of an adult reclining female nude. Source visual shows mature adult proportions, a resting pose, and no sexual act, coercion, child, or animal. Suitable as historical sensual sculpture.",
+  "scan_creator": "pattarrian",
+  "source_url": "https://sketchfab.com/3d-models/le-repos-d083d51df07449f1a575f43675dca140",
+  "source_uid": "d083d51df07449f1a575f43675dca140",
+  "scan_license": "CC BY 4.0",
+  "scan_license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "scan_license_evidence": "Public primary Sketchfab API metadata fetched 2026-09-19 explicitly sets license.slug=by, URL=http://creativecommons.org/licenses/by/4.0/, isDownloadable=true. File obtained from public Objaverse archive without authentication.",
+  "institution_sources": [
+    {
+      "url": "https://www.musee-orsay.fr/en/artworks/le-repos-5088",
+      "supports": "Exact marble: artist, life dates, date, material, accession, dimensions, Pau location, national acquisition and deposit history. Official object record categorizes femme, couché, nu, sommeil."
+    }
+  ],
+  "artwork_rights": "1892 composition publicly exhibited at the 1892 Salon; artist died 1934. Historical underlying artwork; separate scan licensed CC BY4.0. Museum photograph rights are not being relied on.",
+  "metadata_cautions": [
+    "Use official Orsay measurements, not the differing rounded dimensions in the scan description.",
+    "Pau is the deposit location; Orsay is the responsible collection.",
+    "Only the independent CC BY scan is reused; Orsay photography is all-rights-reserved.",
+    "Full mesh normalization/optimization and multi-angle render QA remain for pipeline."
+  ],
+  "download_url": "https://huggingface.co/datasets/allenai/objaverse/resolve/main/glbs/000-098/d083d51df07449f1a575f43675dca140.glb",
+  "acquired_file": "research/sensual-sculpture-20260919/next-pass/models/boucher-le-repos.glb",
+  "inspection_file": "research/sensual-sculpture-20260919/next-pass/models/boucher-le-repos-inspection.json",
+  "visual_reference": "research/sensual-sculpture-20260919/next-pass/models/boucher-le-repos-reference.jpeg",
+  "scan_license_evidence_files": [
+    "model-d083d51df07449f1a575f43675dca140.json"
+  ],
+  "attribution": "Le Repos, Alfred Boucher, 1892, marble. Musée d’Orsay RF 3896, deposited at Musée des Beaux-Arts de Pau. 3D scan by pattarrian, via Sketchfab / Objaverse, CC BY 4.0; processed by Atrium.",
+  "duplicate_check": {
+    "catalog_path": ".tmp/sensual-sculpture-20260919/src/data/catalog.json",
+    "catalogRecordsChecked": 1224,
+    "checkedTerms": [
+      "Boucher",
+      "Le Repos",
+      "Rest",
+      "d083d51df07449f1a575f43675dca140"
+    ],
+    "matchingSlugs": [],
+    "result": "No artist/composition/source UID match."
+  },
+  "status": "Acquired; primary identity/license and source-reference visual pass. Awaiting prepared mesh QA; LOCAL ONLY, user requires permission before any live push."
+}

@@ -1,0 +1,90 @@
+{
+  "title": "Figure of an Odalisque",
+  "artist_attribution": "Unknown French or Italian sculptor, second quarter of the 19th century",
+  "source_url": "https://www.myminifactory.com/object/3d-print-figure-of-an-odalisque-126874",
+  "source_publisher": "Jadyn N. Marshall (Janim), Scan The World at Christie’s",
+  "license": "CC0-1.0",
+  "license_verification": "Parent agent verified Janim, explicit CC0 link and Download Only button in the live source page DOM; downloaded STL via that public control. See browser-source-review.json and tool transcript.",
+  "source_file": "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/pipeline/odalisque-mmf-126874/jadyn-christies-figure-of-an-odalisque.stl",
+  "source_bytes": 189862684,
+  "source_sha256": "1174e930332c7f31873ac8c05087a39ce1a87a3c6071d677f9baabf47157ae86",
+  "source_stl_faces": 3797252,
+  "geometry_processing": [
+    "Read binary STL and welded duplicate vertices through trimesh process=True. No crop, hole filling, reconstruction, rescaling, rotation, or component deletion.",
+    "Applied trimesh/fast-simplification quadric edge-collapse decimation with target 250,000 faces. No generated surface content.",
+    "Calculated smooth vertex normals for shading; encoded geometry with glTF Transform Draco compression. STL contains no textures and preview uses a neutral untextured default material."
+  ],
+  "visual_review": "Pending parent visual/orientation review; units not calibrated.",
+  "source_faces_loaded": 3797252,
+  "source_bounds_native_units": [
+    [
+      -2.2254062059801072e-07,
+      5.73253146285424e-07,
+      -1.5202840586425737e-06
+    ],
+    [
+      158.4601593017578,
+      125.0,
+      129.8451690673828
+    ]
+  ],
+  "source_extents_native_units": [
+    158.46015952429843,
+    124.99999942674685,
+    129.84517058766687
+  ],
+  "source_glb": "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/pipeline/odalisque-mmf-126874/source-packed.glb",
+  "source_glb_bytes": 68351484,
+  "preview_faces": 250000,
+  "preview_vertices": 124985,
+  "preview_bounds_native_units": [
+    [
+      -0.003738596956779142,
+      0.008610005032921378,
+      0.005774353254712125
+    ],
+    [
+      158.4615815417254,
+      124.99709223342408,
+      129.83743128974163
+    ]
+  ],
+  "preview_extents_native_units": [
+    158.46532013868216,
+    124.98848222839116,
+    129.83165693648692
+  ],
+  "bounds_max_change_fraction_of_diagonal": 3.587437936051545e-05,
+  "preview_glb": "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/pipeline/odalisque-mmf-126874/preview.glb",
+  "preview_bytes": 635552,
+  "preview_sha256": "748891ccf1fbbbf6e23b03156e2766ecf8cc3afb4011a428f3e58a1dee7a3f9d",
+  "extensions_used": [
+    "KHR_draco_mesh_compression"
+  ],
+  "self_contained": true,
+  "commands": [
+    [
+      "python3",
+      "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/pipeline/odalisque-mmf-126874/convert.py"
+    ],
+    [
+      "/Users/michael/Documents/Atrium.earth/.tmp/sensual-sculpture-20260919/node_modules/.bin/gltf-transform",
+      "optimize",
+      "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/pipeline/odalisque-mmf-126874/preview-uncompressed.glb",
+      "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/pipeline/odalisque-mmf-126874/preview.glb",
+      "--compress",
+      "draco",
+      "--simplify",
+      "false"
+    ]
+  ],
+  "versions": {
+    "trimesh": "4.12.2",
+    "gltf_transform_cli": "4.4.2"
+  },
+  "attribution_note": "Christie’s lot 793, sale 17655, is inscribed Pajou; MMF describes Pradier inspiration. Neither is an autograph attribution.",
+  "object_url": "https://www.christies.com/en/lot/lot-6228789",
+  "source_vertices_after_load_processing": 1898614,
+  "source_glb_sha256": "1f3018bcb46126c1e7f865c4f7eb466702137d144a4e398017d95bf87b1253be",
+  "license_evidence_file": "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/pipeline/odalisque-mmf-126874/browser-source-review.json"
+}

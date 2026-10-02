@@ -1,0 +1,74 @@
+{
+  "reviewed_on": "2026-09-19",
+  "reviewer": "metadata subagent",
+  "reviews": [
+    {
+      "title": "Naiad",
+      "capture_id": "F0465034-999C-4AF0-8996-A28F47FF67F4",
+      "slug": "europe/naiad-canova-nga",
+      "recommendation": "pass",
+      "hero_yaw": 120,
+      "hero_reason": "Full side/front composition reads clearly; face, complete body, animal-skin support and base visible.",
+      "orientation": "Correctly level reclining figure and base; no tilt correction needed.",
+      "geometry": "Head, both arms, torso, legs and feet appear present across views. Integral carved bed/animal skin and rectangular base look complete. No detached environment fragments or obvious open holes visible.",
+      "base": "Thin light rectangular supporting slab appears clean and contained; no broad stray floor.",
+      "caveats": [
+        "Surface and facial detail are softened by the original capture.",
+        "Yaw120 lighting is bright on marble; better tonal separation could improve the hero, but scan is usable.",
+        "Rendered composition has ample empty space above reclining figure; tighter framing could help."
+      ],
+      "inspected_images": [
+        "/Users/michael/Documents/Atrium.earth/.tmp/sensual-sculpture-20260919/.tmp/rest-review/europe/naiad-canova-nga/yaw0.webp",
+        "/Users/michael/Documents/Atrium.earth/.tmp/sensual-sculpture-20260919/.tmp/rest-review/europe/naiad-canova-nga/yaw120.webp",
+        "/Users/michael/Documents/Atrium.earth/.tmp/sensual-sculpture-20260919/.tmp/rest-review/europe/naiad-canova-nga/yaw240.webp"
+      ],
+      "source_thumbnail": "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/final-pass/metadata/F0465034-999C-4AF0-8996-A28F47FF67F4-thumbnail.jpg",
+      "review_scope": "Independent visual review of the three rendered preview views, not a watertightness/manufacturing audit."
+    },
+    {
+      "title": "Île-de-France",
+      "capture_id": "BBB1F228-68F1-418B-A277-DEC03C3136DF",
+      "slug": "europe/ile-de-france-maillol-harvard",
+      "recommendation": "pass",
+      "hero_yaw": 0,
+      "hero_reason": "Front three-quarter view shows face and whole silhouette clearly; yaw120 is also suitable but face is more profile.",
+      "orientation": "Upright, feet and bronze base aligned; no correction needed.",
+      "geometry": "Entire head, arms, hands and cloth loop behind body, torso, legs and feet appear present across views. No detached fragments or major visible holes.",
+      "base": "Retains a short white museum plinth section around bronze base, with uneven underside. This is contained and not a broad floor artifact; acceptable for scan presentation.",
+      "caveats": [
+        "Brown bronze texture has patches and baked light variation from capture.",
+        "White plinth should not be described as part of the artist’s bronze."
+      ],
+      "inspected_images": [
+        "/Users/michael/Documents/Atrium.earth/.tmp/sensual-sculpture-20260919/.tmp/rest-review/europe/ile-de-france-maillol-harvard/yaw0.webp",
+        "/Users/michael/Documents/Atrium.earth/.tmp/sensual-sculpture-20260919/.tmp/rest-review/europe/ile-de-france-maillol-harvard/yaw120.webp",
+        "/Users/michael/Documents/Atrium.earth/.tmp/sensual-sculpture-20260919/.tmp/rest-review/europe/ile-de-france-maillol-harvard/yaw240.webp"
+      ],
+      "source_thumbnail": "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/final-pass/metadata/BBB1F228-68F1-418B-A277-DEC03C3136DF-thumbnail.jpg",
+      "review_scope": "Independent visual review of the three rendered preview views, not a watertightness/manufacturing audit."
+    },
+    {
+      "title": "Diana",
+      "capture_id": "7862557C-302B-430B-96DB-DB91D2B8ADDF",
+      "slug": "americas/diana-macmonnies-brooklyn",
+      "recommendation": "hold_for_quality",
+      "hero_yaw": 0,
+      "hero_reason": "Yaw0 is the clearest front view if a better version is prepared; none of these views clears the mesh quality problems.",
+      "orientation": "Standing figure and round base upright; no gross axis/orientation issue.",
+      "geometry": "Head, torso, both arms/hands, both legs and feet appear present. The thin bow visible in the Polycam source thumbnail and firsthand Brooklyn exhibition photograph is not visibly preserved in any of the three rendered views; only a tiny projection near the hand remains. This is likely missing source mesh geometry, despite retention of all available mesh faces.",
+      "base": "Large white museum pedestal section has ragged hanging sides, folded-looking scan surfaces and a detached-looking projecting flap. It dominates the lower silhouette and requires cleanup.",
+      "caveats": [
+        "Do not restore the missing bow by inventing geometry. A better authorized source would be preferable.",
+        "Removing the pedestal skirt alone would not resolve the apparent missing bow.",
+        "Mesh is derived from a splat-mode capture with public glTF; source thumbnail fidelity does not prove mesh fidelity."
+      ],
+      "inspected_images": [
+        "/Users/michael/Documents/Atrium.earth/.tmp/sensual-sculpture-20260919/.tmp/rest-review/americas/diana-macmonnies-brooklyn/yaw0.webp",
+        "/Users/michael/Documents/Atrium.earth/.tmp/sensual-sculpture-20260919/.tmp/rest-review/americas/diana-macmonnies-brooklyn/yaw120.webp",
+        "/Users/michael/Documents/Atrium.earth/.tmp/sensual-sculpture-20260919/.tmp/rest-review/americas/diana-macmonnies-brooklyn/yaw240.webp"
+      ],
+      "source_thumbnail": "/Users/michael/Documents/Atrium.earth/research/sensual-sculpture-20260919/acquisition-rest/final-pass/metadata/7862557C-302B-430B-96DB-DB91D2B8ADDF-thumbnail.jpg",
+      "review_scope": "Independent visual review of the three rendered preview views, not a watertightness/manufacturing audit."
+    }
+  ]
+}

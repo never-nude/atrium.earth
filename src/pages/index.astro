@@ -1,18 +1,16 @@
 ---
 import Viewer from '../components/Viewer.astro';
 import V3WorkCard from '../components/v3/V3WorkCard.astro';
+import { newestWorks } from '../lib/additions';
+import V3WingGrid from '../components/v3/V3WingGrid.astro';
 import V3Layout from '../layouts/v3/V3Layout.astro';
-import { collectionCount, exhibitions, homepageFeaturedWork as featuredWork, newToCollection, pairings, v3ExhibitionRoute, v3WorkRoute, works } from '../lib/v3';
+import { collectionCount, exhibitions, homepageFeaturedWork as featuredWork, pairings, v3ExhibitionRoute, v3WorkRoute, works } from '../lib/v3';
 import { withBase } from '../lib/urls';
+import { arVrFeatured, arVrCount, arVrVerifiedCount } from '../lib/spatial-catalog';
 
 const randomRoutes = works.map((work) => withBase(v3WorkRoute(work)));
 const heroAppearance = {
   ...featuredWork.materialAppearance,
-  exposure: Math.max(featuredWork.materialAppearance.exposure, 0.48),
-  keyLightIntensity: Math.max(featuredWork.materialAppearance.keyLightIntensity ?? 0, 1.22),
-  fillLightIntensity: Math.max(featuredWork.materialAppearance.fillLightIntensity ?? 0, 0.92),
-  rimLightIntensity: Math.max(featuredWork.materialAppearance.rimLightIntensity ?? 0, 1.24),
-  hemiLightIntensity: Math.max(featuredWork.materialAppearance.hemiLightIntensity ?? 0, 0.86),
   backdropTop: '#1c2b41',
   backdropBase: '#15243a',
   backdropGlow: '#c7b9ff',
@@ -34,7 +32,7 @@ const heroAlt = [
 
 <V3Layout
   title="Atrium.Earth"
-  description={`${collectionCount} sculptures with object records, images, and 3D views for close study.`}
+  description={`Explore ${collectionCount} works in 3D and all ${arVrCount} compatible models in AR and VR. Verified, approximate and unknown dimensions are clearly labeled.`}
   image={featuredWork.thumbnailImage}
 >
   <section class="v3-hero" aria-labelledby="v3-home-title">
@@ -50,7 +48,10 @@ const heroAlt = [
         upAxis={featuredWork.modelUpAxis}
         modelTransform={heroTransform}
         materialAppearance={heroAppearance}
-        wheelZoom={false}
+        autoRotate={true}
+        turntableDegreesPerSecond={4}
+        respectReducedMotion={false}
+        rotationControl="simple"
       />
     </div>
 
@@ -58,15 +59,15 @@ const heroAlt = [
     <div class="v3-hero__copy">
       <p class="v3-kicker">Digital sculpture museum · {collectionCount} works</p>
       <h1 id="v3-home-title" class="v3-display">{featuredWork.title}</h1>
-      <p class="v3-hero__lede v3-hero__lede--live">Examine the work from more than one angle. Drag to turn the model, then scroll for exhibitions and the full collection.</p>
+      <p class="v3-hero__lede v3-hero__lede--live">Turn the work to look closer. Discover sculpture in your own space with AR, or step around it in VR.</p>
       <noscript>
-        {/* No JavaScript: the still image is the presentation. Same invitation, no model. */}
+        {/* No JavaScript: the still image is the presentation. Same invitation, nothing that needs a script. */}
         <style is:inline>.v3-hero__lede--live { display: none; }</style>
-        <p class="v3-hero__lede">Examine the work up close. Scroll for exhibitions and the full collection.</p>
+        <p class="v3-hero__lede">Look closer at the work. Scroll for the newest additions, the wings, and the full collection.</p>
       </noscript>
       <div class="v3-actions">
-        <a class="v3-button v3-button--light" href={withBase(v3WorkRoute(featuredWork))}>View object <span>↗</span></a>
-        <a class="v3-button v3-button--ghost" href={withBase('/collection/')}>All {collectionCount} works</a>
+        <a class="v3-button v3-button--light" href={withBase('/ar-vr/')}>Explore AR / VR <span aria-hidden="true">↗</span></a>
+        <a class="v3-button v3-button--ghost" href={withBase('/collection/')}>Browse all {collectionCount} works</a>
       </div>
     </div>
 
@@ -74,29 +75,53 @@ const heroAlt = [
       <span>Featured work</span>
       <strong>{featuredWork.title}</strong>
       <span>{[featuredWork.maker, featuredWork.displayDate].filter(Boolean).join(' · ')}</span>
+      <a class="v3-hero__record-link" href={withBase(v3WorkRoute(featuredWork))}>View this work <span aria-hidden="true">↗</span></a>
     </div>
     <a class="v3-hero__continue" href="#v3-home-content">Explore more <span>↓</span></a>
   </section>
 
-  <section class="v3-section v3-manifesto-wrap" id="v3-home-content" aria-labelledby="manifesto-title">
-    <div class="v3-manifesto">
-      <p class="v3-kicker">01 / About the collection</p>
+  {newestWorks.length > 0 && (
+    <section class="v3-section v3-section--line v3-additions-home" id="v3-home-content" aria-labelledby="new-title">
+      <div class="v3-section-head v3-section-head--split">
+        <div><p class="v3-kicker">01 / Newest additions</p><h2 id="new-title" class="v3-display">Just arrived.</h2></div>
+        <a href={withBase('/newest/')}>View newest additions <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="v3-grid">{newestWorks.slice(0, 4).map((work) => <V3WorkCard work={work} />)}</div>
+    </section>
+  )}
+
+  <section class="v3-section v3-spatial-feature v3-section--line" aria-labelledby="spatial-feature-title">
+    <div class="v3-section-head v3-section-head--split">
       <div>
-        <h2 id="manifesto-title" class="v3-display">See sculpture from more than one side.</h2>
-        <p class="v3-editorial">Atrium brings together object records, images, and 3D models from public collections. Use them to compare form, material, scale, and construction at your own pace.</p>
+        <p class="v3-kicker">02 / AR / VR</p>
+        <h2 id="spatial-feature-title" class="v3-display">See sculpture<br />in your space.</h2>
       </div>
-      <div class="v3-manifesto__facts" aria-label="Museum facts">
-        <p><strong>{collectionCount}</strong><span>works to explore</span></p>
-        <p><strong>3D</strong><span>views where model data is available</span></p>
-        <p><strong>Open</strong><span>source records linked throughout</span></p>
-      </div>
+      <a href={withBase('/ar-vr/')}>Explore {arVrCount} works <span aria-hidden="true">→</span></a>
     </div>
+    <div class="v3-spatial-feature__intro">
+      <p class="v3-editorial">Explore all {arVrCount} compatible models in AR on your phone or in VR. {arVrVerifiedCount} carry reviewed size references, including clearly labeled cast measurements.</p>
+      <p class="v3-spatial-feature__note"><strong class="v3-dimension-status" data-dimension-status="verified">Verified dimensions</strong> use reviewed measurements. <strong class="v3-dimension-status" data-dimension-status="approximate">Approximate dimensions</strong> use the best available estimate. <strong class="v3-dimension-status" data-dimension-status="unknown">Dimensions unknown</strong> use an adjustable display size.</p>
+    </div>
+    <div class="v3-spatial-feature__works">
+      {arVrFeatured.map((work) => <V3WorkCard work={work} spatial={true} />)}
+    </div>
+  </section>
+
+  <section class="v3-section v3-section--line" aria-labelledby="wings-home-title">
+    <div class="v3-section-head v3-section-head--split">
+      <div>
+        <p class="v3-kicker">03 / Wings</p>
+        <h2 id="wings-home-title" class="v3-display">A permanent place for every work.</h2>
+      </div>
+      <a href={withBase('/wings/')}>All wings →</a>
+    </div>
+    <V3WingGrid compact={true} />
   </section>
 
   {pairings.length > 0 && (
   <section class="v3-section v3-section--line" aria-labelledby="pairs-title">
     <div class="v3-section-head">
-      <p class="v3-kicker">02 / Comparisons</p>
+      <p class="v3-kicker">04 / Comparisons</p>
       <h2 id="pairs-title" class="v3-display">Two works, considered together.</h2>
     </div>
     <div class="v3-pairs">
@@ -125,7 +150,7 @@ const heroAlt = [
   <section class="v3-section v3-section--line" aria-labelledby="exhibitions-home-title">
     <div class="v3-section-head v3-section-head--split">
       <div>
-        <p class="v3-kicker">03 / Exhibitions</p>
+        <p class="v3-kicker">05 / Exhibitions</p>
         <h2 id="exhibitions-home-title" class="v3-display">Guided ways through the collection.</h2>
       </div>
       <a href={withBase('/exhibitions/')}>All exhibitions →</a>
@@ -147,18 +172,9 @@ const heroAlt = [
     </div>
   </section>
 
-  <section class="v3-section v3-section--line" aria-labelledby="new-title">
-    <div class="v3-section-head v3-section-head--split">
-      <div><p class="v3-kicker">04 / Recently added</p><h2 id="new-title" class="v3-display">New works in the collection.</h2></div>
-      <a href={withBase('/collection/')}>View all {collectionCount} →</a>
-    </div>
-    <div class="v3-rail">
-      {newToCollection.slice(0, 8).map((work, index) => <V3WorkCard work={work} eager={index < 3} />)}
-    </div>
-  </section>
 
   <section class="v3-section v3-random" aria-labelledby="random-title">
-    <p class="v3-kicker">05 / Random selection</p>
+    <p class="v3-kicker">06 / Random selection</p>
     <h2 id="random-title">Choose a work at random.</h2>
     <p>A different starting point can change what you notice.</p>
     <a class="v3-random__button" href={randomRoutes[0]} data-random-work>Choose a work <span>↗</span></a>

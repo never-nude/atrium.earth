@@ -85,15 +85,20 @@ export function applyModelTransform(THREE, model, rawTransform = 'auto') {
 }
 
 export function normalizeModel(THREE, model) {
-  let box = new THREE.Box3().setFromObject(model);
+  // Rotating cached mesh bounding boxes includes empty corners below the scan.
+  // Measure actual vertices so the floor touches the model's lowest point.
+  model.updateMatrixWorld(true);
+  let box = new THREE.Box3().setFromObject(model, true);
   let size = box.getSize(new THREE.Vector3());
   const maxDim = Math.max(size.x, size.y, size.z) || 1;
-  model.scale.setScalar(1 / maxDim);
-  box = new THREE.Box3().setFromObject(model);
+  model.scale.multiplyScalar(1 / maxDim);
+  model.updateMatrixWorld(true);
+  box = new THREE.Box3().setFromObject(model, true);
   size = box.getSize(new THREE.Vector3());
   const center = box.getCenter(new THREE.Vector3());
   model.position.sub(center);
-  box = new THREE.Box3().setFromObject(model);
+  model.updateMatrixWorld(true);
+  box = new THREE.Box3().setFromObject(model, true);
   size = box.getSize(new THREE.Vector3());
   return { box, size, center, scale: 1 / maxDim };
 }

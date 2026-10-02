@@ -13,16 +13,19 @@
 //   SOURCE_ATRIUM_DIR  local raw-source archive              (default: ../atrium)
 //   ATRIUM_VAULT_REPO  owner/name for release downloads      (default: never-nude/atrium-vault)
 //   GITHUB_TOKEN       token with repo read on the vault     (required unless --no-download)
+//   ATRIUM_INGEST_BATCH optional existing batch ID for intentional continuation
 //
 // Flags:
 //   --dry-run          validate + report, change nothing
 //   --no-download      append catalog entries, skip asset downloads (files already local)
 //   --only=<prefix>    restrict to manifests whose slug starts with prefix
+//   --batch=<id>       use a named import batch instead of a generated unique ID
 
 import { createHash } from 'node:crypto';
 import { mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
+import { batchIdFromArgs, createIngestBatch } from './ingest-batch.mjs';
 
 const repoRoot = path.resolve(import.meta.dirname, '..');
 const vaultDir = process.env.ATRIUM_VAULT_DIR || path.resolve(repoRoot, '../atrium-vault');
@@ -34,10 +37,12 @@ const args = process.argv.slice(2);
 const dryRun = args.includes('--dry-run');
 const noDownload = args.includes('--no-download');
 const only = (args.find((a) => a.startsWith('--only=')) || '').slice(7) || null;
+const ingestBatch = createIngestBatch({ id: batchIdFromArgs(args) });
 
 const SLUG_RE = /^[a-z0-9][a-z0-9-]*\/[a-z0-9][a-z0-9-]*$/;
 const TIER1_LICENSES = ['cc0', 'public domain', 'pdm', 'no restrictions', 'no known copyright'];
 const TIER2_LICENSES = ['cc by'];
+const WING_IDS = new Set(['near-east', 'greece-rome', 'europe', 'asia', 'africa', 'americas-oceania']);
 
 const catalogPath = path.join(repoRoot, 'src/data/catalog.json');
 
@@ -155,6 +160,7 @@ function validate(m, file) {
   if (m.year_sort !== null && m.year_sort !== undefined && !Number.isFinite(Number(m.year_sort))) {
     errs.push(`year_sort must be integer or null, got ${m.year_sort}`);
   }
+  if (m.wing && !WING_IDS.has(m.wing)) errs.push(`unknown wing override: ${m.wing}`);
   return errs.map((e) => `${file}: ${e}`);
 }
 
@@ -280,6 +286,7 @@ for (const m of additions) {
   catalog.push({
     slug: m.slug,
     collection: m.slug.split('/')[0],
+    ...(m.wing ? { wing: m.wing } : {}),
     title: m.title,
     artist: m.artist || '',
     year,
@@ -305,7 +312,7 @@ for (const m of additions) {
     ai_training_restricted: Boolean(m.ai_training_restricted),
     tier: 3,
     license_tier: m.tier,
-    ingested: new Date().toISOString().slice(0, 10),
+    ...ingestBatch,
     index: 0,
     total: 0,
     period: periodFor(yearSort),
@@ -324,5 +331,6 @@ catalog.forEach((e, i) => {
 
 await writeFile(catalogPath, `${JSON.stringify(catalog, null, 2)}\n`);
 console.log(`\nCatalog now ${catalog.length} works (+${report.added.length}).`);
+console.log(`Import batch: ${ingestBatch.ingest_batch} (${ingestBatch.ingested_at}).`);
 console.log('Next: npm run models:preview, npm run images:posters, npm run images:renders, npm run verify:assets.');
 process.exit(report.errors.length ? 2 : 0);
