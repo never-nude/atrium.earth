@@ -370,3 +370,42 @@ Acquisition commit `40ce531` is deployment-verified. [GitHub Pages run 369960069
 - Live verification ran from a GitHub runner, [run 37033095140](https://github.com/never-nude/atrium.earth/actions/runs/37033095140), at 2026-10-02T16:19:53Z; the report is on branch `claude/atrium-live-verify-african-art-20261002-b`. All 80 work pages returned 200 with their titles and all 80 thumbnails returned 200. All 80 R2 models returned 200 `model/gltf-binary` with SHA-256 matching their content-hashed filenames. `/newest/` lists exactly the 80 works in the intended order, starting with the Chokwe throne, and the 47 held works are not public (404).
 - The owner reviewed the live works and approved them.
 - Next: publish the 47 held works once their orientation is fixed (follow-up PR from this branch, restarted at `c6fce00`).
+
+### Runbook: publish the 20 held African works (next session)
+
+State at hand-off: 80 works from batch `african-art-20261002-b` are live. 20 more are in the catalog with `hidden: true`; their slugs are in `docs/ingest/african-art-20261002-b-orientation-requests.txt`. Their dimension and eligibility records are parked in `docs/ingest/african-art-20261002-b-held.json`. Their previews are already on R2, and their thumbnails show the wrong orientation. The other 27 held works were withheld (reasons in `-rejected.json`). The sandbox cannot reach atrium.earth, Sketchfab or R2, so all rendering and live checks run through the temporary workflows on this branch. Each one triggers when its request file is pushed, from any branch.
+
+1. **Start.** `git fetch origin claude/atrium-pieces-deploy-4nay07 && git checkout -B <your-branch> FETCH_HEAD && npm ci && pip install pillow`.
+2. **Review sheets.** `git fetch origin claude/atrium-orientation-sheets-african-art-20261002-b && mkdir -p /tmp/sheets && git archive FETCH_HEAD sheets | tar -x -C /tmp/sheets`. Each work has `sheets/sub-saharan-africa__<name>.webp`, a row of ten labelled renders; convert to JPEG with Pillow to view. Pick the variant where the work stands as displayed with its front toward the viewer (for a mask, the face visible).
+   - A = current entry in `src/data/orientations.json` (`"auto"` if none)
+   - B = `{"upAxis":"y","modelRotation":[0,0,0],"yaw":0}`
+   - C = `[180,0,0]`
+   - D = `[-90,0,0]`
+   - E = `[90,0,0]`
+   - F = `[0,0,90]`
+   - G = `[0,0,-90]` (C–G keep `upAxis` `"y"` and `yaw` 0)
+   - H/I/J = the current entry with `yaw` +90/+180/+270; if there is no entry, `{"upAxis":"auto","yaw":N}`
+3. **Write orientations.** Write the choices into `src/data/orientations.json` (Python: `json.dumps(data, indent=2, ensure_ascii=False) + "\n"`, which keeps the existing formatting). If no variant is right:
+   - either set a better base orientation and list the work in `docs/ingest/african-art-20261002-b-orientation-round2.txt` (pushing it renders new sheets to branch `…-round2`),
+   - or withdraw the work the same way the other 27 were withdrawn.
+4. **Re-render.** `cp docs/ingest/african-art-20261002-b-orientation-requests.txt docs/ingest/african-art-20261002-b-rerender.txt`, then commit and push with the orientations. `rerender-thumbnails.yml` pushes `rerendered/<slug>/thumb.webp` to branch `claude/atrium-rerender-african-art-20261002-b` in about 15 minutes. Copy each into `public/previews/renders/<slug>/thumb.webp` and look at every one.
+5. **Posters.** `ONLY=$(paste -sd, docs/ingest/african-art-20261002-b-orientation-requests.txt) node scripts/generate-posters.mjs` (posters embed the thumbnail).
+6. **Publish records.** For each entry in `-held.json`:
+   - delete `hidden` from the catalog record
+   - restore `records["physical-dimensions"]` and `records["spatial-eligibility"]` into `src/data/physical-dimensions.json` and `src/data/spatial-eligibility.json` (same JSON formatting)
+   - set its `publication` to `published` in `docs/ingest/african-art-20261002-b.json`
+
+   Then delete `-held.json`, `-orientation-requests.txt` and `-rerender.txt`.
+7. **Remove the temporary workflows** `orientation-sheets.yml`, `rerender-thumbnails.yml` and `verify-live.yml`. Keep a copy of `verify-live.yml` outside the repo for step 9.
+8. **Check.**
+   - `npm run test:additions && npm run test:wings && npm run verify:assets && npm run test:display-support && npm run test:model-normalization && npm run test:r2-upload`
+   - `SITE=https://atrium.earth npm run build`
+   - `ATRIUM_TEST_EXECUTABLE=/opt/pw-browsers/chromium npm run test:museum-labels`
+
+   `test:dimensions` and `test:spatial-eligibility` fail at baseline (LeWitt / "explicit decision") and are not caused by this batch.
+9. **Deploy.** The owner authorized publishing these works. Squash-merge the PR to `main` and confirm the Pages run (`deploy.yml`) succeeds. Then verify the live site:
+   - restart the branch from `main`
+   - restore `verify-live.yml` and push any text in `docs/ingest/african-art-20261002-b-live-verify.txt`
+   - read `live-verify/report.json` on branch `claude/atrium-live-verify-african-art-20261002-b`; expect `published` 100 and `ok` 100
+   - do not merge those two files
+10. **Report back.** Record the result here, and reply to the owner with `https://atrium.earth/works/<slug>/` for each newly published work.

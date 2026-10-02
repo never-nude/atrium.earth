@@ -1,0 +1,98 @@
+name: Re-render batch thumbnails (temporary review aid)
+
+# Re-renders the thumbnails listed in docs/ingest/<batch>-rerender.txt with the
+# current orientations across parallel runners, and pushes them to an orphan
+# branch for review. Temporary: remove before merging to main.
+
+on:
+  push:
+    paths:
+      - docs/ingest/*-rerender.txt
+
+permissions:
+  contents: write
+
+concurrency:
+  group: rerender-thumbnails
+  cancel-in-progress: false
+
+env:
+  BATCH: african-art-20261002-b
+  SHARDS: '8'
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5, 6, 7]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install Node dependencies
+        run: npm ci
+
+      - name: Install Playwright Chromium
+        id: playwright
+        run: |
+          npx playwright install --with-deps chromium
+          CHROME_PATH="$(node -e 'console.log(require("playwright").chromium.executablePath())')"
+          test -x "$CHROME_PATH" || { echo "Playwright Chromium not found at '$CHROME_PATH'"; exit 1; }
+          echo "chrome-path=$CHROME_PATH" >> "$GITHUB_OUTPUT"
+
+      - name: Select shard
+        run: |
+          awk -v n="$SHARDS" -v s="${{ matrix.shard }}" 'NF && (NR - 1) % n == s' "docs/ingest/${BATCH}-rerender.txt" > "$RUNNER_TEMP/slugs.txt"
+          cat "$RUNNER_TEMP/slugs.txt"
+
+      - name: Mirror previews from R2
+        run: node scripts/mirror-previews-r2.mjs --input="$RUNNER_TEMP/slugs.txt"
+
+      - name: Render thumbnails
+        run: |
+          if [ ! -s "$RUNNER_TEMP/slugs.txt" ]; then exit 0; fi
+          ONLY="$(paste -sd, "$RUNNER_TEMP/slugs.txt")" RENDER_OUT_DIR=rerendered npm run images:renders
+        env:
+          CHROME_BIN: ${{ steps.playwright.outputs.chrome-path }}
+          CHROME_EXTRA_ARGS: '--no-sandbox --enable-unsafe-swiftshader --use-angle=swiftshader'
+          RENDER_TIMEOUT_MS: '180000'
+
+      - name: Upload thumbnails
+        uses: actions/upload-artifact@v4
+        with:
+          name: thumbs-${{ matrix.shard }}
+          path: rerendered/
+          if-no-files-found: warn
+
+  publish:
+    needs: render
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Collect thumbnails
+        uses: actions/download-artifact@v4
+        with:
+          pattern: thumbs-*
+          path: rerendered
+          merge-multiple: true
+
+      - name: Push thumbnails branch
+        run: |
+          find rerendered -name thumb.webp | wc -l
+          git switch --orphan "claude/atrium-rerender-${BATCH}"
+          git add -f rerendered
+          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+            commit -q -m "Re-rendered thumbnails for ${BATCH} (run ${GITHUB_RUN_ID})"
+          git push -f origin "HEAD:refs/heads/claude/atrium-rerender-${BATCH}"

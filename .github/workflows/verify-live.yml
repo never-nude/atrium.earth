@@ -1,14 +1,13 @@
 name: Verify live batch (temporary review aid)
 
 # Fetches every published work of the batch from the live site and R2 and pushes
-# a report to an orphan branch. Temporary: remove before merging to main.
+# a report to an orphan branch. Runs when docs/ingest/<batch>-live-verify.txt is
+# pushed. Temporary: remove before merging to main.
 
 on:
   push:
-    branches:
-      - claude/atrium-pieces-deploy-4nay07
     paths:
-      - .github/workflows/verify-live.yml
+      - docs/ingest/*-live-verify.txt
 
 permissions:
   contents: write
