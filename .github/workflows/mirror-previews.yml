@@ -1,0 +1,53 @@
+name: Mirror batch previews to a branch (temporary review aid)
+
+# Copies the R2-hosted previews of one ingest batch into an orphan branch so a
+# reviewer without access to models.atrium.earth can render them locally.
+# Temporary: remove before merging to main.
+
+on:
+  push:
+    branches:
+      - claude/atrium-pieces-deploy-4nay07
+    paths:
+      - .github/workflows/mirror-previews.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: mirror-previews
+  cancel-in-progress: false
+
+env:
+  BATCH: african-art-20261002-b
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Mirror previews from R2
+        run: |
+          node -e '
+            const fs = require("fs");
+            for (const work of JSON.parse(fs.readFileSync("src/data/catalog.json", "utf8"))) {
+              if (work.ingest_batch === process.env.BATCH) console.log(work.slug);
+            }' > "$RUNNER_TEMP/slugs.txt"
+          echo "Mirroring $(wc -l < "$RUNNER_TEMP/slugs.txt") previews."
+          node scripts/mirror-previews-r2.mjs --input="$RUNNER_TEMP/slugs.txt"
+
+      - name: Push mirror branch
+        run: |
+          git switch --orphan "claude/atrium-preview-mirror-${BATCH}"
+          git add -f public/models/previews
+          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+            commit -q -m "Preview mirror for ${BATCH} (run ${GITHUB_RUN_ID})"
+          git push -f origin "HEAD:refs/heads/claude/atrium-preview-mirror-${BATCH}"

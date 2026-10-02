@@ -6,12 +6,6 @@ name: Acquire saved leads (review branch)
 # branch. It never touches main; the review branch is curated before publishing.
 
 on:
-  push:
-    branches:
-      - claude/atrium-pieces-deploy-4nay07
-    paths:
-      - .github/workflows/acquire-leads.yml
-      - docs/ingest/*-orientation-requests.txt
   workflow_dispatch:
     inputs:
       leads:
@@ -197,6 +191,17 @@ jobs:
           for f in fetched.json last-report.md last-report.json new-slugs.txt r2-upload.json; do
             [ -f ".atrium-ingest/$f" ] && cp ".atrium-ingest/$f" "$out/" || true
           done
+          # Sketchfab download URLs are short-lived pre-signed links; keep only their path.
+          if [ -f "$out/fetched.json" ]; then
+            node -e '
+              const fs = require("fs");
+              const file = process.argv[1];
+              const data = JSON.parse(fs.readFileSync(file, "utf8"));
+              for (const candidate of data.candidates || []) {
+                if (candidate.fetched?.download_url) candidate.fetched.download_url = candidate.fetched.download_url.replace(/\?.*$/, "");
+              }
+              fs.writeFileSync(file, `${JSON.stringify(data, null, 2)}\n`);' "$out/fetched.json"
+          fi
           # Previews normally live on R2; commit a local GLB only if its upload failed.
           if [ -s .atrium-ingest/new-slugs.txt ]; then
             node -e '
