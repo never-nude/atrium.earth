@@ -58,21 +58,21 @@ assert.deepEqual(buildNewestWorks(many, manyPublic).map(work => work.slug),
   Array.from({ length: 24 }, (_, i) => `work-${30 - i}`));
 assert.deepEqual(buildNewestWorks([], visible), []);
 
-// A latest batch larger than 24 is shown whole; an older large batch does not widen the page.
+// Exactly the newest 24: a latest batch larger than 24 is cut to its 24 newest works.
 const batchOf = (name, count, day, offset = 0) => Array.from({ length: count }, (_, i) => ({
   slug: `${name}-${i + 1}`, index: offset + i + 1, ingest_batch: name, ingested_at: `${day}T12:00:00.000Z`,
 }));
 const bigLatest = [...batchOf('older', 10, '2026-09-30'), ...batchOf('big', 30, '2026-10-02', 10)];
 const bigPublic = bigLatest.map(({ slug }) => ({ slug }));
 assert.deepEqual(buildNewestWorks(bigLatest, bigPublic).map(work => work.slug),
-  Array.from({ length: 30 }, (_, i) => `big-${30 - i}`));
+  Array.from({ length: 24 }, (_, i) => `big-${30 - i}`));
 const smallLatest = [...batchOf('huge', 40, '2026-09-30'), ...batchOf('small', 3, '2026-10-02', 40)];
 const smallPublic = smallLatest.map(({ slug }) => ({ slug }));
 const smallNewest = buildNewestWorks(smallLatest, smallPublic).map(work => work.slug);
 assert.equal(smallNewest.length, 24);
 assert.deepEqual(smallNewest.slice(0, 4), ['small-3', 'small-2', 'small-1', 'huge-40']);
-// Hidden or excluded members do not count toward the latest batch's size.
+// Hidden or excluded members are skipped, and the page still fills all 24 positions.
 const hiddenMembers = batchOf('big', 30, '2026-10-02').map((record, i) => (i < 10 ? { ...record, exclude_from_additions: true } : record));
 assert.equal(buildNewestWorks([...batchOf('older', 30, '2026-09-30', 100), ...hiddenMembers],
   [...batchOf('older', 30, '2026-09-30', 100), ...hiddenMembers].map(({ slug }) => ({ slug }))).length, 24);
-console.log('Newest works: cross-batch continuations, timestamps, date fallback, catalog tie-breaks, exclusions, uniqueness, 24-work minimum and whole latest batch passed.');
+console.log('Newest works: cross-batch continuations, timestamps, date fallback, catalog tie-breaks, exclusions, uniqueness, exactly 24 works passed.');

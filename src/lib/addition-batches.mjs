@@ -1,9 +1,9 @@
-export const NEWEST_MINIMUM = 24;
+export const NEWEST_COUNT = 24;
 
 /**
  * Newest public imports, independent of their batch's original publication date.
- * Shows at least NEWEST_MINIMUM works, and enough to hold every work of the
- * most recent batch when that batch is larger.
+ * Always the NEWEST_COUNT most recent works (fewer only when the catalog has
+ * fewer), however large the latest batch is.
  */
 export function buildNewestWorks(records, publicWorks) {
   const published = new Map(publicWorks.map((work) => [work.slug, work]));
@@ -31,9 +31,7 @@ export function buildNewestWorks(records, publicWorks) {
     seen.add(work.slug);
     return true;
   });
-  const latestBatch = unique[0]?.batch;
-  const latestSize = latestBatch ? unique.filter(({ batch }) => batch === latestBatch).length : 0;
-  return unique.slice(0, Math.max(NEWEST_MINIMUM, latestSize)).map(({ work }) => work);
+  return unique.slice(0, NEWEST_COUNT).map(({ work }) => work);
 }
 
 /** Group only published works. Membership lives in the catalog, never in a second list. */

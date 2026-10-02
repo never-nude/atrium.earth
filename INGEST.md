@@ -132,8 +132,9 @@ keeps the original works' timestamps and stamps only the newly accepted works.
 
 The Newest Additions page displays the most recently imported public works across
 batches, ordered by each work's `ingested_at` timestamp, with `ingested` as the
-date fallback. It shows at least 24 works, and enough to hold every public work of
-the most recent batch when that batch is larger. The homepage previews the first four of those same pieces.
+date fallback. Rule (owner, 2026-10-02): the page shows exactly the newest 24 public
+works, however large the latest batch is. The homepage previews the first four of
+those same pieces.
 Neither page displays import titles, themes, or summaries. Older works leave this
 rolling selection as new works arrive but remain in the catalog. Continuing a
 batch promotes only the newly imported works; it does not refresh older members.
