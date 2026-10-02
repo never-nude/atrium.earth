@@ -17,6 +17,7 @@
     "images:mark-renders": "node ./scripts/mark-rendered-slugs.mjs",
     "models:preview": ".venv/bin/python ./scripts/generate-previews.py",
     "models:upload-r2": "node ./scripts/upload-previews-r2.mjs",
+    "models:mirror-r2": "node ./scripts/mirror-previews-r2.mjs",
     "import:catalog:legacy": "node ./scripts/import-catalog.mjs",
     "ingest": "node ./scripts/ingest-manifests.mjs",
     "ingest:discover": "node ./scripts/discover-sources.mjs",

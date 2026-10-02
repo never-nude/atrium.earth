@@ -128,18 +128,35 @@ jobs:
           R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
           R2_BUCKET: ${{ secrets.R2_BUCKET }}
 
-      - name: Render thumbnails
+      - name: Render missing batch thumbnails
         if: ${{ !cancelled() && steps.assemble.outcome == 'success' }}
         run: |
-          if [ ! -s .atrium-ingest/new-slugs.txt ]; then
-            echo "No accepted new slugs to render."
+          batch_slugs() {
+            node -e '
+              const fs = require("fs");
+              const wantThumb = process.argv[1];
+              for (const work of JSON.parse(fs.readFileSync("src/data/catalog.json", "utf8"))) {
+                if (work.ingest_batch !== process.env.BATCH) continue;
+                const has = fs.existsSync(`public/previews/renders/${work.slug}/thumb.webp`);
+                if (String(has) === wantThumb) console.log(work.slug);
+              }' "$1"
+          }
+          batch_slugs false > .atrium-ingest/render-slugs.txt
+          if [ ! -s .atrium-ingest/render-slugs.txt ]; then
+            echo "Every batch work already has a thumbnail."
             exit 0
           fi
-          ONLY="$(paste -sd, .atrium-ingest/new-slugs.txt)" npm run images:renders
-          npm run images:mark-renders -- --input=.atrium-ingest/new-slugs.txt
+          echo "Rendering $(wc -l < .atrium-ingest/render-slugs.txt) batch thumbnails."
+          npm run models:mirror-r2 -- --input=.atrium-ingest/render-slugs.txt || true
+          status=0
+          ONLY="$(paste -sd, .atrium-ingest/render-slugs.txt)" npm run images:renders || status=$?
+          batch_slugs true > .atrium-ingest/rendered-slugs.txt
+          npm run images:mark-renders -- --input=.atrium-ingest/rendered-slugs.txt
+          exit $status
         env:
           CHROME_BIN: ${{ steps.playwright.outputs.chrome-path }}
           CHROME_EXTRA_ARGS: '--no-sandbox --enable-unsafe-swiftshader --use-angle=swiftshader'
+          RENDER_TIMEOUT_MS: '180000'
 
       - name: Verify assets
         if: ${{ !cancelled() && steps.assemble.outcome == 'success' }}
@@ -150,7 +167,7 @@ jobs:
       - name: Push results to review branch
         if: always() && steps.checkout.outcome == 'success'
         run: |
-          out="docs/ingest/${BATCH}-run"
+          out="docs/ingest/${BATCH}-run-${GITHUB_RUN_ID}"
           mkdir -p "$out"
           for f in fetched.json last-report.md last-report.json new-slugs.txt r2-upload.json; do
             [ -f ".atrium-ingest/$f" ] && cp ".atrium-ingest/$f" "$out/" || true
@@ -171,6 +188,14 @@ jobs:
               fi
             done
           fi
+          # The poster generator rewrites every poster; keep only this batch's.
+          node -e '
+            const fs = require("fs");
+            for (const work of JSON.parse(fs.readFileSync("src/data/catalog.json", "utf8"))) {
+              if (work.ingest_batch === process.env.BATCH) console.log(`public/previews/posters/${work.slug}/`);
+            }' > "$RUNNER_TEMP/batch-posters.txt"
+          git ls-files -m -- public/previews/posters | grep -v -F -f "$RUNNER_TEMP/batch-posters.txt" | xargs -r git checkout --
+          git ls-files -o --exclude-standard -- public/previews/posters | grep -v -F -f "$RUNNER_TEMP/batch-posters.txt" | xargs -r rm -f
           git add -A
           git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
             commit -q -m "Review batch ${BATCH} from ${LEADS} (run ${GITHUB_RUN_ID})" || echo "Nothing to commit."

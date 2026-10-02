@@ -324,3 +324,14 @@ Acquisition commit `40ce531` is deployment-verified. [GitHub Pages run 369960069
 - Repository secrets set by the owner: `SKETCHFAB_TOKEN`, `R2_ACCOUNT_ID`, `R2_BUCKET` (`atrium-models`), `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`. No values are recorded here.
 - Validation: `test:r2-upload` passes; `generate-previews.py` preserves all 1,581 records on this checkout; workflow YAML parses. An independent adversarial review confirmed the issues fixed above. The workflow run itself is not yet verified.
 - Next: when the run finishes, curate its review branch. Keep only strong works, drop the rest from catalog/previews/renders, add orientation and dimension reviews and exhibition placements, then publish through a PR to `main`. Previews of works that are not kept stay in R2 as unreferenced objects.
+
+### First acquisition run (37017612692) and continuation
+
+- Run [37017612692](https://github.com/never-nude/atrium.earth/actions/runs/37017612692) fetched 29 of 175 leads. The other 146 returned Sketchfab HTTP 429 (rate limit; the fetcher sent requests back to back). All 29 previews were uploaded to R2 and verified against the public copy (`r2-upload.json`: 29 uploaded, 0 failed). The catalog went from 1,581 to 1,610 records, with no existing record changed except `total`; all 1,581 earlier `previews.json` entries were preserved. Rendering stopped after 10 thumbnails when one model (`ci-wara-headdress-gdh`) timed out under SwiftShader.
+- These 29 records, 10 thumbnails, 29 posters and the run report (`docs/ingest/african-art-20261002-b-run-37017612692/`) are staged on this branch. They are not yet curated; nothing is published until PR #75 merges.
+- Fixes for the continuation run:
+  - `fetch-source.mjs` skips already-catalogued leads, spaces out Sketchfab API calls, honours `Retry-After` on 429, and caps total waiting per run.
+  - `render-thumbnails.mjs` takes `RENDER_TIMEOUT_MS` and continues past a failed model.
+  - New `models:mirror-r2` pulls R2 previews back down so missing batch thumbnails can be rendered.
+  - The workflow renders every batch work without a thumbnail and commits only this batch's posters. The poster generator otherwise rewrote 1,317 unrelated posters.
+  - Validation: the mock tests cover the 429 retry, the give-up path, the mirror round-trip and the hash mismatch; the workflow shell logic was simulated against run-1 data (19 to render, 10 present, 29 posters kept).

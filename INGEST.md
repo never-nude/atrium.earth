@@ -76,6 +76,10 @@ R2_ACCOUNT_ID=… R2_ACCESS_KEY_ID=… R2_SECRET_ACCESS_KEY=… R2_BUCKET=… \
 npm run models:upload-r2 -- --slugs=africa/example --dry-run   # show keys, no upload
 ```
 
+`npm run models:mirror-r2 -- --slugs=…` downloads R2 previews back to
+`public/models/previews/<slug>/preview.glb` (checking the hashed filename), so
+thumbnails can be re-rendered on a checkout that only has the R2 URLs.
+
 Upload previews before writing dimension or spatial-eligibility entries, because those
 bind to the preview URL. `npm run build` already excludes local mirrors of R2 models
 from the Pages artifact, so R2 keeps large batches out of the Pages size limit.

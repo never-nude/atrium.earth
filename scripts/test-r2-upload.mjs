@@ -165,12 +165,27 @@ try {
   assert.equal(second.unchanged.length, 3, 'rerun is idempotent');
   assert.equal(putCount, 3, 'rerun does not re-upload');
 
+  const mirrorDir = path.join(tmp, 'mirror');
+  const mirror = path.join(import.meta.dirname, 'mirror-previews-r2.mjs');
+  await exec(process.execPath, [mirror, `--slugs=${slugs.join(',')}`, `--previews=${previewsJson}`, `--previews-dir=${mirrorDir}`], { env });
+  for (const slug of slugs) {
+    assert.deepEqual(await readFile(path.join(mirrorDir, slug, 'preview.glb')), await readFile(path.join(tmp, 'previews', slug, 'preview.glb')), `mirror of ${slug}`);
+  }
+  const tampered = JSON.parse(await readFile(previewsJson, 'utf8'));
+  tampered[slugs[0]].url = tampered[slugs[0]].url.replace(/preview-[a-f0-9]{12}/, 'preview-000000000000');
+  objects.set(new URL(tampered[slugs[0]].url).pathname.slice('/public/'.length), Buffer.from('wrong bytes'));
+  const tamperedJson = path.join(tmp, 'tampered.json');
+  await writeFile(tamperedJson, JSON.stringify(tampered));
+  const badMirror = await exec(process.execPath, [mirror, `--slugs=${slugs[0]}`, `--previews=${tamperedJson}`, `--previews-dir=${path.join(tmp, 'mirror2')}`], { env })
+    .then(() => 0, (error) => error.code);
+  assert.equal(badMirror, 1, 'mirror rejects bytes that do not match the hashed filename');
+
   const badEnv = { ...env, R2_SECRET_ACCESS_KEY: 'wrong-secret' };
   await writeFile(previewsJson, JSON.stringify({}));
   const bad = await exec(process.execPath, argv, { env: badEnv }).then(() => 0, (error) => error.code);
   assert.equal(bad, 1, 'a rejected signature fails the run');
   assert.deepEqual(JSON.parse(await readFile(previewsJson, 'utf8')), {}, 'failed uploads leave previews.json untouched');
-  console.log('upload-previews-r2: end-to-end mock upload, verify, binding guard, single-segment slugs, idempotent rerun and auth failure pass.');
+  console.log('upload-previews-r2: end-to-end mock upload, verify, binding guard, single-segment slugs, idempotent rerun, mirror round-trip and auth failure pass.');
 } finally {
   server.close();
   await rm(tmp, { recursive: true, force: true });

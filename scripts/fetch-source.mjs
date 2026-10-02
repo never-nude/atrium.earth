@@ -3,10 +3,13 @@ import { copyFile, mkdir, readdir, readFile, writeFile } from 'node:fs/promises'
 import { existsSync } from 'node:fs';
 import path from 'node:path';
 import {
+  candidateIsKnown,
+  catalogIndexes,
   clean,
   defaultStageDir,
   downloadFile,
   fileSize,
+  loadCatalog,
   meshExtensionFromUrl,
   parseArgs,
   readJson,
@@ -38,17 +41,54 @@ async function walk(dir) {
   return out;
 }
 
+// Sketchfab rate-limits the download API (HTTP 429). Space requests out and,
+// when limited, wait as long as Retry-After asks (or back off exponentially).
+const sketchfabIntervalMs = Number(process.env.SKETCHFAB_DOWNLOAD_INTERVAL_MS || 5000);
+const sketchfabMaxWaitMs = Number(process.env.SKETCHFAB_MAX_WAIT_MS || 20 * 60 * 1000);
+const sketchfabTotalWaitMs = Number(process.env.SKETCHFAB_TOTAL_WAIT_MS || 150 * 60 * 1000);
+let sketchfabWaitedTotal = 0;
+let lastSketchfabRequest = 0;
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+function retryAfterMs(response, attempt) {
+  const header = response.headers.get('retry-after');
+  const seconds = Number(header);
+  if (header && Number.isFinite(seconds)) return Math.max(1000, seconds * 1000);
+  const date = header ? Date.parse(header) : NaN;
+  if (Number.isFinite(date)) return Math.max(1000, date - Date.now());
+  return Math.min(10 * 60 * 1000, 30000 * 2 ** attempt);
+}
+
 async function resolveSketchfabDownload(candidate) {
   if (candidate.download_url) return candidate.download_url;
   if (!candidate.download_api_url) return '';
   const token = process.env.SKETCHFAB_TOKEN || process.env.SKETCHFAB_API_TOKEN || '';
   if (!token) throw new Error('SKETCHFAB_TOKEN required for Sketchfab downloads');
-  const response = await fetch(candidate.download_api_url, {
-    headers: { Authorization: `Token ${token}`, accept: 'application/json' },
-  });
-  if (!response.ok) throw new Error(`Sketchfab download API ${response.status} ${response.statusText}`);
-  const payload = await response.json();
-  return clean(payload.glb?.url || payload.gltf?.url || payload.source?.url);
+  if (sketchfabWaitedTotal >= sketchfabTotalWaitMs) throw new Error('Sketchfab download API 429 Too Many Requests (run wait budget spent; retry in a later run)');
+  let waited = 0;
+  for (let attempt = 0; ; attempt += 1) {
+    const gap = lastSketchfabRequest + sketchfabIntervalMs - Date.now();
+    if (gap > 0) await sleep(gap);
+    lastSketchfabRequest = Date.now();
+    const response = await fetch(candidate.download_api_url, {
+      headers: { Authorization: `Token ${token}`, accept: 'application/json' },
+    });
+    if (response.status === 429) {
+      const wait = retryAfterMs(response, attempt);
+      if (waited + wait > sketchfabMaxWaitMs || sketchfabWaitedTotal + wait > sketchfabTotalWaitMs) {
+        sketchfabWaitedTotal = Math.max(sketchfabWaitedTotal, sketchfabTotalWaitMs);
+        throw new Error(`Sketchfab download API 429 Too Many Requests (gave up after ${Math.round(waited / 1000)}s)`);
+      }
+      console.warn(`  Sketchfab rate limit for ${candidate.slug}; waiting ${Math.round(wait / 1000)}s (retry-after: ${response.headers.get('retry-after') ?? 'none'})`);
+      waited += wait;
+      sketchfabWaitedTotal += wait;
+      await sleep(wait);
+      continue;
+    }
+    if (!response.ok) throw new Error(`Sketchfab download API ${response.status} ${response.statusText}`);
+    const payload = await response.json();
+    return clean(payload.glb?.url || payload.gltf?.url || payload.source?.url);
+  }
 }
 
 async function extractZip(zipPath, destDir) {
@@ -151,8 +191,16 @@ async function fetchCandidate(candidate, report) {
 }
 
 const input = await readJson(inputPath, { candidates: [] });
-const candidates = (input.candidates || []).slice(0, limit || undefined);
-const report = { generated_at: new Date().toISOString(), fetched: [], errors: [], warnings: [] };
+const report = { generated_at: new Date().toISOString(), fetched: [], errors: [], warnings: [], already_catalogued: [] };
+// Skip works already in the catalog so a continuation run does not spend the
+// rate-limited download quota on them (assemble would reject them anyway).
+const indexes = catalogIndexes(await loadCatalog());
+const candidates = (input.candidates || []).filter((candidate) => {
+  const knownBy = candidateIsKnown(candidate, indexes);
+  if (knownBy) report.already_catalogued.push({ slug: candidate.slug, knownBy });
+  return !knownBy;
+}).slice(0, limit || undefined);
+if (report.already_catalogued.length) console.log(`Skipping ${report.already_catalogued.length} candidates already in the catalog.`);
 const fetched = [];
 
 if (!candidates.length) {
