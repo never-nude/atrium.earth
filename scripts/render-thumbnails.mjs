@@ -11,7 +11,11 @@ import appearanceOverrides from '../src/data/appearance-overrides.json' with { t
 
 const root = resolve('.');
 const modelRoot = join(root, 'public/models/previews');
-const outRoot = join(root, 'public/previews/renders');
+const outRoot = process.env.RENDER_OUT_DIR ? resolve(process.env.RENDER_OUT_DIR) : join(root, 'public/previews/renders');
+// Optional {slug: transform} file used by the orientation-variant review renders.
+const transformOverrides = process.env.RENDER_TRANSFORMS_JSON
+  ? JSON.parse(readFileSync(process.env.RENDER_TRANSFORMS_JSON, 'utf8'))
+  : {};
 const chrome = process.env.CHROME_BIN || '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 const serverPort = 8099;
 const width = 1000;
@@ -277,7 +281,7 @@ async function waitForRender(page, slug) {
 }
 
 async function render(page, slug, index, total) {
-  const transform = orientations[slug] || 'auto';
+  const transform = transformOverrides[slug] || orientations[slug] || 'auto';
   const legacyUp = typeof transform === 'string' ? transform : transform.upAxis || transform.axis || 'auto';
   const transformParam = typeof transform === 'string' ? transform : JSON.stringify(transform);
   const appearance = JSON.stringify(appearanceForSlug(slug));

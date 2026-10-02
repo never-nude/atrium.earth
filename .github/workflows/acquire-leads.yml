@@ -11,6 +11,7 @@ on:
       - claude/atrium-pieces-deploy-4nay07
     paths:
       - .github/workflows/acquire-leads.yml
+      - docs/ingest/*-orientation-requests.txt
   workflow_dispatch:
     inputs:
       leads:
@@ -104,7 +105,16 @@ jobs:
       - name: Fetch source meshes
         run: |
           mkdir -p .atrium-ingest
-          npm run ingest:fetch -- --input="$LEADS"
+          # Leave out leads already reviewed and withheld for this batch.
+          node -e '
+            const fs = require("fs");
+            const leads = JSON.parse(fs.readFileSync(process.env.LEADS, "utf8"));
+            const file = `docs/ingest/${process.env.BATCH}-rejected.json`;
+            const rejected = new Set(fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, "utf8")).rejected.map((item) => item.slug) : []);
+            leads.candidates = leads.candidates.filter((candidate) => !rejected.has(candidate.slug));
+            fs.writeFileSync(".atrium-ingest/leads.json", JSON.stringify(leads));
+            console.log(`Leads: ${leads.candidates.length} after excluding ${rejected.size} rejected.`);'
+          npm run ingest:fetch -- --input=.atrium-ingest/leads.json
         env:
           SKETCHFAB_TOKEN: ${{ secrets.SKETCHFAB_TOKEN }}
 
@@ -153,6 +163,21 @@ jobs:
           batch_slugs true > .atrium-ingest/rendered-slugs.txt
           npm run images:mark-renders -- --input=.atrium-ingest/rendered-slugs.txt
           exit $status
+        env:
+          CHROME_BIN: ${{ steps.playwright.outputs.chrome-path }}
+          CHROME_EXTRA_ARGS: '--no-sandbox --enable-unsafe-swiftshader --use-angle=swiftshader'
+          RENDER_TIMEOUT_MS: '180000'
+
+      - name: Orientation review sheets
+        if: ${{ !cancelled() && steps.assemble.outcome == 'success' }}
+        run: |
+          requests="docs/ingest/${BATCH}-orientation-requests.txt"
+          if [ ! -s "$requests" ]; then
+            echo "No orientation review requested."
+            exit 0
+          fi
+          npm run models:mirror-r2 -- --input="$requests" || true
+          node scripts/render-orientation-variants.mjs --input="$requests" --out="docs/ingest/${BATCH}-orientation-review"
         env:
           CHROME_BIN: ${{ steps.playwright.outputs.chrome-path }}
           CHROME_EXTRA_ARGS: '--no-sandbox --enable-unsafe-swiftshader --use-angle=swiftshader'

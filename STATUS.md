@@ -335,3 +335,16 @@ Acquisition commit `40ce531` is deployment-verified. [GitHub Pages run 369960069
   - New `models:mirror-r2` pulls R2 previews back down so missing batch thumbnails can be rendered.
   - The workflow renders every batch work without a thumbnail and commits only this batch's posters. The poster generator otherwise rewrote 1,317 unrelated posters.
   - Validation: the mock tests cover the 429 retry, the give-up path, the mirror round-trip and the hash mismatch; the workflow shell logic was simulated against run-1 data (19 to render, 10 present, 29 posters kept).
+
+### Continuation run (37019814481) and first curation pass
+
+- Run [37019814481](https://github.com/never-nude/atrium.earth/actions/runs/37019814481) fetched 125 more leads and accepted 124. All 124 previews uploaded to R2 with no failures, and all 153 batch works rendered thumbnails. 20 leads were still rate-limited (the run's wait budget ran out); later runs retry them.
+- Curation of all 153 thumbnails and source records withheld 24 works. Each is listed with its reason in `docs/ingest/african-art-20261002-b-rejected.json`:
+  - non-African: a Papua New Guinea yam mask and neck rest, a Manolo Hugué terracotta, a sculpture-park hippo
+  - scale bars or label boards baked into the scan: 7 Szczecin works
+  - unidentified fragments or accession-only titles
+  - vessels and souvenirs
+  - duplicate scans
+- Their R2 previews stay as unreferenced objects. The workflow now drops rejected leads before fetching.
+- 129 works remain staged; the catalog has 1,710 records, and existing records are unchanged apart from `total`. 47 need an orientation decision (`docs/ingest/african-art-20261002-b-orientation-requests.txt`), mostly masks rendered from behind and works lying on their side. `render-orientation-variants.mjs` renders each one in 10 candidate orientations for review; it was tested locally with SwiftShader WebGL, which does work in the cloud sandbox.
+- Still to do before publishing: apply orientations and re-render; clean up metadata (several `year` values are scan or acquisition years, some materials are wrong); add dimension, spatial, display and appearance entries; add the Newest Additions batch record; run the tests.
