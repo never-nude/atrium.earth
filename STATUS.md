@@ -363,3 +363,10 @@ Acquisition commit `40ce531` is deployment-verified. [GitHub Pages run 369960069
   1. Choose orientations from the review sheets.
   2. Re-render the 47 thumbnails and regenerate their posters (posters embed the thumbnail).
   3. Restore their parked records, un-hide them, and publish them in a follow-up PR.
+
+### Production confirmation — 80 African works
+
+- [PR #75](https://github.com/never-nude/atrium.earth/pull/75) was squash-merged to `main` as `c6fce00723070051d2ed3cd888c0836108af44bf`. [GitHub Pages run 37032690840](https://github.com/never-nude/atrium.earth/actions/runs/37032690840) succeeded; build and deploy both passed.
+- Live verification ran from a GitHub runner, [run 37033095140](https://github.com/never-nude/atrium.earth/actions/runs/37033095140), at 2026-10-02T16:19:53Z; the report is on branch `claude/atrium-live-verify-african-art-20261002-b`. All 80 work pages returned 200 with their titles and all 80 thumbnails returned 200. All 80 R2 models returned 200 `model/gltf-binary` with SHA-256 matching their content-hashed filenames. `/newest/` lists exactly the 80 works in the intended order, starting with the Chokwe throne, and the 47 held works are not public (404).
+- The owner reviewed the live works and approved them.
+- Next: publish the 47 held works once their orientation is fixed (follow-up PR from this branch, restarted at `c6fce00`).
