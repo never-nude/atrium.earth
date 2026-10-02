@@ -17,7 +17,7 @@ const transformOverrides = process.env.RENDER_TRANSFORMS_JSON
   ? JSON.parse(readFileSync(process.env.RENDER_TRANSFORMS_JSON, 'utf8'))
   : {};
 const chrome = process.env.CHROME_BIN || '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
-const serverPort = 8099;
+const serverPort = Number(process.env.RENDER_PORT || 8099);
 const width = 1000;
 const height = 1250;
 const recordsBySlug = new Map(catalog.map((record) => [record.slug, record]));

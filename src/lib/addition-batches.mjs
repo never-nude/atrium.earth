@@ -1,4 +1,10 @@
-/** Newest public imports, independent of their batch's original publication date. */
+export const NEWEST_MINIMUM = 24;
+
+/**
+ * Newest public imports, independent of their batch's original publication date.
+ * Shows at least NEWEST_MINIMUM works, and enough to hold every work of the
+ * most recent batch when that batch is larger.
+ */
 export function buildNewestWorks(records, publicWorks) {
   const published = new Map(publicWorks.map((work) => [work.slug, work]));
   const candidates = records.flatMap((record, order) => {
@@ -8,8 +14,11 @@ export function buildNewestWorks(records, publicWorks) {
       && validDay(record.ingested_at.slice(0, 10))
       ? Date.parse(record.ingested_at) : Number.NaN;
     const day = validDay(record.ingested);
+    const explicit = typeof record.ingest_batch === 'string' && /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(record.ingest_batch);
+    const batchDay = validDay(record.ingested_at?.slice(0, 10)) || day;
     return [{
       work,
+      batch: explicit ? record.ingest_batch : batchDay ? `added-${batchDay}` : null,
       importedAt: Number.isFinite(timestamp) ? timestamp : day ? Date.parse(`${day}T00:00:00Z`) : -Infinity,
       catalogIndex: Number.isFinite(record.index) ? record.index : order,
       order,
@@ -17,11 +26,14 @@ export function buildNewestWorks(records, publicWorks) {
   });
   candidates.sort((a, b) => b.importedAt - a.importedAt || b.catalogIndex - a.catalogIndex || b.order - a.order);
   const seen = new Set();
-  return candidates.filter(({ work }) => {
+  const unique = candidates.filter(({ work }) => {
     if (seen.has(work.slug)) return false;
     seen.add(work.slug);
     return true;
-  }).slice(0, 24).map(({ work }) => work);
+  });
+  const latestBatch = unique[0]?.batch;
+  const latestSize = latestBatch ? unique.filter(({ batch }) => batch === latestBatch).length : 0;
+  return unique.slice(0, Math.max(NEWEST_MINIMUM, latestSize)).map(({ work }) => work);
 }
 
 /** Group only published works. Membership lives in the catalog, never in a second list. */
