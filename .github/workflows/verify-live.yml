@@ -1,0 +1,112 @@
+name: Verify live batch (temporary review aid)
+
+# Fetches every published work of the batch from the live site and R2 and pushes
+# a report to an orphan branch. Runs when docs/ingest/<batch>-live-verify.txt is
+# pushed. Temporary: remove before merging to main.
+
+on:
+  push:
+    paths:
+      - docs/ingest/*-live-verify.txt
+
+permissions:
+  contents: write
+
+env:
+  BATCH: african-art-20261002-b
+  SITE: https://atrium.earth
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Check live pages, thumbnails and models
+        run: |
+          mkdir -p live-verify
+          cat > "$RUNNER_TEMP/verify.mjs" <<'EOF'
+          import { createHash } from 'node:crypto';
+          import { readFileSync, writeFileSync } from 'node:fs';
+          const { BATCH, SITE } = process.env;
+          const catalog = JSON.parse(readFileSync('src/data/catalog.json', 'utf8'));
+          const previews = JSON.parse(readFileSync('src/data/previews.json', 'utf8'));
+          const works = catalog.filter((w) => w.ingest_batch === BATCH && !w.hidden);
+          const held = catalog.filter((w) => w.ingest_batch === BATCH && w.hidden);
+          const escape = (text) => text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+          async function get(url, attempts = 4) {
+            for (let i = 1; ; i += 1) {
+              try {
+                const response = await fetch(url, { redirect: 'follow', headers: { 'user-agent': 'atrium-live-verify/1.0' } });
+                return { status: response.status, type: response.headers.get('content-type') || '', body: Buffer.from(await response.arrayBuffer()) };
+              } catch (error) {
+                if (i >= attempts) return { status: 0, type: '', body: Buffer.alloc(0), error: error.message };
+                await new Promise((r) => setTimeout(r, 2000 * i));
+              }
+            }
+          }
+          const rows = [];
+          for (const w of works) {
+            const pageUrl = `${SITE}/works/${w.slug}/`;
+            const page = await get(pageUrl);
+            const html = page.body.toString('utf8');
+            const thumb = await get(`${SITE}/previews/renders/${w.slug}/thumb.webp`);
+            const modelUrl = previews[w.slug]?.url;
+            const model = await get(modelUrl);
+            const expected = modelUrl?.match(/preview-([a-f0-9]{12})\.glb$/)?.[1];
+            const hash = createHash('sha256').update(model.body).digest('hex');
+            const row = {
+              slug: w.slug,
+              title: w.title,
+              page: page.status,
+              pageHasTitle: html.includes(escape(w.title)) || html.includes(w.title),
+              pageReferencesModel: html.includes(modelUrl),
+              thumb: thumb.status,
+              thumbType: thumb.type,
+              model: model.status,
+              modelType: model.type,
+              modelHashOk: Boolean(expected) && hash.startsWith(expected),
+            };
+            row.ok = row.page === 200 && row.pageHasTitle && row.thumb === 200 && row.model === 200 && row.modelHashOk;
+            rows.push(row);
+          }
+          const heldRows = [];
+          for (const w of held) {
+            const page = await get(`${SITE}/works/${w.slug}/`, 2);
+            heldRows.push({ slug: w.slug, page: page.status });
+          }
+          const newest = await get(`${SITE}/newest/`);
+          const listed = [...new Set([...newest.body.toString('utf8').matchAll(/href="\/works\/([^"]+)\/"/g)].map((m) => m[1]))];
+          const expectedOrder = works.slice().sort((a, b) => b.index - a.index).map((w) => w.slug);
+          const report = {
+            checked_at: new Date().toISOString(),
+            site: SITE,
+            batch: BATCH,
+            published: works.length,
+            ok: rows.filter((r) => r.ok).length,
+            failures: rows.filter((r) => !r.ok),
+            held_pages_not_public: heldRows.filter((r) => r.page === 404).length,
+            held_pages_public: heldRows.filter((r) => r.page !== 404),
+            newest: { status: newest.status, listed: listed.length, batch_listed: listed.filter((s) => expectedOrder.includes(s)).length, order_matches: JSON.stringify(listed.filter((s) => expectedOrder.includes(s))) === JSON.stringify(expectedOrder), first: listed.slice(0, 6) },
+            rows,
+          };
+          writeFileSync('live-verify/report.json', `${JSON.stringify(report, null, 2)}\n`);
+          console.log(JSON.stringify({ ...report, rows: undefined }, null, 2));
+          EOF
+          node "$RUNNER_TEMP/verify.mjs"
+
+      - name: Push report branch
+        if: always()
+        run: |
+          git switch --orphan "claude/atrium-live-verify-${BATCH}"
+          git add -f live-verify
+          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+            commit -q -m "Live verification for ${BATCH} (run ${GITHUB_RUN_ID})"
+          git push -f origin "HEAD:refs/heads/claude/atrium-live-verify-${BATCH}"
