@@ -444,3 +444,8 @@ Commit `0935540c` is deployment-verified. [GitHub Pages run 37038583980](https:/
 ### Production confirmation — erotic antiquities
 
 Commit `271667d8` is deployment-verified. [GitHub Pages run 37051507318](https://github.com/never-nude/atrium.earth/actions/runs/37051507318) completed successfully. Live checks on 2026-10-02: all 3 work pages return 200; every live model, thumbnail and poster matches the reviewed local file by SHA-256, and each R2 filename carries its content hash. `/newest/` still leads with the 20 African works, followed by the 3 new works. `/exhibitions/what-survives/` lists the satyr group with its caption. The satyr page links the British Museum record, and the cards read "Tivoli, Italy" and "Roman", not the "Mediterranean" fallback. `test:museum-labels` could not run locally because Playwright's browser is not installed; it was not run in CI for this batch.
+
+## 2026-10-02 — Hide the Discus Bearer
+
+- The owner reported `roman/discus-bearer-glyptotek` (Discus Bearer, Ny Carlsberg Glyptotek) as broken and asked for it to be hidden. Following the Turrell withdrawal pattern, it is marked `hidden` in the catalog and its public physical-dimension and spatial-eligibility entries are removed. Source metadata, preview, thumbnail and orientation records are retained for a later repair.
+- Additions, wings, asset and display-support checks and the production build passed; the generated site has no Discus Bearer page or reference.
