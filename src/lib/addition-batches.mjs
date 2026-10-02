@@ -3,7 +3,7 @@ export function buildNewestWorks(records, publicWorks) {
   const published = new Map(publicWorks.map((work) => [work.slug, work]));
   const candidates = records.flatMap((record, order) => {
     const work = published.get(record.slug);
-    if (!work || record.hidden) return [];
+    if (!work || record.hidden || record.exclude_from_additions) return [];
     const timestamp = typeof record.ingested_at === 'string'
       && validDay(record.ingested_at.slice(0, 10))
       ? Date.parse(record.ingested_at) : Number.NaN;
@@ -31,7 +31,9 @@ export function buildAdditionBatches(records, publicWorks, metadata = {}) {
   const seen = new Set();
   for (const [index, record] of records.entries()) {
     const work = published.get(record.slug);
-    if (!work || record.hidden || seen.has(record.slug)) continue;
+    // A published work can opt out of the Newest Additions rail and batch pages
+    // (for example, one restored quietly after a hold) without losing its ingest record.
+    if (!work || record.hidden || record.exclude_from_additions || seen.has(record.slug)) continue;
     const day = validDay(record.ingested_at?.slice(0, 10)) || validDay(record.ingested);
     if (!day) continue;
     seen.add(record.slug);

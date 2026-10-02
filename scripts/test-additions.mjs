@@ -19,6 +19,9 @@ assert.deepEqual(buildAdditionBatches([], visible, { empty: {} }), []);
 assert.equal(buildAdditionBatches([...records, records[0]], visible).flatMap((batch) => batch.works).length, 4);
 assert.deepEqual(buildAdditionBatches([{ slug: 'a', ingested: '2026-02-30' }], visible), []);
 assert.equal(buildAdditionBatches([{ slug: 'a', hidden: true, ingested: '2026-09-19' }], visible).length, 0);
+// A published work can opt out of the additions archive and the Newest rail while staying in the catalog.
+assert.equal(buildAdditionBatches([{ slug: 'a', exclude_from_additions: true, ingested: '2026-09-19' }], visible).length, 0);
+assert.deepEqual(buildNewestWorks([{ slug: 'a', exclude_from_additions: true, ingested: '2026-09-21' }, { slug: 'b', ingested: '2026-09-19' }], visible).map((work) => work.slug), ['b']);
 assert.equal(buildAdditionBatches([{ slug: 'a', ingest_batch: '../bad', ingested: '2026-09-19' }], visible)[0].id, 'added-2026-09-19');
 // Continuing an existing batch adds members without creating a new release or changing its original date.
 const continued = buildAdditionBatches([...records, { slug: 'e', ingest_batch: 'morning', ingested: '2026-09-20', ingested_at: '2026-09-20T10:00:00.000Z' }], visible);

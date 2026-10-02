@@ -309,3 +309,8 @@ Acquisition commit `6f56f0311a4ea6bc2f58f8a6120c58af0da03790` is deployment-veri
 ### Production confirmation — African art batch
 
 Acquisition commit `40ce531` is deployment-verified. [GitHub Pages run 36996006911](https://github.com/never-nude/atrium.earth/actions/runs/36996006911) completed successfully. Live checks on 2026-10-02: all 33 work pages return 200 with their titles, all 33 thumbnails and all 33 content-hashed R2 models return 200 (`model/gltf-binary`), `/newest/` lists the batch, and the Djimini-Senoufo mask page reached the live WebGL viewer from R2 in a real browser with no console errors. The worktree was clean at the acquisition commit; no state is inferred for the other computer. This confirmation changes documentation only. The 175 token-dependent leads in `docs/ingest/african-art-20261002-leads.json` remain the next acquisition step.
+
+## 2026-10-02 — Undine published, outside Newest Additions
+
+- `modern/undine-sb3d` returns to the public catalog at the editor’s direction. The hold flags are removed; the identity review file records the decision and keeps its age finding unchanged.
+- The work is kept off the Newest Additions rail and the batch archive by a new catalog flag, `exclude_from_additions`, honored in `src/lib/addition-batches.mjs` and covered by `test:additions`. Its preserved dimension review is restored to `physical-dimensions.json`. The Bodies in Motion placement is not restored.
