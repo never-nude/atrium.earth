@@ -1,0 +1,173 @@
+name: Acquire requested works (temporary, branch only)
+
+# Temporary copy of acquire-leads.yml for the requested-works batch. It exists only on
+# this task branch (never on main), runs when this file is pushed, and uses its own
+# concurrency group so it does not queue behind the long-running African review run.
+
+on:
+  push:
+    branches:
+      - 'claude/requested-works-20261002'
+    paths:
+      - '.github/workflows/acquire-requested.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: acquire-requested
+  cancel-in-progress: false
+
+env:
+  LEADS: docs/ingest/requested-works-20261002-leads.json
+  BATCH: requested-works-20261002
+
+jobs:
+  acquire:
+    runs-on: ubuntu-latest
+    timeout-minutes: 340
+    steps:
+      - name: Check credentials
+        env:
+          SKETCHFAB_TOKEN: ${{ secrets.SKETCHFAB_TOKEN }}
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: |
+          missing=""
+          for name in SKETCHFAB_TOKEN R2_ACCOUNT_ID R2_ACCESS_KEY_ID R2_SECRET_ACCESS_KEY R2_BUCKET; do
+            [ -n "${!name}" ] || missing="$missing $name"
+          done
+          if [ -n "$missing" ]; then
+            echo "::error::Missing repository secrets:$missing"
+            exit 1
+          fi
+          echo "Sketchfab and Cloudflare R2 credentials are available."
+
+      - name: Free runner disk
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL
+          df -h /
+
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@v4
+
+      - name: Stage downloads on the larger disk
+        run: |
+          if sudo mkdir -p /mnt/atrium-ingest 2>/dev/null; then
+            sudo chown "$(id -u):$(id -g)" /mnt/atrium-ingest
+            ln -s /mnt/atrium-ingest .atrium-ingest
+          fi
+          df -h / /mnt 2>/dev/null || true
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install Node dependencies
+        run: npm ci
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+
+      - name: Fetch source meshes
+        run: |
+          mkdir -p .atrium-ingest
+          # Leave out leads already reviewed and withheld for this batch.
+          node -e '
+            const fs = require("fs");
+            const leads = JSON.parse(fs.readFileSync(process.env.LEADS, "utf8"));
+            const file = `docs/ingest/${process.env.BATCH}-rejected.json`;
+            const rejected = new Set(fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, "utf8")).rejected.map((item) => item.slug) : []);
+            leads.candidates = leads.candidates.filter((candidate) => !rejected.has(candidate.slug));
+            fs.writeFileSync(".atrium-ingest/leads.json", JSON.stringify(leads));
+            console.log(`Leads: ${leads.candidates.length} after excluding ${rejected.size} rejected.`);'
+          npm run ingest:fetch -- --input=.atrium-ingest/leads.json
+        env:
+          SKETCHFAB_TOKEN: ${{ secrets.SKETCHFAB_TOKEN }}
+
+      - name: Assemble catalog pieces
+        id: assemble
+        run: npm run ingest:assemble -- --batch="$BATCH" --optimize-source-glb
+        env:
+          PYTHON: python
+
+      - name: Upload previews to Cloudflare R2
+        if: ${{ !cancelled() && steps.assemble.outcome == 'success' }}
+        run: |
+          if [ ! -s .atrium-ingest/new-slugs.txt ]; then
+            echo "No accepted new slugs to upload."
+            exit 0
+          fi
+          npm run models:upload-r2 -- --input=.atrium-ingest/new-slugs.txt --report=.atrium-ingest/r2-upload.json
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+
+      - name: Verify assets
+        if: ${{ !cancelled() && steps.assemble.outcome == 'success' }}
+        continue-on-error: true
+        shell: bash
+        run: npm run verify:assets 2>&1 | grep -v '│' | tail -40
+
+      - name: Push results to review branch
+        if: always() && steps.checkout.outcome == 'success'
+        run: |
+          out="docs/ingest/${BATCH}-run-${GITHUB_RUN_ID}"
+          mkdir -p "$out"
+          for f in fetched.json last-report.md last-report.json new-slugs.txt r2-upload.json; do
+            [ -f ".atrium-ingest/$f" ] && cp ".atrium-ingest/$f" "$out/" || true
+          done
+          # Sketchfab download URLs are short-lived pre-signed links; keep only their path.
+          if [ -f "$out/fetched.json" ]; then
+            node -e '
+              const fs = require("fs");
+              const file = process.argv[1];
+              const data = JSON.parse(fs.readFileSync(file, "utf8"));
+              for (const candidate of data.candidates || []) {
+                if (candidate.fetched?.download_url) candidate.fetched.download_url = candidate.fetched.download_url.replace(/\?.*$/, "");
+              }
+              fs.writeFileSync(file, `${JSON.stringify(data, null, 2)}\n`);' "$out/fetched.json"
+          fi
+          # Previews normally live on R2; commit a local GLB only if its upload failed.
+          if [ -s .atrium-ingest/new-slugs.txt ]; then
+            node -e '
+              const fs = require("fs");
+              const previews = JSON.parse(fs.readFileSync("src/data/previews.json", "utf8"));
+              for (const slug of fs.readFileSync(".atrium-ingest/new-slugs.txt", "utf8").split(/\r?\n/).filter(Boolean)) {
+                if (previews[slug]?.url === `/models/previews/${slug}/preview.glb`) console.log(slug);
+              }' | while read -r slug; do
+              glb="public/models/previews/$slug/preview.glb"
+              if [ -f "$glb" ] && [ "$(stat -c %s "$glb")" -lt 95000000 ]; then
+                git add -f "public/models/previews/$slug"
+              elif [ -f "$glb" ]; then
+                echo "$slug" >> "$out/too-large-for-git.txt"
+              fi
+            done
+          fi
+          # The poster generator rewrites every poster; keep only this batch's.
+          node -e '
+            const fs = require("fs");
+            for (const work of JSON.parse(fs.readFileSync("src/data/catalog.json", "utf8"))) {
+              if (work.ingest_batch === process.env.BATCH) console.log(`public/previews/posters/${work.slug}/`);
+            }' > "$RUNNER_TEMP/batch-posters.txt"
+          git ls-files -m -- public/previews/posters | grep -v -F -f "$RUNNER_TEMP/batch-posters.txt" | xargs -r git checkout --
+          git ls-files -o --exclude-standard -- public/previews/posters | grep -v -F -f "$RUNNER_TEMP/batch-posters.txt" | xargs -r rm -f
+          git add -A
+          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+            commit -q -m "Review batch ${BATCH} from ${LEADS} (run ${GITHUB_RUN_ID})" || echo "Nothing to commit."
+          git push origin "HEAD:refs/heads/claude/requested-works-review-${GITHUB_RUN_ID}"
