@@ -19902,5 +19902,38 @@
   "sub-saharan-africa/songe-wood-face-mask-aarlcc": {
     "upAxis": "auto",
     "yaw": 180
+  },
+  "roman/satyr-and-nymph-townley-british-museum": {
+    "upAxis": "y",
+    "modelRotation": [
+      0,
+      -60,
+      0
+    ],
+    "yaw": 0,
+    "status": "reviewed",
+    "note": "Source is Y-up and stands on its base, but its front faces away from the default camera; turned -60° about the vertical so the satyr (left) and the nymph twisting away from him (right) face the viewer, matching the scan author's reference view. Checked 2026-10-02 against that image and the Atrium render."
+  },
+  "roman/priapus-tintinnabulum-tarraco-mnat": {
+    "upAxis": "y",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "status": "reviewed",
+    "note": "Source is Y-up and frontal; the figure presents its face and the phallus on which it sits to the viewer as in the museum's reference image. Checked 2026-10-02 against the Atrium render."
+  },
+  "roman/priapus-phallus-statuette-tarraco-mnat": {
+    "upAxis": "y",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "status": "reviewed",
+    "note": "Source is Y-up; the statuette stands on its base with the bearded face to the front as in the museum's reference image. Checked 2026-10-02 against the Atrium render."
   }
 }
