@@ -61,6 +61,34 @@ reported but skipped at fetch time. The generated PR body lives at
 `.atrium-ingest/last-report.md` and lists provenance, license, integrity, and
 orientation decisions for every accepted or rejected candidate.
 
+## Cloudflare R2 previews
+
+Preview GLBs are served from the Atrium R2 bucket at `https://models.atrium.earth`
+under immutable, content-hashed names (`models/previews/<slug>/preview-<sha256:12>.glb`).
+`npm run models:upload-r2` uploads local previews through R2's S3-compatible API,
+downloads each public copy back and checks its SHA-256, and only then points
+`src/data/previews.json` at the public URL. Reruns skip previews that already point
+at their current hash. Failed uploads leave the local URL in place and exit non-zero.
+
+```bash
+R2_ACCOUNT_ID=… R2_ACCESS_KEY_ID=… R2_SECRET_ACCESS_KEY=… R2_BUCKET=… \
+  npm run models:upload-r2 -- --input=.atrium-ingest/new-slugs.txt
+npm run models:upload-r2 -- --slugs=africa/example --dry-run   # show keys, no upload
+```
+
+Upload previews before writing dimension or spatial-eligibility entries, because those
+bind to the preview URL. `npm run build` already excludes local mirrors of R2 models
+from the Pages artifact, so R2 keeps large batches out of the Pages size limit.
+
+Both `ingest.yml` (weekly) and `acquire-leads.yml` (saved candidate files, such as
+`docs/ingest/african-art-20261002-leads.json`) upload automatically when these
+repository secrets exist: `R2_ACCOUNT_ID`, `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`
+and `R2_BUCKET`. Create the key pair in Cloudflare under R2 → Manage API tokens with
+Object Read & Write on the models bucket only. `acquire-leads.yml` also needs
+`SKETCHFAB_TOKEN`, and it pushes its result to a `claude/atrium-africa-review-<run>`
+branch for curation; it never publishes to `main`. `npm run test:r2-upload` checks the
+signer against AWS reference signatures and runs a mock end-to-end upload.
+
 ## Acquisition priorities (owner direction, September 2026)
 
 Future batches should broaden the collection across regions, cultures, periods,
@@ -133,3 +161,6 @@ repairing metadata, rerendering thumbnails, or replacing a model derivative.
 | `GITHUB_TOKEN` | — | required for private vault downloads |
 | `ATRIUM_INGEST_BATCH` | generated unique ID | intentionally name or continue an import batch; overridden by `--batch` |
 | `CHROME_BIN` | macOS Chrome path | renderer for images:renders |
+| `R2_ACCOUNT_ID` / `R2_BUCKET` | — | Cloudflare account and models bucket for `models:upload-r2` |
+| `R2_ACCESS_KEY_ID` / `R2_SECRET_ACCESS_KEY` | — | R2 API token (Object Read & Write, models bucket only) |
+| `R2_PUBLIC_BASE` | `https://models.atrium.earth` | public origin used for preview URLs and verification |

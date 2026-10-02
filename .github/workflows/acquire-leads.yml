@@ -1,8 +1,9 @@
 name: Acquire saved leads (review branch)
 
 # Fetches a saved candidate file (docs/ingest/*-leads.json) on GitHub's runners,
-# assembles previews and thumbnails, and pushes everything to a separate review
-# branch. It never touches main; a human/agent curates the review branch first.
+# assembles optimized previews and thumbnails, uploads the previews to Cloudflare R2
+# (models.atrium.earth), and pushes the catalog changes to a separate review
+# branch. It never touches main; the review branch is curated before publishing.
 
 on:
   push:
@@ -37,15 +38,23 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 340
     steps:
-      - name: Check Sketchfab token
+      - name: Check credentials
         env:
           SKETCHFAB_TOKEN: ${{ secrets.SKETCHFAB_TOKEN }}
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
         run: |
-          if [ -z "$SKETCHFAB_TOKEN" ]; then
-            echo "::error::SKETCHFAB_TOKEN repository secret is not set; Sketchfab leads cannot be downloaded."
+          missing=""
+          for name in SKETCHFAB_TOKEN R2_ACCOUNT_ID R2_ACCESS_KEY_ID R2_SECRET_ACCESS_KEY R2_BUCKET; do
+            [ -n "${!name}" ] || missing="$missing $name"
+          done
+          if [ -n "$missing" ]; then
+            echo "::error::Missing repository secrets:$missing"
             exit 1
           fi
-          echo "SKETCHFAB_TOKEN is available."
+          echo "Sketchfab and Cloudflare R2 credentials are available."
 
       - name: Free runner disk
         run: |
@@ -53,7 +62,16 @@ jobs:
           df -h /
 
       - name: Checkout
+        id: checkout
         uses: actions/checkout@v4
+
+      - name: Stage downloads on the larger disk
+        run: |
+          if sudo mkdir -p /mnt/atrium-ingest 2>/dev/null; then
+            sudo chown "$(id -u):$(id -g)" /mnt/atrium-ingest
+            ln -s /mnt/atrium-ingest .atrium-ingest
+          fi
+          df -h / /mnt 2>/dev/null || true
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -91,11 +109,27 @@ jobs:
           SKETCHFAB_TOKEN: ${{ secrets.SKETCHFAB_TOKEN }}
 
       - name: Assemble catalog pieces
-        run: npm run ingest:assemble -- --batch="$BATCH" --target-faces=200000
+        id: assemble
+        run: npm run ingest:assemble -- --batch="$BATCH" --optimize-source-glb
         env:
           PYTHON: python
 
+      - name: Upload previews to Cloudflare R2
+        if: ${{ !cancelled() && steps.assemble.outcome == 'success' }}
+        run: |
+          if [ ! -s .atrium-ingest/new-slugs.txt ]; then
+            echo "No accepted new slugs to upload."
+            exit 0
+          fi
+          npm run models:upload-r2 -- --input=.atrium-ingest/new-slugs.txt --report=.atrium-ingest/r2-upload.json
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+
       - name: Render thumbnails
+        if: ${{ !cancelled() && steps.assemble.outcome == 'success' }}
         run: |
           if [ ! -s .atrium-ingest/new-slugs.txt ]; then
             echo "No accepted new slugs to render."
@@ -108,23 +142,36 @@ jobs:
           CHROME_EXTRA_ARGS: '--no-sandbox --enable-unsafe-swiftshader --use-angle=swiftshader'
 
       - name: Verify assets
+        if: ${{ !cancelled() && steps.assemble.outcome == 'success' }}
         continue-on-error: true
+        shell: bash
         run: npm run verify:assets 2>&1 | grep -v '│' | tail -40
 
       - name: Push results to review branch
-        if: always()
+        if: always() && steps.checkout.outcome == 'success'
         run: |
           out="docs/ingest/${BATCH}-run"
           mkdir -p "$out"
-          for f in fetched.json last-report.md last-report.json new-slugs.txt; do
+          for f in fetched.json last-report.md last-report.json new-slugs.txt r2-upload.json; do
             [ -f ".atrium-ingest/$f" ] && cp ".atrium-ingest/$f" "$out/" || true
           done
+          # Previews normally live on R2; commit a local GLB only if its upload failed.
           if [ -s .atrium-ingest/new-slugs.txt ]; then
-            while read -r slug; do
-              [ -n "$slug" ] && [ -d "public/models/previews/$slug" ] && git add -f "public/models/previews/$slug"
-            done < .atrium-ingest/new-slugs.txt
+            node -e '
+              const fs = require("fs");
+              const previews = JSON.parse(fs.readFileSync("src/data/previews.json", "utf8"));
+              for (const slug of fs.readFileSync(".atrium-ingest/new-slugs.txt", "utf8").split(/\r?\n/).filter(Boolean)) {
+                if (previews[slug]?.url === `/models/previews/${slug}/preview.glb`) console.log(slug);
+              }' | while read -r slug; do
+              glb="public/models/previews/$slug/preview.glb"
+              if [ -f "$glb" ] && [ "$(stat -c %s "$glb")" -lt 95000000 ]; then
+                git add -f "public/models/previews/$slug"
+              elif [ -f "$glb" ]; then
+                echo "$slug" >> "$out/too-large-for-git.txt"
+              fi
+            done
           fi
           git add -A
           git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
             commit -q -m "Review batch ${BATCH} from ${LEADS} (run ${GITHUB_RUN_ID})" || echo "Nothing to commit."
-          git push origin "HEAD:refs/heads/claude/atrium-africa-review-${GITHUB_RUN_ID}"
+          git push origin "HEAD:refs/heads/claude/atrium-africa-review-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"

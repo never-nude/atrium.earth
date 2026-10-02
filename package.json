@@ -16,6 +16,7 @@
     "images:renders": "node ./scripts/render-thumbnails.mjs",
     "images:mark-renders": "node ./scripts/mark-rendered-slugs.mjs",
     "models:preview": ".venv/bin/python ./scripts/generate-previews.py",
+    "models:upload-r2": "node ./scripts/upload-previews-r2.mjs",
     "import:catalog:legacy": "node ./scripts/import-catalog.mjs",
     "ingest": "node ./scripts/ingest-manifests.mjs",
     "ingest:discover": "node ./scripts/discover-sources.mjs",
@@ -32,7 +33,8 @@
     "test:display-support": "node ./scripts/test-display-support.mjs",
     "test:quick-look-export": "node ./scripts/test-quick-look-export.mjs",
     "test:quick-look-label": "node ./scripts/test-quick-look-museum-label.mjs",
-    "test:dimensions": "node ./scripts/test-physical-dimensions.mjs"
+    "test:dimensions": "node ./scripts/test-physical-dimensions.mjs",
+    "test:r2-upload": "node ./scripts/test-r2-upload.mjs"
   },
   "devDependencies": {
     "@astrojs/sitemap": "^3.7.2",

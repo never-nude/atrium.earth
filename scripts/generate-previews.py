@@ -273,17 +273,27 @@ def main():
         if work["slug"] not in selected_slugs:
             selected_slugs.append(work["slug"])
 
+    written = []
     for slug in selected_slugs:
         work = catalog_by_slug[slug]
         try:
             output = export_preview(work, args.source, repo_root, args.target_faces, args.optimize_source_glb)
+            written.append(slug)
             print(f"{slug}: {output.relative_to(repo_root)}")
         except Exception as error:
             print(f"{slug}: skipped ({error})")
 
-    manifest = collect_manifest(repo_root, catalog_by_slug)
-    (repo_root / "src/data/previews.json").write_text(json.dumps(manifest, indent=2) + "\n")
-    print(f"Wrote {len(manifest)} preview records")
+    # Update only the previews written by this run. Rebuilding the whole file from
+    # local files would drop every R2-hosted preview whose mirror is not on disk
+    # (all of them on a fresh CI checkout).
+    previews_path = repo_root / "src/data/previews.json"
+    manifest = json.loads(previews_path.read_text()) if previews_path.exists() else {}
+    local = collect_manifest(repo_root, catalog_by_slug)
+    for slug in written:
+        if slug in local:
+            manifest[slug] = local[slug]
+    previews_path.write_text(json.dumps(manifest, indent=2) + "\n")
+    print(f"Updated {len(written)} of {len(manifest)} preview records")
 
 
 if __name__ == "__main__":
