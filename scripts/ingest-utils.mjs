@@ -120,7 +120,10 @@ export function collectionFor(candidate) {
 }
 
 export function periodFor(yearSort) {
+  // An unknown date has no period; Number(null) would otherwise read as year 0.
+  if (yearSort === null || yearSort === undefined || yearSort === '') return '';
   const year = Number(yearSort);
+  if (!Number.isFinite(year)) return '';
   if (Number.isFinite(year) && year < 500) return 'Ancient';
   if (Number.isFinite(year) && year < 1700) return 'Renaissance';
   if (Number.isFinite(year) && year < 1900) return 'Early modern';

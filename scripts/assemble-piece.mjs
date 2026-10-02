@@ -36,6 +36,7 @@ const newSlugsPath = path.resolve(repoRoot, args['new-slugs'] || path.join(stage
 const sourceArchive = path.resolve(repoRoot, args['source-archive'] || process.env.SOURCE_ATRIUM_DIR || path.join(stageDir, 'source-archive'));
 const targetFaces = Number(args['target-faces'] || process.env.ATRIUM_PREVIEW_TARGET_FACES || 400000);
 const skipAssets = Boolean(args['skip-assets']);
+const optimizeSourceGlb = Boolean(args['optimize-source-glb']) || process.env.ATRIUM_OPTIMIZE_SOURCE_GLB === '1';
 const dryRun = Boolean(args['dry-run']);
 const maxAlternateBytes = Number(args['max-alternate-bytes'] || process.env.ATRIUM_MAX_ALTERNATE_BYTES || 700_000_000);
 const wingIds = new Set(['near-east', 'greece-rome', 'europe', 'asia', 'africa', 'americas-oceania']);
@@ -189,6 +190,7 @@ async function generateAssets(slugs) {
     String(targetFaces),
     '--limit',
     String(slugs.length),
+    ...(optimizeSourceGlb ? ['--optimize-source-glb'] : []),
     ...slugs.flatMap((slug) => ['--slug', slug]),
   ], { env });
   await run('node', ['scripts/generate-posters.mjs']);

@@ -314,3 +314,52 @@ Acquisition commit `40ce531` is deployment-verified. [GitHub Pages run 369960069
 
 - `modern/undine-sb3d` returns to the public catalog at the editor’s direction. The hold flags are removed; the identity review file records the decision and keeps its age finding unchanged.
 - The work is kept off the Newest Additions rail and the batch archive by a new catalog flag, `exclude_from_additions`, honored in `src/lib/addition-batches.mjs` and covered by `test:additions`. Its preserved dimension review is restored to `physical-dimensions.json`. The Bodies in Motion placement is not restored.
+
+## 2026-10-02 — Cloudflare R2 uploads in CI; African leads acquisition run
+
+- Task/owner: Claude Code cloud session on branch `claude/atrium-pieces-deploy-4nay07` (base `dba1fae`), at the user's request to fetch as many spectacular African pieces as possible and to wire in Cloudflare. This container cannot reach Sketchfab, museum hosts, Cloudflare or atrium.earth, so fetching runs on GitHub's runners.
+- Added `scripts/upload-previews-r2.mjs` (`npm run models:upload-r2`) with a dependency-free SigV4 signer (`scripts/r2-sigv4.mjs`). It uploads previews to the `atrium-models` bucket as `models/previews/<slug>/preview-<sha256:12>.glb`, re-downloads the public copy from models.atrium.earth and compares SHA-256 before updating `previews.json`. It refuses to move a preview that dimension or spatial-eligibility records are bound to. `npm run test:r2-upload` checks four AWS reference signatures and runs a mock end-to-end upload.
+- Added `.github/workflows/acquire-leads.yml`. It fetches a saved candidate file (default `docs/ingest/african-art-20261002-leads.json`, 175 Sketchfab leads), assembles optimized (Draco/WebP) previews, uploads them to R2, renders thumbnails and pushes to `claude/atrium-africa-review-<run>-<attempt>`. It never touches `main`. `ingest.yml` uploads too when all four R2 secrets exist. Its Chromium path lookup is fixed: since late August every scheduled run had failed at thumbnails.
+- Fixed a data-loss bug: `generate-previews.py` rebuilt `previews.json` from local files only. On a fresh checkout that dropped all 1,091 R2 entries (reproduced: 1,581 → 490). It now updates only the previews it wrote. `assemble-piece.mjs` accepts `--optimize-source-glb`.
+- Repository secrets set by the owner: `SKETCHFAB_TOKEN`, `R2_ACCOUNT_ID`, `R2_BUCKET` (`atrium-models`), `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`. No values are recorded here.
+- Validation: `test:r2-upload` passes; `generate-previews.py` preserves all 1,581 records on this checkout; workflow YAML parses. An independent adversarial review confirmed the issues fixed above. The workflow run itself is not yet verified.
+- Next: when the run finishes, curate its review branch. Keep only strong works, drop the rest from catalog/previews/renders, add orientation and dimension reviews and exhibition placements, then publish through a PR to `main`. Previews of works that are not kept stay in R2 as unreferenced objects.
+
+### First acquisition run (37017612692) and continuation
+
+- Run [37017612692](https://github.com/never-nude/atrium.earth/actions/runs/37017612692) fetched 29 of 175 leads. The other 146 returned Sketchfab HTTP 429 (rate limit; the fetcher sent requests back to back). All 29 previews were uploaded to R2 and verified against the public copy (`r2-upload.json`: 29 uploaded, 0 failed). The catalog went from 1,581 to 1,610 records, with no existing record changed except `total`; all 1,581 earlier `previews.json` entries were preserved. Rendering stopped after 10 thumbnails when one model (`ci-wara-headdress-gdh`) timed out under SwiftShader.
+- These 29 records, 10 thumbnails, 29 posters and the run report (`docs/ingest/african-art-20261002-b-run-37017612692/`) are staged on this branch. They are not yet curated; nothing is published until PR #75 merges.
+- Fixes for the continuation run:
+  - `fetch-source.mjs` skips already-catalogued leads, spaces out Sketchfab API calls, honours `Retry-After` on 429, and caps total waiting per run.
+  - `render-thumbnails.mjs` takes `RENDER_TIMEOUT_MS` and continues past a failed model.
+  - New `models:mirror-r2` pulls R2 previews back down so missing batch thumbnails can be rendered.
+  - The workflow renders every batch work without a thumbnail and commits only this batch's posters. The poster generator otherwise rewrote 1,317 unrelated posters.
+  - Validation: the mock tests cover the 429 retry, the give-up path, the mirror round-trip and the hash mismatch; the workflow shell logic was simulated against run-1 data (19 to render, 10 present, 29 posters kept).
+
+### Continuation run (37019814481) and first curation pass
+
+- Run [37019814481](https://github.com/never-nude/atrium.earth/actions/runs/37019814481) fetched 125 more leads and accepted 124. All 124 previews uploaded to R2 with no failures, and all 153 batch works rendered thumbnails. 20 leads were still rate-limited (the run's wait budget ran out); later runs retry them.
+- Curation of all 153 thumbnails and source records withheld 24 works. Each is listed with its reason in `docs/ingest/african-art-20261002-b-rejected.json`:
+  - non-African: a Papua New Guinea yam mask and neck rest, a Manolo Hugué terracotta, a sculpture-park hippo
+  - scale bars or label boards baked into the scan: 7 Szczecin works
+  - unidentified fragments or accession-only titles
+  - vessels and souvenirs
+  - duplicate scans
+- Their R2 previews stay as unreferenced objects. The workflow now drops rejected leads before fetching.
+- 129 works remain staged; the catalog has 1,710 records, and existing records are unchanged apart from `total`. 47 need an orientation decision (`docs/ingest/african-art-20261002-b-orientation-requests.txt`), mostly masks rendered from behind and works lying on their side. `render-orientation-variants.mjs` renders each one in 10 candidate orientations for review; it was tested locally with SwiftShader WebGL, which does work in the cloud sandbox.
+- Still to do before publishing: apply orientations and re-render; clean up metadata (several `year` values are scan or acquisition years, some materials are wrong); add dimension, spatial, display and appearance entries; add the Newest Additions batch record; run the tests.
+
+### First publication: 80 works live, 47 held for orientation
+
+- At the owner's request, the 80 works whose orientation was already right are published first. The other 47 are in the catalog with `hidden: true`, listed in `docs/ingest/african-art-20261002-b-orientation-requests.txt`. Their dimension and spatial-eligibility records are parked in `docs/ingest/african-art-20261002-b-held.json`, because the dimension test rejects records for hidden works.
+- Newest Additions now shows the whole latest batch when it exceeds 24 works (`buildNewestWorks`, covered by `test:additions`). All 127 works share one `ingested_at` (the batch's first import time). The catalog order leads with the Chokwe throne, the head of Oba Osemwende, the Baga serpent headdress and the Songye nkishi.
+- `docs/ingest/african-art-20261002-b.json` records provenance for all 127: source and preview SHA-256 hashes, R2 URLs, licences, dimension status and publication state. It also lists the 26 withheld works and the 21 leads still rate-limited.
+- Validation on this tree:
+  - `test:additions`, `test:wings` (1,625 filed / 21 documented unknown origins), `verify:assets`, `test:display-support`, `test:model-normalization`, `test:r2-upload` and `test:museum-labels` all pass.
+  - The production build passes; all 80 work pages are built and the held pages are not.
+  - `test:dimensions` and `test:spatial-eligibility` stop at the same first assertions as on `main` (`americas/lewitt-cubic-modular-wall-structure`; "Every public work has an explicit decision"). Their rules were checked directly against the 80 new works, which pass.
+- Local rendering works in the cloud sandbox but is slow (~1 minute per render with SwiftShader). Review renders run on GitHub runners instead, through the temporary workflows kept off `main`: `mirror-previews.yml`, `orientation-sheets.yml` and `rerender-thumbnails.yml`.
+- Next:
+  1. Choose orientations from the review sheets.
+  2. Re-render the 47 thumbnails and regenerate their posters (posters embed the thumbnail).
+  3. Restore their parked records, un-hide them, and publish them in a follow-up PR.

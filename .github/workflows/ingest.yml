@@ -48,7 +48,9 @@ jobs:
         id: playwright
         run: |
           npx playwright install --with-deps chromium
-          echo "chrome-path=$(node -e 'console.log(require(\"playwright\").chromium.executablePath())')" >> "$GITHUB_OUTPUT"
+          CHROME_PATH="$(node -e 'console.log(require("playwright").chromium.executablePath())')"
+          test -x "$CHROME_PATH" || { echo "Playwright Chromium not found at '$CHROME_PATH'"; exit 1; }
+          echo "chrome-path=$CHROME_PATH" >> "$GITHUB_OUTPUT"
 
       - name: Install Python dependencies
         run: |
@@ -86,6 +88,34 @@ jobs:
         env:
           CHROME_BIN: ${{ steps.playwright.outputs.chrome-path }}
           CHROME_EXTRA_ARGS: '--no-sandbox --enable-unsafe-swiftshader --use-angle=swiftshader'
+
+      - name: Upload previews to Cloudflare R2
+        run: |
+          if [ ! -s .atrium-ingest/new-slugs.txt ]; then
+            echo "No accepted new slugs to upload."
+            exit 0
+          fi
+          set_count=0
+          for name in R2_ACCOUNT_ID R2_ACCESS_KEY_ID R2_SECRET_ACCESS_KEY R2_BUCKET; do
+            if [ -n "${!name}" ]; then set_count=$((set_count + 1)); fi
+          done
+          if [ "$set_count" -eq 0 ]; then
+            echo "R2 secrets not configured; committing local previews for the draft PR."
+            while read -r slug; do
+              if [ -n "$slug" ] && [ -f "public/models/previews/$slug/preview.glb" ]; then git add -f "public/models/previews/$slug"; fi
+            done < .atrium-ingest/new-slugs.txt
+            exit 0
+          fi
+          if [ "$set_count" -lt 4 ]; then
+            echo "::error::Only $set_count of the 4 R2 secrets are set."
+            exit 1
+          fi
+          npm run models:upload-r2 -- --input=.atrium-ingest/new-slugs.txt --report=.atrium-ingest/r2-upload.json
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
 
       - name: Detect changes
         id: changes

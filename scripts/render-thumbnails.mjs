@@ -11,9 +11,13 @@ import appearanceOverrides from '../src/data/appearance-overrides.json' with { t
 
 const root = resolve('.');
 const modelRoot = join(root, 'public/models/previews');
-const outRoot = join(root, 'public/previews/renders');
+const outRoot = process.env.RENDER_OUT_DIR ? resolve(process.env.RENDER_OUT_DIR) : join(root, 'public/previews/renders');
+// Optional {slug: transform} file used by the orientation-variant review renders.
+const transformOverrides = process.env.RENDER_TRANSFORMS_JSON
+  ? JSON.parse(readFileSync(process.env.RENDER_TRANSFORMS_JSON, 'utf8'))
+  : {};
 const chrome = process.env.CHROME_BIN || '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
-const serverPort = 8099;
+const serverPort = Number(process.env.RENDER_PORT || 8099);
 const width = 1000;
 const height = 1250;
 const recordsBySlug = new Map(catalog.map((record) => [record.slug, record]));
@@ -263,7 +267,7 @@ async function createCdpClient(wsUrl) {
 }
 
 async function waitForRender(page, slug) {
-  const deadline = Date.now() + 20000;
+  const deadline = Date.now() + Number(process.env.RENDER_TIMEOUT_MS || 20000);
   while (Date.now() < deadline) {
     const { result } = await page.send('Runtime.evaluate', {
       expression: "document.body?.dataset.renderReady === 'true' ? 'ready' : (document.body?.dataset.renderError || '')",
@@ -277,7 +281,7 @@ async function waitForRender(page, slug) {
 }
 
 async function render(page, slug, index, total) {
-  const transform = orientations[slug] || 'auto';
+  const transform = transformOverrides[slug] || orientations[slug] || 'auto';
   const legacyUp = typeof transform === 'string' ? transform : transform.upAxis || transform.axis || 'auto';
   const transformParam = typeof transform === 'string' ? transform : JSON.stringify(transform);
   const appearance = JSON.stringify(appearanceForSlug(slug));
@@ -327,7 +331,20 @@ try {
     mobile: false,
   });
 
-  for (let i = 0; i < slugs.length; i += 1) await render(page, slugs[i], i, slugs.length);
+  // One slow or broken model should not stop the rest of the batch.
+  const failed = [];
+  for (let i = 0; i < slugs.length; i += 1) {
+    try {
+      await render(page, slugs[i], i, slugs.length);
+    } catch (error) {
+      failed.push(slugs[i]);
+      console.error(`[${i + 1}/${slugs.length}] ${slugs[i]} FAILED: ${error.message}`);
+    }
+  }
+  if (failed.length) {
+    console.error(`${failed.length} of ${slugs.length} renders failed: ${failed.join(', ')}`);
+    process.exitCode = 1;
+  }
 } finally {
   if (page) page.close();
   if (browser) {
