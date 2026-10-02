@@ -259,7 +259,8 @@ export async function fileSize(file) {
 }
 
 export async function downloadFile(url, dest, options = {}) {
-  const headers = options.headers || {};
+  // Some hosts (Zenodo) refuse requests without a User-Agent, so always send one.
+  const headers = { 'user-agent': 'atrium-ingest/1.0 (+https://atrium.earth)', ...(options.headers || {}) };
   const response = await fetch(url, { headers, redirect: 'follow' });
   if (!response.ok) throw new Error(`download failed ${response.status} ${response.statusText} for ${url}`);
   await mkdir(path.dirname(dest), { recursive: true });
