@@ -48,7 +48,9 @@ jobs:
         id: playwright
         run: |
           npx playwright install --with-deps chromium
-          echo "chrome-path=$(node -e 'console.log(require(\"playwright\").chromium.executablePath())')" >> "$GITHUB_OUTPUT"
+          CHROME_PATH="$(node -e 'console.log(require("playwright").chromium.executablePath())')"
+          test -x "$CHROME_PATH" || { echo "Playwright Chromium not found at '$CHROME_PATH'"; exit 1; }
+          echo "chrome-path=$CHROME_PATH" >> "$GITHUB_OUTPUT"
 
       - name: Install Python dependencies
         run: |
