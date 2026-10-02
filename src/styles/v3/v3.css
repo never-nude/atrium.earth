@@ -94,7 +94,7 @@ em, i { font-style: normal; }
 .v3-hero__veil { position: absolute; z-index: 5; inset: 0; background: linear-gradient(90deg, rgba(7,10,16,.88) 0%, rgba(7,10,16,.5) 30%, transparent 55%), linear-gradient(0deg, rgba(7,10,16,.72), transparent 38%); pointer-events: none; }
 .v3-hero__copy { position: absolute; z-index: 8; left: var(--v3-pad); bottom: clamp(90px, 12vh, 150px); width: min(600px, calc(100% - var(--v3-pad) * 2)); }
 .v3-hero__copy h1 { max-width: 10ch; margin: 20px 0 22px; font-size: clamp(3.6rem, 6.4vw, 7.2rem); }
-.v3-hero__copy > p:last-of-type { max-width: 480px; margin: 0; color: rgba(244,242,236,.72); font-size: clamp(.95rem, 1.2vw, 1.1rem); }
+.v3-hero__lede { max-width: 480px; margin: 0; color: rgba(244,242,236,.72); font-size: clamp(.95rem, 1.2vw, 1.1rem); }
 .v3-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
 .v3-button { display: inline-flex; align-items: center; justify-content: space-between; gap: 26px; min-height: 50px; padding: 0 20px; border: 1px solid rgba(255,255,255,.32); border-radius: 999px; font-size: .7rem; font-weight: 600; letter-spacing: .09em; text-decoration: none; text-transform: uppercase; transition: background .2s, color .2s, border-color .2s; }
 .v3-button--light { color: var(--v3-void); background: var(--v3-signal); border-color: var(--v3-signal); }
