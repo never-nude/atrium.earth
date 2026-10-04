@@ -1,0 +1,53 @@
+name: Discover themed leads (temporary review aid)
+
+# Searches Sketchfab and Smithsonian 3D for the terms in a pushed request file
+# (docs/ingest/<batch>-discover.json) and pushes every on-theme, openly licensed
+# hit with a reference thumbnail to an orphan branch for curation. Nothing is
+# fetched or added to the catalog. Temporary: remove before merging to main.
+
+on:
+  push:
+    paths:
+      - docs/ingest/*-discover.json
+
+permissions:
+  contents: write
+
+concurrency:
+  group: discover-leads
+  cancel-in-progress: false
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Discover
+        run: |
+          for request in docs/ingest/*-discover.json; do
+            batch="$(basename "$request" -discover.json)"
+            node scripts/discover-theme-leads.mjs --request="$request" --out="discovery/$batch"
+          done
+        env:
+          SKETCHFAB_TOKEN: ${{ secrets.SKETCHFAB_TOKEN }}
+
+      - name: Push discovery branch
+        if: always()
+        run: |
+          for dir in discovery/*/; do
+            batch="$(basename "$dir")"
+            git switch -q --orphan "discovery-$batch"
+            git rm -rq --cached . >/dev/null 2>&1 || true
+            git add -f "$dir"
+            git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+              commit -q -m "Discovery hits for $batch (run ${GITHUB_RUN_ID})"
+            git push -f origin "HEAD:refs/heads/claude/atrium-discovery-$batch"
+          done
