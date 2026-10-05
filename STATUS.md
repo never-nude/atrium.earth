@@ -449,3 +449,11 @@ Commit `271667d8` is deployment-verified. [GitHub Pages run 37051507318](https:/
 
 - The owner reported `roman/discus-bearer-glyptotek` (Discus Bearer, Ny Carlsberg Glyptotek) as broken and asked for it to be hidden. Following the Turrell withdrawal pattern, it is marked `hidden` in the catalog and its public physical-dimension and spatial-eligibility entries are removed. Source metadata, preview, thumbnail and orientation records are retained for a later repair.
 - Additions, wings, asset and display-support checks and the production build passed; the generated site has no Discus Bearer page or reference.
+
+## 2026-10-05 — Jewish and Islamic art expansion
+
+- Task/owner: this Codex session on `codex/judeo-islamic-20261005`, starting from production commit `30b622e66418ac2193612f4b0a1529134b9b4e0b`.
+- Prepared: 41 reviewed 3D additions: 21 works of Jewish ritual, communal and architectural heritage and 20 works from Islamic societies. The selection spans Poland, Belarus, England, Spain, Iran, Iraq, Armenia, Egypt, Algeria, Tanzania, Bangladesh and several objects whose production place remains explicitly unfiled. Nine candidates were rejected after four-angle review for missing textures, incomplete/noisy geometry or an illegible subject.
+- Preservation and routing: all 1,697 existing catalog records and settings are retained. The resulting catalog has 1,738 records. New works route by production origin; four objects with unverified production places include reviewed Unfiled explanations. Newest Additions remains neutral and contains exactly the rolling 24 latest public works.
+- Validation: source and optimized GLBs were checked as self-contained files; all 41 optimized works passed four-angle review and received 900×1125 thumbnails. Addition grouping, exact rolling-24 behavior, wing routing, catalog assets, whitespace, 5,166 museum-label layouts and the 4,596-page production build pass. The models have not yet been deployed or live-verified.
+- Next: fetch `origin/main` again, reconcile any concurrent commits, commit and publish the exact validated tree without force-updating, wait for GitHub Pages, then verify all 41 pages and model/thumbnail assets in production.
