@@ -5,7 +5,7 @@ This review batch contains 60 downloadable three-dimensional works:
 - 24 Buddhist works spanning Gandhara, India, Tibet, Nepal, Thailand, China, Korea, Japan, Myanmar and European porcelain reception;
 - 12 Hindu works from India, Nepal, Cambodia, Thailand and Indonesia;
 - 6 Sikh subjects, including one museum-display scan and five contemporary digital interpretations identified as such;
-- 18 Jain, Shinto, Celtic, Norse, Slavic, Daoist, Indigenous American, ancient Greek and Graeco-Egyptian works.
+- 18 works from Jain, Shinto, Celtic, Norse, Slavic, Daoist, Indigenous American, ancient Greek and Graeco-Egyptian traditions.
 
 The selection is recorded in `religious-art-20261005-selection.json`; acquisition-ready metadata is in `religious-art-20261005-leads.json`. Every model was reported as downloadable under CC0, CC BY or CC BY-SA on 2026-10-05 and was screened against the current catalog by UID, source, accession, title and object identity. The acquisition workflow must resolve fresh signed download URLs; saved pre-signed links are not used.
 
