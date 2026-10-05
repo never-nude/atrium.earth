@@ -464,3 +464,7 @@ Commit `271667d8` is deployment-verified. [GitHub Pages run 37051507318](https:/
 - Behavior: `/newest/` now shows at least the 40 most recent eligible public works. If the latest batch has more than 40 public members, or a continuation makes older members part of that latest batch, all eligible members of that batch are included. Hidden and `exclude_from_additions` works remain excluded. The homepage continues to use the first four works in the same ordered set.
 - Validation: focused tests cover the 40-work floor, a 45-work latest batch, a small latest batch padded from earlier work, exclusions, and a continued batch whose earlier members fall beyond the first 40. Addition grouping, wing routing, asset verification and whitespace checks pass. The production build generated 4,596 pages; its neutral `/newest/` contains all 41 works from `judeo-islamic-art-20261005` and does not expose that internal batch theme.
 - Next: publish and live-verify this behavior, then resume the paused Sikh, Hindu, Buddhist, Celtic and other religious-art acquisition.
+
+### Production confirmation — complete latest batch
+
+Commit `1afb322` is deployment-verified. [GitHub Pages run 37334355346](https://github.com/never-nude/atrium.earth/actions/runs/37334355346) completed successfully. Live `/newest/` returns 200 and contains all 41 works in the current batch in the exact expected order, with neutral copy and no internal batch-theme text. The acquisition research may now resume.
