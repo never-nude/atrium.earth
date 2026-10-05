@@ -11,4 +11,6 @@ The selection is recorded in `religious-art-20261005-selection.json`; acquisitio
 
 The selection excludes active worship-site scans, human remains and funerary contents, noncommercial or unclear licenses, non-downloadable models, AI-ambiguous assets, weak generic stock models, repeated fragments, and same-object duplicates found under different scans. Museum casts, reconstructions, born-digital works, uncertain identifications and incomplete capture are stated in their records rather than presented as original artifacts.
 
+The Komagata Maru model is a publication hold: its identity and museum collaboration are documented, but public evidence does not fully clear rights in the contemporary physical replica, and its current status after museum fire and water damage is unconfirmed. It will not be published with this batch.
+
 Publication requires successful source acquisition, geometry and texture checks from multiple angles, orientation review, rendered thumbnails, metadata correction against linked primary records, source attribution, asset verification, production build, and live page/model/thumbnail checks. A successful acquisition workflow alone is not publication approval.
