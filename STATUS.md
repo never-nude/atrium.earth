@@ -486,3 +486,9 @@ Commit `1afb322` is deployment-verified. [GitHub Pages run 37334355346](https://
 - Newest Additions contains the complete 35-work batch plus five earlier works, preserving the 40-work floor without exposing the internal acquisition theme in its copy.
 - Validation passes: additions grouping/newest behavior, wing routing, asset verification, display support, model normalization, R2 upload tests, whitespace checks, 5,271 museum-label layouts and the 4,713-page production build.
 - Publication status: reviewed locally and ready to deploy; live verification remains pending.
+
+### Production confirmation — broader religious-art batch
+
+- Commit `741b6e3` was pushed to `main`. [GitHub Pages run 37351877863](https://github.com/never-nude/atrium.earth/actions/runs/37351877863) completed successfully.
+- Live verification on 2026-10-05 confirmed all 35 work pages return 200 with their expected titles, all 35 thumbnails byte-match the reviewed local files, and all 35 R2 preview models byte-match the mirrored reviewed files.
+- `/newest/` returns 200 with exactly 40 unique work links, contains the complete 35-work batch, and does not expose the internal batch theme. The held Komagata Maru display-model URL returns 404.
