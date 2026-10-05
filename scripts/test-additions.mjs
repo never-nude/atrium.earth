@@ -44,9 +44,9 @@ const dated = [
 ];
 assert.deepEqual(buildNewestWorks(dated, visible).map(work => work.slug), ['c', 'b', 'a', 'd', 'e']);
 
-// Public, unique works fill all 24 positions, with catalog index breaking equal-date ties.
-const many = Array.from({ length: 30 }, (_, i) => ({
-  slug: `work-${i + 1}`, index: i + 1, ingested: '2026-09-20', ingest_batch: `batch-${i % 3}`,
+// Public, unique works fill all 40 positions, with catalog index breaking equal-date ties.
+const many = Array.from({ length: 50 }, (_, i) => ({
+  slug: `work-${i + 1}`, index: i + 1, ingested: '2026-09-20', ingest_batch: `batch-${i + 1}`,
 })).reverse();
 const manyPublic = [...many.map(({ slug }) => ({ slug })), { slug: 'hidden' }];
 many.push(
@@ -55,24 +55,36 @@ many.push(
   { ...many[0] },
 );
 assert.deepEqual(buildNewestWorks(many, manyPublic).map(work => work.slug),
-  Array.from({ length: 24 }, (_, i) => `work-${30 - i}`));
+  Array.from({ length: 40 }, (_, i) => `work-${50 - i}`));
 assert.deepEqual(buildNewestWorks([], visible), []);
 
-// Exactly the newest 24: a latest batch larger than 24 is cut to its 24 newest works.
+// The newest rail has a 40-work floor and keeps every public member of the latest batch.
 const batchOf = (name, count, day, offset = 0) => Array.from({ length: count }, (_, i) => ({
   slug: `${name}-${i + 1}`, index: offset + i + 1, ingest_batch: name, ingested_at: `${day}T12:00:00.000Z`,
 }));
-const bigLatest = [...batchOf('older', 10, '2026-09-30'), ...batchOf('big', 30, '2026-10-02', 10)];
+const bigLatest = [...batchOf('older', 10, '2026-09-30'), ...batchOf('big', 45, '2026-10-02', 10)];
 const bigPublic = bigLatest.map(({ slug }) => ({ slug }));
 assert.deepEqual(buildNewestWorks(bigLatest, bigPublic).map(work => work.slug),
-  Array.from({ length: 24 }, (_, i) => `big-${30 - i}`));
+  Array.from({ length: 45 }, (_, i) => `big-${45 - i}`));
 const smallLatest = [...batchOf('huge', 40, '2026-09-30'), ...batchOf('small', 3, '2026-10-02', 40)];
 const smallPublic = smallLatest.map(({ slug }) => ({ slug }));
 const smallNewest = buildNewestWorks(smallLatest, smallPublic).map(work => work.slug);
-assert.equal(smallNewest.length, 24);
+assert.equal(smallNewest.length, 40);
 assert.deepEqual(smallNewest.slice(0, 4), ['small-3', 'small-2', 'small-1', 'huge-40']);
-// Hidden or excluded members are skipped, and the page still fills all 24 positions.
-const hiddenMembers = batchOf('big', 30, '2026-10-02').map((record, i) => (i < 10 ? { ...record, exclude_from_additions: true } : record));
+// Hidden or excluded members are skipped, and the page still fills all 40 positions.
+const hiddenMembers = batchOf('big', 50, '2026-10-02').map((record, i) => (i < 10 ? { ...record, exclude_from_additions: true } : record));
 assert.equal(buildNewestWorks([...batchOf('older', 30, '2026-09-30', 100), ...hiddenMembers],
-  [...batchOf('older', 30, '2026-09-30', 100), ...hiddenMembers].map(({ slug }) => ({ slug }))).length, 24);
-console.log('Newest works: cross-batch continuations, timestamps, date fallback, catalog tie-breaks, exclusions, uniqueness, exactly 24 works passed.');
+  [...batchOf('older', 30, '2026-09-30', 100), ...hiddenMembers].map(({ slug }) => ({ slug }))).length, 40);
+
+// A continuation promotes its whole latest batch, including earlier members beyond the floor.
+const continuedBatch = [
+  ...batchOf('continued', 45, '2026-09-01'),
+  ...batchOf('intervening', 40, '2026-09-30', 45),
+  { slug: 'continued-new', index: 86, ingest_batch: 'continued', ingested_at: '2026-10-02T12:00:00.000Z' },
+];
+const continuedPublic = continuedBatch.map(({ slug }) => ({ slug }));
+const continuedNewest = buildNewestWorks(continuedBatch, continuedPublic).map((work) => work.slug);
+assert.equal(continuedNewest.length, 85);
+assert(continuedNewest.includes('continued-1'));
+assert(continuedNewest.includes('continued-new'));
+console.log('Newest works: cross-batch continuations, timestamps, date fallback, catalog tie-breaks, exclusions, uniqueness, 40-work floor and complete latest batches passed.');

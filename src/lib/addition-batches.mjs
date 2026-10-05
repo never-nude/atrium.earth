@@ -1,9 +1,10 @@
-export const NEWEST_COUNT = 24;
+export const NEWEST_COUNT = 40;
 
 /**
  * Newest public imports, independent of their batch's original publication date.
- * Always the NEWEST_COUNT most recent works (fewer only when the catalog has
- * fewer), however large the latest batch is.
+ * Show at least NEWEST_COUNT works (fewer only when the catalog has fewer) and
+ * always include every public member of the latest batch. This lets a new batch
+ * remain intact even when it contains more than the usual display count.
  */
 export function buildNewestWorks(records, publicWorks) {
   const published = new Map(publicWorks.map((work) => [work.slug, work]));
@@ -31,7 +32,10 @@ export function buildNewestWorks(records, publicWorks) {
     seen.add(work.slug);
     return true;
   });
-  return unique.slice(0, NEWEST_COUNT).map(({ work }) => work);
+  const latestBatch = unique[0]?.batch;
+  return unique
+    .filter((entry, index) => index < NEWEST_COUNT || (latestBatch && entry.batch === latestBatch))
+    .map(({ work }) => work);
 }
 
 /** Group only published works. Membership lives in the catalog, never in a second list. */
