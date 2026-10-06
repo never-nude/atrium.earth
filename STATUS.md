@@ -561,3 +561,12 @@ Commit `1afb322` is deployment-verified. [GitHub Pages run 37334355346](https://
 - Validation performed: Chunk 1 fetched/assembled/R2/render stages succeeded; 150 candidates across Chunks 1–3 have unique slugs and source UIDs; Chunk 2/3 are valid JSON with 50 records apiece. Chunk 1 has not yet passed final orientation/contact-sheet/metadata review. Chunks 2–4 have not been acquired. Nothing from this religious-art batch is on `main` or live.
 - Next step: finish Chunk 1 orientation and curation, then acquire Chunks 2–4 sequentially using the cumulative review branch, review the entire logical batch, run the full test/build/live-verification sequence, and publish under the user's standing authorization.
 - Full operational handoff: `docs/handoffs/claude-code-religious-art-20261006.md`.
+
+### Progress — Chunk 1 orientation review (Claude Code, paused 2026-10-06)
+
+- Chunk 1 now has 39 works after removing the duplicate Assyrian genius, the cylinder seal and the Oświęcim stamp (`6735f145`). The Tanit maker reads "probably Sicilian", which the museum source supports.
+- 15 of 24 round-2 orientations are reviewed and committed (`fc1a7acd`). Six auto-posed works were found misoriented and sent for ten-view sheets in run 37547775157.
+- Orientation run 37545902463 lost shards 3 and 6 to a 180-second render timeout, so its sheet branch was not published. Nine works still await sheets.
+- No thumbnails have been rerendered with the new orientations yet. Nothing from this batch is on `main` or live.
+- Resume instructions: `docs/handoffs/codex-religious-art-20261006-resume.md`.
+
