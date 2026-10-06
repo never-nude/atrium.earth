@@ -1,6 +1,6 @@
 import { createHash } from 'node:crypto';
 import { createReadStream, createWriteStream, existsSync } from 'node:fs';
-import { mkdir, readFile, rename, rm, stat, writeFile } from 'node:fs/promises';
+import { appendFile, mkdir, readFile, rename, rm, stat, writeFile } from 'node:fs/promises';
 import { spawn } from 'node:child_process';
 import path from 'node:path';
 
@@ -267,9 +267,69 @@ async function sha256File(file) {
   return hash.digest('hex');
 }
 
-async function downloadFileWithCurl(url, dest, headers) {
+async function downloadFixedRange({ url, output, headers, start, end }) {
+  const expectedBytes = end - start + 1;
+  const attempts = Number(process.env.ATRIUM_CURL_RANGE_ATTEMPTS || 6);
+  let lastError;
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    await rm(output, { force: true });
+    const args = [
+      '--location',
+      '--fail',
+      '--silent',
+      '--show-error',
+      '--connect-timeout', '30',
+      '--max-time', '300',
+      '--speed-time', '60',
+      '--speed-limit', '1024',
+      '--range', `${start}-${end}`,
+      '--output', output,
+    ];
+    for (const [name, value] of Object.entries(headers)) args.push('--header', `${name}: ${value}`);
+    args.push(url);
+    try {
+      await run('curl', args, { timeoutMs: 6 * 60 * 1000 });
+      const bytes = await fileSize(output);
+      if (bytes !== expectedBytes) throw new Error(`range ${start}-${end} returned ${bytes} bytes, expected ${expectedBytes}`);
+      return;
+    } catch (error) {
+      lastError = error;
+      if (attempt >= attempts) break;
+      const waitMs = Math.min(5000, attempt * 1000);
+      console.warn(`  range ${start}-${end} attempt ${attempt}/${attempts} failed (${error.message}); retrying in ${waitMs / 1000}s`);
+      await new Promise((resolve) => setTimeout(resolve, waitMs));
+    }
+  }
+  throw lastError || new Error(`range ${start}-${end} failed for ${url}`);
+}
+
+async function downloadFileWithCurl(url, dest, headers, options = {}) {
   const tmp = `${dest}.tmp`;
   await mkdir(path.dirname(dest), { recursive: true });
+  const expectedBytes = Number(options.expectedBytes || 0);
+  if (expectedBytes > 0) {
+    const chunkBytes = Number(process.env.ATRIUM_CURL_RANGE_BYTES || 4 * 1024 * 1024);
+    if (!Number.isSafeInteger(chunkBytes) || chunkBytes <= 0) throw new Error(`Invalid ATRIUM_CURL_RANGE_BYTES: ${chunkBytes}`);
+    let offset = await fileSize(tmp);
+    if (offset > expectedBytes) {
+      await rm(tmp, { force: true });
+      offset = 0;
+    }
+    while (offset < expectedBytes) {
+      const end = Math.min(expectedBytes - 1, offset + chunkBytes - 1);
+      const part = `${tmp}.range-${offset}-${end}`;
+      await downloadFixedRange({ url, output: part, headers, start: offset, end });
+      await appendFile(tmp, await readFile(part));
+      await rm(part, { force: true });
+      offset = await fileSize(tmp);
+      if (offset !== end + 1) throw new Error(`assembled range ended at ${offset}, expected ${end + 1}`);
+      console.log(`  downloaded ${offset}/${expectedBytes} bytes (${Math.floor(offset / expectedBytes * 100)}%)`);
+    }
+    const sha256 = await sha256File(tmp);
+    await rename(tmp, dest);
+    return { bytes: expectedBytes, sha256, contentType: '' };
+  }
+
   const args = [
     '--location',
     '--fail',
@@ -327,7 +387,7 @@ export async function downloadFile(url, dest, options = {}) {
   // GitHub runners. curl can resume those exact byte streams because the host
   // advertises Accept-Ranges, preventing every retry from starting at byte 0.
   if (new URL(url).hostname === 'api.smk.dk' || process.env.ATRIUM_DOWNLOAD_CURL === '1') {
-    return downloadFileWithCurl(url, dest, headers);
+    return downloadFileWithCurl(url, dest, headers, options);
   }
 
   for (let attempt = 1; attempt <= attempts; attempt += 1) {
