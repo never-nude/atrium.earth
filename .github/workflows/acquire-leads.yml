@@ -103,11 +103,15 @@ jobs:
           node -e '
             const fs = require("fs");
             const leads = JSON.parse(fs.readFileSync(process.env.LEADS, "utf8"));
-            const file = `docs/ingest/${process.env.BATCH}-rejected.json`;
-            const rejected = new Set(fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, "utf8")).rejected.map((item) => item.slug) : []);
-            leads.candidates = leads.candidates.filter((candidate) => !rejected.has(candidate.slug));
+            const rejectedFile = `docs/ingest/${process.env.BATCH}-rejected.json`;
+            const holdsFile = `docs/ingest/${process.env.BATCH}-review-holds.json`;
+            const rejectedItems = fs.existsSync(rejectedFile) ? JSON.parse(fs.readFileSync(rejectedFile, "utf8")).rejected || [] : [];
+            const holdItems = fs.existsSync(holdsFile) ? JSON.parse(fs.readFileSync(holdsFile, "utf8")).holds || [] : [];
+            const withheldSlugs = new Set([...rejectedItems, ...holdItems].map((item) => item.slug).filter(Boolean));
+            const withheldUids = new Set([...rejectedItems, ...holdItems].map((item) => item.uid).filter(Boolean));
+            leads.candidates = leads.candidates.filter((candidate) => !withheldSlugs.has(candidate.slug) && !withheldUids.has(candidate.uid));
             fs.writeFileSync(".atrium-ingest/leads.json", JSON.stringify(leads));
-            console.log(`Leads: ${leads.candidates.length} after excluding ${rejected.size} rejected.`);'
+            console.log(`Leads: ${leads.candidates.length} after excluding ${withheldSlugs.size} slug holds and ${withheldUids.size} UID holds.`);'
           npm run ingest:fetch -- --input=.atrium-ingest/leads.json
         env:
           SKETCHFAB_TOKEN: ${{ secrets.SKETCHFAB_TOKEN }}

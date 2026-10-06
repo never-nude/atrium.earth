@@ -138,7 +138,8 @@ that makes the page longer than 40. The homepage previews the first four of thos
 same pieces.
 Neither page displays import titles, themes, or summaries. Older works leave this
 rolling selection as new works arrive but remain in the catalog. Continuing a
-batch promotes only the newly imported works; it does not refresh older members.
+batch keeps the original timestamps but returns the entire continued batch to the
+rolling selection so that the latest acquisition is never split across pages.
 Former batch URLs redirect to `/newest/`.
 
 Optional metadata in `src/data/additions.json` and historical batch identities
