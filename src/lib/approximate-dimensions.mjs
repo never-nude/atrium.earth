@@ -80,9 +80,7 @@ export function parseDimensionText(value, { description = false } = {}) {
 // These are known mismatches, not merely unverified measurements. Applying
 // a whole monument's height to a cropped head would not be a useful estimate.
 const unmatched = {
-  'discobolus': 'The listed dimensions belong to a different figure than the current model.',
   'sphinx': 'The listed dimensions describe the full monument; this model shows only its head.',
-  'michelangelo/moses': 'The listed height describes the complete statue; this model is cropped at the knees.',
   'augustus-of-prima-porta': 'The listed dimensions describe the complete statue; this model is a cropped bust.',
   'marble-capital-sphinx': 'The listed height includes a large capital absent from this model.',
   'spandrel-sections-of-an-arch': 'Individual stone measurements do not establish the size of this eight-stone arrangement.',

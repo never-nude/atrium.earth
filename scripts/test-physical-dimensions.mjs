@@ -48,17 +48,38 @@ for (const [slug, record] of Object.entries(records)) {
   }
 }
 const venus = records['venus-de-milo'];
-assert.equal(physicalDimensionsFor('H 202 cm', venus, previews['venus-de-milo'].url).dimensions, 'H 204 cm');
-assert.equal(venus.basis, 'original');
+assert.equal(physicalDimensionsFor('H 202 cm', venus, previews['venus-de-milo'].url, orientations['venus-de-milo']).dimensions,
+  'H 213.5 cm × W 66.5 cm × D 63 cm');
+assert.equal(venus.basis, 'object');
+assert.equal(venus.spatial.meters, 2.135);
+assert.equal(venus.originalSizeResearch.measures[0].value, 204, 'Preserve the Louvre marble measurement separately');
 assert.equal(records['egyptian/portrait-of-pharaoh-amasis-smk-cast'].status, 'approximate');
 assert.equal(physicalDimensionsFor('Mesh bounds: H 130 source units', records['egyptian/portrait-of-pharaoh-amasis-smk-cast']).spatialReference, null, 'Unlabelled scholarly measurements do not authorize a scale');
-assert.equal(physicalDimensionsFor('H 170 cm', records.discobolus).dimensions, '', 'Never fall back to cast dimensions for an unresolved original');
+const discobolus = records.discobolus;
+assert.equal(physicalDimensionsFor('H 170 cm', discobolus, previews.discobolus.url, orientations.discobolus).dimensions,
+  'H 170 cm × W 115 cm × D 50 cm');
+assert.equal(discobolus.basis, 'object');
+assert.equal(discobolus.spatial.meters, 1.7);
+assert.equal(discobolus.originalSizeResearch.status, 'unresolved', 'Preserve the earlier original-object research separately');
 const crouchingCast = records['greek/crouching-aphrodite-with-eros-smk-cast'];
 assert.equal(crouchingCast.basis, 'object', 'The restored cast is not the ancient fragment');
 assert.equal(crouchingCast.spatial.meters, 1.11, 'The separately reviewed complete cast uses its documented assembly height');
 assert.equal(crouchingCast.originalSizeResearch.basis, 'original', 'Preserve the original-fragment research separately');
 assert.match(crouchingCast.spatialNote, /cast/i, 'Visitors can distinguish the measured cast from the original');
-assert.equal(records['michelangelo/pieta'].spatial.meters, 1.74, 'Use original height when the complete original extent survives in the cast');
+assert.equal(records['michelangelo/david'].spatial.meters, 5.17);
+assert.equal(records['michelangelo/david'].basis, 'original');
+assert.equal(records['michelangelo/pieta'].spatial.meters, 1.76, 'Use the exact measured KAS115 cast height');
+assert.equal(records['michelangelo/pieta'].basis, 'object');
+assert.equal(records['michelangelo/pieta'].originalSizeResearch.measures[0].value, 174, 'Preserve the original Pietà research separately');
+assert.equal(records['michelangelo/moses'].spatial.meters, 2.49, 'Use the exact measured KAS243 cast height');
+assert.equal(records['michelangelo/moses'].basis, 'object');
+assert.equal(records['michelangelo/moses'].originalSizeResearch.measures[0].value, 235, 'Preserve the original Moses research separately');
+assert.equal(records['dying-gaul'].spatial.meters, 0.96, 'Use the exact measured KAS1312 cast height');
+assert.equal(records['dying-gaul'].basis, 'object');
+assert.equal(records['dying-gaul'].originalSizeResearch.measures[0].value, 93, 'Preserve the Capitoline marble research separately');
+assert.equal(records['belvedere-torso'].spatial.meters, 1.22, 'Use the exact measured KAS402 cast height');
+assert.equal(records['belvedere-torso'].basis, 'object');
+assert.match(records['belvedere-torso'].originalSizeResearch.note, /original marble/i, 'Preserve the Vatican marble research separately');
 assert.equal(records['donatello/saint-george'].spatial.meters, 2.04, 'Horizontal scan disagreement does not override the matching original height');
 const nefertiti = records['egyptian/portrait-of-nefertiti-smk-cast'];
 assert.equal(nefertiti.spatial.axis, 'z', 'The crown-to-nose depth avoids the added pedestal');
@@ -71,7 +92,9 @@ const laocoon = records.laocoon;
 const laocoonReference = physicalDimensionsFor('', laocoon, previews.laocoon.url, orientations.laocoon).spatialReference;
 assert.equal(laocoonReference?.meters, 2.42, 'The complete straight-arm cast uses its documented full-size height');
 assert.equal(laocoon.measures[laocoon.spatial.measurementIndex].value, 242);
-assert.ok(laocoon.measures.some(m => m.value === 208 && /bent Pollak/.test(m.scope)), 'Keep current-original measurements distinct from the historical restoration');
+assert.equal(laocoon.basis, 'object');
+assert.ok(laocoon.originalSizeResearch.measures.some(m => m.value === 208 && /bent Pollak/.test(m.scope)),
+  'Keep current-original measurements distinct from the historical restoration');
 const dubuffet = records['modern/dubuffet-la-chiffonniere'];
 const estimated = physicalDimensionsFor('', dubuffet, previews['modern/dubuffet-la-chiffonniere'].url, orientations['modern/dubuffet-la-chiffonniere']);
 assert.equal(estimated.spatialReference?.estimated, true, 'Dubuffet starting size remains explicitly approximate');

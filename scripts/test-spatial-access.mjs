@@ -27,12 +27,18 @@ for(const work of catalog.filter(work=>!work.hidden)) {
     if(record.spatial){assert.deepEqual(access.reference,{...physical.spatialReference,estimated:true});assert.equal(access.assetSha256,record.spatial.assetSha256);}
   }else{chosen++;assert.equal(access.status,'unknown');assert.ok(defaults[slug],slug);assert.ok([.2,.4,.6,1,1.5].includes(access.defaultMaxExtentMeters),slug);assert.equal(access.assetSha256,undefined);assert.equal(access.reference,undefined);assert.match(access.label,/unknown/);assert.match(access.note,/chosen display size/);assert.match(access.sizeLabel,/longest side/);}
 }
-assert.equal(available,1046);assert.equal(verified,248);assert.equal(approximate,614);assert.equal(chosen,184);
+assert.equal(available,1793);assert.equal(verified,257);assert.equal(approximate,913);assert.equal(chosen,623);
 const dubuffet=accessBySlug.get('modern/dubuffet-la-chiffonniere');
 assert.equal(dubuffet.reference.meters,6.7056);assert.equal(dubuffet.reference.axis,'y');assert.equal(dubuffet.status,'approximate');assert.equal(dubuffet.verified,false);
 assert.equal(accessBySlug.get('modern/ronchi-le-cheval').reference.meters,2,'Contributor-only listed height establishes a yellow estimate');
 assert.equal(accessBySlug.get('sphinx').status,'unknown','A whole-monument height cannot size a cropped head');
-assert.equal(accessBySlug.get('michelangelo/moses').status,'unknown','Do not stretch a cropped figure to the complete statue height');
+const moses=accessBySlug.get('michelangelo/moses');
+assert.equal(moses.status,'verified','The complete replacement scan uses the exact measured KAS243 cast');
+assert.equal(moses.reference.meters,2.49);
+assert.match(moses.label,/Cast/);
+const discobolus=accessBySlug.get('discobolus');
+assert.equal(discobolus.status,'verified','The exact KAS1549 replacement resolves the former identity mismatch');
+assert.equal(discobolus.reference.meters,1.7);
 const estimateText=(dimensions,note='')=>approximateDimensionsFor({work:{dimensions,note}});
 assert.equal(estimateText('H 21 ft').reference.meters,6.4008);
 assert.ok(Math.abs(estimateText('Height 5 1/2 in.').reference.meters-.1397)<1e-12);

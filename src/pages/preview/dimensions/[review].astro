@@ -8,13 +8,14 @@ export function getStaticPaths() {
   return import.meta.env.DEV ? [{ params: { review: 'audit' } }] : [];
 }
 const rows = audit.records.map(record => ({ ...record, work: workBySlug(record.slug)! }));
+const calibratedCount = rows.filter(row => Boolean(row.work.spatialReference)).length;
 ---
 <V3Layout title="Physical dimensions · local audit">
   <meta slot="head" name="robots" content="noindex, nofollow" />
   <header class="v3-page-hero">
     <p class="v3-kicker">Local review / September 9, 2026</p>
     <h1 class="v3-display">The size of the original.</h1>
-    <p>453 records flagged for missing dimensions, clarification or reproduction checks. 64 previously blank measurements filled; 11 originals matched to their casts. Nine models now start at documented physical size.</p>
+    <p>453 records flagged for missing dimensions, clarification or reproduction checks. 64 previously blank measurements filled; 11 originals matched to their casts. {calibratedCount} audited models now start at documented physical size.</p>
     <p>81 documented · 15 approximate · 356 unresolved · 1 with variable digital size. The other 593 catalogue records were outside this source review.</p>
   </header>
   <section class="audit-controls" aria-label="Filter dimension audit">

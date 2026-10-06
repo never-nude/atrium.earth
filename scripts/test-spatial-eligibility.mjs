@@ -43,20 +43,21 @@ for (const work of catalog) {
     assert.match(value.reason, /approximate/);
   }
 }
-assert.equal(enabled, 248);
-assert.equal(casts, 21);
-assert.equal(unknown, 380);
-assert.equal(estimates, 22);
+assert.equal(enabled, 257);
+assert.equal(casts, 29);
+assert.equal(unknown, 1109);
+assert.equal(estimates, 35);
 
 const slug = 'venus-de-milo';
 assert.equal(evaluate(slug).enabled, true);
-assert.equal(evaluate(slug).kind, 'original');
+assert.equal(evaluate(slug).kind, 'cast');
 assert.equal(evaluate('michelangelo/david').enabled, true);
+assert.equal(evaluate('michelangelo/david').kind, 'original');
 assert.equal(evaluate('diadoumenos-bust').kind, 'cast');
 assert.equal(evaluate('not-a-catalogue-work').enabled, false);
 assert.equal(evaluate(slug, {}, null).enabled, false, 'A calibrated number alone cannot authorize verified size');
 assert.equal(evaluate(slug, {}, { ...decisions[slug], policyVersion: 99 }).enabled, false);
-assert.equal(evaluate(slug, {}, { ...decisions[slug], kind: 'cast' }).enabled, false, 'A representation label is part of the review');
+assert.equal(evaluate(slug, {}, { ...decisions[slug], kind: 'original' }).enabled, false, 'A representation label is part of the review');
 assert.equal(evaluate(slug, { previewUrl: `${previews[slug].url}?new-version=1` }).enabled, false);
 assert.equal(evaluate(slug, { orientation: { upAxis: '-y' } }).enabled, false);
 
@@ -90,11 +91,10 @@ assert.equal(evaluate(slug, { record: objectOrder }).enabled, true, 'Object key 
 assert.equal(canonicalFingerprint({ b: 2, a: [1, 2] }), canonicalFingerprint({ a: [1, 2], b: 2 }));
 assert.notEqual(canonicalFingerprint([1, 2]), canonicalFingerprint([2, 1]), 'Measurement ordering remains significant');
 
-for (const withheld of ['laocoon', 'apollo-belvedere', 'michelangelo/pieta', 'modern/dubuffet-la-chiffonniere',
+for (const withheld of ['apollo-belvedere', 'modern/dubuffet-la-chiffonniere',
   'asia/uma-maheshvara-mia-commons', 'michelangelo/dawn', 'asia/jar-dragon-clouds-iron-cleveland']) {
   assert.equal(evaluate(withheld).enabled, false, `Known conflict or unfinished review must not get a badge: ${withheld}`);
 }
-assert.match(evaluate('laocoon').reason, /reconciled/);
 assert.match(evaluate('asia/garuda-terminal-mia-commons').reason, /direction/);
 assert.match(evaluate('athena-lemnia').reason, /further check/);
 assert.equal(evaluate('sub-saharan-africa/idimu-mask-with-two-opposing-faces-yale').sizeLabel, 'Length 24.13 cm',
