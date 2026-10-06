@@ -1,5 +1,7 @@
 # Atrium.earth — Working Handoff (resume on any machine)
 
+> **Current handoff (2026-10-06):** Resume the large global religious-art acquisition from [`docs/handoffs/claude-code-religious-art-20261006.md`](docs/handoffs/claude-code-religious-art-20261006.md). The detailed material below is historical and may describe retired workflows.
+
 Single doc to pick up atrium.earth work. Read top to bottom once. Last updated 2026-06-30.
 
 ## 0. What it is

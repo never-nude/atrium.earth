@@ -552,3 +552,12 @@ Commit `1afb322` is deployment-verified. [GitHub Pages run 37334355346](https://
 - Commit `152924a3` is deployment-verified. [GitHub Pages run 37535397259](https://github.com/never-nude/atrium.earth/actions/runs/37535397259) and Pages deployment `6895974949` completed successfully.
 - Live verification on 2026-10-06 confirmed all eight canonical pages return their expected title, accession, material, content-hashed model URL and metric AR scale. Every public model byte-matches its reviewed full SHA-256 and byte count; every public thumbnail byte-matches the reviewed local file.
 - Every page exposes Exposure and Texture controls plus AR placement. None exposes the retired light-angle control or legacy movable-light slider.
+
+## 2026-10-06 — Claude Code handoff: 200-candidate global religious-art batch
+
+- Task/owner/branch: transferred from this Codex session to Claude Code on `codex/religious-art-global-20261006`; all chunks share logical batch ID `religious-art-global-20261006`.
+- Completed: Chunk 1 fetched 50 candidates in Actions run 37540181354, accepted 42, rejected 8, uploaded all 42 accepted assets to R2, and rendered all 42 thumbnails/posters. A 27-work sharded orientation review is running as Actions run 37545902463. Chunk 2 and Chunk 3 each contain 50 prepared leads. A 50-UID Chunk 4 shortlist is preserved for revalidation and final lead construction.
+- Mandatory correction: remove new `ancient-near-east/assyrian-winged-genius-ec414d`; it is an exact duplicate of established `assyrian/winged-genius-mia`. Review the additional curation and metadata flags in `docs/handoffs/claude-code-religious-art-20261006.md`.
+- Validation performed: Chunk 1 fetched/assembled/R2/render stages succeeded; 150 candidates across Chunks 1–3 have unique slugs and source UIDs; Chunk 2/3 are valid JSON with 50 records apiece. Chunk 1 has not yet passed final orientation/contact-sheet/metadata review. Chunks 2–4 have not been acquired. Nothing from this religious-art batch is on `main` or live.
+- Next step: finish Chunk 1 orientation and curation, then acquire Chunks 2–4 sequentially using the cumulative review branch, review the entire logical batch, run the full test/build/live-verification sequence, and publish under the user's standing authorization.
+- Full operational handoff: `docs/handoffs/claude-code-religious-art-20261006.md`.
