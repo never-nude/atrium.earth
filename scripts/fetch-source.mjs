@@ -152,7 +152,9 @@ async function fetchCandidate(candidate, report) {
   if (!url) throw new Error('no download URL');
   const filename = sourceFilename(candidate, url);
   const downloadPath = path.join(slugDir, filename);
-  const downloaded = await downloadFile(url, downloadPath);
+  const downloaded = await downloadFile(url, downloadPath, {
+    expectedBytes: Number(candidate.download_size_bytes || 0),
+  });
   let sourcePath = downloadPath;
   let extractedFrom = '';
 
