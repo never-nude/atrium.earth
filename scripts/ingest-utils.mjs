@@ -262,34 +262,52 @@ export async function fileSize(file) {
 }
 
 export async function downloadFile(url, dest, options = {}) {
+  const tmp = `${dest}.tmp`;
+  const attempts = Number(options.attempts || process.env.ATRIUM_DOWNLOAD_ATTEMPTS || 4);
   // Some hosts (Zenodo) refuse requests without a User-Agent, so always send one.
   const headers = { 'user-agent': 'atrium-ingest/1.0 (+https://atrium.earth)', ...(options.headers || {}) };
-  const response = await fetch(url, { headers, redirect: 'follow' });
-  if (!response.ok) throw new Error(`download failed ${response.status} ${response.statusText} for ${url}`);
-  await mkdir(path.dirname(dest), { recursive: true });
-  const tmp = `${dest}.tmp`;
-  const hash = createHash('sha256');
-  let bytes = 0;
-  await new Promise((resolve, reject) => {
-    const out = createWriteStream(tmp);
-    out.on('error', reject);
-    out.on('finish', resolve);
-    (async () => {
-      try {
-        for await (const chunk of response.body) {
-          const buffer = Buffer.from(chunk);
-          bytes += buffer.length;
-          hash.update(buffer);
-          if (!out.write(buffer)) await new Promise((drain) => out.once('drain', drain));
-        }
-        out.end();
-      } catch (error) {
-        out.destroy(error);
+
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    await rm(tmp, { force: true });
+    try {
+      const response = await fetch(url, { headers, redirect: 'follow' });
+      if (!response.ok) {
+        const error = new Error(`download failed ${response.status} ${response.statusText} for ${url}`);
+        error.retryable = response.status === 408 || response.status === 429 || response.status >= 500;
+        throw error;
       }
-    })();
-  });
-  await rename(tmp, dest);
-  return { bytes, sha256: hash.digest('hex'), contentType: response.headers.get('content-type') || '' };
+      await mkdir(path.dirname(dest), { recursive: true });
+      const hash = createHash('sha256');
+      let bytes = 0;
+      await new Promise((resolve, reject) => {
+        const out = createWriteStream(tmp);
+        out.on('error', reject);
+        out.on('finish', resolve);
+        (async () => {
+          try {
+            for await (const chunk of response.body) {
+              const buffer = Buffer.from(chunk);
+              bytes += buffer.length;
+              hash.update(buffer);
+              if (!out.write(buffer)) await new Promise((drain) => out.once('drain', drain));
+            }
+            out.end();
+          } catch (error) {
+            out.destroy(error);
+          }
+        })();
+      });
+      await rename(tmp, dest);
+      return { bytes, sha256: hash.digest('hex'), contentType: response.headers.get('content-type') || '' };
+    } catch (error) {
+      await rm(tmp, { force: true });
+      if (attempt >= attempts || error.retryable === false) throw error;
+      const waitMs = 2000 * 2 ** (attempt - 1);
+      console.warn(`  download attempt ${attempt}/${attempts} failed (${error.message}); retrying in ${waitMs / 1000}s`);
+      await new Promise((resolve) => setTimeout(resolve, waitMs));
+    }
+  }
+  throw new Error(`download attempts exhausted for ${url}`);
 }
 
 export function run(command, args = [], options = {}) {
