@@ -9081,118 +9081,103 @@
     ]
   },
   "belvedere-torso": {
-    "dimensions": "Measured cast: H 122 cm",
+    "dimensions": "H 122 cm × W 79 cm × D 90 cm",
     "status": "documented",
     "basis": "object",
-    "note": "The displayed scale uses the measured SMK cast, including the reviewed cast state and supports. This is the best available matching physical reference; it is not an assertion that the cast is full-size or that its dimensions equal the original.",
-    "checked": "2026-09-13",
-    "spatialNote": "Shown at the measured cast size. The original’s size or surviving state differs or remains unverified.",
+    "note": "Dimensions describe the exact scanned SMK plaster cast KAS402, rather than the underlying ancient or Renaissance original.",
+    "checked": "2026-10-06",
+    "reviewed": "2026-10-06",
     "researchStatus": "verified",
-    "identifiedObject": {
-      "title": "Torso del Belvedere",
-      "institution": "Musei Vaticani, Museo Pio Clementino, Sala delle Muse",
-      "accession": "MV.1192.0.0 (inv. 1192)",
-      "version_or_date": "1st century BCE, signed by Apollonios son of Nestor, Athenian",
-      "record_url": "https://catalogo.museivaticani.va/index.php/Detail/objects/MV.1192.0.0",
-      "identity_confidence": "high",
-      "match_explanation": "SMK KAS402 'Torso Belvedere. Torso af siddende, nøgen mand, Ajax(?)' credits Apollonios; the Vatican catalogue entry MV.1192.0.0 is the signed marble. KAS402 identifies the cast only."
-    },
-    "geometryReviewNote": "The current torso and surviving seat/upper legs match the exact SMK cast. Its lower extent differs from the 159 cm original ensemble; use the explicitly measured 122 cm cast rather than implying the entire original is represented.",
+    "sourceUrl": "https://api.smk.dk/api/v1/art?object_number=KAS402&lang=en",
+    "sourceTitle": "Statens Museum for Kunst (SMK), Royal Cast Collection",
     "measures": [
-      {
-        "axis": "height",
-        "value": 159,
-        "unit": "cm",
-        "meters": 1.59,
-        "scope": "Entire torso as catalogued by the Vatican Museums (published as 'cm 159 x 84')",
-        "qualifier": "exact",
-        "source_ids": [
-          "S1"
-        ],
-        "sourceUrls": [
-          "https://catalogo.museivaticani.va/index.php/Detail/objects/MV.1192.0.0"
-        ]
-      },
-      {
-        "axis": "unlabelled",
-        "value": 84,
-        "unit": "cm",
-        "meters": 0.84,
-        "scope": "Second figure in Vatican 'cm 159 x 84' (axis not labelled)",
-        "qualifier": "exact",
-        "source_ids": [
-          "S1"
-        ],
-        "sourceUrls": [
-          "https://catalogo.museivaticani.va/index.php/Detail/objects/MV.1192.0.0"
-        ]
-      },
       {
         "axis": "height",
         "value": 122,
         "unit": "cm",
+        "scope": "SMK plaster cast KAS402, gross",
         "meters": 1.22,
-        "scope": "SMK plaster cast (not the original), brutto",
         "qualifier": "exact",
-        "source_ids": [
-          "S2"
-        ],
+        "sourcePosition": 1,
         "sourceUrls": [
-          "https://api.smk.dk/api/v1/art?object_number=KAS402"
+          "https://api.smk.dk/api/v1/art?object_number=KAS402&lang=en"
         ]
       },
       {
         "axis": "width",
         "value": 79,
         "unit": "cm",
+        "scope": "SMK plaster cast KAS402, gross",
         "meters": 0.79,
-        "scope": "SMK plaster cast (not the original), brutto",
         "qualifier": "exact",
-        "source_ids": [
-          "S2"
-        ],
+        "sourcePosition": 2,
         "sourceUrls": [
-          "https://api.smk.dk/api/v1/art?object_number=KAS402"
+          "https://api.smk.dk/api/v1/art?object_number=KAS402&lang=en"
         ]
       },
       {
         "axis": "depth",
         "value": 90,
         "unit": "cm",
+        "scope": "SMK plaster cast KAS402, gross",
         "meters": 0.9,
-        "scope": "SMK plaster cast (not the original), brutto",
         "qualifier": "exact",
-        "source_ids": [
-          "S2"
-        ],
+        "sourcePosition": 3,
         "sourceUrls": [
-          "https://api.smk.dk/api/v1/art?object_number=KAS402"
-        ]
-      },
-      {
-        "axis": "height",
-        "value": 122,
-        "unit": "cm",
-        "meters": 1.22,
-        "scope": "Measured SMK cast KAS402; source part: brutto. Current cast state and support reviewed individually.",
-        "qualifier": "exact",
-        "sourceUrls": [
-          "https://api.smk.dk/api/v1/art?object_number=KAS402"
+          "https://api.smk.dk/api/v1/art?object_number=KAS402&lang=en"
         ]
       }
     ],
-    "sourceUrl": "https://api.smk.dk/api/v1/art?object_number=KAS402",
+    "scannedObject": {
+      "title": "Belvedere Torso (SMK Plaster Cast, KAS402)",
+      "accession": "KAS402",
+      "institution": "SMK — Royal Cast Collection, Copenhagen",
+      "record_url": "https://api.smk.dk/api/v1/art?object_number=KAS402&lang=en",
+      "identity_confidence": "high",
+      "match_explanation": "The approved source is the maximum-resolution scan of the exact SMK plaster cast KAS402; its accession, material and measurements agree with the SMK object record."
+    },
+    "evidence": [
+      {
+        "sourceUrl": "https://api.smk.dk/api/v1/art?object_number=KAS402&lang=en",
+        "excerpt": "SMK KAS402 object record checked 2026-10-06: plaster cast, gross 122 × 79 × 90 cm, acquired 1898, Public Domain Mark 1.0",
+        "retrieved": "2026-10-06"
+      },
+      {
+        "sourceUrl": "https://api.smk.dk/api/v1/art?object_number=KAS402&lang=en",
+        "excerpt": "SMK files_3D record: 51,021,584-byte maximum-resolution STL",
+        "retrieved": "2026-10-06"
+      },
+      {
+        "sourceUrl": "https://api.smk.dk/api/v1/art?object_number=KAS402&lang=en",
+        "excerpt": "SMK original relationship distinguishes the cast's missing lower inscribed base from the Vatican marble",
+        "retrieved": "2026-10-06"
+      }
+    ],
+    "geometryStatus": "calibrated",
+    "geometryReviewNote": "The full-quality replacement and selected orientation were reviewed across the batch orientation views. The scan shows the complete KAS402 plaster cast in its documented state, which lacks the lower inscribed base; the published smk plaster cast kas402, gross maps to the full world-Y extent after the selected orientation. Uniform scale preserves the scan's proportions.",
+    "calibrationReady": true,
     "spatial": {
       "axis": "y",
       "meters": 1.22,
-      "measurementIndex": 5,
-      "previewUrl": "https://models.atrium.earth/models/previews/belvedere-torso/preview.glb",
-      "orientation": null,
-      "assetSha256": "797d39d87b6452dc22f9c85bfa2b28da71799da359451648c31384120e1c4bcf",
-      "reviewed": "2026-09-13",
-      "geometryReview": "Fresh current GLB decoded with current Viewer transforms, posed visible-vertex bounds and individual three-angle render inspection; official accession photographs reviewed for SMK. Evidence: scale_geometry-review.json and scale_geometry-audit/audit.json.",
-      "note": "The current torso and surviving seat/upper legs match the exact SMK cast. Its lower extent differs from the 159 cm original ensemble; use the explicitly measured 122 cm cast rather than implying the entire original is represented. Uniform scale preserves the mesh proportions; this verifies the selected extent, not agreement of every published axis."
+      "measurementIndex": 0,
+      "previewUrl": "https://models.atrium.earth/models/previews/belvedere-torso/preview-61f5dea99aa9.glb",
+      "assetSha256": "61f5dea99aa9492fb3bc8ab42b8f4e97c55de53ca54ff3d0147b539f0aa92756",
+      "reviewed": "2026-10-06",
+      "geometryReview": "The full-quality replacement and selected orientation were reviewed across the batch orientation views. The scan shows the complete KAS402 plaster cast in its documented state, which lacks the lower inscribed base; the published smk plaster cast kas402, gross maps to the full world-Y extent after the selected orientation. Uniform scale preserves the scan's proportions.",
+      "note": "The full-quality replacement and selected orientation were reviewed across the batch orientation views. The scan shows the complete KAS402 plaster cast in its documented state, which lacks the lower inscribed base; the published smk plaster cast kas402, gross maps to the full world-Y extent after the selected orientation. Uniform scale preserves the scan's proportions.",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          -90,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "status": "review",
+        "note": "The +Z-up view restores the seated torso to an upright frontal presentation."
+      }
     },
+    "spatialNote": "Physical scale is calibrated to the documented dimensions of SMK plaster cast KAS402. Proportions are preserved.",
     "originalDimensions": "H 159 cm × 84 cm (original marble, Vatican inv. 1192; weight 1500 kg)",
     "originalSizeResearch": {
       "status": "documented",
@@ -9204,14 +9189,10 @@
         "accession": "MV.1192.0.0 (inv. 1192)",
         "version_or_date": "1st century BCE, signed by Apollonios son of Nestor, Athenian",
         "record_url": "https://catalogo.museivaticani.va/index.php/Detail/objects/MV.1192.0.0",
-        "identity_confidence": "high",
-        "match_explanation": "SMK KAS402 'Torso Belvedere. Torso af siddende, nøgen mand, Ajax(?)' credits Apollonios; the Vatican catalogue entry MV.1192.0.0 is the signed marble. KAS402 identifies the cast only."
+        "identity_confidence": "high"
       },
-      "sourceUrl": "https://catalogo.museivaticani.va/index.php/Detail/objects/MV.1192.0.0",
-      "geometryReviewNote": "The scan and source cover different anatomical/restoration extents. A whole-statue or landmark-only measurement cannot be assigned to this cropped/reconstructed mesh; identify matching surviving landmarks or a dimension for this exact part."
-    },
-    "geometryStatus": "calibrated",
-    "calibrationReady": true
+      "sourceUrl": "https://catalogo.museivaticani.va/index.php/Detail/objects/MV.1192.0.0"
+    }
   },
   "capitoline-venus": {
     "dimensions": "H 193 cm (original marble, Musei Capitolini inv. MC0409)",
@@ -9464,32 +9445,103 @@
     ]
   },
   "discobolus": {
-    "dimensions": "",
-    "status": "unresolved",
-    "basis": "original",
-    "note": "Published measurements still need to be reconciled.",
-    "checked": "2026-09-13",
-    "spatialNote": "The documented dimensions still need to be matched to the model’s displayed extent.",
-    "researchStatus": "conflicting",
-    "identifiedObject": {
-      "title": "Statua di discobolo tipo Lancellotti; copia romana da un originale greco di Mirone (Discobolus from Hadrian's Villa, modern head)",
-      "institution": "Musei Vaticani, Museo Pio Clementino, Sala della Biga",
-      "accession": "MV.2346.0.0 (inv. 2346)",
-      "version_or_date": "Roman copy, first half of 2nd century CE; head modern (late 18th century); found at Villa Adriana 1791 (Marefoschi excavations), acquired 1792",
-      "record_url": "https://catalogo.museivaticani.va/index.php/Detail/objects/MV.2346.0.0",
+    "dimensions": "H 170 cm × W 115 cm × D 50 cm",
+    "status": "documented",
+    "basis": "object",
+    "note": "Dimensions describe the exact scanned SMK plaster cast KAS1549, rather than the underlying ancient or Renaissance original.",
+    "checked": "2026-10-06",
+    "reviewed": "2026-10-06",
+    "researchStatus": "verified",
+    "sourceUrl": "https://api.smk.dk/api/v1/art?object_number=KAS1549&lang=en",
+    "sourceTitle": "Statens Museum for Kunst (SMK), Royal Cast Collection / Wikimedia Commons",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 170,
+        "unit": "cm",
+        "scope": "SMK plaster cast KAS1549, gross",
+        "meters": 1.7,
+        "qualifier": "exact",
+        "sourcePosition": 1,
+        "sourceUrls": [
+          "https://api.smk.dk/api/v1/art?object_number=KAS1549&lang=en"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 115,
+        "unit": "cm",
+        "scope": "SMK plaster cast KAS1549, gross",
+        "meters": 1.15,
+        "qualifier": "exact",
+        "sourcePosition": 2,
+        "sourceUrls": [
+          "https://api.smk.dk/api/v1/art?object_number=KAS1549&lang=en"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 50,
+        "unit": "cm",
+        "scope": "SMK plaster cast KAS1549, gross",
+        "meters": 0.5,
+        "qualifier": "exact",
+        "sourcePosition": 3,
+        "sourceUrls": [
+          "https://api.smk.dk/api/v1/art?object_number=KAS1549&lang=en"
+        ]
+      }
+    ],
+    "scannedObject": {
+      "title": "Discobolus, Roman Copy with Modern Head (SMK Plaster Cast, KAS1549)",
+      "accession": "KAS1549",
+      "institution": "SMK — Royal Cast Collection, Copenhagen",
+      "record_url": "https://api.smk.dk/api/v1/art?object_number=KAS1549&lang=en",
       "identity_confidence": "high",
-      "match_explanation": "SMK KAS1549 original ORIG502 explicitly names Museo Pio-Clementino, Vatican, and discovery at Hadrian’s Villa in 1791; that excludes the Townley Discobolus found in 1790 and now in London. The local Atrium render matches this restored forward-facing-head type, but its full cast extent still needs reconciliation with the inherited Vatican catalogue height."
+      "match_explanation": "The approved source is the maximum-resolution scan of the exact SMK plaster cast KAS1549; its accession, material and measurements agree with the SMK object record."
     },
-    "geometryReviewNote": "Official SMK KAS 1549 photo shows a substantially upright athlete with lowered arms, unlike the deeply bent current figure with raised discus. Cast 170 cm is not transferable until the mesh identity/source is repaired.",
-    "geometryStatus": "reviewed-blocked",
-    "geometryReview": {
-      "reviewed": "2026-09-13",
-      "status": "blocked",
-      "blocker": "identity",
-      "previewUrl": "https://models.atrium.earth/models/previews/discobolus/preview.glb",
-      "orientation": null,
-      "assetSha256": "6ef8add57206db48b2d121b7361820878ee482e339de042c5fa589169d950d1b",
-      "evidence": "scale_geometry-review.json; scale_geometry-audit/audit.json; individual rendered model and applicable official museum photograph"
+    "evidence": [
+      {
+        "sourceUrl": "https://api.smk.dk/api/v1/art?object_number=KAS1549&lang=en",
+        "excerpt": "Wikimedia Commons file record checked 2026-10-06: 100,849,784-byte STL, SMK digitization, CC0 1.0",
+        "retrieved": "2026-10-06"
+      },
+      {
+        "sourceUrl": "https://api.smk.dk/api/v1/art?object_number=KAS1549&lang=en",
+        "excerpt": "SMK KAS1549 object record: plaster cast, gross 170 × 115 × 50 cm, acquired 1909, on display in Room 120",
+        "retrieved": "2026-10-06"
+      }
+    ],
+    "geometryStatus": "calibrated",
+    "geometryReviewNote": "The full-quality replacement and selected orientation were reviewed across the batch orientation views. The scan shows the complete KAS1549 plaster cast with its documented modern restored head; the published smk plaster cast kas1549, gross maps to the full world-Y extent after the selected orientation. Uniform scale preserves the scan's proportions.",
+    "calibrationReady": true,
+    "spatial": {
+      "axis": "y",
+      "meters": 1.7,
+      "measurementIndex": 0,
+      "previewUrl": "https://models.atrium.earth/models/previews/discobolus/preview-18e77773563d.glb",
+      "assetSha256": "18e77773563d7fb00996c62c94526d663d5207edfec13982fe5ac2833cfb0ccb",
+      "reviewed": "2026-10-06",
+      "geometryReview": "The full-quality replacement and selected orientation were reviewed across the batch orientation views. The scan shows the complete KAS1549 plaster cast with its documented modern restored head; the published smk plaster cast kas1549, gross maps to the full world-Y extent after the selected orientation. Uniform scale preserves the scan's proportions.",
+      "note": "The full-quality replacement and selected orientation were reviewed across the batch orientation views. The scan shows the complete KAS1549 plaster cast with its documented modern restored head; the published smk plaster cast kas1549, gross maps to the full world-Y extent after the selected orientation. Uniform scale preserves the scan's proportions."
+    },
+    "spatialNote": "Physical scale is calibrated to the documented dimensions of SMK plaster cast KAS1549. Proportions are preserved.",
+    "originalDimensions": "",
+    "originalSizeResearch": {
+      "dimensions": "",
+      "status": "unresolved",
+      "basis": "original",
+      "note": "Published measurements still need to be reconciled.",
+      "checked": "2026-09-13",
+      "researchStatus": "conflicting",
+      "identifiedObject": {
+        "title": "Statua di discobolo tipo Lancellotti; copia romana da un originale greco di Mirone (Discobolus from Hadrian's Villa, modern head)",
+        "institution": "Musei Vaticani, Museo Pio Clementino, Sala della Biga",
+        "accession": "MV.2346.0.0 (inv. 2346)",
+        "version_or_date": "Roman copy, first half of 2nd century CE; head modern (late 18th century); found at Villa Adriana 1791 (Marefoschi excavations), acquired 1792",
+        "record_url": "https://catalogo.museivaticani.va/index.php/Detail/objects/MV.2346.0.0",
+        "identity_confidence": "high"
+      }
     }
   },
   "donatello/il-zucchone-prophet-smk-cast": {
@@ -9664,92 +9716,148 @@
     "calibrationReady": true
   },
   "dying-gaul": {
-    "dimensions": "H 93 cm; L 186 cm; W 89 cm (museum guide).",
+    "dimensions": "H 96 cm × W 185 cm × D 89 cm",
     "status": "documented",
-    "basis": "original",
-    "note": "Dimensions of the surviving Roman marble in the Capitoline Museums; this model was scanned from an SMK plaster cast.",
-    "checked": "2026-09-09",
-    "spatialNote": "Physical scale is calibrated to the documented original artwork dimensions. Proportions are preserved.",
+    "basis": "object",
+    "note": "Dimensions describe the exact scanned SMK plaster cast KAS1312, rather than the underlying ancient or Renaissance original.",
+    "checked": "2026-10-06",
+    "reviewed": "2026-10-06",
     "researchStatus": "verified",
-    "identifiedObject": {
-      "title": "Statua del Galata Capitolino (Galata morente)",
-      "institution": "Musei Capitolini, Rome",
-      "accession": "S 747",
-      "version_or_date": "Roman marble, approximately 60-40 BCE; surviving ancient version",
-      "record_url": "https://museicapitolini.org/it/opera/statua-del-galata-capitolino?tema=1",
-      "identity_confidence": "high",
-      "match_explanation": "SMK KAS1312 / original ORIG438 identifies the Capitoline marble, its Ludovisi provenance and restored right arm. The Capitoline record identifies S 747; this is the surviving Roman marble, not the lost Pergamene bronze."
-    },
-    "geometryReviewNote": "The complete Dying Gaul and integral oval sculptural base are present; no separate gallery pedestal appears. Use original height 93 cm. With only a plan-angle cross-check, horizontal extents are 191.2×91.6 cm, within about 3% of the guide 186×89 cm.",
+    "sourceUrl": "https://api.smk.dk/api/v1/art?object_number=KAS1312&lang=en",
+    "sourceTitle": "Statens Museum for Kunst (SMK), Royal Cast Collection",
     "measures": [
       {
         "axis": "height",
-        "value": 93,
+        "value": 96,
         "unit": "cm",
-        "meters": 0.93,
-        "scope": "Museum sculpture on its integral oval base; guide does not define a separate display-pedestal allowance.",
+        "scope": "SMK plaster cast KAS1312, gross",
+        "meters": 0.96,
         "qualifier": "exact",
-        "source_ids": [
-          "S2"
-        ],
+        "sourcePosition": 1,
         "sourceUrls": [
-          "https://www.museicapitolini.org/sites/default/files/f_file/LIBRETTO%20non%20vedenti_corretto_14.11.23.pdf"
-        ]
-      },
-      {
-        "axis": "length",
-        "value": 186,
-        "unit": "cm",
-        "meters": 1.86,
-        "scope": "Museum sculpture on its integral oval base; guide does not define a separate display-pedestal allowance.",
-        "qualifier": "exact",
-        "source_ids": [
-          "S2"
-        ],
-        "sourceUrls": [
-          "https://www.museicapitolini.org/sites/default/files/f_file/LIBRETTO%20non%20vedenti_corretto_14.11.23.pdf"
+          "https://api.smk.dk/api/v1/art?object_number=KAS1312&lang=en"
         ]
       },
       {
         "axis": "width",
+        "value": 185,
+        "unit": "cm",
+        "scope": "SMK plaster cast KAS1312, gross",
+        "meters": 1.85,
+        "qualifier": "exact",
+        "sourcePosition": 2,
+        "sourceUrls": [
+          "https://api.smk.dk/api/v1/art?object_number=KAS1312&lang=en"
+        ]
+      },
+      {
+        "axis": "depth",
         "value": 89,
         "unit": "cm",
+        "scope": "SMK plaster cast KAS1312, gross",
         "meters": 0.89,
-        "scope": "Museum sculpture on its integral oval base; guide does not define a separate display-pedestal allowance.",
         "qualifier": "exact",
-        "source_ids": [
-          "S2"
-        ],
+        "sourcePosition": 3,
         "sourceUrls": [
-          "https://www.museicapitolini.org/sites/default/files/f_file/LIBRETTO%20non%20vedenti_corretto_14.11.23.pdf"
+          "https://api.smk.dk/api/v1/art?object_number=KAS1312&lang=en"
         ]
       }
     ],
-    "sourceUrl": "https://www.museicapitolini.org/sites/default/files/f_file/LIBRETTO%20non%20vedenti_corretto_14.11.23.pdf",
+    "scannedObject": {
+      "title": "Dying Gladiator (Dying Gaul), SMK Plaster Cast, KAS1312",
+      "accession": "KAS1312",
+      "institution": "SMK — Royal Cast Collection, Copenhagen",
+      "record_url": "https://api.smk.dk/api/v1/art?object_number=KAS1312&lang=en",
+      "identity_confidence": "high",
+      "match_explanation": "The approved source is the maximum-resolution scan of the exact SMK plaster cast KAS1312; its accession, material and measurements agree with the SMK object record."
+    },
+    "evidence": [
+      {
+        "sourceUrl": "https://api.smk.dk/api/v1/art?object_number=KAS1312&lang=en",
+        "excerpt": "SMK KAS1312 object record checked 2026-10-06: plaster cast, gross 96 × 185 × 89 cm, acquired 1904, Public Domain Mark 1.0",
+        "retrieved": "2026-10-06"
+      },
+      {
+        "sourceUrl": "https://api.smk.dk/api/v1/art?object_number=KAS1312&lang=en",
+        "excerpt": "SMK files_3D record: 200,001,084-byte maximum-resolution STL",
+        "retrieved": "2026-10-06"
+      }
+    ],
+    "geometryStatus": "calibrated",
+    "geometryReviewNote": "The full-quality replacement and selected orientation were reviewed across the batch orientation views. The scan shows the complete reclining KAS1312 plaster cast from its lowest to highest modeled point; the published smk plaster cast kas1312, gross maps to the full world-Y extent after the selected orientation. Uniform scale preserves the scan's proportions.",
+    "calibrationReady": true,
     "spatial": {
       "axis": "y",
-      "meters": 0.93,
+      "meters": 0.96,
       "measurementIndex": 0,
-      "previewUrl": "https://models.atrium.earth/models/previews/dying-gaul/preview.glb",
-      "orientation": {
-        "upAxis": "y",
-        "modelRotation": [
-          90,
-          180,
-          0
-        ],
-        "viewDirection": [
-          1,
-          0,
-          0
-        ],
-        "status": "review",
-        "note": "Base-down + eye-level broadside (coverage-derived) so the dying warrior reads in profile instead of top-down."
+      "previewUrl": "https://models.atrium.earth/models/previews/dying-gaul/preview-d4f2045dcdf4.glb",
+      "assetSha256": "d4f2045dcdf4c58745ef1e8c642d9f93e99145dd14cb0184ea68155cc11f7e9d",
+      "reviewed": "2026-10-06",
+      "geometryReview": "The full-quality replacement and selected orientation were reviewed across the batch orientation views. The scan shows the complete reclining KAS1312 plaster cast from its lowest to highest modeled point; the published smk plaster cast kas1312, gross maps to the full world-Y extent after the selected orientation. Uniform scale preserves the scan's proportions.",
+      "note": "The full-quality replacement and selected orientation were reviewed across the batch orientation views. The scan shows the complete reclining KAS1312 plaster cast from its lowest to highest modeled point; the published smk plaster cast kas1312, gross maps to the full world-Y extent after the selected orientation. Uniform scale preserves the scan's proportions."
+    },
+    "spatialNote": "Physical scale is calibrated to the documented dimensions of SMK plaster cast KAS1312. Proportions are preserved.",
+    "originalDimensions": "H 93 cm; L 186 cm; W 89 cm (museum guide).",
+    "originalSizeResearch": {
+      "dimensions": "H 93 cm; L 186 cm; W 89 cm (museum guide).",
+      "status": "documented",
+      "basis": "original",
+      "note": "Dimensions of the surviving Roman marble in the Capitoline Museums; this model was scanned from an SMK plaster cast.",
+      "checked": "2026-09-09",
+      "researchStatus": "verified",
+      "identifiedObject": {
+        "title": "Statua del Galata Capitolino (Galata morente)",
+        "institution": "Musei Capitolini, Rome",
+        "accession": "S 747",
+        "version_or_date": "Roman marble, approximately 60-40 BCE; surviving ancient version",
+        "record_url": "https://museicapitolini.org/it/opera/statua-del-galata-capitolino?tema=1",
+        "identity_confidence": "high"
       },
-      "assetSha256": "11a4121cad6ea9eb58a0d261369f7e0ebc0b63206644a2dcc79a5509b11dc9e6",
-      "reviewed": "2026-09-12",
-      "geometryReview": "Individually reviewed three-angle renders of the exact current GLB, matching source measurement scope, actual-vertex normalized bounds and supporting plan-angle cross-check. Evidence: geometry/review.json and geometry/audit.json. No skin, morph or animation data is present.",
-      "note": "The complete Dying Gaul and integral oval sculptural base are present; no separate gallery pedestal appears. Use original height 93 cm. With only a plan-angle cross-check, horizontal extents are 191.2×91.6 cm, within about 3% of the guide 186×89 cm."
+      "measures": [
+        {
+          "axis": "height",
+          "value": 93,
+          "unit": "cm",
+          "meters": 0.93,
+          "scope": "Museum sculpture on its integral oval base; guide does not define a separate display-pedestal allowance.",
+          "qualifier": "exact",
+          "source_ids": [
+            "S2"
+          ],
+          "sourceUrls": [
+            "https://www.museicapitolini.org/sites/default/files/f_file/LIBRETTO%20non%20vedenti_corretto_14.11.23.pdf"
+          ]
+        },
+        {
+          "axis": "length",
+          "value": 186,
+          "unit": "cm",
+          "meters": 1.86,
+          "scope": "Museum sculpture on its integral oval base; guide does not define a separate display-pedestal allowance.",
+          "qualifier": "exact",
+          "source_ids": [
+            "S2"
+          ],
+          "sourceUrls": [
+            "https://www.museicapitolini.org/sites/default/files/f_file/LIBRETTO%20non%20vedenti_corretto_14.11.23.pdf"
+          ]
+        },
+        {
+          "axis": "width",
+          "value": 89,
+          "unit": "cm",
+          "meters": 0.89,
+          "scope": "Museum sculpture on its integral oval base; guide does not define a separate display-pedestal allowance.",
+          "qualifier": "exact",
+          "source_ids": [
+            "S2"
+          ],
+          "sourceUrls": [
+            "https://www.museicapitolini.org/sites/default/files/f_file/LIBRETTO%20non%20vedenti_corretto_14.11.23.pdf"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.museicapitolini.org/sites/default/files/f_file/LIBRETTO%20non%20vedenti_corretto_14.11.23.pdf"
     }
   },
   "dying-niobid": {
@@ -15601,100 +15709,164 @@
     "calibrationReady": true
   },
   "laocoon": {
-    "dimensions": "Full-size historical cast: H 242 cm.",
+    "dimensions": "H 242 cm × W 162.5 cm × D 103 cm",
     "status": "documented",
     "basis": "object",
-    "note": "This scan shows the older straight-arm restoration, calibrated to its full-size height of 242 cm. The current Vatican marble group, with a bent right arm, measures H 208 x W 163 x D 112 cm. Historical cast width/depth records disagree; the model retains its proportions.",
-    "checked": "2026-09-12",
-    "spatialNote": "Calibrated to 2.42 m high: the full-size historical cast with the raised arm. The current Vatican group has a different arm restoration. Proportions are preserved.",
+    "note": "Dimensions describe the exact scanned SMK plaster cast KAS385, rather than the underlying ancient or Renaissance original.",
+    "checked": "2026-10-06",
+    "reviewed": "2026-10-06",
     "researchStatus": "verified",
-    "identifiedObject": {
-      "title": "Laocoon Group",
-      "institution": "Vatican Museums, Museo Pio-Clementino",
-      "accession": "1059 (group); 1064 (Pollak right arm)",
-      "version_or_date": "Marble group, 40-20 BCE in the catalogue; current restored state",
-      "record_url": "https://www.digitalsculpture.org/laocoon/index02.html",
-      "identity_confidence": "high",
-      "match_explanation": "SMK KAS385 / ORIG1563 names the Vatican group, Esquiline discovery and restored right arm. The Digital Sculpture Project catalogue identifies the Vatican group and original Pollak arm by inventory and describes its direct Vatican scan."
-    },
-    "geometryReviewNote": "Complete historical straight-arm group, including its integral altar and low stepped base, without separate museum furniture. Full vertical extent runs from the underside of the base to the raised hand/serpent. The restored arm also controls the horizontal minimum, so neither the current Vatican height nor width applies to this cast. At H 242 cm the unchanged mesh measures about W 180.07 x D 106.89 cm in its current orientation. SMK records W 162.5 x D 103 cm and the Berlin master W 184 x D 100 cm; these disagree, so only the independently corroborated height calibrates the model and proportions are preserved.",
+    "sourceUrl": "https://api.smk.dk/api/v1/art?object_number=KAS385&lang=en",
+    "sourceTitle": "Statens Museum for Kunst (SMK), Royal Cast Collection / Wikimedia Commons",
     "measures": [
-      {
-        "axis": "height",
-        "value": 208,
-        "unit": "cm",
-        "meters": 2.08,
-        "scope": "Current Vatican marble group with the bent Pollak right arm; external museum display pedestal not defined in the measurement statement.",
-        "qualifier": "exact",
-        "source_ids": [
-          "S2"
-        ],
-        "sourceUrls": [
-          "https://www.digitalsculpture.org/laocoon/index02.html"
-        ]
-      },
-      {
-        "axis": "width",
-        "value": 163,
-        "unit": "cm",
-        "meters": 1.63,
-        "scope": "Current Vatican marble group with the bent Pollak right arm; external museum display pedestal not defined in the measurement statement.",
-        "qualifier": "exact",
-        "source_ids": [
-          "S2"
-        ],
-        "sourceUrls": [
-          "https://www.digitalsculpture.org/laocoon/index02.html"
-        ]
-      },
-      {
-        "axis": "depth",
-        "value": 112,
-        "unit": "cm",
-        "meters": 1.12,
-        "scope": "Current Vatican marble group with the bent Pollak right arm; external museum display pedestal not defined in the measurement statement.",
-        "qualifier": "exact",
-        "source_ids": [
-          "S2"
-        ],
-        "sourceUrls": [
-          "https://www.digitalsculpture.org/laocoon/index02.html"
-        ]
-      },
       {
         "axis": "height",
         "value": 242,
         "unit": "cm",
+        "scope": "SMK historical straight-arm plaster cast KAS385, gross",
         "meters": 2.42,
-        "scope": "Gross height of SMK KAS385, the full-size historical straight-arm cast including its integral base; not the current bent-arm Vatican group.",
         "qualifier": "exact",
+        "sourcePosition": 1,
         "sourceUrls": [
-          "https://api.smk.dk/api/v1/art/?object_number=KAS385",
-          "https://sketchfab.com/3d-models/laokoon-gruppe-02ba6929c7154fc3af9943f1b73cb656"
+          "https://api.smk.dk/api/v1/art?object_number=KAS385&lang=en"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 162.5,
+        "unit": "cm",
+        "scope": "SMK historical straight-arm plaster cast KAS385, gross",
+        "meters": 1.625,
+        "qualifier": "exact",
+        "sourcePosition": 2,
+        "sourceUrls": [
+          "https://api.smk.dk/api/v1/art?object_number=KAS385&lang=en"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 103,
+        "unit": "cm",
+        "scope": "SMK historical straight-arm plaster cast KAS385, gross",
+        "meters": 1.03,
+        "qualifier": "exact",
+        "sourcePosition": 3,
+        "sourceUrls": [
+          "https://api.smk.dk/api/v1/art?object_number=KAS385&lang=en"
         ]
       }
     ],
-    "sourceUrl": "https://open.smk.dk/en/artwork/image/KAS385",
     "scannedObject": {
-      "title": "Laocoon and His Sons, historical straight-arm cast",
-      "institution": "Statens Museum for Kunst, Royal Cast Collection",
+      "title": "Laocoön and His Sons (SMK Historical Straight-Arm Plaster Cast, KAS385)",
       "accession": "KAS385",
-      "maker": "Berlin Gipsformerei, mould 263",
-      "record_url": "https://api.smk.dk/api/v1/art/?object_number=KAS385",
-      "fullSizeSourceUrl": "https://www.smb.museum/en/museums-institutions/gipsformerei/collection-areas/antiquity/",
-      "heightCorroborationUrl": "https://sketchfab.com/3d-models/laokoon-gruppe-02ba6929c7154fc3af9943f1b73cb656",
-      "match_explanation": "SMK identifies Berlin mould 263 and explicitly describes the extended arms as historical restorations. The Berlin R-00263 master independently records the same 242 cm height; its collection description identifies Laocoon as reproduced at original size."
+      "institution": "SMK — Royal Cast Collection, Copenhagen",
+      "record_url": "https://api.smk.dk/api/v1/art?object_number=KAS385&lang=en",
+      "identity_confidence": "high",
+      "match_explanation": "The approved source is the maximum-resolution scan of the exact SMK plaster cast KAS385; its accession, material and measurements agree with the SMK object record."
     },
+    "evidence": [
+      {
+        "sourceUrl": "https://api.smk.dk/api/v1/art?object_number=KAS385&lang=en",
+        "excerpt": "Wikimedia Commons file record checked 2026-10-06: 50,000,084-byte STL, marked public domain",
+        "retrieved": "2026-10-06"
+      },
+      {
+        "sourceUrl": "https://api.smk.dk/api/v1/art?object_number=KAS385&lang=en",
+        "excerpt": "SMK KAS385 object record: plaster cast, gross 242 × 162.5 × 103 cm, acquired 1898, Public Domain Mark 1.0",
+        "retrieved": "2026-10-06"
+      },
+      {
+        "sourceUrl": "https://api.smk.dk/api/v1/art?object_number=KAS385&lang=en",
+        "excerpt": "SMK condition history distinguishes this exact straight-arm cast and its 2018 replacement arm",
+        "retrieved": "2026-10-06"
+      }
+    ],
+    "geometryStatus": "calibrated",
+    "geometryReviewNote": "The full-quality replacement and selected orientation were reviewed across the batch orientation views. The scan shows the complete KAS385 historical straight-arm plaster group and integral base; the published smk historical straight-arm plaster cast kas385, gross maps to the full world-Y extent after the selected orientation. Uniform scale preserves the scan's proportions.",
+    "calibrationReady": true,
     "spatial": {
       "axis": "y",
       "meters": 2.42,
-      "measurementIndex": 3,
-      "previewUrl": "https://models.atrium.earth/models/previews/laocoon/preview.glb",
-      "orientation": null,
-      "assetSha256": "a307a155240874c79bf3b4a9bef44eac80be13520120640c1994d11feb0ee237",
-      "reviewed": "2026-09-12",
-      "geometryReview": "Exact current GLB inspected in front, side and back views and with vertex extrema; no external display pedestal included. Source identity and historical restoration confirmed against SMK and Berlin Gipsformerei. Evidence: docs/phone-scale-2026-09-12/review.json.",
-      "note": "Complete historical straight-arm group, including its integral altar and low stepped base, without separate museum furniture. Full vertical extent runs from the underside of the base to the raised hand/serpent. The restored arm also controls the horizontal minimum, so neither the current Vatican height nor width applies to this cast. At H 242 cm the unchanged mesh measures about W 180.07 x D 106.89 cm in its current orientation. SMK records W 162.5 x D 103 cm and the Berlin master W 184 x D 100 cm; these disagree, so only the independently corroborated height calibrates the model and proportions are preserved."
+      "measurementIndex": 0,
+      "previewUrl": "https://models.atrium.earth/models/previews/laocoon/preview-8ad6398bd333.glb",
+      "assetSha256": "8ad6398bd333a350910cbcedd233749ab34072254f83fb38e127b96089c601fb",
+      "reviewed": "2026-10-06",
+      "geometryReview": "The full-quality replacement and selected orientation were reviewed across the batch orientation views. The scan shows the complete KAS385 historical straight-arm plaster group and integral base; the published smk historical straight-arm plaster cast kas385, gross maps to the full world-Y extent after the selected orientation. Uniform scale preserves the scan's proportions.",
+      "note": "The full-quality replacement and selected orientation were reviewed across the batch orientation views. The scan shows the complete KAS385 historical straight-arm plaster group and integral base; the published smk historical straight-arm plaster cast kas385, gross maps to the full world-Y extent after the selected orientation. Uniform scale preserves the scan's proportions.",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          -90.03,
+          0,
+          173.63
+        ],
+        "yaw": 0,
+        "status": "review",
+        "note": "Upright frontal view; the complete straight-arm group, serpents and base are visible."
+      }
+    },
+    "spatialNote": "Physical scale is calibrated to the documented dimensions of SMK plaster cast KAS385. Proportions are preserved.",
+    "originalDimensions": "H 208 cm × W 163 cm × D 112 cm (current Vatican marble group with bent Pollak arm)",
+    "originalSizeResearch": {
+      "dimensions": "H 208 cm × W 163 cm × D 112 cm (current Vatican marble group with bent Pollak arm)",
+      "status": "documented",
+      "basis": "original",
+      "note": "These dimensions describe the current Vatican marble group with the bent Pollak arm, separate from the scanned KAS385 historical straight-arm cast.",
+      "checked": "2026-09-12",
+      "researchStatus": "verified",
+      "identifiedObject": {
+        "title": "Laocoon Group",
+        "institution": "Vatican Museums, Museo Pio-Clementino",
+        "accession": "1059 (group); 1064 (Pollak right arm)",
+        "version_or_date": "Marble group, 40-20 BCE in the catalogue; current restored state",
+        "record_url": "https://www.digitalsculpture.org/laocoon/index02.html",
+        "identity_confidence": "high"
+      },
+      "measures": [
+        {
+          "axis": "height",
+          "value": 208,
+          "unit": "cm",
+          "meters": 2.08,
+          "scope": "Current Vatican marble group with the bent Pollak right arm; external museum display pedestal not defined in the measurement statement.",
+          "qualifier": "exact",
+          "source_ids": [
+            "S2"
+          ],
+          "sourceUrls": [
+            "https://www.digitalsculpture.org/laocoon/index02.html"
+          ]
+        },
+        {
+          "axis": "width",
+          "value": 163,
+          "unit": "cm",
+          "meters": 1.63,
+          "scope": "Current Vatican marble group with the bent Pollak right arm; external museum display pedestal not defined in the measurement statement.",
+          "qualifier": "exact",
+          "source_ids": [
+            "S2"
+          ],
+          "sourceUrls": [
+            "https://www.digitalsculpture.org/laocoon/index02.html"
+          ]
+        },
+        {
+          "axis": "depth",
+          "value": 112,
+          "unit": "cm",
+          "meters": 1.12,
+          "scope": "Current Vatican marble group with the bent Pollak right arm; external museum display pedestal not defined in the measurement statement.",
+          "qualifier": "exact",
+          "source_ids": [
+            "S2"
+          ],
+          "sourceUrls": [
+            "https://www.digitalsculpture.org/laocoon/index02.html"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.digitalsculpture.org/laocoon/index02.html"
     }
   },
   "ludovisi-gaul": {
@@ -25876,35 +26048,122 @@
     "calibrationReady": true
   },
   "venus-de-milo": {
-    "dimensions": "H 204 cm",
-    "sourceUrl": "https://collections.louvre.fr/ark:/53355/cl010277627",
-    "basis": "original",
+    "dimensions": "H 213.5 cm × W 66.5 cm × D 63 cm",
     "status": "documented",
-    "note": "Dimensions of the original in the Louvre.",
-    "checked": "2026-09-09",
+    "basis": "object",
+    "note": "Dimensions describe the exact scanned SMK plaster cast KAS434/1, rather than the underlying ancient or Renaissance original.",
+    "checked": "2026-10-06",
+    "reviewed": "2026-10-06",
+    "researchStatus": "verified",
+    "sourceUrl": "https://api.smk.dk/api/v1/art?object_number=KAS434%2F1&lang=en",
+    "sourceTitle": "Statens Museum for Kunst (SMK), Royal Cast Collection / Wikimedia Commons",
     "measures": [
       {
         "axis": "height",
-        "value": 204,
+        "value": 213.5,
         "unit": "cm",
+        "scope": "SMK plaster-cast component KAS434/1, gross",
+        "meters": 2.135,
+        "qualifier": "exact",
+        "sourcePosition": 1,
         "sourceUrls": [
-          "https://collections.louvre.fr/ark:/53355/cl010277627"
+          "https://api.smk.dk/api/v1/art?object_number=KAS434%2F1&lang=en"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 66.5,
+        "unit": "cm",
+        "scope": "SMK plaster-cast component KAS434/1, gross",
+        "meters": 0.665,
+        "qualifier": "exact",
+        "sourcePosition": 2,
+        "sourceUrls": [
+          "https://api.smk.dk/api/v1/art?object_number=KAS434%2F1&lang=en"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 63,
+        "unit": "cm",
+        "scope": "SMK plaster-cast component KAS434/1, gross",
+        "meters": 0.63,
+        "qualifier": "exact",
+        "sourcePosition": 3,
+        "sourceUrls": [
+          "https://api.smk.dk/api/v1/art?object_number=KAS434%2F1&lang=en"
         ]
       }
     ],
-    "spatialNote": "Physical scale is calibrated to the documented original artwork dimensions. Proportions are preserved.",
+    "scannedObject": {
+      "title": "Venus de Milo (SMK Plaster Cast, KAS434/1)",
+      "accession": "KAS434/1",
+      "institution": "SMK — Royal Cast Collection, Copenhagen",
+      "record_url": "https://api.smk.dk/api/v1/art?object_number=KAS434%2F1&lang=en",
+      "identity_confidence": "high",
+      "match_explanation": "The approved source is the maximum-resolution scan of the exact SMK plaster cast KAS434/1; its accession, material and measurements agree with the SMK object record."
+    },
+    "evidence": [
+      {
+        "sourceUrl": "https://api.smk.dk/api/v1/art?object_number=KAS434%2F1&lang=en",
+        "excerpt": "Wikimedia Commons file record checked 2026-10-06: 137,129,384-byte STL, SMK digitization, CC0 1.0",
+        "retrieved": "2026-10-06"
+      },
+      {
+        "sourceUrl": "https://api.smk.dk/api/v1/art?object_number=KAS434%2F1&lang=en",
+        "excerpt": "SMK KAS434/1 child record: plaster cast, gross 213.5 × 66.5 × 63 cm",
+        "retrieved": "2026-10-06"
+      },
+      {
+        "sourceUrl": "https://api.smk.dk/api/v1/art?object_number=KAS434%2F1&lang=en",
+        "excerpt": "SMK KAS434 parent record: four-part plaster cast, acquired 1898",
+        "retrieved": "2026-10-06"
+      }
+    ],
+    "geometryStatus": "calibrated",
+    "geometryReviewNote": "The full-quality replacement and selected orientation were reviewed across the batch orientation views. The scan shows the complete KAS434/1 plaster-cast component in its documented state; the published smk plaster-cast component kas434/1, gross maps to the full world-Y extent after the selected orientation. Uniform scale preserves the scan's proportions.",
+    "calibrationReady": true,
     "spatial": {
       "axis": "y",
-      "meters": 2.04,
-      "previewUrl": "https://models.atrium.earth/models/previews/venus-de-milo/preview.glb",
-      "orientation": null,
-      "reviewed": "2026-09-12",
-      "note": "Whole upright scan checked against the documented object height; no separate display pedestal included.",
+      "meters": 2.135,
       "measurementIndex": 0,
-      "assetSha256": "7b15698b72844aa33cc2acd04c88cba36fab9ad9e8d6b3a6ee7df6cde89a0ba7",
-      "geometryReview": "Rechecked exact current GLB in three-angle renders. Whole surviving object with integral historic base where present; no separate museum pedestal measured as artwork. Original source height retained."
+      "previewUrl": "https://models.atrium.earth/models/previews/venus-de-milo/preview-d63da2c7acd4.glb",
+      "assetSha256": "d63da2c7acd4d9eff37eefa25733535f3d35077090d07b0f0e1dbdbdb8a766a1",
+      "reviewed": "2026-10-06",
+      "geometryReview": "The full-quality replacement and selected orientation were reviewed across the batch orientation views. The scan shows the complete KAS434/1 plaster-cast component in its documented state; the published smk plaster-cast component kas434/1, gross maps to the full world-Y extent after the selected orientation. Uniform scale preserves the scan's proportions.",
+      "note": "The full-quality replacement and selected orientation were reviewed across the batch orientation views. The scan shows the complete KAS434/1 plaster-cast component in its documented state; the published smk plaster-cast component kas434/1, gross maps to the full world-Y extent after the selected orientation. Uniform scale preserves the scan's proportions.",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "status": "review",
+        "note": "Upright frontal view; the figure and integral base are vertical and centered."
+      }
     },
-    "geometryReviewNote": "Whole upright scan checked against the documented object height; no separate display pedestal included."
+    "spatialNote": "Physical scale is calibrated to the documented dimensions of SMK plaster cast KAS434/1. Proportions are preserved.",
+    "originalDimensions": "H 204 cm",
+    "originalSizeResearch": {
+      "dimensions": "H 204 cm",
+      "status": "documented",
+      "basis": "original",
+      "note": "Dimensions of the original in the Louvre.",
+      "checked": "2026-09-09",
+      "measures": [
+        {
+          "axis": "height",
+          "value": 204,
+          "unit": "cm",
+          "sourceUrls": [
+            "https://collections.louvre.fr/ark:/53355/cl010277627"
+          ]
+        }
+      ],
+      "sourceUrl": "https://collections.louvre.fr/ark:/53355/cl010277627"
+    }
   },
   "americas/atingting-kon-slit-gong": {
     "status": "documented",
@@ -64327,71 +64586,150 @@
     "calibrationReady": true
   },
   "michelangelo/pieta": {
-    "dimensions": "Height 174 cm; Width 195 cm; Depth 69 cm (original)",
+    "dimensions": "H 176 cm × W 170 cm × D 89 cm",
     "status": "documented",
-    "basis": "original",
-    "note": "Published dimensions of the original artwork; the displayed model is a reproduction cast.",
-    "checked": "2026-09-13",
-    "spatialNote": "Shown at the documented height, with the model’s proportions preserved. Some dimensions of this scan differ from the published measurements.",
+    "basis": "object",
+    "note": "Dimensions describe the exact scanned SMK plaster cast KAS115, rather than the underlying ancient or Renaissance original.",
+    "checked": "2026-10-06",
+    "reviewed": "2026-10-06",
     "researchStatus": "verified",
-    "identifiedObject": {
-      "title": "Pietà di San Pietro",
-      "institution": "Basilica di San Pietro, Vatican City; original dimensions documented by Museo Tattile Statale Omero",
-      "accession": "SMK cast KAS115 after the unique Vatican Pietà",
-      "record_url": "https://museoomero.it/opere/pieta-di-san-pietro/",
-      "identity_confidence": "high",
-      "match_explanation": "Original artwork identity agrees with SMK’s source-original relationship and the official museum or state-catalogue record."
-    },
-    "geometryReviewNote": "The complete Pieta group and sculptural bottom are present without an external display block, so the independently documented 174 cm original height maps to the full extent. Retain the source-versus-scan horizontal discrepancies; they do not justify replacing the original with the 176 cm cast height or stretching axes.",
+    "sourceUrl": "https://api.smk.dk/api/v1/art?object_number=KAS115&lang=en",
+    "sourceTitle": "Statens Museum for Kunst (SMK), Royal Cast Collection",
     "measures": [
       {
         "axis": "height",
-        "value": 174,
+        "value": 176,
         "unit": "cm",
-        "meters": 1.74,
-        "scope": "Original marble group: dimensions explicitly listed under Originale, not merely the museum’s replica measurements.",
+        "scope": "SMK plaster cast KAS115, net",
+        "meters": 1.76,
         "qualifier": "exact",
+        "sourcePosition": 1,
         "sourceUrls": [
-          "https://museoomero.it/opere/pieta-di-san-pietro/"
+          "https://api.smk.dk/api/v1/art?object_number=KAS115&lang=en"
         ]
       },
       {
         "axis": "width",
-        "value": 195,
+        "value": 170,
         "unit": "cm",
-        "meters": 1.95,
-        "scope": "Original marble group: dimensions explicitly listed under Originale, not merely the museum’s replica measurements.",
+        "scope": "SMK plaster cast KAS115, net",
+        "meters": 1.7,
         "qualifier": "exact",
+        "sourcePosition": 2,
         "sourceUrls": [
-          "https://museoomero.it/opere/pieta-di-san-pietro/"
+          "https://api.smk.dk/api/v1/art?object_number=KAS115&lang=en"
         ]
       },
       {
         "axis": "depth",
-        "value": 69,
+        "value": 89,
         "unit": "cm",
-        "meters": 0.6900000000000001,
-        "scope": "Original marble group: dimensions explicitly listed under Originale, not merely the museum’s replica measurements.",
+        "scope": "SMK plaster cast KAS115, net",
+        "meters": 0.89,
         "qualifier": "exact",
+        "sourcePosition": 3,
         "sourceUrls": [
-          "https://museoomero.it/opere/pieta-di-san-pietro/"
+          "https://api.smk.dk/api/v1/art?object_number=KAS115&lang=en"
         ]
       }
     ],
-    "sourceUrl": "https://museoomero.it/opere/pieta-di-san-pietro/",
+    "scannedObject": {
+      "title": "Pietà (SMK Plaster Cast, KAS115)",
+      "accession": "KAS115",
+      "institution": "SMK — Royal Cast Collection, Copenhagen",
+      "record_url": "https://api.smk.dk/api/v1/art?object_number=KAS115&lang=en",
+      "identity_confidence": "high",
+      "match_explanation": "The approved source is the maximum-resolution scan of the exact SMK plaster cast KAS115; its accession, material and measurements agree with the SMK object record."
+    },
+    "evidence": [
+      {
+        "sourceUrl": "https://api.smk.dk/api/v1/art?object_number=KAS115&lang=en",
+        "excerpt": "SMK KAS115 object record checked 2026-10-06: plaster cast, 1897, net 176 × 170 × 89 cm, Public Domain Mark 1.0",
+        "retrieved": "2026-10-06"
+      },
+      {
+        "sourceUrl": "https://api.smk.dk/api/v1/art?object_number=KAS115&lang=en",
+        "excerpt": "SMK files_3D record: 74,905,984-byte maximum-resolution STL",
+        "retrieved": "2026-10-06"
+      }
+    ],
+    "geometryStatus": "calibrated",
+    "geometryReviewNote": "The full-quality replacement and selected orientation were reviewed across the batch orientation views. The scan shows the complete KAS115 plaster group and its documented net height; the published smk plaster cast kas115, net maps to the full world-Y extent after the selected orientation. Uniform scale preserves the scan's proportions.",
+    "calibrationReady": true,
     "spatial": {
       "axis": "y",
-      "meters": 1.74,
+      "meters": 1.76,
       "measurementIndex": 0,
-      "previewUrl": "https://models.atrium.earth/models/previews/michelangelo/pieta/preview.glb",
-      "orientation": null,
-      "assetSha256": "e2395b41905d0c46c24457de271ba207c6806ffb97a479aebd813299a4f46745",
-      "reviewed": "2026-09-13",
-      "geometryReview": "Fresh current GLB decoded with current Viewer transforms, posed visible-vertex bounds and individual three-angle render inspection; official accession photographs reviewed for SMK. Evidence: scale_geometry-review.json and scale_geometry-audit/audit.json.",
-      "note": "The complete Pieta group and sculptural bottom are present without an external display block, so the independently documented 174 cm original height maps to the full extent. Retain the source-versus-scan horizontal discrepancies; they do not justify replacing the original with the 176 cm cast height or stretching axes. Uniform scale preserves the mesh proportions; this verifies the selected extent, not agreement of every published axis."
+      "previewUrl": "https://models.atrium.earth/models/previews/michelangelo/pieta/preview-3f243306aa2a.glb",
+      "assetSha256": "3f243306aa2a7299db80c95fd384ffdb05a73da1c601e935fe20e04c12653a62",
+      "reviewed": "2026-10-06",
+      "geometryReview": "The full-quality replacement and selected orientation were reviewed across the batch orientation views. The scan shows the complete KAS115 plaster group and its documented net height; the published smk plaster cast kas115, net maps to the full world-Y extent after the selected orientation. Uniform scale preserves the scan's proportions.",
+      "note": "The full-quality replacement and selected orientation were reviewed across the batch orientation views. The scan shows the complete KAS115 plaster group and its documented net height; the published smk plaster cast kas115, net maps to the full world-Y extent after the selected orientation. Uniform scale preserves the scan's proportions.",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "status": "review",
+        "note": "Upright frontal three-quarter view; both figures and the sculptural base are legible."
+      }
     },
-    "geometryStatus": "calibrated",
-    "calibrationReady": true
+    "spatialNote": "Physical scale is calibrated to the documented dimensions of SMK plaster cast KAS115. Proportions are preserved.",
+    "originalDimensions": "Height 174 cm; Width 195 cm; Depth 69 cm (original)",
+    "originalSizeResearch": {
+      "dimensions": "Height 174 cm; Width 195 cm; Depth 69 cm (original)",
+      "status": "documented",
+      "basis": "original",
+      "note": "Published dimensions of the original artwork; the displayed model is a reproduction cast.",
+      "checked": "2026-09-13",
+      "researchStatus": "verified",
+      "identifiedObject": {
+        "title": "Pietà di San Pietro",
+        "institution": "Basilica di San Pietro, Vatican City; original dimensions documented by Museo Tattile Statale Omero",
+        "accession": "SMK cast KAS115 after the unique Vatican Pietà",
+        "record_url": "https://museoomero.it/opere/pieta-di-san-pietro/",
+        "identity_confidence": "high"
+      },
+      "measures": [
+        {
+          "axis": "height",
+          "value": 174,
+          "unit": "cm",
+          "meters": 1.74,
+          "scope": "Original marble group: dimensions explicitly listed under Originale, not merely the museum’s replica measurements.",
+          "qualifier": "exact",
+          "sourceUrls": [
+            "https://museoomero.it/opere/pieta-di-san-pietro/"
+          ]
+        },
+        {
+          "axis": "width",
+          "value": 195,
+          "unit": "cm",
+          "meters": 1.95,
+          "scope": "Original marble group: dimensions explicitly listed under Originale, not merely the museum’s replica measurements.",
+          "qualifier": "exact",
+          "sourceUrls": [
+            "https://museoomero.it/opere/pieta-di-san-pietro/"
+          ]
+        },
+        {
+          "axis": "depth",
+          "value": 69,
+          "unit": "cm",
+          "meters": 0.6900000000000001,
+          "scope": "Original marble group: dimensions explicitly listed under Originale, not merely the museum’s replica measurements.",
+          "qualifier": "exact",
+          "sourceUrls": [
+            "https://museoomero.it/opere/pieta-di-san-pietro/"
+          ]
+        }
+      ],
+      "sourceUrl": "https://museoomero.it/opere/pieta-di-san-pietro/"
+    }
   },
   "capitoline-wolf": {
     "dimensions": "Measured cast: H 94 cm",
@@ -69910,45 +70248,116 @@
     "calibrationReady": true
   },
   "michelangelo/moses": {
-    "dimensions": "Height 235 cm (original)",
+    "dimensions": "H 249 cm × W 110 cm × D 107 cm",
     "status": "documented",
-    "basis": "original",
-    "note": "Published dimensions of the original artwork; the displayed model is a reproduction cast.",
-    "checked": "2026-09-13",
-    "spatialNote": "The documented dimensions still need to be matched to the model’s displayed extent.",
+    "basis": "object",
+    "note": "Dimensions describe the exact scanned SMK plaster cast KAS243, rather than the underlying ancient or Renaissance original.",
+    "checked": "2026-10-06",
+    "reviewed": "2026-10-06",
     "researchStatus": "verified",
-    "identifiedObject": {
-      "title": "Moses",
-      "institution": "San Pietro in Vincoli; original dimensions documented by Museo Tattile Statale Omero",
-      "accession": "Original Moses of Michelangelo",
-      "record_url": "https://museoomero.it/en/opere/moses/",
-      "identity_confidence": "high",
-      "match_explanation": "Original identity cross-referenced from SMK original relationships and museum or primary scholarly catalogue."
-    },
-    "geometryReviewNote": "Current Moses is cut across the knees and rear; the official SMK photo and dimensions cover the full seated figure and foot. Neither original 235 nor cast 249 cm measures the cropped mesh. Needs complete asset or measured common anatomical landmarks.",
+    "sourceUrl": "https://api.smk.dk/api/v1/art?object_number=KAS243&lang=en",
+    "sourceTitle": "Statens Museum for Kunst (SMK), Royal Cast Collection",
     "measures": [
       {
         "axis": "height",
-        "value": 235,
+        "value": 249,
         "unit": "cm",
-        "meters": 2.35,
-        "scope": "Full original seated statue, explicitly under Original on the museum record.",
+        "scope": "SMK plaster cast KAS243, net",
+        "meters": 2.49,
         "qualifier": "exact",
+        "sourcePosition": 1,
         "sourceUrls": [
-          "https://museoomero.it/en/opere/moses/"
+          "https://api.smk.dk/api/v1/art?object_number=KAS243&lang=en"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 110,
+        "unit": "cm",
+        "scope": "SMK plaster cast KAS243, net",
+        "meters": 1.1,
+        "qualifier": "exact",
+        "sourcePosition": 2,
+        "sourceUrls": [
+          "https://api.smk.dk/api/v1/art?object_number=KAS243&lang=en"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 107,
+        "unit": "cm",
+        "scope": "SMK plaster cast KAS243, net",
+        "meters": 1.07,
+        "qualifier": "exact",
+        "sourcePosition": 3,
+        "sourceUrls": [
+          "https://api.smk.dk/api/v1/art?object_number=KAS243&lang=en"
         ]
       }
     ],
-    "sourceUrl": "https://museoomero.it/en/opere/moses/",
-    "geometryStatus": "reviewed-blocked",
-    "geometryReview": {
-      "reviewed": "2026-09-13",
-      "status": "blocked",
-      "blocker": "cropped_asset",
-      "previewUrl": "https://models.atrium.earth/models/previews/michelangelo/moses/preview.glb",
-      "orientation": null,
-      "assetSha256": "74d4433bc70e7cb30fbd8dae8226c62160292da6c7e70265ff278bf23dfa649a",
-      "evidence": "scale_geometry-review.json; scale_geometry-audit/audit.json; individual rendered model and applicable official museum photograph"
+    "scannedObject": {
+      "title": "Moses (SMK Plaster Cast, KAS243)",
+      "accession": "KAS243",
+      "institution": "SMK — Royal Cast Collection, Copenhagen",
+      "record_url": "https://api.smk.dk/api/v1/art?object_number=KAS243&lang=en",
+      "identity_confidence": "high",
+      "match_explanation": "The approved source is the maximum-resolution scan of the exact SMK plaster cast KAS243; its accession, material and measurements agree with the SMK object record."
+    },
+    "evidence": [
+      {
+        "sourceUrl": "https://api.smk.dk/api/v1/art?object_number=KAS243&lang=en",
+        "excerpt": "SMK KAS243 object record checked 2026-10-06: plaster cast, before 1896 (possibly 1830s), net 249 × 110 × 107 cm, Public Domain Mark 1.0",
+        "retrieved": "2026-10-06"
+      },
+      {
+        "sourceUrl": "https://api.smk.dk/api/v1/art?object_number=KAS243&lang=en",
+        "excerpt": "SMK files_3D record: 100,004,584-byte maximum-resolution STL",
+        "retrieved": "2026-10-06"
+      }
+    ],
+    "geometryStatus": "calibrated",
+    "geometryReviewNote": "The full-quality replacement and selected orientation were reviewed across the batch orientation views. The scan shows the complete KAS243 seated plaster cast, including the modeled lower figure and base; the published smk plaster cast kas243, net maps to the full world-Y extent after the selected orientation. Uniform scale preserves the scan's proportions.",
+    "calibrationReady": true,
+    "spatial": {
+      "axis": "y",
+      "meters": 2.49,
+      "measurementIndex": 0,
+      "previewUrl": "https://models.atrium.earth/models/previews/michelangelo/moses/preview-303fbcf64879.glb",
+      "assetSha256": "303fbcf64879d660fb766643e73dd54c63098a40170c3ca8bdac8248babda744",
+      "reviewed": "2026-10-06",
+      "geometryReview": "The full-quality replacement and selected orientation were reviewed across the batch orientation views. The scan shows the complete KAS243 seated plaster cast, including the modeled lower figure and base; the published smk plaster cast kas243, net maps to the full world-Y extent after the selected orientation. Uniform scale preserves the scan's proportions.",
+      "note": "The full-quality replacement and selected orientation were reviewed across the batch orientation views. The scan shows the complete KAS243 seated plaster cast, including the modeled lower figure and base; the published smk plaster cast kas243, net maps to the full world-Y extent after the selected orientation. Uniform scale preserves the scan's proportions."
+    },
+    "spatialNote": "Physical scale is calibrated to the documented dimensions of SMK plaster cast KAS243. Proportions are preserved.",
+    "originalDimensions": "Height 235 cm (original)",
+    "originalSizeResearch": {
+      "dimensions": "Height 235 cm (original)",
+      "status": "documented",
+      "basis": "original",
+      "note": "Published dimensions of the original artwork; the displayed model is a reproduction cast.",
+      "checked": "2026-09-13",
+      "researchStatus": "verified",
+      "identifiedObject": {
+        "title": "Moses",
+        "institution": "San Pietro in Vincoli; original dimensions documented by Museo Tattile Statale Omero",
+        "accession": "Original Moses of Michelangelo",
+        "record_url": "https://museoomero.it/en/opere/moses/",
+        "identity_confidence": "high"
+      },
+      "measures": [
+        {
+          "axis": "height",
+          "value": 235,
+          "unit": "cm",
+          "meters": 2.35,
+          "scope": "Full original seated statue, explicitly under Original on the museum record.",
+          "qualifier": "exact",
+          "sourceUrls": [
+            "https://museoomero.it/en/opere/moses/"
+          ]
+        }
+      ],
+      "sourceUrl": "https://museoomero.it/en/opere/moses/"
     }
   },
   "donatello/saint-george": {
@@ -72845,64 +73254,74 @@
     "spatialNote": "Physical scale is calibrated to the documented object dimensions. Proportions are preserved."
   },
   "michelangelo/david": {
+    "dimensions": "H 517 cm",
     "status": "documented",
     "basis": "original",
-    "dimensions": "Dimensions: h. 517 cm",
+    "note": "Dimensions describe Michelangelo’s original marble and its integral carved base; the gallery display pedestal is excluded.",
+    "checked": "2026-10-06",
+    "reviewed": "2026-10-06",
+    "researchStatus": "verified",
     "sourceUrl": "https://www.galleriaaccademiafirenze.it/en/artworks/david-michelangelo/",
     "sourceTitle": "Scan the World / Wikimedia Commons",
-    "note": "Original marble, including its carved integral base. Excludes the museum display pedestal.",
     "measures": [
       {
         "axis": "height",
         "value": 517,
         "unit": "cm",
-        "scope": "object",
+        "scope": "Original marble, including its integral carved base and excluding the museum display pedestal",
+        "meters": 5.17,
+        "qualifier": "exact",
         "sourcePosition": 1,
         "sourceUrls": [
           "https://www.galleriaaccademiafirenze.it/en/artworks/david-michelangelo/"
         ]
       }
     ],
-    "identity": {
+    "identifiedObject": {
       "title": "David",
-      "accession": "Inv. Scult. n. 1076"
+      "accession": "Inv. Scult. n. 1076",
+      "institution": "Galleria dell'Accademia di Firenze",
+      "record_url": "https://www.galleriaaccademiafirenze.it/en/artworks/david-michelangelo/",
+      "identity_confidence": "high",
+      "match_explanation": "The approved source is a scan of Michelangelo’s original marble and the accession, institution and measurements agree with the Galleria dell’Accademia record."
     },
     "evidence": [
       {
         "sourceUrl": "https://www.galleriaaccademiafirenze.it/en/artworks/david-michelangelo/",
-        "excerpt": "Dimensions: h. 517 cm",
-        "retrieved": "2026-09-12"
-      }
-    ],
-    "reviewed": "2026-09-12",
-    "geometryStatus": "not-audited",
-    "catalogDimensionsForComparisonOnly": "H 517 cm",
-    "sourcesReviewed": [
-      {
-        "url": "https://commons.wikimedia.org/wiki/File:David_(Michelangelo).stl",
-        "text": "work/atrium-scale-all/other/text/453c2693d27e9f75.txt",
-        "ok": true
+        "excerpt": "Wikimedia Commons file record checked 2026-10-06: 59,997,484-byte STL, Scan the World, CC BY-SA 4.0",
+        "retrieved": "2026-10-06"
       },
       {
-        "url": "https://www.galleriaaccademiafirenze.it/en/artworks/david-michelangelo/",
-        "ok": false,
-        "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1082)>"
+        "sourceUrl": "https://www.galleriaaccademiafirenze.it/en/artworks/david-michelangelo/",
+        "excerpt": "Galleria dell'Accademia object record: Michelangelo, David, Inv. Scult. n. 1076, marble, height 517 cm",
+        "retrieved": "2026-10-06"
       }
     ],
-    "calibrationReady": false,
-    "geometryReviewNote": "Complete David, including the original irregular carved marble foot and tree support, without the gallery pedestal. The original517cm height maps to the full upright scan.",
+    "geometryStatus": "calibrated",
+    "geometryReviewNote": "The full-quality replacement and selected orientation were reviewed across the batch orientation views. The scan shows the complete original marble from the underside of its integral carved base to the top of the head; the published original marble, including its integral carved base and excluding the museum display pedestal maps to the full world-Y extent after the selected orientation. Uniform scale preserves the scan's proportions.",
+    "calibrationReady": true,
     "spatial": {
       "axis": "y",
       "meters": 5.17,
       "measurementIndex": 0,
-      "previewUrl": "https://models.atrium.earth/models/previews/michelangelo/david/preview.glb",
-      "orientation": null,
-      "assetSha256": "0fe2f0eca690f42f2e7ce0a6b440892f793410295dadbcfef9a0b3c62168f8b7",
-      "reviewed": "2026-09-12",
-      "geometryReview": "Exact current GLB inspected from three angles. Posed-vertex footprints agree with normalized bounds. Chosen source extent matches full modeled reference; uniform scaling only.",
-      "note": "Complete David, including the original irregular carved marble foot and tree support, without the gallery pedestal. The original517cm height maps to the full upright scan."
+      "previewUrl": "https://models.atrium.earth/models/previews/michelangelo/david/preview-760b4f8f96e4.glb",
+      "assetSha256": "760b4f8f96e4869dec5f1dd709a7b90e9a4fe06ae2605d2ba1c27028d6754ffc",
+      "reviewed": "2026-10-06",
+      "geometryReview": "The full-quality replacement and selected orientation were reviewed across the batch orientation views. The scan shows the complete original marble from the underside of its integral carved base to the top of the head; the published original marble, including its integral carved base and excluding the museum display pedestal maps to the full world-Y extent after the selected orientation. Uniform scale preserves the scan's proportions.",
+      "note": "The full-quality replacement and selected orientation were reviewed across the batch orientation views. The scan shows the complete original marble from the underside of its integral carved base to the top of the head; the published original marble, including its integral carved base and excluding the museum display pedestal maps to the full world-Y extent after the selected orientation. Uniform scale preserves the scan's proportions.",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          -89.47,
+          5.45,
+          -5.5
+        ],
+        "yaw": 0,
+        "status": "review",
+        "note": "Upright frontal view; the integral carved base is level and the full figure reads clearly."
+      }
     },
-    "spatialNote": "Physical scale is calibrated to the documented original artwork dimensions. Proportions are preserved."
+    "spatialNote": "Physical scale is calibrated to the documented original marble height. Proportions are preserved."
   },
   "rodin/danaid": {
     "status": "documented",

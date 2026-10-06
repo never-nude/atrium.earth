@@ -10,9 +10,15 @@
     "reason": "geometry"
   },
   "discobolus": {
-    "enabled": false,
+    "enabled": true,
     "policyVersion": 1,
-    "reason": "unverified"
+    "slug": "discobolus",
+    "kind": "cast",
+    "recordFingerprint": "e30c045eb7f1cd611a65df162e6bd79dc3106fc129b9e774f8b544403ef38cad",
+    "modelUrl": "https://models.atrium.earth/models/previews/discobolus/preview-18e77773563d.glb",
+    "assetSha256": "18e77773563d7fb00996c62c94526d663d5207edfec13982fe5ac2833cfb0ccb",
+    "orientationFingerprint": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+    "bindingFingerprint": "60f9fb769be378eebd52126394d34b0a8ebd2e5f1c18f2e10834d6383514d897"
   },
   "athena-lemnia": {
     "enabled": false,
@@ -25,9 +31,15 @@
     "reason": "geometry"
   },
   "dying-gaul": {
-    "enabled": false,
+    "enabled": true,
     "policyVersion": 1,
-    "reason": "geometry"
+    "slug": "dying-gaul",
+    "kind": "cast",
+    "recordFingerprint": "12f8ba7e35e6df54c93795401cdd6b9b2e3d11eb178939a7ebb269b41bee332a",
+    "modelUrl": "https://models.atrium.earth/models/previews/dying-gaul/preview-d4f2045dcdf4.glb",
+    "assetSha256": "d4f2045dcdf4c58745ef1e8c642d9f93e99145dd14cb0184ea68155cc11f7e9d",
+    "orientationFingerprint": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+    "bindingFingerprint": "6803df0cee1ca94768e624ef00cb9acba0675be469cf67c00e61ac13b9c8e04a"
   },
   "ludovisi-gaul": {
     "enabled": false,
@@ -35,9 +47,15 @@
     "reason": "geometry"
   },
   "laocoon": {
-    "enabled": false,
+    "enabled": true,
     "policyVersion": 1,
-    "reason": "mismatch"
+    "slug": "laocoon",
+    "kind": "cast",
+    "recordFingerprint": "0b9e5589328dd41bb03b6e0979a304e2dbcd1e1502250d3261e1d5b4e3e02001",
+    "modelUrl": "https://models.atrium.earth/models/previews/laocoon/preview-8ad6398bd333.glb",
+    "assetSha256": "8ad6398bd333a350910cbcedd233749ab34072254f83fb38e127b96089c601fb",
+    "orientationFingerprint": "84ab192e021dbb8bcb945d79082dd5bc9ea19554a4d5a9c1c734d117f0c4cf54",
+    "bindingFingerprint": "012a4f596778ceec63ff716002770be7ee209c871feebfb69d76fea85d0d7ea6"
   },
   "germanicus": {
     "enabled": false,
@@ -47,12 +65,13 @@
   "venus-de-milo": {
     "enabled": true,
     "policyVersion": 1,
-    "kind": "original",
-    "recordFingerprint": "11f11bec5fa20530acf43597dabcb0ad97c0bbbc87bbb15a9d1493c7a6c8f2e3",
-    "modelUrl": "https://models.atrium.earth/models/previews/venus-de-milo/preview.glb",
-    "assetSha256": "7b15698b72844aa33cc2acd04c88cba36fab9ad9e8d6b3a6ee7df6cde89a0ba7",
-    "orientationFingerprint": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
-    "bindingFingerprint": "52726140b7a6e4e3aee69061654e2ec62b0f8b733ea68dd74f7c14795bd63570"
+    "slug": "venus-de-milo",
+    "kind": "cast",
+    "recordFingerprint": "b01684dd9004089f2e9426a1d24ec2e6aacfefab2bc1f05ed4c9a1ae278d286b",
+    "modelUrl": "https://models.atrium.earth/models/previews/venus-de-milo/preview-d63da2c7acd4.glb",
+    "assetSha256": "d63da2c7acd4d9eff37eefa25733535f3d35077090d07b0f0e1dbdbdb8a766a1",
+    "orientationFingerprint": "22221b482008c2be28c104633dc9e59f2e4bd25c7a662757ccf090c48fe00728",
+    "bindingFingerprint": "45b109a1cee3983d5ad1fb0ac76faa65225b69ddf329e072ebb9f1b02cfde2c1"
   },
   "capitoline-venus": {
     "enabled": true,
@@ -65,9 +84,15 @@
     "bindingFingerprint": "5557ef2024909571ecb5b7e7d74f9cac920fb9e40e0b61a9fe6a8ed8f13c7be7"
   },
   "belvedere-torso": {
-    "enabled": false,
+    "enabled": true,
     "policyVersion": 1,
-    "reason": "geometry"
+    "slug": "belvedere-torso",
+    "kind": "cast",
+    "recordFingerprint": "c9bca1e7b0058886be72df93878287e7859209894caeda86a6f1626a8f55a5d6",
+    "modelUrl": "https://models.atrium.earth/models/previews/belvedere-torso/preview-61f5dea99aa9.glb",
+    "assetSha256": "61f5dea99aa9492fb3bc8ab42b8f4e97c55de53ca54ff3d0147b539f0aa92756",
+    "orientationFingerprint": "b6e8a05422cf05389b75ed81beb7240bd28989597efce6d481d443fc710f3ff1",
+    "bindingFingerprint": "6309b861cf8c12059c8fd8fc309aa72c4a51ecb4f4eead1c96596fe3e135f3b7"
   },
   "michelangelo/battle-of-the-centaurs": {
     "enabled": false,
@@ -85,9 +110,15 @@
     "bindingFingerprint": "7fb8aa0043d22918368ebd9321e67dd1447039e91ddaa38dd6d03f26545cd400"
   },
   "michelangelo/pieta": {
-    "enabled": false,
+    "enabled": true,
     "policyVersion": 1,
-    "reason": "mismatch"
+    "slug": "michelangelo/pieta",
+    "kind": "cast",
+    "recordFingerprint": "2c5466625104f57bcaaa0ff2dedb647ab1d16d41ac437421c93c9a621ba20791",
+    "modelUrl": "https://models.atrium.earth/models/previews/michelangelo/pieta/preview-3f243306aa2a.glb",
+    "assetSha256": "3f243306aa2a7299db80c95fd384ffdb05a73da1c601e935fe20e04c12653a62",
+    "orientationFingerprint": "a455ee5217305bc8c78fa235491d6959008e61583f00426676d5db2af3d2f232",
+    "bindingFingerprint": "9555fa3987f3d32cc42dc0c5ccac581c6ffeace1abf6c4746055d6937714449b"
   },
   "michelangelo/bruges-madonna": {
     "enabled": true,
@@ -102,12 +133,13 @@
   "michelangelo/david": {
     "enabled": true,
     "policyVersion": 1,
+    "slug": "michelangelo/david",
     "kind": "original",
-    "recordFingerprint": "89f3d842fe195cd8c96ac8ba5a7d12ee4d60672c63db0d95639bc79fb96684d5",
-    "modelUrl": "https://models.atrium.earth/models/previews/michelangelo/david/preview.glb",
-    "assetSha256": "0fe2f0eca690f42f2e7ce0a6b440892f793410295dadbcfef9a0b3c62168f8b7",
-    "orientationFingerprint": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
-    "bindingFingerprint": "6ebea91118461b5e12ea72526dce5349a9f9c14a6f914630bd7edbc53f803750"
+    "recordFingerprint": "718343f7a6db669e2dcea941e3419e391246be8432173217d02deeea5b876315",
+    "modelUrl": "https://models.atrium.earth/models/previews/michelangelo/david/preview-760b4f8f96e4.glb",
+    "assetSha256": "760b4f8f96e4869dec5f1dd709a7b90e9a4fe06ae2605d2ba1c27028d6754ffc",
+    "orientationFingerprint": "3efcb0e71340be60e6d0f8bb501b2f4f83a6d728c4e89404f62a6c473a5b9c47",
+    "bindingFingerprint": "08f3074ee1461d81f128d7b2788fd8f38da67d6c656d1645a3f1e0f628a561b7"
   },
   "michelangelo/tondo-pitti": {
     "enabled": true,
@@ -145,9 +177,15 @@
     "reason": "mismatch"
   },
   "michelangelo/moses": {
-    "enabled": false,
+    "enabled": true,
     "policyVersion": 1,
-    "reason": "unverified"
+    "slug": "michelangelo/moses",
+    "kind": "cast",
+    "recordFingerprint": "f9183080587b0ef98e99d33e218b0a1d733c7d5395ab26f8a11ed413052fa624",
+    "modelUrl": "https://models.atrium.earth/models/previews/michelangelo/moses/preview-303fbcf64879.glb",
+    "assetSha256": "303fbcf64879d660fb766643e73dd54c63098a40170c3ca8bdac8248babda744",
+    "orientationFingerprint": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+    "bindingFingerprint": "1742b3ada947c131c22e06f07733af12dfbf96d87b749650790d3e133555162e"
   },
   "michelangelo/risen-christ": {
     "enabled": false,

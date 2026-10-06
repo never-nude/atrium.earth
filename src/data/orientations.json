@@ -167,21 +167,6 @@
     "status": "fixed",
     "note": "Roll the oblong horn to a diagonal and tighten the frame so it fills the portrait thumbnail (2.5x coverage) instead of floating in a thin horizontal band."
   },
-  "dying-gaul": {
-    "upAxis": "y",
-    "modelRotation": [
-      90,
-      180,
-      0
-    ],
-    "viewDirection": [
-      1,
-      0,
-      0
-    ],
-    "status": "review",
-    "note": "Base-down + eye-level broadside (coverage-derived) so the dying warrior reads in profile instead of top-down."
-  },
   "asia/brazier-of-rasulid-sultan-met": {
     "upAxis": "y",
     "modelRotation": [
@@ -21327,5 +21312,60 @@
       0
     ],
     "yaw": 0
+  },
+  "michelangelo/david": {
+    "upAxis": "y",
+    "modelRotation": [
+      -89.47,
+      5.45,
+      -5.5
+    ],
+    "yaw": 0,
+    "status": "review",
+    "note": "Upright frontal view; the integral carved base is level and the full figure reads clearly."
+  },
+  "michelangelo/pieta": {
+    "upAxis": "y",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "status": "review",
+    "note": "Upright frontal three-quarter view; both figures and the sculptural base are legible."
+  },
+  "venus-de-milo": {
+    "upAxis": "y",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "status": "review",
+    "note": "Upright frontal view; the figure and integral base are vertical and centered."
+  },
+  "laocoon": {
+    "upAxis": "y",
+    "modelRotation": [
+      -90.03,
+      0,
+      173.63
+    ],
+    "yaw": 0,
+    "status": "review",
+    "note": "Upright frontal view; the complete straight-arm group, serpents and base are visible."
+  },
+  "belvedere-torso": {
+    "upAxis": "y",
+    "modelRotation": [
+      -90,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "status": "review",
+    "note": "The +Z-up view restores the seated torso to an upright frontal presentation."
   }
 }
