@@ -417,7 +417,7 @@ function originalResearchFor(slug, currentRecord) {
   if (currentRecord.originalSizeResearch) {
     const originalSizeResearch = sanitizedOriginalSizeResearch(currentRecord.originalSizeResearch);
     return {
-      ...(originalDimensions ? { originalDimensions } : {}),
+      originalDimensions,
       ...(originalSizeResearch ? { originalSizeResearch } : {}),
     };
   }
@@ -445,7 +445,7 @@ function originalResearchFor(slug, currentRecord) {
     return originalDimensions ? { originalDimensions } : {};
   }
   return {
-    ...(originalDimensions ? { originalDimensions } : {}),
+    originalDimensions,
     originalSizeResearch: sanitizedOriginalSizeResearch(currentRecord),
   };
 }
