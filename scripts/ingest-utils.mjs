@@ -279,15 +279,17 @@ async function downloadFileWithCurl(url, dest, headers) {
     '--max-time', '1800',
     '--speed-time', '60',
     '--speed-limit', '1024',
-    '--retry', '2',
-    '--retry-delay', '2',
-    '--retry-all-errors',
     '--continue-at', '-',
     '--output', tmp,
   ];
   for (const [name, value] of Object.entries(headers)) args.push('--header', `${name}: ${value}`);
   args.push(url);
-  const attempts = Number(process.env.ATRIUM_CURL_ATTEMPTS || 8);
+  // Keep retries at the process level. curl's built-in retry path calculates
+  // the resume offset only once, so a later retry can overwrite progress made
+  // by an earlier connection in the same process. A fresh process recalculates
+  // the offset from the partial file every time. Large SMK scans regularly
+  // need more than eight short range responses before the full file arrives.
+  const attempts = Number(process.env.ATRIUM_CURL_ATTEMPTS || 32);
   let completed = false;
   let lastError;
   for (let attempt = 1; attempt <= attempts; attempt += 1) {
