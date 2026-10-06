@@ -1,0 +1,92 @@
+{
+  "schema": "atrium-auto-ingest-fetched/1",
+  "generated_at": "2026-10-06T03:19:00.932Z",
+  "source_candidates": "/home/runner/work/atrium.earth/atrium.earth/.atrium-ingest/leads.json",
+  "candidates": [
+    {
+      "source": "sketchfab",
+      "archive": "",
+      "uid": "08a1e693c9674a3292dec2298b09e0ae",
+      "slug": "rodin/the-thinker",
+      "collection": "rodin",
+      "wing": "europe",
+      "title": "The Thinker (Copenhagen Cast)",
+      "artist": "Auguste Rodin",
+      "culture": "French",
+      "geography": "France; Copenhagen, Denmark",
+      "subject": "Sculpture",
+      "year": "modeled 1880; cast 1900–1901",
+      "year_sort": 1901,
+      "period": "Modern",
+      "material": "Bronze with dark green patina",
+      "dimensions": "H 73.3 cm",
+      "measures": [
+        {
+          "axis": "height",
+          "value": 73.3,
+          "unit": "cm"
+        }
+      ],
+      "museum": "Ny Carlsberg Glyptotek, Copenhagen",
+      "displayed_at": "Ny Carlsberg Glyptotek garden, Copenhagen",
+      "current_location": "Ny Carlsberg Glyptotek, Copenhagen",
+      "original_location": "Commissioned from Rodin for Carl Jacobsen; delivered to Copenhagen in June 1901",
+      "source_institution": "Rigsters (independent scan of a Ny Carlsberg Glyptotek object)",
+      "source_url": "https://sketchfab.com/3d-models/the-thinker-by-auguste-rodin-08a1e693c9674a3292dec2298b09e0ae",
+      "source_record_url": "https://www.ny-carlsbergfondet.dk/da/grubleren",
+      "related_source_record_urls": [
+        "https://api.sketchfab.com/v3/models/08a1e693c9674a3292dec2298b09e0ae"
+      ],
+      "download_api_url": "https://api.sketchfab.com/v3/models/08a1e693c9674a3292dec2298b09e0ae/download",
+      "download_format": "glb",
+      "download_size_bytes": 0,
+      "face_count": 50974,
+      "allow_componentized_mesh": true,
+      "max_component_count": 100,
+      "accession": "M.IN 605",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "license_tier": 2,
+      "license_evidence_url": "https://api.sketchfab.com/v3/models/08a1e693c9674a3292dec2298b09e0ae",
+      "scan_author": "Rigsters",
+      "attribution": "3D model “The Thinker by Auguste Rodin” by Rigsters (rigsters), via Sketchfab, licensed CC BY 4.0. Photogrammetry captured in 2017 from about 700 images. Object: Auguste Rodin, The Thinker, modeled 1880 and cast 1900–1901, M.IN 605, Ny Carlsberg Glyptotek, Copenhagen. Atrium serves an optimized derivative.",
+      "scan_source": "Independent photogrammetry captured in 2017 from about 700 images and published on Sketchfab",
+      "note": "Rodin modeled the original-size Thinker in 1880. This bronze was cast in 1900–1901 after Carl Jacobsen commissioned it directly from the artist in October 1900; it reached Copenhagen in June 1901. Rigsters identifies the scanned object as the cast in the Ny Carlsberg Glyptotek garden. Its photographed surface preserves the work's dark green outdoor patina instead of applying a generated bronze texture.",
+      "source_description": "Rigsters describes the model as a 2017 photogrammetric scan made from about 700 images of the bronze cast in the garden of the Ny Carlsberg Glyptotek. The Ny Carlsberg Foundation records the object as Auguste Rodin's Grubleren (The Thinker), bronze with dark green patina, height 73.3 cm, modeled 1880, cast 1900–1901, museum number M.IN 605.",
+      "reference_image_url": "https://media.sketchfab.com/models/08a1e693c9674a3292dec2298b09e0ae/thumbnails/957319a9651a4bc0a6948e6ec562e0c7/0d58de9e31164c5da87cfe3c4a485cab.jpeg",
+      "evidence": [
+        "Sketchfab API checked 2026-10-06: downloadable model, 50,974 faces, publisher Rigsters, CC BY 4.0",
+        "Ny Carlsberg Foundation object record: M.IN 605, modeled 1880, cast 1900–1901, bronze with dark green patina, height 73.3 cm"
+      ],
+      "publisher": "Rigsters",
+      "published_at": "2021-01-26T12:39:47.555191",
+      "fetched": {
+        "download_url": "https://sketchfab-prod-media.s3.amazonaws.com/archives/08a1e693c9674a3292dec2298b09e0ae/glb/d4896729639340d7aa8e1e5f055dda47/the_thinker_by_auguste_rodin.glb",
+        "downloaded_path": ".atrium-ingest/sources/rodin/the-thinker/the-thinker-by-auguste-rodin.glb",
+        "local_source_path": ".atrium-ingest/sources/rodin/the-thinker/the-thinker-copenhagen-cast_source.glb",
+        "filename": "the-thinker-copenhagen-cast_source.glb",
+        "format": "glb",
+        "bytes": 4752152,
+        "original_download_bytes": 4752152,
+        "sha256": "8014f2c5a0f0f3ad715abd8936113e494f71b25f572db628f6f4879c0128d79e",
+        "content_type": "application/octet-stream",
+        "decoded": false,
+        "extracted_from": "",
+        "fetched_at": "2026-10-06T03:19:03.267Z"
+      }
+    }
+  ],
+  "report": {
+    "generated_at": "2026-10-06T03:19:00.932Z",
+    "fetched": [
+      {
+        "slug": "rodin/the-thinker",
+        "source": "sketchfab",
+        "bytes": 4752152
+      }
+    ],
+    "errors": [],
+    "warnings": [],
+    "already_catalogued": []
+  }
+}

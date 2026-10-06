@@ -1198,5 +1198,13 @@
     "kind": "floor",
     "height": 0,
     "note": "Place the ritual stand on the floor using its own integral feet, preserving its documented height."
+  },
+  "rodin/the-thinker": {
+    "kind": "existing_base",
+    "height": 0,
+    "note": "Retain the rock seat and integral lower support captured in the scan; do not add an automatic virtual plinth.",
+    "reviewed": "2026-10-06",
+    "assetSha256": "ce4312caafd53aba1f271e5e97b80d3022bc7c326a26279d5fa69ca3fca68b57",
+    "reviewNote": "The immutable optimized GLB was decoded and inspected upright from four cardinal yaws. It contains the complete seated figure, rock seat and integral lower support. The source is split into 80 photogrammetry components within one mesh primitive, but the reviewed views show them aligned with the sculpture surface and no detached debris outside the object. The full Y extent therefore maps to the documented 73.3 cm height of M.IN 605."
   }
 }

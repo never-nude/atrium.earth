@@ -1,0 +1,41 @@
+{
+  "schema": "atrium-auto-ingest-report/1",
+  "generated_at": "2026-10-06T03:19:03.481Z",
+  "ingest_batch": "iconic-scan-upgrades-thinker-20261006",
+  "ingested_at": "2026-10-06T03:19:03.437Z",
+  "ingested": "2026-10-06",
+  "accepted": [
+    {
+      "slug": "rodin/the-thinker",
+      "title": "The Thinker (Copenhagen Cast)",
+      "source": "sketchfab",
+      "source_url": "https://sketchfab.com/3d-models/the-thinker-by-auguste-rodin-08a1e693c9674a3292dec2298b09e0ae",
+      "subject": "Sculpture",
+      "scan_author": "Rigsters",
+      "attribution": "3D model “The Thinker by Auguste Rodin” by Rigsters (rigsters), via Sketchfab, licensed CC BY 4.0. Photogrammetry captured in 2017 from about 700 images. Object: Auguste Rodin, The Thinker, modeled 1880 and cast 1900–1901, M.IN 605, Ny Carlsberg Glyptotek, Copenhagen. Atrium serves an optimized derivative.",
+      "accession": "M.IN 605",
+      "displayed_at": "Ny Carlsberg Glyptotek garden, Copenhagen",
+      "dimensions": "H 73.3 cm",
+      "license": "CC BY 4.0",
+      "tri_count": 50974,
+      "integrity": "faces=50974 ncomp=80 bratio=0.072",
+      "orientation": "NEEDS ORIENTATION"
+    }
+  ],
+  "rejected": [],
+  "needs_orientation": [
+    {
+      "slug": "rodin/the-thinker",
+      "title": "The Thinker (Copenhagen Cast)",
+      "proposed": "{\"upAxis\":\"y\",\"modelRotation\":[-107.58,0,-82.96],\"yaw\":0}",
+      "confidence": 0.63,
+      "reason": "Stable-pose solve (pose 0, p=0.31, margin 0.29); confident. QUALITY: ncomp=80 bratio=0.072 - source may be shattered/open; re-fetch a better scan."
+    }
+  ],
+  "warnings": [
+    {
+      "slug": "rodin/the-thinker",
+      "reason": "accepted componentized mesh via explicit candidate flag: faces=50974 ncomp=80 bratio=0.072"
+    }
+  ]
+}

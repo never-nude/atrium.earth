@@ -1,0 +1,49 @@
+{
+  "schema": "atrium-model-replacement/1",
+  "slug": "rodin/the-thinker",
+  "reviewed_at": "2026-10-06",
+  "reason": "Replace an untextured, unidentified reproduction with an exact-object photogrammetric scan that preserves the photographed bronze surface.",
+  "previous": {
+    "identity": "Unidentified reproduction shown using the Musée Rodin monumental version as an approximate size reference",
+    "preview_url": "https://models.atrium.earth/models/previews/rodin/the-thinker/preview.glb",
+    "preview_sha256": "43c0be045d923aa905bb59b45b9741374eab98cd37ff4ce6c8f376c0914dd43c",
+    "preview_faces": 14000,
+    "source_format": "stl",
+    "source_bytes": 41874184,
+    "surface": "Untextured mesh using Atrium's synthetic bronze-patina profile"
+  },
+  "replacement": {
+    "identity": "Auguste Rodin, The Thinker, Copenhagen bronze M.IN 605, modeled 1880 and cast 1900–1901",
+    "source_url": "https://sketchfab.com/3d-models/the-thinker-by-auguste-rodin-08a1e693c9674a3292dec2298b09e0ae",
+    "object_record_url": "https://www.ny-carlsbergfondet.dk/da/grubleren",
+    "source_sha256": "8014f2c5a0f0f3ad715abd8936113e494f71b25f572db628f6f4879c0128d79e",
+    "source_bytes": 4752152,
+    "source_format": "glb",
+    "preview_url": "https://models.atrium.earth/models/previews/rodin/the-thinker/preview-ce4312caafd5.glb",
+    "preview_sha256": "ce4312caafd53aba1f271e5e97b80d3022bc7c326a26279d5fa69ca3fca68b57",
+    "preview_bytes": 725652,
+    "preview_faces": 50974,
+    "textures": [
+      "1024 × 1024 base-color WebP",
+      "1024 × 1024 normal WebP",
+      "1024 × 1024 metallic-roughness WebP"
+    ],
+    "license": "CC BY 4.0",
+    "scan_author": "Rigsters",
+    "dimensions": "H 73.3 cm",
+    "orientation": {
+      "upAxis": "y",
+      "modelRotation": [0, 0, 0],
+      "yaw": 0
+    },
+    "default_exposure": 0.25,
+    "thumbnail_sha256": "b34a4fca7ce47ec347677ce5bae7d12a9089c90f77f030dd6ff048d728d4a980"
+  },
+  "review": {
+    "views": "Upright plus four cardinal yaws and six alternate axis orientations",
+    "geometry": "Complete seated figure, rock seat and integral lower support. Eighty photogrammetry components remain aligned with the visible sculpture; no detached debris appears outside the object in reviewed views.",
+    "surface": "Authored base-color, normal and metallic-roughness textures preserved. Synthetic patina fields removed; only the neutral default exposure is tuned.",
+    "scale": "Full reviewed Y extent bound to the documented 73.3 cm height of M.IN 605.",
+    "controls": "Exposure and Texture remain adjustable; no visitor-controlled light direction is restored."
+  }
+}

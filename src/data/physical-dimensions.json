@@ -73128,126 +73128,91 @@
     "spatialNote": "Physical scale is calibrated to the documented original artwork dimensions. Proportions are preserved."
   },
   "rodin/the-thinker": {
+    "dimensions": "Measured Copenhagen cast: H 73.3 cm",
     "status": "documented",
-    "basis": "original",
-    "dimensions": "H. 189 cm; W. 98 cm; D. 140 cm",
-    "sourceUrl": "https://www.musee-rodin.fr/en/musee/collections/oeuvres/thinker",
-    "sourceTitle": "Wikimedia Commons / Scan the World",
-    "note": "Dimensions refer to the monumental version in the Musée Rodin (S.01295). The reproduction source does not identify an exact cast or edition. This model is shown approximately at that monumental size, excluding its added display disk.",
+    "basis": "object",
+    "note": "The displayed scale uses the measured Copenhagen bronze M.IN 605, including its figure, rock seat and integral lower support. It does not use the 1.89 m monumental Musée Rodin version.",
+    "checked": "2026-10-06",
+    "reviewed": "2026-10-06",
+    "spatialNote": "Shown at the documented 73.3 cm height of the scanned Copenhagen cast.",
+    "researchStatus": "verified",
+    "identifiedObject": {
+      "title": "Grubleren (The Thinker)",
+      "institution": "Ny Carlsberg Glyptotek, Copenhagen",
+      "accession": "M.IN 605",
+      "record_url": "https://www.ny-carlsbergfondet.dk/da/grubleren",
+      "identity_confidence": "high",
+      "match_explanation": "The scan publisher identifies the Glyptotek garden bronze, and the Ny Carlsberg Foundation record documents its material, height, dates and museum number."
+    },
+    "identity": {
+      "title": "The Thinker (Copenhagen Cast)",
+      "accession": "M.IN 605",
+      "version": "Original-size bronze cast commissioned from Rodin by Carl Jacobsen"
+    },
+    "geometryReviewNote": "The immutable optimized GLB was decoded and inspected upright from four cardinal yaws. It contains the complete seated figure, rock seat and integral lower support. The source is split into 80 photogrammetry components within one mesh primitive, but the reviewed views show them aligned with the sculpture surface and no detached debris outside the object. The full Y extent therefore maps to the documented 73.3 cm height of M.IN 605.",
     "measures": [
       {
         "axis": "height",
-        "value": 189,
+        "value": 73.3,
         "unit": "cm",
-        "scope": "object",
-        "sourcePosition": 1,
+        "meters": 0.733,
+        "scope": "Ny Carlsberg Glyptotek bronze M.IN 605, complete cast including figure, rock seat and integral lower support.",
+        "qualifier": "exact",
         "sourceUrls": [
-          "https://www.musee-rodin.fr/en/musee/collections/oeuvres/thinker"
-        ]
-      },
-      {
-        "axis": "width",
-        "value": 98,
-        "unit": "cm",
-        "scope": "object",
-        "sourcePosition": 2,
-        "sourceUrls": [
-          "https://www.musee-rodin.fr/en/musee/collections/oeuvres/thinker"
-        ]
-      },
-      {
-        "axis": "depth",
-        "value": 140,
-        "unit": "cm",
-        "scope": "object",
-        "sourcePosition": 3,
-        "sourceUrls": [
-          "https://www.musee-rodin.fr/en/musee/collections/oeuvres/thinker"
+          "https://www.ny-carlsbergfondet.dk/da/grubleren"
         ]
       }
     ],
-    "identity": {
-      "title": "The Thinker (reproduction)",
-      "accession": "",
-      "version": "Exact scan edition unverified"
-    },
+    "sourceUrl": "https://www.ny-carlsbergfondet.dk/da/grubleren",
+    "sourceTitle": "Ny Carlsberg Foundation",
     "evidence": [
       {
-        "sourceUrl": "https://www.musee-rodin.fr/en/musee/collections/oeuvres/thinker",
-        "excerpt": "H. 189 cm; W. 98 cm; D. 140 cm",
-        "retrieved": "2026-09-12"
+        "sourceUrl": "https://www.ny-carlsbergfondet.dk/da/grubleren",
+        "excerpt": "Bronze with dark green patina; height 73.3 cm; modeled 1880; cast 1900–1901; museum number M.IN 605.",
+        "retrieved": "2026-10-06"
       }
     ],
-    "reviewed": "2026-09-12",
-    "geometryStatus": "approximate-reference",
-    "catalogDimensionsForComparisonOnly": "H 189 cm × W 98 cm × D 140 cm",
     "sourcesReviewed": [
       {
-        "url": "https://commons.wikimedia.org/wiki/File:Scan_the_World_-_The_Thinker_(Auguste_Rodin).stl",
-        "text": "work/atrium-scale-all/other/text/54af2e1c8f6b22a4.txt",
+        "url": "https://www.ny-carlsbergfondet.dk/da/grubleren",
         "ok": true
       },
       {
-        "url": "https://www.musee-rodin.fr/en/musee/collections/oeuvres/thinker",
-        "text": "work/atrium-scale-all/other/text/6784b92d71464dad.txt",
+        "url": "https://sketchfab.com/3d-models/the-thinker-by-auguste-rodin-08a1e693c9674a3292dec2298b09e0ae",
+        "ok": true
+      },
+      {
+        "url": "https://api.sketchfab.com/v3/models/08a1e693c9674a3292dec2298b09e0ae",
         "ok": true
       }
     ],
+    "geometryStatus": "calibrated",
     "calibrationReady": true,
     "calibrationStatus": "calibrated",
     "spatial": {
       "axis": "y",
-      "meters": 1.8900000000000001,
+      "meters": 0.733,
       "measurementIndex": 0,
-      "previewUrl": "https://models.atrium.earth/models/previews/rodin/the-thinker/preview.glb",
-      "orientation": null,
-      "assetSha256": "43c0be045d923aa905bb59b45b9741374eab98cd37ff4ce6c8f376c0914dd43c",
-      "reviewed": "2026-09-13",
-      "geometryReview": "Use the monumental Thinker’s documented189cm height for the complete figure and its sculpted rock seat. Exclude the source-print oval disk by fitting its visible upper plane; the entire asset is then scaled uniformly. The fitted support boundary spans 0.64% of the artwork reference extent; this is geometric reference uncertainty, not museum measurement precision.",
-      "note": "Use the monumental Thinker’s documented189cm height for the complete figure and its sculpted rock seat. Exclude the source-print oval disk by fitting its visible upper plane; the entire asset is then scaled uniformly. The fitted support boundary spans 0.64% of the artwork reference extent; this is geometric reference uncertainty, not museum measurement precision. This is an explicit monumental-size display target for a reproduction, not identification of the scan as accession S.01295.",
-      "extentFraction": 0.9750829516229906,
-      "componentMeasurement": {
-        "axis": "y",
-        "planeBand": [
-          -0.478,
-          -0.473
+      "previewUrl": "https://models.atrium.earth/models/previews/rodin/the-thinker/preview-ce4312caafd5.glb",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
         ],
-        "planeY": -0.47508295162299075,
-        "faceCount": 445,
-        "planeMin": -0.47827082125309006,
-        "planeMax": -0.4720450453199866,
-        "extent": 0.9750829516229906,
-        "fraction": 0.9750829516229906
+        "yaw": 0
       },
-      "measurementRegion": {
-        "method": "area-weighted-support-plane",
-        "description": "Area-weighted Y of nearly horizontal triangle faces in the visually reviewed support-top band; artwork extent runs from this fitted plane to its top.",
-        "axis": "y",
-        "planeBand": [
-          -0.478,
-          -0.473
-        ],
-        "planeY": -0.47508295162299075,
-        "faceCount": 445,
-        "planeMin": -0.47827082125309006,
-        "planeMax": -0.4720450453199866,
-        "extent": 0.9750829516229906,
-        "fraction": 0.9750829516229906,
-        "normalization": "applyModelTransform; normalizeModel; model.updateMatrixWorld(true)",
-        "auditScript": "work/atrium-ar-vr-correction-2026-09-13/mia/reference.mjs",
-        "minimumAbsoluteNormalY": 0.995,
-        "centroidYBinSize": 0.001
-      },
-      "estimated": true
+      "assetSha256": "ce4312caafd53aba1f271e5e97b80d3022bc7c326a26279d5fa69ca3fca68b57",
+      "reviewed": "2026-10-06",
+      "geometryReview": "The immutable optimized GLB was decoded and inspected upright from four cardinal yaws. It contains the complete seated figure, rock seat and integral lower support. The source is split into 80 photogrammetry components within one mesh primitive, but the reviewed views show them aligned with the sculpture surface and no detached debris outside the object. The full Y extent therefore maps to the documented 73.3 cm height of M.IN 605.",
+      "note": "Uniform scale preserves the photographed cast’s proportions; the verified reference is the complete Copenhagen cast height."
     },
-    "spatialNote": "Reproduction shown at the monumental version’s height of 1.89 m. Physical size is approximate; the exact scan edition is unverified.",
-    "geometryReviewNote": "Use the monumental Thinker’s documented189cm height for the complete figure and its sculpted rock seat. Exclude the source-print oval disk by fitting its visible upper plane; the entire asset is then scaled uniformly. The fitted support boundary spans 0.64% of the artwork reference extent; this is geometric reference uncertainty, not museum measurement precision.",
-    "calibrationBlockers": [],
-    "checked": "2026-09-13",
-    "dimensionReferenceIdentity": {
-      "title": "The Thinker",
-      "accession": "S.01295",
-      "version": "Monumental version, 1903/1904"
+    "previousReferenceResearch": {
+      "status": "retired",
+      "dimensions": "H 189 cm × W 98 cm × D 140 cm",
+      "sourceUrl": "https://www.musee-rodin.fr/en/musee/collections/oeuvres/thinker",
+      "note": "Atrium formerly used dimensions of the Musée Rodin monumental version to size an unidentified reproduction. Those dimensions do not describe this Copenhagen scan and are retained only as audit history."
     }
   },
   "sphinx": {
