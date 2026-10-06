@@ -538,3 +538,17 @@ Commit `1afb322` is deployment-verified. [GitHub Pages run 37334355346](https://
 - Commit `fcefcb2a` is deployment-verified. [GitHub Pages run 37409955159](https://github.com/never-nude/atrium.earth/actions/runs/37409955159) completed its production build and deployment successfully.
 - Live verification on 2026-10-06 confirmed the canonical page returns the exact Copenhagen title, date, material, museum, accession and 73.3 cm cast-size record. The WebGL canvas loaded with no viewer error from the new content-hashed R2 URL. Its model and thumbnail byte-match the reviewed SHA-256 values above.
 - The live Display interface contains one Exposure slider and one Texture slider. It contains no light-angle control or movable-light API. A live visual check confirmed the model is upright, complete and rendered with its photographed patina maps.
+
+## 2026-10-06 — Eight iconic scan replacements and larger-batch acquisition path
+
+- Replaced the production previews for Michelangelo's *David*, the SMK casts of the *Pietà* and *Moses*, and the SMK casts of the *Venus de Milo*, *Discobolus*, *Laocoön*, *Dying Gaul* and *Belvedere Torso*. All eight source downloads are pinned to exact byte counts and SHA-256 values; their optimized R2 derivatives are content-addressed and independently byte-verified.
+- Object identity and scale follow the exact scanned object. *David* is labeled as the Accademia marble at 5.17 m. The other seven are explicitly identified as SMK plaster casts with their own accessions and documented metric dimensions; measurements of the underlying originals remain separate research history. AR bindings use those reviewed object measurements.
+- Ten-view sheets retained the human orientation evidence. A final thumbnail review corrected the *Laocoön* from a rear view and the *Dying Gaul* from an overhead view before publication. All final cards are upright, front-readable and use marble or plaster appearance profiles without invented patina.
+- The acquisition workflow now supports one 180–240-work logical batch as chained 45–60-work catalog-writing chunks through an explicit cumulative `base_ref`. Orientation and thumbnail review can run in sharded jobs after the final chunk. Duplicate, missing, empty or partial review artifacts fail closed. Live verification accepts any batch and checks pages, thumbnails, model hashes and complete Newest ordering with bounded concurrency. Newest retains its 40-work floor and includes every public work in the latest logical batch, including a tested 240-work continuation.
+- Validation passed: the focused eight-work integrity test, exact poster/thumbnail matching, 240-work Newest test, review-artifact tests, workflow YAML and embedded-JavaScript checks, whitespace checks and a 4,849-page production build.
+
+### Production confirmation — iconic replacements
+
+- Commit `152924a3` is deployment-verified. [GitHub Pages run 37535397259](https://github.com/never-nude/atrium.earth/actions/runs/37535397259) and Pages deployment `6895974949` completed successfully.
+- Live verification on 2026-10-06 confirmed all eight canonical pages return their expected title, accession, material, content-hashed model URL and metric AR scale. Every public model byte-matches its reviewed full SHA-256 and byte count; every public thumbnail byte-matches the reviewed local file.
+- Every page exposes Exposure and Texture controls plus AR placement. None exposes the retired light-angle control or legacy movable-light slider.
