@@ -1,0 +1,148 @@
+# Atrium Auto Ingest Report
+
+Generated: 2026-10-06T01:07:18.910Z
+Accepted: 45
+Rejected: 9
+Needs orientation: 20
+
+## Accepted Pieces
+
+| Piece | Source | License | Tri-count | Integrity | Orientation |
+| --- | --- | --- | ---: | --- | --- |
+| Donar Amulet (Thor’s Club) (`europe/donar-amulet-thors-club-0bbebb`) | [source](https://sketchfab.com/3d-models/donar-amulet-thors-club-ca-600-650-0bbebb81325246ef85dbbcbe9a58e45a) | CC BY-SA 4.0 | 284690 | faces=284690 ncomp=1 bratio=0 | auto {"upAxis":"y","modelRotation":[2.55,0.01,0.48],"yaw":0} confidence=0.86 |
+| Gold Pendant with Twin Raven Heads (`europe/gold-pendant-590-650-af0b3a`) | [source](https://sketchfab.com/3d-models/hanger-pendant-590-650-af0b3ad13c8c495d9a66a53b84c12542) | CC BY-SA 4.0 | 238822 | faces=238822 ncomp=9 bratio=0 | NEEDS ORIENTATION |
+| Domburg Brooch with Wodan Mask (`europe/domburg-brooch-959482`) | [source](https://sketchfab.com/3d-models/domburgfibula-domburg-brooch-675-725-9594825f761e41ee9850fba1dc6d146f) | CC BY-SA 4.0 | 446314 | faces=446314 ncomp=2 bratio=0 | auto {"upAxis":"y","modelRotation":[1.24,0,-0.2],"yaw":0} confidence=0.63 |
+| The Vendel I Helmet (`europe/vendel-i-helmet-5a810a`) | [source](https://sketchfab.com/3d-models/the-vendel-i-helmet-5a810a3e22034e2e89f3fcfe519e0557) | CC BY 4.0 | 1000028 | faces=1000028 ncomp=1 bratio=0 | auto {"upAxis":"y","modelRotation":[160.9,0,40.45],"yaw":0} confidence=0.71 |
+| The Vendel XIV Helmet (`europe/vendel-xiv-helmet-be9b5b`) | [source](https://sketchfab.com/3d-models/the-vendel-xiv-helmet-be9b5be8d76642e6b54fcf2983c6275f) | CC BY 4.0 | 1000006 | faces=1000006 ncomp=2 bratio=0 | NEEDS ORIENTATION |
+| Harald Bluetooth's Runestone, Jelling, Denmark. (`europe/jelling-runestone-4e8564`) | [source](https://sketchfab.com/3d-models/harald-bluetooths-runestone-jelling-denmark-4e8564d3d5064441b691c891b4c3202b) | CC BY 4.0 | 199938 | faces=199938 ncomp=27 bratio=0 | auto {"upAxis":"y","modelRotation":[180,0,180],"yaw":0} confidence=0.63 |
+| Celtic cross of bronze/gold. Viking age (`europe/celtic-cross-viking-age-5f01aa`) | [source](https://sketchfab.com/3d-models/celtic-cross-of-bronzegold-viking-age-5f01aa0fbd294bfaa7b37bc1d890b00a) | CC BY 4.0 | 268820 | faces=268820 ncomp=8 bratio=0 | NEEDS ORIENTATION |
+| Runestone from Ervik (`europe/ervik-runestone-33ecde`) | [source](https://sketchfab.com/3d-models/runestone-from-ervik-33ecde3cbed141a7b8991eae7add7af8) | CC BY 4.0 | 7044110 | faces=7044110 ncomp=10 bratio=0 | auto {"upAxis":"y","modelRotation":[-88.58,0.79,-0.81],"yaw":0} confidence=0.75 |
+| Buttle Picture Stones (`europe/buttle-picture-stones-83711c`) | [source](https://sketchfab.com/3d-models/buttle-picture-stones-83711ce10a504d7abb2cb1a9d2004e9e) | CC BY 4.0 | 1000000 | faces=1000000 ncomp=1 bratio=0.001 | NEEDS ORIENTATION |
+| Hangvar Picture Stone (`europe/hangvar-picture-stone-2d446c`) | [source](https://sketchfab.com/3d-models/hangvar-picture-stone-2d446c84f7c749c08cbb08d543d209f0) | CC BY 4.0 | 231764 | faces=231764 ncomp=1 bratio=0.004 | NEEDS ORIENTATION |
+| The Vendel XII Helmet (`europe/vendel-xii-helmet-8c297f`) | [source](https://sketchfab.com/3d-models/the-vendel-xii-helmet-8c297f8775a04fb3ba445b358874a9c6) | CC BY 4.0 | 999982 | faces=999982 ncomp=1 bratio=0 | auto {"upAxis":"y","modelRotation":[168.03,0,-37.79],"yaw":0} confidence=0.69 |
+| Karhunhammasriipus - Bear Tooth Pendant (`europe/bear-tooth-pendant-3bba2f`) | [source](https://sketchfab.com/3d-models/karhunhammasriipus-bear-tooth-pendant-3bba2f0844a143d99ca251e658500608) | CC BY 4.0 | 320132 | faces=320132 ncomp=5 bratio=0 | auto {"upAxis":"y","modelRotation":[88.67,-0.37,-0.37],"yaw":0} confidence=0.69 |
+| Miniature Traveling Iconostasis (`europe/miniature-iconostasis-8ebeef`) | [source](https://sketchfab.com/3d-models/matkaikonostaasiminiature-iconostasish770061-8ebeef2e64e44cbbba6c09281df34d22) | CC BY 4.0 | 99970 | faces=99970 ncomp=1 bratio=0 | auto {"upAxis":"y","modelRotation":[171.39,0,179.85],"yaw":0} confidence=0.86 |
+| Pyhä Barbara - Saint Barbara (`europe/saint-barbara-turku-10b461`) | [source](https://sketchfab.com/3d-models/pyha-barbara-saint-barbara-10b4614103d640f492164798f2176536) | CC BY 4.0 | 399962 | faces=399962 ncomp=1 bratio=0 | auto {"upAxis":"y","modelRotation":[-1.15,-0.01,1.38],"yaw":0} confidence=0.66 |
+| Amulet Inscribed in Middle Persian Script (`ancient-near-east/sasanian-amulet-middle-persian-8d2f47`) | [source](https://sketchfab.com/3d-models/met-museum-1989123-sasanian-amulet-8d2f47e0fd394620a6a2a8d72731afe3) | CC BY 4.0 | 422848 | faces=422848 ncomp=5 bratio=0 | auto {"upAxis":"y","modelRotation":[-118.89,0,-9.55],"yaw":0} confidence=0.73 |
+| Tetradrachm of Kanishka I with Atsho, God of Fire (`asia/kanishka-atsho-fire-god-tetradrachm-f5e168`) | [source](https://sketchfab.com/3d-models/bronze-tetradrachm-of-kanishka-i-f5e16872a29941da9a9dbf720cf2aaa5) | CC BY 4.0 | 300000 | faces=300000 ncomp=1 bratio=0 | NEEDS ORIENTATION |
+| Tetradrachm of Kanishka I with Mithra (`asia/kanishka-mithra-tetradrachm-520789`) | [source](https://sketchfab.com/3d-models/copper-tetradrachm-of-kanishka-i-520789aa1dab44dc81c8a51a568e4d1f) | CC BY 4.0 | 249999 | faces=249999 ncomp=1 bratio=0 | NEEDS ORIENTATION |
+| Silver Drachm of Khusrau II with Fire Altar (`ancient-near-east/khusrau-ii-fire-altar-drachm-f68237`) | [source](https://sketchfab.com/3d-models/silver-drachm-of-khusrau-ii-f68237c87a90444fb8107857064d54b0) | CC BY 4.0 | 300000 | faces=300000 ncomp=1 bratio=0 | NEEDS ORIENTATION |
+| Sasanian Rock Reliefs at Naqsh-e Rostam (`ancient-near-east/sasanian-reliefs-naqsh-e-rostam-9452f4`) | [source](https://sketchfab.com/3d-models/rilievi-sasanidi-a-naqsh-e-rostam-fars-iran-9452f4c014f342ea8b276676c384aa31) | CC BY 4.0 | 383136 | faces=383136 ncomp=1 bratio=0.003 | NEEDS ORIENTATION |
+| Relief of Cautopates from a Mithraeum in London (`roman/cautopates-mithras-relief-london-77abc4`) | [source](https://sketchfab.com/3d-models/mithras-cautopates-relief-77abc48d253d451eb079464075f4ce5a) | CC BY 4.0 | 147966 | faces=147966 ncomp=1 bratio=0 | auto {"upAxis":"y","modelRotation":[-172.58,0,-175.92],"yaw":0} confidence=0.64 |
+| Fragmentary Statue of Mithras Slaying the Bull (`roman/mithras-tauroctony-statue-tarquinia-0d7d7e`) | [source](https://sketchfab.com/3d-models/mithras-statue-0d7d7e35ec3a4d318b72efa40fd31c64) | CC BY 4.0 | 13559 | faces=13559 ncomp=2 bratio=0.016 | NEEDS ORIENTATION |
+| Stele of Mithras from Mules (`roman/mithras-stele-mules-85b6f7`) | [source](https://sketchfab.com/3d-models/stele-del-dio-mitra-mules-85b6f7545aaf439bba6df86e6e49a20e) | CC BY 4.0 | 1059386 | faces=1059386 ncomp=8 bratio=0 | NEEDS ORIENTATION |
+| Pewter Lid with the Annunciation and Adoration of the Magi (`europe/pewter-lid-annunciation-adoration-903763`) | [source](https://sketchfab.com/3d-models/tinakansi-a-pewter-lid-of-a-salt-cellar-90376377fd414c30b68885c3d1845c65) | CC BY 4.0 | 400131 | faces=400131 ncomp=4 bratio=0 | auto {"upAxis":"y","modelRotation":[-174.2,0,-71.19],"yaw":0} confidence=0.86 |
+| Shinto Deities (`asia/shinto-deities-85f312`) | [source](https://sketchfab.com/3d-models/19783-shinto-deities-85f3125ccc8049b1b5e2eda45710cbac) | CC0 1.0 | 179700 | faces=179700 ncomp=2 bratio=0 | auto {"upAxis":"y","modelRotation":[-179.88,0,179.93],"yaw":0} confidence=0.72 |
+| Pair of Guardian Figures (Zuishin) (`asia/pair-of-guardian-figures-zuishin-cb74e1`) | [source](https://sketchfab.com/3d-models/2020215-pair-of-guardian-figures-zuishin-cb74e1c1c6a64e7491e4e94ddb9acbbc) | CC0 1.0 | 126307 | faces=126307 ncomp=12 bratio=0 | NEEDS ORIENTATION |
+| Bowl with Daoist Immortals (`asia/bowl-with-daoist-immortals-e50bd8`) | [source](https://sketchfab.com/3d-models/schale-mit-daoistischem-motiv-experiment-3d-e50bd8dd9e80460ead98cb58a1eb6548) | CC BY-SA 4.0 | 982160 | faces=982160 ncomp=1 bratio=0 | auto {"upAxis":"y","modelRotation":[179.99,0,-179.99],"yaw":0} confidence=0.79 |
+| Funerary Stela of Dios (`egyptian/funerary-stela-of-dios-def832`) | [source](https://sketchfab.com/3d-models/funerary-stela-of-dios-hargm3596-def832819f514d6b9952fa3a6db96a21) | CC BY 4.0 | 601504 | faces=601504 ncomp=1 bratio=0 | auto {"upAxis":"y","modelRotation":[-96.41,0,84.94],"yaw":0} confidence=0.69 |
+| Funerary Stela of Thekla (`egyptian/funerary-stela-of-thekla-d3e1b1`) | [source](https://sketchfab.com/3d-models/funerary-stela-of-thekla-hargm3588-d3e1b1c4ec61485da59eb46064444acd) | CC BY 4.0 | 601126 | faces=601126 ncomp=1 bratio=0 | auto {"upAxis":"y","modelRotation":[178.62,0,-91.26],"yaw":0} confidence=0.74 |
+| Incense Burner with Male Deity (`americas/maya-incense-vessel-with-male-deity-640629`) | [source](https://sketchfab.com/3d-models/mayan-incense-vessel-with-male-deity-64062982b2b8446c9a14ff7c38519938) | CC BY 4.0 | 499999 | faces=499999 ncomp=8 bratio=0.001 | auto {"upAxis":"y","modelRotation":[-164.55,0,-13.9],"yaw":0} confidence=0.76 |
+| Seated Cocijo Zapotec Funerary Effigy (`americas/seated-cocijo-zapotec-funerary-effigy-3ea6a9`) | [source](https://sketchfab.com/3d-models/seated-cocijo-zapotec-funerary-effigy-3ea6a96ca77b42c2af6abac96ee6fc87) | CC BY 4.0 | 219995 | faces=219995 ncomp=2 bratio=0.002 | NEEDS ORIENTATION |
+| Malagan Panel with Bird (`oceania/malagan-panel-new-ireland-98ebec`) | [source](https://sketchfab.com/3d-models/malagan-totem-98ebeccf04c6462f950dca3f258cd568) | CC BY 4.0 | 506801 | faces=506801 ncomp=1 bratio=0.002 | auto {"upAxis":"y","modelRotation":[-86.22,2.33,-2.49],"yaw":0} confidence=0.8 |
+| Baba or Yam Mask (`oceania/baba-yam-mask-papua-new-guinea-4c1d38`) | [source](https://sketchfab.com/3d-models/baba-or-yam-mask-4c1d38bb05ba479e89db0a11da868d43) | CC BY 4.0 | 1585280 | faces=1585280 ncomp=1 bratio=0 | NEEDS ORIENTATION |
+| Owl Mask (`oceania/owl-mask-new-ireland-6391a5`) | [source](https://sketchfab.com/3d-models/owl-mask-new-ireland-papua-new-guinea-c1880-6391a5f7a42c4dd1853cbf51fd0e0016) | CC BY 4.0 | 170322 | faces=170322 ncomp=18 bratio=0 | NEEDS ORIENTATION |
+| Yoruba Stool Used in Shango Worship (`sub-saharan-africa/yoruba-shango-shrine-stool-9452d5`) | [source](https://sketchfab.com/3d-models/yoruba-stool-9452d5227ba94cbab03412599b45faf1) | CC BY 4.0 | 2300086 | faces=2300086 ncomp=1 bratio=0 | NEEDS ORIENTATION |
+| Yoruba Fertility Altar Figure for Orisha Oko (`sub-saharan-africa/yoruba-fertility-altar-figure-orisha-oko-05a87e`) | [source](https://sketchfab.com/3d-models/yoruba-people-fertility-altar-figure-for-oko-05a87edebc3c42fdbfc796333f650f9b) | CC BY 4.0 | 128862 | faces=128862 ncomp=1 bratio=0 | auto {"upAxis":"y","modelRotation":[-3.01,0,0.05],"yaw":0} confidence=0.66 |
+| Pwo Mask (`sub-saharan-africa/tchokwe-pwo-mask-a28d4a`) | [source](https://sketchfab.com/3d-models/pwo-mask-made-by-the-tchokwe-people-a28d4a1746ef410f84c44de45ed29c6f) | CC BY 4.0 | 91913 | faces=91913 ncomp=1 bratio=0 | auto {"upAxis":"y","modelRotation":[-124.13,0,86.49],"yaw":0} confidence=0.61 |
+| Bushpig Mask (`sub-saharan-africa/baule-bushpig-mask-3aa4a8`) | [source](https://sketchfab.com/3d-models/bushpig-mask-3aa4a83ed6cd41f6a86c598accaca721) | CC BY 4.0 | 478485 | faces=478485 ncomp=1 bratio=0 | NEEDS ORIENTATION |
+| Bust of Isis (`roman/bust-of-isis-mount-holyoke-71f65b`) | [source](https://sketchfab.com/3d-models/roman-bust-of-isis-71f65b096069402393a51c6bc455f3dc) | CC BY 4.0 | 1500000 | faces=1500000 ncomp=1 bratio=0 | auto {"upAxis":"y","modelRotation":[2.54,0.03,1.47],"yaw":0} confidence=0.57 |
+| Figurine of Isis in a Robe with a Tit Knot (`egyptian/isis-figurine-tit-knot-759c1a`) | [source](https://sketchfab.com/3d-models/figurine-of-isis-in-a-robe-with-a-tit-knot-759c1a0f417f4f18a2c74919f56f664f) | CC0 1.0 | 77832 | faces=77832 ncomp=2 bratio=0.01 | NEEDS ORIENTATION |
+| Gable Figure from the Hieron of the Samothracian Mysteries (`greek/samothracian-mysteries-gable-figure-f8c494`) | [source](https://sketchfab.com/3d-models/a-marble-figure-from-the-samothracian-mysteries-f8c49461a7df4f3ebb8dd20d975fbc21) | CC BY 4.0 | 211553 | faces=211553 ncomp=1 bratio=0.001 | NEEDS ORIENTATION |
+| Phoenician or Punic Votive Figure with Infant or Offering (`ancient-near-east/phoenician-punic-votive-woman-infant-42390e`) | [source](https://sketchfab.com/3d-models/terracota-figurine-42390e3c02bd4d8182f5518c0f146a81) | CC BY 4.0 | 220891 | faces=220891 ncomp=1 bratio=0 | auto {"upAxis":"y","modelRotation":[4.46,0.03,0.66],"yaw":0} confidence=0.73 |
+| Phoenician Votive Figure of a Woman Holding a Bird (`ancient-near-east/phoenician-votive-woman-bird-819ff2`) | [source](https://sketchfab.com/3d-models/votive-terracotta-figurine-819ff2523d244580b931f75523d515b6) | CC BY 4.0 | 181751 | faces=181751 ncomp=1 bratio=0.001 | auto {"upAxis":"y","modelRotation":[1.76,0.04,2.73],"yaw":0} confidence=0.58 |
+| Relief of a Protective Deity from Nimrud (`assyrian/nimrud-protective-deity-e43fc9`) | [source](https://sketchfab.com/3d-models/nimrud-panel-e43fc9c8ba4f4885af2cc223aba8e88c) | CC BY 4.0 | 953070 | faces=953070 ncomp=1 bratio=0 | NEEDS ORIENTATION |
+| Cylinder Seal with Deity Rowing a Deified Boat (`ancient-near-east/early-dynastic-seal-deified-boat-b0b8bb`) | [source](https://sketchfab.com/3d-models/ypm-bc036944-ncbs-00047-b0b8bb0166eb429790d097837a40205b) | CC BY 4.0 | 1799880 | faces=1799880 ncomp=4 bratio=0 | auto {"upAxis":"y","modelRotation":[135.17,0,96.42],"yaw":0} confidence=0.73 |
+| Kassite Cylinder Seal with Seated Deity (`ancient-near-east/kassite-seal-seated-deity-82cf29`) | [source](https://sketchfab.com/3d-models/ypm-bc012358-nbc-09363-82cf291a17ff49f58eee167d67597324) | CC BY 4.0 | 1799998 | faces=1799998 ncomp=1 bratio=0 | auto {"upAxis":"y","modelRotation":[-105.85,0,-91.82],"yaw":0} confidence=0.73 |
+
+## Needs Orientation Review
+
+| Piece | Proposed value | Confidence | Reason |
+| --- | --- | ---: | --- |
+| Gold Pendant with Twin Raven Heads (`europe/gold-pendant-590-650-af0b3a`) | `{"upAxis":"auto","modelRotation":[0,0,0],"yaw":0}` | 0.2 | Flat/slab shape (likely relief, reclining, or pediment figure) - orientation may be intentional; needs human review. |
+| The Vendel XIV Helmet (`europe/vendel-xiv-helmet-be9b5b`) | `{"upAxis":"y","modelRotation":[179.83,0,-24.14],"yaw":0}` | 0.52 | Stable-pose solve (pose 1, p=0.13, margin 0.04); ambiguous - review. |
+| Celtic cross of bronze/gold. Viking age (`europe/celtic-cross-viking-age-5f01aa`) | `{"upAxis":"y","modelRotation":[-103.9,0,164.66],"yaw":0}` | 0.58 | Stable-pose solve (pose 0, p=0.51, margin 0.18); ambiguous - review. |
+| Buttle Picture Stones (`europe/buttle-picture-stones-83711c`) | `{"upAxis":"auto","modelRotation":[0,0,0],"yaw":0}` | 0.2 | Stable-pose solve exceeded its time limit; needs human orientation review. |
+| Hangvar Picture Stone (`europe/hangvar-picture-stone-2d446c`) | `{"upAxis":"auto","modelRotation":[0,0,0],"yaw":0}` | 0.2 | Stable-pose solve exceeded its time limit; needs human orientation review. |
+| Tetradrachm of Kanishka I with Atsho, God of Fire (`asia/kanishka-atsho-fire-god-tetradrachm-f5e168`) | `{"upAxis":"y","modelRotation":[91.54,0,122.93],"yaw":0}` | 0.53 | Stable-pose solve (pose 1, p=0.48, margin 0.07); ambiguous - review. |
+| Tetradrachm of Kanishka I with Mithra (`asia/kanishka-mithra-tetradrachm-520789`) | `{"upAxis":"auto","modelRotation":[0,0,0],"yaw":0}` | 0.2 | Flat/slab shape (likely relief, reclining, or pediment figure) - orientation may be intentional; needs human review. |
+| Silver Drachm of Khusrau II with Fire Altar (`ancient-near-east/khusrau-ii-fire-altar-drachm-f68237`) | `{"upAxis":"auto","modelRotation":[0,0,0],"yaw":0}` | 0.2 | Flat/slab shape (likely relief, reclining, or pediment figure) - orientation may be intentional; needs human review. |
+| Sasanian Rock Reliefs at Naqsh-e Rostam (`ancient-near-east/sasanian-reliefs-naqsh-e-rostam-9452f4`) | `{"upAxis":"auto","modelRotation":[0,0,0],"yaw":0}` | 0.2 | Stable-pose solve exceeded its time limit; needs human orientation review. |
+| Fragmentary Statue of Mithras Slaying the Bull (`roman/mithras-tauroctony-statue-tarquinia-0d7d7e`) | `{"upAxis":"y","modelRotation":[-106.16,0,0],"yaw":0}` | 0.57 | Stable-pose solve (pose 0, p=0.20, margin 0.16); ambiguous - review. |
+| Stele of Mithras from Mules (`roman/mithras-stele-mules-85b6f7`) | `{"upAxis":"auto","modelRotation":[0,0,0],"yaw":0}` | 0.2 | Stable-pose solve exceeded its time limit; needs human orientation review. |
+| Pair of Guardian Figures (Zuishin) (`asia/pair-of-guardian-figures-zuishin-cb74e1`) | `{"upAxis":"y","modelRotation":[114.87,0,27.79],"yaw":0}` | 0.54 | Stable-pose solve (pose 0, p=0.44, margin 0.08); ambiguous - review. |
+| Seated Cocijo Zapotec Funerary Effigy (`americas/seated-cocijo-zapotec-funerary-effigy-3ea6a9`) | `{"upAxis":"y","modelRotation":[-147.25,0,87.97],"yaw":0}` | 0.54 | Stable-pose solve (pose 0, p=0.09, margin 0.10); ambiguous - review. |
+| Baba or Yam Mask (`oceania/baba-yam-mask-papua-new-guinea-4c1d38`) | `{"upAxis":"y","modelRotation":[169.41,0,-65.28],"yaw":0}` | 0.54 | Stable-pose solve (pose 0, p=0.37, margin 0.08); ambiguous - review. |
+| Owl Mask (`oceania/owl-mask-new-ireland-6391a5`) | `{"upAxis":"y","modelRotation":[-179.58,0,-33.68],"yaw":0}` | 0.53 | Stable-pose solve (pose 3, p=0.13, margin 0.06); ambiguous - review. |
+| Yoruba Stool Used in Shango Worship (`sub-saharan-africa/yoruba-shango-shrine-stool-9452d5`) | `{"upAxis":"y","modelRotation":[143.77,0,94.52],"yaw":0}` | 0.59 | Stable-pose solve (pose 0, p=0.23, margin 0.21); ambiguous - review. |
+| Bushpig Mask (`sub-saharan-africa/baule-bushpig-mask-3aa4a8`) | `{"upAxis":"y","modelRotation":[-179.88,0,-42.03],"yaw":0}` | 0.51 | Stable-pose solve (pose 1, p=0.23, margin 0.02); ambiguous - review. |
+| Figurine of Isis in a Robe with a Tit Knot (`egyptian/isis-figurine-tit-knot-759c1a`) | `{"upAxis":"y","modelRotation":[-90.91,0,124.78],"yaw":0}` | 0.55 | Stable-pose solve (pose 0, p=0.41, margin 0.11); ambiguous - review. |
+| Gable Figure from the Hieron of the Samothracian Mysteries (`greek/samothracian-mysteries-gable-figure-f8c494`) | `{"upAxis":"y","modelRotation":[-141.32,0,87.87],"yaw":0}` | 0.59 | Stable-pose solve (pose 0, p=0.41, margin 0.21); ambiguous - review. |
+| Relief of a Protective Deity from Nimrud (`assyrian/nimrud-protective-deity-e43fc9`) | `{"upAxis":"auto","modelRotation":[0,0,0],"yaw":0}` | 0.2 | Flat/slab shape (likely relief, reclining, or pediment figure) - orientation may be intentional; needs human review. |
+
+## Rejected
+
+| Piece | Source | Reason | Integrity |
+| --- | --- | --- | --- |
+| Runestone with Curse - Glavendrup | sketchfab | geometry failed integrity gate | faces=1528295 ncomp=29675 bratio=0.207 |
+| The picture stone from Smiss | sketchfab | geometry failed integrity gate | faces=25161 ncomp=61 bratio=0.074 |
+| Runestone Vettelandsteinen. | sketchfab | geometry failed integrity gate | faces=3320713 ncomp=16 bratio=0 |
+| Hogback stone, Inchcolm Island, Scotland | sketchfab | geometry failed integrity gate | faces=1882120 ncomp=76 bratio=0 |
+| Clay idol - Leridol | sketchfab | geometry failed integrity gate | faces=9618 ncomp=513 bratio=0.277 |
+| Rešketėnų šventvietė Telšių r. Akmuo su dubeniu | sketchfab | geometry failed integrity gate | faces=913370 ncomp=67 bratio=0 |
+| Celt with Deity | sketchfab | geometry failed integrity gate | faces=100000 ncomp=10 bratio=0.012 |
+| Sculpture of the Goddess Cybele | sketchfab | geometry failed integrity gate | faces=100002 ncomp=586 bratio=0.108 |
+| Cylinder Seal with Priest Before a Male Deity | sketchfab | geometry failed integrity gate | faces=95618 ncomp=4 bratio=0.009 |
+
+## Warnings
+
+- asia/pair-of-guardian-figures-zuishin-cb74e1: accepted componentized mesh via explicit candidate flag: faces=126307 ncomp=12 bratio=0
+
+## Per-piece Provenance
+
+- `europe/donar-amulet-thors-club-0bbebb`: subject=Germanic pre-Christian religion; author=Kees Zwaan; accession=PNH 6139-02; displayed_at=Archeologiemuseum Huis van Hilde; dimensions=L 5.8 × W 1.2 cm.
+- `europe/gold-pendant-590-650-af0b3a`: subject=Germanic pre-Christian iconography; author=Kees Zwaan; accession=PNH 5455-01; displayed_at=Archeologiemuseum Huis van Hilde; dimensions=H 2.3 × W 2.0 cm.
+- `europe/domburg-brooch-959482`: subject=Germanic pre-Christian iconography; author=Kees Zwaan; accession=PNH 5319-01; displayed_at=Archeologiemuseum Huis van Hilde; dimensions=L 4.2 × W 1.5 cm.
+- `europe/vendel-i-helmet-5a810a`: subject=Pre-Christian Norse elite-burial iconography; author=Historiska; accession=109204_HST; SHM 7250:I; displayed_at=Swedish History Museum (Historiska museet), Stockholm; dimensions=unknown.
+- `europe/vendel-xiv-helmet-be9b5b`: subject=Pre-Christian Norse elite-burial iconography; author=Historiska; accession=120458_HST; SHM 9785:XIV; displayed_at=Swedish History Museum (Historiska museet), Stockholm; dimensions=unknown.
+- `europe/jelling-runestone-4e8564`: subject=Christianization of Scandinavia; author=drstuarteve; accession=DR 42; displayed_at=In situ at the Jelling monuments, UNESCO World Heritage Site; dimensions=H 243 cm; three faces approximately W 290, 162 and 158 cm.
+- `europe/celtic-cross-viking-age-5f01aa`: subject=Christian art in the Viking Age; author=Annette G. Øvrelid; accession=S12453a; displayed_at=Archaeological Museum, University of Stavanger; dimensions=unknown.
+- `europe/ervik-runestone-33ecde`: subject=Christian runic inscription; author=Archaeology at UiT; accession=Ts.8168; inscription N A222; displayed_at=Arctic University Museum of Norway, UiT, Tromsø; dimensions=47 × 11.9 × 4.8 cm; 4.85 kg.
+- `europe/buttle-picture-stones-83711c`: subject=Gotlandic picture-stone iconography; author=Ahyoung Moon; accession=GP 57–60 (Buttle Änge III–VI); displayed_at=Gotlands Museum, Fornsalen; dimensions=Four steles: H 59, 67, 70 and 64 cm; W 76, 75, 46 and 48 cm; D 10–15 cm.
+- `europe/hangvar-picture-stone-2d446c`: subject=Gotlandic mythic picture-stone iconography; author=Céline Blondeel; accession=GP 173; GFC 1033; displayed_at=Gotlands Museum, Fornsalen; dimensions=H 117 × W 89 × D 12 cm; preserved reconstructed portion H 93 × W 82 × D 12 cm.
+- `europe/vendel-xii-helmet-8c297f`: subject=Elite funerary art and possible pre-Christian iconography; author=Historiska; accession=120459_HST; SHM 9785:XII; displayed_at=Swedish History Museum (Historiska museet), Stockholm; dimensions=unknown.
+- `europe/bear-tooth-pendant-3bba2f`: subject=Protective or magical amulet; author=Turku City Museum; accession=TMK 20764:1485; displayed_at=Turku City Museum; dimensions=unknown.
+- `europe/miniature-iconostasis-8ebeef`: subject=Orthodox Christian devotional art; author=Finnish Heritage Agency; accession=H77006:1; displayed_at=Maritime Museum of Finland / National Museum of Finland; dimensions=Opened H 12.2 × W 10.4 cm.
+- `europe/saint-barbara-turku-10b461`: subject=Christian devotional sculpture; author=Turku City Museum; accession=TMM 4816; displayed_at=Turku City Art Collection / Turku City Museum; dimensions=H 39 cm.
+- `ancient-near-east/sasanian-amulet-middle-persian-8d2f47`: subject=Sasanian amuletic practice; author=HardyGIS; accession=1989.123; displayed_at=The Metropolitan Museum of Art; dimensions=H 4.5 × W 3.51 × D 1.4 cm.
+- `asia/kanishka-atsho-fire-god-tetradrachm-f5e168`: subject=Kushan fire-deity iconography; author=Frank McMains; accession=unknown; displayed_at=Private collection (Frank McMains); dimensions=Ø 25.2 mm; 17 g.
+- `asia/kanishka-mithra-tetradrachm-520789`: subject=Kushan Iranian-deity iconography; author=Frank McMains; accession=unknown; displayed_at=Private collection (Frank McMains); dimensions=Ø 26.1 mm; 16.7 g.
+- `ancient-near-east/khusrau-ii-fire-altar-drachm-f68237`: subject=Zoroastrian fire-altar iconography; author=Frank McMains; accession=unknown; displayed_at=Private collection (Frank McMains); dimensions=Ø 32.5 mm; 4.2 g.
+- `ancient-near-east/sasanian-reliefs-naqsh-e-rostam-9452f4`: subject=Sasanian royal and religious imagery; author=LADIRE - Laboratorio di Disegno e Restauro; accession=unknown; displayed_at=Naqsh-e Rostam; dimensions=unknown.
+- `roman/cautopates-mithras-relief-london-77abc4`: subject=Roman Mithraism; author=artfletch; accession=449289; displayed_at=Museum of London; dimensions=unknown.
+- `roman/mithras-tauroctony-statue-tarquinia-0d7d7e`: subject=Roman Mithraism; author=J. Torrejón-Valdelomar; accession=unknown; displayed_at=Museo Archeologico Nazionale Tarquiniense; dimensions=unknown.
+- `roman/mithras-stele-mules-85b6f7`: subject=Roman Mithraism; author=archeologya; accession=unknown; displayed_at=South Tyrol Museum of Archaeology, Bolzano; dimensions=unknown.
+- `europe/pewter-lid-annunciation-adoration-903763`: subject=Christian narrative imagery; author=Turku City Museum; accession=TMK21816:MT1281; displayed_at=Turku City Museum; dimensions=unknown.
+- `asia/shinto-deities-85f312`: subject=Shinto kami figures; author=Cleveland Museum of Art; accession=1978.3; displayed_at=Cleveland Museum of Art; dimensions=50.3 × 38.1 cm.
+- `asia/pair-of-guardian-figures-zuishin-cb74e1`: subject=Shinto shrine guardians; author=Cleveland Museum of Art; accession=2020.215; displayed_at=Cleveland Museum of Art; dimensions=68.5 × 71.4 cm; 70.2 × 70.5 cm.
+- `asia/bowl-with-daoist-immortals-e50bd8`: subject=Daoist immortals; author=skdmuseum; accession=PO 1923; displayed_at=Porzellansammlung, Staatliche Kunstsammlungen Dresden; dimensions=unknown.
+- `egyptian/funerary-stela-of-dios-def832`: subject=Coptic Christian funerary art; author=The Egypt Centre; accession=HARGM3596; displayed_at=Harrogate Museum; dimensions=unknown.
+- `egyptian/funerary-stela-of-thekla-d3e1b1`: subject=Coptic Christian funerary art; author=The Egypt Centre; accession=HARGM3588; displayed_at=Harrogate Museum; dimensions=unknown.
+- `americas/maya-incense-vessel-with-male-deity-640629`: subject=Maya ritual vessel and deity imagery; author=Beth Fischer, Williams College Museum of Art; accession=Object 10746; displayed_at=Williams College Museum of Art; dimensions=unknown.
+- `americas/seated-cocijo-zapotec-funerary-effigy-3ea6a9`: subject=Zapotec funerary and ancestor-veneration art; author=Global Digital Heritage and GDH-Afrika; accession=VB-004_97-8-1; displayed_at=Museum of Archaeology, Paleontology, and Science (MAPS); dimensions=unknown.
+- `oceania/malagan-panel-new-ireland-98ebec`: subject=Malagan ceremonial art; author=The Watt Institution; accession=unknown; displayed_at=The Watt Institution (McLean Museum and Art Gallery); dimensions=unknown.
+- `oceania/baba-yam-mask-papua-new-guinea-4c1d38`: subject=Oceanic ceremonial mask; author=USF IDEx - Access 3D Lab; accession=unknown; displayed_at=Cravens Collection, University at Buffalo Art Galleries; dimensions=unknown.
+- `oceania/owl-mask-new-ireland-6391a5`: subject=Oceanic mask; author=Sainsbury Centre; accession=940; displayed_at=Sainsbury Centre, University of East Anglia; dimensions=H 360 × W 187 × L 337 mm.
+- `sub-saharan-africa/yoruba-shango-shrine-stool-9452d5`: subject=Shango shrine and initiation object; author=Grinnell College Immersive Experiences Lab (GCIEL); accession=1981.012.345; displayed_at=Grinnell College Museum of Art; dimensions=unknown.
+- `sub-saharan-africa/yoruba-fertility-altar-figure-orisha-oko-05a87e`: subject=Altar figure for Orisha Oko; author=Broward County Library Special Collections; accession=unknown; displayed_at=African American Research Library and Cultural Center, Broward County Library; dimensions=unknown.
+- `sub-saharan-africa/tchokwe-pwo-mask-a28d4a`: subject=Pwo masquerade and fertility; author=The Watt Institution; accession=unknown; displayed_at=The Watt Institution (McLean Museum and Art Gallery); dimensions=unknown.
+- `sub-saharan-africa/baule-bushpig-mask-3aa4a8`: subject=Baule mask embodying dangerous powers; author=Global Digital Heritage and GDH-Afrika; accession=unknown; displayed_at=Museum of Archaeology, Paleontology, and Science (MAPS); dimensions=unknown.
+- `roman/bust-of-isis-mount-holyoke-71f65b`: subject=Cult of Isis; author=laurashea; accession=MH 1965.10.C.G; displayed_at=Mount Holyoke College Art Museum; dimensions=11.4 × 6.7 × 3.5 cm (4 1/2 × 2 5/8 × 1 3/8 in.).
+- `egyptian/isis-figurine-tit-knot-759c1a`: subject=Cult of Isis; author=Virtual Museums of Małopolska; accession=MAK/AS/1254; displayed_at=Archaeological Museum in Kraków; dimensions=unknown.
+- `greek/samothracian-mysteries-gable-figure-f8c494`: subject=Samothracian mystery-cult context; author=iedu360.eu; accession=unknown; displayed_at=Ephesos Museum, Vienna; dimensions=unknown.
+- `ancient-near-east/phoenician-punic-votive-woman-infant-42390e`: subject=Phoenician or Punic votive art; author=Global Digital Heritage and GDH-Afrika; accession=98.6.1_5642; displayed_at=Museum of Archaeology, Paleontology, and Science (MAPS); dimensions=unknown.
+- `ancient-near-east/phoenician-votive-woman-bird-819ff2`: subject=Phoenician devotional art; author=Global Digital Heritage and GDH-Afrika; accession=94.34.29_5644; displayed_at=Museum of Archaeology, Paleontology, and Science (MAPS); dimensions=unknown.
+- `assyrian/nimrud-protective-deity-e43fc9`: subject=Assyrian protective deity; author=danielpett; accession=81.56; displayed_at=Museum of Fine Arts, Boston; dimensions=H 230 × W 132 × D 9.4 cm.
+- `ancient-near-east/early-dynastic-seal-deified-boat-b0b8bb`: subject=Mesopotamian divine and mythic imagery; author=Yale Peabody Museum; accession=YPM BC.036944 (NCBS 00047); displayed_at=Yale Peabody Museum; dimensions=unknown.
+- `ancient-near-east/kassite-seal-seated-deity-82cf29`: subject=Kassite divine imagery; author=Yale Peabody Museum; accession=YPM BC.012358 (NBC 09363); displayed_at=Yale Peabody Museum; dimensions=unknown.
+
