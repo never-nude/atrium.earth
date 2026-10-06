@@ -323,7 +323,7 @@ jobs:
         env:
           CHROME_BIN: ${{ steps.playwright.outputs.chrome-path }}
           CHROME_EXTRA_ARGS: '--no-sandbox --enable-unsafe-swiftshader --use-angle=swiftshader'
-          RENDER_TIMEOUT_MS: '180000'
+          RENDER_TIMEOUT_MS: '90000'
 
       - name: Verify assets
         if: ${{ success() && steps.assemble.outcome == 'success' }}

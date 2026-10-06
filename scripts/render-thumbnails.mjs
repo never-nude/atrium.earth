@@ -178,7 +178,14 @@ function staticServer() {
 }
 
 async function listen(server) {
-  await new Promise((resolveListen) => server.listen(serverPort, '127.0.0.1', resolveListen));
+  await new Promise((resolveListen, rejectListen) => {
+    const onError = (error) => rejectListen(error);
+    server.once('error', onError);
+    server.listen(serverPort, '127.0.0.1', () => {
+      server.off('error', onError);
+      resolveListen();
+    });
+  });
 }
 
 async function closeServer(server) {
