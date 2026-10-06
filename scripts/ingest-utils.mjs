@@ -279,7 +279,7 @@ async function downloadFileWithCurl(url, dest, headers) {
     '--max-time', '1800',
     '--speed-time', '60',
     '--speed-limit', '1024',
-    '--retry', '8',
+    '--retry', '2',
     '--retry-delay', '2',
     '--retry-all-errors',
     '--continue-at', '-',
@@ -287,7 +287,27 @@ async function downloadFileWithCurl(url, dest, headers) {
   ];
   for (const [name, value] of Object.entries(headers)) args.push('--header', `${name}: ${value}`);
   args.push(url);
-  await run('curl', args, { timeoutMs: 35 * 60 * 1000 });
+  const attempts = Number(process.env.ATRIUM_CURL_ATTEMPTS || 8);
+  let completed = false;
+  let lastError;
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    try {
+      // A fresh curl process recalculates `--continue-at -` from the partial
+      // file. This covers servers that close a long response with exit 18 but
+      // do not enter curl's own retry path.
+      await run('curl', args, { timeoutMs: 35 * 60 * 1000 });
+      completed = true;
+      break;
+    } catch (error) {
+      lastError = error;
+      const partialBytes = await fileSize(tmp);
+      if (attempt >= attempts) break;
+      const waitMs = Math.min(10000, 1000 * 2 ** (attempt - 1));
+      console.warn(`  curl attempt ${attempt}/${attempts} stopped after ${partialBytes} bytes (${error.message}); resuming in ${waitMs / 1000}s`);
+      await new Promise((resolve) => setTimeout(resolve, waitMs));
+    }
+  }
+  if (!completed) throw lastError || new Error(`curl attempts exhausted for ${url}`);
   const bytes = await fileSize(tmp);
   if (!bytes) throw new Error(`curl produced an empty download for ${url}`);
   const sha256 = await sha256File(tmp);
