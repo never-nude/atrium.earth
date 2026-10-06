@@ -21312,5 +21312,65 @@
       0
     ],
     "yaw": 0
+  },
+  "michelangelo/david": {
+    "upAxis": "y",
+    "modelRotation": [
+      -89.47,
+      5.45,
+      -5.5
+    ],
+    "yaw": 0,
+    "status": "auto",
+    "confidence": 0.57,
+    "note": "Elongated (aspect 2.4); PCA long-axis aligned to vertical."
+  },
+  "michelangelo/pieta": {
+    "upAxis": "y",
+    "modelRotation": [
+      -179.76,
+      0,
+      -179.91
+    ],
+    "yaw": 0,
+    "status": "auto",
+    "confidence": 0.75,
+    "note": "Stable-pose solve (pose 3, p=0.16, margin 0.55); confident."
+  },
+  "venus-de-milo": {
+    "upAxis": "y",
+    "modelRotation": [
+      -114,
+      0,
+      -1.46
+    ],
+    "yaw": 0,
+    "status": "auto",
+    "confidence": 0.75,
+    "note": "Stable-pose solve (pose 0, p=0.30, margin 0.56); confident."
+  },
+  "laocoon": {
+    "upAxis": "y",
+    "modelRotation": [
+      -90.03,
+      0,
+      173.63
+    ],
+    "yaw": 0,
+    "status": "auto",
+    "confidence": 0.78,
+    "note": "Stable-pose solve (pose 2, p=0.13, margin 0.62); confident."
+  },
+  "belvedere-torso": {
+    "upAxis": "y",
+    "modelRotation": [
+      -176,
+      0,
+      -28.73
+    ],
+    "yaw": 0,
+    "status": "auto",
+    "confidence": 0.62,
+    "note": "Stable-pose solve (pose 0, p=0.42, margin 0.26); confident."
   }
 }
