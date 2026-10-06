@@ -333,7 +333,7 @@ function physicalRecordFor({ slug, lead, preview, assetSha256, orientation, revi
   const geometryReview = reviewNoteFor(slug, lead);
   const measures = lead.measures.map((measure, index) => ({
     ...structuredClone(measure),
-    meters: measure.value * { mm: 0.001, cm: 0.01, m: 1 }[measure.unit],
+    meters: measure.value / { mm: 1000, cm: 100, m: 1 }[measure.unit],
     qualifier: 'exact',
     sourcePosition: index + 1,
     sourceUrls: [sourceUrl],

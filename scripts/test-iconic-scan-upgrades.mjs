@@ -29,7 +29,7 @@ const EXPECTED = Object.freeze({
 const readJson = path => JSON.parse(readFileSync(new URL(`../${path}`, import.meta.url), 'utf8'));
 const hasOwn = (value, key) => Object.prototype.hasOwnProperty.call(value, key);
 const sha256 = value => createHash('sha256').update(value).digest('hex');
-const metersFor = measure => measure.value * { mm: 0.001, cm: 0.01, m: 1 }[measure.unit];
+const metersFor = measure => measure.value / { mm: 1000, cm: 100, m: 1 }[measure.unit];
 
 const before = readJson(`docs/ingest/${BATCH}-before.json`);
 const leadsDocument = readJson(`docs/ingest/${BATCH}-leads.json`);
