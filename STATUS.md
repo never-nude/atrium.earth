@@ -516,3 +516,11 @@ Commit `1afb322` is deployment-verified. [GitHub Pages run 37334355346](https://
 - Independent live verification on 2026-10-06 confirmed all 36 work pages return 200 with their expected titles, all 36 thumbnails byte-match the reviewed local files, and all 36 R2 preview models byte-match the reviewed files and their content-hash URL prefixes.
 - `/newest/` returns 200 with exactly 40 unique work links, contains the complete 36-work batch, and exposes neither the internal batch name nor a curatorial theme. All 22 rejected or review-held routes return 404.
 - The requested completion email was sent after live verification (Gmail message `1a10f1c607f4601b`).
+
+## 2026-10-06 — Rigsters textured *Thinker* acquisition review
+
+- **Scratch branch:** `codex/thinker-rigsters-review-20261005`, based on `origin/main` at `774533892e92c0db7f20708b5a2866ca222db5c7`.
+- **Scope:** review-only replacement candidate for `rodin/the-thinker`; this branch does not change or publish `main`.
+- **Prepared:** removed the existing untextured reproduction record and its slug-bound physical, spatial, appearance, preview, render, thumbnail and poster state on this scratch branch so the authenticated acquisition workflow can ingest a textured exact-object candidate under the stable slug.
+- **Candidate:** Rigsters' 2017 photogrammetry of the Ny Carlsberg Glyptotek garden bronze, made from about 700 images and published under CC BY 4.0. Metadata follows the Ny Carlsberg Foundation record for M.IN 605: modeled 1880, cast 1900–1901, bronze with dark green patina, H 73.3 cm.
+- **Next:** run `.github/workflows/acquire-leads.yml`, inspect geometry, native materials and textures, orientation and thumbnail on the generated review branch, then report the review evidence without merging or publishing.
