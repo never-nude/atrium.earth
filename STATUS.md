@@ -516,3 +516,11 @@ Commit `1afb322` is deployment-verified. [GitHub Pages run 37334355346](https://
 - Independent live verification on 2026-10-06 confirmed all 36 work pages return 200 with their expected titles, all 36 thumbnails byte-match the reviewed local files, and all 36 R2 preview models byte-match the reviewed files and their content-hash URL prefixes.
 - `/newest/` returns 200 with exactly 40 unique work links, contains the complete 36-work batch, and exposes neither the internal batch name nor a curatorial theme. All 22 rejected or review-held routes return 404.
 - The requested completion email was sent after live verification (Gmail message `1a10f1c607f4601b`).
+
+## 2026-10-05 — Fixed museum lighting and source-fidelity rule
+
+- Task/owner: this Codex session on `codex/iconic-scan-upgrades-20261006`, based on production commit `774533892e92c0db7f20708b5a2866ca222db5c7`. The owner asked to remove the visitor-controlled light direction while keeping exposure and texture adjustable.
+- Prepared: both the immersive viewer and legacy HUD no longer render or bind a light-angle control. Exposure, texture, rotation, wireframe and the fixed neutral key/fill/rim/hemisphere lighting remain. Related interface and exhibition copy no longer promises movable lighting.
+- Ingest policy: the scanned object's exact identity now governs titles and metadata; authored textures and PBR materials must be preserved, casts and copies must be identified, and untextured meshes must not receive invented patina, veining, paint or wear.
+- Validation: the production build completed successfully with 4,837 generated pages. A repository search found no remaining visitor-facing movable-light control or promise. The pre-existing unfiled-work report is unchanged.
+- Delivery: ready for the owner's already authorized push to `main`; deployment verification remains pending. The separate iconic-model upgrade work is still in progress and is not included in this UI change.

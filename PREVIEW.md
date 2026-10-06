@@ -6,7 +6,7 @@ Full Astro project. Run it locally:
     npm run dev          # http://localhost:4321
 
 Open any piece and tap **Examine in 3D** to orbit the real 3D preview. The
-viewer supports exposure, texture, light angle, auto-rotate, wireframe, reset,
+viewer supports exposure, texture, auto-rotate, wireframe, reset,
 and right-drag pan. Good ones to try:
 
     /works/michelangelo/david/

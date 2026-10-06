@@ -112,10 +112,9 @@ const transformJson = JSON.stringify(modelTransform);
 
     {immersive && hasModel && lightControls && (
       <details class="immersive-light" data-light-controls hidden>
-        <summary>Light <span>+</span></summary>
-        <div class="immersive-light__panel" aria-label="Lighting controls">
+        <summary>Display <span>+</span></summary>
+        <div class="immersive-light__panel" aria-label="Display controls">
           <label>Exposure <input type="range" min="5" max="120" step="1" value="20" data-exposure /></label>
-          <label>Angle <input type="range" min="0" max="100" step="1" value="15" data-light-angle /></label>
           <div class="immersive-texture">
             <div class="immersive-texture__label">
               <label for={`texture-${uid}`}>Texture</label>
@@ -137,10 +136,6 @@ const transformJson = JSON.stringify(modelTransform);
       <div class="hud-control">
         <label for={`r-${uid}`}>Texture <span class="hud-ends">rough → shiny</span></label>
         <input id={`r-${uid}`} type="range" min="0" max="100" step="1" value="20" data-texture />
-      </div>
-      <div class="hud-control">
-        <label for={`l-${uid}`}>Light <span class="hud-ends">swing around</span></label>
-        <input id={`l-${uid}`} type="range" min="0" max="100" step="1" value="15" data-light />
       </div>
       <div class="hud-control hud-control--row">
         <label class="hud-switch">
@@ -189,7 +184,6 @@ const transformJson = JSON.stringify(modelTransform);
     dispose: () => void;
     setBrightness: (pct: number) => void;
     setTexture: (pct: number) => void;
-    setLightAngle: (pct: number) => void;
     setWireframe: (on: boolean) => void;
     setAutoRotate: (on: boolean) => void;
     zoom: (factor: number) => void;
@@ -448,8 +442,8 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     scene.add(new THREE.HemisphereLight(0xeaf0f7, 0x0b1220, appearance.hemiLightIntensity ?? 0.7));
     const key = new THREE.DirectionalLight(0xfff1dd, appearance.keyLightIntensity ?? 2.4);
     const keyRadius = 5, keyHeight = 4;
-    function placeKey(pct: number) { const a = (pct / 100) * Math.PI * 2; key.position.set(Math.cos(a) * keyRadius, keyHeight, Math.sin(a) * keyRadius); }
-    placeKey(15);
+    const fixedKeyAngle = 0.15 * Math.PI * 2;
+    key.position.set(Math.cos(fixedKeyAngle) * keyRadius, keyHeight, Math.sin(fixedKeyAngle) * keyRadius);
     key.castShadow = true;
     key.shadow.mapSize.set(2048, 2048);
     key.shadow.bias = -0.001;
@@ -568,7 +562,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     } else scene.add(model);
 
     // Tight orthographic shadow frustum: covers the normalized model plus its shadow
-    // run-out on the floor, and tracks the key light as the Light slider swings it.
+    // run-out on the floor, and tracks the fixed key light.
     const shadowSpan = Math.max(size.x, size.y, size.z) * 2.2;
     const keyDist = Math.hypot(keyRadius, keyHeight);
     const shadowCam = key.shadow.camera;
@@ -599,7 +593,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     scene.add(grid);
 
     // Real ground shadow: a transparent ShadowMaterial plane at the model's base catches
-    // the key light's shadow (it follows the Light slider) without tinting the backdrop.
+    // the fixed key light's shadow without tinting the backdrop.
     const shadowFoot = Math.max(1.2, Math.max(size.x, size.z) * 4);
     const ground = new THREE.Mesh(
       new THREE.PlaneGeometry(shadowFoot, shadowFoot),
@@ -713,7 +707,6 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
       setBrightness: (pct) => { renderer.toneMappingExposure = pct / 100; },
       // Slider runs rough (0) → shiny (100); roughness is the inverse.
       setTexture: (pct) => { const r = 1 - pct / 100; for (const m of materials) { m.roughness = r; m.needsUpdate = true; } },
-      setLightAngle: (pct) => placeKey(pct),
       setWireframe: (on) => { wireframe = on; for (const item of wireframeMeshes) item.mesh.material = on ? item.wireframeMaterial : item.solidMaterial; },
       setAutoRotate: (on) => { rotating = on; controls.autoRotate = !turnsModel && on; },
       zoom: (factor) => {
@@ -873,14 +866,12 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
         if (light) {
           light.hidden = false;
           const exposure = light.querySelector('[data-exposure]') as HTMLInputElement | null;
-          const angle = light.querySelector('[data-light-angle]') as HTMLInputElement | null;
           const texture = light.querySelector('[data-surface-texture]') as HTMLInputElement | null;
           const resetTexture = light.querySelector('[data-texture-reset]') as HTMLButtonElement | null;
           if (exposure) {
             exposure.value = String(viewer.defaults.exposure);
             on(exposure, 'input', () => viewer.setBrightness(+exposure.value));
           }
-          if (angle) on(angle, 'input', () => viewer.setLightAngle(+angle.value));
           if (texture) {
             const original = viewer.texture.defaultValue;
             const updateTextureReadout = () => {
@@ -907,7 +898,6 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
           hud.hidden = false;
           const brightness = hud.querySelector('[data-brightness]') as HTMLInputElement | null;
           const texture = hud.querySelector('[data-texture]') as HTMLInputElement | null;
-          const light = hud.querySelector('[data-light]') as HTMLInputElement | null;
           const autorotate = hud.querySelector('[data-autorotate]') as HTMLInputElement | null;
           const wire = hud.querySelector('[data-wireframe]') as HTMLInputElement | null;
           const reset = hud.querySelector('[data-reset]') as HTMLButtonElement | null;
@@ -917,14 +907,13 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
           if (readB && brightness) readB.textContent = `${brightness.value}%`;
           if (brightness) { viewer.setBrightness(+brightness.value); on(brightness, 'input', () => { viewer.setBrightness(+brightness.value); if (readB) readB.textContent = `${brightness.value}%`; }); }
           if (texture) { viewer.setTexture(+texture.value); on(texture, 'input', () => viewer.setTexture(+texture.value)); }
-          if (light) { viewer.setLightAngle(+light.value); on(light, 'input', () => viewer.setLightAngle(+light.value)); }
           if (autorotate) { autorotate.checked = viewer.defaults.autoRotate; viewer.setAutoRotate(autorotate.checked); on(autorotate, 'change', () => viewer.setAutoRotate(autorotate.checked)); }
           if (wire) on(wire, 'change', () => viewer.setWireframe(wire.checked));
           if (reset) on(reset, 'click', () => viewer.reset());
         }
         on(stage!, 'dblclick', (event) => {
-          // Double-tap resets only on the model itself — a double-click on the light
-          // sliders (or any other control inside the stage) must not throw the view away.
+          // Double-tap resets only on the model itself — a double-click on a display
+          // control inside the stage must not throw the view away.
           if (event.target instanceof Element && event.target.classList.contains('viewer-canvas')) viewer.reset();
         });
       } catch (err) {

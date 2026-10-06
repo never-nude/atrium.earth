@@ -278,7 +278,7 @@ For object pages, verify:
 - orbit works
 - Exposure slider starts at the recommended default
 - Texture slider starts at the recommended default
-- Light slider still reveals form
+- Fixed neutral lighting still reveals form
 - Wireframe and Reset still work
 - no CSS, thumb.webp, or preview.glb 404s
 ```

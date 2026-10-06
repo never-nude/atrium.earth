@@ -107,6 +107,15 @@ works only where the theme fits, with a caption explaining that connection.
 Distinguish scans, reconstructions, details, and virtual impressions in the record.
 Do not use a scan's publication or collection date as the artwork's creation date.
 
+The digitized object governs the record's identity and appearance. Name the exact
+original, cast, replica, reconstruction, or fragment that was scanned; do not label
+a cast or copy as the original. Preserve authored textures, material colors, and PBR
+maps when the source provides them. For an untextured mesh, use only a restrained,
+documented material treatment—never invent patina, veining, paint, or wear. Before
+replacing a model, verify that the new file depicts the same object or update its
+title, holding collection, dimensions, credit, and explanatory note accordingly.
+Recalibrate physical dimensions and AR eligibility against the final derivative.
+
 ## Newest Additions batches
 
 Both `npm run ingest` and `npm run ingest:assemble` automatically give every

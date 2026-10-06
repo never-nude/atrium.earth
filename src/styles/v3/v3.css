@@ -311,8 +311,8 @@ em, i { font-style: normal; }
 .v3-object-about dt { color: var(--v3-muted); font-size: .58rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
 .v3-object-about dd { margin: 0; font-family: var(--v3-serif); font-size: .98rem; line-height: 1.3; }
 .v3-object-about > div > a { color: var(--v3-signal); font-size: .7rem; font-weight: 600; letter-spacing: .06em; text-decoration: none; text-transform: uppercase; }
-/* Light controls: a second whisper under the Label pill. Open on demand;
-   deliberately NOT part of the is-engaged fade — you adjust light while looking. */
+/* Display controls: a second whisper under the Label pill. Open on demand;
+   deliberately NOT part of the is-engaged fade — you adjust the view while looking. */
 .immersive-light { position: absolute; z-index: 29; top: 150px; right: var(--v3-pad); }
 .immersive-light summary { display: flex; align-items: center; justify-content: space-between; gap: 32px; min-width: 110px; padding: 11px 15px; color: #fff; background: rgba(7,10,16,.6); border: 1px solid rgba(255,255,255,.24); border-radius: 999px; backdrop-filter: blur(14px); cursor: pointer; font-size: .64rem; font-weight: 600; letter-spacing: .1em; list-style: none; text-transform: uppercase; }
 .immersive-light summary::-webkit-details-marker { display: none; }

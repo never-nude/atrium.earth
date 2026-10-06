@@ -111,7 +111,7 @@ const seeds: ExhibitionSeed[] = [
     shortTitle: 'Surface',
     kicker: 'Carving, relief, ornament',
     summary: 'Ten works in which shallow relief, incised lines, drilled depth, modeled clay, and painted or carved ornament carry essential information.',
-    invitation: 'Zoom in and adjust the lighting to make shallow carving, texture, and changes of depth easier to see. Use wireframe as a viewing aid, not as a substitute for the object record.',
+    invitation: 'Zoom in, turn the object, and adjust exposure or texture to make shallow carving and changes of depth easier to see. Use wireframe as a viewing aid, not as a substitute for the object record.',
     accent: '#c9a5ff',
     workSlugs: [
       'assyrian/ashurnasirpal-lion-hunt',
