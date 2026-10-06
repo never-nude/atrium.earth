@@ -87,4 +87,18 @@ const continuedNewest = buildNewestWorks(continuedBatch, continuedPublic).map((w
 assert.equal(continuedNewest.length, 85);
 assert(continuedNewest.includes('continued-1'));
 assert(continuedNewest.includes('continued-new'));
-console.log('Newest works: cross-batch continuations, timestamps, date fallback, catalog tie-breaks, exclusions, uniqueness, 40-work floor and complete latest batches passed.');
+
+// Four sequential write chunks can form one 240-work logical batch without
+// truncating Newest or splitting the internal batch record.
+const largeLogicalBatch = Array.from({ length: 4 }, (_, chunk) => Array.from({ length: 60 }, (_, item) => ({
+  slug: `large-${chunk * 60 + item + 1}`,
+  index: chunk * 60 + item + 1,
+  ingest_batch: 'large-logical-batch',
+  ingested_at: `2026-10-0${chunk + 1}T12:00:00.000Z`,
+}))).flat();
+const largeLogicalPublic = largeLogicalBatch.map(({ slug }) => ({ slug }));
+assert.equal(buildNewestWorks(largeLogicalBatch, largeLogicalPublic).length, 240);
+const groupedLargeLogical = buildAdditionBatches(largeLogicalBatch, largeLogicalPublic);
+assert.equal(groupedLargeLogical.length, 1);
+assert.equal(groupedLargeLogical[0].works.length, 240);
+console.log('Newest works: cross-batch continuations, timestamps, date fallback, catalog tie-breaks, exclusions, uniqueness, 40-work floor and complete 240-work logical batches passed.');

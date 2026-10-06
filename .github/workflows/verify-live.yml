@@ -2,19 +2,25 @@ name: Verify live batch (temporary review aid)
 
 # Fetches every published work of the batch from the live site and R2 and pushes
 # a report to an orphan branch. Runs when docs/ingest/<batch>-live-verify.txt is
-# pushed. Temporary: remove before merging to main.
+# pushed or when manually dispatched with a batch ID. Temporary review aid.
 
 on:
   push:
     paths:
       - docs/ingest/*-live-verify.txt
+  workflow_dispatch:
+    inputs:
+      batch:
+        description: 'Ingest batch ID to verify'
+        required: true
+        type: string
 
 permissions:
   contents: write
 
 env:
-  BATCH: african-art-20261002-b
   SITE: https://atrium.earth
+  VERIFY_CONCURRENCY: '8'
 
 jobs:
   verify:
@@ -23,6 +29,42 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Resolve batch
+        id: batch
+        env:
+          REQUESTED_BATCH: ${{ inputs.batch || '' }}
+          BEFORE_SHA: ${{ github.event.before || '' }}
+          AFTER_SHA: ${{ github.sha }}
+        run: |
+          node <<'NODE'
+          const { execFileSync } = require('node:child_process');
+          const fs = require('node:fs');
+          let batch = (process.env.REQUESTED_BATCH || '').trim();
+          if (!batch) {
+            const before = process.env.BEFORE_SHA || '';
+            const after = process.env.AFTER_SHA;
+            const hasBefore = /^[a-f0-9]{40}$/i.test(before) && !/^0+$/.test(before);
+            const args = hasBefore
+              ? ['diff', '--name-only', before, after, '--', 'docs/ingest']
+              : ['show', '--pretty=', '--name-only', after, '--', 'docs/ingest'];
+            const changed = execFileSync('git', args, { encoding: 'utf8' }).split(/\r?\n/).filter(Boolean);
+            const batches = [...new Set(changed.flatMap((file) => {
+              const match = file.match(/^docs\/ingest\/([a-z0-9]+(?:-[a-z0-9]+)*)-live-verify\.txt$/);
+              return match ? [match[1]] : [];
+            }))];
+            if (batches.length !== 1) {
+              throw new Error(`Expected exactly one changed live-verification marker; found ${JSON.stringify(batches)}`);
+            }
+            [batch] = batches;
+          }
+          if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(batch)) throw new Error(`Invalid batch ID: ${JSON.stringify(batch)}`);
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, `batch=${batch}\n`);
+          fs.appendFileSync(process.env.GITHUB_ENV, `BATCH=${batch}\n`);
+          console.log(`Verifying live batch ${batch}.`);
+          NODE
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -40,26 +82,53 @@ jobs:
           const previews = JSON.parse(readFileSync('src/data/previews.json', 'utf8'));
           const works = catalog.filter((w) => w.ingest_batch === BATCH && !w.hidden);
           const held = catalog.filter((w) => w.ingest_batch === BATCH && w.hidden);
+          if (!works.length) throw new Error(`No public catalog works found for batch ${BATCH}`);
           const escape = (text) => text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
           async function get(url, attempts = 4) {
             for (let i = 1; ; i += 1) {
               try {
-                const response = await fetch(url, { redirect: 'follow', headers: { 'user-agent': 'atrium-live-verify/1.0' } });
-                return { status: response.status, type: response.headers.get('content-type') || '', body: Buffer.from(await response.arrayBuffer()) };
+                const response = await fetch(url, {
+                  redirect: 'follow',
+                  headers: { 'user-agent': 'atrium-live-verify/1.0' },
+                  signal: AbortSignal.timeout(60_000),
+                });
+                const result = { status: response.status, type: response.headers.get('content-type') || '', body: Buffer.from(await response.arrayBuffer()) };
+                if (i < attempts && (response.status === 429 || response.status >= 500)) {
+                  await new Promise((r) => setTimeout(r, 2000 * i));
+                  continue;
+                }
+                return result;
               } catch (error) {
                 if (i >= attempts) return { status: 0, type: '', body: Buffer.alloc(0), error: error.message };
                 await new Promise((r) => setTimeout(r, 2000 * i));
               }
             }
           }
-          const rows = [];
-          for (const w of works) {
+          async function mapLimit(items, requestedLimit, fn) {
+            const limit = Math.max(1, Math.min(items.length || 1, requestedLimit));
+            const results = new Array(items.length);
+            let next = 0;
+            async function worker() {
+              while (next < items.length) {
+                const index = next;
+                next += 1;
+                results[index] = await fn(items[index], index);
+              }
+            }
+            await Promise.all(Array.from({ length: limit }, () => worker()));
+            return results;
+          }
+          const concurrency = Math.max(1, Math.min(16, Number(process.env.VERIFY_CONCURRENCY) || 8));
+          const rows = await mapLimit(works, concurrency, async (w) => {
             const pageUrl = `${SITE}/works/${w.slug}/`;
-            const page = await get(pageUrl);
-            const html = page.body.toString('utf8');
-            const thumb = await get(`${SITE}/previews/renders/${w.slug}/thumb.webp`);
             const modelUrl = previews[w.slug]?.url;
-            const model = await get(modelUrl);
+            const publicModelUrl = modelUrl ? new URL(modelUrl, SITE).href : '';
+            const [page, thumb, model] = await Promise.all([
+              get(pageUrl),
+              get(`${SITE}/previews/renders/${w.slug}/thumb.webp`),
+              publicModelUrl ? get(publicModelUrl) : Promise.resolve({ status: 0, type: '', body: Buffer.alloc(0), error: 'model URL missing' }),
+            ]);
+            const html = page.body.toString('utf8');
             const expected = modelUrl?.match(/preview-([a-f0-9]{12})\.glb$/)?.[1];
             const hash = createHash('sha256').update(model.body).digest('hex');
             const row = {
@@ -67,24 +136,43 @@ jobs:
               title: w.title,
               page: page.status,
               pageHasTitle: html.includes(escape(w.title)) || html.includes(w.title),
-              pageReferencesModel: html.includes(modelUrl),
+              pageReferencesModel: Boolean(modelUrl) && html.includes(modelUrl),
               thumb: thumb.status,
               thumbType: thumb.type,
               model: model.status,
               modelType: model.type,
               modelHashOk: Boolean(expected) && hash.startsWith(expected),
             };
-            row.ok = row.page === 200 && row.pageHasTitle && row.thumb === 200 && row.model === 200 && row.modelHashOk;
-            rows.push(row);
-          }
-          const heldRows = [];
-          for (const w of held) {
+            row.ok = row.page === 200
+              && row.pageHasTitle
+              && row.pageReferencesModel
+              && row.thumb === 200
+              && row.thumbType.startsWith('image/')
+              && row.model === 200
+              && row.modelType.includes('model/gltf-binary')
+              && row.modelHashOk;
+            return row;
+          });
+          const heldRows = await mapLimit(held, concurrency, async (w) => {
             const page = await get(`${SITE}/works/${w.slug}/`, 2);
-            heldRows.push({ slug: w.slug, page: page.status });
-          }
+            return { slug: w.slug, page: page.status };
+          });
           const newest = await get(`${SITE}/newest/`);
           const listed = [...new Set([...newest.body.toString('utf8').matchAll(/href="\/works\/([^"]+)\/"/g)].map((m) => m[1]))];
-          const expectedOrder = works.slice().sort((a, b) => b.index - a.index).map((w) => w.slug);
+          const importTime = (work) => {
+            const timestamp = Date.parse(work.ingested_at);
+            if (Number.isFinite(timestamp)) return timestamp;
+            const day = Date.parse(`${work.ingested || ''}T00:00:00Z`);
+            return Number.isFinite(day) ? day : -Infinity;
+          };
+          const newestEligible = works.filter((work) => !work.exclude_from_additions);
+          const expectedOrder = newestEligible.slice()
+            .sort((a, b) => importTime(b) - importTime(a) || Number(b.index || 0) - Number(a.index || 0))
+            .map((w) => w.slug);
+          const listedBatch = listed.filter((slug) => expectedOrder.includes(slug));
+          const newestOk = newest.status === 200
+            && listedBatch.length === expectedOrder.length
+            && JSON.stringify(listedBatch) === JSON.stringify(expectedOrder);
           const report = {
             checked_at: new Date().toISOString(),
             site: SITE,
@@ -94,16 +182,17 @@ jobs:
             failures: rows.filter((r) => !r.ok),
             held_pages_not_public: heldRows.filter((r) => r.page === 404).length,
             held_pages_public: heldRows.filter((r) => r.page !== 404),
-            newest: { status: newest.status, listed: listed.length, batch_listed: listed.filter((s) => expectedOrder.includes(s)).length, order_matches: JSON.stringify(listed.filter((s) => expectedOrder.includes(s))) === JSON.stringify(expectedOrder), first: listed.slice(0, 6) },
+            newest: { status: newest.status, listed: listed.length, batch_listed: listedBatch.length, expected: expectedOrder.length, order_matches: newestOk, first: listed.slice(0, 6) },
             rows,
           };
           writeFileSync('live-verify/report.json', `${JSON.stringify(report, null, 2)}\n`);
           console.log(JSON.stringify({ ...report, rows: undefined }, null, 2));
+          if (report.failures.length || report.held_pages_public.length || !newestOk) process.exitCode = 1;
           EOF
           node "$RUNNER_TEMP/verify.mjs"
 
       - name: Push report branch
-        if: always()
+        if: ${{ always() && steps.batch.outcome == 'success' }}
         run: |
           git switch --orphan "claude/atrium-live-verify-${BATCH}"
           git add -f live-verify

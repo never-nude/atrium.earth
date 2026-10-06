@@ -139,6 +139,21 @@ words. They must not begin or end with a hyphen. Reuse an ID only when adding to
 that same batch; a new import should normally receive a new ID. Each continuation
 keeps the original works' timestamps and stamps only the newly accepted works.
 
+For a large logical batch, keep each catalog-writing acquisition chunk to roughly
+45–60 works and give every chunk the same `batch` input. Do not queue all chunks
+from the same base commit: after each `acquire-leads.yml` run succeeds, dispatch
+the next run with `base_ref` set to the preceding run's review branch. The final
+review branch then contains the complete logical batch and can be published once.
+The workflow's repository-wide concurrency lock serializes writes, while
+`base_ref` carries the prior chunk's catalog and manifests forward.
+
+Large runs should leave `inline_orientation` disabled. After the final chunk,
+put the complete set of works needing visual review in a file under
+`docs/ingest/` and dispatch `orientation-sheets.yml` with the logical batch ID,
+that `slugs_file`, and the final cumulative review branch as the workflow ref.
+The sharded orientation and thumbnail workflows reject duplicate slugs and
+publish output only when every requested artifact was produced.
+
 The Newest Additions page displays the most recently imported public works across
 batches, ordered by each work's `ingested_at` timestamp, with `ingested` as the
 date fallback. Rule (owner, revised 2026-10-05): the page shows at least the newest

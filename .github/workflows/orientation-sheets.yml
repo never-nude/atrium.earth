@@ -72,6 +72,9 @@ jobs:
           }
           console.log(`Using ${path.relative(process.cwd(), resolved)} for batch ${batch}.`);
           NODE
+          node scripts/validate-review-artifacts.mjs \
+            --input="$SLUGS_FILE" \
+            --normalized="$RUNNER_TEMP/all-slugs.txt"
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -92,14 +95,30 @@ jobs:
 
       - name: Select shard
         run: |
-          awk -v n="$SHARDS" -v s="${{ matrix.shard }}" 'NF && (NR - 1) % n == s' "$SLUGS_FILE" > "$RUNNER_TEMP/slugs.txt"
+          awk -v n="$SHARDS" -v s="${{ matrix.shard }}" '(NR - 1) % n == s' "$RUNNER_TEMP/all-slugs.txt" > "$RUNNER_TEMP/slugs.txt"
           cat "$RUNNER_TEMP/slugs.txt"
 
       - name: Mirror previews from R2
-        run: node scripts/mirror-previews-r2.mjs --input="$RUNNER_TEMP/slugs.txt"
+        run: |
+          if [ ! -s "$RUNNER_TEMP/slugs.txt" ]; then exit 0; fi
+          node scripts/mirror-previews-r2.mjs --input="$RUNNER_TEMP/slugs.txt"
 
       - name: Render orientation variants
-        run: node scripts/render-orientation-variants.mjs --input="$RUNNER_TEMP/slugs.txt" --out=sheets --work="$RUNNER_TEMP/variants"
+        run: |
+          if [ ! -s "$RUNNER_TEMP/slugs.txt" ]; then exit 0; fi
+          node scripts/render-orientation-variants.mjs --input="$RUNNER_TEMP/slugs.txt" --out=sheets --work="$RUNNER_TEMP/variants"
+          for variant in A B C D E F G H I J; do
+            while IFS= read -r slug; do
+              test -s "$RUNNER_TEMP/variants/$variant/$slug/thumb.webp" || {
+                echo "::error::$slug orientation variant $variant failed"
+                exit 1
+              }
+            done < "$RUNNER_TEMP/slugs.txt"
+          done
+          node scripts/validate-review-artifacts.mjs \
+            --input="$RUNNER_TEMP/slugs.txt" \
+            --root=sheets \
+            --kind=orientation
         env:
           CHROME_BIN: ${{ steps.playwright.outputs.chrome-path }}
           CHROME_EXTRA_ARGS: '--no-sandbox --enable-unsafe-swiftshader --use-angle=swiftshader'
@@ -114,11 +133,17 @@ jobs:
 
   publish:
     needs: render
-    if: always()
+    if: ${{ needs.render.result == 'success' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Validate expected output list
+        run: |
+          node scripts/validate-review-artifacts.mjs \
+            --input="$SLUGS_FILE" \
+            --normalized="$RUNNER_TEMP/all-slugs.txt"
 
       - name: Collect sheets
         uses: actions/download-artifact@v4
@@ -126,6 +151,13 @@ jobs:
           pattern: sheets-*
           path: sheets
           merge-multiple: true
+
+      - name: Verify complete sheet set
+        run: |
+          node scripts/validate-review-artifacts.mjs \
+            --input="$RUNNER_TEMP/all-slugs.txt" \
+            --root=sheets \
+            --kind=orientation
 
       - name: Push sheets branch
         run: |

@@ -16,6 +16,21 @@ on:
         description: 'Ingest batch ID'
         required: false
         default: 'african-art-20261002-b'
+      base_ref:
+        description: 'Optional branch/ref containing prior chunks from this logical batch'
+        required: false
+        default: ''
+        type: string
+      inline_orientation:
+        description: 'Render orientation sheets in this acquisition run (prefer the sharded orientation workflow for large batches)'
+        required: false
+        default: false
+        type: boolean
+      orientation_requests:
+        description: 'Optional chunk-specific slug list under docs/ingest/'
+        required: false
+        default: ''
+        type: string
 
 permissions:
   contents: write
@@ -27,6 +42,7 @@ concurrency:
 env:
   LEADS: ${{ inputs.leads || 'docs/ingest/african-art-20261002-leads.json' }}
   BATCH: ${{ inputs.batch || 'african-art-20261002-b' }}
+  ORIENTATION_REQUESTS: ${{ inputs.orientation_requests || '' }}
 
 jobs:
   acquire:
@@ -58,6 +74,11 @@ jobs:
       - name: Checkout
         id: checkout
         uses: actions/checkout@v4
+        with:
+          # Dispatch chunk N+1 with base_ref set to chunk N's review branch so
+          # all chunks share one cumulative catalog without publishing early.
+          ref: ${{ inputs.base_ref || github.ref }}
+          fetch-depth: 0
 
       - name: Stage downloads on the larger disk
         run: |
@@ -296,13 +317,32 @@ jobs:
           RENDER_TIMEOUT_MS: '180000'
 
       - name: Orientation review sheets
-        if: ${{ success() && steps.assemble.outcome == 'success' }}
+        if: ${{ success() && steps.assemble.outcome == 'success' && inputs.inline_orientation == true }}
         run: |
-          requests="docs/ingest/${BATCH}-orientation-requests.txt"
+          requests="$ORIENTATION_REQUESTS"
+          if [ -z "$requests" ]; then
+            requests="docs/ingest/${BATCH}-orientation-requests.txt"
+          fi
           if [ ! -s "$requests" ]; then
             echo "No orientation review requested."
             exit 0
           fi
+          REQUESTS="$requests" node <<'NODE'
+          const fs = require('node:fs');
+          const path = require('node:path');
+          const root = fs.realpathSync(path.resolve('docs/ingest'));
+          const requested = path.resolve(process.env.REQUESTS);
+          if (requested === root || !requested.startsWith(`${root}${path.sep}`)) {
+            throw new Error(`Orientation request list must stay under docs/ingest/: ${process.env.REQUESTS}`);
+          }
+          if (!fs.existsSync(requested) || !fs.statSync(requested).isFile()) {
+            throw new Error(`Orientation request list is not a file: ${process.env.REQUESTS}`);
+          }
+          const resolved = fs.realpathSync(requested);
+          if (!resolved.startsWith(`${root}${path.sep}`)) throw new Error('Orientation request list resolves outside docs/ingest/.');
+          NODE
+          node scripts/validate-review-artifacts.mjs --input="$requests" --normalized=.atrium-ingest/orientation-requests.txt
+          requests=.atrium-ingest/orientation-requests.txt
           npm run models:mirror-r2 -- --input="$requests"
           node scripts/render-orientation-variants.mjs --input="$requests" --out="docs/ingest/${BATCH}-orientation-review"
           for variant in A B C D E F G H I J; do

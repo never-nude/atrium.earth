@@ -72,6 +72,9 @@ jobs:
           }
           console.log(`Using ${path.relative(process.cwd(), resolved)} for batch ${batch}.`);
           NODE
+          node scripts/validate-review-artifacts.mjs \
+            --input="$SLUGS_FILE" \
+            --normalized="$RUNNER_TEMP/all-slugs.txt"
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -92,16 +95,22 @@ jobs:
 
       - name: Select shard
         run: |
-          awk -v n="$SHARDS" -v s="${{ matrix.shard }}" 'NF && (NR - 1) % n == s' "$SLUGS_FILE" > "$RUNNER_TEMP/slugs.txt"
+          awk -v n="$SHARDS" -v s="${{ matrix.shard }}" '(NR - 1) % n == s' "$RUNNER_TEMP/all-slugs.txt" > "$RUNNER_TEMP/slugs.txt"
           cat "$RUNNER_TEMP/slugs.txt"
 
       - name: Mirror previews from R2
-        run: node scripts/mirror-previews-r2.mjs --input="$RUNNER_TEMP/slugs.txt"
+        run: |
+          if [ ! -s "$RUNNER_TEMP/slugs.txt" ]; then exit 0; fi
+          node scripts/mirror-previews-r2.mjs --input="$RUNNER_TEMP/slugs.txt"
 
       - name: Render thumbnails
         run: |
           if [ ! -s "$RUNNER_TEMP/slugs.txt" ]; then exit 0; fi
           ONLY="$(paste -sd, "$RUNNER_TEMP/slugs.txt")" RENDER_OUT_DIR=rerendered npm run images:renders
+          node scripts/validate-review-artifacts.mjs \
+            --input="$RUNNER_TEMP/slugs.txt" \
+            --root=rerendered \
+            --kind=thumbnail
         env:
           CHROME_BIN: ${{ steps.playwright.outputs.chrome-path }}
           CHROME_EXTRA_ARGS: '--no-sandbox --enable-unsafe-swiftshader --use-angle=swiftshader'
@@ -116,11 +125,17 @@ jobs:
 
   publish:
     needs: render
-    if: always()
+    if: ${{ needs.render.result == 'success' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Validate expected output list
+        run: |
+          node scripts/validate-review-artifacts.mjs \
+            --input="$SLUGS_FILE" \
+            --normalized="$RUNNER_TEMP/all-slugs.txt"
 
       - name: Collect thumbnails
         uses: actions/download-artifact@v4
@@ -128,6 +143,13 @@ jobs:
           pattern: thumbs-*
           path: rerendered
           merge-multiple: true
+
+      - name: Verify complete thumbnail set
+        run: |
+          node scripts/validate-review-artifacts.mjs \
+            --input="$RUNNER_TEMP/all-slugs.txt" \
+            --root=rerendered \
+            --kind=thumbnail
 
       - name: Push thumbnails branch
         run: |
