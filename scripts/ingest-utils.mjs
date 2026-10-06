@@ -1,5 +1,5 @@
 import { createHash } from 'node:crypto';
-import { createWriteStream, existsSync } from 'node:fs';
+import { createReadStream, createWriteStream, existsSync } from 'node:fs';
 import { mkdir, readFile, rename, rm, stat, writeFile } from 'node:fs/promises';
 import { spawn } from 'node:child_process';
 import path from 'node:path';
@@ -261,11 +261,52 @@ export async function fileSize(file) {
   }
 }
 
+async function sha256File(file) {
+  const hash = createHash('sha256');
+  for await (const chunk of createReadStream(file)) hash.update(chunk);
+  return hash.digest('hex');
+}
+
+async function downloadFileWithCurl(url, dest, headers) {
+  const tmp = `${dest}.tmp`;
+  await mkdir(path.dirname(dest), { recursive: true });
+  const args = [
+    '--location',
+    '--fail',
+    '--silent',
+    '--show-error',
+    '--connect-timeout', '30',
+    '--max-time', '1800',
+    '--speed-time', '60',
+    '--speed-limit', '1024',
+    '--retry', '8',
+    '--retry-delay', '2',
+    '--retry-all-errors',
+    '--continue-at', '-',
+    '--output', tmp,
+  ];
+  for (const [name, value] of Object.entries(headers)) args.push('--header', `${name}: ${value}`);
+  args.push(url);
+  await run('curl', args, { timeoutMs: 35 * 60 * 1000 });
+  const bytes = await fileSize(tmp);
+  if (!bytes) throw new Error(`curl produced an empty download for ${url}`);
+  const sha256 = await sha256File(tmp);
+  await rename(tmp, dest);
+  return { bytes, sha256, contentType: '' };
+}
+
 export async function downloadFile(url, dest, options = {}) {
   const tmp = `${dest}.tmp`;
   const attempts = Number(options.attempts || process.env.ATRIUM_DOWNLOAD_ATTEMPTS || 4);
   // Some hosts (Zenodo) refuse requests without a User-Agent, so always send one.
   const headers = { 'user-agent': 'atrium-ingest/1.0 (+https://atrium.earth)', ...(options.headers || {}) };
+
+  // SMK's large-file endpoint intermittently terminates Node's fetch stream on
+  // GitHub runners. curl can resume those exact byte streams because the host
+  // advertises Accept-Ranges, preventing every retry from starting at byte 0.
+  if (new URL(url).hostname === 'api.smk.dk' || process.env.ATRIUM_DOWNLOAD_CURL === '1') {
+    return downloadFileWithCurl(url, dest, headers);
+  }
 
   for (let attempt = 1; attempt <= attempts; attempt += 1) {
     await rm(tmp, { force: true });
