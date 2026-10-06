@@ -569,4 +569,3 @@ Commit `1afb322` is deployment-verified. [GitHub Pages run 37334355346](https://
 - Orientation run 37545902463 lost shards 3 and 6 to a 180-second render timeout, so its sheet branch was not published. Nine works still await sheets.
 - No thumbnails have been rerendered with the new orientations yet. Nothing from this batch is on `main` or live.
 - Resume instructions: `docs/handoffs/codex-religious-art-20261006-resume.md`.
-
