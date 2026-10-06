@@ -47,20 +47,29 @@ const variants = [
 
 rmSync(workDir, { recursive: true, force: true });
 mkdirSync(workDir, { recursive: true });
-for (const variant of variants) {
+for (const [variantIndex, variant] of variants.entries()) {
   const overrides = Object.fromEntries(slugs.map((slug) => [slug, variant.transform(slug)]));
   const overridesFile = path.join(workDir, `${variant.key}.json`);
   writeFileSync(overridesFile, JSON.stringify(overrides));
+  console.log(`Rendering orientation variant ${variant.key} (${variantIndex + 1}/${variants.length})…`);
   const result = spawnSync(process.execPath, ['scripts/render-thumbnails.mjs'], {
     cwd: repoRoot,
     stdio: 'inherit',
+    timeout: 20 * 60 * 1000,
+    killSignal: 'SIGKILL',
     env: {
       ...process.env,
       ONLY: slugs.join(','),
       RENDER_TRANSFORMS_JSON: overridesFile,
       RENDER_OUT_DIR: path.join(workDir, variant.key),
+      // A prior Chromium process can briefly keep its debug profile or HTTP
+      // listener alive. Isolate every pass so one stale resource cannot leave
+      // the synchronous review driver waiting forever before its first render.
+      RENDER_PORT: String(8200 + variantIndex),
+      CHROME_PROFILE_DIR: path.join(workDir, `chrome-${variant.key}`),
     },
   });
+  if (result.error) console.warn(`Variant ${variant.key} failed to launch or timed out: ${result.error.message}`);
   if (result.status !== 0) console.warn(`Variant ${variant.key} finished with status ${result.status}; composing what rendered.`);
 }
 

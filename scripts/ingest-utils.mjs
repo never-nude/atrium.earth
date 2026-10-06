@@ -1,5 +1,5 @@
 import { createHash } from 'node:crypto';
-import { createWriteStream, existsSync } from 'node:fs';
+import { createReadStream, createWriteStream, existsSync } from 'node:fs';
 import { mkdir, readFile, rename, rm, stat, writeFile } from 'node:fs/promises';
 import { spawn } from 'node:child_process';
 import path from 'node:path';
@@ -261,35 +261,116 @@ export async function fileSize(file) {
   }
 }
 
+async function sha256File(file) {
+  const hash = createHash('sha256');
+  for await (const chunk of createReadStream(file)) hash.update(chunk);
+  return hash.digest('hex');
+}
+
+async function downloadFileWithCurl(url, dest, headers) {
+  const tmp = `${dest}.tmp`;
+  await mkdir(path.dirname(dest), { recursive: true });
+  const args = [
+    '--location',
+    '--fail',
+    '--silent',
+    '--show-error',
+    '--connect-timeout', '30',
+    '--max-time', '1800',
+    '--speed-time', '60',
+    '--speed-limit', '1024',
+    '--continue-at', '-',
+    '--output', tmp,
+  ];
+  for (const [name, value] of Object.entries(headers)) args.push('--header', `${name}: ${value}`);
+  args.push(url);
+  // Keep retries at the process level. curl's built-in retry path calculates
+  // the resume offset only once, so a later retry can overwrite progress made
+  // by an earlier connection in the same process. A fresh process recalculates
+  // the offset from the partial file every time. Large SMK scans regularly
+  // need more than eight short range responses before the full file arrives.
+  const attempts = Number(process.env.ATRIUM_CURL_ATTEMPTS || 32);
+  let completed = false;
+  let lastError;
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    try {
+      // A fresh curl process recalculates `--continue-at -` from the partial
+      // file. This covers servers that close a long response with exit 18 but
+      // do not enter curl's own retry path.
+      await run('curl', args, { timeoutMs: 35 * 60 * 1000 });
+      completed = true;
+      break;
+    } catch (error) {
+      lastError = error;
+      const partialBytes = await fileSize(tmp);
+      if (attempt >= attempts) break;
+      const waitMs = Math.min(10000, 1000 * 2 ** (attempt - 1));
+      console.warn(`  curl attempt ${attempt}/${attempts} stopped after ${partialBytes} bytes (${error.message}); resuming in ${waitMs / 1000}s`);
+      await new Promise((resolve) => setTimeout(resolve, waitMs));
+    }
+  }
+  if (!completed) throw lastError || new Error(`curl attempts exhausted for ${url}`);
+  const bytes = await fileSize(tmp);
+  if (!bytes) throw new Error(`curl produced an empty download for ${url}`);
+  const sha256 = await sha256File(tmp);
+  await rename(tmp, dest);
+  return { bytes, sha256, contentType: '' };
+}
+
 export async function downloadFile(url, dest, options = {}) {
+  const tmp = `${dest}.tmp`;
+  const attempts = Number(options.attempts || process.env.ATRIUM_DOWNLOAD_ATTEMPTS || 4);
   // Some hosts (Zenodo) refuse requests without a User-Agent, so always send one.
   const headers = { 'user-agent': 'atrium-ingest/1.0 (+https://atrium.earth)', ...(options.headers || {}) };
-  const response = await fetch(url, { headers, redirect: 'follow' });
-  if (!response.ok) throw new Error(`download failed ${response.status} ${response.statusText} for ${url}`);
-  await mkdir(path.dirname(dest), { recursive: true });
-  const tmp = `${dest}.tmp`;
-  const hash = createHash('sha256');
-  let bytes = 0;
-  await new Promise((resolve, reject) => {
-    const out = createWriteStream(tmp);
-    out.on('error', reject);
-    out.on('finish', resolve);
-    (async () => {
-      try {
-        for await (const chunk of response.body) {
-          const buffer = Buffer.from(chunk);
-          bytes += buffer.length;
-          hash.update(buffer);
-          if (!out.write(buffer)) await new Promise((drain) => out.once('drain', drain));
-        }
-        out.end();
-      } catch (error) {
-        out.destroy(error);
+
+  // SMK's large-file endpoint intermittently terminates Node's fetch stream on
+  // GitHub runners. curl can resume those exact byte streams because the host
+  // advertises Accept-Ranges, preventing every retry from starting at byte 0.
+  if (new URL(url).hostname === 'api.smk.dk' || process.env.ATRIUM_DOWNLOAD_CURL === '1') {
+    return downloadFileWithCurl(url, dest, headers);
+  }
+
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    await rm(tmp, { force: true });
+    try {
+      const response = await fetch(url, { headers, redirect: 'follow' });
+      if (!response.ok) {
+        const error = new Error(`download failed ${response.status} ${response.statusText} for ${url}`);
+        error.retryable = response.status === 408 || response.status === 429 || response.status >= 500;
+        throw error;
       }
-    })();
-  });
-  await rename(tmp, dest);
-  return { bytes, sha256: hash.digest('hex'), contentType: response.headers.get('content-type') || '' };
+      await mkdir(path.dirname(dest), { recursive: true });
+      const hash = createHash('sha256');
+      let bytes = 0;
+      await new Promise((resolve, reject) => {
+        const out = createWriteStream(tmp);
+        out.on('error', reject);
+        out.on('finish', resolve);
+        (async () => {
+          try {
+            for await (const chunk of response.body) {
+              const buffer = Buffer.from(chunk);
+              bytes += buffer.length;
+              hash.update(buffer);
+              if (!out.write(buffer)) await new Promise((drain) => out.once('drain', drain));
+            }
+            out.end();
+          } catch (error) {
+            out.destroy(error);
+          }
+        })();
+      });
+      await rename(tmp, dest);
+      return { bytes, sha256: hash.digest('hex'), contentType: response.headers.get('content-type') || '' };
+    } catch (error) {
+      await rm(tmp, { force: true });
+      if (attempt >= attempts || error.retryable === false) throw error;
+      const waitMs = 2000 * 2 ** (attempt - 1);
+      console.warn(`  download attempt ${attempt}/${attempts} failed (${error.message}); retrying in ${waitMs / 1000}s`);
+      await new Promise((resolve) => setTimeout(resolve, waitMs));
+    }
+  }
+  throw new Error(`download attempts exhausted for ${url}`);
 }
 
 export function run(command, args = [], options = {}) {

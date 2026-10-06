@@ -8,6 +8,18 @@ on:
   push:
     paths:
       - docs/ingest/*-rerender.txt
+  workflow_dispatch:
+    inputs:
+      batch:
+        description: 'Batch ID used for the review branch name'
+        required: true
+        default: 'african-art-20261002-b'
+        type: string
+      slugs_file:
+        description: 'Slug list under docs/ingest/'
+        required: true
+        default: 'docs/ingest/african-art-20261002-b-rerender.txt'
+        type: string
 
 permissions:
   contents: write
@@ -17,7 +29,8 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  BATCH: african-art-20261002-b
+  BATCH: ${{ github.event.inputs.batch || 'african-art-20261002-b' }}
+  SLUGS_FILE: ${{ github.event.inputs.slugs_file || 'docs/ingest/african-art-20261002-b-rerender.txt' }}
   SHARDS: '8'
 
 jobs:
@@ -31,6 +44,34 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Validate review input
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const path = require('node:path');
+
+          const batch = process.env.BATCH || '';
+          if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(batch)) {
+            throw new Error(`Invalid batch ID: ${JSON.stringify(batch)}`);
+          }
+
+          const requested = process.env.SLUGS_FILE || '';
+          if (!requested || /[\r\n\0]/.test(requested)) {
+            throw new Error('A single slug-list path is required.');
+          }
+          const ingestRoot = fs.realpathSync(path.resolve('docs/ingest'));
+          const candidate = path.resolve(requested);
+          if (candidate === ingestRoot || !candidate.startsWith(`${ingestRoot}${path.sep}`)) {
+            throw new Error(`Slug list must stay under docs/ingest/: ${requested}`);
+          }
+          if (!fs.existsSync(candidate)) throw new Error(`Slug list does not exist: ${requested}`);
+          const resolved = fs.realpathSync(candidate);
+          if (!resolved.startsWith(`${ingestRoot}${path.sep}`) || !fs.statSync(resolved).isFile()) {
+            throw new Error(`Slug list must be a file under docs/ingest/: ${requested}`);
+          }
+          console.log(`Using ${path.relative(process.cwd(), resolved)} for batch ${batch}.`);
+          NODE
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -51,7 +92,7 @@ jobs:
 
       - name: Select shard
         run: |
-          awk -v n="$SHARDS" -v s="${{ matrix.shard }}" 'NF && (NR - 1) % n == s' "docs/ingest/${BATCH}-rerender.txt" > "$RUNNER_TEMP/slugs.txt"
+          awk -v n="$SHARDS" -v s="${{ matrix.shard }}" 'NF && (NR - 1) % n == s' "$SLUGS_FILE" > "$RUNNER_TEMP/slugs.txt"
           cat "$RUNNER_TEMP/slugs.txt"
 
       - name: Mirror previews from R2
