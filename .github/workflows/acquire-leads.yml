@@ -35,21 +35,20 @@ jobs:
     steps:
       - name: Check credentials
         env:
-          SKETCHFAB_TOKEN: ${{ secrets.SKETCHFAB_TOKEN }}
           R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
           R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
           R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
           R2_BUCKET: ${{ secrets.R2_BUCKET }}
         run: |
           missing=""
-          for name in SKETCHFAB_TOKEN R2_ACCOUNT_ID R2_ACCESS_KEY_ID R2_SECRET_ACCESS_KEY R2_BUCKET; do
+          for name in R2_ACCOUNT_ID R2_ACCESS_KEY_ID R2_SECRET_ACCESS_KEY R2_BUCKET; do
             [ -n "${!name}" ] || missing="$missing $name"
           done
           if [ -n "$missing" ]; then
             echo "::error::Missing repository secrets:$missing"
             exit 1
           fi
-          echo "Sketchfab and Cloudflare R2 credentials are available."
+          echo "Cloudflare R2 credentials are available."
 
       - name: Free runner disk
         run: |
@@ -116,79 +115,222 @@ jobs:
         env:
           SKETCHFAB_TOKEN: ${{ secrets.SKETCHFAB_TOKEN }}
 
+      - name: Verify strict source batch
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const leads = JSON.parse(fs.readFileSync('.atrium-ingest/leads.json', 'utf8'));
+          if (!leads.strict_acquisition) {
+            console.log('No strict source assertions requested.');
+            process.exit(0);
+          }
+          const fetched = JSON.parse(fs.readFileSync('.atrium-ingest/fetched.json', 'utf8'));
+          const expected = leads.candidates || [];
+          const actual = fetched.candidates || [];
+          const expectedCount = Number(leads.expected_count || expected.length);
+          if (expected.length !== expectedCount) throw new Error(`Expected ${expectedCount} lead candidates; found ${expected.length}`);
+          if (actual.length !== expectedCount) throw new Error(`Expected ${expectedCount} fetched candidates; found ${actual.length}`);
+          if ((fetched.report?.errors || []).length) throw new Error(`Fetch errors: ${JSON.stringify(fetched.report.errors)}`);
+          const bySlug = new Map(actual.map((candidate) => [candidate.slug, candidate]));
+          const allowedLicenses = new Set(['CC0 1.0', 'Public Domain Mark 1.0', 'CC BY-SA 4.0']);
+          for (const candidate of expected) {
+            const got = bySlug.get(candidate.slug);
+            if (!got) throw new Error(`Missing fetched slug ${candidate.slug}`);
+            if (!allowedLicenses.has(candidate.license)) throw new Error(`Unapproved license for ${candidate.slug}: ${candidate.license}`);
+            if (!candidate.expected_sha256) throw new Error(`Missing expected_sha256 for ${candidate.slug}`);
+            if (got.fetched?.sha256 !== candidate.expected_sha256) {
+              throw new Error(`${candidate.slug} SHA-256 ${got.fetched?.sha256} != ${candidate.expected_sha256}`);
+            }
+            const expectedBytes = Number(candidate.download_size_bytes);
+            if (!expectedBytes || Number(got.fetched?.original_download_bytes) !== expectedBytes || Number(got.fetched?.bytes) !== expectedBytes) {
+              throw new Error(`${candidate.slug} bytes ${got.fetched?.original_download_bytes}/${got.fetched?.bytes} != ${expectedBytes}`);
+            }
+          }
+          if (bySlug.size !== expectedCount) throw new Error(`Fetched slug set has ${bySlug.size} unique entries; expected ${expectedCount}`);
+          console.log(`Verified ${expectedCount} exact source downloads.`);
+          NODE
+
       - name: Assemble catalog pieces
         id: assemble
         run: npm run ingest:assemble -- --batch="$BATCH" --optimize-source-glb
         env:
           PYTHON: python
+          ATRIUM_ORIENT_TIMEOUT_MS: '600000'
+          ATRIUM_POSE_TIMEOUT: '180'
+
+      - name: Verify strict assembled batch
+        if: ${{ !cancelled() && steps.assemble.outcome == 'success' }}
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const path = require('node:path');
+          const leads = JSON.parse(fs.readFileSync('.atrium-ingest/leads.json', 'utf8'));
+          if (!leads.strict_acquisition) {
+            console.log('No strict assembly assertions requested.');
+            process.exit(0);
+          }
+          const report = JSON.parse(fs.readFileSync('.atrium-ingest/last-report.json', 'utf8'));
+          const expected = leads.candidates || [];
+          const expectedCount = Number(leads.expected_count || expected.length);
+          const expectedSlugs = new Set(expected.map((candidate) => candidate.slug));
+          const expectedBySlug = new Map(expected.map((candidate) => [candidate.slug, candidate]));
+          const accepted = report.accepted || [];
+          const actualSlugs = fs.readFileSync('.atrium-ingest/new-slugs.txt', 'utf8').split(/\r?\n/).filter(Boolean);
+          if (accepted.length !== expectedCount || actualSlugs.length !== expectedCount) {
+            throw new Error(`Expected ${expectedCount} accepted/new slugs; got ${accepted.length}/${actualSlugs.length}`);
+          }
+          if ((report.rejected || []).length) throw new Error(`Rejected candidates: ${JSON.stringify(report.rejected)}`);
+          for (const slug of actualSlugs) if (!expectedSlugs.has(slug)) throw new Error(`Unexpected assembled slug ${slug}`);
+          for (const item of accepted) {
+            if (!item.integrity_data || item.integrity_data.skipped) throw new Error(`Missing measured integrity for ${item.slug}`);
+            if (Number(item.integrity_data.faces) !== Number(expectedBySlug.get(item.slug)?.face_count)) {
+              throw new Error(`Measured source faces differ for ${item.slug}: ${item.integrity_data.faces}`);
+            }
+          }
+          const previews = JSON.parse(fs.readFileSync('src/data/previews.json', 'utf8'));
+          for (const candidate of expected) {
+            const glb = path.join('public/models/previews', candidate.slug, 'preview.glb');
+            const metaFile = path.join('public/models/previews', candidate.slug, 'preview.json');
+            if (!fs.existsSync(glb) || !fs.statSync(glb).size) throw new Error(`Missing preview GLB for ${candidate.slug}`);
+            if (!fs.existsSync(metaFile)) throw new Error(`Missing preview metadata for ${candidate.slug}`);
+            const meta = JSON.parse(fs.readFileSync(metaFile, 'utf8'));
+            if (Number(meta.sourceBytes) !== Number(candidate.download_size_bytes)) {
+              throw new Error(`${candidate.slug} preview sourceBytes ${meta.sourceBytes} != ${candidate.download_size_bytes}`);
+            }
+            if (Number(meta.sourceFaces) !== Number(candidate.face_count)) {
+              throw new Error(`${candidate.slug} preview sourceFaces ${meta.sourceFaces} != ${candidate.face_count}`);
+            }
+            if (Number(meta.faces) < 100000 || Number(meta.faces) > Number(leads.expected_preview_faces || 400000)) {
+              throw new Error(`Invalid preview face count for ${candidate.slug}: ${meta.faces}`);
+            }
+            if (previews[candidate.slug]?.url !== `/models/previews/${candidate.slug}/preview.glb`) {
+              throw new Error(`Preview manifest is not locally staged for ${candidate.slug}`);
+            }
+            if (Number(previews[candidate.slug]?.bytes) !== fs.statSync(glb).size || Number(previews[candidate.slug]?.faces) !== Number(meta.faces)) {
+              throw new Error(`Preview manifest metadata does not match ${candidate.slug}`);
+            }
+          }
+          console.log(`Verified ${expectedCount} generated previews and integrity reports.`);
+          NODE
+          while IFS= read -r slug; do
+            ./node_modules/.bin/gltf-transform inspect "public/models/previews/$slug/preview.glb" --format csv >/dev/null
+          done < .atrium-ingest/new-slugs.txt
 
       - name: Upload previews to Cloudflare R2
-        if: ${{ !cancelled() && steps.assemble.outcome == 'success' }}
+        if: ${{ success() && steps.assemble.outcome == 'success' }}
         run: |
           if [ ! -s .atrium-ingest/new-slugs.txt ]; then
             echo "No accepted new slugs to upload."
             exit 0
           fi
-          npm run models:upload-r2 -- --input=.atrium-ingest/new-slugs.txt --report=.atrium-ingest/r2-upload.json
+          cp src/data/previews.json .atrium-ingest/candidate-previews.json
+          printf '{}\n' > .atrium-ingest/empty-bindings.json
+          npm run models:upload-r2 -- \
+            --input=.atrium-ingest/new-slugs.txt \
+            --previews=.atrium-ingest/candidate-previews.json \
+            --physical-dimensions=.atrium-ingest/empty-bindings.json \
+            --spatial-eligibility=.atrium-ingest/empty-bindings.json \
+            --report=.atrium-ingest/r2-upload.json
+          node <<'NODE'
+          const fs = require('node:fs');
+          const crypto = require('node:crypto');
+          const wanted = fs.readFileSync('.atrium-ingest/new-slugs.txt', 'utf8').split(/\r?\n/).filter(Boolean);
+          const report = JSON.parse(fs.readFileSync('.atrium-ingest/r2-upload.json', 'utf8'));
+          const manifest = JSON.parse(fs.readFileSync('.atrium-ingest/candidate-previews.json', 'utf8'));
+          const completed = [...(report.uploaded || []), ...(report.unchanged || [])];
+          if ((report.failed || []).length || completed.length !== wanted.length) {
+            throw new Error(`R2 upload incomplete: ${completed.length}/${wanted.length}; failed=${JSON.stringify(report.failed || [])}`);
+          }
+          const got = new Map(completed.map((item) => [item.slug, item]));
+          for (const slug of wanted) {
+            const item = got.get(slug);
+            if (!item) throw new Error(`R2 report missing ${slug}`);
+            const body = fs.readFileSync(`public/models/previews/${slug}/preview.glb`);
+            const digest = crypto.createHash('sha256').update(body).digest('hex');
+            if (item.sha256 !== digest || Number(item.bytes) !== body.length) throw new Error(`R2 report differs from local preview for ${slug}`);
+            if (item.content_type !== 'model/gltf-binary') throw new Error(`Unexpected R2 content type for ${slug}: ${item.content_type}`);
+            if (manifest[slug]?.url !== item.url || Number(manifest[slug]?.bytes) !== body.length || !item.url.endsWith(`/preview-${digest.slice(0, 12)}.glb`)) {
+              throw new Error(`Staged R2 manifest mismatch for ${slug}`);
+            }
+          }
+          console.log(`Verified ${completed.length} public R2 previews.`);
+          NODE
+          mv .atrium-ingest/candidate-previews.json src/data/previews.json
         env:
           R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
           R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
           R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
           R2_BUCKET: ${{ secrets.R2_BUCKET }}
 
-      - name: Render missing batch thumbnails
-        if: ${{ !cancelled() && steps.assemble.outcome == 'success' }}
+      - name: Render batch thumbnails and posters
+        if: ${{ success() && steps.assemble.outcome == 'success' }}
         run: |
-          batch_slugs() {
-            node -e '
-              const fs = require("fs");
-              const wantThumb = process.argv[1];
-              for (const work of JSON.parse(fs.readFileSync("src/data/catalog.json", "utf8"))) {
-                if (work.ingest_batch !== process.env.BATCH) continue;
-                const has = fs.existsSync(`public/previews/renders/${work.slug}/thumb.webp`);
-                if (String(has) === wantThumb) console.log(work.slug);
-              }' "$1"
-          }
-          batch_slugs false > .atrium-ingest/render-slugs.txt
+          cp .atrium-ingest/new-slugs.txt .atrium-ingest/render-slugs.txt
           if [ ! -s .atrium-ingest/render-slugs.txt ]; then
-            echo "Every batch work already has a thumbnail."
+            echo "No batch thumbnails to render."
             exit 0
           fi
+          while IFS= read -r slug; do
+            rm -rf "public/previews/renders/$slug" "public/previews/posters/$slug"
+          done < .atrium-ingest/render-slugs.txt
           echo "Rendering $(wc -l < .atrium-ingest/render-slugs.txt) batch thumbnails."
-          npm run models:mirror-r2 -- --input=.atrium-ingest/render-slugs.txt || true
-          status=0
-          ONLY="$(paste -sd, .atrium-ingest/render-slugs.txt)" npm run images:renders || status=$?
-          batch_slugs true > .atrium-ingest/rendered-slugs.txt
-          npm run images:mark-renders -- --input=.atrium-ingest/rendered-slugs.txt
-          exit $status
+          ONLY="$(paste -sd, .atrium-ingest/render-slugs.txt)" npm run images:renders
+          npm run images:mark-renders -- --input=.atrium-ingest/render-slugs.txt
+          ONLY="$(paste -sd, .atrium-ingest/render-slugs.txt)" npm run images:posters
+          node <<'NODE'
+          const fs = require('node:fs');
+          const slugs = fs.readFileSync('.atrium-ingest/render-slugs.txt', 'utf8').split(/\r?\n/).filter(Boolean);
+          for (const slug of slugs) {
+            const thumb = fs.readFileSync(`public/previews/renders/${slug}/thumb.webp`);
+            const poster = fs.readFileSync(`public/previews/posters/${slug}/poster.svg`, 'utf8');
+            const encoded = poster.match(/href="data:image\/webp;base64,([^"]+)"/)?.[1];
+            if (!thumb.length || !encoded || !Buffer.from(encoded, 'base64').equals(thumb)) {
+              throw new Error(`${slug}: poster is not derived from the new thumbnail`);
+            }
+          }
+          console.log(`Verified ${slugs.length} thumbnails and posters.`);
+          NODE
         env:
           CHROME_BIN: ${{ steps.playwright.outputs.chrome-path }}
           CHROME_EXTRA_ARGS: '--no-sandbox --enable-unsafe-swiftshader --use-angle=swiftshader'
           RENDER_TIMEOUT_MS: '180000'
 
       - name: Orientation review sheets
-        if: ${{ !cancelled() && steps.assemble.outcome == 'success' }}
+        if: ${{ success() && steps.assemble.outcome == 'success' }}
         run: |
           requests="docs/ingest/${BATCH}-orientation-requests.txt"
           if [ ! -s "$requests" ]; then
             echo "No orientation review requested."
             exit 0
           fi
-          npm run models:mirror-r2 -- --input="$requests" || true
+          npm run models:mirror-r2 -- --input="$requests"
           node scripts/render-orientation-variants.mjs --input="$requests" --out="docs/ingest/${BATCH}-orientation-review"
+          for variant in A B C D E F G H I J; do
+            while IFS= read -r slug; do
+              test -s ".atrium-ingest/orientation-variants/$variant/$slug/thumb.webp" || {
+                echo "::error::$slug orientation variant $variant failed"
+                exit 1
+              }
+            done < "$requests"
+          done
+          while IFS= read -r slug; do
+            sheet="${slug//\//__}"
+            test -s "docs/ingest/${BATCH}-orientation-review/${sheet}.webp" || {
+              echo "::error::$slug orientation sheet missing"
+              exit 1
+            }
+          done < "$requests"
         env:
           CHROME_BIN: ${{ steps.playwright.outputs.chrome-path }}
           CHROME_EXTRA_ARGS: '--no-sandbox --enable-unsafe-swiftshader --use-angle=swiftshader'
           RENDER_TIMEOUT_MS: '180000'
 
       - name: Verify assets
-        if: ${{ !cancelled() && steps.assemble.outcome == 'success' }}
-        continue-on-error: true
-        shell: bash
-        run: npm run verify:assets 2>&1 | grep -v '│' | tail -40
+        if: ${{ success() && steps.assemble.outcome == 'success' }}
+        run: npm run verify:assets
 
       - name: Push results to review branch
-        if: always() && steps.checkout.outcome == 'success'
+        if: ${{ success() && steps.checkout.outcome == 'success' }}
         run: |
           out="docs/ingest/${BATCH}-run-${GITHUB_RUN_ID}"
           mkdir -p "$out"
@@ -231,6 +373,11 @@ jobs:
           git ls-files -m -- public/previews/posters | grep -v -F -f "$RUNNER_TEMP/batch-posters.txt" | xargs -r git checkout --
           git ls-files -o --exclude-standard -- public/previews/posters | grep -v -F -f "$RUNNER_TEMP/batch-posters.txt" | xargs -r rm -f
           git add -A
+          if git diff --cached --quiet; then
+            echo "::error::Acquisition produced no review changes."
+            exit 1
+          fi
           git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
-            commit -q -m "Review batch ${BATCH} from ${LEADS} (run ${GITHUB_RUN_ID})" || echo "Nothing to commit."
-          git push origin "HEAD:refs/heads/claude/atrium-africa-review-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+            commit -q -m "Review batch ${BATCH} from ${LEADS} (run ${GITHUB_RUN_ID})"
+          safe_batch="$(printf '%s' "$BATCH" | tr -cs 'A-Za-z0-9._-' '-')"
+          git push origin "HEAD:refs/heads/codex/${safe_batch}-review-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"

@@ -1,0 +1,1062 @@
+{
+  "schema": "atrium-iconic-scan-replacement-before/1",
+  "batch": "iconic-scan-upgrades-20261006",
+  "captured_at": "2026-10-06T04:04:03.183Z",
+  "note": "Canonical before-state for the disposable replacement acquisition branch. Final integration must preserve catalog position and ingest identity while replacing only reviewed model, provenance, thumbnail, orientation, appearance, and spatial bindings.",
+  "slugs": [
+    "michelangelo/david",
+    "michelangelo/pieta",
+    "michelangelo/moses",
+    "venus-de-milo",
+    "discobolus",
+    "laocoon",
+    "dying-gaul",
+    "belvedere-torso"
+  ],
+  "catalog": {
+    "discobolus": {
+      "slug": "discobolus",
+      "collection": "",
+      "title": "Discobolus",
+      "artist": "Myron",
+      "year": "460–450 BCE",
+      "year_sort": -460,
+      "material": "Bronze (lost original)",
+      "museum": "Museo Pio-Clementino, Vatican Museums",
+      "source_institution": "SMK Open",
+      "source_url": "https://open.smk.dk/artwork/image/KAS1549",
+      "license": "Public Domain Mark 1.0",
+      "note": "The SMK record identifies this version as the Discobolus type with a modern restored head.",
+      "tier": 1,
+      "index": 3,
+      "total": 1809,
+      "period": "Ancient",
+      "model": {
+        "sourcePath": "discobolus/discobolus_source_small.stl",
+        "format": "stl",
+        "sizeBytes": 9988284
+      },
+      "search": "discobolus myron 460–450 bce bronze (lost original) h 170 cm × w 115 cm × d 50 cm museo pio-clementino, vatican museums smk open plaster cast, room 120, royal cast collection (smk), copenhagen the smk record identifies this version as the discobolus type with a modern restored head.",
+      "dimensions": "H 170 cm × W 115 cm × D 50 cm",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "accession": "KAS1549",
+      "scan_source": "Plaster cast, Room 120, Royal Cast Collection (SMK), Copenhagen",
+      "wikidata": "https://www.wikidata.org/wiki/Q133732"
+    },
+    "dying-gaul": {
+      "slug": "dying-gaul",
+      "collection": "",
+      "title": "Dying Gaul",
+      "artist": "",
+      "year": "c. 225 BCE",
+      "year_sort": -230,
+      "material": "Marble",
+      "museum": "Capitoline Museums, Rome",
+      "source_institution": "SMK Open",
+      "source_url": "https://open.smk.dk/en/artwork/image/KAS1312",
+      "license": "Public Domain Mark 1.0",
+      "note": "",
+      "tier": 1,
+      "index": 6,
+      "total": 1809,
+      "period": "Ancient",
+      "model": {
+        "sourcePath": "dying-gaul/dying_gaul_source_small.stl",
+        "format": "stl",
+        "sizeBytes": 20001584
+      },
+      "search": "dying gaul c. 225 bce marble h 96 cm × w 185 cm × d 89 cm capitoline museums, rome smk open plaster cast, royal cast collection (smk), copenhagen",
+      "dimensions": "H 96 cm × W 185 cm × D 89 cm",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "accession": "KAS1312",
+      "scan_source": "Plaster cast, Royal Cast Collection (SMK), Copenhagen",
+      "wikidata": "https://www.wikidata.org/wiki/Q848790"
+    },
+    "laocoon": {
+      "slug": "laocoon",
+      "collection": "",
+      "title": "Laocoon and His Sons",
+      "artist": "Agesander of Rhodes, Athanadoros and Polydoros",
+      "year": "c. 40-20 BCE",
+      "year_sort": -40,
+      "material": "Marble",
+      "museum": "Vatican Museums, Vatican City",
+      "source_institution": "SMK Open",
+      "source_url": "https://open.smk.dk/en/artwork/image/KAS385",
+      "license": "Public Domain Mark 1.0",
+      "note": "The mesh is derived from SMK's public-domain plaster-cast scan after the Vatican group.",
+      "tier": 1,
+      "index": 8,
+      "total": 1809,
+      "period": "Ancient",
+      "model": {
+        "sourcePath": "laocoon/laocoon_source_small.stl",
+        "format": "stl",
+        "sizeBytes": 20005084
+      },
+      "search": "laocoon and his sons agesander of rhodes, athanadoros and polydoros c. 40-20 bce marble h 242 cm × w 162.5 cm × d 103 cm vatican museums, vatican city smk open plaster cast, royal cast collection (smk), copenhagen the mesh is derived from smk's public-domain plaster-cast scan after the vatican group.",
+      "scan_source": "Plaster cast, Royal Cast Collection (SMK), Copenhagen",
+      "wikidata": "https://www.wikidata.org/wiki/Q465762",
+      "dimensions": "H 242 cm × W 162.5 cm × D 103 cm",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "accession": "KAS385"
+    },
+    "venus-de-milo": {
+      "slug": "venus-de-milo",
+      "collection": "",
+      "title": "Venus de Milo",
+      "artist": "",
+      "year": "2nd century BCE",
+      "year_sort": -150,
+      "material": "Parian marble",
+      "museum": "Musée du Louvre, Paris",
+      "source_institution": "SMK Open",
+      "source_url": "https://open.smk.dk/artwork/image/KAS434",
+      "license": "Public Domain Mark 1.0",
+      "note": "",
+      "tier": 1,
+      "index": 10,
+      "total": 1809,
+      "period": "Ancient",
+      "model": {
+        "sourcePath": "venus-de-milo/venus_de_milo_source_small.stl",
+        "format": "stl",
+        "sizeBytes": 13713684
+      },
+      "search": "venus de milo 2nd century bce parian marble h 202 cm musée du louvre, paris smk open plaster cast, royal cast collection (smk), copenhagen",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "accession": "KAS434",
+      "scan_source": "Plaster cast, Royal Cast Collection (SMK), Copenhagen",
+      "wikidata": "https://www.wikidata.org/wiki/Q151952",
+      "dimensions": "H 202 cm"
+    },
+    "belvedere-torso": {
+      "slug": "belvedere-torso",
+      "collection": "",
+      "title": "Belvedere Torso",
+      "artist": "Apollonios",
+      "year": "1st century BCE",
+      "year_sort": -50,
+      "material": "Marble",
+      "museum": "Vatican Museums, Vatican City",
+      "source_institution": "SMK Open",
+      "source_url": "https://open.smk.dk/artwork/image/KAS402",
+      "license": "Public Domain Mark 1.0",
+      "note": "SMK's cast record identifies the figure as Ajax(?) and notes the missing lower base with signature.",
+      "tier": 1,
+      "index": 12,
+      "total": 1809,
+      "period": "Ancient",
+      "model": {
+        "sourcePath": "belvedere-torso/belvedere_torso_source_small.stl",
+        "format": "stl",
+        "sizeBytes": 20001884
+      },
+      "search": "belvedere torso apollonios 1st century bce marble h 122 cm × w 79 cm × d 90 cm vatican museums, vatican city smk open plaster cast, royal cast collection (smk), copenhagen smk's cast record identifies the figure as ajax(?) and notes the missing lower base with signature.",
+      "dimensions": "H 122 cm × W 79 cm × D 90 cm",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "accession": "KAS402",
+      "scan_source": "Plaster cast, Royal Cast Collection (SMK), Copenhagen",
+      "wikidata": "https://www.wikidata.org/wiki/Q2551806"
+    },
+    "michelangelo/pieta": {
+      "slug": "michelangelo/pieta",
+      "collection": "michelangelo",
+      "title": "Pieta",
+      "artist": "Michelangelo",
+      "year": "1498-1499",
+      "year_sort": 1498,
+      "material": "Plaster",
+      "museum": "SMK — Royal Cast Collection",
+      "source_institution": "SMK Open",
+      "source_url": "https://open.smk.dk/en/artwork/image/KAS115",
+      "license": "Public Domain Mark 1.0",
+      "note": "",
+      "tier": 2,
+      "index": 15,
+      "total": 1809,
+      "period": "Renaissance",
+      "model": {
+        "sourcePath": "michelangelo/pieta/pieta_source_small.stl",
+        "format": "stl",
+        "sizeBytes": 20000884
+      },
+      "search": "pieta michelangelo 1498-1499 plaster h 176 cm × w 170 cm × d 89 cm smk — royal cast collection smk open michelangelo",
+      "dimensions": "H 176 cm × W 170 cm × D 89 cm",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "accession": "KAS115"
+    },
+    "michelangelo/david": {
+      "slug": "michelangelo/david",
+      "collection": "michelangelo",
+      "title": "David",
+      "artist": "Michelangelo",
+      "year": "1501-1504",
+      "year_sort": 1501,
+      "material": "Marble",
+      "museum": "Galleria dell'Accademia, Florence",
+      "source_institution": "Scan the World / Wikimedia Commons",
+      "source_url": "https://commons.wikimedia.org/wiki/File:David_(Michelangelo).stl",
+      "license": "",
+      "note": "This viewer uses the source STL directly with museum-style lighting and mobile-friendly controls.",
+      "tier": 1,
+      "index": 17,
+      "total": 1809,
+      "period": "Renaissance",
+      "model": {
+        "sourcePath": "michelangelo/david/david_tour.stl",
+        "format": "stl",
+        "sizeBytes": 8000084
+      },
+      "search": "david michelangelo 1501-1504 marble h 517 cm galleria dell'accademia, florence scan the world / wikimedia commons michelangelo this viewer uses the source stl directly with museum-style lighting and mobile-friendly controls.",
+      "dimensions": "H 517 cm"
+    },
+    "michelangelo/moses": {
+      "slug": "michelangelo/moses",
+      "collection": "michelangelo",
+      "title": "Moses",
+      "artist": "Michelangelo",
+      "year": "1513-1515",
+      "year_sort": 1513,
+      "material": "Plaster",
+      "museum": "SMK — Royal Cast Collection",
+      "source_institution": "SMK Open",
+      "source_url": "https://open.smk.dk/en/artwork/image/KAS243",
+      "license": "Public Domain Mark 1.0",
+      "note": "",
+      "tier": 2,
+      "index": 22,
+      "total": 1809,
+      "period": "Renaissance",
+      "model": {
+        "sourcePath": "michelangelo/moses/moses_tour.stl",
+        "format": "stl",
+        "sizeBytes": 6000084
+      },
+      "search": "moses michelangelo 1513-1515 plaster h 249 cm × w 110 cm × d 107 cm smk — royal cast collection smk open michelangelo",
+      "dimensions": "H 249 cm × W 110 cm × D 107 cm",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "accession": "KAS243"
+    }
+  },
+  "maps": {
+    "src/data/previews.json": {
+      "michelangelo/david": {
+        "url": "https://models.atrium.earth/models/previews/michelangelo/david/preview.glb",
+        "bytes": 482852,
+        "sourceBytes": 59997484,
+        "sourceFormat": "stl",
+        "faces": 16000,
+        "sourceFaces": 1199948
+      },
+      "michelangelo/pieta": {
+        "url": "https://models.atrium.earth/models/previews/michelangelo/pieta/preview.glb",
+        "bytes": 500884,
+        "sourceBytes": 20000884,
+        "sourceFormat": "stl",
+        "faces": null,
+        "sourceFaces": null
+      },
+      "michelangelo/moses": {
+        "url": "https://models.atrium.earth/models/previews/michelangelo/moses/preview.glb",
+        "bytes": 497600,
+        "sourceBytes": 6000084,
+        "sourceFormat": "stl",
+        "faces": 14000,
+        "sourceFaces": 120000
+      },
+      "venus-de-milo": {
+        "url": "https://models.atrium.earth/models/previews/venus-de-milo/preview.glb",
+        "bytes": 481948,
+        "sourceBytes": 13713684,
+        "sourceFormat": "stl",
+        "faces": 14000,
+        "sourceFaces": 274272
+      },
+      "discobolus": {
+        "url": "https://models.atrium.earth/models/previews/discobolus/preview.glb",
+        "bytes": 483480,
+        "sourceBytes": 9988284,
+        "sourceFormat": "stl",
+        "faces": 14000,
+        "sourceFaces": 199764
+      },
+      "laocoon": {
+        "url": "https://models.atrium.earth/models/previews/laocoon/preview.glb",
+        "bytes": 496940,
+        "sourceBytes": 20005084,
+        "sourceFormat": "stl",
+        "faces": 14000,
+        "sourceFaces": 400100
+      },
+      "dying-gaul": {
+        "url": "https://models.atrium.earth/models/previews/dying-gaul/preview.glb",
+        "bytes": 486104,
+        "sourceBytes": 20001584,
+        "sourceFormat": "stl",
+        "faces": 14000,
+        "sourceFaces": 400030
+      },
+      "belvedere-torso": {
+        "url": "https://models.atrium.earth/models/previews/belvedere-torso/preview.glb",
+        "bytes": 498508,
+        "sourceBytes": 20001884,
+        "sourceFormat": "stl",
+        "faces": null,
+        "sourceFaces": null
+      }
+    },
+    "src/data/physical-dimensions.json": {
+      "michelangelo/david": {
+        "status": "documented",
+        "basis": "original",
+        "dimensions": "Dimensions: h. 517 cm",
+        "sourceUrl": "https://www.galleriaaccademiafirenze.it/en/artworks/david-michelangelo/",
+        "sourceTitle": "Scan the World / Wikimedia Commons",
+        "note": "Original marble, including its carved integral base. Excludes the museum display pedestal.",
+        "measures": [
+          {
+            "axis": "height",
+            "value": 517,
+            "unit": "cm",
+            "scope": "object",
+            "sourcePosition": 1,
+            "sourceUrls": [
+              "https://www.galleriaaccademiafirenze.it/en/artworks/david-michelangelo/"
+            ]
+          }
+        ],
+        "identity": {
+          "title": "David",
+          "accession": "Inv. Scult. n. 1076"
+        },
+        "evidence": [
+          {
+            "sourceUrl": "https://www.galleriaaccademiafirenze.it/en/artworks/david-michelangelo/",
+            "excerpt": "Dimensions: h. 517 cm",
+            "retrieved": "2026-09-12"
+          }
+        ],
+        "reviewed": "2026-09-12",
+        "geometryStatus": "not-audited",
+        "catalogDimensionsForComparisonOnly": "H 517 cm",
+        "sourcesReviewed": [
+          {
+            "url": "https://commons.wikimedia.org/wiki/File:David_(Michelangelo).stl",
+            "text": "work/atrium-scale-all/other/text/453c2693d27e9f75.txt",
+            "ok": true
+          },
+          {
+            "url": "https://www.galleriaaccademiafirenze.it/en/artworks/david-michelangelo/",
+            "ok": false,
+            "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1082)>"
+          }
+        ],
+        "calibrationReady": false,
+        "geometryReviewNote": "Complete David, including the original irregular carved marble foot and tree support, without the gallery pedestal. The original517cm height maps to the full upright scan.",
+        "spatial": {
+          "axis": "y",
+          "meters": 5.17,
+          "measurementIndex": 0,
+          "previewUrl": "https://models.atrium.earth/models/previews/michelangelo/david/preview.glb",
+          "orientation": null,
+          "assetSha256": "0fe2f0eca690f42f2e7ce0a6b440892f793410295dadbcfef9a0b3c62168f8b7",
+          "reviewed": "2026-09-12",
+          "geometryReview": "Exact current GLB inspected from three angles. Posed-vertex footprints agree with normalized bounds. Chosen source extent matches full modeled reference; uniform scaling only.",
+          "note": "Complete David, including the original irregular carved marble foot and tree support, without the gallery pedestal. The original517cm height maps to the full upright scan."
+        },
+        "spatialNote": "Physical scale is calibrated to the documented original artwork dimensions. Proportions are preserved."
+      },
+      "michelangelo/pieta": {
+        "dimensions": "Height 174 cm; Width 195 cm; Depth 69 cm (original)",
+        "status": "documented",
+        "basis": "original",
+        "note": "Published dimensions of the original artwork; the displayed model is a reproduction cast.",
+        "checked": "2026-09-13",
+        "spatialNote": "Shown at the documented height, with the model’s proportions preserved. Some dimensions of this scan differ from the published measurements.",
+        "researchStatus": "verified",
+        "identifiedObject": {
+          "title": "Pietà di San Pietro",
+          "institution": "Basilica di San Pietro, Vatican City; original dimensions documented by Museo Tattile Statale Omero",
+          "accession": "SMK cast KAS115 after the unique Vatican Pietà",
+          "record_url": "https://museoomero.it/opere/pieta-di-san-pietro/",
+          "identity_confidence": "high",
+          "match_explanation": "Original artwork identity agrees with SMK’s source-original relationship and the official museum or state-catalogue record."
+        },
+        "geometryReviewNote": "The complete Pieta group and sculptural bottom are present without an external display block, so the independently documented 174 cm original height maps to the full extent. Retain the source-versus-scan horizontal discrepancies; they do not justify replacing the original with the 176 cm cast height or stretching axes.",
+        "measures": [
+          {
+            "axis": "height",
+            "value": 174,
+            "unit": "cm",
+            "meters": 1.74,
+            "scope": "Original marble group: dimensions explicitly listed under Originale, not merely the museum’s replica measurements.",
+            "qualifier": "exact",
+            "sourceUrls": [
+              "https://museoomero.it/opere/pieta-di-san-pietro/"
+            ]
+          },
+          {
+            "axis": "width",
+            "value": 195,
+            "unit": "cm",
+            "meters": 1.95,
+            "scope": "Original marble group: dimensions explicitly listed under Originale, not merely the museum’s replica measurements.",
+            "qualifier": "exact",
+            "sourceUrls": [
+              "https://museoomero.it/opere/pieta-di-san-pietro/"
+            ]
+          },
+          {
+            "axis": "depth",
+            "value": 69,
+            "unit": "cm",
+            "meters": 0.6900000000000001,
+            "scope": "Original marble group: dimensions explicitly listed under Originale, not merely the museum’s replica measurements.",
+            "qualifier": "exact",
+            "sourceUrls": [
+              "https://museoomero.it/opere/pieta-di-san-pietro/"
+            ]
+          }
+        ],
+        "sourceUrl": "https://museoomero.it/opere/pieta-di-san-pietro/",
+        "spatial": {
+          "axis": "y",
+          "meters": 1.74,
+          "measurementIndex": 0,
+          "previewUrl": "https://models.atrium.earth/models/previews/michelangelo/pieta/preview.glb",
+          "orientation": null,
+          "assetSha256": "e2395b41905d0c46c24457de271ba207c6806ffb97a479aebd813299a4f46745",
+          "reviewed": "2026-09-13",
+          "geometryReview": "Fresh current GLB decoded with current Viewer transforms, posed visible-vertex bounds and individual three-angle render inspection; official accession photographs reviewed for SMK. Evidence: scale_geometry-review.json and scale_geometry-audit/audit.json.",
+          "note": "The complete Pieta group and sculptural bottom are present without an external display block, so the independently documented 174 cm original height maps to the full extent. Retain the source-versus-scan horizontal discrepancies; they do not justify replacing the original with the 176 cm cast height or stretching axes. Uniform scale preserves the mesh proportions; this verifies the selected extent, not agreement of every published axis."
+        },
+        "geometryStatus": "calibrated",
+        "calibrationReady": true
+      },
+      "michelangelo/moses": {
+        "dimensions": "Height 235 cm (original)",
+        "status": "documented",
+        "basis": "original",
+        "note": "Published dimensions of the original artwork; the displayed model is a reproduction cast.",
+        "checked": "2026-09-13",
+        "spatialNote": "The documented dimensions still need to be matched to the model’s displayed extent.",
+        "researchStatus": "verified",
+        "identifiedObject": {
+          "title": "Moses",
+          "institution": "San Pietro in Vincoli; original dimensions documented by Museo Tattile Statale Omero",
+          "accession": "Original Moses of Michelangelo",
+          "record_url": "https://museoomero.it/en/opere/moses/",
+          "identity_confidence": "high",
+          "match_explanation": "Original identity cross-referenced from SMK original relationships and museum or primary scholarly catalogue."
+        },
+        "geometryReviewNote": "Current Moses is cut across the knees and rear; the official SMK photo and dimensions cover the full seated figure and foot. Neither original 235 nor cast 249 cm measures the cropped mesh. Needs complete asset or measured common anatomical landmarks.",
+        "measures": [
+          {
+            "axis": "height",
+            "value": 235,
+            "unit": "cm",
+            "meters": 2.35,
+            "scope": "Full original seated statue, explicitly under Original on the museum record.",
+            "qualifier": "exact",
+            "sourceUrls": [
+              "https://museoomero.it/en/opere/moses/"
+            ]
+          }
+        ],
+        "sourceUrl": "https://museoomero.it/en/opere/moses/",
+        "geometryStatus": "reviewed-blocked",
+        "geometryReview": {
+          "reviewed": "2026-09-13",
+          "status": "blocked",
+          "blocker": "cropped_asset",
+          "previewUrl": "https://models.atrium.earth/models/previews/michelangelo/moses/preview.glb",
+          "orientation": null,
+          "assetSha256": "74d4433bc70e7cb30fbd8dae8226c62160292da6c7e70265ff278bf23dfa649a",
+          "evidence": "scale_geometry-review.json; scale_geometry-audit/audit.json; individual rendered model and applicable official museum photograph"
+        }
+      },
+      "venus-de-milo": {
+        "dimensions": "H 204 cm",
+        "sourceUrl": "https://collections.louvre.fr/ark:/53355/cl010277627",
+        "basis": "original",
+        "status": "documented",
+        "note": "Dimensions of the original in the Louvre.",
+        "checked": "2026-09-09",
+        "measures": [
+          {
+            "axis": "height",
+            "value": 204,
+            "unit": "cm",
+            "sourceUrls": [
+              "https://collections.louvre.fr/ark:/53355/cl010277627"
+            ]
+          }
+        ],
+        "spatialNote": "Physical scale is calibrated to the documented original artwork dimensions. Proportions are preserved.",
+        "spatial": {
+          "axis": "y",
+          "meters": 2.04,
+          "previewUrl": "https://models.atrium.earth/models/previews/venus-de-milo/preview.glb",
+          "orientation": null,
+          "reviewed": "2026-09-12",
+          "note": "Whole upright scan checked against the documented object height; no separate display pedestal included.",
+          "measurementIndex": 0,
+          "assetSha256": "7b15698b72844aa33cc2acd04c88cba36fab9ad9e8d6b3a6ee7df6cde89a0ba7",
+          "geometryReview": "Rechecked exact current GLB in three-angle renders. Whole surviving object with integral historic base where present; no separate museum pedestal measured as artwork. Original source height retained."
+        },
+        "geometryReviewNote": "Whole upright scan checked against the documented object height; no separate display pedestal included."
+      },
+      "discobolus": {
+        "dimensions": "",
+        "status": "unresolved",
+        "basis": "original",
+        "note": "Published measurements still need to be reconciled.",
+        "checked": "2026-09-13",
+        "spatialNote": "The documented dimensions still need to be matched to the model’s displayed extent.",
+        "researchStatus": "conflicting",
+        "identifiedObject": {
+          "title": "Statua di discobolo tipo Lancellotti; copia romana da un originale greco di Mirone (Discobolus from Hadrian's Villa, modern head)",
+          "institution": "Musei Vaticani, Museo Pio Clementino, Sala della Biga",
+          "accession": "MV.2346.0.0 (inv. 2346)",
+          "version_or_date": "Roman copy, first half of 2nd century CE; head modern (late 18th century); found at Villa Adriana 1791 (Marefoschi excavations), acquired 1792",
+          "record_url": "https://catalogo.museivaticani.va/index.php/Detail/objects/MV.2346.0.0",
+          "identity_confidence": "high",
+          "match_explanation": "SMK KAS1549 original ORIG502 explicitly names Museo Pio-Clementino, Vatican, and discovery at Hadrian’s Villa in 1791; that excludes the Townley Discobolus found in 1790 and now in London. The local Atrium render matches this restored forward-facing-head type, but its full cast extent still needs reconciliation with the inherited Vatican catalogue height."
+        },
+        "geometryReviewNote": "Official SMK KAS 1549 photo shows a substantially upright athlete with lowered arms, unlike the deeply bent current figure with raised discus. Cast 170 cm is not transferable until the mesh identity/source is repaired.",
+        "geometryStatus": "reviewed-blocked",
+        "geometryReview": {
+          "reviewed": "2026-09-13",
+          "status": "blocked",
+          "blocker": "identity",
+          "previewUrl": "https://models.atrium.earth/models/previews/discobolus/preview.glb",
+          "orientation": null,
+          "assetSha256": "6ef8add57206db48b2d121b7361820878ee482e339de042c5fa589169d950d1b",
+          "evidence": "scale_geometry-review.json; scale_geometry-audit/audit.json; individual rendered model and applicable official museum photograph"
+        }
+      },
+      "laocoon": {
+        "dimensions": "Full-size historical cast: H 242 cm.",
+        "status": "documented",
+        "basis": "object",
+        "note": "This scan shows the older straight-arm restoration, calibrated to its full-size height of 242 cm. The current Vatican marble group, with a bent right arm, measures H 208 x W 163 x D 112 cm. Historical cast width/depth records disagree; the model retains its proportions.",
+        "checked": "2026-09-12",
+        "spatialNote": "Calibrated to 2.42 m high: the full-size historical cast with the raised arm. The current Vatican group has a different arm restoration. Proportions are preserved.",
+        "researchStatus": "verified",
+        "identifiedObject": {
+          "title": "Laocoon Group",
+          "institution": "Vatican Museums, Museo Pio-Clementino",
+          "accession": "1059 (group); 1064 (Pollak right arm)",
+          "version_or_date": "Marble group, 40-20 BCE in the catalogue; current restored state",
+          "record_url": "https://www.digitalsculpture.org/laocoon/index02.html",
+          "identity_confidence": "high",
+          "match_explanation": "SMK KAS385 / ORIG1563 names the Vatican group, Esquiline discovery and restored right arm. The Digital Sculpture Project catalogue identifies the Vatican group and original Pollak arm by inventory and describes its direct Vatican scan."
+        },
+        "geometryReviewNote": "Complete historical straight-arm group, including its integral altar and low stepped base, without separate museum furniture. Full vertical extent runs from the underside of the base to the raised hand/serpent. The restored arm also controls the horizontal minimum, so neither the current Vatican height nor width applies to this cast. At H 242 cm the unchanged mesh measures about W 180.07 x D 106.89 cm in its current orientation. SMK records W 162.5 x D 103 cm and the Berlin master W 184 x D 100 cm; these disagree, so only the independently corroborated height calibrates the model and proportions are preserved.",
+        "measures": [
+          {
+            "axis": "height",
+            "value": 208,
+            "unit": "cm",
+            "meters": 2.08,
+            "scope": "Current Vatican marble group with the bent Pollak right arm; external museum display pedestal not defined in the measurement statement.",
+            "qualifier": "exact",
+            "source_ids": [
+              "S2"
+            ],
+            "sourceUrls": [
+              "https://www.digitalsculpture.org/laocoon/index02.html"
+            ]
+          },
+          {
+            "axis": "width",
+            "value": 163,
+            "unit": "cm",
+            "meters": 1.63,
+            "scope": "Current Vatican marble group with the bent Pollak right arm; external museum display pedestal not defined in the measurement statement.",
+            "qualifier": "exact",
+            "source_ids": [
+              "S2"
+            ],
+            "sourceUrls": [
+              "https://www.digitalsculpture.org/laocoon/index02.html"
+            ]
+          },
+          {
+            "axis": "depth",
+            "value": 112,
+            "unit": "cm",
+            "meters": 1.12,
+            "scope": "Current Vatican marble group with the bent Pollak right arm; external museum display pedestal not defined in the measurement statement.",
+            "qualifier": "exact",
+            "source_ids": [
+              "S2"
+            ],
+            "sourceUrls": [
+              "https://www.digitalsculpture.org/laocoon/index02.html"
+            ]
+          },
+          {
+            "axis": "height",
+            "value": 242,
+            "unit": "cm",
+            "meters": 2.42,
+            "scope": "Gross height of SMK KAS385, the full-size historical straight-arm cast including its integral base; not the current bent-arm Vatican group.",
+            "qualifier": "exact",
+            "sourceUrls": [
+              "https://api.smk.dk/api/v1/art/?object_number=KAS385",
+              "https://sketchfab.com/3d-models/laokoon-gruppe-02ba6929c7154fc3af9943f1b73cb656"
+            ]
+          }
+        ],
+        "sourceUrl": "https://open.smk.dk/en/artwork/image/KAS385",
+        "scannedObject": {
+          "title": "Laocoon and His Sons, historical straight-arm cast",
+          "institution": "Statens Museum for Kunst, Royal Cast Collection",
+          "accession": "KAS385",
+          "maker": "Berlin Gipsformerei, mould 263",
+          "record_url": "https://api.smk.dk/api/v1/art/?object_number=KAS385",
+          "fullSizeSourceUrl": "https://www.smb.museum/en/museums-institutions/gipsformerei/collection-areas/antiquity/",
+          "heightCorroborationUrl": "https://sketchfab.com/3d-models/laokoon-gruppe-02ba6929c7154fc3af9943f1b73cb656",
+          "match_explanation": "SMK identifies Berlin mould 263 and explicitly describes the extended arms as historical restorations. The Berlin R-00263 master independently records the same 242 cm height; its collection description identifies Laocoon as reproduced at original size."
+        },
+        "spatial": {
+          "axis": "y",
+          "meters": 2.42,
+          "measurementIndex": 3,
+          "previewUrl": "https://models.atrium.earth/models/previews/laocoon/preview.glb",
+          "orientation": null,
+          "assetSha256": "a307a155240874c79bf3b4a9bef44eac80be13520120640c1994d11feb0ee237",
+          "reviewed": "2026-09-12",
+          "geometryReview": "Exact current GLB inspected in front, side and back views and with vertex extrema; no external display pedestal included. Source identity and historical restoration confirmed against SMK and Berlin Gipsformerei. Evidence: docs/phone-scale-2026-09-12/review.json.",
+          "note": "Complete historical straight-arm group, including its integral altar and low stepped base, without separate museum furniture. Full vertical extent runs from the underside of the base to the raised hand/serpent. The restored arm also controls the horizontal minimum, so neither the current Vatican height nor width applies to this cast. At H 242 cm the unchanged mesh measures about W 180.07 x D 106.89 cm in its current orientation. SMK records W 162.5 x D 103 cm and the Berlin master W 184 x D 100 cm; these disagree, so only the independently corroborated height calibrates the model and proportions are preserved."
+        }
+      },
+      "dying-gaul": {
+        "dimensions": "H 93 cm; L 186 cm; W 89 cm (museum guide).",
+        "status": "documented",
+        "basis": "original",
+        "note": "Dimensions of the surviving Roman marble in the Capitoline Museums; this model was scanned from an SMK plaster cast.",
+        "checked": "2026-09-09",
+        "spatialNote": "Physical scale is calibrated to the documented original artwork dimensions. Proportions are preserved.",
+        "researchStatus": "verified",
+        "identifiedObject": {
+          "title": "Statua del Galata Capitolino (Galata morente)",
+          "institution": "Musei Capitolini, Rome",
+          "accession": "S 747",
+          "version_or_date": "Roman marble, approximately 60-40 BCE; surviving ancient version",
+          "record_url": "https://museicapitolini.org/it/opera/statua-del-galata-capitolino?tema=1",
+          "identity_confidence": "high",
+          "match_explanation": "SMK KAS1312 / original ORIG438 identifies the Capitoline marble, its Ludovisi provenance and restored right arm. The Capitoline record identifies S 747; this is the surviving Roman marble, not the lost Pergamene bronze."
+        },
+        "geometryReviewNote": "The complete Dying Gaul and integral oval sculptural base are present; no separate gallery pedestal appears. Use original height 93 cm. With only a plan-angle cross-check, horizontal extents are 191.2×91.6 cm, within about 3% of the guide 186×89 cm.",
+        "measures": [
+          {
+            "axis": "height",
+            "value": 93,
+            "unit": "cm",
+            "meters": 0.93,
+            "scope": "Museum sculpture on its integral oval base; guide does not define a separate display-pedestal allowance.",
+            "qualifier": "exact",
+            "source_ids": [
+              "S2"
+            ],
+            "sourceUrls": [
+              "https://www.museicapitolini.org/sites/default/files/f_file/LIBRETTO%20non%20vedenti_corretto_14.11.23.pdf"
+            ]
+          },
+          {
+            "axis": "length",
+            "value": 186,
+            "unit": "cm",
+            "meters": 1.86,
+            "scope": "Museum sculpture on its integral oval base; guide does not define a separate display-pedestal allowance.",
+            "qualifier": "exact",
+            "source_ids": [
+              "S2"
+            ],
+            "sourceUrls": [
+              "https://www.museicapitolini.org/sites/default/files/f_file/LIBRETTO%20non%20vedenti_corretto_14.11.23.pdf"
+            ]
+          },
+          {
+            "axis": "width",
+            "value": 89,
+            "unit": "cm",
+            "meters": 0.89,
+            "scope": "Museum sculpture on its integral oval base; guide does not define a separate display-pedestal allowance.",
+            "qualifier": "exact",
+            "source_ids": [
+              "S2"
+            ],
+            "sourceUrls": [
+              "https://www.museicapitolini.org/sites/default/files/f_file/LIBRETTO%20non%20vedenti_corretto_14.11.23.pdf"
+            ]
+          }
+        ],
+        "sourceUrl": "https://www.museicapitolini.org/sites/default/files/f_file/LIBRETTO%20non%20vedenti_corretto_14.11.23.pdf",
+        "spatial": {
+          "axis": "y",
+          "meters": 0.93,
+          "measurementIndex": 0,
+          "previewUrl": "https://models.atrium.earth/models/previews/dying-gaul/preview.glb",
+          "orientation": {
+            "upAxis": "y",
+            "modelRotation": [
+              90,
+              180,
+              0
+            ],
+            "viewDirection": [
+              1,
+              0,
+              0
+            ],
+            "status": "review",
+            "note": "Base-down + eye-level broadside (coverage-derived) so the dying warrior reads in profile instead of top-down."
+          },
+          "assetSha256": "11a4121cad6ea9eb58a0d261369f7e0ebc0b63206644a2dcc79a5509b11dc9e6",
+          "reviewed": "2026-09-12",
+          "geometryReview": "Individually reviewed three-angle renders of the exact current GLB, matching source measurement scope, actual-vertex normalized bounds and supporting plan-angle cross-check. Evidence: geometry/review.json and geometry/audit.json. No skin, morph or animation data is present.",
+          "note": "The complete Dying Gaul and integral oval sculptural base are present; no separate gallery pedestal appears. Use original height 93 cm. With only a plan-angle cross-check, horizontal extents are 191.2×91.6 cm, within about 3% of the guide 186×89 cm."
+        }
+      },
+      "belvedere-torso": {
+        "dimensions": "Measured cast: H 122 cm",
+        "status": "documented",
+        "basis": "object",
+        "note": "The displayed scale uses the measured SMK cast, including the reviewed cast state and supports. This is the best available matching physical reference; it is not an assertion that the cast is full-size or that its dimensions equal the original.",
+        "checked": "2026-09-13",
+        "spatialNote": "Shown at the measured cast size. The original’s size or surviving state differs or remains unverified.",
+        "researchStatus": "verified",
+        "identifiedObject": {
+          "title": "Torso del Belvedere",
+          "institution": "Musei Vaticani, Museo Pio Clementino, Sala delle Muse",
+          "accession": "MV.1192.0.0 (inv. 1192)",
+          "version_or_date": "1st century BCE, signed by Apollonios son of Nestor, Athenian",
+          "record_url": "https://catalogo.museivaticani.va/index.php/Detail/objects/MV.1192.0.0",
+          "identity_confidence": "high",
+          "match_explanation": "SMK KAS402 'Torso Belvedere. Torso af siddende, nøgen mand, Ajax(?)' credits Apollonios; the Vatican catalogue entry MV.1192.0.0 is the signed marble. KAS402 identifies the cast only."
+        },
+        "geometryReviewNote": "The current torso and surviving seat/upper legs match the exact SMK cast. Its lower extent differs from the 159 cm original ensemble; use the explicitly measured 122 cm cast rather than implying the entire original is represented.",
+        "measures": [
+          {
+            "axis": "height",
+            "value": 159,
+            "unit": "cm",
+            "meters": 1.59,
+            "scope": "Entire torso as catalogued by the Vatican Museums (published as 'cm 159 x 84')",
+            "qualifier": "exact",
+            "source_ids": [
+              "S1"
+            ],
+            "sourceUrls": [
+              "https://catalogo.museivaticani.va/index.php/Detail/objects/MV.1192.0.0"
+            ]
+          },
+          {
+            "axis": "unlabelled",
+            "value": 84,
+            "unit": "cm",
+            "meters": 0.84,
+            "scope": "Second figure in Vatican 'cm 159 x 84' (axis not labelled)",
+            "qualifier": "exact",
+            "source_ids": [
+              "S1"
+            ],
+            "sourceUrls": [
+              "https://catalogo.museivaticani.va/index.php/Detail/objects/MV.1192.0.0"
+            ]
+          },
+          {
+            "axis": "height",
+            "value": 122,
+            "unit": "cm",
+            "meters": 1.22,
+            "scope": "SMK plaster cast (not the original), brutto",
+            "qualifier": "exact",
+            "source_ids": [
+              "S2"
+            ],
+            "sourceUrls": [
+              "https://api.smk.dk/api/v1/art?object_number=KAS402"
+            ]
+          },
+          {
+            "axis": "width",
+            "value": 79,
+            "unit": "cm",
+            "meters": 0.79,
+            "scope": "SMK plaster cast (not the original), brutto",
+            "qualifier": "exact",
+            "source_ids": [
+              "S2"
+            ],
+            "sourceUrls": [
+              "https://api.smk.dk/api/v1/art?object_number=KAS402"
+            ]
+          },
+          {
+            "axis": "depth",
+            "value": 90,
+            "unit": "cm",
+            "meters": 0.9,
+            "scope": "SMK plaster cast (not the original), brutto",
+            "qualifier": "exact",
+            "source_ids": [
+              "S2"
+            ],
+            "sourceUrls": [
+              "https://api.smk.dk/api/v1/art?object_number=KAS402"
+            ]
+          },
+          {
+            "axis": "height",
+            "value": 122,
+            "unit": "cm",
+            "meters": 1.22,
+            "scope": "Measured SMK cast KAS402; source part: brutto. Current cast state and support reviewed individually.",
+            "qualifier": "exact",
+            "sourceUrls": [
+              "https://api.smk.dk/api/v1/art?object_number=KAS402"
+            ]
+          }
+        ],
+        "sourceUrl": "https://api.smk.dk/api/v1/art?object_number=KAS402",
+        "spatial": {
+          "axis": "y",
+          "meters": 1.22,
+          "measurementIndex": 5,
+          "previewUrl": "https://models.atrium.earth/models/previews/belvedere-torso/preview.glb",
+          "orientation": null,
+          "assetSha256": "797d39d87b6452dc22f9c85bfa2b28da71799da359451648c31384120e1c4bcf",
+          "reviewed": "2026-09-13",
+          "geometryReview": "Fresh current GLB decoded with current Viewer transforms, posed visible-vertex bounds and individual three-angle render inspection; official accession photographs reviewed for SMK. Evidence: scale_geometry-review.json and scale_geometry-audit/audit.json.",
+          "note": "The current torso and surviving seat/upper legs match the exact SMK cast. Its lower extent differs from the 159 cm original ensemble; use the explicitly measured 122 cm cast rather than implying the entire original is represented. Uniform scale preserves the mesh proportions; this verifies the selected extent, not agreement of every published axis."
+        },
+        "originalDimensions": "H 159 cm × 84 cm (original marble, Vatican inv. 1192; weight 1500 kg)",
+        "originalSizeResearch": {
+          "status": "documented",
+          "basis": "original",
+          "note": "Dimensions of the original marble in the Vatican Museums (Museo Pio Clementino, inv. 1192); this model was scanned from a plaster cast in the SMK Royal Cast Collection.",
+          "identifiedObject": {
+            "title": "Torso del Belvedere",
+            "institution": "Musei Vaticani, Museo Pio Clementino, Sala delle Muse",
+            "accession": "MV.1192.0.0 (inv. 1192)",
+            "version_or_date": "1st century BCE, signed by Apollonios son of Nestor, Athenian",
+            "record_url": "https://catalogo.museivaticani.va/index.php/Detail/objects/MV.1192.0.0",
+            "identity_confidence": "high",
+            "match_explanation": "SMK KAS402 'Torso Belvedere. Torso af siddende, nøgen mand, Ajax(?)' credits Apollonios; the Vatican catalogue entry MV.1192.0.0 is the signed marble. KAS402 identifies the cast only."
+          },
+          "sourceUrl": "https://catalogo.museivaticani.va/index.php/Detail/objects/MV.1192.0.0",
+          "geometryReviewNote": "The scan and source cover different anatomical/restoration extents. A whole-statue or landmark-only measurement cannot be assigned to this cropped/reconstructed mesh; identify matching surviving landmarks or a dimension for this exact part."
+        },
+        "geometryStatus": "calibrated",
+        "calibrationReady": true
+      }
+    },
+    "src/data/spatial-eligibility.json": {
+      "michelangelo/david": {
+        "enabled": true,
+        "policyVersion": 1,
+        "kind": "original",
+        "recordFingerprint": "89f3d842fe195cd8c96ac8ba5a7d12ee4d60672c63db0d95639bc79fb96684d5",
+        "modelUrl": "https://models.atrium.earth/models/previews/michelangelo/david/preview.glb",
+        "assetSha256": "0fe2f0eca690f42f2e7ce0a6b440892f793410295dadbcfef9a0b3c62168f8b7",
+        "orientationFingerprint": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "bindingFingerprint": "6ebea91118461b5e12ea72526dce5349a9f9c14a6f914630bd7edbc53f803750"
+      },
+      "michelangelo/pieta": {
+        "enabled": false,
+        "policyVersion": 1,
+        "reason": "mismatch"
+      },
+      "michelangelo/moses": {
+        "enabled": false,
+        "policyVersion": 1,
+        "reason": "unverified"
+      },
+      "venus-de-milo": {
+        "enabled": true,
+        "policyVersion": 1,
+        "kind": "original",
+        "recordFingerprint": "11f11bec5fa20530acf43597dabcb0ad97c0bbbc87bbb15a9d1493c7a6c8f2e3",
+        "modelUrl": "https://models.atrium.earth/models/previews/venus-de-milo/preview.glb",
+        "assetSha256": "7b15698b72844aa33cc2acd04c88cba36fab9ad9e8d6b3a6ee7df6cde89a0ba7",
+        "orientationFingerprint": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "bindingFingerprint": "52726140b7a6e4e3aee69061654e2ec62b0f8b733ea68dd74f7c14795bd63570"
+      },
+      "discobolus": {
+        "enabled": false,
+        "policyVersion": 1,
+        "reason": "unverified"
+      },
+      "laocoon": {
+        "enabled": false,
+        "policyVersion": 1,
+        "reason": "mismatch"
+      },
+      "dying-gaul": {
+        "enabled": false,
+        "policyVersion": 1,
+        "reason": "geometry"
+      },
+      "belvedere-torso": {
+        "enabled": false,
+        "policyVersion": 1,
+        "reason": "geometry"
+      }
+    },
+    "src/data/spatial-display-defaults.json": {
+      "michelangelo/pieta": {
+        "maxExtentMeters": 1.5,
+        "preset": "large-form",
+        "reason": "Chosen display size: 1.5 m along the longest axis for the title/slug term “Pieta”. This is a viewing preset, not a physical measurement."
+      },
+      "michelangelo/moses": {
+        "maxExtentMeters": 1,
+        "preset": "general",
+        "reason": "Chosen display size: 1 m along the longest axis for a neutral starting size where the title does not identify a more specific display preset. This is a viewing preset, not a physical measurement."
+      },
+      "discobolus": {
+        "maxExtentMeters": 1.5,
+        "preset": "large-form",
+        "reason": "Chosen display size: 1.5 m along the longest axis for the named full-figure sculpture. This is a viewing preset, not a physical measurement."
+      },
+      "laocoon": {
+        "maxExtentMeters": 1.5,
+        "preset": "large-form",
+        "reason": "Chosen display size: 1.5 m along the longest axis for the named multi-figure sculpture. This is a viewing preset, not a physical measurement."
+      },
+      "dying-gaul": {
+        "maxExtentMeters": 1.5,
+        "preset": "large-form",
+        "reason": "Chosen display size: 1.5 m along the longest axis for the named reclining figure. This is a viewing preset, not a physical measurement."
+      },
+      "belvedere-torso": {
+        "maxExtentMeters": 0.6,
+        "preset": "portrait",
+        "reason": "Chosen display size: 0.6 m along the longest axis for the title/slug term “Torso”. This is a viewing preset, not a physical measurement."
+      }
+    },
+    "src/data/orientations.json": {
+      "dying-gaul": {
+        "upAxis": "y",
+        "modelRotation": [
+          90,
+          180,
+          0
+        ],
+        "viewDirection": [
+          1,
+          0,
+          0
+        ],
+        "status": "review",
+        "note": "Base-down + eye-level broadside (coverage-derived) so the dying warrior reads in profile instead of top-down."
+      }
+    },
+    "src/data/appearance-overrides.json": {
+      "michelangelo/david": {
+        "exposure": 0.15
+      },
+      "discobolus": {
+        "profile": "marble"
+      }
+    },
+    "src/data/display-recommendations.json": {
+      "michelangelo/david": {
+        "kind": "floor",
+        "height": 0,
+        "note": "Display at floor level, retaining the sculptural base already in the model.",
+        "reviewed": "2026-09-12",
+        "assetSha256": "0fe2f0eca690f42f2e7ce0a6b440892f793410295dadbcfef9a0b3c62168f8b7",
+        "reviewNote": "Complete David, including the original irregular carved marble foot and tree support, without the gallery pedestal. The original517cm height maps to the full upright scan."
+      },
+      "discobolus": {
+        "kind": "existing_base",
+        "height": 0,
+        "note": "Retain the base in the scan and display at floor level."
+      }
+    },
+    "src/data/renders.json": [
+      "michelangelo/david",
+      "michelangelo/pieta",
+      "michelangelo/moses",
+      "venus-de-milo",
+      "discobolus",
+      "laocoon",
+      "dying-gaul",
+      "belvedere-torso"
+    ]
+  },
+  "files": {
+    "public/previews/renders/michelangelo/david/thumb.webp": {
+      "bytes": 23544,
+      "sha256": "c95411c6519d9f40ccbaf0c06bb64f0237345b936cdfdeac579fbcc6a486f9b2"
+    },
+    "public/previews/posters/michelangelo/david/poster.svg": {
+      "bytes": 2102,
+      "sha256": "9bac8b13a07aac60a229f2ce2be58a59d5ea4f06206a3e2b99d6cc62c43d1e56"
+    },
+    "public/previews/renders/michelangelo/pieta/thumb.webp": {
+      "bytes": 40932,
+      "sha256": "69eb84c3aa50940e6f6d81c9fdc6af9c9bd48d370652891e43ec493061f850fe"
+    },
+    "public/previews/posters/michelangelo/pieta/poster.svg": {
+      "bytes": 2102,
+      "sha256": "ad208d0b00adb8fd4f246692b3afb51842a1b488c733a8ddae3472379cc4cd12"
+    },
+    "public/previews/renders/michelangelo/moses/thumb.webp": {
+      "bytes": 34848,
+      "sha256": "310905fa686e17ebed9e62d1f88ec28a58db9763ca5df2334a094d53354cbf57"
+    },
+    "public/previews/posters/michelangelo/moses/poster.svg": {
+      "bytes": 2086,
+      "sha256": "2beeb50b935e956c69da362347f727f32b9ada7af0be16ee15ed5ad6df7a269a"
+    },
+    "public/previews/renders/venus-de-milo/thumb.webp": {
+      "bytes": 29732,
+      "sha256": "f793c82f99a9ef9e963edd38b527e8cc3c1a158d5dc954681b98827885613ea5"
+    },
+    "public/previews/posters/venus-de-milo/poster.svg": {
+      "bytes": 2117,
+      "sha256": "ded25e56333f1a822435f39e8d5c113713e2b637c4213179e05ac6a554f8ac98"
+    },
+    "public/previews/renders/discobolus/thumb.webp": {
+      "bytes": 25696,
+      "sha256": "ffa4e3617511c39107980b3e2840ecbb78e2c1f4d705107902aca3f2ce67b4e5"
+    },
+    "public/previews/posters/discobolus/poster.svg": {
+      "bytes": 2112,
+      "sha256": "d3c3391b92b1524dd77d31dbcc27fcb2f46a0a79fa0fa8f0d7257ddaeee716a1"
+    },
+    "public/previews/renders/laocoon/thumb.webp": {
+      "bytes": 46228,
+      "sha256": "dc2c3c3a63618f4101c333387f2921e4ffbcc3e09b2f2b43c93bca0a8eddf75e"
+    },
+    "public/previews/posters/laocoon/poster.svg": {
+      "bytes": 2116,
+      "sha256": "d414b57170363ae45c2e99ad87d8cb69ff1dfdd5be85d6c7532d05478bee45c1"
+    },
+    "public/previews/renders/dying-gaul/thumb.webp": {
+      "bytes": 31800,
+      "sha256": "d84583bd29d62328b6c7dcdb3d6c5fee58fbc1b02aca19eb58ca1ba86567edba"
+    },
+    "public/previews/posters/dying-gaul/poster.svg": {
+      "bytes": 2097,
+      "sha256": "f2aec8d2974d740597e9b0016df60253e9b797decbcb08d963eb97bd968b42bf"
+    },
+    "public/previews/renders/belvedere-torso/thumb.webp": {
+      "bytes": 32664,
+      "sha256": "884e7462a55053aef0bba2a8917500033e34c2b18d60f930a46619436d5d2ee2"
+    },
+    "public/previews/posters/belvedere-torso/poster.svg": {
+      "bytes": 2121,
+      "sha256": "cd36b384cc8a93af8ff1000afa3c2448ce4bcc98cd3e496e1410a803615371de"
+    }
+  },
+  "canonical_commit": "c96e7711",
+  "scratch_manifest_commit": "67fde3d09a55ecc3fd62d05e72626e8c6b04e35c"
+}

@@ -60,17 +60,21 @@ function badIntegrity(integrity, candidate = {}) {
   if (!integrity) return true;
   // The solve timed out before it could measure the mesh; the piece is held for
   // human orientation review rather than judged on numbers we never computed.
-  if (integrity.skipped) return false;
+  if (integrity.skipped) return Boolean(candidate.require_measured_integrity);
   if (!Number.isFinite(Number(integrity.faces)) || Number(integrity.faces) <= 0) return true;
   if (Number(integrity.bratio) > 0.3) return true;
 
   if (candidate.allow_componentized_mesh) {
     const maxComponents = Number(candidate.max_component_count || 1_000);
-    return Number(integrity.ncomp) > maxComponents;
+    const minLargestFraction = Number(candidate.min_largest_component_fraction ?? 0.5);
+    if (Number(integrity.ncomp) > maxComponents) return true;
+    if (!Number.isFinite(Number(integrity.largest_frac))) return true;
+    return Number(integrity.largest_frac) < minLargestFraction;
   }
 
   if (Number(integrity.ncomp) > 50) return true;
-  if (Number(integrity.largest_frac) && Number(integrity.largest_frac) < 0.5) return true;
+  if (!Number.isFinite(Number(integrity.largest_frac))) return true;
+  if (Number(integrity.largest_frac) < 0.5) return true;
   return false;
 }
 
@@ -378,6 +382,7 @@ for (const originalCandidate of candidates) {
     license: candidate.license,
     tri_count: proposal.integrity?.faces || candidate.face_count || '',
     integrity: formatIntegrity(proposal.integrity),
+    integrity_data: proposal.integrity || null,
     orientation: proposal.flag === 'auto' ? `auto ${orientationValue} confidence=${proposal.confidence}` : 'NEEDS ORIENTATION',
   };
   report.accepted.push(acceptedReport);

@@ -41,8 +41,6 @@
       "download_format": "stl",
       "download_size_bytes": 59997484,
       "face_count": 1199948,
-      "allow_componentized_mesh": true,
-      "max_component_count": 100000,
       "accession": "Inv. Scult. n. 1076",
       "license": "CC BY-SA 4.0",
       "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -56,7 +54,9 @@
       "evidence": [
         "Wikimedia Commons file record checked 2026-10-06: 59,997,484-byte STL, Scan the World, CC BY-SA 4.0",
         "Galleria dell'Accademia object record: Michelangelo, David, Inv. Scult. n. 1076, marble, height 517 cm"
-      ]
+      ],
+      "require_measured_integrity": true,
+      "expected_sha256": "b41ad68e2b7a7377251f11201b6f9ba9569fa16422bec3719223f205d001c6f9"
     },
     {
       "source": "smk",
@@ -108,8 +108,6 @@
       "download_format": "stl",
       "download_size_bytes": 74905984,
       "face_count": 1498118,
-      "allow_componentized_mesh": true,
-      "max_component_count": 100000,
       "accession": "KAS115",
       "license": "Public Domain Mark 1.0",
       "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -123,7 +121,9 @@
       "evidence": [
         "SMK KAS115 object record checked 2026-10-06: plaster cast, 1897, net 176 × 170 × 89 cm, Public Domain Mark 1.0",
         "SMK files_3D record: 74,905,984-byte maximum-resolution STL"
-      ]
+      ],
+      "require_measured_integrity": true,
+      "expected_sha256": "845ceb2f7b28430b1d73c3f77b494f2908edcff4690d86ab812beb0507a3394f"
     },
     {
       "source": "smk",
@@ -137,7 +137,7 @@
       "geography": "Copenhagen, Denmark; after an original in Rome, Italy",
       "subject": "Sculpture",
       "year": "before 1896, possibly 1830s; after the 1513–1514 original",
-      "year_sort": 1830,
+      "year_sort": 1896,
       "period": "19th-century cast after Renaissance original",
       "material": "Plaster",
       "dimensions": "H 249 cm × W 110 cm × D 107 cm",
@@ -175,8 +175,6 @@
       "download_format": "stl",
       "download_size_bytes": 100004584,
       "face_count": 2000090,
-      "allow_componentized_mesh": true,
-      "max_component_count": 100000,
       "accession": "KAS243",
       "license": "Public Domain Mark 1.0",
       "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -190,7 +188,9 @@
       "evidence": [
         "SMK KAS243 object record checked 2026-10-06: plaster cast, before 1896 (possibly 1830s), net 249 × 110 × 107 cm, Public Domain Mark 1.0",
         "SMK files_3D record: 100,004,584-byte maximum-resolution STL"
-      ]
+      ],
+      "require_measured_integrity": true,
+      "expected_sha256": "a208c49a59bd5ca5083cdc00708a138e54ef02b318370b7dc626d7d7a11b9df5"
     },
     {
       "source": "wikimedia-commons",
@@ -203,9 +203,9 @@
       "culture": "Danish plaster cast after Hellenistic Greek sculpture",
       "geography": "Copenhagen, Denmark; after an original from Melos, Greece",
       "subject": "Sculpture",
-      "year": "cast by 1898; after a 2nd-century BCE original",
+      "year": "production date unknown; acquired 1898; after a 2nd-century BCE original",
       "year_sort": 1898,
-      "period": "19th-century cast after Ancient original",
+      "period": "Undated plaster cast after Ancient original",
       "material": "Plaster",
       "dimensions": "H 213.5 cm × W 66.5 cm × D 63 cm",
       "measures": [
@@ -243,8 +243,6 @@
       "download_format": "stl",
       "download_size_bytes": 137129384,
       "face_count": 2742586,
-      "allow_componentized_mesh": true,
-      "max_component_count": 100000,
       "accession": "KAS434/1",
       "license": "CC0 1.0",
       "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -253,13 +251,15 @@
       "scan_author": "Statens Museum for Kunst",
       "attribution": "3D digitization of SMK Royal Cast Collection KAS434/1 by Statens Museum for Kunst, via Wikimedia Commons, dedicated CC0 1.0. Atrium serves an optimized derivative.",
       "scan_source": "Maximum-resolution STL of the exact SMK KAS434/1 plaster-cast component published by Wikimedia Commons",
-      "note": "The source filename and Commons record identify component KAS434/1 of SMK's four-part KAS434 cast. Its 213.5 × 66.5 × 63 cm gross dimensions come from the KAS434/1 child record and supersede dimensions previously inherited from the Louvre marble. SMK acquired the cast in 1898; its production date is not published.",
+      "note": "The source filename and Commons record identify component KAS434/1 of SMK's four-part KAS434 cast. Its 213.5 × 66.5 × 63 cm gross dimensions come from the KAS434/1 child record and supersede dimensions previously inherited from the Louvre marble. SMK acquired the cast in 1898; its production date is not published. The 1898 sort value is the documented acquisition terminus, not a claimed production date.",
       "source_description": "Wikimedia Commons describes this 137,129,384-byte STL as SMK's digitized version of the Venus de Milo and dedicates it CC0. The exact child record KAS434/1 identifies plaster and publishes gross dimensions of 213.5 × 66.5 × 63 cm. The parent KAS434 record lists four components and an 1898 acquisition date.",
       "evidence": [
         "Wikimedia Commons file record checked 2026-10-06: 137,129,384-byte STL, SMK digitization, CC0 1.0",
         "SMK KAS434/1 child record: plaster cast, gross 213.5 × 66.5 × 63 cm",
         "SMK KAS434 parent record: four-part plaster cast, acquired 1898"
-      ]
+      ],
+      "require_measured_integrity": true,
+      "expected_sha256": "3b2fdc98971894812a24ff7d3675bb352ccd113a7f0609b2c8cfed6bacfab177"
     },
     {
       "source": "wikimedia-commons",
@@ -272,9 +272,9 @@
       "culture": "Danish plaster cast after Classical Greek sculpture through a Roman copy",
       "geography": "Copenhagen, Denmark; after a Roman copy from Hadrian's Villa, Tivoli",
       "subject": "Sculpture",
-      "year": "cast by 1909; after Myron's c. 460–450 BCE original",
+      "year": "production date unknown; acquired 1909; after Myron's c. 460–450 BCE original",
       "year_sort": 1909,
-      "period": "20th-century cast after Ancient original",
+      "period": "Undated plaster cast after Ancient original",
       "material": "Plaster",
       "dimensions": "H 170 cm × W 115 cm × D 50 cm",
       "measures": [
@@ -311,8 +311,6 @@
       "download_format": "stl",
       "download_size_bytes": 100849784,
       "face_count": 2016994,
-      "allow_componentized_mesh": true,
-      "max_component_count": 100000,
       "accession": "KAS1549",
       "license": "CC0 1.0",
       "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -321,12 +319,14 @@
       "scan_author": "Statens Museum for Kunst",
       "attribution": "3D digitization of SMK Royal Cast Collection KAS1549 by Statens Museum for Kunst, via Wikimedia Commons, dedicated CC0 1.0. Atrium serves an optimized derivative.",
       "scan_source": "Maximum-resolution STL of the exact SMK KAS1549 plaster cast published by Wikimedia Commons",
-      "note": "This is the SMK plaster cast KAS1549, not Myron's lost bronze or another Discobolus version. SMK identifies the prototype as a Roman copy from Hadrian's Villa with a modern, incorrectly positioned head. The cast is on display in Room 120 (SMK Shop); its production date is not published, and 1909 is its acquisition terminus.",
+      "note": "This is the SMK plaster cast KAS1549, not Myron's lost bronze or another Discobolus version. SMK identifies the prototype as a Roman copy from Hadrian's Villa with a modern, incorrectly positioned head. The cast is on display in Room 120 (SMK Shop); its production date is not published, and 1909 is its acquisition terminus. The 1909 sort value is the documented acquisition terminus, not a claimed production date.",
       "source_description": "Wikimedia Commons describes this 100,849,784-byte STL as a digitized replica from SMK's Royal Cast Collection and dedicates it CC0. SMK titles KAS1549 “Discobolus, Roman Copy with Modern Head,” publishes gross dimensions of 170 × 115 × 50 cm, records acquisition in 1909, and identifies the Roman source copy and modern head.",
       "evidence": [
         "Wikimedia Commons file record checked 2026-10-06: 100,849,784-byte STL, SMK digitization, CC0 1.0",
         "SMK KAS1549 object record: plaster cast, gross 170 × 115 × 50 cm, acquired 1909, on display in Room 120"
-      ]
+      ],
+      "require_measured_integrity": true,
+      "expected_sha256": "f1c9457f52590725ec6159cc9646f1a4517fa3d5360694ea9f7f1c7e8561ebd8"
     },
     {
       "source": "wikimedia-commons",
@@ -339,9 +339,9 @@
       "culture": "Danish plaster cast after Greco-Roman sculpture",
       "geography": "Copenhagen, Denmark; after a group found in Rome, Italy",
       "subject": "Sculpture",
-      "year": "cast by 1898; after a 1st-century BCE Greco-Roman group",
+      "year": "production date unknown; acquired 1898; after a 1st-century BCE Greco-Roman group",
       "year_sort": 1898,
-      "period": "19th-century cast after Ancient original",
+      "period": "Undated plaster cast after Ancient original",
       "material": "Plaster",
       "dimensions": "H 242 cm × W 162.5 cm × D 103 cm",
       "measures": [
@@ -378,8 +378,6 @@
       "download_format": "stl",
       "download_size_bytes": 50000084,
       "face_count": 1000000,
-      "allow_componentized_mesh": true,
-      "max_component_count": 100000,
       "accession": "KAS385",
       "license": "Public Domain Mark 1.0",
       "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -388,13 +386,15 @@
       "scan_author": "Statens Museum for Kunst",
       "attribution": "3D digitization of SMK Royal Cast Collection KAS385 by Statens Museum for Kunst, via Wikimedia Commons. The file is marked public domain; SMK's object record applies Public Domain Mark 1.0. Atrium serves an optimized derivative.",
       "scan_source": "Maximum-resolution public-domain STL of the exact SMK KAS385 historical straight-arm plaster cast published by Wikimedia Commons",
-      "note": "This is SMK's historical straight-arm plaster cast KAS385, not the current bent-arm state of the Vatican marble. Its 242 cm gross height includes the raised restoration. SMK documents a repaired base chip, moulding discoloration and replacement of one boy's extended arm in 2018. The cast's production date is not published; SMK acquired it in 1898.",
+      "note": "This is SMK's historical straight-arm plaster cast KAS385, not the current bent-arm state of the Vatican marble. Its 242 cm gross height includes the raised restoration. SMK documents a repaired base chip, moulding discoloration and replacement of one boy's extended arm in 2018. The cast's production date is not published; SMK acquired it in 1898. The 1898 sort value is the documented acquisition terminus, not a claimed production date.",
       "source_description": "The Commons source is a 50,000,084-byte public-domain STL for SMK KAS385. SMK identifies the object as a plaster cast of the Laocoön group, publishes gross dimensions of 242 × 162.5 × 103 cm, records acquisition in 1898, and documents its historical restoration and later cast repairs.",
       "evidence": [
         "Wikimedia Commons file record checked 2026-10-06: 50,000,084-byte STL, marked public domain",
         "SMK KAS385 object record: plaster cast, gross 242 × 162.5 × 103 cm, acquired 1898, Public Domain Mark 1.0",
         "SMK condition history distinguishes this exact straight-arm cast and its 2018 replacement arm"
-      ]
+      ],
+      "require_measured_integrity": true,
+      "expected_sha256": "288aba62cd966aebc67d8b62edc79d6467766c2f794c1c7f354bf3eac2c7d707"
     },
     {
       "source": "smk",
@@ -407,9 +407,9 @@
       "culture": "Danish plaster cast after Hellenistic sculpture through a Roman marble copy",
       "geography": "Copenhagen, Denmark; after a Roman marble in Rome, Italy",
       "subject": "Sculpture",
-      "year": "cast by 1904; after a Roman copy of a c. 225 BCE original",
+      "year": "production date unknown; acquired 1904; after a Roman copy of a c. 225 BCE original",
       "year_sort": 1904,
-      "period": "20th-century cast after Ancient original",
+      "period": "Undated plaster cast after Ancient original",
       "material": "Plaster",
       "dimensions": "H 96 cm × W 185 cm × D 89 cm",
       "measures": [
@@ -444,8 +444,6 @@
       "download_format": "stl",
       "download_size_bytes": 200001084,
       "face_count": 4000020,
-      "allow_componentized_mesh": true,
-      "max_component_count": 100000,
       "accession": "KAS1312",
       "license": "Public Domain Mark 1.0",
       "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -454,12 +452,14 @@
       "scan_author": "Statens Museum for Kunst",
       "attribution": "3D digitization of SMK Royal Cast Collection KAS1312 by Statens Museum for Kunst. Public Domain Mark 1.0. Atrium serves an optimized derivative.",
       "scan_source": "Maximum-resolution STL supplied by SMK for the exact KAS1312 plaster cast",
-      "note": "This model is the SMK plaster cast KAS1312, historically titled “Dying Gladiator,” not the Capitoline marble itself. The dimensions and material belong to the cast. Its production date is not published; 1904 is the SMK acquisition terminus, and the record marks it as not currently on display.",
+      "note": "This model is the SMK plaster cast KAS1312, historically titled “Dying Gladiator,” not the Capitoline marble itself. The dimensions and material belong to the cast. Its production date is not published; 1904 is the SMK acquisition terminus, and the record marks it as not currently on display. The 1904 sort value is the documented acquisition terminus, not a claimed production date.",
       "source_description": "SMK identifies KAS1312 as a plaster cast titled “Dying Gladiator,” after the Roman marble associated with the Dying Gaul. The record publishes gross dimensions of 96 × 185 × 89 cm, marks the object public domain, records acquisition in 1904, and supplies this 200,001,084-byte STL as its maximum-resolution 3D file.",
       "evidence": [
         "SMK KAS1312 object record checked 2026-10-06: plaster cast, gross 96 × 185 × 89 cm, acquired 1904, Public Domain Mark 1.0",
         "SMK files_3D record: 200,001,084-byte maximum-resolution STL"
-      ]
+      ],
+      "require_measured_integrity": true,
+      "expected_sha256": "4246ebd08faad0d3a83adf9d77e1117a509e98cfe93afe5e3ca36abc1ef7c2b2"
     },
     {
       "source": "smk",
@@ -472,9 +472,9 @@
       "culture": "Danish plaster cast after Hellenistic Greek sculpture",
       "geography": "Copenhagen, Denmark; after a marble recorded in Rome, Italy",
       "subject": "Sculpture",
-      "year": "cast by 1898; after a 1st-century BCE original",
+      "year": "production date unknown; acquired 1898; after a 1st-century BCE original",
       "year_sort": 1898,
-      "period": "19th-century cast after Ancient original",
+      "period": "Undated plaster cast after Ancient original",
       "material": "Plaster",
       "dimensions": "H 122 cm × W 79 cm × D 90 cm",
       "measures": [
@@ -509,8 +509,6 @@
       "download_format": "stl",
       "download_size_bytes": 51021584,
       "face_count": 1020430,
-      "allow_componentized_mesh": true,
-      "max_component_count": 100000,
       "accession": "KAS402",
       "license": "Public Domain Mark 1.0",
       "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
@@ -519,13 +517,18 @@
       "scan_author": "Statens Museum for Kunst",
       "attribution": "3D digitization of SMK Royal Cast Collection KAS402 by Statens Museum for Kunst. Public Domain Mark 1.0. Atrium serves an optimized derivative.",
       "scan_source": "Maximum-resolution STL supplied by SMK for the exact KAS402 plaster cast",
-      "note": "This model is the SMK plaster cast KAS402, not the Vatican marble itself. SMK records that the lower part of the inscribed base is missing from this cast state. The 122 × 79 × 90 cm gross dimensions belong to the cast. Its production date is not published; SMK acquired it in 1898 and marks it as not currently on display.",
+      "note": "This model is the SMK plaster cast KAS402, not the Vatican marble itself. SMK records that the lower part of the inscribed base is missing from this cast state. The 122 × 79 × 90 cm gross dimensions belong to the cast. Its production date is not published; SMK acquired it in 1898 and marks it as not currently on display. The 1898 sort value is the documented acquisition terminus, not a claimed production date.",
       "source_description": "SMK identifies KAS402 as a plaster cast of the Belvedere Torso and notes that the lower part of the base with the signature is missing. The record publishes gross dimensions of 122 × 79 × 90 cm, marks the object public domain, records acquisition in 1898, and supplies this 51,021,584-byte STL as its maximum-resolution 3D file.",
       "evidence": [
         "SMK KAS402 object record checked 2026-10-06: plaster cast, gross 122 × 79 × 90 cm, acquired 1898, Public Domain Mark 1.0",
         "SMK files_3D record: 51,021,584-byte maximum-resolution STL",
         "SMK original relationship distinguishes the cast's missing lower inscribed base from the Vatican marble"
-      ]
+      ],
+      "require_measured_integrity": true,
+      "expected_sha256": "63899e19bf2526b3dc95a4d6781d5a7aea6f5e8d9ed480e8006994d10019b085"
     }
-  ]
+  ],
+  "strict_acquisition": true,
+  "expected_count": 8,
+  "expected_preview_faces": 400000
 }
