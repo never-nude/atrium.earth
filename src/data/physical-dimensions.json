@@ -9794,7 +9794,18 @@
       "assetSha256": "d4f2045dcdf4c58745ef1e8c642d9f93e99145dd14cb0184ea68155cc11f7e9d",
       "reviewed": "2026-10-06",
       "geometryReview": "The full-quality replacement and selected orientation were reviewed across the batch orientation views. The scan shows the complete reclining KAS1312 plaster cast from its lowest to highest modeled point; the published smk plaster cast kas1312, gross maps to the full world-Y extent after the selected orientation. Uniform scale preserves the scan's proportions.",
-      "note": "The full-quality replacement and selected orientation were reviewed across the batch orientation views. The scan shows the complete reclining KAS1312 plaster cast from its lowest to highest modeled point; the published smk plaster cast kas1312, gross maps to the full world-Y extent after the selected orientation. Uniform scale preserves the scan's proportions."
+      "note": "The full-quality replacement and selected orientation were reviewed across the batch orientation views. The scan shows the complete reclining KAS1312 plaster cast from its lowest to highest modeled point; the published smk plaster cast kas1312, gross maps to the full world-Y extent after the selected orientation. Uniform scale preserves the scan's proportions.",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          -90,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "status": "review",
+        "note": "Natural reclining frontal three-quarter view; the oval base lies level and the full figure reads clearly."
+      }
     },
     "spatialNote": "Physical scale is calibrated to the documented dimensions of SMK plaster cast KAS1312. Proportions are preserved.",
     "originalDimensions": "H 93 cm; L 186 cm; W 89 cm (museum guide).",
@@ -15796,9 +15807,9 @@
       "orientation": {
         "upAxis": "y",
         "modelRotation": [
-          -90.03,
+          -90,
           0,
-          173.63
+          0
         ],
         "yaw": 0,
         "status": "review",
