@@ -55,8 +55,8 @@ export function createDisplaySupport(THREE, layout) {
   });
   const plinth = new THREE.Mesh(geometry, material);
   plinth.name = 'Display furniture';
-  plinth.castShadow = true;
-  plinth.receiveShadow = true;
+  plinth.castShadow = false;
+  plinth.receiveShadow = false;
   plinth.scale.x = Number.isFinite(layout.width) && layout.width > 0 ? layout.width : 0.28;
   plinth.scale.z = Number.isFinite(layout.depth) && layout.depth > 0 ? layout.depth : 0.28;
   plinth.position.x = Number.isFinite(layout.centerX) ? layout.centerX : 0;

@@ -21,7 +21,7 @@ type Props = {
   respectReducedMotion?: boolean;
   rotationControl?: 'full' | 'simple';
   wheelZoom?: boolean;
-  lightControls?: boolean;
+  displayControls?: boolean;
   spatialViewing?: boolean;
   museumLabel?: Record<string, string>;
   spatialAssetSha256?: string;
@@ -53,7 +53,7 @@ const {
   respectReducedMotion = true,
   rotationControl = 'full',
   wheelZoom = true,
-  lightControls = false,
+  displayControls = false,
   spatialViewing = false,
   museumLabel,
   spatialAssetSha256,
@@ -110,8 +110,8 @@ const transformJson = JSON.stringify(modelTransform);
       </div>
     )}
 
-    {immersive && hasModel && lightControls && (
-      <details class="immersive-light" data-light-controls hidden>
+    {immersive && hasModel && displayControls && (
+      <details class="immersive-light" data-display-controls hidden>
         <summary>Display <span>+</span></summary>
         <div class="immersive-light__panel" aria-label="Display controls">
           <label>Exposure <input type="range" min="5" max="120" step="1" value="20" data-exposure /></label>
@@ -423,8 +423,6 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = appearance.exposure;
     renderer.outputColorSpace = THREE.SRGBColorSpace;
-    renderer.shadowMap.enabled = true;
-    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     renderer.domElement.classList.add('viewer-canvas');
     stage.appendChild(renderer.domElement);
     renderer.domElement.addEventListener('contextmenu', (e) => e.preventDefault());
@@ -444,10 +442,6 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     const keyRadius = 5, keyHeight = 4;
     const fixedKeyAngle = 0.15 * Math.PI * 2;
     key.position.set(Math.cos(fixedKeyAngle) * keyRadius, keyHeight, Math.sin(fixedKeyAngle) * keyRadius);
-    key.castShadow = true;
-    key.shadow.mapSize.set(2048, 2048);
-    key.shadow.bias = -0.001;
-    key.shadow.normalBias = 0.02;
     scene.add(key);
     const fill = new THREE.DirectionalLight(0x9fb6d6, appearance.fillLightIntensity ?? 0.55);
     fill.position.set(-3, 1.2, -2.5);
@@ -531,7 +525,11 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
           obj.geometry = obj.geometry.clone();
           obj.geometry.computeVertexNormals();
         }
-        obj.castShadow = true;
+        // The scan's authored maps carry its surface colour and texture. Keep the
+        // gallery light fixed and shadowless so the viewer does not add a false
+        // cast shadow to that recorded appearance.
+        obj.castShadow = false;
+        obj.receiveShadow = false;
         const hasMaterialArray = Array.isArray(obj.material);
         const list = hasMaterialArray ? obj.material : [obj.material];
         const prepared = list.map((m: any) => prepareMaterial(THREE, m));
@@ -561,19 +559,6 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
       scene.add(turntable);
     } else scene.add(model);
 
-    // Tight orthographic shadow frustum: covers the normalized model plus its shadow
-    // run-out on the floor, and tracks the fixed key light.
-    const shadowSpan = Math.max(size.x, size.y, size.z) * 2.2;
-    const keyDist = Math.hypot(keyRadius, keyHeight);
-    const shadowCam = key.shadow.camera;
-    shadowCam.left = -shadowSpan;
-    shadowCam.right = shadowSpan;
-    shadowCam.top = shadowSpan;
-    shadowCam.bottom = -shadowSpan;
-    shadowCam.near = Math.max(0.1, keyDist - shadowSpan);
-    shadowCam.far = keyDist + shadowSpan;
-    shadowCam.updateProjectionMatrix();
-
     const isWideLow = Math.max(size.x, size.z) > Math.max(size.y * 1.8, 0.65);
     camera.near = immersive ? 0.001 : 0.01;
     camera.far = 100;
@@ -592,16 +577,10 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     (grid.material as any).opacity = 0.18;
     scene.add(grid);
 
-    // Real ground shadow: a transparent ShadowMaterial plane at the model's base catches
-    // the fixed key light's shadow without tinting the backdrop.
-    const shadowFoot = Math.max(1.2, Math.max(size.x, size.z) * 4);
-    const ground = new THREE.Mesh(
-      new THREE.PlaneGeometry(shadowFoot, shadowFoot),
-      new THREE.ShadowMaterial({ opacity: 0.26, depthWrite: false }),
-    );
-    ground.rotation.x = -Math.PI / 2;
-    ground.position.y = -size.y / 2 + 0.001;
-    ground.receiveShadow = true;
+    // Spatial viewing needs a movable floor anchor, but the ordinary viewer no
+    // longer renders a synthetic shadow-catching surface.
+    const ground = new THREE.Object3D();
+    ground.position.y = -size.y / 2;
     scene.add(ground);
 
     const home = { pos: camera.position.clone(), tgt: controls.target.clone() };
@@ -697,7 +676,6 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
         }
         for (const geometry of geometries) geometry.dispose();
         for (const texture of textures) texture.dispose();
-        key.shadow.dispose();
         environment.dispose();
         renderer.dispose();
         renderer.forceContextLoss();
@@ -741,7 +719,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     const activate = root.querySelector('[data-activate]') as HTMLButtonElement | null;
     const hud = root.querySelector('[data-hud-panel]') as HTMLElement | null;
     const tools = root.querySelector('[data-immersive-tools]') as HTMLElement | null;
-    const light = root.querySelector('[data-light-controls]') as HTMLElement | null;
+    const displayPanel = root.querySelector('[data-display-controls]') as HTMLElement | null;
     const hint = root.querySelector('[data-hint]') as HTMLElement | null;
     const lazy = root.getAttribute('data-auto-start') === 'visible' && 'IntersectionObserver' in window;
     let visible = !lazy;
@@ -760,7 +738,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
       bindings?.abort();
       window.clearTimeout(hintTimer);
       stage!.classList.remove('is-live');
-      for (const element of [loading, tools, light, hud, hint]) if (element) element.hidden = true;
+      for (const element of [loading, tools, displayPanel, hud, hint]) if (element) element.hidden = true;
       if (poster) poster.style.opacity = '1';
       if (activate) activate.hidden = false;
       residents.delete(root);
@@ -863,11 +841,11 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
             }
           });
         }
-        if (light) {
-          light.hidden = false;
-          const exposure = light.querySelector('[data-exposure]') as HTMLInputElement | null;
-          const texture = light.querySelector('[data-surface-texture]') as HTMLInputElement | null;
-          const resetTexture = light.querySelector('[data-texture-reset]') as HTMLButtonElement | null;
+        if (displayPanel) {
+          displayPanel.hidden = false;
+          const exposure = displayPanel.querySelector('[data-exposure]') as HTMLInputElement | null;
+          const texture = displayPanel.querySelector('[data-surface-texture]') as HTMLInputElement | null;
+          const resetTexture = displayPanel.querySelector('[data-texture-reset]') as HTMLButtonElement | null;
           if (exposure) {
             exposure.value = String(viewer.defaults.exposure);
             on(exposure, 'input', () => viewer.setBrightness(+exposure.value));

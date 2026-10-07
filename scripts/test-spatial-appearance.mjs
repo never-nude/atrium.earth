@@ -9,6 +9,14 @@ import { finishQuickLookAppearance } from '../src/lib/quick-look-appearance-expo
 import { rememberSpatialAppearance, spatialPaletteColor } from '../src/lib/spatial-materials.mjs';
 import { prepareQuickLookMaterial } from '../src/lib/spatial-appearance.mjs';
 
+// The browser viewer uses fixed illumination without inventing a floor shadow.
+// Authored GLB textures and colours remain the source of the object's surface.
+const viewerSource = readFileSync(new URL('../src/components/Viewer.astro', import.meta.url), 'utf8');
+assert.doesNotMatch(viewerSource, /shadowMap\.enabled\s*=\s*true|castShadow\s*=\s*true|receiveShadow\s*=\s*true|ShadowMaterial/);
+assert.doesNotMatch(viewerSource, /data-light-angle|data-light-control|lightAngle/);
+const supportSource = readFileSync(new URL('../src/lib/display-support.mjs', import.meta.url), 'utf8');
+assert.doesNotMatch(supportSource, /castShadow\s*=\s*true|receiveShadow\s*=\s*true/);
+
 // Page exposure must have no effect on native AR, even if passed by an old caller.
 const source = new THREE.MeshStandardMaterial({ color: 0xddddcc, emissive: 0x444422, emissiveIntensity: 0.03, roughness: 0.82, metalness: 0 });
 const originalColor = source.color.clone(), originalEmissive = source.emissive.clone();
