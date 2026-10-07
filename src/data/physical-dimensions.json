@@ -92235,5 +92235,285 @@
     "note": "The finalized lead metadata does not include verified physical dimensions.",
     "checked": "2026-10-05",
     "spatialNote": "Physical size is not documented. Display size is adjustable."
+  },
+  "asia/twelve-sided-ewer-with-sphinxes-and-human-headed-inscriptions-6a04aa": {
+    "dimensions": "H 44.8 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.clevelandart.org/art/1945.27",
+    "note": "The Cleveland Museum of Art documents the accession’s overall height as 44.8 cm.",
+    "checked": "2026-10-06",
+    "spatialNote": "Shown at the documented 44.8 cm overall height. Other dimensions retain the scan’s proportions.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 44.8,
+        "unit": "cm",
+        "scope": "overall",
+        "qualifier": "exact",
+        "sourceUrls": [
+          "https://www.clevelandart.org/art/1945.27",
+          "https://sketchfab.com/3d-models/194527-twelve-sided-ewer-6a04aa6ff4fd470681bbeddf7be42f93"
+        ]
+      }
+    ],
+    "spatial": {
+      "axis": "y",
+      "meters": 0.448,
+      "measurementIndex": 0,
+      "previewUrl": "https://models.atrium.earth/models/previews/asia/twelve-sided-ewer-with-sphinxes-and-human-headed-inscriptions-6a04aa/preview-1e43ad20f767.glb",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "status": "reviewed",
+        "confidence": 1,
+        "note": "Human-reviewed from the ten-view orientation sheet and source preview (+Y up); the ewer stands on its foot with spout and handle upright."
+      },
+      "assetSha256": "1e43ad20f767d85ed57a095e4dfb339e5e4cfa12a7479ac8223d1dbb55eb9085",
+      "reviewed": "2026-10-06",
+      "geometryReview": "The exact optimized GLB was decoded with normalized accessors and node transforms. Its single mesh spans 0.442657 source units on world Y in the reviewed +Y orientation, from the foot to the top of the spout and handle, with no separate display support. Use the museum’s 44.8 cm overall height for the full Y extent and preserve all scan proportions.",
+      "note": "The complete ewer is retained without a separate display support; its full reviewed vertical extent matches the documented overall height."
+    }
+  },
+  "europe/limestone-ataurique-panel-defef2": {
+    "dimensions": "H 68 × W 144 × D 9 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://sketchfab.com/3d-models/tablero-de-ataurique-s-x-defef2360a1442848a1754ea0e503510",
+    "note": "The scan publisher documents the limestone panel as 68 × 144 × 9 cm.",
+    "checked": "2026-10-06",
+    "spatialNote": "Shown at the documented 68 cm height. The nearly matching width supports the calibration; the scan’s shallower captured depth is preserved.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 68,
+        "unit": "cm",
+        "scope": "overall panel",
+        "qualifier": "exact",
+        "sourceUrls": [
+          "https://sketchfab.com/3d-models/tablero-de-ataurique-s-x-defef2360a1442848a1754ea0e503510"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 144,
+        "unit": "cm",
+        "scope": "overall panel",
+        "qualifier": "exact",
+        "sourceUrls": [
+          "https://sketchfab.com/3d-models/tablero-de-ataurique-s-x-defef2360a1442848a1754ea0e503510"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 9,
+        "unit": "cm",
+        "scope": "overall panel",
+        "qualifier": "exact",
+        "sourceUrls": [
+          "https://sketchfab.com/3d-models/tablero-de-ataurique-s-x-defef2360a1442848a1754ea0e503510"
+        ]
+      }
+    ],
+    "spatial": {
+      "axis": "y",
+      "meters": 0.68,
+      "measurementIndex": 0,
+      "previewUrl": "https://models.atrium.earth/models/previews/europe/limestone-ataurique-panel-defef2/preview-49bdea198ffc.glb",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "status": "reviewed",
+        "confidence": 1,
+        "note": "Human-reviewed from the ten-view orientation sheet and source preview (+Y up); the panel stands upright with the leaf band on top, matching the source preview."
+      },
+      "assetSha256": "49bdea198ffcc4d90f74f34fd08a8d6bb9a59fe24f449cc75e500472e6d54119",
+      "reviewed": "2026-10-06",
+      "geometryReview": "The exact optimized GLB was decoded with normalized accessors and node transforms. In the reviewed +Y orientation its single mesh spans 0.666521 source units vertically and 1.404633 across world Z. Scaling the full Y extent to 68 cm yields a 143.30 cm width, within 0.5% of the documented 144 cm. The captured world-X depth becomes about 4.60 cm rather than the documented 9 cm; retain that shallower scan geometry without nonuniform correction.",
+      "note": "The complete decorated face and full outer height and width are retained. Height and width corroborate one uniform scale; the scan’s reduced front-to-back extent remains visible."
+    }
+  },
+  "asia/mughal-brass-ewer-bf68ef": {
+    "dimensions": "H 31.1 × W 29.2 × D 10.8 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://sketchfab.com/3d-models/mughal-brass-ewer-bf68efa2c8ac4169a8e598ec3ba94c65",
+    "note": "The St. Cloud State University Archives scan record documents the ewer as 12.25 × 11.5 × 4.25 inches (31.1 × 29.2 × 10.8 cm).",
+    "checked": "2026-10-06",
+    "spatialNote": "Shown at the documented 31.1 cm height. Height and width agree closely with the scan; its greater captured depth is preserved.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 31.1,
+        "unit": "cm",
+        "scope": "overall",
+        "qualifier": "exact",
+        "sourceUrls": [
+          "https://sketchfab.com/3d-models/mughal-brass-ewer-bf68efa2c8ac4169a8e598ec3ba94c65"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 29.2,
+        "unit": "cm",
+        "scope": "overall",
+        "qualifier": "exact",
+        "sourceUrls": [
+          "https://sketchfab.com/3d-models/mughal-brass-ewer-bf68efa2c8ac4169a8e598ec3ba94c65"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 10.8,
+        "unit": "cm",
+        "scope": "overall",
+        "qualifier": "exact",
+        "sourceUrls": [
+          "https://sketchfab.com/3d-models/mughal-brass-ewer-bf68efa2c8ac4169a8e598ec3ba94c65"
+        ]
+      }
+    ],
+    "spatial": {
+      "axis": "y",
+      "meters": 0.311,
+      "measurementIndex": 0,
+      "previewUrl": "https://models.atrium.earth/models/previews/asia/mughal-brass-ewer-bf68ef/preview-cde90da1b9cf.glb",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "status": "reviewed",
+        "confidence": 1,
+        "note": "Human-reviewed from the ten-view orientation sheet and source preview (+Y up); the ewer stands on its feet with handle left and spout right."
+      },
+      "assetSha256": "cde90da1b9cf13d8bc1969258f50ec2dbefb0b92ea397f23caa19475fc25f511",
+      "reviewed": "2026-10-06",
+      "geometryReview": "The exact optimized GLB was decoded with normalized accessors and node transforms. In the reviewed source-authored +Y pose its single mesh spans 4.391517 source units vertically, 4.132078 across world X, and 1.816646 in depth. Scaling full Y to 31.1 cm yields a 29.26 cm width, within 0.3% of the documented 29.2 cm, and a 12.87 cm depth rather than 10.8 cm. Use the corroborated full height and preserve the scan’s greater depth without nonuniform correction.",
+      "note": "The complete ewer is retained without a separate display support. Height and width corroborate one uniform scale; the scan’s greater front-to-back extent remains visible."
+    }
+  },
+  "ancient-near-east/woman-and-water-buffalo-rhyton-f3553e": {
+    "dimensions": "H 19.1 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.clevelandart.org/art/1964.96",
+    "note": "The Cleveland Museum of Art documents the accession’s overall height as 19.1 cm.",
+    "checked": "2026-10-06",
+    "spatialNote": "Shown at the documented 19.1 cm overall height. Other dimensions retain the scan’s proportions.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 19.1,
+        "unit": "cm",
+        "scope": "overall",
+        "qualifier": "exact",
+        "sourceUrls": [
+          "https://www.clevelandart.org/art/1964.96",
+          "https://sketchfab.com/3d-models/196496-woman-and-water-buffalo-rhyton-f3553efbaea545eaba7dcb37d692022e"
+        ]
+      }
+    ],
+    "spatial": {
+      "axis": "y",
+      "meters": 0.191,
+      "measurementIndex": 0,
+      "previewUrl": "https://models.atrium.earth/models/previews/ancient-near-east/woman-and-water-buffalo-rhyton-f3553e/preview-a9f41907e8c7.glb",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "status": "reviewed",
+        "confidence": 1,
+        "note": "Human-reviewed from the ten-view orientation sheet and source preview (+Y up); the head is upright above the water-buffalo spout, face forward."
+      },
+      "assetSha256": "a9f41907e8c755f3f521f8c854d6f6f8188fc4b750f70fbe4d1b3d8f479fcb8d",
+      "reviewed": "2026-10-06",
+      "geometryReview": "The exact optimized GLB was decoded with normalized accessors and node transforms. Its single mesh spans 0.215703 source units on world Y in the reviewed +Y orientation, from the lowest buffalo form to the top of the woman’s head, with no separate display support. Use the museum’s 19.1 cm overall height for that full Y extent and preserve all scan proportions.",
+      "note": "The complete figural vessel is retained without a separate display support; its full reviewed vertical extent matches the documented overall height."
+    }
+  },
+  "ancient-near-east/statue-of-gudea-d7493b": {
+    "dimensions": "H 126 × W 55 × D 36 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.clevelandart.org/art/1963.154",
+    "note": "The Cleveland Museum of Art documents the accession’s overall dimensions as 126 × 55 × 36 cm.",
+    "checked": "2026-10-06",
+    "spatialNote": "Shown at the documented 126 cm overall height. The scan’s proportions are preserved.",
+    "measures": [
+      {
+        "axis": "height",
+        "value": 126,
+        "unit": "cm",
+        "scope": "overall",
+        "qualifier": "exact",
+        "sourceUrls": [
+          "https://www.clevelandart.org/art/1963.154",
+          "https://sketchfab.com/3d-models/1963154-statue-of-gudea-d7493b2c823f43bfa1cfc778f68d3ba4"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 55,
+        "unit": "cm",
+        "scope": "overall",
+        "qualifier": "exact",
+        "sourceUrls": [
+          "https://www.clevelandart.org/art/1963.154",
+          "https://sketchfab.com/3d-models/1963154-statue-of-gudea-d7493b2c823f43bfa1cfc778f68d3ba4"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 36,
+        "unit": "cm",
+        "scope": "overall",
+        "qualifier": "exact",
+        "sourceUrls": [
+          "https://www.clevelandart.org/art/1963.154",
+          "https://sketchfab.com/3d-models/1963154-statue-of-gudea-d7493b2c823f43bfa1cfc778f68d3ba4"
+        ]
+      }
+    ],
+    "spatial": {
+      "axis": "y",
+      "meters": 1.26,
+      "measurementIndex": 0,
+      "previewUrl": "https://models.atrium.earth/models/previews/ancient-near-east/statue-of-gudea-d7493b/preview-ade0ca7f97a8.glb",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          1.91,
+          -0.05,
+          -3.03
+        ],
+        "yaw": 0,
+        "status": "auto",
+        "confidence": 0.56,
+        "note": "Elongated (aspect 2.3); PCA long-axis aligned to vertical."
+      },
+      "assetSha256": "ade0ca7f97a8c8a4e26178ac13dc69c9855f3251c6364308316affb2c5ec000a",
+      "reviewed": "2026-10-06",
+      "geometryReview": "The exact optimized GLB was decoded with normalized accessors and node transforms. In the visually accepted current orientation its single mesh spans 1.230148 source units on world Y and retains the surviving statue, feet, and integral base without a separate display support. Scaling the full Y extent to 126 cm yields about 53.62 cm width and 38.40 cm depth, within 2.5% and 6.7% of the documented 55 × 36 cm. Preserve the scan proportions.",
+      "note": "The complete surviving statue and integral base are retained without a separate display support; all three published extents support one uniform scale."
+    }
   }
 }
