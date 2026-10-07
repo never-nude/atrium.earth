@@ -93940,9 +93940,9 @@
     "status": "documented",
     "basis": "object",
     "sourceUrl": "https://samlingar.shm.se/object/D1674011-6072-4725-BE92-F8159F7C6FFE",
-    "note": "Circular shield; the published diameter maps directly to the rim. Model-axis calibration awaits orientation review.",
+    "note": "Circular shield; the published diameter maps directly to the complete rim in the reviewed upright orientation.",
     "checked": "2026-10-07",
-    "spatialNote": "Physical measurements are documented, but model-axis calibration awaits orientation review.",
+    "spatialNote": "Shown at the documented 580 mm rim diameter. Other dimensions retain the scan's proportions.",
     "researchStatus": "verified",
     "measures": [
       {
@@ -93959,16 +93959,38 @@
         ],
         "axisBasis": "source_explicit"
       }
-    ]
+    ],
+    "spatial": {
+      "axis": "y",
+      "meters": 0.58,
+      "measurementIndex": 0,
+      "previewUrl": "https://models.atrium.earth/models/previews/europe/parade-shield-erik-xiv-royal-armoury-ef7354/preview-eb424b28dada.glb",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": -60,
+        "status": "reviewed",
+        "confidence": 1,
+        "note": "Human-reviewed 10-view sheet: +Y-up keeps the relief upright; yaw -60 brings the decorated face toward the viewer."
+      },
+      "assetSha256": "eb424b28dadafd82152c6794502cf4ee14905ffa12c24b9c9c7c2244ef092f63",
+      "reviewed": "2026-10-07",
+      "geometryReview": "The exact 1,660,820-byte optimized GLB (SHA-256 eb424b28dadafd82152c6794502cf4ee14905ffa12c24b9c9c7c2244ef092f63) was decoded with normalized accessors and node transforms. Its single complete mesh spans 27.51706 source units on reviewed world Y. Before the front-view yaw, the two rim diameters span 27.51706 on Y and 27.47772 on Z, differing by 0.14%; yaw does not change Y. Use the museum's 580 mm diameter for the full Y extent.",
+      "note": "The complete circular rim supplies an unambiguous vertical diameter; there is no separate display support."
+    }
   },
   "europe/gustav-vasa-crowned-helmet-b9766d": {
     "dimensions": "Djup 220 mm",
     "status": "documented",
     "basis": "object",
     "sourceUrl": "https://samlingar.shm.se/object/63A976E5-79E2-479F-8A3B-5030A13E40AE",
-    "note": "Only depth is exact. Height and width are marked circa and are intentionally omitted. Model-axis calibration awaits orientation review.",
+    "note": "Only depth is exact. Height and width are marked circa and are used only to corroborate the reviewed world-Z depth mapping.",
     "checked": "2026-10-07",
-    "spatialNote": "Physical measurements are documented, but model-axis calibration awaits orientation review.",
+    "spatialNote": "Shown at the documented 220 mm depth. Other dimensions retain the scan's proportions.",
     "researchStatus": "verified",
     "measures": [
       {
@@ -93985,16 +94007,38 @@
         ],
         "axisBasis": "source_explicit"
       }
-    ]
+    ],
+    "spatial": {
+      "axis": "z",
+      "meters": 0.22,
+      "measurementIndex": 0,
+      "previewUrl": "https://models.atrium.earth/models/previews/europe/gustav-vasa-crowned-helmet-b9766d/preview-d43ea32136f8.glb",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "status": "reviewed",
+        "confidence": 1,
+        "note": "Human-reviewed 10-view sheet: +Y-up identity places the crown above the neck opening in the source-matched frontal three-quarter view."
+      },
+      "assetSha256": "d43ea32136f8f7161677da360056b684bc74e32d2acf627baecc1569c6e7ede5",
+      "reviewed": "2026-10-07",
+      "geometryReview": "The exact 1,791,852-byte optimized GLB (SHA-256 d43ea32136f8f7161677da360056b684bc74e32d2acf627baecc1569c6e7ede5) was decoded with normalized accessors and node transforms. Its single complete mesh spans 23.78707 source units on X, 41.36980 on Y, and 22.07381 on reviewed world Z. Scaling full Z to the exact 220 mm depth yields 237.1 mm on X and 412.3 mm on Y, consistent with the catalog's approximate 220 mm width and 415 mm height. Use the explicit depth for full Z.",
+      "note": "The reviewed source-facing pose fixes front-to-back depth on Z; the complete helmet has no separate support."
+    }
   },
   "europe/beaked-visor-helmet-47bd60": {
     "dimensions": "Längd 390 mm; Bredd 200 mm; Höjd 260 mm",
     "status": "documented",
     "basis": "object",
     "sourceUrl": "https://samlingar.shm.se/object/A3886277-344A-4BE8-9FD6-400736353AAA",
-    "note": "The beak makes the exact long axis especially easy to recognize. Model-axis calibration awaits orientation review.",
+    "note": "The beak makes the exact long axis especially easy to recognize; the reviewed upright pose fixes the labeled height on world Y.",
     "checked": "2026-10-07",
-    "spatialNote": "Physical measurements are documented, but model-axis calibration awaits orientation review.",
+    "spatialNote": "Shown at the documented 260 mm height. Other dimensions retain the scan's proportions.",
     "researchStatus": "verified",
     "measures": [
       {
@@ -94039,16 +94083,38 @@
         ],
         "axisBasis": "source_explicit"
       }
-    ]
+    ],
+    "spatial": {
+      "axis": "y",
+      "meters": 0.26,
+      "measurementIndex": 2,
+      "previewUrl": "https://models.atrium.earth/models/previews/europe/beaked-visor-helmet-47bd60/preview-ed3259b4501b.glb",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "status": "reviewed",
+        "confidence": 1,
+        "note": "Human-reviewed 10-view sheet: +Y-up identity stands the helmet upright and presents the visor in three-quarter view."
+      },
+      "assetSha256": "ed3259b4501b54fe9c680fde507d1e812bf080e82c2177d1eceddc82cb5ac5a3",
+      "reviewed": "2026-10-07",
+      "geometryReview": "The exact 1,521,520-byte optimized GLB (SHA-256 ed3259b4501b54fe9c680fde507d1e812bf080e82c2177d1eceddc82cb5ac5a3) was decoded with normalized accessors and node transforms. In the reviewed +Y orientation its single complete mesh spans 0.3664605 source units vertically and 0.2748538 across the lateral Z axis. Scaling full Y to 260 mm yields a 195.0 mm lateral span, within 2.5% of the documented 200 mm width. Use the explicit height and preserve the longer beaked profile without nonuniform correction.",
+      "note": "The complete helmet has no separate support; its base-to-crown Y extent maps directly to the documented height."
+    }
   },
   "europe/stockholm-jousting-helmet-a4eea3": {
     "dimensions": "Längd 315 mm; Bredd 250 mm; Höjd 255 mm",
     "status": "documented",
     "basis": "object",
     "sourceUrl": "https://samlingar.shm.se/object/CEB4A672-6F65-46B3-9770-267779C9DAF5",
-    "note": "Identity is fixed by the matching 5,086 g record; all three linear axes are exact. Model-axis calibration awaits orientation review.",
+    "note": "Identity is fixed by the matching 5,086 g record; all three linear axes are exact and the reviewed upright pose fixes height on world Y.",
     "checked": "2026-10-07",
-    "spatialNote": "Physical measurements are documented, but model-axis calibration awaits orientation review.",
+    "spatialNote": "Shown at the documented 255 mm height. Other dimensions retain the scan's proportions.",
     "researchStatus": "verified",
     "measures": [
       {
@@ -94093,7 +94159,29 @@
         ],
         "axisBasis": "source_explicit"
       }
-    ]
+    ],
+    "spatial": {
+      "axis": "y",
+      "meters": 0.255,
+      "measurementIndex": 2,
+      "previewUrl": "https://models.atrium.earth/models/previews/europe/stockholm-jousting-helmet-a4eea3/preview-478e8576669b.glb",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "status": "reviewed",
+        "confidence": 1,
+        "note": "Human-reviewed 10-view sheet: +Y-up identity stands the jousting helmet upright and matches the source left-front profile."
+      },
+      "assetSha256": "478e8576669b5292925e21e9ccd0618e4d9b3c33e480bb165b4f9afa2b794bec",
+      "reviewed": "2026-10-07",
+      "geometryReview": "The exact 1,642,708-byte optimized GLB (SHA-256 478e8576669b5292925e21e9ccd0618e4d9b3c33e480bb165b4f9afa2b794bec) was decoded with normalized accessors and node transforms. Its single complete mesh spans 1.021169 source units on reviewed world Y, from the lower rim to the crown. The museum labels height independently at 255 mm; use that full Y extent and preserve the scan's 1.089940 by 0.772756 horizontal proportions.",
+      "note": "The complete helmet has no detached support or alternate component boundary; the reviewed Y extent is the labeled overall height."
+    }
   },
   "europe/etched-closed-helmet-ef4011": {
     "dimensions": "",
@@ -94111,9 +94199,9 @@
     "status": "documented",
     "basis": "object",
     "sourceUrl": "https://samlingar.shm.se/object/26335E43-FB06-4538-844D-A5E14255211D",
-    "note": "Three exact whole-object axes from the Royal Armoury record. Model-axis calibration awaits orientation review.",
+    "note": "Three exact whole-object axes from the Royal Armoury record; the reviewed upright pose fixes height on world Y.",
     "checked": "2026-10-07",
-    "spatialNote": "Physical measurements are documented, but model-axis calibration awaits orientation review.",
+    "spatialNote": "Shown at the documented 260 mm height. Other dimensions retain the scan's proportions.",
     "researchStatus": "verified",
     "measures": [
       {
@@ -94158,16 +94246,38 @@
         ],
         "axisBasis": "source_explicit"
       }
-    ]
+    ],
+    "spatial": {
+      "axis": "y",
+      "meters": 0.26,
+      "measurementIndex": 2,
+      "previewUrl": "https://models.atrium.earth/models/previews/europe/maximilian-bellows-visor-helmet-030abb/preview-44d198f059c4.glb",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "status": "reviewed",
+        "confidence": 1,
+        "note": "Human-reviewed 10-view sheet: +Y-up identity stands the bellows-visor helmet upright in a clear frontal three-quarter view."
+      },
+      "assetSha256": "44d198f059c413bb9e98b0f6b007a69e599d7e59a182b8d540df1e3a5a469471",
+      "reviewed": "2026-10-07",
+      "geometryReview": "The exact 1,608,740-byte optimized GLB (SHA-256 44d198f059c413bb9e98b0f6b007a69e599d7e59a182b8d540df1e3a5a469471) was decoded with normalized accessors and node transforms. Its single complete mesh spans 22.88808 source units on X, 22.94489 on reviewed world Y, and 18.69931 on Z. Scaling full Y to the documented 260 mm height yields 259.4 mm on X, matching the documented 260 mm length; preserve the smaller Z extent without nonuniform correction.",
+      "note": "The complete helmet has no detached support; the lower rim and crown define the labeled overall height on Y."
+    }
   },
   "europe/ivan-iv-gilded-helmet-74da25": {
     "dimensions": "Höjd 380 mm; Bredd 190 mm (minsta); Bredd 190 mm (största)",
     "status": "documented",
     "basis": "object",
     "sourceUrl": "https://samlingar.shm.se/object/6B9554F1-03A8-4107-9C64-3F7B6D9B60E1",
-    "note": "Use the exact base-to-peak height; the catalog gives the same 190 mm minimum and maximum width. Model-axis calibration awaits orientation review.",
+    "note": "Use the exact base-to-peak height; the catalog gives the same 190 mm minimum and maximum width, and the reviewed upright pose fixes height on world Y.",
     "checked": "2026-10-07",
-    "spatialNote": "Physical measurements are documented, but model-axis calibration awaits orientation review.",
+    "spatialNote": "Shown at the documented 380 mm height. Other dimensions retain the scan's proportions.",
     "researchStatus": "verified",
     "measures": [
       {
@@ -94198,16 +94308,38 @@
         ],
         "axisBasis": "source_explicit"
       }
-    ]
+    ],
+    "spatial": {
+      "axis": "y",
+      "meters": 0.38,
+      "measurementIndex": 0,
+      "previewUrl": "https://models.atrium.earth/models/previews/europe/ivan-iv-gilded-helmet-74da25/preview-fb29b6fc5d62.glb",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "status": "reviewed",
+        "confidence": 1,
+        "note": "Human-reviewed 10-view sheet: +Y-up identity stands the helmet upright and shows its gilded exterior."
+      },
+      "assetSha256": "fb29b6fc5d621ea04ef62da050b1d0bbe3dfc5ffe56261224c6a9ab1d6abd85f",
+      "reviewed": "2026-10-07",
+      "geometryReview": "The exact 1,597,872-byte optimized GLB (SHA-256 fb29b6fc5d621ea04ef62da050b1d0bbe3dfc5ffe56261224c6a9ab1d6abd85f) was decoded with normalized accessors and node transforms. Its single complete mesh spans 33.29909 source units on reviewed world Y and 17.97500 across X. Scaling full Y to 380 mm yields 205.1 mm across X, close to the catalog's 190 mm width. Use the explicit base-to-peak height and preserve the scan proportions.",
+      "note": "The lower rim and crown peak are both retained in one mesh, with no separate display support."
+    }
   },
   "europe/augustus-saxony-crossbow-cleveland-d314c9": {
     "dimensions": "Structured overall width: 0.585 m; Bow: 58.5 cm; Butt: 5.7 cm",
     "status": "documented",
     "basis": "object",
     "sourceUrl": "https://www.clevelandart.org/art/1916.1723.a",
-    "note": "Use the documented 58.5 cm bow span tip-to-tip; the 5.7 cm butt width is a secondary check. No undocumented stock length is assumed. Model-axis calibration awaits orientation review.",
+    "note": "Use the documented 58.5 cm bow span tip-to-tip; the 5.7 cm butt width is a secondary check. No undocumented stock length is assumed.",
     "checked": "2026-10-07",
-    "spatialNote": "Physical measurements are documented, but model-axis calibration awaits orientation review.",
+    "spatialNote": "Shown at the documented 58.5 cm bow and whole-object width on world Z. The undocumented stock length retains the scan's proportion.",
     "researchStatus": "verified",
     "measures": [
       {
@@ -94252,16 +94384,38 @@
         ],
         "axisBasis": "source_explicit"
       }
-    ]
+    ],
+    "spatial": {
+      "axis": "z",
+      "meters": 0.585,
+      "measurementIndex": 0,
+      "previewUrl": "https://models.atrium.earth/models/previews/europe/augustus-saxony-crossbow-cleveland-d314c9/preview-cc05640c3923.glb",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "status": "reviewed",
+        "confidence": 1,
+        "note": "Human-reviewed 10-view sheet: +Y-up identity presents the decorated stock and bow in the source-facing orientation."
+      },
+      "assetSha256": "cc05640c3923fda9d8a4bb266417d09ff0e083f8bb7913aa4915aa8e9e84c0d7",
+      "reviewed": "2026-10-07",
+      "geometryReview": "The exact 1,721,360-byte optimized GLB (SHA-256 cc05640c3923fda9d8a4bb266417d09ff0e083f8bb7913aa4915aa8e9e84c0d7) was decoded with normalized accessors and node transforms. In the reviewed source-facing pose its single mesh spans 0.5867769 source units across world Z at the bow tips, while the undocumented stock axis spans 0.6329110 on X. The Z span is the labeled 58.5 cm whole-object width and bow width; use it without assigning a physical length to X.",
+      "note": "The two bow tips define the complete world-Z width; the stock remains at the same uniform scale."
+    }
   },
   "europe/hussar-cuirass-breastplate-cleveland-3056e8": {
     "dimensions": "Overall: 42.3 cm high; Overall: 35 cm wide",
     "status": "documented",
     "basis": "object",
     "sourceUrl": "https://www.clevelandart.org/art/1916.1521",
-    "note": "Flat breastplate with explicit structured height and width. Model-axis calibration awaits orientation review.",
+    "note": "Flat breastplate with explicit structured height and width; the reviewed front-facing pose fixes height on world Y.",
     "checked": "2026-10-07",
-    "spatialNote": "Physical measurements are documented, but model-axis calibration awaits orientation review.",
+    "spatialNote": "Shown at the documented 42.3 cm height. The model width closely corroborates the uniform scale.",
     "researchStatus": "verified",
     "measures": [
       {
@@ -94292,16 +94446,38 @@
         ],
         "axisBasis": "source_explicit"
       }
-    ]
+    ],
+    "spatial": {
+      "axis": "y",
+      "meters": 0.423,
+      "measurementIndex": 0,
+      "previewUrl": "https://models.atrium.earth/models/previews/europe/hussar-cuirass-breastplate-cleveland-3056e8/preview-ad57bc3321e8.glb",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "status": "reviewed",
+        "confidence": 1,
+        "note": "Human-reviewed 10-view sheet: +Y-up identity presents the decorated breastplate upright from the front."
+      },
+      "assetSha256": "ad57bc3321e85c58ba0db695bafcc77ae2bd734c8449ca5924d2c3161a9ec8a7",
+      "reviewed": "2026-10-07",
+      "geometryReview": "The exact 935,024-byte optimized GLB (SHA-256 ad57bc3321e85c58ba0db695bafcc77ae2bd734c8449ca5924d2c3161a9ec8a7) was decoded with normalized accessors and node transforms. Its single complete mesh spans 0.4374141 source units on reviewed world Y and 0.3777146 across X. Scaling full Y to 42.3 cm yields 36.5 cm across X, within 4.3% of the documented 35 cm width. Use the corroborated full height and preserve the scan proportions.",
+      "note": "The complete breastplate has no separate support; height and width corroborate one uniform scale."
+    }
   },
   "europe/polish-hussar-half-armour-wawel-ee894c": {
     "dimensions": "wysokość 98,8 cm (całość); wysokość 51,8 cm (kirys); wysokość 34 cm (szyszak)",
     "status": "documented",
     "basis": "object",
     "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/1255",
-    "note": "Use 98.8 cm only if the final mesh preserves the cataloged assembled arrangement; component heights provide fallback checks. Model-axis calibration awaits orientation review.",
+    "note": "The reviewed final mesh preserves the cataloged assembled armour, so the 98.8 cm whole height applies; component heights remain secondary checks.",
     "checked": "2026-10-07",
-    "spatialNote": "Physical measurements are documented, but model-axis calibration awaits orientation review.",
+    "spatialNote": "Shown at the documented 98.8 cm height of the assembled armour. All components retain their scanned proportions.",
     "researchStatus": "verified",
     "measures": [
       {
@@ -94346,16 +94522,38 @@
         ],
         "axisBasis": "source_explicit"
       }
-    ]
+    ],
+    "spatial": {
+      "axis": "y",
+      "meters": 0.988,
+      "measurementIndex": 0,
+      "previewUrl": "https://models.atrium.earth/models/previews/europe/polish-hussar-half-armour-wawel-ee894c/preview-54e76ee4c86a.glb",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "status": "reviewed",
+        "confidence": 1,
+        "note": "Human-reviewed 10-view sheet: +Y-up identity presents the frontal breastplate, helmet, and wing arrangement."
+      },
+      "assetSha256": "54e76ee4c86a6a95a189adecbac55902f45f558ed41cb1b2865362b334da1ce0",
+      "reviewed": "2026-10-07",
+      "geometryReview": "The exact 1,337,348-byte optimized GLB (SHA-256 54e76ee4c86a6a95a189adecbac55902f45f558ed41cb1b2865362b334da1ce0) was decoded with normalized accessors and node transforms. In the reviewed +Y pose, the three retained meshes form one assembled armour display spanning 161.7980 source units vertically, including the helmet, cuirass, and full wing ornaments visible in the source review. No separate floor or display pedestal is present. Use the catalog's 98.8 cm całość height for the full assembly Y extent.",
+      "note": "The measurement explicitly covers the assembled armour, matching the full retained arrangement rather than any single mesh component."
+    }
   },
   "europe/aranas-great-helm-historiska-f4e77c": {
     "dimensions": "Höjd 300 mm; Bredd 200 mm; Längd 330 mm",
     "status": "documented",
     "basis": "object",
     "sourceUrl": "https://samlingar.shm.se/object/5A6E6CF8-22F3-4609-A5E6-AC9DABD5B8E6",
-    "note": "Three exact overall axes. The separate unqualified 170 mm diameter is not used for binding. Model-axis calibration awaits orientation review.",
+    "note": "Three exact overall axes. The separate unqualified 170 mm diameter is not used; the reviewed upright pose fixes height on world Y.",
     "checked": "2026-10-07",
-    "spatialNote": "Physical measurements are documented, but model-axis calibration awaits orientation review.",
+    "spatialNote": "Shown at the documented 300 mm height. Other dimensions retain the scan's proportions.",
     "researchStatus": "verified",
     "measures": [
       {
@@ -94400,18 +94598,29 @@
         ],
         "axisBasis": "source_explicit"
       }
-    ]
-  },
-  "europe/birka-long-bladed-axe-bj749-01019f": {
-    "dimensions": "",
-    "status": "unresolved",
-    "basis": "object",
-    "sourceUrl": "https://samlingar.shm.se/object/54DB2EC2-85B9-491A-84AD-C02ADEE0DDE6",
-    "note": "Only blade, wings, and shaft/socket component measures are published; the record does not define a clean whole-object bound or landmark pair.",
-    "checked": "2026-10-07",
-    "spatialNote": "No exact usable physical measurement is verified for this model. Display size is adjustable.",
-    "researchStatus": "unresolved",
-    "measures": []
+    ],
+    "spatial": {
+      "axis": "y",
+      "meters": 0.3,
+      "measurementIndex": 0,
+      "previewUrl": "https://models.atrium.earth/models/previews/europe/aranas-great-helm-historiska-f4e77c/preview-145e87735189.glb",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "status": "reviewed",
+        "confidence": 1,
+        "note": "Human-reviewed 10-view sheet: +Y-up identity places the crown above the open rim and the eye slit above the ventilation holes."
+      },
+      "assetSha256": "145e87735189f3ef0824b173df8ac57304411e2a479500ffbdc313e9a0c0e8c4",
+      "reviewed": "2026-10-07",
+      "geometryReview": "The exact 1,312,664-byte optimized GLB (SHA-256 145e87735189f3ef0824b173df8ac57304411e2a479500ffbdc313e9a0c0e8c4) was decoded with normalized accessors and node transforms. Its single complete mesh spans 282.8289 source units on reviewed world Y and 334.6880 along Z. Scaling full Y to 300 mm yields 355.0 mm on Z, within 7.6% of the cataloged 330 mm length. Use the explicit overall height and preserve the scan proportions.",
+      "note": "The crown and open lower rim define one complete height extent with no detached support."
+    }
   },
   "asia/samurai-do-maru-victor-balaguer-b35366": {
     "dimensions": "",
@@ -94440,9 +94649,9 @@
     "status": "documented",
     "basis": "object",
     "sourceUrl": "https://sketchfab.com/3d-models/tsuba-mit-yoshitsune-benkei-und-pflaumenbaum-05ba93c652524bd3a31d57306e84835b",
-    "note": "Flat sword guard; the exact maximum transverse width has clear edge endpoints. Model-axis calibration awaits orientation review.",
+    "note": "Flat sword guard; the exact maximum transverse width has clear left and right edge endpoints on reviewed world X.",
     "checked": "2026-10-07",
-    "spatialNote": "Physical measurements are documented, but model-axis calibration awaits orientation review.",
+    "spatialNote": "Shown at the documented 7.5 cm width across the decorated guard face.",
     "researchStatus": "verified",
     "measures": [
       {
@@ -94459,16 +94668,38 @@
         ],
         "axisBasis": "source_explicit"
       }
-    ]
+    ],
+    "spatial": {
+      "axis": "x",
+      "meters": 0.075,
+      "measurementIndex": 0,
+      "previewUrl": "https://models.atrium.earth/models/previews/asia/tsuba-yoshitsune-benkei-mkg-05ba93/preview-c7e1eebff1d0.glb",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "status": "reviewed",
+        "confidence": 1,
+        "note": "Human-reviewed 10-view sheet: +Y-up identity presents the decorated tsuba face upright with the figures readable."
+      },
+      "assetSha256": "c7e1eebff1d0dcf2b3091182b378e41542f2f9e9b8543ab8d59f3e21a2f8db28",
+      "reviewed": "2026-10-07",
+      "geometryReview": "The exact 1,339,252-byte optimized GLB (SHA-256 c7e1eebff1d0dcf2b3091182b378e41542f2f9e9b8543ab8d59f3e21a2f8db28) was decoded with normalized accessors and node transforms. In the reviewed front-readable pose its single complete mesh spans 72.12079 source units across world X, 75.44161 on Y, and 10.27021 in depth. The German Breite value maps to the left-to-right X extent of the decorated face; use 7.5 cm for that full width.",
+      "note": "The complete guard edge supplies both width endpoints, with no mount or detached display support."
+    }
   },
   "asia/iran-caucasus-double-bladed-battle-axe-f0bfbc": {
     "dimensions": "Sizes, cm: 84,5 × 21,0",
     "status": "documented",
     "basis": "object",
     "sourceUrl": "https://sketchfab.com/3d-models/decorative-double-bladed-battle-axe-f0bfbca7a2804efd9cf77fd0f5a806aa",
-    "note": "Values are exact, but the source leaves the ordered pair unlabeled; long versus transverse semantics follow the object’s unmistakable form. Model-axis calibration awaits orientation review.",
+    "note": "Values are exact, but the source leaves the ordered pair unlabeled; the object's unmistakable form and reviewed +X-up pose map the long member to world Y.",
     "checked": "2026-10-07",
-    "spatialNote": "Physical measurements are documented, but model-axis calibration awaits orientation review.",
+    "spatialNote": "Shown at the documented 84.5 cm overall long axis. The transverse span retains the scan's proportion.",
     "researchStatus": "verified",
     "measures": [
       {
@@ -94499,16 +94730,38 @@
         ],
         "axisBasis": "source_order_plus_object_form"
       }
-    ]
+    ],
+    "spatial": {
+      "axis": "y",
+      "meters": 0.845,
+      "measurementIndex": 0,
+      "previewUrl": "https://models.atrium.earth/models/previews/asia/iran-caucasus-double-bladed-battle-axe-f0bfbc/preview-a372f8a70560.glb",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          90
+        ],
+        "yaw": 0,
+        "status": "reviewed",
+        "confidence": 1,
+        "note": "Human-reviewed 10-view sheet: +X-up candidate places the handle and pommel below the double blade and rhombic plume, matching the source after a quarter-turn."
+      },
+      "assetSha256": "a372f8a7056002d23fb8a4fe3af739c50abe826a77e0c49fe51852b22cc763de",
+      "reviewed": "2026-10-07",
+      "geometryReview": "The exact 821,480-byte optimized GLB (SHA-256 a372f8a7056002d23fb8a4fe3af739c50abe826a77e0c49fe51852b22cc763de) was decoded with normalized accessors and node transforms. After the reviewed +X-up quarter-turn, its two retained meshes form one continuous axe spanning 1,907.279 source units on world Y, 557.8711 on X, and 60.02368 on Z. The source's 84.5 × 21.0 cm pair and the object's form identify 84.5 cm as the complete handle-to-plume long axis; use that value for full Y.",
+      "note": "Both retained meshes belong to the continuous object, with no stand or detached display component extending the long-axis bounds."
+    }
   },
   "asia/ottoman-dagger-scabbard-tula-2ebae9": {
     "dimensions": "Total length, cm: 35.5; Blade length, cm: 22; Blade width, cm: 4.09; Scabbard size, cm: 29.0 × 5.6",
     "status": "documented",
     "basis": "object",
     "sourceUrl": "https://sketchfab.com/3d-models/dagger-with-scabbard-2ebae99a9a314991923efccde50118f3",
-    "note": "Bind the dagger itself tip-to-pommel; use scabbard dimensions only after confirming separate component geometry. Model-axis calibration awaits orientation review.",
+    "note": "The reviewed GLB displays dagger and scabbard as two separately placed meshes. The named component lengths do not map to the full arranged scene extent, so no whole-model binding is made.",
     "checked": "2026-10-07",
-    "spatialNote": "Physical measurements are documented, but model-axis calibration awaits orientation review.",
+    "spatialNote": "Verified component dimensions are documented, but the separately arranged dagger and scabbard do not define one exact whole-model extent.",
     "researchStatus": "verified",
     "measures": [
       {
@@ -94588,9 +94841,9 @@
     "status": "documented",
     "basis": "object",
     "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/5",
-    "note": "Exact three-axis dimensions apply to the physical sculptural panneau represented by the scan. Model-axis calibration awaits orientation review.",
+    "note": "Exact three-axis dimensions apply to the physical sculptural panneau, but the reviewed scan proportions match only if the published height and length labels are swapped between world X and Y. That non-intuitive direction mapping is not treated as verified.",
     "checked": "2026-10-07",
-    "spatialNote": "Physical measurements are documented, but model-axis calibration awaits orientation review.",
+    "spatialNote": "Verified-size presentation is withheld until the published height and length directions are reconciled with the reviewed model axes.",
     "researchStatus": "verified",
     "measures": [
       {
@@ -94653,9 +94906,9 @@
     "status": "documented",
     "basis": "object",
     "sourceUrl": "https://collections.smvk.se/carlotta-em/web/object/2079551",
-    "note": "Long-axis endpoints are unambiguous; width and thickness provide independent scale checks. Model-axis calibration awaits orientation review.",
+    "note": "Long-axis endpoints are unambiguous on reviewed world Y; width and thickness provide independent scale checks.",
     "checked": "2026-10-07",
-    "spatialNote": "Physical measurements are documented, but model-axis calibration awaits orientation review.",
+    "spatialNote": "Shown at the documented 161 cm overall length. The width closely corroborates the uniform scale.",
     "researchStatus": "verified",
     "measures": [
       {
@@ -94700,7 +94953,29 @@
         ],
         "axisBasis": "source_explicit"
       }
-    ]
+    ],
+    "spatial": {
+      "axis": "y",
+      "meters": 1.61,
+      "measurementIndex": 0,
+      "previewUrl": "https://models.atrium.earth/models/previews/oceania/kiribati-shark-tooth-trident-1924-06-0595-26fb93/preview-91e88c4a570c.glb",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "status": "reviewed",
+        "confidence": 1,
+        "note": "Human-reviewed 10-view sheet: +Y-up identity keeps the handle below and tooth points above."
+      },
+      "assetSha256": "91e88c4a570cd50f4d468bc9fbaf408a7e81d29b8df65ab6949d86d9e7558969",
+      "reviewed": "2026-10-07",
+      "geometryReview": "The exact 562,472-byte optimized GLB (SHA-256 91e88c4a570cd50f4d468bc9fbaf408a7e81d29b8df65ab6949d86d9e7558969) was decoded with normalized accessors and node transforms. Its single complete mesh spans 4158.351 source units on reviewed world Y, 937.1075 across X, and 160.1611 in depth. Scaling full Y to 161 cm yields 36.3 cm across X, within 3.8% of the documented 35 cm width. Use the corroborated end-to-end length and preserve the scan thickness.",
+      "note": "The handle end and all three tooth-point tips are retained in one mesh, with no support or unrelated scene geometry."
+    }
   },
   "oceania/fijian-culacula-war-club-aac-1870-341-1-7ff422": {
     "dimensions": "",
@@ -94729,9 +95004,9 @@
     "status": "documented",
     "basis": "object",
     "sourceUrl": "https://www.britishmuseum.org/collection/object/W_1851-0902-40",
-    "note": "Bind to the physical gypsum panel’s outer bounds; confirm the final mesh excludes gallery mounts. Model-axis calibration awaits orientation review.",
+    "note": "The reviewed final mesh preserves the physical gypsum panel’s outer bounds and excludes gallery mounts.",
     "checked": "2026-10-07",
-    "spatialNote": "Physical measurements are documented, but model-axis calibration awaits orientation review.",
+    "spatialNote": "Shown at the documented 272 cm panel height. The documented length corroborates the uniform scale.",
     "researchStatus": "verified",
     "measures": [
       {
@@ -94762,16 +95037,38 @@
         ],
         "axisBasis": "source_explicit"
       }
-    ]
+    ],
+    "spatial": {
+      "axis": "y",
+      "meters": 2.72,
+      "measurementIndex": 0,
+      "previewUrl": "https://models.atrium.earth/models/previews/assyrian/tiglath-pileser-warriors-nimrud-relief-6886ad/preview-ef94e1421bfc.glb",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "status": "reviewed",
+        "confidence": 1,
+        "note": "Human-reviewed 10-view sheet: +Y-up identity presents the relief upright and front-readable."
+      },
+      "assetSha256": "ef94e1421bfc4834c1b4d24c86492d8f1a73fe4cdb5b3da6cbefbd9d9a13a39c",
+      "reviewed": "2026-10-07",
+      "geometryReview": "The exact 1,062,576-byte optimized GLB (SHA-256 ef94e1421bfc4834c1b4d24c86492d8f1a73fe4cdb5b3da6cbefbd9d9a13a39c) was decoded with normalized accessors and node transforms. Its two material meshes together preserve one panel boundary spanning 9.900166 source units on reviewed world Y and 8.832304 across X, with no separate mount. Scaling full Y to 272 cm yields 242.7 cm across X, within 1.6% of the documented 239 cm length.",
+      "note": "The complete panel boundary supplies the full Y extent; the second measure corroborates one uniform scale."
+    }
   },
   "assyrian/alammu-prisoners-nineveh-panels-13-15-ffda7d": {
     "dimensions": "Width: 244.1 centimetres",
     "status": "documented",
     "basis": "object",
     "sourceUrl": "https://www.britishmuseum.org/collection/object/W_1851-0902-17",
-    "note": "Single exact width; bind only after confirming the mesh boundary matches the cataloged panel object. Model-axis calibration awaits orientation review.",
+    "note": "The reviewed mesh boundary matches the cataloged panel object, and its single exact width maps to world X.",
     "checked": "2026-10-07",
-    "spatialNote": "Physical measurements are documented, but model-axis calibration awaits orientation review.",
+    "spatialNote": "Shown at the documented 244.1 cm panel width. Other dimensions retain the scan's proportions.",
     "researchStatus": "verified",
     "measures": [
       {
@@ -94788,16 +95085,38 @@
         ],
         "axisBasis": "source_explicit"
       }
-    ]
+    ],
+    "spatial": {
+      "axis": "x",
+      "meters": 2.441,
+      "measurementIndex": 0,
+      "previewUrl": "https://models.atrium.earth/models/previews/assyrian/alammu-prisoners-nineveh-panels-13-15-ffda7d/preview-f165aba517fc.glb",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "status": "reviewed",
+        "confidence": 1,
+        "note": "Human-reviewed 10-view sheet: +Y-up identity presents the assembled relief upright with the carved face forward."
+      },
+      "assetSha256": "f165aba517fc7b2329deb15e62f67c575a07fd62a8151515d4d5009614a36366",
+      "reviewed": "2026-10-07",
+      "geometryReview": "The exact 1,267,816-byte optimized GLB (SHA-256 f165aba517fc7b2329deb15e62f67c575a07fd62a8151515d4d5009614a36366) was decoded with normalized accessors and node transforms. Its two material meshes share the same assembled relief boundary and together span 21.30790 source units across reviewed world X. The carved panel face and both outer X edges are retained, with no gallery mount or detached support; use the British Museum's 244.1 cm width for that full extent.",
+      "note": "The cataloged panel boundary and the retained assembly share one unambiguous left-to-right X extent."
+    }
   },
   "greek/corinthian-helmet-cleveland-2024-63-5f9598": {
     "dimensions": "Overall: 23.5 cm high; Overall: 19.5 cm wide; Overall: 27 cm deep",
     "status": "documented",
     "basis": "object",
     "sourceUrl": "https://www.clevelandart.org/art/2024.63",
-    "note": "Cleveland’s structured dimensions disambiguate the displayed 23.5 × 19.5 × 27 cm order. Model-axis calibration awaits orientation review.",
+    "note": "Cleveland’s structured dimensions disambiguate the displayed 23.5 × 19.5 × 27 cm order, and the reviewed upright pose fixes height on world Y.",
     "checked": "2026-10-07",
-    "spatialNote": "Physical measurements are documented, but model-axis calibration awaits orientation review.",
+    "spatialNote": "Shown at the documented 23.5 cm height. Width and depth corroborate the uniform scale.",
     "researchStatus": "verified",
     "measures": [
       {
@@ -94842,16 +95161,38 @@
         ],
         "axisBasis": "source_explicit"
       }
-    ]
+    ],
+    "spatial": {
+      "axis": "y",
+      "meters": 0.235,
+      "measurementIndex": 0,
+      "previewUrl": "https://models.atrium.earth/models/previews/greek/corinthian-helmet-cleveland-2024-63-5f9598/preview-218c9d08f5b4.glb",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "status": "reviewed",
+        "confidence": 1,
+        "note": "Human-reviewed 10-view sheet: +Y-up identity stands the Corinthian helmet upright and presents the face opening clearly."
+      },
+      "assetSha256": "218c9d08f5b41f87c9236342e2090eb86a8695c6dfdc9fd8de372ae9c78e526a",
+      "reviewed": "2026-10-07",
+      "geometryReview": "The exact 1,758,592-byte optimized GLB (SHA-256 218c9d08f5b41f87c9236342e2090eb86a8695c6dfdc9fd8de372ae9c78e526a) was decoded with normalized accessors and node transforms. Its single complete mesh spans 0.2499651 source units on reviewed world Y, 0.1964222 on X, and 0.2680090 on Z. Scaling full Y to 23.5 cm yields 18.5 cm on X and 25.2 cm on Z, within 5.3% and 6.7% of the documented 19.5 cm width and 27 cm depth.",
+      "note": "The full rim-to-crown extent is retained without a display support; all three source axes corroborate one uniform scale."
+    }
   },
   "roman/amazon-achillia-female-gladiators-relief-0835c6": {
     "dimensions": "Height: 65.60 cm; Width: 77.50 cm; Depth: 16.00 cm",
     "status": "documented",
     "basis": "object",
     "sourceUrl": "https://artsandculture.google.com/asset/marble-relief-with-female-gladiators/oQGiI3PcNzYi9A?hl=en",
-    "note": "British Museum partner record matches registration 1847,0424.19 and gives three exact axes. Model-axis calibration awaits orientation review.",
+    "note": "British Museum partner record matches registration 1847,0424.19 and gives three exact axes; the reviewed upright pose fixes height on world Y.",
     "checked": "2026-10-07",
-    "spatialNote": "Physical measurements are documented, but model-axis calibration awaits orientation review.",
+    "spatialNote": "Shown at the documented 65.6 cm height. Width and depth closely corroborate the uniform scale.",
     "researchStatus": "verified",
     "measures": [
       {
@@ -94896,7 +95237,29 @@
         ],
         "axisBasis": "source_explicit"
       }
-    ]
+    ],
+    "spatial": {
+      "axis": "y",
+      "meters": 0.656,
+      "measurementIndex": 0,
+      "previewUrl": "https://models.atrium.earth/models/previews/roman/amazon-achillia-female-gladiators-relief-0835c6/preview-a86bddf1a768.glb",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "status": "reviewed",
+        "confidence": 1,
+        "note": "Human-reviewed 10-view sheet: +Y-up identity presents the relief upright and front-readable."
+      },
+      "assetSha256": "a86bddf1a768cc7c807998e3fc4c9e4e53bd31d4fbe316495985ebfc1d097672",
+      "reviewed": "2026-10-07",
+      "geometryReview": "The exact 1,609,652-byte optimized GLB (SHA-256 a86bddf1a768cc7c807998e3fc4c9e4e53bd31d4fbe316495985ebfc1d097672) was decoded with normalized accessors and node transforms. The two retained material meshes form one complete relief block spanning 12.47709 source units on X, 10.38898 on reviewed world Y, and 2.568622 on Z. Scaling full Y to 65.6 cm yields 78.8 cm on X and 16.2 cm on Z, within 1.7% and 1.4% of the documented 77.5 cm width and 16.0 cm depth.",
+      "note": "The complete block boundary is retained without a stand; all three source axes corroborate one uniform scale."
+    }
   },
   "europe/late-bronze-age-combat-damaged-sword-nmi-w93-3d0333": {
     "dimensions": "",
@@ -94925,9 +95288,9 @@
     "status": "documented",
     "basis": "object",
     "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/2494",
-    "note": "Composite object; bind the named carriage long axis and verify barrel, wheel, and axle component measures independently. Model-axis calibration awaits orientation review.",
+    "note": "The exact GLB contains the cannon and carriage plus a separate circular display platform. Published measurements apply to named cannon, carriage, wheel, axle, and bore components, not to the platform-extended scene bounds.",
     "checked": "2026-10-07",
-    "spatialNote": "Physical measurements are documented, but model-axis calibration awaits orientation review.",
+    "spatialNote": "Verified-size presentation is withheld because the separate platform extends the model beyond every documented cannon or carriage component scope.",
     "researchStatus": "verified",
     "measures": [
       {
@@ -95029,9 +95392,9 @@
     "status": "documented",
     "basis": "object",
     "sourceUrl": "https://www.clevelandart.org/art/1963.93",
-    "note": "Use the assembled figure with headdress; the museum’s overall height is exact. Model-axis calibration awaits orientation review.",
+    "note": "Use the assembled figure with headdress; the museum's exact overall height maps to the reviewed world-Y assembly.",
     "checked": "2026-10-07",
-    "spatialNote": "Physical measurements are documented, but model-axis calibration awaits orientation review.",
+    "spatialNote": "Shown at the documented 26.1 cm overall height with the removable headdress in its assembled position.",
     "researchStatus": "verified",
     "measures": [
       {
@@ -95048,16 +95411,38 @@
         ],
         "axisBasis": "source_explicit"
       }
-    ]
+    ],
+    "spatial": {
+      "axis": "y",
+      "meters": 0.261,
+      "measurementIndex": 0,
+      "previewUrl": "https://models.atrium.earth/models/previews/americas/maya-warrior-removable-headdress-cleveland-1963-93-887d18/preview-3a254b35cd26.glb",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "status": "reviewed",
+        "confidence": 1,
+        "note": "Human-reviewed 10-view sheet: +Y-up identity stands the warrior upright with the removable headdress above and the figure front-readable."
+      },
+      "assetSha256": "3a254b35cd267b2f40bd1bb09aa86c651c6506928dcd3e7a2fb5f5ae69af9745",
+      "reviewed": "2026-10-07",
+      "geometryReview": "The exact 1,505,384-byte optimized GLB (SHA-256 3a254b35cd267b2f40bd1bb09aa86c651c6506928dcd3e7a2fb5f5ae69af9745) was decoded with normalized accessors and node transforms. Its body and removable-headdress meshes are retained in the assembled museum arrangement and jointly span 0.2465759 source units on reviewed world Y, 0.1140255 on X, and 0.08043689 on Z. Use the museum's 26.1 cm overall height for the full assembled Y extent.",
+      "note": "The source measurement explicitly covers the overall assembled height, matching the retained body-plus-headdress preview scope."
+    }
   },
   "americas/nasca-vase-trophy-heads-warriors-cleveland-1930-728-fcfa5d": {
     "dimensions": "Overall height 19.4 cm; Diameter 14 cm",
     "status": "documented",
     "basis": "object",
     "sourceUrl": "https://www.clevelandart.org/art/1930.728",
-    "note": "Rotational vessel with explicit height and diameter. Model-axis calibration awaits orientation review.",
+    "note": "Rotational vessel with explicit height and diameter; the reviewed upright pose fixes height on world Y.",
     "checked": "2026-10-07",
-    "spatialNote": "Physical measurements are documented, but model-axis calibration awaits orientation review.",
+    "spatialNote": "Shown at the documented 19.4 cm height. The 14 cm diameter closely corroborates the uniform scale.",
     "researchStatus": "verified",
     "measures": [
       {
@@ -95088,16 +95473,38 @@
         ],
         "axisBasis": "source_explicit"
       }
-    ]
+    ],
+    "spatial": {
+      "axis": "y",
+      "meters": 0.194,
+      "measurementIndex": 0,
+      "previewUrl": "https://models.atrium.earth/models/previews/americas/nasca-vase-trophy-heads-warriors-cleveland-1930-728-fcfa5d/preview-8762ad1bc3cb.glb",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "status": "reviewed",
+        "confidence": 1,
+        "note": "Human-reviewed 10-view sheet: +Y-up identity stands the vessel on its base with the open mouth above."
+      },
+      "assetSha256": "8762ad1bc3cb0f04d5bfa27e849f7984c527965f75f32332edddb5f9d7c20b4e",
+      "reviewed": "2026-10-07",
+      "geometryReview": "The exact 1,089,836-byte optimized GLB (SHA-256 8762ad1bc3cb0f04d5bfa27e849f7984c527965f75f32332edddb5f9d7c20b4e) was decoded with normalized accessors and node transforms. Its single complete mesh spans 0.1951990 source units on reviewed world Y, 0.1425319 across X, and 0.1414669 across Z. Scaling full Y to 19.4 cm yields 14.16 and 14.06 cm horizontal diameters, both within 1.2% of the documented 14 cm diameter.",
+      "note": "The complete base-to-mouth height and circular body are retained without support; height and diameter corroborate one uniform scale."
+    }
   },
   "europe/black-white-burgonet-bologna-cma-1916-891-0fc3fe": {
     "dimensions": "Overall: 31.8 cm high; Overall: 35.6 cm wide; Overall: 19 cm deep",
     "status": "documented",
     "basis": "object",
     "sourceUrl": "https://www.clevelandart.org/art/1916.891",
-    "note": "Cleveland’s structured dimensions disambiguate the displayed 31.8 × 35.6 × 19 cm order. Model-axis calibration awaits orientation review.",
+    "note": "Cleveland’s structured dimensions disambiguate the displayed 31.8 × 35.6 × 19 cm order, and the reviewed upright pose fixes height on world Y.",
     "checked": "2026-10-07",
-    "spatialNote": "Physical measurements are documented, but model-axis calibration awaits orientation review.",
+    "spatialNote": "Shown at the documented 31.8 cm height. The scan's differing horizontal proportions are preserved without distortion.",
     "researchStatus": "verified",
     "measures": [
       {
@@ -95142,16 +95549,38 @@
         ],
         "axisBasis": "source_explicit"
       }
-    ]
+    ],
+    "spatial": {
+      "axis": "y",
+      "meters": 0.318,
+      "measurementIndex": 0,
+      "previewUrl": "https://models.atrium.earth/models/previews/europe/black-white-burgonet-bologna-cma-1916-891-0fc3fe/preview-842813f1e738.glb",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "status": "reviewed",
+        "confidence": 1,
+        "note": "Human-reviewed 10-view sheet: +Y-up identity stands the burgonet upright and presents its black-and-white bands and peak clearly."
+      },
+      "assetSha256": "842813f1e7387d1068a7b238a5c85158f807bea49f02ea09015c3ce2a0efd534",
+      "reviewed": "2026-10-07",
+      "geometryReview": "The exact 2,035,748-byte optimized GLB (SHA-256 842813f1e7387d1068a7b238a5c85158f807bea49f02ea09015c3ce2a0efd534) was decoded with normalized accessors and node transforms. Its single complete mesh spans 0.2912510 source units on reviewed world Y, from the lower neck guard to the crown, with no separate support. Use the explicitly labeled 31.8 cm height for full Y. The resulting horizontal extents do not reproduce both published width and depth, so preserve the scanned proportions and do not use those axes as alternate calibrations.",
+      "note": "The source labels height independently and the complete vertical object boundary is unambiguous; only that extent is verified for scale."
+    }
   },
   "roman/legionary-helmet-haltern-hagenau-58b2ee": {
     "dimensions": "Höhe / Height: 20,0 cm; Breite / Width: 21,0 cm; Länge / Length: 28,2 cm",
     "status": "documented",
     "basis": "object",
     "sourceUrl": "https://100jahre100funde.lwl.org/de/100-fundeepochen/kaiserzeit/046-legionarshelm/",
-    "note": "Three explicit whole-object axes; cheek pieces are absent in both object and scan. Model-axis calibration awaits orientation review.",
+    "note": "Three explicit whole-object axes; cheek pieces are absent in both object and scan, and the reviewed upright pose fixes height on world Y.",
     "checked": "2026-10-07",
-    "spatialNote": "Physical measurements are documented, but model-axis calibration awaits orientation review.",
+    "spatialNote": "Shown at the documented 20 cm height. Horizontal dimensions retain the scan's proportions.",
     "researchStatus": "verified",
     "measures": [
       {
@@ -95196,16 +95625,38 @@
         ],
         "axisBasis": "source_explicit"
       }
-    ]
+    ],
+    "spatial": {
+      "axis": "y",
+      "meters": 0.2,
+      "measurementIndex": 0,
+      "previewUrl": "https://models.atrium.earth/models/previews/roman/legionary-helmet-haltern-hagenau-58b2ee/preview-143119d49368.glb",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "status": "reviewed",
+        "confidence": 1,
+        "note": "Human-reviewed 10-view sheet: +Y-up identity places the helmet dome and crest peg above the rim in a source-facing view."
+      },
+      "assetSha256": "143119d49368c8dc21952be30a9bfd2a77264c2b48a0dc1e6e2d7f07c62d5921",
+      "reviewed": "2026-10-07",
+      "geometryReview": "The exact 2,041,912-byte optimized GLB (SHA-256 143119d49368c8dc21952be30a9bfd2a77264c2b48a0dc1e6e2d7f07c62d5921) was decoded with normalized accessors and node transforms. Its single complete mesh spans 0.2031976 source units on reviewed world Y, from the lower rim to the crest peg, with X 0.2587884 and Z 0.2716845. Use the independently labeled 20 cm height for full Y. The scaled horizontal extents do not reproduce both published width and length, so preserve the scan's proportions and do not use X or Z as alternate calibrations.",
+      "note": "The source labels height independently and the complete retained helmet boundary is unambiguous; only that extent is verified for scale."
+    }
   },
   "roman/vindonissa-dagger-scabbard-haltern-a991ac": {
     "dimensions": "Länge (mit Scheide) / Length (with scabbard): 35,0 cm; Breite (mit Scheide) / Width (with scabbard): 6,2 cm",
     "status": "documented",
     "basis": "object",
     "sourceUrl": "https://100jahre100funde.lwl.org/de/100-fundeepochen/kaiserzeit/048-dolch-gurtel/",
-    "note": "The record explicitly measures the same dagger-and-scabbard assembly represented by the model. Model-axis calibration awaits orientation review.",
+    "note": "The record measures the dagger with its scabbard, while the reviewed GLB presents dagger and scabbard as two separate, offset meshes. Their union is not the measured sheathed assembly boundary.",
     "checked": "2026-10-07",
-    "spatialNote": "Physical measurements are documented, but model-axis calibration awaits orientation review.",
+    "spatialNote": "Verified-size presentation is withheld because the model's separated arrangement does not match the measured dagger-with-scabbard scope.",
     "researchStatus": "verified",
     "measures": [
       {
@@ -95265,9 +95716,9 @@
     "status": "documented",
     "basis": "object",
     "sourceUrl": "https://www.huntmuseum.com/explore/item/c75dc8b3-198f-3ec4-887b-6a6da924288c/",
-    "note": "Circular shield; use the exact rim diameter. The approximately 0.5 mm sheet thickness is intentionally omitted. Model-axis calibration awaits orientation review.",
+    "note": "Circular shield; use the exact rim diameter on reviewed world Y. The approximately 0.5 mm sheet thickness is intentionally omitted.",
     "checked": "2026-10-07",
-    "spatialNote": "Physical measurements are documented, but model-axis calibration awaits orientation review.",
+    "spatialNote": "Shown at the documented 63.8 cm rim diameter. Other dimensions retain the scan's proportions.",
     "researchStatus": "verified",
     "measures": [
       {
@@ -95284,6 +95735,28 @@
         ],
         "axisBasis": "source_explicit"
       }
-    ]
+    ],
+    "spatial": {
+      "axis": "y",
+      "meters": 0.638,
+      "measurementIndex": 0,
+      "previewUrl": "https://models.atrium.earth/models/previews/europe/yetholm-bronze-shield-hunt-hca-457-4de8ad/preview-1aa2a1b63603.glb",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "status": "reviewed",
+        "confidence": 1,
+        "note": "Human-reviewed 10-view sheet: +Y-up identity presents the decorated shield face upright."
+      },
+      "assetSha256": "1aa2a1b63603604b00f935832230a99acc1c6bdd167a5ce95527bf54597734d2",
+      "reviewed": "2026-10-07",
+      "geometryReview": "The exact 596,956-byte optimized GLB (SHA-256 1aa2a1b63603604b00f935832230a99acc1c6bdd167a5ce95527bf54597734d2) was decoded with normalized accessors and node transforms. Its single complete mesh spans 5.954729 source units on reviewed world Y and 5.856229 across X; the two rim diameters differ by only 1.65%. Use the museum's 63.8 cm diameter for the full Y extent and preserve the shallow relief depth.",
+      "note": "The complete circular rim supplies an unambiguous vertical diameter, with no mount or separate support."
+    }
   }
 }
