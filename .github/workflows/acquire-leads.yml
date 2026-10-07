@@ -177,7 +177,9 @@ jobs:
         env:
           PYTHON: python
           ATRIUM_ORIENT_TIMEOUT_MS: '600000'
-          ATRIUM_POSE_TIMEOUT: '180'
+          # A slow heuristic pose is held for the mandatory visual review.
+          # Keep the longer outer budget for measured geometry integrity.
+          ATRIUM_POSE_TIMEOUT: '15'
 
       - name: Verify strict assembled batch
         if: ${{ !cancelled() && steps.assemble.outcome == 'success' }}

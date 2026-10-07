@@ -57,7 +57,12 @@ def load_mesh(path):
 def integrity(m):
     from scipy.sparse import coo_matrix
     from scipy.sparse.csgraph import connected_components
-    mm = m.copy(); mm.merge_vertices(); mm.remove_unreferenced_vertices()
+    # Connectivity measures physical geometry, not the duplicate vertices that
+    # preserve UV seams or hard normals. Weld positions only on this audit copy;
+    # keep the delivered mesh and its authored appearance unchanged.
+    mm = m.copy()
+    mm.merge_vertices(merge_tex=True, merge_norm=True)
+    mm.remove_unreferenced_vertices()
     mm.update_faces(mm.nondegenerate_faces())
     F = np.asarray(mm.faces); V = np.asarray(mm.vertices)
     if len(F) == 0:
