@@ -21430,26 +21430,31 @@
   "europe/floor-tiles-from-the-great-synagogue-in-oswiecim-e51d05": {
     "upAxis": "y",
     "modelRotation": [
-      166.66,
       0,
-      -90.57
+      0,
+      0
     ],
     "yaw": 0,
-    "status": "auto",
-    "confidence": 0.77,
-    "note": "Stable-pose solve (pose 3, p=0.00, margin 0.60); confident."
+    "status": "reviewed",
+    "confidence": 1,
+    "note": "Human-reviewed from the ten-view orientation sheet and source preview (+Y up); the patterned tile faces lie horizontally and face upward."
   },
   "europe/zodiac-marble-fragment-from-the-great-synagogue-in-oswiecim-bd1cca": {
     "upAxis": "y",
     "modelRotation": [
-      1.2,
-      -1.17,
-      -88.37
+      0,
+      0,
+      0
     ],
     "yaw": 0,
-    "status": "auto",
-    "confidence": 0.78,
-    "note": "Elongated (aspect 4.1); PCA long-axis aligned to vertical."
+    "viewDirection": [
+      0.55,
+      1,
+      0.9
+    ],
+    "status": "reviewed",
+    "confidence": 1,
+    "note": "Human-reviewed from the ten-view orientation sheet, source preview, and targeted camera tests (+Y up); the fragments rest on their source-authored bases, and the steeper view reveals the zodiac carving without changing the physical pose."
   },
   "europe/hanukkah-lamp-mch-s-57-218702": {
     "upAxis": "y",
@@ -21478,14 +21483,14 @@
   "asia/turquoise-glazed-bowl-k0002a-7-1-41042c": {
     "upAxis": "y",
     "modelRotation": [
-      179.82,
       0,
-      1.23
+      0,
+      0
     ],
     "yaw": 0,
-    "status": "auto",
-    "confidence": 0.74,
-    "note": "Stable-pose solve (pose 0, p=0.29, margin 0.54); confident."
+    "status": "reviewed",
+    "confidence": 1,
+    "note": "Human-reviewed from the ten-view orientation sheet and source preview (+Y up); the bowl rests on its foot with the open mouth above."
   },
   "asia/buff-ware-slip-painted-bowl-k0002a-233-1-49fb33": {
     "upAxis": "y",
@@ -21502,38 +21507,38 @@
   "asia/incised-bowl-with-blue-trails-k0002a-183-1-9a204b": {
     "upAxis": "y",
     "modelRotation": [
-      179.39,
       0,
-      0.5
+      0,
+      0
     ],
     "yaw": 0,
-    "status": "auto",
-    "confidence": 0.6,
-    "note": "Stable-pose solve (pose 0, p=0.29, margin 0.22); confident."
+    "status": "reviewed",
+    "confidence": 1,
+    "note": "Human-reviewed from the ten-view orientation sheet and source preview (+Y up); the bowl rests on its foot with the open mouth above."
   },
   "europe/doorway-of-the-mosquecathedral-of-cordoba-b13397": {
     "upAxis": "y",
     "modelRotation": [
-      -180,
       0,
-      -179.27
+      0,
+      0
     ],
     "yaw": 0,
-    "status": "auto",
-    "confidence": 0.6,
-    "note": "Stable-pose solve (pose 2, p=0.12, margin 0.23); confident."
+    "status": "reviewed",
+    "confidence": 1,
+    "note": "Human-reviewed from the ten-view orientation sheet and source preview (+Y up); the doorway stands upright with its decorated face toward the viewer."
   },
   "asia/mughal-brass-ewer-bf68ef": {
     "upAxis": "y",
     "modelRotation": [
-      -102.92,
       0,
-      6.16
+      0,
+      0
     ],
     "yaw": 0,
-    "status": "auto",
-    "confidence": 0.6,
-    "note": "Stable-pose solve (pose 0, p=0.43, margin 0.23); confident."
+    "status": "reviewed",
+    "confidence": 1,
+    "note": "Human-reviewed from the ten-view orientation sheet and source preview (+Y up); the ewer stands on its feet with handle left and spout right."
   },
   "ancient-near-east/statue-of-gudea-d7493b": {
     "upAxis": "y",
@@ -21823,81 +21828,160 @@
     "confidence": 1,
     "note": "Human-reviewed from the ten-view orientation sheet and source preview (+Y up, turned 180°); this view presents the decorated mosque entrance instead of its plain back."
   },
-  "asia/incised-bowl-with-blue-trails-k0002a-183-1-9a204b": {
+  "asia/one-faced-linga-ekamukhalinga-c21b2f": {
     "upAxis": "y",
     "modelRotation": [
-      0,
-      0,
-      0
+      -6.19,
+      0.03,
+      -0.59
     ],
     "yaw": 0,
-    "status": "reviewed",
-    "confidence": 1,
-    "note": "Human-reviewed from the ten-view orientation sheet and source preview (+Y up); the bowl rests on its foot with the open mouth above."
+    "status": "auto",
+    "confidence": 0.56,
+    "note": "Elongated (aspect 2.3); PCA long-axis aligned to vertical."
   },
-  "asia/turquoise-glazed-bowl-k0002a-7-1-41042c": {
+  "asia/bishamonten-guardian-of-the-north-13th-c-ce-8db674": {
     "upAxis": "y",
     "modelRotation": [
+      174.87,
       0,
-      0,
-      0
+      84.29
     ],
     "yaw": 0,
-    "status": "reviewed",
-    "confidence": 1,
-    "note": "Human-reviewed from the ten-view orientation sheet and source preview (+Y up); the bowl rests on its foot with the open mouth above."
+    "status": "auto",
+    "confidence": 0.61,
+    "note": "Stable-pose solve (pose 2, p=0.16, margin 0.25); confident."
   },
-  "europe/doorway-of-the-mosquecathedral-of-cordoba-b13397": {
+  "asia/bodhisattva-one-of-a-pair-18th-c-ce-f7c224": {
     "upAxis": "y",
     "modelRotation": [
+      -98.59,
       0,
-      0,
-      0
+      94.86
     ],
     "yaw": 0,
-    "status": "reviewed",
-    "confidence": 1,
-    "note": "Human-reviewed from the ten-view orientation sheet and source preview (+Y up); the doorway stands upright with its decorated face toward the viewer."
+    "status": "auto",
+    "confidence": 0.69,
+    "note": "Stable-pose solve (pose 0, p=0.52, margin 0.41); confident."
   },
-  "europe/floor-tiles-from-the-great-synagogue-in-oswiecim-e51d05": {
+  "asia/miniature-votive-stupa-cleveland-1982-132-6ca1b0": {
     "upAxis": "y",
     "modelRotation": [
-      0,
-      0,
-      0
+      -1.17,
+      0.02,
+      -2.4
     ],
     "yaw": 0,
-    "status": "reviewed",
-    "confidence": 1,
-    "note": "Human-reviewed from the ten-view orientation sheet and source preview (+Y up); the patterned tile faces lie horizontally and face upward."
+    "status": "auto",
+    "confidence": 0.56,
+    "note": "Elongated (aspect 2.3); PCA long-axis aligned to vertical."
   },
-  "asia/mughal-brass-ewer-bf68ef": {
+  "asia/bodhisattva-of-compassion-dabfef": {
     "upAxis": "y",
     "modelRotation": [
+      -177.61,
       0,
-      0,
-      0
+      -179.71
     ],
     "yaw": 0,
-    "status": "reviewed",
-    "confidence": 1,
-    "note": "Human-reviewed from the ten-view orientation sheet and source preview (+Y up); the ewer stands on its feet with handle left and spout right."
+    "status": "auto",
+    "confidence": 0.75,
+    "note": "Stable-pose solve (pose 3, p=0.08, margin 0.56); confident."
   },
-  "europe/zodiac-marble-fragment-from-the-great-synagogue-in-oswiecim-bd1cca": {
+  "asia/buddhist-ritual-bell-40fd03": {
     "upAxis": "y",
     "modelRotation": [
-      0,
-      0,
-      0
+      -2.63,
+      0.03,
+      -1.38
     ],
     "yaw": 0,
-    "viewDirection": [
-      0.55,
-      1,
-      0.9
+    "status": "auto",
+    "confidence": 0.61,
+    "note": "Elongated (aspect 2.7); PCA long-axis aligned to vertical."
+  },
+  "asia/standing-bodhisattva-early-sui-dynasty-d35158": {
+    "upAxis": "y",
+    "modelRotation": [
+      8.56,
+      -0.01,
+      -0.2
     ],
-    "status": "reviewed",
-    "confidence": 1,
-    "note": "Human-reviewed from the ten-view orientation sheet, source preview, and targeted camera tests (+Y up); the fragments rest on their source-authored bases, and the steeper view reveals the zodiac carving without changing the physical pose."
+    "yaw": 0,
+    "status": "auto",
+    "confidence": 0.61,
+    "note": "Elongated (aspect 2.7); PCA long-axis aligned to vertical."
+  },
+  "asia/seated-buddha-probably-shakyamuni-tianlongshan-cave-21-047235": {
+    "upAxis": "y",
+    "modelRotation": [
+      115.75,
+      0,
+      22.87
+    ],
+    "yaw": 0,
+    "status": "auto",
+    "confidence": 0.76,
+    "note": "Stable-pose solve (pose 0, p=0.80, margin 0.58); confident."
+  },
+  "asia/standing-bodhisattva-with-hands-in-anjali-mudra-1ea4fe": {
+    "upAxis": "y",
+    "modelRotation": [
+      -12.47,
+      -0.44,
+      4.02
+    ],
+    "yaw": 0,
+    "status": "auto",
+    "confidence": 0.56,
+    "note": "Elongated (aspect 2.3); PCA long-axis aligned to vertical."
+  },
+  "asia/head-of-a-tirthankara-with-radiant-crown-b97e26": {
+    "upAxis": "y",
+    "modelRotation": [
+      -127.68,
+      0,
+      83.24
+    ],
+    "yaw": 0,
+    "status": "auto",
+    "confidence": 0.67,
+    "note": "Stable-pose solve (pose 0, p=0.49, margin 0.37); confident."
+  },
+  "asia/ebisu-and-daikoku-6d6bf2": {
+    "upAxis": "y",
+    "modelRotation": [
+      -179.71,
+      0,
+      178.9
+    ],
+    "yaw": 0,
+    "status": "auto",
+    "confidence": 0.82,
+    "note": "Stable-pose solve (pose 2, p=0.24, margin 0.72); confident."
+  },
+  "asia/carved-figure-of-the-god-daikoku-0f7742": {
+    "upAxis": "y",
+    "modelRotation": [
+      -135.18,
+      0,
+      -56.6
+    ],
+    "yaw": 0,
+    "status": "auto",
+    "confidence": 0.68,
+    "note": "Stable-pose solve (pose 0, p=0.37, margin 0.39); confident."
+  },
+  "asia/ganesha-cleveland-1970-62-83f15d": {
+    "upAxis": "y",
+    "modelRotation": [
+      97.25,
+      0,
+      16.36
+    ],
+    "yaw": 0,
+    "status": "auto",
+    "confidence": 0.66,
+    "note": "Stable-pose solve (pose 0, p=0.40, margin 0.36); confident."
   }
 }
