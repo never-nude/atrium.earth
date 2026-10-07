@@ -1,0 +1,768 @@
+{
+  "schema": "atrium-source-measurement-plan/1",
+  "logical_batch_id": "classical-arms-equipment-20261007",
+  "candidate_count": 20,
+  "calibrations_written": false,
+  "eligibility_mutations_written": false,
+  "summary": {
+    "conditional-enable": 8,
+    "conditional-enable-restored-scope": 1,
+    "disabled-axis": 3,
+    "disabled-estimate": 1,
+    "disabled-unverified": 7
+  },
+  "conditional_enabled_count": 9,
+  "note": "Research and semantic-axis plan only. No final GLB geometry bounds, meter conversion from source file units, calibration, SHA binding, orientation binding, or eligibility mutation has been applied. All proposals must pass final asset, source-scope and final-pose review before exactAR is enabled.",
+  "binding_requirements": [
+    "physical-dimensions recordstatus=documented and basisobject/original",
+    "labelled source measureaxis/value/unit/sourceUrls",
+    "spatial measurementIndex selects that exact source measurement",
+    "spatialaxis andmeters match measured direction after finalpose",
+    "full immutable finalpreviewURL and full assetSHA256",
+    "entire reviewed orientationobject bound exactly",
+    "reviewed timestamp and geometryReview narrative, including support/measurement scope",
+    "spatialEligibilityBindingFor input plus canonical fingerprints must be regenerated after record/orientation/model changes",
+    "If any scope/direction/size is approximate, exacteligibility remains disabled; approximate default may be explicit but never upgraded to verified from mesh ratios."
+  ],
+  "plans": [
+    {
+      "slug": "roman/nijmegen-roman-cavalry-face-helmet-valkhof-xxi-l-4-760424",
+      "uid": "760424bb696447cfae9802dd77d47866",
+      "title": "Roman Cavalry Face Helmet from Nijmegen",
+      "basis": "object",
+      "catalog_dimensions": "24.2 × 22.8 cm",
+      "source_urls": [
+        "https://valkhofmuseum.nl/nl/verdieping/collectie/archeologie/ruiterhelm-met-gezichtsmasker",
+        "https://sketchfab.com/3d-models/romeinse-gezichtshelm-760424bb696447cfae9802dd77d47866"
+      ],
+      "status": "conditional-enable",
+      "can_enable_after_final_pose": true,
+      "source_measurements": [
+        {
+          "axis": "height",
+          "value": 24.2,
+          "unit": "cm",
+          "sourceUrls": [
+            "https://valkhofmuseum.nl/nl/verdieping/collectie/archeologie/ruiterhelm-met-gezichtsmasker"
+          ]
+        },
+        {
+          "axis": "width",
+          "value": 22.8,
+          "unit": "cm",
+          "sourceUrls": [
+            "https://valkhofmuseum.nl/nl/verdieping/collectie/archeologie/ruiterhelm-met-gezichtsmasker"
+          ]
+        }
+      ],
+      "planned_reference": {
+        "axis_after_pose": "y",
+        "meters": 0.242,
+        "source_measurement_axis": "height",
+        "scope": "Surviving helmet and mask as measured, including extant neck guard; no invented missing bowl.",
+        "extent_fraction": 1,
+        "basis": "object",
+        "kind": "object"
+      },
+      "blocker": null,
+      "pending_review": [
+        "Pose the mask/helmet upright. Verify the complete surviving measured object is present and no modern support extends Y beyond it.",
+        "Museum has explicitly stated H24.2/W22.8cm; losses do not justify scaling to a reconstructed complete helmet.",
+        "Verify final model identity and represented scope.",
+        "Bind only after immutable final R2 URL, full asset SHA-256 and reviewed orientation are fixed."
+      ]
+    },
+    {
+      "slug": "roman/vechten-roman-cavalry-face-mask-rmo-vf-1047-d95a68",
+      "uid": "d95a682e81a746df983dde1f533ba96f",
+      "title": "Roman Cavalry Face Mask from Vechten",
+      "basis": "object",
+      "catalog_dimensions": "16 cm high",
+      "source_urls": [
+        "https://www.rmo.nl/3d-objecten/viziermasker/",
+        "https://sketchfab.com/3d-models/gezichtsmasker-uit-vechten-d95a682e81a746df983dde1f533ba96f"
+      ],
+      "status": "conditional-enable",
+      "can_enable_after_final_pose": true,
+      "source_measurements": [
+        {
+          "axis": "height",
+          "value": 16,
+          "unit": "cm",
+          "sourceUrls": [
+            "https://www.rmo.nl/3d-objecten/viziermasker/"
+          ]
+        }
+      ],
+      "planned_reference": {
+        "axis_after_pose": "y",
+        "meters": 0.16,
+        "source_measurement_axis": "height",
+        "scope": "The surviving VF*1047 mask only.",
+        "extent_fraction": 1,
+        "basis": "object",
+        "kind": "object"
+      },
+      "blocker": null,
+      "pending_review": [
+        "Pose front of face upright, nose vertical and chin downward. Verify top-of-mask to chin is the complete Y extent; discard neither ancient edge nor fused modern support.",
+        "Verify final model identity and represented scope.",
+        "Bind only after immutable final R2 URL, full asset SHA-256 and reviewed orientation are fixed."
+      ]
+    },
+    {
+      "slug": "roman/montefortino-helmet-piquete-atalaya-zaragoza-ec3a3a",
+      "uid": "ec3a3a3a030d4750a2ff7690fe61f82b",
+      "title": "Montefortino Helmet from Piquete de la Atalaya",
+      "basis": "object",
+      "catalog_dimensions": "20.8 × 18 × 26.5 cm; 1,500 g",
+      "source_urls": [
+        "https://sketchfab.com/3d-models/casco-celtibero-ec3a3a3a030d4750a2ff7690fe61f82b"
+      ],
+      "status": "conditional-enable",
+      "can_enable_after_final_pose": true,
+      "source_measurements": [
+        {
+          "axis": "height",
+          "value": 20.8,
+          "unit": "cm",
+          "sourceUrls": [
+            "https://sketchfab.com/3d-models/casco-celtibero-ec3a3a3a030d4750a2ff7690fe61f82b"
+          ]
+        },
+        {
+          "axis": "width",
+          "value": 18,
+          "unit": "cm",
+          "sourceUrls": [
+            "https://sketchfab.com/3d-models/casco-celtibero-ec3a3a3a030d4750a2ff7690fe61f82b"
+          ]
+        },
+        {
+          "axis": "depth",
+          "value": 26.5,
+          "unit": "cm",
+          "sourceUrls": [
+            "https://sketchfab.com/3d-models/casco-celtibero-ec3a3a3a030d4750a2ff7690fe61f82b"
+          ]
+        }
+      ],
+      "planned_reference": {
+        "axis_after_pose": "y",
+        "meters": 0.208,
+        "source_measurement_axis": "height",
+        "scope": "Surviving helmet bowl, including original neck projection, excluding any modern mount.",
+        "extent_fraction": 1,
+        "basis": "object",
+        "kind": "object"
+      },
+      "blocker": null,
+      "pending_review": [
+        "Pose helmet opening downward. Y should be source height20.8cm; X left-right width18cm, Z front-back depth26.5cm.",
+        "Cross-check final proportions with all three labelled measurements. Use no invented cheek pieces and no separate museum mount to determine height.",
+        "Verify final model identity and represented scope.",
+        "Bind only after immutable final R2 URL, full asset SHA-256 and reviewed orientation are fixed."
+      ]
+    },
+    {
+      "slug": "roman/weisenau-helmet-cheek-piece-uitgeest-hilde-5031-003-5949c0",
+      "uid": "5949c079ef0840fcbe6193d204dcdbdb",
+      "title": "Cheek Piece of a Weisenau-Type Roman Helmet",
+      "basis": "object",
+      "catalog_dimensions": "13 × 15 cm",
+      "source_urls": [
+        "https://hdl.handle.net/21.12153/obj40204",
+        "https://sketchfab.com/3d-models/wangklep-cheek-plate-0-100-ad-5949c079ef0840fcbe6193d204dcdbdb"
+      ],
+      "status": "disabled-axis",
+      "can_enable_after_final_pose": false,
+      "source_measurements": [
+        {
+          "axis": null,
+          "value": 13,
+          "unit": "cm",
+          "sourceUrls": [
+            "https://sketchfab.com/3d-models/wangklep-cheek-plate-0-100-ad-5949c079ef0840fcbe6193d204dcdbdb"
+          ],
+          "source_label": "first unlabelled number in13.0/15.0/-"
+        },
+        {
+          "axis": null,
+          "value": 15,
+          "unit": "cm",
+          "sourceUrls": [
+            "https://sketchfab.com/3d-models/wangklep-cheek-plate-0-100-ad-5949c079ef0840fcbe6193d204dcdbdb"
+          ],
+          "source_label": "second unlabelled number in13.0/15.0/-"
+        }
+      ],
+      "planned_reference": null,
+      "blocker": "The exact museum model supplies13.0/15.0/-cm without naming the axes. The collection redirect did not expose the specific measured record in this read. Do not assign H13/W15 or the reverse by comparing mesh extents.",
+      "pending_review": [
+        "Verify final model identity and represented scope.",
+        "Bind only after immutable final R2 URL, full asset SHA-256 and reviewed orientation are fixed."
+      ],
+      "possible_axis_followup": "Find a labelled primary measurement or museum-published schema mapping the exact object tuple. After that, match full ancient cheek-plate edge to that direction; exclude the invisible/visible modern support if any."
+    },
+    {
+      "slug": "roman/ivory-gladius-scabbard-chape-velsen-ii-hilde-6026-06-7a8c3c",
+      "uid": "7a8c3c0697b64c97bb520d237d997d15",
+      "title": "Ivory Chape from a Mainz-Type Gladius Scabbard",
+      "basis": "object",
+      "catalog_dimensions": "3 × 7 cm",
+      "source_urls": [
+        "https://hdl.handle.net/21.12153/obj43246",
+        "https://sketchfab.com/3d-models/puntbeschermer-scabbard-chape-40-50-ad-7a8c3c0697b64c97bb520d237d997d15"
+      ],
+      "status": "disabled-axis",
+      "can_enable_after_final_pose": false,
+      "source_measurements": [
+        {
+          "axis": null,
+          "value": 3,
+          "unit": "cm",
+          "sourceUrls": [
+            "https://sketchfab.com/3d-models/puntbeschermer-scabbard-chape-40-50-ad-7a8c3c0697b64c97bb520d237d997d15"
+          ],
+          "source_label": "first unlabelled number in3.0/7.0/-"
+        },
+        {
+          "axis": null,
+          "value": 7,
+          "unit": "cm",
+          "sourceUrls": [
+            "https://sketchfab.com/3d-models/puntbeschermer-scabbard-chape-40-50-ad-7a8c3c0697b64c97bb520d237d997d15"
+          ],
+          "source_label": "second unlabelled number in3.0/7.0/-"
+        }
+      ],
+      "planned_reference": null,
+      "blocker": "The exact museum model supplies3.0/7.0/-cm without naming the axes. Do not assume the chape length is7cm from general gladius-scabbard shape or model extent.",
+      "pending_review": [
+        "Verify final model identity and represented scope.",
+        "Bind only after immutable final R2 URL, full asset SHA-256 and reviewed orientation are fixed."
+      ],
+      "possible_axis_followup": "Obtain a labelled source measurement or exact catalogue dimension schema; compare the digitized ivory protector with the source drawing and its original full edge."
+    },
+    {
+      "slug": "roman/roman-cavalry-pendant-maastricht-35a51a",
+      "uid": "35a51a1d0cac4f2188d28a7d790ce798",
+      "title": "Roman Cavalry Harness Pendant from Maastricht",
+      "basis": "object",
+      "catalog_dimensions": "Approximately 7 × 7 cm",
+      "source_urls": [
+        "https://sketchfab.com/3d-models/roman-cavalry-pendant-35a51a1d0cac4f2188d28a7d790ce798"
+      ],
+      "status": "disabled-estimate",
+      "can_enable_after_final_pose": false,
+      "source_measurements": [
+        {
+          "axis": "length",
+          "value": 7,
+          "unit": "cm",
+          "sourceUrls": [
+            "https://sketchfab.com/3d-models/roman-cavalry-pendant-35a51a1d0cac4f2188d28a7d790ce798"
+          ],
+          "approximate": true
+        },
+        {
+          "axis": "width",
+          "value": 7,
+          "unit": "cm",
+          "sourceUrls": [
+            "https://sketchfab.com/3d-models/roman-cavalry-pendant-35a51a1d0cac4f2188d28a7d790ce798"
+          ],
+          "approximate": true
+        }
+      ],
+      "planned_reference": null,
+      "blocker": "Source explicitly says approx.7×7cm(L×W). These dimensions may inform a labelled approximate initial display size, but cannot authorize verified-size AR. No exact calibration planned.",
+      "pending_review": [
+        "Verify final model identity and represented scope.",
+        "Bind only after immutable final R2 URL, full asset SHA-256 and reviewed orientation are fixed."
+      ]
+    },
+    {
+      "slug": "roman/lead-sling-bullet-cosa-c22-084-1b8da6",
+      "uid": "1b8da6363aac4c65a6d4e639fb2fa168",
+      "title": "Lead Sling Bullet from Cosa",
+      "basis": "object",
+      "catalog_dimensions": "3.7 × 1.5 cm; 39.6 g",
+      "source_urls": [
+        "https://sketchfab.com/3d-models/lead-sling-bullet-cosa-excavations-c22084-1b8da6363aac4c65a6d4e639fb2fa168"
+      ],
+      "status": "disabled-axis",
+      "can_enable_after_final_pose": false,
+      "source_measurements": [
+        {
+          "axis": null,
+          "value": 3.7,
+          "unit": "cm",
+          "sourceUrls": [
+            "https://sketchfab.com/3d-models/lead-sling-bullet-cosa-excavations-c22084-1b8da6363aac4c65a6d4e639fb2fa168"
+          ],
+          "source_label": "first number in unlabelled Size3.7×1.5cm"
+        },
+        {
+          "axis": null,
+          "value": 1.5,
+          "unit": "cm",
+          "sourceUrls": [
+            "https://sketchfab.com/3d-models/lead-sling-bullet-cosa-excavations-c22084-1b8da6363aac4c65a6d4e639fb2fa168"
+          ],
+          "source_label": "second number in unlabelled Size3.7×1.5cm"
+        }
+      ],
+      "planned_reference": null,
+      "blocker": "Excavation source gives Size3.7×1.5cm, but does not explicitly identify length versus width/diameter. The tip-to-tip interpretation is plausible but remains an inference; exact AR stays off until that direction is source-confirmed.",
+      "pending_review": [
+        "Verify final model identity and represented scope.",
+        "Bind only after immutable final R2 URL, full asset SHA-256 and reviewed orientation are fixed."
+      ],
+      "possible_axis_followup": "If excavation record or authored measurement schema confirms tip-to-tip length3.7cm, pose long axis vertically and bind Y0.037m, or bind X if final pose is horizontal. Do not derive the source axis from mesh ratios."
+    },
+    {
+      "slug": "europe/iron-spearhead-diersheim-blm-c-11423-b-2fbff8",
+      "uid": "2fbff8aeb75d4933979256e857a1d941",
+      "title": "Iron Spearhead from Diersheim",
+      "basis": "object",
+      "catalog_dimensions": "15.4 × 2.8 × 1.6 cm",
+      "source_urls": [
+        "https://sketchfab.com/3d-models/lanzenspitze-2fbff8aeb75d4933979256e857a1d941"
+      ],
+      "status": "conditional-enable",
+      "can_enable_after_final_pose": true,
+      "source_measurements": [
+        {
+          "axis": "length",
+          "value": 15.4,
+          "unit": "cm",
+          "sourceUrls": [
+            "https://sketchfab.com/3d-models/lanzenspitze-2fbff8aeb75d4933979256e857a1d941"
+          ]
+        },
+        {
+          "axis": "width",
+          "value": 2.8,
+          "unit": "cm",
+          "sourceUrls": [
+            "https://sketchfab.com/3d-models/lanzenspitze-2fbff8aeb75d4933979256e857a1d941"
+          ]
+        },
+        {
+          "axis": "depth",
+          "value": 1.6,
+          "unit": "cm",
+          "sourceUrls": [
+            "https://sketchfab.com/3d-models/lanzenspitze-2fbff8aeb75d4933979256e857a1d941"
+          ]
+        }
+      ],
+      "planned_reference": {
+        "axis_after_pose": "y",
+        "meters": 0.154,
+        "source_measurement_axis": "length",
+        "scope": "Entire surviving spearhead including socket, from socket-end to tip.",
+        "extent_fraction": 1,
+        "basis": "object",
+        "kind": "object"
+      },
+      "blocker": null,
+      "pending_review": [
+        "If root poses the socket-to-tip direction vertically, bind Y0.154m. If it is deliberately horizontal, substitute X only after review.",
+        "Confirm no museum plinth, rule, or holder lies beyond the shaft/tip span; do not size a reconstructed spear shaft from the head measurement.",
+        "Verify final model identity and represented scope.",
+        "Bind only after immutable final R2 URL, full asset SHA-256 and reviewed orientation are fixed."
+      ]
+    },
+    {
+      "slug": "europe/illyrian-sica-gvozd-niksic-850cf1",
+      "uid": "850cf188f7d74f4d979a5c4b49251a35",
+      "title": "Iron Sica from Gvozd",
+      "basis": "object",
+      "catalog_dimensions": "",
+      "source_urls": [
+        "https://sketchfab.com/3d-models/sword-niksic-montenegro-850cf188f7d74f4d979a5c4b49251a35"
+      ],
+      "status": "disabled-unverified",
+      "can_enable_after_final_pose": false,
+      "source_measurements": [],
+      "planned_reference": null,
+      "blocker": "No matching, source-supported numerical physical measurement was found. Do not infer size from source-model units, displayed thumbnails, generic object examples, or dimensions of other collection objects.",
+      "pending_review": [
+        "Matching documented measurement must come from the exact object source or holding museum, with clear physical scope.",
+        "Verify final model identity and represented scope.",
+        "Bind only after immutable final R2 URL, full asset SHA-256 and reviewed orientation are fixed."
+      ]
+    },
+    {
+      "slug": "greek/paullus-monument-frieze-panel-ii-a1e2b6",
+      "uid": "a1e2b6e2c04e4d9a9a6d768e1a6d43c2",
+      "title": "Paullus Monument Frieze: Panel II",
+      "basis": "object",
+      "catalog_dimensions": "",
+      "source_urls": [
+        "https://delphi.culture.gr/zwforos-mnimeiou-aimiliou-pavlou/",
+        "https://sketchfab.com/3d-models/paullus-monument-frieze-panel-ii-a1e2b6e2c04e4d9a9a6d768e1a6d43c2"
+      ],
+      "status": "disabled-unverified",
+      "can_enable_after_final_pose": false,
+      "source_measurements": [],
+      "planned_reference": null,
+      "blocker": "No official individual-slab measurement is verified. Independent uploader’s0.31m whole-frieze height must not be applied to this relief fragment.",
+      "pending_review": [
+        "Verify final model identity and represented scope.",
+        "Bind only after immutable final R2 URL, full asset SHA-256 and reviewed orientation are fixed."
+      ],
+      "rejected_measurements": [
+        {
+          "value": 0.31,
+          "unit": "m",
+          "claim": "Height of the entire original frieze in independent uploader description",
+          "reason": "No museum-confirmed individual-slab dimensions and no reliable complete-frieze-to-scanned-fragment correspondence. Not accepted as a physical calibration reference."
+        }
+      ]
+    },
+    {
+      "slug": "greek/amazon-frieze-halikarnassos-bm-1847-0424-5-377341",
+      "uid": "3773418dc89f44a0bda31376260917c8",
+      "title": "Amazon Frieze from the Mausoleum at Halikarnassos",
+      "basis": "object",
+      "catalog_dimensions": "H 90 × L 180 cm",
+      "source_urls": [
+        "https://www.britishmuseum.org/collection/object/G_1847-0424-5",
+        "https://sketchfab.com/3d-models/marble-slab-of-the-amazon-frieze-3773418dc89f44a0bda31376260917c8"
+      ],
+      "status": "conditional-enable",
+      "can_enable_after_final_pose": true,
+      "source_measurements": [
+        {
+          "axis": "height",
+          "value": 0.9,
+          "unit": "m",
+          "sourceUrls": [
+            "https://www.britishmuseum.org/collection/object/G_1847-0424-5"
+          ]
+        },
+        {
+          "axis": "length",
+          "value": 1.8,
+          "unit": "m",
+          "sourceUrls": [
+            "https://www.britishmuseum.org/collection/object/G_1847-0424-5"
+          ]
+        }
+      ],
+      "planned_reference": {
+        "axis_after_pose": "y",
+        "meters": 0.9,
+        "source_measurement_axis": "height",
+        "scope": "Complete original slab1847,0424.5, including conserved marble margins and surviving figures.",
+        "extent_fraction": 1,
+        "basis": "object",
+        "kind": "object"
+      },
+      "blocker": null,
+      "pending_review": [
+        "Pose slab upright and relief face forward; Y is slab height0.9m, X is its horizontal length1.8m.",
+        "Verify scan includes the full measured slab and no frame/modern display hardware above/below it. The two source dimensions are useful proportion cross-checks, not independent mesh-derived estimates.",
+        "Verify final model identity and represented scope.",
+        "Bind only after immutable final R2 URL, full asset SHA-256 and reviewed orientation are fixed."
+      ]
+    },
+    {
+      "slug": "ancient-near-east/luristan-bronze-dagger-mia-76-73-6-f29de0",
+      "uid": "f29de0460b704b7182a1a5495e915a97",
+      "title": "Bronze Dagger from Luristan",
+      "basis": "object",
+      "catalog_dimensions": "46.36 cm long",
+      "source_urls": [
+        "https://collections.artsmia.org/art/21293/dagger-persia",
+        "https://sketchfab.com/3d-models/bronze-dagger-900-400-bce-f29de0460b704b7182a1a5495e915a97"
+      ],
+      "status": "conditional-enable",
+      "can_enable_after_final_pose": true,
+      "source_measurements": [
+        {
+          "axis": "length",
+          "value": 46.36,
+          "unit": "cm",
+          "sourceUrls": [
+            "https://collections.artsmia.org/art/21293/dagger-persia"
+          ]
+        }
+      ],
+      "planned_reference": {
+        "axis_after_pose": "y",
+        "meters": 0.4636,
+        "source_measurement_axis": "length",
+        "scope": "Complete Mia dagger76.73.6 from pommel top to blade point.",
+        "extent_fraction": 1,
+        "basis": "object",
+        "kind": "object"
+      },
+      "blocker": null,
+      "pending_review": [
+        "Pose pommel-to-tip direction vertically; bindY0.4636m. If root deliberately poses it horizontally, bindX only after review.",
+        "Verify full pommel and blade and no modern mount extending beyond the selected complete-object span.",
+        "Bind only after final immutableR2URL, fullassetSHA256, and reviewedorientation are fixed."
+      ]
+    },
+    {
+      "slug": "ancient-near-east/achaemenid-lancer-susa-bm-loan-78-1a1477",
+      "uid": "1a1477c2d19741c3a8abb41e15afce10",
+      "title": "Achaemenid Royal Guard from Susa",
+      "basis": "object",
+      "catalog_dimensions": "198 × 70 cm; 22 brick courses",
+      "source_urls": [
+        "https://www.britishmuseum.org/collection/object/W_Loan-78",
+        "https://sketchfab.com/3d-models/achaemenid-lancer-1a1477c2d19741c3a8abb41e15afce10"
+      ],
+      "status": "conditional-enable",
+      "can_enable_after_final_pose": true,
+      "source_measurements": [
+        {
+          "axis": "height",
+          "value": 198,
+          "unit": "cm",
+          "sourceUrls": [
+            "https://www.britishmuseum.org/collection/object/W_Loan-78"
+          ]
+        },
+        {
+          "axis": "width",
+          "value": 70,
+          "unit": "cm",
+          "sourceUrls": [
+            "https://www.britishmuseum.org/collection/object/W_Loan-78"
+          ]
+        }
+      ],
+      "planned_reference": {
+        "axis_after_pose": "x",
+        "meters": 0.7,
+        "source_measurement_axis": "width",
+        "scope": "The restored brick panelLoan.78 / LouvreSb4001, excluding modern pedestal.",
+        "extent_fraction": 1,
+        "basis": "object",
+        "kind": "object"
+      },
+      "blocker": null,
+      "pending_review": [
+        "Pose panel upright, front face forward. Prefer X0.70m if the slab itself supplies the fullX extent and its support is narrower.",
+        "Do not bind fullY extent to1.98m while the small modern base extends below the brick panel. Height can be used only with a numerically reviewed panel component boundary and extentFraction bound to the final asset/orientation.",
+        "If modern base or support also exceeds panel width, leave exact AR disabled unless an exact reviewed panel-only extent is established.",
+        "Verify final model identity and represented scope.",
+        "Bind only after immutable final R2 URL, full asset SHA-256 and reviewed orientation are fixed."
+      ]
+    },
+    {
+      "slug": "ancient-near-east/sasanian-hormizd-lion-hunt-dish-cma-1962-150-57ba61",
+      "uid": "57ba611b823b4f9691262876d3ebb9a3",
+      "title": "Dish with King Hormizd II or Hormizd III Hunting Lions",
+      "basis": "object",
+      "catalog_dimensions": "4.6 cm high × 20.8 cm diameter; 546 g",
+      "source_urls": [
+        "https://www.clevelandart.org/art/1962.150",
+        "https://sketchfab.com/3d-models/1962150-dish-with-king-hormizd-ii-57ba611b823b4f9691262876d3ebb9a3"
+      ],
+      "status": "conditional-enable",
+      "can_enable_after_final_pose": true,
+      "source_measurements": [
+        {
+          "axis": "height",
+          "value": 4.6,
+          "unit": "cm",
+          "sourceUrls": [
+            "https://www.clevelandart.org/art/1962.150"
+          ]
+        },
+        {
+          "axis": "diameter",
+          "value": 20.8,
+          "unit": "cm",
+          "sourceUrls": [
+            "https://www.clevelandart.org/art/1962.150"
+          ]
+        }
+      ],
+      "planned_reference": {
+        "axis_after_pose": "x",
+        "meters": 0.208,
+        "source_measurement_axis": "diameter",
+        "scope": "Original dish rim-to-rim diameter, excluding any modern stand.",
+        "extent_fraction": 1,
+        "basis": "object",
+        "kind": "object"
+      },
+      "blocker": null,
+      "pending_review": [
+        "If presented upright with the relief face forward, a full left-to-right rim span is X diameter0.208m. If posed flat, X or Z can carry diameter, after review of both rim ends.",
+        "Do not bind Y0.046m in an upright display:4.6cm is vessel rise/depth in its flat physical orientation, not the diameter or relief-height crop.",
+        "Verify round dish is complete and any retained pedestal/stand does not dominate the selected rim-to-rim axis.",
+        "Verify final model identity and represented scope.",
+        "Bind only after immutable final R2 URL, full asset SHA-256 and reviewed orientation are fixed."
+      ]
+    },
+    {
+      "slug": "greece-rome/egadi-battle-naval-ram-archeocamp-51d59d",
+      "uid": "51d59d758b5741668567b205983a4b8c",
+      "title": "Naval Ram from the Battle of the Egadi Islands",
+      "basis": "object",
+      "catalog_dimensions": "",
+      "source_urls": [
+        "https://sketchfab.com/3d-models/archeocamp-2018-rostro-battaglia-delle-egadi-51d59d758b5741668567b205983a4b8c"
+      ],
+      "status": "disabled-unverified",
+      "can_enable_after_final_pose": false,
+      "source_measurements": [],
+      "planned_reference": null,
+      "blocker": "No matching, source-supported numerical physical measurement was found. Do not infer size from source-model units, displayed thumbnails, generic object examples, or dimensions of other collection objects.",
+      "pending_review": [
+        "Matching documented measurement must come from the exact object source or holding museum, with clear physical scope.",
+        "Verify final model identity and represented scope.",
+        "Bind only after immutable final R2 URL, full asset SHA-256 and reviewed orientation are fixed."
+      ]
+    },
+    {
+      "slug": "europe/la-tene-sword-la-pedrera-lleida-e0d54b",
+      "uid": "e0d54ba1df314a36865b65f108b9d73b",
+      "title": "Straight-Bladed La Tène Sword from La Pedrera",
+      "basis": "object",
+      "catalog_dimensions": "",
+      "source_urls": [
+        "https://museudelleida.cat/collection/edat-del-ferro-i-estat-ilerget/",
+        "https://sketchfab.com/3d-models/none-e0d54ba1df314a36865b65f108b9d73b"
+      ],
+      "status": "disabled-unverified",
+      "can_enable_after_final_pose": false,
+      "source_measurements": [],
+      "planned_reference": null,
+      "blocker": "No matching, source-supported numerical physical measurement was found. Do not infer size from source-model units, displayed thumbnails, generic object examples, or dimensions of other collection objects.",
+      "pending_review": [
+        "Matching documented measurement must come from the exact object source or holding museum, with clear physical scope.",
+        "Verify final model identity and represented scope.",
+        "Bind only after immutable final R2 URL, full asset SHA-256 and reviewed orientation are fixed."
+      ]
+    },
+    {
+      "slug": "europe/bronze-horse-muzzle-la-pedrera-lleida-d6d097",
+      "uid": "d6d097bcb9a74286a7c63e8216118ea7",
+      "title": "Bronze Horse Muzzle from La Pedrera",
+      "basis": "object",
+      "catalog_dimensions": "",
+      "source_urls": [
+        "https://museudelleida.cat/collection/edat-del-ferro-i-estat-ilerget/",
+        "https://sketchfab.com/3d-models/none-d6d097bcb9a74286a7c63e8216118ea7"
+      ],
+      "status": "disabled-unverified",
+      "can_enable_after_final_pose": false,
+      "source_measurements": [],
+      "planned_reference": null,
+      "blocker": "No matching, source-supported numerical physical measurement was found. Do not infer size from source-model units, displayed thumbnails, generic object examples, or dimensions of other collection objects.",
+      "pending_review": [
+        "Matching documented measurement must come from the exact object source or holding museum, with clear physical scope.",
+        "Verify final model identity and represented scope.",
+        "Bind only after immutable final R2 URL, full asset SHA-256 and reviewed orientation are fixed."
+      ]
+    },
+    {
+      "slug": "europe/la-tene-helmet-enserune-4c7323",
+      "uid": "4c7323bc7224413591279f81948d1551",
+      "title": "La Tène Helmet from Ensérune, Restored Archaeological Object",
+      "basis": "object",
+      "catalog_dimensions": "13.2 cm high × 28.5 cm long × 11.5 cm wide",
+      "source_urls": [
+        "https://sketchfab.com/3d-models/4c7323bc7224413591279f81948d1551",
+        "https://sketchfab.com/3d-models/none-4c7323bc7224413591279f81948d1551"
+      ],
+      "status": "conditional-enable-restored-scope",
+      "can_enable_after_final_pose": true,
+      "source_measurements": [
+        {
+          "axis": "height",
+          "value": 132,
+          "unit": "mm",
+          "sourceUrls": [
+            "https://sketchfab.com/3d-models/none-4c7323bc7224413591279f81948d1551"
+          ]
+        },
+        {
+          "axis": "length",
+          "value": 285,
+          "unit": "mm",
+          "sourceUrls": [
+            "https://sketchfab.com/3d-models/none-4c7323bc7224413591279f81948d1551"
+          ]
+        },
+        {
+          "axis": "width",
+          "value": 115,
+          "unit": "mm",
+          "sourceUrls": [
+            "https://sketchfab.com/3d-models/none-4c7323bc7224413591279f81948d1551"
+          ]
+        }
+      ],
+      "planned_reference": {
+        "axis_after_pose": "y",
+        "meters": 0.132,
+        "source_measurement_axis": "height",
+        "scope": "The source-documented crushed/restored archaeological helmet, not an expanded hypothetical intact helmet.",
+        "extent_fraction": 1,
+        "basis": "object",
+        "kind": "object"
+      },
+      "blocker": null,
+      "pending_review": [
+        "Before enabling, establish that the final mesh corresponds to the documented restored object measured H132/L285/W115mm. Source credits3D restitution; that must not be silently treated as the untouched crushed ancient original.",
+        "After a matched physical/restored scope is confirmed and its measured height is aligned upward, Y0.132m; verify X/Z length285/width115mm against the chosen front direction.",
+        "If geometry has been uncrushed or virtually completed to an intact helmet shape, the published physical132mm height does not authorize exact AR for that reconstruction; retain disabled geometry status.",
+        "Verify final model identity and represented scope.",
+        "Bind only after immutable final R2 URL, full asset SHA-256 and reviewed orientation are fixed."
+      ]
+    },
+    {
+      "slug": "europe/lead-sling-bullet-maam-grosseto-23165-d3492b",
+      "uid": "d3492bb071844e589e19c2162aa45753",
+      "title": "Missile-Shaped Lead Sling Bullet",
+      "basis": "object",
+      "catalog_dimensions": "",
+      "source_urls": [
+        "https://sketchfab.com/3d-models/d3492bb071844e589e19c2162aa45753",
+        "https://sketchfab.com/3d-models/none-d3492bb071844e589e19c2162aa45753"
+      ],
+      "status": "disabled-unverified",
+      "can_enable_after_final_pose": false,
+      "source_measurements": [],
+      "planned_reference": null,
+      "blocker": "No matching, source-supported numerical physical measurement was found. Do not infer size from source-model units, displayed thumbnails, generic object examples, or dimensions of other collection objects.",
+      "pending_review": [
+        "Matching documented measurement must come from the exact object source or holding museum, with clear physical scope.",
+        "Verify final model identity and represented scope.",
+        "Bind only after immutable final R2 URL, full asset SHA-256 and reviewed orientation are fixed."
+      ]
+    },
+    {
+      "slug": "europe/three-bladed-scythian-arrowhead-babice-c0cb65",
+      "uid": "c0cb657099cc460a92d2c9fca4f9f617",
+      "title": "Three-Bladed Scythian Arrowhead from Babice",
+      "basis": "object",
+      "catalog_dimensions": "",
+      "source_urls": [
+        "https://muzea.malopolska.pl/en/objects-list/4763",
+        "https://sketchfab.com/3d-models/none-c0cb657099cc460a92d2c9fca4f9f617"
+      ],
+      "status": "disabled-unverified",
+      "can_enable_after_final_pose": false,
+      "source_measurements": [],
+      "planned_reference": null,
+      "blocker": "No matching, source-supported numerical physical measurement was found. Do not infer size from source-model units, displayed thumbnails, generic object examples, or dimensions of other collection objects.",
+      "pending_review": [
+        "Matching documented measurement must come from the exact object source or holding museum, with clear physical scope.",
+        "Verify final model identity and represented scope.",
+        "Bind only after immutable final R2 URL, full asset SHA-256 and reviewed orientation are fixed."
+      ]
+    }
+  ]
+}

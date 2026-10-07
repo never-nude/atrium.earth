@@ -1,0 +1,411 @@
+{
+  "schema": "atrium-classical-curation-audit/1",
+  "audited_at": "2026-10-07T15:09:32.155070+00:00",
+  "logical_batch_id": "classical-arms-equipment-20261007",
+  "manifest": "docs/ingest/classical-arms-equipment-20261007-leads.json",
+  "baseline_ref": "origin/main",
+  "baseline_commit": "fb0e415f0b2fa47b95e5641b5944b37a7440fc38",
+  "baseline_catalog_count": 1911,
+  "candidate_count": 20,
+  "summary": {
+    "downloadable_permissive_models": 20,
+    "license_mismatches": 0,
+    "exact_uid_slug_accession_duplicates": 0,
+    "probable_same_object_duplicates": 0,
+    "metadata_ready_after_correction": 19,
+    "holds": 1,
+    "required_title_corrections": 1
+  },
+  "global_notes": [
+    "All20 fresh Sketchfab API responses confirm isDownloadable=true, SUCCEEDED processing, and declared CC0/CC BY/CC BY-SA license.",
+    "Duplicate checks cover allbaseline record text forUID, exact slug, normalized accession, and manual title/object/provenance comparison. Halikarnassos dynastic figures, Amazon/Achillia relief, Susa Sb23364 lancer and La Pedrera MLDC3027 helmet are related works but different physical objects.",
+    "Greek collection entries both explicitly carry wing greece-rome; Roman entries also use greece-rome. Other geographic assignments follow documented findspot/culture except withheld MAAM sling bullet.",
+    "This audit checks metadata/source/license/object identity, not acquired-file geometry or published orientation. All19 require final geometry, texture/material fidelity, orientation and thumbnail review. API texture count alone is not a reliable statement of vertex-color availability. Preserve authored colors and do not invent patina.",
+    "Unknown dimensions remain unknown. Modern stand geometry on the Egadi ram must not set ancient object scale."
+  ],
+  "required_corrections": [
+    {
+      "uid": "3773418dc89f44a0bda31376260917c8",
+      "title": "Slab from the Amazon Frieze at Halikarnassos"
+    },
+    {
+      "uid": "d3492bb071844e589e19c2162aa45753",
+      "action": "withhold pending supported origin"
+    }
+  ],
+  "models": [
+    {
+      "uid": "760424bb696447cfae9802dd77d47866",
+      "slug": "roman/nijmegen-roman-cavalry-face-helmet-valkhof-xxi-l-4-760424",
+      "title": "Roman Cavalry Face Helmet from Nijmegen",
+      "status": "pass_metadata_pending_geometry_review",
+      "source_record_url": "https://valkhofmuseum.nl/nl/verdieping/collectie/archeologie/ruiterhelm-met-gezichtsmasker",
+      "identity": "3D scan of physical archaeological object",
+      "declared_license": "CC BY-SA 4.0",
+      "api_license": "by-sa",
+      "api_license_url": "http://creativecommons.org/licenses/by-sa/4.0/",
+      "downloadable": true,
+      "source_processing_status": "SUCCEEDED",
+      "duplicate_matches": [],
+      "wing": "greece-rome",
+      "metadata_notes": [],
+      "required_corrections": []
+    },
+    {
+      "uid": "d95a682e81a746df983dde1f533ba96f",
+      "slug": "roman/vechten-roman-cavalry-face-mask-rmo-vf-1047-d95a68",
+      "title": "Roman Cavalry Face Mask from Vechten",
+      "status": "pass_metadata_pending_geometry_review",
+      "source_record_url": "https://www.rmo.nl/3d-objecten/viziermasker/",
+      "identity": "3D scan of physical archaeological object",
+      "declared_license": "CC BY 4.0",
+      "api_license": "by",
+      "api_license_url": "http://creativecommons.org/licenses/by/4.0/",
+      "downloadable": true,
+      "source_processing_status": "SUCCEEDED",
+      "duplicate_matches": [],
+      "wing": "greece-rome",
+      "metadata_notes": [
+        "Narrative first-half1st-century date differs from formal catalog50–100 CE. Current manifest explicitly discloses discrepancy and uses formal catalog date; acceptable."
+      ],
+      "required_corrections": []
+    },
+    {
+      "uid": "ec3a3a3a030d4750a2ff7690fe61f82b",
+      "slug": "roman/montefortino-helmet-piquete-atalaya-zaragoza-ec3a3a",
+      "title": "Montefortino Helmet from Piquete de la Atalaya",
+      "status": "pass_metadata_pending_geometry_review",
+      "source_record_url": "https://sketchfab.com/3d-models/casco-celtibero-ec3a3a3a030d4750a2ff7690fe61f82b",
+      "identity": "3D scan of physical archaeological object",
+      "declared_license": "CC BY 4.0",
+      "api_license": "by",
+      "api_license_url": "http://creativecommons.org/licenses/by/4.0/",
+      "downloadable": true,
+      "source_processing_status": "SUCCEEDED",
+      "duplicate_matches": [],
+      "wing": "greece-rome",
+      "metadata_notes": [],
+      "required_corrections": []
+    },
+    {
+      "uid": "5949c079ef0840fcbe6193d204dcdbdb",
+      "slug": "roman/weisenau-helmet-cheek-piece-uitgeest-hilde-5031-003-5949c0",
+      "title": "Cheek Piece of a Weisenau-Type Roman Helmet",
+      "status": "pass_metadata_pending_geometry_review",
+      "source_record_url": "https://hdl.handle.net/21.12153/obj40204",
+      "identity": "3D scan of physical archaeological object",
+      "declared_license": "CC BY-SA 4.0",
+      "api_license": "by-sa",
+      "api_license_url": "http://creativecommons.org/licenses/by-sa/4.0/",
+      "downloadable": true,
+      "source_processing_status": "SUCCEEDED",
+      "duplicate_matches": [],
+      "wing": "greece-rome",
+      "metadata_notes": [],
+      "required_corrections": []
+    },
+    {
+      "uid": "7a8c3c0697b64c97bb520d237d997d15",
+      "slug": "roman/ivory-gladius-scabbard-chape-velsen-ii-hilde-6026-06-7a8c3c",
+      "title": "Ivory Chape from a Mainz-Type Gladius Scabbard",
+      "status": "pass_metadata_pending_geometry_review",
+      "source_record_url": "https://hdl.handle.net/21.12153/obj43246",
+      "identity": "3D scan of physical archaeological object",
+      "declared_license": "CC BY 4.0",
+      "api_license": "by",
+      "api_license_url": "http://creativecommons.org/licenses/by/4.0/",
+      "downloadable": true,
+      "source_processing_status": "SUCCEEDED",
+      "duplicate_matches": [],
+      "wing": "greece-rome",
+      "metadata_notes": [],
+      "required_corrections": []
+    },
+    {
+      "uid": "35a51a1d0cac4f2188d28a7d790ce798",
+      "slug": "roman/roman-cavalry-pendant-maastricht-35a51a",
+      "title": "Roman Cavalry Harness Pendant from Maastricht",
+      "status": "pass_metadata_pending_geometry_review",
+      "source_record_url": "https://sketchfab.com/3d-models/roman-cavalry-pendant-35a51a1d0cac4f2188d28a7d790ce798",
+      "identity": "3D scan of physical archaeological object",
+      "declared_license": "CC BY 4.0",
+      "api_license": "by",
+      "api_license_url": "http://creativecommons.org/licenses/by/4.0/",
+      "downloadable": true,
+      "source_processing_status": "SUCCEEDED",
+      "duplicate_matches": [],
+      "wing": "greece-rome",
+      "metadata_notes": [],
+      "required_corrections": []
+    },
+    {
+      "uid": "1b8da6363aac4c65a6d4e639fb2fa168",
+      "slug": "roman/lead-sling-bullet-cosa-c22-084-1b8da6",
+      "title": "Lead Sling Bullet from Cosa",
+      "status": "pass_metadata_pending_geometry_review",
+      "source_record_url": "https://sketchfab.com/3d-models/lead-sling-bullet-cosa-excavations-c22084-1b8da6363aac4c65a6d4e639fb2fa168",
+      "identity": "3D scan of physical archaeological object",
+      "declared_license": "CC BY 4.0",
+      "api_license": "by",
+      "api_license_url": "http://creativecommons.org/licenses/by/4.0/",
+      "downloadable": true,
+      "source_processing_status": "SUCCEEDED",
+      "duplicate_matches": [],
+      "wing": "greece-rome",
+      "metadata_notes": [],
+      "required_corrections": []
+    },
+    {
+      "uid": "2fbff8aeb75d4933979256e857a1d941",
+      "slug": "europe/iron-spearhead-diersheim-blm-c-11423-b-2fbff8",
+      "title": "Iron Spearhead from Diersheim",
+      "status": "pass_metadata_pending_geometry_review",
+      "source_record_url": "https://sketchfab.com/3d-models/lanzenspitze-2fbff8aeb75d4933979256e857a1d941",
+      "identity": "3D scan of physical archaeological object",
+      "declared_license": "CC BY-SA 4.0",
+      "api_license": "by-sa",
+      "api_license_url": "http://creativecommons.org/licenses/by-sa/4.0/",
+      "downloadable": true,
+      "source_processing_status": "SUCCEEDED",
+      "duplicate_matches": [],
+      "wing": "europe",
+      "metadata_notes": [
+        "Diersheim200–260 CE chronology does not prove Roman maker. Current qualified culture and Europe route correctly preserve this uncertainty."
+      ],
+      "required_corrections": []
+    },
+    {
+      "uid": "850cf188f7d74f4d979a5c4b49251a35",
+      "slug": "europe/illyrian-sica-gvozd-niksic-850cf1",
+      "title": "Iron Sica from Gvozd",
+      "status": "pass_metadata_pending_geometry_review",
+      "source_record_url": "https://sketchfab.com/3d-models/sword-niksic-montenegro-850cf188f7d74f4d979a5c4b49251a35",
+      "identity": "3D scan/model of physical object",
+      "declared_license": "CC BY 4.0",
+      "api_license": "by",
+      "api_license_url": "http://creativecommons.org/licenses/by/4.0/",
+      "downloadable": true,
+      "source_processing_status": "SUCCEEDED",
+      "duplicate_matches": [],
+      "wing": "europe",
+      "metadata_notes": [],
+      "required_corrections": []
+    },
+    {
+      "uid": "a1e2b6e2c04e4d9a9a6d768e1a6d43c2",
+      "slug": "greek/paullus-monument-frieze-panel-ii-a1e2b6",
+      "title": "Paullus Monument Frieze: Panel II",
+      "status": "pass_metadata_pending_geometry_review",
+      "source_record_url": "https://delphi.culture.gr/zwforos-mnimeiou-aimiliou-pavlou/",
+      "identity": "3D scan/model of physical object",
+      "declared_license": "CC BY 4.0",
+      "api_license": "by",
+      "api_license_url": "http://creativecommons.org/licenses/by/4.0/",
+      "downloadable": true,
+      "source_processing_status": "SUCCEEDED",
+      "duplicate_matches": [],
+      "wing": "greece-rome",
+      "metadata_notes": [
+        "Official Delphi museum supports monument identity and post-168 BCE date. Panel II is uploader label, disclosed in note. No slab accession or supported dimensions claimed. Greek collection and greece-rome wing are correct."
+      ],
+      "required_corrections": []
+    },
+    {
+      "uid": "3773418dc89f44a0bda31376260917c8",
+      "slug": "greek/amazon-frieze-halikarnassos-bm-1847-0424-5-377341",
+      "title": "Amazon Frieze from the Mausoleum at Halikarnassos",
+      "status": "pass_after_title_correction",
+      "source_record_url": "https://www.britishmuseum.org/collection/object/G_1847-0424-5",
+      "identity": "3D scan/model of physical object",
+      "declared_license": "CC BY 4.0",
+      "api_license": "by",
+      "api_license_url": "http://creativecommons.org/licenses/by/4.0/",
+      "downloadable": true,
+      "source_processing_status": "SUCCEEDED",
+      "duplicate_matches": [],
+      "wing": "greece-rome",
+      "metadata_notes": [],
+      "required_corrections": [
+        {
+          "field": "title",
+          "value": "Slab from the Amazon Frieze at Halikarnassos",
+          "reason": "Exact scanned object is BM 1847,0424.5, a single slab, not the complete frieze. Primary BM description and scan source match five figures and a horse."
+        }
+      ]
+    },
+    {
+      "uid": "f29de0460b704b7182a1a5495e915a97",
+      "slug": "ancient-near-east/luristan-bronze-dagger-mia-76-73-6-f29de0",
+      "title": "Bronze Dagger from Luristan",
+      "status": "pass_metadata_pending_geometry_review",
+      "source_record_url": "https://collections.artsmia.org/art/21293/dagger-persia",
+      "identity": "3D scan/model of physical object",
+      "declared_license": "CC0 1.0",
+      "api_license": "cc0",
+      "api_license_url": "http://creativecommons.org/publicdomain/zero/1.0/",
+      "downloadable": true,
+      "source_processing_status": "SUCCEEDED",
+      "duplicate_matches": [],
+      "wing": "near-east",
+      "metadata_notes": [
+        "Institution primary JSON https://search.artsmia.org/id/21293 verified title Dagger, Bronze, Iran, Persia(Luristan), 900–400 BCE, 46.36 cm, accession76.73.6. Matches manifest. Digital model CC0 confirmed independently via Sketchfab API."
+      ],
+      "required_corrections": []
+    },
+    {
+      "uid": "1a1477c2d19741c3a8abb41e15afce10",
+      "slug": "ancient-near-east/achaemenid-lancer-susa-bm-loan-78-1a1477",
+      "title": "Achaemenid Royal Guard from Susa",
+      "status": "pass_metadata_pending_geometry_review",
+      "source_record_url": "https://www.britishmuseum.org/collection/object/W_Loan-78",
+      "identity": "3D scan/model of physical object",
+      "declared_license": "CC BY 4.0",
+      "api_license": "by",
+      "api_license_url": "http://creativecommons.org/licenses/by/4.0/",
+      "downloadable": true,
+      "source_processing_status": "SUCCEEDED",
+      "duplicate_matches": [],
+      "wing": "near-east",
+      "metadata_notes": [
+        "BM Loan.78 / 132525; Louvre Sb 4001 is distinct from baseline Louvre Abu Dhabi Sb 23364. Heavy restoration and overpainting disclosed. It is a restored glazed-brick panel depicting a guard, not extant Persian personal armor. Optional clearer title: Restored Achaemenid Lancer Panel from Susa."
+      ],
+      "required_corrections": []
+    },
+    {
+      "uid": "57ba611b823b4f9691262876d3ebb9a3",
+      "slug": "ancient-near-east/sasanian-hormizd-lion-hunt-dish-cma-1962-150-57ba61",
+      "title": "Dish with King Hormizd II or Hormizd III Hunting Lions",
+      "status": "pass_metadata_pending_geometry_review",
+      "source_record_url": "https://www.clevelandart.org/art/1962.150",
+      "identity": "3D scan/model of physical object",
+      "declared_license": "CC0 1.0",
+      "api_license": "cc0",
+      "api_license_url": "http://creativecommons.org/publicdomain/zero/1.0/",
+      "downloadable": true,
+      "source_processing_status": "SUCCEEDED",
+      "duplicate_matches": [],
+      "wing": "near-east",
+      "metadata_notes": [],
+      "required_corrections": []
+    },
+    {
+      "uid": "51d59d758b5741668567b205983a4b8c",
+      "slug": "greece-rome/egadi-battle-naval-ram-archeocamp-51d59d",
+      "title": "Naval Ram from the Battle of the Egadi Islands",
+      "status": "pass_metadata_pending_geometry_review",
+      "source_record_url": "https://sketchfab.com/3d-models/archeocamp-2018-rostro-battaglia-delle-egadi-51d59d758b5741668567b205983a4b8c",
+      "identity": "3D scan/model of physical object",
+      "declared_license": "CC BY 4.0",
+      "api_license": "by",
+      "api_license_url": "http://creativecommons.org/licenses/by/4.0/",
+      "downloadable": true,
+      "source_processing_status": "SUCCEEDED",
+      "duplicate_matches": [],
+      "wing": "greece-rome",
+      "metadata_notes": [
+        "Uploader workshop documentation ties object to Egadi recovery but gives no inventory number or Roman/Carthaginian attribution. These uncertainties and modern display support are disclosed; no exact physical scale or army attribution should be added. No exact or probable Egadi object in baseline."
+      ],
+      "required_corrections": []
+    },
+    {
+      "uid": "e0d54ba1df314a36865b65f108b9d73b",
+      "slug": "europe/la-tene-sword-la-pedrera-lleida-e0d54b",
+      "title": "Straight-Bladed La Tène Sword from La Pedrera",
+      "status": "pass_metadata_pending_geometry_review",
+      "source_record_url": "https://museudelleida.cat/collection/edat-del-ferro-i-estat-ilerget/",
+      "identity": "3D model of physical archaeological object",
+      "declared_license": "CC BY 4.0",
+      "api_license": "by",
+      "api_license_url": "http://creativecommons.org/licenses/by/4.0/",
+      "downloadable": true,
+      "source_processing_status": "SUCCEEDED",
+      "duplicate_matches": [],
+      "wing": "europe",
+      "metadata_notes": [
+        "Fresh Museu de Lleida primary record verifies accession, material, findspot and current date. The baseline La Pedrera helmet MLDC3027 is a different object; sword MLDC3028 and muzzle MLDC2974 are new."
+      ],
+      "required_corrections": []
+    },
+    {
+      "uid": "d6d097bcb9a74286a7c63e8216118ea7",
+      "slug": "europe/bronze-horse-muzzle-la-pedrera-lleida-d6d097",
+      "title": "Bronze Horse Muzzle from La Pedrera",
+      "status": "pass_metadata_pending_geometry_review",
+      "source_record_url": "https://museudelleida.cat/collection/edat-del-ferro-i-estat-ilerget/",
+      "identity": "3D model of physical archaeological object",
+      "declared_license": "CC BY 4.0",
+      "api_license": "by",
+      "api_license_url": "http://creativecommons.org/licenses/by/4.0/",
+      "downloadable": true,
+      "source_processing_status": "SUCCEEDED",
+      "duplicate_matches": [],
+      "wing": "europe",
+      "metadata_notes": [
+        "Fresh Museu de Lleida primary record verifies accession, material, findspot and current date. The baseline La Pedrera helmet MLDC3027 is a different object; sword MLDC3028 and muzzle MLDC2974 are new."
+      ],
+      "required_corrections": []
+    },
+    {
+      "uid": "4c7323bc7224413591279f81948d1551",
+      "slug": "europe/la-tene-helmet-enserune-4c7323",
+      "title": "La Tène Helmet from Ensérune, Restored Archaeological Object",
+      "status": "pass_metadata_pending_geometry_review",
+      "source_record_url": "https://sketchfab.com/3d-models/4c7323bc7224413591279f81948d1551",
+      "identity": "3D model of physical archaeological object",
+      "declared_license": "CC BY 4.0",
+      "api_license": "by",
+      "api_license_url": "http://creativecommons.org/licenses/by/4.0/",
+      "downloadable": true,
+      "source_processing_status": "SUCCEEDED",
+      "duplicate_matches": [],
+      "wing": "europe",
+      "metadata_notes": [
+        "Reference image inspected: crushed surviving helmet with archaeological surface and decoration, not an intact hypothetical reconstruction. Physical restoration and 3D restitution credits are disclosed; dimensions are preserved/crushed dimensions. Keep this exact-object qualification and review derivative appearance."
+      ],
+      "required_corrections": []
+    },
+    {
+      "uid": "d3492bb071844e589e19c2162aa45753",
+      "slug": "europe/lead-sling-bullet-maam-grosseto-23165-d3492b",
+      "title": "Missile-Shaped Lead Sling Bullet",
+      "status": "hold_unknown_origin",
+      "source_record_url": "https://sketchfab.com/3d-models/d3492bb071844e589e19c2162aa45753",
+      "identity": "3D model of physical archaeological object",
+      "declared_license": "CC BY 4.0",
+      "api_license": "by",
+      "api_license_url": "http://creativecommons.org/licenses/by/4.0/",
+      "downloadable": true,
+      "source_processing_status": "SUCCEEDED",
+      "duplicate_matches": [],
+      "wing": "europe",
+      "metadata_notes": [],
+      "required_corrections": [
+        {
+          "field": "publication",
+          "value": "withhold",
+          "reason": "GDH source records MAAM Grosseto holding collection and 3rd-century BCE chronology only. No findspot, production location or secure culture supports Europe wing; INGEST.md requires origin rather than museum location. Root agrees to withhold until origin evidence."
+        }
+      ]
+    },
+    {
+      "uid": "c0cb657099cc460a92d2c9fca4f9f617",
+      "slug": "europe/three-bladed-scythian-arrowhead-babice-c0cb65",
+      "title": "Three-Bladed Scythian Arrowhead from Babice",
+      "status": "pass_metadata_pending_geometry_review",
+      "source_record_url": "https://muzea.malopolska.pl/en/objects-list/4763",
+      "identity": "3D model of physical archaeological object",
+      "declared_license": "CC BY 4.0",
+      "api_license": "by",
+      "api_license_url": "http://creativecommons.org/licenses/by/4.0/",
+      "downloadable": true,
+      "source_processing_status": "SUCCEEDED",
+      "duplicate_matches": [],
+      "wing": "europe",
+      "metadata_notes": [
+        "Scythian-type rather than proved army/maker; Babice findspot supports Europe. Physical object public-domain statement does not override CC BY4.0 license of downloadable model. Material/dimensions appropriately left unknown."
+      ],
+      "required_corrections": []
+    }
+  ],
+  "raw_source_metadata": "/tmp/classical-audit-source-metadata.json"
+}
