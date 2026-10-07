@@ -423,6 +423,8 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = appearance.exposure;
     renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     renderer.domElement.classList.add('viewer-canvas');
     stage.appendChild(renderer.domElement);
     renderer.domElement.addEventListener('contextmenu', (e) => e.preventDefault());
@@ -437,16 +439,23 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     room.dispose();
     pmrem.dispose();
 
-    scene.add(new THREE.HemisphereLight(0xeaf0f7, 0x0b1220, appearance.hemiLightIntensity ?? 0.7));
-    const key = new THREE.DirectionalLight(0xfff1dd, appearance.keyLightIntensity ?? 2.4);
+    // Keep the gallery rig spectrally neutral: authored base-colour, normal and
+    // PBR maps supply the object's colour and surface character. The lights only
+    // reveal form, and their direction is fixed rather than visitor-controlled.
+    scene.add(new THREE.HemisphereLight(0xffffff, 0x606060, appearance.hemiLightIntensity ?? 0.7));
+    const key = new THREE.DirectionalLight(0xffffff, appearance.keyLightIntensity ?? 2.4);
     const keyRadius = 5, keyHeight = 4;
     const fixedKeyAngle = 0.15 * Math.PI * 2;
     key.position.set(Math.cos(fixedKeyAngle) * keyRadius, keyHeight, Math.sin(fixedKeyAngle) * keyRadius);
+    key.castShadow = true;
+    key.shadow.mapSize.set(1024, 1024);
+    key.shadow.bias = -0.0005;
+    key.shadow.normalBias = 0.015;
     scene.add(key);
-    const fill = new THREE.DirectionalLight(0x9fb6d6, appearance.fillLightIntensity ?? 0.55);
+    const fill = new THREE.DirectionalLight(0xffffff, appearance.fillLightIntensity ?? 0.55);
     fill.position.set(-3, 1.2, -2.5);
     scene.add(fill);
-    const rim = new THREE.DirectionalLight(0xdbe8ff, appearance.rimLightIntensity ?? 0.4);
+    const rim = new THREE.DirectionalLight(0xffffff, appearance.rimLightIntensity ?? 0.4);
     rim.position.set(-2.7, 2.6, 3.4);
     scene.add(rim);
 
@@ -525,10 +534,10 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
           obj.geometry = obj.geometry.clone();
           obj.geometry.computeVertexNormals();
         }
-        // The scan's authored maps carry its surface colour and texture. Keep the
-        // gallery light fixed and shadowless so the viewer does not add a false
-        // cast shadow to that recorded appearance.
-        obj.castShadow = false;
+        // The scan's authored maps carry its surface colour and texture. The
+        // fixed neutral key may ground its geometry, but the object never receives
+        // a synthetic shadow from another mesh in the viewer.
+        obj.castShadow = true;
         obj.receiveShadow = false;
         const hasMaterialArray = Array.isArray(obj.material);
         const list = hasMaterialArray ? obj.material : [obj.material];
@@ -559,6 +568,20 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
       scene.add(turntable);
     } else scene.add(model);
 
+    // Keep the shadow camera close to the normalized object. A modest map and
+    // PCF filtering produce a soft grounding shadow without painting detail onto
+    // the object's authored texture.
+    const shadowSpan = Math.max(size.x, size.y, size.z) * 2.2;
+    const keyDist = Math.hypot(keyRadius, keyHeight);
+    const shadowCam = key.shadow.camera;
+    shadowCam.left = -shadowSpan;
+    shadowCam.right = shadowSpan;
+    shadowCam.top = shadowSpan;
+    shadowCam.bottom = -shadowSpan;
+    shadowCam.near = Math.max(0.1, keyDist - shadowSpan);
+    shadowCam.far = keyDist + shadowSpan;
+    shadowCam.updateProjectionMatrix();
+
     const isWideLow = Math.max(size.x, size.z) > Math.max(size.y * 1.8, 0.65);
     camera.near = immersive ? 0.001 : 0.01;
     camera.far = 100;
@@ -577,10 +600,16 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     (grid.material as any).opacity = 0.18;
     scene.add(grid);
 
-    // Spatial viewing needs a movable floor anchor, but the ordinary viewer no
-    // longer renders a synthetic shadow-catching surface.
-    const ground = new THREE.Object3D();
-    ground.position.y = -size.y / 2;
+    // A low-opacity neutral receiver grounds the object without tinting the
+    // backdrop or competing with texture and material maps.
+    const shadowFoot = Math.max(1.2, Math.max(size.x, size.z) * 4);
+    const ground = new THREE.Mesh(
+      new THREE.PlaneGeometry(shadowFoot, shadowFoot),
+      new THREE.ShadowMaterial({ color: 0x000000, opacity: 0.16, depthWrite: false }),
+    );
+    ground.rotation.x = -Math.PI / 2;
+    ground.position.y = -size.y / 2 + 0.001;
+    ground.receiveShadow = true;
     scene.add(ground);
 
     const home = { pos: camera.position.clone(), tgt: controls.target.clone() };
@@ -676,6 +705,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
         }
         for (const geometry of geometries) geometry.dispose();
         for (const texture of textures) texture.dispose();
+        key.shadow.dispose();
         environment.dispose();
         renderer.dispose();
         renderer.forceContextLoss();

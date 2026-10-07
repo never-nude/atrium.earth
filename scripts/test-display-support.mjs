@@ -74,6 +74,8 @@ assert.deepEqual(support.object.scale.toArray(), [1, 1, 1], 'Furniture root is n
 assert.deepEqual(support.object.position.toArray(), [0, 0, 0], 'Furniture coordinates are in metres from the placement origin');
 assert.equal(support.object.children[0].material.isMeshStandardMaterial, true, 'Support is exportable to USDZ');
 assert.equal(support.object.children[0].material.transparent, false, 'Support top is opaque');
+assert.equal(support.object.children[0].castShadow, true, 'Support casts a shadow when the active renderer provides one');
+assert.equal(support.object.children[0].receiveShadow, true, 'Support receives the active renderer shadow');
 assert.ok(support.object.children[0].material.emissiveIntensity > 0, 'Support remains visible without external lighting');
 close(new THREE.Box3().setFromObject(model, true).min.y, bounds.max.y, 'Artwork meets the support top');
 close(support.setHeight(1.2), 1.2, 'Height setter returns the effective height');
