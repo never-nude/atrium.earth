@@ -33214,7 +33214,7 @@
       "measurementRegion": {
         "method": "position-welded connected triangles",
         "description": "The sculpture is separate from the modern pedestal. Connected components ranks 0, 1 and 3 contain the marble group; rank 2 is the rectangular pedestal. Their union runs from normalized Y -0.1190040436654394 to 0.5. Use the confirmed 197.5 cm height of the marble group, retaining the pedestal at the same uniform scale.",
-        "weldToleranceNormalizedUnits": 0.000001,
+        "weldToleranceNormalizedUnits": 1e-06,
         "ranksByDescendingTriangleCount": [
           0,
           1,
@@ -69247,7 +69247,7 @@
       "measurementRegion": {
         "method": "position-welded connected triangles",
         "description": "Connected component rank 0 is the rigid monitor body; all display/button components remain within its lateral body endpoints. Hanging cable components extend farther left and below and are excluded from the reference. Use the museum body-only width 58.4 cm for the rank-0 X span, retaining all cables at that scale.",
-        "weldToleranceNormalizedUnits": 0.000001,
+        "weldToleranceNormalizedUnits": 1e-06,
         "ranksByDescendingTriangleCount": [
           0
         ],
@@ -76960,7 +76960,7 @@
       "measurementRegion": {
         "method": "position-welded connected triangles",
         "description": "Connected component rank 0 is the complete sculpture, including its lowest foot/curved lower edge; rank 1 is the added green platform. All other sculpture fragments and the apple are within rank-0 height. Use the scan creator’s explicitly approximate 57 cm sculpture height, excluding the green platform from the reference while retaining it in the scene.",
-        "weldToleranceNormalizedUnits": 0.000001,
+        "weldToleranceNormalizedUnits": 1e-06,
         "ranksByDescendingTriangleCount": [
           0
         ],
@@ -95085,46 +95085,6 @@
         "sourceText": "Diameter 14 cm",
         "sourceUrls": [
           "https://www.clevelandart.org/art/1930.728"
-        ],
-        "axisBasis": "source_explicit"
-      }
-    ]
-  },
-  "europe/carolingian-sword-dorsten-lembeck-2792ac": {
-    "dimensions": "Länge / Length: 91,7 cm; Breite / Width: 9,4 cm",
-    "status": "documented",
-    "basis": "object",
-    "sourceUrl": "https://100jahre100funde.lwl.org/de/100-fundeepochen/fruhmittelalter/071-schwert/",
-    "note": "Straight weapon; overall tip-to-pommel length is the preferred binding. Model-axis calibration awaits orientation review.",
-    "checked": "2026-10-07",
-    "spatialNote": "Physical measurements are documented, but model-axis calibration awaits orientation review.",
-    "researchStatus": "verified",
-    "measures": [
-      {
-        "axis": "length",
-        "value": 91.7,
-        "unit": "cm",
-        "meters": 0.917,
-        "scope": "whole object",
-        "qualifier": "exact",
-        "semantic": "overall_length",
-        "sourceText": "Länge / Length: 91,7 cm",
-        "sourceUrls": [
-          "https://100jahre100funde.lwl.org/de/100-fundeepochen/fruhmittelalter/071-schwert/"
-        ],
-        "axisBasis": "source_explicit"
-      },
-      {
-        "axis": "width",
-        "value": 9.4,
-        "unit": "cm",
-        "meters": 0.094,
-        "scope": "whole object",
-        "qualifier": "exact",
-        "semantic": "overall_width",
-        "sourceText": "Breite / Width: 9,4 cm",
-        "sourceUrls": [
-          "https://100jahre100funde.lwl.org/de/100-fundeepochen/fruhmittelalter/071-schwert/"
         ],
         "axisBasis": "source_explicit"
       }
