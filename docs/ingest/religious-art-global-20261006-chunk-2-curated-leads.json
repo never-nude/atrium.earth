@@ -5,7 +5,7 @@
   "chunk": 2,
   "expected_count": 31,
   "strict_acquisition": false,
-  "note": "Curated executable chunk 2 of the four-part global religious-art expansion: 31 candidates after duplicate, quality, underlying-artwork-rights, and reliquary-content review. Every retained model was checked as downloadable on 2026-10-06 and is licensed CC0, CC BY, or CC BY-SA. Dispatch from the cumulative religious-art branch and pass that branch as base_ref.",
+  "note": "Curated executable chunk 2 of the four-part global religious-art expansion: 31 candidates after duplicate, quality, underlying-artwork-rights, and reliquary-content review. Every retained model was checked as downloadable on 2026-10-06 and is licensed CC0, CC BY, or CC BY-SA. Dispatch from the cumulative religious-art branch and pass that branch as base_ref. All 31 candidates produced measured integrity results in run 37552058390; this field records the fail-closed requirement for reproducibility.",
   "selection_counts": {
     "Hindu": 6,
     "Buddhist": 19,
@@ -74,7 +74,8 @@
       "batch_sequence": 1,
       "allow_componentized_mesh": true,
       "max_component_count": 1000,
-      "min_largest_component_fraction": 0.01
+      "min_largest_component_fraction": 0.01,
+      "require_measured_integrity": true
     },
     {
       "source": "sketchfab",
@@ -132,7 +133,8 @@
       "published_at": "2025-04-16T19:49:51.080042",
       "logical_batch_id": "religious-art-global-20261006",
       "batch_chunk": 2,
-      "batch_sequence": 2
+      "batch_sequence": 2,
+      "require_measured_integrity": true
     },
     {
       "source": "sketchfab",
@@ -190,7 +192,8 @@
       "published_at": "2024-07-17T21:22:16.826643",
       "logical_batch_id": "religious-art-global-20261006",
       "batch_chunk": 2,
-      "batch_sequence": 3
+      "batch_sequence": 3,
+      "require_measured_integrity": true
     },
     {
       "source": "sketchfab",
@@ -246,7 +249,8 @@
       "published_at": "2021-12-13T15:13:44.978471",
       "logical_batch_id": "religious-art-global-20261006",
       "batch_chunk": 2,
-      "batch_sequence": 4
+      "batch_sequence": 4,
+      "require_measured_integrity": true
     },
     {
       "source": "sketchfab",
@@ -307,7 +311,8 @@
       "batch_sequence": 5,
       "allow_componentized_mesh": true,
       "max_component_count": 1000,
-      "min_largest_component_fraction": 0.01
+      "min_largest_component_fraction": 0.01,
+      "require_measured_integrity": true
     },
     {
       "source": "sketchfab",
@@ -365,7 +370,8 @@
       "published_at": "2023-09-22T16:48:50.299581",
       "logical_batch_id": "religious-art-global-20261006",
       "batch_chunk": 2,
-      "batch_sequence": 6
+      "batch_sequence": 6,
+      "require_measured_integrity": true
     },
     {
       "source": "sketchfab",
@@ -423,7 +429,8 @@
       "published_at": "2023-11-28T18:47:35.505348",
       "logical_batch_id": "religious-art-global-20261006",
       "batch_chunk": 2,
-      "batch_sequence": 7
+      "batch_sequence": 7,
+      "require_measured_integrity": true
     },
     {
       "source": "sketchfab",
@@ -484,7 +491,8 @@
       "batch_sequence": 8,
       "allow_componentized_mesh": true,
       "max_component_count": 1000,
-      "min_largest_component_fraction": 0.01
+      "min_largest_component_fraction": 0.01,
+      "require_measured_integrity": true
     },
     {
       "source": "sketchfab",
@@ -545,7 +553,8 @@
       "batch_sequence": 9,
       "allow_componentized_mesh": true,
       "max_component_count": 1000,
-      "min_largest_component_fraction": 0.01
+      "min_largest_component_fraction": 0.01,
+      "require_measured_integrity": true
     },
     {
       "source": "sketchfab",
@@ -606,7 +615,8 @@
       "batch_sequence": 10,
       "allow_componentized_mesh": true,
       "max_component_count": 1000,
-      "min_largest_component_fraction": 0.01
+      "min_largest_component_fraction": 0.01,
+      "require_measured_integrity": true
     },
     {
       "source": "sketchfab",
@@ -664,7 +674,8 @@
       "published_at": "2023-04-13T13:46:36.981513",
       "logical_batch_id": "religious-art-global-20261006",
       "batch_chunk": 2,
-      "batch_sequence": 11
+      "batch_sequence": 11,
+      "require_measured_integrity": true
     },
     {
       "source": "sketchfab",
@@ -725,7 +736,8 @@
       "batch_sequence": 12,
       "allow_componentized_mesh": true,
       "max_component_count": 100000,
-      "min_largest_component_fraction": 0.01
+      "min_largest_component_fraction": 0.01,
+      "require_measured_integrity": true
     },
     {
       "source": "sketchfab",
@@ -783,7 +795,8 @@
       "published_at": "2025-07-18T17:31:54.742536",
       "logical_batch_id": "religious-art-global-20261006",
       "batch_chunk": 2,
-      "batch_sequence": 13
+      "batch_sequence": 13,
+      "require_measured_integrity": true
     },
     {
       "source": "sketchfab",
@@ -841,7 +854,8 @@
       "published_at": "2025-04-03T19:12:42.248834",
       "logical_batch_id": "religious-art-global-20261006",
       "batch_chunk": 2,
-      "batch_sequence": 14
+      "batch_sequence": 14,
+      "require_measured_integrity": true
     },
     {
       "source": "sketchfab",
@@ -899,7 +913,8 @@
       "published_at": "2023-11-13T18:27:57.054510",
       "logical_batch_id": "religious-art-global-20261006",
       "batch_chunk": 2,
-      "batch_sequence": 15
+      "batch_sequence": 15,
+      "require_measured_integrity": true
     },
     {
       "source": "sketchfab",
@@ -960,7 +975,8 @@
       "batch_sequence": 16,
       "allow_componentized_mesh": true,
       "max_component_count": 1000,
-      "min_largest_component_fraction": 0.01
+      "min_largest_component_fraction": 0.01,
+      "require_measured_integrity": true
     },
     {
       "source": "sketchfab",
@@ -1018,7 +1034,8 @@
       "published_at": "2019-09-26T15:06:21.596071",
       "logical_batch_id": "religious-art-global-20261006",
       "batch_chunk": 2,
-      "batch_sequence": 17
+      "batch_sequence": 17,
+      "require_measured_integrity": true
     },
     {
       "source": "sketchfab",
@@ -1074,7 +1091,8 @@
       "published_at": "2022-11-07T21:07:30.420402",
       "logical_batch_id": "religious-art-global-20261006",
       "batch_chunk": 2,
-      "batch_sequence": 18
+      "batch_sequence": 18,
+      "require_measured_integrity": true
     },
     {
       "source": "sketchfab",
@@ -1132,7 +1150,8 @@
       "published_at": "2021-04-02T19:28:31.522877",
       "logical_batch_id": "religious-art-global-20261006",
       "batch_chunk": 2,
-      "batch_sequence": 19
+      "batch_sequence": 19,
+      "require_measured_integrity": true
     },
     {
       "source": "sketchfab",
@@ -1190,7 +1209,8 @@
       "published_at": "2021-04-02T18:59:56.797435",
       "logical_batch_id": "religious-art-global-20261006",
       "batch_chunk": 2,
-      "batch_sequence": 20
+      "batch_sequence": 20,
+      "require_measured_integrity": true
     },
     {
       "source": "sketchfab",
@@ -1248,7 +1268,8 @@
       "published_at": "2021-04-02T17:42:40.967575",
       "logical_batch_id": "religious-art-global-20261006",
       "batch_chunk": 2,
-      "batch_sequence": 21
+      "batch_sequence": 21,
+      "require_measured_integrity": true
     },
     {
       "source": "sketchfab",
@@ -1306,7 +1327,8 @@
       "published_at": "2021-04-02T19:06:14.319454",
       "logical_batch_id": "religious-art-global-20261006",
       "batch_chunk": 2,
-      "batch_sequence": 22
+      "batch_sequence": 22,
+      "require_measured_integrity": true
     },
     {
       "source": "sketchfab",
@@ -1362,7 +1384,8 @@
       "published_at": "2025-02-06T04:58:18.970052",
       "logical_batch_id": "religious-art-global-20261006",
       "batch_chunk": 2,
-      "batch_sequence": 23
+      "batch_sequence": 23,
+      "require_measured_integrity": true
     },
     {
       "source": "sketchfab",
@@ -1421,7 +1444,8 @@
       "batch_sequence": 24,
       "allow_componentized_mesh": true,
       "max_component_count": 1000,
-      "min_largest_component_fraction": 0.01
+      "min_largest_component_fraction": 0.01,
+      "require_measured_integrity": true
     },
     {
       "source": "sketchfab",
@@ -1482,7 +1506,8 @@
       "batch_sequence": 25,
       "allow_componentized_mesh": true,
       "max_component_count": 1000,
-      "min_largest_component_fraction": 0.01
+      "min_largest_component_fraction": 0.01,
+      "require_measured_integrity": true
     },
     {
       "source": "sketchfab",
@@ -1540,7 +1565,8 @@
       "published_at": "2023-05-14T22:54:46.098925",
       "logical_batch_id": "religious-art-global-20261006",
       "batch_chunk": 2,
-      "batch_sequence": 26
+      "batch_sequence": 26,
+      "require_measured_integrity": true
     },
     {
       "source": "sketchfab",
@@ -1599,7 +1625,8 @@
       "published_at": "2018-02-16T20:47:44.838911",
       "logical_batch_id": "religious-art-global-20261006",
       "batch_chunk": 2,
-      "batch_sequence": 27
+      "batch_sequence": 27,
+      "require_measured_integrity": true
     },
     {
       "source": "sketchfab",
@@ -1658,7 +1685,8 @@
       "published_at": "2023-12-05T21:20:30.810330",
       "logical_batch_id": "religious-art-global-20261006",
       "batch_chunk": 2,
-      "batch_sequence": 28
+      "batch_sequence": 28,
+      "require_measured_integrity": true
     },
     {
       "source": "sketchfab",
@@ -1716,7 +1744,8 @@
       "published_at": "2024-06-12T18:14:20.337148",
       "logical_batch_id": "religious-art-global-20261006",
       "batch_chunk": 2,
-      "batch_sequence": 29
+      "batch_sequence": 29,
+      "require_measured_integrity": true
     },
     {
       "source": "sketchfab",
@@ -1774,7 +1803,8 @@
       "published_at": "2022-10-29T18:35:49.889495",
       "logical_batch_id": "religious-art-global-20261006",
       "batch_chunk": 2,
-      "batch_sequence": 30
+      "batch_sequence": 30,
+      "require_measured_integrity": true
     },
     {
       "source": "sketchfab",
@@ -1835,7 +1865,8 @@
       "batch_sequence": 31,
       "allow_componentized_mesh": true,
       "max_component_count": 1000,
-      "min_largest_component_fraction": 0.01
+      "min_largest_component_fraction": 0.01,
+      "require_measured_integrity": true
     }
   ]
 }
