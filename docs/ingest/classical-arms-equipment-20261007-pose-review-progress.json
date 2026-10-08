@@ -2,8 +2,8 @@
   "schema": "atrium-pose-review-progress/1",
   "batch": "classical-arms-equipment-20261007",
   "reviewed": "2026-10-07",
-  "complete": false,
-  "note": "All twelve first-group poses are source-reference and ten-view reviewed and applied. Six accepted recheck works await final orientation, size-scope and thumbnail review. Egadi naval ram failed the integrity gate and remains excluded.",
+  "complete": true,
+  "note": "All eighteen accepted works have source-reference and ten-view reviewed poses, plus actual supplemental final renders for the spearhead, dagger and pendant. Final production thumbnails and complete contact-sheet review remain pending. The two excluded candidates are absent.",
   "decisions": {
     "roman/ivory-gladius-scabbard-chape-velsen-ii-hilde-6026-06-7a8c3c": {
       "upAxis": "y",
@@ -137,6 +137,72 @@
       "yaw": 0,
       "status": "reviewed",
       "note": "Source-reference and ten-view visual review, 2026-10-07. Selected variant B; complete surviving object retained with authored surface appearance."
+    },
+    "roman/nijmegen-roman-cavalry-face-helmet-valkhof-xxi-l-4-760424": {
+      "upAxis": "y",
+      "modelRotation": [
+        0,
+        0,
+        0
+      ],
+      "yaw": 0,
+      "status": "reviewed",
+      "note": "Source-reference and ten-view visual review, 2026-10-07. Selected variant B; complete surviving object and authored appearance retained."
+    },
+    "roman/montefortino-helmet-piquete-atalaya-zaragoza-ec3a3a": {
+      "upAxis": "y",
+      "modelRotation": [
+        0,
+        0,
+        0
+      ],
+      "yaw": 0,
+      "status": "reviewed",
+      "note": "Source-reference and ten-view visual review, 2026-10-07. Selected variant B; complete surviving object and authored appearance retained."
+    },
+    "roman/roman-cavalry-pendant-maastricht-35a51a": {
+      "upAxis": "y",
+      "modelRotation": [
+        90,
+        90,
+        0
+      ],
+      "yaw": 0,
+      "status": "reviewed",
+      "note": "Source-reference and ten-view visual review, 2026-10-07. Supplemental rendered source-front pose confirmed; readable inventory writing at upper-right, loop up and pendant lobe down."
+    },
+    "europe/iron-spearhead-diersheim-blm-c-11423-b-2fbff8": {
+      "upAxis": "y",
+      "modelRotation": [
+        0,
+        0,
+        -51.19
+      ],
+      "yaw": 0,
+      "status": "reviewed",
+      "note": "Source-reference and complete ten-view visual review, 2026-10-07. Selected B with an in-plane roll aligning the entire weapon length vertically."
+    },
+    "ancient-near-east/luristan-bronze-dagger-mia-76-73-6-f29de0": {
+      "upAxis": "y",
+      "modelRotation": [
+        0,
+        0,
+        53.24
+      ],
+      "yaw": 0,
+      "status": "reviewed",
+      "note": "Source-reference and complete ten-view visual review, 2026-10-07. Selected B with an in-plane roll aligning the entire weapon length vertically."
+    },
+    "ancient-near-east/sasanian-hormizd-lion-hunt-dish-cma-1962-150-57ba61": {
+      "upAxis": "y",
+      "modelRotation": [
+        0,
+        0,
+        0
+      ],
+      "yaw": 0,
+      "status": "reviewed",
+      "note": "Source-reference and complete ten-view visual review, 2026-10-07. Selected variant B; complete surviving object retained with authored surface appearance."
     }
   },
   "reviewDetails": {
@@ -196,6 +262,245 @@
         "scope": "Exact source-documented crushed/restored archaeological helmet",
         "note": "Prefer the documented longest end-to-end length rather than assigning the full posed Y bound to the 132 mm height. Root approved this conditional length direction if B is the final pose. Published narrower width is not reproduced by whole posed bounds."
       }
+    },
+    "roman/nijmegen-roman-cavalry-face-helmet-valkhof-xxi-l-4-760424": {
+      "selectedVariant": "B",
+      "previewUrl": "https://models.atrium.earth/models/previews/roman/nijmegen-roman-cavalry-face-helmet-valkhof-xxi-l-4-760424/preview-e84ac9e021b9.glb",
+      "assetSha256": "e84ac9e021b9aac91a73d1628690cea4e522914e393a23bf59ccd81f384ef348",
+      "assetBytes": 342816,
+      "reviewSheet": "docs/ingest/classical-arms-equipment-20261007-pose-review-progress/roman__nijmegen-roman-cavalry-face-helmet-valkhof-xxi-l-4-760424.webp",
+      "geometryReview": "Reviewed the exact immutable derivative against the Erfgoed Gelderland / Valkhof Museum source thumbnail and all ten candidate orientations. It retains the complete surviving Roman face helmet: face mask with ears, hinged decorated forehead band and its small busts, extant helmet material and neck guard. The missing upper helmet bowl is the source-documented archaeological loss, not a defect to reconstruct. Variant B, +Y/[0,0,0]/yaw0, places the forehead above the eyes, nose and chin, with the exterior face toward the initial camera. The curved metallic element below/behind the face belongs to the surviving helmet/neck-guard scope; no modern mount enters the measured Y bound. Museum height 24.2 cm is the documented complete-surviving-object measurement, including its extant neck guard. Height binding would give whole X width 25.05 cm, versus the museum width 22.8 cm; this is one documented height-axis calibration and must not be described as complete two-axis agreement. Final scale decision: exact/verified AR stays disabled pending proportion reconciliation. Height calibration Y=0.242 m would imply width 0.250548 m instead of the source 0.228 m, about 9.9% larger; decoded mesh-local extents are a unit cube and preserved source-world proportions do not reconcile this discrepancy.",
+      "scaleRecommendation": {
+        "status": "disabled-dimension-ratio-mismatch",
+        "enabled": false,
+        "exactCalibration": null,
+        "note": "Height calibration Y=0.242 m would imply width 0.250548 m instead of the source 0.228 m, about 9.9% larger; decoded mesh-local extents are a unit cube and preserved source-world proportions do not reconcile this discrepancy. Preserve documented dimensions as metadata; withhold verified-size AR until exact measurement axis/scope and source-model proportions are reconciled."
+      }
+    },
+    "roman/montefortino-helmet-piquete-atalaya-zaragoza-ec3a3a": {
+      "selectedVariant": "B",
+      "previewUrl": "https://models.atrium.earth/models/previews/roman/montefortino-helmet-piquete-atalaya-zaragoza-ec3a3a/preview-a38b4f7ff3fa.glb",
+      "assetSha256": "a38b4f7ff3fa7f535beaf18fc177554b2db2085dbf76d807ef1b841c5cdd9bdb",
+      "assetBytes": 388660,
+      "reviewSheet": "docs/ingest/classical-arms-equipment-20261007-pose-review-progress/roman__montefortino-helmet-piquete-atalaya-zaragoza-ec3a3a.webp",
+      "geometryReview": "Reviewed the exact immutable derivative against the Museo de Zaragoza source thumbnail and all ten candidate orientations. It retains the surviving Montefortino helmet bowl, crown knob, lower rim, original neck projection and surviving attachment details, with the source-authored copper-alloy/corrosion appearance. Variant B, +Y/[0,0,0]/yaw0, gives the upright exterior front with crown knob above and helmet opening down; interior and rear views confirm that there is no separate museum support or reconstructed cheek piece in the mesh. The documented height 20.8 cm would supply a conditional whole-object Y direction if measurement and derivative proportions reconcile. Whole precise source-world XYZ bounds are 0.184613 / 0.231052 / 0.231462 source units; assigning Y=0.208 m gives X=0.166194 m and Z=0.208369 m. These do not reproduce the source width 18 cm/depth 26.5 cm, so do not claim exact agreement of all three axes. Final scale decision: exact/verified AR stays disabled pending proportion reconciliation. Height calibration Y=0.208 m would imply width 0.166194 m and depth 0.208369 m instead of source 0.18 / 0.265 m, about 7.7% / 21.4% smaller. The preserved whole bounds do not reconcile these proportions.",
+      "scaleRecommendation": {
+        "status": "disabled-dimension-ratio-mismatch",
+        "enabled": false,
+        "exactCalibration": null,
+        "note": "Height calibration Y=0.208 m would imply width 0.166194 m and depth 0.208369 m instead of source 0.18 / 0.265 m, about 7.7% / 21.4% smaller. The preserved whole bounds do not reconcile these proportions. Preserve documented dimensions as metadata; withhold verified-size AR until exact measurement axis/scope and source-model proportions are reconciled."
+      }
+    },
+    "roman/roman-cavalry-pendant-maastricht-35a51a": {
+      "selectedVariant": "supplemental-source-front",
+      "previewUrl": "https://models.atrium.earth/models/previews/roman/roman-cavalry-pendant-maastricht-35a51a/preview-fa385f52b922.glb",
+      "assetSha256": "fa385f52b9223fe6fd3332446631f1d038c23c13d27c545cde36281f8e1f7d51",
+      "assetBytes": 256852,
+      "reviewSheet": "docs/ingest/classical-arms-equipment-20261007-pose-review-progress/roman__roman-cavalry-pendant-maastricht-35a51a.webp",
+      "geometryReview": "Reviewed the exact immutable derivative against the Centre Ceramique Maastricht source thumbnail, the complete ten-view sheet and a supplementary rendered source-front candidate. It retains the suspension loop, two broad side lobes, lower central hanging lobe, irregular archaeological edges, brass/corrosion surface and readable museum inventory writing. The material is double-sided and unlit. Sheet J is upright but exposes the reverse of the scanned face, making inventory writing reversed and swapping the source left/right surface features. Applying a world-Y 180-degree turn to J is exactly equivalent to +Y/modelRotation [90,90,0]/yaw0. The actual supplementary thumbnail confirms this final pose: loop above, hanging lobe below, green corrosion at left and readable inventory writing at upper-right, matching the author source image. No modern support is present. The source explicitly gives approximate 7 × 7 cm only; no exact calibration or verified-size AR eligibility is justified.",
+      "scaleRecommendation": {
+        "status": "disabled-estimate",
+        "enabled": false,
+        "exactCalibration": null,
+        "note": "Source explicitly says approx. 7 × 7 cm (L × W). An approximate display size may be labelled as such, but exact/verified-size eligibility remains disabled."
+      },
+      "supplementalRender": "docs/ingest/classical-arms-equipment-20261007-pose-review-progress/roman__roman-cavalry-pendant-maastricht-35a51a-final.webp"
+    },
+    "europe/iron-spearhead-diersheim-blm-c-11423-b-2fbff8": {
+      "selectedVariant": "B plus source-plane Z roll",
+      "previewUrl": "https://models.atrium.earth/models/previews/europe/iron-spearhead-diersheim-blm-c-11423-b-2fbff8/preview-a0a4768fddaf.glb",
+      "assetSha256": "a0a4768fddaf390af2ef63312fd9646bb8b19c0677d4deeb39f8d94f587e152d",
+      "assetBytes": 625216,
+      "reviewSheet": "docs/ingest/classical-arms-equipment-20261007-pose-review-progress/europe__iron-spearhead-diersheim-blm-c-11423-b-2fbff8.webp",
+      "geometryReview": "Reviewed the exact R2 derivative against the Badisches Landesmuseum source front and complete ten-view sheet. It retains the surviving iron blade and hollow socket, including the tip and socket-end, without a reconstructed shaft or modern mount. Variant B shows the source front; a Z roll of -51.19 degrees puts the longitudinal tip-to-socket direction vertically while preserving that front. Precise posed Y spans both original endpoints and is the whole surviving object length. Bind the documented 15.4 cm to Y after supplemental-render visual confirmation; that confirmation passed.",
+      "visualEvidence": "The source front has the leaf blade above the socket and a dark authored iron surface. The broad source plane is retained; other axis candidates turn it over or near edge-on. Numerical roll aligns the primary longitudinal axis and produces precise X/Y/Z 0.026101449/0.155623846/0.017522931 source units.",
+      "sourceWorldBounds": {
+        "min": [
+          -0.05713503062725067,
+          -0.06652310490608215,
+          0.05338308960199356
+        ],
+        "max": [
+          0.06768156588077545,
+          0.03700694441795349,
+          0.07090602070093155
+        ],
+        "size": [
+          0.12481659650802612,
+          0.10353004932403564,
+          0.01752293109893799
+        ],
+        "ratioToLongest": [
+          1,
+          0.829457397657677,
+          0.1403894320881535
+        ]
+      },
+      "posedWorldBounds": {
+        "min": [
+          -0.02030240554235737,
+          -0.08796836775056646,
+          0.05338308960199356
+        ],
+        "max": [
+          0.005799043638270149,
+          0.06765547866925549,
+          0.07090602070093155
+        ],
+        "size": [
+          0.02610144918062752,
+          0.15562384641982197,
+          0.01752293109893799
+        ],
+        "ratioToY": [
+          0.16772139862302587,
+          1,
+          0.11259798226337937
+        ]
+      },
+      "scaleRecommendation": {
+        "status": "enable-after-root-integration",
+        "axis": "y",
+        "meters": 0.154,
+        "extentFraction": 1,
+        "basis": "object",
+        "kind": "object",
+        "measurementIndex": 0,
+        "scope": "Complete surviving spearhead including hollow socket, from tip to socket end."
+      },
+      "supplementalPoseImageRequired": false,
+      "supplementalPoseImage": "/tmp/classical-supplemental-final-renders/europe/iron-spearhead-diersheim-blm-c-11423-b-2fbff8/thumb.webp",
+      "supplementalVisualEvidence": "Actual supplemental render inspected: complete object, source front retained, vertical longitudinal direction, unclipped. Tip above hollow socket."
+    },
+    "ancient-near-east/luristan-bronze-dagger-mia-76-73-6-f29de0": {
+      "selectedVariant": "B plus source-plane Z roll",
+      "previewUrl": "https://models.atrium.earth/models/previews/ancient-near-east/luristan-bronze-dagger-mia-76-73-6-f29de0/preview-c49e97a01f7b.glb",
+      "assetSha256": "c49e97a01f7b480c550cb769b74f36d35dabd556a2da3ff5c6b79b382ab29e49",
+      "assetBytes": 601964,
+      "reviewSheet": "docs/ingest/classical-arms-equipment-20261007-pose-review-progress/ancient-near-east__luristan-bronze-dagger-mia-76-73-6-f29de0.webp",
+      "geometryReview": "Reviewed the exact R2 derivative against the Mia source front and complete ten-view sheet. The full double-edged bronze blade, guard, perforated grip and crescent pommel are retained, with source base-color, normal and metallic/roughness maps; no modern mount or pedestal is present. Variant B presents the source front; a Z roll of 53.24 degrees puts pommel above blade point and aligns the complete longitudinal direction with Y. Precise posed Y includes the tip and outer pommel, matching the documented whole-dagger measurement scope. Bind Mia accession 76.73.6 length of 46.36 cm to Y after supplemental-render visual confirmation; that confirmation passed, and source-model units are not treated as physical measurements.",
+      "visualEvidence": "Variant B matches the authored bronze/corrosion broad-face image and retains the complete blade and crescent pommel. D/E are near edge-on; C/G invert the blade. In-plane Z roll preserves the reviewed broad face while making the pommel-to-point direction vertical.",
+      "sourceWorldBounds": {
+        "min": [
+          -0.18329441879812045,
+          -0.1274710059030233,
+          -0.8796274036785725
+        ],
+        "max": [
+          0.18307044535909867,
+          0.1601741865991832,
+          -0.8240559226398741
+        ],
+        "size": [
+          0.36636486415721914,
+          0.2876451925022065,
+          0.055571481038698356
+        ],
+        "ratioToLongest": [
+          1,
+          0.7851331299574856,
+          0.15168343494547232
+        ]
+      },
+      "posedWorldBounds": {
+        "min": [
+          -0.04392464396772659,
+          -0.22235114431059305,
+          -0.8796274036785725
+        ],
+        "max": [
+          0.02295164163852291,
+          0.22497928833494565,
+          -0.8240559226398741
+        ],
+        "size": [
+          0.0668762856062495,
+          0.44733043264553873,
+          0.055571481038698356
+        ],
+        "ratioToY": [
+          0.14950086273079874,
+          1,
+          0.12422915362597917
+        ]
+      },
+      "scaleRecommendation": {
+        "status": "enable-after-root-integration",
+        "axis": "y",
+        "meters": 0.4636,
+        "extentFraction": 1,
+        "basis": "object",
+        "kind": "object",
+        "measurementIndex": 0,
+        "scope": "Complete Mia dagger accession 76.73.6 from outer pommel to blade point."
+      },
+      "supplementalPoseImageRequired": false,
+      "supplementalPoseImage": "/tmp/classical-supplemental-final-renders/ancient-near-east/luristan-bronze-dagger-mia-76-73-6-f29de0/thumb.webp",
+      "supplementalVisualEvidence": "Actual supplemental render inspected: complete object, source front retained, vertical longitudinal direction, unclipped. Crescent pommel and grip above full blade point, matching source direction."
+    },
+    "ancient-near-east/sasanian-hormizd-lion-hunt-dish-cma-1962-150-57ba61": {
+      "selectedVariant": "B",
+      "previewUrl": "https://models.atrium.earth/models/previews/ancient-near-east/sasanian-hormizd-lion-hunt-dish-cma-1962-150-57ba61/preview-0ac802e4bee2.glb",
+      "assetSha256": "0ac802e4bee2f1a54b8f28a5686b30f79fe422957c489a4cff27968adcf9cbda",
+      "assetBytes": 651496,
+      "reviewSheet": "docs/ingest/classical-arms-equipment-20261007-pose-review-progress/ancient-near-east__sasanian-hormizd-lion-hunt-dish-cma-1962-150-57ba61.webp",
+      "geometryReview": "Reviewed the exact R2 derivative against the Cleveland Museum source front and complete ten-view sheet. Variant B presents the royal hunter upright above his horse, with the original pierced area, lions and authored silver/gilt surface retained. The complete original outer rim supplies the X rim-to-rim span; the raised ring foot seen from the reverse belongs to the dish and is not a modern display support. Bind the documented 20.8 cm diameter to X. The source 4.6 cm height is the vessel rise in its flat physical orientation and must not be mapped to upright-display Y.",
+      "visualEvidence": "B has the decorated face outward and the king and horse upright. C/D show the original back and ring foot; A is a low stable pose and G inverts the narrative. Precise source X span 0.205986872 stays unaffected by the authored X-axis tilt, making the rim-to-rim diameter direction defensible.",
+      "sourceWorldBounds": {
+        "min": [
+          -0.1048090010881424,
+          -0.06489625560429596,
+          -0.024468136453766283
+        ],
+        "max": [
+          0.1011778712272644,
+          0.11154210574083248,
+          0.09242851034580497
+        ],
+        "size": [
+          0.2059868723154068,
+          0.17643836134512844,
+          0.11689664679957126
+        ],
+        "ratioToLongest": [
+          1,
+          0.8565514848682506,
+          0.5674956150631739
+        ]
+      },
+      "posedWorldBounds": {
+        "min": [
+          -0.1048090010881424,
+          -0.06489625560429596,
+          -0.024468136453766283
+        ],
+        "max": [
+          0.1011778712272644,
+          0.11154210574083248,
+          0.09242851034580497
+        ],
+        "size": [
+          0.2059868723154068,
+          0.17643836134512844,
+          0.11689664679957126
+        ],
+        "ratioToLongest": [
+          1,
+          0.8565514848682506,
+          0.5674956150631739
+        ]
+      },
+      "scaleRecommendation": {
+        "status": "enable-after-root-integration",
+        "axis": "x",
+        "meters": 0.208,
+        "extentFraction": 1,
+        "basis": "object",
+        "kind": "object",
+        "measurementIndex": 1,
+        "scope": "Original dish rim-to-rim diameter excluding modern supports."
+      },
+      "supplementalPoseImageRequired": false
     }
   }
 }
