@@ -658,3 +658,10 @@ Commit `1afb322` is deployment-verified. [GitHub Pages run 37334355346](https://
 - Publication is prepared under the owner's standing authorization. Nothing from this batch is live until its main push, Pages deployment and exact live page/thumbnail/model checks have completed. Evidence is saved under the batch's pose-progress, spatial-review, final-contact, final-visual-QA and publication-review files.
 
 - Local browser smoke additionally passed two new live models through drag interaction and confirmed forty newest links, with no application errors or local asset failures. Model responses used the hash-verified R2 mirrors; production URL/hash verification remains the next release step.
+
+### Production confirmation — classical armour and equipment
+
+- Release `85ee1f9838becea43c594bf8b6168a46ae642cfc` was pushed to `main`. [GitHub Pages run37709513765](https://github.com/never-nude/atrium.earth/actions/runs/37709513765) completed successfully.
+- [Live verification run37709752956](https://github.com/never-nude/atrium.earth/actions/runs/37709752956) passed every one of the eighteen published work pages, final thumbnails and immutable model SHA-256 hashes, with zero failures. `/newest/` lists forty works and includes the complete eighteen-work logical batch in the expected order.
+- Production smoke checks confirm the Paullus panel in The Price of Victory and 404 responses for both the withheld MAAM sling bullet and rejected Egadi naval ram. The six verified-size references and twelve explicit disabled decisions remain as reviewed.
+- This acquisition task is complete. Remaining old catalog-wide dimension/eligibility gaps are unchanged, and no further acquisition is queued by this release. The two new helmet size discrepancies remain documented measurement holds, not missing publication work. Source, scale, visual, browser and live verification evidence is saved under `docs/ingest/classical-arms-equipment-20261007-*`. No state is inferred for another computer's uncommitted files.
