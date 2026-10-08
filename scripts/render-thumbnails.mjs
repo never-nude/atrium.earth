@@ -189,7 +189,10 @@ async function listen(server) {
 }
 
 async function closeServer(server) {
-  await new Promise((resolveClose) => server.close(resolveClose));
+  await new Promise((resolveClose) => {
+    server.close(resolveClose);
+    server.closeAllConnections();
+  });
 }
 
 async function startChrome() {
@@ -226,6 +229,8 @@ async function startChrome() {
   }
 
   proc.kill('SIGKILL');
+  proc.stdout?.destroy();
+  proc.stderr?.destroy();
   throw new Error(`Chrome did not expose DevTools. ${stderr}`);
 }
 
@@ -359,6 +364,8 @@ try {
     await delay(250);
     if (browser.proc.exitCode === null) browser.proc.kill('SIGKILL');
     await delay(250);
+    browser.proc.stdout?.destroy();
+    browser.proc.stderr?.destroy();
     removeDir(browser.profile);
   }
   await closeServer(server);

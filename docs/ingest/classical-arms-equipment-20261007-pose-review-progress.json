@@ -3,7 +3,7 @@
   "batch": "classical-arms-equipment-20261007",
   "reviewed": "2026-10-07",
   "complete": false,
-  "note": "Eight reviewed pose decisions saved at the owner-requested pause. These are proposals for the final integration; orientations.json has not been updated. Four first-chunk works and any accepted recheck works still need visual review. Full final thumbnails/contact-sheet/source-scope/AR review remains mandatory before publication.",
+  "note": "All twelve first-group poses are source-reference and ten-view reviewed and applied. Six accepted recheck works await final orientation, size-scope and thumbnail review. Egadi naval ram failed the integrity gate and remains excluded.",
   "decisions": {
     "roman/ivory-gladius-scabbard-chape-velsen-ii-hilde-6026-06-7a8c3c": {
       "upAxis": "y",
@@ -93,6 +93,109 @@
       "yaw": 0,
       "status": "reviewed",
       "note": "Human source-reference and ten-view review, 2026-10-07. Selected variant B; complete surviving object retained with authored surface appearance."
+    },
+    "roman/vechten-roman-cavalry-face-mask-rmo-vf-1047-d95a68": {
+      "upAxis": "y",
+      "modelRotation": [
+        0,
+        0,
+        0
+      ],
+      "yaw": 0,
+      "status": "reviewed",
+      "note": "Source-reference and ten-view visual review, 2026-10-07. Selected variant B; complete surviving object retained with authored surface appearance."
+    },
+    "europe/illyrian-sica-gvozd-niksic-850cf1": {
+      "upAxis": "y",
+      "modelRotation": [
+        0,
+        0,
+        0
+      ],
+      "yaw": 0,
+      "status": "reviewed",
+      "note": "Source-reference and ten-view visual review, 2026-10-07. Selected variant B; complete surviving object retained with authored surface appearance."
+    },
+    "greek/amazon-frieze-halikarnassos-bm-1847-0424-5-377341": {
+      "upAxis": "y",
+      "modelRotation": [
+        0,
+        0,
+        0
+      ],
+      "yaw": 0,
+      "status": "reviewed",
+      "note": "Source-reference and ten-view visual review, 2026-10-07. Selected variant B; complete surviving object retained with authored surface appearance."
+    },
+    "europe/la-tene-helmet-enserune-4c7323": {
+      "upAxis": "y",
+      "modelRotation": [
+        0,
+        0,
+        0
+      ],
+      "yaw": 0,
+      "status": "reviewed",
+      "note": "Source-reference and ten-view visual review, 2026-10-07. Selected variant B; complete surviving object retained with authored surface appearance."
+    }
+  },
+  "reviewDetails": {
+    "roman/vechten-roman-cavalry-face-mask-rmo-vf-1047-d95a68": {
+      "selectedVariant": "B",
+      "previewUrl": "https://models.atrium.earth/models/previews/roman/vechten-roman-cavalry-face-mask-rmo-vf-1047-d95a68/preview-c8956a16627a.glb",
+      "assetSha256": "c8956a16627a7b826dcfded591c83afa3c6a4753c8450fcec16c2d2c7ebe735c",
+      "assetBytes": 1316632,
+      "reviewSheet": "docs/ingest/classical-arms-equipment-20261007-pose-review-progress/roman__vechten-roman-cavalry-face-mask-rmo-vf-1047-d95a68.webp",
+      "evidence": "Variant B is the exterior front with brow above eye slits, nose centered and chin below mouth. Current A shows the interior and an incorrect roll. Authored bronze-covered appearance and surviving face-mask scope match the RMO source reference; the associated helmet and cheek pieces are not part of this digitized object.",
+      "geometryReview": "Reviewed the exact R2 derivative against the RMO source front and all ten orientation candidates. The standalone surviving face mask is complete in scope, upright at +Y/[0,0,0]/yaw0, with crown/upper rim above chin and exterior toward the initial camera. No modern mount, associated helmet or cheek pieces enter its bounds. Source height of 16 cm applies to this exact surviving mask.",
+      "scaleRecommendation": {
+        "status": "enable-after-root-integration",
+        "axis": "y",
+        "meters": 0.16
+      }
+    },
+    "europe/illyrian-sica-gvozd-niksic-850cf1": {
+      "selectedVariant": "B",
+      "previewUrl": "https://models.atrium.earth/models/previews/europe/illyrian-sica-gvozd-niksic-850cf1/preview-bd84d0f35cc8.glb",
+      "assetSha256": "bd84d0f35cc8338d164cfee4210046863e40be6c0d4a7eed240399c489914cec",
+      "assetBytes": 1637992,
+      "reviewSheet": "docs/ingest/classical-arms-equipment-20261007-pose-review-progress/europe__illyrian-sica-gvozd-niksic-850cf1.webp",
+      "evidence": "Variant B matches the GDH reference broad face: curved blade and point extend left, pierced tang right; its full outline and iron surface are retained. D/E are near edge-on and F/G rotate the artifact into a vertical display.",
+      "geometryReview": "Reviewed the exact R2 derivative against the GDH source reference and all ten orientation candidates. The complete surviving curved iron sica, including tip and pierced tang, is retained with its authored base-color and normal maps. +Y/[0,0,0]/yaw0 gives the source broad-face horizontal presentation. No exact numerical physical measurement is supplied by the source.",
+      "scaleRecommendation": {
+        "status": "disabled-unverified"
+      }
+    },
+    "greek/amazon-frieze-halikarnassos-bm-1847-0424-5-377341": {
+      "selectedVariant": "B",
+      "previewUrl": "https://models.atrium.earth/models/previews/greek/amazon-frieze-halikarnassos-bm-1847-0424-5-377341/preview-40a5d772ab1f.glb",
+      "assetSha256": "40a5d772ab1fae864bbb9ceea14f9a5ce8a505cdf698d6834663f6f9ae35ebf2",
+      "assetBytes": 1775624,
+      "reviewSheet": "docs/ingest/classical-arms-equipment-20261007-pose-review-progress/greek__amazon-frieze-halikarnassos-bm-1847-0424-5-377341.webp",
+      "evidence": "Variant B has the slab upright and its relief front visible: two Greeks converge on the kneeling Amazon at left; standing Greek, mounted Amazon and horse remain readable at right. Current A lays the slab nearly edge-on, while C inverts the iconography. The scanned single marble slab and authored surface match BM 1847,0424.5.",
+      "geometryReview": "Reviewed the exact R2 derivative against the accession-specific source front and all ten orientation candidates. It is one original rectangular Amazon-frieze slab, with five combatants and one horse, retaining its scanned broken edges and relief depth. +Y/[0,0,0]/yaw0 places the upper edge above the baseline and shows the front. No museum mount or neighbouring slab enters the represented scope. The documented 0.90 m height applies to this exact slab.",
+      "scaleRecommendation": {
+        "status": "enable-after-root-integration",
+        "axis": "y",
+        "meters": 0.9
+      }
+    },
+    "europe/la-tene-helmet-enserune-4c7323": {
+      "selectedVariant": "B",
+      "previewUrl": "https://models.atrium.earth/models/previews/europe/la-tene-helmet-enserune-4c7323/preview-ea9db5b77591.glb",
+      "assetSha256": "ea9db5b775916634a7a47a1bc46720f818cc241714d1504092746ac1aa26ea7c",
+      "assetBytes": 7057132,
+      "reviewSheet": "docs/ingest/classical-arms-equipment-20261007-pose-review-progress/europe__la-tene-helmet-enserune-4c7323.webp",
+      "evidence": "Variant B preserves the source-authored upright presentation of the crushed restored helmet; the crown is above the surviving lower edge and the decorated broad side faces the initial camera. The dents, flattened/asymmetric bowl, breaks and scroll decoration match the AOROC reference. H–J turn away from that decorated broad side; C and axis variants invert or tip it.",
+      "geometryReview": "Reviewed the exact R2 derivative against the AOROC source reference and all ten orientation candidates. It depicts the surviving crushed iron-and-bronze helmet in its restored archaeological presentation, retaining deformation, losses, surface and scroll decoration; it is not an intact virtual completion. +Y/[0,0,0]/yaw0 retains the source glTF X-axis tilt. There is no modern stand in the mesh. The whole end-to-end X span remains 285.853943 source units before and after that authored tilt, defensibly corresponding to the documented 285 mm length. Whole posed Z depth is 140.435845 units and does not reproduce the published 115 mm width; do not claim exact three-axis agreement.",
+      "scaleRecommendation": {
+        "status": "recommend-enable-with-root-approval",
+        "axis": "x",
+        "meters": 0.285,
+        "extentFraction": 1,
+        "scope": "Exact source-documented crushed/restored archaeological helmet",
+        "note": "Prefer the documented longest end-to-end length rather than assigning the full posed Y bound to the 132 mm height. Root approved this conditional length direction if B is the final pose. Published narrower width is not reproduced by whole posed bounds."
+      }
     }
   }
 }
