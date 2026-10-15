@@ -4,7 +4,7 @@
   "batch": "etruscan-greek-20261015",
   "acquisition_run_id": "38814108911",
   "requested_acquisition_head": "5483f45f",
-  "stage": "review plan; awaiting root-provided model/render outputs",
+  "stage": "all nineteen A–J orientation sheets visually reviewed; explicit proposed poses await root integration and actual four-view/native-source comparison",
   "reviewed_count": 0,
   "expected_count": 20,
   "lead_chunk": "docs/ingest/etruscan-greek-20261015-leads-chunk1.json",
@@ -92,21 +92,102 @@
       "scope_checks": "Painted maiden face and headdress; rounded reverse rather than a duplicated front plane; full surviving lower edge.",
       "native_appearance_checks": "Fine hair/earring edges and painted lines; no generated gold, porcelain or new pigment.",
       "preferred_front_criteria": "Face toward the camera; headdress vertical; show some rounded depth while keeping both sides of the face legible.",
-      "source_sha256": null,
-      "preview_sha256": null,
-      "preview_url": null,
+      "source_sha256": "e261286bb722b9db9db05677374cd4de206d198d098037191a82519479c00ec3",
+      "preview_sha256": "1faa26683add22190ba740a5a0dd073f0053d25eb87143ec020b98c75fe12f85",
+      "preview_url": "https://models.atrium.earth/models/previews/roman/antefix-maiden-cleveland-2024-56/preview-1faa26683add.glb",
       "source_review_images": [],
-      "derivative_review_images": [],
+      "derivative_review_images": [
+        {
+          "role": "initial-preferred-view-only",
+          "path": "public/previews/renders/roman/antefix-maiden-cleveland-2024-56/thumb.webp",
+          "sha256": "b423091b502e5cb788b72cde0d1e20a3cc51dde1ef6cde986176bfab0de1cefc",
+          "bytes": 56332
+        }
+      ],
       "actual_scope": null,
-      "appearance_status": "pending-source-outputs",
-      "integrity_status": "pending-source-outputs",
-      "orientation_proposal": null,
-      "pose_status": "pending-source-outputs",
-      "decision": "pending-acquisition-and-visual-review",
+      "appearance_status": "pending source-native four-view comparison",
+      "integrity_status": "passed acquisition measured-integrity gate; final visual scope still pending",
+      "orientation_proposal": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0
+      },
+      "pose_status": "all ten axis/front variants visually reviewed; explicit pose candidate proposed for root integration; final production thumbnail and four-view scope approval pending",
+      "decision": null,
       "limitations": [
         "No model payload or result artifact inspected by this reviewer yet.",
         "No final pose, complete-capture acceptance, calibrated size or publication approval is claimed."
-      ]
+      ],
+      "source_bytes": 8833632,
+      "preview_bytes": 1032548,
+      "initial_pose_triage": {
+        "state": "current appears upright; explicit source axis pending",
+        "action": "Compare A with B/D to replace auto-axis inference. Keep the maiden face toward the preferred front and the lower broken edge below the headdress.",
+        "candidate": null,
+        "variants": [
+          "A",
+          "B",
+          "D"
+        ],
+        "current_orientation": "auto",
+        "initial_thumbnail": {
+          "path": "public/previews/renders/roman/antefix-maiden-cleveland-2024-56/thumb.webp",
+          "sha256": "b423091b502e5cb788b72cde0d1e20a3cc51dde1ef6cde986176bfab0de1cefc",
+          "bytes": 56332
+        },
+        "review_status": "candidate-only; cloud orientation images and four-view scope pending"
+      },
+      "orientation_sheet_review": {
+        "acquisition_preview_url": "https://models.atrium.earth/models/previews/roman/antefix-maiden-cleveland-2024-56/preview-1faa26683add.glb",
+        "acquisition_preview_sha256": "1faa26683add22190ba740a5a0dd073f0053d25eb87143ec020b98c75fe12f85",
+        "acquisition_preview_bytes": 1032548,
+        "run_id": "38816845720",
+        "run_attempt": 1,
+        "workflow_head_sha": "f877ac13de9d90bc6e95b4e9f21adc50137e7260",
+        "artifact_name": "sheets-0",
+        "artifact_id": 12010994204,
+        "sheet_filename": "roman__antefix-maiden-cleveland-2024-56.webp",
+        "sheet_sha256": "50d85514b64b8fa724e6a48892787be490bdb26be74127b460f31a0672824d75",
+        "sheet_bytes": 53844,
+        "all_variants_reviewed": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "G",
+          "H",
+          "I",
+          "J"
+        ],
+        "selected_variant": "B",
+        "selected_variant_transform": {
+          "upAxis": "y",
+          "modelRotation": [
+            0,
+            0,
+            0
+          ],
+          "yaw": 0
+        },
+        "preferred_front": "The painted face is upright, with headdress above and broken lower edge below. B replaces auto with the same verified view.",
+        "proposed_transform": {
+          "upAxis": "y",
+          "modelRotation": [
+            0,
+            0,
+            0
+          ],
+          "yaw": 0
+        },
+        "proposal_status": "pending-root-and-final-render-review",
+        "camera_qualification": "The selected sheet image directly renders this proposed upright basis at the production default camera; source-native appearance and underside completeness remain unapproved."
+      }
     },
     {
       "slug": "roman/dancing-satyr-kottabos-cleveland-1974-16",
@@ -119,21 +200,114 @@
       "scope_checks": "Raised hand/arm, standing leg, lifted leg, pierced disk and cylinder; inspect thin struts and underside for missing scan portions.",
       "native_appearance_checks": "Authored bronze corrosion and surface variation; no new gilding or patina.",
       "preferred_front_criteria": "Stand on the surviving cylinder and disk; expose lifted leg and raised hand without profile overlap.",
-      "source_sha256": null,
-      "preview_sha256": null,
-      "preview_url": null,
+      "source_sha256": "1e31f9b32e0ac474c8fbeafc8cda5549ff1fc3cc2c4fbf432a74c6d57fc6c233",
+      "preview_sha256": "00872f9d0510173b03612ef6e3bb2ee361483bcb76f30dcb26e53013e3b901bd",
+      "preview_url": "https://models.atrium.earth/models/previews/roman/dancing-satyr-kottabos-cleveland-1974-16/preview-00872f9d0510.glb",
       "source_review_images": [],
-      "derivative_review_images": [],
+      "derivative_review_images": [
+        {
+          "role": "initial-preferred-view-only",
+          "path": "public/previews/renders/roman/dancing-satyr-kottabos-cleveland-1974-16/thumb.webp",
+          "sha256": "904cf484d26c7bc33948b6e84988decfdf6ee43f9ccec3451e2bac5f40fae3e3",
+          "bytes": 29066
+        }
+      ],
       "actual_scope": null,
-      "appearance_status": "pending-source-outputs",
-      "integrity_status": "pending-source-outputs",
-      "orientation_proposal": null,
-      "pose_status": "pending-source-outputs",
-      "decision": "pending-acquisition-and-visual-review",
+      "appearance_status": "pending source-native four-view comparison",
+      "integrity_status": "passed acquisition measured-integrity gate; final visual scope still pending",
+      "orientation_proposal": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0
+      },
+      "pose_status": "all ten axis/front variants visually reviewed; explicit pose candidate proposed for root integration; final production thumbnail and four-view scope approval pending",
+      "decision": null,
       "limitations": [
         "No model payload or result artifact inspected by this reviewer yet.",
         "No final pose, complete-capture acceptance, calibrated size or publication approval is claimed."
-      ]
+      ],
+      "source_bytes": 15196240,
+      "preview_bytes": 771304,
+      "initial_pose_triage": {
+        "state": "current pose appears upright and source-front compatible",
+        "action": "Candidate retain A. Verify the raised hand, pierced support disk and lower cylinder from four actual directions.",
+        "variants": [
+          "A",
+          "B",
+          "H",
+          "I",
+          "J"
+        ],
+        "current_orientation": {
+          "upAxis": "y",
+          "modelRotation": [
+            3.69,
+            0.08,
+            2.44
+          ],
+          "yaw": 0,
+          "status": "auto",
+          "confidence": 0.64,
+          "note": "Elongated (aspect 3.0); PCA long-axis aligned to vertical."
+        },
+        "initial_thumbnail": {
+          "path": "public/previews/renders/roman/dancing-satyr-kottabos-cleveland-1974-16/thumb.webp",
+          "sha256": "904cf484d26c7bc33948b6e84988decfdf6ee43f9ccec3451e2bac5f40fae3e3",
+          "bytes": 29066
+        },
+        "review_status": "candidate-only; cloud orientation images and four-view scope pending"
+      },
+      "orientation_sheet_review": {
+        "acquisition_preview_url": "https://models.atrium.earth/models/previews/roman/dancing-satyr-kottabos-cleveland-1974-16/preview-00872f9d0510.glb",
+        "acquisition_preview_sha256": "00872f9d0510173b03612ef6e3bb2ee361483bcb76f30dcb26e53013e3b901bd",
+        "acquisition_preview_bytes": 771304,
+        "run_id": "38816845720",
+        "run_attempt": 1,
+        "workflow_head_sha": "f877ac13de9d90bc6e95b4e9f21adc50137e7260",
+        "artifact_name": "sheets-1",
+        "artifact_id": 12012125754,
+        "sheet_filename": "roman__dancing-satyr-kottabos-cleveland-1974-16.webp",
+        "sheet_sha256": "41d666845917981f3f2e923a530ee17d720c010003a24ddd40df96493c02fd0f",
+        "sheet_bytes": 30904,
+        "all_variants_reviewed": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "G",
+          "H",
+          "I",
+          "J"
+        ],
+        "selected_variant": "B",
+        "selected_variant_transform": {
+          "upAxis": "y",
+          "modelRotation": [
+            0,
+            0,
+            0
+          ],
+          "yaw": 0
+        },
+        "preferred_front": "The cylinder and pierced disk support the standing leg; the other leg bends upward and the raised hand is above the head. The front/profile agrees with the publisher reference.",
+        "proposed_transform": {
+          "upAxis": "y",
+          "modelRotation": [
+            0,
+            0,
+            0
+          ],
+          "yaw": 0
+        },
+        "proposal_status": "pending-root-and-final-render-review",
+        "camera_qualification": "The selected sheet image directly renders this proposed upright basis at the production default camera; source-native appearance and underside completeness remain unapproved."
+      }
     },
     {
       "slug": "roman/reclining-lyre-player-cleveland-1986-185",
@@ -146,21 +320,115 @@
       "scope_checks": "Lyre/pick, hands, feet, pillows and attachment-groove underside; differentiate archaeological losses from capture holes.",
       "native_appearance_checks": "Preserve source bronze and captured gilding traces; compare texture/PBR maps against the original.",
       "preferred_front_criteria": "Keep the reclining figure horizontal with face and lyre toward camera; full toes and instrument fit.",
-      "source_sha256": null,
-      "preview_sha256": null,
-      "preview_url": null,
+      "source_sha256": "6f24a7316f5247292bc7ed1a5fadc4cd2b5ea115a24573d1405898cbe6cd9cf4",
+      "preview_sha256": "c24e84a3cb30c20d363d2555e7b0ffb32e0a4562877a01220abf3c428eb1b5b1",
+      "preview_url": "https://models.atrium.earth/models/previews/roman/reclining-lyre-player-cleveland-1986-185/preview-c24e84a3cb30.glb",
       "source_review_images": [],
-      "derivative_review_images": [],
+      "derivative_review_images": [
+        {
+          "role": "initial-preferred-view-only",
+          "path": "public/previews/renders/roman/reclining-lyre-player-cleveland-1986-185/thumb.webp",
+          "sha256": "44f7fa39e9380df696e477e12129f301d6c2bf625ca08d5bd9e7bf9f05a29111",
+          "bytes": 33540
+        }
+      ],
       "actual_scope": null,
-      "appearance_status": "pending-source-outputs",
-      "integrity_status": "pending-source-outputs",
-      "orientation_proposal": null,
-      "pose_status": "pending-source-outputs",
-      "decision": "pending-acquisition-and-visual-review",
+      "appearance_status": "pending source-native four-view comparison",
+      "integrity_status": "passed acquisition measured-integrity gate; final visual scope still pending",
+      "orientation_proposal": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0
+      },
+      "pose_status": "all ten axis/front variants visually reviewed; explicit pose candidate proposed for root integration; final production thumbnail and four-view scope approval pending",
+      "decision": null,
       "limitations": [
         "No model payload or result artifact inspected by this reviewer yet.",
         "No final pose, complete-capture acceptance, calibrated size or publication approval is claimed."
-      ]
+      ],
+      "source_bytes": 6315344,
+      "preview_bytes": 1013724,
+      "initial_pose_triage": {
+        "state": "upright reclining form; current thumbnail shows the back",
+        "action": "Keep the current support orientation as a candidate and use an opposite camera azimuth to expose face, chest and lyre. Render before approval; do not assume an Euler yaw is a world-vertical turn.",
+        "variants": [
+          "A",
+          "B",
+          "C",
+          "H",
+          "I",
+          "J"
+        ],
+        "current_orientation": {
+          "upAxis": "y",
+          "modelRotation": [
+            178.21,
+            0,
+            -178.59
+          ],
+          "yaw": 0,
+          "status": "auto",
+          "confidence": 0.72,
+          "note": "Stable-pose solve (pose 3, p=0.10, margin 0.49); confident."
+        },
+        "initial_thumbnail": {
+          "path": "public/previews/renders/roman/reclining-lyre-player-cleveland-1986-185/thumb.webp",
+          "sha256": "44f7fa39e9380df696e477e12129f301d6c2bf625ca08d5bd9e7bf9f05a29111",
+          "bytes": 33540
+        },
+        "review_status": "candidate-only; cloud orientation images and four-view scope pending"
+      },
+      "orientation_sheet_review": {
+        "acquisition_preview_url": "https://models.atrium.earth/models/previews/roman/reclining-lyre-player-cleveland-1986-185/preview-c24e84a3cb30.glb",
+        "acquisition_preview_sha256": "c24e84a3cb30c20d363d2555e7b0ffb32e0a4562877a01220abf3c428eb1b5b1",
+        "acquisition_preview_bytes": 1013724,
+        "run_id": "38816845720",
+        "run_attempt": 1,
+        "workflow_head_sha": "f877ac13de9d90bc6e95b4e9f21adc50137e7260",
+        "artifact_name": "sheets-2",
+        "artifact_id": 12011346594,
+        "sheet_filename": "roman__reclining-lyre-player-cleveland-1986-185.webp",
+        "sheet_sha256": "c074c09ecf155bb3da35adf1f1550930cd2669f1e2ef1834f9fdeaa7aa2edcde",
+        "sheet_bytes": 46902,
+        "all_variants_reviewed": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "G",
+          "H",
+          "I",
+          "J"
+        ],
+        "selected_variant": "B",
+        "selected_variant_transform": {
+          "upAxis": "y",
+          "modelRotation": [
+            0,
+            0,
+            0
+          ],
+          "yaw": 0
+        },
+        "preferred_front": "B directly reveals the face, chest, drapery and lyre as in the publisher reference. It is a verified explicit source +Y basis, so no composed Euler yaw or inferred opposite-view turn is needed.",
+        "proposed_transform": {
+          "upAxis": "y",
+          "modelRotation": [
+            0,
+            0,
+            0
+          ],
+          "yaw": 0
+        },
+        "proposal_status": "pending-root-and-final-render-review",
+        "camera_qualification": "The selected sheet image directly renders this proposed upright basis at the production default camera; source-native appearance and underside completeness remain unapproved."
+      }
     },
     {
       "slug": "roman/reclining-pipes-player-cleveland-1986-184",
@@ -173,21 +441,102 @@
       "scope_checks": "Both pipes, hands, head, feet, pillows and underside; physical broken pipe tips must agree with museum evidence.",
       "native_appearance_checks": "Preserve captured bronze coloration and surviving gilding traces; no reconstructed pipe ends.",
       "preferred_front_criteria": "Keep the reclining figure horizontal; show face, pipes and both supporting pillows.",
-      "source_sha256": null,
-      "preview_sha256": null,
-      "preview_url": null,
+      "source_sha256": "d56537b2c558adfb36f50ffb1a3d2c54d8d5f0525ae12f06f6831397f0334420",
+      "preview_sha256": "982f55c80cfe10c6e152d8d764b7aa9c3470823e559c1414dd78b4bb75e8bf1f",
+      "preview_url": "https://models.atrium.earth/models/previews/roman/reclining-pipes-player-cleveland-1986-184/preview-982f55c80cfe.glb",
       "source_review_images": [],
-      "derivative_review_images": [],
+      "derivative_review_images": [
+        {
+          "role": "initial-preferred-view-only",
+          "path": "public/previews/renders/roman/reclining-pipes-player-cleveland-1986-184/thumb.webp",
+          "sha256": "f5680d7241260a66731010e96360e5549226ae7bc47b1ccde76b7a5a18f8e566",
+          "bytes": 42296
+        }
+      ],
       "actual_scope": null,
-      "appearance_status": "pending-source-outputs",
-      "integrity_status": "pending-source-outputs",
-      "orientation_proposal": null,
-      "pose_status": "pending-source-outputs",
-      "decision": "pending-acquisition-and-visual-review",
+      "appearance_status": "pending source-native four-view comparison",
+      "integrity_status": "passed acquisition measured-integrity gate; final visual scope still pending",
+      "orientation_proposal": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0
+      },
+      "pose_status": "all ten axis/front variants visually reviewed; explicit pose candidate proposed for root integration; final production thumbnail and four-view scope approval pending",
+      "decision": null,
       "limitations": [
         "No model payload or result artifact inspected by this reviewer yet.",
         "No final pose, complete-capture acceptance, calibrated size or publication approval is claimed."
-      ]
+      ],
+      "source_bytes": 6623712,
+      "preview_bytes": 1063516,
+      "initial_pose_triage": {
+        "state": "current front and reclining posture appear appropriate; explicit source axis pending",
+        "action": "Compare A with B/D to establish an explicit basis. Preserve the reclining support boundary, face, instrument and both arms.",
+        "candidate": null,
+        "variants": [
+          "A",
+          "B",
+          "D"
+        ],
+        "current_orientation": "auto",
+        "initial_thumbnail": {
+          "path": "public/previews/renders/roman/reclining-pipes-player-cleveland-1986-184/thumb.webp",
+          "sha256": "f5680d7241260a66731010e96360e5549226ae7bc47b1ccde76b7a5a18f8e566",
+          "bytes": 42296
+        },
+        "review_status": "candidate-only; cloud orientation images and four-view scope pending"
+      },
+      "orientation_sheet_review": {
+        "acquisition_preview_url": "https://models.atrium.earth/models/previews/roman/reclining-pipes-player-cleveland-1986-184/preview-982f55c80cfe.glb",
+        "acquisition_preview_sha256": "982f55c80cfe10c6e152d8d764b7aa9c3470823e559c1414dd78b4bb75e8bf1f",
+        "acquisition_preview_bytes": 1063516,
+        "run_id": "38816845720",
+        "run_attempt": 1,
+        "workflow_head_sha": "f877ac13de9d90bc6e95b4e9f21adc50137e7260",
+        "artifact_name": "sheets-3",
+        "artifact_id": 12012120188,
+        "sheet_filename": "roman__reclining-pipes-player-cleveland-1986-184.webp",
+        "sheet_sha256": "1dfc48589a7bb632ee1fd8d279f3b0704f7ce8256721387ebd09db3e29b31e8c",
+        "sheet_bytes": 45538,
+        "all_variants_reviewed": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "G",
+          "H",
+          "I",
+          "J"
+        ],
+        "selected_variant": "B",
+        "selected_variant_transform": {
+          "upAxis": "y",
+          "modelRotation": [
+            0,
+            0,
+            0
+          ],
+          "yaw": 0
+        },
+        "preferred_front": "The figure reclines horizontally with face, hands and pipes visible. B matches the publisher reference and replaces auto with an explicit basis.",
+        "proposed_transform": {
+          "upAxis": "y",
+          "modelRotation": [
+            0,
+            0,
+            0
+          ],
+          "yaw": 0
+        },
+        "proposal_status": "pending-root-and-final-render-review",
+        "camera_qualification": "The selected sheet image directly renders this proposed upright basis at the production default camera; source-native appearance and underside completeness remain unapproved."
+      }
     },
     {
       "slug": "roman/ciste-a-cordoni-hassle-96979-hst",
@@ -200,21 +549,105 @@
       "scope_checks": "Both handles and bird-head terminals, full ribbed wall/seam, rim/interior and separately attached bottom; no second bucket.",
       "native_appearance_checks": "Keep hammered copper-alloy colors and source PBR; prevent exposure from bleaching metal, without inventing patina.",
       "preferred_front_criteria": "Bucket upright; slightly elevated three-quarter view makes mouth, ribs and handles clear.",
-      "source_sha256": null,
-      "preview_sha256": null,
-      "preview_url": null,
+      "source_sha256": "3758efea7088c6ce3f927bca40df8204a2ebd716b0a50bedf23455c4ea819d4c",
+      "preview_sha256": "70f769535066bc8ca584676451e1c4bb428bd7362172a08a9c7f7611695ba4f2",
+      "preview_url": "https://models.atrium.earth/models/previews/roman/ciste-a-cordoni-hassle-96979-hst/preview-70f769535066.glb",
       "source_review_images": [],
-      "derivative_review_images": [],
+      "derivative_review_images": [
+        {
+          "role": "initial-preferred-view-only",
+          "path": "public/previews/renders/roman/ciste-a-cordoni-hassle-96979-hst/thumb.webp",
+          "sha256": "cd4216a442e909fdfeaf0d7e4c2caa3d1d91bff002efe44e0ec10bf0ae401649",
+          "bytes": 81478
+        }
+      ],
       "actual_scope": null,
-      "appearance_status": "pending-source-outputs",
-      "integrity_status": "pending-source-outputs",
-      "orientation_proposal": null,
-      "pose_status": "pending-source-outputs",
-      "decision": "pending-acquisition-and-visual-review",
+      "appearance_status": "pending source-native four-view comparison",
+      "integrity_status": "passed acquisition measured-integrity gate; final visual scope still pending",
+      "orientation_proposal": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0
+      },
+      "pose_status": "all ten axis/front variants visually reviewed; explicit pose candidate proposed for root integration; final production thumbnail and four-view scope approval pending",
+      "decision": null,
       "limitations": [
         "No model payload or result artifact inspected by this reviewer yet.",
         "No final pose, complete-capture acceptance, calibrated size or publication approval is claimed."
-      ]
+      ],
+      "source_bytes": 4470200,
+      "preview_bytes": 614368,
+      "initial_pose_triage": {
+        "state": "incorrect; bucket lies horizontally",
+        "action": "Stand the circular bucket base below the open rim. Choose an axis from B–G; then choose a front showing the handle attachments and an open interior.",
+        "candidate": null,
+        "variants": [
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "G"
+        ],
+        "current_orientation": "auto",
+        "initial_thumbnail": {
+          "path": "public/previews/renders/roman/ciste-a-cordoni-hassle-96979-hst/thumb.webp",
+          "sha256": "cd4216a442e909fdfeaf0d7e4c2caa3d1d91bff002efe44e0ec10bf0ae401649",
+          "bytes": 81478
+        },
+        "review_status": "candidate-only; cloud orientation images and four-view scope pending"
+      },
+      "orientation_sheet_review": {
+        "acquisition_preview_url": "https://models.atrium.earth/models/previews/roman/ciste-a-cordoni-hassle-96979-hst/preview-70f769535066.glb",
+        "acquisition_preview_sha256": "70f769535066bc8ca584676451e1c4bb428bd7362172a08a9c7f7611695ba4f2",
+        "acquisition_preview_bytes": 614368,
+        "run_id": "38816845720",
+        "run_attempt": 1,
+        "workflow_head_sha": "f877ac13de9d90bc6e95b4e9f21adc50137e7260",
+        "artifact_name": "sheets-4",
+        "artifact_id": 12012365199,
+        "sheet_filename": "roman__ciste-a-cordoni-hassle-96979-hst.webp",
+        "sheet_sha256": "cb4e197d0edec4b50faa7c03668b93057699576b134bb4203293935a4110daf7",
+        "sheet_bytes": 97908,
+        "all_variants_reviewed": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "G",
+          "H",
+          "I",
+          "J"
+        ],
+        "selected_variant": "B",
+        "selected_variant_transform": {
+          "upAxis": "y",
+          "modelRotation": [
+            0,
+            0,
+            0
+          ],
+          "yaw": 0
+        },
+        "preferred_front": "The bucket stands on its circular base with the open rim above and the ribbing horizontal. Handle attachments remain visible; A/D incorrectly place it sideways.",
+        "proposed_transform": {
+          "upAxis": "y",
+          "modelRotation": [
+            0,
+            0,
+            0
+          ],
+          "yaw": 0
+        },
+        "proposal_status": "pending-root-and-final-render-review",
+        "camera_qualification": "The selected sheet image directly renders this proposed upright basis at the production default camera; source-native appearance and underside completeness remain unapproved."
+      }
     },
     {
       "slug": "roman/beaked-flagon-hunt-mg-015",
@@ -227,21 +660,116 @@
       "scope_checks": "Beak, forked animal-head handle terminals, lower palmette attachment, foot, back and underside; identify any display support.",
       "native_appearance_checks": "Preserve original brown/bronze captured surface; compare with publisher image and avoid synthetic oxidation.",
       "preferred_front_criteria": "Original foot down; beak and handle readable in profile/three-quarter arrangement.",
-      "source_sha256": null,
-      "preview_sha256": null,
-      "preview_url": null,
+      "source_sha256": "cc2bf1117ca221e7f2f045925d68c8e8d65303c76d439774296351e6d64ded50",
+      "preview_sha256": "47a81288fb9c41aeab8c6ee2755b386c78c2f89f2d672e94db376ba6d1ac15ea",
+      "preview_url": "https://models.atrium.earth/models/previews/roman/beaked-flagon-hunt-mg-015/preview-47a81288fb9c.glb",
       "source_review_images": [],
-      "derivative_review_images": [],
+      "derivative_review_images": [
+        {
+          "role": "initial-preferred-view-only",
+          "path": "public/previews/renders/roman/beaked-flagon-hunt-mg-015/thumb.webp",
+          "sha256": "63f599ad8d989a3ad1f71e5f584e65680620803a5362787cfefde4e72b1d877b",
+          "bytes": 36548
+        }
+      ],
       "actual_scope": null,
-      "appearance_status": "pending-source-outputs",
-      "integrity_status": "pending-source-outputs",
-      "orientation_proposal": null,
-      "pose_status": "pending-source-outputs",
-      "decision": "pending-acquisition-and-visual-review",
+      "appearance_status": "pending source-native four-view comparison",
+      "integrity_status": "passed acquisition measured-integrity gate; final visual scope still pending",
+      "orientation_proposal": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0.9,
+          0.34,
+          -0.55
+        ]
+      },
+      "pose_status": "all ten axis/front variants visually reviewed; explicit pose candidate proposed for root integration; final production thumbnail and four-view scope approval pending",
+      "decision": null,
       "limitations": [
         "No model payload or result artifact inspected by this reviewer yet.",
         "No final pose, complete-capture acceptance, calibrated size or publication approval is claimed."
-      ]
+      ],
+      "source_bytes": 8426428,
+      "preview_bytes": 858976,
+      "initial_pose_triage": {
+        "state": "current vessel appears upright; preferred profile and native surface need review",
+        "action": "Resolve explicit axis and prefer a three-quarter side showing the long beak and full handle loop. Current dark glossy surface differs from the warm bronze publisher reference; compare source-native material before any adjustment.",
+        "candidate": null,
+        "variants": [
+          "A",
+          "B",
+          "D",
+          "H",
+          "I",
+          "J"
+        ],
+        "appearanceFlag": "The dark glossy current surface versus warm bronze reference is a comparison flag only, not proof of lost source texture or permission to add new bronze coloration.",
+        "current_orientation": "auto",
+        "initial_thumbnail": {
+          "path": "public/previews/renders/roman/beaked-flagon-hunt-mg-015/thumb.webp",
+          "sha256": "63f599ad8d989a3ad1f71e5f584e65680620803a5362787cfefde4e72b1d877b",
+          "bytes": 36548
+        },
+        "review_status": "candidate-only; cloud orientation images and four-view scope pending"
+      },
+      "orientation_sheet_review": {
+        "acquisition_preview_url": "https://models.atrium.earth/models/previews/roman/beaked-flagon-hunt-mg-015/preview-47a81288fb9c.glb",
+        "acquisition_preview_sha256": "47a81288fb9c41aeab8c6ee2755b386c78c2f89f2d672e94db376ba6d1ac15ea",
+        "acquisition_preview_bytes": 858976,
+        "run_id": "38816845720",
+        "run_attempt": 1,
+        "workflow_head_sha": "f877ac13de9d90bc6e95b4e9f21adc50137e7260",
+        "artifact_name": "sheets-5",
+        "artifact_id": 12011192114,
+        "sheet_filename": "roman__beaked-flagon-hunt-mg-015.webp",
+        "sheet_sha256": "05b8355d6738c89f36625210120b3372b4e27b770331223cead88002dcf47285",
+        "sheet_bytes": 44076,
+        "all_variants_reviewed": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "G",
+          "H",
+          "I",
+          "J"
+        ],
+        "selected_variant": "J",
+        "selected_variant_transform": {
+          "upAxis": "auto",
+          "modelRotation": [
+            0,
+            0,
+            0
+          ],
+          "yaw": 270
+        },
+        "preferred_front": "J exposes the long beak to the right and the handle loop to the left, matching the publisher reference. Use canonical B with an equivalent camera azimuth rather than a retained implicit auto transform.",
+        "proposed_transform": {
+          "upAxis": "y",
+          "modelRotation": [
+            0,
+            0,
+            0
+          ],
+          "yaw": 0,
+          "viewDirection": [
+            0.9,
+            0.34,
+            -0.55
+          ]
+        },
+        "proposal_status": "pending-root-and-final-render-review",
+        "camera_qualification": "The selected J image is reproduced in source +Y basis B by moving the camera to [0.9,0.34,-0.55]. In these two assets the J transform is a pure Y quarter turn, so camera.up remains [0,1,0]. No non-Y Euler composition is adopted."
+      }
     },
     {
       "slug": "roman/oinochoe-humans-winged-animals-mev-17244",
@@ -254,21 +782,116 @@
       "scope_checks": "Trilobate mouth, handle, foot, both painted friezes and reverse; compare every large gap to the primary object image.",
       "native_appearance_checks": "Retain human/animal black-figure painting and original captured ceramic color; no painted completion or new gloss.",
       "preferred_front_criteria": "Vessel upright; select the front showing winged figures and animals while keeping beak/handle legible.",
-      "source_sha256": null,
-      "preview_sha256": null,
-      "preview_url": null,
+      "source_sha256": "f402c7fcf053420ddaec0e47c2206f4f944f9a9b4cd5db2ab572d3fd0427062c",
+      "preview_sha256": "66b0a8a00e4970a63c20980b6c715524f7185ab8ba7aa82916351fb243fe1922",
+      "preview_url": "https://models.atrium.earth/models/previews/roman/oinochoe-humans-winged-animals-mev-17244/preview-66b0a8a00e49.glb",
       "source_review_images": [],
-      "derivative_review_images": [],
+      "derivative_review_images": [
+        {
+          "role": "initial-preferred-view-only",
+          "path": "public/previews/renders/roman/oinochoe-humans-winged-animals-mev-17244/thumb.webp",
+          "sha256": "a541229f75b27b8f120339b1ee918005101dd062f11fe931c8df41ee3ca50d09",
+          "bytes": 23856
+        }
+      ],
       "actual_scope": null,
-      "appearance_status": "pending-source-outputs",
-      "integrity_status": "pending-source-outputs",
-      "orientation_proposal": null,
-      "pose_status": "pending-source-outputs",
-      "decision": "pending-acquisition-and-visual-review",
+      "appearance_status": "pending source-native four-view comparison",
+      "integrity_status": "passed acquisition measured-integrity gate; final visual scope still pending",
+      "orientation_proposal": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0
+      },
+      "pose_status": "all ten axis/front variants visually reviewed; explicit pose candidate proposed for root integration; final production thumbnail and four-view scope approval pending",
+      "decision": null,
       "limitations": [
         "No model payload or result artifact inspected by this reviewer yet.",
         "No final pose, complete-capture acceptance, calibrated size or publication approval is claimed."
-      ]
+      ],
+      "source_bytes": 10042192,
+      "preview_bytes": 1144912,
+      "initial_pose_triage": {
+        "state": "incorrect; painted oinochoe lies horizontally",
+        "action": "Stand the ring foot below the trilobate mouth, with handle vertical. Prefer a front showing both painted bands and retain the existing missing wall sections.",
+        "candidate": null,
+        "variants": [
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "G"
+        ],
+        "current_orientation": {
+          "upAxis": "y",
+          "modelRotation": [
+            109.38,
+            0,
+            -115.21
+          ],
+          "yaw": 0,
+          "status": "auto",
+          "confidence": 0.61,
+          "note": "Stable-pose solve (pose 0, p=0.17, margin 0.25); confident."
+        },
+        "initial_thumbnail": {
+          "path": "public/previews/renders/roman/oinochoe-humans-winged-animals-mev-17244/thumb.webp",
+          "sha256": "a541229f75b27b8f120339b1ee918005101dd062f11fe931c8df41ee3ca50d09",
+          "bytes": 23856
+        },
+        "review_status": "candidate-only; cloud orientation images and four-view scope pending"
+      },
+      "orientation_sheet_review": {
+        "acquisition_preview_url": "https://models.atrium.earth/models/previews/roman/oinochoe-humans-winged-animals-mev-17244/preview-66b0a8a00e49.glb",
+        "acquisition_preview_sha256": "66b0a8a00e4970a63c20980b6c715524f7185ab8ba7aa82916351fb243fe1922",
+        "acquisition_preview_bytes": 1144912,
+        "run_id": "38816845720",
+        "run_attempt": 1,
+        "workflow_head_sha": "f877ac13de9d90bc6e95b4e9f21adc50137e7260",
+        "artifact_name": "sheets-6",
+        "artifact_id": 12011580836,
+        "sheet_filename": "roman__oinochoe-humans-winged-animals-mev-17244.webp",
+        "sheet_sha256": "40a5df36637359ae154b7a14dcb3a9c6ffa010e9da4805721bbf39b903ee0dc4",
+        "sheet_bytes": 32066,
+        "all_variants_reviewed": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "G",
+          "H",
+          "I",
+          "J"
+        ],
+        "selected_variant": "B",
+        "selected_variant_transform": {
+          "upAxis": "y",
+          "modelRotation": [
+            0,
+            0,
+            0
+          ],
+          "yaw": 0
+        },
+        "preferred_front": "The ring foot is below the painted body and trilobate mouth, with a vertical handle. The actual historical wall losses remain; B establishes the correct basis even though a later preferred-front view may show the large loss more directly.",
+        "proposed_transform": {
+          "upAxis": "y",
+          "modelRotation": [
+            0,
+            0,
+            0
+          ],
+          "yaw": 0
+        },
+        "proposal_status": "pending-root-and-final-render-review",
+        "camera_qualification": "The selected sheet image directly renders this proposed upright basis at the production default camera; source-native appearance and underside completeness remain unapproved."
+      }
     },
     {
       "slug": "roman/treppenstein-baubo-dolphin-mkg-2001-36",
@@ -281,21 +904,102 @@
       "scope_checks": "Baubo and dolphin panels, ornamental bands, broken perimeter, back and true stone thickness; check any mount/backing.",
       "native_appearance_checks": "Retain Nenfro stone texture, shallow carving and source color; no invented smoother or darker stone.",
       "preferred_front_criteria": "Carved face toward camera; upright panels; modest three-quarter angle reveals thickness without sacrificing relief legibility.",
-      "source_sha256": null,
-      "preview_sha256": null,
-      "preview_url": null,
+      "source_sha256": "da2da47a52266ddfe743f514e01fdbffae708c019a1a7d0f6e9524901853beaa",
+      "preview_sha256": "35aa4bc97d78db47297a5dd506617a15effe061f0e6dd2aadfbc16a1d27062c2",
+      "preview_url": "https://models.atrium.earth/models/previews/roman/treppenstein-baubo-dolphin-mkg-2001-36/preview-35aa4bc97d78.glb",
       "source_review_images": [],
-      "derivative_review_images": [],
+      "derivative_review_images": [
+        {
+          "role": "initial-preferred-view-only",
+          "path": "public/previews/renders/roman/treppenstein-baubo-dolphin-mkg-2001-36/thumb.webp",
+          "sha256": "df8fa6f8b18c5fd0b1d0604e243b7a8e7a1d352067b0a91d91b3b0f835670b19",
+          "bytes": 75438
+        }
+      ],
       "actual_scope": null,
-      "appearance_status": "pending-source-outputs",
-      "integrity_status": "pending-source-outputs",
-      "orientation_proposal": null,
-      "pose_status": "pending-source-outputs",
-      "decision": "pending-acquisition-and-visual-review",
+      "appearance_status": "pending source-native four-view comparison",
+      "integrity_status": "passed acquisition measured-integrity gate; final visual scope still pending",
+      "orientation_proposal": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0
+      },
+      "pose_status": "all ten axis/front variants visually reviewed; explicit pose candidate proposed for root integration; final production thumbnail and four-view scope approval pending",
+      "decision": null,
       "limitations": [
         "No model payload or result artifact inspected by this reviewer yet.",
         "No final pose, complete-capture acceptance, calibrated size or publication approval is claimed."
-      ]
+      ],
+      "source_bytes": 13739880,
+      "preview_bytes": 1559620,
+      "initial_pose_triage": {
+        "state": "current carved face appears upright; explicit source axis pending",
+        "action": "Resolve A against B/D. Prefer a near-frontal view with Baubo above the dolphin and preserve the broken sides and uncarved depth.",
+        "candidate": null,
+        "variants": [
+          "A",
+          "B",
+          "D"
+        ],
+        "current_orientation": "auto",
+        "initial_thumbnail": {
+          "path": "public/previews/renders/roman/treppenstein-baubo-dolphin-mkg-2001-36/thumb.webp",
+          "sha256": "df8fa6f8b18c5fd0b1d0604e243b7a8e7a1d352067b0a91d91b3b0f835670b19",
+          "bytes": 75438
+        },
+        "review_status": "candidate-only; cloud orientation images and four-view scope pending"
+      },
+      "orientation_sheet_review": {
+        "acquisition_preview_url": "https://models.atrium.earth/models/previews/roman/treppenstein-baubo-dolphin-mkg-2001-36/preview-35aa4bc97d78.glb",
+        "acquisition_preview_sha256": "35aa4bc97d78db47297a5dd506617a15effe061f0e6dd2aadfbc16a1d27062c2",
+        "acquisition_preview_bytes": 1559620,
+        "run_id": "38816845720",
+        "run_attempt": 1,
+        "workflow_head_sha": "f877ac13de9d90bc6e95b4e9f21adc50137e7260",
+        "artifact_name": "sheets-7",
+        "artifact_id": 12011054241,
+        "sheet_filename": "roman__treppenstein-baubo-dolphin-mkg-2001-36.webp",
+        "sheet_sha256": "6bc0a7eab63486858d0b1104836bef4854e94e85abe601c71ea6c1914e55906e",
+        "sheet_bytes": 56548,
+        "all_variants_reviewed": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "G",
+          "H",
+          "I",
+          "J"
+        ],
+        "selected_variant": "B",
+        "selected_variant_transform": {
+          "upAxis": "y",
+          "modelRotation": [
+            0,
+            0,
+            0
+          ],
+          "yaw": 0
+        },
+        "preferred_front": "Baubo occupies the upper panel and the dolphin the lower panel. B matches A with an explicit upright basis and a readable carved front.",
+        "proposed_transform": {
+          "upAxis": "y",
+          "modelRotation": [
+            0,
+            0,
+            0
+          ],
+          "yaw": 0
+        },
+        "proposal_status": "pending-root-and-final-render-review",
+        "camera_qualification": "The selected sheet image directly renders this proposed upright basis at the production default camera; source-native appearance and underside completeness remain unapproved."
+      }
     },
     {
       "slug": "roman/hut-urn-allard-pierson-apm12000",
@@ -308,21 +1012,102 @@
       "scope_checks": "Roof/lid, doorway, walls, back and surviving base; closed unseen interior is not automatically claimed as captured.",
       "native_appearance_checks": "Preserve terracotta markings and source color; no added masonry, reconstructed interior or roof parts.",
       "preferred_front_criteria": "Doorway forward, roof ridge upright; three-quarter view exposes one side and roof structure.",
-      "source_sha256": null,
-      "preview_sha256": null,
-      "preview_url": null,
+      "source_sha256": "e03675c6c790511c5c1b01709cd786de4272a69370d76220206a0257fc1be952",
+      "preview_sha256": "494f29698d13da0cff214cba313aba88f57f59c9f6b8595c34c1f48e0dd9222c",
+      "preview_url": "https://models.atrium.earth/models/previews/roman/hut-urn-allard-pierson-apm12000/preview-494f29698d13.glb",
       "source_review_images": [],
-      "derivative_review_images": [],
+      "derivative_review_images": [
+        {
+          "role": "initial-preferred-view-only",
+          "path": "public/previews/renders/roman/hut-urn-allard-pierson-apm12000/thumb.webp",
+          "sha256": "3b533556d3e304048c7ab274ca423534dbdb1aa55dd193d5b9779602749202ea",
+          "bytes": 50956
+        }
+      ],
       "actual_scope": null,
-      "appearance_status": "pending-source-outputs",
-      "integrity_status": "pending-source-outputs",
-      "orientation_proposal": null,
-      "pose_status": "pending-source-outputs",
-      "decision": "pending-acquisition-and-visual-review",
+      "appearance_status": "pending source-native four-view comparison",
+      "integrity_status": "passed acquisition measured-integrity gate; final visual scope still pending",
+      "orientation_proposal": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0
+      },
+      "pose_status": "all ten axis/front variants visually reviewed; explicit pose candidate proposed for root integration; final production thumbnail and four-view scope approval pending",
+      "decision": null,
       "limitations": [
         "No model payload or result artifact inspected by this reviewer yet.",
         "No final pose, complete-capture acceptance, calibrated size or publication approval is claimed."
-      ]
+      ],
+      "source_bytes": 21718428,
+      "preview_bytes": 1457004,
+      "initial_pose_triage": {
+        "state": "current hut appears upright and its doorway is visible; explicit source axis pending",
+        "action": "Resolve A against B/D. Keep the door panel on the preferred-front side with roof ridge and upper projections above it.",
+        "candidate": null,
+        "variants": [
+          "A",
+          "B",
+          "D"
+        ],
+        "current_orientation": "auto",
+        "initial_thumbnail": {
+          "path": "public/previews/renders/roman/hut-urn-allard-pierson-apm12000/thumb.webp",
+          "sha256": "3b533556d3e304048c7ab274ca423534dbdb1aa55dd193d5b9779602749202ea",
+          "bytes": 50956
+        },
+        "review_status": "candidate-only; cloud orientation images and four-view scope pending"
+      },
+      "orientation_sheet_review": {
+        "acquisition_preview_url": "https://models.atrium.earth/models/previews/roman/hut-urn-allard-pierson-apm12000/preview-494f29698d13.glb",
+        "acquisition_preview_sha256": "494f29698d13da0cff214cba313aba88f57f59c9f6b8595c34c1f48e0dd9222c",
+        "acquisition_preview_bytes": 1457004,
+        "run_id": "38816845720",
+        "run_attempt": 1,
+        "workflow_head_sha": "f877ac13de9d90bc6e95b4e9f21adc50137e7260",
+        "artifact_name": "sheets-8",
+        "artifact_id": 12012325341,
+        "sheet_filename": "roman__hut-urn-allard-pierson-apm12000.webp",
+        "sheet_sha256": "7fdf95d0a9259de3bb0643036170b91298c656cbf7d80b604b489d21b96f9594",
+        "sheet_bytes": 51604,
+        "all_variants_reviewed": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "G",
+          "H",
+          "I",
+          "J"
+        ],
+        "selected_variant": "B",
+        "selected_variant_transform": {
+          "upAxis": "y",
+          "modelRotation": [
+            0,
+            0,
+            0
+          ],
+          "yaw": 0
+        },
+        "preferred_front": "The roof projections sit above the body and doorway, whose panel is visible on the preferred front. B matches A and the publisher reference.",
+        "proposed_transform": {
+          "upAxis": "y",
+          "modelRotation": [
+            0,
+            0,
+            0
+          ],
+          "yaw": 0
+        },
+        "proposal_status": "pending-root-and-final-render-review",
+        "camera_qualification": "The selected sheet image directly renders this proposed upright basis at the production default camera; source-native appearance and underside completeness remain unapproved."
+      }
     },
     {
       "slug": "roman/kyathos-allard-pierson-apmb11952",
@@ -335,21 +1120,116 @@
       "scope_checks": "Tall handle, rim/interior, bowl, foot and underside; determine original breaks versus scan gaps; no duplicate scene items.",
       "native_appearance_checks": "Preserve mottled pottery surface and authored color; source lacks any license to fabricate a uniform shiny finish.",
       "preferred_front_criteria": "Cup upright with tall handle vertical; elevated three-quarter view reveals interior and attachment.",
-      "source_sha256": null,
-      "preview_sha256": null,
-      "preview_url": null,
+      "source_sha256": "dd989df581a45fc4037e9de54e87d295dc4f389a16074ad3270559db54b092fd",
+      "preview_sha256": "f8e3e9debcc161c9a221fc17f123917c3be6c7b5c0f1e813253ca363ef3d87a6",
+      "preview_url": "https://models.atrium.earth/models/previews/roman/kyathos-allard-pierson-apmb11952/preview-f8e3e9debcc1.glb",
       "source_review_images": [],
-      "derivative_review_images": [],
+      "derivative_review_images": [
+        {
+          "role": "initial-preferred-view-only",
+          "path": "public/previews/renders/roman/kyathos-allard-pierson-apmb11952/thumb.webp",
+          "sha256": "35523496204f7f5affe415620470f1f0c4acebf033023be1326e5cbb8cda978d",
+          "bytes": 37844
+        }
+      ],
       "actual_scope": null,
-      "appearance_status": "pending-source-outputs",
-      "integrity_status": "pending-source-outputs",
-      "orientation_proposal": null,
-      "pose_status": "pending-source-outputs",
-      "decision": "pending-acquisition-and-visual-review",
+      "appearance_status": "pending source-native four-view comparison",
+      "integrity_status": "passed acquisition measured-integrity gate; final visual scope still pending",
+      "orientation_proposal": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0
+      },
+      "pose_status": "all ten axis/front variants visually reviewed; explicit pose candidate proposed for root integration; final production thumbnail and four-view scope approval pending",
+      "decision": null,
       "limitations": [
         "No model payload or result artifact inspected by this reviewer yet.",
         "No final pose, complete-capture acceptance, calibrated size or publication approval is claimed."
-      ]
+      ],
+      "source_bytes": 3505488,
+      "preview_bytes": 454340,
+      "initial_pose_triage": {
+        "state": "incorrect; scoop lies sideways with handle horizontal",
+        "action": "Stand the small vessel foot below its open cup, with the tall handle rising above the rim. Choose an actual B–G image rather than keeping the stable-pose solver result.",
+        "candidate": null,
+        "variants": [
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "G"
+        ],
+        "current_orientation": {
+          "upAxis": "y",
+          "modelRotation": [
+            -174.96,
+            0,
+            -107.51
+          ],
+          "yaw": 0,
+          "status": "auto",
+          "confidence": 0.66,
+          "note": "Stable-pose solve (pose 0, p=0.34, margin 0.35); confident."
+        },
+        "initial_thumbnail": {
+          "path": "public/previews/renders/roman/kyathos-allard-pierson-apmb11952/thumb.webp",
+          "sha256": "35523496204f7f5affe415620470f1f0c4acebf033023be1326e5cbb8cda978d",
+          "bytes": 37844
+        },
+        "review_status": "candidate-only; cloud orientation images and four-view scope pending"
+      },
+      "orientation_sheet_review": {
+        "acquisition_preview_url": "https://models.atrium.earth/models/previews/roman/kyathos-allard-pierson-apmb11952/preview-f8e3e9debcc1.glb",
+        "acquisition_preview_sha256": "f8e3e9debcc161c9a221fc17f123917c3be6c7b5c0f1e813253ca363ef3d87a6",
+        "acquisition_preview_bytes": 454340,
+        "run_id": "38816845720",
+        "run_attempt": 1,
+        "workflow_head_sha": "f877ac13de9d90bc6e95b4e9f21adc50137e7260",
+        "artifact_name": "sheets-9",
+        "artifact_id": 12012030125,
+        "sheet_filename": "roman__kyathos-allard-pierson-apmb11952.webp",
+        "sheet_sha256": "003b6a1f0d770beb0fc4a18ab76a53c5cd4ca80dc261bfd9a4eb1a79a1ff0342",
+        "sheet_bytes": 43664,
+        "all_variants_reviewed": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "G",
+          "H",
+          "I",
+          "J"
+        ],
+        "selected_variant": "B",
+        "selected_variant_transform": {
+          "upAxis": "y",
+          "modelRotation": [
+            0,
+            0,
+            0
+          ],
+          "yaw": 0
+        },
+        "preferred_front": "The small foot supports the open cup and the tall loop handle rises above the rim. A is sideways; B has a clear, physically plausible standing posture.",
+        "proposed_transform": {
+          "upAxis": "y",
+          "modelRotation": [
+            0,
+            0,
+            0
+          ],
+          "yaw": 0
+        },
+        "proposal_status": "pending-root-and-final-render-review",
+        "camera_qualification": "The selected sheet image directly renders this proposed upright basis at the production default camera; source-native appearance and underside completeness remain unapproved."
+      }
     },
     {
       "slug": "roman/etruscan-schnabelkanne-badisches-c7011",
@@ -362,21 +1242,27 @@
       "scope_checks": "Beaked mouth, entire handle/terminals, body, base, back and underside; preserve full retained archaeological object.",
       "native_appearance_checks": "Preserve captured green/bronze coloration and material factors; no hue-based normalization or synthetic patina.",
       "preferred_front_criteria": "Foot down; beak and handle separated in silhouette; match publisher front rather than reversing the vessel arbitrarily.",
-      "source_sha256": null,
+      "source_sha256": "dd969c8a8d21a304d1518527ee60e3c1a7243adac6f39a0e1e7c8175e4539fe5",
       "preview_sha256": null,
       "preview_url": null,
       "source_review_images": [],
       "derivative_review_images": [],
       "actual_scope": null,
       "appearance_status": "pending-source-outputs",
-      "integrity_status": "pending-source-outputs",
+      "integrity_status": "held by acquisition gate",
       "orientation_proposal": null,
-      "pose_status": "pending-source-outputs",
-      "decision": "pending-acquisition-and-visual-review",
+      "pose_status": "not acquired; no pose review",
+      "decision": "integrity-hold",
       "limitations": [
         "No model payload or result artifact inspected by this reviewer yet.",
         "No final pose, complete-capture acceptance, calibrated size or publication approval is claimed."
-      ]
+      ],
+      "source_bytes": 1569636,
+      "acquisition_hold": {
+        "reason": "geometry failed integrity gate",
+        "integrity": "faces=19999 ncomp=162 bratio=0.002",
+        "component_exemptions": false
+      }
     },
     {
       "slug": "roman/house-shaped-cinerary-urn-bm-1873-0820-757",
@@ -389,21 +1275,127 @@
       "scope_checks": "All four exterior faces, roof ornaments, lid/body join and underside; identify reflections or fused museum support from through-glass capture.",
       "native_appearance_checks": "Retain source limestone and carved detail; compare roof/animal projections with source, no added surface carving.",
       "preferred_front_criteria": "House-shaped box upright with roof ridge horizontal; front and one carved side visible, all ornaments framed.",
-      "source_sha256": null,
-      "preview_sha256": null,
-      "preview_url": null,
+      "source_sha256": "843aa3b2e1d20e36b33d63d73f9412131bc98b914472a84fef409dc5493a9ac6",
+      "preview_sha256": "a3010f76d3883f68f9f56b56f5d6deee1d1bc652fb64e543c0416ac44e9709d0",
+      "preview_url": "https://models.atrium.earth/models/previews/roman/house-shaped-cinerary-urn-bm-1873-0820-757/preview-a3010f76d388.glb",
       "source_review_images": [],
-      "derivative_review_images": [],
+      "derivative_review_images": [
+        {
+          "role": "initial-preferred-view-only",
+          "path": "public/previews/renders/roman/house-shaped-cinerary-urn-bm-1873-0820-757/thumb.webp",
+          "sha256": "f64e98542d61115804fc36c516128fc5bb19eeda0148b789e5de0c0df823657b",
+          "bytes": 37132
+        }
+      ],
       "actual_scope": null,
-      "appearance_status": "pending-source-outputs",
-      "integrity_status": "pending-source-outputs",
-      "orientation_proposal": null,
-      "pose_status": "pending-source-outputs",
-      "decision": "pending-acquisition-and-visual-review",
+      "appearance_status": "pending source-native four-view comparison",
+      "integrity_status": "passed acquisition measured-integrity gate; final visual scope still pending",
+      "orientation_proposal": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0.9,
+          0.34,
+          -0.55
+        ]
+      },
+      "pose_status": "all ten axis/front variants visually reviewed; explicit pose candidate proposed for root integration; final production thumbnail and four-view scope approval pending",
+      "decision": null,
       "limitations": [
         "No model payload or result artifact inspected by this reviewer yet.",
         "No final pose, complete-capture acceptance, calibrated size or publication approval is claimed."
-      ]
+      ],
+      "source_bytes": 2750200,
+      "preview_bytes": 339080,
+      "initial_pose_triage": {
+        "state": "upright house urn; current view hides the figurative entrance end",
+        "action": "Keep the current upright rotation as a candidate; test an opposite or quarter-turned camera azimuth to reveal the seated figure at the doorway while preserving the roof cats and long side.",
+        "variants": [
+          "A",
+          "B",
+          "H",
+          "I",
+          "J"
+        ],
+        "current_orientation": {
+          "upAxis": "y",
+          "modelRotation": [
+            -180,
+            0,
+            -180
+          ],
+          "yaw": 0,
+          "status": "auto",
+          "confidence": 0.68,
+          "note": "Stable-pose solve (pose 1, p=0.18, margin 0.39); confident."
+        },
+        "initial_thumbnail": {
+          "path": "public/previews/renders/roman/house-shaped-cinerary-urn-bm-1873-0820-757/thumb.webp",
+          "sha256": "f64e98542d61115804fc36c516128fc5bb19eeda0148b789e5de0c0df823657b",
+          "bytes": 37132
+        },
+        "review_status": "candidate-only; cloud orientation images and four-view scope pending"
+      },
+      "orientation_sheet_review": {
+        "acquisition_preview_url": "https://models.atrium.earth/models/previews/roman/house-shaped-cinerary-urn-bm-1873-0820-757/preview-a3010f76d388.glb",
+        "acquisition_preview_sha256": "a3010f76d3883f68f9f56b56f5d6deee1d1bc652fb64e543c0416ac44e9709d0",
+        "acquisition_preview_bytes": 339080,
+        "run_id": "38816845720",
+        "run_attempt": 1,
+        "workflow_head_sha": "f877ac13de9d90bc6e95b4e9f21adc50137e7260",
+        "artifact_name": "sheets-0",
+        "artifact_id": 12010994204,
+        "sheet_filename": "roman__house-shaped-cinerary-urn-bm-1873-0820-757.webp",
+        "sheet_sha256": "c8c09a0abd6800792e16cec8ad87626ebfa402511aa29368eee9fa6f279ca0fb",
+        "sheet_bytes": 48558,
+        "all_variants_reviewed": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "G",
+          "H",
+          "I",
+          "J"
+        ],
+        "selected_variant": "J",
+        "selected_variant_transform": {
+          "upAxis": "y",
+          "modelRotation": [
+            -180,
+            0,
+            -180
+          ],
+          "yaw": 270,
+          "status": "auto",
+          "confidence": 0.68,
+          "note": "Stable-pose solve (pose 1, p=0.18, margin 0.39); confident."
+        },
+        "preferred_front": "J reveals the seated figure at the entrance, the long house wall and both roof felines. Use canonical B with an equivalent camera azimuth; this avoids using the old noncanonical rotation plus an Euler yaw.",
+        "proposed_transform": {
+          "upAxis": "y",
+          "modelRotation": [
+            0,
+            0,
+            0
+          ],
+          "yaw": 0,
+          "viewDirection": [
+            0.9,
+            0.34,
+            -0.55
+          ]
+        },
+        "proposal_status": "pending-root-and-final-render-review",
+        "camera_qualification": "The selected J image is reproduced in source +Y basis B by moving the camera to [0.9,0.34,-0.55]. In these two assets the J transform is a pure Y quarter turn, so camera.up remains [0,1,0]. No non-Y Euler composition is adopted."
+      }
     },
     {
       "slug": "roman/column-krater-ics-ehrenberg",
@@ -416,21 +1408,115 @@
       "scope_checks": "Both column handles, full rim/interior, patterned body, foot and underside; separate turntable/support.",
       "native_appearance_checks": "Preserve actual painted bands/figures and pottery surface; no procedural reconstruction or invented decoration.",
       "preferred_front_criteria": "Foot down, vessel upright; front painting and both handles visible; modest elevation reveals mouth.",
-      "source_sha256": null,
-      "preview_sha256": null,
-      "preview_url": null,
+      "source_sha256": "f906d0931ef1c6302b57bfacb04d7fef1f523dc69eb9d2365fab4afdf68cd79c",
+      "preview_sha256": "16887cb656f3b5cee8f924cccafd0c55d9e883586629a83b5006579aa42e0580",
+      "preview_url": "https://models.atrium.earth/models/previews/roman/column-krater-ics-ehrenberg/preview-16887cb656f3.glb",
       "source_review_images": [],
-      "derivative_review_images": [],
+      "derivative_review_images": [
+        {
+          "role": "initial-preferred-view-only",
+          "path": "public/previews/renders/roman/column-krater-ics-ehrenberg/thumb.webp",
+          "sha256": "05d395813a671abb23f9c16b0709b8b79bc282cc82d968dbe98758af4e92be34",
+          "bytes": 39536
+        }
+      ],
       "actual_scope": null,
-      "appearance_status": "pending-source-outputs",
-      "integrity_status": "pending-source-outputs",
-      "orientation_proposal": null,
-      "pose_status": "pending-source-outputs",
-      "decision": "pending-acquisition-and-visual-review",
+      "appearance_status": "pending source-native four-view comparison",
+      "integrity_status": "passed acquisition measured-integrity gate; final visual scope still pending",
+      "orientation_proposal": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0
+      },
+      "pose_status": "all ten axis/front variants visually reviewed; explicit pose candidate proposed for root integration; final production thumbnail and four-view scope approval pending",
+      "decision": null,
       "limitations": [
         "No model payload or result artifact inspected by this reviewer yet.",
         "No final pose, complete-capture acceptance, calibrated size or publication approval is claimed."
-      ]
+      ],
+      "source_bytes": 39503220,
+      "preview_bytes": 1055456,
+      "initial_pose_triage": {
+        "state": "incorrect; krater is upside down",
+        "action": "B is an explicit +Y-up candidate: wide mouth and handle attachments above the body, narrow ring foot below. Verify that orientation and choose a view showing both column handles.",
+        "variants": [
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "G"
+        ],
+        "current_orientation": {
+          "upAxis": "y",
+          "modelRotation": [
+            -175.96,
+            0,
+            -0.78
+          ],
+          "yaw": 0,
+          "status": "auto",
+          "confidence": 0.75,
+          "note": "Stable-pose solve (pose 0, p=0.10, margin 0.54); confident."
+        },
+        "initial_thumbnail": {
+          "path": "public/previews/renders/roman/column-krater-ics-ehrenberg/thumb.webp",
+          "sha256": "05d395813a671abb23f9c16b0709b8b79bc282cc82d968dbe98758af4e92be34",
+          "bytes": 39536
+        },
+        "review_status": "candidate-only; cloud orientation images and four-view scope pending"
+      },
+      "orientation_sheet_review": {
+        "acquisition_preview_url": "https://models.atrium.earth/models/previews/roman/column-krater-ics-ehrenberg/preview-16887cb656f3.glb",
+        "acquisition_preview_sha256": "16887cb656f3b5cee8f924cccafd0c55d9e883586629a83b5006579aa42e0580",
+        "acquisition_preview_bytes": 1055456,
+        "run_id": "38816845720",
+        "run_attempt": 1,
+        "workflow_head_sha": "f877ac13de9d90bc6e95b4e9f21adc50137e7260",
+        "artifact_name": "sheets-1",
+        "artifact_id": 12012125754,
+        "sheet_filename": "roman__column-krater-ics-ehrenberg.webp",
+        "sheet_sha256": "bb3c3169b7db1707f383c4067ec76971f005e8bedbe1c78cc02e590f6cd777fb",
+        "sheet_bytes": 55452,
+        "all_variants_reviewed": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "G",
+          "H",
+          "I",
+          "J"
+        ],
+        "selected_variant": "B",
+        "selected_variant_transform": {
+          "upAxis": "y",
+          "modelRotation": [
+            0,
+            0,
+            0
+          ],
+          "yaw": 0
+        },
+        "preferred_front": "The broad open mouth and handle attachments are above the decorated body, with the narrow foot below. A/C are upside down.",
+        "proposed_transform": {
+          "upAxis": "y",
+          "modelRotation": [
+            0,
+            0,
+            0
+          ],
+          "yaw": 0
+        },
+        "proposal_status": "pending-root-and-final-render-review",
+        "camera_qualification": "The selected sheet image directly renders this proposed upright basis at the production default camera; source-native appearance and underside completeness remain unapproved."
+      }
     },
     {
       "slug": "roman/impasto-cauldron-banfi-11",
@@ -443,21 +1529,119 @@
       "scope_checks": "Full surviving rim, side projections/handles, basin interior, exterior and underside; original rim losses versus scan gaps.",
       "native_appearance_checks": "Retain red-brown impasto and captured wear; no uniform bronze or black-bucchero substitution.",
       "preferred_front_criteria": "Basin horizontal; higher camera shows entire interior and rim while retaining physical side depth.",
-      "source_sha256": null,
-      "preview_sha256": null,
-      "preview_url": null,
+      "source_sha256": "1be72792bb63ad9e86dec0899c73e132cd6784b171044109db0642edb5c156ac",
+      "preview_sha256": "3458e99e3a28c345e6edd5a1c3cea18f463184fa79ec8fc22ec0ffc1ea2ad171",
+      "preview_url": "https://models.atrium.earth/models/previews/roman/impasto-cauldron-banfi-11/preview-3458e99e3a28.glb",
       "source_review_images": [],
-      "derivative_review_images": [],
+      "derivative_review_images": [
+        {
+          "role": "initial-preferred-view-only",
+          "path": "public/previews/renders/roman/impasto-cauldron-banfi-11/thumb.webp",
+          "sha256": "53dc5a805cdceeb162b4b53d3b17944aeb41a603b46f13de5d419887e95322b1",
+          "bytes": 31212
+        }
+      ],
       "actual_scope": null,
-      "appearance_status": "pending-source-outputs",
-      "integrity_status": "pending-source-outputs",
-      "orientation_proposal": null,
-      "pose_status": "pending-source-outputs",
-      "decision": "pending-acquisition-and-visual-review",
+      "appearance_status": "pending source-native four-view comparison",
+      "integrity_status": "passed acquisition measured-integrity gate; final visual scope still pending",
+      "orientation_proposal": {
+        "upAxis": "y",
+        "modelRotation": [
+          -155.41,
+          0,
+          -177.91
+        ],
+        "yaw": 0
+      },
+      "pose_status": "all ten axis/front variants visually reviewed; explicit pose candidate proposed for root integration; final production thumbnail and four-view scope approval pending",
+      "decision": null,
       "limitations": [
         "No model payload or result artifact inspected by this reviewer yet.",
         "No final pose, complete-capture acceptance, calibrated size or publication approval is claimed."
-      ]
+      ],
+      "source_bytes": 6862964,
+      "preview_bytes": 867020,
+      "initial_pose_triage": {
+        "state": "current bowl is readable; possible solver tilt needs footing check",
+        "action": "Compare B against A to level the documented bowl rather than preserving an arbitrary stable-pose tilt. Use a moderately high camera to see the interior without hiding the outer wall and surviving attachments.",
+        "variants": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "G"
+        ],
+        "current_orientation": {
+          "upAxis": "y",
+          "modelRotation": [
+            -155.41,
+            0,
+            -177.91
+          ],
+          "yaw": 0,
+          "status": "auto",
+          "confidence": 0.71,
+          "note": "Stable-pose solve (pose 0, p=0.65, margin 0.46); confident."
+        },
+        "initial_thumbnail": {
+          "path": "public/previews/renders/roman/impasto-cauldron-banfi-11/thumb.webp",
+          "sha256": "53dc5a805cdceeb162b4b53d3b17944aeb41a603b46f13de5d419887e95322b1",
+          "bytes": 31212
+        },
+        "review_status": "candidate-only; cloud orientation images and four-view scope pending"
+      },
+      "orientation_sheet_review": {
+        "acquisition_preview_url": "https://models.atrium.earth/models/previews/roman/impasto-cauldron-banfi-11/preview-3458e99e3a28.glb",
+        "acquisition_preview_sha256": "3458e99e3a28c345e6edd5a1c3cea18f463184fa79ec8fc22ec0ffc1ea2ad171",
+        "acquisition_preview_bytes": 867020,
+        "run_id": "38816845720",
+        "run_attempt": 1,
+        "workflow_head_sha": "f877ac13de9d90bc6e95b4e9f21adc50137e7260",
+        "artifact_name": "sheets-2",
+        "artifact_id": 12011346594,
+        "sheet_filename": "roman__impasto-cauldron-banfi-11.webp",
+        "sheet_sha256": "dd3802878793e829b00357a6399d43d826eb79c70236ccb0fc13841be2e6406b",
+        "sheet_bytes": 42838,
+        "all_variants_reviewed": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "G",
+          "H",
+          "I",
+          "J"
+        ],
+        "selected_variant": "A",
+        "selected_variant_transform": {
+          "upAxis": "y",
+          "modelRotation": [
+            -155.41,
+            0,
+            -177.91
+          ],
+          "yaw": 0,
+          "status": "auto",
+          "confidence": 0.71,
+          "note": "Stable-pose solve (pose 0, p=0.65, margin 0.46); confident."
+        },
+        "preferred_front": "The current solved rotation is the only sheet view that levels the bowl while resting it on its underside. B retains the tilted raw scan basis; keep A rather than forcing an axis-aligned pose.",
+        "proposed_transform": {
+          "upAxis": "y",
+          "modelRotation": [
+            -155.41,
+            0,
+            -177.91
+          ],
+          "yaw": 0
+        },
+        "proposal_status": "pending-root-and-final-render-review",
+        "camera_qualification": "The selected sheet image directly renders this proposed upright basis at the production default camera; source-native appearance and underside completeness remain unapproved."
+      }
     },
     {
       "slug": "roman/painted-brazier-banfi-62",
@@ -470,21 +1654,112 @@
       "scope_checks": "Complete retained broad rim, central boss, low supports and underside; disclose any original support losses; reject scan-isolated floating legs.",
       "native_appearance_checks": "Preserve light sandy clay with captured white/red paint; no generic yellow stone treatment or painted completion.",
       "preferred_front_criteria": "Brazier horizontal on its surviving supports; elevated front reveals central boss and enough depth to read the supports.",
-      "source_sha256": null,
-      "preview_sha256": null,
-      "preview_url": null,
+      "source_sha256": "920f31cef14ebb94513f56e8b13b5f20e4d841fd5d5458e3cb297ee425d48d86",
+      "preview_sha256": "b4f0b3d665fbca7eb5c7033012c741558a8a6a2a784bd880b06b32d29c81d452",
+      "preview_url": "https://models.atrium.earth/models/previews/roman/painted-brazier-banfi-62/preview-b4f0b3d665fb.glb",
       "source_review_images": [],
-      "derivative_review_images": [],
+      "derivative_review_images": [
+        {
+          "role": "initial-preferred-view-only",
+          "path": "public/previews/renders/roman/painted-brazier-banfi-62/thumb.webp",
+          "sha256": "9675f9074f544cdcc8788b1bdcf7a92bb3178074a4e68412ae480bd2bc47175d",
+          "bytes": 21022
+        }
+      ],
       "actual_scope": null,
-      "appearance_status": "pending-source-outputs",
-      "integrity_status": "pending-source-outputs",
-      "orientation_proposal": null,
-      "pose_status": "pending-source-outputs",
-      "decision": "pending-acquisition-and-visual-review",
+      "appearance_status": "pending source-native four-view comparison",
+      "integrity_status": "passed acquisition measured-integrity gate; final visual scope still pending",
+      "orientation_proposal": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0
+      },
+      "pose_status": "all ten axis/front variants visually reviewed; explicit pose candidate proposed for root integration; final production thumbnail and four-view scope approval pending",
+      "decision": null,
       "limitations": [
         "No model payload or result artifact inspected by this reviewer yet.",
         "No final pose, complete-capture acceptance, calibrated size or publication approval is claimed."
-      ]
+      ],
+      "source_bytes": 7446736,
+      "preview_bytes": 878768,
+      "initial_pose_triage": {
+        "state": "current shallow brazier appears upright and source-front compatible",
+        "action": "Candidate retain A. Verify the full surviving foot arrangement, outer rim, central feature and underside; retain a high enough preferred-front camera for the shallow surface.",
+        "variants": [
+          "A",
+          "B",
+          "C"
+        ],
+        "current_orientation": {
+          "upAxis": "y",
+          "modelRotation": [
+            -177.27,
+            0,
+            -179.5
+          ],
+          "yaw": 0,
+          "status": "auto",
+          "confidence": 0.6,
+          "note": "Stable-pose solve (pose 0, p=0.57, margin 0.23); confident."
+        },
+        "initial_thumbnail": {
+          "path": "public/previews/renders/roman/painted-brazier-banfi-62/thumb.webp",
+          "sha256": "9675f9074f544cdcc8788b1bdcf7a92bb3178074a4e68412ae480bd2bc47175d",
+          "bytes": 21022
+        },
+        "review_status": "candidate-only; cloud orientation images and four-view scope pending"
+      },
+      "orientation_sheet_review": {
+        "acquisition_preview_url": "https://models.atrium.earth/models/previews/roman/painted-brazier-banfi-62/preview-b4f0b3d665fb.glb",
+        "acquisition_preview_sha256": "b4f0b3d665fbca7eb5c7033012c741558a8a6a2a784bd880b06b32d29c81d452",
+        "acquisition_preview_bytes": 878768,
+        "run_id": "38816845720",
+        "run_attempt": 1,
+        "workflow_head_sha": "f877ac13de9d90bc6e95b4e9f21adc50137e7260",
+        "artifact_name": "sheets-3",
+        "artifact_id": 12012120188,
+        "sheet_filename": "roman__painted-brazier-banfi-62.webp",
+        "sheet_sha256": "48617091626f8b81c2b0ac093d7f2c00059f2a819cb1232e3af0127d00fa9160",
+        "sheet_bytes": 37654,
+        "all_variants_reviewed": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "G",
+          "H",
+          "I",
+          "J"
+        ],
+        "selected_variant": "B",
+        "selected_variant_transform": {
+          "upAxis": "y",
+          "modelRotation": [
+            0,
+            0,
+            0
+          ],
+          "yaw": 0
+        },
+        "preferred_front": "The shallow dish faces up and its surviving supporting foot is below. B is level and source-front compatible without the minor arbitrary solver tilt.",
+        "proposed_transform": {
+          "upAxis": "y",
+          "modelRotation": [
+            0,
+            0,
+            0
+          ],
+          "yaw": 0
+        },
+        "proposal_status": "pending-root-and-final-render-review",
+        "camera_qualification": "The selected sheet image directly renders this proposed upright basis at the production default camera; source-native appearance and underside completeness remain unapproved."
+      }
     },
     {
       "slug": "roman/bucchero-olla-banfi-51",
@@ -497,21 +1772,115 @@
       "scope_checks": "Mouth, collar/rim, full body, surviving foot and underside; verify physical breaks and any fused scene context.",
       "native_appearance_checks": "Preserve source gray/black ceramic and repaired areas; do not manufacture jet-black gloss from material name.",
       "preferred_front_criteria": "Olla upright with mouth open upward; three-quarter view separates rim from body.",
-      "source_sha256": null,
-      "preview_sha256": null,
-      "preview_url": null,
+      "source_sha256": "1515a6329c7d0a723e87e08165544a42d5c5e67dff888a118957c724bc2f0f99",
+      "preview_sha256": "2bc3ad464dda207a1abba5faeb9002fbf1e23aa20a68a9b4f904fe5a17017aa2",
+      "preview_url": "https://models.atrium.earth/models/previews/roman/bucchero-olla-banfi-51/preview-2bc3ad464dda.glb",
       "source_review_images": [],
-      "derivative_review_images": [],
+      "derivative_review_images": [
+        {
+          "role": "initial-preferred-view-only",
+          "path": "public/previews/renders/roman/bucchero-olla-banfi-51/thumb.webp",
+          "sha256": "48827f4215f759468317e90c50ab544402cb2d1c33da227e2578b6e578da3064",
+          "bytes": 30756
+        }
+      ],
       "actual_scope": null,
-      "appearance_status": "pending-source-outputs",
-      "integrity_status": "pending-source-outputs",
-      "orientation_proposal": null,
-      "pose_status": "pending-source-outputs",
-      "decision": "pending-acquisition-and-visual-review",
+      "appearance_status": "pending source-native four-view comparison",
+      "integrity_status": "passed acquisition measured-integrity gate; final visual scope still pending",
+      "orientation_proposal": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0
+      },
+      "pose_status": "all ten axis/front variants visually reviewed; explicit pose candidate proposed for root integration; final production thumbnail and four-view scope approval pending",
+      "decision": null,
       "limitations": [
         "No model payload or result artifact inspected by this reviewer yet.",
         "No final pose, complete-capture acceptance, calibrated size or publication approval is claimed."
-      ]
+      ],
+      "source_bytes": 9038988,
+      "preview_bytes": 971080,
+      "initial_pose_triage": {
+        "state": "incorrect; vessel is tilted with its neck away from vertical",
+        "action": "B establishes the base-to-mouth axis. Preserve the surviving rim and wall losses; do not infer a complete handle.",
+        "variants": [
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "G"
+        ],
+        "current_orientation": {
+          "upAxis": "y",
+          "modelRotation": [
+            -138.67,
+            0,
+            117.37
+          ],
+          "yaw": 0,
+          "status": "auto",
+          "confidence": 0.62,
+          "note": "Stable-pose solve (pose 0, p=0.29, margin 0.27); confident."
+        },
+        "initial_thumbnail": {
+          "path": "public/previews/renders/roman/bucchero-olla-banfi-51/thumb.webp",
+          "sha256": "48827f4215f759468317e90c50ab544402cb2d1c33da227e2578b6e578da3064",
+          "bytes": 30756
+        },
+        "review_status": "candidate-only; cloud orientation images and four-view scope pending"
+      },
+      "orientation_sheet_review": {
+        "acquisition_preview_url": "https://models.atrium.earth/models/previews/roman/bucchero-olla-banfi-51/preview-2bc3ad464dda.glb",
+        "acquisition_preview_sha256": "2bc3ad464dda207a1abba5faeb9002fbf1e23aa20a68a9b4f904fe5a17017aa2",
+        "acquisition_preview_bytes": 971080,
+        "run_id": "38816845720",
+        "run_attempt": 1,
+        "workflow_head_sha": "f877ac13de9d90bc6e95b4e9f21adc50137e7260",
+        "artifact_name": "sheets-4",
+        "artifact_id": 12012365199,
+        "sheet_filename": "roman__bucchero-olla-banfi-51.webp",
+        "sheet_sha256": "f4f9c736a1491407cbba7a5c8270a5bc9ca74cab84417c8b6c9f58a328e59f13",
+        "sheet_bytes": 43806,
+        "all_variants_reviewed": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "G",
+          "H",
+          "I",
+          "J"
+        ],
+        "selected_variant": "B",
+        "selected_variant_transform": {
+          "upAxis": "y",
+          "modelRotation": [
+            0,
+            0,
+            0
+          ],
+          "yaw": 0
+        },
+        "preferred_front": "The broad mouth lies above the body, with the lower base below. Keep the surviving rim and wall losses; no complete handle is identified by this review.",
+        "proposed_transform": {
+          "upAxis": "y",
+          "modelRotation": [
+            0,
+            0,
+            0
+          ],
+          "yaw": 0
+        },
+        "proposal_status": "pending-root-and-final-render-review",
+        "camera_qualification": "The selected sheet image directly renders this proposed upright basis at the production default camera; source-native appearance and underside completeness remain unapproved."
+      }
     },
     {
       "slug": "roman/impasto-kotyle-banfi-12",
@@ -524,21 +1893,115 @@
       "scope_checks": "Both handle areas, full surviving rim, body, base and underside; characterize archaeological handle/rim losses.",
       "native_appearance_checks": "Keep source dark-brown/gray impasto surface and captured wear; no new decoration or smoothing.",
       "preferred_front_criteria": "Bowl upright; high enough view to show interior and both handle attachments without hiding foot.",
-      "source_sha256": null,
-      "preview_sha256": null,
-      "preview_url": null,
+      "source_sha256": "69719971a4e61a51ba88a8117df90a283b2d60aac036d0a13222bfd2ab81c366",
+      "preview_sha256": "619e1836cea62d049052da914071ce0047e950a153fd898a900f81f87fe016c2",
+      "preview_url": "https://models.atrium.earth/models/previews/roman/impasto-kotyle-banfi-12/preview-619e1836cea6.glb",
       "source_review_images": [],
-      "derivative_review_images": [],
+      "derivative_review_images": [
+        {
+          "role": "initial-preferred-view-only",
+          "path": "public/previews/renders/roman/impasto-kotyle-banfi-12/thumb.webp",
+          "sha256": "cd3eef075c17574b780acd0ee0eff21d6dc0770c65c4b4325c39867702dc94cd",
+          "bytes": 42184
+        }
+      ],
       "actual_scope": null,
-      "appearance_status": "pending-source-outputs",
-      "integrity_status": "pending-source-outputs",
-      "orientation_proposal": null,
-      "pose_status": "pending-source-outputs",
-      "decision": "pending-acquisition-and-visual-review",
+      "appearance_status": "pending source-native four-view comparison",
+      "integrity_status": "passed acquisition measured-integrity gate; final visual scope still pending",
+      "orientation_proposal": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0
+      },
+      "pose_status": "all ten axis/front variants visually reviewed; explicit pose candidate proposed for root integration; final production thumbnail and four-view scope approval pending",
+      "decision": null,
       "limitations": [
         "No model payload or result artifact inspected by this reviewer yet.",
         "No final pose, complete-capture acceptance, calibrated size or publication approval is claimed."
-      ]
+      ],
+      "source_bytes": 10243608,
+      "preview_bytes": 1080376,
+      "initial_pose_triage": {
+        "state": "incorrect; open cup is upside down",
+        "action": "B is a provisional +Y-up candidate. The broad open mouth belongs above the tapering lower body; keep both horizontal handle extensions.",
+        "variants": [
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "G"
+        ],
+        "current_orientation": {
+          "upAxis": "y",
+          "modelRotation": [
+            -177.71,
+            0,
+            -0.53
+          ],
+          "yaw": 0,
+          "status": "auto",
+          "confidence": 0.64,
+          "note": "Stable-pose solve (pose 0, p=0.22, margin 0.32); confident."
+        },
+        "initial_thumbnail": {
+          "path": "public/previews/renders/roman/impasto-kotyle-banfi-12/thumb.webp",
+          "sha256": "cd3eef075c17574b780acd0ee0eff21d6dc0770c65c4b4325c39867702dc94cd",
+          "bytes": 42184
+        },
+        "review_status": "candidate-only; cloud orientation images and four-view scope pending"
+      },
+      "orientation_sheet_review": {
+        "acquisition_preview_url": "https://models.atrium.earth/models/previews/roman/impasto-kotyle-banfi-12/preview-619e1836cea6.glb",
+        "acquisition_preview_sha256": "619e1836cea62d049052da914071ce0047e950a153fd898a900f81f87fe016c2",
+        "acquisition_preview_bytes": 1080376,
+        "run_id": "38816845720",
+        "run_attempt": 1,
+        "workflow_head_sha": "f877ac13de9d90bc6e95b4e9f21adc50137e7260",
+        "artifact_name": "sheets-5",
+        "artifact_id": 12011192114,
+        "sheet_filename": "roman__impasto-kotyle-banfi-12.webp",
+        "sheet_sha256": "38a072183e050be4e0362c3edbc41bba88596027cfc7fc889e650703aad83866",
+        "sheet_bytes": 50450,
+        "all_variants_reviewed": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "G",
+          "H",
+          "I",
+          "J"
+        ],
+        "selected_variant": "B",
+        "selected_variant_transform": {
+          "upAxis": "y",
+          "modelRotation": [
+            0,
+            0,
+            0
+          ],
+          "yaw": 0
+        },
+        "preferred_front": "The open cup is above its tapering base and both handle extensions remain at the upper sides. A/C are upside down.",
+        "proposed_transform": {
+          "upAxis": "y",
+          "modelRotation": [
+            0,
+            0,
+            0
+          ],
+          "yaw": 0
+        },
+        "proposal_status": "pending-root-and-final-render-review",
+        "camera_qualification": "The selected sheet image directly renders this proposed upright basis at the production default camera; source-native appearance and underside completeness remain unapproved."
+      }
     },
     {
       "slug": "roman/sokra-group-kylix-poggio-pinci-ii127",
@@ -551,21 +2014,121 @@
       "scope_checks": "Both handles, interior figural disk, exterior, foot and underside; physical repairs/losses distinct from missing capture surfaces.",
       "native_appearance_checks": "Preserve red/black interior figure and geometry/texture boundaries at repaired joins; no painted restoration.",
       "preferred_front_criteria": "Cup horizontal with a higher front camera for legible interior composition; retain both handles and visible foot depth.",
-      "source_sha256": null,
-      "preview_sha256": null,
-      "preview_url": null,
+      "source_sha256": "766e806397c92d0e3038c18c0aff33251ca0df898fa1cd615eaea64d2286f4b6",
+      "preview_sha256": "a17e56624f5a8dfc60b9ddb0858a13cc79933f9ffd099e6fd061c2aaa600479a",
+      "preview_url": "https://models.atrium.earth/models/previews/roman/sokra-group-kylix-poggio-pinci-ii127/preview-a17e56624f5a.glb",
       "source_review_images": [],
-      "derivative_review_images": [],
+      "derivative_review_images": [
+        {
+          "role": "initial-preferred-view-only",
+          "path": "public/previews/renders/roman/sokra-group-kylix-poggio-pinci-ii127/thumb.webp",
+          "sha256": "a3b80a0f155f05c96a0fa9fb8265316624d16036698150132d4969498ef7dbc9",
+          "bytes": 61742
+        }
+      ],
       "actual_scope": null,
-      "appearance_status": "pending-source-outputs",
-      "integrity_status": "pending-source-outputs",
-      "orientation_proposal": null,
-      "pose_status": "pending-source-outputs",
-      "decision": "pending-acquisition-and-visual-review",
+      "appearance_status": "pending source-native four-view comparison",
+      "integrity_status": "passed acquisition measured-integrity gate; final visual scope still pending",
+      "orientation_proposal": {
+        "upAxis": "y",
+        "modelRotation": [
+          -90,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0.15,
+          1.2,
+          0.7
+        ]
+      },
+      "pose_status": "all ten axis/front variants visually reviewed; explicit pose candidate proposed for root integration; final production thumbnail and four-view scope approval pending",
+      "decision": null,
       "limitations": [
         "No model payload or result artifact inspected by this reviewer yet.",
         "No final pose, complete-capture acceptance, calibrated size or publication approval is claimed."
-      ]
+      ],
+      "source_bytes": 15052744,
+      "preview_bytes": 1446260,
+      "initial_pose_triage": {
+        "state": "interior painting is legible; physical footing is ambiguous from this view",
+        "action": "Determine the standing foot and mouth axis with B–G plus reverse/underside. After upright verification, use a high preferred-front camera to show the interior painted figure and both handles.",
+        "candidate": null,
+        "variants": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "G"
+        ],
+        "cameraCandidate": [
+          0.15,
+          0.9,
+          1
+        ],
+        "current_orientation": "auto",
+        "initial_thumbnail": {
+          "path": "public/previews/renders/roman/sokra-group-kylix-poggio-pinci-ii127/thumb.webp",
+          "sha256": "a3b80a0f155f05c96a0fa9fb8265316624d16036698150132d4969498ef7dbc9",
+          "bytes": 61742
+        },
+        "review_status": "candidate-only; cloud orientation images and four-view scope pending"
+      },
+      "orientation_sheet_review": {
+        "acquisition_preview_url": "https://models.atrium.earth/models/previews/roman/sokra-group-kylix-poggio-pinci-ii127/preview-a17e56624f5a.glb",
+        "acquisition_preview_sha256": "a17e56624f5a8dfc60b9ddb0858a13cc79933f9ffd099e6fd061c2aaa600479a",
+        "acquisition_preview_bytes": 1446260,
+        "run_id": "38816845720",
+        "run_attempt": 1,
+        "workflow_head_sha": "f877ac13de9d90bc6e95b4e9f21adc50137e7260",
+        "artifact_name": "sheets-6",
+        "artifact_id": 12011580836,
+        "sheet_filename": "roman__sokra-group-kylix-poggio-pinci-ii127.webp",
+        "sheet_sha256": "08e43d3836efe1a57a45fef4281ba1b53a66543596acf1af082d68b2aaaf0ee8",
+        "sheet_bytes": 58042,
+        "all_variants_reviewed": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "G",
+          "H",
+          "I",
+          "J"
+        ],
+        "selected_variant": "D",
+        "selected_variant_transform": {
+          "upAxis": "y",
+          "modelRotation": [
+            -90,
+            0,
+            0
+          ],
+          "yaw": 0
+        },
+        "preferred_front": "D stands the actual stem and foot below the shallow cup, with handles at opposite sides. A/B stand the vessel on its edge. A higher preferred-front camera is proposed separately so the interior figure can be read.",
+        "proposed_transform": {
+          "upAxis": "y",
+          "modelRotation": [
+            -90,
+            0,
+            0
+          ],
+          "yaw": 0,
+          "viewDirection": [
+            0.15,
+            1.2,
+            0.7
+          ]
+        },
+        "proposal_status": "pending-root-and-final-render-review",
+        "camera_qualification": "The D upright basis is visually reviewed. The proposed elevated camera [0.15,1.2,0.7] still requires its actual production render; the contact sheet shows D with the standard camera."
+      }
     },
     {
       "slug": "roman/bucchero-chalice-maam-23889",
@@ -578,21 +2141,105 @@
       "scope_checks": "Full surviving rim, interior, bowl, foot and underside; identify original repairs versus scan holes.",
       "native_appearance_checks": "Preserve actual gray/black source surface, not inferred shiny black finish.",
       "preferred_front_criteria": "Chalice upright; elevated three-quarter front shows bowl interior and splayed foot.",
-      "source_sha256": null,
-      "preview_sha256": null,
-      "preview_url": null,
+      "source_sha256": "9fe3120b545cf83e0c48b6d8e834f9a6fbe2dd0b953c64d672da3e39466f2f2d",
+      "preview_sha256": "6e0bd51a5abf7676b83338358bba1655dfe2e786de5ecb54a814b2ce46a82492",
+      "preview_url": "https://models.atrium.earth/models/previews/roman/bucchero-chalice-maam-23889/preview-6e0bd51a5abf.glb",
       "source_review_images": [],
-      "derivative_review_images": [],
+      "derivative_review_images": [
+        {
+          "role": "initial-preferred-view-only",
+          "path": "public/previews/renders/roman/bucchero-chalice-maam-23889/thumb.webp",
+          "sha256": "506606261e83a9bc5a22149b9ad99f12331f896a69af1f97a81c84efd75bff94",
+          "bytes": 41112
+        }
+      ],
       "actual_scope": null,
-      "appearance_status": "pending-source-outputs",
-      "integrity_status": "pending-source-outputs",
-      "orientation_proposal": null,
-      "pose_status": "pending-source-outputs",
-      "decision": "pending-acquisition-and-visual-review",
+      "appearance_status": "pending source-native four-view comparison",
+      "integrity_status": "passed acquisition measured-integrity gate; final visual scope still pending",
+      "orientation_proposal": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0
+      },
+      "pose_status": "all ten axis/front variants visually reviewed; explicit pose candidate proposed for root integration; final production thumbnail and four-view scope approval pending",
+      "decision": null,
       "limitations": [
         "No model payload or result artifact inspected by this reviewer yet.",
         "No final pose, complete-capture acceptance, calibrated size or publication approval is claimed."
-      ]
+      ],
+      "source_bytes": 9507180,
+      "preview_bytes": 1197740,
+      "initial_pose_triage": {
+        "state": "incorrect presentation; inventory labels on underside face the camera",
+        "action": "Choose B–G so the wide mouth is above the small foot; prefer a view into the cup rather than the inventory-labeled underside.",
+        "candidate": null,
+        "variants": [
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "G"
+        ],
+        "current_orientation": "auto",
+        "initial_thumbnail": {
+          "path": "public/previews/renders/roman/bucchero-chalice-maam-23889/thumb.webp",
+          "sha256": "506606261e83a9bc5a22149b9ad99f12331f896a69af1f97a81c84efd75bff94",
+          "bytes": 41112
+        },
+        "review_status": "candidate-only; cloud orientation images and four-view scope pending"
+      },
+      "orientation_sheet_review": {
+        "acquisition_preview_url": "https://models.atrium.earth/models/previews/roman/bucchero-chalice-maam-23889/preview-6e0bd51a5abf.glb",
+        "acquisition_preview_sha256": "6e0bd51a5abf7676b83338358bba1655dfe2e786de5ecb54a814b2ce46a82492",
+        "acquisition_preview_bytes": 1197740,
+        "run_id": "38816845720",
+        "run_attempt": 1,
+        "workflow_head_sha": "f877ac13de9d90bc6e95b4e9f21adc50137e7260",
+        "artifact_name": "sheets-7",
+        "artifact_id": 12011054241,
+        "sheet_filename": "roman__bucchero-chalice-maam-23889.webp",
+        "sheet_sha256": "d1d226783ff546fb1b156c6a9e9e9b4c609be672814f6261b9be9742db1a81a0",
+        "sheet_bytes": 42036,
+        "all_variants_reviewed": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "G",
+          "H",
+          "I",
+          "J"
+        ],
+        "selected_variant": "B",
+        "selected_variant_transform": {
+          "upAxis": "y",
+          "modelRotation": [
+            0,
+            0,
+            0
+          ],
+          "yaw": 0
+        },
+        "preferred_front": "The broad mouth is above the small foot, and the interior is visible. A/D show the inventory-labeled underside; B correctly stands the physical cup.",
+        "proposed_transform": {
+          "upAxis": "y",
+          "modelRotation": [
+            0,
+            0,
+            0
+          ],
+          "yaw": 0
+        },
+        "proposal_status": "pending-root-and-final-render-review",
+        "camera_qualification": "The selected sheet image directly renders this proposed upright basis at the production default camera; source-native appearance and underside completeness remain unapproved."
+      }
     },
     {
       "slug": "roman/bucchero-oinochoe-maam-231516",
@@ -605,21 +2252,173 @@
       "scope_checks": "Trilobate mouth, full tall neck and collar, handle, ovoid body, foot and underside; inspect all source components for scene residue.",
       "native_appearance_checks": "Preserve all authored ceramic texture/PBR/color data; this largest source particularly needs source-to-derivative material review.",
       "preferred_front_criteria": "Foot down, vessel upright; mouth and handle readable together with collar and body.",
-      "source_sha256": null,
-      "preview_sha256": null,
-      "preview_url": null,
+      "source_sha256": "bb12fc65341bb47eb738e664097f488975e13d4c505d7ea3559cc79789be8431",
+      "preview_sha256": "927fc927e60f47c99dc20649ce49c539b1148fff3abe2a97c73fd663b9058583",
+      "preview_url": "https://models.atrium.earth/models/previews/roman/bucchero-oinochoe-maam-231516/preview-927fc927e60f.glb",
       "source_review_images": [],
-      "derivative_review_images": [],
+      "derivative_review_images": [
+        {
+          "role": "initial-preferred-view-only",
+          "path": "public/previews/renders/roman/bucchero-oinochoe-maam-231516/thumb.webp",
+          "sha256": "fe760a7a6cf5379f2396aa8e1b15dcfb442f7ead44904a3ad4a2543bca030b05",
+          "bytes": 21658
+        }
+      ],
       "actual_scope": null,
-      "appearance_status": "pending-source-outputs",
-      "integrity_status": "pending-source-outputs",
-      "orientation_proposal": null,
-      "pose_status": "pending-source-outputs",
-      "decision": "pending-acquisition-and-visual-review",
+      "appearance_status": "pending source-native four-view comparison",
+      "integrity_status": "passed acquisition measured-integrity gate; final visual scope still pending",
+      "orientation_proposal": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0
+      },
+      "pose_status": "all ten axis/front variants visually reviewed; explicit pose candidate proposed for root integration; final production thumbnail and four-view scope approval pending",
+      "decision": null,
       "limitations": [
         "No model payload or result artifact inspected by this reviewer yet.",
         "No final pose, complete-capture acceptance, calibrated size or publication approval is claimed."
-      ]
+      ],
+      "source_bytes": 150725588,
+      "preview_bytes": 2825248,
+      "initial_pose_triage": {
+        "state": "current jug appears upright and source-front compatible; explicit source axis pending",
+        "action": "Resolve A against B/D. Keep the small foot below the rounded body and trilobate mouth, with the handle loop visible in profile.",
+        "candidate": null,
+        "variants": [
+          "A",
+          "B",
+          "D"
+        ],
+        "current_orientation": "auto",
+        "initial_thumbnail": {
+          "path": "public/previews/renders/roman/bucchero-oinochoe-maam-231516/thumb.webp",
+          "sha256": "fe760a7a6cf5379f2396aa8e1b15dcfb442f7ead44904a3ad4a2543bca030b05",
+          "bytes": 21658
+        },
+        "review_status": "candidate-only; cloud orientation images and four-view scope pending"
+      },
+      "orientation_sheet_review": {
+        "acquisition_preview_url": "https://models.atrium.earth/models/previews/roman/bucchero-oinochoe-maam-231516/preview-927fc927e60f.glb",
+        "acquisition_preview_sha256": "927fc927e60f47c99dc20649ce49c539b1148fff3abe2a97c73fd663b9058583",
+        "acquisition_preview_bytes": 2825248,
+        "run_id": "38816845720",
+        "run_attempt": 1,
+        "workflow_head_sha": "f877ac13de9d90bc6e95b4e9f21adc50137e7260",
+        "artifact_name": "sheets-8",
+        "artifact_id": 12012325341,
+        "sheet_filename": "roman__bucchero-oinochoe-maam-231516.webp",
+        "sheet_sha256": "2f06349691f1adc4facb48b39508a56ab6db69e9d1b8c98ea92dbaa8834a22a3",
+        "sheet_bytes": 26418,
+        "all_variants_reviewed": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "G",
+          "H",
+          "I",
+          "J"
+        ],
+        "selected_variant": "B",
+        "selected_variant_transform": {
+          "upAxis": "y",
+          "modelRotation": [
+            0,
+            0,
+            0
+          ],
+          "yaw": 0
+        },
+        "preferred_front": "The small foot, rounded body, neck and trilobate mouth form a vertical sequence, with the handle visible at the left. B matches A and the reference with an explicit basis.",
+        "proposed_transform": {
+          "upAxis": "y",
+          "modelRotation": [
+            0,
+            0,
+            0
+          ],
+          "yaw": 0
+        },
+        "proposal_status": "pending-root-and-final-render-review",
+        "camera_qualification": "The selected sheet image directly renders this proposed upright basis at the production default camera; source-native appearance and underside completeness remain unapproved."
+      }
+    }
+  ],
+  "thumbnail_triage_count": 19,
+  "accepted_count": 19,
+  "integrity_hold_count": 1,
+  "thumbnail_triage_contact": ".atrium-ingest/etruscan-greek-20261015/pose-triage/etruscan19-current-contact.jpg",
+  "thumbnail_triage_limits": "The nineteen initial thumbnails were visually compared with publisher references. This is single-view triage, not complete geometry, native source-original appearance, underside coverage, or final pose approval. No model payload was downloaded for this review.",
+  "acquisition_evidence": {
+    "last_report": "docs/ingest/etruscan-greek-20261015-run-38814108911/last-report.json",
+    "fetched_report": "docs/ingest/etruscan-greek-20261015-run-38814108911/fetched.json",
+    "r2_report": "docs/ingest/etruscan-greek-20261015-run-38814108911/r2-upload.json",
+    "accepted_count": 19,
+    "needs_orientation_count": 9,
+    "source_binding_scope": "Original download SHA/bytes taken from sanitized acquisition metadata; R2 full preview SHA/bytes taken from upload verification report. No independent model-byte rehash by this reviewer."
+  },
+  "axis_sheet_reviewed_count": 19,
+  "final_pose_approved_count": 0,
+  "axis_review_contact": ".atrium-ingest/etruscan-greek-20261015/et-axis-artifacts/selected19-contact.jpg",
+  "source_material_header_audit": {
+    "scope": "Read-only JSON-header inspection of the twenty exact retrieved provider GLBs. No source payload download or mutation by this reviewer; complete source hashes remain bound to the retrieval/archive evidence.",
+    "sources_inspected": 20,
+    "legacy_pbr_specular_glossiness_count": 0,
+    "external_buffer_or_image_uri_count": 0,
+    "hunt_mg015": {
+      "material": "HMG15",
+      "baseColorTexture": true,
+      "baseColorFactor": "Default white factor (not explicitly set)",
+      "metallicFactor": 0,
+      "roughnessFactor": 0,
+      "doubleSided": true,
+      "otherMaterialExtensions": [],
+      "interpretation": "The strong glossy response is explicitly authored in provider PBR. Do not invent roughness or patina based only on its warmer photographic reference."
+    },
+    "other_authored_extensions": [
+      {
+        "slug": "roman/oinochoe-humans-winged-animals-mev-17244",
+        "extensions": [
+          "KHR_materials_specular"
+        ]
+      },
+      {
+        "slug": "roman/house-shaped-cinerary-urn-bm-1873-0820-757",
+        "extensions": [
+          "KHR_materials_specular"
+        ]
+      },
+      {
+        "slug": "roman/column-krater-ics-ehrenberg",
+        "extensions": [
+          "KHR_materials_unlit"
+        ]
+      }
+    ],
+    "native_fidelity_status": "pending actual source-native comparison"
+  },
+  "axis_renderer_sources": [
+    {
+      "path": "scripts/render-orientation-variants.mjs",
+      "sha256": "73db1f3f6926d3dcf33e3c44914449897c0e72590c124ae97a42105e357aa6cb"
+    },
+    {
+      "path": "scripts/render-thumbnails.mjs",
+      "sha256": "04aeca916a0d411321ba758860f6ce39094cb2c7bb013625e1ba7dacba2bb89d"
+    },
+    {
+      "path": "public/__render.html",
+      "sha256": "a5add2927d02adaeb8dfe54d0114333398b66916bfe1e19704fc124ac6da547f"
+    },
+    {
+      "path": "public/model-render-utils.js",
+      "sha256": "afc875f080e2f1c7042ff6e2b5e41e298bfaf609d788774f48c8071950d3d2e0"
     }
   ]
 }
