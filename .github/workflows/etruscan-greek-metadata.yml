@@ -1,0 +1,79 @@
+name: Etruscan and Greek download metadata (no models)
+
+on:
+  push:
+    paths:
+      - docs/ingest/etruscan-greek-20261015-metadata-request.json
+  workflow_dispatch:
+    inputs:
+      leads_file:
+        description: 'Exact saved candidate file under docs/ingest/'
+        required: true
+        type: string
+      ref:
+        description: 'Exact branch or commit containing the reviewed candidate file and this script'
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: etruscan-greek-metadata
+  cancel-in-progress: false
+
+jobs:
+  metadata:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout exact requested source ref
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref || github.sha }}
+          fetch-depth: 1
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Resolve only the dedicated batch metadata request
+        env:
+          EVENT: ${{ github.event_name }}
+          LEADS_FILE: ${{ inputs.leads_file }}
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import path from 'node:path';
+          const batch = 'etruscan-greek-20261015';
+          const root = fs.realpathSync('docs/ingest');
+          let files;
+          if (process.env.EVENT === 'push') {
+            const request = JSON.parse(fs.readFileSync(`docs/ingest/${batch}-metadata-request.json`, 'utf8'));
+            if (request.batch !== batch) throw new Error('Metadata request has the wrong batch identity');
+            files = request.leads_files || [request.leads_file || `docs/ingest/${batch}-leads.json`];
+          } else files = [process.env.LEADS_FILE];
+          if (!Array.isArray(files) || !files.length || files.length > 4 || new Set(files).size !== files.length) throw new Error('Expected 1–4 distinct candidate files');
+          for (const file of files) {
+            if (typeof file !== 'string' || !/^docs\/ingest\/etruscan-greek-20261015-[a-z0-9-]+\.json$/.test(file)) throw new Error('Candidate path must belong to this batch under docs/ingest');
+            const resolved = fs.realpathSync(file);
+            if (path.dirname(resolved) !== root || !fs.statSync(resolved).isFile()) throw new Error('Candidate file must resolve directly under docs/ingest');
+          }
+          fs.writeFileSync(path.join(process.env.RUNNER_TEMP, 'metadata-inputs.json'), JSON.stringify(files));
+          console.log(`Checking download metadata for ${files.length} candidate manifest(s); no model downloads.`);
+          NODE
+      - name: Read authenticated download metadata sequentially
+        env:
+          SKETCHFAB_TOKEN: ${{ secrets.SKETCHFAB_TOKEN }}
+        run: |
+          node scripts/prepare-etruscan-greek-20261015.mjs \
+            --metadata-preflight \
+            --input-list="$RUNNER_TEMP/metadata-inputs.json" \
+            --metadata-out="$RUNNER_TEMP/metadata/selected-download-metadata.json"
+      - name: Upload sanitized metadata only
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: etruscan-greek-metadata-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/metadata/selected-download-metadata.json
+          retention-days: 30
+          if-no-files-found: warn
