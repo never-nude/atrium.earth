@@ -1,9 +1,9 @@
 {
-  "release": "58f1a1ab0ed38f23d1b5fec69d33dc17506130ab",
+  "release": "94580f86db59ea9c54f5c54366db80b9cd017eec",
   "checked": "2026-10-15",
   "status": "passed",
   "featured_count": 250,
-  "homepage_approved": 191,
+  "homepage_approved": 193,
   "findings": [
     {
       "route": "/",
@@ -179,7 +179,9 @@
     },
     {
       "route": "/newest/",
-      "works": 40
+      "works": 40,
+      "batch_works": 20,
+      "complete_batch_present": true
     },
     {
       "route": "/works/apollo-belvedere/",
@@ -204,18 +206,21 @@
     {
       "route": "/works/asia/noh-mask-kogetsu-netsuke-mia/",
       "corrected_identity": true
+    },
+    {
+      "route": "/works/modern/mhondorohuma-bonsa-drummer/",
+      "reviewed_exposure": 0.2,
+      "source_vertex_color_exception": null
+    },
+    {
+      "route": "/works/europe/xavier-veilhan-le-lion-blue-lion/",
+      "reviewed_exposure": 0.2,
+      "source_vertex_color_exception": null
+    },
+    {
+      "route": "/works/europe/jean-michel-folon-angelo-custode/",
+      "reviewed_exposure": 0.2,
+      "source_vertex_color_exception": "ignore-invalid"
     }
-  ],
-  "pages_run": {
-    "id": 38783029661,
-    "conclusion": "success",
-    "url": "https://github.com/never-nude/atrium.earth/actions/runs/38783029661"
-  },
-  "hero_asset": {
-    "url": "https://models.atrium.earth/models/previews/michelangelo/david/preview-760b4f8f96e4.glb",
-    "status": 200,
-    "bytes": 7199744,
-    "sha256": "760b4f8f96e4869dec5f1dd709a7b90e9a4fe06ae2605d2ba1c27028d6754ffc",
-    "allowed_origin": "https://atrium.earth"
-  }
+  ]
 }
