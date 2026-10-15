@@ -5,8 +5,9 @@ import { createServer } from 'node:http';
 import { resolve, extname, sep, join } from 'node:path';
 import { tmpdir } from 'node:os';
 import * as THREE from 'three';
+import { Document } from '@gltf-transform/core';
 import { chromium } from 'playwright';
-import { cameraViews, bindRequest, inspectGlb, productionAppearanceFactory, reviewHtml, transformFingerprint, createLegacyMaterialReference } from './render-vessel-scope-review.mjs';
+import { cameraViews, bindRequest, inspectGlb, productionAppearanceFactory, reviewHtml, transformFingerprint, createLegacyMaterialReference, documentGeometryFingerprint, preserveReferenceNodeTransforms } from './render-vessel-scope-review.mjs';
 import { frameCameraToBox } from '../public/model-render-utils.js';
 
 const root = resolve('.');
@@ -71,6 +72,29 @@ function glb(document, binary = Buffer.alloc(0)) {
 assert.throws(() => inspectGlb(glb({ asset: { version: '2.0' }, images: [{ uri: 'texture.jpg' }] })), /External/);
 assert.throws(() => inspectGlb(Buffer.from('glTF')), /complete/);
 
+function accessorOrderFixture(reverse = false) {
+  const doc = new Document(), accessors = {};
+  for (const name of (reverse ? ['normal', 'position'] : ['position', 'normal'])) {
+    accessors[name] = doc.createAccessor(name).setType('VEC3').setArray(new Float32Array(name === 'position' ? [0, 0, 0, 1, 0, 0, 0, 1, 0] : [0, 0, 1, 0, 0, 1, 0, 0, 1]));
+  }
+  const primitive = doc.createPrimitive().setAttribute('POSITION', accessors.position).setAttribute('NORMAL', accessors.normal);
+  const mesh = doc.createMesh().addPrimitive(primitive), node = doc.createNode().setMesh(mesh);
+  doc.createScene().addChild(node);
+  return { doc, accessors, node, primitive };
+}
+const ordered = accessorOrderFixture(), reordered = accessorOrderFixture(true);
+assert.equal(documentGeometryFingerprint(ordered.doc), documentGeometryFingerprint(reordered.doc), 'Accessor registration reorder preserves full signature multiset and semantic bindings');
+reordered.accessors.normal.getArray()[0] = 0.25;
+assert.notEqual(documentGeometryFingerprint(ordered.doc), documentGeometryFingerprint(reordered.doc), 'Mutated accessor value is still rejected');
+const rebound = accessorOrderFixture(true);
+rebound.primitive.setAttribute('POSITION', rebound.accessors.normal).setAttribute('NORMAL', rebound.accessors.position);
+assert.notEqual(documentGeometryFingerprint(ordered.doc), documentGeometryFingerprint(rebound.doc), 'Equal accessor multiset cannot conceal changed semantic bindings');
+const duplicate = accessorOrderFixture();
+duplicate.doc.createAccessor().setType('VEC3').setArray(duplicate.accessors.position.getArray().slice());
+assert.notEqual(documentGeometryFingerprint(ordered.doc), documentGeometryFingerprint(duplicate.doc), 'Full accessor signature multiplicity is preserved');
+const moved = accessorOrderFixture(); moved.node.setScale([0.9999999867535835, 1, 1]);
+assert.notEqual(documentGeometryFingerprint(ordered.doc), documentGeometryFingerprint(moved.doc), 'Near-unit transform changes are rejected without a numerical tolerance');
+
 // Tiny generated fixture only: six differently colored faces. No actual model
 // is fetched, mirrored, copied, or mutated by this integration test.
 const geometry = new THREE.BoxGeometry(1, 2, 0.6).toNonIndexed(); geometry.computeBoundingBox();
@@ -88,7 +112,17 @@ legacy.extensionsUsed = ['KHR_materials_pbrSpecularGlossiness'];
 legacy.images = [{ uri: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAusB9Wl6pAAAAABJRU5ErkJggg==' }];
 legacy.textures = [{ source: 0 }];
 legacy.materials = [{ extensions: { KHR_materials_pbrSpecularGlossiness: { diffuseFactor: [0.7, 0.8, 0.9, 1], specularFactor: [0.2, 0.2, 0.2], glossinessFactor: 0.6, diffuseTexture: { index: 0 } } } }];
+// This raw matrix decomposes to near-unit scales that IO normally omits. The
+// reference must preserve the exact raw transform, not loosen the comparison.
+legacy.nodes[0].matrix = [0.10471285134553909, 0, -0.9945024847984314, 0, -0.9945024847984314, 0, -0.10471285134553909, 0, 0, 1, 0, 0, 0, 0, 0, 1];
 const legacyBody = glb(legacy, binary);
+const writerDropped = structuredClone(legacy); delete writerDropped.nodes[0].matrix;
+const writerBody = glb(writerDropped, binary), restored = preserveReferenceNodeTransforms(legacyBody, writerBody);
+const restoredJson = JSON.parse(restored.subarray(20, 20 + restored.readUInt32LE(12)).toString('utf8'));
+assert.deepEqual(restoredJson.nodes[0].matrix, legacy.nodes[0].matrix, 'Exact raw near-unit matrix restored');
+assert.deepEqual(restored.subarray(20 + restored.readUInt32LE(12)), writerBody.subarray(20 + writerBody.readUInt32LE(12)), 'All binary chunks retained byte-for-byte during transform JSON repack');
+const changedGraph = structuredClone(writerDropped); changedGraph.nodes[0].mesh = 1;
+assert.throws(() => preserveReferenceNodeTransforms(legacyBody, glb(changedGraph, binary)), /mapping changed/, 'Changed node/mesh graph cannot receive source transforms');
 assert.deepEqual(inspectGlb(legacyBody).unsupportedAppearanceExtensions, ['KHR_materials_pbrSpecularGlossiness']);
 const fixtureDir = mkdtempSync(join(tmpdir(), 'atrium-scope-material-fixture-'));
 try {
@@ -98,6 +132,7 @@ try {
   assert.equal(reference.process.geometryFingerprintVerifiedBeforeAfterAndReread, true);
   assert.equal(reference.process.geometrySimplification, false);
   assert.equal(reference.process.textureCompression, false);
+  assert.equal(reference.process.sourceRawNodeTransformsPreservedExactly, true);
   assert.deepEqual(reference.glb.unsupportedAppearanceExtensions, []);
   assert.deepEqual(reference.glb.materials[0].pbrMetallicRoughness.baseColorFactor, [0.7, 0.8, 0.9, 1]);
   assert.equal(reference.glb.materials[0].pbrMetallicRoughness.roughnessFactor, 0.4);

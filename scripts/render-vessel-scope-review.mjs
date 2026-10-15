@@ -158,18 +158,50 @@ async function materialReferenceIo() {
   })();
   return referenceIo;
 }
-function documentGeometryFingerprint(doc) {
-  const root = doc.getRoot(), meshes = root.listMeshes(), nodes = root.listNodes();
+export function documentGeometryFingerprint(doc) {
+  const root = doc.getRoot(), meshes = root.listMeshes(), nodes = root.listNodes(), skins = root.listSkins();
   const accessor = (a) => a ? { type: a.getType(), componentType: a.getComponentType(), normalized: a.getNormalized(), arraySha256: sha256(Buffer.from(a.getArray().buffer, a.getArray().byteOffset, a.getArray().byteLength)) } : null;
   const fingerprint = {
     // Include every decoded accessor, not just positions: UVs, normals, source
     // colors, indices, morph/skin/animation data must remain unchanged too.
-    accessors: root.listAccessors().map(accessor),
+    // IO may reorder the registry without changing any semantic binding. Keep
+    // every full signature and its multiplicity; never sort mesh attributes,
+    // node graphs or animation bindings to hide an actual data change.
+    accessors: root.listAccessors().map(accessor).map((a) => JSON.stringify(canonical(a))).sort(),
     meshes: meshes.map((m) => ({ name: m.getName(), weights: m.getWeights(), primitives: m.listPrimitives().map((p) => ({ mode: p.getMode(), indices: accessor(p.getIndices()), attributes: Object.fromEntries(p.listSemantics().sort().map((k) => [k, accessor(p.getAttribute(k))])), targets: p.listTargets().map((t) => Object.fromEntries(t.listSemantics().sort().map((k) => [k, accessor(t.getAttribute(k))]))) })) })),
-    nodes: nodes.map((n) => ({ name: n.getName(), translation: n.getTranslation(), rotation: n.getRotation(), scale: n.getScale(), weights: n.getWeights(), mesh: meshes.indexOf(n.getMesh()), children: n.listChildren().map((c) => nodes.indexOf(c)) })),
+    nodes: nodes.map((n) => ({ name: n.getName(), translation: n.getTranslation(), rotation: n.getRotation(), scale: n.getScale(), weights: n.getWeights(), mesh: meshes.indexOf(n.getMesh()), skin: skins.indexOf(n.getSkin()), children: n.listChildren().map((c) => nodes.indexOf(c)) })),
+    skins: skins.map((s) => ({ skeleton: nodes.indexOf(s.getSkeleton()), joints: s.listJoints().map((n) => nodes.indexOf(n)), inverseBindMatrices: accessor(s.getInverseBindMatrices()) })),
+    animations: root.listAnimations().map((a) => {
+      const samplers = a.listSamplers();
+      return { name: a.getName(), samplers: samplers.map((s) => ({ input: accessor(s.getInput()), output: accessor(s.getOutput()), interpolation: s.getInterpolation() })), channels: a.listChannels().map((c) => ({ targetNode: nodes.indexOf(c.getTargetNode()), targetPath: c.getTargetPath(), sampler: samplers.indexOf(c.getSampler()) })) };
+    }),
     scenes: root.listScenes().map((scene) => scene.listChildren().map((n) => nodes.indexOf(n))),
   };
   return sha256(JSON.stringify(canonical(fingerprint)));
+}
+export function preserveReferenceNodeTransforms(sourceBody, referenceBody) {
+  inspectGlb(sourceBody); inspectGlb(referenceBody);
+  const document = (body) => JSON.parse(body.subarray(20, 20 + body.readUInt32LE(12)).toString('utf8').trim());
+  const source = document(sourceBody), reference = document(referenceBody);
+  const graph = (d) => ({
+    nodes: (d.nodes || []).map((n) => ({ name: n.name || '', mesh: n.mesh ?? null, skin: n.skin ?? null, camera: n.camera ?? null, children: n.children || [] })),
+    scenes: (d.scenes || []).map((s) => ({ name: s.name || '', nodes: s.nodes || [] })), scene: d.scene ?? null,
+  });
+  if (JSON.stringify(canonical(graph(source))) !== JSON.stringify(canonical(graph(reference)))) throw new Error('Material reference node/mesh/child/scene mapping changed; raw transforms cannot be safely rebound');
+  for (const [i, node] of (reference.nodes || []).entries()) {
+    for (const key of ['matrix', 'translation', 'rotation', 'scale']) {
+      delete node[key];
+      if (Object.hasOwn(source.nodes[i], key)) node[key] = structuredClone(source.nodes[i][key]);
+    }
+  }
+  const encoded = Buffer.from(JSON.stringify(reference));
+  const padded = Buffer.concat([encoded, Buffer.alloc((4 - encoded.length % 4) % 4, 0x20)]);
+  // Only replace the JSON chunk. Preserve the complete binary/other chunk tail
+  // byte for byte, including chunk headers, padding and embedded image bytes.
+  const tail = referenceBody.subarray(20 + referenceBody.readUInt32LE(12));
+  const output = Buffer.concat([referenceBody.subarray(0, 20), padded, tail]);
+  output.writeUInt32LE(output.length, 8); output.writeUInt32LE(padded.length, 12);
+  return output;
 }
 export async function createLegacyMaterialReference(sourcePath, target) {
   const io = await materialReferenceIo();
@@ -185,11 +217,12 @@ export async function createLegacyMaterialReference(sourcePath, target) {
   const after = documentGeometryFingerprint(document);
   if (after !== before) throw new Error('Material-only reference conversion changed decoded geometry/data');
   await io.write(target, document);
+  writeFileSync(target, preserveReferenceNodeTransforms(readFileSync(sourcePath), readFileSync(target)));
   const reread = documentGeometryFingerprint(await io.read(target));
   if (reread !== before) throw new Error('Material reference serialization changed decoded geometry/data');
   const body = readFileSync(target), glb = inspectGlb(body);
   if (glb.unsupportedAppearanceExtensions.length) throw new Error('Material reference still has unsupported appearance extensions');
-  return { sha256: sha256(body), bytes: body.length, glb, process: { tool: '@gltf-transform/functions metalRough', version: json(join(ROOT, 'node_modules/@gltf-transform/functions/package.json')).version, label: 'material-normalized-source-reference', materialWorkflowConversion: 'KHR_materials_pbrSpecularGlossiness to supported metal/rough + specular/ior', geometrySimplification: false, textureCompression: false, sourceCompressionDecodedOnly: true, geometryFingerprintSha256: before, geometryFingerprintVerifiedBeforeAfterAndReread: true, limitation: 'Material workflow conversion may rewrite specular/gloss texture channels. It is a labeled reference, not the unmodified provider file, and requires human appearance comparison.' } };
+  return { sha256: sha256(body), bytes: body.length, glb, process: { tool: '@gltf-transform/functions metalRough', version: json(join(ROOT, 'node_modules/@gltf-transform/functions/package.json')).version, label: 'material-normalized-source-reference', materialWorkflowConversion: 'KHR_materials_pbrSpecularGlossiness to supported metal/rough + specular/ior', geometrySimplification: false, textureCompression: false, sourceCompressionDecodedOnly: true, sourceRawNodeTransformsPreservedExactly: true, nodeMeshChildSceneMappingVerified: true, binaryChunksPreservedDuringTransformJsonRepack: true, accessorRegistryComparedAsFullSignatureMultiset: true, geometryFingerprintSha256: before, geometryFingerprintVerifiedBeforeAfterAndReread: true, limitation: 'Material workflow conversion may rewrite specular/gloss texture channels. It is a labeled reference, not the unmodified provider file, and requires human appearance comparison.' } };
 }
 
 async function fetchPreview(item, target) {
