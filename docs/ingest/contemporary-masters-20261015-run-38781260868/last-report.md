@@ -80,4 +80,3 @@ Needs orientation: 12
 - `modern/joan-miro-mural-for-ibm-3d5da4`: subject=Modern sculpture, ceramics, textile relief and public art; author=the dragon 3d (Carles Pàmies); accession=240029-000; displayed_at=Museu Nacional d’Art de Catalunya, Barcelona; deposit of Generalitat de Catalunya, National Art Collection; dimensions=H 281.5 × W 872 × D 2.4 cm.
 - `modern/joan-miro-wall-of-barcelona-airport-0ed725`: subject=Modern sculpture, ceramics, textile relief and public art; author=the dragon 3d (Carles Pàmies); accession=Successió Miró ceramic catalogue no. 431; displayed_at=Barcelona–El Prat Airport, Terminal 2B; Fundación ENAIRE manages the transport-art collection; dimensions=H 10 × W 50 m.
 - `modern/joan-miro-tapestry-of-the-fundacio-3b1745`: subject=Modern sculpture, ceramics, textile relief and public art; author=the dragon 3d (Carles Pàmies); accession=FJM 8651; displayed_at=Fundació Joan Miró, Barcelona; dimensions=H 750 × W 500 cm.
-
