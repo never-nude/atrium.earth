@@ -54,20 +54,35 @@ function sourcePath(value, slug, { optional = false } = {}) {
   return value;
 }
 
+function providerIdentity(lead) {
+  if (typeof lead.source !== 'string' || !lead.source) fail('Source provider identity is required');
+  if (typeof lead.uid === 'string' && lead.uid) return `${lead.source}:uid:${lead.uid}`;
+  // SMK, Smithsonian and Three D Scans leads do not declare Sketchfab UIDs.
+  // Their unchanged public provider record is the source identity instead.
+  if (lead.uid !== undefined && lead.uid !== '') fail('Malformed optional source UID');
+  let url;
+  try { url = new URL(lead.source_url); } catch { fail('Public provider record identity is required'); }
+  if (url.protocol !== 'https:') fail('Public provider record identity must use HTTPS');
+  publicValue(lead.source_url);
+  return `${lead.source}:record:${url.href}`;
+}
+
 export function createSourceBackupIndex(leads, fetched, { batch, runId, attempt, workflowHeadSha, checkoutHeadSha, leadsSha256, now = new Date() } = {}) {
   if (leads?.schema !== 'atrium-auto-ingest-candidates/1' || !Array.isArray(leads.candidates)
     || fetched?.schema !== 'atrium-auto-ingest-fetched/1' || !Array.isArray(fetched.candidates)) fail('Expected lead and fetched schemas');
   if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(batch || '') || !/^\d+$/.test(runId || '') || !/^\d+$/.test(attempt || '')
     || !/^[a-f0-9]{40}$/.test(workflowHeadSha || '') || !/^[a-f0-9]{40}$/.test(checkoutHeadSha || '') || !/^[a-f0-9]{64}$/.test(leadsSha256 || '')) fail('Exact batch/run/head/lead hash bindings required');
-  const expected = new Map(), uids = new Set();
+  const expected = new Map(), identities = new Set();
   for (const lead of leads.candidates) {
-    if (!safeSlug(lead?.slug) || typeof lead.uid !== 'string' || !lead.uid || expected.has(lead.slug) || uids.has(lead.uid)) fail('Lead UID/slug identities must be unique');
-    expected.set(lead.slug, lead); uids.add(lead.uid);
+    const identity = providerIdentity(lead);
+    if (!safeSlug(lead?.slug) || expected.has(lead.slug) || identities.has(identity)) fail('Lead provider/slug identities must be unique');
+    expected.set(lead.slug, lead); identities.add(identity);
   }
   const candidates = [], actual = new Set();
   for (const incoming of fetched.candidates) {
     const lead = expected.get(incoming.slug);
-    if (!lead || incoming.uid !== lead.uid || actual.has(lead.slug)) fail('Fetched candidate UID/slug does not match a unique public lead');
+    if (!lead || incoming.uid !== lead.uid || actual.has(lead.slug)
+      || (!lead.uid && providerIdentity(incoming) !== providerIdentity(lead))) fail('Fetched candidate provider/UID/slug does not match a unique public lead');
     actual.add(lead.slug);
     const file = incoming.fetched || {};
     if (!/^[a-f0-9]{64}$/.test(file.sha256 || '') || !positive(file.bytes) || !positive(file.original_download_bytes)) fail('Missing complete incoming SHA/byte binding');

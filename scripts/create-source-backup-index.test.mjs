@@ -59,3 +59,18 @@ test('retains geometry-hold incoming sources and marks truly missing sources wit
   assert.equal(missing.fetched_source_count, 0);
   assert.doesNotMatch(JSON.stringify(missing), /private\.example|never copy this/);
 });
+
+test('supports existing non-Sketchfab providers without inventing a UID and binds their exact public record', () => {
+  for (const source of ['smk', 'smithsonian', 'threedscans']) {
+    const input = structuredClone(leads), data = fetched();
+    delete input.candidates[0].uid;
+    Object.assign(input.candidates[0], { source, source_url: `https://museum.example/${source}/object-123` });
+    delete data.candidates[0].uid;
+    Object.assign(data.candidates[0], { source, source_url: input.candidates[0].source_url });
+    const index = createSourceBackupIndex(input, data, options);
+    assert.equal(index.candidates[0].source, source);
+    assert.equal(Object.hasOwn(index.candidates[0], 'uid'), false);
+    data.candidates[0].source_url = 'https://museum.example/different-object';
+    assert.throws(() => createSourceBackupIndex(input, data, options), /provider\/UID\/slug/);
+  }
+});

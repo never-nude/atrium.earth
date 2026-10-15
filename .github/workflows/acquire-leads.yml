@@ -78,7 +78,9 @@ jobs:
           # Dispatch chunk N+1 with base_ref set to chunk N's review branch so
           # all chunks share one cumulative catalog without publishing early.
           ref: ${{ inputs.base_ref || github.ref }}
-          fetch-depth: 0
+          # This job commits a child of the selected cumulative ref; the server
+          # already has its ancestry. Older model/review branches are not inputs.
+          fetch-depth: 1
 
       - name: Stage downloads on the larger disk
         run: |
