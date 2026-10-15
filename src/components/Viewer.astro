@@ -279,7 +279,12 @@ const transformJson = JSON.stringify(modelTransform);
     ].join(', ');
   }
 
+  function hasAuthoredVertexColors(mesh: any) {
+    return Boolean(mesh.geometry?.attributes?.color && !mesh.geometry.userData.atriumPaletteBase);
+  }
+
   function addMaterialVariation(THREE: any, mesh: any, material: any, appearance: Appearance) {
+    if (hasAuthoredVertexColors(mesh)) return;
     const position = mesh.geometry?.attributes?.position;
     if (!position || position.count > 850000) return;
 
@@ -318,6 +323,7 @@ const transformJson = JSON.stringify(modelTransform);
       transparent: source.transparent || false,
       opacity: source.opacity ?? 1,
       side: source.side,
+      vertexColors: source.vertexColors || false,
       color: source.color ? source.color.clone() : new THREE.Color(0xffffff),
     });
     prepared.needsUpdate = true;
@@ -375,7 +381,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
 
   function applyMaterialAppearance(THREE: any, mesh: any, material: any, appearance: Appearance) {
     if (!('color' in material)) return;
-    if (hasSourceTexture(material)) {
+    if (hasSourceTexture(material) || hasAuthoredVertexColors(mesh)) {
       if ('envMapIntensity' in material && material.envMapIntensity == null) {
         material.envMapIntensity = appearance.envMapIntensity;
       }

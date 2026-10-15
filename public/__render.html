@@ -83,7 +83,11 @@ function applyLighting(appearance){
   fill.intensity=appearance.fillLightIntensity ?? defaultAppearance.fillLightIntensity;
   rim.intensity=appearance.rimLightIntensity ?? defaultAppearance.rimLightIntensity;
 }
+function hasAuthoredVertexColors(mesh) {
+  return Boolean(mesh.geometry?.attributes?.color && !mesh.geometry.userData.atriumPaletteBase);
+}
 function addMaterialVariation(mesh, material, appearance) {
+  if(hasAuthoredVertexColors(mesh)) return;
   const position=mesh.geometry?.attributes?.position;
   if(!position || position.count>850000) return;
   if(!mesh.geometry.attributes.color) mesh.geometry=mesh.geometry.clone();
@@ -101,6 +105,7 @@ function addMaterialVariation(mesh, material, appearance) {
     colors[i*3]=color.r; colors[i*3+1]=color.g; colors[i*3+2]=color.b;
   }
   mesh.geometry.setAttribute('color', new THREE.BufferAttribute(colors,3));
+  mesh.geometry.userData.atriumPaletteBase=appearance.baseColor;
   material.vertexColors=true;
 }
 function prepareMaterial(source) {
@@ -114,6 +119,7 @@ function prepareMaterial(source) {
     transparent: source.transparent || false,
     opacity: source.opacity ?? 1,
     side: source.side,
+    vertexColors: source.vertexColors || false,
     color: source.color ? source.color.clone() : new THREE.Color(0xffffff)
   });
   prepared.needsUpdate=true;
@@ -160,7 +166,7 @@ function hasSourceTexture(material) {
 }
 function applyMaterialAppearance(mesh, material, appearance) {
   if(!('color' in material)) return;
-  if(hasSourceTexture(material)){
+  if(hasSourceTexture(material) || hasAuthoredVertexColors(mesh)){
     if('envMapIntensity' in material && material.envMapIntensity == null){
       material.envMapIntensity=appearance.envMapIntensity;
     }
