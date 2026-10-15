@@ -1,0 +1,51 @@
+{
+  "schema": "atrium-acquisition-preparation-validation/1",
+  "generated_at": "2026-10-15T17:29:33.253287+00:00",
+  "logical_batch_id": "contemporary-masters-20261015",
+  "status": "passed",
+  "scope": "Local preparation only; no actual source acquisition, workflow dispatch, commit or push performed.",
+  "checks": [
+    {
+      "name": "combined manifest",
+      "result": "24 unique slugs/UIDs; eligible live CC BY4.0 source metadata; no source/title/accession collisions against the current1929-item catalog; all candidates require measured integrity and no component exemptions."
+    },
+    {
+      "name": "metadata corrections",
+      "result": "Milan Projet pour un monument1981/Verona; uncertain exactcast accession/edition/dimensions omitted. Friend London2023 display historicalonly and currentholdingunknown. Abakanowicz ownerWrocław distinct from Luxembourgloan. Sacrifice GLB19992faces. Explicit periods on all24."
+    },
+    {
+      "name": "Unfiled policy",
+      "result": "17 candidates have empty exactorigin fields, explicit Unfiled wing and documented reason>=30characters; no artist-nationality origin inference."
+    },
+    {
+      "name": "real assembly in isolated synthetic repository",
+      "command": "node docs/ingest/contemporary-masters-20261015-validate-preparation.mjs",
+      "result": "Passed10 synthetic cases:5 accepted,5 correctly rejected. Explicit empty origin/currentlocation preserved, implicitunknownorigin notfilledfromholdingmuseum in either Unfiled or a regional wing, owner/loan/history fields survive. Missing/shortreason, invalidwing, skippedmeasurement and excessivecomponents reject. Copied synthetic source bytes/SHA256 remain unchanged."
+    },
+    {
+      "name": "workflow YAML",
+      "result": "Parsed successfully using existing js-yaml dependency; upload-artifact step immediately afterfetch, sourcefolderonly, retention90days, compression0, hidden companionfilesincluded. Fetchmetadata/credentials excluded by path."
+    },
+    {
+      "name": "JavaScript syntax",
+      "command": "node --check scripts/assemble-piece.mjs",
+      "result": "Passed."
+    },
+    {
+      "name": "whitespace",
+      "command": "git diff --check -- assigned preparation files",
+      "result": "Passed."
+    },
+    {
+      "name": "independent current-source audit",
+      "result": "Fresh public API checks independently confirm all 24 downloadable and CC BY; 24 unique slugs/UIDs, expected archive bytes/faces, 17 documented Unfiled and no blanket integrity exemptions. No blocking metadata issue identified. Miró technique wording was qualified; final source/mesh completeness remains required."
+    }
+  ],
+  "planned_source_download_bytes": 1046244188,
+  "not_performed": [
+    "Source meshes have not been downloaded or measured.",
+    "No source/derivative full-object visual review, newthumbnails orphysicalcalibration.",
+    "No permanent cloud source vault implementation ormigration; the workflow addition is temporary90daybackup.",
+    "No workflow dispatch, commits or pushes."
+  ]
+}

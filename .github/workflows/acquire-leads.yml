@@ -136,6 +136,20 @@ jobs:
         env:
           SKETCHFAB_TOKEN: ${{ secrets.SKETCHFAB_TOKEN }}
 
+      # This is a temporary 90-day backup, not the permanent cloud source vault.
+      # Sources contains original downloads and any extracted/decoded companions;
+      # token-bearing fetched.json and other staging metadata stay outside it.
+      - name: Temporary source backup (90 days)
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: atrium-temporary-sources-${{ env.BATCH }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: .atrium-ingest/sources/
+          retention-days: 90
+          compression-level: 0
+          include-hidden-files: true
+          if-no-files-found: warn
+
       - name: Verify strict source batch
         run: |
           node <<'NODE'

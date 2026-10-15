@@ -39,7 +39,7 @@ const skipAssets = Boolean(args['skip-assets']);
 const optimizeSourceGlb = Boolean(args['optimize-source-glb']) || process.env.ATRIUM_OPTIMIZE_SOURCE_GLB === '1';
 const dryRun = Boolean(args['dry-run']);
 const maxAlternateBytes = Number(args['max-alternate-bytes'] || process.env.ATRIUM_MAX_ALTERNATE_BYTES || 700_000_000);
-const wingIds = new Set(['near-east', 'greece-rome', 'europe', 'asia', 'africa', 'americas-oceania']);
+const wingIds = new Set(['near-east', 'greece-rome', 'europe', 'asia', 'africa', 'americas-oceania', 'unfiled']);
 
 function pythonCommand() {
   if (process.env.PYTHON) return process.env.PYTHON;
@@ -147,15 +147,20 @@ function catalogEntry(candidate, archiveRel, sizeBytes) {
     slug: candidate.slug,
     collection: candidate.collection || candidate.slug.split('/')[0],
     ...(candidate.wing ? { wing: candidate.wing } : {}),
+    ...(candidate.wing === 'unfiled' ? { wing_unfiled_reason: clean(candidate.wing_unfiled_reason) } : {}),
     title: candidate.title,
     artist: candidate.artist || '',
     year: candidate.year || '',
     year_sort: yearSort,
     material: candidate.material || '',
-    museum: candidate.displayed_at || candidate.current_location || candidate.museum || '',
-    original_location: candidate.original_location || candidate.geography || candidate.museum || '',
-    current_location: candidate.current_location || candidate.displayed_at || '',
+    museum: candidate.museum ?? candidate.displayed_at ?? candidate.current_location ?? '',
+    // An unknown production place must not inherit a holding or exhibition site.
+    original_location: candidate.wing === 'unfiled'
+      ? candidate.original_location ?? ''
+      : candidate.original_location || candidate.geography || '',
+    current_location: candidate.current_location ?? candidate.displayed_at ?? '',
     displayed_at: candidate.displayed_at || '',
+    ...(candidate.historical_displayed_at ? { historical_displayed_at: candidate.historical_displayed_at } : {}),
     geography: candidate.geography || '',
     culture: candidate.culture || '',
     source_institution: candidate.source_institution || '',
@@ -306,6 +311,10 @@ for (const originalCandidate of candidates) {
   let candidate = originalCandidate;
   if (candidate.wing && !wingIds.has(candidate.wing)) {
     report.rejected.push({ slug: candidate.slug, title: candidate.title, source: candidate.source, reason: `unknown wing override: ${candidate.wing}` });
+    continue;
+  }
+  if (candidate.wing === 'unfiled' && clean(candidate.wing_unfiled_reason).length < 30) {
+    report.rejected.push({ slug: candidate.slug, title: candidate.title, source: candidate.source, reason: 'Unfiled wing requires a documented origin explanation of at least 30 characters' });
     continue;
   }
   const knownBy = candidateIsKnown(candidate, indexes);
