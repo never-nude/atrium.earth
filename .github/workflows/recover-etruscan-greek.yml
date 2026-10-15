@@ -1,0 +1,94 @@
+name: Recover Greek acquisition from verified artifacts (data only)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  recover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /scripts/
+            /src/data/
+            /package.json
+            /package-lock.json
+            /requirements.txt
+            /docs/ingest/etruscan-greek-20261015-*
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+          cache: pip
+      - name: Validate exact source artifacts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs'; import {execFileSync} from 'node:child_process';
+          const r=JSON.parse(fs.readFileSync('docs/ingest/etruscan-greek-20261015-recovery-request.json'));
+          if(r.schema!=='atrium-acquisition-artifact-recovery/1'||r.batch!=='etruscan-greek-20261015'||r.runId!==38816449456||r.headSha!=='63438e7af37f3f1f6f4056a1fb14cead51ac4162')throw Error('Unexpected exact acquisition');
+          for(const [id,name] of [[r.sourceArtifactId,'atrium-temporary-sources'],[r.sourceIndexArtifactId,'atrium-source-backup-index']]){
+            const a=JSON.parse(execFileSync('gh',['api',`repos/never-nude/atrium.earth/actions/artifacts/${id}`]));
+            if(a.expired||a.workflow_run.id!==r.runId||a.workflow_run.head_sha!==r.headSha||a.name!==`${name}-${r.batch}-${r.runId}-1`)throw Error('Artifact binding mismatch');
+          }
+          NODE
+      - uses: actions/download-artifact@v4
+        with:
+          artifact-ids: 12011406584
+          merge-multiple: true
+          repository: never-nude/atrium.earth
+          run-id: 38816449456
+          github-token: ${{ github.token }}
+          path: .atrium-ingest/sources/
+      - uses: actions/download-artifact@v4
+        with:
+          artifact-ids: 12011551324
+          merge-multiple: true
+          repository: never-nude/atrium.earth
+          run-id: 38816449456
+          github-token: ${{ github.token }}
+          path: .atrium-ingest/recovery-index/
+      - name: Install measured-geometry dependencies
+        run: |
+          npm ci
+          python -m pip install -r requirements.txt
+      - name: Verify unchanged sources and recreate fetched metadata
+        run: node scripts/recover-etruscan-greek.mjs prepare
+      - name: Remeasure and assemble without refetching or reoptimizing
+        run: npm run ingest:assemble -- --batch=etruscan-greek-20261015 --skip-assets
+        env:
+          PYTHON: python
+          ATRIUM_ORIENT_TIMEOUT_MS: '600000'
+          ATRIUM_POSE_TIMEOUT: '15'
+      - name: Verify and bind already uploaded immutable previews
+        run: node scripts/recover-etruscan-greek.mjs finish
+      - name: Save data and reports independently of Git permissions
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: etruscan-greek-recovered-data-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            src/data/catalog.json
+            src/data/previews.json
+            src/data/orientations.json
+            .atrium-ingest/fetched.json
+            .atrium-ingest/last-report.json
+            .atrium-ingest/last-report.md
+            .atrium-ingest/new-slugs.txt
+            .atrium-ingest/r2-upload.json
+          include-hidden-files: true
+          retention-days: 30
+          if-no-files-found: error
