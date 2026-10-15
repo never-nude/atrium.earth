@@ -79,7 +79,7 @@ function findPrivate(value, at = '') {
   for (const [name, item] of Object.entries(value)) {
     const next = at ? `${at}.${name}` : name;
     if (PRIVATE_FIELDS.test(name)) problems.push(next);
-    else if (typeof item === 'string' && /^https?:\/\//i.test(item) && !url(item)) problems.push(next);
+    else if (typeof item === 'string' && /^https?:\/\//i.test(item) && !url(item.replace(/^http:/i, 'https:'))) problems.push(next);
     else problems.push(...findPrivate(item, next));
   }
   return problems;
@@ -90,9 +90,10 @@ export function checkCandidate(candidate, { now = new Date(), maxAgeDays = 7 } =
   const require = (condition, reason) => { if (!condition) issues.push(reason); };
   require(candidate && typeof candidate === 'object' && !Array.isArray(candidate), 'candidate must be an object');
   if (issues.length) return issues;
-  for (const name of ['slug', 'collection', 'title', 'artist', 'culture', 'year', 'period', 'material', 'museum',
+  for (const name of ['slug', 'collection', 'title', 'culture', 'year', 'period', 'material', 'museum',
     'source_institution', 'source_url', 'source_record_url', 'license', 'license_url', 'license_evidence_url',
     'scan_author', 'attribution', 'scan_source', 'note', 'reference_image_url']) require(text(candidate[name]), `missing ${name}`);
+  require(typeof candidate.artist === 'string', 'artist must be a string; an unknown maker may remain empty');
   require(candidate.source === 'sketchfab', 'this batch requires direct Sketchfab model identities');
   require(UID.test(candidate.uid || ''), 'invalid Sketchfab UID');
   require(/^(?:greek|roman)\/[a-z0-9]+(?:-[a-z0-9]+)*$/.test(candidate.slug || ''), 'unsafe or unsupported slug');

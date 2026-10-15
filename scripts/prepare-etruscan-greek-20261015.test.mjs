@@ -119,6 +119,12 @@ test('holding/scan location cannot fill an undocumented manufacture origin', () 
   assert.match(checkCandidate(candidate(1, { geography: '', original_location: '' }), { now }).join(';'), /origin separately/);
 });
 
+test('unknown ancient makers and safe raw HTTP license evidence are preserved honestly', () => {
+  const unknown = candidate(1, { artist: '', raw_api_evidence: { license: { url: 'http://creativecommons.org/licenses/by/4.0/' } } });
+  assert.deepEqual(checkCandidate(unknown, { now }), []);
+  assert.match(checkCandidate({ ...unknown, raw_api_evidence: { url: 'http://example.org?token=fixture' } }, { now }).join(';'), /private\/ephemeral/);
+});
+
 function runFixture() {
   const manifest = prepare([candidate()]).manifest;
   const fetched = { candidates: [{ ...manifest.candidates[0], fetched: { sha256: 'a'.repeat(64), original_download_bytes: 1000, bytes: 2000, format: 'glb', decoded: true } }], report: { errors: [] } };
