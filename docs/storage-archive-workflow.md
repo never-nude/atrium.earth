@@ -157,6 +157,10 @@ integer up to 1,800,000 for deliberately slower transfers. A timeout issues no
 complete-content receipt; preserve the original and retry with a fresh download
 request. The verifier never logs signed download URLs.
 
+Use the provider metadata's actual Drive `id` as the permanent object identity.
+A `file_uri.file_id` beginning with `sediment://` identifies a temporary downloaded
+reference and cannot substitute for the Drive file ID in a recovery record.
+
 Use bounded batches and checkpoint successful receipts. The verifier authenticates
 and merges fresh receipts under an exclusive writer lock; separate successful
 workers cannot replace one another's ledger entries. Do not hand-edit a ledger

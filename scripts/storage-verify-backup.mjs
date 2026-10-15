@@ -7,6 +7,7 @@ import { pathToFileURL } from 'node:url';
 
 const exec = promisify(execFile);
 export const SHA256 = /^[a-f0-9]{64}$/;
+const DRIVE_ID = /^[A-Za-z0-9_-]+$/;
 export function verificationTimeout(value = '120000') {
   const parsed = typeof value === 'number' ? value : /^[1-9][0-9]*$/.test(value) ? Number(value) : NaN;
   if (!Number.isSafeInteger(parsed) || parsed <= 0 || parsed > 1800000) fail('Verification timeout must be a positive safe integer no greater than1800000ms');
@@ -154,7 +155,7 @@ export function verifyReceipt(receipt, key, { now = Date.now(), maxAgeMs = 24 * 
   if (!Array.isArray(p.objects) || !p.objects.length) fail('Receipt has no remote objects');
   let offset = 0;
   for (const [i, object] of p.objects.entries()) {
-    if (object.order !== i || object.offset !== offset || !object.fileId || !object.version && !object.modifiedTime || object.private !== true || !SHA256.test(object.sha256 || '') || !Number.isSafeInteger(object.bytes) || object.bytes < 0) fail('Receipt has incomplete remote binding');
+    if (object.order !== i || object.offset !== offset || typeof object.fileId !== 'string' || !DRIVE_ID.test(object.fileId) || !object.version && !object.modifiedTime || object.private !== true || !SHA256.test(object.sha256 || '') || !Number.isSafeInteger(object.bytes) || object.bytes < 0) fail('Receipt has incomplete remote binding');
     offset += object.bytes;
   }
   if (offset !== p.blob.bytes) fail('Receipt object bytes do not reconstruct the full blob');
@@ -171,7 +172,7 @@ export function verifyLiveReceipt(receipt, key, { now = Date.now(), maxAgeMs = 2
 }
 function safeMetadata(object, order, offset, bytes, sha256) {
   const d = object.drive;
-  if (!d || d.provider !== 'google-drive' || typeof d.fileId !== 'string' || !d.fileId || !d.version && !d.modifiedTime || d.private !== true || d.size !== bytes || !Number.isFinite(Date.parse(d.sharingCheckedAt))) fail('Missing exact Drive identity/version/size/private-sharing evidence');
+  if (!d || d.provider !== 'google-drive' || typeof d.fileId !== 'string' || !DRIVE_ID.test(d.fileId) || !d.version && !d.modifiedTime || d.private !== true || d.size !== bytes || !Number.isFinite(Date.parse(d.sharingCheckedAt))) fail('Missing exact Drive identity/version/size/private-sharing evidence');
   return { order, offset, bytes, sha256, provider: 'google-drive', fileId: d.fileId,
     ...(d.version ? { version: String(d.version) } : {}),
     ...(d.modifiedTime ? { modifiedTime: d.modifiedTime } : {}),

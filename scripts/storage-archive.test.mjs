@@ -6,7 +6,7 @@ import os from 'node:os';
 import crypto from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import { inventorySources, createCleanupPlan, executeCleanup, hashFile, manifestHash, sourceDependencies } from './storage-core.mjs';
-import { verifyRemoteContent, verifyReceipt, verifyLiveContent, verifyLiveReceipt, digest, loadKey, privatePath, writePrivateJson, appendVerifiedReceipt, verificationTimeout } from './storage-verify-backup.mjs';
+import { verifyRemoteContent, verifyReceipt, verifyLiveContent, verifyLiveReceipt, digest, loadKey, privatePath, writePrivateJson, appendVerifiedReceipt, verificationTimeout, signReceipt } from './storage-verify-backup.mjs';
 import { auditLocalDeletionCandidates } from './storage-live-dependencies.mjs';
 import { runStorageCli } from './storage-archive.mjs';
 
@@ -57,6 +57,25 @@ test('actual streamed bytes produce a signed token-free content receipt', async 
   assert.equal(JSON.stringify(signed).includes('NEVER-PERSIST'), false);
   assert.equal(JSON.stringify(signed).includes('downloadUrl'), false);
   assert.equal(signed.payload.objects[0].fileId, 'fixture-drive-object');
+});
+test('canonical opaque Drive IDs exclude temporary materialized references before download and receipt acceptance', async () => {
+  const bytes = Buffer.from('provider original with actual Drive identity');
+  const valid = await receiptFor(bytes);
+  for (const invalid of ['sediment://temporary-materialization', 'https://drive.google.com/file/d/example/view', 'opaque/id', 'opaque:id', '']) {
+    const request = requestFor(bytes);
+    request.objects[0].drive.fileId = invalid;
+    let fetched = false;
+    await assert.rejects(verifyRemoteContent(request, { key, now, fetchImpl: async () => { fetched = true; return response(bytes); } }), /Drive identity/);
+    assert.equal(fetched, false, 'Invalid remote identity is rejected before any content request');
+    const payload = structuredClone(valid.payload);
+    payload.objects[0].fileId = invalid;
+    assert.throws(() => verifyReceipt(signReceipt(payload, key), key, { now }), /remote binding/);
+  }
+  for (const fileId of ['a', 'A_z-09']) {
+    const request = requestFor(bytes); request.objects[0].drive.fileId = fileId;
+    const signed = await verifyRemoteContent(request, { key, now, fetchImpl: async () => response(bytes) });
+    assert.equal(verifyReceipt(signed, key, { now }).objects[0].fileId, fileId);
+  }
 });
 test('network verification timeout is bounded and a timed-out stream creates no receipt', async () => {
   assert.equal(verificationTimeout(), 120000);
