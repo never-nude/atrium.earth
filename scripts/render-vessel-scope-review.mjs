@@ -121,7 +121,7 @@ export function reviewHtml(productionHtml) {
   const edits = [
     ['window.loadModel=(url,', `${inspectCode}\nwindow.loadModel=(url,`],
     ['    removeScanHelpers(m);', '    window.__reviewBefore=inspectReviewModel(m);\n    if(!nativeReview) removeScanHelpers(m);'],
-    ['const prepared=list.map((material)=>prepareMaterial(material));', 'const prepared=nativeReview ? list : list.map((material)=>prepareMaterial(material));'],
+    ['const prepared=list.map((material)=>prepareMaterial(material, appearance));', 'const prepared=nativeReview ? list : list.map((material)=>prepareMaterial(material, appearance));'],
     ['for(const material of prepared) applyMaterialAppearance(obj, material, appearance);', 'if(!nativeReview) for(const material of prepared) applyMaterialAppearance(obj, material, appearance);'],
     ['scene.add(m); current=m;', 'scene.add(m); current=m;\n    window.__reviewBox=box; window.__reviewTransform=transform;\n    window.__reviewAfter=inspectReviewModel(m);\n    window.__reviewSummary={nativeReview,transform,bounds:{min:box.min.toArray(),max:box.max.toArray()},before:window.__reviewBefore,after:window.__reviewAfter};'],
   ];

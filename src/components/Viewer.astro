@@ -215,6 +215,7 @@ const transformJson = JSON.stringify(modelTransform);
     rimLightIntensity?: number;
     hemiLightIntensity?: number;
     sourceVertexColors?: 'ignore-invalid';
+    preserveSourceUnlit?: boolean;
   };
 
   const WIREFRAME_COLOR = 0xE3DAC9;
@@ -313,7 +314,8 @@ const transformJson = JSON.stringify(modelTransform);
     material.vertexColors = true;
   }
 
-  function prepareMaterial(THREE: any, source: any) {
+  function prepareMaterial(THREE: any, source: any, appearance?: Appearance) {
+    if (appearance?.preserveSourceUnlit === true && source.isMeshBasicMaterial) return source;
     if ('roughness' in source && 'metalness' in source && 'emissive' in source) return source;
     const prepared = new THREE.MeshStandardMaterial({
       name: source.name || 'atrium-material',
@@ -553,7 +555,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
         obj.receiveShadow = false;
         const hasMaterialArray = Array.isArray(obj.material);
         const list = hasMaterialArray ? obj.material : [obj.material];
-        const prepared = list.map((m: any) => prepareMaterial(THREE, m));
+        const prepared = list.map((m: any) => prepareMaterial(THREE, m, appearance));
         const wireframes = prepared.map((m: any) => createWireframeMaterial(THREE, m));
         const solidMaterial = hasMaterialArray ? prepared : prepared[0];
         const wireframeMaterial = hasMaterialArray ? wireframes : wireframes[0];

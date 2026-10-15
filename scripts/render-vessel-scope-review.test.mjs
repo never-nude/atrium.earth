@@ -122,7 +122,7 @@ if (process.env.SCOPE_BROWSER_TEST !== '1') {
     res.setHeader('Content-Type', mime(file)); res.end(readFileSync(file));
   });
   await new Promise((yes) => server.listen(0, '127.0.0.1', yes));
-  const browser = await chromium.launch({ headless: true, ...(process.env.CHROME_BIN ? { executablePath: process.env.CHROME_BIN } : {}), args: ['--enable-unsafe-swiftshader', '--use-angle=swiftshader'] });
+  const browser = await chromium.launch({ headless: true, ...(process.env.CHROME_BIN ? { executablePath: process.env.CHROME_BIN } : {}), args: (process.env.CHROME_EXTRA_ARGS || '--enable-unsafe-swiftshader --use-angle=swiftshader').split(' ').filter(Boolean) });
   try {
     for (const native of [false, true]) {
       const page = await browser.newPage({ viewport: { width: 1000, height: 1250 } }); const errors = [];

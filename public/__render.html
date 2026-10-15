@@ -108,7 +108,8 @@ function addMaterialVariation(mesh, material, appearance) {
   mesh.geometry.userData.atriumPaletteBase=appearance.baseColor;
   material.vertexColors=true;
 }
-function prepareMaterial(source) {
+function prepareMaterial(source, appearance = {}) {
+  if(appearance.preserveSourceUnlit === true && source.isMeshBasicMaterial) return source;
   if('roughness' in source && 'metalness' in source && 'emissive' in source) return source;
   const prepared=new THREE.MeshStandardMaterial({
     name: source.name || 'atrium-material',
@@ -219,7 +220,7 @@ window.loadModel=(url, rawTransform='auto', rawAppearance='{}', upAxis='auto')=>
         obj.geometry.computeVertexNormals();
       }
       const list=Array.isArray(obj.material) ? obj.material : [obj.material];
-      const prepared=list.map((material)=>prepareMaterial(material));
+      const prepared=list.map((material)=>prepareMaterial(material, appearance));
       obj.material=Array.isArray(obj.material) ? prepared : prepared[0];
       for(const material of prepared) applyMaterialAppearance(obj, material, appearance);
     });

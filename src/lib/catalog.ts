@@ -194,6 +194,7 @@ export type MaterialAppearance = {
   fillLightIntensity?: number;
   rimLightIntensity?: number;
   hemiLightIntensity?: number;
+  preserveSourceUnlit?: boolean;
 };
 
 type AppearanceOverride = Partial<Omit<MaterialAppearance, 'key' | 'label' | 'material'>> & {
