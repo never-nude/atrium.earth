@@ -195,6 +195,9 @@ export type MaterialAppearance = {
   rimLightIntensity?: number;
   hemiLightIntensity?: number;
   preserveSourceUnlit?: boolean;
+  // Pair with a source-grounded white/zero-tint/zero-variation page override
+  // and exact source PBR values; this flag only prevents spatial reclassification.
+  preserveSpatialMaterialValues?: boolean;
 };
 
 type AppearanceOverride = Partial<Omit<MaterialAppearance, 'key' | 'label' | 'material'>> & {

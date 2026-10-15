@@ -1,12 +1,13 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import * as THREE from 'three';
+import { GLTFExporter } from 'three/examples/jsm/exporters/GLTFExporter.js';
 import { USDZExporter } from 'three/examples/jsm/exporters/USDZExporter.js';
 import { USDLoader } from 'three/examples/jsm/loaders/USDLoader.js';
 import { unzipSync, strFromU8 } from 'three/examples/jsm/libs/fflate.module.js';
 import { makeQuickLookScene, startSpatialSession } from '../src/lib/spatial-session.mjs';
 import { finishQuickLookAppearance } from '../src/lib/quick-look-appearance-export.mjs';
-import { rememberSpatialAppearance, spatialPaletteColor } from '../src/lib/spatial-materials.mjs';
+import { rememberSpatialAppearance, spatialPaletteColor, prepareSpatialSurface, startSpatialAppearance } from '../src/lib/spatial-materials.mjs';
 import { prepareQuickLookMaterial } from '../src/lib/spatial-appearance.mjs';
 
 // The browser viewer uses fixed neutral illumination and a subdued grounding
@@ -117,7 +118,66 @@ for (const appearance of Object.values(profiles)) for (const vertexColors of [tr
   converted.dispose();geometry.dispose();material.dispose();
 }
 const maps = ['map', 'normalMap', 'aoMap', 'emissiveMap', 'roughnessMap', 'metalnessMap', 'alphaMap'];
+
+// Four reviewed mixed-material captures use exact source factors with a neutral
+// white page multiplier. This is not an Atrium reflectance palette for AR.
+globalThis.FileReader ??= class {
+  readAsArrayBuffer(blob) { void blob.arrayBuffer().then(result => { this.result = result; this.onloadend?.(); }); }
+};
+for (const [rgb, roughness] of [[[0, 0, 0], 1], [[0.204216, 0.198553, 0.204566], 0.5], [[0.204216, 0.198553, 0.204566], 1], [[0.204216, 0.198553, 0.204566], 0.8063508327]]) {
+  const geometry = new THREE.BoxGeometry(), values = new Float32Array(geometry.attributes.position.count * 3).fill(1);
+  geometry.setAttribute('color', new THREE.BufferAttribute(values.slice(), 3));
+  geometry.userData.atriumPaletteBase = '#FFFFFF';
+  const material = new THREE.MeshStandardMaterial({ color: new THREE.Color(...rgb), roughness, metalness: 0, vertexColors: true, opacity: 0.73, transparent: true });
+  const neutral = { key: 'ceramic', baseColor: '#FFFFFF', roughness, metalness: 0, preserveSpatialMaterialValues: true };
+  rememberSpatialAppearance(material, { ...neutral, preserveSpatialMaterialValues: false });
+  assert.ok(material.userData.atriumGeneratedAppearance);
+  rememberSpatialAppearance(material, neutral);
+  assert.equal(material.userData.atriumGeneratedAppearance, undefined, 'Flag removes old generated reflectance metadata');
+  assert.equal(material.userData.atriumPreserveSpatialMaterialValues, true);
+  const stale = material.clone(); stale.userData.atriumGeneratedAppearance = { key: 'ceramic', baseColor: '#FF0000', roughness: 0.5, metalness: 0 };
+  const guarded = prepareSpatialSurface(THREE, stale, geometry).material;
+  assert.equal(guarded.userData.atriumGeneratedAppearance, undefined, 'Spatial guard also ignores stale classification on a flagged source');
+  assert.deepEqual(guarded.color.toArray(), rgb); assert.equal(guarded.roughness, roughness); assert.equal(guarded.opacity, 0.73);
+  stale.dispose(); guarded.dispose();
+  const mesh = new THREE.Mesh(geometry, material), scene = new THREE.Scene(); scene.add(mesh);
+  const renderer = { toneMappingExposure: 0.66, toneMapping: THREE.ACESFilmicToneMapping };
+  const restore = startSpatialAppearance(THREE, mesh, scene, renderer);
+  assert.deepEqual(mesh.material.color.toArray(), rgb, 'WebXR keeps source RGB factor');
+  assert.equal(mesh.material.roughness, roughness); assert.equal(mesh.material.metalness, 0); assert.equal(mesh.material.opacity, 0.73);
+  assert.deepEqual(mesh.geometry.attributes.color.array, values, 'WebXR retains neutral white multiplier');
+  restore(); assert.equal(mesh.material, material); assert.equal(mesh.geometry, geometry);
+  const converted = makeQuickLookScene(THREE, mesh, new THREE.Box3().setFromObject(mesh), null, { mode: 'surface' });
+  try {
+    const bytes = await new GLTFExporter().parseAsync(converted.scene, { binary: true });
+    const view = new DataView(bytes), doc = JSON.parse(new TextDecoder().decode(new Uint8Array(bytes, 20, view.getUint32(12, true))));
+    const primitive = doc.meshes[0].primitives[0], accessor = doc.accessors[primitive.attributes.COLOR_0], buffer = doc.bufferViews[accessor.bufferView];
+    const data = new DataView(bytes, 28 + view.getUint32(12, true) + (buffer.byteOffset || 0) + (accessor.byteOffset || 0));
+    const pbr = doc.materials[primitive.material].pbrMetallicRoughness;
+    for (let i = 0; i < 3; i++) assert.ok(Math.abs(data.getFloat32(i * 4, true) * (pbr.baseColorFactor?.[i] ?? 1) - rgb[i]) < 1e-6, 'Serialized GLB effective RGB matches source factor × white');
+    assert.equal(pbr.roughnessFactor ?? 1, roughness); assert.equal(pbr.metallicFactor, 0); assert.equal(pbr.baseColorFactor[3], 0.73);
+    const archive = unzipSync(finishQuickLookAppearance(await new USDZExporter().parseAsync(converted.scene), converted.scene));
+    const usd = strFromU8(archive['model.usda']);
+    assert.match(usd, new RegExp(`float inputs:roughness = ${roughness}`));
+    assert.match(usd, /float inputs:opacity = 0.73/);
+    const surface = Object.entries(archive).find(([name]) => name.startsWith('geometries/'));
+    const colors = strFromU8(surface[1]).match(/primvars:displayColor = \[\(([^)]+)\)/)[1].split(',').map(Number);
+    for (let i = 0; i < 3; i++) assert.ok(Math.abs(colors[i] - rgb[i]) < 1e-6, 'Serialized USDZ effective display color matches source');
+    assert.deepEqual(material.color.toArray(), rgb); assert.equal(material.opacity, 0.73); assert.equal(material.roughness, roughness);
+    assert.deepEqual(geometry.attributes.color.array, values, 'Exports leave live neutral multiplier unchanged');
+    const reset = material.clone(); rememberSpatialAppearance(reset, { ...neutral, preserveSpatialMaterialValues: false });
+    assert.equal(reset.userData.atriumPreserveSpatialMaterialValues, undefined, 'Unflagged classification retains the old behavior');
+    assert.ok(reset.userData.atriumGeneratedAppearance); reset.dispose();
+  } finally { converted.dispose(); geometry.dispose(); material.dispose(); }
+}
 for (const key of maps) source[key] = new THREE.Texture();
+rememberSpatialAppearance(source, { preserveSpatialMaterialValues: true });
+for (const native of [false, true]) {
+  const preserved = prepareSpatialSurface(THREE, source, model.geometry, { native }).material;
+  for (const key of maps) assert.equal(preserved[key], source[key], `Flagged ${key} is preserved in spatial/native preparation`);
+  assert.ok(preserved.color.equals(source.color)); assert.equal(preserved.roughness, source.roughness); assert.equal(preserved.metalness, source.metalness);
+  preserved.dispose();
+}
 const mapped = prepareQuickLookMaterial(source, 0.66);
 assert.ok(Math.abs(mapped.color.r - source.color.r) < 1e-10);
 for (const key of maps) assert.equal(mapped[key], source[key], `${key} and its colour-space/UV settings survive unchanged`);

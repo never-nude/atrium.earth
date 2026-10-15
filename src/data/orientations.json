@@ -23391,13 +23391,13 @@
   "greek/black-figure-eye-cup-harvard-1925-30-19-495e83": {
     "upAxis": "y",
     "modelRotation": [
-      0,
+      90,
       0,
       0
     ],
     "yaw": 0,
     "status": "candidate",
-    "note": "Explicit source Y-up candidate for actual front/reverse/above/underside review; final human pose pending."
+    "note": "Actual front/reverse/above/underside comparison shows the source vessel stood on edge. Rotate source -Z to vertical so the foot is below the mouth; final corrected four-view approval pending."
   },
   "greek/eurymedon-oinochoe-mkg-1981-173-737901": {
     "upAxis": "y",
@@ -23406,9 +23406,9 @@
       0,
       0
     ],
-    "yaw": 0,
+    "yaw": -60,
     "status": "candidate",
-    "note": "Explicit source Y-up candidate for actual front/reverse/above/underside review; final human pose pending."
+    "note": "Actual four-direction comparison showed blank body facing forward with figures at its edges. Turn source Y-up vessel -60 degrees to test a centered figure panel; final rerender approval pending."
   },
   "greek/kantharos-dedicated-to-herakles-mkg-1983-282-08d40f": {
     "upAxis": "y",
@@ -23706,5 +23706,38 @@
     "yaw": 0,
     "status": "candidate",
     "note": "Explicit source Y-up candidate for actual front/reverse/above/underside review; final human pose pending."
+  },
+  "greek/corinthian-oinochoe-bryn-mawr-p-54-0cf420": {
+    "upAxis": "y",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "status": "candidate",
+    "note": "Explicit source Y-up candidate pending actual four-direction source comparison."
+  },
+  "greek/bell-krater-with-satyrs-and-maenads-nm-ant-0014-2ab078": {
+    "upAxis": "y",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "status": "candidate",
+    "note": "Explicit source Y-up candidate pending actual four-direction source comparison."
+  },
+  "greek/bell-krater-with-reclining-dionysos-nm-ant-0008-6fc57b": {
+    "upAxis": "y",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": 0,
+    "status": "candidate",
+    "note": "Explicit source Y-up candidate pending actual four-direction source comparison."
   }
 }

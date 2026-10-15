@@ -6,6 +6,12 @@ const diffuseRanges = {
   'bronze-patina': [0.15, 0.26], wood: [0.14, 0.24], ceramic: [0.18, 0.32],
 };
 export function rememberSpatialAppearance(material, appearance) {
+  if (appearance.preserveSpatialMaterialValues === true) {
+    delete material.userData.atriumGeneratedAppearance;
+    material.userData.atriumPreserveSpatialMaterialValues = true;
+    return;
+  }
+  delete material.userData.atriumPreserveSpatialMaterialValues;
   material.userData.atriumGeneratedAppearance = {
     key: appearance.key || 'neutral', baseColor: appearance.baseColor,
     roughness: appearance.roughness, metalness: appearance.metalness,
@@ -24,7 +30,9 @@ export function spatialPaletteColor(THREE, appearance) {
 }
 export function prepareSpatialSurface(THREE, source, geometry, { native = false } = {}) {
   const material = source.clone();
-  const generated = source.userData.atriumGeneratedAppearance;
+  const preserve = source.userData.atriumPreserveSpatialMaterialValues === true;
+  if (preserve) delete material.userData.atriumGeneratedAppearance;
+  const generated = preserve ? undefined : source.userData.atriumGeneratedAppearance;
   let colored = Boolean(source.vertexColors && geometry.hasAttribute('color') && !source.map);
   if (generated && !source.map) {
     const base = new THREE.Color(geometry.userData.atriumPaletteBase || generated.baseColor);
