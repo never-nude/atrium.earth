@@ -1,0 +1,286 @@
+{
+  "schema": "atrium-auto-ingest-candidates/1",
+  "generated_at": "2026-10-15T23:00:50.790Z",
+  "logical_batch_id": "etruscan-greek-20261015",
+  "chunk": 3,
+  "expected_count": 2,
+  "strict_acquisition": false,
+  "note": "Preparation only. All selected sources require measured integrity without exemptions, unchanged provider archive preservation, native material and full capture review, final orientation, size review and rendered thumbnails. No automatic featured membership. Selected archive metadata is separate from API detail counts; source hashes are recorded after actual acquisition.",
+  "candidates": [
+    {
+      "source": "sketchfab",
+      "archive": "",
+      "uid": "0cf420a6640e4ee3bea3887bbecba7d3",
+      "slug": "greek/corinthian-oinochoe-bryn-mawr-p-54-0cf420",
+      "collection": "greek",
+      "wing": "greece-rome",
+      "title": "Corinthian Oinochoe — Bryn Mawr P.54",
+      "artist": "Unknown Greek potter/painter",
+      "culture": "Ancient Greek, Corinthian; Corinth",
+      "geography": "Corinth, Greece",
+      "subject": "Ancient Greek pottery",
+      "year": "c. 625–600 BCE",
+      "year_sort": -613,
+      "period": "Ancient",
+      "material": "Clay",
+      "dimensions": "18.5 × 16.1 × 21.2 cm (published sequence; axes unresolved)",
+      "measures": [],
+      "museum": "Bryn Mawr College Art and Artifacts Collection",
+      "current_location": "Bryn Mawr College Art and Artifacts Collection",
+      "displayed_at": "",
+      "original_location": "",
+      "source_institution": "Bryn Mawr College",
+      "source_url": "https://sketchfab.com/3d-models/0cf420a6640e4ee3bea3887bbecba7d3",
+      "source_record_url": "https://sketchfab.com/3d-models/0cf420a6640e4ee3bea3887bbecba7d3",
+      "related_source_record_urls": [],
+      "download_api_url": "https://api.sketchfab.com/v3/models/0cf420a6640e4ee3bea3887bbecba7d3/download",
+      "download_format": "glb",
+      "download_size_bytes": 69871588,
+      "face_count": 2131667,
+      "face_count_scope": "api-detail-only-unmeasured",
+      "accession": "P.54",
+      "object_identity": "P.54",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "license_tier": 2,
+      "license_slug": "by",
+      "license_uid": "322a749bcfa841b29dff1e8a1bb74b0b",
+      "license_evidence_url": "https://api.sketchfab.com/v3/models/0cf420a6640e4ee3bea3887bbecba7d3",
+      "scan_author": "Bryn Mawr College (BrynMawrCollege)",
+      "attribution": "3D model “Corinthian Oinochoe, ca. 625-600 BCE” by Bryn Mawr College (BrynMawrCollege), via Sketchfab, licensed CC BY 4.0.",
+      "scan_source": "3D capture of a physical museum vessel; method not specified by publisher",
+      "representation": "Capture of a physical museum vessel, including its existing repairs/restoration where present",
+      "note": "This Corinthian wine jug has a broad patterned body, a trefoil mouth and a high loop handle.",
+      "source_description": "Corinthian Oinochoe (Wine Jug) from the Bryn Mawr College Art and Artifacts Collection.\n\nArchaic, ca. 625-600 BCE\n\nClay\n\nDimensions: 7 5/16 in. x 6 5/16 in. x 8 3/8 in. (18.5 cm x 16.1 cm x 21.2 cm)\n\nEurope, Greece, Corinth\n\nGift of Mary Hamilton Swindler, PhD 1912, Professor of Archaeology\n\nBryn Mawr College P.54",
+      "reference_image_url": "https://media.sketchfab.com/models/0cf420a6640e4ee3bea3887bbecba7d3/thumbnails/ed128d71d20e40cabf0476c7c858bb19/4ec78316ad8c47cc9c592aad77c70cb3.jpeg",
+      "publisher": "BrynMawrCollege",
+      "published_at": "2018-08-30T15:42:32.202366",
+      "downloadable_verified": true,
+      "downloadable_verified_at": "2026-10-15T22:12:28.972Z",
+      "require_measured_integrity": true,
+      "texture_count": 2,
+      "source_geometry": {
+        "format": "glb",
+        "bytes": 69871588,
+        "faces": null,
+        "api_detail_faces": 2131667,
+        "api_detail_vertices": 1070513,
+        "api_detail_textures": 2,
+        "api_detail_has_vertex_colors": false
+      },
+      "archive_availability": [
+        {
+          "type": "source",
+          "exists": true,
+          "status": "Succeeded"
+        },
+        {
+          "type": "gltf",
+          "exists": true,
+          "status": "Succeeded"
+        },
+        {
+          "type": "extra",
+          "exists": false,
+          "status": null
+        },
+        {
+          "type": "usdz",
+          "exists": true,
+          "status": "Succeeded"
+        },
+        {
+          "type": "gltf-ar",
+          "exists": false,
+          "status": null
+        },
+        {
+          "type": "uasset",
+          "exists": false,
+          "status": null
+        },
+        {
+          "type": "glb",
+          "exists": true,
+          "status": "Succeeded"
+        }
+      ],
+      "preparation_hold": "Selected GLB bytes and selected archive geometry require authenticated canonical download metadata preflight; API-detail counts are not measured source geometry.",
+      "evidence": [
+        "The official museum model identifies this exact vessel by accession and explicitly dates it; a Greek label alone is not used to invent a narrower workshop.",
+        "Current public model metadata records a CC BY model license and freely downloadable model. The canonical v3 URL is the model identity endpoint; the observed public endpoint is retained in raw_api_evidence.",
+        "Selected GLB bytes/geometry, full source hash, complete original texture/material dependencies and actual source appearance remain mandatory acquisition checks."
+      ],
+      "visual_qa": "Additional reserve source thumbnail reviewed: coherent physical vessel capture with readable pot form; full surfaces, cavity and handles remain pending downloaded-geometry review.",
+      "logical_batch_id": "etruscan-greek-20261015",
+      "batch_sequence": 59,
+      "batch_chunk": 3,
+      "raw_api_evidence": {
+        "endpoint": "https://sketchfab.com/i/models/0cf420a6640e4ee3bea3887bbecba7d3",
+        "observed_at": "2026-10-15T22:10:32.265417+00:00",
+        "uid": "0cf420a6640e4ee3bea3887bbecba7d3",
+        "name": "Corinthian Oinochoe, ca. 625-600 BCE",
+        "license": {
+          "uid": "322a749bcfa841b29dff1e8a1bb74b0b",
+          "label": "CC Attribution",
+          "fullname": "Creative Commons Attribution",
+          "slug": "by",
+          "summary": "Share & adapt with credit",
+          "requirements": "Author must be credited. Commercial use is allowed.",
+          "url": "http://creativecommons.org/licenses/by/4.0/",
+          "free": true,
+          "isCc": true,
+          "needsAttribution": true,
+          "ccClauses": [
+            "Attribution"
+          ]
+        },
+        "isDownloadable": null,
+        "downloadType": "free",
+        "faceCount": 2131667,
+        "vertexCount": 1070513,
+        "textureCount": 2,
+        "hasVertexColor": false,
+        "archivesStatus": [
+          {
+            "type": "source",
+            "exists": true,
+            "status": "Succeeded"
+          },
+          {
+            "type": "gltf",
+            "exists": true,
+            "status": "Succeeded"
+          },
+          {
+            "type": "extra",
+            "exists": false,
+            "status": null
+          },
+          {
+            "type": "usdz",
+            "exists": true,
+            "status": "Succeeded"
+          },
+          {
+            "type": "gltf-ar",
+            "exists": false,
+            "status": null
+          },
+          {
+            "type": "uasset",
+            "exists": false,
+            "status": null
+          },
+          {
+            "type": "glb",
+            "exists": true,
+            "status": "Succeeded"
+          }
+        ]
+      },
+      "discovery_category": "reserve-dated-vessel",
+      "geometry_review_scope": "Review the actual source and derivative for interior coverage, mouth/rim, base, every handle and documented physical losses/restoration. Do not invent missing surfaces, remove mounts or merge separate parts without explicit evidence and review.",
+      "source_geometry_face_count": null
+    },
+    {
+      "source": "sketchfab",
+      "archive": "",
+      "uid": "2ab07881be8f41fa8adee94236ec869a",
+      "slug": "greek/bell-krater-with-satyrs-and-maenads-nm-ant-0014-2ab078",
+      "collection": "greek",
+      "wing": "unfiled",
+      "title": "Bell Krater with Satyrs and Maenads — NM Ant 0014",
+      "artist": "Unknown Greek potter/painter",
+      "culture": "Ancient Greek; exact production region unknown",
+      "geography": "",
+      "subject": "Ancient Greek pottery",
+      "year": "400–350 BCE",
+      "year_sort": -375,
+      "period": "Ancient",
+      "material": "Red clay, black glaze, added white paint",
+      "dimensions": "Unknown",
+      "measures": [],
+      "museum": "Nationalmuseum, Stockholm; on loan to Medelhavsmuseet",
+      "current_location": "Nationalmuseum, Stockholm; on loan to Medelhavsmuseet",
+      "displayed_at": "",
+      "original_location": "",
+      "source_institution": "Världskulturmuseerna",
+      "source_url": "https://sketchfab.com/3d-models/2ab07881be8f41fa8adee94236ec869a",
+      "source_record_url": "https://collections.smvk.se/carlotta-mhm/web/object/3100845",
+      "related_source_record_urls": [],
+      "download_api_url": "https://api.sketchfab.com/v3/models/2ab07881be8f41fa8adee94236ec869a/download",
+      "download_format": "glb",
+      "download_size_bytes": 6298324,
+      "face_count": 159042,
+      "face_count_scope": "api-detail-only-unmeasured",
+      "accession": "NM Ant 0014",
+      "object_identity": "NM Ant 0014",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "license_tier": 2,
+      "license_slug": "by",
+      "license_uid": "322a749bcfa841b29dff1e8a1bb74b0b",
+      "license_evidence_url": "https://api.sketchfab.com/v3/models/2ab07881be8f41fa8adee94236ec869a",
+      "scan_author": "Världskulturmuseerna (varldskulturmuseerna)",
+      "attribution": "3D model “Bell krater” by Världskulturmuseerna (varldskulturmuseerna), via Sketchfab, licensed CC BY 4.0.",
+      "scan_source": "3D capture of a physical museum vessel; method not specified by publisher",
+      "representation": "Capture of a physical museum vessel, including its existing repairs/restoration where present",
+      "note": "Dancing satyrs and maenads decorate one side, while three youths converse on the other.",
+      "source_description": "[NM Ant 0014](http://collections.smvk.se/carlotta-mhm/web/object/3100845)\n\nBell krater\nWide mouth with grooved, overhanging rim; tall, slender body; rolled-up handles at upper body; lower body tapering to a stem; tall base in two degrees. Red clay; black glaze; added white paint. Laurel branch encircling mouth; A: a satyr in panther’s skin holding a thyrsos and maenad with a white tambourine dancing to the left; to the right a seated satyr with a tambourine and an ecstatic maenad holding a thyrsos; in the background clusters of grape; a dotted disc as filling ornament; B: three conversing youths in himatia; in the background to the right a column; a quadrated disc as filling ornament; area beneath handles and at base of handle attachments reserved; below figures on both sides a meander",
+      "reference_image_url": "https://media.sketchfab.com/models/2ab07881be8f41fa8adee94236ec869a/thumbnails/897d2918c3c34309b2c5b86a10d9df88/afbdde45ab434a148da0d71a211f6987.jpeg",
+      "publisher": "varldskulturmuseerna",
+      "published_at": "2019-05-12T09:37:36.002030",
+      "downloadable_verified": true,
+      "downloadable_verified_at": "2026-10-15T22:08:47.818Z",
+      "require_measured_integrity": true,
+      "texture_count": 1,
+      "source_geometry": {
+        "format": "glb",
+        "bytes": 6298324,
+        "faces": null,
+        "api_detail_faces": 159042,
+        "api_detail_vertices": 79487,
+        "api_detail_textures": 1
+      },
+      "archive_availability": [],
+      "preparation_hold": "Selected GLB bytes and selected archive geometry require authenticated canonical download metadata preflight; API-detail counts are not measured source geometry.",
+      "evidence": [
+        "Live public model metadata identifies this specific museum object and an eligible freely downloadable model license.",
+        "Holding museum and production culture/place are recorded separately. Upload/scanning dates are not artwork dates.",
+        "Exact incoming GLB size, full source hash, measured integrity, source appearance and complete vessel geometry remain mandatory acquisition checks.",
+        "The license_evidence_url is the canonical v3 model identity endpoint; raw_api_evidence.endpoint records the actual public endpoint used for the preserved live observation.",
+        "Current SMVK/Carlotta primary object3100845 has manufacture date400–350BC. Nationalmuseum is the owner; the object is on loan toMedelhavsmuseet. No exact production province is inferred from its current museum."
+      ],
+      "visual_qa": "Source thumbnail reviewed: coherent physical vessel, without a room-sized scene. Complete surfaces, interior, handles, existing losses/restoration, final pose and source appearance still require downloaded geometry review.",
+      "logical_batch_id": "etruscan-greek-20261015",
+      "batch_sequence": 60,
+      "batch_chunk": 3,
+      "raw_api_evidence": {
+        "endpoint": "https://api.sketchfab.com/v3/models/2ab07881be8f41fa8adee94236ec869a",
+        "observed_at": "2026-10-15T21:58:42.023948+00:00",
+        "uid": "2ab07881be8f41fa8adee94236ec869a",
+        "name": "Bell krater",
+        "license": {
+          "uri": "https://api.sketchfab.com/v3/licenses/322a749bcfa841b29dff1e8a1bb74b0b",
+          "label": "CC Attribution",
+          "fullName": "Creative Commons Attribution",
+          "requirements": "Author must be credited. Commercial use is allowed.",
+          "url": "http://creativecommons.org/licenses/by/4.0/",
+          "slug": "by"
+        },
+        "isDownloadable": true,
+        "downloadType": null,
+        "faceCount": 159042,
+        "vertexCount": 79487,
+        "textureCount": 1,
+        "archivesStatus": []
+      },
+      "discovery_category": "reserve-dated-vessel",
+      "geometry_review_scope": "Review the actual source and derivative for interior coverage, mouth/rim, base, every handle and documented physical losses/restoration. Do not invent missing surfaces, remove mounts or merge separate parts without explicit evidence and review.",
+      "wing_unfiled_reason": "The museum identifies Greek pottery and dates this exact vessel, but the consulted source does not establish its production region. The Swedish holding museum is not treated as its place of manufacture.",
+      "source_geometry_face_count": null
+    }
+  ],
+  "source_audit": "docs/ingest/etruscan-greek-20261015-pottery-sources.md"
+}

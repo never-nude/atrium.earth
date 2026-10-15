@@ -31,6 +31,11 @@ on:
         required: false
         default: ''
         type: string
+      publish_review_branch:
+        description: 'Push a review branch, or use the independent review artifact instead'
+        required: false
+        default: true
+        type: boolean
 
 permissions:
   contents: write
@@ -406,8 +411,37 @@ jobs:
         if: ${{ success() && steps.assemble.outcome == 'success' }}
         run: npm run verify:assets
 
+      # Preserve costly completed work even if a later Git push is denied.
+      # Explicit files exclude originals, signed fetch URLs and private state.
+      - name: Package independent review results
+        if: ${{ !cancelled() && steps.assemble.outcome == 'success' }}
+        run: |
+          node <<'NODE'
+          const fs=require('node:fs'),path=require('node:path');
+          const out=path.join(process.env.RUNNER_TEMP,'acquisition-review-package');
+          const copy=(from,to=from)=>{if(fs.existsSync(from)){const dest=path.join(out,to);fs.mkdirSync(path.dirname(dest),{recursive:true});fs.copyFileSync(from,dest);}};
+          for(const name of ['catalog','previews','orientations'])copy(`src/data/${name}.json`);
+          for(const name of ['last-report.json','last-report.md','new-slugs.txt','r2-upload.json','source-backup-index.json'])copy(`.atrium-ingest/${name}`,`reports/${name}`);
+          const catalog=new Map(JSON.parse(fs.readFileSync('src/data/catalog.json')).map(c=>[c.slug,c]));
+          const slugs=fs.readFileSync('.atrium-ingest/new-slugs.txt','utf8').split(/\r?\n/).filter(Boolean);
+          for(const slug of slugs){
+            if(!/^[a-z0-9]+(?:[/-][a-z0-9]+)*$/.test(slug)||catalog.get(slug)?.ingest_batch!==process.env.BATCH)throw Error('Unsafe or cross-batch review member');
+            copy(`public/previews/renders/${slug}/thumb.webp`);
+            copy(`public/previews/posters/${slug}/poster.svg`);
+          }
+          fs.writeFileSync(path.join(out,'review-package.json'),JSON.stringify({schema:'atrium-acquisition-review-package/1',batch:process.env.BATCH,runId:process.env.GITHUB_RUN_ID,attempt:process.env.GITHUB_RUN_ATTEMPT,checkoutHead:require('node:child_process').execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),slugs,scope:'Data/reports and existing thumbnails only; final human/source/native/pose checks remain required.'},null,2));
+          NODE
+      - name: Upload independent review results
+        if: ${{ !cancelled() && steps.assemble.outcome == 'success' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: atrium-review-results-${{ env.BATCH }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/acquisition-review-package/
+          retention-days: 30
+          if-no-files-found: error
+
       - name: Push results to review branch
-        if: ${{ success() && steps.checkout.outcome == 'success' }}
+        if: ${{ success() && steps.checkout.outcome == 'success' && inputs.publish_review_branch != false }}
         run: |
           out="docs/ingest/${BATCH}-run-${GITHUB_RUN_ID}"
           mkdir -p "$out"
