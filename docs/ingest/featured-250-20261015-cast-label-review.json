@@ -1,0 +1,1044 @@
+{
+  "reviewed": "2026-10-15",
+  "task": "Four approved primary-supported SMK cast label corrections for featured250 curation",
+  "branch": "codex/contemporary-masters-20261015",
+  "owner": "Codex Serra/historical-curation subagent in the current parent task",
+  "status": "local, uncommitted; not pushed or deployment-verified",
+  "modified_files": [
+    "src/data/identity-corrections.json",
+    "docs/ingest/featured-250-20261015-cast-label-review.json",
+    "src/data/physical-dimensions.json",
+    "src/data/spatial-eligibility.json",
+    "src/data/spatial-display-defaults.json"
+  ],
+  "records": [
+    {
+      "slug": "apollo-belvedere",
+      "catalog_index": 5,
+      "old_effective_fields": {
+        "title": "Apollo Belvedere",
+        "artist": "Leochares",
+        "material": "Marble",
+        "museum": "Vatican Museums, Vatican City",
+        "year": "c. 330 BCE",
+        "year_sort": -330,
+        "source_institution": "SMK Open",
+        "source_record_url": null,
+        "accession": "KAS353",
+        "scan_source": "Plaster cast, Royal Cast Collection (SMK), Copenhagen"
+      },
+      "applied_identity_correction": {
+        "title": "Apollo Belvedere (SMK Plaster Cast, KAS353)",
+        "source": "https://api.smk.dk/api/v1/art/?object_number=KAS353",
+        "note": "SMK KAS353 is a plaster cast of the Apollo Belvedere, acquired in 1897. SMK records a Paris/Louvre mould source; the acquisition year does not establish when this cast was made. The represented Roman marble is in the Vatican Museums. The traditional Leochares attribution concerns the ancient type, not a known maker of this plaster cast.",
+        "reviewed": "2026-10-15",
+        "catalog": {
+          "artist": "After the Apollo Belvedere type",
+          "material": "Plaster",
+          "museum": "SMK – National Gallery of Denmark, Royal Cast Collection, Copenhagen",
+          "source_institution": "SMK – National Gallery of Denmark",
+          "accession": "KAS353",
+          "source_record_url": "https://api.smk.dk/api/v1/art/?object_number=KAS353",
+          "scan_source": "Official SMK 3D model of the KAS353 plaster cast of Apollo Belvedere",
+          "note": "SMK KAS353 is a plaster cast of the Apollo Belvedere, acquired in 1897. SMK records a Paris/Louvre mould source; the acquisition year does not establish when this cast was made. The represented Roman marble is in the Vatican Museums. The traditional Leochares attribution concerns the ancient type, not a known maker of this plaster cast.",
+          "year": "Cast date unrecorded; after the ancient Apollo Belvedere",
+          "year_sort": null
+        }
+      },
+      "primary_evidence": {
+        "url": "https://api.smk.dk/api/v1/art/?object_number=KAS353",
+        "retrieved": "2026-10-15",
+        "official_object_number": "KAS353",
+        "official_materials": [
+          "Gips"
+        ],
+        "official_techniques": [
+          "Gipsafstøbning"
+        ],
+        "department": "Samling og Forskning (KAS)",
+        "official_object_names": [
+          {
+            "name": "Statue"
+          }
+        ],
+        "official_title_fields": [
+          {
+            "title": "Apollon Belvedere",
+            "language": "dansk"
+          }
+        ],
+        "official_production_date": null,
+        "official_acquisition_date": "1897-01-01T00:00:00Z",
+        "official_dimensions": [
+          {
+            "notes": "2320 x 1030 x 1260 mm",
+            "part": "brutto",
+            "type": "højde",
+            "unit": "centimeter",
+            "value": "232"
+          },
+          {
+            "notes": "2320 x 1030 x 1260 mm",
+            "part": "brutto",
+            "type": "bredde",
+            "unit": "centimeter",
+            "value": "103"
+          },
+          {
+            "notes": "2320 x 1030 x 1260 mm",
+            "part": "brutto",
+            "type": "dybde",
+            "unit": "centimeter",
+            "value": "126"
+          }
+        ],
+        "official_model_assets": [
+          {
+            "url": "https://api.smk.dk/api/v1/download-3d/wm117v118_smk-apollo-belvedere.stl",
+            "mime_type": "model/stl",
+            "file_size": 14512784
+          },
+          {
+            "url": "https://api.smk.dk/api/v1/download-3d/sb397d83g_KAS353_small.stl",
+            "mime_type": "model/stl",
+            "file_size": 14512784
+          }
+        ],
+        "public_domain": true,
+        "rights": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "primary_image_url": "https://iip-thumb.smk.dk/iiif/jp2/zg64tq81s_KAS353_-_Apollo_Belvedere.tif.jp2/full/!1024,/0/default.jpg",
+        "official_production": [
+          {
+            "notes": "Formeri: Paris, Louvre nr. 65"
+          }
+        ]
+      },
+      "source_note_paraphrase": "SMK KAS353 is a plaster cast of the Apollo Belvedere, acquired in 1897. SMK records a Paris/Louvre mould source; the acquisition year does not establish when this cast was made. The represented Roman marble is in the Vatican Museums. The traditional Leochares attribution concerns the ancient type, not a known maker of this plaster cast.",
+      "scope_comparison": {
+        "method": "Official SMK accession photo beside current local thumbnail; existing physical-dimensions geometry audit also inspected",
+        "result": "Complete intended cast composition at visible front/three-quarter angle. No new unseen-back full-model certification claimed.",
+        "comparison_sheet": "/tmp/atrium-featured250-cast-primary-comparison.jpg",
+        "raw_primary_record_file": "/tmp/atrium-featured250-smk-primary-20261015.json"
+      },
+      "appearance_review": "Current thumbnail is already a restrained white/plaster appearance. No geometry, material maps, profile override or thumbnail change made.",
+      "root_attention": {
+        "current_basis": "object",
+        "current_dimensions": "Measured cast: H 232 cm",
+        "current_geometry_note": "The complete historical Apollo, restored arms, tree support and low oval cast foot match the SMK photograph. Use 232 cm gross cast height; original 224 cm does not establish the same cast-foot extent. Horizontal source/model differences remain documented.",
+        "do_not_enable_or_recalibrate_from_this_identity_patch": true
+      }
+    },
+    {
+      "slug": "michelangelo/dying-slave",
+      "catalog_index": 20,
+      "old_effective_fields": {
+        "title": "Dying Slave",
+        "artist": "Michelangelo",
+        "material": "Marble",
+        "museum": "Michelangelo Gallery, Paris",
+        "year": "1513-1516",
+        "year_sort": 1513,
+        "source_institution": "SMK Open",
+        "source_record_url": null,
+        "accession": "KAS87",
+        "scan_source": "Plaster cast, Royal Cast Collection (SMK), Copenhagen"
+      },
+      "applied_identity_correction": {
+        "title": "Dying Slave (SMK Plaster Cast after Michelangelo, KAS87)",
+        "source": "https://api.smk.dk/api/v1/art/?object_number=KAS87",
+        "note": "SMK KAS87 is a plaster cast after Michelangelo, dated 1852–1870 by the museum and acquired in 1896. The represented marble is in the Louvre. SMK changed its current Danish title to Den døende fange in 2025 and retains Den døende slave as a former title; the familiar historical English name is retained here.",
+        "reviewed": "2026-10-15",
+        "catalog": {
+          "artist": "After Michelangelo",
+          "material": "Plaster",
+          "museum": "SMK – National Gallery of Denmark, Royal Cast Collection, Copenhagen",
+          "source_institution": "SMK – National Gallery of Denmark",
+          "accession": "KAS87",
+          "source_record_url": "https://api.smk.dk/api/v1/art/?object_number=KAS87",
+          "scan_source": "Official SMK 3D model of the KAS87 plaster cast after Michelangelo; cast dated 1852–1870 by SMK",
+          "note": "SMK KAS87 is a plaster cast after Michelangelo, dated 1852–1870 by the museum and acquired in 1896. The represented marble is in the Louvre. SMK changed its current Danish title to Den døende fange in 2025 and retains Den døende slave as a former title; the familiar historical English name is retained here.",
+          "year": "1852–1870 plaster cast after Michelangelo’s 1513–1514 original",
+          "year_sort": 1852
+        }
+      },
+      "primary_evidence": {
+        "url": "https://api.smk.dk/api/v1/art/?object_number=KAS87",
+        "retrieved": "2026-10-15",
+        "official_object_number": "KAS87",
+        "official_materials": [
+          "Gips"
+        ],
+        "official_techniques": [
+          "Gipsafstøbning"
+        ],
+        "department": "Samling og Forskning (KAS)",
+        "official_object_names": [
+          {
+            "name": "Statue"
+          }
+        ],
+        "official_title_fields": [
+          {
+            "title": "Den døende fange",
+            "notes": "Ændret ifm. Michelangelo udstillingen 2025",
+            "type": "museumstitel",
+            "language": "dansk"
+          },
+          {
+            "title": "Den døende slave",
+            "type": "tidligere titel",
+            "language": "dansk"
+          }
+        ],
+        "official_production_date": [
+          {
+            "start": "1852-01-01T00:00:00.000Z",
+            "end": "1870-12-31T00:00:00.000Z",
+            "period": "1852-1870"
+          }
+        ],
+        "official_acquisition_date": "1896-01-01T00:00:00Z",
+        "official_dimensions": [
+          {
+            "notes": "2280 x 740 x 580 mm",
+            "part": "netto",
+            "type": "højde",
+            "unit": "centimeter",
+            "value": "228"
+          },
+          {
+            "notes": "2280 x 740 x 580 mm",
+            "part": "netto",
+            "type": "bredde",
+            "unit": "centimeter",
+            "value": "74"
+          },
+          {
+            "notes": "2280 x 740 x 580 mm",
+            "part": "netto",
+            "type": "dybde",
+            "unit": "centimeter",
+            "value": "58"
+          }
+        ],
+        "official_model_assets": [
+          {
+            "url": "https://api.smk.dk/api/v1/download-3d/6969z5201_the-dying-slave.stl",
+            "mime_type": "model/stl",
+            "file_size": 100000684
+          },
+          {
+            "url": "https://api.smk.dk/api/v1/download-3d/dv13zz66c_KAS87_small.stl",
+            "mime_type": "model/stl",
+            "file_size": 20000884
+          }
+        ],
+        "public_domain": true,
+        "rights": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "primary_image_url": "https://iip-thumb.smk.dk/iiif/jp2/n009w694w_KAS87.tif.jp2/full/!1024,/0/default.jpg",
+        "official_production": [
+          {
+            "creator": "Michelangelo Buonarroti",
+            "creator_qualifier": "Kopi efter",
+            "notes": "Formeri: Napoleon 3.s statslige værksteder (Ècole Nationale des Beaux Arts)"
+          }
+        ]
+      },
+      "source_note_paraphrase": "SMK KAS87 is a plaster cast after Michelangelo, dated 1852–1870 by the museum and acquired in 1896. The represented marble is in the Louvre. SMK changed its current Danish title to Den døende fange in 2025 and retains Den døende slave as a former title; the familiar historical English name is retained here.",
+      "scope_comparison": {
+        "method": "Official SMK accession photo beside current local thumbnail; existing physical-dimensions geometry audit also inspected",
+        "result": "Complete intended cast composition at visible front/three-quarter angle. No new unseen-back full-model certification claimed.",
+        "comparison_sheet": "/tmp/atrium-featured250-cast-primary-comparison.jpg",
+        "raw_primary_record_file": "/tmp/atrium-featured250-smk-primary-20261015.json"
+      },
+      "appearance_review": "Current thumbnail is already a restrained white/plaster appearance. No geometry, material maps, profile override or thumbnail change made.",
+      "root_attention": {
+        "current_basis": "original",
+        "current_dimensions": "H 227.7 × W 72.4 × D 53.5 cm",
+        "current_geometry_note": "Whole upright scan checked against the documented object height; no separate display pedestal included.",
+        "do_not_enable_or_recalibrate_from_this_identity_patch": true
+      }
+    },
+    {
+      "slug": "neoclassical/hebe-thorvaldsen-smk-cast",
+      "catalog_index": 177,
+      "old_effective_fields": {
+        "title": "Hebe",
+        "artist": "Bertel Thorvaldsen",
+        "material": "Marble",
+        "museum": "Thorvaldsens Museum, Copenhagen",
+        "year": "1806",
+        "year_sort": 1806,
+        "source_institution": "SMK - National Gallery of Denmark",
+        "source_record_url": null,
+        "accession": "KAS2918",
+        "scan_source": "Plaster cast, Royal Cast Collection (SMK), Copenhagen (acquired 2018)"
+      },
+      "applied_identity_correction": {
+        "title": "Hebe (SMK Plaster Cast after Thorvaldsen, KAS2918)",
+        "source": "https://api.smk.dk/api/v1/art/?object_number=KAS2918",
+        "note": "SMK KAS2918 is a plaster cast made in 1990 by Jørgen Bau at Thorvaldsens Museum after Thorvaldsen’s 1816 plaster model and donated to SMK in 2018. The narrative production note distinguishes the 1990 cast from the 1816 model date in the structured production field. The specific 1816 source-model accession is unresolved. The full standing figure, bowl, jug and foot are present.",
+        "reviewed": "2026-10-15",
+        "catalog": {
+          "artist": "After Bertel Thorvaldsen",
+          "material": "Plaster",
+          "museum": "SMK – National Gallery of Denmark, Royal Cast Collection, Copenhagen",
+          "source_institution": "SMK – National Gallery of Denmark",
+          "accession": "KAS2918",
+          "source_record_url": "https://api.smk.dk/api/v1/art/?object_number=KAS2918",
+          "scan_source": "Official SMK 3D model of plaster cast KAS2918; cast in 1990 by Jørgen Bau after Thorvaldsen’s 1816 plaster model",
+          "note": "SMK KAS2918 is a plaster cast made in 1990 by Jørgen Bau at Thorvaldsens Museum after Thorvaldsen’s 1816 plaster model and donated to SMK in 2018. The narrative production note distinguishes the 1990 cast from the 1816 model date in the structured production field. The specific 1816 source-model accession is unresolved. The full standing figure, bowl, jug and foot are present.",
+          "year": "1990 plaster cast after Thorvaldsen’s 1816 model",
+          "year_sort": 1990
+        }
+      },
+      "primary_evidence": {
+        "url": "https://api.smk.dk/api/v1/art/?object_number=KAS2918",
+        "retrieved": "2026-10-15",
+        "official_object_number": "KAS2918",
+        "official_materials": [
+          "Gips"
+        ],
+        "official_techniques": [
+          "Afstøbning"
+        ],
+        "department": "Den Kongelige Afstøbningssamling",
+        "official_object_names": [
+          {
+            "name": "Friskulptur"
+          }
+        ],
+        "official_title_fields": [
+          {
+            "title": "Hebe",
+            "type": "kunstnertitel",
+            "language": "dansk"
+          }
+        ],
+        "official_production_date": [
+          {
+            "start": "1816-01-01T00:00:00.000Z",
+            "end": "1816-12-31T00:00:00.000Z",
+            "period": "1816"
+          }
+        ],
+        "official_acquisition_date": "2018-02-20T00:00:00Z",
+        "official_dimensions": [
+          {
+            "part": "netto",
+            "type": "højde",
+            "unit": "centimeter",
+            "value": "53.5"
+          },
+          {
+            "part": "netto",
+            "type": "bredde",
+            "unit": "centimeter",
+            "value": "44.5"
+          },
+          {
+            "part": "netto",
+            "type": "dybde",
+            "unit": "centimeter",
+            "value": "37"
+          }
+        ],
+        "official_model_assets": [
+          {
+            "url": "https://api.smk.dk/api/v1/download-3d/0k225g682_08-smk-hebe-inv-kas2918.stl",
+            "mime_type": "model/stl",
+            "file_size": 99999884
+          },
+          {
+            "url": "https://api.smk.dk/api/v1/download-3d/7p88cn20v_KAS2918_small.stl",
+            "mime_type": "model/stl",
+            "file_size": 20001084
+          }
+        ],
+        "public_domain": true,
+        "rights": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "primary_image_url": "https://iip-thumb.smk.dk/iiif/jp2/dr26z214j_KAS2918_-_Hebe.tif.jp2/full/!1024,/0/default.jpg",
+        "official_production": [
+          {
+            "creator": "Thorvaldsen, Bertel",
+            "creator_role": "Kopi efter"
+          },
+          {
+            "notes": "Formeri: Jørgen Bau"
+          }
+        ]
+      },
+      "source_note_paraphrase": "SMK KAS2918 is a plaster cast made in 1990 by Jørgen Bau at Thorvaldsens Museum after Thorvaldsen’s 1816 plaster model and donated to SMK in 2018. The narrative production note distinguishes the 1990 cast from the 1816 model date in the structured production field. The specific 1816 source-model accession is unresolved. The full standing figure, bowl, jug and foot are present.",
+      "scope_comparison": {
+        "method": "Official SMK accession photo beside current local thumbnail; existing physical-dimensions geometry audit also inspected",
+        "result": "Complete intended cast composition at visible front/three-quarter angle. No new unseen-back full-model certification claimed.",
+        "comparison_sheet": "/tmp/atrium-featured250-cast-primary-comparison.jpg",
+        "raw_primary_record_file": "/tmp/atrium-featured250-smk-primary-20261015.json"
+      },
+      "appearance_review": "Current thumbnail is already a restrained white/plaster appearance. No geometry, material maps, profile override or thumbnail change made.",
+      "root_attention": {
+        "current_basis": "original",
+        "current_dimensions": "",
+        "current_geometry_note": "The official photo and current full standing Hebe match, but 53.5 cm height with 44.5 x 37 cm footprint is incompatible with this slender statue. The cast was taken from a Thorvaldsens Museum 1816 plaster; verify a missing digit or exact original version before scale.",
+        "do_not_enable_or_recalibrate_from_this_identity_patch": true,
+        "issue": "Fresh API still reports H53.5×W44.5×D37cm for a full standing figure; existing review blocks calibration. Do not infer a missing leading digit."
+      }
+    },
+    {
+      "slug": "egyptian/portrait-of-nefertiti-smk-cast",
+      "catalog_index": 183,
+      "old_effective_fields": {
+        "title": "Portrait of Nefertiti",
+        "artist": "Attributed to the workshop of Thutmose",
+        "material": "Limestone, painted stucco, quartz, wax",
+        "museum": "Neues Museum, Berlin",
+        "year": "c. 1345 BCE",
+        "year_sort": -1345,
+        "source_institution": "SMK - National Gallery of Denmark",
+        "source_record_url": null,
+        "accession": "DEP439",
+        "scan_source": "Plaster cast, Royal Cast Collection (SMK), Copenhagen"
+      },
+      "applied_identity_correction": {
+        "title": "Portrait of Nefertiti (SMK Plaster Cast, DEP439)",
+        "source": "https://api.smk.dk/api/v1/art/?object_number=DEP439",
+        "note": "SMK DEP439 is a plaster bust cast after the Amarna portrait of Nefertiti. SMK lists acquisition in 1990, but no manufacture date or cast maker. The represented ancient painted-limestone portrait is in Berlin. Original limestone, painted stucco and eye materials do not describe the scanned plaster cast.",
+        "reviewed": "2026-10-15",
+        "catalog": {
+          "artist": "After the Amarna portrait of Nefertiti",
+          "material": "Plaster",
+          "museum": "SMK – National Gallery of Denmark, Royal Cast Collection, Copenhagen",
+          "source_institution": "SMK – National Gallery of Denmark",
+          "accession": "DEP439",
+          "source_record_url": "https://api.smk.dk/api/v1/art/?object_number=DEP439",
+          "scan_source": "Official SMK 3D model of the DEP439 plaster cast of the Nefertiti portrait",
+          "note": "SMK DEP439 is a plaster bust cast after the Amarna portrait of Nefertiti. SMK lists acquisition in 1990, but no manufacture date or cast maker. The represented ancient painted-limestone portrait is in Berlin. Original limestone, painted stucco and eye materials do not describe the scanned plaster cast.",
+          "year": "Cast date unrecorded; after the c. 1340 BCE portrait",
+          "year_sort": null
+        }
+      },
+      "primary_evidence": {
+        "url": "https://api.smk.dk/api/v1/art/?object_number=DEP439",
+        "retrieved": "2026-10-15",
+        "official_object_number": "DEP439",
+        "official_materials": [
+          "Gips"
+        ],
+        "official_techniques": [
+          "Gipsafstøbning"
+        ],
+        "department": "Den Kongelige Afstøbningssamling",
+        "official_object_names": [
+          {
+            "name": "Buste"
+          }
+        ],
+        "official_title_fields": [
+          {
+            "title": "Portræt af Nefertiti",
+            "language": "dansk"
+          }
+        ],
+        "official_production_date": null,
+        "official_acquisition_date": "1990-01-01T00:00:00Z",
+        "official_dimensions": null,
+        "official_model_assets": [
+          {
+            "url": "https://api.smk.dk/api/v1/download-3d/kk91fr38j_smk-kasd24-nefertiti.stl",
+            "mime_type": "model/stl",
+            "file_size": 280363684
+          },
+          {
+            "url": "https://api.smk.dk/api/v1/download-3d/nz806404c_DEP439_small.stl",
+            "mime_type": "model/stl",
+            "file_size": 19999884
+          }
+        ],
+        "public_domain": true,
+        "rights": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "primary_image_url": "https://iip-thumb.smk.dk/iiif/jp2/ft848w36m_resize-smk-kasd24-nefertiti.tif.jp2/full/!1024,/0/default.jpg",
+        "official_production": []
+      },
+      "source_note_paraphrase": "SMK DEP439 is a plaster bust cast after the Amarna portrait of Nefertiti. SMK lists acquisition in 1990, but no manufacture date or cast maker. The represented ancient painted-limestone portrait is in Berlin. Original limestone, painted stucco and eye materials do not describe the scanned plaster cast.",
+      "scope_comparison": {
+        "method": "Official SMK accession photo beside current local thumbnail; existing physical-dimensions geometry audit also inspected",
+        "result": "Complete intended cast composition at visible front/three-quarter angle. No new unseen-back full-model certification claimed.",
+        "comparison_sheet": "/tmp/atrium-featured250-cast-primary-comparison.jpg",
+        "raw_primary_record_file": "/tmp/atrium-featured250-smk-primary-20261015.json"
+      },
+      "appearance_review": "Current thumbnail is already a restrained white/plaster appearance. No geometry, material maps, profile override or thumbnail change made.",
+      "root_attention": {
+        "current_basis": "original",
+        "current_dimensions": "H 49 × W 24.5 × D 35 cm",
+        "current_geometry_note": "Original35 cm depth maps to the back of the crown and the nose, both above the added block. The block controls one X extreme, so width and whole-height shortcuts were rejected.",
+        "do_not_enable_or_recalibrate_from_this_identity_patch": true,
+        "issue": "No cast dimensions in current SMK record. Existing35cm original-depth calibration is explicitly an original-size reference, not a measured cast-size claim."
+      }
+    }
+  ],
+  "preserved_existing_correction_count": 16,
+  "new_total_correction_count": 20,
+  "validation": {
+    "json_parse": true,
+    "exactly_four_selected_slugs": true,
+    "existing_unrelated_corrections_preserved": true,
+    "protected_catalog_spatial_appearance_model_manifest_sha256_unchanged_during_edit": {
+      "src/data/catalog.json": "92f77ea70b3ee7767b1e95b57ffb2a741772eb0a918f60be3efbedf56a5bd8ba",
+      "src/data/physical-dimensions.json": "9190b026c33c52ef8c2edbc345620ac87c05b30c5c861b943200a9a614aadae7",
+      "src/data/appearance-overrides.json": "f99c24476e94b6b37b7fa7abe482ca2adb50d6ff5ce7c3131a482fa3687a4b1b",
+      "src/data/material-appearances.json": "0e71beeb295e7cb00cbf04fab4901b0c5a901e70fd26a4a108d4e8ab9d2e7963",
+      "src/data/previews.json": "dac7b48c5293bd127098a62ba43fad889582f999ced1a73995be9d5498c802c1",
+      "src/data/renders.json": "eaa82a0d555dd7855df2e67767f739fea6d68b774810bbac59349612efa66be4",
+      "src/data/orientations.json": "670670c137260ab81e0d13bd563185d18dc877ec80fdd44694dd80432f381bd6",
+      "src/data/spatial-eligibility.json": "487280f6da5735e74d74d940d2290dfe9ed0ef8e20866bdd13cc379024554596"
+    },
+    "full_build": "Parent task owns full integration build; not run by this subagent."
+  },
+  "reserved_unmodified": [
+    "artemision-bronze",
+    "donatello/david",
+    "assyrian/black-obelisk-of-shalmaneser-iii-smk-cast"
+  ],
+  "scope_holds_excluded": [
+    "augustus-of-prima-porta",
+    "roman/horse-marcus-aurelius-smk-cast",
+    "greek/winged-victory-samothrace-louvre-ma-2369"
+  ],
+  "next_step": "Root runs final integration checks and updates obsolete tests that assume Nefertiti’s original-depth calibration. Actual cast measurements remain separated from original research; no exact AR is enabled by these corrections.",
+  "size_cleanup": {
+    "reviewed": "2026-10-15",
+    "scope": "Two cast size records and verified-size eligibility cleanup; Nefertiti chosen preset; one source-backed netsuke title clarification.",
+    "status": "Local, uncommitted. Exact AR remains disabled; no model, geometry, appearance or thumbnail changes.",
+    "modified_keys": {
+      "identity-corrections": [
+        "asia/noh-mask-kogetsu-netsuke-mia",
+        "egyptian/portrait-of-nefertiti-smk-cast",
+        "michelangelo/dying-slave"
+      ],
+      "physical-dimensions": [
+        "egyptian/portrait-of-nefertiti-smk-cast",
+        "michelangelo/dying-slave"
+      ],
+      "spatial-eligibility": [
+        "egyptian/portrait-of-nefertiti-smk-cast",
+        "michelangelo/dying-slave"
+      ],
+      "spatial-display-defaults": [
+        "egyptian/portrait-of-nefertiti-smk-cast"
+      ]
+    },
+    "prior_original_records_and_superseded_bindings": {
+      "michelangelo/dying-slave": {
+        "physical_dimensions": {
+          "dimensions": "H 227.7 × W 72.4 × D 53.5 cm",
+          "sourceUrl": "https://collections.louvre.fr/ark:/53355/cl010091872",
+          "basis": "original",
+          "status": "documented",
+          "note": "Dimensions of the original marble in the Louvre, MR 1590.",
+          "checked": "2026-09-09",
+          "measures": [
+            {
+              "axis": "height",
+              "value": 227.7,
+              "unit": "cm",
+              "sourceUrls": [
+                "https://collections.louvre.fr/ark:/53355/cl010091872"
+              ]
+            },
+            {
+              "axis": "width",
+              "value": 72.4,
+              "unit": "cm"
+            },
+            {
+              "axis": "depth",
+              "value": 53.5,
+              "unit": "cm"
+            }
+          ],
+          "spatialNote": "Physical scale is calibrated to the documented original artwork dimensions. Proportions are preserved.",
+          "spatial": {
+            "axis": "y",
+            "meters": 2.2769999999999997,
+            "previewUrl": "https://models.atrium.earth/models/previews/michelangelo/dying-slave/preview.glb",
+            "orientation": null,
+            "reviewed": "2026-09-12",
+            "note": "Whole upright scan checked against the documented object height; no separate display pedestal included.",
+            "measurementIndex": 0,
+            "assetSha256": "21a8d68f0d0ffc3bc88085959f3fb9422709df4e6abaf91a360994918493561c",
+            "geometryReview": "Rechecked exact current GLB in three-angle renders. Whole surviving object with integral historic base where present; no separate museum pedestal measured as artwork. Original source height retained."
+          },
+          "geometryReviewNote": "Whole upright scan checked against the documented object height; no separate display pedestal included."
+        },
+        "eligibility": {
+          "enabled": true,
+          "policyVersion": 1,
+          "kind": "original",
+          "recordFingerprint": "80591ed852b1e13906185fba31dbda4177e6439c6eab52d30268eede8bef44ce",
+          "modelUrl": "https://models.atrium.earth/models/previews/michelangelo/dying-slave/preview.glb",
+          "assetSha256": "21a8d68f0d0ffc3bc88085959f3fb9422709df4e6abaf91a360994918493561c",
+          "orientationFingerprint": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+          "bindingFingerprint": "89a84cf7a61d3b902f1dc5262058b9722305070d3bf0870d793fed83d3624de8"
+        }
+      },
+      "egyptian/portrait-of-nefertiti-smk-cast": {
+        "physical_dimensions": {
+          "dimensions": "H 49 × W 24.5 × D 35 cm",
+          "sourceUrl": "https://www.smb.museum/en/museums-institutions/aegyptisches-museum-und-papyrussammlung/collection-research/bust-of-nefertiti/the-bust/",
+          "basis": "original",
+          "status": "documented",
+          "note": "Dimensions of the original bust in Berlin, ÄM 23100.",
+          "checked": "2026-09-13",
+          "measures": [
+            {
+              "axis": "height",
+              "value": 49,
+              "unit": "cm"
+            },
+            {
+              "axis": "width",
+              "value": 24.5,
+              "unit": "cm"
+            },
+            {
+              "axis": "depth",
+              "value": 35,
+              "unit": "cm",
+              "meters": 0.35000000000000003,
+              "sourceUrls": [
+                "https://www.smb.museum/en/museums-institutions/aegyptisches-museum-und-papyrussammlung/collection-research/bust-of-nefertiti/the-bust/"
+              ]
+            }
+          ],
+          "spatialNote": "Shown at the documented original size, using a measurement unaffected by the display support.",
+          "geometryReviewNote": "Original35 cm depth maps to the back of the crown and the nose, both above the added block. The block controls one X extreme, so width and whole-height shortcuts were rejected.",
+          "spatial": {
+            "axis": "z",
+            "meters": 0.35000000000000003,
+            "measurementIndex": 2,
+            "previewUrl": "https://models.atrium.earth/models/previews/egyptian/portrait-of-nefertiti-smk-cast/preview.glb",
+            "orientation": null,
+            "assetSha256": "ca5c11390c9bb366efae1456961fad8d077754bed8e152be8b62942093f428ee",
+            "reviewed": "2026-09-13",
+            "geometryReview": "Fresh official-source/photo comparison plus current asset visible-vertex extrema audit; see scale_geometry-extra/audit.json and scale_geometry-smk-contact.",
+            "note": "Original35 cm depth maps to the back of the crown and the nose, both above the added block. The block controls one X extreme, so width and whole-height shortcuts were rejected. Exact visible-vertex extrema: {\"zMin\":{\"mesh\":\"geometry_0\",\"index\":8550,\"position\":[-0.00012207403790398877,0.3437299722281564,-0.3096713156529435]},\"zMax\":{\"mesh\":\"geometry_0\",\"index\":870,\"position\":[-0.020813623462630087,0.07306131168553716,0.30967131565294354]}}. No guessed component fraction is used. Uniform scale preserves existing model proportions and supports; other source axes are not independently forced to match."
+          },
+          "geometryStatus": "calibrated",
+          "calibrationReady": true
+        },
+        "eligibility": {
+          "enabled": true,
+          "policyVersion": 1,
+          "kind": "original",
+          "recordFingerprint": "f9a3946e3a90505e9e4da6bc005bb489bcf9d442431170edb401fc139baffe94",
+          "modelUrl": "https://models.atrium.earth/models/previews/egyptian/portrait-of-nefertiti-smk-cast/preview.glb",
+          "assetSha256": "ca5c11390c9bb366efae1456961fad8d077754bed8e152be8b62942093f428ee",
+          "orientationFingerprint": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+          "bindingFingerprint": "865c9c114b3c07cf4389344bb6943a8e913bbd3a20909dd956904d08973abfaf"
+        }
+      }
+    },
+    "current_records": {
+      "michelangelo/dying-slave": {
+        "physical_dimensions": {
+          "dimensions": "Measured SMK plaster cast: H 228 cm",
+          "sourceUrl": "https://api.smk.dk/api/v1/art/?object_number=KAS87",
+          "basis": "object",
+          "status": "documented",
+          "note": "SMK documents a net height of 228 cm for plaster cast KAS87. This is the actual cast measurement, not the Louvre marble’s 227.7 cm height. The current model’s measurement boundary remains unverified.",
+          "checked": "2026-10-15",
+          "researchStatus": "documented",
+          "identifiedObject": {
+            "title": "Dying Slave, SMK plaster cast after Michelangelo",
+            "institution": "SMK – National Gallery of Denmark, Royal Cast Collection, Copenhagen",
+            "accession": "KAS87",
+            "version_or_date": "Plaster cast dated 1852–1870 by SMK",
+            "record_url": "https://api.smk.dk/api/v1/art/?object_number=KAS87",
+            "identity_confidence": "high",
+            "match_explanation": "The official KAS87 record identifies plaster, a statue and matching full-figure STL assets. Current catalog source names KAS87 and its 20,000,884-byte source variant matches an official small STL size."
+          },
+          "measures": [
+            {
+              "axis": "height",
+              "value": 228,
+              "unit": "cm",
+              "scope": "Actual SMK plaster cast KAS87; museum part label: netto. Current derivative boundary not yet matched.",
+              "qualifier": "exact",
+              "sourceUrls": [
+                "https://api.smk.dk/api/v1/art/?object_number=KAS87"
+              ]
+            }
+          ],
+          "spatialNote": "The cast height is documented, but it is not calibrated to this model. Display size is adjustable.",
+          "geometryStatus": "unresolved",
+          "calibrationReady": false,
+          "geometryReviewNote": "The previous 227.7 cm binding measured the original Louvre marble. Matching the current derivative’s extent and supports to the actual SMK cast’s 228 cm net height requires a separate geometry review. No exact spatial reference is retained.",
+          "originalSizeResearch": {
+            "dimensions": "H 227.7 × W 72.4 × D 53.5 cm",
+            "sourceUrl": "https://collections.louvre.fr/ark:/53355/cl010091872",
+            "basis": "original",
+            "status": "documented",
+            "note": "Dimensions of the original marble in the Louvre, MR 1590. Retained solely as research about the original; these are not measurements of the scanned SMK plaster cast.",
+            "checked": "2026-09-09",
+            "measures": [
+              {
+                "axis": "height",
+                "value": 227.7,
+                "unit": "cm",
+                "sourceUrls": [
+                  "https://collections.louvre.fr/ark:/53355/cl010091872"
+                ]
+              },
+              {
+                "axis": "width",
+                "value": 72.4,
+                "unit": "cm"
+              },
+              {
+                "axis": "depth",
+                "value": 53.5,
+                "unit": "cm"
+              }
+            ],
+            "geometryReviewNote": "Whole upright scan checked against the documented object height; no separate display pedestal included. The earlier original-size mapping is retired and does not authorize a cast-size calibration."
+          }
+        },
+        "eligibility": {
+          "enabled": false,
+          "policyVersion": 1,
+          "reason": "geometry"
+        }
+      },
+      "egyptian/portrait-of-nefertiti-smk-cast": {
+        "physical_dimensions": {
+          "dimensions": "",
+          "sourceUrl": "https://api.smk.dk/api/v1/art/?object_number=DEP439",
+          "basis": "object",
+          "status": "unresolved",
+          "note": "SMK identifies DEP439 as a plaster bust cast of Nefertiti but publishes no measurements for this cast. The Berlin original’s measurements are retained only as separate research and do not establish this cast’s size.",
+          "checked": "2026-10-15",
+          "researchStatus": "unresolved",
+          "identifiedObject": {
+            "title": "Portrait of Nefertiti, SMK plaster cast",
+            "institution": "SMK – National Gallery of Denmark, Royal Cast Collection, Copenhagen",
+            "accession": "DEP439",
+            "version_or_date": "Plaster cast; manufacture date unrecorded. SMK records acquisition in 1990.",
+            "record_url": "https://api.smk.dk/api/v1/art/?object_number=DEP439",
+            "identity_confidence": "high",
+            "match_explanation": "The official DEP439 record identifies a plaster bust, links the ancient Amarna portrait, and supplies the exact accession’s STL assets. Acquisition is not treated as manufacture."
+          },
+          "measures": [],
+          "spatialNote": "The plaster cast’s physical dimensions are unverified. Its chosen display size is a viewing preset, not a measurement.",
+          "geometryStatus": "unresolved",
+          "calibrationReady": false,
+          "geometryReviewNote": "The cast bust and its block are represented, but no matching cast measurement has been established. The previous 35 cm depth binding described the Berlin original and is retired. No exact spatial reference is retained.",
+          "originalSizeResearch": {
+            "dimensions": "H 49 × W 24.5 × D 35 cm",
+            "sourceUrl": "https://www.smb.museum/en/museums-institutions/aegyptisches-museum-und-papyrussammlung/collection-research/bust-of-nefertiti/the-bust/",
+            "basis": "original",
+            "status": "documented",
+            "note": "Dimensions of the original bust in Berlin, ÄM 23100. Retained solely as research about the original; these are not measurements of the scanned SMK plaster cast.",
+            "checked": "2026-09-13",
+            "measures": [
+              {
+                "axis": "height",
+                "value": 49,
+                "unit": "cm"
+              },
+              {
+                "axis": "width",
+                "value": 24.5,
+                "unit": "cm"
+              },
+              {
+                "axis": "depth",
+                "value": 35,
+                "unit": "cm",
+                "meters": 0.35000000000000003,
+                "sourceUrls": [
+                  "https://www.smb.museum/en/museums-institutions/aegyptisches-museum-und-papyrussammlung/collection-research/bust-of-nefertiti/the-bust/"
+                ]
+              }
+            ],
+            "geometryReviewNote": "Original35 cm depth maps to the back of the crown and the nose, both above the added block. The block controls one X extreme, so width and whole-height shortcuts were rejected. The earlier original-size mapping is retired and does not authorize a cast-size calibration."
+          }
+        },
+        "eligibility": {
+          "enabled": false,
+          "policyVersion": 1,
+          "reason": "unverified"
+        }
+      }
+    },
+    "primary_smk_evidence": {
+      "KAS87": {
+        "url": "https://api.smk.dk/api/v1/art/?object_number=KAS87",
+        "retrieved": "2026-10-15",
+        "object_number": "KAS87",
+        "materials": [
+          "Gips"
+        ],
+        "dimensions": [
+          {
+            "notes": "2280 x 740 x 580 mm",
+            "part": "netto",
+            "type": "højde",
+            "unit": "centimeter",
+            "value": "228"
+          },
+          {
+            "notes": "2280 x 740 x 580 mm",
+            "part": "netto",
+            "type": "bredde",
+            "unit": "centimeter",
+            "value": "74"
+          },
+          {
+            "notes": "2280 x 740 x 580 mm",
+            "part": "netto",
+            "type": "dybde",
+            "unit": "centimeter",
+            "value": "58"
+          }
+        ],
+        "files_3D": [
+          {
+            "url": "https://api.smk.dk/api/v1/download-3d/6969z5201_the-dying-slave.stl",
+            "mime_type": "model/stl",
+            "file_size": 100000684
+          },
+          {
+            "url": "https://api.smk.dk/api/v1/download-3d/dv13zz66c_KAS87_small.stl",
+            "mime_type": "model/stl",
+            "file_size": 20000884
+          }
+        ]
+      },
+      "DEP439": {
+        "url": "https://api.smk.dk/api/v1/art/?object_number=DEP439",
+        "retrieved": "2026-10-15",
+        "object_number": "DEP439",
+        "materials": [
+          "Gips"
+        ],
+        "dimensions": [],
+        "files_3D": [
+          {
+            "url": "https://api.smk.dk/api/v1/download-3d/kk91fr38j_smk-kasd24-nefertiti.stl",
+            "mime_type": "model/stl",
+            "file_size": 280363684
+          },
+          {
+            "url": "https://api.smk.dk/api/v1/download-3d/nz806404c_DEP439_small.stl",
+            "mime_type": "model/stl",
+            "file_size": 19999884
+          }
+        ]
+      }
+    },
+    "nefertiti_fallback_cleared": true,
+    "nefertiti_display_default": {
+      "maxExtentMeters": 0.6,
+      "preset": "portrait",
+      "reason": "Chosen display size: 0.6 m along the longest axis for this plaster portrait bust. This is a viewing preset, not a physical measurement of the cast or the Berlin original."
+    },
+    "netsuke_title_correction": {
+      "title": "Netsuke in the Form of a Noh Mask",
+      "source": "https://search.artsmia.org/id/30440",
+      "note": "Mia object30440, accession98.105.26, is titled Noh mask and classified by the museum as Netsuke (mask). The museum-authored scan names Noh mask netsuke by Kōgetsu and links the same object. The clearer display title states the small object’s function without implying a full-size performance mask; Kōgetsu, ivory, date, holding and dimensions are unchanged.",
+      "reviewed": "2026-10-15"
+    },
+    "netsuke_primary_evidence": {
+      "https://search.artsmia.org/id/30440": {
+        "id": 30440,
+        "title": "Noh mask",
+        "artist": "Kōgetsu 江月",
+        "medium": "Ivory",
+        "object_name": "Netsuke (mask)",
+        "classification": "Accessories (worn)",
+        "dated": "late 19th century",
+        "accession_number": "98.105.26",
+        "dimension": "2 1/16 x 1 5/8 x 1 3/16in. (5.2 x 4.1 x 3cm)",
+        "description": null,
+        "text": null,
+        "rights_type": "Public Domain",
+        "public_access": 1
+      },
+      "https://api.sketchfab.com/v3/models/64595ba23e57488985c40db7e67abc65": {
+        "uid": "64595ba23e57488985c40db7e67abc65",
+        "name": "Noh mask netsuke by Kōgetsu",
+        "description": "Noh mask netsuke by Kōgetsu, late 19th C CE, now in the collection of the Minneapolis Institute of Art.\n\n[More information](https://collections.artsmia.org/art/30440/noh-mask-kogetsu)",
+        "license": {
+          "uri": "https://api.sketchfab.com/v3/licenses/7c23a1ba438d4306920229c12afcb5f9",
+          "label": "CC0 Public Domain",
+          "fullName": "CC0 Public Domain",
+          "requirements": "Credit is not mandatory. Commercial use is allowed.",
+          "url": "http://creativecommons.org/publicdomain/zero/1.0/",
+          "slug": "cc0"
+        },
+        "isDownloadable": true,
+        "publishedAt": "2021-01-08T20:00:20.370417",
+        "publisher": {
+          "username": "artsmia",
+          "displayName": "Minneapolis Institute of Art"
+        }
+      }
+    },
+    "original_measurements_preserved": "The old Louvre and Berlin measurements are retained unchanged in originalSizeResearch.measures. Neither top-level record nor nested originalSizeResearch has a spatial binding. Superseded bindings appear only in this historical evidence report.",
+    "unchanged_apollo_hebe_keys": true,
+    "focused_module_validation": {
+      "passed": true,
+      "checked": "2026-10-15T18:01:15.497Z",
+      "modules": [
+        "physical-dimensions",
+        "spatial-eligibility",
+        "approximate-dimensions",
+        "spatial-access"
+      ],
+      "results": [
+        {
+          "slug": "michelangelo/dying-slave",
+          "title": "Dying Slave (SMK Plaster Cast after Michelangelo, KAS87)",
+          "dimensions": "Measured SMK plaster cast: H 228 cm",
+          "physicalReference": null,
+          "verifiedSizeEligibility": false,
+          "eligibilityReason": "Verified-size presentation is unavailable pending a further check of the scanned geometry and measurement scope.",
+          "arAccess": {
+            "enabled": true,
+            "verified": false,
+            "status": "approximate",
+            "label": "Approximate dimensions",
+            "sizeLabel": "Height ≈ 2.28 m",
+            "note": "Scaled to Atrium’s best estimate from listed dimensions and work descriptions; actual size may vary. Any base or mount in the model is included in this approximate starting height.",
+            "reference": {
+              "axis": "y",
+              "meters": 2.2800000000000002,
+              "estimated": true
+            },
+            "sourceText": "Measured SMK plaster cast: H 228 cm",
+            "sourceUrl": "https://api.smk.dk/api/v1/art/?object_number=KAS87"
+          }
+        },
+        {
+          "slug": "egyptian/portrait-of-nefertiti-smk-cast",
+          "title": "Portrait of Nefertiti (SMK Plaster Cast, DEP439)",
+          "dimensions": "",
+          "physicalReference": null,
+          "verifiedSizeEligibility": false,
+          "eligibilityReason": "Verified-size presentation is unavailable because a matching physical measurement has not been verified.",
+          "arAccess": {
+            "enabled": true,
+            "verified": false,
+            "status": "unknown",
+            "label": "Dimensions unknown",
+            "sizeLabel": "Default: 60 cm on longest side",
+            "note": "No usable real-world dimensions have been established for this model. Starts at a chosen display size of 60 cm on its longest side. You can resize the work.",
+            "defaultMaxExtentMeters": 0.6
+          }
+        },
+        {
+          "slug": "apollo-belvedere",
+          "verifiedSizeEligibility": false,
+          "recordUnmodified": true
+        },
+        {
+          "slug": "neoclassical/hebe-thorvaldsen-smk-cast",
+          "verifiedSizeEligibility": false,
+          "recordUnmodified": true
+        },
+        {
+          "slug": "asia/noh-mask-kogetsu-netsuke-mia",
+          "title": "Netsuke in the Form of a Noh Mask",
+          "artist": "Kōgetsu 江月",
+          "material": "Ivory",
+          "preservedIdentityFields": true
+        }
+      ],
+      "command": "node /tmp/atrium-cast-focused-check-20261015.mjs",
+      "scope": "Actual production physical-dimensions, spatial-eligibility, approximate-dimensions and spatial-access modules with production identity overrides applied. Verified-size AR is disabled; ordinary adjustable AR remains available with approximate/unknown labels."
+    },
+    "baseline_test_attention": "Root integration replaced the obsolete original-depth assertion with actual-cast unresolved-size and preserved-original-research assertions.",
+    "validation_status": "Focused module checks passed; JSON parsed and git diff --check passed. Root owns the final integrated build and baseline test updates."
+  },
+  "lion_review": {
+    "reviewed": "2026-10-15",
+    "status": "Actual-cast identity label corrected; no geometry, appearance, physical-dimension or spatial records changed.",
+    "slug": "lion",
+    "correction": {
+      "title": "Lion (SMK Plaster Cast, KAS1016)",
+      "source": "https://api.smk.dk/api/v1/art/?object_number=KAS1016&lang=en",
+      "note": "SMK KAS1016 is a plaster cast acquired in 1901 after a tomb lion from Xanthos, associated with the Nereid Monument and dated approximately 390 BCE. The represented ancient marble is now in the British Museum. SMK does not document this cast's maker or manufacture date; 1901 is its acquisition year. The museum's small STL matches the catalog source file's 20,005,084 bytes. Marble and the ancient date describe the represented original, not the scanned plaster cast.",
+      "reviewed": "2026-10-15",
+      "catalog": {
+        "artist": "Unknown cast maker; after a tomb lion from Xanthos",
+        "material": "Plaster",
+        "museum": "SMK – National Gallery of Denmark, Royal Cast Collection, Copenhagen",
+        "source_institution": "SMK – National Gallery of Denmark",
+        "accession": "KAS1016",
+        "source_record_url": "https://api.smk.dk/api/v1/art/?object_number=KAS1016&lang=en",
+        "scan_source": "Official SMK 3D model of the KAS1016 plaster cast of a tomb lion from Xanthos",
+        "note": "SMK KAS1016 is a plaster cast acquired in 1901 after a tomb lion from Xanthos, associated with the Nereid Monument and dated approximately 390 BCE. The represented ancient marble is now in the British Museum. SMK does not document this cast's maker or manufacture date; 1901 is its acquisition year. The museum's small STL matches the catalog source file's 20,005,084 bytes. Marble and the ancient date describe the represented original, not the scanned plaster cast.",
+        "year": "Cast date unrecorded; acquired 1901; after a c. 390 BCE tomb lion",
+        "year_sort": null,
+        "period": "Undated plaster cast after Classical Greek original"
+      }
+    },
+    "primary_evidence": {
+      "url": "https://api.smk.dk/api/v1/art/?object_number=KAS1016&lang=en",
+      "object_number": "KAS1016",
+      "materials": [
+        "plaster"
+      ],
+      "techniques": [
+        "Plaster cast"
+      ],
+      "acquisition_date": "1901-01-01T00:00:00Z",
+      "acquisition_date_precision": "1901-12-31",
+      "manufacture_date": "Unrecorded",
+      "cast_maker": "Unrecorded",
+      "published_cast_dimensions": [
+        {
+          "notes": "null1600 x 510 mm",
+          "part": "brutto",
+          "type": "width",
+          "unit": "cm",
+          "value": "160"
+        },
+        {
+          "notes": "null1600 x 510 mm",
+          "part": "brutto",
+          "type": "depth",
+          "unit": "cm",
+          "value": "51"
+        }
+      ],
+      "matching_small_stl": {
+        "url": "https://api.smk.dk/api/v1/download-3d/qf85nh32s_KAS1016_small.stl",
+        "mime_type": "model/stl",
+        "file_size": 20005084
+      },
+      "catalog_source_bytes": 20005084,
+      "original_scope": "Museum identifies a marble tomb lion from Xanthos, Nereid Monument, c.390BCE, now BritishMuseum. Exact original accession is not assigned by this correction.",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/"
+    },
+    "size_review": {
+      "documented_cast_measurements": "Gross width160cm and depth51cm; no height listed by SMK.",
+      "existing_reference": "The current physical-dimensions record already uses the documented measured SMK cast width160cm on meshX. It does not use an ancient-original measurement.",
+      "existing_geometry_binding_preserved": true,
+      "existing_spatial_eligibility": {
+        "enabled": false,
+        "policyVersion": 1,
+        "reason": "geometry"
+      },
+      "current_spatial_status": "Disabled for geometry; unchanged.",
+      "physical_record_sha256": "e6926868db10bf29edc382f943a94abe814bbff8315fc27fd5a0b252dd608d25",
+      "decision": "No mismatch to correct in the cast-width reference. Preserve existing disabled eligibility, geometry binding and chosen display default."
+    },
+    "validation": [
+      "Identity-corrections and report JSON parsed.",
+      "Only the lion identity key was added; all other identity corrections and all pre-existing report fields are preserved.",
+      "The official smallSTL file size20,005,084 exactly matches the catalog model source.",
+      "Material/date/holding/accession labels corrected without modifying source geometry or authored appearance."
+    ]
+  }
+}

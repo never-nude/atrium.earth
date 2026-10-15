@@ -2,7 +2,8 @@
 import V3Layout from '../../../layouts/v3/V3Layout.astro';
 import Viewer from '../../../components/Viewer.astro';
 import ExhibitionComparisons from '../../../components/ExhibitionComparisons.astro';
-import { exhibitions, nextExhibition, type V3Exhibition, v3ExhibitionRoute, v3WorkRoute } from '../../../lib/v3';
+import { exhibitions, exhibitionFeaturedWork, nextExhibition, type V3Exhibition, v3ExhibitionRoute, v3WorkRoute } from '../../../lib/v3';
+import { isFeaturedWork } from '../../../lib/catalog';
 import { withBase } from '../../../lib/urls';
 
 export function getStaticPaths() {
@@ -11,9 +12,10 @@ export function getStaticPaths() {
 
 type Props = { exhibition: V3Exhibition };
 const { exhibition } = Astro.props;
-const lead = exhibition.works[0];
+const lead = exhibitionFeaturedWork(exhibition);
 const next = nextExhibition(exhibition);
 const comparisons = exhibition.comparisons ?? [];
+const heroComparison = comparisons.find((pair) => pair.works.every(isFeaturedWork));
 const firstStop = comparisons.length ? '#pair-1' : '#stop-1';
 const progressCount = comparisons.length || exhibition.works.length;
 const stops = exhibition.works.map((work, index) => ({
@@ -26,16 +28,16 @@ const stops = exhibition.works.map((work, index) => ({
 
 <V3Layout title={exhibition.title} description={exhibition.summary} image={lead.thumbnailImage}>
   <header class="v3-exhero v3-exhero--interactive" style={`--ex-accent:${exhibition.accent}`}>
-    {comparisons.length ? (
+    {heroComparison ? (
       <div class="exhibition-duet" aria-label="Featured works, side by side">
-        {comparisons[0].works.map((work) => (
-          <figure class="v3-float v3-float--soft">
+        {heroComparison.works.map((work) => (
+          <figure class="v3-float v3-float--soft" data-featured-work={work.slug}>
             <img src={withBase(work.thumbnailImage)} alt={work.title} width="720" height="900" loading="eager" decoding="async" />
             <figcaption>{exhibition.workNotes?.[work.slug]?.artist || work.maker} · {work.title}</figcaption>
           </figure>
         ))}
       </div>
-    ) : <div class="v3-exhero__viewer v3-exhibition-viewer v3-float v3-float--soft">
+    ) : <div class="v3-exhero__viewer v3-exhibition-viewer v3-float v3-float--soft" data-featured-work={lead.slug}>
       <Viewer
         glb={lead.modelGlb ? withBase(lead.modelGlb) : ''}
         poster={withBase(lead.thumbnailImage)}

@@ -166,8 +166,8 @@ export const wings: Wing[] = [
     name: 'Greece & Rome',
     blurb: 'Aegean figurines, Archaic and Classical Greece, the Hellenistic world, and Rome through late antiquity. Originals and the casts made after them.',
     featured: [
-      'roman/horse-marcus-aurelius-smk-cast',
       'laocoon',
+      'venus-de-milo',
     ],
     match: {
       region: ['greek', 'roman'],
@@ -228,8 +228,8 @@ export const wings: Wing[] = [
     name: 'Africa',
     blurb: 'Masks, figures, vessels and architecture from North, West, Central, East and Southern Africa, from medieval traditions to contemporary sculpture.',
     featured: [
-      'sub-saharan-africa/nkisi-power-figure',
       'sub-saharan-africa/kongo-maternity-figure',
+      'sub-saharan-africa/seated-figure-middle-niger',
     ],
     match: {
       region: ['sub-saharan-africa', 'africa', 'north-africa'],
@@ -241,8 +241,8 @@ export const wings: Wing[] = [
     name: 'The Americas & Oceania',
     blurb: 'Indigenous art and everyday objects from the Americas and Pacific, alongside modern and contemporary sculpture.',
     featured: [
-      'americas/key-marco-cat',
-      'americas/bisj-ancestor-pole-1978-412-1251',
+      'americas/maya-warrior-removable-headdress-cleveland-1963-93-887d18',
+      'americas/zemi-cohoba-stand',
     ],
     match: {
       region: ['americas', 'oceania'],

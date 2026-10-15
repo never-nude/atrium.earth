@@ -196,3 +196,20 @@ repairing metadata, rerendering thumbnails, or replacing a model derivative.
 | `R2_ACCOUNT_ID` / `R2_BUCKET` | — | Cloudflare account and models bucket for `models:upload-r2` |
 | `R2_ACCESS_KEY_ID` / `R2_SECRET_ACCESS_KEY` | — | R2 API token (Object Read & Write, models bucket only) |
 | `R2_PUBLIC_BASE` | `https://models.atrium.earth` | public origin used for preview URLs and verification |
+
+## Standing featured collection
+
+Editorial features are limited to the 250 works in `src/data/featured-works.json`.
+Acquisition does not add a work to this list automatically. After reviewing a new
+batch, replace a weaker entry only when the new work earns its place through
+artistic strength, model presentation, material fidelity and reliable identity.
+Preserve breadth across regions, periods and makers, and record the specific
+curatorial reason. Keep exactly 250 unique public works with delivered models
+and rendered thumbnails.
+
+Homepage approval is a separate decision about the opening view. The live hero
+also retains its 15 MiB preview budget. Wing heroes, exhibition covers and lead
+comparisons, museum and AR highlights, homepage pairings and random discovery
+must stay within the reviewed collection; full catalog, exhibition body and
+newest-import listings remain independent. Run `npm run test:featured` after
+changing the selection or any editorial selector.

@@ -10,6 +10,8 @@ import rawSpatialEligibility from '../data/spatial-eligibility.json';
 import rawSpatialDisplayDefaults from '../data/spatial-display-defaults.json';
 import rawDisplayRecommendations from '../data/display-recommendations.json';
 import rawIdentityCorrections from '../data/identity-corrections.json';
+import featuredReview from '../data/featured-works.json';
+import { buildFeaturedSelection, featuredForDate, homepageHeroForDate } from './featured-selection.mjs';
 import { physicalDimensionsFor } from './physical-dimensions.mjs';
 import { spatialEligibilityFor } from './spatial-eligibility.mjs';
 import { spatialAccessFor } from './spatial-access.mjs';
@@ -763,92 +765,28 @@ export function worksForMaterial(label: string): Work[] {
 }
 
 export function featuredWorkForDate(date = new Date()): Work {
-  const pool = works.filter((work) => work.hasPreview);
-  const thinker = workBySlug('rodin/the-thinker') || pool[0] || works[0];
-  if (!pool.length) return thinker;
-
-  const shuffled = [...pool].sort((a, b) => stableHash(`atrium5-featured:${a.slug}`) - stableHash(`atrium5-featured:${b.slug}`));
-  const thinkerIndex = Math.max(0, shuffled.findIndex((work) => work.slug === thinker.slug));
-  const anchorWeek = utcWeekIndex(new Date(Date.UTC(2026, 5, 3)));
-  const weekOffset = utcWeekIndex(date) - anchorWeek;
-  return shuffled[positiveMod(thinkerIndex + weekOffset, shuffled.length)] || thinker;
+  return featuredForDate(featuredWorks, date);
 }
 
-// A fixed entropy seed creates one stable random ordering of the eligible hero
-// pool. Three-day slots walk that ordering from the Cosmic Buddha's debut, so
-// every scheduled change produces a different work without reshuffling on build.
-const homepageHeroSeed = 'c768ae08f8bdd3e1';
-const homepageHeroLaunchSlug = 'asia/cosmic-buddha';
-const homepageHeroRotationEpoch = Date.UTC(2026, 8, 4);
+export const featuredWorks: Work[] = buildFeaturedSelection(featuredReview, works, renderSet);
+const featuredSlugs = new Set(featuredWorks.map((work) => work.slug));
+const homepageSlugs = new Set(featuredReview.works.filter((entry) => entry.homepage).map((entry) => entry.slug));
+export const homepageFeaturedWorks = featuredWorks.filter((work) => homepageSlugs.has(work.slug));
+
+export function isFeaturedWork(work: Work | string): boolean {
+  return featuredSlugs.has(typeof work === 'string' ? work : work.slug);
+}
+
+export function featuredWorkIn(candidates: Work[]): Work | undefined {
+  return candidates.find((work) => isFeaturedWork(work));
+}
 
 export function homepageHeroWorkForDate(date = new Date()): Work {
-  // Temporary spotlight through the weekend; Monday's scheduled rebuild
-  // resumes the existing rotation without shifting its seed or epoch.
-  if (date.getTime() >= Date.UTC(2026, 8, 17)
-    && date.getTime() < Date.UTC(2026, 8, 21)) {
-    const spotlight = workBySlug('europe/venus-of-willendorf-nhmw-44-686');
-    if (spotlight?.hasPreview) return spotlight;
-  }
-
-  const maxPreviewBytes = 15 * 1024 * 1024;
-  const pool = works.filter((work) => (
-    work.hasPreview
-    && renderSet.has(work.slug)
-    && (previewMap[work.slug]?.bytes || Infinity) <= maxPreviewBytes
-  ));
-  const launchWork = workBySlug(homepageHeroLaunchSlug);
-  const fallback = launchWork || workBySlug('rodin/the-thinker') || pool[0] || featuredWorkForDate(date);
-  if (!pool.length) return fallback;
-
-  const shuffled = [...pool].sort((a, b) => (
-    stableHash(`${homepageHeroSeed}:${a.slug}`)
-      - stableHash(`${homepageHeroSeed}:${b.slug}`)
-    || a.slug.localeCompare(b.slug)
-  ));
-  const launchIndex = shuffled.findIndex((work) => work.slug === homepageHeroLaunchSlug);
-  const rotation = utcHeroRotationIndex(date);
-  return shuffled[positiveMod(Math.max(0, launchIndex) + rotation, shuffled.length)] || fallback;
-}
-
-function utcWeekIndex(date: Date): number {
-  const day = Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate());
-  // Weeks run Sunday-Saturday (1970-01-04 was a Sunday).
-  const sundayEpoch = Date.UTC(1970, 0, 4);
-  return Math.floor((day - sundayEpoch) / (7 * 24 * 60 * 60 * 1000));
-}
-
-function utcHeroRotationIndex(date: Date): number {
-  const millisecondsPerDay = 24 * 60 * 60 * 1000;
-  const day = Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate());
-  return Math.floor((day - homepageHeroRotationEpoch) / (3 * millisecondsPerDay));
-}
-
-function positiveMod(value: number, modulo: number): number {
-  return ((value % modulo) + modulo) % modulo;
-}
-
-function stableHash(value: string): number {
-  let hash = 2166136261;
-  for (let i = 0; i < value.length; i += 1) {
-    hash ^= value.charCodeAt(i);
-    hash = Math.imul(hash, 16777619);
-  }
-  return hash >>> 0;
+  return homepageHeroForDate(homepageFeaturedWorks, previewMap, date);
 }
 
 export function collectionHighlights(): Work[] {
-  const preferred = [
-    'michelangelo/david',
-    'michelangelo/tondo-pitti',
-    'donatello/saint-george',
-    'rodin/the-thinker',
-    'venus-de-milo',
-    'laocoon',
-    'capitoline-venus',
-    'assyrian/ashurnasirpal-lion-hunt',
-  ];
-  const selected = preferred.map((slug) => workBySlug(slug)).filter(Boolean) as Work[];
-  return selected.length >= 6 ? selected : works.slice(0, 8);
+  return featuredWorks.slice(0, 8);
 }
 
 export function recentlyPrepared(limit = 8): Work[] {

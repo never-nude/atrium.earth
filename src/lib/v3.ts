@@ -1,5 +1,5 @@
 import v3Content from '../data/v3-content.json';
-import { homepageHeroWorkForDate, recentlyPrepared, workBySlug, works, type Work } from './catalog';
+import { featuredWorkIn, homepageHeroWorkForDate, isFeaturedWork, recentlyPrepared, workBySlug, works, type Work } from './catalog';
 import { exhibitions as baseExhibitions, featuredWork, neighborsFor, type V2Exhibition } from './v2';
 
 export type V3Exhibition = V2Exhibition & {
@@ -117,7 +117,13 @@ export const pairings: V3Pairing[] = pairingSeeds
     const b = workBySlug(seed.b);
     return a && b ? { title: seed.title, line: seed.line, a, b } : null;
   })
-  .filter((pair): pair is V3Pairing => Boolean(pair));
+  .filter((pair): pair is V3Pairing => Boolean(pair && isFeaturedWork(pair.a) && isFeaturedWork(pair.b)));
+
+export function exhibitionFeaturedWork(exhibition: V3Exhibition): Work {
+  const work = featuredWorkIn(exhibition.works);
+  if (!work) throw new Error(`Exhibition ${exhibition.slug} needs a lead from the reviewed featured collection.`);
+  return work;
+}
 
 export const homepageFeaturedWork = homepageHeroWorkForDate();
 export { featuredWork, neighborsFor, works };

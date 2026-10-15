@@ -35,7 +35,7 @@ const showRooms = Boolean(wing && rooms.length > 1);
   {isUnfiled && <meta slot="head" name="robots" content="noindex, nofollow" />}
 
   {featured ? (
-    <section class="v3-wing-hero" aria-labelledby="wing-title">
+    <section class="v3-wing-hero" aria-labelledby="wing-title" data-featured-work={featured.slug}>
       <div class="v3-wing-hero__copy">
         <p class="v3-kicker">Wing {String(wingIndex + 1).padStart(2, '0')} · {wingWorks.length} {wingWorks.length === 1 ? 'work' : 'works'}</p>
         <h1 id="wing-title" class="v3-display">{name}</h1>

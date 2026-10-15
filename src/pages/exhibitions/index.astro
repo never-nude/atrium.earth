@@ -1,6 +1,6 @@
 ---
 import V3Layout from '../../layouts/v3/V3Layout.astro';
-import { exhibitions, featuredWork, v3ExhibitionRoute } from '../../lib/v3';
+import { exhibitions, exhibitionFeaturedWork, featuredWork, v3ExhibitionRoute } from '../../lib/v3';
 import { withBase } from '../../lib/urls';
 ---
 
@@ -24,7 +24,7 @@ import { withBase } from '../../lib/urls';
           <h3>{exhibition.title}</h3>
         </div>
         <p class="v3-exrow__summary">{exhibition.summary}</p>
-        <span class="v3-exrow__img v3-float"><img src={withBase(exhibition.works[0].thumbnailImage)} alt="" width="240" height="300" loading="lazy" decoding="async" /></span>
+        <span class="v3-exrow__img v3-float"><img src={withBase(exhibitionFeaturedWork(exhibition).thumbnailImage)} alt="" width="240" height="300" loading="lazy" decoding="async" /></span>
         <b aria-hidden="true">↗</b>
       </a>
     ))}

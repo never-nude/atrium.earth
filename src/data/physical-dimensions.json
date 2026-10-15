@@ -10267,48 +10267,57 @@
     "calibrationReady": true
   },
   "egyptian/portrait-of-nefertiti-smk-cast": {
-    "dimensions": "H 49 × W 24.5 × D 35 cm",
-    "sourceUrl": "https://www.smb.museum/en/museums-institutions/aegyptisches-museum-und-papyrussammlung/collection-research/bust-of-nefertiti/the-bust/",
-    "basis": "original",
-    "status": "documented",
-    "note": "Dimensions of the original bust in Berlin, ÄM 23100.",
-    "checked": "2026-09-13",
-    "measures": [
-      {
-        "axis": "height",
-        "value": 49,
-        "unit": "cm"
-      },
-      {
-        "axis": "width",
-        "value": 24.5,
-        "unit": "cm"
-      },
-      {
-        "axis": "depth",
-        "value": 35,
-        "unit": "cm",
-        "meters": 0.35000000000000003,
-        "sourceUrls": [
-          "https://www.smb.museum/en/museums-institutions/aegyptisches-museum-und-papyrussammlung/collection-research/bust-of-nefertiti/the-bust/"
-        ]
-      }
-    ],
-    "spatialNote": "Shown at the documented original size, using a measurement unaffected by the display support.",
-    "geometryReviewNote": "Original35 cm depth maps to the back of the crown and the nose, both above the added block. The block controls one X extreme, so width and whole-height shortcuts were rejected.",
-    "spatial": {
-      "axis": "z",
-      "meters": 0.35000000000000003,
-      "measurementIndex": 2,
-      "previewUrl": "https://models.atrium.earth/models/previews/egyptian/portrait-of-nefertiti-smk-cast/preview.glb",
-      "orientation": null,
-      "assetSha256": "ca5c11390c9bb366efae1456961fad8d077754bed8e152be8b62942093f428ee",
-      "reviewed": "2026-09-13",
-      "geometryReview": "Fresh official-source/photo comparison plus current asset visible-vertex extrema audit; see scale_geometry-extra/audit.json and scale_geometry-smk-contact.",
-      "note": "Original35 cm depth maps to the back of the crown and the nose, both above the added block. The block controls one X extreme, so width and whole-height shortcuts were rejected. Exact visible-vertex extrema: {\"zMin\":{\"mesh\":\"geometry_0\",\"index\":8550,\"position\":[-0.00012207403790398877,0.3437299722281564,-0.3096713156529435]},\"zMax\":{\"mesh\":\"geometry_0\",\"index\":870,\"position\":[-0.020813623462630087,0.07306131168553716,0.30967131565294354]}}. No guessed component fraction is used. Uniform scale preserves existing model proportions and supports; other source axes are not independently forced to match."
+    "dimensions": "",
+    "sourceUrl": "https://api.smk.dk/api/v1/art/?object_number=DEP439",
+    "basis": "object",
+    "status": "unresolved",
+    "note": "SMK identifies DEP439 as a plaster bust cast of Nefertiti but publishes no measurements for this cast. The Berlin original’s measurements are retained only as separate research and do not establish this cast’s size.",
+    "checked": "2026-10-15",
+    "researchStatus": "unresolved",
+    "identifiedObject": {
+      "title": "Portrait of Nefertiti, SMK plaster cast",
+      "institution": "SMK – National Gallery of Denmark, Royal Cast Collection, Copenhagen",
+      "accession": "DEP439",
+      "version_or_date": "Plaster cast; manufacture date unrecorded. SMK records acquisition in 1990.",
+      "record_url": "https://api.smk.dk/api/v1/art/?object_number=DEP439",
+      "identity_confidence": "high",
+      "match_explanation": "The official DEP439 record identifies a plaster bust, links the ancient Amarna portrait, and supplies the exact accession’s STL assets. Acquisition is not treated as manufacture."
     },
-    "geometryStatus": "calibrated",
-    "calibrationReady": true
+    "measures": [],
+    "spatialNote": "The plaster cast’s physical dimensions are unverified. Its chosen display size is a viewing preset, not a measurement.",
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "The cast bust and its block are represented, but no matching cast measurement has been established. The previous 35 cm depth binding described the Berlin original and is retired. No exact spatial reference is retained.",
+    "originalSizeResearch": {
+      "dimensions": "H 49 × W 24.5 × D 35 cm",
+      "sourceUrl": "https://www.smb.museum/en/museums-institutions/aegyptisches-museum-und-papyrussammlung/collection-research/bust-of-nefertiti/the-bust/",
+      "basis": "original",
+      "status": "documented",
+      "note": "Dimensions of the original bust in Berlin, ÄM 23100. Retained solely as research about the original; these are not measurements of the scanned SMK plaster cast.",
+      "checked": "2026-09-13",
+      "measures": [
+        {
+          "axis": "height",
+          "value": 49,
+          "unit": "cm"
+        },
+        {
+          "axis": "width",
+          "value": 24.5,
+          "unit": "cm"
+        },
+        {
+          "axis": "depth",
+          "value": 35,
+          "unit": "cm",
+          "meters": 0.35000000000000003,
+          "sourceUrls": [
+            "https://www.smb.museum/en/museums-institutions/aegyptisches-museum-und-papyrussammlung/collection-research/bust-of-nefertiti/the-bust/"
+          ]
+        }
+      ],
+      "geometryReviewNote": "Original35 cm depth maps to the back of the crown and the nose, both above the added block. The block controls one X extreme, so width and whole-height shortcuts were rejected. The earlier original-size mapping is retired and does not authorize a cast-size calibration."
+    }
   },
   "egyptian/portrait-of-pharaoh-amasis-smk-cast": {
     "dimensions": "73 × 58 × 37 cm (axes unlabelled; scholarly comparison table).",
@@ -17269,45 +17278,67 @@
     }
   },
   "michelangelo/dying-slave": {
-    "dimensions": "H 227.7 × W 72.4 × D 53.5 cm",
-    "sourceUrl": "https://collections.louvre.fr/ark:/53355/cl010091872",
-    "basis": "original",
+    "dimensions": "Measured SMK plaster cast: H 228 cm",
+    "sourceUrl": "https://api.smk.dk/api/v1/art/?object_number=KAS87",
+    "basis": "object",
     "status": "documented",
-    "note": "Dimensions of the original marble in the Louvre, MR 1590.",
-    "checked": "2026-09-09",
+    "note": "SMK documents a net height of 228 cm for plaster cast KAS87. This is the actual cast measurement, not the Louvre marble’s 227.7 cm height. The current model’s measurement boundary remains unverified.",
+    "checked": "2026-10-15",
+    "researchStatus": "documented",
+    "identifiedObject": {
+      "title": "Dying Slave, SMK plaster cast after Michelangelo",
+      "institution": "SMK – National Gallery of Denmark, Royal Cast Collection, Copenhagen",
+      "accession": "KAS87",
+      "version_or_date": "Plaster cast dated 1852–1870 by SMK",
+      "record_url": "https://api.smk.dk/api/v1/art/?object_number=KAS87",
+      "identity_confidence": "high",
+      "match_explanation": "The official KAS87 record identifies plaster, a statue and matching full-figure STL assets. Current catalog source names KAS87 and its 20,000,884-byte source variant matches an official small STL size."
+    },
     "measures": [
       {
         "axis": "height",
-        "value": 227.7,
+        "value": 228,
         "unit": "cm",
+        "scope": "Actual SMK plaster cast KAS87; museum part label: netto. Current derivative boundary not yet matched.",
+        "qualifier": "exact",
         "sourceUrls": [
-          "https://collections.louvre.fr/ark:/53355/cl010091872"
+          "https://api.smk.dk/api/v1/art/?object_number=KAS87"
         ]
-      },
-      {
-        "axis": "width",
-        "value": 72.4,
-        "unit": "cm"
-      },
-      {
-        "axis": "depth",
-        "value": 53.5,
-        "unit": "cm"
       }
     ],
-    "spatialNote": "Physical scale is calibrated to the documented original artwork dimensions. Proportions are preserved.",
-    "spatial": {
-      "axis": "y",
-      "meters": 2.2769999999999997,
-      "previewUrl": "https://models.atrium.earth/models/previews/michelangelo/dying-slave/preview.glb",
-      "orientation": null,
-      "reviewed": "2026-09-12",
-      "note": "Whole upright scan checked against the documented object height; no separate display pedestal included.",
-      "measurementIndex": 0,
-      "assetSha256": "21a8d68f0d0ffc3bc88085959f3fb9422709df4e6abaf91a360994918493561c",
-      "geometryReview": "Rechecked exact current GLB in three-angle renders. Whole surviving object with integral historic base where present; no separate museum pedestal measured as artwork. Original source height retained."
-    },
-    "geometryReviewNote": "Whole upright scan checked against the documented object height; no separate display pedestal included."
+    "spatialNote": "The cast height is documented, but it is not calibrated to this model. Display size is adjustable.",
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "The previous 227.7 cm binding measured the original Louvre marble. Matching the current derivative’s extent and supports to the actual SMK cast’s 228 cm net height requires a separate geometry review. No exact spatial reference is retained.",
+    "originalSizeResearch": {
+      "dimensions": "H 227.7 × W 72.4 × D 53.5 cm",
+      "sourceUrl": "https://collections.louvre.fr/ark:/53355/cl010091872",
+      "basis": "original",
+      "status": "documented",
+      "note": "Dimensions of the original marble in the Louvre, MR 1590. Retained solely as research about the original; these are not measurements of the scanned SMK plaster cast.",
+      "checked": "2026-09-09",
+      "measures": [
+        {
+          "axis": "height",
+          "value": 227.7,
+          "unit": "cm",
+          "sourceUrls": [
+            "https://collections.louvre.fr/ark:/53355/cl010091872"
+          ]
+        },
+        {
+          "axis": "width",
+          "value": 72.4,
+          "unit": "cm"
+        },
+        {
+          "axis": "depth",
+          "value": 53.5,
+          "unit": "cm"
+        }
+      ],
+      "geometryReviewNote": "Whole upright scan checked against the documented object height; no separate display pedestal included. The earlier original-size mapping is retired and does not authorize a cast-size calibration."
+    }
   },
   "michelangelo/medici-madonna": {
     "dimensions": "Measured cast: H 225 cm",
@@ -33214,7 +33245,7 @@
       "measurementRegion": {
         "method": "position-welded connected triangles",
         "description": "The sculpture is separate from the modern pedestal. Connected components ranks 0, 1 and 3 contain the marble group; rank 2 is the rectangular pedestal. Their union runs from normalized Y -0.1190040436654394 to 0.5. Use the confirmed 197.5 cm height of the marble group, retaining the pedestal at the same uniform scale.",
-        "weldToleranceNormalizedUnits": 0.000001,
+        "weldToleranceNormalizedUnits": 1e-06,
         "ranksByDescendingTriangleCount": [
           0,
           1,
@@ -69247,7 +69278,7 @@
       "measurementRegion": {
         "method": "position-welded connected triangles",
         "description": "Connected component rank 0 is the rigid monitor body; all display/button components remain within its lateral body endpoints. Hanging cable components extend farther left and below and are excluded from the reference. Use the museum body-only width 58.4 cm for the rank-0 X span, retaining all cables at that scale.",
-        "weldToleranceNormalizedUnits": 0.000001,
+        "weldToleranceNormalizedUnits": 1e-06,
         "ranksByDescendingTriangleCount": [
           0
         ],
@@ -76960,7 +76991,7 @@
       "measurementRegion": {
         "method": "position-welded connected triangles",
         "description": "Connected component rank 0 is the complete sculpture, including its lowest foot/curved lower edge; rank 1 is the added green platform. All other sculpture fragments and the apple are within rank-0 height. Use the scan creator’s explicitly approximate 57 cm sculpture height, excluding the green platform from the reference while retaining it in the scene.",
-        "weldToleranceNormalizedUnits": 0.000001,
+        "weldToleranceNormalizedUnits": 1e-06,
         "ranksByDescendingTriangleCount": [
           0
         ],

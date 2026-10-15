@@ -1,5 +1,5 @@
 import { wings, type Wing, type WingId } from '../data/wings';
-import { workBySlug, works, type Work } from './catalog';
+import { featuredWorks, isFeaturedWork, workBySlug, works, type Work } from './catalog';
 
 export type WingRouteId = WingId | 'unfiled';
 
@@ -24,8 +24,8 @@ export function worksForWing(id: WingRouteId): Work[] {
 export function featuredWorkForWing(wing: Wing): Work | undefined {
   const preferred = wing.featured
     .map((slug) => workBySlug(slug))
-    .find((work): work is Work => Boolean(work?.hasPreview && work.wing === wing.id));
-  return preferred ?? worksForWing(wing.id).find((work) => work.hasPreview) ?? worksForWing(wing.id)[0];
+    .find((work): work is Work => Boolean(work && isFeaturedWork(work) && work.wing === wing.id));
+  return preferred ?? featuredWorks.find((work) => work.wing === wing.id);
 }
 
 export const wingSummaries: WingSummary[] = wings.map((wing) => ({

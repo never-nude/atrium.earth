@@ -4,11 +4,12 @@ import V3WorkCard from '../components/v3/V3WorkCard.astro';
 import { newestWorks } from '../lib/additions';
 import V3WingGrid from '../components/v3/V3WingGrid.astro';
 import V3Layout from '../layouts/v3/V3Layout.astro';
-import { collectionCount, exhibitions, homepageFeaturedWork as featuredWork, pairings, v3ExhibitionRoute, v3WorkRoute, works } from '../lib/v3';
+import { collectionCount, exhibitions, exhibitionFeaturedWork, homepageFeaturedWork as featuredWork, pairings, v3ExhibitionRoute, v3WorkRoute } from '../lib/v3';
+import { featuredWorks } from '../lib/catalog';
 import { withBase } from '../lib/urls';
 import { arVrFeatured, arVrCount, arVrVerifiedCount } from '../lib/spatial-catalog';
 
-const randomRoutes = works.map((work) => withBase(v3WorkRoute(work)));
+const randomRoutes = featuredWorks.map((work) => withBase(v3WorkRoute(work)));
 const heroAppearance = {
   ...featuredWork.materialAppearance,
   backdropTop: '#1c2b41',
@@ -35,7 +36,7 @@ const heroAlt = [
   description={`Explore ${collectionCount} works in 3D and all ${arVrCount} compatible models in AR and VR. Verified, approximate and unknown dimensions are clearly labeled.`}
   image={featuredWork.thumbnailImage}
 >
-  <section class="v3-hero" aria-labelledby="v3-home-title">
+  <section class="v3-hero" aria-labelledby="v3-home-title" data-featured-work={featuredWork.slug}>
     <div class="v3-hero__viewer">
       <Viewer
         glb={withBase(featuredWork.modelGlb)}
@@ -165,7 +166,7 @@ const heroAlt = [
             <h3>{exhibition.title}</h3>
           </div>
           <p class="v3-exrow__summary">{exhibition.summary}</p>
-          <span class="v3-exrow__img v3-float"><img src={withBase(exhibition.works[0].thumbnailImage)} alt="" width="240" height="300" loading="lazy" decoding="async" /></span>
+          <span class="v3-exrow__img v3-float"><img src={withBase(exhibitionFeaturedWork(exhibition).thumbnailImage)} alt="" width="240" height="300" loading="lazy" decoding="async" /></span>
           <b aria-hidden="true">↗</b>
         </a>
       ))}

@@ -1,0 +1,165 @@
+{
+  "schema": "atrium-featured250-final-independent-audit/1",
+  "status": "no_blocking_findings",
+  "selected_count": 250,
+  "unique_slugs": 250,
+  "public_catalog_count": 1913,
+  "homepage_approved_count": 192,
+  "homepage_within_15mib": 191,
+  "catalog_asset_license_issues": [],
+  "source_model_uid_duplicates": [],
+  "duplicate_preview_urls": [],
+  "duplicate_scoped_accessions": [],
+  "licenses": {
+    "CC BY-SA 4.0": 18,
+    "CC BY 4.0": 123,
+    "CC0 1.0": 73,
+    "Public Domain Mark 1.0": 28,
+    "cc-zero": 5,
+    "cc-by-4.0": 1,
+    "CC0 1.0 Universal": 2
+  },
+  "exhibition_intersections": [
+    {
+      "slug": "bodies-in-motion",
+      "featured_count": 8,
+      "featured_works": [
+        "discobolus",
+        "michelangelo/dying-slave",
+        "laocoon",
+        "rodin/the-walking-man",
+        "modern/figure-of-a-dancer-leonard-smithsonian",
+        "roman/hermes-tying-sandal-glyptotek",
+        "modern/dance-vigeland",
+        "modern/rush-hour-george-segal"
+      ]
+    },
+    {
+      "slug": "power-and-presence",
+      "featured_count": 5,
+      "featured_works": [
+        "head-of-gudea",
+        "egyptian/portrait-of-nefertiti-smk-cast",
+        "egyptian/goddess-sekhmet-mia",
+        "michelangelo/moses",
+        "greek/dynastic-figures-mausoleum-halikarnassos"
+      ]
+    },
+    {
+      "slug": "sacred-forms",
+      "featured_count": 8,
+      "featured_works": [
+        "horus-protecting-nectanebo-ii",
+        "asia/cosmic-buddha",
+        "americas/zemi-cohoba-stand",
+        "sub-saharan-africa/kongo-maternity-figure",
+        "michelangelo/pieta",
+        "donatello/saint-george",
+        "global/nataraja-shiva-as-the-lord-of-dance-6862a3c6",
+        "europe/the-holy-thorn-reliquary-20f391"
+      ]
+    },
+    {
+      "slug": "what-survives",
+      "featured_count": 6,
+      "featured_works": [
+        "belvedere-torso",
+        "ancient-near-east/assyrian-eagle-headed-demon-fitzwilliam",
+        "asia/iznik-jug-english-mounts-fitzwilliam",
+        "roman/meleager-glyptotek",
+        "roman/antinous-dionysus-british-museum",
+        "global/bear-crest-head-dress-frontlet-68ddc808"
+      ]
+    },
+    {
+      "slug": "the-work-of-the-surface",
+      "featured_count": 10,
+      "featured_works": [
+        "asia/cosmic-buddha",
+        "americas/underwater-panther-vessel-quapaw-mia",
+        "europe/antoine-pevsner-developable-surface",
+        "europe/eduardo-chillida-how-profound-is-the-air",
+        "modern/ecstasy-gill-tate-t03477",
+        "roman/phaedra-hippolytus-sarcophagus-uffizi",
+        "americas/andy-goldsworthy-sapsucker-cairn",
+        "europe/covered-tureen-meissonnier-cleveland",
+        "americas-oceania/isamu-noguchi-woman",
+        "europe/ismael-smith-el-peto-the-kiss"
+      ]
+    },
+    {
+      "slug": "the-other-kingdom",
+      "featured_count": 4,
+      "featured_works": [
+        "asia/ritual-wine-ewer-gong-smithsonian",
+        "americas/key-marco-cat",
+        "americas/underwater-panther-vessel-quapaw-mia",
+        "sub-saharan-africa/ram-mask-bolo-cleveland"
+      ]
+    },
+    {
+      "slug": "the-price-of-victory",
+      "featured_count": 3,
+      "featured_works": [
+        "roman/wounded-amazon-walters",
+        "europe/parade-armour-erik-xiv-royal-armoury-bd189b",
+        "americas/the-dying-tecumseh-smithsonian"
+      ]
+    },
+    {
+      "slug": "michelangelo-and-rodin",
+      "featured_count": 6,
+      "featured_works": [
+        "michelangelo/david",
+        "rodin/age-of-bronze-rodin-musee-rodin",
+        "rodin/the-thinker",
+        "michelangelo/pieta",
+        "modern/the-kiss-rodin-musee-rodin-s-1002",
+        "rodin/the-walking-man"
+      ]
+    }
+  ],
+  "homepage_pairings": [
+    {
+      "title": "Defeat in Sculpture",
+      "a": "dying-gaul",
+      "b": "americas/the-dying-tecumseh-smithsonian",
+      "line": "Both works show defeated warriors supported by one arm. Each was made within a culture that framed the subject through military victory."
+    },
+    {
+      "title": "Seated Figures",
+      "a": "rodin/the-thinker",
+      "b": "sub-saharan-africa/seated-figure-middle-niger",
+      "line": "Both works use a compact seated pose. One rests a bronze chin on a knuckled hand; the other draws a terracotta torso inward."
+    },
+    {
+      "title": "Portraits of Authority",
+      "a": "egyptian/portrait-of-nefertiti-smk-cast",
+      "b": "roman/bust-of-augustus-oak-crown-msr",
+      "line": "These portraits use symmetry, controlled expression, and idealized features to represent authority across a span of roughly thirteen centuries."
+    }
+  ],
+  "code_path_audit": {
+    "selection": "250 unique public modeled rendered works required; explicit homepage boolean and curatorial reason",
+    "rotations": "Both weekly and three-day rotations stay within passed pool; empty pools throw; homepage enforces finite positive <=15MiB",
+    "homepage": "Hero honors homepage flag, random routes use 250, exhibition covers approved, pairings both approved, spatial features approved",
+    "wings": "Preferred approved only in correct wing; approved regional fallback; undefined safely handled",
+    "exhibitions": "Approved lead; comparisons hero only if all works approved; remaining full exhibition bodies preserved",
+    "catalog_and_newest": "Full public catalog remains 1913 records; newest/additions use full public works without featured membership filter",
+    "future_imports": "New catalog records cannot silently enter allowlist; no original-work fallback escapes pool"
+  },
+  "verification": [
+    "node scripts/test-featured-selection.mjs passed; full rotations, dates, future imports, availability validation and fail-closed paths",
+    "Independent raw final data checks: explicit licenses; duplicates by preview, source UID and scoped accession; all exhibitions still have reviewed covers"
+  ],
+  "limitations": [
+    "Existing catalog licenses treated as explicit recorded reuse grants, not a new primary-source license audit of all 250",
+    "Two distinct Nataraja sculptures repeat iconography but have separate verified museum identities",
+    "Source geometry completeness was assessed from reviewed local thumbnails, not a fresh full-mesh audit"
+  ],
+  "root_followup": {
+    "homepage_approved": 191,
+    "homepage_within_15mib": 190,
+    "change": "Orpheus remains featured but was removed from homepage approval after the independent visual review."
+  }
+}

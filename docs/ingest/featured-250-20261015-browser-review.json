@@ -1,0 +1,210 @@
+{
+  "reviewed": "2026-10-15",
+  "mode": "Built local production output, headless Chrome; homepage GLB loaded from a hash-verified R2 mirror, remaining feature routes structurally checked with model downloads suppressed",
+  "findings": [
+    {
+      "route": "/",
+      "hero": "michelangelo/david",
+      "liveModel": true
+    },
+    {
+      "route": "/",
+      "featured": [
+        "michelangelo/david",
+        "michelangelo/david",
+        "modern/dubuffet-la-chiffonniere",
+        "rodin/the-thinker",
+        "egyptian/portrait-of-nefertiti-smk-cast",
+        "laocoon",
+        "michelangelo/david",
+        "asia/shiva-nataraja-after-conservation-mia",
+        "sub-saharan-africa/kongo-maternity-figure",
+        "americas/maya-warrior-removable-headdress-cleveland-1963-93-887d18",
+        "dying-gaul",
+        "americas/the-dying-tecumseh-smithsonian",
+        "rodin/the-thinker",
+        "sub-saharan-africa/seated-figure-middle-niger",
+        "egyptian/portrait-of-nefertiti-smk-cast",
+        "roman/bust-of-augustus-oak-crown-msr",
+        "discobolus",
+        "head-of-gudea",
+        "horus-protecting-nectanebo-ii",
+        "belvedere-torso",
+        "asia/cosmic-buddha",
+        "asia/ritual-wine-ewer-gong-smithsonian",
+        "roman/wounded-amazon-walters",
+        "michelangelo/david"
+      ]
+    },
+    {
+      "route": "/wings/",
+      "featured": [
+        "egyptian/portrait-of-nefertiti-smk-cast",
+        "laocoon",
+        "michelangelo/david",
+        "asia/shiva-nataraja-after-conservation-mia",
+        "sub-saharan-africa/kongo-maternity-figure",
+        "americas/maya-warrior-removable-headdress-cleveland-1963-93-887d18"
+      ]
+    },
+    {
+      "route": "/wings/near-east/",
+      "featured": [
+        "egyptian/portrait-of-nefertiti-smk-cast"
+      ]
+    },
+    {
+      "route": "/wings/greece-rome/",
+      "featured": [
+        "laocoon"
+      ]
+    },
+    {
+      "route": "/wings/europe/",
+      "featured": [
+        "michelangelo/david"
+      ]
+    },
+    {
+      "route": "/wings/asia/",
+      "featured": [
+        "asia/shiva-nataraja-after-conservation-mia"
+      ]
+    },
+    {
+      "route": "/wings/africa/",
+      "featured": [
+        "sub-saharan-africa/kongo-maternity-figure"
+      ]
+    },
+    {
+      "route": "/wings/americas-oceania/",
+      "featured": [
+        "americas/maya-warrior-removable-headdress-cleveland-1963-93-887d18"
+      ]
+    },
+    {
+      "route": "/exhibitions/",
+      "featured": [
+        "discobolus",
+        "head-of-gudea",
+        "horus-protecting-nectanebo-ii",
+        "belvedere-torso",
+        "asia/cosmic-buddha",
+        "asia/ritual-wine-ewer-gong-smithsonian",
+        "roman/wounded-amazon-walters",
+        "michelangelo/david"
+      ]
+    },
+    {
+      "route": "/exhibitions/bodies-in-motion/",
+      "featured": [
+        "discobolus"
+      ]
+    },
+    {
+      "route": "/exhibitions/power-and-presence/",
+      "featured": [
+        "head-of-gudea"
+      ]
+    },
+    {
+      "route": "/exhibitions/sacred-forms/",
+      "featured": [
+        "horus-protecting-nectanebo-ii"
+      ]
+    },
+    {
+      "route": "/exhibitions/what-survives/",
+      "featured": [
+        "belvedere-torso"
+      ]
+    },
+    {
+      "route": "/exhibitions/the-work-of-the-surface/",
+      "featured": [
+        "asia/cosmic-buddha"
+      ]
+    },
+    {
+      "route": "/exhibitions/the-other-kingdom/",
+      "featured": [
+        "asia/ritual-wine-ewer-gong-smithsonian"
+      ]
+    },
+    {
+      "route": "/exhibitions/the-price-of-victory/",
+      "featured": [
+        "roman/wounded-amazon-walters"
+      ]
+    },
+    {
+      "route": "/exhibitions/michelangelo-and-rodin/",
+      "featured": [
+        "michelangelo/david",
+        "rodin/age-of-bronze-rodin-musee-rodin"
+      ]
+    },
+    {
+      "route": "/museum/",
+      "featured": [
+        "modern/thomson-moth-massey",
+        "michelangelo/david",
+        "rodin/the-thinker",
+        "egyptian/seated-scribe-e3023-louvre",
+        "asia/shiva-nataraja-after-conservation-mia"
+      ]
+    },
+    {
+      "route": "/newest/",
+      "works": 40
+    },
+    {
+      "route": "/",
+      "viewport": "390x844",
+      "hero": "michelangelo/david",
+      "liveModel": true,
+      "layout": {
+        "scrollY": 0,
+        "rows": [
+          {
+            "selector": ".v3-hero",
+            "top": 0,
+            "height": 996.46875,
+            "position": "relative",
+            "visibility": "visible"
+          },
+          {
+            "selector": ".v3-hero__viewer",
+            "top": 0,
+            "height": 489.515625,
+            "position": "relative",
+            "visibility": "visible"
+          },
+          {
+            "selector": ".v3-hero__copy",
+            "top": 513.515625,
+            "height": 289.375,
+            "position": "relative",
+            "visibility": "visible"
+          },
+          {
+            "selector": ".model-stage",
+            "top": 0,
+            "height": 489.515625,
+            "position": "relative",
+            "visibility": "visible"
+          },
+          {
+            "selector": "canvas",
+            "top": 0,
+            "height": 489.515625,
+            "position": "absolute",
+            "visibility": "visible"
+          }
+        ]
+      }
+    }
+  ],
+  "errors": []
+}

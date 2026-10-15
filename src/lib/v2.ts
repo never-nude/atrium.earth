@@ -1,4 +1,4 @@
-import { facets, featuredWorkForDate, recentlyPrepared, workBySlug, works, type Work } from './catalog';
+import { facets, featuredWorkForDate, isFeaturedWork, recentlyPrepared, workBySlug, works, type Work } from './catalog';
 
 export type V2Exhibition = {
   slug: string;
@@ -138,7 +138,8 @@ export const exhibitions: V2Exhibition[] = seeds.map(({ workSlugs, ...seed }) =>
 }));
 
 // Keep shared page metadata and the archived v2 homepage on a stable, reviewed work.
-export const featuredWork = workBySlug('egyptian/goddess-sekhmet-mia') ?? featuredWorkForDate();
+const metadataWork = workBySlug('egyptian/goddess-sekhmet-mia');
+export const featuredWork = metadataWork && isFeaturedWork(metadataWork) ? metadataWork : featuredWorkForDate();
 export const collectionCount = works.length;
 export const newToCollection = recentlyPrepared(10);
 export const v2Facets = facets;
