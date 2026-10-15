@@ -1,12 +1,19 @@
 {
   "schema": "atrium-ingest-review-holds/1",
   "batch": "etruscan-greek-20261015",
-  "reviewed_at": "2026-10-15T23:04:45.701Z",
+  "reviewed_at": "2026-10-15T23:38:39.797Z",
   "holds": [
     {
       "slug": "roman/treppenstein-baubo-dolphin-mkg-2001-36",
       "uid": "8630e5ea4e8f4777899da2fd245f31f1",
       "reason": "Actual source/preview comparison shows an open thin shell, mirrored relief visible from the reverse, a central gap and spiky edge geometry. Omitted from publication rather than presenting a complete stone fragment. Incoming source remains archived."
+    },
+    {
+      "slug": "greek/black-figure-kyathos-with-hermes-and-apollo-p-88-d62670",
+      "uid": "d62670ef9d184f5faa7875316e4da802",
+      "reason": "Actual native source and serving preview retain only the lower decorated bowl and truncated upper handle, whereas the museum-supplied photograph in Garnery 2022, figure 5, depicts the upper figured body and curved handle. No source evidence explains this difference as a separately scanned physical fragment or removed reconstruction. Held for incomplete or unresolved capture scope; no missing pottery was reconstructed.",
+      "comparison_source_url": "https://journals.openedition.org/frontieres/1070",
+      "comparison_figure": 5
     }
   ]
 }

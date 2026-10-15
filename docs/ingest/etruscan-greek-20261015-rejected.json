@@ -1,7 +1,7 @@
 {
   "schema": "atrium-ingest-rejections/1",
   "batch": "etruscan-greek-20261015",
-  "reviewed_at": "2026-10-15T22:20:28.078Z",
+  "reviewed_at": "2026-10-15T23:38:12.213Z",
   "rejected": [
     {
       "slug": "roman/etruscan-schnabelkanne-badisches-c7011",
@@ -9,6 +9,20 @@
       "title": "Etruscan Beaked Flagon, C 7011",
       "reason": "Unchanged measured geometry gate failed: 162 connected components; 19,999 faces; boundary ratio 0.002. No integrity exemption applied. Unmodified downloaded source retained for the private archive.",
       "acquisition_run": 38814108911
+    },
+    {
+      "slug": "greek/kantharos-dedicated-to-herakles-mkg-1983-361-4b499c",
+      "uid": "4b499c080c0b4cfc8b09291bc55f53a3",
+      "title": "Kantharos Dedicated to Herakles — MKG 1983.361",
+      "reason": "geometry failed integrity gate: faces=380481 ncomp=53 bratio=0.004. No integrity exemption applied; unchanged source retained in permanent private archive.",
+      "acquisition_run": 38816449456
+    },
+    {
+      "slug": "greek/apulian-red-figure-krater-p-3138-261e03",
+      "uid": "261e0398c3d84fbda4122f810704613f",
+      "title": "Apulian Red-Figure Krater — P.3138",
+      "reason": "geometry failed integrity gate: faces=4137921 ncomp=86 bratio=0.001. No integrity exemption applied; unchanged source retained in permanent private archive.",
+      "acquisition_run": 38816449456
     }
   ]
 }

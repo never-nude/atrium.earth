@@ -1,10 +1,10 @@
 {
   "schema": "atrium-exhibition-body-proposals/1",
   "batch": "etruscan-greek-20261015",
-  "reviewed_at": "2026-10-15",
-  "status": "conditional-proposals-pending-acquisition-and-final-visual-review",
-  "proposal_count": 6,
-  "scope": "Six proposed additions to existing exhibition bodies. No featured membership, exhibition lead, homepage hero, pairing, comparison, essay or catalog changes are proposed.",
+  "reviewed_at": "2026-10-15T23:04:07.844Z",
+  "status": "Five conditional body-only exhibit proposals; Baubo proposal withdrawn after actual scope quality hold. Integrate only individually accepted published works.",
+  "proposal_count": 5,
+  "scope": "Five proposed additions to existing exhibition bodies, conditional on individual acceptance and publication. Existing exhibition leads, heroes, pairings and featured membership stay outside this proposal.",
   "integration_requirements": [
     "Integrate only a work actually accepted and published from this batch, using its final catalog slug.",
     "Require source-preservation, native-appearance, pose and final capture-scope review before adopting a caption that refers to visible details or changing viewpoints.",
@@ -119,7 +119,19 @@
       ],
       "visual_integration_gate": "Both painted sides must be present and sufficiently legible in the accepted scan. A single captured face cannot support this two-scene caption.",
       "interpretation_limit": "Do not repeat the source uploader's speculative Greek-versus-Etruscan historical identification as settled museum fact. Do not call this an ancient Roman vessel."
+    }
+  ],
+  "not_proposed": [
+    {
+      "slug": "greek/south-italian-fish-plate-fralin-1979-56-188a46",
+      "reason": "The bull rhyton offers the stronger connection between animal form and use. This proposal adds one carefully selected animal-shaped vessel to Other Kingdoms."
     },
+    {
+      "slug": "roman/oinochoe-humans-winged-animals-mev-17244",
+      "reason": "A strong alternative for The Work of the Surface if the promoted Met krater does not pass final acquisition and scope review. Avoid adding both automatically."
+    }
+  ],
+  "withdrawn_proposals": [
     {
       "exhibition_slug": "what-survives",
       "slug": "roman/treppenstein-baubo-dolphin-mkg-2001-36",
@@ -139,17 +151,9 @@
           "supports": "Etruscan Nenfro-tuff fragment, c. 570 BCE, with Baubo above and a dolphin below. The characteristic stepped division is not preserved. The museum offers tomb covering or door stone as possible functions."
         }
       ],
-      "visual_integration_gate": "Distinguish historical broken edges from any scan omissions. Retain the actual fragment; do not complete the missing stepped division or claim a reconstructed whole tomb."
-    }
-  ],
-  "not_proposed": [
-    {
-      "slug": "greek/south-italian-fish-plate-fralin-1979-56-188a46",
-      "reason": "A plausible second animal connection, but the six selected proposals already cover six existing exhibitions. The bull rhyton offers the stronger fit through animal form and function."
-    },
-    {
-      "slug": "roman/oinochoe-humans-winged-animals-mev-17244",
-      "reason": "A strong alternative for The Work of the Surface if the promoted Met krater does not pass final acquisition and scope review. Avoid adding both automatically."
+      "visual_integration_gate": "Distinguish historical broken edges from any scan omissions. Retain the actual fragment; do not complete the missing stepped division or claim a reconstructed whole tomb.",
+      "status": "withdrawn-quality-hold",
+      "withdrawn_reason": "Actual source-native and production front/reverse/above/underside review shows an open thin shell, mirrored front reverse and substantial spiky scan gaps. The physical stone fragment is not sufficiently captured for publication."
     }
   ]
 }
