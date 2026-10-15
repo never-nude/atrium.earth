@@ -695,9 +695,9 @@
       "homepage": true
     },
     {
-      "slug": "americas/maria-martins-orpheus",
-      "reason": "Maria Martins contributes a Brazilian surrealist voice and a markedly different open, organic composition.",
-      "homepage": false
+      "slug": "modern/joan-miro-double-sided-monolith-estela-de-doble-cara-12d619",
+      "reason": "Two distinct decorated faces join across a thin ceramic edge: one carries branching marks and a red disc, the other dark and blue fields with bright circular motifs. The capture preserves the work’s two-sided form and authored enamel colors.",
+      "homepage": true
     },
     {
       "slug": "modern/arman-consigne-a-vie",
@@ -725,9 +725,9 @@
       "homepage": true
     },
     {
-      "slug": "rodin/the-walking-man",
-      "reason": "Auguste Rodin offers a strong nineteenth-century composition with a clear, distinct sculptural form.",
-      "homepage": false
+      "slug": "modern/joan-miro-projet-pour-un-monument-c07aae",
+      "reason": "The complete bronze balances two massive legs beneath a concave torso and bird-like head; its textured surface and modeled reverse remain clear as the work turns.",
+      "homepage": true
     },
     {
       "slug": "modern/eternal-spring-rodin-glyptotek",
@@ -1253,6 +1253,22 @@
       "slug": "sub-saharan-africa/sapi-portuguese-hunting-horn",
       "reason": "A long curved ivory horn tapers to a point beneath rows of relief carving; its sweeping outline reads clearly, with the small figures and patterns revealed on closer inspection.",
       "homepage": false
+    }
+  ],
+  "revisions": [
+    {
+      "date": "2026-10-15",
+      "outgoing": "rodin/the-walking-man",
+      "incoming": "modern/joan-miro-projet-pour-un-monument-c07aae",
+      "reason": "The new model presents a forceful, clearly legible all-around composition with greater surface/presentation confidence. Rodin remains represented by four other selected works; this removes duplication within the maker while adding a distinct open bronze form.",
+      "status": "Approved after source/pose review and inspection of the final production thumbnail from render run 38790096001."
+    },
+    {
+      "date": "2026-10-15",
+      "outgoing": "americas/maria-martins-orpheus",
+      "incoming": "modern/joan-miro-double-sided-monolith-estela-de-doble-cara-12d619",
+      "reason": "The two-sided physical object rewards rotation with distinct painted compositions and materially expands the ceramic representation. This recommendation depends on demonstrated model/identity clarity, not Miró’s fame.",
+      "status": "Approved after source/pose review and inspection of the final production thumbnail from render run 38790096001."
     }
   ]
 }

@@ -214,6 +214,7 @@ const transformJson = JSON.stringify(modelTransform);
     fillLightIntensity?: number;
     rimLightIntensity?: number;
     hemiLightIntensity?: number;
+    sourceVertexColors?: 'ignore-invalid';
   };
 
   const WIREFRAME_COLOR = 0xE3DAC9;
@@ -381,6 +382,11 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
 
   function applyMaterialAppearance(THREE: any, mesh: any, material: any, appearance: Appearance) {
     if (!('color' in material)) return;
+    // Explicit, evidence-backed per-work decision; retain the source attribute
+    // and material multiplier, and never replace it with a generated palette.
+    if (appearance.sourceVertexColors === 'ignore-invalid' && hasAuthoredVertexColors(mesh)) {
+      material.vertexColors = false;
+    }
     if (hasSourceTexture(material) || hasAuthoredVertexColors(mesh)) {
       if ('envMapIntensity' in material && material.envMapIntensity == null) {
         material.envMapIntensity = appearance.envMapIntensity;

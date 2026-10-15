@@ -1,0 +1,585 @@
+{
+  "schema": "atrium-native-color-decision-review/1",
+  "checked": "2026-10-15T19:21:06.140Z",
+  "review_count": 63,
+  "blank_or_garbled": 0,
+  "pose_or_crop_regressions": 0,
+  "method": [
+    "Viewed all63 old/new comparisons on5 contact sheets; enlarged Folon separately.",
+    "Decoded all63 served public-preview COLOR_0 arrays, using Meshopt and Draco correctly rather than treating compressed accessor stubs as zero.",
+    "Live exact-provider API records and largest model thumbnails checked for Blue Lion, Bonsa and Folon.",
+    "Read original locally archived Sketchfab GLBs for Blue Lion and Folon, including all original color tuples, source metadata, material multipliers and optimizer logs; no raw source artifacts downloaded."
+  ],
+  "source_policy": "Authored COLOR_0, including uniform colors, remains enabled by default. No color-value or uniformity heuristic. The one explicit per-work exception disables shader multiplication only; it does not remove or replace the source attribute, base multiplier or PBR. No palette or patina is generated.",
+  "runtime_conclusion": "Three.js r182 loads, normalizes, enables and retains all inspected COLOR_0 inputs correctly. Bonsa whitening is reproduced and reduced with exposure alone. Blue Lion combines gray vertex colors and pale cyan material factor, also whitened by exposure. Folon has a separate hosted-preview versus exported-allblack color discrepancy.",
+  "shader_proof": "Bonsa loaded vec4 color attribute, USE_COLOR/USE_COLOR_ALPHA and diffuseColor *= vColor; renderer correctly consumed source colors. Exposure .85 washed out valid source colors; .2 revealed them.",
+  "decisions": [
+    {
+      "slug": "modern/mhondorohuma-bonsa-drummer",
+      "preview_sha256": "1ca84a6f827c30eec6054c1e534904e34376d367ac06da04ffe65e5ab5526684",
+      "preview_bytes": 1787832,
+      "source_materials": [
+        {
+          "name": "Scene_-_Root",
+          "doubleSided": true,
+          "pbrMetallicRoughness": {
+            "roughnessFactor": 0.6,
+            "metallicFactor": 0
+          }
+        }
+      ],
+      "loaded_color": {
+        "arrayType": "Float32Array",
+        "normalized": false,
+        "itemSize": 4,
+        "count": 292231,
+        "gpuType": 1015,
+        "raw": {
+          "min": [
+            0.027450980618596077,
+            0.0313725508749485,
+            0.0235294122248888,
+            1
+          ],
+          "max": [
+            1.0000922679901123,
+            1.0001845359802246,
+            1,
+            1
+          ],
+          "mean": [
+            0.3681943398041542,
+            0.3941158575305443,
+            0.44467081823840404,
+            1
+          ]
+        },
+        "readViaGetComponent": {
+          "min": [
+            0.027450980618596077,
+            0.0313725508749485,
+            0.0235294122248888,
+            1
+          ],
+          "max": [
+            1.0000922679901123,
+            1.0001845359802246,
+            1,
+            1
+          ],
+          "mean": [
+            0.3681943398041542,
+            0.3941158575305443,
+            0.44467081823840404,
+            1
+          ]
+        },
+        "sampleRaw": [
+          0.36825835704803467,
+          0.333886981010437,
+          0.29923874139785767,
+          1,
+          0.36825835704803467,
+          0.34154555201530457,
+          0.32604384422302246,
+          1,
+          0.3605997562408447,
+          0.333886981010437,
+          0.3068973422050476,
+          1,
+          0.3529411852359772,
+          0.3530334532260895,
+          0.3490196168422699,
+          1,
+          0.3529411852359772,
+          0.3530334532260895,
+          0.3490196168422699,
+          1,
+          0.41420993208885193,
+          0.41430220007896423,
+          0.4064590632915497,
+          1
+        ]
+      },
+      "loaded_material_before": [
+        {
+          "name": "Scene_-_Root",
+          "type": "MeshStandardMaterial",
+          "vertexColors": true,
+          "color": [
+            1,
+            1,
+            1
+          ],
+          "emissive": [
+            0,
+            0,
+            0
+          ],
+          "roughness": 0.6,
+          "metalness": 0,
+          "opacity": 1,
+          "transparent": false,
+          "side": 2,
+          "hasMap": false,
+          "hasNormalMap": false,
+          "envMapIntensity": 1,
+          "defines": {
+            "STANDARD": ""
+          },
+          "userData": {}
+        }
+      ],
+      "before_after_values_unchanged": true,
+      "provider_api_url": "https://api.sketchfab.com/v3/models/29d2032d0f864aaca48966046e6f6169",
+      "provider_thumbnail_sha256": "2d5aea7c22d5d21a3a3ab08ef604188b58b570748120a5654efc94c04ff90389",
+      "diagnosis": "Production exposure .85 whitens valid authored COLOR_0. This is a lighting/tone-mapping result, not a Draco-normalization, missing vertexColors flag or overwritten array error.",
+      "approved_override": {
+        "tintStrength": 0,
+        "variation": 0,
+        "exposure": 0.2,
+        "envMapIntensity": 0.7
+      },
+      "decision": "Exposure .2 only; source RGBA, base multiplier and PBR unchanged.",
+      "limitation": "Provider lighting differs; .2 is a visually useful candidate, not a colorimetric match or physical stone-color measurement.",
+      "final_thumbnail_sha256": "59dab4fcaf00cc8fa1fbf4ae8ad7387c37fe36196f93d55725f1f4083b99e85f",
+      "root_approved": true
+    },
+    {
+      "slug": "europe/xavier-veilhan-le-lion-blue-lion",
+      "preview_sha256": "6650df028459107181085271cbcb1276d0c913759ddecf0fb3d1a4525a4ba04b",
+      "preview_bytes": 769104,
+      "source_materials": [
+        {
+          "name": "Scene_-_Root",
+          "doubleSided": true,
+          "pbrMetallicRoughness": {
+            "baseColorFactor": [
+              0.6299407417903473,
+              0.9042472442522896,
+              0.9213560469775339,
+              1
+            ],
+            "roughnessFactor": 0.6,
+            "metallicFactor": 0
+          }
+        }
+      ],
+      "loaded_color": {
+        "arrayType": "Uint8Array",
+        "normalized": true,
+        "itemSize": 4,
+        "count": 108807,
+        "gpuType": 1015,
+        "raw": {
+          "min": [
+            0,
+            0,
+            0,
+            255
+          ],
+          "max": [
+            255,
+            255,
+            255,
+            255
+          ],
+          "mean": [
+            226.01440164695285,
+            226.01440164695285,
+            226.01440164695285,
+            255
+          ]
+        },
+        "readViaGetComponent": {
+          "min": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "max": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "mean": [
+            0.8863309868504151,
+            0.8863309868504151,
+            0.8863309868504151,
+            1
+          ]
+        },
+        "sampleRaw": [
+          255,
+          255,
+          255,
+          255,
+          255,
+          255,
+          255,
+          255,
+          255,
+          255,
+          255,
+          255,
+          255,
+          255,
+          255,
+          255,
+          255,
+          255,
+          255,
+          255,
+          255,
+          255,
+          255,
+          255
+        ]
+      },
+      "loaded_material_before": [
+        {
+          "name": "Scene_-_Root",
+          "type": "MeshStandardMaterial",
+          "vertexColors": true,
+          "color": [
+            0.6299407417903473,
+            0.9042472442522896,
+            0.9213560469775339
+          ],
+          "emissive": [
+            0,
+            0,
+            0
+          ],
+          "roughness": 0.6,
+          "metalness": 0,
+          "opacity": 1,
+          "transparent": false,
+          "side": 2,
+          "hasMap": false,
+          "hasNormalMap": false,
+          "envMapIntensity": 1,
+          "defines": {
+            "STANDARD": ""
+          },
+          "userData": {}
+        }
+      ],
+      "before_after_values_unchanged": true,
+      "provider_api_url": "https://api.sketchfab.com/v3/models/65437644a0014cc18e404de30c739624",
+      "provider_thumbnail_sha256": "ce174af0b4e291a7ea49b00d896c2f830fb22866c3a3c3a6365fa47159f87740",
+      "diagnosis": "Valid normalized Uint8 grayscale COLOR_0 multiplies an exported pale-cyan baseColor factor. Production exposure .85 makes the result almost white. No loader/material-flag failure found.",
+      "approved_override": {
+        "tintStrength": 0,
+        "variation": 0,
+        "exposure": 0.2,
+        "envMapIntensity": 0.7
+      },
+      "decision": "Exposure .2 only; source RGBA, base multiplier and PBR unchanged.",
+      "limitation": "A provider screenshot does not establish the exact source-webviewer lighting/material configuration. Do not label this as a faithful photographic sky-blue surface map; color is primarily a material factor with gray vertex variation.",
+      "final_thumbnail_sha256": "021b3dea8a566574e0e961b2366a67bc616aca3817b1b833903c273d76b7fc0b",
+      "root_approved": true
+    },
+    {
+      "slug": "europe/jean-michel-folon-angelo-custode",
+      "preview_sha256": "adb3bd0753f8f86a573fa7e346a9cebfca02d9115b804c25a1c7ab992fda954d",
+      "preview_bytes": 673492,
+      "source_materials": [
+        {
+          "name": "Scene_-_Root",
+          "doubleSided": true,
+          "pbrMetallicRoughness": {
+            "baseColorFactor": [
+              1,
+              0.9899636880863927,
+              0.9899636880863927,
+              1
+            ],
+            "roughnessFactor": 0.6,
+            "metallicFactor": 0
+          }
+        }
+      ],
+      "loaded_color": {
+        "arrayType": "Uint8Array",
+        "normalized": true,
+        "itemSize": 4,
+        "count": 85755,
+        "gpuType": 1015,
+        "raw": {
+          "min": [
+            0,
+            0,
+            0,
+            255
+          ],
+          "max": [
+            0,
+            0,
+            0,
+            255
+          ],
+          "mean": [
+            0,
+            0,
+            0,
+            255
+          ]
+        },
+        "readViaGetComponent": {
+          "min": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "max": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "mean": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "sampleRaw": [
+          0,
+          0,
+          0,
+          255,
+          0,
+          0,
+          0,
+          255,
+          0,
+          0,
+          0,
+          255,
+          0,
+          0,
+          0,
+          255,
+          0,
+          0,
+          0,
+          255,
+          0,
+          0,
+          0,
+          255
+        ]
+      },
+      "loaded_material_before": [
+        {
+          "name": "Scene_-_Root",
+          "type": "MeshStandardMaterial",
+          "vertexColors": true,
+          "color": [
+            1,
+            0.9899636880863927,
+            0.9899636880863927
+          ],
+          "emissive": [
+            0,
+            0,
+            0
+          ],
+          "roughness": 0.6,
+          "metalness": 0,
+          "opacity": 1,
+          "transparent": false,
+          "side": 2,
+          "hasMap": false,
+          "hasNormalMap": false,
+          "envMapIntensity": 1,
+          "defines": {
+            "STANDARD": ""
+          },
+          "userData": {}
+        }
+      ],
+      "before_after_values_unchanged": true,
+      "provider_api_url": "https://api.sketchfab.com/v3/models/da4d5a5c5c1b4b05b950974a08610699",
+      "provider_thumbnail_sha256": "a723b0a506f4a26707d5adda86744d8c27d9971ff68003b7ac3f53ca28eaacd2",
+      "diagnosis": "Exported COLOR_0 is uniformly black RGB with alpha1. Actual GLTFLoader correctly enables vertexColors, so black diffuse follows glTF multiplication semantics. The provider thumbnail is light gray, establishing an appearance discrepancy between export and hosted presentation.",
+      "approved_override": {
+        "tintStrength": 0,
+        "variation": 0,
+        "exposure": 0.2,
+        "envMapIntensity": 0.7,
+        "sourceVertexColors": "ignore-invalid"
+      },
+      "decision": "Explicit source-neutral presentation: original export contains allblack RGBA while exact provider model preview is neutral gray. Disable only vertex-color multiplication; retain original base/PBR, attribute and all source/preview bytes. No bronze finish reconstructed.",
+      "limitation": "These files do not establish whether source-webviewer intentionally ignores black colors, the export differs from viewer material settings, or the uploaded colors are placeholders. None is asserted as fact.",
+      "final_thumbnail_sha256": "64ef8b0c975f2c996796a6c845f5e1cec39fdd9c15aefda109194714e2a611b1",
+      "root_approved": true
+    },
+    {
+      "slug": "modern/jaume-plensa-humming",
+      "preview_sha256": "64cef5e96e4a8c9ce977e3befdc0b792099950dd32772e6a073e09f888f8ea2a",
+      "preview_bytes": 269884,
+      "source_materials": [
+        {
+          "name": "Scene_-_Root",
+          "doubleSided": true,
+          "pbrMetallicRoughness": {
+            "baseColorFactor": [
+              0.5,
+              0.5,
+              0.5,
+              1
+            ],
+            "roughnessFactor": 0.9,
+            "metallicFactor": 0
+          }
+        }
+      ],
+      "loaded_color": {
+        "arrayType": "Float32Array",
+        "normalized": false,
+        "itemSize": 4,
+        "count": 45202,
+        "gpuType": 1015,
+        "raw": {
+          "min": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "max": [
+            0.8603460788726807,
+            0.771580159664154,
+            0.8705882430076599,
+            1
+          ],
+          "mean": [
+            0.3218697939784733,
+            0.2905065135788822,
+            0.3216088404730628,
+            1
+          ]
+        },
+        "readViaGetComponent": {
+          "min": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "max": [
+            0.8603460788726807,
+            0.771580159664154,
+            0.8705882430076599,
+            1
+          ],
+          "mean": [
+            0.3218697939784733,
+            0.2905065135788822,
+            0.3216088404730628,
+            1
+          ]
+        },
+        "sampleRaw": [
+          0.5838062763214111,
+          0.5530796051025391,
+          0.5803921818733215,
+          1,
+          0.4847981631755829,
+          0.46772781014442444,
+          0.4984544515609741,
+          1,
+          0.4847981631755829,
+          0.46772781014442444,
+          0.4984544515609741,
+          1,
+          0.43700116872787476,
+          0.4131026566028595,
+          0.43700116872787476,
+          1,
+          0.44041523337364197,
+          0.4199308156967163,
+          0.4438292980194092,
+          1,
+          0.4438292980194092,
+          0.4199308156967163,
+          0.43700116872787476,
+          1
+        ]
+      },
+      "loaded_material_before": [
+        {
+          "name": "Scene_-_Root",
+          "type": "MeshStandardMaterial",
+          "vertexColors": true,
+          "color": [
+            0.5,
+            0.5,
+            0.5
+          ],
+          "emissive": [
+            0,
+            0,
+            0
+          ],
+          "roughness": 0.9,
+          "metalness": 0,
+          "opacity": 1,
+          "transparent": false,
+          "side": 2,
+          "hasMap": false,
+          "hasNormalMap": false,
+          "envMapIntensity": 1,
+          "defines": {
+            "STANDARD": ""
+          },
+          "userData": {}
+        }
+      ],
+      "before_after_values_unchanged": true,
+      "provider_api_url": "https://api.sketchfab.com/v3/models/1215be2d63b24825b6ae2838007492fe",
+      "provider_thumbnail_sha256": "15ddd22ee1388bcd1834a2105e5678fd1c850712f370ecbd277912fee01a8dee",
+      "diagnosis": "Working control: Float32 RGBA normalized=false, varied authored purple-gray vertex colors and gray baseFactor [.5,.5,.5]. Preserved source values, exposure .2, metalness0 and roughness.9 explain a much darker image than Bonsa at .85.",
+      "decision": "Exposure .2 only; source RGBA, base multiplier and PBR unchanged.",
+      "limitation": "No new identity or orientation decision in this narrow report.",
+      "final_thumbnail_sha256": "e2b0d68c9cd100050e3e3bce9c8c40af451289504fe7d29b3e669f2652d7199f",
+      "root_approved": true
+    }
+  ],
+  "original_export_evidence": {
+    "blue_lion": "Locally archived Sketchfab12.66.0 original already has grayscale COLOR_0 and pale cyan PBR multiplier [0.6299407417903473,0.9042472442522896,0.9213560469775339,1]. Not Atrium-generated.",
+    "folon": "Locally archived Sketchfab12.66.0 original has allblack RGB with alpha1 across10 color accessors, despite exact publisher preview showing neutral gray. The exception is a presentation decision, not proof the attribute was generated.",
+    "bonsa": "Proper Draco decoding and actual THREE Float32Array agree on varied blue/green-gray RGBA. Original archive was not fetched for this review."
+  },
+  "test": "scripts/test-authored-vertex-colors.mjs executes actual Viewer and renderer functions, checks default uniformblack preservation, explicit exception, unchanged attribute/PBR/base, no generated palette and existing legacy/textured behaviors. Actual serialized GLB/USDZ assertions confirm ordinary authored black remains exported; explicit neutral export copies omit color while live geometry/attribute/values stay unchanged.",
+  "independent_final_followup": {
+    "reviewed_at": "2026-10-15T19:26:33.083637+00:00",
+    "result": "pass_all3_material_findings_resolved",
+    "rows": [
+      {
+        "slug": "modern/mhondorohuma-bonsa-drummer",
+        "result": "pass",
+        "visual_review": "Blue-gray/green surface variation, pale veins and rough greenish head remain visible; the prior near-white washout is resolved. Complete seated figure, drum and base fit the unchanged framing. Material reads consistently with the provider capture, allowing lighting differences.",
+        "thumbnail_sha256": "59dab4fcaf00cc8fa1fbf4ae8ad7387c37fe36196f93d55725f1f4083b99e85f"
+      },
+      {
+        "slug": "europe/xavier-veilhan-le-lion-blue-lion",
+        "result": "pass",
+        "visual_review": "Pale cyan/blue material and geometric facets remain visible at lower exposure. The complete lion, forepaw rock and slab fit unchanged framing. Source grayscale colors and blue PBR multiplier remain the basis; no added saturation or painted reconstruction is inferred.",
+        "thumbnail_sha256": "021b3dea8a566574e0e961b2366a67bc616aca3817b1b833903c273d76b7fc0b"
+      },
+      {
+        "slug": "europe/jean-michel-folon-angelo-custode",
+        "result": "pass",
+        "visual_review": "Neutral light-gray study surface replaces the near-black presentation. The complete winged figure and inscribed pedestal are legible with unchanged framing. This is a documented source-neutral exception, not a claim to reproduce an original bronze patina.",
+        "thumbnail_sha256": "64ef8b0c975f2c996796a6c845f5e1cec39fdd9c15aefda109194714e2a611b1"
+      }
+    ]
+  }
+}

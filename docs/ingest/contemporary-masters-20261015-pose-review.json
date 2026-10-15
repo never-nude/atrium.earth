@@ -702,7 +702,7 @@
   "final_render_status": "Required: selected poses and corrected source-color renderer",
   "cloud_pose_run": {
     "run_id": 38786678730,
-    "status": "cancellation requested after full local/cloud pose review completed",
+    "status": "cancelled intentionally after required review completed",
     "reason": "Four dense-model shards remained slow; 13 cloud sheets plus nine exact local A–J sheets and one matching-side supplemental completed the required 22-work review. Final renders use the reviewed explicit poses and corrected renderer.",
     "reviewed_cloud_sets": 13,
     "reviewed_local_sets": 9

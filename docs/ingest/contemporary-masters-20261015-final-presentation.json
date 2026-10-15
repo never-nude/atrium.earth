@@ -1,0 +1,2212 @@
+{
+  "schema": "atrium-final-presentation-review/1",
+  "checked": "2026-10-15T19:21:06.134Z",
+  "cloud_run": 38790096001,
+  "count": 83,
+  "new_public": 20,
+  "existing_native_color": 63,
+  "source_and_preview_bytes_unchanged": true,
+  "scope": "All20 new public works reviewed at full thumbnail resolution; all63 existing native-color works reviewed old/new, with3 scoped final rerenders independently rechecked. Two additional accepted sources are hidden visual holds.",
+  "renderer_files": {
+    "public/__render.html": "a5add2927d02adaeb8dfe54d0114333398b66916bfe1e19704fc124ac6da547f",
+    "public/model-render-utils.js": "afc875f080e2f1c7042ff6e2b5e41e298bfaf609d788774f48c8071950d3d2e0",
+    "scripts/render-thumbnails.mjs": "04aeca916a0d411321ba758860f6ce39094cb2c7bb013625e1ba7dacba2bb89d",
+    "src/components/Viewer.astro": "f0d0ea175a92f7d50c889edcfce89e0a852b434eb893c28f33e9aad0a13a3217",
+    "src/data/appearance-overrides.json": "b5e529328088e5d901235c1978e4aa77d7a9b0239a96e39bdb9a33a66f5563f1"
+  },
+  "local_rerender": {
+    "count": 3,
+    "command": "ONLY=<three approved slugs> RENDER_PORT=8197 RENDER_TIMEOUT_MS=90000 node scripts/render-thumbnails.mjs",
+    "resolution": [
+      1000,
+      1250
+    ],
+    "source_geometry_modified": false,
+    "source_material_bytes_modified": false,
+    "approved_by": "Root session after controlled source/provider comparison and final production image review"
+  },
+  "works": [
+    {
+      "slug": "modern/barbara-hepworth-epidauros-ii",
+      "new_work": true,
+      "thumbnail": "public/previews/renders/modern/barbara-hepworth-epidauros-ii/thumb.webp",
+      "thumbnail_bytes": 87526,
+      "thumbnail_sha256": "4ec3adb93067f8e123df6b53846329563138774d539fcf6f5358c9306510c93f",
+      "poster": "public/previews/posters/modern/barbara-hepworth-epidauros-ii/poster.svg",
+      "poster_sha256": "6176a38b3d3ff39f19f426c81e94eda2975029f448420e898e185584a7d4ab52",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "https://models.atrium.earth/models/previews/modern/barbara-hepworth-epidauros-ii/preview-4b3992ddd707.glb",
+      "preview_bytes": 1143356,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "status": "reviewed",
+        "note": "Source-reference and ten-view review, 2026-10-15. Oval bronze upright above its rectangular base, with central opening and concave green-patinated face matching the artist-estate/publisher front. Scanned patina and all-around captured form retained."
+      }
+    },
+    {
+      "slug": "modern/jaume-plensa-carmela",
+      "new_work": true,
+      "thumbnail": "public/previews/renders/modern/jaume-plensa-carmela/thumb.webp",
+      "thumbnail_bytes": 33994,
+      "thumbnail_sha256": "9d364f91f2b4aeac82586097e38681538a973f5d882a0ec5693197abc774e84d",
+      "poster": "public/previews/posters/modern/jaume-plensa-carmela/poster.svg",
+      "poster_sha256": "ba68646768d491114cd6ea9fc37a10416dd3cb7a20e61102e0a34d1521b1542a",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "https://models.atrium.earth/models/previews/modern/jaume-plensa-carmela/preview-262fb4989b28.glb",
+      "preview_bytes": 527820,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "status": "reviewed",
+        "note": "Source-reference and ten-view review, 2026-10-15. Head upright with crown above chin and white circular display plinth below, source face toward the camera. Captured plinth remains distinct from the documented sculpture height."
+      }
+    },
+    {
+      "slug": "modern/arne-vinje-gunnerud-fenrisulven-fenris-wolf",
+      "new_work": true,
+      "thumbnail": "public/previews/renders/modern/arne-vinje-gunnerud-fenrisulven-fenris-wolf/thumb.webp",
+      "thumbnail_bytes": 97896,
+      "thumbnail_sha256": "2e157585a8e9fd24b2b162c24fe9fe0d3695889794496413d482c1c29d5d8750",
+      "poster": "public/previews/posters/modern/arne-vinje-gunnerud-fenrisulven-fenris-wolf/poster.svg",
+      "poster_sha256": "af6f5d611d4a3798a0993f1faa29a0c9ba0c3083a61f7beaa70c7e652a107f58",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "https://models.atrium.earth/models/previews/modern/arne-vinje-gunnerud-fenrisulven-fenris-wolf/preview-f3953722afb0.glb",
+      "preview_bytes": 1566148,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 180,
+        "status": "reviewed",
+        "note": "Source-reference and ten-view review, 2026-10-15. Sculpture upright with left-facing wolf head and lower coil/leg arrangement matching the museum publisher’s front. Supplemental B plus a true vertical half-turn confirms the matching side; source metallic/PBR maps retained."
+      }
+    },
+    {
+      "slug": "modern/ossip-zadkine-promethee-elm-wood-version",
+      "new_work": true,
+      "thumbnail": "public/previews/renders/modern/ossip-zadkine-promethee-elm-wood-version/thumb.webp",
+      "thumbnail_bytes": 46056,
+      "thumbnail_sha256": "f24e74f259162a27c6516aad1223d13f31bec6e84cd53a73e25ce76c9a988004",
+      "poster": "public/previews/posters/modern/ossip-zadkine-promethee-elm-wood-version/poster.svg",
+      "poster_sha256": "3f1ad902b6d1ecba6213c9a329af200443688aa9184d186f8d3c00c8eafabe43",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "https://models.atrium.earth/models/previews/modern/ossip-zadkine-promethee-elm-wood-version/preview-ce758d53256a.glb",
+      "preview_bytes": 1498812,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "status": "reviewed",
+        "note": "Source-reference and ten-view review, 2026-10-15. Full wooden figure upright on its carved integral foot, face and projecting chest forms matching the museum/publisher front. Wood texture and carved reverse retained."
+      }
+    },
+    {
+      "slug": "modern/hans-jean-arp-form-heard-and-seen",
+      "new_work": true,
+      "thumbnail": "public/previews/renders/modern/hans-jean-arp-form-heard-and-seen/thumb.webp",
+      "thumbnail_bytes": 19400,
+      "thumbnail_sha256": "ecdf0caa71a9535783c1cb7b8caace7f0bff6ecdb7fee5baf408213dd90290b9",
+      "poster": "public/previews/posters/modern/hans-jean-arp-form-heard-and-seen/poster.svg",
+      "poster_sha256": "ae29503357db9c43b640800bd2f8bb263d03e8edcb60f441f9d7606e8bdcc3fc",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "https://models.atrium.earth/models/previews/modern/hans-jean-arp-form-heard-and-seen/preview-96b4f3b6a853.glb",
+      "preview_bytes": 1290440,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "status": "reviewed",
+        "note": "Source-reference and ten-view review, 2026-10-15. Original pointed form upright with broad lower foot and round lateral lobe, matching the museum source front; no environmental pedestal captured."
+      }
+    },
+    {
+      "slug": "modern/joan-miro-projet-pour-un-monument-c07aae",
+      "new_work": true,
+      "thumbnail": "public/previews/renders/modern/joan-miro-projet-pour-un-monument-c07aae/thumb.webp",
+      "thumbnail_bytes": 39634,
+      "thumbnail_sha256": "45b40a4f33a9a3e70b84e324a343712159b1b9277b9a024cd71b7309bb16af8d",
+      "poster": "public/previews/posters/modern/joan-miro-projet-pour-un-monument-c07aae/poster.svg",
+      "poster_sha256": "5098e6e0a1c189a676838041c89b4c2c9a1e0aade0db81686e205a38c0c55fbd",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "https://models.atrium.earth/models/previews/modern/joan-miro-projet-pour-un-monument-c07aae/preview-d9c90ad7ead1.glb",
+      "preview_bytes": 1290676,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          -90,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "status": "reviewed",
+        "note": "Source-reference and ten-view review, 2026-10-15. Source +Z is vertical: the two conical legs stand below the open oval and projections, matching the publisher front and documented Projet pour un monument composition. Explicit D avoids relying on auto-axis inference."
+      }
+    },
+    {
+      "slug": "modern/jacques-lipchitz-sacrifice-iii",
+      "new_work": true,
+      "thumbnail": "public/previews/renders/modern/jacques-lipchitz-sacrifice-iii/thumb.webp",
+      "thumbnail_bytes": 61138,
+      "thumbnail_sha256": "450598faed55c3c8e0b885ac1c58e63a4419fe41f687b00c5fabfdea57fcb953",
+      "poster": "public/previews/posters/modern/jacques-lipchitz-sacrifice-iii/poster.svg",
+      "poster_sha256": "1dd101bfb5ab2a354cbcfc1b0f910645b0ad4ae3c346aa3bee2f7188c05eb7f6",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "https://models.atrium.earth/models/previews/modern/jacques-lipchitz-sacrifice-iii/preview-add2bf231f8b.glb",
+      "preview_bytes": 291476,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 180,
+        "status": "reviewed",
+        "note": "Source-reference and ten-view review, 2026-10-15. B establishes the original upright +Y axis with square base below figures. Turn 180° about verified vertical Y to show source figure front; supplemental final thumbnail required."
+      }
+    },
+    {
+      "slug": "modern/niki-de-saint-phalle-tir-shooting-altar",
+      "new_work": true,
+      "thumbnail": "public/previews/renders/modern/niki-de-saint-phalle-tir-shooting-altar/thumb.webp",
+      "thumbnail_bytes": 76796,
+      "thumbnail_sha256": "1ee29c38f247c5a990b3fbbbfbc79b470750d21a06a34d8f4edd3b4fd0213c08",
+      "poster": "public/previews/posters/modern/niki-de-saint-phalle-tir-shooting-altar/poster.svg",
+      "poster_sha256": "98426e3430aa82bac0cf6aacfff7f292a09df7106539c456ee29146cbde0566a",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "https://models.atrium.earth/models/previews/modern/niki-de-saint-phalle-tir-shooting-altar/preview-dff5d7419af5.glb",
+      "preview_bytes": 1177008,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "status": "reviewed",
+        "note": "Source-reference and ten-view review, 2026-10-15. Upright frontal altar/assemblage matches source front. Its reverse is not comprehensively captured; retain the authored front-side capture and display floor without invented rear surfaces."
+      }
+    },
+    {
+      "slug": "modern/eduardo-paolozzi-hommage-a-anton-bruckner",
+      "new_work": true,
+      "thumbnail": "public/previews/renders/modern/eduardo-paolozzi-hommage-a-anton-bruckner/thumb.webp",
+      "thumbnail_bytes": 78422,
+      "thumbnail_sha256": "9c69d82a20c60aea49be4895c278788dfe5443867b98e0bb66f542d52d7c4cd3",
+      "poster": "public/previews/posters/modern/eduardo-paolozzi-hommage-a-anton-bruckner/poster.svg",
+      "poster_sha256": "25f72837cd2061170a53c805afd375766e9b22c134862b52303064ac809772b3",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "https://models.atrium.earth/models/previews/modern/eduardo-paolozzi-hommage-a-anton-bruckner/preview-bafdc8861ecf.glb",
+      "preview_bytes": 447016,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0.3,
+          1,
+          0.6
+        ],
+        "status": "reviewed",
+        "note": "Source-reference and ten-view review, 2026-10-15. Outdoor sculpture lies horizontally within its captured ground border, matching the publisher/site reference. Higher initial camera shows the architectural relief from above; the object remains in its physical horizontal pose."
+      }
+    },
+    {
+      "slug": "modern/josh-smith-friend",
+      "new_work": true,
+      "thumbnail": "public/previews/renders/modern/josh-smith-friend/thumb.webp",
+      "thumbnail_bytes": 63468,
+      "thumbnail_sha256": "6214c709a1cae54702869032c7d8406524087f5e28e21a7d9a156ece2b176130",
+      "poster": "public/previews/posters/modern/josh-smith-friend/poster.svg",
+      "poster_sha256": "f0b29211de694c35072aa0637f8ad884cbe67d0d7b4ddb2e413869f94655e823",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "https://models.atrium.earth/models/previews/modern/josh-smith-friend/preview-dc89aebb839b.glb",
+      "preview_bytes": 410716,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 90,
+        "status": "reviewed",
+        "note": "Source-reference and ten-view review, 2026-10-15. B verifies +Y upright. A true vertical quarter-turn presents the hooded figure, open arms and raised scythe/staff toward the camera, matching the source front. Captured grass remains; London is historical display only."
+      }
+    },
+    {
+      "slug": "modern/lucio-fontana-angel-from-the-monument-to-paolo-chinelli-with-architectural-setting",
+      "new_work": true,
+      "thumbnail": "public/previews/renders/modern/lucio-fontana-angel-from-the-monument-to-paolo-chinelli-with-architectural-setting/thumb.webp",
+      "thumbnail_bytes": 77950,
+      "thumbnail_sha256": "a5db4c3c421fe059bead6eb465667ffb8b5ae30df04e92cdc81c7d18eb88c938",
+      "poster": "public/previews/posters/modern/lucio-fontana-angel-from-the-monument-to-paolo-chinelli-with-architectural-setting/poster.svg",
+      "poster_sha256": "368af11034e312ae2d7d043c4017cc0a276e3b57239ec26056a6a4dd1dd193dd",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "https://models.atrium.earth/models/previews/modern/lucio-fontana-angel-from-the-monument-to-paolo-chinelli-with-architectural-setting/preview-3bbf8367e8c0.glb",
+      "preview_bytes": 1612444,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "status": "reviewed",
+        "note": "Source-reference and ten-view review, 2026-10-15. Open side of the architectural niche faces the camera, with complete captured angel above its support and the grave flowers below. The title/notes distinguish this angel capture with cropped architectural setting from the complete original monument."
+      }
+    },
+    {
+      "slug": "modern/hans-jean-arp-heart-of-a-monument",
+      "new_work": true,
+      "thumbnail": "public/previews/renders/modern/hans-jean-arp-heart-of-a-monument/thumb.webp",
+      "thumbnail_bytes": 21108,
+      "thumbnail_sha256": "13a49920f803ba8f5c128f602a07c86eda6b80f9d30e7c3d3d5345e0e2ea5211",
+      "poster": "public/previews/posters/modern/hans-jean-arp-heart-of-a-monument/poster.svg",
+      "poster_sha256": "75c53dc387c0f5ef1d3c44f5aa2d61e4280829f936ec5bc21343c1ddd310ec95",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "https://models.atrium.earth/models/previews/modern/hans-jean-arp-heart-of-a-monument/preview-a63a9db76dff.glb",
+      "preview_bytes": 153776,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "status": "reviewed",
+        "note": "Source-reference and ten-view review, 2026-10-15. Stone form upright with horizontal incision across its upper portion, matching the museum source front. Entire sculpture is retained without a surrounding scene or modern pedestal."
+      }
+    },
+    {
+      "slug": "modern/hans-jean-arp-ugledrm-owl-dream",
+      "new_work": true,
+      "thumbnail": "public/previews/renders/modern/hans-jean-arp-ugledrm-owl-dream/thumb.webp",
+      "thumbnail_bytes": 21872,
+      "thumbnail_sha256": "a76336007a7608d73d1469f1a7204d06fbf12f15197b67a3afe1a8d8feb93979",
+      "poster": "public/previews/posters/modern/hans-jean-arp-ugledrm-owl-dream/poster.svg",
+      "poster_sha256": "3ed1e7075b441e7537a868e1e5089e6fdc5abeaa65810f1b94400cb8acf6eb36",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "https://models.atrium.earth/models/previews/modern/hans-jean-arp-ugledrm-owl-dream/preview-6a87b00fa65d.glb",
+      "preview_bytes": 1334508,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "status": "reviewed",
+        "note": "Source-reference and ten-view review, 2026-10-15. Stone sculpture upright on its cylindrical captured pedestal, with folded upper form matching the museum source front. Physical size remains unrecorded; no original-versus-pedestal measurement is inferred."
+      }
+    },
+    {
+      "slug": "modern/jaume-plensa-humming",
+      "new_work": true,
+      "thumbnail": "public/previews/renders/modern/jaume-plensa-humming/thumb.webp",
+      "thumbnail_bytes": 16696,
+      "thumbnail_sha256": "e2b0d68c9cd100050e3e3bce9c8c40af451289504fe7d29b3e669f2652d7199f",
+      "poster": "public/previews/posters/modern/jaume-plensa-humming/poster.svg",
+      "poster_sha256": "193d2637b333b7dcffad728e06c2dd1e3a51d588c8bfb29faf5e7d3475899d72",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "https://models.atrium.earth/models/previews/modern/jaume-plensa-humming/preview-64cef5e96e4a.glb",
+      "preview_bytes": 269884,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "status": "reviewed",
+        "note": "Source-reference and ten-view review, 2026-10-15. Compressed marble head upright with crown above chin, authored profile facing the camera. Source COLOR_0 vertex colors retained by the renderer preservation fix; final color rerender required."
+      }
+    },
+    {
+      "slug": "americas/frank-stella-maha-lat-5-5x-da59cb",
+      "new_work": true,
+      "thumbnail": "public/previews/renders/americas/frank-stella-maha-lat-5-5x-da59cb/thumb.webp",
+      "thumbnail_bytes": 82074,
+      "thumbnail_sha256": "3a99f194732e736f97c429f36cd1f164ebb739a3b0ede02fcb836f5e1f9798a7",
+      "poster": "public/previews/posters/americas/frank-stella-maha-lat-5-5x-da59cb/poster.svg",
+      "poster_sha256": "bcce0597016749a0e0758b5b7729f7eb23b46ff41962242752d8603b5876377e",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "https://models.atrium.earth/models/previews/americas/frank-stella-maha-lat-5-5x-da59cb/preview-f24bdc46ea30.glb",
+      "preview_bytes": 2498604,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "status": "reviewed",
+        "note": "Source-reference and ten-view review, 2026-10-15. Horizontal wall-mounted relief with striped beam below looping metal forms, matching the illustrated source checklist and publisher front. Authored paint, armature and attached wall/floor residue retained; unrecorded wall-facing rear not reconstructed or used for verified scale."
+      }
+    },
+    {
+      "slug": "unfiled/ai-weiwei-dog-circle-of-animals-zodiac-heads-lacma-6f86e5",
+      "new_work": true,
+      "thumbnail": "public/previews/renders/unfiled/ai-weiwei-dog-circle-of-animals-zodiac-heads-lacma-6f86e5/thumb.webp",
+      "thumbnail_bytes": 49080,
+      "thumbnail_sha256": "68b8c2db3c5af1b803c4f8fef9c885cfbc05f127dcdbdeb81a8556c014f418da",
+      "poster": "public/previews/posters/unfiled/ai-weiwei-dog-circle-of-animals-zodiac-heads-lacma-6f86e5/poster.svg",
+      "poster_sha256": "e3064bbf57ac8fc5a3f8958ced0ad7faba309430a62a8bb2bb32b437bc1278da",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "https://models.atrium.earth/models/previews/unfiled/ai-weiwei-dog-circle-of-animals-zodiac-heads-lacma-6f86e5/preview-0b678d5e1b32.glb",
+      "preview_bytes": 499880,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 180,
+        "status": "reviewed",
+        "note": "Source-reference and ten-view review, 2026-10-15. B establishes +Y upright on the circular sculptural stem/base. Current source thumbnail shows the back; a true vertical half-turn shows the recognizable dog face with ears above muzzle. White captured paving remains; crown patch requires final review."
+      }
+    },
+    {
+      "slug": "modern/joan-miro-double-sided-monolith-estela-de-doble-cara-12d619",
+      "new_work": true,
+      "thumbnail": "public/previews/renders/modern/joan-miro-double-sided-monolith-estela-de-doble-cara-12d619/thumb.webp",
+      "thumbnail_bytes": 70308,
+      "thumbnail_sha256": "cf303291e8fcfca5eb93992d21a3acd2cd9703b634a00f9bcf5783b4c885f5c4",
+      "poster": "public/previews/posters/modern/joan-miro-double-sided-monolith-estela-de-doble-cara-12d619/poster.svg",
+      "poster_sha256": "73e9a316cbb83432dc8ef04cdc0e39e687900bc1dfe68111dbf92faa8aded461",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "https://models.atrium.earth/models/previews/modern/joan-miro-double-sided-monolith-estela-de-doble-cara-12d619/preview-3139a9a66814.glb",
+      "preview_bytes": 462368,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "status": "reviewed",
+        "note": "Source-reference and ten-view review, 2026-10-15. Monolith upright with white star at upper right and black-white eye below, matching publisher front. The distinct incised reverse remains in the complete source geometry."
+      }
+    },
+    {
+      "slug": "modern/joan-miro-mural-for-ibm-3d5da4",
+      "new_work": true,
+      "thumbnail": "public/previews/renders/modern/joan-miro-mural-for-ibm-3d5da4/thumb.webp",
+      "thumbnail_bytes": 64988,
+      "thumbnail_sha256": "4baa73aa5cd61a817aa0f9c5dd965cabaf78f520b507610b514dca8cc3398158",
+      "poster": "public/previews/posters/modern/joan-miro-mural-for-ibm-3d5da4/poster.svg",
+      "poster_sha256": "8098bfd55cf0e428b035bb179672e62cff55e18a8c45fbd9c3268aca4984732b",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "https://models.atrium.earth/models/previews/modern/joan-miro-mural-for-ibm-3d5da4/preview-a6104c5dd5e4.glb",
+      "preview_bytes": 279444,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "status": "reviewed",
+        "note": "Source-reference and ten-view review, 2026-10-15. Horizontal ceramic composition, black star at left and colored birds above the lower white-tile band, matches source front. Full wall capture retained; no sideways mural or transferred geometry size.",
+        "viewDirection": [
+          0.15,
+          0.1,
+          1
+        ]
+      }
+    },
+    {
+      "slug": "modern/joan-miro-wall-of-barcelona-airport-0ed725",
+      "new_work": true,
+      "thumbnail": "public/previews/renders/modern/joan-miro-wall-of-barcelona-airport-0ed725/thumb.webp",
+      "thumbnail_bytes": 35234,
+      "thumbnail_sha256": "b617c28ae95fd8ffca99a50236aa50435931ad0c76403fcffea73a22f61f6fc6",
+      "poster": "public/previews/posters/modern/joan-miro-wall-of-barcelona-airport-0ed725/poster.svg",
+      "poster_sha256": "b01625e23594b07636bbafae687233e8d34e4aa95724a2c88caff95596dfaa0f",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "https://models.atrium.earth/models/previews/modern/joan-miro-wall-of-barcelona-airport-0ed725/preview-fb0170a9c59e.glb",
+      "preview_bytes": 943700,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0.15,
+          0.1,
+          1
+        ],
+        "status": "reviewed",
+        "note": "Source-reference and ten-view review, 2026-10-15. Horizontal frontal mural capture with black star at left, blue lower band, both end motifs and canopy above, matching the full composition reference. Retain building/context; reverse texture is not a documented physical reverse and no whole-scene exact size is inferred."
+      }
+    },
+    {
+      "slug": "modern/joan-miro-tapestry-of-the-fundacio-3b1745",
+      "new_work": true,
+      "thumbnail": "public/previews/renders/modern/joan-miro-tapestry-of-the-fundacio-3b1745/thumb.webp",
+      "thumbnail_bytes": 220346,
+      "thumbnail_sha256": "bfe3bde6ee384587baff7b7f93fc93798d20bf1eb5b27b2db08069e4cd7be86d",
+      "poster": "public/previews/posters/modern/joan-miro-tapestry-of-the-fundacio-3b1745/poster.svg",
+      "poster_sha256": "e88674c67b2319ea0580823d4a741a66e8c03c52fbdb08debc4969f15da4ff33",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "https://models.atrium.earth/models/previews/modern/joan-miro-tapestry-of-the-fundacio-3b1745/preview-e7cbc3cce267.glb",
+      "preview_bytes": 1654572,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0.15,
+          0.1,
+          1
+        ],
+        "status": "reviewed",
+        "note": "Source-reference and ten-view review, 2026-10-15. Frontal tapestry capture upright with pointed green form above the large red circle and blue arc at upper right, matching the Foundation composition and publisher front. Entire perimeter is retained; reverse and individual free strands are not comprehensively captured."
+      }
+    },
+    {
+      "slug": "europe/carolan-harp-national-museum-ireland",
+      "new_work": false,
+      "thumbnail": "public/previews/renders/europe/carolan-harp-national-museum-ireland/thumb.webp",
+      "thumbnail_bytes": 18698,
+      "thumbnail_sha256": "396c67132115cf20c25b04c986ea4747a8ddf92274276a8a8d6c0d3fd5185b30",
+      "poster": "public/previews/posters/europe/carolan-harp-national-museum-ireland/poster.svg",
+      "poster_sha256": "091364177a499f1a0b1fd5f0d81d49de671180fe3f12c260d4e55ce6bf8eccb9",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "https://models.atrium.earth/models/previews/europe/carolan-harp-national-museum-ireland/preview.glb",
+      "preview_bytes": 2519132,
+      "orientation": null
+    },
+    {
+      "slug": "egyptian/bust-of-amun-e10377-louvre",
+      "new_work": false,
+      "thumbnail": "public/previews/renders/egyptian/bust-of-amun-e10377-louvre/thumb.webp",
+      "thumbnail_bytes": 38642,
+      "thumbnail_sha256": "c7e83d574daef0464b632deff674f120ae07f9abc444f703a882b949b470a0e2",
+      "poster": "public/previews/posters/egyptian/bust-of-amun-e10377-louvre/poster.svg",
+      "poster_sha256": "16351e18f910022637b52612692270de3632242e7fb46f7b8b597fe45e223dd2",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "https://models.atrium.earth/models/previews/egyptian/bust-of-amun-e10377-louvre/preview.glb",
+      "preview_bytes": 1480516,
+      "orientation": null
+    },
+    {
+      "slug": "egyptian/standing-horus-n5149-louvre",
+      "new_work": false,
+      "thumbnail": "public/previews/renders/egyptian/standing-horus-n5149-louvre/thumb.webp",
+      "thumbnail_bytes": 38440,
+      "thumbnail_sha256": "6c793e00ee25730917050aa9c0a8c6a1cff1b70adaea5e15b9c6bda766eea47c",
+      "poster": "public/previews/posters/egyptian/standing-horus-n5149-louvre/poster.svg",
+      "poster_sha256": "ecb63b23512c95579b5bca779a1cc1d6691f301aa1f4bb425d279cf6c9843b1c",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "https://models.atrium.earth/models/previews/egyptian/standing-horus-n5149-louvre/preview.glb",
+      "preview_bytes": 1444936,
+      "orientation": null
+    },
+    {
+      "slug": "americas/moche-seated-figure-umich",
+      "new_work": false,
+      "thumbnail": "public/previews/renders/americas/moche-seated-figure-umich/thumb.webp",
+      "thumbnail_bytes": 53584,
+      "thumbnail_sha256": "f3db032c7866e1d378f3a5ed34dfd8ae55f250c3141e6ade807c042c69d66e8b",
+      "poster": "public/previews/posters/americas/moche-seated-figure-umich/poster.svg",
+      "poster_sha256": "daaa81704ca78f15cd353612bb02876a24489194b6051068392d462fb8a71ebb",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "https://models.atrium.earth/models/previews/americas/moche-seated-figure-umich/preview-57587c62ed4f.glb",
+      "preview_bytes": 8173804,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 90,
+        "viewDirection": [
+          0.55,
+          0.34,
+          0.9
+        ],
+        "status": "reviewed",
+        "note": "Visually checked 2026-09-07 against the source reference image and Atrium render; native Y-up retained. Opening yaw corrected to show the face and crossed legs."
+      }
+    },
+    {
+      "slug": "modern/oteiza-homenaje-al-caserio-vasco",
+      "new_work": false,
+      "thumbnail": "public/previews/renders/modern/oteiza-homenaje-al-caserio-vasco/thumb.webp",
+      "thumbnail_bytes": 36926,
+      "thumbnail_sha256": "610d0cd6a9e507d51fc1e1695bf28fe68692def45584356081eb7cfe92283249",
+      "poster": "public/previews/posters/modern/oteiza-homenaje-al-caserio-vasco/poster.svg",
+      "poster_sha256": "a6c3ac19c8b2877efb6b1fe65795dd5c1d66e2c4fcc49efa01d037fdf3632e58",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "https://models.atrium.earth/models/previews/modern/oteiza-homenaje-al-caserio-vasco/preview-3b1eb0ba4276.glb",
+      "preview_bytes": 2115952,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0.55,
+          0.34,
+          0.9
+        ],
+        "status": "reviewed",
+        "note": "Base horizontal, sculpture upright; front and side show open spaces. Neutral untextured treatment retained."
+      }
+    },
+    {
+      "slug": "modern/arman-accord-final",
+      "new_work": false,
+      "thumbnail": "public/previews/renders/modern/arman-accord-final/thumb.webp",
+      "thumbnail_bytes": 34026,
+      "thumbnail_sha256": "9b7749c48ba8b1076d392a2b5c69efd5567fb468b0754431396332eddfd9c238",
+      "poster": "public/previews/posters/modern/arman-accord-final/poster.svg",
+      "poster_sha256": "af780b0efe609a9afec889f45fa608d96aee47238a8d5466f6791536248995f6",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "https://models.atrium.earth/models/previews/modern/arman-accord-final/preview-715d7becfc43.glb",
+      "preview_bytes": 1625860,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0.65,
+          0.65,
+          1
+        ],
+        "status": "reviewed",
+        "note": "Upright pose, full captured extent and preferred view checked against the source reference and front, back and side renders; production viewer checked locally.",
+        "fit": 1.12
+      }
+    },
+    {
+      "slug": "egyptian/male-official-torso-hmane",
+      "new_work": false,
+      "thumbnail": "public/previews/renders/egyptian/male-official-torso-hmane/thumb.webp",
+      "thumbnail_bytes": 40644,
+      "thumbnail_sha256": "89d8565b20defb4bebe83624602daebc49647afeee57b463dd56fcf96eda7c3c",
+      "poster": "public/previews/posters/egyptian/male-official-torso-hmane/poster.svg",
+      "poster_sha256": "290356b14c3098b9765f35293abba13dc0ec52b52e91e365f8ad2d612a9b70d1",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "https://models.atrium.earth/models/previews/egyptian/male-official-torso-hmane/preview-152190b52424.glb",
+      "preview_bytes": 437160,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          -11.6659,
+          0.1208,
+          -1.1827
+        ],
+        "viewDirection": [
+          0.35,
+          0.22,
+          1
+        ],
+        "fit": 1.12,
+        "status": "reviewed",
+        "confidence": 0.9,
+        "note": "Visually reviewed 2026-09-08: upright, readable view with the full object framed in its rendered thumbnail.",
+        "yaw": 0
+      }
+    },
+    {
+      "slug": "modern/bacchante-etcheto-pau",
+      "new_work": false,
+      "thumbnail": "public/previews/renders/modern/bacchante-etcheto-pau/thumb.webp",
+      "thumbnail_bytes": 31258,
+      "thumbnail_sha256": "5e40d2fd1c66d0ae82736cf6fcdeea513fd962557f45ddd3198eadddeb89ad89",
+      "poster": "public/previews/posters/modern/bacchante-etcheto-pau/poster.svg",
+      "poster_sha256": "3f1bed7ead959aec93cad3d397896e964b3cc0441a2ef289aae40e65159b7a29",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "https://models.atrium.earth/models/previews/modern/bacchante-etcheto-pau/preview-a37c90a6013f.glb",
+      "preview_bytes": 1663680,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          60,
+          0
+        ],
+        "viewDirection": [
+          0.35,
+          0.22,
+          1
+        ],
+        "fit": 1.08,
+        "status": "reviewed",
+        "confidence": "visual",
+        "note": "Standing figure turned to the front; head, folded arms, torso, and base included."
+      }
+    },
+    {
+      "slug": "modern/triumph-of-woman-lambeaux-mariemont",
+      "new_work": false,
+      "thumbnail": "public/previews/renders/modern/triumph-of-woman-lambeaux-mariemont/thumb.webp",
+      "thumbnail_bytes": 33176,
+      "thumbnail_sha256": "21e18b59fcf987effdbac55d934d993f51810dc4dc793165c3739303a860c2ac",
+      "poster": "public/previews/posters/modern/triumph-of-woman-lambeaux-mariemont/poster.svg",
+      "poster_sha256": "98b482f01c0a3a3f157536ff8674dc99afa349d80dba4d9e414fd74b4293bc7e",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "https://models.atrium.earth/models/previews/modern/triumph-of-woman-lambeaux-mariemont/preview-41adfd297902.glb",
+      "preview_bytes": 1076952,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          180,
+          0
+        ],
+        "viewDirection": [
+          0.35,
+          0.22,
+          1
+        ],
+        "fit": 1.08,
+        "status": "reviewed",
+        "confidence": "visual",
+        "note": "Adult group upright, with the figures and complete pedestal visible; exposure increased to reveal the dark bronze."
+      }
+    },
+    {
+      "slug": "modern/eve-and-serpent-desenfans-josaphat",
+      "new_work": false,
+      "thumbnail": "public/previews/renders/modern/eve-and-serpent-desenfans-josaphat/thumb.webp",
+      "thumbnail_bytes": 47248,
+      "thumbnail_sha256": "4b655b47bafdd4d0a76f22889881492504712ad10629448918857355929deafc",
+      "poster": "public/previews/posters/modern/eve-and-serpent-desenfans-josaphat/poster.svg",
+      "poster_sha256": "92f7dd563739eb25fd86e1884682cda382b12f79165a736528241f7ae14b752b",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "https://models.atrium.earth/models/previews/modern/eve-and-serpent-desenfans-josaphat/preview-11147e5c9d8a.glb",
+      "preview_bytes": 2073060,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          90,
+          0
+        ],
+        "viewDirection": [
+          0.35,
+          0.22,
+          1
+        ],
+        "fit": 1.08,
+        "status": "reviewed",
+        "confidence": "visual",
+        "note": "Eve upright, with the face, arms, and serpent visible; exposure increased to reveal the dark bronze."
+      }
+    },
+    {
+      "slug": "modern/nude-in-sun-harvent-mons",
+      "new_work": false,
+      "thumbnail": "public/previews/renders/modern/nude-in-sun-harvent-mons/thumb.webp",
+      "thumbnail_bytes": 29000,
+      "thumbnail_sha256": "37854b7daaf942387a6a9efcc5503a58d9eb4c11e125e03b1e41470d133c79d0",
+      "poster": "public/previews/posters/modern/nude-in-sun-harvent-mons/poster.svg",
+      "poster_sha256": "fbe06fe835796e8c5da8f646cf33ad6520c1d40fff8ae1051a0b82527caabe7e",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "https://models.atrium.earth/models/previews/modern/nude-in-sun-harvent-mons/preview-6c3b82e1725b.glb",
+      "preview_bytes": 952452,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "viewDirection": [
+          0.35,
+          0.22,
+          1
+        ],
+        "fit": 1.12,
+        "status": "reviewed",
+        "notes": "Upright rear three-quarter view shows both buttocks and the hands-on-hips stance."
+      }
+    },
+    {
+      "slug": "modern/seated-bather-marboutier-pau",
+      "new_work": false,
+      "thumbnail": "public/previews/renders/modern/seated-bather-marboutier-pau/thumb.webp",
+      "thumbnail_bytes": 29350,
+      "thumbnail_sha256": "3f7733933a52fe5e21fa208649fd7632c13297ecf1a762b3cdac45fb8e57fd64",
+      "poster": "public/previews/posters/modern/seated-bather-marboutier-pau/poster.svg",
+      "poster_sha256": "692029f56dac98c4ed4d4f2f464629489f2a647c141e0913dd5dac1d3dc65941",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "https://models.atrium.earth/models/previews/modern/seated-bather-marboutier-pau/preview-879bbefc27d3.glb",
+      "preview_bytes": 1689916,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          180,
+          0
+        ],
+        "viewDirection": [
+          -0.8660254037844386,
+          0.16,
+          0.5000000000000001
+        ],
+        "fit": 1.12,
+        "status": "reviewed",
+        "notes": "Rear three-quarter view shows the seated buttocks, curved back, extended legs, and entire rectangular base."
+      }
+    },
+    {
+      "slug": "europe/trypillian-female-figurine",
+      "new_work": false,
+      "thumbnail": "public/previews/renders/europe/trypillian-female-figurine/thumb.webp",
+      "thumbnail_bytes": 30086,
+      "thumbnail_sha256": "2e678f56b3ebc73859a91d9231de6b2a03c4cfe8dab313cc7a4fa581271a4776",
+      "poster": "public/previews/posters/europe/trypillian-female-figurine/poster.svg",
+      "poster_sha256": "d6d02024e113ca1b2417f3f1b0f3bc4c9be735eb21385743a6ccff3d546a0d5a",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "https://models.atrium.earth/models/previews/europe/trypillian-female-figurine/preview-b45cc5ec323b.glb",
+      "preview_bytes": 1531204,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          179.1732,
+          -0.0176,
+          -177.5617
+        ],
+        "viewDirection": [
+          1,
+          0.18,
+          0
+        ],
+        "fit": 1.12,
+        "status": "reviewed",
+        "notes": "Rear three-quarter view presents the expanded hips, incised surface, and full figure upright.",
+        "yaw": 0
+      }
+    },
+    {
+      "slug": "contemporary/hercules-sancti-petri",
+      "new_work": false,
+      "thumbnail": "public/previews/renders/contemporary/hercules-sancti-petri/thumb.webp",
+      "thumbnail_bytes": 43578,
+      "thumbnail_sha256": "53e0ffb95bd9f8107d2f7549d0b66d581ab72b26e2fb8a72f228b9d510a56db1",
+      "poster": "public/previews/posters/contemporary/hercules-sancti-petri/poster.svg",
+      "poster_sha256": "071757024d221fb8bde67442725e4889e4933bb948b484479d18a19cde7e228f",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "https://models.atrium.earth/models/previews/contemporary/hercules-sancti-petri/preview-537d9e6d540a.glb",
+      "preview_bytes": 1147804,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          180,
+          0
+        ],
+        "viewDirection": [
+          0.8660254037844387,
+          0.16,
+          -0.49999999999999983
+        ],
+        "fit": 1.12,
+        "status": "reviewed",
+        "notes": "Rear three-quarter view exposes the buttocks and pointing arm above the fish-decorated base. Archive contains geometry without a color texture."
+      }
+    },
+    {
+      "slug": "modern/eve-temptation-belin",
+      "new_work": false,
+      "thumbnail": "public/previews/renders/modern/eve-temptation-belin/thumb.webp",
+      "thumbnail_bytes": 30374,
+      "thumbnail_sha256": "dccdc7b36ae9cf909b8ba11a72c7332e6eb7f45381d6056eb69da458aeac4493",
+      "poster": "public/previews/posters/modern/eve-temptation-belin/poster.svg",
+      "poster_sha256": "20bb136b7bd611f917d0ff5d9e12c97e90ea5cdad74ea3b1ebad76eb291196f0",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "https://models.atrium.earth/models/previews/modern/eve-temptation-belin/preview-707f7202239e.glb",
+      "preview_bytes": 1197304,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "viewDirection": [
+          0.8660254037844386,
+          0.16,
+          0.5000000000000001
+        ],
+        "fit": 1.12,
+        "status": "reviewed"
+      }
+    },
+    {
+      "slug": "modern/woman-leaf-nelson-style",
+      "new_work": false,
+      "thumbnail": "public/previews/renders/modern/woman-leaf-nelson-style/thumb.webp",
+      "thumbnail_bytes": 32184,
+      "thumbnail_sha256": "37d0afe3263d34c3a6b3c1754afcf88d1dbd1007da345c26e11feaf26c1ef90a",
+      "poster": "public/previews/posters/modern/woman-leaf-nelson-style/poster.svg",
+      "poster_sha256": "127be24a2fe2b4092bc41c967f302b1c4b0d1c385547c9f55af2488359f11659",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "https://models.atrium.earth/models/previews/modern/woman-leaf-nelson-style/preview-4dc19e16a1e8.glb",
+      "preview_bytes": 1321616,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "viewDirection": [
+          0.8660254037844386,
+          0.16,
+          0.5000000000000001
+        ],
+        "fit": 1.12,
+        "status": "reviewed"
+      }
+    },
+    {
+      "slug": "modern/seated-woman-christine-martz",
+      "new_work": false,
+      "thumbnail": "public/previews/renders/modern/seated-woman-christine-martz/thumb.webp",
+      "thumbnail_bytes": 61478,
+      "thumbnail_sha256": "8817febd0d4cf7cb69f03dba126c5908dc70f840ee51d615ab4e043b789e1920",
+      "poster": "public/previews/posters/modern/seated-woman-christine-martz/poster.svg",
+      "poster_sha256": "f54294fadc7e3cebf8b9822987477eee5e1494918a982374eab63da3b3ef8499",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "https://models.atrium.earth/models/previews/modern/seated-woman-christine-martz/preview-c0af3b8e2f75.glb",
+      "preview_bytes": 3953756,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "viewDirection": [
+          0.8660254037844386,
+          0.16,
+          0.5000000000000001
+        ],
+        "fit": 1.12,
+        "status": "reviewed"
+      }
+    },
+    {
+      "slug": "modern/female-torso-guillemot-mons",
+      "new_work": false,
+      "thumbnail": "public/previews/renders/modern/female-torso-guillemot-mons/thumb.webp",
+      "thumbnail_bytes": 42816,
+      "thumbnail_sha256": "10e3e19f44b4a104e6ddd96823ec4902fc75b025a22433ff13ab261b5192f441",
+      "poster": "public/previews/posters/modern/female-torso-guillemot-mons/poster.svg",
+      "poster_sha256": "52a7e0038a1e4864e5171ab07ebca796ee311044f696d8f237bc0a7479f208c9",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "https://models.atrium.earth/models/previews/modern/female-torso-guillemot-mons/preview-711f0aad8a27.glb",
+      "preview_bytes": 2101476,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "viewDirection": [
+          0,
+          0.16,
+          1
+        ],
+        "fit": 1.12,
+        "status": "reviewed"
+      }
+    },
+    {
+      "slug": "modern/falling-leaves-lorieux-mont-de-marsan",
+      "new_work": false,
+      "thumbnail": "public/previews/renders/modern/falling-leaves-lorieux-mont-de-marsan/thumb.webp",
+      "thumbnail_bytes": 42186,
+      "thumbnail_sha256": "46c8894e12a699bb356de8bece359ced3af30e976ec529d7f9043066844f2593",
+      "poster": "public/previews/posters/modern/falling-leaves-lorieux-mont-de-marsan/poster.svg",
+      "poster_sha256": "810de66d76a6f91d3523e99c0cd194978e2e6a85146cc4426c1bd3c8cb45ff83",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "https://models.atrium.earth/models/previews/modern/falling-leaves-lorieux-mont-de-marsan/preview-637e923f8c89.glb",
+      "preview_bytes": 1724820,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "viewDirection": [
+          0.8660254037844386,
+          0.16,
+          0.5000000000000001
+        ],
+        "fit": 1.12,
+        "status": "reviewed"
+      }
+    },
+    {
+      "slug": "modern/brassempouy-torso-conil-reproduction",
+      "new_work": false,
+      "thumbnail": "public/previews/renders/modern/brassempouy-torso-conil-reproduction/thumb.webp",
+      "thumbnail_bytes": 32400,
+      "thumbnail_sha256": "f1c08fa6b069d967e35ea1348b9525b8ef3f619297aac79513fc23808667bb18",
+      "poster": "public/previews/posters/modern/brassempouy-torso-conil-reproduction/poster.svg",
+      "poster_sha256": "9c06d4051258904c2eb350b744cde50fd4c4d8f7dde1d22bc836f5f13f4af5e2",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "https://models.atrium.earth/models/previews/modern/brassempouy-torso-conil-reproduction/preview-10b2c2578d53.glb",
+      "preview_bytes": 1887416,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "viewDirection": [
+          0,
+          0.16,
+          1
+        ],
+        "fit": 1.12,
+        "status": "reviewed"
+      }
+    },
+    {
+      "slug": "modern/reclining-figure-trunkstom",
+      "new_work": false,
+      "thumbnail": "public/previews/renders/modern/reclining-figure-trunkstom/thumb.webp",
+      "thumbnail_bytes": 22596,
+      "thumbnail_sha256": "ac986d1941721761c65d5a1ca14494aea6a22c4cb6e726fd5c99da2126fb39bd",
+      "poster": "public/previews/posters/modern/reclining-figure-trunkstom/poster.svg",
+      "poster_sha256": "19b044c5fb0d91108626eaac2521043c105918e3538ea7965295aad9ea1e27bc",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "https://models.atrium.earth/models/previews/modern/reclining-figure-trunkstom/preview-078a62e63ef5.glb",
+      "preview_bytes": 317668,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "viewDirection": [
+          0.8660254037844386,
+          0.16,
+          0.5000000000000001
+        ],
+        "fit": 1.12,
+        "status": "reviewed"
+      }
+    },
+    {
+      "slug": "modern/spartacus-merrifield-chichester",
+      "new_work": false,
+      "thumbnail": "public/previews/renders/modern/spartacus-merrifield-chichester/thumb.webp",
+      "thumbnail_bytes": 28662,
+      "thumbnail_sha256": "40584044d963d1887c0ae3a611d2c0140404ee1b74d5ac2085068e33a0cfc52e",
+      "poster": "public/previews/posters/modern/spartacus-merrifield-chichester/poster.svg",
+      "poster_sha256": "87f254f7754c7d37bdee537bed59595cad51c2ffa796155ddb8f5438ddf197b4",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "https://models.atrium.earth/models/previews/modern/spartacus-merrifield-chichester/preview-33fb36441f40.glb",
+      "preview_bytes": 1482580,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          3.2127,
+          0.0198,
+          0.7077
+        ],
+        "viewDirection": [
+          0.8660254037844386,
+          0.16,
+          0.5000000000000001
+        ],
+        "fit": 1.12,
+        "status": "reviewed",
+        "yaw": 0
+      }
+    },
+    {
+      "slug": "modern/seated-woman-trizuljak-bratislava",
+      "new_work": false,
+      "thumbnail": "public/previews/renders/modern/seated-woman-trizuljak-bratislava/thumb.webp",
+      "thumbnail_bytes": 100620,
+      "thumbnail_sha256": "b5b27a5cb4a3453c0f7f732081acb74ca5ebf696e7126efb8ea24a77cb7709f8",
+      "poster": "public/previews/posters/modern/seated-woman-trizuljak-bratislava/poster.svg",
+      "poster_sha256": "f7a4719588793dbf43c6329e18d6dc294ae0a01b240c2ad08d0813db62ec644a",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "https://models.atrium.earth/models/previews/modern/seated-woman-trizuljak-bratislava/preview-5abb0a4a0f21.glb",
+      "preview_bytes": 3626704,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "viewDirection": [
+          0,
+          0.16,
+          1
+        ],
+        "fit": 1.12,
+        "status": "reviewed"
+      }
+    },
+    {
+      "slug": "medieval/horse-aquamanile-hunt",
+      "new_work": false,
+      "thumbnail": "public/previews/renders/medieval/horse-aquamanile-hunt/thumb.webp",
+      "thumbnail_bytes": 31132,
+      "thumbnail_sha256": "f07824b9634c945e217f2b09e848ed8ffe6faf7bb4b1d7669130c3bb0943f43f",
+      "poster": "public/previews/posters/medieval/horse-aquamanile-hunt/poster.svg",
+      "poster_sha256": "08b0de42ec43428b7fa0d03d79c18f2ec4b02033ec755c936e1a766d4a771d81",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "https://models.atrium.earth/models/previews/medieval/horse-aquamanile-hunt/preview-6ea916c8f9dd.glb",
+      "preview_bytes": 1298252,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "viewDirection": [
+          0,
+          0.16,
+          1
+        ],
+        "fit": 1.12,
+        "status": "reviewed"
+      }
+    },
+    {
+      "slug": "asia/snake-skull-netsuke-mia",
+      "new_work": false,
+      "thumbnail": "public/previews/renders/asia/snake-skull-netsuke-mia/thumb.webp",
+      "thumbnail_bytes": 48856,
+      "thumbnail_sha256": "7ce261f3abbab1938e468dba7e437b35fb43e882cdfe0a84e67a1fbc106e9e87",
+      "poster": "public/previews/posters/asia/snake-skull-netsuke-mia/poster.svg",
+      "poster_sha256": "ec5a035b3e222386f94c255891c409d9a00e2a4586c18f27fd6a51fd245921b4",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "https://models.atrium.earth/models/previews/asia/snake-skull-netsuke-mia/preview-d29b35142416.glb",
+      "preview_bytes": 1445944,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "viewDirection": [
+          0.8660254037844386,
+          0.16,
+          0.5000000000000001
+        ],
+        "fit": 1.12,
+        "status": "reviewed"
+      }
+    },
+    {
+      "slug": "asia/inscribed-wall-saveh-jameh-mosque",
+      "new_work": false,
+      "thumbnail": "public/previews/renders/asia/inscribed-wall-saveh-jameh-mosque/thumb.webp",
+      "thumbnail_bytes": 101580,
+      "thumbnail_sha256": "483309abb999eaa4d1f87765863a62681c973b2aa2fb0853e1a75187327d4ff8",
+      "poster": "public/previews/posters/asia/inscribed-wall-saveh-jameh-mosque/poster.svg",
+      "poster_sha256": "93e7a4a7ed90bdbb1986d9893310a82821d86b3c792044361d85938a944bb856",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "https://models.atrium.earth/models/previews/asia/inscribed-wall-saveh-jameh-mosque/preview-fc19068217f7.glb",
+      "preview_bytes": 1456696,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "viewDirection": [
+          0,
+          0.16,
+          1
+        ],
+        "fit": 0.85,
+        "status": "reviewed"
+      }
+    },
+    {
+      "slug": "africa/tomb-ikhwat-youssef",
+      "new_work": false,
+      "thumbnail": "public/previews/renders/africa/tomb-ikhwat-youssef/thumb.webp",
+      "thumbnail_bytes": 37468,
+      "thumbnail_sha256": "a5a01806f24a4cd23e50e37e033a837e6f123f8a74ffc243da97fdbf0f6b9645",
+      "poster": "public/previews/posters/africa/tomb-ikhwat-youssef/poster.svg",
+      "poster_sha256": "4fe6b54d9508a618ef9c72da28a6d9b95cc494026f6e21788f3b8eb721983502",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "https://models.atrium.earth/models/previews/africa/tomb-ikhwat-youssef/preview-658a679c2cb0.glb",
+      "preview_bytes": 1101224,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          -99.58,
+          -26.2,
+          -2.23
+        ],
+        "viewDirection": [
+          0,
+          0.16,
+          1
+        ],
+        "fit": 1.12,
+        "status": "reviewed"
+      }
+    },
+    {
+      "slug": "americas/lewitt-tower-dc",
+      "new_work": false,
+      "thumbnail": "public/previews/renders/americas/lewitt-tower-dc/thumb.webp",
+      "thumbnail_bytes": 30608,
+      "thumbnail_sha256": "b509104340a0feac29aab74d11459ec0b954ccbd3f81f8428f50bb9536291e08",
+      "poster": "public/previews/posters/americas/lewitt-tower-dc/poster.svg",
+      "poster_sha256": "d3f7c3cbb43c036d5212b17944aaf4e9f8c6d68257061d4028ce4ee3ff265870",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "/models/previews/americas/lewitt-tower-dc/preview.glb",
+      "preview_bytes": 554992,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "viewDirection": [
+          0.35,
+          0.2,
+          1
+        ],
+        "fit": 1.12,
+        "status": "reviewed",
+        "note": "Visually checked from four sides; opening view chosen for the object’s principal face."
+      }
+    },
+    {
+      "slug": "africa/djenne-anthropomorphic-sculpture",
+      "new_work": false,
+      "thumbnail": "public/previews/renders/africa/djenne-anthropomorphic-sculpture/thumb.webp",
+      "thumbnail_bytes": 28276,
+      "thumbnail_sha256": "46f9c871f6cf71d1eddd591dc6bc6a20c4b7777fb000c8fa5148eadac4659ba5",
+      "poster": "public/previews/posters/africa/djenne-anthropomorphic-sculpture/poster.svg",
+      "poster_sha256": "8c1191d3bbd785a23f1423fa13a7b95018e892dd4ac33581f229cadcef05c22c",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "/models/previews/africa/djenne-anthropomorphic-sculpture/preview.glb",
+      "preview_bytes": 1078912,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "viewDirection": [
+          0.35,
+          0.2,
+          1
+        ],
+        "fit": 1.12,
+        "status": "reviewed",
+        "note": "Visually checked from four sides; opening view chosen for the object’s principal face."
+      }
+    },
+    {
+      "slug": "ancient-near-east/cylinder-seal-battle-kish",
+      "new_work": false,
+      "thumbnail": "public/previews/renders/ancient-near-east/cylinder-seal-battle-kish/thumb.webp",
+      "thumbnail_bytes": 14616,
+      "thumbnail_sha256": "9a55b16e1c4c522960a0a25138d79c62a8ff75df274042165828c2cc698b4d6f",
+      "poster": "public/previews/posters/ancient-near-east/cylinder-seal-battle-kish/poster.svg",
+      "poster_sha256": "f56b7c3e532b8fd6768c18641c3726eaed3ad3f2fc278af04c340e6a09afd65d",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "/models/previews/ancient-near-east/cylinder-seal-battle-kish/preview.glb",
+      "preview_bytes": 570372,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "viewDirection": [
+          0.12,
+          0.12,
+          1
+        ],
+        "fit": 1.12,
+        "status": "reviewed",
+        "note": "Visually checked from four sides; opening view chosen for the object’s principal face."
+      }
+    },
+    {
+      "slug": "ancient-near-east/cylinder-seal-sin-kish",
+      "new_work": false,
+      "thumbnail": "public/previews/renders/ancient-near-east/cylinder-seal-sin-kish/thumb.webp",
+      "thumbnail_bytes": 16766,
+      "thumbnail_sha256": "9b80436485b1e8462e7b7752d6378108bd081958e1a3bbd98de514413acba283",
+      "poster": "public/previews/posters/ancient-near-east/cylinder-seal-sin-kish/poster.svg",
+      "poster_sha256": "64bcb19f5593398b20e7fcefd32091e62004188e96fb840a271a2f72d84df85d",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "/models/previews/ancient-near-east/cylinder-seal-sin-kish/preview.glb",
+      "preview_bytes": 593012,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "viewDirection": [
+          0.12,
+          0.12,
+          1
+        ],
+        "fit": 1.12,
+        "status": "reviewed",
+        "note": "Visually checked from four sides; opening view chosen for the object’s principal face."
+      }
+    },
+    {
+      "slug": "americas/jimmie-durham-still-life-with-spirit-and-xitle",
+      "new_work": false,
+      "thumbnail": "public/previews/renders/americas/jimmie-durham-still-life-with-spirit-and-xitle/thumb.webp",
+      "thumbnail_bytes": 11744,
+      "thumbnail_sha256": "6e9cf5e4670b51e33afff90f6c9a97a83b9d5746102f447d31d46c101b2d5f61",
+      "poster": "public/previews/posters/americas/jimmie-durham-still-life-with-spirit-and-xitle/poster.svg",
+      "poster_sha256": "d57dc89abe44e83f83b7c5f6b7dc612fd8785d6ceab5b19193fbb72ab621a484",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "/models/previews/americas/jimmie-durham-still-life-with-spirit-and-xitle/preview.glb",
+      "preview_bytes": 820188,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "viewDirection": [
+          0.35,
+          0.2,
+          1
+        ],
+        "fit": 1.16
+      }
+    },
+    {
+      "slug": "modern/aurore-les-vagues-swiecinski-guethary",
+      "new_work": false,
+      "thumbnail": "public/previews/renders/modern/aurore-les-vagues-swiecinski-guethary/thumb.webp",
+      "thumbnail_bytes": 22962,
+      "thumbnail_sha256": "072b4eafa8f293ae094c772080d01c6674d26212c40410f38be6f46d472bcc65",
+      "poster": "public/previews/posters/modern/aurore-les-vagues-swiecinski-guethary/poster.svg",
+      "poster_sha256": "52c5f95f4177fa3cbebe2e01fe531950480980ac25174aa683f8b026887c0aa3",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "/models/previews/modern/aurore-les-vagues-swiecinski-guethary/preview.glb",
+      "preview_bytes": 1065588,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "fit": 1.16,
+        "viewDirection": [
+          -1,
+          0.2,
+          0
+        ]
+      }
+    },
+    {
+      "slug": "americas/embracing-peace-seward-johnson",
+      "new_work": false,
+      "thumbnail": "public/previews/renders/americas/embracing-peace-seward-johnson/thumb.webp",
+      "thumbnail_bytes": 35694,
+      "thumbnail_sha256": "4eafad52169c68ae9c4f74ea862dc2a95b6319b6a81f3cf08073cd15f800cbcf",
+      "poster": "public/previews/posters/americas/embracing-peace-seward-johnson/poster.svg",
+      "poster_sha256": "51f32090203dadda7e7d57495bafc396ab65cae728d65ff8ec9fb7082700f91e",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "/models/previews/americas/embracing-peace-seward-johnson/preview.glb",
+      "preview_bytes": 994072,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "fit": 1.16,
+        "viewDirection": [
+          0.35,
+          0.2,
+          1
+        ]
+      }
+    },
+    {
+      "slug": "contemporary/woman-kiza-position-ceramic",
+      "new_work": false,
+      "thumbnail": "public/previews/renders/contemporary/woman-kiza-position-ceramic/thumb.webp",
+      "thumbnail_bytes": 16098,
+      "thumbnail_sha256": "ae86c75caa5f9124979e5e4bbafe0e5c020236746dbe33d8a6274dd13c0681da",
+      "poster": "public/previews/posters/contemporary/woman-kiza-position-ceramic/poster.svg",
+      "poster_sha256": "06c5ad48b5ab971c7a9d112faf79bb3811a038db4da0f4df2c6cc025983d5d20",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "/models/previews/contemporary/woman-kiza-position-ceramic/preview.glb",
+      "preview_bytes": 878372,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "fit": 1.16,
+        "viewDirection": [
+          0.35,
+          0.2,
+          1
+        ]
+      }
+    },
+    {
+      "slug": "europe/leda-swan-miel-nordhausen",
+      "new_work": false,
+      "thumbnail": "public/previews/renders/europe/leda-swan-miel-nordhausen/thumb.webp",
+      "thumbnail_bytes": 37036,
+      "thumbnail_sha256": "61f2c36a88fb5d7fa49cdfc82f1ae72c6cbd3f965619e833f663d3af62a71b27",
+      "poster": "public/previews/posters/europe/leda-swan-miel-nordhausen/poster.svg",
+      "poster_sha256": "3df362e538dd0ca9d29af09b4c8c444abe84bceb84ed08164c2aa3ed5bd26251",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "/models/previews/europe/leda-swan-miel-nordhausen/preview.glb",
+      "preview_bytes": 1028968,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "fit": 1.16,
+        "viewDirection": [
+          0.35,
+          0.2,
+          1
+        ]
+      }
+    },
+    {
+      "slug": "modern/los-enamorados-benitez",
+      "new_work": false,
+      "thumbnail": "public/previews/renders/modern/los-enamorados-benitez/thumb.webp",
+      "thumbnail_bytes": 31274,
+      "thumbnail_sha256": "4d1d38a52ac5704304c5e321765d8a18bde45054984b0d686503caa57c79ea1a",
+      "poster": "public/previews/posters/modern/los-enamorados-benitez/poster.svg",
+      "poster_sha256": "9ccf5af8ca8f26a1127e3898b0514b3aaf4bc965622c470ec80b6a8fcbf25bea",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "/models/previews/modern/los-enamorados-benitez/preview.glb",
+      "preview_bytes": 583036,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "fit": 1.16,
+        "viewDirection": [
+          0.35,
+          0.2,
+          1
+        ]
+      }
+    },
+    {
+      "slug": "europe/le-repos-boucher-pau",
+      "new_work": false,
+      "thumbnail": "public/previews/renders/europe/le-repos-boucher-pau/thumb.webp",
+      "thumbnail_bytes": 20444,
+      "thumbnail_sha256": "a0fe20fad72f00b00043e479c1bfbb9185cc32260bf0f593e7013bb550d1446e",
+      "poster": "public/previews/posters/europe/le-repos-boucher-pau/poster.svg",
+      "poster_sha256": "6619840ba9ae9ca7f4582ceb412fd9aa9e6d8afed68873cca6bf7888ff71363b",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "/models/previews/europe/le-repos-boucher-pau/preview.glb",
+      "preview_bytes": 1001144,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0.55,
+          0.34,
+          0.9
+        ],
+        "fit": 1.16,
+        "status": "reviewed",
+        "note": "Reviewed three angles and final lower-exposure front view. Entire reclining figure and bed slab retained. Source colors are pale and fine facial detail is limited; the model does not reconstruct absent detail."
+      }
+    },
+    {
+      "slug": "europe/henry-moore-warrior-shield-arnhem",
+      "new_work": false,
+      "thumbnail": "public/previews/renders/europe/henry-moore-warrior-shield-arnhem/thumb.webp",
+      "thumbnail_bytes": 41058,
+      "thumbnail_sha256": "ddf00fae098c738a48d906956a892fa425ba203e2a3afb440178d7d8fa0d2211",
+      "poster": "public/previews/posters/europe/henry-moore-warrior-shield-arnhem/poster.svg",
+      "poster_sha256": "6a739596ceee2f71a46f479882fd452a5b1d7cd443714cbec4f3599412b3c93f",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "/models/previews/europe/henry-moore-warrior-shield-arnhem/preview.glb",
+      "preview_bytes": 759208,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "fit": 1.16,
+        "viewDirection": [
+          1,
+          0.2,
+          0
+        ]
+      }
+    },
+    {
+      "slug": "makers/takamura-koun-saigo-takamori",
+      "new_work": false,
+      "thumbnail": "public/previews/renders/makers/takamura-koun-saigo-takamori/thumb.webp",
+      "thumbnail_bytes": 45786,
+      "thumbnail_sha256": "0e9c4a3d8cc335d8799e34d16a486b87bdd340c2760cd49ac1652535bd1c1248",
+      "poster": "public/previews/posters/makers/takamura-koun-saigo-takamori/poster.svg",
+      "poster_sha256": "9ac725cf56f73a7472370939f2fce7a976aecb2b7b6fe9da5171d2046ef585dd",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "/models/previews/makers/takamura-koun-saigo-takamori/preview.glb",
+      "preview_bytes": 564388,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "fit": 1.16,
+        "viewDirection": [
+          -1,
+          0.2,
+          0
+        ]
+      }
+    },
+    {
+      "slug": "europe/xavier-veilhan-le-lion-blue-lion",
+      "new_work": false,
+      "thumbnail": "public/previews/renders/europe/xavier-veilhan-le-lion-blue-lion/thumb.webp",
+      "thumbnail_bytes": 23064,
+      "thumbnail_sha256": "021b3dea8a566574e0e961b2366a67bc616aca3817b1b833903c273d76b7fc0b",
+      "poster": "public/previews/posters/europe/xavier-veilhan-le-lion-blue-lion/poster.svg",
+      "poster_sha256": "06f3db20a84ef92fdd84483c1d2b5100d94c2c385ac8fef9b9c916c885132209",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Locally regenerated with actual production renderer after approved narrow appearance decision",
+      "preview_url": "/models/previews/europe/xavier-veilhan-le-lion-blue-lion/preview.glb",
+      "preview_bytes": 769104,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "fit": 1.16,
+        "viewDirection": [
+          0.35,
+          0.2,
+          1
+        ]
+      }
+    },
+    {
+      "slug": "americas-oceania/daniel-chester-french-lincoln-memorial-early-sketch-model",
+      "new_work": false,
+      "thumbnail": "public/previews/renders/americas-oceania/daniel-chester-french-lincoln-memorial-early-sketch-model/thumb.webp",
+      "thumbnail_bytes": 48634,
+      "thumbnail_sha256": "dcd30e434d76baa23ac0ca608ad82fc592776bb3aca1a685082b387de2b859d8",
+      "poster": "public/previews/posters/americas-oceania/daniel-chester-french-lincoln-memorial-early-sketch-model/poster.svg",
+      "poster_sha256": "e86670c828d540e7ee1a8cb42ee746353b644896f872e5cdc668d9c0ae432316",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "/models/previews/americas-oceania/daniel-chester-french-lincoln-memorial-early-sketch-model/preview.glb",
+      "preview_bytes": 924892,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "fit": 1.16,
+        "viewDirection": [
+          0.35,
+          0.2,
+          1
+        ]
+      }
+    },
+    {
+      "slug": "europe/bruno-catalano-van-gogh",
+      "new_work": false,
+      "thumbnail": "public/previews/renders/europe/bruno-catalano-van-gogh/thumb.webp",
+      "thumbnail_bytes": 37314,
+      "thumbnail_sha256": "4200b5be4cc5aaeb1ac92464d4b6ba0c372485201db7f9ed46c65c0eb99bb979",
+      "poster": "public/previews/posters/europe/bruno-catalano-van-gogh/poster.svg",
+      "poster_sha256": "13f42b64f41b8f431c16993050b597b377faf313865e06164307cbf4cba19693",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "/models/previews/europe/bruno-catalano-van-gogh/preview.glb",
+      "preview_bytes": 1139272,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "fit": 1.16,
+        "viewDirection": [
+          1,
+          0.2,
+          0
+        ]
+      }
+    },
+    {
+      "slug": "europe/bruno-catalano-pierre-david-triptyque",
+      "new_work": false,
+      "thumbnail": "public/previews/renders/europe/bruno-catalano-pierre-david-triptyque/thumb.webp",
+      "thumbnail_bytes": 34136,
+      "thumbnail_sha256": "1e95d7aa1506fcad4fb78adb8cf844cb3567672d89379226e5a7a4de907f5383",
+      "poster": "public/previews/posters/europe/bruno-catalano-pierre-david-triptyque/poster.svg",
+      "poster_sha256": "b58a1a0c5bc32d8e28cdf3c25c519d657e87cdf6de49ae0c40a9f84f59453cb2",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "/models/previews/europe/bruno-catalano-pierre-david-triptyque/preview.glb",
+      "preview_bytes": 938440,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "fit": 1.16,
+        "viewDirection": [
+          0.35,
+          0.2,
+          1
+        ]
+      }
+    },
+    {
+      "slug": "europe/apelles-fenosa-orlando-furioso",
+      "new_work": false,
+      "thumbnail": "public/previews/renders/europe/apelles-fenosa-orlando-furioso/thumb.webp",
+      "thumbnail_bytes": 51326,
+      "thumbnail_sha256": "e56d29d9e019c7b8ff5c10b2eb3a4e832b393cc9c29a78401101f4420eb63011",
+      "poster": "public/previews/posters/europe/apelles-fenosa-orlando-furioso/poster.svg",
+      "poster_sha256": "d3913dced44fd4bac591dffc82900b948f4e5daad272e0c5c5e4a45e79aa2b8f",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "/models/previews/europe/apelles-fenosa-orlando-furioso/preview.glb",
+      "preview_bytes": 882332,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "fit": 1.16,
+        "viewDirection": [
+          0.35,
+          0.2,
+          1
+        ]
+      }
+    },
+    {
+      "slug": "europe/jean-michel-folon-angelo-custode",
+      "new_work": false,
+      "thumbnail": "public/previews/renders/europe/jean-michel-folon-angelo-custode/thumb.webp",
+      "thumbnail_bytes": 16156,
+      "thumbnail_sha256": "64ef8b0c975f2c996796a6c845f5e1cec39fdd9c15aefda109194714e2a611b1",
+      "poster": "public/previews/posters/europe/jean-michel-folon-angelo-custode/poster.svg",
+      "poster_sha256": "cdec07bfe34eabce76217a5efb1da23a8b885c80a6095e59f8e1cc2c83cd2029",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Locally regenerated with actual production renderer after approved narrow appearance decision",
+      "preview_url": "/models/previews/europe/jean-michel-folon-angelo-custode/preview.glb",
+      "preview_bytes": 673492,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "fit": 1.16,
+        "viewDirection": [
+          0.35,
+          0.2,
+          1
+        ]
+      }
+    },
+    {
+      "slug": "europe/zigor-kepa-akixo-txoria-bird",
+      "new_work": false,
+      "thumbnail": "public/previews/renders/europe/zigor-kepa-akixo-txoria-bird/thumb.webp",
+      "thumbnail_bytes": 20234,
+      "thumbnail_sha256": "a2917102e9aa8b293102003ab47f1bbc5967e694d33a318ff222da992d25da80",
+      "poster": "public/previews/posters/europe/zigor-kepa-akixo-txoria-bird/poster.svg",
+      "poster_sha256": "26a38050f52ef96fecd1164bc282883ee4565b0ed47e4c6183bb640851c61ccb",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "/models/previews/europe/zigor-kepa-akixo-txoria-bird/preview.glb",
+      "preview_bytes": 716052,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "fit": 1.16,
+        "viewDirection": [
+          0.35,
+          0.2,
+          1
+        ]
+      }
+    },
+    {
+      "slug": "europe/maarten-stuer-tourbillon",
+      "new_work": false,
+      "thumbnail": "public/previews/renders/europe/maarten-stuer-tourbillon/thumb.webp",
+      "thumbnail_bytes": 45794,
+      "thumbnail_sha256": "295b4a5c44c83a35b5a361d11e43f4e14b77fbb87382fc46f638e8d599a7ba9c",
+      "poster": "public/previews/posters/europe/maarten-stuer-tourbillon/poster.svg",
+      "poster_sha256": "626cf210406e3eb391d02fc602b2dfa6c4a0d3752761a7fbc593b64bd5b77627",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "/models/previews/europe/maarten-stuer-tourbillon/preview.glb",
+      "preview_bytes": 2842312,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "fit": 1.16,
+        "viewDirection": [
+          0.35,
+          0.2,
+          1
+        ]
+      }
+    },
+    {
+      "slug": "europe/jesus-echevarria-la-danse-rituelle-du-feu",
+      "new_work": false,
+      "thumbnail": "public/previews/renders/europe/jesus-echevarria-la-danse-rituelle-du-feu/thumb.webp",
+      "thumbnail_bytes": 35522,
+      "thumbnail_sha256": "210e9be9d8cb345051248c697e3675ffb52ff7cc8a215f8281cdea81497cc252",
+      "poster": "public/previews/posters/europe/jesus-echevarria-la-danse-rituelle-du-feu/poster.svg",
+      "poster_sha256": "174b5ca315a8c54d4767a1690414f5b5006fbe58b70a933c48ebf295a173233c",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "/models/previews/europe/jesus-echevarria-la-danse-rituelle-du-feu/preview.glb",
+      "preview_bytes": 2450892,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "fit": 1.16,
+        "viewDirection": [
+          0.35,
+          0.2,
+          1
+        ]
+      }
+    },
+    {
+      "slug": "europe/jesus-echevarria-la-pierre-du-sacrifice",
+      "new_work": false,
+      "thumbnail": "public/previews/renders/europe/jesus-echevarria-la-pierre-du-sacrifice/thumb.webp",
+      "thumbnail_bytes": 63032,
+      "thumbnail_sha256": "a52105abc873fff98831f4b884a39acf7515138b2d6eb57012f7052ba749dc66",
+      "poster": "public/previews/posters/europe/jesus-echevarria-la-pierre-du-sacrifice/poster.svg",
+      "poster_sha256": "5dde79747825122ea72752ebd7cd4872c6d0cb44c289bc919e4ad48128269363",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "/models/previews/europe/jesus-echevarria-la-pierre-du-sacrifice/preview.glb",
+      "preview_bytes": 6075144,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "fit": 1.16,
+        "viewDirection": [
+          0.35,
+          0.2,
+          1
+        ]
+      }
+    },
+    {
+      "slug": "global/malanggan-figure-58aeeabf",
+      "new_work": false,
+      "thumbnail": "public/previews/renders/global/malanggan-figure-58aeeabf/thumb.webp",
+      "thumbnail_bytes": 27536,
+      "thumbnail_sha256": "38d8885cc3a6cd4788d4f44c8694f54445d733f257e2225737e13df775b65151",
+      "poster": "public/previews/posters/global/malanggan-figure-58aeeabf/poster.svg",
+      "poster_sha256": "7d5001ed968f8fb45d819d21b44948a753bb9d0a92d28fbb3bf1fba9b7c9cb20",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "/models/previews/global/malanggan-figure-58aeeabf/preview.glb",
+      "preview_bytes": 10666212,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "fit": 1.16,
+        "viewDirection": [
+          1,
+          0.2,
+          0
+        ]
+      }
+    },
+    {
+      "slug": "global/zapotec-effigy-urn-with-crossed-hands-3c39c6a1",
+      "new_work": false,
+      "thumbnail": "public/previews/renders/global/zapotec-effigy-urn-with-crossed-hands-3c39c6a1/thumb.webp",
+      "thumbnail_bytes": 33954,
+      "thumbnail_sha256": "52d1b0ce28e2cd4da3b8ff6868dcc79d400c82e19a74970135f7f2db062e41e4",
+      "poster": "public/previews/posters/global/zapotec-effigy-urn-with-crossed-hands-3c39c6a1/poster.svg",
+      "poster_sha256": "21b69fe5d942bc197518892b4c21d713089b20144833ec978d83b8f780e6d566",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "/models/previews/global/zapotec-effigy-urn-with-crossed-hands-3c39c6a1/preview.glb",
+      "preview_bytes": 885056,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "fit": 1.16,
+        "viewDirection": [
+          0.35,
+          0.2,
+          1
+        ]
+      }
+    },
+    {
+      "slug": "global/zapotec-effigy-urn-with-tall-headdress-5297a612",
+      "new_work": false,
+      "thumbnail": "public/previews/renders/global/zapotec-effigy-urn-with-tall-headdress-5297a612/thumb.webp",
+      "thumbnail_bytes": 30616,
+      "thumbnail_sha256": "784839ef9dbc9c944c7dad4f444970050311b7477eb022b5c8e4c3ad9d51b752",
+      "poster": "public/previews/posters/global/zapotec-effigy-urn-with-tall-headdress-5297a612/poster.svg",
+      "poster_sha256": "b90642afb14a310cdd5cb3ef222ccaef8568fb717a06b1a7aa82c8527c2fd3aa",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "/models/previews/global/zapotec-effigy-urn-with-tall-headdress-5297a612/preview.glb",
+      "preview_bytes": 862996,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "fit": 1.16,
+        "viewDirection": [
+          -1,
+          0.2,
+          0
+        ]
+      }
+    },
+    {
+      "slug": "sub-saharan-africa/ceremonial-charm-hunt",
+      "new_work": false,
+      "thumbnail": "public/previews/renders/sub-saharan-africa/ceremonial-charm-hunt/thumb.webp",
+      "thumbnail_bytes": 22886,
+      "thumbnail_sha256": "be048a1ecffb23044d5954a7ef3df71de6376007d4bc2e31e90fbbe0f62d62c2",
+      "poster": "public/previews/posters/sub-saharan-africa/ceremonial-charm-hunt/poster.svg",
+      "poster_sha256": "2edc0f88511e231450458a12a63f1fa3bc5674b907f1f3760cd25126334e7187",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "https://models.atrium.earth/models/previews/sub-saharan-africa/ceremonial-charm-hunt/preview-da11caf9eb3a.glb",
+      "preview_bytes": 1402264,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "status": "reviewed",
+        "note": "Visually checked 2026-10-02 against the publisher's reference image and the Atrium render; native Y-up retained with the complete silhouette visible."
+      }
+    },
+    {
+      "slug": "sub-saharan-africa/ivory-pot-hunt",
+      "new_work": false,
+      "thumbnail": "public/previews/renders/sub-saharan-africa/ivory-pot-hunt/thumb.webp",
+      "thumbnail_bytes": 28222,
+      "thumbnail_sha256": "dcbcbbc72862a70f26f3a0b06d73f624478038a0ac7d721bed8b13a7fb859058",
+      "poster": "public/previews/posters/sub-saharan-africa/ivory-pot-hunt/poster.svg",
+      "poster_sha256": "d8e5aac44ea907c02d5e43b8cfe4487539bf2eb9eb979b0d970ac7c32e00a4a3",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "https://models.atrium.earth/models/previews/sub-saharan-africa/ivory-pot-hunt/preview-0c70bf7b04b6.glb",
+      "preview_bytes": 1435836,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "status": "reviewed",
+        "note": "Visually checked 2026-10-02 against the publisher's reference image and the Atrium render; native Y-up retained with the complete silhouette visible."
+      }
+    },
+    {
+      "slug": "sub-saharan-africa/animal-figure-resembling-a-hare-smvk",
+      "new_work": false,
+      "thumbnail": "public/previews/renders/sub-saharan-africa/animal-figure-resembling-a-hare-smvk/thumb.webp",
+      "thumbnail_bytes": 21140,
+      "thumbnail_sha256": "18cc3f3114607f1d8bfb78bc3f45ace6642eac3bc7a597c448e986ce24c341ff",
+      "poster": "public/previews/posters/sub-saharan-africa/animal-figure-resembling-a-hare-smvk/poster.svg",
+      "poster_sha256": "cc27e37494ea3a87ccd2b7f9f193ba990107ab5b4a83d801f60e5eac4a4d9c2f",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "https://models.atrium.earth/models/previews/sub-saharan-africa/animal-figure-resembling-a-hare-smvk/preview-d259166a8dfd.glb",
+      "preview_bytes": 1170320,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "status": "reviewed",
+        "note": "Visually checked 2026-10-02 against the publisher's reference image and the Atrium render; native Y-up retained with the complete silhouette visible."
+      }
+    },
+    {
+      "slug": "sub-saharan-africa/ere-ibeji-twin-figure-uq",
+      "new_work": false,
+      "thumbnail": "public/previews/renders/sub-saharan-africa/ere-ibeji-twin-figure-uq/thumb.webp",
+      "thumbnail_bytes": 22060,
+      "thumbnail_sha256": "c65f43e9f58155240d90c4805783d222269ca68e0ae3e28026549260f131ebd2",
+      "poster": "public/previews/posters/sub-saharan-africa/ere-ibeji-twin-figure-uq/poster.svg",
+      "poster_sha256": "401e85e73251d65b5ef0f2cb67838aebde9dbc865a91c67c3d57989f07a51685",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "https://models.atrium.earth/models/previews/sub-saharan-africa/ere-ibeji-twin-figure-uq/preview-b33f3cbecfc8.glb",
+      "preview_bytes": 1064904,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          90
+        ],
+        "yaw": 0,
+        "status": "reviewed",
+        "note": "Source arrives with the figure's long axis on X; rotated about Z to stand the twin figure upright. Visually checked 2026-10-02 against the publisher's reference image and the Atrium render."
+      }
+    },
+    {
+      "slug": "modern/mhondorohuma-bonsa-drummer",
+      "new_work": false,
+      "thumbnail": "public/previews/renders/modern/mhondorohuma-bonsa-drummer/thumb.webp",
+      "thumbnail_bytes": 33742,
+      "thumbnail_sha256": "59dab4fcaf00cc8fa1fbf4ae8ad7387c37fe36196f93d55725f1f4083b99e85f",
+      "poster": "public/previews/posters/modern/mhondorohuma-bonsa-drummer/poster.svg",
+      "poster_sha256": "8766ffe8215aed2f2cc1a0cb81b16cd387b5e2ac2fd64e34ac7af67be9e6026d",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Locally regenerated with actual production renderer after approved narrow appearance decision",
+      "preview_url": "https://models.atrium.earth/models/previews/modern/mhondorohuma-bonsa-drummer/preview-1ca84a6f827c.glb",
+      "preview_bytes": 1787832,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "status": "reviewed",
+        "note": "Visually checked 2026-10-02 against the publisher's reference image and the Atrium render; native Y-up retained with the complete silhouette visible."
+      }
+    },
+    {
+      "slug": "asia/sphero-conical-vessel-1dff1e",
+      "new_work": false,
+      "thumbnail": "public/previews/renders/asia/sphero-conical-vessel-1dff1e/thumb.webp",
+      "thumbnail_bytes": 48122,
+      "thumbnail_sha256": "648b856ba856e586da7a4c4e2a1f007d2bda127ca49034ce2134de1d30b339cc",
+      "poster": "public/previews/posters/asia/sphero-conical-vessel-1dff1e/poster.svg",
+      "poster_sha256": "38541c1b5a1acf8da1e91f04ab3c7f520abe22510bf4e7782fa27906f30167e5",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "/models/previews/asia/sphero-conical-vessel-1dff1e/preview.glb",
+      "preview_bytes": 1497832,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "fit": 1.16,
+        "viewDirection": [
+          0.35,
+          0.65,
+          1
+        ],
+        "status": "reviewed"
+      }
+    },
+    {
+      "slug": "europe/celtic-cross-viking-age-5f01aa",
+      "new_work": false,
+      "thumbnail": "public/previews/renders/europe/celtic-cross-viking-age-5f01aa/thumb.webp",
+      "thumbnail_bytes": 53900,
+      "thumbnail_sha256": "3daf46fc038941bec9ec5200c73ed19119b8cf850d3ee1a47e21ada650a18c2d",
+      "poster": "public/previews/posters/europe/celtic-cross-viking-age-5f01aa/poster.svg",
+      "poster_sha256": "1de002b76b49db9bb5633c7482fe753a61c7e440b8a1f07a412adf777a1d7275",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "https://models.atrium.earth/models/previews/europe/celtic-cross-viking-age-5f01aa/preview-f1d0eccd84fe.glb",
+      "preview_bytes": 1021440,
+      "orientation": null
+    },
+    {
+      "slug": "africa/minbar-of-al-qarawiyyin-mosque-70e3cf",
+      "new_work": false,
+      "thumbnail": "public/previews/renders/africa/minbar-of-al-qarawiyyin-mosque-70e3cf/thumb.webp",
+      "thumbnail_bytes": 56104,
+      "thumbnail_sha256": "438fdd8b8f414b03ee27d141704bd4d89647a2f8fb3b8a7bd82e4d3181c86059",
+      "poster": "public/previews/posters/africa/minbar-of-al-qarawiyyin-mosque-70e3cf/poster.svg",
+      "poster_sha256": "bb1390b85e2a79fc87206d7baf2ca9a4ee7774b4f1349d8bdfc4ccbbb99180fa",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "https://models.atrium.earth/models/previews/africa/minbar-of-al-qarawiyyin-mosque-70e3cf/preview-3cc9d8c262ea.glb",
+      "preview_bytes": 1847428,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "status": "reviewed",
+        "confidence": 1,
+        "note": "Human-reviewed from the ten-view orientation sheet (+Y up); the minbar stands on its plinth with stairs rising to the canopy."
+      }
+    },
+    {
+      "slug": "europe/late-bronze-age-combat-damaged-sword-nmi-w93-3d0333",
+      "new_work": false,
+      "thumbnail": "public/previews/renders/europe/late-bronze-age-combat-damaged-sword-nmi-w93-3d0333/thumb.webp",
+      "thumbnail_bytes": 11430,
+      "thumbnail_sha256": "be02e3326d0756c38523e18d0f6396b9f088dda0286daf52ed9ac0724b20ad80",
+      "poster": "public/previews/posters/europe/late-bronze-age-combat-damaged-sword-nmi-w93-3d0333/poster.svg",
+      "poster_sha256": "817a5afe863ee38c4b28bb23982d38624a8fefe8fbf965ef21374bbf56f7a527",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "https://models.atrium.earth/models/previews/europe/late-bronze-age-combat-damaged-sword-nmi-w93-3d0333/preview-7e0cfcf688c6.glb",
+      "preview_bytes": 1452516,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          90,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "status": "reviewed",
+        "confidence": 1,
+        "note": "Human-reviewed 10-view sheet: +Z-up candidate stands the damaged sword fragment upright with the hilt below."
+      }
+    },
+    {
+      "slug": "roman/lead-sling-bullet-cosa-c22-084-1b8da6",
+      "new_work": false,
+      "thumbnail": "public/previews/renders/roman/lead-sling-bullet-cosa-c22-084-1b8da6/thumb.webp",
+      "thumbnail_bytes": 20926,
+      "thumbnail_sha256": "4ac54acffeba3976b61cef8f1aa98465a80675996827f8e8dda7e99052a65996",
+      "poster": "public/previews/posters/roman/lead-sling-bullet-cosa-c22-084-1b8da6/poster.svg",
+      "poster_sha256": "cbd7bf14013c44d51b730628ac5f2f3e8268cdb673fcafcc530f2d3fb5226331",
+      "poster_embeds_exact_thumbnail": true,
+      "origin": "Exact successful Actions result 38790096001",
+      "preview_url": "https://models.atrium.earth/models/previews/roman/lead-sling-bullet-cosa-c22-084-1b8da6/preview-b87bbb7610fb.glb",
+      "preview_bytes": 320808,
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "status": "reviewed",
+        "note": "Human source-reference and ten-view review, 2026-10-07. Selected variant B; complete surviving object retained, with authored surface appearance."
+      }
+    }
+  ]
+}

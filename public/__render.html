@@ -166,6 +166,10 @@ function hasSourceTexture(material) {
 }
 function applyMaterialAppearance(mesh, material, appearance) {
   if(!('color' in material)) return;
+  // An explicit per-work decision leaves source bytes, attributes and PBR intact.
+  if(appearance.sourceVertexColors === 'ignore-invalid' && hasAuthoredVertexColors(mesh)){
+    material.vertexColors=false;
+  }
   if(hasSourceTexture(material) || hasAuthoredVertexColors(mesh)){
     if('envMapIntensity' in material && material.envMapIntensity == null){
       material.envMapIntensity=appearance.envMapIntensity;

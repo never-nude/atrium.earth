@@ -19,13 +19,40 @@ const selected = catalog.filter(work => work.ingest_batch === batch);
 const visible = selected.filter(work => !work.hidden);
 const priorFields = record => Object.fromEntries(Object.entries(record).filter(([key]) => !['index', 'total'].includes(key)));
 for (const work of previous) {
-  assert.deepEqual(priorFields(catalog.find(row => row.slug === work.slug)), priorFields(work), `Prior work preserved: ${work.slug}`);
+  const current = catalog.find(row => row.slug === work.slug);
+  if (work.slug === 'modern/mhondorohuma-bonsa-drummer') {
+    // Source-color review corrects only the earlier false surface-color note.
+    assert.equal(current.note, work.note.replace("The scan carries no surface texture; the stone's colour is not represented.",
+      'The scan preserves blue-gray and green surface variation.'));
+    assert.equal(current.search, work.search + ' the scan preserves blue-gray and green surface variation.');
+    assert.deepEqual(priorFields({ ...current, note: work.note, search: work.search }), priorFields(work));
+  } else {
+    assert.deepEqual(priorFields(current), priorFields(work), `Prior work preserved: ${work.slug}`);
+  }
 }
 for (const file of ['previews', 'orientations', 'physical-dimensions', 'spatial-eligibility']) {
   const before = gitRead(`src/data/${file}.json`), after = read(`src/data/${file}.json`);
   for (const [slug, value] of Object.entries(before)) assert.deepEqual(after[slug], value, `Prior ${file}: ${slug}`);
 }
-assert.deepEqual(read('src/data/featured-works.json'), gitRead('src/data/featured-works.json'), 'Featured selection preserved');
+const previousAppearance = gitRead('src/data/appearance-overrides.json');
+const appearance = read('src/data/appearance-overrides.json');
+const correctedExposure = new Set(['modern/mhondorohuma-bonsa-drummer',
+  'europe/xavier-veilhan-le-lion-blue-lion', 'europe/jean-michel-folon-angelo-custode']);
+for (const [slug, value] of Object.entries(previousAppearance)) {
+  const expected = correctedExposure.has(slug) ? { ...value, exposure: 0.2 } : value;
+  if (slug === 'europe/jean-michel-folon-angelo-custode') expected.sourceVertexColors = 'ignore-invalid';
+  assert.deepEqual(appearance[slug], expected, `Only reviewed legacy appearance decisions: ${slug}`);
+}
+assert.deepEqual(Object.entries(appearance).filter(([, value]) => value.sourceVertexColors === 'ignore-invalid').map(([slug]) => slug),
+  ['europe/jean-michel-folon-angelo-custode'], 'Source-neutral exception is explicit and limited to Folon');
+const featured = read('src/data/featured-works.json'), previousFeatured = gitRead('src/data/featured-works.json');
+const featuredSlugs = value => value.works.map(work => work.slug);
+assert.equal(featured.works.length, 250);
+assert.deepEqual(featuredSlugs(previousFeatured).filter(slug => !featuredSlugs(featured).includes(slug)).sort(),
+  ['americas/maria-martins-orpheus', 'rodin/the-walking-man'], 'Only root-proposed outgoing featured works');
+assert.deepEqual(featuredSlugs(featured).filter(slug => !featuredSlugs(previousFeatured).includes(slug)).sort(),
+  ['modern/joan-miro-double-sided-monolith-estela-de-doble-cara-12d619', 'modern/joan-miro-projet-pour-un-monument-c07aae'],
+  'Only the two explicit Miró swaps approved by root after final image review');
 assert.equal(previous.length, 1929);
 assert.equal(catalog.length, 1951);
 assert.equal(fetched.length, 24);
@@ -84,6 +111,4 @@ assert.equal(milan.title, 'Projet pour un monument');
 assert.equal(milan.year, '1981');
 assert.equal(milan.accession, '');
 assert.equal(milan.dimensions, '');
-const featured = read('src/data/featured-works.json');
-assert.ok(!JSON.stringify(featured).includes('c07aae'), 'No unreviewed featured promotion');
-console.log('Contemporary publication subset: 24 sources, 22 measured outcomes, 20 public works, 2 visual holds, preserved 1,929 earlier records and featured selection, exact asset/pose bindings and no false verified size.');
+console.log('Contemporary publication subset: 24 sources, 22 measured outcomes, 20 public works, 2 visual holds, 1,929 earlier records preserved except the explicit Bonsa surface-note correction; two approved featured swaps, exact asset/pose bindings and no false verified size.');

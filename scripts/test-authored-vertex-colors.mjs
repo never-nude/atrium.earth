@@ -2,7 +2,40 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { transformSync } from 'esbuild';
 import * as THREE from 'three';
+import { GLTFExporter } from 'three/examples/jsm/exporters/GLTFExporter.js';
+import { USDZExporter } from 'three/examples/jsm/exporters/USDZExporter.js';
+import { unzipSync, strFromU8 } from 'three/examples/jsm/libs/fflate.module.js';
+import { makeQuickLookScene } from '../src/lib/spatial-session.mjs';
 import { rememberSpatialAppearance } from '../src/lib/spatial-materials.mjs';
+
+// The production native export helper works on isolated geometry copies.
+// Inspect serialized archives too: GLTFExporter exports attributes regardless
+// of material.vertexColors, so checking only the material flag is insufficient.
+globalThis.FileReader ??= class {
+  readAsArrayBuffer(blob) {
+    void blob.arrayBuffer().then(result => { this.result = result; this.onloadend?.(); });
+  }
+};
+async function assertNativeColorExport(mesh, expectedColor, label) {
+  const originalGeometry = mesh.geometry, originalColors = mesh.geometry.getAttribute('color');
+  const originalValues = originalColors.array.slice();
+  const converted = makeQuickLookScene(THREE, mesh, new THREE.Box3().setFromObject(mesh), null, { mode: 'surface' });
+  try {
+    const glb = await new GLTFExporter().parseAsync(converted.scene, { binary: true });
+    const view = new DataView(glb);
+    const json = JSON.parse(new TextDecoder().decode(new Uint8Array(glb, 20, view.getUint32(12, true))));
+    const primitives = json.meshes.flatMap(mesh => mesh.primitives);
+    assert.ok(primitives.length);
+    assert.ok(primitives.every(primitive => ('COLOR_0' in primitive.attributes) === expectedColor), `${label}: serialized GLB color matches explicit decision`);
+    const archive = unzipSync(await new USDZExporter().parseAsync(converted.scene));
+    const surfaces = Object.entries(archive).filter(([name]) => name.startsWith('geometries/')).map(([, bytes]) => strFromU8(bytes));
+    assert.ok(surfaces.length);
+    assert.ok(surfaces.every(text => text.includes('primvars:displayColor') === expectedColor), `${label}: serialized USDZ color matches explicit decision`);
+    assert.equal(mesh.geometry, originalGeometry, `${label}: live geometry unchanged by export`);
+    assert.equal(mesh.geometry.getAttribute('color'), originalColors);
+    assert.deepEqual(originalColors.array, originalValues, `${label}: live source colors unchanged by export`);
+  } finally { converted.dispose(); }
+}
 
 // Execute the actual page and thumbnail material functions, including the
 // TypeScript viewer version, so either rendering path can regress independently.
@@ -70,6 +103,28 @@ for (const file of ['../src/components/Viewer.astro', '../public/__render.html']
   assert.deepEqual(materialState(material), before, `${file}: authored multiplier and PBR retained`);
   assert.equal(geometry.userData.atriumPaletteBase, undefined, `${file}: source not marked generated`);
 
+  // Uniform black is still authored by default. Only an explicit, documented
+  // per-work decision can disable its shader multiplication; no color heuristic.
+  const blackGeometry = new THREE.BoxGeometry();
+  const blackValues = new Float32Array(blackGeometry.attributes.position.count * 4);
+  for (let i = 3; i < blackValues.length; i += 4) blackValues[i] = 1;
+  const blackColors = new THREE.BufferAttribute(blackValues, 4);
+  blackGeometry.setAttribute('color', blackColors);
+  const blackMaterial = new THREE.MeshStandardMaterial({ color: '#fefdfd', vertexColors: true, roughness: 0.6 });
+  const blackMesh = new THREE.Mesh(blackGeometry, blackMaterial);
+  const blackBefore = materialState(blackMaterial);
+  functions.apply(blackMesh, blackMaterial, appearance);
+  assert.deepEqual(materialState(blackMaterial), blackBefore, `${file}: uniform authored black remains enabled by default`);
+  await assertNativeColorExport(blackMesh, true, `${file}: ordinary authored black`);
+  functions.apply(blackMesh, blackMaterial, { ...appearance, sourceVertexColors: 'ignore-invalid' });
+  functions.variation(blackMesh, blackMaterial, appearance);
+  assert.deepEqual(materialState(blackMaterial), { ...blackBefore, vertexColors: false }, `${file}: explicit exception changes only shader multiplication`);
+  assert.equal(blackMesh.geometry, blackGeometry);
+  assert.equal(blackGeometry.attributes.color, blackColors);
+  assert.deepEqual(blackColors.array, blackValues);
+  assert.equal(blackGeometry.userData.atriumPaletteBase, undefined, `${file}: exception never generates a palette`);
+  await assertNativeColorExport(blackMesh, false, `${file}: explicit neutral exception`);
+
   const basic = new THREE.MeshBasicMaterial({ color: '#887766', vertexColors: true });
   const prepared = functions.prepare(basic);
   assert.equal(prepared.vertexColors, true, `${file}: nonstandard conversion keeps vertex colors`);
@@ -101,8 +156,8 @@ for (const file of ['../src/components/Viewer.astro', '../public/__render.html']
   assert.notEqual(legacyMesh.geometry.attributes.color, firstPalette, `${file}: generated palette remains adjustable`);
   assert.equal(legacyMesh.geometry.userData.atriumPaletteBase, '#eeffee');
 
-  for (const item of [mesh, convertedMesh, texturedMesh, legacyMesh]) item.geometry.dispose();
-  for (const item of [material, basic, prepared, texturedMaterial, legacyMaterial]) item.dispose();
+  for (const item of [mesh, blackMesh, convertedMesh, texturedMesh, legacyMesh]) item.geometry.dispose();
+  for (const item of [material, blackMaterial, basic, prepared, texturedMaterial, legacyMaterial]) item.dispose();
   texture.dispose();
   console.log(`${file}: actual functions preserve authored vertex colors, alpha, multiplier/PBR and textures; uncolored legacy treatment and conversion pass.`);
 }
