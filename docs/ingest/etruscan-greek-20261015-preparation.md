@@ -6,11 +6,11 @@ This round targets exactly 60 new, distinct physical objects under the logical b
 
 The separate discovery inputs are `docs/ingest/etruscan-greek-20261015-etruscan-candidates.json` and `docs/ingest/etruscan-greek-20261015-pottery-candidates.json`. Each uses `atrium-auto-ingest-candidates/1` with `candidates[]`. Root makes the final 60-work selection; the script never truncates or pads an oversized/undersized discovery set.
 
-`scripts/prepare-etruscan-greek-20261015.mjs` validates without writing by default. It checks exact Sketchfab UIDs and download endpoints; primary object records and institution/accession identities; catalog identity corrections; current fetch/assembler title and accession collisions; public derivative-compatible license label/URL/tier; recent download eligibility; explicit selected GLB bytes; documented dates/origins/holding collections; source evidence; and measured-integrity requirements. Only byte-for-byte identical repeated discovery records are coalesced. Conflicting source UIDs or repeated physical objects block output. An optional slug selection file must contain unique known slugs.
+`scripts/prepare-etruscan-greek-20261015.mjs` validates without writing by default. It checks exact Sketchfab UIDs and download endpoints; primary object records and institution/accession identities; catalog identity corrections; current fetch/assembler title and accession collisions; public derivative-compatible license label/URL/tier; recent download eligibility; explicit selected GLB bytes; documented dates or honestly unknown chronology, origins and holding collections; source evidence; and measured-integrity requirements. An unknown maker may remain empty. Only byte-for-byte identical repeated discovery records are coalesced. Conflicting source UIDs or repeated physical objects block output. An optional slug selection file must contain unique known slugs.
 
 Every candidate requires `require_measured_integrity: true`. Component exemptions, alternate downloads and skipped-integrity flags are forbidden. `face_count_scope` distinguishes `selected-download-archive` from `api-detail-only-unmeasured`. In the latter case, `source_geometry.faces` is null and `source_geometry.api_detail_faces` records the public API count. An unavailable archive face count is never invented. Actual source integrity must be measured after acquisition.
 
-The 19 focused preparation tests exercise exact selection, duplicate/object identity, corrected identities, generic core collisions, restrictive licenses, private fields, unknown origins, unresolved archive metadata, measured integrity, partial-run rejection, sequential rate limiting and signed-URL exclusion. They use synthetic metadata and mocked APIs; they do not acquire models.
+The 20 focused preparation tests exercise exact selection, duplicate/object identity, corrected identities, generic core collisions, restrictive licenses, private fields, unknown makers/dates/origins, unresolved archive metadata, measured integrity, partial-run rejection, sequential rate limiting and signed-URL exclusion. They use synthetic metadata and mocked APIs; they do not acquire models.
 
 ~~~sh
 node --test scripts/prepare-etruscan-greek-20261015.test.mjs
@@ -88,7 +88,21 @@ The acquisition artifact is named `atrium-temporary-sources-etruscan-greek-20261
 
 Do not download the entire workflow run or a broad artifact pattern. Do not download a complete large ZIP and then retain all extracted/decoded/archived duplicates. Resolve the exact artifact ID and list ZIP members first. Match each unmodified incoming file to sanitized `fetched.downloaded_path`, `fetched.sha256` and `fetched.original_download_bytes`. A decoded GLB or optimized preview is a different asset role; retain the provider's incoming file separately. If native uploaded sources were not requested, describe the preserved selected GLB as a provider-converted download rather than claiming it is the uploader's original OBJ/texture bundle.
 
-A bounded retrieval helper may request the ZIP end record and central directory through exact HTTP206 ranges, then stream only an exact selected entry's compressed byte range into an exclusive ignored private file, hashing its uncompressed output against the recorded full SHA/bytes. ZIP64, path traversal, duplicate members, symlinks, encryption, unsupported compression, full-response range fallback and mismatched local headers must fail closed. Signed archive redirect URLs and GitHub authorization remain in memory only. No source payload retrieval was performed in this preparation.
+A private local helper was prepared at `.atrium-ingest/etruscan-greek-20261015/retrieve-artifact-source.private.mjs`. It requires exact repository/run/attempt/head/artifact identity, a strong stable ETag and exact HTTP206 Content-Range responses. It requests the ZIP end record and bounded central directory, then streams only an exact selected entry into an exclusive private file. ZIP64, path traversal, duplicate members, symlinks, encryption, unsupported compression, full-response range fallback and mismatched local headers fail closed. It verifies full uncompressed SHA/bytes/CRC, fsyncs and rehashes the actual stored bytes through the retained descriptor, inspects embedded GLB buffers/images, and checks file/path identity before closing. Signed archive redirect URLs and authorization remain in memory only. Modes are 700 for staging folders and 600 for source files/receipts. It does not overwrite existing outputs or claim cloud backup from local retrieval.
+
+~~~sh
+node .atrium-ingest/etruscan-greek-20261015/retrieve-artifact-source.private.mjs \
+  --artifact-id EXACT_ARTIFACT_ID --run-id EXACT_RUN_ID --attempt 1 \
+  --head-sha EXACT_ACQUISITION_HEAD_SHA --list
+
+node .atrium-ingest/etruscan-greek-20261015/retrieve-artifact-source.private.mjs \
+  --artifact-id EXACT_ARTIFACT_ID --run-id EXACT_RUN_ID --attempt 1 \
+  --head-sha EXACT_ACQUISITION_HEAD_SHA \
+  --fetched docs/ingest/etruscan-greek-20261015-run-RUN_ID/fetched.json \
+  --slug EXACT_SLUG
+~~~
+
+The helper is ignored local operational state and does not travel through Git. Nine synthetic parser/CRC/disk/GLB tests pass; independent read-only safety review found no remaining concrete blocker. Actual artifact HEAD/Range behavior still requires root's backend probe. No source payload retrieval was performed in this preparation.
 
 Root archives one bounded group at a time using the verified Drive workflow: preserve the exact incoming source plus dependent sidecars and license/provenance records, upload/reuse content-deduplicated blobs, full-SHA read back private copies, and verify an immutable portable recovery map. Files larger than 90 MiB use verified ordered chunks. Release local staging only through the established exact-whitelist cleanup gates after full archive/recovery/live verification. Keep failed or uncertain transfers intact. Do not remove tracked or Pages-local serving models.
 
