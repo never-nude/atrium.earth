@@ -1,0 +1,1274 @@
+{
+  "reviewed": "2026-10-15",
+  "method": "Current served GLB JSON headers and primitive/material metadata only; no full-asset hash or full-geometry re-audit. Header ranges avoid downloading the full model.",
+  "public_models_checked": 1933,
+  "header_errors": [],
+  "potentially_affected_count": 64,
+  "existing_refresh_count": 63,
+  "new_affected": [
+    "modern/jaume-plensa-humming"
+  ],
+  "decision": "Preserve source vertex colors and material factors, rerender these existing images without altering their model bytes, poses, identities or ingest dates. This is a presentation correction, not a new acquisition.",
+  "existing": [
+    {
+      "slug": "europe/carolan-harp-national-museum-ireland",
+      "url": "https://models.atrium.earth/models/previews/europe/carolan-harp-national-museum-ireland/preview.glb",
+      "source_format": "glb",
+      "untextured_color_primitives": [
+        {
+          "mesh": 0,
+          "primitive": 0,
+          "color_accessor": 12,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        },
+        {
+          "mesh": 1,
+          "primitive": 0,
+          "color_accessor": 12,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        },
+        {
+          "mesh": 2,
+          "primitive": 0,
+          "color_accessor": 12,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        },
+        {
+          "mesh": 3,
+          "primitive": 0,
+          "color_accessor": 12,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        },
+        {
+          "mesh": 4,
+          "primitive": 0,
+          "color_accessor": 12,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        },
+        {
+          "mesh": 5,
+          "primitive": 0,
+          "color_accessor": 18,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        }
+      ]
+    },
+    {
+      "slug": "egyptian/bust-of-amun-e10377-louvre",
+      "url": "https://models.atrium.earth/models/previews/egyptian/bust-of-amun-e10377-louvre/preview.glb",
+      "source_format": "glb",
+      "untextured_color_primitives": [
+        {
+          "mesh": 0,
+          "primitive": 0,
+          "color_accessor": 1,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        }
+      ]
+    },
+    {
+      "slug": "egyptian/standing-horus-n5149-louvre",
+      "url": "https://models.atrium.earth/models/previews/egyptian/standing-horus-n5149-louvre/preview.glb",
+      "source_format": "glb",
+      "untextured_color_primitives": [
+        {
+          "mesh": 0,
+          "primitive": 0,
+          "color_accessor": 1,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        }
+      ]
+    },
+    {
+      "slug": "americas/moche-seated-figure-umich",
+      "url": "https://models.atrium.earth/models/previews/americas/moche-seated-figure-umich/preview-57587c62ed4f.glb",
+      "source_format": "glb",
+      "untextured_color_primitives": [
+        {
+          "mesh": 0,
+          "primitive": 0,
+          "color_accessor": 38,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        },
+        {
+          "mesh": 1,
+          "primitive": 0,
+          "color_accessor": 40,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        },
+        {
+          "mesh": 2,
+          "primitive": 0,
+          "color_accessor": 42,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        },
+        {
+          "mesh": 3,
+          "primitive": 0,
+          "color_accessor": 44,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        },
+        {
+          "mesh": 4,
+          "primitive": 0,
+          "color_accessor": 46,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        },
+        {
+          "mesh": 5,
+          "primitive": 0,
+          "color_accessor": 48,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        },
+        {
+          "mesh": 6,
+          "primitive": 0,
+          "color_accessor": 50,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        },
+        {
+          "mesh": 7,
+          "primitive": 0,
+          "color_accessor": 52,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        },
+        {
+          "mesh": 8,
+          "primitive": 0,
+          "color_accessor": 54,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        },
+        {
+          "mesh": 9,
+          "primitive": 0,
+          "color_accessor": 56,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        },
+        {
+          "mesh": 10,
+          "primitive": 0,
+          "color_accessor": 58,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        },
+        {
+          "mesh": 11,
+          "primitive": 0,
+          "color_accessor": 60,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        },
+        {
+          "mesh": 12,
+          "primitive": 0,
+          "color_accessor": 62,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        },
+        {
+          "mesh": 13,
+          "primitive": 0,
+          "color_accessor": 64,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        },
+        {
+          "mesh": 14,
+          "primitive": 0,
+          "color_accessor": 66,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        },
+        {
+          "mesh": 15,
+          "primitive": 0,
+          "color_accessor": 68,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        },
+        {
+          "mesh": 16,
+          "primitive": 0,
+          "color_accessor": 70,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        },
+        {
+          "mesh": 17,
+          "primitive": 0,
+          "color_accessor": 72,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        },
+        {
+          "mesh": 18,
+          "primitive": 0,
+          "color_accessor": 74,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        }
+      ]
+    },
+    {
+      "slug": "modern/oteiza-homenaje-al-caserio-vasco",
+      "url": "https://models.atrium.earth/models/previews/modern/oteiza-homenaje-al-caserio-vasco/preview-3b1eb0ba4276.glb",
+      "source_format": "glb",
+      "untextured_color_primitives": [
+        {
+          "mesh": 0,
+          "primitive": 0,
+          "color_accessor": 2,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        }
+      ]
+    },
+    {
+      "slug": "modern/arman-accord-final",
+      "url": "https://models.atrium.earth/models/previews/modern/arman-accord-final/preview-715d7becfc43.glb",
+      "source_format": "glb",
+      "untextured_color_primitives": [
+        {
+          "mesh": 6,
+          "primitive": 0,
+          "color_accessor": 25,
+          "material": 6,
+          "baseColorFactor": [
+            0.501961,
+            0.501961,
+            0.501961,
+            1
+          ],
+          "sourceExtensions": {
+            "KHR_materials_unlit": {}
+          }
+        }
+      ]
+    },
+    {
+      "slug": "egyptian/male-official-torso-hmane",
+      "url": "https://models.atrium.earth/models/previews/egyptian/male-official-torso-hmane/preview-152190b52424.glb",
+      "source_format": "glb",
+      "untextured_color_primitives": [
+        {
+          "mesh": 0,
+          "primitive": 0,
+          "color_accessor": 2,
+          "material": 0,
+          "baseColorFactor": [
+            0.5,
+            0.5,
+            0.5,
+            1
+          ],
+          "sourceExtensions": null
+        }
+      ]
+    },
+    {
+      "slug": "modern/bacchante-etcheto-pau",
+      "url": "https://models.atrium.earth/models/previews/modern/bacchante-etcheto-pau/preview-a37c90a6013f.glb",
+      "source_format": "glb",
+      "untextured_color_primitives": [
+        {
+          "mesh": 0,
+          "primitive": 0,
+          "color_accessor": 2,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        }
+      ]
+    },
+    {
+      "slug": "modern/triumph-of-woman-lambeaux-mariemont",
+      "url": "https://models.atrium.earth/models/previews/modern/triumph-of-woman-lambeaux-mariemont/preview-41adfd297902.glb",
+      "source_format": "glb",
+      "untextured_color_primitives": [
+        {
+          "mesh": 0,
+          "primitive": 0,
+          "color_accessor": 2,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        }
+      ]
+    },
+    {
+      "slug": "modern/eve-and-serpent-desenfans-josaphat",
+      "url": "https://models.atrium.earth/models/previews/modern/eve-and-serpent-desenfans-josaphat/preview-11147e5c9d8a.glb",
+      "source_format": "glb",
+      "untextured_color_primitives": [
+        {
+          "mesh": 0,
+          "primitive": 0,
+          "color_accessor": 2,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        }
+      ]
+    },
+    {
+      "slug": "modern/nude-in-sun-harvent-mons",
+      "url": "https://models.atrium.earth/models/previews/modern/nude-in-sun-harvent-mons/preview-6c3b82e1725b.glb",
+      "source_format": "glb",
+      "untextured_color_primitives": [
+        {
+          "mesh": 0,
+          "primitive": 0,
+          "color_accessor": 2,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        }
+      ]
+    },
+    {
+      "slug": "modern/seated-bather-marboutier-pau",
+      "url": "https://models.atrium.earth/models/previews/modern/seated-bather-marboutier-pau/preview-879bbefc27d3.glb",
+      "source_format": "glb",
+      "untextured_color_primitives": [
+        {
+          "mesh": 0,
+          "primitive": 0,
+          "color_accessor": 2,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": {
+            "KHR_materials_ior": {
+              "ior": 1000
+            },
+            "KHR_materials_specular": {
+              "specularColorFactor": [
+                0.1621362952328781,
+                0.1621362952328781,
+                0.1621362952328781
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "slug": "europe/trypillian-female-figurine",
+      "url": "https://models.atrium.earth/models/previews/europe/trypillian-female-figurine/preview-b45cc5ec323b.glb",
+      "source_format": "glb",
+      "untextured_color_primitives": [
+        {
+          "mesh": 0,
+          "primitive": 0,
+          "color_accessor": 2,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        }
+      ]
+    },
+    {
+      "slug": "contemporary/hercules-sancti-petri",
+      "url": "https://models.atrium.earth/models/previews/contemporary/hercules-sancti-petri/preview-537d9e6d540a.glb",
+      "source_format": "glb",
+      "untextured_color_primitives": [
+        {
+          "mesh": 0,
+          "primitive": 0,
+          "color_accessor": 1,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": {
+            "KHR_materials_unlit": {}
+          }
+        }
+      ]
+    },
+    {
+      "slug": "modern/eve-temptation-belin",
+      "url": "https://models.atrium.earth/models/previews/modern/eve-temptation-belin/preview-707f7202239e.glb",
+      "source_format": "glb",
+      "untextured_color_primitives": [
+        {
+          "mesh": 0,
+          "primitive": 0,
+          "color_accessor": 2,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        }
+      ]
+    },
+    {
+      "slug": "modern/woman-leaf-nelson-style",
+      "url": "https://models.atrium.earth/models/previews/modern/woman-leaf-nelson-style/preview-4dc19e16a1e8.glb",
+      "source_format": "glb",
+      "untextured_color_primitives": [
+        {
+          "mesh": 0,
+          "primitive": 0,
+          "color_accessor": 2,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        }
+      ]
+    },
+    {
+      "slug": "modern/seated-woman-christine-martz",
+      "url": "https://models.atrium.earth/models/previews/modern/seated-woman-christine-martz/preview-c0af3b8e2f75.glb",
+      "source_format": "glb",
+      "untextured_color_primitives": [
+        {
+          "mesh": 0,
+          "primitive": 0,
+          "color_accessor": 2,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        }
+      ]
+    },
+    {
+      "slug": "modern/female-torso-guillemot-mons",
+      "url": "https://models.atrium.earth/models/previews/modern/female-torso-guillemot-mons/preview-711f0aad8a27.glb",
+      "source_format": "glb",
+      "untextured_color_primitives": [
+        {
+          "mesh": 0,
+          "primitive": 0,
+          "color_accessor": 2,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        }
+      ]
+    },
+    {
+      "slug": "modern/falling-leaves-lorieux-mont-de-marsan",
+      "url": "https://models.atrium.earth/models/previews/modern/falling-leaves-lorieux-mont-de-marsan/preview-637e923f8c89.glb",
+      "source_format": "glb",
+      "untextured_color_primitives": [
+        {
+          "mesh": 0,
+          "primitive": 0,
+          "color_accessor": 2,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        }
+      ]
+    },
+    {
+      "slug": "modern/brassempouy-torso-conil-reproduction",
+      "url": "https://models.atrium.earth/models/previews/modern/brassempouy-torso-conil-reproduction/preview-10b2c2578d53.glb",
+      "source_format": "glb",
+      "untextured_color_primitives": [
+        {
+          "mesh": 0,
+          "primitive": 0,
+          "color_accessor": 2,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        }
+      ]
+    },
+    {
+      "slug": "modern/reclining-figure-trunkstom",
+      "url": "https://models.atrium.earth/models/previews/modern/reclining-figure-trunkstom/preview-078a62e63ef5.glb",
+      "source_format": "glb",
+      "untextured_color_primitives": [
+        {
+          "mesh": 1,
+          "primitive": 0,
+          "color_accessor": 7,
+          "material": 1,
+          "baseColorFactor": [
+            0.501961,
+            0.501961,
+            0.501961,
+            1
+          ],
+          "sourceExtensions": null
+        }
+      ]
+    },
+    {
+      "slug": "modern/spartacus-merrifield-chichester",
+      "url": "https://models.atrium.earth/models/previews/modern/spartacus-merrifield-chichester/preview-33fb36441f40.glb",
+      "source_format": "glb",
+      "untextured_color_primitives": [
+        {
+          "mesh": 0,
+          "primitive": 0,
+          "color_accessor": 2,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        }
+      ]
+    },
+    {
+      "slug": "modern/seated-woman-trizuljak-bratislava",
+      "url": "https://models.atrium.earth/models/previews/modern/seated-woman-trizuljak-bratislava/preview-5abb0a4a0f21.glb",
+      "source_format": "glb",
+      "untextured_color_primitives": [
+        {
+          "mesh": 0,
+          "primitive": 0,
+          "color_accessor": 2,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        }
+      ]
+    },
+    {
+      "slug": "medieval/horse-aquamanile-hunt",
+      "url": "https://models.atrium.earth/models/previews/medieval/horse-aquamanile-hunt/preview-6ea916c8f9dd.glb",
+      "source_format": "glb",
+      "untextured_color_primitives": [
+        {
+          "mesh": 0,
+          "primitive": 0,
+          "color_accessor": 2,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        }
+      ]
+    },
+    {
+      "slug": "asia/snake-skull-netsuke-mia",
+      "url": "https://models.atrium.earth/models/previews/asia/snake-skull-netsuke-mia/preview-d29b35142416.glb",
+      "source_format": "glb",
+      "untextured_color_primitives": [
+        {
+          "mesh": 0,
+          "primitive": 0,
+          "color_accessor": 2,
+          "material": 0,
+          "baseColorFactor": [
+            0.6787785121372768,
+            0.6787785121372768,
+            0.6787785121372768,
+            1
+          ],
+          "sourceExtensions": {
+            "KHR_materials_ior": {
+              "ior": 1000
+            },
+            "KHR_materials_specular": {
+              "specularColorFactor": [
+                0,
+                0,
+                0
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "slug": "asia/inscribed-wall-saveh-jameh-mosque",
+      "url": "https://models.atrium.earth/models/previews/asia/inscribed-wall-saveh-jameh-mosque/preview-fc19068217f7.glb",
+      "source_format": "glb",
+      "untextured_color_primitives": [
+        {
+          "mesh": 0,
+          "primitive": 0,
+          "color_accessor": 2,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        }
+      ]
+    },
+    {
+      "slug": "africa/tomb-ikhwat-youssef",
+      "url": "https://models.atrium.earth/models/previews/africa/tomb-ikhwat-youssef/preview-658a679c2cb0.glb",
+      "source_format": "glb",
+      "untextured_color_primitives": [
+        {
+          "mesh": 0,
+          "primitive": 0,
+          "color_accessor": 1,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": {
+            "KHR_materials_unlit": {}
+          }
+        }
+      ]
+    },
+    {
+      "slug": "americas/lewitt-tower-dc",
+      "url": "/models/previews/americas/lewitt-tower-dc/preview.glb",
+      "source_format": "glb",
+      "untextured_color_primitives": [
+        {
+          "mesh": 0,
+          "primitive": 0,
+          "color_accessor": 2,
+          "material": 0,
+          "baseColorFactor": [
+            0.5,
+            0.5,
+            0.5,
+            1
+          ],
+          "sourceExtensions": null
+        }
+      ]
+    },
+    {
+      "slug": "africa/djenne-anthropomorphic-sculpture",
+      "url": "/models/previews/africa/djenne-anthropomorphic-sculpture/preview.glb",
+      "source_format": "glb",
+      "untextured_color_primitives": [
+        {
+          "mesh": 0,
+          "primitive": 0,
+          "color_accessor": 2,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        }
+      ]
+    },
+    {
+      "slug": "ancient-near-east/cylinder-seal-battle-kish",
+      "url": "/models/previews/ancient-near-east/cylinder-seal-battle-kish/preview.glb",
+      "source_format": "glb",
+      "untextured_color_primitives": [
+        {
+          "mesh": 0,
+          "primitive": 0,
+          "color_accessor": 2,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        }
+      ]
+    },
+    {
+      "slug": "ancient-near-east/cylinder-seal-sin-kish",
+      "url": "/models/previews/ancient-near-east/cylinder-seal-sin-kish/preview.glb",
+      "source_format": "glb",
+      "untextured_color_primitives": [
+        {
+          "mesh": 0,
+          "primitive": 0,
+          "color_accessor": 2,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        }
+      ]
+    },
+    {
+      "slug": "americas/jimmie-durham-still-life-with-spirit-and-xitle",
+      "url": "/models/previews/americas/jimmie-durham-still-life-with-spirit-and-xitle/preview.glb",
+      "source_format": "glb",
+      "untextured_color_primitives": [
+        {
+          "mesh": 0,
+          "primitive": 0,
+          "color_accessor": 2,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        }
+      ]
+    },
+    {
+      "slug": "modern/aurore-les-vagues-swiecinski-guethary",
+      "url": "/models/previews/modern/aurore-les-vagues-swiecinski-guethary/preview.glb",
+      "source_format": "glb",
+      "untextured_color_primitives": [
+        {
+          "mesh": 0,
+          "primitive": 0,
+          "color_accessor": 2,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        }
+      ]
+    },
+    {
+      "slug": "americas/embracing-peace-seward-johnson",
+      "url": "/models/previews/americas/embracing-peace-seward-johnson/preview.glb",
+      "source_format": "glb",
+      "untextured_color_primitives": [
+        {
+          "mesh": 3,
+          "primitive": 0,
+          "color_accessor": 23,
+          "material": 3,
+          "baseColorFactor": [
+            0.501961,
+            0.501961,
+            0.501961,
+            1
+          ],
+          "sourceExtensions": null
+        },
+        {
+          "mesh": 4,
+          "primitive": 0,
+          "color_accessor": 25,
+          "material": 4,
+          "baseColorFactor": [
+            0.815686,
+            0.513726,
+            0.254902,
+            0.956863
+          ],
+          "sourceExtensions": null
+        },
+        {
+          "mesh": 5,
+          "primitive": 0,
+          "color_accessor": 27,
+          "material": 5,
+          "baseColorFactor": [
+            0.615686,
+            0.733333,
+            0.082353,
+            0.745098
+          ],
+          "sourceExtensions": null
+        },
+        {
+          "mesh": 6,
+          "primitive": 0,
+          "color_accessor": 29,
+          "material": 6,
+          "baseColorFactor": [
+            0.262745,
+            0.419608,
+            0.137255,
+            0.745098
+          ],
+          "sourceExtensions": null
+        }
+      ]
+    },
+    {
+      "slug": "contemporary/woman-kiza-position-ceramic",
+      "url": "/models/previews/contemporary/woman-kiza-position-ceramic/preview.glb",
+      "source_format": "glb",
+      "untextured_color_primitives": [
+        {
+          "mesh": 0,
+          "primitive": 0,
+          "color_accessor": 2,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        }
+      ]
+    },
+    {
+      "slug": "europe/leda-swan-miel-nordhausen",
+      "url": "/models/previews/europe/leda-swan-miel-nordhausen/preview.glb",
+      "source_format": "glb",
+      "untextured_color_primitives": [
+        {
+          "mesh": 0,
+          "primitive": 0,
+          "color_accessor": 2,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        }
+      ]
+    },
+    {
+      "slug": "modern/los-enamorados-benitez",
+      "url": "/models/previews/modern/los-enamorados-benitez/preview.glb",
+      "source_format": "glb",
+      "untextured_color_primitives": [
+        {
+          "mesh": 0,
+          "primitive": 0,
+          "color_accessor": 2,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        }
+      ]
+    },
+    {
+      "slug": "europe/le-repos-boucher-pau",
+      "url": "/models/previews/europe/le-repos-boucher-pau/preview.glb",
+      "source_format": "glb",
+      "untextured_color_primitives": [
+        {
+          "mesh": 0,
+          "primitive": 0,
+          "color_accessor": 1,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        }
+      ]
+    },
+    {
+      "slug": "europe/henry-moore-warrior-shield-arnhem",
+      "url": "/models/previews/europe/henry-moore-warrior-shield-arnhem/preview.glb",
+      "source_format": "glb",
+      "untextured_color_primitives": [
+        {
+          "mesh": 0,
+          "primitive": 0,
+          "color_accessor": 2,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        }
+      ]
+    },
+    {
+      "slug": "makers/takamura-koun-saigo-takamori",
+      "url": "/models/previews/makers/takamura-koun-saigo-takamori/preview.glb",
+      "source_format": "glb",
+      "untextured_color_primitives": [
+        {
+          "mesh": 0,
+          "primitive": 0,
+          "color_accessor": 2,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        }
+      ]
+    },
+    {
+      "slug": "europe/xavier-veilhan-le-lion-blue-lion",
+      "url": "/models/previews/europe/xavier-veilhan-le-lion-blue-lion/preview.glb",
+      "source_format": "glb",
+      "untextured_color_primitives": [
+        {
+          "mesh": 0,
+          "primitive": 0,
+          "color_accessor": 2,
+          "material": 0,
+          "baseColorFactor": [
+            0.6299407417903473,
+            0.9042472442522896,
+            0.9213560469775339,
+            1
+          ],
+          "sourceExtensions": null
+        }
+      ]
+    },
+    {
+      "slug": "americas-oceania/daniel-chester-french-lincoln-memorial-early-sketch-model",
+      "url": "/models/previews/americas-oceania/daniel-chester-french-lincoln-memorial-early-sketch-model/preview.glb",
+      "source_format": "glb",
+      "untextured_color_primitives": [
+        {
+          "mesh": 0,
+          "primitive": 0,
+          "color_accessor": 4,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        },
+        {
+          "mesh": 1,
+          "primitive": 0,
+          "color_accessor": 6,
+          "material": 1,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        }
+      ]
+    },
+    {
+      "slug": "europe/bruno-catalano-van-gogh",
+      "url": "/models/previews/europe/bruno-catalano-van-gogh/preview.glb",
+      "source_format": "glb",
+      "untextured_color_primitives": [
+        {
+          "mesh": 0,
+          "primitive": 0,
+          "color_accessor": 2,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        }
+      ]
+    },
+    {
+      "slug": "europe/bruno-catalano-pierre-david-triptyque",
+      "url": "/models/previews/europe/bruno-catalano-pierre-david-triptyque/preview.glb",
+      "source_format": "glb",
+      "untextured_color_primitives": [
+        {
+          "mesh": 0,
+          "primitive": 0,
+          "color_accessor": 2,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        }
+      ]
+    },
+    {
+      "slug": "europe/apelles-fenosa-orlando-furioso",
+      "url": "/models/previews/europe/apelles-fenosa-orlando-furioso/preview.glb",
+      "source_format": "glb",
+      "untextured_color_primitives": [
+        {
+          "mesh": 0,
+          "primitive": 0,
+          "color_accessor": 2,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        }
+      ]
+    },
+    {
+      "slug": "europe/jean-michel-folon-angelo-custode",
+      "url": "/models/previews/europe/jean-michel-folon-angelo-custode/preview.glb",
+      "source_format": "glb",
+      "untextured_color_primitives": [
+        {
+          "mesh": 0,
+          "primitive": 0,
+          "color_accessor": 2,
+          "material": 0,
+          "baseColorFactor": [
+            1,
+            0.9899636880863927,
+            0.9899636880863927,
+            1
+          ],
+          "sourceExtensions": null
+        }
+      ]
+    },
+    {
+      "slug": "europe/zigor-kepa-akixo-txoria-bird",
+      "url": "/models/previews/europe/zigor-kepa-akixo-txoria-bird/preview.glb",
+      "source_format": "glb",
+      "untextured_color_primitives": [
+        {
+          "mesh": 0,
+          "primitive": 0,
+          "color_accessor": 2,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        }
+      ]
+    },
+    {
+      "slug": "europe/maarten-stuer-tourbillon",
+      "url": "/models/previews/europe/maarten-stuer-tourbillon/preview.glb",
+      "source_format": "glb",
+      "untextured_color_primitives": [
+        {
+          "mesh": 0,
+          "primitive": 0,
+          "color_accessor": 2,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        }
+      ]
+    },
+    {
+      "slug": "europe/jesus-echevarria-la-danse-rituelle-du-feu",
+      "url": "/models/previews/europe/jesus-echevarria-la-danse-rituelle-du-feu/preview.glb",
+      "source_format": "glb",
+      "untextured_color_primitives": [
+        {
+          "mesh": 0,
+          "primitive": 0,
+          "color_accessor": 2,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        }
+      ]
+    },
+    {
+      "slug": "europe/jesus-echevarria-la-pierre-du-sacrifice",
+      "url": "/models/previews/europe/jesus-echevarria-la-pierre-du-sacrifice/preview.glb",
+      "source_format": "glb",
+      "untextured_color_primitives": [
+        {
+          "mesh": 0,
+          "primitive": 0,
+          "color_accessor": 2,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        }
+      ]
+    },
+    {
+      "slug": "global/malanggan-figure-58aeeabf",
+      "url": "/models/previews/global/malanggan-figure-58aeeabf/preview.glb",
+      "source_format": "glb",
+      "untextured_color_primitives": [
+        {
+          "mesh": 0,
+          "primitive": 0,
+          "color_accessor": 2,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        }
+      ]
+    },
+    {
+      "slug": "global/zapotec-effigy-urn-with-crossed-hands-3c39c6a1",
+      "url": "/models/previews/global/zapotec-effigy-urn-with-crossed-hands-3c39c6a1/preview.glb",
+      "source_format": "glb",
+      "untextured_color_primitives": [
+        {
+          "mesh": 0,
+          "primitive": 0,
+          "color_accessor": 2,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        }
+      ]
+    },
+    {
+      "slug": "global/zapotec-effigy-urn-with-tall-headdress-5297a612",
+      "url": "/models/previews/global/zapotec-effigy-urn-with-tall-headdress-5297a612/preview.glb",
+      "source_format": "glb",
+      "untextured_color_primitives": [
+        {
+          "mesh": 0,
+          "primitive": 0,
+          "color_accessor": 2,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        }
+      ]
+    },
+    {
+      "slug": "sub-saharan-africa/ceremonial-charm-hunt",
+      "url": "https://models.atrium.earth/models/previews/sub-saharan-africa/ceremonial-charm-hunt/preview-da11caf9eb3a.glb",
+      "source_format": "glb",
+      "untextured_color_primitives": [
+        {
+          "mesh": 0,
+          "primitive": 0,
+          "color_accessor": 1,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        }
+      ]
+    },
+    {
+      "slug": "sub-saharan-africa/ivory-pot-hunt",
+      "url": "https://models.atrium.earth/models/previews/sub-saharan-africa/ivory-pot-hunt/preview-0c70bf7b04b6.glb",
+      "source_format": "glb",
+      "untextured_color_primitives": [
+        {
+          "mesh": 0,
+          "primitive": 0,
+          "color_accessor": 1,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        }
+      ]
+    },
+    {
+      "slug": "sub-saharan-africa/animal-figure-resembling-a-hare-smvk",
+      "url": "https://models.atrium.earth/models/previews/sub-saharan-africa/animal-figure-resembling-a-hare-smvk/preview-d259166a8dfd.glb",
+      "source_format": "glb",
+      "untextured_color_primitives": [
+        {
+          "mesh": 0,
+          "primitive": 0,
+          "color_accessor": 1,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": {
+            "KHR_materials_unlit": {}
+          }
+        }
+      ]
+    },
+    {
+      "slug": "sub-saharan-africa/ere-ibeji-twin-figure-uq",
+      "url": "https://models.atrium.earth/models/previews/sub-saharan-africa/ere-ibeji-twin-figure-uq/preview-b33f3cbecfc8.glb",
+      "source_format": "glb",
+      "untextured_color_primitives": [
+        {
+          "mesh": 0,
+          "primitive": 0,
+          "color_accessor": 1,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        }
+      ]
+    },
+    {
+      "slug": "modern/mhondorohuma-bonsa-drummer",
+      "url": "https://models.atrium.earth/models/previews/modern/mhondorohuma-bonsa-drummer/preview-1ca84a6f827c.glb",
+      "source_format": "glb",
+      "untextured_color_primitives": [
+        {
+          "mesh": 0,
+          "primitive": 0,
+          "color_accessor": 1,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        }
+      ]
+    },
+    {
+      "slug": "asia/sphero-conical-vessel-1dff1e",
+      "url": "/models/previews/asia/sphero-conical-vessel-1dff1e/preview.glb",
+      "source_format": "glb",
+      "untextured_color_primitives": [
+        {
+          "mesh": 0,
+          "primitive": 0,
+          "color_accessor": 2,
+          "material": 0,
+          "baseColorFactor": [
+            0.5,
+            0.5,
+            0.5,
+            1
+          ],
+          "sourceExtensions": null
+        }
+      ]
+    },
+    {
+      "slug": "europe/celtic-cross-viking-age-5f01aa",
+      "url": "https://models.atrium.earth/models/previews/europe/celtic-cross-viking-age-5f01aa/preview-f1d0eccd84fe.glb",
+      "source_format": "glb",
+      "untextured_color_primitives": [
+        {
+          "mesh": 0,
+          "primitive": 0,
+          "color_accessor": 1,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": {
+            "KHR_materials_specular": {
+              "specularFactor": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "slug": "africa/minbar-of-al-qarawiyyin-mosque-70e3cf",
+      "url": "https://models.atrium.earth/models/previews/africa/minbar-of-al-qarawiyyin-mosque-70e3cf/preview-3cc9d8c262ea.glb",
+      "source_format": "glb",
+      "untextured_color_primitives": [
+        {
+          "mesh": 0,
+          "primitive": 0,
+          "color_accessor": 1,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        }
+      ]
+    },
+    {
+      "slug": "europe/late-bronze-age-combat-damaged-sword-nmi-w93-3d0333",
+      "url": "https://models.atrium.earth/models/previews/europe/late-bronze-age-combat-damaged-sword-nmi-w93-3d0333/preview-7e0cfcf688c6.glb",
+      "source_format": "glb",
+      "untextured_color_primitives": [
+        {
+          "mesh": 0,
+          "primitive": 0,
+          "color_accessor": 1,
+          "material": 0,
+          "baseColorFactor": [
+            0.5,
+            0.5,
+            0.5,
+            1
+          ],
+          "sourceExtensions": null
+        }
+      ]
+    },
+    {
+      "slug": "roman/lead-sling-bullet-cosa-c22-084-1b8da6",
+      "url": "https://models.atrium.earth/models/previews/roman/lead-sling-bullet-cosa-c22-084-1b8da6/preview-b87bbb7610fb.glb",
+      "source_format": "glb",
+      "untextured_color_primitives": [
+        {
+          "mesh": 0,
+          "primitive": 0,
+          "color_accessor": 1,
+          "material": 0,
+          "baseColorFactor": null,
+          "sourceExtensions": null
+        }
+      ]
+    }
+  ]
+}

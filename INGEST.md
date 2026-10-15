@@ -84,6 +84,17 @@ Upload previews before writing dimension or spatial-eligibility entries, because
 bind to the preview URL. `npm run build` already excludes local mirrors of R2 models
 from the Pages artifact, so R2 keeps large batches out of the Pages size limit.
 
+Preserve each unmodified provider download in an approved permanent private archive,
+with its source URL, license and SHA-256 manifest. The acquisition workflow's
+sources-only Actions artifact lasts 90 days and is a temporary backup. R2 serves
+optimized public previews, which do not replace the incoming source files. Read back
+archive membership, byte sizes and sharing state after transfer; metadata checks
+alone do not verify cloud content hashes or authorize deleting existing local
+originals. Record the checks actually performed and keep private archive identifiers
+and personal metadata in ignored local ledgers. The October 15 contemporary batch's
+24 provider GLBs have permanent private copies; this does not imply migration or
+cleanup of older local source collections.
+
 Both `ingest.yml` (weekly) and `acquire-leads.yml` (saved candidate files, such as
 `docs/ingest/african-art-20261002-leads.json`) upload automatically when these
 repository secrets exist: `R2_ACCOUNT_ID`, `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`

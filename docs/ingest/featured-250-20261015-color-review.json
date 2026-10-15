@@ -1,0 +1,30 @@
+{
+  "method": "Current served GLB JSON headers and primitive/material metadata only; no full-asset hash or full-geometry re-audit. Header ranges avoid downloading the full model.",
+  "count": 250,
+  "affected": [
+    {
+      "slug": "modern/arman-accord-final",
+      "url": "https://models.atrium.earth/models/previews/modern/arman-accord-final/preview-715d7becfc43.glb",
+      "source_format": "glb",
+      "untextured_color_primitives": [
+        {
+          "mesh": 6,
+          "primitive": 0,
+          "color_accessor": 25,
+          "material": 6,
+          "baseColorFactor": [
+            0.501961,
+            0.501961,
+            0.501961,
+            1
+          ],
+          "sourceExtensions": {
+            "KHR_materials_unlit": {}
+          }
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "finding": "Of the reviewed 250, only Arman Accord final has an untextured vertex-color surface affected by the preservation fix. The other249 have no such primitive. This metadata check does not constitute a full geometry or full-asset hash audit."
+}

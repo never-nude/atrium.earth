@@ -33245,7 +33245,7 @@
       "measurementRegion": {
         "method": "position-welded connected triangles",
         "description": "The sculpture is separate from the modern pedestal. Connected components ranks 0, 1 and 3 contain the marble group; rank 2 is the rectangular pedestal. Their union runs from normalized Y -0.1190040436654394 to 0.5. Use the confirmed 197.5 cm height of the marble group, retaining the pedestal at the same uniform scale.",
-        "weldToleranceNormalizedUnits": 1e-06,
+        "weldToleranceNormalizedUnits": 0.000001,
         "ranksByDescendingTriangleCount": [
           0,
           1,
@@ -69278,7 +69278,7 @@
       "measurementRegion": {
         "method": "position-welded connected triangles",
         "description": "Connected component rank 0 is the rigid monitor body; all display/button components remain within its lateral body endpoints. Hanging cable components extend farther left and below and are excluded from the reference. Use the museum body-only width 58.4 cm for the rank-0 X span, retaining all cables at that scale.",
-        "weldToleranceNormalizedUnits": 1e-06,
+        "weldToleranceNormalizedUnits": 0.000001,
         "ranksByDescendingTriangleCount": [
           0
         ],
@@ -76991,7 +76991,7 @@
       "measurementRegion": {
         "method": "position-welded connected triangles",
         "description": "Connected component rank 0 is the complete sculpture, including its lowest foot/curved lower edge; rank 1 is the added green platform. All other sculpture fragments and the apple are within rank-0 height. Use the scan creator’s explicitly approximate 57 cm sculpture height, excluding the green platform from the reference while retaining it in the scene.",
-        "weldToleranceNormalizedUnits": 1e-06,
+        "weldToleranceNormalizedUnits": 0.000001,
         "ranksByDescendingTriangleCount": [
           0
         ],
@@ -96498,5 +96498,1064 @@
       "geometryReview": "Reviewed the exact R2 derivative against the Cleveland Museum source front and complete ten-view sheet. Variant B presents the royal hunter upright above his horse, with the original pierced area, lions and authored silver/gilt surface retained. The complete original outer rim supplies the X rim-to-rim span; the raised ring foot seen from the reverse belongs to the dish and is not a modern display support. Bind the documented 20.8 cm diameter to X. The source 4.6 cm height is the vessel rise in its flat physical orientation and must not be mapped to upright-display Y.",
       "note": "Original dish rim-to-rim diameter, excluding any modern stand."
     }
+  },
+  "modern/barbara-hepworth-epidauros-ii": {
+    "dimensions": "H 80 × W 48 × D 34 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://barbara-hepworth.org.uk/sculptures/1961/epidauros-ii/index.php?sort=date",
+    "sourceTitle": "Barbara Hepworth estate — Epidauros II, BH 303",
+    "note": "Published measurements describe Bronze Epidauros II at the Malakoff, St Ives; estate composition BH 303; scanned edition number unrecorded. Sculpture dimensions do not establish a separate site pedestal or surrounding ground. The matching physical object is documented; its dimensions have not been calibrated to this model.",
+    "checked": "2026-10-15",
+    "researchStatus": "documented",
+    "identifiedObject": {
+      "title": "Epidauros II",
+      "artist": "Barbara Hepworth",
+      "institution": "Tate; sited at the Malakoff, St Ives, Cornwall",
+      "accession": "BH 303 (composition); scanned edition number unrecorded",
+      "version_or_date": "1961; Bronze",
+      "record_url": "https://barbara-hepworth.org.uk/sculptures/1961/epidauros-ii/index.php?sort=date",
+      "identity_confidence": "high",
+      "match_explanation": "Exact Malakoff cast is indicated by the scanner location and estate record. Edition number and manufacture place are unrecorded. Preserve the scanned patina; no invented bronze treatment."
+    },
+    "measures": [
+      {
+        "axis": "height",
+        "value": 80,
+        "unit": "cm",
+        "meters": 0.8,
+        "scope": "Bronze Epidauros II at the Malakoff, St Ives; estate composition BH 303; scanned edition number unrecorded. Sculpture dimensions do not establish a separate site pedestal or surrounding ground.",
+        "qualifier": "published",
+        "sourcePosition": 1,
+        "sourceUrls": [
+          "https://barbara-hepworth.org.uk/sculptures/1961/epidauros-ii/index.php?sort=date"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 48,
+        "unit": "cm",
+        "meters": 0.48,
+        "scope": "Bronze Epidauros II at the Malakoff, St Ives; estate composition BH 303; scanned edition number unrecorded. Sculpture dimensions do not establish a separate site pedestal or surrounding ground.",
+        "qualifier": "published",
+        "sourcePosition": 2,
+        "sourceUrls": [
+          "https://barbara-hepworth.org.uk/sculptures/1961/epidauros-ii/index.php?sort=date"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 34,
+        "unit": "cm",
+        "meters": 0.34,
+        "scope": "Bronze Epidauros II at the Malakoff, St Ives; estate composition BH 303; scanned edition number unrecorded. Sculpture dimensions do not establish a separate site pedestal or surrounding ground.",
+        "qualifier": "published",
+        "sourcePosition": 3,
+        "sourceUrls": [
+          "https://barbara-hepworth.org.uk/sculptures/1961/epidauros-ii/index.php?sort=date"
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "sourceUrl": "https://barbara-hepworth.org.uk/sculptures/1961/epidauros-ii/index.php?sort=date",
+        "excerpt": "Prepared primary-source metadata review: Epidauros II; H 80 × W 48 × D 34 cm. Published measurements describe Bronze Epidauros II at the Malakoff, St Ives; estate composition BH 303; scanned edition number unrecorded. Sculpture dimensions do not establish a separate site pedestal or surrounding ground. The matching physical object is documented; its dimensions have not been calibrated to this model.",
+        "retrieved": "2026-10-15"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Confirm that the scanned Malakoff cast is complete, resolve whether any display pedestal or ground is included, and match the estate sculpture boundary after the final pose. The edition number remains unrecorded.",
+    "calibrationBlockers": [
+      "Confirm that the scanned Malakoff cast is complete, resolve whether any display pedestal or ground is included, and match the estate sculpture boundary after the final pose. The edition number remains unrecorded."
+    ],
+    "spatialNote": "The physical object dimensions are documented, but their boundary in this model and its final pose are unverified. Verified-size presentation remains disabled; display size is adjustable."
+  },
+  "modern/jaume-plensa-carmela": {
+    "dimensions": "H 4.5 m",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.palaumusica.cat/en/the-sculptures-of-jaume-plensa-in-dialogue-with-the-architecture-of-the-palau-de-la-musica-catalana_398125",
+    "sourceTitle": "Palau de la Música Catalana — Jaume Plensa exhibition and Carmela",
+    "note": "Published measurements describe Carmela, the cast-iron sculpture installed outside Palau de la Música Catalana, Barcelona; physical sculpture height, not an independently measured display platform or surrounding pavement. The matching physical object is documented; its dimensions have not been calibrated to this model.",
+    "checked": "2026-10-15",
+    "researchStatus": "documented",
+    "identifiedObject": {
+      "title": "Carmela",
+      "artist": "Jaume Plensa",
+      "institution": "Outside Palau de la Música Catalana, Barcelona",
+      "accession": null,
+      "version_or_date": "2015; Cast iron",
+      "record_url": "https://www.palaumusica.cat/en/the-sculptures-of-jaume-plensa-in-dialogue-with-the-architecture-of-the-palau-de-la-musica-catalana_398125",
+      "identity_confidence": "high",
+      "match_explanation": "Correct publisher typo “Jaume Piensa” to Jaume Plensa. 2016 is exhibition installation, not creation. Preserve authored iron appearance and textures."
+    },
+    "measures": [
+      {
+        "axis": "height",
+        "value": 4.5,
+        "unit": "m",
+        "meters": 4.5,
+        "scope": "Carmela, the cast-iron sculpture installed outside Palau de la Música Catalana, Barcelona; physical sculpture height, not an independently measured display platform or surrounding pavement.",
+        "qualifier": "published",
+        "sourcePosition": 1,
+        "sourceUrls": [
+          "https://www.palaumusica.cat/en/the-sculptures-of-jaume-plensa-in-dialogue-with-the-architecture-of-the-palau-de-la-musica-catalana_398125"
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "sourceUrl": "https://www.palaumusica.cat/en/the-sculptures-of-jaume-plensa-in-dialogue-with-the-architecture-of-the-palau-de-la-musica-catalana_398125",
+        "excerpt": "Prepared primary-source metadata review: Carmela; H 4.5 m. Published measurements describe Carmela, the cast-iron sculpture installed outside Palau de la Música Catalana, Barcelona; physical sculpture height, not an independently measured display platform or surrounding pavement. The matching physical object is documented; its dimensions have not been calibrated to this model.",
+        "retrieved": "2026-10-15"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Match the documented sculpture height to the final upright model and distinguish its authored lower edge from any captured display platform, pavement or temporary exhibition setting.",
+    "calibrationBlockers": [
+      "Match the documented sculpture height to the final upright model and distinguish its authored lower edge from any captured display platform, pavement or temporary exhibition setting."
+    ],
+    "spatialNote": "The physical object dimensions are documented, but their boundary in this model and its final pose are unverified. Verified-size presentation remains disabled; display size is adjustable."
+  },
+  "modern/arne-vinje-gunnerud-fenrisulven-fenris-wolf": {
+    "dimensions": "H 40 × W 41.5 × D 18 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.nasjonalmuseet.no/en/collection/object/MS-00374-1988",
+    "sourceTitle": "Nasjonalmuseet — Fenrisulven, MS-00374-1988",
+    "note": "Published measurements describe Exact Nasjonalmuseet object MS-00374-1988, Fenrisulven (1978/1979); published object dimensions, not measurements of earlier larger Fenrisulven compositions or any separate display mount. The matching physical object is documented; its dimensions have not been calibrated to this model.",
+    "checked": "2026-10-15",
+    "researchStatus": "documented",
+    "identifiedObject": {
+      "title": "Fenrisulven (Fenris Wolf)",
+      "artist": "Arne Vinje Gunnerud",
+      "institution": "Nasjonalmuseet, Oslo",
+      "accession": "MS-00374-1988",
+      "version_or_date": "1978/1979; Bronze",
+      "record_url": "https://www.nasjonalmuseet.no/en/collection/object/MS-00374-1988",
+      "identity_confidence": "high",
+      "match_explanation": "Use the museum’s specific 1978/1979 date rather than the earlier larger Fenrisulven vil bryte seg løs compositions. A new Norwegian artist adds variety to the pool."
+    },
+    "measures": [
+      {
+        "axis": "height",
+        "value": 40,
+        "unit": "cm",
+        "meters": 0.4,
+        "scope": "Exact Nasjonalmuseet object MS-00374-1988, Fenrisulven (1978/1979); published object dimensions, not measurements of earlier larger Fenrisulven compositions or any separate display mount.",
+        "qualifier": "published",
+        "sourcePosition": 1,
+        "sourceUrls": [
+          "https://www.nasjonalmuseet.no/en/collection/object/MS-00374-1988"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 41.5,
+        "unit": "cm",
+        "meters": 0.415,
+        "scope": "Exact Nasjonalmuseet object MS-00374-1988, Fenrisulven (1978/1979); published object dimensions, not measurements of earlier larger Fenrisulven compositions or any separate display mount.",
+        "qualifier": "published",
+        "sourcePosition": 2,
+        "sourceUrls": [
+          "https://www.nasjonalmuseet.no/en/collection/object/MS-00374-1988"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 18,
+        "unit": "cm",
+        "meters": 0.18,
+        "scope": "Exact Nasjonalmuseet object MS-00374-1988, Fenrisulven (1978/1979); published object dimensions, not measurements of earlier larger Fenrisulven compositions or any separate display mount.",
+        "qualifier": "published",
+        "sourcePosition": 3,
+        "sourceUrls": [
+          "https://www.nasjonalmuseet.no/en/collection/object/MS-00374-1988"
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "sourceUrl": "https://www.nasjonalmuseet.no/en/collection/object/MS-00374-1988",
+        "excerpt": "Prepared primary-source metadata review: Fenrisulven (Fenris Wolf); H 40 × W 41.5 × D 18 cm. Published measurements describe Exact Nasjonalmuseet object MS-00374-1988, Fenrisulven (1978/1979); published object dimensions, not measurements of earlier larger Fenrisulven compositions or any separate display mount. The matching physical object is documented; its dimensions have not been calibrated to this model.",
+        "retrieved": "2026-10-15"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Confirm the complete museum object and any authored base versus separate mount in the final pose; map the published height/width/depth to the actual derivative bounds without transferring dimensions from larger related compositions.",
+    "calibrationBlockers": [
+      "Confirm the complete museum object and any authored base versus separate mount in the final pose; map the published height/width/depth to the actual derivative bounds without transferring dimensions from larger related compositions."
+    ],
+    "spatialNote": "The physical object dimensions are documented, but their boundary in this model and its final pose are unverified. Verified-size presentation remains disabled; display size is adjustable."
+  },
+  "modern/ossip-zadkine-promethee-elm-wood-version": {
+    "dimensions": "H 300 × W 69 × D 98 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.zadkine.paris.fr/collections/sculptures/promethee",
+    "sourceTitle": "Musée Zadkine — Prométhée, MZS 294",
+    "note": "Published measurements describe Prométhée, elm-wood work MZS 294, Musée Zadkine, 1955–1956. Measurements concern this wooden object, not bronze MZS 295 or an outdoor cast. The matching physical object is documented; its dimensions have not been calibrated to this model.",
+    "checked": "2026-10-15",
+    "researchStatus": "documented",
+    "identifiedObject": {
+      "title": "Prométhée (Elm Wood Version)",
+      "artist": "Ossip Zadkine",
+      "institution": "Musée Zadkine, Paris",
+      "accession": "MZS 294",
+      "version_or_date": "1955–1956; Elm wood with a thin white surface layer",
+      "record_url": "https://www.zadkine.paris.fr/collections/sculptures/promethee",
+      "identity_confidence": "high",
+      "match_explanation": "Scan is of the wooden work, not the bronze edition MZS 295 or the outdoor Paris cast. Preserve the original tool marks, white wash and wood variation. Source model’s shorthand 1955 is expanded to the museum’s 1955–1956 range."
+    },
+    "measures": [
+      {
+        "axis": "height",
+        "value": 300,
+        "unit": "cm",
+        "meters": 3,
+        "scope": "Prométhée, elm-wood work MZS 294, Musée Zadkine, 1955–1956. Measurements concern this wooden object, not bronze MZS 295 or an outdoor cast.",
+        "qualifier": "published",
+        "sourcePosition": 1,
+        "sourceUrls": [
+          "https://www.zadkine.paris.fr/collections/sculptures/promethee"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 69,
+        "unit": "cm",
+        "meters": 0.69,
+        "scope": "Prométhée, elm-wood work MZS 294, Musée Zadkine, 1955–1956. Measurements concern this wooden object, not bronze MZS 295 or an outdoor cast.",
+        "qualifier": "published",
+        "sourcePosition": 2,
+        "sourceUrls": [
+          "https://www.zadkine.paris.fr/collections/sculptures/promethee"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 98,
+        "unit": "cm",
+        "meters": 0.98,
+        "scope": "Prométhée, elm-wood work MZS 294, Musée Zadkine, 1955–1956. Measurements concern this wooden object, not bronze MZS 295 or an outdoor cast.",
+        "qualifier": "published",
+        "sourcePosition": 3,
+        "sourceUrls": [
+          "https://www.zadkine.paris.fr/collections/sculptures/promethee"
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "sourceUrl": "https://www.zadkine.paris.fr/collections/sculptures/promethee",
+        "excerpt": "Prepared primary-source metadata review: Prométhée (Elm Wood Version); H 300 × W 69 × D 98 cm. Published measurements describe Prométhée, elm-wood work MZS 294, Musée Zadkine, 1955–1956. Measurements concern this wooden object, not bronze MZS 295 or an outdoor cast. The matching physical object is documented; its dimensions have not been calibrated to this model.",
+        "retrieved": "2026-10-15"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Confirm the full wooden work and its lower boundary in the source and final derivative, including any integral support and excluding separate display furniture, then reconcile the final vertical axis with the museum height.",
+    "calibrationBlockers": [
+      "Confirm the full wooden work and its lower boundary in the source and final derivative, including any integral support and excluding separate display furniture, then reconcile the final vertical axis with the museum height."
+    ],
+    "spatialNote": "The physical object dimensions are documented, but their boundary in this model and its final pose are unverified. Verified-size presentation remains disabled; display size is adjustable."
+  },
+  "modern/hans-jean-arp-form-heard-and-seen": {
+    "dimensions": "H 34 × W 18.5 × D 17 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.nasjonalmuseet.no/en/collection/object/NMK.2022.0390",
+    "sourceTitle": "Nasjonalmuseet — Form Heard and Seen, NMK.2022.0390",
+    "note": "Published measurements describe Exact plaster Form Heard and Seen, Nasjonalmuseet NMK.2022.0390; not a bronze edition of this composition. Any separate museum display support is outside these published object measurements unless the institution documents otherwise. The matching physical object is documented; its dimensions have not been calibrated to this model.",
+    "checked": "2026-10-15",
+    "researchStatus": "documented",
+    "identifiedObject": {
+      "title": "Form Heard and Seen",
+      "artist": "Hans (Jean) Arp",
+      "institution": "Nasjonalmuseet, Oslo",
+      "accession": "NMK.2022.0390",
+      "version_or_date": "1962–1963; Plaster",
+      "record_url": "https://www.nasjonalmuseet.no/en/collection/object/NMK.2022.0390",
+      "identity_confidence": "high",
+      "match_explanation": "This is the exact plaster object, not a bronze edition of the composition. The authored texture appears ochre in the scan; keep it as published rather than automatically recoloring all plaster white. No manufacture country is inferred from Oslo or the donor foundation."
+    },
+    "measures": [
+      {
+        "axis": "height",
+        "value": 34,
+        "unit": "cm",
+        "meters": 0.34,
+        "scope": "Exact plaster Form Heard and Seen, Nasjonalmuseet NMK.2022.0390; not a bronze edition of this composition. Any separate museum display support is outside these published object measurements unless the institution documents otherwise.",
+        "qualifier": "published",
+        "sourcePosition": 1,
+        "sourceUrls": [
+          "https://www.nasjonalmuseet.no/en/collection/object/NMK.2022.0390"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 18.5,
+        "unit": "cm",
+        "meters": 0.185,
+        "scope": "Exact plaster Form Heard and Seen, Nasjonalmuseet NMK.2022.0390; not a bronze edition of this composition. Any separate museum display support is outside these published object measurements unless the institution documents otherwise.",
+        "qualifier": "published",
+        "sourcePosition": 2,
+        "sourceUrls": [
+          "https://www.nasjonalmuseet.no/en/collection/object/NMK.2022.0390"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 17,
+        "unit": "cm",
+        "meters": 0.17,
+        "scope": "Exact plaster Form Heard and Seen, Nasjonalmuseet NMK.2022.0390; not a bronze edition of this composition. Any separate museum display support is outside these published object measurements unless the institution documents otherwise.",
+        "qualifier": "published",
+        "sourcePosition": 3,
+        "sourceUrls": [
+          "https://www.nasjonalmuseet.no/en/collection/object/NMK.2022.0390"
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "sourceUrl": "https://www.nasjonalmuseet.no/en/collection/object/NMK.2022.0390",
+        "excerpt": "Prepared primary-source metadata review: Form Heard and Seen; H 34 × W 18.5 × D 17 cm. Published measurements describe Exact plaster Form Heard and Seen, Nasjonalmuseet NMK.2022.0390; not a bronze edition of this composition. Any separate museum display support is outside these published object measurements unless the institution documents otherwise. The matching physical object is documented; its dimensions have not been calibrated to this model.",
+        "retrieved": "2026-10-15"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Final pose is ambiguous in the run report. Identify the plaster-only bounds and any display support, retain the authored ochre surface, and match the institutional axes before scale calibration.",
+    "calibrationBlockers": [
+      "Final pose is ambiguous in the run report. Identify the plaster-only bounds and any display support, retain the authored ochre surface, and match the institutional axes before scale calibration."
+    ],
+    "spatialNote": "The physical object dimensions are documented, but their boundary in this model and its final pose are unverified. Verified-size presentation remains disabled; display size is adjustable."
+  },
+  "modern/joan-miro-projet-pour-un-monument-c07aae": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "object",
+    "sourceUrl": "https://miromallorca.com/uploads/2023/03/def-dossier-de-prensa-es.pdf",
+    "sourceTitle": "Fundació Miró Mallorca — foundation dossier identifying the Milan bronze (exact cast measurements unresolved)",
+    "note": "The artist foundation identifies the Milan monumental bronze composition, but measurements and the exact edition marking of this cast remain unresolved. No Kimbell or auction cast measurements are transferred.",
+    "checked": "2026-10-15",
+    "researchStatus": "unresolved",
+    "identifiedObject": {
+      "title": "Projet pour un monument",
+      "artist": "Joan Miró",
+      "institution": "Comune di Milano; outside Archivio di Stato, Via Senato 10, Milan",
+      "accession": null,
+      "version_or_date": "1981; Bronze",
+      "record_url": "https://miromallorca.com/uploads/2023/03/def-dossier-de-prensa-es.pdf",
+      "identity_confidence": "high",
+      "match_explanation": "The monumental bronze outside Palazzo del Senato in Milan has a concave torso, bird-like head and massive separated legs. The artist foundation identifies this Milan work as Projet pour un monument, cast at Fratelli Bonvicini in Verona and placed at this site in 1988. It is the large 1981 composition, also known as Grand personnage, distinct from the smaller Mère Ubu of 1975. The uploader and an Italian Ministry entry mislabel it Mère Ubu and give conflicting earlier dates; those title/date claims are not adopted. Donation dates conflict between sources and are omitted. The exact artist’s-proof marking and dimensions have not been independently verified on the scanned cast; no other cast’s accession, edition or measurements are transferred."
+    },
+    "measures": [],
+    "evidence": [
+      {
+        "sourceUrl": "https://miromallorca.com/uploads/2023/03/def-dossier-de-prensa-es.pdf",
+        "excerpt": "Prepared primary-source metadata review: Projet pour un monument; matching physical dimensions unresolved. The artist foundation identifies the Milan monumental bronze composition, but measurements and the exact edition marking of this cast remain unresolved. No Kimbell or auction cast measurements are transferred.",
+        "retrieved": "2026-10-15"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Verify measurements of the exact bronze outside Archivio di Stato, Milan, including the treatment of its base; resolve final pose and full sculpture boundary. Uploader title/date claims and other casts do not supply a calibrated physical reference.",
+    "calibrationBlockers": [
+      "Verify measurements of the exact bronze outside Archivio di Stato, Milan, including the treatment of its base; resolve final pose and full sculpture boundary. Uploader title/date claims and other casts do not supply a calibrated physical reference."
+    ],
+    "spatialNote": "A matching physical measurement for the represented object or component is unresolved. Verified-size presentation remains disabled; its starting display size is a viewing preset."
+  },
+  "modern/jacques-lipchitz-sacrifice-iii": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "object",
+    "sourceUrl": "https://sketchfab.com/3d-models/285acc2685af46b2ab57fe2f37aaa182",
+    "sourceTitle": "Exact scan publisher — Sacrifice III at the New Orleans Museum of Art sculpture garden",
+    "note": "The model is the NOMA sculpture-garden Sacrifice III; exact NOMA dimensions, accession, cast date and edition remain unresolved. MIT measurements and casting date are not adopted.",
+    "checked": "2026-10-15",
+    "researchStatus": "unresolved",
+    "identifiedObject": {
+      "title": "Sacrifice III",
+      "artist": "Jacques Lipchitz",
+      "institution": "Sydney and Walda Besthoff Sculpture Garden, New Orleans Museum of Art",
+      "accession": null,
+      "version_or_date": "Modeled 1949; cast date of this example unrecorded; Bronze",
+      "record_url": "https://sketchfab.com/3d-models/285acc2685af46b2ab57fe2f37aaa182",
+      "identity_confidence": "high",
+      "match_explanation": "Do not copy MIT’s 1957 casting date or dimensions onto the NOMA object. Exact NOMA accession, cast number/date, and dimensions remain unverified. Model is a relatively light but complete textured physical scan."
+    },
+    "measures": [],
+    "evidence": [
+      {
+        "sourceUrl": "https://sketchfab.com/3d-models/285acc2685af46b2ab57fe2f37aaa182",
+        "excerpt": "Prepared primary-source metadata review: Sacrifice III; matching physical dimensions unresolved. The model is the NOMA sculpture-garden Sacrifice III; exact NOMA dimensions, accession, cast date and edition remain unresolved. MIT measurements and casting date are not adopted.",
+        "retrieved": "2026-10-15"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Obtain an owner/institution measurement of this NOMA cast, determine the sculpture-versus-pedestal/ground boundary, and review the final pose before calibration.",
+    "calibrationBlockers": [
+      "Obtain an owner/institution measurement of this NOMA cast, determine the sculpture-versus-pedestal/ground boundary, and review the final pose before calibration."
+    ],
+    "spatialNote": "A matching physical measurement for the represented object or component is unresolved. Verified-size presentation remains disabled; its starting display size is a viewing preset."
+  },
+  "modern/niki-de-saint-phalle-tir-shooting-altar": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "object",
+    "sourceUrl": "https://catalogue.boekman.nl/pub/SMA/2017_bijlagen.pdf",
+    "sourceTitle": "Stedelijk Museum — annual-report collection evidence (matching dimensions unresolved)",
+    "note": "The source capture identifies the Stedelijk Tir (Shooting Altar). Exact measurements of this surviving assemblage are unresolved; documentation of a Milan shooting event does not establish its measurement or manufacture scope.",
+    "checked": "2026-10-15",
+    "researchStatus": "unresolved",
+    "identifiedObject": {
+      "title": "Tir (Shooting Altar)",
+      "artist": "Niki de Saint Phalle",
+      "institution": "Stedelijk Museum, Amsterdam",
+      "accession": null,
+      "version_or_date": "1970; Assemblage with plaster and paint",
+      "record_url": "https://catalogue.boekman.nl/pub/SMA/2017_bijlagen.pdf",
+      "identity_confidence": "high",
+      "match_explanation": "A physical relief/assemblage scan, distinct from Atrium’s public Saint Phalle fountain figures and Nikigator. The Niki foundation’s film archive documents the Milan Tir: Autel 1970; detailed identity linkage to this exact surviving altar should be retained as a research note rather than assumed origin."
+    },
+    "measures": [],
+    "evidence": [
+      {
+        "sourceUrl": "https://catalogue.boekman.nl/pub/SMA/2017_bijlagen.pdf",
+        "excerpt": "Prepared primary-source metadata review: Tir (Shooting Altar); matching physical dimensions unresolved. The source capture identifies the Stedelijk Tir (Shooting Altar). Exact measurements of this surviving assemblage are unresolved; documentation of a Milan shooting event does not establish its measurement or manufacture scope.",
+        "retrieved": "2026-10-15"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Verify the exact Stedelijk object record and measurements, including the authored assemblage/frame and excluding any wall/display setting; resolve final wall-mounted pose and source completeness before calibration.",
+    "calibrationBlockers": [
+      "Verify the exact Stedelijk object record and measurements, including the authored assemblage/frame and excluding any wall/display setting; resolve final wall-mounted pose and source completeness before calibration."
+    ],
+    "spatialNote": "A matching physical measurement for the represented object or component is unresolved. Verified-size presentation remains disabled; its starting display size is a viewing preset."
+  },
+  "modern/eduardo-paolozzi-hommage-a-anton-bruckner": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "object",
+    "sourceUrl": "https://www.lentos.at/programm/lentos-digital/zu-schade-fuer-die-lade/eduardo-paolozzi",
+    "sourceTitle": "Lentos Kunstmuseum — Eduardo Paolozzi, Hommage à Anton Bruckner",
+    "note": "The exact cast-iron Paolozzi work in Donaupark, Linz, is identified, but matching physical measurements are unresolved. Dimensions of Gabino’s differently authored Bruckner monument are not relevant.",
+    "checked": "2026-10-15",
+    "researchStatus": "unresolved",
+    "identifiedObject": {
+      "title": "Hommage à Anton Bruckner",
+      "artist": "Eduardo Paolozzi",
+      "institution": "Lentos Kunstmuseum / Austrian Ludwig Foundation loan; Donaupark, Linz",
+      "accession": null,
+      "version_or_date": "1977; Cast iron",
+      "record_url": "https://www.lentos.at/programm/lentos-digital/zu-schade-fuer-die-lade/eduardo-paolozzi",
+      "identity_confidence": "high",
+      "match_explanation": "This is Paolozzi’s low cast-iron work, not Amadeo Gabino’s similarly titled 1998 Corten-steel monument. Scan includes plinth/landscape context. Known fabrication is Austria (VOEST); Linz is the original commission site."
+    },
+    "measures": [],
+    "evidence": [
+      {
+        "sourceUrl": "https://www.lentos.at/programm/lentos-digital/zu-schade-fuer-die-lade/eduardo-paolozzi",
+        "excerpt": "Prepared primary-source metadata review: Hommage à Anton Bruckner; matching physical dimensions unresolved. The exact cast-iron Paolozzi work in Donaupark, Linz, is identified, but matching physical measurements are unresolved. Dimensions of Gabino’s differently authored Bruckner monument are not relevant.",
+        "retrieved": "2026-10-15"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Obtain dimensions of Paolozzi’s exact cast-iron work; distinguish authored object from plinth and landscape retained in the capture and resolve its low intended pose before scale calibration.",
+    "calibrationBlockers": [
+      "Obtain dimensions of Paolozzi’s exact cast-iron work; distinguish authored object from plinth and landscape retained in the capture and resolve its low intended pose before scale calibration."
+    ],
+    "spatialNote": "A matching physical measurement for the represented object or component is unresolved. Verified-size presentation remains disabled; its starting display size is a viewing preset."
+  },
+  "modern/josh-smith-friend": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "object",
+    "sourceUrl": "https://www.frieze.com/page/josh-smith-friend-2023",
+    "sourceTitle": "Frieze Sculpture 2023 — Josh Smith, Friend",
+    "note": "The scanned bronze Friend was exhibited in Regent’s Park in 2023. Its exact physical dimensions and current holding are unresolved; exhibition and scan dates do not establish a measured boundary.",
+    "checked": "2026-10-15",
+    "researchStatus": "unresolved",
+    "identifiedObject": {
+      "title": "Friend",
+      "artist": "Josh Smith",
+      "institution": "Unknown holding collection",
+      "accession": null,
+      "version_or_date": "2023; Patinated bronze",
+      "record_url": "https://www.frieze.com/page/josh-smith-friend-2023",
+      "identity_confidence": "high",
+      "match_explanation": "A patinated bronze by Josh Smith, shown temporarily at Frieze Sculpture in The Regent’s Park, London, in 2023. The uploader photographed this exhibition installation on 27 October 2023. The current holding collection and current display site are unverified; the historical London display is not treated as a creation or current holding location. Preserve the authored scan surface and patination."
+    },
+    "measures": [],
+    "evidence": [
+      {
+        "sourceUrl": "https://www.frieze.com/page/josh-smith-friend-2023",
+        "excerpt": "Prepared primary-source metadata review: Friend; matching physical dimensions unresolved. The scanned bronze Friend was exhibited in Regent’s Park in 2023. Its exact physical dimensions and current holding are unresolved; exhibition and scan dates do not establish a measured boundary.",
+        "retrieved": "2026-10-15"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Obtain a measurement for this exact exhibited cast and identify the sculpture’s lower limit, integral base and any retained ground; confirm final upright pose before calibration.",
+    "calibrationBlockers": [
+      "Obtain a measurement for this exact exhibited cast and identify the sculpture’s lower limit, integral base and any retained ground; confirm final upright pose before calibration."
+    ],
+    "spatialNote": "A matching physical measurement for the represented object or component is unresolved. Verified-size presentation remains disabled; its starting display size is a viewing preset."
+  },
+  "modern/lucio-fontana-angel-from-the-monument-to-paolo-chinelli-with-architectural-setting": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "object",
+    "sourceUrl": "https://monumentale.comune.milano.it/itinerari/il-novecento-al-monumentale",
+    "sourceTitle": "Comune di Milano, Cimitero Monumentale — Fontana and the Chinelli monument",
+    "note": "The model represents Fontana’s angel with only part of the Chinelli monument’s architectural niche. Neither the complete detached figure nor the full monument has a matching verified measurement here. A reported frame area of about 2.5 × 2.5 m is context only, not a measurement of this cropped capture.",
+    "checked": "2026-10-15",
+    "researchStatus": "unresolved",
+    "identifiedObject": {
+      "title": "Angel, from the Monument to Paolo Chinelli (with Architectural Setting)",
+      "artist": "Lucio Fontana; architectural monument by Renzo Zavanella",
+      "institution": "Cimitero Monumentale, Milan, Riparto II, garden 13",
+      "accession": null,
+      "version_or_date": "1949; Glazed ceramic on metal support; granite architectural setting",
+      "record_url": "https://monumentale.comune.milano.it/itinerari/il-novecento-al-monumentale",
+      "identity_confidence": "high",
+      "match_explanation": "The model depicts the sculptural figure and part of its architectural niche, rather than a complete detached statue. Title makes the component and retained setting explicit. Visionaria gives the frame area as about 2.5 × 2.5 m; this is not used to calibrate the cropped scan."
+    },
+    "measures": [],
+    "evidence": [
+      {
+        "sourceUrl": "https://monumentale.comune.milano.it/itinerari/il-novecento-al-monumentale",
+        "excerpt": "Prepared primary-source metadata review: Angel, from the Monument to Paolo Chinelli (with Architectural Setting); matching physical dimensions unresolved. The model represents Fontana’s angel with only part of the Chinelli monument’s architectural niche. Neither the complete detached figure nor the full monument has a matching verified measurement here. A reported frame area of about 2.5 × 2.5 m is context only, not a measurement of this cropped capture.",
+        "retrieved": "2026-10-15"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Obtain a sourced dimension for an identifiable complete span retained in this component capture. Reconcile the angel, ceramic/metal support and partial granite niche separately, verify the final installed pose, and define the represented boundary before any calibration. Do not scale the crop to the complete frame area.",
+    "calibrationBlockers": [
+      "Obtain a sourced dimension for an identifiable complete span retained in this component capture. Reconcile the angel, ceramic/metal support and partial granite niche separately, verify the final installed pose, and define the represented boundary before any calibration. Do not scale the crop to the complete frame area."
+    ],
+    "spatialNote": "A matching physical measurement for the represented object or component is unresolved. Verified-size presentation remains disabled; its starting display size is a viewing preset."
+  },
+  "modern/hans-jean-arp-heart-of-a-monument": {
+    "dimensions": "H 18 × W 19 × D 13.5 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.nasjonalmuseet.no/en/collection/object/NMK.2022.0402",
+    "sourceTitle": "Nasjonalmuseet — Heart of a Monument, NMK.2022.0402",
+    "note": "Published measurements describe Exact plaster Heart of a Monument, Nasjonalmuseet NMK.2022.0402, with the institution’s broad production range. Not a claim that this object is an original 1963 carving. The matching physical object is documented; its dimensions have not been calibrated to this model.",
+    "checked": "2026-10-15",
+    "researchStatus": "documented",
+    "identifiedObject": {
+      "title": "Heart of a Monument",
+      "artist": "Hans (Jean) Arp",
+      "institution": "Nasjonalmuseet, Oslo",
+      "accession": "NMK.2022.0402",
+      "version_or_date": "Between 1963 and 1980; Plaster",
+      "record_url": "https://www.nasjonalmuseet.no/en/collection/object/NMK.2022.0402",
+      "identity_confidence": "high",
+      "match_explanation": "Keep the broad object-production range, which extends beyond Arp’s lifetime. Do not label the exact scanned plaster an original 1963 carving. Distinct composition from both existing Arp works."
+    },
+    "measures": [
+      {
+        "axis": "height",
+        "value": 18,
+        "unit": "cm",
+        "meters": 0.18,
+        "scope": "Exact plaster Heart of a Monument, Nasjonalmuseet NMK.2022.0402, with the institution’s broad production range. Not a claim that this object is an original 1963 carving.",
+        "qualifier": "published",
+        "sourcePosition": 1,
+        "sourceUrls": [
+          "https://www.nasjonalmuseet.no/en/collection/object/NMK.2022.0402"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 19,
+        "unit": "cm",
+        "meters": 0.19,
+        "scope": "Exact plaster Heart of a Monument, Nasjonalmuseet NMK.2022.0402, with the institution’s broad production range. Not a claim that this object is an original 1963 carving.",
+        "qualifier": "published",
+        "sourcePosition": 2,
+        "sourceUrls": [
+          "https://www.nasjonalmuseet.no/en/collection/object/NMK.2022.0402"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 13.5,
+        "unit": "cm",
+        "meters": 0.135,
+        "scope": "Exact plaster Heart of a Monument, Nasjonalmuseet NMK.2022.0402, with the institution’s broad production range. Not a claim that this object is an original 1963 carving.",
+        "qualifier": "published",
+        "sourcePosition": 3,
+        "sourceUrls": [
+          "https://www.nasjonalmuseet.no/en/collection/object/NMK.2022.0402"
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "sourceUrl": "https://www.nasjonalmuseet.no/en/collection/object/NMK.2022.0402",
+        "excerpt": "Prepared primary-source metadata review: Heart of a Monument; H 18 × W 19 × D 13.5 cm. Published measurements describe Exact plaster Heart of a Monument, Nasjonalmuseet NMK.2022.0402, with the institution’s broad production range. Not a claim that this object is an original 1963 carving. The matching physical object is documented; its dimensions have not been calibrated to this model.",
+        "retrieved": "2026-10-15"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Resolve the ambiguous final pose and any support, then match the measured institutional plaster boundaries. Composition date and measurements of other casts do not establish this derivative’s scale.",
+    "calibrationBlockers": [
+      "Resolve the ambiguous final pose and any support, then match the measured institutional plaster boundaries. Composition date and measurements of other casts do not establish this derivative’s scale."
+    ],
+    "spatialNote": "The physical object dimensions are documented, but their boundary in this model and its final pose are unverified. Verified-size presentation remains disabled; display size is adjustable."
+  },
+  "modern/hans-jean-arp-ugledrm-owl-dream": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "object",
+    "sourceUrl": "https://www.nasjonalmuseet.no/globalassets/dokumenter/innkjop/innkjop-2022.pdf",
+    "sourceTitle": "Nasjonalmuseet — 2022 acquisition list, NMK.2022.0387",
+    "note": "Nasjonalmuseet accession NMK.2022.0387 is identified, but exact material, cast/production status and physical dimensions remain unresolved. No measurement is inferred from the 2022 accession or model publication.",
+    "checked": "2026-10-15",
+    "researchStatus": "unresolved",
+    "identifiedObject": {
+      "title": "Ugledrøm (Owl Dream)",
+      "artist": "Hans (Jean) Arp",
+      "institution": "Nasjonalmuseet, Oslo",
+      "accession": "NMK.2022.0387",
+      "version_or_date": "Between 1957 and 1968",
+      "record_url": "https://www.nasjonalmuseet.no/globalassets/dokumenter/innkjop/innkjop-2022.pdf",
+      "identity_confidence": "high",
+      "match_explanation": "This exact scanned object may be a later plaster; material and cast status are deliberately left unrecorded pending the detailed institutional record. Do not assign a date based on the 2022 acquisition or 3D model publication."
+    },
+    "measures": [],
+    "evidence": [
+      {
+        "sourceUrl": "https://www.nasjonalmuseet.no/globalassets/dokumenter/innkjop/innkjop-2022.pdf",
+        "excerpt": "Prepared primary-source metadata review: Ugledrøm (Owl Dream); matching physical dimensions unresolved. Nasjonalmuseet accession NMK.2022.0387 is identified, but exact material, cast/production status and physical dimensions remain unresolved. No measurement is inferred from the 2022 accession or model publication.",
+        "retrieved": "2026-10-15"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Obtain the detailed institutional measurement and version record, distinguish any display support, and review the final pose and object boundary before calibration.",
+    "calibrationBlockers": [
+      "Obtain the detailed institutional measurement and version record, distinguish any display support, and review the final pose and object boundary before calibration."
+    ],
+    "spatialNote": "A matching physical measurement for the represented object or component is unresolved. Verified-size presentation remains disabled; its starting display size is a viewing preset."
+  },
+  "modern/jaume-plensa-humming": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "object",
+    "sourceUrl": "https://galerielelong.com/usr/documents/exhibitions/press_release_url/85/press-release-plensa-2011.pdf",
+    "sourceTitle": "Galerie Lelong — Jaume Plensa 2011 exhibition evidence; exact scan publisher identifies deCordova",
+    "note": "Exact dimensions of the deCordova Humming are unresolved. This source capture has preserved COLOR_0 vertex colors and zero texture images; preserve its authored vertex colors rather than describing the appearance as an image texture.",
+    "checked": "2026-10-15",
+    "researchStatus": "unresolved",
+    "identifiedObject": {
+      "title": "Humming",
+      "artist": "Jaume Plensa",
+      "institution": "deCordova Sculpture Park and Museum, Lincoln, Massachusetts",
+      "accession": null,
+      "version_or_date": "2011; Marble and lead",
+      "record_url": "https://galerielelong.com/usr/documents/exhibitions/press_release_url/85/press-release-plensa-2011.pdf",
+      "identity_confidence": "high",
+      "match_explanation": "The exact source UID identifies the roughly 89,000-face capture of Humming at deCordova, with marble and lead and 2011 artwork date in the publisher description. The lower-resolution duplicate is excluded. COLOR_0 vertex colors are present and image texture count is zero; physical dimensions remain unrecorded."
+    },
+    "measures": [],
+    "evidence": [
+      {
+        "sourceUrl": "https://galerielelong.com/usr/documents/exhibitions/press_release_url/85/press-release-plensa-2011.pdf",
+        "excerpt": "Prepared primary-source metadata review: Humming; matching physical dimensions unresolved. Exact dimensions of the deCordova Humming are unresolved. This source capture has preserved COLOR_0 vertex colors and zero texture images; preserve its authored vertex colors rather than describing the appearance as an image texture.",
+        "retrieved": "2026-10-15"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Obtain a matching physical measurement for this exact marble-and-lead work; review the complete object, any base and final pose. The approximately 89,000-face capture is distinct from a lower-resolution scan, which does not supply measurement evidence.",
+    "calibrationBlockers": [
+      "Obtain a matching physical measurement for this exact marble-and-lead work; review the complete object, any base and final pose. The approximately 89,000-face capture is distinct from a lower-resolution scan, which does not supply measurement evidence."
+    ],
+    "spatialNote": "A matching physical measurement for the represented object or component is unresolved. Verified-size presentation remains disabled; its starting display size is a viewing preset."
+  },
+  "americas/frank-stella-maha-lat-5-5x-da59cb": {
+    "dimensions": "H 222.9 cm × W 281.9 cm × D 97.8 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://viewingroom.mnuchingallery.com/attachment/en/5e862edda5aa2c7004703974/DownloadableItem/689a08c3dc6f2038d50ba894",
+    "sourceTitle": "Mnuchin Gallery — Frank Stella: Indian Birds, illustrated checklist, Maha-lat, 5.5x",
+    "note": "Published measurements describe Full-scale mixed-media metal relief Maha-lat, 5.5x (1978–1979), identified in Mnuchin’s illustrated 2023 checklist. Excludes attached gallery wall/floor residue; does not describe an Ahmedabad maquette or the room. The matching physical object is documented; its dimensions have not been calibrated to this model.",
+    "checked": "2026-10-15",
+    "researchStatus": "documented",
+    "identifiedObject": {
+      "title": "Maha-lat, 5.5x",
+      "artist": "Frank Stella",
+      "institution": "Unknown holding collection",
+      "accession": null,
+      "version_or_date": "1978–1979; Mixed media on metal relief",
+      "record_url": "https://viewingroom.mnuchingallery.com/attachment/en/5e862edda5aa2c7004703974/DownloadableItem/689a08c3dc6f2038d50ba894",
+      "identity_confidence": "high",
+      "match_explanation": "Maha-lat, 5.5x is a full-scale relief from Frank Stella’s Indian Bird series. The model was published under the series title Indian Birds, but its distinctive curves, lattice armature, upper plates and striped lower beam match the work illustrated in Mnuchin Gallery’s checklist. Mnuchin states that the full-scale Indian Birds were fabricated in New York in 1978–1979; Ahmedabad was the place of the preparatory maquettes. The holding collection is not identified in the sources. The uploader names the artist and the 2023 Mnuchin exhibition but does not document the capture technique. Photogrammetry is inferred from the textured capture’s appearance, not established by the source. The preview includes attached wall/floor residue; complete geometry and surface review are required before acceptance, without assumed trimming regions or integrity exemptions."
+    },
+    "measures": [
+      {
+        "axis": "height",
+        "value": 222.9,
+        "unit": "cm",
+        "meters": 2.229,
+        "scope": "Full-scale mixed-media metal relief Maha-lat, 5.5x (1978–1979), identified in Mnuchin’s illustrated 2023 checklist. Excludes attached gallery wall/floor residue; does not describe an Ahmedabad maquette or the room.",
+        "qualifier": "published",
+        "sourcePosition": 1,
+        "sourceUrls": [
+          "https://viewingroom.mnuchingallery.com/attachment/en/5e862edda5aa2c7004703974/DownloadableItem/689a08c3dc6f2038d50ba894"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 281.9,
+        "unit": "cm",
+        "meters": 2.819,
+        "scope": "Full-scale mixed-media metal relief Maha-lat, 5.5x (1978–1979), identified in Mnuchin’s illustrated 2023 checklist. Excludes attached gallery wall/floor residue; does not describe an Ahmedabad maquette or the room.",
+        "qualifier": "published",
+        "sourcePosition": 2,
+        "sourceUrls": [
+          "https://viewingroom.mnuchingallery.com/attachment/en/5e862edda5aa2c7004703974/DownloadableItem/689a08c3dc6f2038d50ba894"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 97.8,
+        "unit": "cm",
+        "meters": 0.978,
+        "scope": "Full-scale mixed-media metal relief Maha-lat, 5.5x (1978–1979), identified in Mnuchin’s illustrated 2023 checklist. Excludes attached gallery wall/floor residue; does not describe an Ahmedabad maquette or the room.",
+        "qualifier": "published",
+        "sourcePosition": 3,
+        "sourceUrls": [
+          "https://viewingroom.mnuchingallery.com/attachment/en/5e862edda5aa2c7004703974/DownloadableItem/689a08c3dc6f2038d50ba894"
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "sourceUrl": "https://viewingroom.mnuchingallery.com/attachment/en/5e862edda5aa2c7004703974/DownloadableItem/689a08c3dc6f2038d50ba894",
+        "excerpt": "Prepared primary-source metadata review: Maha-lat, 5.5x; H 222.9 cm × W 281.9 cm × D 97.8 cm. Published measurements describe Full-scale mixed-media metal relief Maha-lat, 5.5x (1978–1979), identified in Mnuchin’s illustrated 2023 checklist. Excludes attached gallery wall/floor residue; does not describe an Ahmedabad maquette or the room. The matching physical object is documented; its dimensions have not been calibrated to this model.",
+        "retrieved": "2026-10-15"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "The capture includes wall/floor attached to the relief. Identify complete relief limits and distinguish artwork armature from environment, review source/derivative completeness and final wall-mounted pose, and match the checklist axes. Do not fit the complete scene to the relief’s height or invent a trim region.",
+    "calibrationBlockers": [
+      "The capture includes wall/floor attached to the relief. Identify complete relief limits and distinguish artwork armature from environment, review source/derivative completeness and final wall-mounted pose, and match the checklist axes. Do not fit the complete scene to the relief’s height or invent a trim region."
+    ],
+    "spatialNote": "The listed dimensions describe the artwork, while this scan retains environmental geometry. Its automatic approximate starting size may include that environment and should not be read as the artwork’s measured size. Verified-size presentation remains disabled pending an object-boundary and pose review."
+  },
+  "unfiled/ai-weiwei-dog-circle-of-animals-zodiac-heads-lacma-6f86e5": {
+    "dimensions": "",
+    "status": "unresolved",
+    "basis": "object",
+    "sourceUrl": "https://collections.lacma.org/object/255475",
+    "sourceTitle": "LACMA — Circle of Animals/Zodiac Heads; matching individual Dog component dimensions unresolved",
+    "note": "The represented object is one Dog bronze head with stem and circular cast base at LACMA, plus a plaza patch. Exact component dimensions, edition and casting date are unresolved. Dimensions or production statements for the complete twelve-head installation are not transferred.",
+    "checked": "2026-10-15",
+    "researchStatus": "unresolved",
+    "identifiedObject": {
+      "title": "Dog, from Circle of Animals/Zodiac Heads",
+      "artist": "Ai Weiwei",
+      "institution": "Los Angeles County Museum of Art; Dog component of Circle of Animals/Zodiac Heads",
+      "accession": null,
+      "version_or_date": "2010 (composition; specific casting date unverified); Bronze",
+      "record_url": "https://collections.lacma.org/object/255475",
+      "identity_confidence": "high",
+      "match_explanation": "A single Dog head, bronze stem, and circular cast base from Ai Weiwei’s twelve-part Circle of Animals/Zodiac Heads, with a small square of plaza retained. This model does not reproduce the complete twelve-head installation. The source names LACMA; its individual accession, specific casting date and production location are not documented. Official photographs show the bronze series at a Chengdu foundry in2010, but that context is not transferred into a claim about this particular LACMA cast."
+    },
+    "measures": [],
+    "evidence": [
+      {
+        "sourceUrl": "https://collections.lacma.org/object/255475",
+        "excerpt": "Prepared primary-source metadata review: Dog, from Circle of Animals/Zodiac Heads; matching physical dimensions unresolved. The represented object is one Dog bronze head with stem and circular cast base at LACMA, plus a plaza patch. Exact component dimensions, edition and casting date are unresolved. Dimensions or production statements for the complete twelve-head installation are not transferred.",
+        "retrieved": "2026-10-15"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Obtain a measurement of the exact LACMA Dog component and define whether it includes stem and circular authored base; exclude plaza geometry, review the final pose and complete component boundaries, and avoid using total installation dimensions.",
+    "calibrationBlockers": [
+      "Obtain a measurement of the exact LACMA Dog component and define whether it includes stem and circular authored base; exclude plaza geometry, review the final pose and complete component boundaries, and avoid using total installation dimensions."
+    ],
+    "spatialNote": "A matching physical measurement for the represented object or component is unresolved. Verified-size presentation remains disabled; its starting display size is a viewing preset."
+  },
+  "modern/joan-miro-double-sided-monolith-estela-de-doble-cara-12d619": {
+    "dimensions": "H 79.5 × W 50 × D 6.5 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.fmirobcn.org/en/colection/catalog-works/10343/p-double-sided-monolith-p",
+    "sourceTitle": "Fundació Joan Miró — Double-sided Monolith, FJM 9605",
+    "note": "Published measurements describe Exact double-sided ceramic stele FJM 9605, Fundació Joan Miró; published ceramic object dimensions, not an unmeasured museum display pedestal. The matching physical object is documented; its dimensions have not been calibrated to this model.",
+    "checked": "2026-10-15",
+    "researchStatus": "documented",
+    "identifiedObject": {
+      "title": "Double-sided Monolith (Estela de doble cara)",
+      "artist": "Joan Miró; Josep Llorens Artigas",
+      "institution": "Fundació Joan Miró, Barcelona",
+      "accession": "FJM 9605",
+      "version_or_date": "1956; Stoneware and enamel",
+      "record_url": "https://www.fmirobcn.org/en/colection/catalog-works/10343/p-double-sided-monolith-p",
+      "identity_confidence": "high",
+      "match_explanation": "Complete standing ceramic stele in the scan preview; the title identifies the two decorated sides. Capture author specializes in photogrammetry and 3D reality capture. Do not flatten the relief or supply a generic ceramic material. Manufacture place has not been established for this exact object."
+    },
+    "measures": [
+      {
+        "axis": "height",
+        "value": 79.5,
+        "unit": "cm",
+        "meters": 0.795,
+        "scope": "Exact double-sided ceramic stele FJM 9605, Fundació Joan Miró; published ceramic object dimensions, not an unmeasured museum display pedestal.",
+        "qualifier": "published",
+        "sourcePosition": 1,
+        "sourceUrls": [
+          "https://www.fmirobcn.org/en/colection/catalog-works/10343/p-double-sided-monolith-p"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 50,
+        "unit": "cm",
+        "meters": 0.5,
+        "scope": "Exact double-sided ceramic stele FJM 9605, Fundació Joan Miró; published ceramic object dimensions, not an unmeasured museum display pedestal.",
+        "qualifier": "published",
+        "sourcePosition": 2,
+        "sourceUrls": [
+          "https://www.fmirobcn.org/en/colection/catalog-works/10343/p-double-sided-monolith-p"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 6.5,
+        "unit": "cm",
+        "meters": 0.065,
+        "scope": "Exact double-sided ceramic stele FJM 9605, Fundació Joan Miró; published ceramic object dimensions, not an unmeasured museum display pedestal.",
+        "qualifier": "published",
+        "sourcePosition": 3,
+        "sourceUrls": [
+          "https://www.fmirobcn.org/en/colection/catalog-works/10343/p-double-sided-monolith-p"
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "sourceUrl": "https://www.fmirobcn.org/en/colection/catalog-works/10343/p-double-sided-monolith-p",
+        "excerpt": "Prepared primary-source metadata review: Double-sided Monolith (Estela de doble cara); H 79.5 × W 50 × D 6.5 cm. Published measurements describe Exact double-sided ceramic stele FJM 9605, Fundació Joan Miró; published ceramic object dimensions, not an unmeasured museum display pedestal. The matching physical object is documented; its dimensions have not been calibrated to this model.",
+        "retrieved": "2026-10-15"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Check that both decorated faces, complete top/edges and lower ceramic edge are retained. Separate a museum support if present, resolve final upright pose, and map the published axes before calibration.",
+    "calibrationBlockers": [
+      "Check that both decorated faces, complete top/edges and lower ceramic edge are retained. Separate a museum support if present, resolve final upright pose, and map the published axes before calibration."
+    ],
+    "spatialNote": "The physical object dimensions are documented, but their boundary in this model and its final pose are unverified. Verified-size presentation remains disabled; display size is adjustable."
+  },
+  "modern/joan-miro-mural-for-ibm-3d5da4": {
+    "dimensions": "H 281.5 × W 872 × D 2.4 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.museunacional.cat/es/colleccio/mural-para-ibm/joan-miro/240029-000",
+    "sourceTitle": "Museu Nacional d’Art de Catalunya — Mural para IBM, 240029-000",
+    "note": "Published measurements describe Complete ceramic Mural for IBM (1978), MNAC 240029-000, by Joan Miró with Joan Gardy Artigas; dimensions of the ceramic mural, excluding retained museum wall, display structure and surrounding environment. The matching physical object is documented; its dimensions have not been calibrated to this model.",
+    "checked": "2026-10-15",
+    "researchStatus": "documented",
+    "identifiedObject": {
+      "title": "Mural for IBM",
+      "artist": "Joan Miró; Joan Gardy Artigas",
+      "institution": "Museu Nacional d’Art de Catalunya, Barcelona; deposit of Generalitat de Catalunya, National Art Collection",
+      "accession": "240029-000",
+      "version_or_date": "1978; 406 refractory stoneware tiles with white, black, blue, red and green enamels",
+      "record_url": "https://www.museunacional.cat/es/colleccio/mural-para-ibm/joan-miro/240029-000",
+      "identity_confidence": "high",
+      "match_explanation": "The collaborator here is Joan Gardy Artigas, not his father Josep Llorens Artigas. 1976 is an IBM commission date in company history; MNAC dates the artwork 1978. Physical wall capture preserves tile surfaces and relief; full mesh inspection must establish completeness and keep the original color."
+    },
+    "measures": [
+      {
+        "axis": "height",
+        "value": 281.5,
+        "unit": "cm",
+        "meters": 2.815,
+        "scope": "Complete ceramic Mural for IBM (1978), MNAC 240029-000, by Joan Miró with Joan Gardy Artigas; dimensions of the ceramic mural, excluding retained museum wall, display structure and surrounding environment.",
+        "qualifier": "published",
+        "sourcePosition": 1,
+        "sourceUrls": [
+          "https://www.museunacional.cat/es/colleccio/mural-para-ibm/joan-miro/240029-000"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 872,
+        "unit": "cm",
+        "meters": 8.72,
+        "scope": "Complete ceramic Mural for IBM (1978), MNAC 240029-000, by Joan Miró with Joan Gardy Artigas; dimensions of the ceramic mural, excluding retained museum wall, display structure and surrounding environment.",
+        "qualifier": "published",
+        "sourcePosition": 2,
+        "sourceUrls": [
+          "https://www.museunacional.cat/es/colleccio/mural-para-ibm/joan-miro/240029-000"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 2.4,
+        "unit": "cm",
+        "meters": 0.024,
+        "scope": "Complete ceramic Mural for IBM (1978), MNAC 240029-000, by Joan Miró with Joan Gardy Artigas; dimensions of the ceramic mural, excluding retained museum wall, display structure and surrounding environment.",
+        "qualifier": "published",
+        "sourcePosition": 3,
+        "sourceUrls": [
+          "https://www.museunacional.cat/es/colleccio/mural-para-ibm/joan-miro/240029-000"
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "sourceUrl": "https://www.museunacional.cat/es/colleccio/mural-para-ibm/joan-miro/240029-000",
+        "excerpt": "Prepared primary-source metadata review: Mural for IBM; H 281.5 × W 872 × D 2.4 cm. Published measurements describe Complete ceramic Mural for IBM (1978), MNAC 240029-000, by Joan Miró with Joan Gardy Artigas; dimensions of the ceramic mural, excluding retained museum wall, display structure and surrounding environment. The matching physical object is documented; its dimensions have not been calibrated to this model.",
+        "retrieved": "2026-10-15"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Confirm the entire tile rectangle and source-to-derivative boundary. Separate retained wall and mount from ceramic extent, review the front-facing wall pose, and establish which source measurement maps to that extent; the 2.4 cm ceramic depth must not scale a captured wall block.",
+    "calibrationBlockers": [
+      "Confirm the entire tile rectangle and source-to-derivative boundary. Separate retained wall and mount from ceramic extent, review the front-facing wall pose, and establish which source measurement maps to that extent; the 2.4 cm ceramic depth must not scale a captured wall block."
+    ],
+    "spatialNote": "The physical object dimensions are documented, but their boundary in this model and its final pose are unverified. Verified-size presentation remains disabled; display size is adjustable."
+  },
+  "modern/joan-miro-wall-of-barcelona-airport-0ed725": {
+    "dimensions": "H 10 × W 50 m",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://successiomiro.com/catalogue/object/1499",
+    "sourceTitle": "Successió Miró — Wall of Barcelona Airport, ceramic catalogue no. 431",
+    "note": "Published measurements describe Entire original ceramic Wall of Barcelona Airport (1970), Successió Miró ceramic catalogue no. 431; the complete 10 × 50 m artwork span, excluding the terminal façade, surrounding architecture and pavement. These are not measurements of an arbitrary scan fragment. The matching physical object is documented; its dimensions have not been calibrated to this model.",
+    "checked": "2026-10-15",
+    "researchStatus": "documented",
+    "identifiedObject": {
+      "title": "Wall of Barcelona Airport",
+      "artist": "Joan Miró; Josep Llorens Artigas; Joan Gardy Artigas (collaborator)",
+      "institution": "Barcelona–El Prat Airport, Terminal 2B; Fundación ENAIRE manages the transport-art collection",
+      "accession": "Successió Miró ceramic catalogue no. 431",
+      "version_or_date": "1970; inaugurated 18 March 1971; Glazed stoneware tile mosaic",
+      "record_url": "https://successiomiro.com/catalogue/object/1499",
+      "identity_confidence": "high",
+      "match_explanation": "This is a physical capture of the monumental ceramic wall, not a painted 2D graphic. Its 50 m width is the artwork’s complete span; compare mesh extent with full-work reference before calibration. Source catalogue’s historical AENA Foundation wording is superseded by official ENAIRE collection management information. Original airport installation is documented separately from Gallifa manufacture."
+    },
+    "measures": [
+      {
+        "axis": "height",
+        "value": 10,
+        "unit": "m",
+        "meters": 10,
+        "scope": "Entire original ceramic Wall of Barcelona Airport (1970), Successió Miró ceramic catalogue no. 431; the complete 10 × 50 m artwork span, excluding the terminal façade, surrounding architecture and pavement. These are not measurements of an arbitrary scan fragment.",
+        "qualifier": "published",
+        "sourcePosition": 1,
+        "sourceUrls": [
+          "https://successiomiro.com/catalogue/object/1499"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 50,
+        "unit": "m",
+        "meters": 50,
+        "scope": "Entire original ceramic Wall of Barcelona Airport (1970), Successió Miró ceramic catalogue no. 431; the complete 10 × 50 m artwork span, excluding the terminal façade, surrounding architecture and pavement. These are not measurements of an arbitrary scan fragment.",
+        "qualifier": "published",
+        "sourcePosition": 2,
+        "sourceUrls": [
+          "https://successiomiro.com/catalogue/object/1499"
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "sourceUrl": "https://successiomiro.com/catalogue/object/1499",
+        "excerpt": "Prepared primary-source metadata review: Wall of Barcelona Airport; H 10 × W 50 m. Published measurements describe Entire original ceramic Wall of Barcelona Airport (1970), Successió Miró ceramic catalogue no. 431; the complete 10 × 50 m artwork span, excluding the terminal façade, surrounding architecture and pavement. These are not measurements of an arbitrary scan fragment. The matching physical object is documented; its dimensions have not been calibrated to this model.",
+        "retrieved": "2026-10-15"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Establish that this capture represents the full 50 m ceramic span and full 10 m artwork height by comparison with a full-work reference. Resolve wall pose and ceramic-versus-building boundaries. A partial capture or its architectural surroundings cannot be calibrated to the complete mural dimensions.",
+    "calibrationBlockers": [
+      "Establish that this capture represents the full 50 m ceramic span and full 10 m artwork height by comparison with a full-work reference. Resolve wall pose and ceramic-versus-building boundaries. A partial capture or its architectural surroundings cannot be calibrated to the complete mural dimensions."
+    ],
+    "spatialNote": "The physical object dimensions are documented, but their boundary in this model and its final pose are unverified. Verified-size presentation remains disabled; display size is adjustable."
+  },
+  "modern/joan-miro-tapestry-of-the-fundacio-3b1745": {
+    "dimensions": "H 750 × W 500 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.fmirobcn.org/en/colection/catalog-works/9389/p-tapestry-of-the-fundacio-p",
+    "sourceTitle": "Fundació Joan Miró — Tapestry of the Fundació, FJM 8651",
+    "note": "Published measurements describe Complete Tapestry of the Fundació (1979), FJM 8651, by Joan Miró and Josep Royo; published textile height and width. Does not measure retained museum wall/hanging furniture or establish fiber projection depth. The matching physical object is documented; its dimensions have not been calibrated to this model.",
+    "checked": "2026-10-15",
+    "researchStatus": "documented",
+    "identifiedObject": {
+      "title": "Tapestry of the Fundació",
+      "artist": "Joan Miró; Josep Royo",
+      "institution": "Fundació Joan Miró, Barcelona",
+      "accession": "FJM 8651",
+      "version_or_date": "1979; Jute, hemp, cotton and wool",
+      "record_url": "https://www.fmirobcn.org/en/colection/catalog-works/9389/p-tapestry-of-the-fundacio-p",
+      "identity_confidence": "high",
+      "match_explanation": "A physical textile relief with projecting yarn and surface texture, rather than a flat recreation of a painting. Preserve fiber structure and authored colors. The 1972 date in the museum’s broader textile history concerns the beginning of sobreteixims, not this 1979 work. Full mesh review must check that projecting fibers are resolved and the complete rectangle is present."
+    },
+    "measures": [
+      {
+        "axis": "height",
+        "value": 750,
+        "unit": "cm",
+        "meters": 7.5,
+        "scope": "Complete Tapestry of the Fundació (1979), FJM 8651, by Joan Miró and Josep Royo; published textile height and width. Does not measure retained museum wall/hanging furniture or establish fiber projection depth.",
+        "qualifier": "published",
+        "sourcePosition": 1,
+        "sourceUrls": [
+          "https://www.fmirobcn.org/en/colection/catalog-works/9389/p-tapestry-of-the-fundacio-p"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 500,
+        "unit": "cm",
+        "meters": 5,
+        "scope": "Complete Tapestry of the Fundació (1979), FJM 8651, by Joan Miró and Josep Royo; published textile height and width. Does not measure retained museum wall/hanging furniture or establish fiber projection depth.",
+        "qualifier": "published",
+        "sourcePosition": 2,
+        "sourceUrls": [
+          "https://www.fmirobcn.org/en/colection/catalog-works/9389/p-tapestry-of-the-fundacio-p"
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "sourceUrl": "https://www.fmirobcn.org/en/colection/catalog-works/9389/p-tapestry-of-the-fundacio-p",
+        "excerpt": "Prepared primary-source metadata review: Tapestry of the Fundació; H 750 × W 500 cm. Published measurements describe Complete Tapestry of the Fundació (1979), FJM 8651, by Joan Miró and Josep Royo; published textile height and width. Does not measure retained museum wall/hanging furniture or establish fiber projection depth. The matching physical object is documented; its dimensions have not been calibrated to this model.",
+        "retrieved": "2026-10-15"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Confirm the complete outer textile rectangle, projecting yarn and authored lower edge in source and derivative; distinguish textile from retained wall and hanging support, resolve vertical pose, and match the museum span. Do not treat missing fiber depth as a documented thickness.",
+    "calibrationBlockers": [
+      "Confirm the complete outer textile rectangle, projecting yarn and authored lower edge in source and derivative; distinguish textile from retained wall and hanging support, resolve vertical pose, and match the museum span. Do not treat missing fiber depth as a documented thickness."
+    ],
+    "spatialNote": "The physical object dimensions are documented, but their boundary in this model and its final pose are unverified. Verified-size presentation remains disabled; display size is adjustable."
   }
 }

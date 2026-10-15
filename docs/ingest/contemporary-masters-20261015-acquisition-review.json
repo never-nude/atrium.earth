@@ -1,0 +1,3885 @@
+{
+  "schema": "atrium-contemporary-acquisition-review/1",
+  "checked": "2026-10-15",
+  "stage": "Sources fetched and integration preserved; final visual, pose and size review in progress",
+  "run_id": 38781260868,
+  "run_url": "https://github.com/never-nude/atrium.earth/actions/runs/38781260868",
+  "base": "ca9b97fd5319f3593b841c9b8cc9a32a999ccf2c",
+  "integration_base": "6309312c",
+  "integrated_at": "4d01a1ba",
+  "source_backup": {
+    "artifact_id": 11996462388,
+    "name": "atrium-temporary-sources-contemporary-masters-20261015-38781260868-1",
+    "bytes": 630486634,
+    "expires_at": "2027-01-13T17:54:51Z",
+    "retention_days": 90,
+    "scope": ".atrium-ingest/sources only; original download plus unmodified final source-name copies, no credentials",
+    "permanence": "Temporary 90-day backup; the unmodified provider GLBs have additionally been copied to a permanent private cloud archive by the root session.",
+    "downloaded_by_acquisition_agent": false,
+    "retention_scope": "Sources-only temporary backup; no credential files included by workflow path configuration."
+  },
+  "counts": {
+    "candidates": 24,
+    "fetched": 24,
+    "accepted_integrity": 22,
+    "rejected_integrity": 2,
+    "source_download_bytes": 315237320,
+    "decoded": 0,
+    "public_after_visual_review": 20
+  },
+  "preservation": {
+    "src/data/catalog.json": {
+      "before": 1929,
+      "after": 1951,
+      "changed_existing": []
+    },
+    "src/data/orientations.json": {
+      "changed_existing": [],
+      "added": 10
+    },
+    "src/data/previews.json": {
+      "changed_existing": [],
+      "added": 22
+    },
+    "src/data/renders.json": {
+      "preserved": true,
+      "added": 22
+    }
+  },
+  "source_preservation": {
+    "method": "Fetch streams the authenticated endpoint directly into the original file and records its byte length/SHA-256. Source copies use copyFile; decoding, mesh welding and degenerate-face filtering were not applied to the archived downloads. Measured integrity welds and removes degenerate faces on an audit copy only. The GitHub sources-only backup was uploaded immediately after fetch, before assembly.",
+    "size_distinction": "The discovery API advertised GLB sizes differ from the authenticated download endpoint. Published discovery archive statistics are retained separately from the actual downloaded byte count and hash. All 24 returned GLBs loaded; no source was decoded. Actual source bytes are bound in the catalog model sizeBytes field.",
+    "face_distinction": "Integrity removes degenerate faces on a copy. The one-face difference for Double-Sided Monolith and 24-face difference for Tapestry do not imply deletion from archived source bytes."
+  },
+  "pose_review": {
+    "run_id": 38786678730,
+    "batch": "contemporary-masters-poses-20261015-a",
+    "input": "docs/ingest/contemporary-masters-20261015-poses-initial.txt",
+    "count": 22
+  },
+  "works": [
+    {
+      "slug": "modern/magdalena-abakanowicz-two-figures-from-the-medrcy-sages-cycle",
+      "title": "Two Figures from the Mędrcy (Sages) Cycle",
+      "artist": "Magdalena Abakanowicz",
+      "uid": "e7d28455e38242b6ab7b5d18742f340f",
+      "accepted": false,
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_url": "https://sketchfab.com/3d-models/e7d28455e38242b6ab7b5d18742f340f",
+      "source_record_url": "https://mnwr.pl/magdalena-abakanowicz-2-figury-z-cyklu-medrcy-1987-1988/",
+      "planned_public_api_glb_bytes": 57578552,
+      "actual_authenticated_download_bytes": 20483572,
+      "source_sha256": "bd2d14d2360f3e323ebaa7d7aff913497bd1e2a37850bcba4cb7494380020937",
+      "downloaded_path": ".atrium-ingest/sources/modern/magdalena-abakanowicz-two-figures-from-the-medrcy-sages-cycle/medrcy.glb",
+      "archived_source_path": ".atrium-ingest/sources/modern/magdalena-abakanowicz-two-figures-from-the-medrcy-sages-cycle/two-figures-from-the-medrcy-sages-cycle_source.glb",
+      "decoded": false,
+      "archive_face_count": 430800,
+      "measured_integrity": null,
+      "rejection": {
+        "slug": "modern/magdalena-abakanowicz-two-figures-from-the-medrcy-sages-cycle",
+        "title": "Two Figures from the Mędrcy (Sages) Cycle",
+        "source": "sketchfab",
+        "reason": "geometry failed integrity gate",
+        "integrity": "faces=430800 ncomp=4 bratio=0"
+      },
+      "preview": null,
+      "public_provisional": false
+    },
+    {
+      "slug": "modern/barbara-hepworth-epidauros-ii",
+      "title": "Epidauros II",
+      "artist": "Barbara Hepworth",
+      "uid": "cf21ada0dfc845ad9cb8b3cca0e7c133",
+      "accepted": true,
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_url": "https://sketchfab.com/3d-models/cf21ada0dfc845ad9cb8b3cca0e7c133",
+      "source_record_url": "https://barbara-hepworth.org.uk/sculptures/1961/epidauros-ii/index.php?sort=date",
+      "planned_public_api_glb_bytes": 110286352,
+      "actual_authenticated_download_bytes": 9501200,
+      "source_sha256": "a6b22d466c436e237923bac23b953f0ea850be9e8533505197fcd515d5c6d9db",
+      "downloaded_path": ".atrium-ingest/sources/modern/barbara-hepworth-epidauros-ii/epidauros-ii-dame-barbara-hepworth-1961.glb",
+      "archived_source_path": ".atrium-ingest/sources/modern/barbara-hepworth-epidauros-ii/epidauros-ii_source.glb",
+      "decoded": false,
+      "archive_face_count": 168136,
+      "measured_integrity": {
+        "faces": 168136,
+        "bratio": 0.002,
+        "ncomp": 1,
+        "largest_frac": 1
+      },
+      "rejection": null,
+      "preview": {
+        "slug": "modern/barbara-hepworth-epidauros-ii",
+        "url": "https://models.atrium.earth/models/previews/modern/barbara-hepworth-epidauros-ii/preview-4b3992ddd707.glb",
+        "bytes": 1143356,
+        "sha256": "4b3992ddd707ea3f3d6d667fd1a1683ff1844dd1bccb77c3b834926799fc1b32",
+        "content_type": "model/gltf-binary"
+      },
+      "preview_appearance": {
+        "meshes": 1,
+        "primitives": 1,
+        "embedded_images": 2,
+        "materials": [
+          {
+            "name": "Epidauros_II_Hepworth",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "baseColorTexture": 0,
+            "metallicFactor": 0.44952517950530896,
+            "roughnessFactor": 0.5775255696017358,
+            "doubleSided": true,
+            "extensions": []
+          }
+        ],
+        "extensions": [
+          "EXT_texture_webp",
+          "KHR_draco_mesh_compression"
+        ],
+        "vertex_color_primitives": 0,
+        "external_resource_uris": []
+      },
+      "public_provisional": true
+    },
+    {
+      "slug": "modern/jaume-plensa-carmela",
+      "title": "Carmela",
+      "artist": "Jaume Plensa",
+      "uid": "ace3c488606449cea97c86411cc98610",
+      "accepted": true,
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_url": "https://sketchfab.com/3d-models/ace3c488606449cea97c86411cc98610",
+      "source_record_url": "https://www.palaumusica.cat/en/the-sculptures-of-jaume-plensa-in-dialogue-with-the-architecture-of-the-palau-de-la-musica-catalana_398125",
+      "planned_public_api_glb_bytes": 28160656,
+      "actual_authenticated_download_bytes": 8362716,
+      "source_sha256": "c1ed291284c1bff100d9160d9ac01e88df2e06d887b51df572341b381ce98196",
+      "downloaded_path": ".atrium-ingest/sources/modern/jaume-plensa-carmela/carmela-by-jaume-piensa.glb",
+      "archived_source_path": ".atrium-ingest/sources/modern/jaume-plensa-carmela/carmela_source.glb",
+      "decoded": false,
+      "archive_face_count": 199810,
+      "measured_integrity": {
+        "faces": 199810,
+        "bratio": 0,
+        "ncomp": 1,
+        "largest_frac": 1
+      },
+      "rejection": null,
+      "preview": {
+        "slug": "modern/jaume-plensa-carmela",
+        "url": "https://models.atrium.earth/models/previews/modern/jaume-plensa-carmela/preview-262fb4989b28.glb",
+        "bytes": 527820,
+        "sha256": "262fb4989b28b518a183f1c40cb1da1f95b92bc0e6ea1be7be0e996336a2e780",
+        "content_type": "model/gltf-binary"
+      },
+      "preview_appearance": {
+        "meshes": 1,
+        "primitives": 1,
+        "embedded_images": 1,
+        "materials": [
+          {
+            "name": "carmela_by_jaume_piensa_Mod_le_2_u0_v0",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "baseColorTexture": 0,
+            "metallicFactor": 0,
+            "roughnessFactor": 1,
+            "doubleSided": true,
+            "extensions": [
+              "KHR_materials_unlit"
+            ]
+          }
+        ],
+        "extensions": [
+          "EXT_texture_webp",
+          "KHR_draco_mesh_compression",
+          "KHR_materials_unlit"
+        ],
+        "vertex_color_primitives": 0,
+        "external_resource_uris": []
+      },
+      "public_provisional": true
+    },
+    {
+      "slug": "modern/louise-bourgeois-crouching-spider",
+      "title": "Crouching Spider",
+      "artist": "Louise Bourgeois",
+      "uid": "d341cfcc84e9469e8afc67a7ebdd4fc8",
+      "accepted": true,
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_url": "https://sketchfab.com/3d-models/d341cfcc84e9469e8afc67a7ebdd4fc8",
+      "source_record_url": "https://www.diaart.org/collection/collection/bourgeois-louise-crouching-spider-2003-l-2007-012",
+      "planned_public_api_glb_bytes": 16044280,
+      "actual_authenticated_download_bytes": 7455916,
+      "source_sha256": "15aedc2c42fd7305b523d0e66ac2bd55ff2f93b71672f0318a89c1cd69dbea7c",
+      "downloaded_path": ".atrium-ingest/sources/modern/louise-bourgeois-crouching-spider/spider.glb",
+      "archived_source_path": ".atrium-ingest/sources/modern/louise-bourgeois-crouching-spider/crouching-spider_source.glb",
+      "decoded": false,
+      "archive_face_count": 204167,
+      "measured_integrity": {
+        "faces": 204167,
+        "bratio": 0.002,
+        "ncomp": 8,
+        "largest_frac": 0.81
+      },
+      "rejection": null,
+      "preview": {
+        "slug": "modern/louise-bourgeois-crouching-spider",
+        "url": "https://models.atrium.earth/models/previews/modern/louise-bourgeois-crouching-spider/preview-b0fe402014b7.glb",
+        "bytes": 717272,
+        "sha256": "b0fe402014b714294c1fbb6d8916bae4939f5077c29bd5c6bdaca8634e63684b",
+        "content_type": "model/gltf-binary"
+      },
+      "preview_appearance": {
+        "meshes": 5,
+        "primitives": 5,
+        "embedded_images": 4,
+        "materials": [
+          {
+            "name": "Texture_0",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "baseColorTexture": 0,
+            "metallicFactor": 0,
+            "roughnessFactor": 1,
+            "doubleSided": true,
+            "extensions": [
+              "KHR_materials_unlit"
+            ]
+          },
+          {
+            "name": "Texture_1",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "baseColorTexture": 1,
+            "metallicFactor": 0,
+            "roughnessFactor": 1,
+            "doubleSided": true,
+            "extensions": [
+              "KHR_materials_unlit"
+            ]
+          },
+          {
+            "name": "Texture_2",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "baseColorTexture": 2,
+            "metallicFactor": 0,
+            "roughnessFactor": 1,
+            "doubleSided": true,
+            "extensions": [
+              "KHR_materials_unlit"
+            ]
+          },
+          {
+            "name": "Texture_3",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "baseColorTexture": 3,
+            "metallicFactor": 0,
+            "roughnessFactor": 1,
+            "doubleSided": true,
+            "extensions": [
+              "KHR_materials_unlit"
+            ]
+          },
+          {
+            "name": "Untextured",
+            "baseColorFactor": [
+              0.501961,
+              0.501961,
+              0.501961,
+              1
+            ],
+            "baseColorTexture": null,
+            "metallicFactor": 0,
+            "roughnessFactor": 1,
+            "doubleSided": true,
+            "extensions": [
+              "KHR_materials_unlit"
+            ]
+          }
+        ],
+        "extensions": [
+          "EXT_texture_webp",
+          "KHR_draco_mesh_compression",
+          "KHR_materials_unlit"
+        ],
+        "vertex_color_primitives": 0,
+        "external_resource_uris": []
+      },
+      "public_provisional": false,
+      "visual_hold_reason": "Visual quality hold: the capture is dominated by room geometry and does not establish all eight complete spider legs. No geometry cleanup or reconstruction was applied; source download is retained in the temporary cloud backup."
+    },
+    {
+      "slug": "modern/arne-vinje-gunnerud-fenrisulven-fenris-wolf",
+      "title": "Fenrisulven (Fenris Wolf)",
+      "artist": "Arne Vinje Gunnerud",
+      "uid": "21623b27d97041a38241c0fcb17d1a23",
+      "accepted": true,
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_url": "https://sketchfab.com/3d-models/21623b27d97041a38241c0fcb17d1a23",
+      "source_record_url": "https://www.nasjonalmuseet.no/en/collection/object/MS-00374-1988",
+      "planned_public_api_glb_bytes": 141277608,
+      "actual_authenticated_download_bytes": 11317592,
+      "source_sha256": "1b7bf2e165097ecfd82d0289aa832eec3c5cd82495304019dfa6d87440cc0c02",
+      "downloaded_path": ".atrium-ingest/sources/modern/arne-vinje-gunnerud-fenrisulven-fenris-wolf/ms-00374-1988.glb",
+      "archived_source_path": ".atrium-ingest/sources/modern/arne-vinje-gunnerud-fenrisulven-fenris-wolf/fenrisulven-fenris-wolf_source.glb",
+      "decoded": false,
+      "archive_face_count": 200000,
+      "measured_integrity": {
+        "faces": 200000,
+        "bratio": 0,
+        "ncomp": 5,
+        "largest_frac": 0.999
+      },
+      "rejection": null,
+      "preview": {
+        "slug": "modern/arne-vinje-gunnerud-fenrisulven-fenris-wolf",
+        "url": "https://models.atrium.earth/models/previews/modern/arne-vinje-gunnerud-fenrisulven-fenris-wolf/preview-f3953722afb0.glb",
+        "bytes": 1566148,
+        "sha256": "f3953722afb08fbb3d823e3dd6260556623527709801ac2bcdcb51924e70b931",
+        "content_type": "model/gltf-binary"
+      },
+      "preview_appearance": {
+        "meshes": 1,
+        "primitives": 1,
+        "embedded_images": 3,
+        "materials": [
+          {
+            "name": "MS-00374-1988.1001",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "baseColorTexture": 0,
+            "metallicFactor": 1,
+            "roughnessFactor": 1,
+            "doubleSided": true,
+            "extensions": []
+          }
+        ],
+        "extensions": [
+          "EXT_texture_webp",
+          "KHR_draco_mesh_compression"
+        ],
+        "vertex_color_primitives": 0,
+        "external_resource_uris": []
+      },
+      "public_provisional": true
+    },
+    {
+      "slug": "modern/ossip-zadkine-promethee-elm-wood-version",
+      "title": "Prométhée (Elm Wood Version)",
+      "artist": "Ossip Zadkine",
+      "uid": "ea5c5d1e38cf4d58a086d4eac8104fd6",
+      "accepted": true,
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_url": "https://sketchfab.com/3d-models/ea5c5d1e38cf4d58a086d4eac8104fd6",
+      "source_record_url": "https://www.zadkine.paris.fr/collections/sculptures/promethee",
+      "planned_public_api_glb_bytes": 42548124,
+      "actual_authenticated_download_bytes": 26949920,
+      "source_sha256": "a6de4b099a5382a6bb2ff627959c1398d238c552fc84b01d91a3e9dcaf468dcb",
+      "downloaded_path": ".atrium-ingest/sources/modern/ossip-zadkine-promethee-elm-wood-version/ossip-zadkine-promethee.glb",
+      "archived_source_path": ".atrium-ingest/sources/modern/ossip-zadkine-promethee-elm-wood-version/promethee-elm-wood-version_source.glb",
+      "decoded": false,
+      "archive_face_count": 794935,
+      "measured_integrity": {
+        "faces": 794935,
+        "bratio": 0,
+        "ncomp": 2,
+        "largest_frac": 1
+      },
+      "rejection": null,
+      "preview": {
+        "slug": "modern/ossip-zadkine-promethee-elm-wood-version",
+        "url": "https://models.atrium.earth/models/previews/modern/ossip-zadkine-promethee-elm-wood-version/preview-ce758d53256a.glb",
+        "bytes": 1498812,
+        "sha256": "ce758d53256ad7cbcd311b12337c2c18d9e6cc342fac92204fcaaac6da17566f",
+        "content_type": "model/gltf-binary"
+      },
+      "preview_appearance": {
+        "meshes": 1,
+        "primitives": 1,
+        "embedded_images": 1,
+        "materials": [
+          {
+            "name": "default_tex0",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "baseColorTexture": 0,
+            "metallicFactor": 0,
+            "roughnessFactor": 1,
+            "doubleSided": true,
+            "extensions": [
+              "KHR_materials_specular"
+            ]
+          }
+        ],
+        "extensions": [
+          "EXT_texture_webp",
+          "KHR_draco_mesh_compression",
+          "KHR_materials_specular"
+        ],
+        "vertex_color_primitives": 0,
+        "external_resource_uris": []
+      },
+      "public_provisional": true
+    },
+    {
+      "slug": "modern/jean-dubuffet-borne-au-logos-v",
+      "title": "Borne au Logos V",
+      "artist": "Jean Dubuffet",
+      "uid": "5bb34bf5f7ca4c3eac6f5d74e15e711d",
+      "accepted": true,
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_url": "https://sketchfab.com/3d-models/5bb34bf5f7ca4c3eac6f5d74e15e711d",
+      "source_record_url": "https://www.christies.com/lot/jean-dubuffet-1901-1985-3011660/",
+      "planned_public_api_glb_bytes": 11478880,
+      "actual_authenticated_download_bytes": 4429212,
+      "source_sha256": "5aa1e9df89d6f9304157b6a6098be96fa66e49dcb4c58f5f2000c9af5a10846c",
+      "downloaded_path": ".atrium-ingest/sources/modern/jean-dubuffet-borne-au-logos-v/borne-au-logos-v.glb",
+      "archived_source_path": ".atrium-ingest/sources/modern/jean-dubuffet-borne-au-logos-v/borne-au-logos-v_source.glb",
+      "decoded": false,
+      "archive_face_count": 139824,
+      "measured_integrity": {
+        "faces": 139824,
+        "bratio": 0.008,
+        "ncomp": 1,
+        "largest_frac": 1
+      },
+      "rejection": null,
+      "preview": {
+        "slug": "modern/jean-dubuffet-borne-au-logos-v",
+        "url": "https://models.atrium.earth/models/previews/modern/jean-dubuffet-borne-au-logos-v/preview-f2a12f261205.glb",
+        "bytes": 336356,
+        "sha256": "f2a12f26120577871af59aa515d9586f19d206c362bb74c1dbbcaa462d76a6e6",
+        "content_type": "model/gltf-binary"
+      },
+      "preview_appearance": {
+        "meshes": 1,
+        "primitives": 1,
+        "embedded_images": 1,
+        "materials": [
+          {
+            "name": "main",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "baseColorTexture": 0,
+            "metallicFactor": 0,
+            "roughnessFactor": 1,
+            "doubleSided": false,
+            "extensions": [
+              "KHR_materials_unlit"
+            ]
+          }
+        ],
+        "extensions": [
+          "EXT_texture_webp",
+          "KHR_draco_mesh_compression",
+          "KHR_materials_unlit"
+        ],
+        "vertex_color_primitives": 0,
+        "external_resource_uris": []
+      },
+      "public_provisional": false,
+      "visual_hold_reason": "Visual quality hold: the freestanding sculpture capture has materially incomplete reverse surfaces. A front-facing thumbnail does not establish a complete sculpture; source download is retained without filling or reconstruction."
+    },
+    {
+      "slug": "modern/hans-jean-arp-form-heard-and-seen",
+      "title": "Form Heard and Seen",
+      "artist": "Hans (Jean) Arp",
+      "uid": "0636e5e941e14fd281db22f149814bd7",
+      "accepted": true,
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_url": "https://sketchfab.com/3d-models/0636e5e941e14fd281db22f149814bd7",
+      "source_record_url": "https://www.nasjonalmuseet.no/en/collection/object/NMK.2022.0390",
+      "planned_public_api_glb_bytes": 37103152,
+      "actual_authenticated_download_bytes": 13300828,
+      "source_sha256": "95d77217dc2a0d5172362f66ff4e1f45601a54e72d3e35014849a692ca0ad735",
+      "downloaded_path": ".atrium-ingest/sources/modern/hans-jean-arp-form-heard-and-seen/form-heard-and-seen-by-hans-arp.glb",
+      "archived_source_path": ".atrium-ingest/sources/modern/hans-jean-arp-form-heard-and-seen/form-heard-and-seen_source.glb",
+      "decoded": false,
+      "archive_face_count": 300000,
+      "measured_integrity": {
+        "faces": 300000,
+        "bratio": 0,
+        "ncomp": 1,
+        "largest_frac": 1
+      },
+      "rejection": null,
+      "preview": {
+        "slug": "modern/hans-jean-arp-form-heard-and-seen",
+        "url": "https://models.atrium.earth/models/previews/modern/hans-jean-arp-form-heard-and-seen/preview-96b4f3b6a853.glb",
+        "bytes": 1290440,
+        "sha256": "96b4f3b6a853663577043226106c4a8c79e48dc90bd5146e1d791c2573903051",
+        "content_type": "model/gltf-binary"
+      },
+      "preview_appearance": {
+        "meshes": 1,
+        "primitives": 1,
+        "embedded_images": 2,
+        "materials": [
+          {
+            "name": "tex_u1_v1",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "baseColorTexture": 0,
+            "metallicFactor": 0,
+            "roughnessFactor": 0.4773317404395899,
+            "doubleSided": true,
+            "extensions": []
+          }
+        ],
+        "extensions": [
+          "EXT_texture_webp",
+          "KHR_draco_mesh_compression"
+        ],
+        "vertex_color_primitives": 0,
+        "external_resource_uris": []
+      },
+      "public_provisional": true
+    },
+    {
+      "slug": "modern/joan-miro-projet-pour-un-monument-c07aae",
+      "title": "Projet pour un monument",
+      "artist": "Joan Miró",
+      "uid": "c07aae9f5ada4449ab140eb1d96eb5ee",
+      "accepted": true,
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_url": "https://sketchfab.com/3d-models/c07aae9f5ada4449ab140eb1d96eb5ee",
+      "source_record_url": "https://miromallorca.com/uploads/2023/03/def-dossier-de-prensa-es.pdf",
+      "planned_public_api_glb_bytes": 26655792,
+      "actual_authenticated_download_bytes": 18014480,
+      "source_sha256": "557a2fe096808592045b92e9794800738f8dc4f2689fc55792abc8557e3feb27",
+      "downloaded_path": ".atrium-ingest/sources/modern/joan-miro-projet-pour-un-monument-c07aae/mere-ubu-joan-miro.glb",
+      "archived_source_path": ".atrium-ingest/sources/modern/joan-miro-projet-pour-un-monument-c07aae/projet-pour-un-monument_source.glb",
+      "decoded": false,
+      "archive_face_count": 520516,
+      "measured_integrity": {
+        "faces": 520516,
+        "bratio": 0,
+        "ncomp": 3,
+        "largest_frac": 1
+      },
+      "rejection": null,
+      "preview": {
+        "slug": "modern/joan-miro-projet-pour-un-monument-c07aae",
+        "url": "https://models.atrium.earth/models/previews/modern/joan-miro-projet-pour-un-monument-c07aae/preview-d9c90ad7ead1.glb",
+        "bytes": 1290676,
+        "sha256": "d9c90ad7ead1b74fc82d85d8a63e754d7e27ef5c051f62fb406cf6b4e748b52a",
+        "content_type": "model/gltf-binary"
+      },
+      "preview_appearance": {
+        "meshes": 1,
+        "primitives": 1,
+        "embedded_images": 1,
+        "materials": [
+          {
+            "name": "material_0",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "baseColorTexture": 0,
+            "metallicFactor": 0.8728368509095572,
+            "roughnessFactor": 1,
+            "doubleSided": true,
+            "extensions": []
+          }
+        ],
+        "extensions": [
+          "EXT_texture_webp",
+          "KHR_draco_mesh_compression"
+        ],
+        "vertex_color_primitives": 0,
+        "external_resource_uris": []
+      },
+      "public_provisional": true
+    },
+    {
+      "slug": "modern/jacques-lipchitz-sacrifice-iii",
+      "title": "Sacrifice III",
+      "artist": "Jacques Lipchitz",
+      "uid": "285acc2685af46b2ab57fe2f37aaa182",
+      "accepted": true,
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_url": "https://sketchfab.com/3d-models/285acc2685af46b2ab57fe2f37aaa182",
+      "source_record_url": "https://sketchfab.com/3d-models/285acc2685af46b2ab57fe2f37aaa182",
+      "planned_public_api_glb_bytes": 5372700,
+      "actual_authenticated_download_bytes": 1612772,
+      "source_sha256": "8a6fc2d026d4faa54fb8fa44883261cae6c8b78df1f284c421a1396672ca5060",
+      "downloaded_path": ".atrium-ingest/sources/modern/jacques-lipchitz-sacrifice-iii/sacrifice-iii-jacques-lipchitz.glb",
+      "archived_source_path": ".atrium-ingest/sources/modern/jacques-lipchitz-sacrifice-iii/sacrifice-iii_source.glb",
+      "decoded": false,
+      "archive_face_count": 19992,
+      "measured_integrity": {
+        "faces": 19992,
+        "bratio": 0,
+        "ncomp": 2,
+        "largest_frac": 0.999
+      },
+      "rejection": null,
+      "preview": {
+        "slug": "modern/jacques-lipchitz-sacrifice-iii",
+        "url": "https://models.atrium.earth/models/previews/modern/jacques-lipchitz-sacrifice-iii/preview-add2bf231f8b.glb",
+        "bytes": 291476,
+        "sha256": "add2bf231f8b7da7b737c1fbd01b097ecd8827a5141908cd211d7f33a710db3b",
+        "content_type": "model/gltf-binary"
+      },
+      "preview_appearance": {
+        "meshes": 1,
+        "primitives": 1,
+        "embedded_images": 1,
+        "materials": [
+          {
+            "name": "20k-lipchitz_u0_v0",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "baseColorTexture": 0,
+            "metallicFactor": 0,
+            "roughnessFactor": 1,
+            "doubleSided": true,
+            "extensions": []
+          }
+        ],
+        "extensions": [
+          "EXT_texture_webp",
+          "KHR_draco_mesh_compression"
+        ],
+        "vertex_color_primitives": 0,
+        "external_resource_uris": []
+      },
+      "public_provisional": true
+    },
+    {
+      "slug": "modern/niki-de-saint-phalle-tir-shooting-altar",
+      "title": "Tir (Shooting Altar)",
+      "artist": "Niki de Saint Phalle",
+      "uid": "654e46367f004c1ea94fd1e9a60fe0dd",
+      "accepted": true,
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_url": "https://sketchfab.com/3d-models/654e46367f004c1ea94fd1e9a60fe0dd",
+      "source_record_url": "https://catalogue.boekman.nl/pub/SMA/2017_bijlagen.pdf",
+      "planned_public_api_glb_bytes": 39766408,
+      "actual_authenticated_download_bytes": 13751116,
+      "source_sha256": "a4d40aabf24841b97550ba436e4f8d2b617ce632a7c748a3601435667286eea2",
+      "downloaded_path": ".atrium-ingest/sources/modern/niki-de-saint-phalle-tir-shooting-altar/tir-shooting-altar-1970-stedelijk-museum.glb",
+      "archived_source_path": ".atrium-ingest/sources/modern/niki-de-saint-phalle-tir-shooting-altar/tir-shooting-altar_source.glb",
+      "decoded": false,
+      "archive_face_count": 386130,
+      "measured_integrity": {
+        "faces": 386130,
+        "bratio": 0.002,
+        "ncomp": 1,
+        "largest_frac": 1
+      },
+      "rejection": null,
+      "preview": {
+        "slug": "modern/niki-de-saint-phalle-tir-shooting-altar",
+        "url": "https://models.atrium.earth/models/previews/modern/niki-de-saint-phalle-tir-shooting-altar/preview-dff5d7419af5.glb",
+        "bytes": 1177008,
+        "sha256": "dff5d7419af5b2f7c489b843a8c128f713682805f7586b817fbf00b14fa107e1",
+        "content_type": "model/gltf-binary"
+      },
+      "preview_appearance": {
+        "meshes": 1,
+        "primitives": 1,
+        "embedded_images": 1,
+        "materials": [
+          {
+            "name": "Material_0",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "baseColorTexture": 0,
+            "metallicFactor": 0,
+            "roughnessFactor": 1,
+            "doubleSided": false,
+            "extensions": [
+              "KHR_materials_unlit"
+            ]
+          }
+        ],
+        "extensions": [
+          "EXT_texture_webp",
+          "KHR_draco_mesh_compression",
+          "KHR_materials_unlit"
+        ],
+        "vertex_color_primitives": 0,
+        "external_resource_uris": []
+      },
+      "public_provisional": true
+    },
+    {
+      "slug": "modern/eduardo-paolozzi-hommage-a-anton-bruckner",
+      "title": "Hommage à Anton Bruckner",
+      "artist": "Eduardo Paolozzi",
+      "uid": "5e0ccc38495d428ea067bc272254bb38",
+      "accepted": true,
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_url": "https://sketchfab.com/3d-models/5e0ccc38495d428ea067bc272254bb38",
+      "source_record_url": "https://www.lentos.at/programm/lentos-digital/zu-schade-fuer-die-lade/eduardo-paolozzi",
+      "planned_public_api_glb_bytes": 14078832,
+      "actual_authenticated_download_bytes": 3999144,
+      "source_sha256": "a48f82ce2b3090655dbf0997e70056127e2ef8f0752178c58564be672b797613",
+      "downloaded_path": ".atrium-ingest/sources/modern/eduardo-paolozzi-hommage-a-anton-bruckner/hommage-a-anton-bruckner-by-eduardo-paolozzi.glb",
+      "archived_source_path": ".atrium-ingest/sources/modern/eduardo-paolozzi-hommage-a-anton-bruckner/hommage-a-anton-bruckner_source.glb",
+      "decoded": false,
+      "archive_face_count": 93543,
+      "measured_integrity": {
+        "faces": 93543,
+        "bratio": 0.005,
+        "ncomp": 1,
+        "largest_frac": 1
+      },
+      "rejection": null,
+      "preview": {
+        "slug": "modern/eduardo-paolozzi-hommage-a-anton-bruckner",
+        "url": "https://models.atrium.earth/models/previews/modern/eduardo-paolozzi-hommage-a-anton-bruckner/preview-bafdc8861ecf.glb",
+        "bytes": 447016,
+        "sha256": "bafdc8861ecf526db8e391785970602676ec8dc7a8e84b6d65f977856e5695ce",
+        "content_type": "model/gltf-binary"
+      },
+      "preview_appearance": {
+        "meshes": 1,
+        "primitives": 1,
+        "embedded_images": 1,
+        "materials": [
+          {
+            "name": "material_0",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "baseColorTexture": 0,
+            "metallicFactor": 0,
+            "roughnessFactor": 1,
+            "doubleSided": true,
+            "extensions": [
+              "KHR_materials_unlit"
+            ]
+          }
+        ],
+        "extensions": [
+          "EXT_texture_webp",
+          "KHR_draco_mesh_compression",
+          "KHR_materials_unlit"
+        ],
+        "vertex_color_primitives": 0,
+        "external_resource_uris": []
+      },
+      "public_provisional": true
+    },
+    {
+      "slug": "modern/isamu-noguchi-spin-off-3-from-chase-manhattan-bank-plaza",
+      "title": "Spin-off #3 from Chase Manhattan Bank Plaza",
+      "artist": "Isamu Noguchi",
+      "uid": "8ebc096a641d49de8b7e1cb75fb68ed3",
+      "accepted": false,
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_url": "https://sketchfab.com/3d-models/8ebc096a641d49de8b7e1cb75fb68ed3",
+      "source_record_url": "https://www.noguchi.org/wp-content/uploads/2022/01/Salvaged-Time-Noguchi-Museum-Exhibition-Brochure-2022-02-24-1.pdf",
+      "planned_public_api_glb_bytes": 87292044,
+      "actual_authenticated_download_bytes": 81771500,
+      "source_sha256": "24c3ef77dc9f52193087d71a0008663f06f6f9bec38ab97c21cf207fdb3768b5",
+      "downloaded_path": ".atrium-ingest/sources/modern/isamu-noguchi-spin-off-3-from-chase-manhattan-bank-plaza/spin-off-3-from-chase-manhattan-garden.glb",
+      "archived_source_path": ".atrium-ingest/sources/modern/isamu-noguchi-spin-off-3-from-chase-manhattan-bank-plaza/spin-off-3-from-chase-manhattan-bank-plaza_source.glb",
+      "decoded": false,
+      "archive_face_count": 749554,
+      "measured_integrity": null,
+      "rejection": {
+        "slug": "modern/isamu-noguchi-spin-off-3-from-chase-manhattan-bank-plaza",
+        "title": "Spin-off #3 from Chase Manhattan Bank Plaza",
+        "source": "sketchfab",
+        "reason": "geometry failed integrity gate",
+        "integrity": "faces=749554 ncomp=752 bratio=0.015"
+      },
+      "preview": null,
+      "public_provisional": false
+    },
+    {
+      "slug": "modern/josh-smith-friend",
+      "title": "Friend",
+      "artist": "Josh Smith",
+      "uid": "7eeb0b7e07ac4573840c8822c296d938",
+      "accepted": true,
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_url": "https://sketchfab.com/3d-models/7eeb0b7e07ac4573840c8822c296d938",
+      "source_record_url": "https://www.frieze.com/page/josh-smith-friend-2023",
+      "planned_public_api_glb_bytes": 12787160,
+      "actual_authenticated_download_bytes": 3345560,
+      "source_sha256": "a4a54f850909d9ba5356d18b06c4714205113dae032e1521aa49b39f32143591",
+      "downloaded_path": ".atrium-ingest/sources/modern/josh-smith-friend/friend-josh-smith-2023.glb",
+      "archived_source_path": ".atrium-ingest/sources/modern/josh-smith-friend/friend_source.glb",
+      "decoded": false,
+      "archive_face_count": 70685,
+      "measured_integrity": {
+        "faces": 70685,
+        "bratio": 0.006,
+        "ncomp": 1,
+        "largest_frac": 1
+      },
+      "rejection": null,
+      "preview": {
+        "slug": "modern/josh-smith-friend",
+        "url": "https://models.atrium.earth/models/previews/modern/josh-smith-friend/preview-dc89aebb839b.glb",
+        "bytes": 410716,
+        "sha256": "dc89aebb839bcb7355389d6de7f25d2118e2b05f5b249dd5358bda9e9119d1b4",
+        "content_type": "model/gltf-binary"
+      },
+      "preview_appearance": {
+        "meshes": 1,
+        "primitives": 1,
+        "embedded_images": 1,
+        "materials": [
+          {
+            "name": "material_0",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "baseColorTexture": 0,
+            "metallicFactor": 0,
+            "roughnessFactor": 1,
+            "doubleSided": true,
+            "extensions": [
+              "KHR_materials_unlit"
+            ]
+          }
+        ],
+        "extensions": [
+          "EXT_texture_webp",
+          "KHR_draco_mesh_compression",
+          "KHR_materials_unlit"
+        ],
+        "vertex_color_primitives": 0,
+        "external_resource_uris": []
+      },
+      "public_provisional": true
+    },
+    {
+      "slug": "modern/lucio-fontana-angel-from-the-monument-to-paolo-chinelli-with-architectural-setting",
+      "title": "Angel, from the Monument to Paolo Chinelli (with Architectural Setting)",
+      "artist": "Lucio Fontana; architectural monument by Renzo Zavanella",
+      "uid": "c70ad89eb4ce41a2b2cb03d9343fa2fa",
+      "accepted": true,
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_url": "https://sketchfab.com/3d-models/c70ad89eb4ce41a2b2cb03d9343fa2fa",
+      "source_record_url": "https://monumentale.comune.milano.it/itinerari/il-novecento-al-monumentale",
+      "planned_public_api_glb_bytes": 41380648,
+      "actual_authenticated_download_bytes": 20178780,
+      "source_sha256": "016831c6149ddedfa780fb62a9f1a7f1fb03c7fedefb059d91aaf6b50e16690e",
+      "downloaded_path": ".atrium-ingest/sources/modern/lucio-fontana-angel-from-the-monument-to-paolo-chinelli-with-architectural-setting/lucio-fontana-chinelli-funeral-monument.glb",
+      "archived_source_path": ".atrium-ingest/sources/modern/lucio-fontana-angel-from-the-monument-to-paolo-chinelli-with-architectural-setting/angel-from-the-monument-to-paolo-chinelli-with-architectural-setting_source.glb",
+      "decoded": false,
+      "archive_face_count": 606234,
+      "measured_integrity": {
+        "faces": 606234,
+        "bratio": 0,
+        "ncomp": 4,
+        "largest_frac": 1
+      },
+      "rejection": null,
+      "preview": {
+        "slug": "modern/lucio-fontana-angel-from-the-monument-to-paolo-chinelli-with-architectural-setting",
+        "url": "https://models.atrium.earth/models/previews/modern/lucio-fontana-angel-from-the-monument-to-paolo-chinelli-with-architectural-setting/preview-3bbf8367e8c0.glb",
+        "bytes": 1612444,
+        "sha256": "3bbf8367e8c024fc71d4aebaf28dd63476023cf6bd291923cdf68218f089aff9",
+        "content_type": "model/gltf-binary"
+      },
+      "preview_appearance": {
+        "meshes": 2,
+        "primitives": 2,
+        "embedded_images": 2,
+        "materials": [
+          {
+            "name": "material_0",
+            "baseColorFactor": [
+              0.3249459394871974,
+              0.3249459394871974,
+              0.3249459394871974,
+              1
+            ],
+            "baseColorTexture": 0,
+            "metallicFactor": 0.2550024188800877,
+            "roughnessFactor": 1,
+            "doubleSided": true,
+            "extensions": []
+          },
+          {
+            "name": "material_1",
+            "baseColorFactor": [
+              0.3249459394871974,
+              0.3249459394871974,
+              0.3249459394871974,
+              1
+            ],
+            "baseColorTexture": 1,
+            "metallicFactor": 0.2550024188800877,
+            "roughnessFactor": 0,
+            "doubleSided": true,
+            "extensions": [
+              "KHR_materials_specular"
+            ]
+          }
+        ],
+        "extensions": [
+          "EXT_texture_webp",
+          "KHR_draco_mesh_compression",
+          "KHR_materials_specular"
+        ],
+        "vertex_color_primitives": 0,
+        "external_resource_uris": []
+      },
+      "public_provisional": true
+    },
+    {
+      "slug": "modern/hans-jean-arp-heart-of-a-monument",
+      "title": "Heart of a Monument",
+      "artist": "Hans (Jean) Arp",
+      "uid": "72c7b00b0b3c4192ad142302c84bc6b8",
+      "accepted": true,
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_url": "https://sketchfab.com/3d-models/72c7b00b0b3c4192ad142302c84bc6b8",
+      "source_record_url": "https://www.nasjonalmuseet.no/en/collection/object/NMK.2022.0402",
+      "planned_public_api_glb_bytes": 17334264,
+      "actual_authenticated_download_bytes": 1483476,
+      "source_sha256": "4fe9b02b3e8d3d0173baa7a56e529459b175b125a0d6d069a73aac05fc40a720",
+      "downloaded_path": ".atrium-ingest/sources/modern/hans-jean-arp-heart-of-a-monument/heart-of-a-monument-by-hans-arp.glb",
+      "archived_source_path": ".atrium-ingest/sources/modern/hans-jean-arp-heart-of-a-monument/heart-of-a-monument_source.glb",
+      "decoded": false,
+      "archive_face_count": 20000,
+      "measured_integrity": {
+        "faces": 20000,
+        "bratio": 0,
+        "ncomp": 1,
+        "largest_frac": 1
+      },
+      "rejection": null,
+      "preview": {
+        "slug": "modern/hans-jean-arp-heart-of-a-monument",
+        "url": "https://models.atrium.earth/models/previews/modern/hans-jean-arp-heart-of-a-monument/preview-a63a9db76dff.glb",
+        "bytes": 153776,
+        "sha256": "a63a9db76dff9877e5e1192baabbf304113f4546228ef13713ddb9c085815a45",
+        "content_type": "model/gltf-binary"
+      },
+      "preview_appearance": {
+        "meshes": 1,
+        "primitives": 1,
+        "embedded_images": 2,
+        "materials": [
+          {
+            "name": "material0",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "baseColorTexture": 0,
+            "metallicFactor": 0,
+            "roughnessFactor": 0.5870463605222416,
+            "doubleSided": true,
+            "extensions": []
+          }
+        ],
+        "extensions": [
+          "EXT_texture_webp",
+          "KHR_draco_mesh_compression"
+        ],
+        "vertex_color_primitives": 0,
+        "external_resource_uris": []
+      },
+      "public_provisional": true
+    },
+    {
+      "slug": "modern/hans-jean-arp-ugledrm-owl-dream",
+      "title": "Ugledrøm (Owl Dream)",
+      "artist": "Hans (Jean) Arp",
+      "uid": "a75573855d654998a223f1b2f4a9b032",
+      "accepted": true,
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_url": "https://sketchfab.com/3d-models/a75573855d654998a223f1b2f4a9b032",
+      "source_record_url": "https://www.nasjonalmuseet.no/globalassets/dokumenter/innkjop/innkjop-2022.pdf",
+      "planned_public_api_glb_bytes": 72829332,
+      "actual_authenticated_download_bytes": 10571416,
+      "source_sha256": "0d1cffdc744465cec83da4b875ef8a3fce7992e9e6d411ea2b3a437fc23fa80c",
+      "downloaded_path": ".atrium-ingest/sources/modern/hans-jean-arp-ugledrm-owl-dream/nmk-2022-0387.glb",
+      "archived_source_path": ".atrium-ingest/sources/modern/hans-jean-arp-ugledrm-owl-dream/ugledr-m-owl-dream_source.glb",
+      "decoded": false,
+      "archive_face_count": 199999,
+      "measured_integrity": {
+        "faces": 199999,
+        "bratio": 0,
+        "ncomp": 14,
+        "largest_frac": 0.998
+      },
+      "rejection": null,
+      "preview": {
+        "slug": "modern/hans-jean-arp-ugledrm-owl-dream",
+        "url": "https://models.atrium.earth/models/previews/modern/hans-jean-arp-ugledrm-owl-dream/preview-6a87b00fa65d.glb",
+        "bytes": 1334508,
+        "sha256": "6a87b00fa65dda84088daead44e591693b7457e7214681ad663e15ee91d86f35",
+        "content_type": "model/gltf-binary"
+      },
+      "preview_appearance": {
+        "meshes": 1,
+        "primitives": 1,
+        "embedded_images": 3,
+        "materials": [
+          {
+            "name": "material0",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "baseColorTexture": 0,
+            "metallicFactor": 0,
+            "roughnessFactor": 1,
+            "doubleSided": true,
+            "extensions": []
+          }
+        ],
+        "extensions": [
+          "EXT_texture_webp",
+          "KHR_draco_mesh_compression"
+        ],
+        "vertex_color_primitives": 0,
+        "external_resource_uris": []
+      },
+      "public_provisional": true
+    },
+    {
+      "slug": "modern/jaume-plensa-humming",
+      "title": "Humming",
+      "artist": "Jaume Plensa",
+      "uid": "1215be2d63b24825b6ae2838007492fe",
+      "accepted": true,
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_url": "https://sketchfab.com/3d-models/1215be2d63b24825b6ae2838007492fe",
+      "source_record_url": "https://galerielelong.com/usr/documents/exhibitions/press_release_url/85/press-release-plensa-2011.pdf",
+      "planned_public_api_glb_bytes": 2880204,
+      "actual_authenticated_download_bytes": 2880204,
+      "source_sha256": "d42e041402fa47ff448342806c2ab31ba8321ad404bdc4370b9a5a6adbd86ea8",
+      "downloaded_path": ".atrium-ingest/sources/modern/jaume-plensa-humming/jaume-plensa-humming.glb",
+      "archived_source_path": ".atrium-ingest/sources/modern/jaume-plensa-humming/humming_source.glb",
+      "decoded": false,
+      "archive_face_count": 89186,
+      "measured_integrity": {
+        "faces": 89186,
+        "bratio": 0,
+        "ncomp": 1,
+        "largest_frac": 1
+      },
+      "rejection": null,
+      "preview": {
+        "slug": "modern/jaume-plensa-humming",
+        "url": "https://models.atrium.earth/models/previews/modern/jaume-plensa-humming/preview-64cef5e96e4a.glb",
+        "bytes": 269884,
+        "sha256": "64cef5e96e4a8c9ce977e3befdc0b792099950dd32772e6a073e09f888f8ea2a",
+        "content_type": "model/gltf-binary"
+      },
+      "preview_appearance": {
+        "meshes": 1,
+        "primitives": 1,
+        "embedded_images": 0,
+        "materials": [
+          {
+            "name": "Scene_-_Root",
+            "baseColorFactor": [
+              0.5,
+              0.5,
+              0.5,
+              1
+            ],
+            "baseColorTexture": null,
+            "metallicFactor": 0,
+            "roughnessFactor": 0.9,
+            "doubleSided": true,
+            "extensions": []
+          }
+        ],
+        "extensions": [
+          "KHR_draco_mesh_compression"
+        ],
+        "vertex_color_primitives": 1,
+        "external_resource_uris": []
+      },
+      "public_provisional": true
+    },
+    {
+      "slug": "americas/frank-stella-maha-lat-5-5x-da59cb",
+      "title": "Maha-lat, 5.5x",
+      "artist": "Frank Stella",
+      "uid": "da59cb18b2e14c6eb6e152556ff9a949",
+      "accepted": true,
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_url": "https://sketchfab.com/3d-models/indian-birds-da59cb18b2e14c6eb6e152556ff9a949",
+      "source_record_url": "https://viewingroom.mnuchingallery.com/attachment/en/5e862edda5aa2c7004703974/DownloadableItem/689a08c3dc6f2038d50ba894",
+      "planned_public_api_glb_bytes": 132005928,
+      "actual_authenticated_download_bytes": 17998836,
+      "source_sha256": "745eac9936decc9e0705a0d92409beffb3e354a4b03f7c9be78d51ffcfaeb5f7",
+      "downloaded_path": ".atrium-ingest/sources/americas/frank-stella-maha-lat-5-5x-da59cb/indian-birds.glb",
+      "archived_source_path": ".atrium-ingest/sources/americas/frank-stella-maha-lat-5-5x-da59cb/maha-lat-5-5x_source.glb",
+      "decoded": false,
+      "archive_face_count": 249678,
+      "measured_integrity": {
+        "faces": 249678,
+        "bratio": 0.001,
+        "ncomp": 1,
+        "largest_frac": 1
+      },
+      "rejection": null,
+      "preview": {
+        "slug": "americas/frank-stella-maha-lat-5-5x-da59cb",
+        "url": "https://models.atrium.earth/models/previews/americas/frank-stella-maha-lat-5-5x-da59cb/preview-f24bdc46ea30.glb",
+        "bytes": 2498604,
+        "sha256": "f24bdc46ea30b23aefd14b0a6bf9285c138c7a191949c3ccb0c00dc21846201e",
+        "content_type": "model/gltf-binary"
+      },
+      "preview_appearance": {
+        "meshes": 1,
+        "primitives": 1,
+        "embedded_images": 3,
+        "materials": [
+          {
+            "name": "Material_0",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "baseColorTexture": 0,
+            "metallicFactor": 0,
+            "roughnessFactor": 1,
+            "doubleSided": false,
+            "extensions": []
+          }
+        ],
+        "extensions": [
+          "EXT_texture_webp",
+          "KHR_draco_mesh_compression"
+        ],
+        "vertex_color_primitives": 0,
+        "external_resource_uris": []
+      },
+      "public_provisional": true
+    },
+    {
+      "slug": "unfiled/ai-weiwei-dog-circle-of-animals-zodiac-heads-lacma-6f86e5",
+      "title": "Dog, from Circle of Animals/Zodiac Heads",
+      "artist": "Ai Weiwei",
+      "uid": "6f86e5d4c9b44ef188bb18de4606ebfb",
+      "accepted": true,
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_url": "https://sketchfab.com/3d-models/sculpture-by-artist-ai-weiwei-at-the-lacma-la-6f86e5d4c9b44ef188bb18de4606ebfb",
+      "source_record_url": "https://collections.lacma.org/object/255475",
+      "planned_public_api_glb_bytes": 21523812,
+      "actual_authenticated_download_bytes": 4604000,
+      "source_sha256": "08391d0195c89e5f4f902169b837fe9508041614c3c9f42bb9f7b2df6086a51e",
+      "downloaded_path": ".atrium-ingest/sources/unfiled/ai-weiwei-dog-circle-of-animals-zodiac-heads-lacma-6f86e5/sculpture-by-artist-ai-weiwei-at-the-lacma-la.glb",
+      "archived_source_path": ".atrium-ingest/sources/unfiled/ai-weiwei-dog-circle-of-animals-zodiac-heads-lacma-6f86e5/dog-from-circle-of-animals-zodiac-heads_source.glb",
+      "decoded": false,
+      "archive_face_count": 34565,
+      "measured_integrity": {
+        "faces": 34565,
+        "bratio": 0.005,
+        "ncomp": 1,
+        "largest_frac": 1
+      },
+      "rejection": null,
+      "preview": {
+        "slug": "unfiled/ai-weiwei-dog-circle-of-animals-zodiac-heads-lacma-6f86e5",
+        "url": "https://models.atrium.earth/models/previews/unfiled/ai-weiwei-dog-circle-of-animals-zodiac-heads-lacma-6f86e5/preview-0b678d5e1b32.glb",
+        "bytes": 499880,
+        "sha256": "0b678d5e1b32de2415e6b42c4180e11be101aeaad21f0e1bbb3a674898574394",
+        "content_type": "model/gltf-binary"
+      },
+      "preview_appearance": {
+        "meshes": 1,
+        "primitives": 1,
+        "embedded_images": 2,
+        "materials": [
+          {
+            "name": "meshes0__0",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "baseColorTexture": 0,
+            "metallicFactor": 0,
+            "roughnessFactor": 0.6,
+            "doubleSided": true,
+            "extensions": []
+          }
+        ],
+        "extensions": [
+          "EXT_texture_webp",
+          "KHR_draco_mesh_compression"
+        ],
+        "vertex_color_primitives": 0,
+        "external_resource_uris": []
+      },
+      "public_provisional": true
+    },
+    {
+      "slug": "modern/joan-miro-double-sided-monolith-estela-de-doble-cara-12d619",
+      "title": "Double-sided Monolith (Estela de doble cara)",
+      "artist": "Joan Miró; Josep Llorens Artigas",
+      "uid": "12d619640b9c45708048371351339829",
+      "accepted": true,
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_url": "https://sketchfab.com/3d-models/12d619640b9c45708048371351339829",
+      "source_record_url": "https://www.fmirobcn.org/en/colection/catalog-works/10343/p-double-sided-monolith-p",
+      "planned_public_api_glb_bytes": 7302016,
+      "actual_authenticated_download_bytes": 3499484,
+      "source_sha256": "983ab1e1ceeff860a778abe32d8f93a64acdb686859a960c4f2abb59ce39af8d",
+      "downloaded_path": ".atrium-ingest/sources/modern/joan-miro-double-sided-monolith-estela-de-doble-cara-12d619/estela-de-doble-cara-miro.glb",
+      "archived_source_path": ".atrium-ingest/sources/modern/joan-miro-double-sided-monolith-estela-de-doble-cara-12d619/double-sided-monolith-estela-de-doble-cara_source.glb",
+      "decoded": false,
+      "archive_face_count": 95777,
+      "measured_integrity": {
+        "faces": 95776,
+        "bratio": 0.003,
+        "ncomp": 3,
+        "largest_frac": 0.999
+      },
+      "rejection": null,
+      "preview": {
+        "slug": "modern/joan-miro-double-sided-monolith-estela-de-doble-cara-12d619",
+        "url": "https://models.atrium.earth/models/previews/modern/joan-miro-double-sided-monolith-estela-de-doble-cara-12d619/preview-3139a9a66814.glb",
+        "bytes": 462368,
+        "sha256": "3139a9a668141f4e2153a73aeb1d45a750bd032074e0f083515bcd0307d16a9a",
+        "content_type": "model/gltf-binary"
+      },
+      "preview_appearance": {
+        "meshes": 1,
+        "primitives": 1,
+        "embedded_images": 1,
+        "materials": [
+          {
+            "name": "Material",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "baseColorTexture": 0,
+            "metallicFactor": 0,
+            "roughnessFactor": 1,
+            "doubleSided": true,
+            "extensions": []
+          }
+        ],
+        "extensions": [
+          "EXT_texture_webp",
+          "KHR_draco_mesh_compression"
+        ],
+        "vertex_color_primitives": 0,
+        "external_resource_uris": []
+      },
+      "public_provisional": true
+    },
+    {
+      "slug": "modern/joan-miro-mural-for-ibm-3d5da4",
+      "title": "Mural for IBM",
+      "artist": "Joan Miró; Joan Gardy Artigas",
+      "uid": "3d5da429fc2042a79079e53214e433b7",
+      "accepted": true,
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_url": "https://sketchfab.com/3d-models/3d5da429fc2042a79079e53214e433b7",
+      "source_record_url": "https://www.museunacional.cat/es/colleccio/mural-para-ibm/joan-miro/240029-000",
+      "planned_public_api_glb_bytes": 5139240,
+      "actual_authenticated_download_bytes": 1701496,
+      "source_sha256": "d9b956ff1ea04b18e8a6d97dec96fd54c973adfe280127a92b36b945b1979ba1",
+      "downloaded_path": ".atrium-ingest/sources/modern/joan-miro-mural-for-ibm-3d5da4/mural-para-ibm.glb",
+      "archived_source_path": ".atrium-ingest/sources/modern/joan-miro-mural-for-ibm-3d5da4/mural-for-ibm_source.glb",
+      "decoded": false,
+      "archive_face_count": 32394,
+      "measured_integrity": {
+        "faces": 32394,
+        "bratio": 0.012,
+        "ncomp": 1,
+        "largest_frac": 1
+      },
+      "rejection": null,
+      "preview": {
+        "slug": "modern/joan-miro-mural-for-ibm-3d5da4",
+        "url": "https://models.atrium.earth/models/previews/modern/joan-miro-mural-for-ibm-3d5da4/preview-a6104c5dd5e4.glb",
+        "bytes": 279444,
+        "sha256": "a6104c5dd5e4a85356b5ee3435935c83a67b7eee9c495411f76fdfa0e20f42aa",
+        "content_type": "model/gltf-binary"
+      },
+      "preview_appearance": {
+        "meshes": 1,
+        "primitives": 1,
+        "embedded_images": 1,
+        "materials": [
+          {
+            "name": "material_0",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "baseColorTexture": 0,
+            "metallicFactor": 0,
+            "roughnessFactor": 1,
+            "doubleSided": true,
+            "extensions": []
+          }
+        ],
+        "extensions": [
+          "EXT_texture_webp",
+          "KHR_draco_mesh_compression"
+        ],
+        "vertex_color_primitives": 0,
+        "external_resource_uris": []
+      },
+      "public_provisional": true
+    },
+    {
+      "slug": "modern/joan-miro-wall-of-barcelona-airport-0ed725",
+      "title": "Wall of Barcelona Airport",
+      "artist": "Joan Miró; Josep Llorens Artigas; Joan Gardy Artigas (collaborator)",
+      "uid": "0ed725df6326481090bafb2d090e6b55",
+      "accepted": true,
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_url": "https://sketchfab.com/3d-models/0ed725df6326481090bafb2d090e6b55",
+      "source_record_url": "https://successiomiro.com/catalogue/object/1499",
+      "planned_public_api_glb_bytes": 66868168,
+      "actual_authenticated_download_bytes": 7682388,
+      "source_sha256": "11a10c88ab58ffbaddd618220ed7ce2dd0ebee029d2609fc129229a0eac1ce81",
+      "downloaded_path": ".atrium-ingest/sources/modern/joan-miro-wall-of-barcelona-airport-0ed725/mosaico-aeropuerto-barcelona.glb",
+      "archived_source_path": ".atrium-ingest/sources/modern/joan-miro-wall-of-barcelona-airport-0ed725/wall-of-barcelona-airport_source.glb",
+      "decoded": false,
+      "archive_face_count": 146349,
+      "measured_integrity": {
+        "faces": 146349,
+        "bratio": 0.007,
+        "ncomp": 9,
+        "largest_frac": 0.999
+      },
+      "rejection": null,
+      "preview": {
+        "slug": "modern/joan-miro-wall-of-barcelona-airport-0ed725",
+        "url": "https://models.atrium.earth/models/previews/modern/joan-miro-wall-of-barcelona-airport-0ed725/preview-fb0170a9c59e.glb",
+        "bytes": 943700,
+        "sha256": "fb0170a9c59e702f91aeb9746456b0e1c9e35a303a9e48987620a195656c22f5",
+        "content_type": "model/gltf-binary"
+      },
+      "preview_appearance": {
+        "meshes": 1,
+        "primitives": 1,
+        "embedded_images": 2,
+        "materials": [
+          {
+            "name": "13_7_2024_0",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "baseColorTexture": 0,
+            "metallicFactor": 0,
+            "roughnessFactor": 1,
+            "doubleSided": true,
+            "extensions": []
+          }
+        ],
+        "extensions": [
+          "EXT_texture_webp",
+          "KHR_draco_mesh_compression"
+        ],
+        "vertex_color_primitives": 0,
+        "external_resource_uris": []
+      },
+      "public_provisional": true
+    },
+    {
+      "slug": "modern/joan-miro-tapestry-of-the-fundacio-3b1745",
+      "title": "Tapestry of the Fundació",
+      "artist": "Joan Miró; Josep Royo",
+      "uid": "3b1745aa4e3348dfaa176dde74155dd4",
+      "accepted": true,
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_url": "https://sketchfab.com/3d-models/3b1745aa4e3348dfaa176dde74155dd4",
+      "source_record_url": "https://www.fmirobcn.org/en/colection/catalog-works/9389/p-tapestry-of-the-fundacio-p",
+      "planned_public_api_glb_bytes": 48550036,
+      "actual_authenticated_download_bytes": 20341712,
+      "source_sha256": "b839fbf886848cc3bf4fc5f91bd2ea5571e201584bf2cdd9663c756519a8b970",
+      "downloaded_path": ".atrium-ingest/sources/modern/joan-miro-tapestry-of-the-fundacio-3b1745/tapis-de-la-fundacio.glb",
+      "archived_source_path": ".atrium-ingest/sources/modern/joan-miro-tapestry-of-the-fundacio-3b1745/tapestry-of-the-fundacio_source.glb",
+      "decoded": false,
+      "archive_face_count": 618860,
+      "measured_integrity": {
+        "faces": 618836,
+        "bratio": 0.002,
+        "ncomp": 6,
+        "largest_frac": 1
+      },
+      "rejection": null,
+      "preview": {
+        "slug": "modern/joan-miro-tapestry-of-the-fundacio-3b1745",
+        "url": "https://models.atrium.earth/models/previews/modern/joan-miro-tapestry-of-the-fundacio-3b1745/preview-e7cbc3cce267.glb",
+        "bytes": 1654572,
+        "sha256": "e7cbc3cce2670185445846d8a9e2968e2fd17710b5fe4f121b35c5b233f36356",
+        "content_type": "model/gltf-binary"
+      },
+      "preview_appearance": {
+        "meshes": 1,
+        "primitives": 1,
+        "embedded_images": 1,
+        "materials": [
+          {
+            "name": "Material",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "baseColorTexture": 0,
+            "metallicFactor": 0,
+            "roughnessFactor": 1,
+            "doubleSided": true,
+            "extensions": []
+          }
+        ],
+        "extensions": [
+          "EXT_texture_webp",
+          "KHR_draco_mesh_compression"
+        ],
+        "vertex_color_primitives": 0,
+        "external_resource_uris": []
+      },
+      "public_provisional": true
+    }
+  ],
+  "preview_qa": {
+    "public_derivatives_mirrored": 22,
+    "derivative_total_bytes": 20406276,
+    "sha256_verification": "All 22 immutable R2 derivatives mirrored with content-hash verification; published model paths and hashes are retained above.",
+    "appearance_processing": "Source GLBs are not modified. Public derivatives normalize legacy specular-glossiness materials, preserve available color/PBR maps, optimize geometry and compress textures to WebP up to 2048px. Embedded texture and material inventory is recorded per work; visual fidelity review remains in progress.",
+    "raw_source_archive_downloaded_for_visual_review": false
+  },
+  "integrity_summary": {
+    "all_accepted_measured": true,
+    "accepted_without_component_exemptions": 22,
+    "minimum_largest_component_fraction": 0.81,
+    "maximum_components": 14,
+    "no_source_geometry_mutation": true,
+    "rejected_report_limit": "Rejection report records faces/components/boundary ratio but omits largest_frac. Abakanowicz has four legitimate figure/pedestal components and fails the default largest-component requirement; an exact fraction is not available in this report. Noguchi exceeds the default 50-component limit with 752 components. Both remain held; no exemptions applied."
+  },
+  "visual_holds": [
+    {
+      "slug": "modern/louise-bourgeois-crouching-spider",
+      "reason": "Visual quality hold: the capture is dominated by room geometry and does not establish all eight complete spider legs. No geometry cleanup or reconstruction was applied; source download is retained in the temporary cloud backup.",
+      "status": "hidden; excluded from public routes and Newest",
+      "source_preserved": true
+    },
+    {
+      "slug": "modern/jean-dubuffet-borne-au-logos-v",
+      "reason": "Visual quality hold: the freestanding sculpture capture has materially incomplete reverse surfaces. A front-facing thumbnail does not establish a complete sculpture; source download is retained without filling or reconstruction.",
+      "status": "hidden; excluded from public routes and Newest",
+      "source_preserved": true
+    }
+  ],
+  "permanent_source_archive": {
+    "reported_by": "Root session, 2026-10-15",
+    "status": "24 unmodified actual-provider GLB source files copied to a new permanent private cloud archive",
+    "source_count": 24,
+    "source_total_bytes": 315237320,
+    "included_evidence": "Source, license and SHA-256 manifest plus README",
+    "verification": "Root read back all 24 cloud filenames, byte sizes and non-shared states. Cloud content hashes were not independently read back.",
+    "privacy": "Private cloud identifiers, links and personal metadata are excluded from this public report; private ledgers remain ignored under .atrium-ingest."
+  },
+  "independent_appearance_review": {
+    "reviewed_at": "2026-10-15T18:46:30.310193+00:00",
+    "stage": "Initial acquired lightweight derivatives plus source-preview comparison. Final12poses/publication camera review remains with modern_masters_discovery.",
+    "method": {
+      "initial_thumbnails": 22,
+      "four_camera_views_each": true,
+      "all22_local_preview_sha256_match_r2_upload_record": true,
+      "public_r2_direct_fetch": "HTTP403 from this environment; existing local mirrors were used. This is not a live CDN delivery check.",
+      "source_archive_downloaded": false,
+      "renderer": "Actual Atrium rendering code copied into a temporary isolated inspector. Cameras changed for review; no repository/geometry edits. Later9–22renders include the integration owner’s source-vertex-color guard.",
+      "source_previews": "Museum/uploader thumbnails in /tmp/atrium-contemporary-20261015-source-contact.jpg. Exact primary Stella checklist and official Dog photograph also compared.",
+      "limitations": "Read-only lightweight-preview presentation/scope review, not a new source-archive integrity proof or measured AR calibration. Final poses are pending and this report must not be represented as final publication QA."
+    },
+    "reviewed_count": 22,
+    "quality_holds": [
+      "modern/louise-bourgeois-crouching-spider",
+      "modern/jean-dubuffet-borne-au-logos-v"
+    ],
+    "front_surface_scope_required": [
+      "modern/niki-de-saint-phalle-tir-shooting-altar",
+      "modern/joan-miro-mural-for-ibm-3d5da4",
+      "modern/joan-miro-wall-of-barcelona-airport-0ed725",
+      "modern/joan-miro-tapestry-of-the-fundacio-3b1745"
+    ],
+    "vertex_color_issue": {
+      "slug": "modern/jaume-plensa-humming",
+      "discovered": "COLOR_0 was preserved in theGLB but source color arrays were overwritten by material variation in initial renderer logic.",
+      "integration_fix_present_in_viewer": true,
+      "integration_fix_present_in_renderer": true,
+      "post_fix_face_variation_visible": true,
+      "decoded_RGB_ranges": {
+        "type": "Float32Array",
+        "normalized": false,
+        "stride": 4,
+        "min": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "max": [
+          0.8603460788726807,
+          0.771580159664154,
+          0.8705882430076599,
+          1
+        ],
+        "sample": [
+          0.5838062763214111,
+          0.5530796051025391,
+          0.5803921818733215,
+          1,
+          0.4847981631755829,
+          0.46772781014442444,
+          0.4984544515609741,
+          1,
+          0.4847981631755829,
+          0.46772781014442444,
+          0.4984544515609741,
+          1,
+          0.43700116872787476,
+          0.4131026566028595,
+          0.43700116872787476,
+          1,
+          0.44041523337364197,
+          0.4199308156967163,
+          0.4438292980194092,
+          1,
+          0.4438292980194092,
+          0.4199308156967163,
+          0.43700116872787476,
+          1,
+          0.3789619505405426,
+          0.3721338212490082,
+          0.4916263222694397,
+          1,
+          0.3789619505405426,
+          0.3721338212490082,
+          0.4916263222694397,
+          1
+        ]
+      },
+      "final_pose_review_required": true
+    },
+    "records": [
+      {
+        "index": 1,
+        "slug": "modern/barbara-hepworth-epidauros-ii",
+        "title": "Epidauros II",
+        "artist": "Barbara Hepworth",
+        "material": "Bronze",
+        "status": "pose_required",
+        "observation": "Complete form, aperture and rectangular foot visible in four views; initial pose puts the bowl-like form sideways rather than the documented upright oval. Authored blue/green bronze surface and material maps remain present.",
+        "recommended_action": "Restore upright pose and choose an aperture-facing camera; preserve source patina.",
+        "source_record_url": "https://barbara-hepworth.org.uk/sculptures/1961/epidauros-ii/index.php?sort=date",
+        "capture_statement": "Physical scan",
+        "source_model_uid": "cf21ada0dfc845ad9cb8b3cca0e7c133",
+        "preview": {
+          "slug": "modern/barbara-hepworth-epidauros-ii",
+          "url": "https://models.atrium.earth/models/previews/modern/barbara-hepworth-epidauros-ii/preview-4b3992ddd707.glb",
+          "bytes": 1143356,
+          "sha256": "4b3992ddd707ea3f3d6d667fd1a1683ff1844dd1bccb77c3b834926799fc1b32",
+          "content_type": "model/gltf-binary",
+          "local_mirror_sha256_matches_upload_record": true,
+          "source_archive_downloaded_by_this_auditor": false
+        },
+        "initial_thumbnail_path": "/tmp/atrium-acquired-appearance-20261015/01.webp",
+        "four_view_images": [
+          {
+            "angle": "front",
+            "path": "/tmp/atrium-acquired-appearance-20261015/01-front.png"
+          },
+          {
+            "angle": "back",
+            "path": "/tmp/atrium-acquired-appearance-20261015/01-back.png"
+          },
+          {
+            "angle": "side",
+            "path": "/tmp/atrium-acquired-appearance-20261015/01-side.png"
+          },
+          {
+            "angle": "above",
+            "path": "/tmp/atrium-acquired-appearance-20261015/01-above.png"
+          }
+        ],
+        "initial_orientation_reviewed": {
+          "upAxis": "y",
+          "modelRotation": [
+            -94.3,
+            0,
+            172.77
+          ],
+          "yaw": 0,
+          "status": "auto",
+          "confidence": 0.66,
+          "note": "Stable-pose solve (pose 0, p=0.60, margin 0.35); confident."
+        },
+        "decoded_preview_summary": {
+          "index": 1,
+          "slug": "modern/barbara-hepworth-epidauros-ii",
+          "materials": [
+            {
+              "name": "Epidauros_II_Hepworth",
+              "baseColor": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "metallic": 0.44952517950530896,
+              "roughness": 0.5775255696017358,
+              "baseColorTexture": true,
+              "normalTexture": true,
+              "metallicRoughnessTexture": false
+            }
+          ],
+          "primitives": [
+            {
+              "name": "Object_0",
+              "vertices": 110497,
+              "triangles": 168136,
+              "bounds": {
+                "min": [
+                  -30.563907623291016,
+                  -20.027719497680664,
+                  -0.2588018476963043
+                ],
+                "max": [
+                  34.03525924682617,
+                  20.991823196411133,
+                  75.77051544189453
+                ]
+              },
+              "color": null
+            }
+          ]
+        },
+        "final_pose_review_complete": false
+      },
+      {
+        "index": 2,
+        "slug": "modern/jaume-plensa-carmela",
+        "title": "Carmela",
+        "artist": "Jaume Plensa",
+        "material": "Cast iron",
+        "status": "pose_required",
+        "observation": "The deliberately compressed head and low round support are present. Current pose lays the head horizontally; the flattened profile is an intentional feature, not itself capture damage. Authored iron-colored surface remains.",
+        "recommended_action": "Upright head and a face-facing view; do not expand the compressed axis.",
+        "source_record_url": "https://www.palaumusica.cat/en/the-sculptures-of-jaume-plensa-in-dialogue-with-the-architecture-of-the-palau-de-la-musica-catalana_398125",
+        "capture_statement": "Physical scan",
+        "source_model_uid": "ace3c488606449cea97c86411cc98610",
+        "preview": {
+          "slug": "modern/jaume-plensa-carmela",
+          "url": "https://models.atrium.earth/models/previews/modern/jaume-plensa-carmela/preview-262fb4989b28.glb",
+          "bytes": 527820,
+          "sha256": "262fb4989b28b518a183f1c40cb1da1f95b92bc0e6ea1be7be0e996336a2e780",
+          "content_type": "model/gltf-binary",
+          "local_mirror_sha256_matches_upload_record": true,
+          "source_archive_downloaded_by_this_auditor": false
+        },
+        "initial_thumbnail_path": "/tmp/atrium-acquired-appearance-20261015/02.webp",
+        "four_view_images": [
+          {
+            "angle": "front",
+            "path": "/tmp/atrium-acquired-appearance-20261015/02-front.png"
+          },
+          {
+            "angle": "back",
+            "path": "/tmp/atrium-acquired-appearance-20261015/02-back.png"
+          },
+          {
+            "angle": "side",
+            "path": "/tmp/atrium-acquired-appearance-20261015/02-side.png"
+          },
+          {
+            "angle": "above",
+            "path": "/tmp/atrium-acquired-appearance-20261015/02-above.png"
+          }
+        ],
+        "initial_orientation_reviewed": {
+          "upAxis": "y",
+          "modelRotation": [
+            135.24,
+            0,
+            73.91
+          ],
+          "yaw": 0,
+          "status": "auto",
+          "confidence": 0.61,
+          "note": "Stable-pose solve (pose 0, p=0.24, margin 0.24); confident."
+        },
+        "decoded_preview_summary": {
+          "index": 2,
+          "slug": "modern/jaume-plensa-carmela",
+          "materials": [
+            {
+              "name": "carmela_by_jaume_piensa_Mod_le_2_u0_v0",
+              "baseColor": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "metallic": 0,
+              "roughness": 1,
+              "baseColorTexture": true,
+              "normalTexture": false,
+              "metallicRoughnessTexture": false
+            }
+          ],
+          "primitives": [
+            {
+              "name": "carmela_by_jaume_piensa_Mod_le_2_carmela_by_jaume_piensa_Mod_le_2_u0_v0_0",
+              "vertices": 132908,
+              "triangles": 199810,
+              "bounds": {
+                "min": [
+                  -1.234090805053711,
+                  -1.3926618099212646,
+                  0.9299619197845459
+                ],
+                "max": [
+                  1.6805033683776855,
+                  1.5357332229614258,
+                  7.040762901306152
+                ]
+              },
+              "color": null
+            }
+          ]
+        },
+        "final_pose_review_complete": false
+      },
+      {
+        "index": 3,
+        "slug": "modern/louise-bourgeois-crouching-spider",
+        "title": "Crouching Spider",
+        "artist": "Louise Bourgeois",
+        "material": "Bronze with black and polished patina; stainless steel",
+        "status": "quality_hold",
+        "observation": "The model is dominated by incomplete room walls/floor. Overhead inspection exposes a tiny body and broken/disconnected-looking thin leg sections; complete eight-leg geometry cannot be certified. All four textured groups span room-sized bounds, and no isolated complete spider group is established.",
+        "recommended_action": "Hold from release/featured pending a demonstrably complete sculpture capture. Pose alone is insufficient; do not assume generic mesh groups can be safely removed.",
+        "source_record_url": "https://www.diaart.org/collection/collection/bourgeois-louise-crouching-spider-2003-l-2007-012",
+        "capture_statement": "Physical scan",
+        "source_model_uid": "d341cfcc84e9469e8afc67a7ebdd4fc8",
+        "preview": {
+          "slug": "modern/louise-bourgeois-crouching-spider",
+          "url": "https://models.atrium.earth/models/previews/modern/louise-bourgeois-crouching-spider/preview-b0fe402014b7.glb",
+          "bytes": 717272,
+          "sha256": "b0fe402014b714294c1fbb6d8916bae4939f5077c29bd5c6bdaca8634e63684b",
+          "content_type": "model/gltf-binary",
+          "local_mirror_sha256_matches_upload_record": true,
+          "source_archive_downloaded_by_this_auditor": false
+        },
+        "initial_thumbnail_path": "/tmp/atrium-acquired-appearance-20261015/03.webp",
+        "four_view_images": [
+          {
+            "angle": "front",
+            "path": "/tmp/atrium-acquired-appearance-20261015/03-front.png"
+          },
+          {
+            "angle": "back",
+            "path": "/tmp/atrium-acquired-appearance-20261015/03-back.png"
+          },
+          {
+            "angle": "side",
+            "path": "/tmp/atrium-acquired-appearance-20261015/03-side.png"
+          },
+          {
+            "angle": "above",
+            "path": "/tmp/atrium-acquired-appearance-20261015/03-above.png"
+          }
+        ],
+        "initial_orientation_reviewed": {
+          "upAxis": "auto"
+        },
+        "decoded_preview_summary": {
+          "index": 3,
+          "slug": "modern/louise-bourgeois-crouching-spider",
+          "materials": [
+            {
+              "name": "Texture_0",
+              "baseColor": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "metallic": 0,
+              "roughness": 1,
+              "baseColorTexture": true,
+              "normalTexture": false,
+              "metallicRoughnessTexture": false
+            },
+            {
+              "name": "Texture_1",
+              "baseColor": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "metallic": 0,
+              "roughness": 1,
+              "baseColorTexture": true,
+              "normalTexture": false,
+              "metallicRoughnessTexture": false
+            },
+            {
+              "name": "Texture_2",
+              "baseColor": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "metallic": 0,
+              "roughness": 1,
+              "baseColorTexture": true,
+              "normalTexture": false,
+              "metallicRoughnessTexture": false
+            },
+            {
+              "name": "Texture_3",
+              "baseColor": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "metallic": 0,
+              "roughness": 1,
+              "baseColorTexture": true,
+              "normalTexture": false,
+              "metallicRoughnessTexture": false
+            },
+            {
+              "name": "Untextured",
+              "baseColor": [
+                0.501961,
+                0.501961,
+                0.501961,
+                1
+              ],
+              "metallic": 0,
+              "roughness": 1,
+              "baseColorTexture": false,
+              "normalTexture": false,
+              "metallicRoughnessTexture": false
+            }
+          ],
+          "primitives": [
+            {
+              "name": "Object_0",
+              "vertices": 27792,
+              "triangles": 53571,
+              "bounds": {
+                "min": [
+                  88.76644134521484,
+                  -17.406902313232422,
+                  80.38957214355469
+                ],
+                "max": [
+                  106.50945281982422,
+                  -3.8519411087036133,
+                  99.17729949951172
+                ]
+              },
+              "color": null
+            },
+            {
+              "name": "Object_1",
+              "vertices": 28267,
+              "triangles": 54249,
+              "bounds": {
+                "min": [
+                  88.84939575195312,
+                  -18.393810272216797,
+                  74.86520385742188
+                ],
+                "max": [
+                  106.52022552490234,
+                  -3.5446596145629883,
+                  99.23399353027344
+                ]
+              },
+              "color": null
+            },
+            {
+              "name": "Object_2",
+              "vertices": 16578,
+              "triangles": 31969,
+              "bounds": {
+                "min": [
+                  88.759765625,
+                  -16.646961212158203,
+                  89.1508560180664
+                ],
+                "max": [
+                  106.37552642822266,
+                  -4.381626129150391,
+                  99.13236999511719
+                ]
+              },
+              "color": null
+            },
+            {
+              "name": "Object_3",
+              "vertices": 35377,
+              "triangles": 63302,
+              "bounds": {
+                "min": [
+                  88.7708969116211,
+                  -17.84946632385254,
+                  75.13223266601562
+                ],
+                "max": [
+                  104.95438385009766,
+                  -4.545519828796387,
+                  99.15235137939453
+                ]
+              },
+              "color": null
+            },
+            {
+              "name": "Object_4",
+              "vertices": 748,
+              "triangles": 1076,
+              "bounds": {
+                "min": [
+                  89.70218658447266,
+                  -17.080358505249023,
+                  74.88204193115234
+                ],
+                "max": [
+                  101.44320678710938,
+                  -4.563032150268555,
+                  98.83338165283203
+                ]
+              },
+              "color": null
+            }
+          ]
+        },
+        "final_pose_review_complete": false
+      },
+      {
+        "index": 4,
+        "slug": "modern/arne-vinje-gunnerud-fenrisulven-fenris-wolf",
+        "title": "Fenrisulven (Fenris Wolf)",
+        "artist": "Arne Vinje Gunnerud",
+        "material": "Bronze",
+        "status": "pose_required",
+        "observation": "The complex skeletal wolf composition and authored dark surface are present around the object, but the initial stable-pose solve lays it on its side compared with the source preview.",
+        "recommended_action": "Use source-supported upright pose, then confirm the animal silhouette.",
+        "source_record_url": "https://www.nasjonalmuseet.no/en/collection/object/MS-00374-1988",
+        "capture_statement": "Physical scan",
+        "source_model_uid": "21623b27d97041a38241c0fcb17d1a23",
+        "preview": {
+          "slug": "modern/arne-vinje-gunnerud-fenrisulven-fenris-wolf",
+          "url": "https://models.atrium.earth/models/previews/modern/arne-vinje-gunnerud-fenrisulven-fenris-wolf/preview-f3953722afb0.glb",
+          "bytes": 1566148,
+          "sha256": "f3953722afb08fbb3d823e3dd6260556623527709801ac2bcdcb51924e70b931",
+          "content_type": "model/gltf-binary",
+          "local_mirror_sha256_matches_upload_record": true,
+          "source_archive_downloaded_by_this_auditor": false
+        },
+        "initial_thumbnail_path": "/tmp/atrium-acquired-appearance-20261015/04.webp",
+        "four_view_images": [
+          {
+            "angle": "front",
+            "path": "/tmp/atrium-acquired-appearance-20261015/04-front.png"
+          },
+          {
+            "angle": "back",
+            "path": "/tmp/atrium-acquired-appearance-20261015/04-back.png"
+          },
+          {
+            "angle": "side",
+            "path": "/tmp/atrium-acquired-appearance-20261015/04-side.png"
+          },
+          {
+            "angle": "above",
+            "path": "/tmp/atrium-acquired-appearance-20261015/04-above.png"
+          }
+        ],
+        "initial_orientation_reviewed": {
+          "upAxis": "y",
+          "modelRotation": [
+            98.1,
+            0,
+            1.13
+          ],
+          "yaw": 0,
+          "status": "auto",
+          "confidence": 0.61,
+          "note": "Stable-pose solve (pose 0, p=0.49, margin 0.25); confident."
+        },
+        "decoded_preview_summary": {
+          "index": 4,
+          "slug": "modern/arne-vinje-gunnerud-fenrisulven-fenris-wolf",
+          "materials": [
+            {
+              "name": "MS-00374-1988.1001",
+              "baseColor": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "metallic": 1,
+              "roughness": 1,
+              "baseColorTexture": true,
+              "normalTexture": true,
+              "metallicRoughnessTexture": true
+            }
+          ],
+          "primitives": [
+            {
+              "name": "Object_0",
+              "vertices": 116232,
+              "triangles": 200000,
+              "bounds": {
+                "min": [
+                  0.024380000308156013,
+                  1.7022900581359863,
+                  -0.06718400120735168
+                ],
+                "max": [
+                  0.3681904971599579,
+                  2.1480519771575928,
+                  0.3065289855003357
+                ]
+              },
+              "color": null
+            }
+          ]
+        },
+        "final_pose_review_complete": false
+      },
+      {
+        "index": 5,
+        "slug": "modern/ossip-zadkine-promethee-elm-wood-version",
+        "title": "Prométhée (Elm Wood Version)",
+        "artist": "Ossip Zadkine",
+        "material": "Elm wood with a thin white surface layer",
+        "status": "object_readable",
+        "observation": "Complete standing wooden composition, reverse carving, sides and foot are readable. White surface remnants, wood variation and tool marks remain, rather than an invented bronze finish.",
+        "recommended_action": "Minor top recesses remain source-qualified; final publication camera still belongs to integration owner.",
+        "source_record_url": "https://www.zadkine.paris.fr/collections/sculptures/promethee",
+        "capture_statement": "Physical scan",
+        "source_model_uid": "ea5c5d1e38cf4d58a086d4eac8104fd6",
+        "preview": {
+          "slug": "modern/ossip-zadkine-promethee-elm-wood-version",
+          "url": "https://models.atrium.earth/models/previews/modern/ossip-zadkine-promethee-elm-wood-version/preview-ce758d53256a.glb",
+          "bytes": 1498812,
+          "sha256": "ce758d53256ad7cbcd311b12337c2c18d9e6cc342fac92204fcaaac6da17566f",
+          "content_type": "model/gltf-binary",
+          "local_mirror_sha256_matches_upload_record": true,
+          "source_archive_downloaded_by_this_auditor": false
+        },
+        "initial_thumbnail_path": "/tmp/atrium-acquired-appearance-20261015/05.webp",
+        "four_view_images": [
+          {
+            "angle": "front",
+            "path": "/tmp/atrium-acquired-appearance-20261015/05-front.png"
+          },
+          {
+            "angle": "back",
+            "path": "/tmp/atrium-acquired-appearance-20261015/05-back.png"
+          },
+          {
+            "angle": "side",
+            "path": "/tmp/atrium-acquired-appearance-20261015/05-side.png"
+          },
+          {
+            "angle": "above",
+            "path": "/tmp/atrium-acquired-appearance-20261015/05-above.png"
+          }
+        ],
+        "initial_orientation_reviewed": {
+          "upAxis": "y",
+          "modelRotation": [
+            -4.77,
+            -0.21,
+            4.95
+          ],
+          "yaw": 0,
+          "status": "auto",
+          "confidence": 0.64,
+          "note": "Elongated (aspect 3.0); PCA long-axis aligned to vertical."
+        },
+        "decoded_preview_summary": {
+          "index": 5,
+          "slug": "modern/ossip-zadkine-promethee-elm-wood-version",
+          "materials": [
+            {
+              "name": "default_tex0",
+              "baseColor": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "metallic": 0,
+              "roughness": 1,
+              "baseColorTexture": true,
+              "normalTexture": false,
+              "metallicRoughnessTexture": false
+            }
+          ],
+          "primitives": [
+            {
+              "name": "Object_0",
+              "vertices": 269311,
+              "triangles": 399986,
+              "bounds": {
+                "min": [
+                  -0.23218949139118195,
+                  -2.166517496109009,
+                  -0.8566365242004395
+                ],
+                "max": [
+                  0.7849776148796082,
+                  0.8349683284759521,
+                  0.09750723838806152
+                ]
+              },
+              "color": null
+            }
+          ]
+        },
+        "final_pose_review_complete": false
+      },
+      {
+        "index": 6,
+        "slug": "modern/jean-dubuffet-borne-au-logos-v",
+        "title": "Borne au Logos V",
+        "artist": "Jean Dubuffet",
+        "material": "Polyurethane paint on polyester",
+        "status": "quality_hold",
+        "observation": "The freestanding painted sculpture is an open/three-sided surface shell in reverse views with substantial absent rear surfaces. Wooden floor/context and a dark support are captured. A front-only disclaimer does not make this a complete freestanding sculpture.",
+        "recommended_action": "Hold from release/featured unless a stronger complete source is available; do not cap or invent the reverse.",
+        "source_record_url": "https://www.christies.com/lot/jean-dubuffet-1901-1985-3011660/",
+        "capture_statement": "Physical scan",
+        "source_model_uid": "5bb34bf5f7ca4c3eac6f5d74e15e711d",
+        "preview": {
+          "slug": "modern/jean-dubuffet-borne-au-logos-v",
+          "url": "https://models.atrium.earth/models/previews/modern/jean-dubuffet-borne-au-logos-v/preview-f2a12f261205.glb",
+          "bytes": 336356,
+          "sha256": "f2a12f26120577871af59aa515d9586f19d206c362bb74c1dbbcaa462d76a6e6",
+          "content_type": "model/gltf-binary",
+          "local_mirror_sha256_matches_upload_record": true,
+          "source_archive_downloaded_by_this_auditor": false
+        },
+        "initial_thumbnail_path": "/tmp/atrium-acquired-appearance-20261015/06.webp",
+        "four_view_images": [
+          {
+            "angle": "front",
+            "path": "/tmp/atrium-acquired-appearance-20261015/06-front.png"
+          },
+          {
+            "angle": "back",
+            "path": "/tmp/atrium-acquired-appearance-20261015/06-back.png"
+          },
+          {
+            "angle": "side",
+            "path": "/tmp/atrium-acquired-appearance-20261015/06-side.png"
+          },
+          {
+            "angle": "above",
+            "path": "/tmp/atrium-acquired-appearance-20261015/06-above.png"
+          }
+        ],
+        "initial_orientation_reviewed": {
+          "upAxis": "auto"
+        },
+        "decoded_preview_summary": {
+          "index": 6,
+          "slug": "modern/jean-dubuffet-borne-au-logos-v",
+          "materials": [
+            {
+              "name": "main",
+              "baseColor": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "metallic": 0,
+              "roughness": 1,
+              "baseColorTexture": true,
+              "normalTexture": false,
+              "metallicRoughnessTexture": false
+            }
+          ],
+          "primitives": [
+            {
+              "name": "Object_0",
+              "vertices": 74706,
+              "triangles": 139824,
+              "bounds": {
+                "min": [
+                  -0.9342214465141296,
+                  0.03376813232898712,
+                  -0.8643752336502075
+                ],
+                "max": [
+                  0.9342214465141296,
+                  1.1304504871368408,
+                  0.8643592596054077
+                ]
+              },
+              "color": null
+            }
+          ]
+        },
+        "final_pose_review_complete": false
+      },
+      {
+        "index": 7,
+        "slug": "modern/hans-jean-arp-form-heard-and-seen",
+        "title": "Form Heard and Seen",
+        "artist": "Hans (Jean) Arp",
+        "material": "Plaster",
+        "status": "object_readable",
+        "observation": "All-around form is readable with a coherent reverse and lower projecting lobe. The ochre surface is authored in the scan, despite the documented plaster medium; map and normal appearance are retained.",
+        "recommended_action": "Preserve the authored ochre surface; do not recolor all plaster white.",
+        "source_record_url": "https://www.nasjonalmuseet.no/en/collection/object/NMK.2022.0390",
+        "capture_statement": "Physical scan",
+        "source_model_uid": "0636e5e941e14fd281db22f149814bd7",
+        "preview": {
+          "slug": "modern/hans-jean-arp-form-heard-and-seen",
+          "url": "https://models.atrium.earth/models/previews/modern/hans-jean-arp-form-heard-and-seen/preview-96b4f3b6a853.glb",
+          "bytes": 1290440,
+          "sha256": "96b4f3b6a853663577043226106c4a8c79e48dc90bd5146e1d791c2573903051",
+          "content_type": "model/gltf-binary",
+          "local_mirror_sha256_matches_upload_record": true,
+          "source_archive_downloaded_by_this_auditor": false
+        },
+        "initial_thumbnail_path": "/tmp/atrium-acquired-appearance-20261015/07.webp",
+        "four_view_images": [
+          {
+            "angle": "front",
+            "path": "/tmp/atrium-acquired-appearance-20261015/07-front.png"
+          },
+          {
+            "angle": "back",
+            "path": "/tmp/atrium-acquired-appearance-20261015/07-back.png"
+          },
+          {
+            "angle": "side",
+            "path": "/tmp/atrium-acquired-appearance-20261015/07-side.png"
+          },
+          {
+            "angle": "above",
+            "path": "/tmp/atrium-acquired-appearance-20261015/07-above.png"
+          }
+        ],
+        "initial_orientation_reviewed": {
+          "upAxis": "auto"
+        },
+        "decoded_preview_summary": {
+          "index": 7,
+          "slug": "modern/hans-jean-arp-form-heard-and-seen",
+          "materials": [
+            {
+              "name": "tex_u1_v1",
+              "baseColor": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "metallic": 0,
+              "roughness": 0.4773317404395899,
+              "baseColorTexture": true,
+              "normalTexture": true,
+              "metallicRoughnessTexture": false
+            }
+          ],
+          "primitives": [
+            {
+              "name": "Object_0",
+              "vertices": 169602,
+              "triangles": 300000,
+              "bounds": {
+                "min": [
+                  -10.709115982055664,
+                  -9.60986328125,
+                  -0.8037509918212891
+                ],
+                "max": [
+                  11.594623565673828,
+                  9.128700256347656,
+                  38.135101318359375
+                ]
+              },
+              "color": null
+            }
+          ]
+        },
+        "final_pose_review_complete": false
+      },
+      {
+        "index": 8,
+        "slug": "modern/joan-miro-projet-pour-un-monument-c07aae",
+        "title": "Projet pour un monument",
+        "artist": "Joan Miró",
+        "material": "Bronze",
+        "status": "object_readable",
+        "observation": "The full monumental bronze composition reads clearly from front, rear, side and above: separated legs, concave torso and bird-like head all remain. No overwhelming captured setting.",
+        "recommended_action": "Strong candidate for final feature review after final pose; do not adopt the uploader’s incorrect Mère Ubu title.",
+        "source_record_url": "https://miromallorca.com/uploads/2023/03/def-dossier-de-prensa-es.pdf",
+        "capture_statement": "Physical scan",
+        "source_model_uid": "c07aae9f5ada4449ab140eb1d96eb5ee",
+        "preview": {
+          "slug": "modern/joan-miro-projet-pour-un-monument-c07aae",
+          "url": "https://models.atrium.earth/models/previews/modern/joan-miro-projet-pour-un-monument-c07aae/preview-d9c90ad7ead1.glb",
+          "bytes": 1290676,
+          "sha256": "d9c90ad7ead1b74fc82d85d8a63e754d7e27ef5c051f62fb406cf6b4e748b52a",
+          "content_type": "model/gltf-binary",
+          "local_mirror_sha256_matches_upload_record": true,
+          "source_archive_downloaded_by_this_auditor": false
+        },
+        "initial_thumbnail_path": "/tmp/atrium-acquired-appearance-20261015/08.webp",
+        "four_view_images": [
+          {
+            "angle": "front",
+            "path": "/tmp/atrium-acquired-appearance-20261015/08-front.png"
+          },
+          {
+            "angle": "back",
+            "path": "/tmp/atrium-acquired-appearance-20261015/08-back.png"
+          },
+          {
+            "angle": "side",
+            "path": "/tmp/atrium-acquired-appearance-20261015/08-side.png"
+          },
+          {
+            "angle": "above",
+            "path": "/tmp/atrium-acquired-appearance-20261015/08-above.png"
+          }
+        ],
+        "initial_orientation_reviewed": {
+          "upAxis": "auto"
+        },
+        "decoded_preview_summary": {
+          "index": 8,
+          "slug": "modern/joan-miro-projet-pour-un-monument-c07aae",
+          "materials": [
+            {
+              "name": "material_0",
+              "baseColor": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "metallic": 0.8728368509095572,
+              "roughness": 1,
+              "baseColorTexture": true,
+              "normalTexture": false,
+              "metallicRoughnessTexture": false
+            }
+          ],
+          "primitives": [
+            {
+              "name": "Object_0",
+              "vertices": 220993,
+              "triangles": 400000,
+              "bounds": {
+                "min": [
+                  -2.7335455417633057,
+                  1.269497036933899,
+                  -0.7455419898033142
+                ],
+                "max": [
+                  0.6880228519439697,
+                  5.847702980041504,
+                  1.3237745761871338
+                ]
+              },
+              "color": null
+            }
+          ]
+        },
+        "final_pose_review_complete": false
+      },
+      {
+        "index": 9,
+        "slug": "modern/jacques-lipchitz-sacrifice-iii",
+        "title": "Sacrifice III",
+        "artist": "Jacques Lipchitz",
+        "material": "Bronze",
+        "status": "pose_required",
+        "observation": "The compact figure group, opposing forms and square bronze foot are present around the object. Initial pose lays the work sideways; visible underside hollow is not evidence that the sculptural reverse is missing.",
+        "recommended_action": "Upright source-supported pose and frontal camera, retaining the correct NOMA object qualification.",
+        "source_record_url": "https://sketchfab.com/3d-models/285acc2685af46b2ab57fe2f37aaa182",
+        "capture_statement": "Physical scan",
+        "source_model_uid": "285acc2685af46b2ab57fe2f37aaa182",
+        "preview": {
+          "slug": "modern/jacques-lipchitz-sacrifice-iii",
+          "url": "https://models.atrium.earth/models/previews/modern/jacques-lipchitz-sacrifice-iii/preview-add2bf231f8b.glb",
+          "bytes": 291476,
+          "sha256": "add2bf231f8b7da7b737c1fbd01b097ecd8827a5141908cd211d7f33a710db3b",
+          "content_type": "model/gltf-binary",
+          "local_mirror_sha256_matches_upload_record": true,
+          "source_archive_downloaded_by_this_auditor": false
+        },
+        "initial_thumbnail_path": "/tmp/atrium-acquired-appearance-20261015/09.webp",
+        "four_view_images": [
+          {
+            "angle": "front",
+            "path": "/tmp/atrium-acquired-appearance-20261015/09-front.png"
+          },
+          {
+            "angle": "back",
+            "path": "/tmp/atrium-acquired-appearance-20261015/09-back.png"
+          },
+          {
+            "angle": "side",
+            "path": "/tmp/atrium-acquired-appearance-20261015/09-side.png"
+          },
+          {
+            "angle": "above",
+            "path": "/tmp/atrium-acquired-appearance-20261015/09-above.png"
+          }
+        ],
+        "initial_orientation_reviewed": {
+          "upAxis": "y",
+          "modelRotation": [
+            -161.91,
+            0,
+            90.12
+          ],
+          "yaw": 0,
+          "status": "auto",
+          "confidence": 0.63,
+          "note": "Stable-pose solve (pose 3, p=0.15, margin 0.28); confident."
+        },
+        "decoded_preview_summary": {
+          "index": 9,
+          "slug": "modern/jacques-lipchitz-sacrifice-iii",
+          "materials": [
+            {
+              "name": "20k-lipchitz_u0_v0",
+              "baseColor": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "metallic": 0,
+              "roughness": 1,
+              "baseColorTexture": true,
+              "normalTexture": false,
+              "metallicRoughnessTexture": false
+            }
+          ],
+          "primitives": [
+            {
+              "name": "Object_0",
+              "vertices": 19393,
+              "triangles": 19992,
+              "bounds": {
+                "min": [
+                  -3.1850733757019043,
+                  -33.579341888427734,
+                  -6.062338829040527
+                ],
+                "max": [
+                  16.207420349121094,
+                  -6.512786865234375,
+                  7.134733200073242
+                ]
+              },
+              "color": null
+            }
+          ]
+        },
+        "final_pose_review_complete": false
+      },
+      {
+        "index": 10,
+        "slug": "modern/niki-de-saint-phalle-tir-shooting-altar",
+        "title": "Tir (Shooting Altar)",
+        "artist": "Niki de Saint Phalle",
+        "material": "Assemblage with plaster and paint",
+        "status": "front_surface_capture_only",
+        "observation": "The complete legible front assemblage, outer silhouette and projecting elements are represented. Reverse camera shows extensive absent surfaces, consistent with a frontal capture. It is an inherently frontal relief/assemblage, unlike the freestanding Dubuffet.",
+        "recommended_action": "Only consider as an explicitly labeled frontal relief/assemblage-surface capture with unrecorded reverse and no complete-object/verified-depth promise. Root/integration owner should decide if that presentation meets release quality.",
+        "source_record_url": "https://catalogue.boekman.nl/pub/SMA/2017_bijlagen.pdf",
+        "capture_statement": "Physical scan of relief/assemblage",
+        "source_model_uid": "654e46367f004c1ea94fd1e9a60fe0dd",
+        "preview": {
+          "slug": "modern/niki-de-saint-phalle-tir-shooting-altar",
+          "url": "https://models.atrium.earth/models/previews/modern/niki-de-saint-phalle-tir-shooting-altar/preview-dff5d7419af5.glb",
+          "bytes": 1177008,
+          "sha256": "dff5d7419af5b2f7c489b843a8c128f713682805f7586b817fbf00b14fa107e1",
+          "content_type": "model/gltf-binary",
+          "local_mirror_sha256_matches_upload_record": true,
+          "source_archive_downloaded_by_this_auditor": false
+        },
+        "initial_thumbnail_path": "/tmp/atrium-acquired-appearance-20261015/10.webp",
+        "four_view_images": [
+          {
+            "angle": "front",
+            "path": "/tmp/atrium-acquired-appearance-20261015/10-front.png"
+          },
+          {
+            "angle": "back",
+            "path": "/tmp/atrium-acquired-appearance-20261015/10-back.png"
+          },
+          {
+            "angle": "side",
+            "path": "/tmp/atrium-acquired-appearance-20261015/10-side.png"
+          },
+          {
+            "angle": "above",
+            "path": "/tmp/atrium-acquired-appearance-20261015/10-above.png"
+          }
+        ],
+        "initial_orientation_reviewed": {
+          "upAxis": "auto"
+        },
+        "decoded_preview_summary": {
+          "index": 10,
+          "slug": "modern/niki-de-saint-phalle-tir-shooting-altar",
+          "materials": [
+            {
+              "name": "Material_0",
+              "baseColor": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "metallic": 0,
+              "roughness": 1,
+              "baseColorTexture": true,
+              "normalTexture": false,
+              "metallicRoughnessTexture": false
+            }
+          ],
+          "primitives": [
+            {
+              "name": "Object_0",
+              "vertices": 250753,
+              "triangles": 386130,
+              "bounds": {
+                "min": [
+                  -18.87932014465332,
+                  -24.173606872558594,
+                  -14.939891815185547
+                ],
+                "max": [
+                  19.21696662902832,
+                  11.315959930419922,
+                  3.7024784088134766
+                ]
+              },
+              "color": null
+            }
+          ]
+        },
+        "final_pose_review_complete": false
+      },
+      {
+        "index": 11,
+        "slug": "modern/eduardo-paolozzi-hommage-a-anton-bruckner",
+        "title": "Hommage à Anton Bruckner",
+        "artist": "Eduardo Paolozzi",
+        "material": "Cast iron",
+        "status": "pose_required",
+        "observation": "The low cast-iron composition and rectangular landscape/plinth context are visible; initial pose/camera presents it like a vertical tablet. Captured setting is part of source presentation, not an original-size reference.",
+        "recommended_action": "Use a horizontal ground-supported presentation with an elevated camera; retain scope/context qualification.",
+        "source_record_url": "https://www.lentos.at/programm/lentos-digital/zu-schade-fuer-die-lade/eduardo-paolozzi",
+        "capture_statement": "Physical scan",
+        "source_model_uid": "5e0ccc38495d428ea067bc272254bb38",
+        "preview": {
+          "slug": "modern/eduardo-paolozzi-hommage-a-anton-bruckner",
+          "url": "https://models.atrium.earth/models/previews/modern/eduardo-paolozzi-hommage-a-anton-bruckner/preview-bafdc8861ecf.glb",
+          "bytes": 447016,
+          "sha256": "bafdc8861ecf526db8e391785970602676ec8dc7a8e84b6d65f977856e5695ce",
+          "content_type": "model/gltf-binary",
+          "local_mirror_sha256_matches_upload_record": true,
+          "source_archive_downloaded_by_this_auditor": false
+        },
+        "initial_thumbnail_path": "/tmp/atrium-acquired-appearance-20261015/11.webp",
+        "four_view_images": [
+          {
+            "angle": "front",
+            "path": "/tmp/atrium-acquired-appearance-20261015/11-front.png"
+          },
+          {
+            "angle": "back",
+            "path": "/tmp/atrium-acquired-appearance-20261015/11-back.png"
+          },
+          {
+            "angle": "side",
+            "path": "/tmp/atrium-acquired-appearance-20261015/11-side.png"
+          },
+          {
+            "angle": "above",
+            "path": "/tmp/atrium-acquired-appearance-20261015/11-above.png"
+          }
+        ],
+        "initial_orientation_reviewed": {
+          "upAxis": "auto"
+        },
+        "decoded_preview_summary": {
+          "index": 11,
+          "slug": "modern/eduardo-paolozzi-hommage-a-anton-bruckner",
+          "materials": [
+            {
+              "name": "material_0",
+              "baseColor": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "metallic": 0,
+              "roughness": 1,
+              "baseColorTexture": true,
+              "normalTexture": false,
+              "metallicRoughnessTexture": false
+            }
+          ],
+          "primitives": [
+            {
+              "name": "Object_0",
+              "vertices": 52328,
+              "triangles": 93543,
+              "bounds": {
+                "min": [
+                  -4.551000118255615,
+                  -3.450000047683716,
+                  -0.6775000095367432
+                ],
+                "max": [
+                  4.559299945831299,
+                  3.4014928340911865,
+                  0.6876826286315918
+                ]
+              },
+              "color": null
+            }
+          ]
+        },
+        "final_pose_review_complete": false
+      },
+      {
+        "index": 12,
+        "slug": "modern/josh-smith-friend",
+        "title": "Friend",
+        "artist": "Josh Smith",
+        "material": "Patinated bronze",
+        "status": "object_readable",
+        "observation": "Full standing figure, long implement, rear and small grass patch are coherent. Authored multicolored patinated appearance is retained.",
+        "recommended_action": "Historical 2023 exhibition site is not a manufacture origin or asserted present holding.",
+        "source_record_url": "https://www.frieze.com/page/josh-smith-friend-2023",
+        "capture_statement": "Physical scan",
+        "source_model_uid": "7eeb0b7e07ac4573840c8822c296d938",
+        "preview": {
+          "slug": "modern/josh-smith-friend",
+          "url": "https://models.atrium.earth/models/previews/modern/josh-smith-friend/preview-dc89aebb839b.glb",
+          "bytes": 410716,
+          "sha256": "dc89aebb839bcb7355389d6de7f25d2118e2b05f5b249dd5358bda9e9119d1b4",
+          "content_type": "model/gltf-binary",
+          "local_mirror_sha256_matches_upload_record": true,
+          "source_archive_downloaded_by_this_auditor": false
+        },
+        "initial_thumbnail_path": "/tmp/atrium-acquired-appearance-20261015/12.webp",
+        "four_view_images": [
+          {
+            "angle": "front",
+            "path": "/tmp/atrium-acquired-appearance-20261015/12-front.png"
+          },
+          {
+            "angle": "back",
+            "path": "/tmp/atrium-acquired-appearance-20261015/12-back.png"
+          },
+          {
+            "angle": "side",
+            "path": "/tmp/atrium-acquired-appearance-20261015/12-side.png"
+          },
+          {
+            "angle": "above",
+            "path": "/tmp/atrium-acquired-appearance-20261015/12-above.png"
+          }
+        ],
+        "initial_orientation_reviewed": {
+          "upAxis": "auto"
+        },
+        "decoded_preview_summary": {
+          "index": 12,
+          "slug": "modern/josh-smith-friend",
+          "materials": [
+            {
+              "name": "material_0",
+              "baseColor": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "metallic": 0,
+              "roughness": 1,
+              "baseColorTexture": true,
+              "normalTexture": false,
+              "metallicRoughnessTexture": false
+            }
+          ],
+          "primitives": [
+            {
+              "name": "Object_0",
+              "vertices": 40309,
+              "triangles": 70685,
+              "bounds": {
+                "min": [
+                  -0.9732999801635742,
+                  -0.9384999871253967,
+                  -1.0703999996185303
+                ],
+                "max": [
+                  1.2046046257019043,
+                  1.451200008392334,
+                  1.205963134765625
+                ]
+              },
+              "color": null
+            }
+          ]
+        },
+        "final_pose_review_complete": false
+      },
+      {
+        "index": 13,
+        "slug": "modern/lucio-fontana-angel-from-the-monument-to-paolo-chinelli-with-architectural-setting",
+        "title": "Angel, from the Monument to Paolo Chinelli (with Architectural Setting)",
+        "artist": "Lucio Fontana; architectural monument by Renzo Zavanella",
+        "material": "Glazed ceramic on metal support; granite architectural setting",
+        "status": "pose_required",
+        "observation": "The figure is visible from the open side of its retained architectural setting; initial view lets a large wall obscure it. The object is already titled as an angel component with partial setting.",
+        "recommended_action": "Choose an open-side camera. Retain partial-architecture title and do not imply a complete detached statue or complete tomb.",
+        "source_record_url": "https://monumentale.comune.milano.it/itinerari/il-novecento-al-monumentale",
+        "capture_statement": "Physical scan of sculptural component with partial architectural setting",
+        "source_model_uid": "c70ad89eb4ce41a2b2cb03d9343fa2fa",
+        "preview": {
+          "slug": "modern/lucio-fontana-angel-from-the-monument-to-paolo-chinelli-with-architectural-setting",
+          "url": "https://models.atrium.earth/models/previews/modern/lucio-fontana-angel-from-the-monument-to-paolo-chinelli-with-architectural-setting/preview-3bbf8367e8c0.glb",
+          "bytes": 1612444,
+          "sha256": "3bbf8367e8c024fc71d4aebaf28dd63476023cf6bd291923cdf68218f089aff9",
+          "content_type": "model/gltf-binary",
+          "local_mirror_sha256_matches_upload_record": true,
+          "source_archive_downloaded_by_this_auditor": false
+        },
+        "initial_thumbnail_path": "/tmp/atrium-acquired-appearance-20261015/13.webp",
+        "four_view_images": [
+          {
+            "angle": "front",
+            "path": "/tmp/atrium-acquired-appearance-20261015/13-front.png"
+          },
+          {
+            "angle": "back",
+            "path": "/tmp/atrium-acquired-appearance-20261015/13-back.png"
+          },
+          {
+            "angle": "side",
+            "path": "/tmp/atrium-acquired-appearance-20261015/13-side.png"
+          },
+          {
+            "angle": "above",
+            "path": "/tmp/atrium-acquired-appearance-20261015/13-above.png"
+          }
+        ],
+        "initial_orientation_reviewed": {
+          "upAxis": "y",
+          "modelRotation": [
+            -179.99,
+            0,
+            -179.55
+          ],
+          "yaw": 0,
+          "status": "auto",
+          "confidence": 0.85,
+          "note": "Stable-pose solve (pose 3, p=0.12, margin 0.77); confident."
+        },
+        "decoded_preview_summary": {
+          "index": 13,
+          "slug": "modern/lucio-fontana-angel-from-the-monument-to-paolo-chinelli-with-architectural-setting",
+          "materials": [
+            {
+              "name": "material_0",
+              "baseColor": [
+                0.3249459394871974,
+                0.3249459394871974,
+                0.3249459394871974,
+                1
+              ],
+              "metallic": 0.2550024188800877,
+              "roughness": 1,
+              "baseColorTexture": true,
+              "normalTexture": false,
+              "metallicRoughnessTexture": false
+            },
+            {
+              "name": "material_1",
+              "baseColor": [
+                0.3249459394871974,
+                0.3249459394871974,
+                0.3249459394871974,
+                1
+              ],
+              "metallic": 0.2550024188800877,
+              "roughness": 0,
+              "baseColorTexture": true,
+              "normalTexture": false,
+              "metallicRoughnessTexture": false
+            }
+          ],
+          "primitives": [
+            {
+              "name": "Object_0",
+              "vertices": 235673,
+              "triangles": 394891,
+              "bounds": {
+                "min": [
+                  -0.04048199951648712,
+                  2.4667510986328125,
+                  -7.659162998199463
+                ],
+                "max": [
+                  6.529066562652588,
+                  16.661998748779297,
+                  6.7239603996276855
+                ]
+              },
+              "color": null
+            },
+            {
+              "name": "Object_6",
+              "vertices": 5099,
+              "triangles": 5088,
+              "bounds": {
+                "min": [
+                  0.01796099916100502,
+                  2.786907911300659,
+                  -7.649199962615967
+                ],
+                "max": [
+                  6.524271011352539,
+                  16.662708282470703,
+                  6.722227573394775
+                ]
+              },
+              "color": null
+            }
+          ]
+        },
+        "final_pose_review_complete": false
+      },
+      {
+        "index": 14,
+        "slug": "modern/hans-jean-arp-heart-of-a-monument",
+        "title": "Heart of a Monument",
+        "artist": "Hans (Jean) Arp",
+        "material": "Plaster",
+        "status": "object_readable",
+        "observation": "Rounded front, incised division, lobed reverse and side profile are coherent. Authored pale/pink plaster variation is preserved.",
+        "recommended_action": "Keep actual scanned plaster identity and broad object-production dating.",
+        "source_record_url": "https://www.nasjonalmuseet.no/en/collection/object/NMK.2022.0402",
+        "capture_statement": "Physical scan",
+        "source_model_uid": "72c7b00b0b3c4192ad142302c84bc6b8",
+        "preview": {
+          "slug": "modern/hans-jean-arp-heart-of-a-monument",
+          "url": "https://models.atrium.earth/models/previews/modern/hans-jean-arp-heart-of-a-monument/preview-a63a9db76dff.glb",
+          "bytes": 153776,
+          "sha256": "a63a9db76dff9877e5e1192baabbf304113f4546228ef13713ddb9c085815a45",
+          "content_type": "model/gltf-binary",
+          "local_mirror_sha256_matches_upload_record": true,
+          "source_archive_downloaded_by_this_auditor": false
+        },
+        "initial_thumbnail_path": "/tmp/atrium-acquired-appearance-20261015/14.webp",
+        "four_view_images": [
+          {
+            "angle": "front",
+            "path": "/tmp/atrium-acquired-appearance-20261015/14-front.png"
+          },
+          {
+            "angle": "back",
+            "path": "/tmp/atrium-acquired-appearance-20261015/14-back.png"
+          },
+          {
+            "angle": "side",
+            "path": "/tmp/atrium-acquired-appearance-20261015/14-side.png"
+          },
+          {
+            "angle": "above",
+            "path": "/tmp/atrium-acquired-appearance-20261015/14-above.png"
+          }
+        ],
+        "initial_orientation_reviewed": {
+          "upAxis": "auto"
+        },
+        "decoded_preview_summary": {
+          "index": 14,
+          "slug": "modern/hans-jean-arp-heart-of-a-monument",
+          "materials": [
+            {
+              "name": "material0",
+              "baseColor": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "metallic": 0,
+              "roughness": 0.5870463605222416,
+              "baseColorTexture": true,
+              "normalTexture": true,
+              "metallicRoughnessTexture": false
+            }
+          ],
+          "primitives": [
+            {
+              "name": "Model_material0_0",
+              "vertices": 10351,
+              "triangles": 20000,
+              "bounds": {
+                "min": [
+                  -0.0960405096411705,
+                  -0.09184416383504868,
+                  -0.06712350249290466
+                ],
+                "max": [
+                  0.09743457287549973,
+                  0.09086065739393234,
+                  0.07290177047252655
+                ]
+              },
+              "color": null
+            }
+          ]
+        },
+        "final_pose_review_complete": false
+      },
+      {
+        "index": 15,
+        "slug": "modern/hans-jean-arp-ugledrm-owl-dream",
+        "title": "Ugledrøm (Owl Dream)",
+        "artist": "Hans (Jean) Arp",
+        "material": "",
+        "status": "object_readable",
+        "observation": "Entire upright form, recessed face and cylindrical foot remain readable around the object. Glossy beige captured appearance is retained.",
+        "recommended_action": "Exact material/cast status remains unknown; gloss is not evidence to invent marble/plaster identification.",
+        "source_record_url": "https://www.nasjonalmuseet.no/globalassets/dokumenter/innkjop/innkjop-2022.pdf",
+        "capture_statement": "Physical scan",
+        "source_model_uid": "a75573855d654998a223f1b2f4a9b032",
+        "preview": {
+          "slug": "modern/hans-jean-arp-ugledrm-owl-dream",
+          "url": "https://models.atrium.earth/models/previews/modern/hans-jean-arp-ugledrm-owl-dream/preview-6a87b00fa65d.glb",
+          "bytes": 1334508,
+          "sha256": "6a87b00fa65dda84088daead44e591693b7457e7214681ad663e15ee91d86f35",
+          "content_type": "model/gltf-binary",
+          "local_mirror_sha256_matches_upload_record": true,
+          "source_archive_downloaded_by_this_auditor": false
+        },
+        "initial_thumbnail_path": "/tmp/atrium-acquired-appearance-20261015/15.webp",
+        "four_view_images": [
+          {
+            "angle": "front",
+            "path": "/tmp/atrium-acquired-appearance-20261015/15-front.png"
+          },
+          {
+            "angle": "back",
+            "path": "/tmp/atrium-acquired-appearance-20261015/15-back.png"
+          },
+          {
+            "angle": "side",
+            "path": "/tmp/atrium-acquired-appearance-20261015/15-side.png"
+          },
+          {
+            "angle": "above",
+            "path": "/tmp/atrium-acquired-appearance-20261015/15-above.png"
+          }
+        ],
+        "initial_orientation_reviewed": {
+          "upAxis": "y",
+          "modelRotation": [
+            -0.14,
+            0,
+            0.45
+          ],
+          "yaw": 0,
+          "status": "auto",
+          "confidence": 0.56,
+          "note": "Elongated (aspect 2.3); PCA long-axis aligned to vertical."
+        },
+        "decoded_preview_summary": {
+          "index": 15,
+          "slug": "modern/hans-jean-arp-ugledrm-owl-dream",
+          "materials": [
+            {
+              "name": "material0",
+              "baseColor": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "metallic": 0,
+              "roughness": 1,
+              "baseColorTexture": true,
+              "normalTexture": true,
+              "metallicRoughnessTexture": true
+            }
+          ],
+          "primitives": [
+            {
+              "name": "Model_material0_0",
+              "vertices": 117193,
+              "triangles": 199999,
+              "bounds": {
+                "min": [
+                  -0.07139747589826584,
+                  -0.08995937556028366,
+                  -0.1694721132516861
+                ],
+                "max": [
+                  0.07144831866025925,
+                  0.0924421176314354,
+                  0.17142267525196075
+                ]
+              },
+              "color": null
+            }
+          ]
+        },
+        "final_pose_review_complete": false
+      },
+      {
+        "index": 16,
+        "slug": "modern/jaume-plensa-humming",
+        "title": "Humming",
+        "artist": "Jaume Plensa",
+        "material": "Marble and lead",
+        "status": "pose_required_appearance_fix_verified",
+        "observation": "The GLB contains variable COLOR_0 vertex colors, not texture images. Initial renderer logic overwrote these when no maps existed. Integration owner added an authored-vertex-color guard; later independent renders now retain purple/gray facial variation. Initial imported pose still presents the underside or sideways face.",
+        "recommended_action": "Final upright/front pose and final thumbnail must be reviewed with the vertex-color guard active. Source surface is vertex-colored; zero image textures does not mean untextured.",
+        "source_record_url": "https://galerielelong.com/usr/documents/exhibitions/press_release_url/85/press-release-plensa-2011.pdf",
+        "capture_statement": "Physical scan",
+        "source_model_uid": "1215be2d63b24825b6ae2838007492fe",
+        "preview": {
+          "slug": "modern/jaume-plensa-humming",
+          "url": "https://models.atrium.earth/models/previews/modern/jaume-plensa-humming/preview-64cef5e96e4a.glb",
+          "bytes": 269884,
+          "sha256": "64cef5e96e4a8c9ce977e3befdc0b792099950dd32772e6a073e09f888f8ea2a",
+          "content_type": "model/gltf-binary",
+          "local_mirror_sha256_matches_upload_record": true,
+          "source_archive_downloaded_by_this_auditor": false
+        },
+        "initial_thumbnail_path": "/tmp/atrium-acquired-appearance-20261015/16.webp",
+        "four_view_images": [
+          {
+            "angle": "front",
+            "path": "/tmp/atrium-acquired-appearance-20261015/16-front.png"
+          },
+          {
+            "angle": "back",
+            "path": "/tmp/atrium-acquired-appearance-20261015/16-back.png"
+          },
+          {
+            "angle": "side",
+            "path": "/tmp/atrium-acquired-appearance-20261015/16-side.png"
+          },
+          {
+            "angle": "above",
+            "path": "/tmp/atrium-acquired-appearance-20261015/16-above.png"
+          }
+        ],
+        "initial_orientation_reviewed": {
+          "upAxis": "y",
+          "modelRotation": [
+            -113.32,
+            0,
+            75.94
+          ],
+          "yaw": 0,
+          "status": "auto",
+          "confidence": 0.83,
+          "note": "Stable-pose solve (pose 1, p=0.23, margin 0.73); confident."
+        },
+        "decoded_preview_summary": {
+          "index": 16,
+          "slug": "modern/jaume-plensa-humming",
+          "materials": [
+            {
+              "name": "Scene_-_Root",
+              "baseColor": [
+                0.5,
+                0.5,
+                0.5,
+                1
+              ],
+              "metallic": 0,
+              "roughness": 0.9,
+              "baseColorTexture": false,
+              "normalTexture": false,
+              "metallicRoughnessTexture": false
+            }
+          ],
+          "primitives": [
+            {
+              "name": "Object_0",
+              "vertices": 45202,
+              "triangles": 89186,
+              "bounds": {
+                "min": [
+                  -429.6875305175781,
+                  1161.32763671875,
+                  -961.3121948242188
+                ],
+                "max": [
+                  213.73959350585938,
+                  1992.460693359375,
+                  772.1636352539062
+                ]
+              },
+              "color": {
+                "type": "Float32Array",
+                "normalized": false,
+                "stride": 4,
+                "min": [
+                  0,
+                  0,
+                  0,
+                  1
+                ],
+                "max": [
+                  0.8603460788726807,
+                  0.771580159664154,
+                  0.8705882430076599,
+                  1
+                ],
+                "sample": [
+                  0.5838062763214111,
+                  0.5530796051025391,
+                  0.5803921818733215,
+                  1,
+                  0.4847981631755829,
+                  0.46772781014442444,
+                  0.4984544515609741,
+                  1,
+                  0.4847981631755829,
+                  0.46772781014442444,
+                  0.4984544515609741,
+                  1,
+                  0.43700116872787476,
+                  0.4131026566028595,
+                  0.43700116872787476,
+                  1,
+                  0.44041523337364197,
+                  0.4199308156967163,
+                  0.4438292980194092,
+                  1,
+                  0.4438292980194092,
+                  0.4199308156967163,
+                  0.43700116872787476,
+                  1,
+                  0.3789619505405426,
+                  0.3721338212490082,
+                  0.4916263222694397,
+                  1,
+                  0.3789619505405426,
+                  0.3721338212490082,
+                  0.4916263222694397,
+                  1
+                ]
+              }
+            }
+          ]
+        },
+        "final_pose_review_complete": false
+      },
+      {
+        "index": 17,
+        "slug": "americas/frank-stella-maha-lat-5-5x-da59cb",
+        "title": "Maha-lat, 5.5x",
+        "artist": "Frank Stella",
+        "material": "Mixed media on metal relief",
+        "status": "context_scope_qualification",
+        "observation": "Front composition matches Mnuchin’s illustrated checklist: upper plates, lattice, looping members and striped lower beam are identifiable. Projecting relief volume is retained. Substantial warped wall/floor residue remains attached, and the reverse is not a clean sculpture-only presentation.",
+        "recommended_action": "Retain explicit residue disclosure; never call the context an original support. Featured consideration should wait for final pose/thumbnail and must weigh the residue, not the artist’s fame.",
+        "source_record_url": "https://viewingroom.mnuchingallery.com/attachment/en/5e862edda5aa2c7004703974/DownloadableItem/689a08c3dc6f2038d50ba894",
+        "capture_statement": "Independent textured 3D capture of the full-scale relief at Mnuchin Gallery, New York, 2023. Capture technique not documented by uploader; photogrammetry is a visual inference.",
+        "source_model_uid": "da59cb18b2e14c6eb6e152556ff9a949",
+        "preview": {
+          "slug": "americas/frank-stella-maha-lat-5-5x-da59cb",
+          "url": "https://models.atrium.earth/models/previews/americas/frank-stella-maha-lat-5-5x-da59cb/preview-f24bdc46ea30.glb",
+          "bytes": 2498604,
+          "sha256": "f24bdc46ea30b23aefd14b0a6bf9285c138c7a191949c3ccb0c00dc21846201e",
+          "content_type": "model/gltf-binary",
+          "local_mirror_sha256_matches_upload_record": true,
+          "source_archive_downloaded_by_this_auditor": false
+        },
+        "initial_thumbnail_path": "/tmp/atrium-acquired-appearance-20261015/17.webp",
+        "four_view_images": [
+          {
+            "angle": "front",
+            "path": "/tmp/atrium-acquired-appearance-20261015/17-front.png"
+          },
+          {
+            "angle": "back",
+            "path": "/tmp/atrium-acquired-appearance-20261015/17-back.png"
+          },
+          {
+            "angle": "side",
+            "path": "/tmp/atrium-acquired-appearance-20261015/17-side.png"
+          },
+          {
+            "angle": "above",
+            "path": "/tmp/atrium-acquired-appearance-20261015/17-above.png"
+          }
+        ],
+        "initial_orientation_reviewed": {
+          "upAxis": "auto"
+        },
+        "decoded_preview_summary": {
+          "index": 17,
+          "slug": "americas/frank-stella-maha-lat-5-5x-da59cb",
+          "materials": [
+            {
+              "name": "Material_0",
+              "baseColor": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "metallic": 0,
+              "roughness": 1,
+              "baseColorTexture": true,
+              "normalTexture": true,
+              "metallicRoughnessTexture": true
+            }
+          ],
+          "primitives": [
+            {
+              "name": "Object_0",
+              "vertices": 141429,
+              "triangles": 249678,
+              "bounds": {
+                "min": [
+                  -0.7163794040679932,
+                  -1.3993192911148071,
+                  -1.4452769756317139
+                ],
+                "max": [
+                  0.716317892074585,
+                  1.407314658164978,
+                  0.918168306350708
+                ]
+              },
+              "color": null
+            }
+          ]
+        },
+        "final_pose_review_complete": false
+      },
+      {
+        "index": 18,
+        "slug": "unfiled/ai-weiwei-dog-circle-of-animals-zodiac-heads-lacma-6f86e5",
+        "title": "Dog, from Circle of Animals/Zodiac Heads",
+        "artist": "Ai Weiwei",
+        "material": "Bronze",
+        "status": "capture_artifact_qualification",
+        "observation": "Complete Dog head/muzzle, ears, stem and circular bronze base remain in four views with a small plaza square. Crown has a conspicuous light/blue-gray captured patch; no obvious geometry hole is seen there. A similar patch is visible in the publisher preview, so it is not established as an ingestion-only defect.",
+        "recommended_action": "Preserve authored surface and uncertainty: reflection versus capture/texture defect unresolved. Do not recolor to ideal bronze. Not a complete twelve-head installation, and no group height transferred to this component.",
+        "source_record_url": "https://collections.lacma.org/object/255475",
+        "capture_statement": "Source 3D model of a physical sculpture; capture method undocumented by publisher. Visual appearance suggests a photographic capture, which is not treated as verified technique.",
+        "source_model_uid": "6f86e5d4c9b44ef188bb18de4606ebfb",
+        "preview": {
+          "slug": "unfiled/ai-weiwei-dog-circle-of-animals-zodiac-heads-lacma-6f86e5",
+          "url": "https://models.atrium.earth/models/previews/unfiled/ai-weiwei-dog-circle-of-animals-zodiac-heads-lacma-6f86e5/preview-0b678d5e1b32.glb",
+          "bytes": 499880,
+          "sha256": "0b678d5e1b32de2415e6b42c4180e11be101aeaad21f0e1bbb3a674898574394",
+          "content_type": "model/gltf-binary",
+          "local_mirror_sha256_matches_upload_record": true,
+          "source_archive_downloaded_by_this_auditor": false
+        },
+        "initial_thumbnail_path": "/tmp/atrium-acquired-appearance-20261015/18.webp",
+        "four_view_images": [
+          {
+            "angle": "front",
+            "path": "/tmp/atrium-acquired-appearance-20261015/18-front.png"
+          },
+          {
+            "angle": "back",
+            "path": "/tmp/atrium-acquired-appearance-20261015/18-back.png"
+          },
+          {
+            "angle": "side",
+            "path": "/tmp/atrium-acquired-appearance-20261015/18-side.png"
+          },
+          {
+            "angle": "above",
+            "path": "/tmp/atrium-acquired-appearance-20261015/18-above.png"
+          }
+        ],
+        "initial_orientation_reviewed": {
+          "upAxis": "auto"
+        },
+        "decoded_preview_summary": {
+          "index": 18,
+          "slug": "unfiled/ai-weiwei-dog-circle-of-animals-zodiac-heads-lacma-6f86e5",
+          "materials": [
+            {
+              "name": "meshes0__0",
+              "baseColor": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "metallic": 0,
+              "roughness": 0.6,
+              "baseColorTexture": true,
+              "normalTexture": true,
+              "metallicRoughnessTexture": false
+            }
+          ],
+          "primitives": [
+            {
+              "name": "meshes[0]__0",
+              "vertices": 19670,
+              "triangles": 34565,
+              "bounds": {
+                "min": [
+                  -0.5633653998374939,
+                  -1.9686757326126099,
+                  -0.8863840699195862
+                ],
+                "max": [
+                  0.7011108994483948,
+                  0.7248510122299194,
+                  0.8634300827980042
+                ]
+              },
+              "color": null
+            }
+          ]
+        },
+        "final_pose_review_complete": false
+      },
+      {
+        "index": 19,
+        "slug": "modern/joan-miro-double-sided-monolith-estela-de-doble-cara-12d619",
+        "title": "Double-sided Monolith (Estela de doble cara)",
+        "artist": "Joan Miró; Josep Llorens Artigas",
+        "material": "Stoneware and enamel",
+        "status": "object_readable",
+        "observation": "Both genuinely different decorated faces, thin edge and coherent standing ceramic form are captured. One face has branch-like marks and red disc; the other has dark/blue fields, yellow disc and white motifs. Minor small peripheral scan flecks do not obscure the object.",
+        "recommended_action": "Strong candidate for final feature review after a camera showing the more graphic face; retain the two-sided nature and original texture.",
+        "source_record_url": "https://www.fmirobcn.org/en/colection/catalog-works/10343/p-double-sided-monolith-p",
+        "capture_statement": "Textured 3D model of the physical artwork by the dragon 3d. The publisher specializes in reality capture and photogrammetry, but the exact capture technique for this model is undocumented; physical capture is inferred from its appearance.",
+        "source_model_uid": "12d619640b9c45708048371351339829",
+        "preview": {
+          "slug": "modern/joan-miro-double-sided-monolith-estela-de-doble-cara-12d619",
+          "url": "https://models.atrium.earth/models/previews/modern/joan-miro-double-sided-monolith-estela-de-doble-cara-12d619/preview-3139a9a66814.glb",
+          "bytes": 462368,
+          "sha256": "3139a9a668141f4e2153a73aeb1d45a750bd032074e0f083515bcd0307d16a9a",
+          "content_type": "model/gltf-binary",
+          "local_mirror_sha256_matches_upload_record": true,
+          "source_archive_downloaded_by_this_auditor": false
+        },
+        "initial_thumbnail_path": "/tmp/atrium-acquired-appearance-20261015/19.webp",
+        "four_view_images": [
+          {
+            "angle": "front",
+            "path": "/tmp/atrium-acquired-appearance-20261015/19-front.png"
+          },
+          {
+            "angle": "back",
+            "path": "/tmp/atrium-acquired-appearance-20261015/19-back.png"
+          },
+          {
+            "angle": "side",
+            "path": "/tmp/atrium-acquired-appearance-20261015/19-side.png"
+          },
+          {
+            "angle": "above",
+            "path": "/tmp/atrium-acquired-appearance-20261015/19-above.png"
+          }
+        ],
+        "initial_orientation_reviewed": {
+          "upAxis": "y",
+          "modelRotation": [
+            -180,
+            0,
+            -180
+          ],
+          "yaw": 0,
+          "status": "auto",
+          "confidence": 0.86,
+          "note": "Stable-pose solve (pose 2, p=0.04, margin 0.81); confident."
+        },
+        "decoded_preview_summary": {
+          "index": 19,
+          "slug": "modern/joan-miro-double-sided-monolith-estela-de-doble-cara-12d619",
+          "materials": [
+            {
+              "name": "Material",
+              "baseColor": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "metallic": 0,
+              "roughness": 1,
+              "baseColorTexture": true,
+              "normalTexture": false,
+              "metallicRoughnessTexture": false
+            }
+          ],
+          "primitives": [
+            {
+              "name": "Object_0",
+              "vertices": 52308,
+              "triangles": 95777,
+              "bounds": {
+                "min": [
+                  -0.315079003572464,
+                  -0.03592599928379059,
+                  0.014530000276863575
+                ],
+                "max": [
+                  0.2580600082874298,
+                  0.11632625758647919,
+                  0.7669730186462402
+                ]
+              },
+              "color": null
+            }
+          ]
+        },
+        "final_pose_review_complete": false
+      },
+      {
+        "index": 20,
+        "slug": "modern/joan-miro-mural-for-ibm-3d5da4",
+        "title": "Mural for IBM",
+        "artist": "Joan Miró; Joan Gardy Artigas",
+        "material": "406 refractory stoneware tiles with white, black, blue, red and green enamels",
+        "status": "front_surface_capture_only",
+        "observation": "Complete colored tile-front composition and perimeter are legible, but the initial pose turns the wide mural vertically. Reverse shows a mirrored front through the thin double-sided surface rather than a documented physical back; context lips remain.",
+        "recommended_action": "Restore landscape orientation. Explicitly label as frontal mural surface capture; do not imply original reverse/depth or full-wall-bound calibrated scale.",
+        "source_record_url": "https://www.museunacional.cat/es/colleccio/mural-para-ibm/joan-miro/240029-000",
+        "capture_statement": "Textured 3D model of the physical artwork by the dragon 3d. The publisher specializes in reality capture and photogrammetry, but the exact capture technique for this model is undocumented; physical capture is inferred from its appearance.",
+        "source_model_uid": "3d5da429fc2042a79079e53214e433b7",
+        "preview": {
+          "slug": "modern/joan-miro-mural-for-ibm-3d5da4",
+          "url": "https://models.atrium.earth/models/previews/modern/joan-miro-mural-for-ibm-3d5da4/preview-a6104c5dd5e4.glb",
+          "bytes": 279444,
+          "sha256": "a6104c5dd5e4a85356b5ee3435935c83a67b7eee9c495411f76fdfa0e20f42aa",
+          "content_type": "model/gltf-binary",
+          "local_mirror_sha256_matches_upload_record": true,
+          "source_archive_downloaded_by_this_auditor": false
+        },
+        "initial_thumbnail_path": "/tmp/atrium-acquired-appearance-20261015/20.webp",
+        "four_view_images": [
+          {
+            "angle": "front",
+            "path": "/tmp/atrium-acquired-appearance-20261015/20-front.png"
+          },
+          {
+            "angle": "back",
+            "path": "/tmp/atrium-acquired-appearance-20261015/20-back.png"
+          },
+          {
+            "angle": "side",
+            "path": "/tmp/atrium-acquired-appearance-20261015/20-side.png"
+          },
+          {
+            "angle": "above",
+            "path": "/tmp/atrium-acquired-appearance-20261015/20-above.png"
+          }
+        ],
+        "initial_orientation_reviewed": {
+          "upAxis": "y",
+          "modelRotation": [
+            -3.27,
+            -3.24,
+            89.57
+          ],
+          "yaw": 0,
+          "status": "auto",
+          "confidence": 0.64,
+          "note": "Elongated (aspect 3.0); PCA long-axis aligned to vertical."
+        },
+        "decoded_preview_summary": {
+          "index": 20,
+          "slug": "modern/joan-miro-mural-for-ibm-3d5da4",
+          "materials": [
+            {
+              "name": "material_0",
+              "baseColor": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "metallic": 0,
+              "roughness": 1,
+              "baseColorTexture": true,
+              "normalTexture": false,
+              "metallicRoughnessTexture": false
+            }
+          ],
+          "primitives": [
+            {
+              "name": "Object_0",
+              "vertices": 18345,
+              "triangles": 32394,
+              "bounds": {
+                "min": [
+                  -2.4959840774536133,
+                  -0.9807869791984558,
+                  0.007945000194013119
+                ],
+                "max": [
+                  2.4399032592773438,
+                  -0.16160380840301514,
+                  1.6670997142791748
+                ]
+              },
+              "color": null
+            }
+          ]
+        },
+        "final_pose_review_complete": false
+      },
+      {
+        "index": 21,
+        "slug": "modern/joan-miro-wall-of-barcelona-airport-0ed725",
+        "title": "Wall of Barcelona Airport",
+        "artist": "Joan Miró; Josep Llorens Artigas; Joan Gardy Artigas (collaborator)",
+        "material": "Glazed stoneware tile mosaic",
+        "status": "front_surface_capture_only",
+        "observation": "Front spans the matching full composition from the left star/oval forms to the right triangular/color fields. Canopy/context and irregular edges are retained. Reverse is the front mirrored through a thin double-sided surface, not the building/wall reverse.",
+        "recommended_action": "Usable only as frontal wall capture with retained canopy/context disclosed. Artist estate confirms full work1000×5000cm; that does not calibrate the entire context-inclusive model.",
+        "source_record_url": "https://successiomiro.com/catalogue/object/1499",
+        "capture_statement": "Textured 3D model of the physical artwork by the dragon 3d. The publisher specializes in reality capture and photogrammetry, but the exact capture technique for this model is undocumented; physical capture is inferred from its appearance.",
+        "source_model_uid": "0ed725df6326481090bafb2d090e6b55",
+        "preview": {
+          "slug": "modern/joan-miro-wall-of-barcelona-airport-0ed725",
+          "url": "https://models.atrium.earth/models/previews/modern/joan-miro-wall-of-barcelona-airport-0ed725/preview-fb0170a9c59e.glb",
+          "bytes": 943700,
+          "sha256": "fb0170a9c59e702f91aeb9746456b0e1c9e35a303a9e48987620a195656c22f5",
+          "content_type": "model/gltf-binary",
+          "local_mirror_sha256_matches_upload_record": true,
+          "source_archive_downloaded_by_this_auditor": false
+        },
+        "initial_thumbnail_path": "/tmp/atrium-acquired-appearance-20261015/21.webp",
+        "four_view_images": [
+          {
+            "angle": "front",
+            "path": "/tmp/atrium-acquired-appearance-20261015/21-front.png"
+          },
+          {
+            "angle": "back",
+            "path": "/tmp/atrium-acquired-appearance-20261015/21-back.png"
+          },
+          {
+            "angle": "side",
+            "path": "/tmp/atrium-acquired-appearance-20261015/21-side.png"
+          },
+          {
+            "angle": "above",
+            "path": "/tmp/atrium-acquired-appearance-20261015/21-above.png"
+          }
+        ],
+        "initial_orientation_reviewed": {
+          "upAxis": "auto"
+        },
+        "decoded_preview_summary": {
+          "index": 21,
+          "slug": "modern/joan-miro-wall-of-barcelona-airport-0ed725",
+          "materials": [
+            {
+              "name": "13_7_2024_0",
+              "baseColor": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "metallic": 0,
+              "roughness": 1,
+              "baseColorTexture": true,
+              "normalTexture": true,
+              "metallicRoughnessTexture": false
+            }
+          ],
+          "primitives": [
+            {
+              "name": "Object_0",
+              "vertices": 80994,
+              "triangles": 146349,
+              "bounds": {
+                "min": [
+                  -7.680749893188477,
+                  -0.6225429773330688,
+                  0
+                ],
+                "max": [
+                  8.004716873168945,
+                  0.5081740617752075,
+                  3.411299467086792
+                ]
+              },
+              "color": null
+            }
+          ]
+        },
+        "final_pose_review_complete": false
+      },
+      {
+        "index": 22,
+        "slug": "modern/joan-miro-tapestry-of-the-fundacio-3b1745",
+        "title": "Tapestry of the Fundació",
+        "artist": "Joan Miró; Josep Royo",
+        "material": "Jute, hemp, cotton and wool",
+        "status": "front_surface_capture_only",
+        "observation": "Complete visible rectangle, uneven fibrous border and macro surface relief are present; source colors remain vivid. Profile shows a thin captured surface with relief, not a freestanding woven object. Reverse mirrors the front, so it is not the actual textile reverse. Fine individual yarn strands are not separately resolved throughout; texture supplies finer fiber detail.",
+        "recommended_action": "Label as frontal textile-relief capture with unrecorded reverse. Do not claim every free fiber or the complete textile depth is modeled; final feature decision should account for this scope.",
+        "source_record_url": "https://www.fmirobcn.org/en/colection/catalog-works/9389/p-tapestry-of-the-fundacio-p",
+        "capture_statement": "Textured 3D model of the physical artwork by the dragon 3d. The publisher specializes in reality capture and photogrammetry, but the exact capture technique for this model is undocumented; physical capture is inferred from its appearance.",
+        "source_model_uid": "3b1745aa4e3348dfaa176dde74155dd4",
+        "preview": {
+          "slug": "modern/joan-miro-tapestry-of-the-fundacio-3b1745",
+          "url": "https://models.atrium.earth/models/previews/modern/joan-miro-tapestry-of-the-fundacio-3b1745/preview-e7cbc3cce267.glb",
+          "bytes": 1654572,
+          "sha256": "e7cbc3cce2670185445846d8a9e2968e2fd17710b5fe4f121b35c5b233f36356",
+          "content_type": "model/gltf-binary",
+          "local_mirror_sha256_matches_upload_record": true,
+          "source_archive_downloaded_by_this_auditor": false
+        },
+        "initial_thumbnail_path": "/tmp/atrium-acquired-appearance-20261015/22.webp",
+        "four_view_images": [
+          {
+            "angle": "front",
+            "path": "/tmp/atrium-acquired-appearance-20261015/22-front.png"
+          },
+          {
+            "angle": "back",
+            "path": "/tmp/atrium-acquired-appearance-20261015/22-back.png"
+          },
+          {
+            "angle": "side",
+            "path": "/tmp/atrium-acquired-appearance-20261015/22-side.png"
+          },
+          {
+            "angle": "above",
+            "path": "/tmp/atrium-acquired-appearance-20261015/22-above.png"
+          }
+        ],
+        "initial_orientation_reviewed": {
+          "upAxis": "auto"
+        },
+        "decoded_preview_summary": {
+          "index": 22,
+          "slug": "modern/joan-miro-tapestry-of-the-fundacio-3b1745",
+          "materials": [
+            {
+              "name": "Material",
+              "baseColor": [
+                1,
+                1,
+                1,
+                1
+              ],
+              "metallic": 0,
+              "roughness": 1,
+              "baseColorTexture": true,
+              "normalTexture": false,
+              "metallicRoughnessTexture": false
+            }
+          ],
+          "primitives": [
+            {
+              "name": "Object_0",
+              "vertices": 251398,
+              "triangles": 399999,
+              "bounds": {
+                "min": [
+                  -0.9622520208358765,
+                  -0.28439199924468994,
+                  0.0393729992210865
+                ],
+                "max": [
+                  0.942828893661499,
+                  0.09789589047431946,
+                  2.580152988433838
+                ]
+              },
+              "color": null
+            }
+          ]
+        },
+        "final_pose_review_complete": false
+      }
+    ],
+    "counts": {
+      "pose_required": 6,
+      "quality_hold": 2,
+      "object_readable": 7,
+      "front_surface_capture_only": 4,
+      "pose_required_appearance_fix_verified": 1,
+      "context_scope_qualification": 1,
+      "capture_artifact_qualification": 1
+    }
+  },
+  "independent_size_review": {
+    "observed_at": "2026-10-15T18:35:28.730133+00:00",
+    "summary": {
+      "accepted_metadata_matches_prepared_manifest": true,
+      "metadata_changes": [],
+      "false_exact_ar_count": 0,
+      "ar_status_counts": {
+        "approximate": 12,
+        "unknown": 10
+      },
+      "actual_source_byte_mismatches": [],
+      "source_face_count_mismatches": [],
+      "public_advertised_vs_actual_bytes_differ": 21,
+      "all_authenticated_payloads_recorded_as_glb": true,
+      "all_payloads_recorded_not_decoded": true,
+      "all_source_sha256_recorded": true,
+      "all22_licenses": "CC BY4.0"
+    },
+    "limitations": "Initial imported configuration: 22 accepted at integrity stage; two later hidden visual holds are excluded from current public dimension decisions. No source-archive or final-pose calibration claim."
+  },
+  "validation_plan": {
+    "subset": "docs/ingest/contemporary-masters-20261015-validate-publication.mjs",
+    "renderer": "node scripts/test-authored-vertex-colors.mjs",
+    "spatial_appearance": "node scripts/test-spatial-appearance.mjs",
+    "final_required": [
+      "all public candidates have exact derivative/pose/source-front binding",
+      "all final thumbnails and embedded posters reviewed together",
+      "public assets verified",
+      "production build",
+      "addition grouping and wing tests",
+      "scoped new-work size/viewer checks"
+    ],
+    "baseline_global_dimension_suite": "Not rerun: known legacy missing-review backlog is outside this batch. All new public records receive scoped checks."
+  },
+  "cloud_pose_run": {
+    "run_id": 38786678730,
+    "status": "cancellation requested after full local/cloud pose review completed",
+    "reason": "Four dense-model shards remained slow; 13 cloud sheets plus nine exact local A–J sheets and one matching-side supplemental completed the required 22-work review. Final renders use the reviewed explicit poses and corrected renderer.",
+    "reviewed_cloud_sets": 13,
+    "reviewed_local_sets": 9
+  }
+}
