@@ -1,0 +1,152 @@
+{
+  "schema": "atrium-auto-ingest-candidates/1",
+  "generated_at": "2026-10-15T23:40:37.643Z",
+  "logical_batch_id": "etruscan-greek-20261015",
+  "chunk": 4,
+  "expected_count": 1,
+  "strict_acquisition": false,
+  "logical_batch_target": 60,
+  "note": "One dated, textured museum-vessel replacement proposed after the P.88 capture-quality hold. All source, geometry, native appearance and archive gates remain required.",
+  "candidates": [
+    {
+      "source": "sketchfab",
+      "archive": "",
+      "uid": "b36dcf33c52e4208a1c3ec28ae391422",
+      "slug": "greek/white-ground-lekythos-hcm-230-b36dcf",
+      "collection": "greek",
+      "wing": "unfiled",
+      "title": "White-Ground Lekythos — HCM 230",
+      "artist": "Unknown Greek potter/painter",
+      "culture": "Ancient Greek; exact production region unknown",
+      "geography": "",
+      "subject": "Ancient Greek pottery",
+      "year": "4th century BCE (museum date)",
+      "year_sort": -350,
+      "period": "Ancient",
+      "material": "Clay",
+      "dimensions": "H 22 cm; base diameter 5.75 cm",
+      "measures": [],
+      "museum": "The Hunt Museum, Limerick",
+      "current_location": "The Hunt Museum, Limerick",
+      "displayed_at": "",
+      "original_location": "",
+      "source_institution": "The Hunt Museum",
+      "source_url": "https://sketchfab.com/3d-models/b36dcf33c52e4208a1c3ec28ae391422",
+      "source_record_url": "https://www.huntmuseum.com/explore/item/27a7aec1-0c2c-32a1-8449-b6a931b45c5f/",
+      "related_source_record_urls": [],
+      "download_api_url": "https://api.sketchfab.com/v3/models/b36dcf33c52e4208a1c3ec28ae391422/download",
+      "download_format": "glb",
+      "download_size_bytes": 5470648,
+      "face_count": 150000,
+      "face_count_scope": "api-detail-only-unmeasured",
+      "accession": "HCM 230",
+      "object_identity": "HCM 230",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "license_tier": 2,
+      "license_slug": "by",
+      "license_uid": "322a749bcfa841b29dff1e8a1bb74b0b",
+      "license_evidence_url": "https://api.sketchfab.com/v3/models/b36dcf33c52e4208a1c3ec28ae391422",
+      "scan_author": "The Hunt Museum (TheHuntMuseum)",
+      "attribution": "3D model “Vase Or Lekythos” by The Hunt Museum (TheHuntMuseum), via Sketchfab, licensed CC BY 4.0.",
+      "scan_source": "3D capture of a physical museum vessel; method not specified by publisher",
+      "representation": "Capture of a physical museum vessel, including its existing repairs/restoration where present",
+      "note": "Leaves and grapes decorate the pale ground of this oil vessel, used as a grave offering. The date follows the museum record, whose broader period labels are inconsistent.",
+      "source_description": "Culture: Greek | Material: [Clay](https://www.getty.edu/vow/AATFullDisplay?find=clay&logic=AND&note=&english=N&prev_page=1&subjectid=300010439) | Accession No: [HCM 230](https://www.huntmuseum.com/explore/item/27a7aec1-0c2c-32a1-8449-b6a931b45c5f/?s%3DHCA+230&pos=2). | Current Location: [The Hunt Museum Limerick](https://www.huntmuseum.com). | Dimensions (cm): H 22; Diam. (at base) 5.75.\n\nDescription:\nA vase or lekythos with a round base, a tall body which is wide at the shoulder and narrower at the base, a tall neck and a deep rim splaying outward. The vase has a tall strap handle ending at the shoulder. The body has geometric decoration, with leaves and grapes on a white background. This vessel would have contained oil and was a grave offering.\nH 22; Diam. (at base) 5.75\n\nDate Made: 4th century BC,Classical Greek,Archaic Greec",
+      "reference_image_url": "https://media.sketchfab.com/models/b36dcf33c52e4208a1c3ec28ae391422/thumbnails/aef1bffa5ed94835874b96bd3c309f57/28c051dc9198478ba75966feb5f196dd.jpeg",
+      "publisher": "TheHuntMuseum",
+      "published_at": "2023-01-12T07:46:07.919742",
+      "downloadable_verified": true,
+      "downloadable_verified_at": "2026-10-15T23:39:37.398Z",
+      "require_measured_integrity": true,
+      "texture_count": 1,
+      "source_geometry": {
+        "format": "glb",
+        "bytes": 5470648,
+        "faces": null,
+        "api_detail_faces": 150000,
+        "api_detail_vertices": 75000,
+        "api_detail_textures": 1,
+        "api_detail_has_vertex_colors": false
+      },
+      "archive_availability": [
+        {
+          "type": "source",
+          "exists": true,
+          "status": "Succeeded"
+        },
+        {
+          "type": "gltf",
+          "exists": true,
+          "status": "Succeeded"
+        },
+        {
+          "type": "extra",
+          "exists": false,
+          "status": null
+        },
+        {
+          "type": "usdz",
+          "exists": true,
+          "status": "Succeeded"
+        },
+        {
+          "type": "gltf-ar",
+          "exists": false,
+          "status": null
+        },
+        {
+          "type": "uasset",
+          "exists": false,
+          "status": null
+        },
+        {
+          "type": "glb",
+          "exists": true,
+          "status": "Succeeded"
+        }
+      ],
+      "preparation_hold": "Actual incoming full-source SHA256/bytes, ordinary measured integrity, native appearance and complete vessel capture remain pending acquisition review.",
+      "evidence": [
+        "The official Hunt Museum model links the exact HCM 230 accession to its primary collection record and describes the vessel, dimensions and grave-offering use.",
+        "Live canonical v3 model metadata at 2026-10-15T23:39:37.398Z confirms freely downloadable CC BY 4.0, 150000 API-detail faces and one texture. These counts are not substituted for actual measured archive geometry.",
+        "Authenticated canonical download metadata at 2026-10-15T22:11:59.096Z selected a GLB archive of 5470648 bytes. Its archive face count is unreported; actual fetched bytes/hash and measured source geometry remain mandatory.",
+        "The official description gives a fourth-century BCE date but also contains inconsistent Archaic/Classical period tags. The visible date is explicitly qualified as the museum date; no typological redating or narrower origin is invented.",
+        "The publisher thumbnail was visually reviewed: flared mouth, intact loop handle, painted body and foot form a coherent whole vessel. Reverse, cavity, underside and any context/helper geometry require actual source/preview review after acquisition."
+      ],
+      "visual_qa": "Publisher reference JPEG reviewed independently by two reviewers: complete visible mouth, strap handle, body and foot; warm ochre/black source surface. This is thumbnail-only approval, not final geometry or underside approval.",
+      "logical_batch_id": "etruscan-greek-20261015",
+      "batch_sequence": 65,
+      "batch_chunk": 4,
+      "raw_api_evidence": {
+        "endpoint": "https://api.sketchfab.com/v3/models/b36dcf33c52e4208a1c3ec28ae391422",
+        "observed_at": "2026-10-15T23:39:37.398Z",
+        "uid": "b36dcf33c52e4208a1c3ec28ae391422",
+        "name": "Vase Or Lekythos",
+        "license": {
+          "uri": "https://api.sketchfab.com/v3/licenses/322a749bcfa841b29dff1e8a1bb74b0b",
+          "label": "CC Attribution",
+          "fullName": "Creative Commons Attribution",
+          "requirements": "Author must be credited. Commercial use is allowed.",
+          "url": "http://creativecommons.org/licenses/by/4.0/",
+          "slug": "by"
+        },
+        "isDownloadable": true,
+        "faceCount": 150000,
+        "textureCount": 1,
+        "publisher": "TheHuntMuseum"
+      },
+      "discovery_category": "reserve-dated-vessel",
+      "geometry_review_scope": "Review the actual source and derivative for interior coverage, mouth/rim, base, every handle and documented physical losses/restoration. Do not invent missing surfaces, remove mounts or merge separate parts without explicit evidence and review.",
+      "wing_unfiled_reason": "The publisher identifies a Greek vessel but does not establish its specific production region or workshop; the holding museum in Limerick is not its place of making."
+    }
+  ],
+  "source_audit": {
+    "license_and_downloadability": "Live canonical public model detail checked 2026-10-15T23:39:37.398Z",
+    "selected_archive_metadata_checked": "2026-10-15T22:11:59.096Z",
+    "source_record_url": "https://www.huntmuseum.com/explore/item/27a7aec1-0c2c-32a1-8449-b6a931b45c5f/",
+    "source_model_url": "https://sketchfab.com/3d-models/b36dcf33c52e4208a1c3ec28ae391422",
+    "proposed_replacement_for": "greek/black-figure-kyathos-with-hermes-and-apollo-p-88-d62670",
+    "identity_check": "No current catalog UID, exact primary record URL or Hunt HCM230 accession collision; current public batch count is59. No final sixty-work claim is made before this acquisition passes."
+  }
+}
