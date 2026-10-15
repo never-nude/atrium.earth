@@ -98,6 +98,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           artifact-ids: ${{ steps.request.outputs.source_id_1 }}
+          merge-multiple: true
           repository: never-nude/atrium.earth
           run-id: ${{ steps.request.outputs.source_run_1 }}
           github-token: ${{ github.token }}
@@ -107,6 +108,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           artifact-ids: ${{ steps.request.outputs.source_id_2 }}
+          merge-multiple: true
           repository: never-nude/atrium.earth
           run-id: ${{ steps.request.outputs.source_run_2 }}
           github-token: ${{ github.token }}
