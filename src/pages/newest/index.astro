@@ -3,7 +3,7 @@ import V3Layout from '../../layouts/v3/V3Layout.astro';
 import V3WorkCard from '../../components/v3/V3WorkCard.astro';
 import { newestWorks } from '../../lib/additions';
 ---
-<V3Layout title="Newest Additions" description={`Explore the ${newestWorks.length} most recently added sculptures in Atrium, each in 3D.`} image={newestWorks[0]?.thumbnailImage}>
+<V3Layout title="Newest Additions" description={`Explore the ${newestWorks.length} most recently added works in Atrium, each in 3D.`} image={newestWorks[0]?.thumbnailImage}>
   <section class="v3-page-hero v3-additions-hero" aria-labelledby="additions-title">
     <div>
       <p class="v3-kicker">The collection, growing</p>
