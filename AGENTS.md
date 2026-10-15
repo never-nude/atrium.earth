@@ -2,6 +2,16 @@
 
 Repository: `never-nude/atrium.earth`. Default branch observed during setup: `main`.
 
+## Standing owner preference: archive before local offload
+
+For future acquisitions and storage cleanup, follow [the verified Drive archive workflow](docs/storage-archive-workflow.md) and `INGEST.md`.
+
+- Back up each piece to permanent private Google Drive storage. Reuse existing copies after complete SHA-256, exact-byte and private-sharing verification; upload only missing files. Preserve unchanged originals, embedded/external textures and materials, attribution, licenses, source URLs and portable recovery mappings. Keep originals distinct from serving previews; explicitly label derivative-only or missing-source cases.
+- Verify the complete source package and its cloud recovery manifest before local removal. Confirm current live model delivery, full hashes/bytes and applicable CORS, and preserve every local asset still required for builds, the viewer or AR. Tracked and Pages-local files stay protected until a separately verified hosting migration or reliable build hydration makes removal safe.
+- Offload eligible local files in bounded, resumable batches using the storage tools: dry-run planning, fresh signed backup/live receipts, exact whitelists, unchanged-file checks and checked quarantine. Retain unverified, incomplete, stale or uncertain files; never delete source folders wholesale or treat temporary Actions artifacts as permanent backups.
+- Keep Drive identities, signed URLs, account data, signing keys and absolute local inventories out of public Git. Save recovery maps, verification checkpoints and removal records in the private archive. Re-inventory each computer and consult completed removal journals before resuming; another machine's inventory is not proof of local state.
+- Report verified/offloaded files separately from pending coverage. A completed batch does not establish that the whole collection is backed up. This is a standing workflow preference, not a claim that a background automation is running.
+
 <!-- shared-codex-handoff:start -->
 ## Shared Codex handoff across devices
 
