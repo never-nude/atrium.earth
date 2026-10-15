@@ -150,6 +150,25 @@ jobs:
           include-hidden-files: true
           if-no-files-found: warn
 
+      - name: Build sanitized source-backup index
+        if: ${{ !cancelled() && steps.checkout.outcome == 'success' }}
+        run: |
+          node scripts/create-source-backup-index.mjs \
+            --leads .atrium-ingest/leads.json \
+            --fetched .atrium-ingest/fetched.json \
+            --batch "$BATCH" --run-id "$GITHUB_RUN_ID" --attempt "$GITHUB_RUN_ATTEMPT" \
+            --workflow-head-sha "$GITHUB_SHA" --checkout-head-sha "$(git rev-parse HEAD)" \
+            --out .atrium-ingest/source-backup-index.json
+
+      - name: Upload sanitized source-backup index
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: atrium-source-backup-index-${{ env.BATCH }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: .atrium-ingest/source-backup-index.json
+          retention-days: 90
+          if-no-files-found: warn
+
       - name: Verify strict source batch
         run: |
           node <<'NODE'

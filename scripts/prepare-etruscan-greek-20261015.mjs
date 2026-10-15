@@ -12,7 +12,7 @@ export const EXPECTED_COUNT = 60;
 const ROOT = path.resolve(import.meta.dirname, '..');
 const UID = /^[a-f0-9]{32}$/;
 const SHA = /^[a-f0-9]{64}$/;
-const WINGS = new Set(['greece-rome', 'unfiled']);
+const WINGS = new Set(['near-east', 'greece-rome', 'europe', 'asia', 'africa', 'americas-oceania', 'unfiled']);
 const EXEMPTIONS = new Set(['allow_componentized_mesh', 'max_component_count', 'min_largest_component_fraction',
   'skip_integrity', 'skip_measured_integrity', 'integrity_exemption', 'alternate_downloads']);
 const PRIVATE_FIELDS = /^(?:fetched|download_url|downloadUrl|authorization|headers|access_token|api_token|token|secret|password|driveId|file_uri|absolutePath)$/i;
@@ -98,10 +98,11 @@ export function checkCandidate(candidate, { now = new Date(), maxAgeDays = 7 } =
   require(UID.test(candidate.uid || ''), 'invalid Sketchfab UID');
   require(/^(?:greek|roman)\/[a-z0-9]+(?:-[a-z0-9]+)*$/.test(candidate.slug || ''), 'unsafe or unsupported slug');
   require(candidate.collection === candidate.slug?.split('/')[0], 'collection differs from slug prefix');
-  require(WINGS.has(candidate.wing), 'wing must be greece-rome or explicitly unfiled');
+  require(WINGS.has(candidate.wing), 'wing must be an existing origin-based wing or explicitly unfiled');
   if (candidate.wing === 'unfiled') require(text(candidate.wing_unfiled_reason).length >= 30 && !text(candidate.geography) && !text(candidate.original_location), 'Unfiled requires a documented unknown origin, without a museum-derived origin');
   else require(text(candidate.geography) || text(candidate.original_location), 'document the object origin separately from its holding museum');
-  require(candidate.period === 'Ancient' && Number.isFinite(candidate.year_sort) && candidate.year_sort < 500, 'explicit ancient artwork date required');
+  require(candidate.period === 'Ancient' && ((Number.isFinite(candidate.year_sort) && candidate.year_sort < 500)
+    || (candidate.year_sort === null && /^unknown\b/i.test(text(candidate.year)))), 'explicit ancient date or honestly unknown chronology required');
   require(url(candidate.source_url)?.hostname === 'sketchfab.com' && sourceUids({ source_url: candidate.source_url }).has(candidate.uid), 'source page must identify this exact UID');
   require(candidate.download_api_url === `https://api.sketchfab.com/v3/models/${candidate.uid}/download`, 'download API must identify this exact UID');
   require(candidate.license_evidence_url === `https://api.sketchfab.com/v3/models/${candidate.uid}`, 'license evidence must be the exact live model detail');

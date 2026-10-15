@@ -28,7 +28,7 @@ payloads, signed download URLs or credentials were obtained here.
 | Dancing satyr, Cleveland 1974.16 | [Museum record](https://www.clevelandart.org/art/1974.16): 470–450 BCE; bronze; overall 15 cm. Museum scan CC0. | Satyr, disk and cylinder survive. The upper dish and taller kottabos post are lost. |
 | Reclining lyre-player, Cleveland 1986.185 | [Museum record](https://www.clevelandart.org/art/1986.185): probably 400–375 BCE; bronze with gilding traces; overall 5.2 cm. Museum scan CC0. | A surviving ornament from a lost basin. Distinct physical object from the pipes player. Do not replace observed patina with invented gilding. |
 | Reclining pipes player, Cleveland 1986.184 | [Museum record](https://www.clevelandart.org/art/1986.184): probably 400–375 BCE; bronze; overall 5.1 cm. Current museum title says “Pipes Player”; scan title says “Flutist.” | Pipe tips are physically broken according to the museum. The larger basin is lost. |
-| Ribbed bucket from Hassle, 96979_HST | [Museum article](https://historiska.se/en/explore-history/history-hub/an-etruscan-bronze-vessel/) and [exact collection record](https://samlingar.shm.se/object/A6D7145B-77C5-4D40-B1DF-A0BD90CD7951): 550–500 BCE; copper alloy; height 19.8 cm, diameter 23.4 cm. Museum explicitly links the original scanned object and CC BY 4.0 reuse. | One bucket from the hoard, not both buckets or the entire assemblage. Northern Italian production and Swedish findspot are separate. Credit Helena Rosengren / Historiska museet as documented by the museum. |
+| Ribbed bucket from Hassle, 96979_HST | [Museum article](https://historiska.se/en/explore-history/history-hub/an-etruscan-bronze-vessel/) and [exact collection record](https://samlingar.shm.se/object/A6D7145B-77C5-4D40-B1DF-A0BD90CD7951): 550–500 BCE; copper alloy; height 19.8 cm, diameter 23.4 cm. Museum explicitly links the original scanned object and CC BY 4.0 reuse. | One bucket from the hoard, not both buckets or the entire assemblage. Northern Italian production and Swedish findspot are separate. The reference photograph credits Helena Rosengren; that does not identify her as the 3D model maker. |
 | Beaked flagon, Hunt MG 015 | [Exact museum record](https://www.huntmuseum.com/explore/item/a2044a00-0666-30ef-9ede-36cd923b5895/) gives the broad 1st millennium BCE. The museum’s [object tour](https://www.huntmuseum.com/assets/uploads/2021/08/3a.-Around.the_.table_.in_.19.objects.pdf) dates MG 015 to the 5th century BCE. Its own scan supplies height 25.9 cm and CC0. | Original small bronze vessel. The museum also made a large [modern garden sculpture](https://www.huntmuseum.com/2022/06/22/takumi-precision-engineering-add-to-museum-in-a-garden/) from the scan; that replica is not this candidate. Preserve the dating distinction. |
 | Oinochoe with humans and winged animals, MEV 17244 | [Current museum object record](https://museuartmedieval.cat/ca/colleccions/arqueologia/enocoa-amb-humans-i-animals-alats-mev-17244): central-western Italy; c. 550–520 BCE; black-figure pottery; 32.3 × 9 cm; Tytios Painter attribution qualified with a question mark. | The museum confirms accession **17244**; the scan description truncates it to 1724. Dimension axes are unspecified. The [exhibition page](https://museuartmedieval.cat/mev/exposicions/besties/) narrows the date to c. 530–520 BCE; the manifest retains the main collection date. Surviving ceramic losses remain visible. |
 | Treppenstein fragment, MK&G 2001.36 | [Current museum record](https://www.mkg-hamburg.de/en/sammlung/objekt/fragment-eines-treppensteinreliefs-baubo-delphin/2001.36/dc00127277): Italy, c. 570 BCE; Nenfro tuff; 73 × 46 × 23.3 cm. The institutional scan is CC0. | Baubo and dolphin panels survive. The stepped divider is physically absent, according to the museum. Tarquinia production is probable rather than an established exact workshop. |
@@ -50,6 +50,16 @@ in its [2021 sustainability report](https://www.banfi.it/wp-content/uploads/2024
 This supports project provenance, while the individual GDH records supply each
 object’s exact catalog number, description and capture evidence. Neither museum
 ownership nor broad stylistic parallels should be rewritten as an exact findspot.
+
+### Historiska credit clarification
+
+The museum article’s Helena Rosengren credit belongs to the photograph beneath
+the separate 3D embed. Its [exact media record](https://samlingar.shm.se/media/0e7397aa-17cd-4c15-a0a2-dc7eb88e4ab1)
+specifies `image/jpeg`, photographer Helena Rosengren and photo date 21 September
+2023. The Sketchfab 3D asset was published on 1 March 2022 and names the publisher
+Historiska without an individual scan-maker credit. Retain the museum/institution
+as the documented 3D publisher. Credit Rosengren if using that reference photograph;
+do not transfer its photographic credit to 3D authorship without further evidence.
 
 ## Exclusions and duplicate screening
 

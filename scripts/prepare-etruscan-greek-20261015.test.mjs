@@ -117,12 +117,16 @@ test('holding/scan location cannot fill an undocumented manufacture origin', () 
   assert.deepEqual(checkCandidate(unfiled, { now }), []);
   assert.match(checkCandidate({ ...unfiled, geography: 'Fixture Museum address' }, { now }).join(';'), /museum-derived origin/);
   assert.match(checkCandidate(candidate(1, { geography: '', original_location: '' }), { now }).join(';'), /origin separately/);
+  assert.deepEqual(checkCandidate(candidate(1, { wing: 'near-east', geography: 'Egypt (documented production in synthetic evidence)', original_location: 'Egypt' }), { now }), []);
+  assert.match(checkCandidate(candidate(1, { wing: 'invented-wing' }), { now }).join(';'), /existing origin-based wing/);
 });
 
 test('unknown ancient makers and safe raw HTTP license evidence are preserved honestly', () => {
   const unknown = candidate(1, { artist: '', raw_api_evidence: { license: { url: 'http://creativecommons.org/licenses/by/4.0/' } } });
   assert.deepEqual(checkCandidate(unknown, { now }), []);
   assert.match(checkCandidate({ ...unknown, raw_api_evidence: { url: 'http://example.org?token=fixture' } }, { now }).join(';'), /private\/ephemeral/);
+  assert.deepEqual(checkCandidate(candidate(1, { year: 'Unknown (ancient Apulian)', year_sort: null }), { now }), []);
+  assert.match(checkCandidate(candidate(1, { year: 'c. 450 BCE', year_sort: null }), { now }).join(';'), /chronology/);
 });
 
 function runFixture() {
