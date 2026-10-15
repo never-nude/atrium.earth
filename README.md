@@ -46,6 +46,11 @@ Set `SOURCE_ATRIUM_DIR` to point somewhere else.
 - `src/data/renders.json` lists works with rendered thumbnails.
 - The browser never receives raw STL source files.
 
+Source archives and local cleanup follow the [verified Drive archive workflow](docs/storage-archive-workflow.md).
+`npm run storage -- help` lists the inventory, dry-run and cleanup commands;
+`npm run test:storage` checks the destructive-operation safeguards. Drive backups
+preserve originals and provenance; Cloudflare continues serving optimized previews.
+
 ## Routes
 
 - `/`

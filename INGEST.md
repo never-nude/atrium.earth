@@ -95,6 +95,26 @@ and personal metadata in ignored local ledgers. The October 15 contemporary batc
 24 provider GLBs have permanent private copies; this does not imply migration or
 cleanup of older local source collections.
 
+### Backup before local removal
+
+Use the [source archive workflow](docs/storage-archive-workflow.md) for every batch.
+Inventory the exact source files, external textures and license/provenance records;
+reuse a matching existing private Drive object before uploading another copy. Keep
+full provider sources distinct from optimized serving previews. Archive a portable
+restore map as well as the bytes themselves.
+
+`npm run storage:verify` streams complete Drive readbacks through SHA-256 and writes
+private signed receipts. `npm run storage -- plan` is read-only; cleanup defaults
+to a dry run. Actual removal requires a manifest-bound whitelist, verified source
+dependencies and restore map, fresh full-content live-delivery checks and a final
+unchanged-file check. Interrupted transfers or missing originals block removal.
+Tracked files and models still required by a Pages build remain protected.
+
+Keep credentials, signed download URLs, Drive identities and absolute local paths
+only in ignored private state, never in public manifests or Git. Temporary Actions
+artifacts, filename matches, reported sizes and hash prefixes are not sufficient
+backup verification. Do not delete source folders wholesale.
+
 Both `ingest.yml` (weekly) and `acquire-leads.yml` (saved candidate files, such as
 `docs/ingest/african-art-20261002-leads.json`) upload automatically when these
 repository secrets exist: `R2_ACCOUNT_ID`, `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`

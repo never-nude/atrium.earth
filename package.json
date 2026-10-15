@@ -37,7 +37,10 @@
     "test:quick-look-export": "node ./scripts/test-quick-look-export.mjs",
     "test:quick-look-label": "node ./scripts/test-quick-look-museum-label.mjs",
     "test:dimensions": "node ./scripts/test-physical-dimensions.mjs",
-    "test:r2-upload": "node ./scripts/test-r2-upload.mjs"
+    "test:r2-upload": "node ./scripts/test-r2-upload.mjs",
+    "storage": "node ./scripts/storage-archive.mjs",
+    "storage:verify": "node ./scripts/storage-verify-backup.mjs",
+    "test:storage": "node --test scripts/storage-*.test.mjs"
   },
   "devDependencies": {
     "@astrojs/sitemap": "^3.7.2",
