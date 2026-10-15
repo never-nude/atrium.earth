@@ -1,6 +1,11 @@
 name: Recover Greek acquisition from verified artifacts (data only)
 
 on:
+  push:
+    branches: [codex/etruscan-greek-20261015]
+    paths:
+      - .github/workflows/recover-etruscan-greek.yml
+      - docs/ingest/etruscan-greek-20261015-recovery-request.json
   workflow_dispatch:
 
 permissions:
