@@ -1,0 +1,155 @@
+{
+  "schema": "atrium-exhibition-body-proposals/1",
+  "batch": "etruscan-greek-20261015",
+  "reviewed_at": "2026-10-15",
+  "status": "conditional-proposals-pending-acquisition-and-final-visual-review",
+  "proposal_count": 6,
+  "scope": "Six proposed additions to existing exhibition bodies. No featured membership, exhibition lead, homepage hero, pairing, comparison, essay or catalog changes are proposed.",
+  "integration_requirements": [
+    "Integrate only a work actually accepted and published from this batch, using its final catalog slug.",
+    "Require source-preservation, native-appearance, pose and final capture-scope review before adopting a caption that refers to visible details or changing viewpoints.",
+    "For wallTexts exhibitions, add both the slug to workSlugs and the {slug,text} entry to captions. For The Other Kingdom and The Price of Victory, add the {slug,text} entry to works.",
+    "Preserve every existing exhibition hero, featured decision, pairing and comparison. None of these proposals requires featured membership.",
+    "The Met krater and Aristonothos were promoted from reserves by the batch owner; confirm their presence in the final acquired set before integration."
+  ],
+  "proposals": [
+    {
+      "exhibition_slug": "bodies-in-motion",
+      "slug": "roman/dancing-satyr-kottabos-cleveland-1974-16",
+      "source_uid": "34d0cda5076c4c52a8ce2eecd2d192c6",
+      "title": "Kottabos Element of a Dancing Satyr",
+      "integration_target": "wallTexts.bodies-in-motion.workSlugs and wallTexts.bodies-in-motion.captions",
+      "placement": "After europe/faun-cymbals-meissen, inviting comparison of lifted limbs and supporting structures in two small figures.",
+      "caption": {
+        "slug": "roman/dancing-satyr-kottabos-cleveland-1974-16",
+        "text": "A lifted leg and upstretched arm make this small bronze satyr balance on a pierced disk. He probably held a dish used in kottabos, a game played with wine dregs. The dish is lost, but the poised body keeps its action visible."
+      },
+      "thematic_fit": "Movement depends on a clearly selected pose and a visible support. The lost dish also explains the otherwise puzzling raised hand without treating a surviving apparatus element as a complete game stand.",
+      "primary_sources": [
+        {
+          "title": "Cleveland Museum of Art, 1974.16",
+          "url": "https://www.clevelandart.org/art/1974.16",
+          "supports": "Etruscan bronze, 470–450 BCE; raised leg and arm; lost dish; disk and cylinder probably belonged to a taller kottabos apparatus. The museum qualifies the game identification."
+        }
+      ],
+      "visual_integration_gate": "Final capture must retain the satyr, raised hand, pierced disk and cylinder without clipping. Do not describe the absent dish or taller post as captured geometry."
+    },
+    {
+      "exhibition_slug": "sacred-forms",
+      "slug": "greek/kantharos-dedicated-to-herakles-mkg-1983-282-08d40f",
+      "source_uid": "08d40fe950654611b3e80d036863d683",
+      "title": "Kantharos Dedicated to Herakles — MKG 1983.282",
+      "integration_target": "wallTexts.sacred-forms.workSlugs and wallTexts.sacred-forms.captions",
+      "placement": "After ancient-near-east/cylinder-seal-sin-kish, extending the exhibition's attention to sacred use communicated through writing.",
+      "caption": {
+        "slug": "greek/kantharos-dedicated-to-herakles-mkg-1983-282-08d40f",
+        "text": "An inscription scratched below the rim after firing declares this black-gloss cup sacred to Herakles. The dedication marks a drinking vessel as an offering. Turn the cup to follow the writing across its curved surface."
+      },
+      "thematic_fit": "The dedication is specific primary evidence of sacred function, rather than an inference from vessel shape or decoration alone.",
+      "primary_sources": [
+        {
+          "title": "Museum für Kunst und Gewerbe Hamburg, 1983.282",
+          "url": "https://www.mkg-hamburg.de/en/sammlung/objekt/kantharos-weihinschrift-herakles/1983.282/dc00126680",
+          "supports": "The late fifth-century BCE Boeotian kantharos has an inscription below the mouth, scratched after firing, identifying the otherwise black-gloss vessel as a dedication to Herakles."
+        }
+      ],
+      "visual_integration_gate": "Confirm that the inscription and the actual vessel's surviving surface are legible in the final native-texture capture. Do not substitute the other Herakles kantharos, MKG 1983.361."
+    },
+    {
+      "exhibition_slug": "the-work-of-the-surface",
+      "slug": "greek/geometric-krater-with-lid-and-miniature-hydria-met-74-51-965-67f579",
+      "source_uid": "67f5797a1339446ebef8b83d9ccd526b",
+      "title": "Geometric Krater with Lid and Miniature Hydria — Met 74.51.965",
+      "integration_target": "wallTexts.the-work-of-the-surface.workSlugs and wallTexts.the-work-of-the-surface.captions",
+      "placement": "Append to the existing body, introducing painted pottery whose ornament wraps around both vessel and lid.",
+      "caption": {
+        "slug": "greek/geometric-krater-with-lid-and-miniature-hydria-met-74-51-965-67f579",
+        "text": "Animals and geometric patterns cover this krater over a light ceramic slip. Four handles divide the shoulder, while a miniature hydria rises above the decorated lid. Rotate the vessel to follow how the painted bands organize its curved body and changing scale."
+      },
+      "thematic_fit": "A strong, visually varied example of paint and ceramic surface carrying the design across an object, complementing the exhibition's carving and incised writing.",
+      "primary_sources": [
+        {
+          "title": "The Metropolitan Museum of Art, 74.51.965",
+          "url": "https://www.metmuseum.org/art/collection/search/240553",
+          "supports": "Greek, Euboean krater, c. 750–740 BCE, attributed to the Cesnola Painter. The museum describes four shoulder handles, decoration over light ceramic slip, animals and a lid surmounted by a small hydria."
+        }
+      ],
+      "visual_integration_gate": "Final review must confirm the entire vessel, decorated lid and miniature hydria remain captured and legible, with native paint preserved. Any missing underside must be disclosed separately; the caption does not claim interior or underside coverage.",
+      "metadata_caution": "The current museum record gives 115.6 × 57.2 cm without axis labels, while the model description carries 130.8 cm height. Preserve the measurement-scope discrepancy as unresolved; this caption makes no dimensional claim."
+    },
+    {
+      "exhibition_slug": "the-other-kingdom",
+      "slug": "greek/apulian-bulls-head-rhyton-ncma-b4bd0b",
+      "source_uid": "b4bd0bdfadc2484093260069ac31caf4",
+      "title": "Apulian Bull's Head Rhyton",
+      "integration_target": "newExhibition.works",
+      "placement": "After americas/underwater-panther-vessel-quapaw-mia, keeping the different cultures and uses distinct while comparing animal-shaped containers.",
+      "caption": {
+        "slug": "greek/apulian-bulls-head-rhyton-ncma-b4bd0b",
+        "text": "A bull's muzzle, horns and ears become the body of this ceramic pouring vessel. Rhyta channel liquid between two openings. Here animal anatomy shapes the act of pouring, while painted figures on the neck add another layer of imagery."
+      },
+      "thematic_fit": "Animal form performs a practical action. It offers a direct comparison with animal-shaped vessels already in the exhibition without treating them as one shared tradition.",
+      "primary_sources": [
+        {
+          "title": "North Carolina Museum of Art, Bull's Head Rhyton, 91.11",
+          "url": "https://learn.ncartmuseum.org/artwork/bulls-head-rhyton/",
+          "supports": "South Italian, Apulian red-figure ceramic with added white paint, c. 340–320 BCE, from the Darius Painter's workshop. The museum explains the two openings and liquid flow and embeds this exact institutional model."
+        }
+      ],
+      "visual_integration_gate": "Confirm the modeled head, horns, ears and decorated neck are retained. The functional explanation is historical; do not claim an internally complete or watertight scan unless actually demonstrated."
+    },
+    {
+      "exhibition_slug": "the-price-of-victory",
+      "slug": "greek/aristonothos-krater-c82c16",
+      "source_uid": "c82c166302da465d952e4dcdf9e8d478",
+      "title": "Aristonothos Krater",
+      "integration_target": "additionalExhibitions[slug=the-price-of-victory].works",
+      "placement": "After assyrian/alammu-prisoners-nineveh-panels-13-15-ffda7d and before greek/lying-wounded-warrior-aphaia-smk-cast, following the existing chronological sequence.",
+      "caption": {
+        "slug": "greek/aristonothos-krater-c82c16",
+        "text": "Second quarter of the 7th century BCE. The vessel sets the blinding of Polyphemus beside a naval battle. Turn it to compare violence told through myth with violence shown between ships. The sea battle invites questions about whose courage is celebrated and whose experience remains outside the painted scene."
+      },
+      "thematic_fit": "The exact museum identification establishes both violent scenes. The connection to victory is framed as a curatorial question, without assigning a historical battle, ethnic winner or defeated people unsupported by the museum record.",
+      "primary_sources": [
+        {
+          "title": "Musei Capitolini, Krater with the Blinding of Polyphemus and a Naval Battle",
+          "url": "https://www.museicapitolini.org/it/opera/cratere-con-l%E2%80%99accecamento-di-polifemo-e-battaglia-navale",
+          "supports": "The exact object is identified as Aristonothos's terracotta krater, second quarter of the seventh century BCE, depicting the blinding of Polyphemus and a naval battle."
+        }
+      ],
+      "visual_integration_gate": "Both painted sides must be present and sufficiently legible in the accepted scan. A single captured face cannot support this two-scene caption.",
+      "interpretation_limit": "Do not repeat the source uploader's speculative Greek-versus-Etruscan historical identification as settled museum fact. Do not call this an ancient Roman vessel."
+    },
+    {
+      "exhibition_slug": "what-survives",
+      "slug": "roman/treppenstein-baubo-dolphin-mkg-2001-36",
+      "source_uid": "8630e5ea4e8f4777899da2fd245f31f1",
+      "title": "Treppenstein Relief Fragment with Baubo and a Dolphin",
+      "integration_target": "wallTexts.what-survives.workSlugs and wallTexts.what-survives.captions",
+      "placement": "After ancient-near-east/assyrian-eagle-headed-demon-fitzwilliam, comparing surviving image fields separated from a larger architectural or funerary setting.",
+      "caption": {
+        "slug": "roman/treppenstein-baubo-dolphin-mkg-2001-36",
+        "text": "Baubo and a dolphin survive in two carved panels, but the stepped division characteristic of this kind of funerary stone is missing. The fragment preserves its imagery while leaving the complete monument uncertain. Such stones may have covered small tombs or served as door stones."
+      },
+      "thematic_fit": "The museum explicitly identifies a physical loss and keeps the original function uncertain. This makes survival and the limits of reconstruction central to the visitor's encounter.",
+      "primary_sources": [
+        {
+          "title": "Museum für Kunst und Gewerbe Hamburg, 2001.36",
+          "url": "https://www.mkg-hamburg.de/en/sammlung/objekt/fragment-eines-treppensteinreliefs-baubo-delphin/2001.36/dc00127277",
+          "supports": "Etruscan Nenfro-tuff fragment, c. 570 BCE, with Baubo above and a dolphin below. The characteristic stepped division is not preserved. The museum offers tomb covering or door stone as possible functions."
+        }
+      ],
+      "visual_integration_gate": "Distinguish historical broken edges from any scan omissions. Retain the actual fragment; do not complete the missing stepped division or claim a reconstructed whole tomb."
+    }
+  ],
+  "not_proposed": [
+    {
+      "slug": "greek/south-italian-fish-plate-fralin-1979-56-188a46",
+      "reason": "A plausible second animal connection, but the six selected proposals already cover six existing exhibitions. The bull rhyton offers the stronger fit through animal form and function."
+    },
+    {
+      "slug": "roman/oinochoe-humans-winged-animals-mev-17244",
+      "reason": "A strong alternative for The Work of the Surface if the promoted Met krater does not pass final acquisition and scope review. Avoid adding both automatically."
+    }
+  ]
+}
