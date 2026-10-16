@@ -287,3 +287,9 @@ Run `node --test scripts/storage-archive.test.mjs` and
 `node scripts/storage-live-dependencies.test.mjs` after changing these gates.
 Run `node --test scripts/storage-stage-chunk.test.mjs` after changing staging or
 restoration.
+
+### 2026-10-15 — Seven-work milestone batch completed
+
+Logical batch `beautiful-2000-20261015` publishes seven reviewed works, bringing Atrium to 2,000 public works (2,018 records including 18 earlier hidden entries). All seven unchanged provider-original GLBs, totaling 184,094,020 bytes, plus provenance and the accepted restore map are permanently private in Drive and verified by complete readback. Fresh live/model proofs and an exact reviewed whitelist authorized removal of only those seven local originals; 531 tracked serving models and seven worktrees are preserved.
+
+The post-offload private control checkpoint contains 90 exact members and ten frozen controls. Its full 33,507,543-byte readback matches SHA-256 `2e551e1d1572340b929e97541fcce2935f4164dd2abfa915e5e2479d6317b524`; root authenticated the receipt. Recovery identities, root mappings, receipts and removal journal remain in the private archive, with no key, temporary signed URL or model payload in the control bundle. Consult the completed journal before re-inventorying this batch. This snapshot does not establish complete binary backup coverage for the older collection.
