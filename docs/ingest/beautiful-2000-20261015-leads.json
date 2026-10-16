@@ -1,0 +1,875 @@
+{
+  "schema": "atrium-auto-ingest-candidates/1",
+  "generated_at": "2026-10-16T01:57:08.506Z",
+  "logical_batch_id": "beautiful-2000-20261015",
+  "expected_count": 7,
+  "strict_acquisition": false,
+  "public_collection_target": 2000,
+  "note": "Seven distinct museum objects selected from actual source images. Live public licenses and exact identity are checked; selected download bytes remain unknown until the actual fetch. Ordinary measured integrity, native/production scope, final poses/thumbnails and permanent private backup remain mandatory before release.",
+  "candidates": [
+    {
+      "title": "Cloisonné Altarpiece — Mia 95.53",
+      "slug": "asia/cloisonne-altarpiece-mia-95-53-20864e",
+      "collection": "asia",
+      "wing": "asia",
+      "artist": "Unknown Chinese metalworker",
+      "culture": "Chinese; Qing dynasty",
+      "geography": "China",
+      "year": "18th century",
+      "year_sort": 1750,
+      "period": "Early Modern",
+      "material": "Gilt bronze and enamel",
+      "dimensions": "47 × 24.13 cm (museum dimensions; axes not labeled)",
+      "accession": "95.53",
+      "museum": "Minneapolis Institute of Art",
+      "source_record_url": "https://collections.artsmia.org/art/28757/cloisonne-altarpiece-china",
+      "note": "Blue and green cloisonné enamel and gilded ornament cover this Chinese altar object. The digitization records its surviving surface decoration.",
+      "source": "sketchfab",
+      "archive": "",
+      "uid": "20864e2bafb8451dad986c467894a186",
+      "source_url": "https://sketchfab.com/3d-models/20864e2bafb8451dad986c467894a186",
+      "original_location": "China",
+      "current_location": "Minneapolis Institute of Art",
+      "displayed_at": "",
+      "source_institution": "Minneapolis Institute of Art",
+      "subject": "World art sculpture",
+      "related_source_record_urls": [
+        "https://search.artsmia.org/id/28757"
+      ],
+      "download_api_url": "https://api.sketchfab.com/v3/models/20864e2bafb8451dad986c467894a186/download",
+      "download_format": "glb",
+      "download_size_bytes": null,
+      "face_count": 114860,
+      "face_count_scope": "api-detail-only-unmeasured",
+      "object_identity": "Minneapolis Institute of Art 95.53",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "license_tier": 2,
+      "license_slug": "by-sa",
+      "license_uid": "b9ddc40b93e34cdca1fc152f39b9f375",
+      "license_evidence_url": "https://api.sketchfab.com/v3/models/20864e2bafb8451dad986c467894a186",
+      "scan_author": "Minneapolis Institute of Art (artsmia)",
+      "attribution": "3D model “Cloisonné Altarpiece, 18th C CE” by Minneapolis Institute of Art (artsmia), via Sketchfab, licensed CC BY-SA 4.0. Museum credit: Gift of Ruth and Bruce Dayton. Model building/customization by Lou Brown; research capture led by Michael Tetzlaff with UW-Stout, Cultural Heritage Imaging and Mia. Adapted models retain CC BY-SA 4.0 and identify changes.",
+      "scan_source": "Research photogrammetry and reflectance/specularity capture; Kintsugi 3D Builder textures generated from photographs of this object",
+      "representation": "Scan of the physical museum altarpiece, including its surviving enamel, gilding and ornament",
+      "source_description": "Blue and green cloisonné enamel and gilded ornament cover this Chinese altar object. The digitization records its surviving surface decoration.",
+      "reference_image_url": "https://media.sketchfab.com/models/20864e2bafb8451dad986c467894a186/thumbnails/1bca80e7480948d88b8b88546acf5083/5a65638658ea40e2a2a96bccf3282289.jpeg",
+      "publisher": "artsmia",
+      "published_at": "2023-11-21T15:50:07.534949",
+      "downloadable_verified": true,
+      "downloadable_verified_at": "2026-10-16T01:50:36.656854+00:00",
+      "require_measured_integrity": true,
+      "texture_count": 5,
+      "source_geometry": {
+        "format": "glb",
+        "bytes": null,
+        "faces": null,
+        "api_detail_faces": 114860,
+        "api_detail_vertices": 57358,
+        "api_detail_textures": 5
+      },
+      "archive_availability": null,
+      "preparation_hold": "Authenticated selected-download metadata/bytes and actual original SHA remain pending. Ordinary measured integrity, authored source appearance, exact pair/component scope, reverse and underside require acquisition review; no calibration or exact AR approval.",
+      "measures": [],
+      "evidence": [
+        "Official Mia source links exact primary object28757/accession95.53. Museum API gives China,18th century,gilt bronze/enamel; source documents photographic-data texture/specularity capture, not a freehand reconstruction.",
+        "Live canonical model API at 2026-10-16T01:50:36.656854+00:00 reports downloadable=true, CC BY-SA 4.0, 114860 API-detail faces and 5 textures. Selected GLB bytes and actual archive face count are unknown, not inferred.",
+        "The full tiered silhouette, blue lotus-like upper rim, turquoise central stem, gold scrolling ornament and richly patterned circular base are clearly readable. This is the strongest color-rich world-art choice in the screened group.",
+        "Current catalog dedup covered exact sourceUID plus accession and normalized title/composition aliases across all2011records, including hidden/held records. No matching object/component found."
+      ],
+      "visual_qa": {
+        "status": "source-thumbnail-reviewed-only",
+        "observation": "The full tiered silhouette, blue lotus-like upper rim, turquoise central stem, gold scrolling ornament and richly patterned circular base are clearly readable. This is the strongest color-rich world-art choice in the screened group.",
+        "image_sha256": "82abbb76117a8438d65cdd9813f3e6f90615b34f66a389d9661fa2b56019600a",
+        "image_bytes": 62827,
+        "full_native_appearance_compared": false,
+        "underside_reviewed": false
+      },
+      "deduplication": {
+        "catalog_count": 2011,
+        "catalog_public_count": 1993,
+        "source_uid_match": false,
+        "accession_or_identity_matches": [],
+        "tested_terms": [
+          "95.53",
+          "28757"
+        ]
+      },
+      "logical_batch_id": "beautiful-2000-20261015",
+      "batch_sequence": 1,
+      "batch_chunk": 1,
+      "raw_api_evidence": {
+        "endpoint": "https://api.sketchfab.com/v3/models/20864e2bafb8451dad986c467894a186",
+        "observed_at": "2026-10-16T01:50:36.656854+00:00",
+        "uid": "20864e2bafb8451dad986c467894a186",
+        "name": "Cloisonné Altarpiece, 18th C CE",
+        "license": {
+          "uri": "https://api.sketchfab.com/v3/licenses/b9ddc40b93e34cdca1fc152f39b9f375",
+          "label": "CC Attribution-ShareAlike",
+          "fullName": "Creative Commons Attribution-ShareAlike",
+          "requirements": "Author must be credited. Modified versions must have the same license. Commercial use is allowed.",
+          "url": "http://creativecommons.org/licenses/by-sa/4.0/",
+          "slug": "by-sa"
+        },
+        "isDownloadable": true,
+        "faceCount": 114860,
+        "vertexCount": 57358,
+        "textureCount": 5,
+        "user": {
+          "uid": "4a165be2661d4a6a866ea01d1f76334c",
+          "username": "artsmia",
+          "displayName": "Minneapolis Institute of Art"
+        },
+        "pbrType": "specular",
+        "materialCount": 1
+      },
+      "discovery_rank": 1,
+      "source_description_scope": "Curatorial paraphrase of primary source; full original source evidence retained in the private acquisition archive."
+    },
+    {
+      "title": "Pair of Guardian Animals: Karashishi and Komainu — 1924.351",
+      "slug": "asia/guardian-animals-karashishi-komainu-cleveland-1924-351-261a07",
+      "collection": "asia",
+      "wing": "asia",
+      "artist": "Unknown Japanese sculptor",
+      "culture": "Japanese; Kamakura period",
+      "geography": "Japan",
+      "year": "1300s (current museum date)",
+      "year_sort": 1350,
+      "period": "Medieval",
+      "material": "Wood with traces of color",
+      "dimensions": "Overall 49.6 cm (museum measure; pair arrangement not calibrated)",
+      "accession": "1924.351",
+      "museum": "Cleveland Museum of Art",
+      "source_record_url": "https://www.clevelandart.org/art/1924.351",
+      "note": "An open-mouthed karashishi and a closed-mouthed komainu form a pair of Japanese shrine guardians. Their carved wooden manes and surviving red and pale pigment remain visible.",
+      "source": "sketchfab",
+      "archive": "",
+      "uid": "261a0722b9c942448e7a89bda96d1927",
+      "source_url": "https://sketchfab.com/3d-models/261a0722b9c942448e7a89bda96d1927",
+      "original_location": "Japan",
+      "current_location": "Cleveland Museum of Art",
+      "displayed_at": "",
+      "source_institution": "Cleveland Museum of Art",
+      "subject": "World art sculpture",
+      "related_source_record_urls": [],
+      "download_api_url": "https://api.sketchfab.com/v3/models/261a0722b9c942448e7a89bda96d1927/download",
+      "download_format": "glb",
+      "download_size_bytes": null,
+      "face_count": 169764,
+      "face_count_scope": "api-detail-only-unmeasured",
+      "object_identity": "Cleveland Museum of Art 1924.351",
+      "license": "CC0 1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_tier": 1,
+      "license_slug": "cc0",
+      "license_uid": "7c23a1ba438d4306920229c12afcb5f9",
+      "license_evidence_url": "https://api.sketchfab.com/v3/models/261a0722b9c942448e7a89bda96d1927",
+      "scan_author": "Cleveland Museum of Art (clevelandart)",
+      "attribution": "3D model “1924.351 Koma Inu” by Cleveland Museum of Art (clevelandart), via Sketchfab, licensed CC0 1.0. Museum credit: Dudley P. Allen Fund.",
+      "scan_source": "Institution-published 3D capture of the physical museum pair; capture method not specified by publisher",
+      "representation": "Physical guardian-animal pair, both figures together in the source model; counted as one paired composition",
+      "source_description": "An open-mouthed karashishi and a closed-mouthed komainu form a pair of Japanese shrine guardians. Their carved wooden manes and surviving red and pale pigment remain visible.",
+      "reference_image_url": "https://media.sketchfab.com/models/261a0722b9c942448e7a89bda96d1927/thumbnails/bd104b66664d4653b9872fe200685fa3/b1aa0da83f554cc3b75ad3a3d147ab69.jpeg",
+      "publisher": "clevelandart",
+      "published_at": "2023-05-09T20:29:58.445361",
+      "downloadable_verified": true,
+      "downloadable_verified_at": "2026-10-16T01:50:39.053114+00:00",
+      "require_measured_integrity": true,
+      "texture_count": 6,
+      "source_geometry": {
+        "format": "glb",
+        "bytes": null,
+        "faces": null,
+        "api_detail_faces": 169764,
+        "api_detail_vertices": 84878,
+        "api_detail_textures": 6
+      },
+      "archive_availability": null,
+      "preparation_hold": "Authenticated selected-download metadata/bytes and actual original SHA remain pending. Ordinary measured integrity, authored source appearance, exact pair/component scope, reverse and underside require acquisition review; no calibration or exact AR approval.",
+      "measures": [],
+      "evidence": [
+        "Current primary museum page uses this exact pair title and1300s date. Uploader description instead uses broad1185–1333; current museum date governs. Related standalone model1924.351.1/a16cf5 is excluded as the same pair component, never a second candidate.",
+        "Live canonical model API at 2026-10-16T01:50:39.053114+00:00 reports downloadable=true, CC0 1.0, 169764 API-detail faces and 6 textures. Selected GLB bytes and actual archive face count are unknown, not inferred.",
+        "Two compact seated guardians form a lively symmetrical pair. Rounded manes, curled tails, extended front paws and surviving reddish/cream wood color are clearly preserved; both whole visible figures appear in the source thumbnail.",
+        "Current catalog dedup covered exact sourceUID plus accession and normalized title/composition aliases across all2011records, including hidden/held records. No matching object/component found."
+      ],
+      "visual_qa": {
+        "status": "source-thumbnail-reviewed-only",
+        "observation": "Two compact seated guardians form a lively symmetrical pair. Rounded manes, curled tails, extended front paws and surviving reddish/cream wood color are clearly preserved; both whole visible figures appear in the source thumbnail.",
+        "image_sha256": "943e47d01bbcd2ce678c93034098857adc25b25fb2013026a493d79f07a7c279",
+        "image_bytes": 44615,
+        "full_native_appearance_compared": false,
+        "underside_reviewed": false
+      },
+      "deduplication": {
+        "catalog_count": 2011,
+        "catalog_public_count": 1993,
+        "source_uid_match": false,
+        "accession_or_identity_matches": [],
+        "tested_terms": [
+          "1924.351",
+          "karashishi",
+          "komainu"
+        ]
+      },
+      "logical_batch_id": "beautiful-2000-20261015",
+      "batch_sequence": 2,
+      "batch_chunk": 1,
+      "raw_api_evidence": {
+        "endpoint": "https://api.sketchfab.com/v3/models/261a0722b9c942448e7a89bda96d1927",
+        "observed_at": "2026-10-16T01:50:39.053114+00:00",
+        "uid": "261a0722b9c942448e7a89bda96d1927",
+        "name": "1924.351 Koma Inu",
+        "license": {
+          "uri": "https://api.sketchfab.com/v3/licenses/7c23a1ba438d4306920229c12afcb5f9",
+          "label": "CC0 Public Domain",
+          "fullName": "CC0 Public Domain",
+          "requirements": "Credit is not mandatory. Commercial use is allowed.",
+          "url": "http://creativecommons.org/publicdomain/zero/1.0/",
+          "slug": "cc0"
+        },
+        "isDownloadable": true,
+        "faceCount": 169764,
+        "vertexCount": 84878,
+        "textureCount": 6,
+        "user": {
+          "uid": "d3eff79068af42e58bf0a1e8395253f2",
+          "username": "clevelandart",
+          "displayName": "Cleveland Museum of Art"
+        },
+        "pbrType": null,
+        "materialCount": 2
+      },
+      "discovery_rank": 2,
+      "source_description_scope": "Curatorial paraphrase of primary source; full original source evidence retained in the private acquisition archive."
+    },
+    {
+      "title": "Pair of Standing Figures — Nayarit, 1990.266",
+      "slug": "americas/standing-figures-nayarit-cleveland-1990-266-88349e",
+      "collection": "americas",
+      "wing": "americas-oceania",
+      "artist": "Unknown Nayarit artist(s)",
+      "culture": "Nayarit; Ixtlan del Río style",
+      "geography": "Nayarit, Mexico",
+      "year": "c. 100 BCE–300 CE",
+      "year_sort": 100,
+      "period": "Ancient",
+      "material": "Earthenware with colored slips",
+      "dimensions": "Published overall figure: 52 × 32.5 × 19.5 cm; part 2: 48 × 30.8 × 16 cm",
+      "accession": "1990.266",
+      "museum": "Cleveland Museum of Art",
+      "source_record_url": "https://www.clevelandart.org/art/1990.266",
+      "note": "A male and female figure wear elaborate clothing, jewelry and patterned colored slips. The museum associates this Nayarit sculptural tradition with burials.",
+      "source": "sketchfab",
+      "archive": "",
+      "uid": "88349e36cbd24899aeb2271296e04c81",
+      "source_url": "https://sketchfab.com/3d-models/88349e36cbd24899aeb2271296e04c81",
+      "original_location": "Nayarit, Mexico",
+      "current_location": "Cleveland Museum of Art",
+      "displayed_at": "",
+      "source_institution": "Cleveland Museum of Art",
+      "subject": "Mesoamerican art",
+      "related_source_record_urls": [],
+      "download_api_url": "https://api.sketchfab.com/v3/models/88349e36cbd24899aeb2271296e04c81/download",
+      "download_format": "glb",
+      "download_size_bytes": null,
+      "face_count": 179978,
+      "face_count_scope": "api-detail-only-unmeasured",
+      "object_identity": "Cleveland Museum of Art 1990.266",
+      "license": "CC0 1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_tier": 1,
+      "license_slug": "cc0",
+      "license_uid": "7c23a1ba438d4306920229c12afcb5f9",
+      "license_evidence_url": "https://api.sketchfab.com/v3/models/88349e36cbd24899aeb2271296e04c81",
+      "scan_author": "Cleveland Museum of Art (clevelandart)",
+      "attribution": "3D model “1990.266 Pair of Standing Figures” by Cleveland Museum of Art (clevelandart), via Sketchfab, licensed CC0 1.0. Museum credit: Gift of Mr. and Mrs. James C. Gruener.",
+      "scan_source": "Institution-published 3D capture of the physical museum pair; capture method not specified by publisher",
+      "representation": "Two physical Nayarit figures presented together as the museum pair; counted as one paired composition",
+      "source_description": "A male and female figure wear elaborate clothing, jewelry and patterned colored slips. The museum associates this Nayarit sculptural tradition with burials.",
+      "reference_image_url": "https://media.sketchfab.com/models/88349e36cbd24899aeb2271296e04c81/thumbnails/a9fc6846385f41c3bd557a38ff87e696/9a97954a54074bc48407691e2e435024.jpeg",
+      "publisher": "clevelandart",
+      "published_at": "2023-08-28T13:57:47.569528",
+      "downloadable_verified": true,
+      "downloadable_verified_at": "2026-10-16T01:50:41.891108+00:00",
+      "require_measured_integrity": true,
+      "texture_count": 6,
+      "source_geometry": {
+        "format": "glb",
+        "bytes": null,
+        "faces": null,
+        "api_detail_faces": 179978,
+        "api_detail_vertices": 89987,
+        "api_detail_textures": 6
+      },
+      "archive_availability": null,
+      "preparation_hold": "Authenticated selected-download metadata/bytes and actual original SHA remain pending. Ordinary measured integrity, authored source appearance, exact pair/component scope, reverse and underside require acquisition review; no calibration or exact AR approval.",
+      "measures": [],
+      "evidence": [
+        "Primary exact accession1990.266 identifies a physical male-female pair. All catalog values were checked for1990.266 and the standalone source/model variants; no existing pair or component record found. Museum publishes distinct dimensions for the two figures, not one arranged-scene dimension.",
+        "Live canonical model API at 2026-10-16T01:50:41.891108+00:00 reports downloadable=true, CC0 1.0, 179978 API-detail faces and 6 textures. Selected GLB bytes and actual archive face count are unknown, not inferred.",
+        "Both entire visible figures have bold red, cream and brown painted patterns, lively faces, projecting limbs and distinct headdresses. The paired source thumbnail reads immediately as sculpture rather than a room or flat panel.",
+        "Current catalog dedup covered exact sourceUID plus accession and normalized title/composition aliases across all2011records, including hidden/held records. No matching object/component found."
+      ],
+      "visual_qa": {
+        "status": "source-thumbnail-reviewed-only",
+        "observation": "Both entire visible figures have bold red, cream and brown painted patterns, lively faces, projecting limbs and distinct headdresses. The paired source thumbnail reads immediately as sculpture rather than a room or flat panel.",
+        "image_sha256": "86aff115ef29c254ac8d4c3d88e7082cb3950c346f60029e670a5d9f89b581fe",
+        "image_bytes": 45009,
+        "full_native_appearance_compared": false,
+        "underside_reviewed": false
+      },
+      "deduplication": {
+        "catalog_count": 2011,
+        "catalog_public_count": 1993,
+        "source_uid_match": false,
+        "accession_or_identity_matches": [],
+        "tested_terms": [
+          "1990.266",
+          "ixtlan del rio"
+        ]
+      },
+      "logical_batch_id": "beautiful-2000-20261015",
+      "batch_sequence": 3,
+      "batch_chunk": 1,
+      "raw_api_evidence": {
+        "endpoint": "https://api.sketchfab.com/v3/models/88349e36cbd24899aeb2271296e04c81",
+        "observed_at": "2026-10-16T01:50:41.891108+00:00",
+        "uid": "88349e36cbd24899aeb2271296e04c81",
+        "name": "1990.266 Pair of Standing Figures",
+        "license": {
+          "uri": "https://api.sketchfab.com/v3/licenses/7c23a1ba438d4306920229c12afcb5f9",
+          "label": "CC0 Public Domain",
+          "fullName": "CC0 Public Domain",
+          "requirements": "Credit is not mandatory. Commercial use is allowed.",
+          "url": "http://creativecommons.org/publicdomain/zero/1.0/",
+          "slug": "cc0"
+        },
+        "isDownloadable": true,
+        "faceCount": 179978,
+        "vertexCount": 89987,
+        "textureCount": 6,
+        "user": {
+          "uid": "d3eff79068af42e58bf0a1e8395253f2",
+          "username": "clevelandart",
+          "displayName": "Cleveland Museum of Art"
+        },
+        "pbrType": null,
+        "materialCount": 2
+      },
+      "discovery_rank": 3,
+      "source_description_scope": "Curatorial paraphrase of primary source; full original source evidence retained in the private acquisition archive."
+    },
+    {
+      "title": "Seated Buddha — Hadda, Cleveland 1967.39",
+      "slug": "asia/seated-buddha-hadda-cleveland-1967-39-088985",
+      "collection": "asia",
+      "wing": "asia",
+      "artist": "Unknown Gandharan sculptor",
+      "culture": "Gandharan; late Kushan",
+      "geography": "Hadda, Afghanistan (probably Tape Shotor)",
+      "year": "c. 300 CE (current museum date)",
+      "year_sort": 300,
+      "period": "Ancient",
+      "material": "Stucco",
+      "dimensions": "36.9 × 26 × 10.1 cm",
+      "accession": "1967.39",
+      "museum": "Cleveland Museum of Art",
+      "source_record_url": "https://www.clevelandart.org/art/1967.39",
+      "note": "The Buddha sits in meditation with his hands folded in his lap. The museum locates this stucco sculpture at Hadda, probably Tape Shotor, where such figures adorned stupa monuments.",
+      "source": "sketchfab",
+      "archive": "",
+      "uid": "088985287b96442eb3f8492c5c3ba44e",
+      "source_url": "https://sketchfab.com/3d-models/088985287b96442eb3f8492c5c3ba44e",
+      "original_location": "Hadda, Afghanistan (probably Tape Shotor)",
+      "current_location": "Cleveland Museum of Art",
+      "displayed_at": "",
+      "source_institution": "Cleveland Museum of Art",
+      "subject": "World art sculpture",
+      "related_source_record_urls": [],
+      "download_api_url": "https://api.sketchfab.com/v3/models/088985287b96442eb3f8492c5c3ba44e/download",
+      "download_format": "glb",
+      "download_size_bytes": null,
+      "face_count": 200000,
+      "face_count_scope": "api-detail-only-unmeasured",
+      "object_identity": "Cleveland Museum of Art 1967.39",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "license_tier": 2,
+      "license_slug": "by",
+      "license_uid": "322a749bcfa841b29dff1e8a1bb74b0b",
+      "license_evidence_url": "https://api.sketchfab.com/v3/models/088985287b96442eb3f8492c5c3ba44e",
+      "scan_author": "Cleveland Museum of Art (clevelandart)",
+      "attribution": "3D model “1967.39 Seated Buddha” by Cleveland Museum of Art (clevelandart), via Sketchfab, licensed CC BY 4.0. Museum credit: Edward L. Whittemore Fund.",
+      "scan_source": "Institution-published 3D capture of a physical museum sculpture; capture method not specified by publisher",
+      "representation": "Surviving physical stucco Buddha, of a type originally attached to a stupa platform; no freestanding reverse completeness presumed",
+      "source_description": "The Buddha sits in meditation with his hands folded in his lap. The museum locates this stucco sculpture at Hadda, probably Tape Shotor, where such figures adorned stupa monuments.",
+      "reference_image_url": "https://media.sketchfab.com/models/088985287b96442eb3f8492c5c3ba44e/thumbnails/dcf434f977bc4ef1b769772f286e1997/6920a46ffcde43ce88490442fa98622d.jpeg",
+      "publisher": "clevelandart",
+      "published_at": "2025-06-12T20:36:08.570622",
+      "downloadable_verified": true,
+      "downloadable_verified_at": "2026-10-16T01:50:50.401074+00:00",
+      "require_measured_integrity": true,
+      "texture_count": 4,
+      "source_geometry": {
+        "format": "glb",
+        "bytes": null,
+        "faces": null,
+        "api_detail_faces": 200000,
+        "api_detail_vertices": 100002,
+        "api_detail_textures": 4
+      },
+      "archive_availability": null,
+      "preparation_hold": "Authenticated selected-download metadata/bytes and actual original SHA remain pending. Ordinary measured integrity, authored source appearance, exact pair/component scope, reverse and underside require acquisition review; no calibration or exact AR approval.",
+      "measures": [],
+      "evidence": [
+        "Current primary givesc.300CE andHadda,probablyTapeShotor. Source description givesc.300s; no unqualified exactdate is invented. Live MODEL license isCCBY4.0 even though generalmuseumopenaccess wording appears; preserve model attribution.",
+        "Live canonical model API at 2026-10-16T01:50:50.401074+00:00 reports downloadable=true, CC BY 4.0, 200000 API-detail faces and 4 textures. Selected GLB bytes and actual archive face count are unknown, not inferred.",
+        "The visible head, crossed legs, folded hands and fine robe folds form a clean cream-colored silhouette. This is a quiet, high-quality reserve rather than the most brightly colored choice.",
+        "Current catalog dedup covered exact sourceUID plus accession and normalized title/composition aliases across all2011records, including hidden/held records. No matching object/component found."
+      ],
+      "visual_qa": {
+        "status": "source-thumbnail-reviewed-only",
+        "observation": "The visible head, crossed legs, folded hands and fine robe folds form a clean cream-colored silhouette. This is a quiet, high-quality reserve rather than the most brightly colored choice.",
+        "image_sha256": "8e985ae24411a29d97ed475515c1d856e003fd54ce4de80be000ac33a8531125",
+        "image_bytes": 30084,
+        "full_native_appearance_compared": false,
+        "underside_reviewed": false
+      },
+      "deduplication": {
+        "catalog_count": 2011,
+        "catalog_public_count": 1993,
+        "source_uid_match": false,
+        "accession_or_identity_matches": [],
+        "tested_terms": [
+          "1967.39"
+        ]
+      },
+      "logical_batch_id": "beautiful-2000-20261015",
+      "batch_sequence": 4,
+      "batch_chunk": 1,
+      "raw_api_evidence": {
+        "endpoint": "https://api.sketchfab.com/v3/models/088985287b96442eb3f8492c5c3ba44e",
+        "observed_at": "2026-10-16T01:50:50.401074+00:00",
+        "uid": "088985287b96442eb3f8492c5c3ba44e",
+        "name": "1967.39 Seated Buddha",
+        "license": {
+          "uri": "https://api.sketchfab.com/v3/licenses/322a749bcfa841b29dff1e8a1bb74b0b",
+          "label": "CC Attribution",
+          "fullName": "Creative Commons Attribution",
+          "requirements": "Author must be credited. Commercial use is allowed.",
+          "url": "http://creativecommons.org/licenses/by/4.0/",
+          "slug": "by"
+        },
+        "isDownloadable": true,
+        "faceCount": 200000,
+        "vertexCount": 100002,
+        "textureCount": 4,
+        "user": {
+          "uid": "d3eff79068af42e58bf0a1e8395253f2",
+          "username": "clevelandart",
+          "displayName": "Cleveland Museum of Art"
+        },
+        "pbrType": "specular",
+        "materialCount": 1
+      },
+      "discovery_rank": 5,
+      "source_description_scope": "Curatorial paraphrase of primary source; full original source evidence retained in the private acquisition archive."
+    },
+    {
+      "source": "sketchfab",
+      "archive": "sketchfab",
+      "uid": "f5e1e8f8144149b4ac3379b31c1bfaa0",
+      "slug": "medieval/wloclawek-reliquary-mnk-iv-z-1954-1",
+      "collection": "medieval",
+      "wing": "europe",
+      "title": "Włocławek Reliquary",
+      "artist": "Possibly the workshop at Zwiefalten",
+      "culture": "European Romanesque",
+      "geography": "Europe",
+      "original_location": "Europe; possibly Swabia (tentative)",
+      "current_location": "National Museum in Kraków",
+      "displayed_at": "",
+      "museum": "National Museum in Kraków",
+      "subject": "Museum sculpture and decorative art",
+      "year": "Second quarter of the 12th century",
+      "year_sort": 1137,
+      "period": "Romanesque",
+      "material": "Oak, copper sheet, champlevé enamel, gilding and glass",
+      "dimensions": "H 11.7 cm; W 7.6 cm; L 24.7 cm",
+      "measures": [
+        {
+          "axis": "height",
+          "value": 11.7,
+          "value_text": "11,7",
+          "unit": "cm",
+          "scope": "Published object extent",
+          "qualifier": "published",
+          "sourceUrls": [
+            "https://muzea.malopolska.pl/en/objects-list/127"
+          ]
+        },
+        {
+          "axis": "width",
+          "value": 7.6,
+          "value_text": "7,6",
+          "unit": "cm",
+          "scope": "Published object extent",
+          "qualifier": "published",
+          "sourceUrls": [
+            "https://muzea.malopolska.pl/en/objects-list/127"
+          ]
+        },
+        {
+          "axis": "length",
+          "value": 24.7,
+          "value_text": "24,7",
+          "unit": "cm",
+          "scope": "Published object extent",
+          "qualifier": "published",
+          "sourceUrls": [
+            "https://muzea.malopolska.pl/en/objects-list/127"
+          ]
+        }
+      ],
+      "accession": "MNK IV-Z-1954/1",
+      "object_identity": "National Museum in Kraków | MNK IV-Z-1954/1",
+      "source_institution": "Regional Digitisation Lab, Małopolska Institute of Culture",
+      "source_url": "https://sketchfab.com/3d-models/f5e1e8f8144149b4ac3379b31c1bfaa0",
+      "source_record_url": "https://muzea.malopolska.pl/en/objects-list/127",
+      "related_source_record_urls": [
+        "https://api.muzea.malopolska.pl/api/object/127"
+      ],
+      "download_api_url": "https://api.sketchfab.com/v3/models/f5e1e8f8144149b4ac3379b31c1bfaa0/download",
+      "download_format": "glb",
+      "download_size_bytes": null,
+      "downloadable_verified": true,
+      "downloadable_verified_at": "2026-10-16T01:52:16.034Z",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "license_tier": 2,
+      "license_uid": "322a749bcfa841b29dff1e8a1bb74b0b",
+      "license_slug": "by",
+      "license_evidence_url": "https://api.sketchfab.com/v3/models/f5e1e8f8144149b4ac3379b31c1bfaa0",
+      "scan_author": "Virtual Museums of Małopolska (WirtualneMuzeaMalopolski)",
+      "publisher": "Virtual Museums of Małopolska",
+      "scan_source": "Regional Digitisation Lab, Małopolska Institute of Culture, Virtual Museums of Małopolska",
+      "attribution": "3D model “Włocławek reliquary” by Virtual Museums of Małopolska (WirtualneMuzeaMalopolski), Regional Digitisation Lab, Małopolska Institute of Culture, licensed CC BY 4.0.",
+      "note": "This low, four-footed oak reliquary is covered with engraved, gilded copper and blue, pale blue, white and green champlevé enamel. The lid depicts the Ascension, while apostles occupy arcades around the sides. Its association with a workshop at Zwiefalten in Swabia is tentative.",
+      "source_description": "This low, four-footed oak reliquary is covered with engraved, gilded copper and blue, pale blue, white and green champlevé enamel. The lid depicts the Ascension, while apostles occupy arcades around the sides. Its association with a workshop at Zwiefalten in Swabia is tentative.",
+      "published_at": "2022-05-19T11:20:52.764623",
+      "reference_image_url": "https://media.sketchfab.com/models/f5e1e8f8144149b4ac3379b31c1bfaa0/thumbnails/d21d1615002b4349a58fe6ca8a9af436/c128c67730e14fa0a6cc74e75280afa6.jpeg",
+      "representation": "Scan of the conserved physical museum object",
+      "object_type": "Museum sculpture/decorative art",
+      "face_count": 1501634,
+      "face_count_scope": "api-detail-only-unmeasured",
+      "texture_count": 1,
+      "source_geometry": {
+        "format": "glb",
+        "bytes": null,
+        "faces": null,
+        "api_detail_faces": 1501634
+      },
+      "evidence": [
+        {
+          "source_url": "https://muzea.malopolska.pl/en/objects-list/127",
+          "summary": "Exact accession, artist/date/materials, construction and labelled measurements verified against the primary museum object API.",
+          "retrieved": "2026-10-16T01:52:16.034Z"
+        },
+        {
+          "source_url": "https://api.sketchfab.com/v3/models/f5e1e8f8144149b4ac3379b31c1bfaa0",
+          "summary": "Live provider API: isDownloadable true; Creative Commons Attribution 4.0, commercial use allowed; exact institutional publisher and UID.",
+          "retrieved": "2026-10-16T01:52:16.034Z"
+        }
+      ],
+      "require_measured_integrity": true,
+      "logical_batch_id": "beautiful-2000-20261015",
+      "visual_qa": "Actual source thumbnail reviewed; geometry, native material, front/reverse/above/underside scope, final pose, thumbnail and safe-size review remain pending acquisition.",
+      "batch_sequence": 5,
+      "batch_chunk": 1,
+      "source_description_scope": "Curatorial paraphrase of primary source; full original source evidence retained in the private acquisition archive."
+    },
+    {
+      "source": "sketchfab",
+      "archive": "sketchfab",
+      "uid": "e9bb4d887940421fb115b4f425fba824",
+      "slug": "medieval/triptych-from-szczodrow-ocm-2024-rz-2",
+      "collection": "medieval",
+      "wing": "europe",
+      "title": "Triptych from Szczodrów",
+      "artist": "Silesian workshop",
+      "culture": "Silesian",
+      "geography": "Silesia, Central Europe",
+      "original_location": "Silesia",
+      "current_location": "Museum of Cistercian Spirituality and Culture, Mogiła Abbey",
+      "displayed_at": "",
+      "museum": "Museum of Cistercian Spirituality and Culture, Mogiła Abbey",
+      "subject": "Museum sculpture and decorative art",
+      "year": "1491",
+      "year_sort": 1491,
+      "period": "Late Gothic",
+      "material": "Carved linden wood, polychromy and tempera",
+      "dimensions": "Published W 242 cm; H 149 cm; central shrine W 120 cm, H 150 cm, D 23–26 cm; predella W 144–194 cm, H 54 cm, D 41 cm",
+      "measures": [
+        {
+          "axis": "width",
+          "value": 242,
+          "value_text": "242",
+          "unit": "cm",
+          "scope": "Published object extent",
+          "qualifier": "published",
+          "sourceUrls": [
+            "https://muzea.malopolska.pl/en/objects-list/4422"
+          ]
+        },
+        {
+          "axis": "height",
+          "value": 149,
+          "value_text": "149",
+          "unit": "cm",
+          "scope": "Published object extent",
+          "qualifier": "published",
+          "sourceUrls": [
+            "https://muzea.malopolska.pl/en/objects-list/4422"
+          ]
+        },
+        {
+          "axis": "width",
+          "value": 120,
+          "value_text": "120",
+          "unit": "cm",
+          "scope": "część centralna",
+          "qualifier": "published",
+          "sourceUrls": [
+            "https://muzea.malopolska.pl/en/objects-list/4422"
+          ]
+        },
+        {
+          "axis": "height",
+          "value": 150,
+          "value_text": "150",
+          "unit": "cm",
+          "scope": "część centralna",
+          "qualifier": "published",
+          "sourceUrls": [
+            "https://muzea.malopolska.pl/en/objects-list/4422"
+          ]
+        },
+        {
+          "axis": "depth",
+          "value": null,
+          "value_text": "23-26",
+          "unit": "cm",
+          "scope": "część centralna",
+          "qualifier": "published",
+          "sourceUrls": [
+            "https://muzea.malopolska.pl/en/objects-list/4422"
+          ]
+        },
+        {
+          "axis": "height",
+          "value": 150,
+          "value_text": "150",
+          "unit": "cm",
+          "scope": "skrzydła",
+          "qualifier": "published",
+          "sourceUrls": [
+            "https://muzea.malopolska.pl/en/objects-list/4422"
+          ]
+        },
+        {
+          "axis": "width",
+          "value": null,
+          "value_text": "144–194",
+          "unit": "cm",
+          "scope": "predella",
+          "qualifier": "published",
+          "sourceUrls": [
+            "https://muzea.malopolska.pl/en/objects-list/4422"
+          ]
+        },
+        {
+          "axis": "height",
+          "value": 54,
+          "value_text": "54",
+          "unit": "cm",
+          "scope": "predella",
+          "qualifier": "published",
+          "sourceUrls": [
+            "https://muzea.malopolska.pl/en/objects-list/4422"
+          ]
+        },
+        {
+          "axis": "depth",
+          "value": 41,
+          "value_text": "41",
+          "unit": "cm",
+          "scope": "predella",
+          "qualifier": "published",
+          "sourceUrls": [
+            "https://muzea.malopolska.pl/en/objects-list/4422"
+          ]
+        }
+      ],
+      "accession": "OCM-2024-Rz-2",
+      "object_identity": "Museum of Cistercian Spirituality and Culture, Mogiła Abbey | OCM-2024-Rz-2",
+      "source_institution": "Regional Digitisation Lab, Małopolska Institute of Culture",
+      "source_url": "https://sketchfab.com/3d-models/e9bb4d887940421fb115b4f425fba824",
+      "source_record_url": "https://muzea.malopolska.pl/en/objects-list/4422",
+      "related_source_record_urls": [
+        "https://api.muzea.malopolska.pl/api/object/4422"
+      ],
+      "download_api_url": "https://api.sketchfab.com/v3/models/e9bb4d887940421fb115b4f425fba824/download",
+      "download_format": "glb",
+      "download_size_bytes": null,
+      "downloadable_verified": true,
+      "downloadable_verified_at": "2026-10-16T01:52:17.686Z",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "license_tier": 2,
+      "license_uid": "322a749bcfa841b29dff1e8a1bb74b0b",
+      "license_slug": "by",
+      "license_evidence_url": "https://api.sketchfab.com/v3/models/e9bb4d887940421fb115b4f425fba824",
+      "scan_author": "Virtual Museums of Małopolska (WirtualneMuzeaMalopolski)",
+      "publisher": "Virtual Museums of Małopolska",
+      "scan_source": "Regional Digitisation Lab, Małopolska Institute of Culture, Virtual Museums of Małopolska; 3D model and textures: Marcin Solarz",
+      "attribution": "3D model “Triptych from Szczodrów” by Virtual Museums of Małopolska (WirtualneMuzeaMalopolski), Regional Digitisation Lab, Małopolska Institute of Culture; model/textures by Marcin Solarz, licensed CC BY 4.0.",
+      "note": "The surviving late Gothic triptych combines a painted sculptural central shrine, painted wings and a predella. The museum dates it to 1491 and assigns it to a Silesian workshop. Published dimensions distinguish the central shrine, wings and predella; no single calibrated assembled height is inferred.",
+      "source_description": "The surviving late Gothic triptych combines a painted sculptural central shrine, painted wings and a predella. The museum dates it to 1491 and assigns it to a Silesian workshop. Published dimensions distinguish the central shrine, wings and predella; no single calibrated assembled height is inferred.",
+      "published_at": "2024-11-26T08:17:15.914028",
+      "reference_image_url": "https://media.sketchfab.com/models/e9bb4d887940421fb115b4f425fba824/thumbnails/d56c025962544c60b1d1c5e24df52868/0df031e492584a0799c676706953c8b0.jpeg",
+      "representation": "Scan of the conserved physical museum object",
+      "object_type": "Museum sculpture/decorative art",
+      "face_count": 827968,
+      "face_count_scope": "api-detail-only-unmeasured",
+      "texture_count": 5,
+      "source_geometry": {
+        "format": "glb",
+        "bytes": null,
+        "faces": null,
+        "api_detail_faces": 827968
+      },
+      "evidence": [
+        {
+          "source_url": "https://muzea.malopolska.pl/en/objects-list/4422",
+          "summary": "Exact accession, artist/date/materials, construction and labelled measurements verified against the primary museum object API.",
+          "retrieved": "2026-10-16T01:52:17.686Z"
+        },
+        {
+          "source_url": "https://api.sketchfab.com/v3/models/e9bb4d887940421fb115b4f425fba824",
+          "summary": "Live provider API: isDownloadable true; Creative Commons Attribution 4.0, commercial use allowed; exact institutional publisher and UID.",
+          "retrieved": "2026-10-16T01:52:17.686Z"
+        }
+      ],
+      "require_measured_integrity": true,
+      "logical_batch_id": "beautiful-2000-20261015",
+      "visual_qa": "Actual source thumbnail reviewed; geometry, native material, front/reverse/above/underside scope, final pose, thumbnail and safe-size review remain pending acquisition.",
+      "batch_sequence": 6,
+      "batch_chunk": 1,
+      "source_description_scope": "Curatorial paraphrase of primary source; full original source evidence retained in the private acquisition archive."
+    },
+    {
+      "source": "sketchfab",
+      "archive": "sketchfab",
+      "uid": "597d14d7e6ec46a8a0becdf57dd6dbec",
+      "slug": "medieval/madonna-of-kruzlowa-mnk-i-119",
+      "collection": "medieval",
+      "wing": "europe",
+      "title": "Madonna of Krużlowa",
+      "artist": "Unknown Gothic sculptor",
+      "culture": "European Gothic",
+      "geography": "Europe",
+      "original_location": "Europe; exact place of production unknown",
+      "current_location": "National Museum in Kraków",
+      "displayed_at": "Bishop Erazm Ciołek Palace, National Museum in Kraków",
+      "museum": "National Museum in Kraków",
+      "subject": "Museum sculpture and decorative art",
+      "year": "c. 1410",
+      "year_sort": 1410,
+      "period": "International Gothic",
+      "material": "Carved, polychromed and gilded wood",
+      "dimensions": "H 118 cm; W 45.5 cm",
+      "measures": [
+        {
+          "axis": "height",
+          "value": 118,
+          "value_text": "118",
+          "unit": "cm",
+          "scope": "Published object extent",
+          "qualifier": "published",
+          "sourceUrls": [
+            "https://muzea.malopolska.pl/en/objects-list/231"
+          ]
+        },
+        {
+          "axis": "width",
+          "value": 45.5,
+          "value_text": "45,5",
+          "unit": "cm",
+          "scope": "Published object extent",
+          "qualifier": "published",
+          "sourceUrls": [
+            "https://muzea.malopolska.pl/en/objects-list/231"
+          ]
+        }
+      ],
+      "accession": "MNK I-119",
+      "object_identity": "National Museum in Kraków | MNK I-119",
+      "source_institution": "Regional Digitisation Lab, Małopolska Institute of Culture",
+      "source_url": "https://sketchfab.com/3d-models/597d14d7e6ec46a8a0becdf57dd6dbec",
+      "source_record_url": "https://muzea.malopolska.pl/en/objects-list/231",
+      "related_source_record_urls": [
+        "https://api.muzea.malopolska.pl/api/object/231"
+      ],
+      "download_api_url": "https://api.sketchfab.com/v3/models/597d14d7e6ec46a8a0becdf57dd6dbec/download",
+      "download_format": "glb",
+      "download_size_bytes": null,
+      "downloadable_verified": true,
+      "downloadable_verified_at": "2026-10-16T01:52:14.314Z",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "license_tier": 2,
+      "license_uid": "322a749bcfa841b29dff1e8a1bb74b0b",
+      "license_slug": "by",
+      "license_evidence_url": "https://api.sketchfab.com/v3/models/597d14d7e6ec46a8a0becdf57dd6dbec",
+      "scan_author": "Virtual Museums of Małopolska (WirtualneMuzeaMalopolski)",
+      "publisher": "Virtual Museums of Małopolska",
+      "scan_source": "Regional Digitisation Lab, Małopolska Institute of Culture, Virtual Museums of Małopolska",
+      "attribution": "3D model “Madonna of Krużlowa” by Virtual Museums of Małopolska (WirtualneMuzeaMalopolski), Regional Digitisation Lab, Małopolska Institute of Culture, licensed CC BY 4.0.",
+      "note": "A Gothic Madonna holds the Child away from her body above long, cascading folds. The carved wood is polychromed and gilded, and the reverse was intentionally hollowed out. The scan represents the conserved physical sculpture, not a completed solid-backed ideal. Its exact workshop and place of production remain unknown.",
+      "source_description": "A Gothic Madonna holds the Child away from her body above long, cascading folds. The carved wood is polychromed and gilded, and the reverse was intentionally hollowed out. The scan represents the conserved physical sculpture, not a completed solid-backed ideal. Its exact workshop and place of production remain unknown.",
+      "published_at": "2023-01-13T07:39:11.812211",
+      "reference_image_url": "https://media.sketchfab.com/models/597d14d7e6ec46a8a0becdf57dd6dbec/thumbnails/0a22f83f1b074e8b8d3937f25650d3bd/ee91edff300b42e6b99d6e8c16e3c951.jpeg",
+      "representation": "Scan of the conserved physical museum object",
+      "object_type": "Museum sculpture/decorative art",
+      "face_count": 564938,
+      "face_count_scope": "api-detail-only-unmeasured",
+      "texture_count": 4,
+      "source_geometry": {
+        "format": "glb",
+        "bytes": null,
+        "faces": null,
+        "api_detail_faces": 564938
+      },
+      "evidence": [
+        {
+          "source_url": "https://muzea.malopolska.pl/en/objects-list/231",
+          "summary": "Exact accession, artist/date/materials, construction and labelled measurements verified against the primary museum object API.",
+          "retrieved": "2026-10-16T01:52:14.314Z"
+        },
+        {
+          "source_url": "https://api.sketchfab.com/v3/models/597d14d7e6ec46a8a0becdf57dd6dbec",
+          "summary": "Live provider API: isDownloadable true; Creative Commons Attribution 4.0, commercial use allowed; exact institutional publisher and UID.",
+          "retrieved": "2026-10-16T01:52:14.314Z"
+        }
+      ],
+      "require_measured_integrity": true,
+      "logical_batch_id": "beautiful-2000-20261015",
+      "visual_qa": "Actual source thumbnail reviewed; geometry, native material, front/reverse/above/underside scope, final pose, thumbnail and safe-size review remain pending acquisition.",
+      "batch_sequence": 7,
+      "batch_chunk": 1,
+      "source_description_scope": "Curatorial paraphrase of primary source; full original source evidence retained in the private acquisition archive."
+    }
+  ]
+}
