@@ -1,0 +1,59 @@
+{
+  "schema": "atrium-public-storage-completion/1",
+  "batch": "etruscan-greek-20261015",
+  "checked": "2026-10-16T00:36:10.106Z",
+  "releaseCommit": "0fc13b5b2bd087d99cd794fbe7ca06502c1fb286",
+  "pagesRun": "38828432707",
+  "status": "complete",
+  "permanentPrivateArchive": {
+    "incomingOriginals": 65,
+    "originalBytes": 1114643476,
+    "fullSHA256AndBytesReadbackVerified": true,
+    "privateSharingVerified": true,
+    "portableRestoreMaps": 4,
+    "provenanceSnapshots": 4,
+    "authenticatedBackupReceipts": 85
+  },
+  "publication": {
+    "works": 60,
+    "etruscan": 18,
+    "greek": 42,
+    "livePagesVerified": 60,
+    "liveModelFullSHA256BytesAndCORSVerified": 60,
+    "liveThumbnailFullSHA256AndBytesVerified": 60,
+    "newestContainsEntireBatch": true,
+    "newestWorks": 60,
+    "newestOlderWorks": 0,
+    "exhibitionPlacementsVerified": 5,
+    "heldRoutesRemain404": 5,
+    "postOffloadLiveSmokePassed": true
+  },
+  "localOffload": {
+    "verifiedOriginalsRemoved": 60,
+    "originalBytesRemoved": 929345732,
+    "heldOriginalsRetained": 5,
+    "heldOriginalBytesRetained": 185297744,
+    "verifiedTemporaryUploadPartsRemoved": 6,
+    "temporaryUploadPartBytesRemoved": 397187264,
+    "totalBytesReclaimed": 1326532996,
+    "trackedPagesLocalModelsPreserved": 531,
+    "trackedPagesLocalFullHashesAndStatsRechecked": true,
+    "existingWorktreesPreserved": 7,
+    "preExistingMissingWorktreeRegistrationUntouched": true,
+    "sourceDirectoriesRemoved": 0,
+    "unrelatedFilesRemoved": 0,
+    "quarantinePayloadsRemaining": 0
+  },
+  "permanentRecoveryCheckpoint": {
+    "sha256": "d8286d54a481d037b49fa61e63a544f72be0d9595371377c7eda07e19969b9ec",
+    "bytes": 22421282,
+    "embeddedFilesReconstructByteForByte": 30,
+    "fullCloudReadbackAndPrivateSharingVerified": true,
+    "authenticatedReceiptIndependentlyVerified": true,
+    "containsPostOffloadLiveSmoke": true,
+    "containsSigningKeys": false,
+    "containsEphemeralDownloadURLs": false,
+    "duplicatesModelPayloads": false
+  },
+  "limits": "This verifies the new batch and its exact local cleanup. Older collection archive coverage remains a separate backlog. Physical XR hardware and calibrated exact-size AR are outside this release verification. Private recovery identities, receipts, inventories and keys are not published."
+}

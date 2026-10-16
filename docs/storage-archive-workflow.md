@@ -180,9 +180,13 @@ not split verification of a source package or omit the recovery manifest receipt
 
 ## Site dependencies and delivery proof
 
-The October 15 catalog contains 1,951 records: 1,420 R2 previews and 531 tracked
-Pages-local previews. Of the 1,933 public records, 1,405 use R2 and 528 use Pages;
-the remaining records are hidden. All 531 local files remain protected.
+Before the Etruscan and Greek batch, release `1b67e932` contained 1,951 records:
+1,420 R2 previews and 531 tracked Pages-local previews. Of its 1,933 public
+records, 1,405 used R2 and 528 used Pages; the remaining records were hidden.
+Verified release `0fc13b5b` adds 60 R2 works: 2,011 total records, 1,993 public,
+1,480 R2 previews and the same 531 tracked Pages-local previews. All 531 local
+files remain protected. These are release snapshots, not a substitute for fresh
+dependency discovery and local inventory on each computer.
 
 Ordinary deployment runs `npm ci` and `npm run build`; it does not restore source
 originals from Drive. The build copies `public/`, then removes directories whose
