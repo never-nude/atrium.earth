@@ -14,7 +14,7 @@ import { Transform, Readable } from 'node:stream';
 import { parseModelTransform } from '../public/model-render-utils.js';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const BATCH = 'etruscan-greek-20261015';
+const REVIEW_BATCHES = new Set(['etruscan-greek-20261015', 'beautiful-2000-20261015']);
 const sha256 = (body) => createHash('sha256').update(body).digest('hex');
 function canonical(value) {
   if (Array.isArray(value)) return value.map(canonical);
@@ -41,12 +41,13 @@ export function cameraViews(rawTransform) {
 }
 
 export function bindRequest(request, { catalog, previews, orientations }) {
-  if (request?.schema !== 'atrium-vessel-scope-review/1' || request.batch !== BATCH) throw new Error('Wrong review schema or batch');
+  if (request?.schema !== 'atrium-vessel-scope-review/1' || !REVIEW_BATCHES.has(request.batch)) throw new Error('Wrong review schema or batch');
   if (!Array.isArray(request.works) || !request.works.length || request.works.length > 80) throw new Error('Expected 1–80 bound works');
   const artifacts = request.sourceArtifacts || [];
   if (!Array.isArray(artifacts) || artifacts.length > 2) throw new Error('Expected at most two exact source artifacts');
   for (const a of artifacts) {
-    if (a.repository !== 'never-nude/atrium.earth' || !Number.isSafeInteger(a.runId) || a.runId <= 0 || !Number.isSafeInteger(a.artifactId) || a.artifactId <= 0 || !/^[a-f0-9]{40}$/.test(a.workflowHeadSha || '') || !/^atrium-temporary-sources-etruscan-greek-20261015-[0-9]+-[0-9]+$/.test(a.name || '') || !a.name.includes(`-${a.runId}-`)) throw new Error('Invalid exact repository/run/artifact binding');
+    const expectedName = new RegExp(`^atrium-temporary-sources-${request.batch}-${a.runId}-[0-9]+$`);
+    if (a.repository !== 'never-nude/atrium.earth' || !Number.isSafeInteger(a.runId) || a.runId <= 0 || !Number.isSafeInteger(a.artifactId) || a.artifactId <= 0 || !/^[a-f0-9]{40}$/.test(a.workflowHeadSha || '') || !expectedName.test(a.name || '')) throw new Error('Invalid exact repository/run/artifact binding');
   }
   const records = new Map(catalog.map((c) => [c.slug, c]));
   const seen = new Set();
@@ -56,7 +57,7 @@ export function bindRequest(request, { catalog, previews, orientations }) {
     const record = records.get(item.slug);
     const preview = previews[item.slug];
     if (!record || !preview) throw new Error(`${item.slug}: missing acquired catalog/preview record`);
-    if (record.ingest_batch !== BATCH) throw new Error(`${item.slug}: work is outside the requested acquisition batch`);
+    if (record.ingest_batch !== request.batch) throw new Error(`${item.slug}: work is outside the requested acquisition batch`);
     if (!/^[a-f0-9]{32}$/.test(item.sourceUid || '') || !String(record.source_url || '').includes(item.sourceUid)) throw new Error(`${item.slug}: exact source UID does not match catalog`);
     if (item.previewUrl !== preview.url || item.previewBytes !== preview.bytes || !Number.isSafeInteger(item.previewBytes) || item.previewBytes <= 0) throw new Error(`${item.slug}: preview binding differs from acquired manifest`);
     const expected = new URL(`https://models.atrium.earth/models/previews/${item.slug}/`);
@@ -256,7 +257,7 @@ async function renderBound(works, options, bindings) {
   const { chromium } = await import('playwright'); const { default: sharp } = await import('sharp');
   mkdirSync(options.out, { recursive: true }); mkdirSync(options.work, { recursive: true });
   const assets = new Map();
-  const writeReport = (results) => writeFileSync(join(options.out, 'review-report.json'), JSON.stringify({ schema: 'atrium-vessel-scope-render-report/1', batch: BATCH, status: works.length ? (results.length === works.length ? (results.some((r) => r.status === 'render-failed-held') ? 'render-failed-held' : 'renders-complete-pending-human-review') : 'pending-render') : 'empty-shard-pending', expectedCount: works.length, bindings: bindings.hashes, checked: new Date().toISOString(), convention: 'FRONT/REVERSE use the production camera azimuth in the production-transformed frame; ABOVE/UNDERSIDE are exact ±Y with nonsingular camera-up vectors. Wrong provisional pose means anatomical top/bottom is still unresolved. Images do not constitute a human scope decision.', works: results }, null, 2));
+  const writeReport = (results) => writeFileSync(join(options.out, 'review-report.json'), JSON.stringify({ schema: 'atrium-vessel-scope-render-report/1', batch: bindings.batch, status: works.length ? (results.length === works.length ? (results.some((r) => r.status === 'render-failed-held') ? 'render-failed-held' : 'renders-complete-pending-human-review') : 'pending-render') : 'empty-shard-pending', expectedCount: works.length, bindings: bindings.hashes, checked: new Date().toISOString(), convention: 'FRONT/REVERSE use the production camera azimuth in the production-transformed frame; ABOVE/UNDERSIDE are exact ±Y with nonsingular camera-up vectors. Wrong provisional pose means anatomical top/bottom is still unresolved. Images do not constitute a human scope decision.', works: results }, null, 2));
   writeReport([]);
   if (!works.length) return;
   const modelScratch = mkdtempSync(join(options.work, 'scope-models-'));
@@ -380,12 +381,13 @@ async function main() {
   const catalog = json(join(ROOT, 'src/data/catalog.json')), previews = json(join(ROOT, 'src/data/previews.json')), orientations = json(join(ROOT, 'src/data/orientations.json'));
   const shard = Number(values.shard), shards = Number(values.shards);
   if (!Number.isInteger(shards) || shards < 1 || shards > 8 || !Number.isInteger(shard) || shard < 0 || shard >= shards) throw new Error('Invalid shard');
-  const bound = bindRequest(json(requestPath), { catalog, previews, orientations });
+  const request = json(requestPath);
+  const bound = bindRequest(request, { catalog, previews, orientations });
   const works = bound.filter((_item, i) => i % shards === shard);
-  if (values['validate-only']) { console.log(JSON.stringify({ batch: BATCH, boundWorks: bound.length, shardWorks: works.length, views: ['FRONT', 'REVERSE', 'ABOVE', 'UNDERSIDE'], providerSources: works.filter((w) => w.source).length })); return; }
+  if (values['validate-only']) { console.log(JSON.stringify({ batch: request.batch, boundWorks: bound.length, shardWorks: works.length, views: ['FRONT', 'REVERSE', 'ABOVE', 'UNDERSIDE'], providerSources: works.filter((w) => w.source).length })); return; }
   if (!process.env.CI && process.env.ALLOW_LOCAL_SCOPE_RENDER !== '1') throw new Error('Model fetch/render is cloud-only by default; --validate-only is available locally');
   const html = readFileSync(join(ROOT, 'public/__render.html'), 'utf8'), script = readFileSync(join(ROOT, 'scripts/render-thumbnails.mjs'), 'utf8');
-  const bindings = { sourceArtifacts: json(requestPath).sourceArtifacts || [], html: reviewHtml(html), appearance: productionAppearanceFactory(script, json(join(ROOT, 'src/data/material-appearances.json')), json(join(ROOT, 'src/data/appearance-overrides.json')), new Map(catalog.map((r) => [r.slug, r]))), hashes: { productionHtmlSha256: sha256(html), productionThumbnailScriptSha256: sha256(script), productionTransformUtilsSha256: sha256(readFileSync(join(ROOT, 'public/model-render-utils.js'))), requestSha256: sha256(readFileSync(requestPath)) } };
+  const bindings = { batch: request.batch, sourceArtifacts: request.sourceArtifacts || [], html: reviewHtml(html), appearance: productionAppearanceFactory(script, json(join(ROOT, 'src/data/material-appearances.json')), json(join(ROOT, 'src/data/appearance-overrides.json')), new Map(catalog.map((r) => [r.slug, r]))), hashes: { productionHtmlSha256: sha256(html), productionThumbnailScriptSha256: sha256(script), productionTransformUtilsSha256: sha256(readFileSync(join(ROOT, 'public/model-render-utils.js'))), requestSha256: sha256(readFileSync(requestPath)) } };
   await renderBound(works, { out: resolve(values.out || '.atrium-ingest/vessel-scope-review'), work: resolve(values.work || '.atrium-ingest/vessel-scope-models'), sourceRoot: values['source-root'] ? resolve(values['source-root']) : undefined }, bindings);
 }
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) main().catch((error) => { console.error(error.message); process.exitCode = 1; });

@@ -1,4 +1,4 @@
-name: Etruscan and Greek vessel scope review (images only)
+name: Source and preview scope review (images only)
 
 # Dedicated exact marker. This does not activate legacy Africa orientation or
 # rerender triggers, mutate the catalog, publish a branch, or upload to R2/Drive.
@@ -53,6 +53,7 @@ jobs:
             /package.json
             /package-lock.json
             /docs/ingest/etruscan-greek-20261015-*
+            /docs/ingest/beautiful-2000-20261015-*
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -71,14 +72,16 @@ jobs:
           }
           if (fs.existsSync('public/models')) throw new Error('Unexpected serving model payloads in review sparse checkout');
           const requested = process.env.REQUEST_FILE;
-          if (!/^docs\/ingest\/etruscan-greek-20261015-[a-z0-9-]+\.json$/.test(requested)) throw new Error('Request must be an exact batch JSON under docs/ingest');
+          if (!/^docs\/ingest\/(?:etruscan-greek-20261015|beautiful-2000-20261015)-[a-z0-9-]+\.json$/.test(requested)) throw new Error('Request must be an exact supported batch JSON under docs/ingest');
           const root = fs.realpathSync('docs/ingest'), file = fs.realpathSync(requested);
           if (path.dirname(file) !== root || !fs.statSync(file).isFile()) throw new Error('Request escaped ingest root');
           const request = JSON.parse(fs.readFileSync(file, 'utf8'));
+          if (!['etruscan-greek-20261015', 'beautiful-2000-20261015'].includes(request.batch) || !requested.startsWith(`docs/ingest/${request.batch}-`)) throw new Error('Request path and supported batch differ');
           const artifacts = request.sourceArtifacts || [];
           if (!Array.isArray(artifacts) || artifacts.length > 2) throw new Error('At most two exact source-only Actions artifacts may be supplied');
           for (const [i, artifact] of artifacts.entries()) {
-            if (artifact.repository !== 'never-nude/atrium.earth' || !Number.isSafeInteger(artifact.runId) || artifact.runId <= 0 || !Number.isSafeInteger(artifact.artifactId) || artifact.artifactId <= 0 || !/^[a-f0-9]{40}$/.test(artifact.workflowHeadSha || '') || !/^atrium-temporary-sources-etruscan-greek-20261015-[0-9]+-[0-9]+$/.test(artifact.name) || !artifact.name.includes(`-${artifact.runId}-`)) throw new Error('Invalid exact repository/run/artifact binding');
+            const expectedName = new RegExp(`^atrium-temporary-sources-${request.batch}-${artifact.runId}-[0-9]+$`);
+            if (artifact.repository !== 'never-nude/atrium.earth' || !Number.isSafeInteger(artifact.runId) || artifact.runId <= 0 || !Number.isSafeInteger(artifact.artifactId) || artifact.artifactId <= 0 || !/^[a-f0-9]{40}$/.test(artifact.workflowHeadSha || '') || !expectedName.test(artifact.name)) throw new Error('Invalid exact repository/run/artifact binding');
             const response = await fetch(`https://api.github.com/repos/never-nude/atrium.earth/actions/artifacts/${artifact.artifactId}`, { headers: { Authorization: `Bearer ${process.env.GH_TOKEN}`, Accept: 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28' }, signal: AbortSignal.timeout(30000) });
             if (!response.ok) throw new Error(`Source artifact metadata HTTP${response.status}`);
             const actual = await response.json();
@@ -89,6 +92,7 @@ jobs:
             if (work.source && !artifacts.some((_a, i) => work.source.path.startsWith(`${i === 0 ? 'one' : 'two'}/`))) throw new Error('Original path must bind to a supplied source artifact prefix one/ or two/');
           }
           fs.appendFileSync(process.env.GITHUB_OUTPUT, `request_file=${requested}\n`);
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, `batch=${request.batch}\n`);
           NODE
           node scripts/render-vessel-scope-review.mjs --request="$REQUEST_FILE" --validate-only
       - name: Install rendering dependencies
@@ -129,7 +133,7 @@ jobs:
         if: ${{ !cancelled() }}
         uses: actions/upload-artifact@v4
         with:
-          name: etruscan-greek-scope-review-${{ github.run_id }}-${{ github.run_attempt }}-${{ matrix.shard }}
+          name: scope-review-${{ steps.request.outputs.batch }}-${{ github.run_id }}-${{ github.run_attempt }}-${{ matrix.shard }}
           path: ${{ runner.temp }}/scope-review/
           retention-days: 30
           if-no-files-found: warn

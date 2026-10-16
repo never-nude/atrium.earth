@@ -50,6 +50,13 @@ assert.notEqual(transformFingerprint({ yaw: 30, upAxis: 'y' }), transformFingerp
 const sourceArtifact = { repository: 'never-nude/atrium.earth', runId: 12345, artifactId: 67890, workflowHeadSha: 'e'.repeat(40), name: 'atrium-temporary-sources-etruscan-greek-20261015-12345-1' };
 const withSource = { ...request, sourceArtifacts: [sourceArtifact], works: [{ ...request.works[0], source: { path: 'one/UID/source.glb', sha256: 'd'.repeat(64), bytes: 1000 } }] };
 assert.equal(bindRequest(withSource, config)[0].source.bytes, 1000);
+const milestoneBatch = 'beautiful-2000-20261015';
+const milestoneRequest = { ...withSource, batch: milestoneBatch, sourceArtifacts: [{ ...sourceArtifact, name: `atrium-temporary-sources-${milestoneBatch}-12345-1` }] };
+const milestoneConfig = { ...config, catalog: [{ ...config.catalog[0], ingest_batch: milestoneBatch }] };
+assert.equal(bindRequest(milestoneRequest, milestoneConfig)[0].source.bytes, 1000);
+assert.throws(() => bindRequest(milestoneRequest, config), /outside/);
+assert.throws(() => bindRequest({ ...milestoneRequest, sourceArtifacts: [sourceArtifact] }, milestoneConfig), /binding/);
+assert.throws(() => bindRequest({ ...request, batch: 'unreviewed-batch' }, config), /schema or batch/);
 for (const patch of [{ repository: 'another/repo' }, { runId: 12346 }, { artifactId: null }, { workflowHeadSha: '' }]) {
   assert.throws(() => bindRequest({ ...withSource, sourceArtifacts: [{ ...sourceArtifact, ...patch }] }, config));
 }
