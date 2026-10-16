@@ -1,0 +1,252 @@
+{
+  "schema": "atrium-independent-static-release-review/1",
+  "batch": "etruscan-greek-20261015",
+  "checked": "2026-10-16T00:12:11.732Z",
+  "baseline": "1b67e932",
+  "status": "pass",
+  "scope": "Independent local static/code/data review only. No Greek source-image re-review, browser interaction, cloud archive-content verification or live-deployment approval is claimed here. Separate bound native/scope/thumbnail ledgers, archive verification and release QA remain required.",
+  "checks": [
+    {
+      "name": "baseline_catalog_preservation",
+      "status": "pass",
+      "oldRecords": 1951,
+      "unchangedFieldsExcept": [
+        "index",
+        "total"
+      ],
+      "oldOrderUnchanged": true,
+      "currentRecords": 2011,
+      "currentPublic": 1993
+    },
+    {
+      "name": "baseline_settings_and_serving_bindings",
+      "status": "pass",
+      "mapsCompared": [
+        "previews",
+        "orientations",
+        "physical-dimensions",
+        "spatial-eligibility",
+        "appearance-overrides",
+        "display-recommendations",
+        "spatial-display-defaults",
+        "identity-corrections",
+        "additions"
+      ],
+      "materialProfilesUnchanged": true,
+      "baselineTrackedPublicAssetChanges": [],
+      "oldRenderMembership": 1951
+    },
+    {
+      "name": "featured_250_and_editorial_code",
+      "status": "pass",
+      "featuredCount": 250,
+      "featuredSha256": "aa74f35ef39e6075f0ca52d1bd8f870c2c0d11ae6aceb7fdbb28ce216918aac5",
+      "featuredByteIdentical": true,
+      "heroPairingSelectionLogicUnchanged": true
+    },
+    {
+      "name": "exact_60_selection_and_five_holds",
+      "status": "pass",
+      "selected": 60,
+      "etruscan": 18,
+      "greek": 42,
+      "sourceLeads": 65,
+      "excluded": [
+        {
+          "slug": "roman/treppenstein-baubo-dolphin-mkg-2001-36",
+          "reason": "Actual native/preview scope shows an open thin shell, mirrored relief reverse and substantial spiky scan gaps; no full surviving stone-fragment approval."
+        },
+        {
+          "slug": "roman/etruscan-schnabelkanne-badisches-c7011",
+          "reason": "Ordinary source integrity gate failed:19999faces,162components; no exemption."
+        },
+        {
+          "slug": "greek/kantharos-dedicated-to-herakles-mkg-1983-361-4b499c",
+          "reason": "Ordinary source integrity gate failed:380481faces,53components; no exemption."
+        },
+        {
+          "slug": "greek/apulian-red-figure-krater-p-3138-261e03",
+          "reason": "Ordinary source integrity gate failed:4137921faces,86components; no exemption."
+        },
+        {
+          "slug": "greek/black-figure-kyathos-with-hermes-and-apollo-p-88-d62670",
+          "reason": "Actual native/preview lacks the upper painted body and curved handle shown in the museum-supplied photograph; no documentation supports a different physical fragment state."
+        }
+      ],
+      "manifestSha256": "5603fa50242196d53d65868e8a81e02f26c3ee803f1a8b2320d44f7c8f02da72"
+    },
+    {
+      "name": "identity_license_provenance_and_public_notes",
+      "status": "pass",
+      "uniqueSourceUids": 60,
+      "identityKeysChecked": 175,
+      "licenseCounts": {
+        "CC0 1.0": 13,
+        "CC BY 4.0": 47
+      },
+      "unfiledOriginCount": 4,
+      "periodAndPrimaryRecordPresent": 60
+    },
+    {
+      "name": "newest_exact_current_batch",
+      "status": "pass",
+      "actualFunction": "buildNewestWorks",
+      "count": 60,
+      "membershipMatchesSelected60": true,
+      "first": "greek/white-ground-lekythos-hcm-230-b36dcf",
+      "last": "roman/antefix-maiden-cleveland-2024-56",
+      "orderedSlugListSha256": "7b86845653b5e09d6391d9a0b216e09962e5e7f01eed03174c4876b54cce4ff9"
+    },
+    {
+      "name": "five_exhibit_body_additions_only",
+      "status": "pass",
+      "count": 5,
+      "oldBodiesAndOrderPreserved": true,
+      "oldCaptionsInvitationsCodasSummariesAndPairingsUnchanged": true,
+      "placements": [
+        {
+          "exhibition": "bodies-in-motion",
+          "slug": "roman/dancing-satyr-kottabos-cleveland-1974-16",
+          "caption": "A lifted leg and upstretched arm make this small bronze satyr balance on a pierced disk. He probably held a dish used in kottabos, a game played with wine dregs. The dish is lost, but the poised body keeps its action visible.",
+          "primarySources": [
+            "https://www.clevelandart.org/art/1974.16"
+          ]
+        },
+        {
+          "exhibition": "sacred-forms",
+          "slug": "greek/kantharos-dedicated-to-herakles-mkg-1983-282-08d40f",
+          "caption": "The museum reads an inscription scratched below the rim after firing as a dedication to Herakles. The writing turns a black-gloss drinking cup into an offering. Its surviving graffito makes a sacred purpose visible on an otherwise familiar vessel.",
+          "primarySources": [
+            "https://www.mkg-hamburg.de/en/sammlung/objekt/kantharos-weihinschrift-herakles/1983.282/dc00126680"
+          ]
+        },
+        {
+          "exhibition": "the-work-of-the-surface",
+          "slug": "greek/geometric-krater-with-lid-and-miniature-hydria-met-74-51-965-67f579",
+          "caption": "Animals and geometric patterns cover this krater over a light ceramic slip. Four handles divide the shoulder, while a miniature hydria rises above the decorated lid. Rotate the vessel to follow how the painted bands organize its curved body and changing scale.",
+          "primarySources": [
+            "https://www.metmuseum.org/art/collection/search/240553"
+          ]
+        },
+        {
+          "exhibition": "the-other-kingdom",
+          "slug": "greek/apulian-bulls-head-rhyton-ncma-b4bd0b",
+          "caption": "A bull's muzzle, horns and ears become the body of this ceramic pouring vessel. Rhyta channel liquid between two openings. Here animal anatomy shapes the act of pouring, while painted figures on the neck add another layer of imagery.",
+          "primarySources": [
+            "https://learn.ncartmuseum.org/artwork/bulls-head-rhyton/"
+          ]
+        },
+        {
+          "exhibition": "the-price-of-victory",
+          "slug": "greek/aristonothos-krater-c82c16",
+          "caption": "Second quarter of the 7th century BCE. The vessel sets the blinding of Polyphemus beside a naval battle. Turn it to compare violence told through myth with violence shown between ships. The sea battle invites questions about whose courage is celebrated and whose experience remains outside the painted scene.",
+          "primarySources": [
+            "https://www.museicapitolini.org/it/opera/cratere-con-l%E2%80%99accecamento-di-polifemo-e-battaglia-navale"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "disabled_spatial_size_and_measured_integrity_metadata",
+      "status": "pass",
+      "documented": 21,
+      "unresolved": 39,
+      "explicitMeasures": 42,
+      "disabledEligibility": 60,
+      "exactCalibrations": 0,
+      "actualAcquisitionIntegrityReportsChecked": 60
+    },
+    {
+      "name": "source_material_guards_scoped_to_new_works",
+      "status": "pass",
+      "newUnlitOverrides": [
+        "roman/column-krater-ics-ehrenberg",
+        "greek/black-figure-eye-cup-harvard-1925-30-19-495e83",
+        "greek/geometric-krater-with-lid-and-miniature-hydria-met-74-51-965-67f579",
+        "greek/aristonothos-krater-c82c16"
+      ],
+      "newSourceSpatialOverrides": [
+        "roman/dancing-satyr-kottabos-cleveland-1974-16",
+        "greek/eurymedon-oinochoe-mkg-1981-173-737901",
+        "greek/attic-black-figure-lekythos-museu-de-lemporda-6de89f",
+        "greek/attic-red-figure-lekythos-museu-de-lemporda-69e273",
+        "greek/attic-red-figure-skyphos-museu-de-lemporda-73afc3"
+      ],
+      "oldAppearanceOverridesUnchanged": true,
+      "defaultBasicToStandardConversionPreserved": true,
+      "noUniformColorOrSourceWideHeuristicAdded": true,
+      "focusedTests": [
+        {
+          "command": "node scripts/test-authored-vertex-colors.mjs",
+          "exitCode": 0
+        },
+        {
+          "command": "node scripts/test-spatial-appearance.mjs",
+          "exitCode": 0
+        }
+      ],
+      "testScope": "Actual material functions, real GLTF unlit export/load, authored COLOR_0/texture/PBR preservation, generated legacy treatment, explicit spatial flag and GLB/USDZ serialization."
+    },
+    {
+      "name": "final_manifest_bound_review_metadata_and_output_bytes",
+      "status": "pass",
+      "checkedIdentities": 60,
+      "sourceAndPreviewHashesBoundToAcquisitionOutputs": true,
+      "partialReviewMetadataCurrent": true,
+      "thumbnailAndPosterByteBindingsChecked": 60,
+      "evidenceKind": "Existing human decisions and local data/image-byte bindings only; this is not a new Greek source-image visual approval.",
+      "partialLedgerSha256": [
+        {
+          "scope": "Etruscan18",
+          "sha256": "174cf3f5cf87e8fbbd9eec691c892a818b911c17d8443eced327d14b0ddf4a46"
+        },
+        {
+          "scope": "Greek41",
+          "sha256": "2fa1aac4fff98c5e3d4bcc0143ebbde4de32532e6f120f69c7a03a372733b7dc"
+        },
+        {
+          "scope": "HCM230",
+          "sha256": "e2ffe4a2f91d12d6260a38ac4e10cd82e0994fb9d2decb87e8f0d27ea4d6c5a2"
+        }
+      ],
+      "publicReviewEvidence": [
+        {
+          "path": "docs/ingest/etruscan-greek-20261015-etruscan-review.json",
+          "sha256": "9d6f7dba49fd6b5dc435281f3595de22a55923557d83039670fe4270a0f3e785"
+        },
+        {
+          "path": "docs/ingest/etruscan-greek-20261015-pottery-review.json",
+          "sha256": "29510d8669a52d3672ffda55a66e0d888020fad551e8b6f9aa40b021f79691de"
+        },
+        {
+          "path": "docs/ingest/etruscan-greek-20261015-hcm230-review.json",
+          "sha256": "07fa166784cfb071f197c588130d02bd07ad34f858917186b628f3b6728594cf"
+        }
+      ]
+    }
+  ],
+  "issues": [],
+  "documentationFindings": [],
+  "inputSha256": {
+    "src/data/catalog.json": "2e56ffa6c279be2b36afacad9b27333051c43d2a798afd0a760f1a46b67b2b4c",
+    "src/data/previews.json": "edfd414f839486da2d53c96fffb014aeea42a30c2346445093446fd60c0db499",
+    "src/data/orientations.json": "5ce456e64eb75149fe9c21287620dcbbd62031703bc70494ea7057b30bc1d492",
+    "src/data/physical-dimensions.json": "0ec0d2755fbabf98b868b230840ac8992e2f4b50c3d57856c8b267a0893a7bc2",
+    "src/data/spatial-eligibility.json": "7a5c7663c257e57935d58e0fd4f67cfae63c3ab579e86593be9f417cf8f8368b",
+    "src/data/appearance-overrides.json": "19aed2899384412b20e765c459d1c06db9e05b7139279241d3eac5f45b434358",
+    "src/data/material-appearances.json": "0e71beeb295e7cb00cbf04fab4901b0c5a901e70fd26a4a108d4e8ab9d2e7963",
+    "src/data/display-recommendations.json": "49ace81e9005f36a082dd239a4ed89b3ec42ab7be99cb8aa336b797a6d120bc6",
+    "src/data/spatial-display-defaults.json": "933c2cfd6b96be0a7655ed185f3bdfc8a18ff02c331e7cf7203934ad702d64df",
+    "src/data/identity-corrections.json": "0d21dc9a1fcc12726b3d39844fd88d3d4d7b233f93182db90b353cbfd6344742",
+    "src/data/additions.json": "55da4433b3e3892693ad460b7adc545b49fad64ac3f4fe47128db30a8a02d6c2",
+    "src/data/renders.json": "faf2e6b55c0ec4600421b2edcb837b40d36648f7198df95e70bac8b60170438e",
+    "src/data/featured-works.json": "aa74f35ef39e6075f0ca52d1bd8f870c2c0d11ae6aceb7fdbb28ce216918aac5",
+    "src/data/v3-content.json": "e3d28581d5ef232ada2230edb1c741e70c9a807e3530bad7b9f1d74afbe26904"
+  },
+  "finalManifestSha256": "5603fa50242196d53d65868e8a81e02f26c3ee803f1a8b2320d44f7c8f02da72",
+  "limitations": [
+    "No new original or preview payloads were downloaded for this audit.",
+    "Source-image approval for the other Greek works belongs to the separate reviewer and root evidence.",
+    "The focused material regressions passed here; final build, browser and live serving checks are performed by the release owner."
+  ]
+}

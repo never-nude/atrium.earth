@@ -4,6 +4,8 @@ name: Etruscan and Greek vessel scope review (images only)
 # rerender triggers, mutate the catalog, publish a branch, or upload to R2/Drive.
 on:
   push:
+    # Publishing the reviewed batch must not rerun its obsolete bootstrap sheet.
+    branches: [codex/etruscan-greek-20261015]
     paths:
       - docs/ingest/etruscan-greek-20261015-scope-review-request.json
   workflow_dispatch:

@@ -1,0 +1,393 @@
+{
+  "schema": "atrium-final-release-audit/1",
+  "batch": "etruscan-greek-20261015",
+  "checked": "2026-10-16T00:08:30.580Z",
+  "status": "pass",
+  "baselineRef": "1b67e9322bb5d95cb1e8ff3bb8dc1c2048a27cb1",
+  "headSha": "4c70edaef887e346805d3bf926645478e70469b6",
+  "counts": {
+    "baselineCatalog": 1951,
+    "baselinePublic": 1933,
+    "currentCatalog": 2011,
+    "currentPublic": 1993,
+    "expectedAdditions": 60,
+    "actualAdditions": 60,
+    "publicAdditions": 60,
+    "reviewedLedgerWorks": 60,
+    "featured": 250,
+    "failures": 0
+  },
+  "bindings": {
+    "expectedLeadRecordsFingerprint": "0001dbbc5d68cb0a8f473d89a183d89cdef27c44925fc92eeffae58d75bbd933",
+    "reviewLedgerFingerprint": "777c39f677264c02537353c4ff0f275401aae3322f74b591b03b6165c8b5018b",
+    "sourceIndexFingerprints": [
+      "3d6beabac5c92dc022bc5e9114c304d9d50db032d245a32e54175e9c59053804",
+      "b56d8d7229e385651de62ce11c80600787e77133828ba6fbaf8bd229299fb149",
+      "10e32cb8abaad2800ed2ce4aa7784fe811a1bf305bfc95ab421e82e43abf9007",
+      "18acfbaf7aac0308333e21388cd41807b33bb9e14ef099d1e4a7db6d39a2f1c9"
+    ],
+    "acquisitionReportFingerprints": [
+      "1d443671c19c094f4b7376396f5c62dc1587afbdcca0a2bf66bb8034e5964015",
+      "e7fdb2e48bc2761e38e93a54fa1381ff3acc87d78145f9627f9b870931f8932e",
+      "fb3b5f56ae46e38e056cde05926c5b09083b3143ef1f5adaccb29ba6ca767f22",
+      "428aa395383b859069040e3c56ae2f03c66064ab328b8f8c3ae5922e2e9cc425"
+    ],
+    "scopeReportFingerprints": [
+      "424a7e1a098c6b2bdc57e9b9170d4e5f1d5ef0c13972f5ac3ffded66e123dd6c",
+      "24bb9bd711885bb3b22a748169456c2f3f8e1e943f3fd4eec50bf242d9ec2a38",
+      "25f1041ce8db50b7567456be18b152f9e61e6e115e6e4246792df1e61b0080cd",
+      "4573581c95d8e62fc7d7bc6f2013efcee78c31295204d0781b0815c9b1f9b38f",
+      "f6b7288ae7fe736a4345cb06d3a2d08e9396925fe558f499e758a123dae88804"
+    ],
+    "proposalFingerprint": "f0f7364322edba84630cca0d199aa15be58310a53313840602233c39153f2d72",
+    "rendererHashes": {
+      "public/__render.html": "dc7b17364745949517986bbbdb87b4ef680bbf4e156f701d4143aaa86ae73f0e",
+      "public/model-render-utils.js": "afc875f080e2f1c7042ff6e2b5e41e298bfaf609d788774f48c8071950d3d2e0",
+      "scripts/render-thumbnails.mjs": "04aeca916a0d411321ba758860f6ce39094cb2c7bb013625e1ba7dacba2bb89d"
+    },
+    "currentDataFingerprints": {
+      "catalog": "3980b8e1e6864795fd35046a76bbd4a55200c8222b1c02003bae589f6ac6d5fc",
+      "previews": "8b66f3c69a1368e94e5e018bd8f443b43bca48dc16f8894892b581fba2b848bb",
+      "orientations": "a576ae5a2c9b6f3db639defee99ea9a11f2eb86fa57f9c675f9c30db1fcd460c",
+      "physical-dimensions": "58a8d9f463182634a0f2863a1992db717bf82a7c8fb89e30a74e03d0d674e6e2",
+      "spatial-eligibility": "93692fcf3511b9227cc6899e1bca394f2406bf298e52b20d804bb93a4cc19601",
+      "appearance-overrides": "dfd603a3a3718322439208bdc1e7147e86274224bbd83fbc09ee0b46c969d388",
+      "material-appearances": "7341e311a354d7c9fd377137bc529d8a4d28e653f60ed2224bae1010c496dc4a",
+      "display-recommendations": "e285e813f2d8d75cae2ea956b9f8b6f3145e3d63787c3251b42b051e3ce31fd9",
+      "spatial-display-defaults": "b37b0be6f259dd5da3272fd26b23e495a0671031d5fa13db6cc99c0532893026",
+      "identity-corrections": "c7a1343d201cda33c398bb18e0081b71a881951a0fb0964bd1f6574404f1f1fa",
+      "additions": "ef1631166a6b01826e8aaea79cb43dc607ac4ff07741e811f77b052af5cd90f4",
+      "renders": "5cbec31164403403305f8ccb2138623d974b7738239c7cc879c988b0b2c92138",
+      "featured-works": "e12923f11fa19729d54153d3ac2e90a3e61e045413ddef96760c29d24624416f",
+      "v3-content": "93f912e6759fef96f0deb34eda94b975b220c077920bf9a172c8d1ad2c5c2082"
+    },
+    "featuredFileSha256": "aa74f35ef39e6075f0ca52d1bd8f870c2c0d11ae6aceb7fdbb28ce216918aac5"
+  },
+  "results": [
+    {
+      "slug": "roman/antefix-maiden-cleveland-2024-56",
+      "sourceUid": "9b55c1e8c1264006b21019f34ce016ac",
+      "status": "pass"
+    },
+    {
+      "slug": "roman/dancing-satyr-kottabos-cleveland-1974-16",
+      "sourceUid": "34d0cda5076c4c52a8ce2eecd2d192c6",
+      "status": "pass"
+    },
+    {
+      "slug": "roman/reclining-lyre-player-cleveland-1986-185",
+      "sourceUid": "5d1a9309fe064b7ea74b38931df33d7b",
+      "status": "pass"
+    },
+    {
+      "slug": "roman/reclining-pipes-player-cleveland-1986-184",
+      "sourceUid": "254a664e22cc41bdba031f53c217fc37",
+      "status": "pass"
+    },
+    {
+      "slug": "roman/ciste-a-cordoni-hassle-96979-hst",
+      "sourceUid": "d3f9d1af40de4c8d8d5fe6faba06d615",
+      "status": "pass"
+    },
+    {
+      "slug": "roman/beaked-flagon-hunt-mg-015",
+      "sourceUid": "a4d92dcd462b4c5aabc7a61392632314",
+      "status": "pass"
+    },
+    {
+      "slug": "roman/oinochoe-humans-winged-animals-mev-17244",
+      "sourceUid": "7be310d5550e45f5915ca4a7798ae8c4",
+      "status": "pass"
+    },
+    {
+      "slug": "roman/hut-urn-allard-pierson-apm12000",
+      "sourceUid": "aa20975f77614a6eac5b707b58c94f1d",
+      "status": "pass"
+    },
+    {
+      "slug": "roman/kyathos-allard-pierson-apmb11952",
+      "sourceUid": "e4377d6dc5f94ad680802f020758ad33",
+      "status": "pass"
+    },
+    {
+      "slug": "roman/house-shaped-cinerary-urn-bm-1873-0820-757",
+      "sourceUid": "2b9401308d8048b0b4f4d95e94834d12",
+      "status": "pass"
+    },
+    {
+      "slug": "roman/column-krater-ics-ehrenberg",
+      "sourceUid": "08fed18a76df4b88a0967592b64a322c",
+      "status": "pass"
+    },
+    {
+      "slug": "roman/impasto-cauldron-banfi-11",
+      "sourceUid": "4e0c0a54d241473e81de851cd9e7f339",
+      "status": "pass"
+    },
+    {
+      "slug": "roman/painted-brazier-banfi-62",
+      "sourceUid": "7d5b55c2c5204759b22e979327662421",
+      "status": "pass"
+    },
+    {
+      "slug": "roman/bucchero-olla-banfi-51",
+      "sourceUid": "18c9edcff2be410aab84f9bce9253db0",
+      "status": "pass"
+    },
+    {
+      "slug": "roman/impasto-kotyle-banfi-12",
+      "sourceUid": "a9f699b6d79c4dac9167f1e3cde13b06",
+      "status": "pass"
+    },
+    {
+      "slug": "roman/sokra-group-kylix-poggio-pinci-ii127",
+      "sourceUid": "5f117a655f7541aea59b8db001910c71",
+      "status": "pass"
+    },
+    {
+      "slug": "roman/bucchero-chalice-maam-23889",
+      "sourceUid": "95a801c1caf5449da5df4e61389e4185",
+      "status": "pass"
+    },
+    {
+      "slug": "roman/bucchero-oinochoe-maam-231516",
+      "sourceUid": "1dfec9194e734cd9b8e957a7df7db75a",
+      "status": "pass"
+    },
+    {
+      "slug": "greek/red-figure-kylix-with-dionysos-and-satyrs-1915-718-76a66b",
+      "sourceUid": "76a66bd6e84c474bad3a58df99fa61b4",
+      "status": "pass"
+    },
+    {
+      "slug": "greek/red-figure-lekythos-with-athena-and-a-giant-1978-59-c02bec",
+      "sourceUid": "c02becb745284060be6fbc88de7bf798",
+      "status": "pass"
+    },
+    {
+      "slug": "greek/janiform-kantharos-with-satyr-and-african-heads-1979-69-f39e9d",
+      "sourceUid": "f39e9d28558b45b5abc505f76afebc23",
+      "status": "pass"
+    },
+    {
+      "slug": "greek/black-figure-amphora-with-men-and-horses-1923-645-8a2cd7",
+      "sourceUid": "8a2cd743529e4267ba0395954ed7846a",
+      "status": "pass"
+    },
+    {
+      "slug": "greek/column-krater-with-satyr-and-maenads-ncma-c560e2",
+      "sourceUid": "c560e27c1fa94e3b94fcaa8d3656472f",
+      "status": "pass"
+    },
+    {
+      "slug": "greek/column-krater-with-poseidon-chasing-a-woman-ncma-828e43",
+      "sourceUid": "828e434e9df84a94bbe8cf85a16cbd3f",
+      "status": "pass"
+    },
+    {
+      "slug": "greek/hadra-hydria-ncma-84937b",
+      "sourceUid": "84937b247886496f91f45ba23cdd85a1",
+      "status": "pass"
+    },
+    {
+      "slug": "greek/guttus-ncma-1f3d22",
+      "sourceUid": "1f3d222dab154b869571f2311b2ebf0b",
+      "status": "pass"
+    },
+    {
+      "slug": "greek/oversized-corinthian-aryballos-ncma-c82c72",
+      "sourceUid": "c82c72edd1a54950972591a6fc33dde7",
+      "status": "pass"
+    },
+    {
+      "slug": "greek/apulian-bulls-head-rhyton-ncma-b4bd0b",
+      "sourceUid": "b4bd0bdfadc2484093260069ac31caf4",
+      "status": "pass"
+    },
+    {
+      "slug": "greek/black-figure-eye-cup-harvard-1925-30-19-495e83",
+      "sourceUid": "495e835bbb214120958dbcd730f48fb5",
+      "status": "pass"
+    },
+    {
+      "slug": "greek/eurymedon-oinochoe-mkg-1981-173-737901",
+      "sourceUid": "73790139bf9248f89230109595de9df0",
+      "status": "pass"
+    },
+    {
+      "slug": "greek/kantharos-dedicated-to-herakles-mkg-1983-282-08d40f",
+      "sourceUid": "08d40fe950654611b3e80d036863d683",
+      "status": "pass"
+    },
+    {
+      "slug": "greek/mycenaean-kylix-bonn-2108-3c0884",
+      "sourceUid": "3c08842b04394e5991108cd6fe0a1f75",
+      "status": "pass"
+    },
+    {
+      "slug": "greek/attic-eye-cup-bonn-3153-16d520",
+      "sourceUid": "16d520598a32485eb32c1d59c7df02d7",
+      "status": "pass"
+    },
+    {
+      "slug": "greek/apulian-bell-krater-bonn-79-2e56ab",
+      "sourceUid": "2e56abd48f444516b33d962005c44886",
+      "status": "pass"
+    },
+    {
+      "slug": "greek/laconian-kylix-with-fish-apm03765-5d0ff8",
+      "sourceUid": "5d0ff8e4f92f4f5b997e3d8ac10bea7a",
+      "status": "pass"
+    },
+    {
+      "slug": "greek/siana-cup-with-symposium-scene-apm13802-19f91c",
+      "sourceUid": "19f91ca0e7944e3ebd22ecd8d9c9c4b6",
+      "status": "pass"
+    },
+    {
+      "slug": "greek/neck-amphora-with-theseus-and-procrustes-gr-22-1937-174e6c",
+      "sourceUid": "174e6c435e764068bc34357380a8962a",
+      "status": "pass"
+    },
+    {
+      "slug": "greek/miniature-skyphos-gr-54-1865-be34bb",
+      "sourceUid": "be34bb6cc10b47bdadaf1413204421bd",
+      "status": "pass"
+    },
+    {
+      "slug": "greek/hand-vase-clasping-a-lekythos-hcm-233-1eb470",
+      "sourceUid": "1eb47085100a4b8390b59755b4583ebc",
+      "status": "pass"
+    },
+    {
+      "slug": "greek/funerary-lekythos-hcm-231-196bfc",
+      "sourceUid": "196bfc8fc7f84e1c90e7f35a984568ed",
+      "status": "pass"
+    },
+    {
+      "slug": "greek/apulian-lebes-gamikos-hcm-234-447fdb",
+      "sourceUid": "447fdb1e91324d73aa801a3269c56233",
+      "status": "pass"
+    },
+    {
+      "slug": "greek/south-italian-red-figure-krater-p-231-7e34e9",
+      "sourceUid": "7e34e9c755084ca490384e60272e0f1b",
+      "status": "pass"
+    },
+    {
+      "slug": "greek/south-italian-red-figure-krater-p-232-d5b032",
+      "sourceUid": "d5b03286f95f4746a47ee87834ae8fdc",
+      "status": "pass"
+    },
+    {
+      "slug": "greek/red-figure-oinochoe-with-athletes-and-youths-2011-17-3-b351fd",
+      "sourceUid": "b351fd32334642ca923fd5a24b1b315f",
+      "status": "pass"
+    },
+    {
+      "slug": "greek/geometric-krater-with-lid-and-miniature-hydria-met-74-51-965-67f579",
+      "sourceUid": "67f5797a1339446ebef8b83d9ccd526b",
+      "status": "pass"
+    },
+    {
+      "slug": "greek/attic-black-figure-lekythos-museu-de-lemporda-6de89f",
+      "sourceUid": "6de89f2c9f7a463990d795a721fb84a8",
+      "status": "pass"
+    },
+    {
+      "slug": "greek/attic-red-figure-lekythos-museu-de-lemporda-69e273",
+      "sourceUid": "69e273358c994685885a5cf43cbc2a87",
+      "status": "pass"
+    },
+    {
+      "slug": "greek/attic-red-figure-skyphos-museu-de-lemporda-73afc3",
+      "sourceUid": "73afc39c83894149a5da2817bb66d9bb",
+      "status": "pass"
+    },
+    {
+      "slug": "greek/italiote-lekythos-castello-banfi-261-852dc6",
+      "sourceUid": "852dc60591e64bb09abd8cf77ec27f3c",
+      "status": "pass"
+    },
+    {
+      "slug": "greek/aristonothos-krater-c82c16",
+      "sourceUid": "c82c166302da465d952e4dcdf9e8d478",
+      "status": "pass"
+    },
+    {
+      "slug": "greek/corinthian-lidded-pyxis-fralin-0-646-2a-b-da5364",
+      "sourceUid": "da5364e67f864bb381e83cf60bb3d8ec",
+      "status": "pass"
+    },
+    {
+      "slug": "greek/corinthian-black-figure-aryballos-fralin-0-635-e59e27",
+      "sourceUid": "e59e2754595d4a0dba15e48e97f0ce0d",
+      "status": "pass"
+    },
+    {
+      "slug": "greek/south-italian-kantharos-fralin-1988-23-442c59",
+      "sourceUid": "442c597ae07e435f98021c837164d238",
+      "status": "pass"
+    },
+    {
+      "slug": "greek/south-italian-fish-plate-fralin-1979-56-188a46",
+      "sourceUid": "188a46ce27e04b76abc01ba942ccb69d",
+      "status": "pass"
+    },
+    {
+      "slug": "greek/corinthian-black-figure-kotyle-fralin-2008-12-178278",
+      "sourceUid": "178278dfb3d54e80a234a04b297ed911",
+      "status": "pass"
+    },
+    {
+      "slug": "greek/red-figure-droop-cup-hcm-237-f71d2b",
+      "sourceUid": "f71d2b5646ca423d9278290a8074db95",
+      "status": "pass"
+    },
+    {
+      "slug": "greek/corinthian-oinochoe-bryn-mawr-p-54-0cf420",
+      "sourceUid": "0cf420a6640e4ee3bea3887bbecba7d3",
+      "status": "pass"
+    },
+    {
+      "slug": "greek/bell-krater-with-satyrs-and-maenads-nm-ant-0014-2ab078",
+      "sourceUid": "2ab07881be8f41fa8adee94236ec869a",
+      "status": "pass"
+    },
+    {
+      "slug": "greek/bell-krater-with-reclining-dionysos-nm-ant-0008-6fc57b",
+      "sourceUid": "6fc57b2d891047b396b31f961f0a0259",
+      "status": "pass"
+    },
+    {
+      "slug": "greek/white-ground-lekythos-hcm-230-b36dcf",
+      "sourceUid": "b36dcf33c52e4208a1c3ec28ae391422",
+      "status": "pass"
+    }
+  ],
+  "permittedExhibitionBodyAdditions": [
+    {
+      "exhibitionSlug": "bodies-in-motion",
+      "slug": "roman/dancing-satyr-kottabos-cleveland-1974-16"
+    },
+    {
+      "exhibitionSlug": "sacred-forms",
+      "slug": "greek/kantharos-dedicated-to-herakles-mkg-1983-282-08d40f"
+    },
+    {
+      "exhibitionSlug": "the-work-of-the-surface",
+      "slug": "greek/geometric-krater-with-lid-and-miniature-hydria-met-74-51-965-67f579"
+    },
+    {
+      "exhibitionSlug": "the-other-kingdom",
+      "slug": "greek/apulian-bulls-head-rhyton-ncma-b4bd0b"
+    },
+    {
+      "exhibitionSlug": "the-price-of-victory",
+      "slug": "greek/aristonothos-krater-c82c16"
+    }
+  ],
+  "failures": [],
+  "warnings": [],
+  "limits": "Read-only local metadata/asset audit. No network or source/model payload downloads. Full source and preview SHA values are bound to supplied acquisition and human-review evidence; this helper does not independently rehash remote model bytes or verify Drive contents. No current additions or final quality are inferred from preparation metadata."
+}

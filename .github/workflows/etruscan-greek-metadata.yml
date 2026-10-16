@@ -2,6 +2,9 @@ name: Etruscan and Greek download metadata (no models)
 
 on:
   push:
+    # Bootstrap only on the acquisition branch; publishing main must not
+    # repeat a completed metadata preflight. Manual dispatch remains available.
+    branches: [codex/etruscan-greek-20261015]
     paths:
       - docs/ingest/etruscan-greek-20261015-metadata-request.json
   workflow_dispatch:

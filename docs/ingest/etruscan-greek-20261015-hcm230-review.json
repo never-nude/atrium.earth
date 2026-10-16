@@ -1,0 +1,375 @@
+{
+  "schema": "atrium-vessel-human-scope-review/1",
+  "batch": "etruscan-greek-20261015",
+  "checked": "2026-10-16T00:05:14.271Z",
+  "slug": "greek/white-ground-lekythos-hcm-230-b36dcf",
+  "sourceUid": "b36dcf33c52e4208a1c3ec28ae391422",
+  "title": "White-Ground Lekythos — HCM 230",
+  "sourceRecordUrl": "https://www.huntmuseum.com/explore/item/27a7aec1-0c2c-32a1-8449-b6a931b45c5f/",
+  "license": "CC BY 4.0",
+  "status": "pass-qualified-exterior-capture",
+  "source": {
+    "sha256": "9ce6892456c222c5a59dd2c9608e4dd303fa82d7260618c76ad743550879a89a",
+    "bytes": 5470648,
+    "originalNativeCompared": true,
+    "selfContained": true
+  },
+  "preview": {
+    "url": "https://models.atrium.earth/models/previews/greek/white-ground-lekythos-hcm-230-b36dcf/preview-11065e06c1c8.glb",
+    "sha256": "11065e06c1c8aa72586af4396b63edaeefe6da64ce0f25bf2ff1cd4098de18df",
+    "bytes": 579292
+  },
+  "geometry": {
+    "sourceFaces": 150000,
+    "previewFaces": 150000
+  },
+  "measuredIntegrity": {
+    "faces": 150000,
+    "bratio": 0,
+    "ncomp": 1,
+    "largest_frac": 1
+  },
+  "renderers": {
+    "public/__render.html": "dc7b17364745949517986bbbdb87b4ef680bbf4e156f701d4143aaa86ae73f0e",
+    "scripts/render-thumbnails.mjs": "04aeca916a0d411321ba758860f6ce39094cb2c7bb013625e1ba7dacba2bb89d",
+    "public/model-render-utils.js": "afc875f080e2f1c7042ff6e2b5e41e298bfaf609d788774f48c8071950d3d2e0"
+  },
+  "renderedOrientation": {
+    "upAxis": "y",
+    "modelRotation": [
+      0.06,
+      0,
+      2.68
+    ],
+    "yaw": 0,
+    "status": "candidate",
+    "note": "Explicit assembly pose candidate for actual provider-original and production front/reverse/above/underside review."
+  },
+  "renderedOrientationSha256": "1b097e880a029102d3a6c8bd2c0233d096b8be16b52ed675a1939fc3ffa18267",
+  "effectiveAppearanceSha256": "f742c22988408f52b0850d46df8605a7d737caf766c21302c30d9032f5c02c9b",
+  "proposedOrientation": {
+    "upAxis": "y",
+    "modelRotation": [
+      0.06,
+      0,
+      2.68
+    ],
+    "yaw": 0,
+    "status": "reviewed",
+    "note": "2026-10-15: actual native source and production preview reviewed from front, reverse, above and underside. Y-up rotation [0.06, 0, 2.68] with yaw 0 is upright and retains the publisher’s worn figural-side front. Complete surviving exterior and loop handle are present; only shallow mouth interior is recorded, with a small featureless source strip at the underside edge. Final thumbnail review is separate.",
+    "confidence": 0.9
+  },
+  "decision": {
+    "pose": "pass",
+    "nativeAppearance": "pass",
+    "captureScope": "pass",
+    "scopeNote": "Complete surviving exterior of the lekythos is captured, including its loop handle, flared mouth, neck, painted body and foot. Worn pale ground, ochre and dark decoration, and underside accession markings agree in native source and production views. The mouth records only shallow interior surfaces; a deep chamber is not verified. A small featureless black strip at the underside edge belongs to the source capture and is retained.",
+    "underside": "partially-captured",
+    "undersideNote": "Most of the base underside and its HCM 230 markings are recorded. A small featureless black strip at one edge limits claims about the entire underside surface."
+  },
+  "sourceFidelity": {
+    "decision": "pass",
+    "note": "All four actual native-source directions agree with the production preview in surviving geometry, textured decoration, wear and PBR presentation. The authored image map, metalness 0, roughness 0.24571198693176977 and specular factor 0.15085760261364606 are retained; no source helper mesh was removed.",
+    "sourceMeshCount": 2,
+    "previewMeshCount": 1,
+    "sourceFaces": 150000,
+    "previewFaces": 150000
+  },
+  "views": [
+    {
+      "mode": "preview-production",
+      "key": "FRONT",
+      "direction": [
+        0.521450009453975,
+        0,
+        0.8532818336519591
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "camera": [
+        1.1765535748324643,
+        0,
+        1.9252694860894868
+      ],
+      "target": [
+        0,
+        0,
+        0
+      ],
+      "distance": 2.2563113500840983,
+      "padding": 1.16,
+      "file": "greek__white-ground-lekythos-hcm-230-b36dcf--preview-production--front.webp",
+      "imageSha256": "0c3d3dc544713975d6cf0d4f5d3b141d54bc55bf2ac66fa848822caf405f0ea4",
+      "reviewed": true
+    },
+    {
+      "mode": "preview-production",
+      "key": "REVERSE",
+      "direction": [
+        -0.521450009453975,
+        0,
+        -0.8532818336519591
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "camera": [
+        -1.1765535748324643,
+        0,
+        -1.9252694860894868
+      ],
+      "target": [
+        0,
+        0,
+        0
+      ],
+      "distance": 2.2563113500840983,
+      "padding": 1.16,
+      "file": "greek__white-ground-lekythos-hcm-230-b36dcf--preview-production--reverse.webp",
+      "imageSha256": "4e3a7e0834ae1eec3a6c2d5e4bff3b8578e6079b63a9ea509b4b2e9238bdb0d2",
+      "reviewed": true
+    },
+    {
+      "mode": "preview-production",
+      "key": "ABOVE",
+      "direction": [
+        0,
+        1,
+        0
+      ],
+      "up": [
+        0,
+        0,
+        -1
+      ],
+      "camera": [
+        0,
+        1.3627140932606996,
+        0
+      ],
+      "target": [
+        0,
+        0,
+        0
+      ],
+      "distance": 1.3627140932606996,
+      "padding": 1.16,
+      "file": "greek__white-ground-lekythos-hcm-230-b36dcf--preview-production--above.webp",
+      "imageSha256": "2ac7a1a04908ec3e194b9ece6863c56b80bd3bb30ef88a2ece6e5747241c96b3",
+      "reviewed": true
+    },
+    {
+      "mode": "preview-production",
+      "key": "UNDERSIDE",
+      "direction": [
+        0,
+        -1,
+        0
+      ],
+      "up": [
+        0,
+        0,
+        1
+      ],
+      "camera": [
+        0,
+        -1.3627140932606996,
+        0
+      ],
+      "target": [
+        0,
+        0,
+        0
+      ],
+      "distance": 1.3627140932606996,
+      "padding": 1.16,
+      "file": "greek__white-ground-lekythos-hcm-230-b36dcf--preview-production--underside.webp",
+      "imageSha256": "b7f171931ec1065eae2fad5163b684cf709089e68191d6383a6e11c208c391a5",
+      "reviewed": true
+    },
+    {
+      "mode": "source-native",
+      "key": "FRONT",
+      "direction": [
+        0.521450009453975,
+        0,
+        0.8532818336519591
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "camera": [
+        1.1765527036595391,
+        0,
+        1.925268060533791
+      ],
+      "target": [
+        0,
+        0,
+        0
+      ],
+      "distance": 2.2563096794101902,
+      "padding": 1.16,
+      "file": "greek__white-ground-lekythos-hcm-230-b36dcf--source-native--front.webp",
+      "imageSha256": "d6bc85a8a79a384021a67b1f272662256598fb5998f296c3d47ca42ef9ad1043",
+      "reviewed": true
+    },
+    {
+      "mode": "source-native",
+      "key": "REVERSE",
+      "direction": [
+        -0.521450009453975,
+        0,
+        -0.8532818336519591
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "camera": [
+        -1.1765527036595391,
+        0,
+        -1.925268060533791
+      ],
+      "target": [
+        0,
+        0,
+        0
+      ],
+      "distance": 2.2563096794101902,
+      "padding": 1.16,
+      "file": "greek__white-ground-lekythos-hcm-230-b36dcf--source-native--reverse.webp",
+      "imageSha256": "7205633fc374387f8567b6f83e839f20f22a02af92002b6e0f9c579800739a80",
+      "reviewed": true
+    },
+    {
+      "mode": "source-native",
+      "key": "ABOVE",
+      "direction": [
+        0,
+        1,
+        0
+      ],
+      "up": [
+        0,
+        0,
+        -1
+      ],
+      "camera": [
+        0,
+        1.362699193313413,
+        0
+      ],
+      "target": [
+        0,
+        0,
+        0
+      ],
+      "distance": 1.362699193313413,
+      "padding": 1.16,
+      "file": "greek__white-ground-lekythos-hcm-230-b36dcf--source-native--above.webp",
+      "imageSha256": "f4cd8b7d120c314a166fed2f3fd123925f35e667ee49c5207b1837a9d5abefeb",
+      "reviewed": true
+    },
+    {
+      "mode": "source-native",
+      "key": "UNDERSIDE",
+      "direction": [
+        0,
+        -1,
+        0
+      ],
+      "up": [
+        0,
+        0,
+        1
+      ],
+      "camera": [
+        0,
+        -1.362699193313413,
+        0
+      ],
+      "target": [
+        0,
+        0,
+        0
+      ],
+      "distance": 1.362699193313413,
+      "padding": 1.16,
+      "file": "greek__white-ground-lekythos-hcm-230-b36dcf--source-native--underside.webp",
+      "imageSha256": "f69da3da61c14d040956b2f90bd09445d68bd8c3f824355cd8a0bbd6aeb87aed",
+      "reviewed": true
+    }
+  ],
+  "contact": {
+    "file": "greek__white-ground-lekythos-hcm-230-b36dcf.webp",
+    "sha256": "56123731b283965a072e037c67f9ea6893d7a09d747eeda6bbccc9a80499643c",
+    "reviewed": true
+  },
+  "scopeReportSha256": "5fa4358ce8bf273829cec53655ad0e4c99a16840ade9fca4081f77cf95217714",
+  "dimensions": {
+    "published": "Height 22 cm; base diameter 5.75 cm",
+    "exactCalibration": false,
+    "eligibilityEnabled": false,
+    "note": "Museum height 22 cm and base diameter 5.75 cm are preserved. Actual exterior capture has been reviewed; exact measurement boundaries remain uncalibrated and spatial eligibility stays disabled."
+  },
+  "thumbnail": {
+    "status": "pass",
+    "path": "public/previews/renders/greek/white-ground-lekythos-hcm-230-b36dcf/thumb.webp",
+    "sha256": "60511156e177ec69956c571142125ed1f16f1acd8f03bbbcaf21a51b29ffba36",
+    "bytes": 36230,
+    "width": 1000,
+    "height": 1250,
+    "reviewed": true,
+    "note": "The final upright vessel is fully framed from mouth to foot. Its complete loop handle, worn figural-side decoration, pale ground, ochre clay and dark bands remain legible and agree with the reviewed native source. No clipping, new blank region or material discrepancy is visible. The shallow interior and underside-edge source limitations remain documented in the separate scope review.",
+    "poster": {
+      "path": "public/previews/posters/greek/white-ground-lekythos-hcm-230-b36dcf/poster.svg",
+      "sha256": "3328df53f648b969615a23b638393357949d735a4af8b34202cdf8fe984988f9",
+      "bytes": 48674,
+      "embedsExactThumbnail": true,
+      "exactByteEmbedVerified": true
+    },
+    "renderBindingSha256": "cdbec4dca789457ef3b9966ef71f6101dcdf9b094406207b861bf949ba8cc1d4",
+    "orientationSha256": "5ddee977659468d3727cd7b0a0577041f2e63d59954a209abb8e7577761e1c41",
+    "effectiveAppearanceSha256": "f742c22988408f52b0850d46df8605a7d737caf766c21302c30d9032f5c02c9b",
+    "currentOrientationSha256": "b5e90142cd83a1a17ae637d9d053f99a03418ba46dd3d9326c91d8c5c17e94f1"
+  },
+  "limitation": "Human approval concerns the actual surviving exterior and explicitly qualified shallow mouth/base coverage. It does not establish a complete interior, watertight print geometry or exact AR size.",
+  "currentOrientation": {
+    "upAxis": "y",
+    "modelRotation": [
+      0.06,
+      0,
+      2.68
+    ],
+    "yaw": 0,
+    "status": "reviewed",
+    "note": "2026-10-15: actual native source and production preview reviewed from front, reverse, above and underside. Y-up rotation [0.06, 0, 2.68] with yaw 0 is upright and retains the publisher’s worn figural-side front. Complete surviving exterior and loop handle are present; only shallow mouth interior is recorded, with a small featureless source strip at the underside edge. Final thumbnail review is separate.",
+    "confidence": 0.9
+  },
+  "currentTransformSha256": "acffc4473df87acf17710ea2a9f078ffae287f852120076bb40a6727b927cfc1",
+  "metadataRefresh": {
+    "checked": "2026-10-16T00:06:46.537Z",
+    "renderedOrientationFingerprint": "5ddee977659468d3727cd7b0a0577041f2e63d59954a209abb8e7577761e1c41",
+    "currentOrientationFingerprint": "b5e90142cd83a1a17ae637d9d053f99a03418ba46dd3d9326c91d8c5c17e94f1",
+    "renderedTransformSha256": "1b097e880a029102d3a6c8bd2c0233d096b8be16b52ed675a1939fc3ffa18267",
+    "currentTransformSha256": "acffc4473df87acf17710ea2a9f078ffae287f852120076bb40a6727b927cfc1",
+    "physicalTransformSha256": "db3cdcd5a4d9a22ca107ef08412e5c74755f1c959ad39a959268bbfc1cfe6a53",
+    "renderingValuesUnchanged": true,
+    "onlyNoteStatusConfidenceChanged": true,
+    "effectiveAppearanceUnchanged": true,
+    "sourceAndPreviewImageHashesUnchanged": true,
+    "finalThumbnailAndPosterBytesUnchanged": true,
+    "originalScopeReportSha256": "5fa4358ce8bf273829cec53655ad0e4c99a16840ade9fca4081f77cf95217714",
+    "selectedScopeReportSha256": "3e679bc2d522d1bcf15debeabcd50cd703f514ec28d03c775a2ab1463bcc244e",
+    "note": "Final approval notes/status and dimension wording were applied after image review. Physical transforms, source/preview appearance and all reviewed image bytes are unchanged."
+  }
+}
