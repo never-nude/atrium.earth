@@ -1,0 +1,125 @@
+{
+  "schema": "atrium-exhibition-body-proposals/1",
+  "batch": "beautiful-2000-20261015",
+  "status": "All five body additions approved after individual final source and preview visual review.",
+  "proposals": [
+    {
+      "priority": 1,
+      "exhibition_slug": "sacred-forms",
+      "slug": "medieval/madonna-of-kruzlowa-mnk-i-119",
+      "source_uid": "597d14d7e6ec46a8a0becdf57dd6dbec",
+      "title": "Madonna of Krużlowa",
+      "integration_target": "wallTexts.sacred-forms.workSlugs and captions",
+      "placement": "Insert after europe/shrine-pieta-chocholow-tatra.",
+      "caption": {
+        "slug": "medieval/madonna-of-kruzlowa-mnk-i-119",
+        "text": "Mary holds the Child forward, giving him a distinct place within the figure’s sweeping folds. Their tilted heads make a sacred subject intimate. Carving, paint and gold work together to shape the encounter."
+      },
+      "thematic_fit": "A specific Christian devotional image whose composition makes the relationship between Mother and Child central. The existing room already compares distinct devotional forms; this adds an exceptional Gothic wooden figure without changing its lead.",
+      "primary_sources": [
+        {
+          "url": "https://muzea.malopolska.pl/en/objects-list/231",
+          "supports": "Exact MNK I-119; c.1410; carved, polychromed and gilded wood. Museum interpretation describes the projecting Child, mirrored head turns and balanced cascading folds."
+        },
+        {
+          "url": "https://artsandculture.google.com/asset/madonna-from-kru%C5%BClowa/PwGLWm9a-aJ21Q?hl=en",
+          "supports": "Museum-authored National Museum in Kraków record identifies the wooden International Gothic/Beautiful Style sculpture."
+        }
+      ],
+      "visual_integration_gate": "Require actual native source/preview agreement for the two heads, projecting Child, folds and paint/gold appearance. Confirm the hollow reverse as original construction and distinguish the display plinth. A flat filled reverse must not be silently substituted.",
+      "conditional_on_individual_publication": true
+    },
+    {
+      "priority": 2,
+      "exhibition_slug": "sacred-forms",
+      "slug": "medieval/wloclawek-reliquary-mnk-iv-z-1954-1",
+      "source_uid": "f5e1e8f8144149b4ac3379b31c1bfaa0",
+      "title": "Włocławek Reliquary",
+      "integration_target": "wallTexts.sacred-forms.workSlugs and captions",
+      "placement": "Insert after europe/the-holy-thorn-reliquary-20f391.",
+      "caption": {
+        "slug": "medieval/wloclawek-reliquary-mnk-iv-z-1954-1",
+        "text": "A small oak box becomes a precious container for relics. Gilded copper and colored enamel carry the Ascension across its lid, while apostles occupy arcades around the sides. The container’s imagery gives its sacred purpose a visible form."
+      },
+      "thematic_fit": "The relic-container function is documented directly, offering a precise connection to Sacred Forms and a useful comparison with the existing Holy Thorn Reliquary. No exposed relic or internal-chamber claim is required.",
+      "primary_sources": [
+        {
+          "url": "https://muzea.malopolska.pl/en/objects-list/127",
+          "supports": "Exact MNK IV-Z-1954/1; oak structure with engraved gilded copper and blue/pale-blue/white/green champlevé enamel. Ascension on lid, apostles on three sides and a glass-ended panel."
+        }
+      ],
+      "visual_integration_gate": "Require readable lid and all recorded exterior sides, stable enamel/gilt appearance, four feet and intact surviving perimeter. Do not imply that an unopened interior or relic contents are captured.",
+      "conditional_on_individual_publication": true
+    },
+    {
+      "priority": 3,
+      "exhibition_slug": "the-work-of-the-surface",
+      "slug": "asia/cloisonne-altarpiece-mia-95-53-20864e",
+      "source_uid": "20864e2bafb8451dad986c467894a186",
+      "title": "Cloisonné Altarpiece",
+      "integration_target": "wallTexts.the-work-of-the-surface.workSlugs and captions",
+      "placement": "Insert after europe/thomas-cup-berlin.",
+      "caption": {
+        "slug": "asia/cloisonne-altarpiece-mia-95-53-20864e",
+        "text": "Blue and green enamel and gilded ornament cover this eighteenth-century altar object. Pattern follows its rim, stem and base rather than resting on a flat surface. Follow the decoration around the curves to see how color and metalwork organize its shape."
+      },
+      "thematic_fit": "Enamel and gilded bronze make the surface itself an active part of the design. The source image clearly supports the rim/stem/base description; actual native-material review remains essential before this caption is used.",
+      "primary_sources": [
+        {
+          "url": "https://collections.artsmia.org/art/28757/cloisonne-altarpiece-china",
+          "supports": "Exact Mia95.53, China, eighteenth century; gilt bronze and enamel."
+        },
+        {
+          "url": "https://search.artsmia.org/id/28757",
+          "supports": "Primary museum JSON confirms title, date, origin, accession and materials."
+        }
+      ],
+      "visual_integration_gate": "Require full retained rim, curved stem, base and ornament, with source enamel colors and metallic response preserved. Confirm all sides from actual source/preview comparisons, not the publisher thumbnail alone.",
+      "conditional_on_individual_publication": true
+    },
+    {
+      "priority": 4,
+      "exhibition_slug": "the-work-of-the-surface",
+      "slug": "medieval/triptych-from-szczodrow-ocm-2024-rz-2",
+      "source_uid": "e9bb4d887940421fb115b4f425fba824",
+      "title": "Triptych from Szczodrów",
+      "integration_target": "wallTexts.the-work-of-the-surface.workSlugs and captions",
+      "placement": "Append to the existing body.",
+      "caption": {
+        "slug": "medieval/triptych-from-szczodrow-ocm-2024-rz-2",
+        "text": "Carved figures occupy the central shrine, while painted figures appear on its wings. The triptych brings modeled depth and surface painting into one devotional object. Compare painted drapery with carved folds to see how each creates an impression of volume."
+      },
+      "thematic_fit": "The existing surface exhibition explicitly connects paint, relief and carving. This object combines these within one coherent late Gothic triptych, adding a strong three-dimensional comparison without creating a new pairing.",
+      "primary_sources": [
+        {
+          "url": "https://muzea.malopolska.pl/en/objects-list/4422",
+          "supports": "Exact OCM-2024-Rz-2; Silesian workshop,1491; carved linden wood, polychromy and tempera. Museum distinguishes central shrine, wings and predella."
+        }
+      ],
+      "visual_integration_gate": "Require central sculpted figures, painted wings and predella to survive coherently in the actual source and preview. Confirm side/reverse scope and keep component dimensions separate; no animated hinge or complete internal-construction claim.",
+      "conditional_on_individual_publication": true
+    },
+    {
+      "priority": 5,
+      "exhibition_slug": "the-other-kingdom",
+      "slug": "asia/guardian-animals-karashishi-komainu-cleveland-1924-351-261a07",
+      "source_uid": "261a0722b9c942448e7a89bda96d1927",
+      "title": "Pair of Guardian Animals: Karashishi and Komainu",
+      "integration_target": "newExhibition.works",
+      "placement": "Insert after asia/bayon-lion-guimet-threedscans.",
+      "caption": {
+        "slug": "asia/guardian-animals-karashishi-komainu-cleveland-1924-351-261a07",
+        "text": "One guardian opens its mouth; the other closes it. Carved wooden animals like these protected shrine and temple entrances in Japan. Their powerful chests, curled tails and traces of red and white paint make protection visible through animal form."
+      },
+      "thematic_fit": "The Other Kingdom asks what animal forms are made to do. These exact objects were entrance guardians; their different mouths and surviving color provide a specific, documented case of protective animal imagery.",
+      "primary_sources": [
+        {
+          "url": "https://www.clevelandart.org/art/1924.351",
+          "supports": "Exact physical pair,1300s; wood with traces of color. Museum explains Japanese shrine/temple protection, open karashishi versus closed komainu, former red/white paint and the lost single horn."
+        }
+      ],
+      "visual_integration_gate": "Require both distinct surviving figures together, clear mouth differences and retained paws/tails/pigment. Do not reconstruct the closed-mouth figure’s documented lost horn or count a standalone component as another work.",
+      "conditional_on_individual_publication": true
+    }
+  ]
+}

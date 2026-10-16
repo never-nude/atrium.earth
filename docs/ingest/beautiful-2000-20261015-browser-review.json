@@ -1,0 +1,128 @@
+{
+  "schema": "atrium-built-batch-release-review/1",
+  "batch": "beautiful-2000-20261015",
+  "checked": "2026-10-16T02:55:55.647Z",
+  "scope": "Actual built production HTML and three interactive viewers. R2 requests use complete-hash-matched mirrors; live CDN delivery and physical XR sessions are separate checks.",
+  "pages": [
+    {
+      "slug": "asia/cloisonne-altarpiece-mia-95-53-20864e",
+      "status": 200,
+      "verifiedSize": false
+    },
+    {
+      "slug": "asia/guardian-animals-karashishi-komainu-cleveland-1924-351-261a07",
+      "status": 200,
+      "verifiedSize": false
+    },
+    {
+      "slug": "americas/standing-figures-nayarit-cleveland-1990-266-88349e",
+      "status": 200,
+      "verifiedSize": false
+    },
+    {
+      "slug": "asia/seated-buddha-hadda-cleveland-1967-39-088985",
+      "status": 200,
+      "verifiedSize": false
+    },
+    {
+      "slug": "medieval/wloclawek-reliquary-mnk-iv-z-1954-1",
+      "status": 200,
+      "verifiedSize": false
+    },
+    {
+      "slug": "medieval/triptych-from-szczodrow-ocm-2024-rz-2",
+      "status": 200,
+      "verifiedSize": false
+    },
+    {
+      "slug": "medieval/madonna-of-kruzlowa-mnk-i-119",
+      "status": 200,
+      "verifiedSize": false
+    }
+  ],
+  "heldRoutes": [],
+  "interactive": [
+    {
+      "slug": "asia/cloisonne-altarpiece-mia-95-53-20864e",
+      "rendered": true,
+      "dragChangesView": true,
+      "arDialogOpensCloses": true,
+      "verifiedSize": false,
+      "beforeSha256": "0379339205cf85196fbd5dc21575722380055b3cc1d567f654e30d4f33a5d393",
+      "afterSha256": "1f4e35e03a45eb041909352134262c92a4b7dcc446e064d9ab156476406c9c43",
+      "webgl": {
+        "available": true,
+        "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+        "width": 1200,
+        "height": 898
+      },
+      "errors": [],
+      "screenshotSha256": "9f74c54df877bc8a6873765513d2f72f2c5be647406f51da6feeb77d0cb056c1"
+    },
+    {
+      "slug": "medieval/triptych-from-szczodrow-ocm-2024-rz-2",
+      "rendered": true,
+      "dragChangesView": true,
+      "arDialogOpensCloses": true,
+      "verifiedSize": false,
+      "beforeSha256": "66035cb8653e010c7591b96fb15b66353a32ec6f16be17f49e3a5542f6fd809c",
+      "afterSha256": "2b9207fe0c5bc1156a2354dc17204f32d5796edf8f4f6c8fb093b9a8bd0fcab9",
+      "webgl": {
+        "available": true,
+        "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+        "width": 1200,
+        "height": 915
+      },
+      "errors": [],
+      "screenshotSha256": "9211614da879b08eb40274711efaccf18799a39e410f5ab9b13437ca148d8f88"
+    },
+    {
+      "slug": "medieval/madonna-of-kruzlowa-mnk-i-119",
+      "rendered": true,
+      "dragChangesView": true,
+      "arDialogOpensCloses": true,
+      "verifiedSize": false,
+      "beforeSha256": "7e435ada26af7f51d8ef5c941e91f129091f30ea42da12e7b6875a565889e143",
+      "afterSha256": "ae0bb77daca5446b1d0e6535f1a22ef6cac9dbfd1aa3c0a730d1bab5c72376e2",
+      "webgl": {
+        "available": true,
+        "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+        "width": 1200,
+        "height": 915
+      },
+      "errors": [],
+      "screenshotSha256": "99d012ad9a529f21db22d088532eac15535d6129dec8a991d1969591d53f14e9"
+    }
+  ],
+  "modelFulfillments": [
+    {
+      "slug": "asia/cloisonne-altarpiece-mia-95-53-20864e",
+      "url": "https://models.atrium.earth/models/previews/asia/cloisonne-altarpiece-mia-95-53-20864e/preview-c5785488834e.glb",
+      "sha256": "c5785488834e9e67cc8ee26a17da06e71637d4dbbd2565709e25e290d96c465b",
+      "bytes": 1662608,
+      "liveCDN": false
+    },
+    {
+      "slug": "medieval/triptych-from-szczodrow-ocm-2024-rz-2",
+      "url": "https://models.atrium.earth/models/previews/medieval/triptych-from-szczodrow-ocm-2024-rz-2/preview-b6c73ddbcb81.glb",
+      "sha256": "b6c73ddbcb81af4b48754c2eb027d280153cff56f6384a512374d653d20de803",
+      "bytes": 3323440,
+      "liveCDN": false
+    },
+    {
+      "slug": "medieval/madonna-of-kruzlowa-mnk-i-119",
+      "url": "https://models.atrium.earth/models/previews/medieval/madonna-of-kruzlowa-mnk-i-119/preview-43dcffd26825.glb",
+      "sha256": "43dcffd2682583da1c4350201beeacd3f06cda9db131736e7a33b9b355dc08e7",
+      "bytes": 1468492,
+      "liveCDN": false
+    }
+  ],
+  "newest": {
+    "count": 40,
+    "currentBatch": 7,
+    "olderWorks": 33,
+    "themeLabel": false
+  },
+  "failures": [],
+  "result": "passed"
+}

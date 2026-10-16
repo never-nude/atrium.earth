@@ -1,0 +1,118 @@
+{
+  "schema": "atrium-final-release-audit/1",
+  "batch": "beautiful-2000-20261015",
+  "checked": "2026-10-16T02:55:26.391Z",
+  "status": "pass",
+  "baselineRef": "b296fa93c7b32e14c2e13e564b959886432d91bb",
+  "headSha": "ba4d3b3e57d09099276c821eb2fa6db46e1f7cf0",
+  "counts": {
+    "baselineCatalog": 2011,
+    "baselinePublic": 1993,
+    "currentCatalog": 2018,
+    "currentPublic": 2000,
+    "expectedAdditions": 7,
+    "actualAdditions": 7,
+    "publicAdditions": 7,
+    "reviewedLedgerWorks": 7,
+    "featured": 250,
+    "failures": 0
+  },
+  "bindings": {
+    "expectedLeadRecordsFingerprint": "3f4549c6c05da742517b0a2b5a5c87e90ef12b54d4ac7f1f9ce4a0f0a4eda661",
+    "reviewLedgerFingerprint": "0baf4c3fba612aa7f67f24a31e863687cab6ccddb964683561045fcf1414f00a",
+    "sourceIndexFingerprints": [
+      "4951f2e48e522386028938af35c1f131fc11a5443479257cdbeece96fe624b9a"
+    ],
+    "acquisitionReportFingerprints": [
+      "9f7170036b10c8eabc10ef46efa9dc34dfdd4ddc632731cfe7983f789ff5c5d8"
+    ],
+    "scopeReportFingerprints": [
+      "28f2108895510a524fd87b6d071dbbccec08c96aeb2425a12c0ac95feafe5623"
+    ],
+    "proposalFingerprint": "c640076626dd35c7f4f51fd2a763b88f67633dc6712f273c167f6d1474cf9908",
+    "rendererHashes": {
+      "public/__render.html": "dc7b17364745949517986bbbdb87b4ef680bbf4e156f701d4143aaa86ae73f0e",
+      "public/model-render-utils.js": "afc875f080e2f1c7042ff6e2b5e41e298bfaf609d788774f48c8071950d3d2e0",
+      "scripts/render-thumbnails.mjs": "04aeca916a0d411321ba758860f6ce39094cb2c7bb013625e1ba7dacba2bb89d"
+    },
+    "currentDataFingerprints": {
+      "catalog": "d73b0bdfe77450cd5053f1c10b31837021a8b1d20f6f552a8dcf1b5e23980a19",
+      "previews": "d7f87acf37ceb8e5df440170897f338546ddaa6bcfa1c1afafcc9eda1c8e2797",
+      "orientations": "6680e71cbf9e30846435989b724625feb7a4c644f80cd27bcea64fe6c53b545d",
+      "physical-dimensions": "91d19a492f94ddc541ef70cc374f5fc9a78734a868c5e06f58ae891f706debef",
+      "spatial-eligibility": "2a556e601e9ef08b5a2573d83e459ea478c4de1d0428824e2483c914e5fe116c",
+      "appearance-overrides": "3fd3f2f041c8f8907947d2ad465342ee88efff39bb1b939a87442bc9bdd0d9ce",
+      "material-appearances": "7341e311a354d7c9fd377137bc529d8a4d28e653f60ed2224bae1010c496dc4a",
+      "display-recommendations": "e285e813f2d8d75cae2ea956b9f8b6f3145e3d63787c3251b42b051e3ce31fd9",
+      "spatial-display-defaults": "b37b0be6f259dd5da3272fd26b23e495a0671031d5fa13db6cc99c0532893026",
+      "identity-corrections": "c7a1343d201cda33c398bb18e0081b71a881951a0fb0964bd1f6574404f1f1fa",
+      "additions": "ef1631166a6b01826e8aaea79cb43dc607ac4ff07741e811f77b052af5cd90f4",
+      "renders": "a406a17f408e64d9b47f2a0020089db87e4d77c64d79b1e5602188fce08f4146",
+      "featured-works": "e12923f11fa19729d54153d3ac2e90a3e61e045413ddef96760c29d24624416f",
+      "v3-content": "e0844620b9331acff4ae315d31b8aea8fe1622d7feefd0c3648e93045a9f7e7c"
+    },
+    "featuredFileSha256": "aa74f35ef39e6075f0ca52d1bd8f870c2c0d11ae6aceb7fdbb28ce216918aac5"
+  },
+  "results": [
+    {
+      "slug": "asia/cloisonne-altarpiece-mia-95-53-20864e",
+      "sourceUid": "20864e2bafb8451dad986c467894a186",
+      "status": "pass"
+    },
+    {
+      "slug": "asia/guardian-animals-karashishi-komainu-cleveland-1924-351-261a07",
+      "sourceUid": "261a0722b9c942448e7a89bda96d1927",
+      "status": "pass"
+    },
+    {
+      "slug": "americas/standing-figures-nayarit-cleveland-1990-266-88349e",
+      "sourceUid": "88349e36cbd24899aeb2271296e04c81",
+      "status": "pass"
+    },
+    {
+      "slug": "asia/seated-buddha-hadda-cleveland-1967-39-088985",
+      "sourceUid": "088985287b96442eb3f8492c5c3ba44e",
+      "status": "pass"
+    },
+    {
+      "slug": "medieval/wloclawek-reliquary-mnk-iv-z-1954-1",
+      "sourceUid": "f5e1e8f8144149b4ac3379b31c1bfaa0",
+      "status": "pass"
+    },
+    {
+      "slug": "medieval/triptych-from-szczodrow-ocm-2024-rz-2",
+      "sourceUid": "e9bb4d887940421fb115b4f425fba824",
+      "status": "pass"
+    },
+    {
+      "slug": "medieval/madonna-of-kruzlowa-mnk-i-119",
+      "sourceUid": "597d14d7e6ec46a8a0becdf57dd6dbec",
+      "status": "pass"
+    }
+  ],
+  "permittedExhibitionBodyAdditions": [
+    {
+      "exhibitionSlug": "sacred-forms",
+      "slug": "medieval/madonna-of-kruzlowa-mnk-i-119"
+    },
+    {
+      "exhibitionSlug": "sacred-forms",
+      "slug": "medieval/wloclawek-reliquary-mnk-iv-z-1954-1"
+    },
+    {
+      "exhibitionSlug": "the-work-of-the-surface",
+      "slug": "asia/cloisonne-altarpiece-mia-95-53-20864e"
+    },
+    {
+      "exhibitionSlug": "the-work-of-the-surface",
+      "slug": "medieval/triptych-from-szczodrow-ocm-2024-rz-2"
+    },
+    {
+      "exhibitionSlug": "the-other-kingdom",
+      "slug": "asia/guardian-animals-karashishi-komainu-cleveland-1924-351-261a07"
+    }
+  ],
+  "failures": [],
+  "warnings": [],
+  "limits": "Read-only local metadata/asset audit. No network or source/model payload downloads. Full source and preview SHA values are bound to supplied acquisition and human-review evidence; this helper does not independently rehash remote model bytes or verify Drive contents. No current additions or final quality are inferred from preparation metadata."
+}
