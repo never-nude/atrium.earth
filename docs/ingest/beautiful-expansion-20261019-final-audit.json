@@ -1,0 +1,381 @@
+{
+  "schema": "atrium-final-release-audit/1",
+  "batch": "beautiful-expansion-20261019",
+  "checked": "2026-10-19T16:08:51.762Z",
+  "status": "pass",
+  "baselineRef": "e018ef8c67d1d8253f9392b77cbf7690f1d9a2a4",
+  "headSha": "9de19cb3fa05e89dbf08be22dd0f017e21ca8f5f",
+  "counts": {
+    "baselineCatalog": 2018,
+    "baselinePublic": 2000,
+    "currentCatalog": 2069,
+    "currentPublic": 2051,
+    "expectedAdditions": 51,
+    "actualAdditions": 51,
+    "publicAdditions": 51,
+    "reviewedLedgerWorks": 51,
+    "featured": 250,
+    "failures": 0
+  },
+  "bindings": {
+    "expectedLeadRecordsFingerprint": "0195e248aeb5a903c5acc966ba5c45d4ae3ac5982b9dd39e486d45eb7fe17199",
+    "reviewLedgerFingerprint": "bfb0d8eb151324a03bfd7ea7d7130b1ce66738ac6ccef99fbfeb6eeff0d2c52a",
+    "sourceIndexFingerprints": [
+      "07445bdc9273fef62cef1f861c4a5644e865074f179f05cab9a35f09665f5b85"
+    ],
+    "acquisitionReportFingerprints": [
+      "ee55a5ad4865de7f099003445ee24a2d0056a91c4bcea7f75e18f9beb614aaab"
+    ],
+    "scopeReportFingerprints": [
+      "e897026a11a735732ae2fe4dca9f9ab6a2f5961bf55d92b8bf5b3396447d7e1d",
+      "a7f5508a0c72429b2ebc7199b18c9e814b82a51b5514b98598c8409694335ab6",
+      "6c0c7480ba8426ea4cdf5933c2c5f79c44a87c3c6922504318856d7046cc968b",
+      "52286474df588bc3bfe47414b401a4581a84d9c1f983ec30440d152260622b05",
+      "b270d94c0c545c1b5cedf433c5e3a07b0abc57f521bc1692f855eab2e87e420a",
+      "66f195cd88687b82d71d788cb964d127088aa958ee82788b1e2c367ec0598413",
+      "f6950bb1994827ebd28422a211d01728b5f64e031d31e7dcc4356142853ca2e9",
+      "ea28060879d412ed8c3f9de03e194fd15506ea9e8dddb5f6f755659c2e03b83e",
+      "e676f3745d660d7ef7e5ecdcb9af0609aa67e47852f9c1ca67cc9fc5fd54c9da",
+      "872274708d798c0b3fd19c161ba5d255a1bfda99fe89c970ee4a4e5de5dbcac2",
+      "b4dffbcae452af331ae6a415bc07cc732a5f2e037c14a0926162e9d4abe5e26e",
+      "a98a74c11067c1eac4e48c3a41b56c714de3e997ee9827af91d17ce6aded23db",
+      "29b89c1a7a268f889a9426f88e1bf0848bf228da6c89606e16d0a7fa02c4c5d6",
+      "b5053a8c164d82162e05be57299c01af83cad781e3719a0c105046958405d761",
+      "ee290d2b948734db860c18f63447b45a8549ddc5a6088a811dfcf434b064397c",
+      "2c36f29fa97acc6351b4d9b1d170812cbabdeccd07e57335e8d66f623bbdbea1",
+      "e9cbdb5445c7db7d74b4caec51dadb97128604345b9b6d447aca7067ffa9bf0c",
+      "5498975b2a313cd43eaa0823695e98d964bf32f7eb0915a1d701b4cf48d30d4c",
+      "789bd8ad7e7eaa1ed2da21678592a876e56a18bad98a73689d1bc01afc672d28",
+      "fb89ce4960f3a5c6937fd0eccaaf43e9c3f22d43625734437358f7f6371cd848"
+    ],
+    "proposalFingerprint": "0e145f84f38e232bc9f39f8171a93b99fb9cd148cec6cc082464c75986e97968",
+    "rendererHashes": {
+      "public/__render.html": "dc7b17364745949517986bbbdb87b4ef680bbf4e156f701d4143aaa86ae73f0e",
+      "public/model-render-utils.js": "afc875f080e2f1c7042ff6e2b5e41e298bfaf609d788774f48c8071950d3d2e0",
+      "scripts/render-thumbnails.mjs": "04aeca916a0d411321ba758860f6ce39094cb2c7bb013625e1ba7dacba2bb89d"
+    },
+    "currentDataFingerprints": {
+      "catalog": "99c4a3d5f4b15cefcb95e3b8a1c8bb8f57c495c15d4c24a0c39e56f5faad6c3a",
+      "previews": "5aa86d433bbe6a6e4b15dfe415b354ac7d10a1456d1781dc3b30366fd00e5d7d",
+      "orientations": "77cc7c6303d3a7e1fd45708ff7f8de279c152b21549f8fcc5801941d7acd59c1",
+      "physical-dimensions": "f7178288fc248b0094bbef2231e39f115a18ba4c7f8869aa38e26108d88e463f",
+      "spatial-eligibility": "e98118a3694ac84843eddcf8059d99321914a8c283493fb1ceeebb80ed135c66",
+      "appearance-overrides": "3fd3f2f041c8f8907947d2ad465342ee88efff39bb1b939a87442bc9bdd0d9ce",
+      "material-appearances": "7341e311a354d7c9fd377137bc529d8a4d28e653f60ed2224bae1010c496dc4a",
+      "display-recommendations": "e285e813f2d8d75cae2ea956b9f8b6f3145e3d63787c3251b42b051e3ce31fd9",
+      "spatial-display-defaults": "b37b0be6f259dd5da3272fd26b23e495a0671031d5fa13db6cc99c0532893026",
+      "identity-corrections": "c7a1343d201cda33c398bb18e0081b71a881951a0fb0964bd1f6574404f1f1fa",
+      "additions": "ef1631166a6b01826e8aaea79cb43dc607ac4ff07741e811f77b052af5cd90f4",
+      "renders": "bf2de70f6910523af76b0fdf6f6ec27c88b4bd81fea5f3658239f8606607c650",
+      "featured-works": "e12923f11fa19729d54153d3ac2e90a3e61e045413ddef96760c29d24624416f",
+      "v3-content": "ae279ecff426bdbdac07c4d14a8c7a4814f592758cd11706669444562f61182a"
+    },
+    "featuredFileSha256": "aa74f35ef39e6075f0ca52d1bd8f870c2c0d11ae6aceb7fdbb28ce216918aac5"
+  },
+  "results": [
+    {
+      "slug": "asia/raft-cup-cleveland-1977-7-a254ff",
+      "sourceUid": "a254ffe2ee5f4512a034e666b5eee4bd",
+      "status": "pass"
+    },
+    {
+      "slug": "modern/wyspianski-white-lily-casket-4636",
+      "sourceUid": "75a69fcb79424706a8a868498867b292",
+      "status": "pass"
+    },
+    {
+      "slug": "europe/christ-crucified-by-veit-stoss-0637f5",
+      "sourceUid": "0637f5f99178491abac2b5fcfc277913",
+      "status": "pass"
+    },
+    {
+      "slug": "asia/surya-the-sun-god-cleveland-1965-557-0f5e1a",
+      "sourceUid": "0f5e1ad4a1214e0c88d480e8945da422",
+      "status": "pass"
+    },
+    {
+      "slug": "modern/szymanowski-mickiewicz-after-improvisation-8",
+      "sourceUid": "51bfa9766bb5404f9da18b4c3574765c",
+      "status": "pass"
+    },
+    {
+      "slug": "asia/colossal-head-of-a-deva-cleveland-2011-147-2413aa",
+      "sourceUid": "2413aa3cdb504a368b58b47e5fbefe08",
+      "status": "pass"
+    },
+    {
+      "slug": "modern/drexler-in-the-theatre-box-490",
+      "sourceUid": "6385359e567c4a209b98deae17c4c401",
+      "status": "pass"
+    },
+    {
+      "slug": "europe/holy-sepulchre-shaped-reliquary-0ffa1a",
+      "sourceUid": "0ffa1a821a19492ebdc2141f4e247c72",
+      "status": "pass"
+    },
+    {
+      "slug": "asia/standing-buddha-cleveland-1966-30-dbdf5d",
+      "sourceUid": "dbdf5dff485f47e48ea89aa558e1f79b",
+      "status": "pass"
+    },
+    {
+      "slug": "modern/gadomski-portrait-zofia-potocka-18",
+      "sourceUid": "145f47b707134e809ad3de68b283eac0",
+      "status": "pass"
+    },
+    {
+      "slug": "europe/gothic-reliquary-herm-cb6485",
+      "sourceUid": "cb6485edcd4f454999415a2e74503e84",
+      "status": "pass"
+    },
+    {
+      "slug": "modern/sosnowski-count-kazimierz-potulicki-186",
+      "sourceUid": "9facedbad89e4bb19b8331f1f5bd4abf",
+      "status": "pass"
+    },
+    {
+      "slug": "asia/prince-shotoku-at-age-two-shotoku-taishi-cleveland-1989-76-78ae04",
+      "sourceUid": "78ae046fb1b5421fbd9684cae68fed03",
+      "status": "pass"
+    },
+    {
+      "slug": "modern/schluter-bust-woman-roza-loewenfeld-192",
+      "sourceUid": "fc6e731a0131471ba8e45511c7ea9996",
+      "status": "pass"
+    },
+    {
+      "slug": "europe/monstrance-8d8ebf",
+      "sourceUid": "8d8ebfceced7499a856174d061bcb516",
+      "status": "pass"
+    },
+    {
+      "slug": "sub-saharan-africa/prestige-chair-cleveland-1983-33-03d10a",
+      "sourceUid": "03d10a0ccb254061a8ec77b8cc14b40c",
+      "status": "pass"
+    },
+    {
+      "slug": "modern/wowro-birds-332",
+      "sourceUid": "ce5c834f6d9d41d8930456638ca5c320",
+      "status": "pass"
+    },
+    {
+      "slug": "europe/wooden-feretory-with-representation-of-madonna-70c9db",
+      "sourceUid": "70c9db48af544dd4a90c1387057d9fc4",
+      "status": "pass"
+    },
+    {
+      "slug": "modern/tombinski-bust-jan-matejko-2260",
+      "sourceUid": "d6203c12328743ee9b75ec32843fb089",
+      "status": "pass"
+    },
+    {
+      "slug": "europe/cabinet-with-images-of-saints-94d705",
+      "sourceUid": "94d7057b8de7404eb3a18b62ef79d663",
+      "status": "pass"
+    },
+    {
+      "slug": "europe/cabinet-1cf7e6",
+      "sourceUid": "1cf7e63269054b2e819fe3a8f5125bc9",
+      "status": "pass"
+    },
+    {
+      "slug": "asia/deep-vessel-cleveland-1998-32-abf57c",
+      "sourceUid": "abf57c7c2a6f4454aa8fc40d4a87ae50",
+      "status": "pass"
+    },
+    {
+      "slug": "modern/ksiazek-devil-butterfly-4585",
+      "sourceUid": "4f99a7f0bc0c4d2e9fadce541c75f57d",
+      "status": "pass"
+    },
+    {
+      "slug": "europe/tankard-depicting-the-queen-of-sheba-and-solomon-a1ed5f",
+      "sourceUid": "a1ed5f79b647481297366adc42bc6903",
+      "status": "pass"
+    },
+    {
+      "slug": "asia/recumbent-bull-cleveland-1985-74-774c1c",
+      "sourceUid": "774c1c5f1cd4484f98b68ee96d886950",
+      "status": "pass"
+    },
+    {
+      "slug": "modern/ksiazek-violinist-4607",
+      "sourceUid": "14b4555a51b34b38896d0144be188e1e",
+      "status": "pass"
+    },
+    {
+      "slug": "europe/tabletop-clock-1670-c5d25a",
+      "sourceUid": "c5d25a4967894a1683afeb3533658d5b",
+      "status": "pass"
+    },
+    {
+      "slug": "asia/mother-goddess-cleveland-1970-12-78133a",
+      "sourceUid": "78133a22b04c44a1bfcfcb9fcd63f3b6",
+      "status": "pass"
+    },
+    {
+      "slug": "modern/ksiazek-standing-woman-4609",
+      "sourceUid": "8424e8f5887b42d8a8e184f12409f1a4",
+      "status": "pass"
+    },
+    {
+      "slug": "asia/tripod-ding-cleveland-1962-281-af15e7",
+      "sourceUid": "af15e7980f9b4f718094fc2e16205d89",
+      "status": "pass"
+    },
+    {
+      "slug": "modern/ksiazek-ox-4608",
+      "sourceUid": "058e931bd278415ea826cd6c9024d66f",
+      "status": "pass"
+    },
+    {
+      "slug": "asia/seated-zenki-and-koki-cleveland-2012-40-87781e",
+      "sourceUid": "87781ebfa25d4bc68f4ca87a5879a666",
+      "status": "pass"
+    },
+    {
+      "slug": "modern/ksiazek-thinker-4610",
+      "sourceUid": "492a7c28ac75400495a439290844afa0",
+      "status": "pass"
+    },
+    {
+      "slug": "asia/ding-censer-with-an-openwork-cover-1034cd",
+      "sourceUid": "1034cd8e4df5430cb874f012415a43b0",
+      "status": "pass"
+    },
+    {
+      "slug": "americas/head-with-animal-helmet-cleveland-1990-237-12841a",
+      "sourceUid": "12841a53ba114c4492f2dbb410b164b9",
+      "status": "pass"
+    },
+    {
+      "slug": "modern/ksiazek-abstract-linear-relief-4580",
+      "sourceUid": "20d9cdc4f0af443489f6e2498614295a",
+      "status": "pass"
+    },
+    {
+      "slug": "asia/ink-dish-in-the-shape-of-a-chinese-lion-d84f02",
+      "sourceUid": "d84f02395b9b412a836afb20eaadcfd1",
+      "status": "pass"
+    },
+    {
+      "slug": "americas/ballgame-palma-cleveland-1973-3-5c5227",
+      "sourceUid": "5c5227e077e04654bcffa15002b9b51a",
+      "status": "pass"
+    },
+    {
+      "slug": "modern/ksiazek-abstract-converging-relief-4582",
+      "sourceUid": "05e7f8d46fb94c6480be777b6b12bafe",
+      "status": "pass"
+    },
+    {
+      "slug": "asia/figure-of-seated-arhat-with-a-vase-bcceaf",
+      "sourceUid": "bcceaf7ec75644ed94e30d88d02cdc0c",
+      "status": "pass"
+    },
+    {
+      "slug": "americas/kero-waisted-cup-cleveland-1946-233-383bc7",
+      "sourceUid": "383bc7b9f8db46278073d69112cb6e2f",
+      "status": "pass"
+    },
+    {
+      "slug": "modern/ksiazek-vase-blue-glaze-4600",
+      "sourceUid": "9304c6cee6194ea499eb84ea3acadaa4",
+      "status": "pass"
+    },
+    {
+      "slug": "europe/statuette-of-a-monkey-playing-the-horn-615cc5",
+      "sourceUid": "615cc59e73f3410bb510186ea69c48a1",
+      "status": "pass"
+    },
+    {
+      "slug": "sub-saharan-africa/prestige-cap-mpu-ngola-cleveland-1997-180-ca93a8",
+      "sourceUid": "ca93a8e164f040ffa246b64df348d11b",
+      "status": "pass"
+    },
+    {
+      "slug": "modern/ksiazek-vase-mans-face-4588",
+      "sourceUid": "12d82b8507a24d65b26388f1a0cf6343",
+      "status": "pass"
+    },
+    {
+      "slug": "europe/statuette-of-a-woman-selling-grapes-6db54b",
+      "sourceUid": "6db54b58a0944b6b8c9143a524d67a5d",
+      "status": "pass"
+    },
+    {
+      "slug": "sub-saharan-africa/helmet-cleveland-1969-5-13600d",
+      "sourceUid": "13600dbd9c79478a8380bb90ff8b6df5",
+      "status": "pass"
+    },
+    {
+      "slug": "modern/canova-terpsichore-lyran-cleveland-1968-212",
+      "sourceUid": "6827af1276ab407ebbfa1e7d0a4b9a19",
+      "status": "pass"
+    },
+    {
+      "slug": "asia/water-container-with-peonies-cleveland-2022-197-705115",
+      "sourceUid": "7051152ac78b426da1ad589f04fb8f38",
+      "status": "pass"
+    },
+    {
+      "slug": "modern/gargallo-portrait-picasso-mnac-011012",
+      "sourceUid": "8a503764de2a424da039386406d177ce",
+      "status": "pass"
+    },
+    {
+      "slug": "europe/reliquary-with-st-stanislauss-hand-b6a9c2",
+      "sourceUid": "b6a9c2c8b4464aafb0a7c8ff1ef9b3b5",
+      "status": "pass"
+    }
+  ],
+  "permittedExhibitionBodyAdditions": [
+    {
+      "exhibitionSlug": "power-and-presence",
+      "slug": "sub-saharan-africa/prestige-chair-cleveland-1983-33-03d10a"
+    },
+    {
+      "exhibitionSlug": "sacred-forms",
+      "slug": "europe/holy-sepulchre-shaped-reliquary-0ffa1a"
+    },
+    {
+      "exhibitionSlug": "the-work-of-the-surface",
+      "slug": "modern/wyspianski-white-lily-casket-4636"
+    },
+    {
+      "exhibitionSlug": "the-work-of-the-surface",
+      "slug": "modern/ksiazek-abstract-linear-relief-4580"
+    },
+    {
+      "exhibitionSlug": "what-survives",
+      "slug": "asia/colossal-head-of-a-deva-cleveland-2011-147-2413aa"
+    },
+    {
+      "exhibitionSlug": "the-other-kingdom",
+      "slug": "asia/ink-dish-in-the-shape-of-a-chinese-lion-d84f02"
+    }
+  ],
+  "failures": [],
+  "warnings": [],
+  "limits": "Read-only local metadata/asset audit. No network or source/model payload downloads. Full source and preview SHA values are bound to supplied acquisition and human-review evidence; this helper does not independently rehash remote model bytes or verify Drive contents. No current additions or final quality are inferred from preparation metadata. Actual eight-view WebP files are fully hashed against scope reports. Permanent archive coverage authenticates supplied fresh HMAC complete-readback receipts, exact ordered private Drive object identities, and embedded provenance/map members without new network requests; no Drive identity or key is printed.",
+  "actualScopeImages": {
+    "reviewedWorks": 51,
+    "checkedImages": 408
+  },
+  "permanentArchive": {
+    "selectedVerified": 51,
+    "metadataBindings": [
+      {
+        "provenanceSha256": "f629f0edbc9453b6e8f060b0f9b7d5d85b0d003dbc8da8a35ded34a429d2f99e",
+        "provenanceBytes": 7182638,
+        "restoreMapSha256": "926a52c8ca13ce2d175da61af76227a1f0d03df8f1cd12204f0ae9d7fc196e24",
+        "restoreMapBytes": 654108,
+        "incomingSourceIndexSha256": "249b4eb0907053814e5c0cf63129069c76fca2c4031ca00ce6d520137144c2bc",
+        "incomingSourceIndexBytes": 336237,
+        "originalCount": 59,
+        "selectedCovered": 51
+      }
+    ]
+  },
+  "configBinding": "09066757ed3bd929db2aaeffeb8c3ec5a1255e08b57ca40af961e9a55f9d90fb"
+}
