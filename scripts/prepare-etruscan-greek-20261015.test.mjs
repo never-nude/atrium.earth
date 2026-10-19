@@ -221,6 +221,21 @@ test('metadata preflight honors 429 Retry-After and fails bounded retries withou
   await assert.rejects(preflightMetadata([document([candidate()])], { token: 'fixture', intervalMs: 4999 }), /5000/);
 });
 
+test('metadata supports the reviewed expansion batch and rejects crossed or unsupported identities', async () => {
+  const batch = 'beautiful-expansion-20261019';
+  let time = now.getTime();
+  const input = { ...document([candidate()]), logical_batch_id: batch };
+  const options = { token: 'fixture', batch, clock: () => time, sleep: async ms => { time += ms; },
+    fetchImpl: async endpoint => new Response(JSON.stringify(endpoint.endsWith('/download')
+      ? { glb: { size: 1000 } }
+      : { uid: candidate().uid, isDownloadable: true, license: { url: candidate().license_url } })) };
+  const result = await preflightMetadata([input], options);
+  assert.equal(result.batch, batch);
+  assert.equal(result.complete, true);
+  await assert.rejects(preflightMetadata([input], { ...options, batch: BATCH }), /batch mismatch/);
+  await assert.rejects(preflightMetadata([input], { ...options, batch: 'unreviewed-batch' }), /Unsupported/);
+});
+
 test('metadata preflight checks eligibility, UID, GLB presence and network errors before any source acquisition', async () => {
   for (const detail of [{ uid: 'f'.repeat(32), isDownloadable: true }, { uid: candidate().uid, isDownloadable: false }]) {
     let calls = 0;

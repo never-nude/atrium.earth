@@ -1,20 +1,14 @@
-name: Etruscan and Greek download metadata (no models)
+name: Reviewed batch download metadata (no model payloads)
 
 on:
-  push:
-    # Bootstrap only on the acquisition branch; publishing main must not
-    # repeat a completed metadata preflight. Manual dispatch remains available.
-    branches: [codex/etruscan-greek-20261015]
-    paths:
-      - docs/ingest/etruscan-greek-20261015-metadata-request.json
   workflow_dispatch:
     inputs:
       leads_file:
-        description: 'Exact saved candidate file under docs/ingest/'
+        description: 'Exact reviewed expansion candidate file under docs/ingest/'
         required: true
         type: string
       ref:
-        description: 'Exact branch or commit containing the reviewed candidate file and this script'
+        description: 'Full commit SHA containing the candidate file and metadata reader'
         required: true
         type: string
 
@@ -22,7 +16,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: etruscan-greek-metadata
+  group: expansion-metadata-${{ inputs.leads_file }}
   cancel-in-progress: false
 
 jobs:
@@ -30,53 +24,49 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
-      - name: Checkout exact requested source ref
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
-          ref: ${{ inputs.ref || github.sha }}
+          ref: ${{ inputs.ref }}
           fetch-depth: 1
-      - name: Setup Node
-        uses: actions/setup-node@v4
+          filter: blob:none
+          persist-credentials: false
+          sparse-checkout: |
+            scripts
+            src/data
+            docs/ingest
+      - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Resolve only the dedicated batch metadata request
+      - name: Read exact authenticated download metadata without fetching payloads
         env:
-          EVENT: ${{ github.event_name }}
           LEADS_FILE: ${{ inputs.leads_file }}
+          EXACT_REF: ${{ inputs.ref }}
+          SKETCHFAB_TOKEN: ${{ secrets.SKETCHFAB_TOKEN }}
         run: |
           node --input-type=module <<'NODE'
           import fs from 'node:fs';
           import path from 'node:path';
-          const batch = 'etruscan-greek-20261015';
-          const root = fs.realpathSync('docs/ingest');
-          let files;
-          if (process.env.EVENT === 'push') {
-            const request = JSON.parse(fs.readFileSync(`docs/ingest/${batch}-metadata-request.json`, 'utf8'));
-            if (request.batch !== batch) throw new Error('Metadata request has the wrong batch identity');
-            files = request.leads_files || [request.leads_file || `docs/ingest/${batch}-leads.json`];
-          } else files = [process.env.LEADS_FILE];
-          if (!Array.isArray(files) || !files.length || files.length > 4 || new Set(files).size !== files.length) throw new Error('Expected 1–4 distinct candidate files');
-          for (const file of files) {
-            if (typeof file !== 'string' || !/^docs\/ingest\/etruscan-greek-20261015-[a-z0-9-]+\.json$/.test(file)) throw new Error('Candidate path must belong to this batch under docs/ingest');
-            const resolved = fs.realpathSync(file);
-            if (path.dirname(resolved) !== root || !fs.statSync(resolved).isFile()) throw new Error('Candidate file must resolve directly under docs/ingest');
-          }
-          fs.writeFileSync(path.join(process.env.RUNNER_TEMP, 'metadata-inputs.json'), JSON.stringify(files));
-          console.log(`Checking download metadata for ${files.length} candidate manifest(s); no model downloads.`);
+          import { preflightMetadata } from './scripts/prepare-etruscan-greek-20261015.mjs';
+          const file = process.env.LEADS_FILE;
+          const batches = ['etruscan-greek-20261015', 'beautiful-expansion-20261019'];
+          const batch = batches.find(value => file?.startsWith(`docs/ingest/${value}-`));
+          if (!batch) throw new Error('Unsupported batch');
+          if (!/^[a-f0-9]{40}$/.test(process.env.EXACT_REF || '')) throw new Error('A full exact commit SHA is required');
+          if (!/^docs\/ingest\/(?:etruscan-greek-20261015|beautiful-expansion-20261019)-[a-z0-9-]+\.json$/.test(file || '')) throw new Error('Candidate path is outside the reviewed batch');
+          const root = fs.realpathSync('docs/ingest'), target = fs.realpathSync(file);
+          if (path.dirname(target) !== root || !fs.statSync(target).isFile()) throw new Error('Candidate escaped ingest root');
+          const input = JSON.parse(fs.readFileSync(target, 'utf8'));
+          if (input.logical_batch_id !== batch) throw new Error('Candidate batch mismatch');
+          const result = await preflightMetadata([input], { batch, token: process.env.SKETCHFAB_TOKEN });
+          fs.mkdirSync(path.join(process.env.RUNNER_TEMP, 'metadata'), { recursive: true });
+          fs.writeFileSync(path.join(process.env.RUNNER_TEMP, 'metadata', 'selected-download-metadata.json'), JSON.stringify(result, null, 2) + '\n', { flag: 'wx', mode: 0o600 });
+          console.log(JSON.stringify({ expected: result.expected, checked: result.checked, complete: result.complete, errors: result.errors }));
+          if (!result.complete) process.exitCode = 1;
           NODE
-      - name: Read authenticated download metadata sequentially
-        env:
-          SKETCHFAB_TOKEN: ${{ secrets.SKETCHFAB_TOKEN }}
-        run: |
-          node scripts/prepare-etruscan-greek-20261015.mjs \
-            --metadata-preflight \
-            --input-list="$RUNNER_TEMP/metadata-inputs.json" \
-            --metadata-out="$RUNNER_TEMP/metadata/selected-download-metadata.json"
-      - name: Upload sanitized metadata only
+      - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
-        uses: actions/upload-artifact@v4
         with:
-          name: etruscan-greek-metadata-${{ github.run_id }}-${{ github.run_attempt }}
+          name: expansion-download-metadata-${{ github.run_id }}-${{ github.run_attempt }}
           path: ${{ runner.temp }}/metadata/selected-download-metadata.json
           retention-days: 30
           if-no-files-found: warn

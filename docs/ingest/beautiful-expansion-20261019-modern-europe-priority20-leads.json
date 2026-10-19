@@ -1,0 +1,1903 @@
+{
+  "schema": "atrium-auto-ingest-candidates/1",
+  "generated_at": "2026-10-19T13:55:35.448Z",
+  "logical_batch_id": "beautiful-expansion-20261019",
+  "expected_count": 20,
+  "strict_acquisition": false,
+  "note": "Discovery selection only. Exact authenticated download metadata and full acquisition review remain required. No automatic featured membership or exact-size AR eligibility.",
+  "candidates": [
+    {
+      "source": "sketchfab",
+      "archive": "",
+      "uid": "75a69fcb79424706a8a868498867b292",
+      "slug": "modern/wyspianski-white-lily-casket-4636",
+      "collection": "modern",
+      "wing": "europe",
+      "title": "White Lily Casket",
+      "artist": "Stanisław Wyspiański (design and painted decoration); Andrzej Sydor",
+      "culture": "Polish modern art",
+      "geography": "Kraków, Poland",
+      "original_location": "Kraków, Poland",
+      "current_location": "Jagiellonian University Museum Collegium Maius",
+      "museum": "Jagiellonian University Museum Collegium Maius",
+      "year": "1904",
+      "year_sort": 1904,
+      "period": "Modern",
+      "material": "Pine and pear wood, iron; veneered and painted",
+      "dimensions": "width 26,5 cm; height 18 cm; depth 13,7 cm",
+      "measures": [
+        {
+          "axis": "width",
+          "value": 26.5,
+          "value_text": "26,5",
+          "unit": "cm",
+          "scope": "Published museum object dimension; no mesh calibration implied",
+          "qualifier": "published",
+          "sourceUrls": [
+            "https://muzea.malopolska.pl/en/objects-list/4636"
+          ]
+        },
+        {
+          "axis": "height",
+          "value": 18,
+          "value_text": "18",
+          "unit": "cm",
+          "scope": "Published museum object dimension; no mesh calibration implied",
+          "qualifier": "published",
+          "sourceUrls": [
+            "https://muzea.malopolska.pl/en/objects-list/4636"
+          ]
+        },
+        {
+          "axis": "depth",
+          "value": 13.7,
+          "value_text": "13,7",
+          "unit": "cm",
+          "scope": "Published museum object dimension; no mesh calibration implied",
+          "qualifier": "published",
+          "sourceUrls": [
+            "https://muzea.malopolska.pl/en/objects-list/4636"
+          ]
+        }
+      ],
+      "accession": "MUJ-289-B",
+      "object_identity": "Jagiellonian University Museum Collegium Maius | MUJ-289-B",
+      "source_institution": "Virtual Museums of Małopolska / Małopolska Institute of Culture",
+      "source_url": "https://sketchfab.com/3d-models/75a69fcb79424706a8a868498867b292",
+      "source_record_url": "https://muzea.malopolska.pl/en/objects-list/4636",
+      "related_source_record_urls": [
+        "https://api.muzea.malopolska.pl/api/object/4636"
+      ],
+      "download_api_url": "https://api.sketchfab.com/v3/models/75a69fcb79424706a8a868498867b292/download",
+      "download_format": "glb",
+      "download_size_bytes": null,
+      "downloadable_verified": true,
+      "downloadable_verified_at": "2026-10-19T13:52:43.769638+00:00",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "license_tier": 2,
+      "license_uid": "322a749bcfa841b29dff1e8a1bb74b0b",
+      "license_slug": "by",
+      "license_evidence_url": "https://api.sketchfab.com/v3/models/75a69fcb79424706a8a868498867b292",
+      "scan_author": "Virtual Museums of Małopolska (WirtualneMuzeaMalopolski)",
+      "publisher": "WirtualneMuzeaMalopolski",
+      "scan_source": "Institution-published digitization of the physical object by the Regional Digitisation Lab, Małopolska Institute of Culture",
+      "attribution": "3D model “Wyspiański Casket with White Lily Motifs” by Virtual Museums of Małopolska (WirtualneMuzeaMalopolski), Regional Digitisation Lab, Małopolska Institute of Culture, licensed CC BY 4.0. Physical work: Stanisław Wyspiański (design and painted decoration); Andrzej Sydor, Jagiellonian University Museum Collegium Maius, MUJ-289-B.",
+      "note": "Floral Art Nouveau decoration covers a small, closed wooden casket. The museum credits Wyspiański with the design and painted decoration and Andrzej Sydor as co-maker.",
+      "source_description": "Floral Art Nouveau decoration covers a small, closed wooden casket. The museum credits Wyspiański with the design and painted decoration and Andrzej Sydor as co-maker.",
+      "published_at": "2026-09-24T06:19:41.866304",
+      "reference_image_url": "https://media.sketchfab.com/models/75a69fcb79424706a8a868498867b292/thumbnails/1c0983aaa5684658b7a41473a664446e/25f73aecb0ce45b3ae7965c4cdd4ea46.jpeg",
+      "representation": "Scan of the conserved physical object",
+      "face_count": 574216,
+      "face_count_scope": "api-detail-only-unmeasured",
+      "texture_count": 2,
+      "source_geometry": {
+        "format": "glb",
+        "bytes": null,
+        "faces": null,
+        "api_detail_faces": 574216,
+        "api_reported_glb_bytes_unverified": 57663736,
+        "api_reported_glb_texture_count": 2
+      },
+      "require_measured_integrity": true,
+      "logical_batch_id": "beautiful-expansion-20261019",
+      "scope_cautions": [
+        "Published measures distinguish parts or author roles and are not a calibrated whole-model size. Preserve all captured parts and any support; do not synthesize omitted interiors."
+      ],
+      "evidence": [
+        "https://muzea.malopolska.pl/en/objects-list/4636 — Live primary museum API: exact accession, maker/role, date, production place or documented unknown, materials, labelled dimensions and physical-object identity read. Primary snapshot SHA256 c913122f6aec443c557d6bafb109db53268e5a5609863845c46ef19a66bf2a46 (retrieved 2026-10-19T13:52:43.769638+00:00)",
+        "https://api.sketchfab.com/v3/models?user=WirtualneMuzeaMalopolski&count=100 — Live today institution model inventory has exact UID, isDownloadable=true and CC Attribution license UID 322a749bcfa841b29dff1e8a1bb74b0b. Authenticated current selected GLB/license recheck remains required before acquisition. (retrieved 2026-10-19T13:52:43.769638+00:00)"
+      ],
+      "visual_qa": "Source thumbnail visually screened. Full native/production scope, measured integrity, orientation, actual final thumbnail and physical-size safety review remain required after acquisition."
+    },
+    {
+      "source": "sketchfab",
+      "archive": "",
+      "uid": "51bfa9766bb5404f9da18b4c3574765c",
+      "slug": "modern/szymanowski-mickiewicz-after-improvisation-8",
+      "collection": "modern",
+      "wing": "unfiled",
+      "wing_unfiled_reason": "The primary record does not establish the place of production; the maker’s nationality and holding museum are not substituted for a making location.",
+      "title": "Mickiewicz after an Improvisation",
+      "artist": "Wacław Szymanowski",
+      "culture": "Polish modern art",
+      "geography": "",
+      "original_location": "",
+      "current_location": "National Museum in Kraków",
+      "museum": "National Museum in Kraków",
+      "year": "1898–1902",
+      "year_sort": 1900,
+      "period": "Modern",
+      "material": "Bronze",
+      "dimensions": "height 110,5 cm; width 124 cm; length 89,5 cm",
+      "measures": [
+        {
+          "axis": "height",
+          "value": 110.5,
+          "value_text": "110,5",
+          "unit": "cm",
+          "scope": "Published museum object dimension; no mesh calibration implied",
+          "qualifier": "published",
+          "sourceUrls": [
+            "https://muzea.malopolska.pl/en/objects-list/8"
+          ]
+        },
+        {
+          "axis": "width",
+          "value": 124,
+          "value_text": "124",
+          "unit": "cm",
+          "scope": "Published museum object dimension; no mesh calibration implied",
+          "qualifier": "published",
+          "sourceUrls": [
+            "https://muzea.malopolska.pl/en/objects-list/8"
+          ]
+        },
+        {
+          "axis": "length",
+          "value": 89.5,
+          "value_text": "89,5",
+          "unit": "cm",
+          "scope": "Published museum object dimension; no mesh calibration implied",
+          "qualifier": "published",
+          "sourceUrls": [
+            "https://muzea.malopolska.pl/en/objects-list/8"
+          ]
+        }
+      ],
+      "accession": "MNK II-rz-1235",
+      "object_identity": "National Museum in Kraków | MNK II-rz-1235",
+      "source_institution": "Virtual Museums of Małopolska / Małopolska Institute of Culture",
+      "source_url": "https://sketchfab.com/3d-models/51bfa9766bb5404f9da18b4c3574765c",
+      "source_record_url": "https://muzea.malopolska.pl/en/objects-list/8",
+      "related_source_record_urls": [
+        "https://api.muzea.malopolska.pl/api/object/8"
+      ],
+      "download_api_url": "https://api.sketchfab.com/v3/models/51bfa9766bb5404f9da18b4c3574765c/download",
+      "download_format": "glb",
+      "download_size_bytes": null,
+      "downloadable_verified": true,
+      "downloadable_verified_at": "2026-10-19T13:52:43.769638+00:00",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "license_tier": 2,
+      "license_uid": "322a749bcfa841b29dff1e8a1bb74b0b",
+      "license_slug": "by",
+      "license_evidence_url": "https://api.sketchfab.com/v3/models/51bfa9766bb5404f9da18b4c3574765c",
+      "scan_author": "Virtual Museums of Małopolska (WirtualneMuzeaMalopolski)",
+      "publisher": "WirtualneMuzeaMalopolski",
+      "scan_source": "Institution-published digitization of the physical object by the Regional Digitisation Lab, Małopolska Institute of Culture",
+      "attribution": "3D model “Sculpture “Mickiewicz after an Improvisation”” by Virtual Museums of Małopolska (WirtualneMuzeaMalopolski), Regional Digitisation Lab, Małopolska Institute of Culture, licensed CC BY 4.0. Physical work: Wacław Szymanowski, National Museum in Kraków, MNK II-rz-1235.",
+      "note": "The poet Adam Mickiewicz, exhausted after improvising, is supported by two female figures. Szymanowski joins the bodies to a turbulent, irregular bronze mass.",
+      "source_description": "The poet Adam Mickiewicz, exhausted after improvising, is supported by two female figures. Szymanowski joins the bodies to a turbulent, irregular bronze mass.",
+      "published_at": "2017-10-24T08:53:19.104624",
+      "reference_image_url": "https://media.sketchfab.com/models/51bfa9766bb5404f9da18b4c3574765c/thumbnails/00179d213bc44d48a4a2cd5469770103/720x405.jpeg",
+      "representation": "Scan of the conserved physical object",
+      "face_count": 106298,
+      "face_count_scope": "api-detail-only-unmeasured",
+      "texture_count": 2,
+      "source_geometry": {
+        "format": "glb",
+        "bytes": null,
+        "faces": null,
+        "api_detail_faces": 106298,
+        "api_reported_glb_bytes_unverified": 11740288,
+        "api_reported_glb_texture_count": 2
+      },
+      "require_measured_integrity": true,
+      "logical_batch_id": "beautiful-expansion-20261019",
+      "evidence": [
+        "https://muzea.malopolska.pl/en/objects-list/8 — Live primary museum API: exact accession, maker/role, date, production place or documented unknown, materials, labelled dimensions and physical-object identity read. Primary snapshot SHA256 3f68a6069998dad8ca9b0ba27033af4a1e4e3418636b1ad3a4e57dd69cd5fa09 (retrieved 2026-10-19T13:52:43.769638+00:00)",
+        "https://api.sketchfab.com/v3/models?user=WirtualneMuzeaMalopolski&count=100 — Live today institution model inventory has exact UID, isDownloadable=true and CC Attribution license UID 322a749bcfa841b29dff1e8a1bb74b0b. Authenticated current selected GLB/license recheck remains required before acquisition. (retrieved 2026-10-19T13:52:43.769638+00:00)"
+      ],
+      "visual_qa": "Source thumbnail visually screened. Full native/production scope, measured integrity, orientation, actual final thumbnail and physical-size safety review remain required after acquisition."
+    },
+    {
+      "source": "sketchfab",
+      "archive": "",
+      "uid": "6385359e567c4a209b98deae17c4c401",
+      "slug": "modern/drexler-in-the-theatre-box-490",
+      "collection": "modern",
+      "wing": "europe",
+      "title": "In the Theatre Box",
+      "artist": "Luna Amalia Drexler",
+      "culture": "European sculpture",
+      "geography": "Lviv (historically Lwów), present-day Ukraine",
+      "original_location": "Lviv (historically Lwów), present-day Ukraine",
+      "current_location": "Irena and Mieczysław Mazaraki Museum in Chrzanów",
+      "museum": "Irena and Mieczysław Mazaraki Museum in Chrzanów",
+      "year": "First quarter of the 20th century",
+      "year_sort": 1912,
+      "period": "Modern",
+      "material": "Plaster",
+      "dimensions": "height 46 cm",
+      "measures": [
+        {
+          "axis": "height",
+          "value": 46,
+          "value_text": "46",
+          "unit": "cm",
+          "scope": "Published museum object dimension; no mesh calibration implied",
+          "qualifier": "published",
+          "sourceUrls": [
+            "https://muzea.malopolska.pl/en/objects-list/490"
+          ]
+        }
+      ],
+      "accession": "MCh-S/2758",
+      "object_identity": "Irena and Mieczysław Mazaraki Museum in Chrzanów | MCh-S/2758",
+      "source_institution": "Virtual Museums of Małopolska / Małopolska Institute of Culture",
+      "source_url": "https://sketchfab.com/3d-models/6385359e567c4a209b98deae17c4c401",
+      "source_record_url": "https://muzea.malopolska.pl/en/objects-list/490",
+      "related_source_record_urls": [
+        "https://api.muzea.malopolska.pl/api/object/490"
+      ],
+      "download_api_url": "https://api.sketchfab.com/v3/models/6385359e567c4a209b98deae17c4c401/download",
+      "download_format": "glb",
+      "download_size_bytes": null,
+      "downloadable_verified": true,
+      "downloadable_verified_at": "2026-10-19T13:52:43.769638+00:00",
+      "license": "CC0 1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_tier": 1,
+      "license_uid": "7c23a1ba438d4306920229c12afcb5f9",
+      "license_slug": "cc0",
+      "license_evidence_url": "https://api.sketchfab.com/v3/models/6385359e567c4a209b98deae17c4c401",
+      "scan_author": "Virtual Museums of Małopolska (WirtualneMuzeaMalopolski)",
+      "publisher": "WirtualneMuzeaMalopolski",
+      "scan_source": "Institution-published digitization of the physical object by the Regional Digitisation Lab, Małopolska Institute of Culture",
+      "attribution": "3D model “Sculpture “In the Theatre Box”” by Virtual Museums of Małopolska (WirtualneMuzeaMalopolski), Regional Digitisation Lab, Małopolska Institute of Culture, licensed CC0 1.0. Physical work: Luna Amalia Drexler, Irena and Mieczysław Mazaraki Museum in Chrzanów, MCh-S/2758.",
+      "note": "A woman leans forward from a theatre box while holding opera glasses. The primary record identifies this as a plaster sculpture, not marble.",
+      "source_description": "A woman leans forward from a theatre box while holding opera glasses. The primary record identifies this as a plaster sculpture, not marble.",
+      "published_at": "2016-11-07T09:40:35.954657",
+      "reference_image_url": "https://media.sketchfab.com/models/6385359e567c4a209b98deae17c4c401/thumbnails/4970a174b53d48d5add3b47bdfeb3f30/640x360.jpeg",
+      "representation": "Scan of the conserved physical object",
+      "face_count": 50280,
+      "face_count_scope": "api-detail-only-unmeasured",
+      "texture_count": 3,
+      "source_geometry": {
+        "format": "glb",
+        "bytes": null,
+        "faces": null,
+        "api_detail_faces": 50280,
+        "api_reported_glb_bytes_unverified": 69631812,
+        "api_reported_glb_texture_count": 3
+      },
+      "require_measured_integrity": true,
+      "logical_batch_id": "beautiful-expansion-20261019",
+      "evidence": [
+        "https://muzea.malopolska.pl/en/objects-list/490 — Live primary museum API: exact accession, maker/role, date, production place or documented unknown, materials, labelled dimensions and physical-object identity read. Primary snapshot SHA256 0ad0e7789b3bbd9a0bec7679ab0aa7f0420fddc9ceaf42115b0e56272e29af9f (retrieved 2026-10-19T13:52:43.769638+00:00)",
+        "https://api.sketchfab.com/v3/models?user=WirtualneMuzeaMalopolski&count=100 — Live today institution model inventory has exact UID, isDownloadable=true and CC0 Public Domain license UID 7c23a1ba438d4306920229c12afcb5f9. Authenticated current selected GLB/license recheck remains required before acquisition. (retrieved 2026-10-19T13:52:43.769638+00:00)"
+      ],
+      "visual_qa": "Source thumbnail visually screened. Full native/production scope, measured integrity, orientation, actual final thumbnail and physical-size safety review remain required after acquisition."
+    },
+    {
+      "source": "sketchfab",
+      "archive": "",
+      "uid": "145f47b707134e809ad3de68b283eac0",
+      "slug": "modern/gadomski-portrait-zofia-potocka-18",
+      "collection": "modern",
+      "wing": "unfiled",
+      "wing_unfiled_reason": "The primary record does not establish the place of production; the maker’s nationality and holding museum are not substituted for a making location.",
+      "title": "Portrait of Zofia Potocka",
+      "artist": "Walery Gadomski",
+      "culture": "Polish modern art",
+      "geography": "",
+      "original_location": "",
+      "current_location": "National Museum in Kraków",
+      "museum": "National Museum in Kraków",
+      "year": "c. 1875–1877",
+      "year_sort": 1876,
+      "period": "Modern",
+      "material": "Marble",
+      "dimensions": "height 49 cm",
+      "measures": [
+        {
+          "axis": "height",
+          "value": 49,
+          "value_text": "49",
+          "unit": "cm",
+          "scope": "Published museum object dimension; no mesh calibration implied",
+          "qualifier": "published",
+          "sourceUrls": [
+            "https://muzea.malopolska.pl/en/objects-list/18"
+          ]
+        }
+      ],
+      "accession": "MNK II-rz-78",
+      "object_identity": "National Museum in Kraków | MNK II-rz-78",
+      "source_institution": "Virtual Museums of Małopolska / Małopolska Institute of Culture",
+      "source_url": "https://sketchfab.com/3d-models/145f47b707134e809ad3de68b283eac0",
+      "source_record_url": "https://muzea.malopolska.pl/en/objects-list/18",
+      "related_source_record_urls": [
+        "https://api.muzea.malopolska.pl/api/object/18"
+      ],
+      "download_api_url": "https://api.sketchfab.com/v3/models/145f47b707134e809ad3de68b283eac0/download",
+      "download_format": "glb",
+      "download_size_bytes": null,
+      "downloadable_verified": true,
+      "downloadable_verified_at": "2026-10-19T13:52:43.769638+00:00",
+      "license": "CC0 1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_tier": 1,
+      "license_uid": "7c23a1ba438d4306920229c12afcb5f9",
+      "license_slug": "cc0",
+      "license_evidence_url": "https://api.sketchfab.com/v3/models/145f47b707134e809ad3de68b283eac0",
+      "scan_author": "Virtual Museums of Małopolska (WirtualneMuzeaMalopolski)",
+      "publisher": "WirtualneMuzeaMalopolski",
+      "scan_source": "Institution-published digitization of the physical object by the Regional Digitisation Lab, Małopolska Institute of Culture",
+      "attribution": "3D model “Sculpture “Portrait of Zofia Potocka”” by Virtual Museums of Małopolska (WirtualneMuzeaMalopolski), Regional Digitisation Lab, Małopolska Institute of Culture, licensed CC0 1.0. Physical work: Walery Gadomski, National Museum in Kraków, MNK II-rz-78.",
+      "note": "This marble portrait of Zofia Potocka contrasts the sitter’s polished face with the folds and lace-like details of her clothing.",
+      "source_description": "This marble portrait of Zofia Potocka contrasts the sitter’s polished face with the folds and lace-like details of her clothing.",
+      "published_at": "2016-10-21T09:34:47.137673",
+      "reference_image_url": "https://media.sketchfab.com/models/145f47b707134e809ad3de68b283eac0/thumbnails/06ceb08e11614dcbbb352b2b5e0a1f97/640x360.jpeg",
+      "representation": "Scan of the conserved physical object",
+      "face_count": 44404,
+      "face_count_scope": "api-detail-only-unmeasured",
+      "texture_count": 2,
+      "source_geometry": {
+        "format": "glb",
+        "bytes": null,
+        "faces": null,
+        "api_detail_faces": 44404,
+        "api_reported_glb_bytes_unverified": 16153260,
+        "api_reported_glb_texture_count": 2
+      },
+      "require_measured_integrity": true,
+      "logical_batch_id": "beautiful-expansion-20261019",
+      "evidence": [
+        "https://muzea.malopolska.pl/en/objects-list/18 — Live primary museum API: exact accession, maker/role, date, production place or documented unknown, materials, labelled dimensions and physical-object identity read. Primary snapshot SHA256 3df117b863ad38263e5f8abc8fb1f8b94ba56aeda7ade75fe3c5ba58bb5ba9b5 (retrieved 2026-10-19T13:52:43.769638+00:00)",
+        "https://api.sketchfab.com/v3/models?user=WirtualneMuzeaMalopolski&count=100 — Live today institution model inventory has exact UID, isDownloadable=true and CC0 Public Domain license UID 7c23a1ba438d4306920229c12afcb5f9. Authenticated current selected GLB/license recheck remains required before acquisition. (retrieved 2026-10-19T13:52:43.769638+00:00)"
+      ],
+      "visual_qa": "Source thumbnail visually screened. Full native/production scope, measured integrity, orientation, actual final thumbnail and physical-size safety review remain required after acquisition."
+    },
+    {
+      "source": "sketchfab",
+      "archive": "",
+      "uid": "9facedbad89e4bb19b8331f1f5bd4abf",
+      "slug": "modern/sosnowski-count-kazimierz-potulicki-186",
+      "collection": "modern",
+      "wing": "unfiled",
+      "wing_unfiled_reason": "The primary record does not establish the place of production; the maker’s nationality and holding museum are not substituted for a making location.",
+      "title": "Bust of Count Kazimierz Potulicki",
+      "artist": "Tomasz Oskar Sosnowski",
+      "culture": "Polish modern art",
+      "geography": "",
+      "original_location": "",
+      "current_location": "Irena and Mieczysław Mazaraki Museum in Chrzanów",
+      "museum": "Irena and Mieczysław Mazaraki Museum in Chrzanów",
+      "year": "1839",
+      "year_sort": 1839,
+      "period": "Modern",
+      "material": "Carrara marble",
+      "dimensions": "height 49 cm; width 32,5 cm",
+      "measures": [
+        {
+          "axis": "height",
+          "value": 49,
+          "value_text": "49",
+          "unit": "cm",
+          "scope": "Published museum object dimension; no mesh calibration implied",
+          "qualifier": "published",
+          "sourceUrls": [
+            "https://muzea.malopolska.pl/en/objects-list/186"
+          ]
+        },
+        {
+          "axis": "width",
+          "value": 32.5,
+          "value_text": "32,5",
+          "unit": "cm",
+          "scope": "Published museum object dimension; no mesh calibration implied",
+          "qualifier": "published",
+          "sourceUrls": [
+            "https://muzea.malopolska.pl/en/objects-list/186"
+          ]
+        }
+      ],
+      "accession": "MCh-S/1034",
+      "object_identity": "Irena and Mieczysław Mazaraki Museum in Chrzanów | MCh-S/1034",
+      "source_institution": "Virtual Museums of Małopolska / Małopolska Institute of Culture",
+      "source_url": "https://sketchfab.com/3d-models/9facedbad89e4bb19b8331f1f5bd4abf",
+      "source_record_url": "https://muzea.malopolska.pl/en/objects-list/186",
+      "related_source_record_urls": [
+        "https://api.muzea.malopolska.pl/api/object/186"
+      ],
+      "download_api_url": "https://api.sketchfab.com/v3/models/9facedbad89e4bb19b8331f1f5bd4abf/download",
+      "download_format": "glb",
+      "download_size_bytes": null,
+      "downloadable_verified": true,
+      "downloadable_verified_at": "2026-10-19T13:52:43.769638+00:00",
+      "license": "CC0 1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_tier": 1,
+      "license_uid": "7c23a1ba438d4306920229c12afcb5f9",
+      "license_slug": "cc0",
+      "license_evidence_url": "https://api.sketchfab.com/v3/models/9facedbad89e4bb19b8331f1f5bd4abf",
+      "scan_author": "Virtual Museums of Małopolska (WirtualneMuzeaMalopolski)",
+      "publisher": "WirtualneMuzeaMalopolski",
+      "scan_source": "Institution-published digitization of the physical object by the Regional Digitisation Lab, Małopolska Institute of Culture",
+      "attribution": "3D model “Sculpture “Bust of Kazimierz Count Potulicki”” by Virtual Museums of Małopolska (WirtualneMuzeaMalopolski), Regional Digitisation Lab, Małopolska Institute of Culture, licensed CC0 1.0. Physical work: Tomasz Oskar Sosnowski, Irena and Mieczysław Mazaraki Museum in Chrzanów, MCh-S/1034.",
+      "note": "A restrained Carrara-marble portrait bust by Tomasz Oskar Sosnowski, made in 1839. The museum does not identify its exact production place.",
+      "source_description": "A restrained Carrara-marble portrait bust by Tomasz Oskar Sosnowski, made in 1839. The museum does not identify its exact production place.",
+      "published_at": "2017-10-25T08:05:42.516803",
+      "reference_image_url": "https://media.sketchfab.com/models/9facedbad89e4bb19b8331f1f5bd4abf/thumbnails/278a1c176e4f450e8e37a76dc8ec7461/720x405.jpeg",
+      "representation": "Scan of the conserved physical object",
+      "face_count": 133920,
+      "face_count_scope": "api-detail-only-unmeasured",
+      "texture_count": 1,
+      "source_geometry": {
+        "format": "glb",
+        "bytes": null,
+        "faces": null,
+        "api_detail_faces": 133920,
+        "api_reported_glb_bytes_unverified": 7448712,
+        "api_reported_glb_texture_count": 1
+      },
+      "require_measured_integrity": true,
+      "logical_batch_id": "beautiful-expansion-20261019",
+      "evidence": [
+        "https://muzea.malopolska.pl/en/objects-list/186 — Live primary museum API: exact accession, maker/role, date, production place or documented unknown, materials, labelled dimensions and physical-object identity read. Primary snapshot SHA256 1d4300cb93119a793b07673f3309b20873f30fabf2582a912d3cb302ae2e96b5 (retrieved 2026-10-19T13:52:43.769638+00:00)",
+        "https://api.sketchfab.com/v3/models?user=WirtualneMuzeaMalopolski&count=100 — Live today institution model inventory has exact UID, isDownloadable=true and CC0 Public Domain license UID 7c23a1ba438d4306920229c12afcb5f9. Authenticated current selected GLB/license recheck remains required before acquisition. (retrieved 2026-10-19T13:52:43.769638+00:00)"
+      ],
+      "visual_qa": "Source thumbnail visually screened. Full native/production scope, measured integrity, orientation, actual final thumbnail and physical-size safety review remain required after acquisition."
+    },
+    {
+      "source": "sketchfab",
+      "archive": "",
+      "uid": "fc6e731a0131471ba8e45511c7ea9996",
+      "slug": "modern/schluter-bust-woman-roza-loewenfeld-192",
+      "collection": "modern",
+      "wing": "unfiled",
+      "wing_unfiled_reason": "The primary record does not establish the place of production; the maker’s nationality and holding museum are not substituted for a making location.",
+      "title": "Bust of a Woman (traditionally Róża Loewenfeld)",
+      "artist": "Carl Schlüter",
+      "culture": "European sculpture",
+      "geography": "",
+      "original_location": "",
+      "current_location": "Irena and Mieczysław Mazaraki Museum in Chrzanów",
+      "museum": "Irena and Mieczysław Mazaraki Museum in Chrzanów",
+      "year": "1880",
+      "year_sort": 1880,
+      "period": "Modern",
+      "material": "Stucco",
+      "dimensions": "height 50 cm; width 40 cm",
+      "measures": [
+        {
+          "axis": "height",
+          "value": 50,
+          "value_text": "50",
+          "unit": "cm",
+          "scope": "Published museum object dimension; no mesh calibration implied",
+          "qualifier": "published",
+          "sourceUrls": [
+            "https://muzea.malopolska.pl/en/objects-list/192"
+          ]
+        },
+        {
+          "axis": "width",
+          "value": 40,
+          "value_text": "40",
+          "unit": "cm",
+          "scope": "Published museum object dimension; no mesh calibration implied",
+          "qualifier": "published",
+          "sourceUrls": [
+            "https://muzea.malopolska.pl/en/objects-list/192"
+          ]
+        }
+      ],
+      "accession": "MCh-S/12",
+      "object_identity": "Irena and Mieczysław Mazaraki Museum in Chrzanów | MCh-S/12",
+      "source_institution": "Virtual Museums of Małopolska / Małopolska Institute of Culture",
+      "source_url": "https://sketchfab.com/3d-models/fc6e731a0131471ba8e45511c7ea9996",
+      "source_record_url": "https://muzea.malopolska.pl/en/objects-list/192",
+      "related_source_record_urls": [
+        "https://api.muzea.malopolska.pl/api/object/192"
+      ],
+      "download_api_url": "https://api.sketchfab.com/v3/models/fc6e731a0131471ba8e45511c7ea9996/download",
+      "download_format": "glb",
+      "download_size_bytes": null,
+      "downloadable_verified": true,
+      "downloadable_verified_at": "2026-10-19T13:52:43.769638+00:00",
+      "license": "CC0 1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_tier": 1,
+      "license_uid": "7c23a1ba438d4306920229c12afcb5f9",
+      "license_slug": "cc0",
+      "license_evidence_url": "https://api.sketchfab.com/v3/models/fc6e731a0131471ba8e45511c7ea9996",
+      "scan_author": "Virtual Museums of Małopolska (WirtualneMuzeaMalopolski)",
+      "publisher": "WirtualneMuzeaMalopolski",
+      "scan_source": "Institution-published digitization of the physical object by the Regional Digitisation Lab, Małopolska Institute of Culture",
+      "attribution": "3D model “Sculpture “Bust of Róża Loewenfeld”” by Virtual Museums of Małopolska (WirtualneMuzeaMalopolski), Regional Digitisation Lab, Małopolska Institute of Culture, licensed CC0 1.0. Physical work: Carl Schlüter, Irena and Mieczysław Mazaraki Museum in Chrzanów, MCh-S/12.",
+      "note": "The current museum title is Bust of a Woman; the digitization’s older title identifies Róża Loewenfeld. The primary record gives stucco, so this scan is not labeled marble.",
+      "source_description": "The current museum title is Bust of a Woman; the digitization’s older title identifies Róża Loewenfeld. The primary record gives stucco, so this scan is not labeled marble.",
+      "published_at": "2017-01-30T08:52:27.294056",
+      "reference_image_url": "https://media.sketchfab.com/models/fc6e731a0131471ba8e45511c7ea9996/thumbnails/6a7895ab861d45a9bfaac651e919f5db/640x360.jpeg",
+      "representation": "Scan of the conserved physical object",
+      "face_count": 60395,
+      "face_count_scope": "api-detail-only-unmeasured",
+      "texture_count": 3,
+      "source_geometry": {
+        "format": "glb",
+        "bytes": null,
+        "faces": null,
+        "api_detail_faces": 60395,
+        "api_reported_glb_bytes_unverified": 47650604,
+        "api_reported_glb_texture_count": 3
+      },
+      "require_measured_integrity": true,
+      "logical_batch_id": "beautiful-expansion-20261019",
+      "evidence": [
+        "https://muzea.malopolska.pl/en/objects-list/192 — Live primary museum API: exact accession, maker/role, date, production place or documented unknown, materials, labelled dimensions and physical-object identity read. Primary snapshot SHA256 61c069b27f70ee212e12357765c45029da7aa5e36358b8904d7d3cc5509b4f2e (retrieved 2026-10-19T13:52:43.769638+00:00)",
+        "https://api.sketchfab.com/v3/models?user=WirtualneMuzeaMalopolski&count=100 — Live today institution model inventory has exact UID, isDownloadable=true and CC0 Public Domain license UID 7c23a1ba438d4306920229c12afcb5f9. Authenticated current selected GLB/license recheck remains required before acquisition. (retrieved 2026-10-19T13:52:43.769638+00:00)"
+      ],
+      "visual_qa": "Source thumbnail visually screened. Full native/production scope, measured integrity, orientation, actual final thumbnail and physical-size safety review remain required after acquisition."
+    },
+    {
+      "source": "sketchfab",
+      "archive": "",
+      "uid": "ce5c834f6d9d41d8930456638ca5c320",
+      "slug": "modern/wowro-birds-332",
+      "collection": "modern",
+      "wing": "europe",
+      "title": "Birds",
+      "artist": "Jędrzej Wowro",
+      "culture": "Polish modern art",
+      "geography": "Poland",
+      "original_location": "Poland",
+      "current_location": "City Museum in Wadowice",
+      "museum": "City Museum in Wadowice",
+      "year": "Interwar period",
+      "year_sort": 1928,
+      "period": "Modern",
+      "material": "Carved and painted wood",
+      "dimensions": "height 17 cm",
+      "measures": [
+        {
+          "axis": "height",
+          "value": 17,
+          "value_text": "17",
+          "unit": "cm",
+          "scope": "Published museum object dimension; no mesh calibration implied",
+          "qualifier": "published",
+          "sourceUrls": [
+            "https://muzea.malopolska.pl/en/objects-list/332"
+          ]
+        }
+      ],
+      "accession": "449/97",
+      "object_identity": "City Museum in Wadowice | 449/97",
+      "source_institution": "Virtual Museums of Małopolska / Małopolska Institute of Culture",
+      "source_url": "https://sketchfab.com/3d-models/ce5c834f6d9d41d8930456638ca5c320",
+      "source_record_url": "https://muzea.malopolska.pl/en/objects-list/332",
+      "related_source_record_urls": [
+        "https://api.muzea.malopolska.pl/api/object/332"
+      ],
+      "download_api_url": "https://api.sketchfab.com/v3/models/ce5c834f6d9d41d8930456638ca5c320/download",
+      "download_format": "glb",
+      "download_size_bytes": null,
+      "downloadable_verified": true,
+      "downloadable_verified_at": "2026-10-19T13:52:43.769638+00:00",
+      "license": "CC0 1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_tier": 1,
+      "license_uid": "7c23a1ba438d4306920229c12afcb5f9",
+      "license_slug": "cc0",
+      "license_evidence_url": "https://api.sketchfab.com/v3/models/ce5c834f6d9d41d8930456638ca5c320",
+      "scan_author": "Virtual Museums of Małopolska (WirtualneMuzeaMalopolski)",
+      "publisher": "WirtualneMuzeaMalopolski",
+      "scan_source": "Institution-published digitization of the physical object by the Regional Digitisation Lab, Małopolska Institute of Culture",
+      "attribution": "3D model “Sculpture “Birds” by Jędrzej Wowro” by Virtual Museums of Małopolska (WirtualneMuzeaMalopolski), Regional Digitisation Lab, Małopolska Institute of Culture, licensed CC0 1.0. Physical work: Jędrzej Wowro, City Museum in Wadowice, 449/97.",
+      "note": "Two carved wooden birds face a central branching form. The museum dates this small painted composition to the interwar period.",
+      "source_description": "Two carved wooden birds face a central branching form. The museum dates this small painted composition to the interwar period.",
+      "published_at": "2016-09-21T08:11:45.659290",
+      "reference_image_url": "https://media.sketchfab.com/models/ce5c834f6d9d41d8930456638ca5c320/thumbnails/7cd21e97aa78466e8630cbf8b7424fd1/640x360.jpeg",
+      "representation": "Scan of the conserved physical object",
+      "face_count": 31243,
+      "face_count_scope": "api-detail-only-unmeasured",
+      "texture_count": 2,
+      "source_geometry": {
+        "format": "glb",
+        "bytes": null,
+        "faces": null,
+        "api_detail_faces": 31243,
+        "api_reported_glb_bytes_unverified": 27309152,
+        "api_reported_glb_texture_count": 2
+      },
+      "require_measured_integrity": true,
+      "logical_batch_id": "beautiful-expansion-20261019",
+      "evidence": [
+        "https://muzea.malopolska.pl/en/objects-list/332 — Live primary museum API: exact accession, maker/role, date, production place or documented unknown, materials, labelled dimensions and physical-object identity read. Primary snapshot SHA256 e44d29ed91c731de37e384101f65a74c59046bf667333e513d880023dc30ede3 (retrieved 2026-10-19T13:52:43.769638+00:00)",
+        "https://api.sketchfab.com/v3/models?user=WirtualneMuzeaMalopolski&count=100 — Live today institution model inventory has exact UID, isDownloadable=true and CC0 Public Domain license UID 7c23a1ba438d4306920229c12afcb5f9. Authenticated current selected GLB/license recheck remains required before acquisition. (retrieved 2026-10-19T13:52:43.769638+00:00)"
+      ],
+      "visual_qa": "Source thumbnail visually screened. Full native/production scope, measured integrity, orientation, actual final thumbnail and physical-size safety review remain required after acquisition."
+    },
+    {
+      "source": "sketchfab",
+      "archive": "",
+      "uid": "d6203c12328743ee9b75ec32843fb089",
+      "slug": "modern/tombinski-bust-jan-matejko-2260",
+      "collection": "modern",
+      "wing": "europe",
+      "title": "Bust of Jan Matejko",
+      "artist": "Jan Tombiński",
+      "culture": "Polish modern art",
+      "geography": "Kraków, Poland",
+      "original_location": "Kraków, Poland",
+      "current_location": "Muzeum Akademii Sztuk Pięknych w Krakowie",
+      "museum": "Muzeum Akademii Sztuk Pięknych w Krakowie",
+      "year": "1894",
+      "year_sort": 1894,
+      "period": "Modern",
+      "material": "Plaster",
+      "dimensions": "height 54 cm; width 72 cm; length 97 cm",
+      "measures": [
+        {
+          "axis": "height",
+          "value": 54,
+          "value_text": "54",
+          "unit": "cm",
+          "scope": "Published museum object dimension; no mesh calibration implied",
+          "qualifier": "published",
+          "sourceUrls": [
+            "https://muzea.malopolska.pl/en/objects-list/2260"
+          ]
+        },
+        {
+          "axis": "width",
+          "value": 72,
+          "value_text": "72",
+          "unit": "cm",
+          "scope": "Published museum object dimension; no mesh calibration implied",
+          "qualifier": "published",
+          "sourceUrls": [
+            "https://muzea.malopolska.pl/en/objects-list/2260"
+          ]
+        },
+        {
+          "axis": "length",
+          "value": 97,
+          "value_text": "97",
+          "unit": "cm",
+          "scope": "Published museum object dimension; no mesh calibration implied",
+          "qualifier": "published",
+          "sourceUrls": [
+            "https://muzea.malopolska.pl/en/objects-list/2260"
+          ]
+        }
+      ],
+      "accession": "Rz 76",
+      "object_identity": "Muzeum Akademii Sztuk Pięknych w Krakowie | Rz 76",
+      "source_institution": "Virtual Museums of Małopolska / Małopolska Institute of Culture",
+      "source_url": "https://sketchfab.com/3d-models/d6203c12328743ee9b75ec32843fb089",
+      "source_record_url": "https://muzea.malopolska.pl/en/objects-list/2260",
+      "related_source_record_urls": [
+        "https://api.muzea.malopolska.pl/api/object/2260"
+      ],
+      "download_api_url": "https://api.sketchfab.com/v3/models/d6203c12328743ee9b75ec32843fb089/download",
+      "download_format": "glb",
+      "download_size_bytes": null,
+      "downloadable_verified": true,
+      "downloadable_verified_at": "2026-10-19T13:52:43.769638+00:00",
+      "license": "CC0 1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_tier": 1,
+      "license_uid": "7c23a1ba438d4306920229c12afcb5f9",
+      "license_slug": "cc0",
+      "license_evidence_url": "https://api.sketchfab.com/v3/models/d6203c12328743ee9b75ec32843fb089",
+      "scan_author": "Virtual Museums of Małopolska (WirtualneMuzeaMalopolski)",
+      "publisher": "WirtualneMuzeaMalopolski",
+      "scan_source": "Institution-published digitization of the physical object by the Regional Digitisation Lab, Małopolska Institute of Culture",
+      "attribution": "3D model “\"Bust of Jan Matejko\" by Jan Tombiński” by Virtual Museums of Małopolska (WirtualneMuzeaMalopolski), Regional Digitisation Lab, Małopolska Institute of Culture, licensed CC0 1.0. Physical work: Jan Tombiński, Muzeum Akademii Sztuk Pięknych w Krakowie, Rz 76.",
+      "note": "A plaster portrait of Jan Matejko, identified by the institution and digitization as the 1894 model by Jan Tombiński.",
+      "source_description": "A plaster portrait of Jan Matejko, identified by the institution and digitization as the 1894 model by Jan Tombiński.",
+      "published_at": "2018-10-09T07:10:49.576736",
+      "reference_image_url": "https://media.sketchfab.com/models/d6203c12328743ee9b75ec32843fb089/thumbnails/8aee0bf480fb4217a99514b1f564a038/ad5e4da9bdac4b23ba6368594396150e.jpeg",
+      "representation": "Scan of the conserved physical object",
+      "face_count": 214688,
+      "face_count_scope": "api-detail-only-unmeasured",
+      "texture_count": 2,
+      "source_geometry": {
+        "format": "glb",
+        "bytes": null,
+        "faces": null,
+        "api_detail_faces": 214688,
+        "api_reported_glb_bytes_unverified": 23680172,
+        "api_reported_glb_texture_count": 2
+      },
+      "require_measured_integrity": true,
+      "logical_batch_id": "beautiful-expansion-20261019",
+      "scope_cautions": [
+        "Published measures distinguish parts or author roles and are not a calibrated whole-model size. Preserve all captured parts and any support; do not synthesize omitted interiors."
+      ],
+      "evidence": [
+        "https://muzea.malopolska.pl/en/objects-list/2260 — Live primary museum API: exact accession, maker/role, date, production place or documented unknown, materials, labelled dimensions and physical-object identity read. Primary snapshot SHA256 5bfee1b8176c5589bc95ca2247a36a30622b7cfb2c1be6995703a837064150a9 (retrieved 2026-10-19T13:52:43.769638+00:00)",
+        "https://api.sketchfab.com/v3/models?user=WirtualneMuzeaMalopolski&count=100 — Live today institution model inventory has exact UID, isDownloadable=true and CC0 Public Domain license UID 7c23a1ba438d4306920229c12afcb5f9. Authenticated current selected GLB/license recheck remains required before acquisition. (retrieved 2026-10-19T13:52:43.769638+00:00)"
+      ],
+      "visual_qa": "Source thumbnail visually screened. Full native/production scope, measured integrity, orientation, actual final thumbnail and physical-size safety review remain required after acquisition."
+    },
+    {
+      "source": "sketchfab",
+      "archive": "",
+      "uid": "89ab133d90e64349a75f86eaa2901961",
+      "slug": "modern/wyspianski-lajkonik-costume-613",
+      "collection": "modern",
+      "wing": "europe",
+      "title": "Lajkonik Costume",
+      "artist": "Stanisław Wyspiański (design)",
+      "culture": "Polish modern art",
+      "geography": "Kraków, Poland",
+      "original_location": "Kraków, Poland",
+      "current_location": "Museum of Kraków",
+      "museum": "Museum of Kraków",
+      "year": "1904",
+      "year_sort": 1904,
+      "period": "Modern",
+      "material": "Leather, velvet, metal, cloth, horsehair, beads, pearls, thread and peacock feathers",
+      "dimensions": "height 80 cm (konika); height 100 cm (manekina); length 160 cm (konika); width 60 cm (konika); width 50 cm (manekina)",
+      "measures": [
+        {
+          "axis": "height",
+          "value": 80,
+          "value_text": "80",
+          "unit": "cm",
+          "scope": "konika",
+          "qualifier": "published",
+          "sourceUrls": [
+            "https://muzea.malopolska.pl/en/objects-list/613"
+          ]
+        },
+        {
+          "axis": "height",
+          "value": 100,
+          "value_text": "100",
+          "unit": "cm",
+          "scope": "manekina",
+          "qualifier": "published",
+          "sourceUrls": [
+            "https://muzea.malopolska.pl/en/objects-list/613"
+          ]
+        },
+        {
+          "axis": "length",
+          "value": 160,
+          "value_text": "160",
+          "unit": "cm",
+          "scope": "konika",
+          "qualifier": "published",
+          "sourceUrls": [
+            "https://muzea.malopolska.pl/en/objects-list/613"
+          ]
+        },
+        {
+          "axis": "width",
+          "value": 60,
+          "value_text": "60",
+          "unit": "cm",
+          "scope": "konika",
+          "qualifier": "published",
+          "sourceUrls": [
+            "https://muzea.malopolska.pl/en/objects-list/613"
+          ]
+        },
+        {
+          "axis": "width",
+          "value": 50,
+          "value_text": "50",
+          "unit": "cm",
+          "scope": "manekina",
+          "qualifier": "published",
+          "sourceUrls": [
+            "https://muzea.malopolska.pl/en/objects-list/613"
+          ]
+        }
+      ],
+      "accession": "MHK-60/X a/1-13",
+      "object_identity": "Museum of Kraków | MHK-60/X a/1-13",
+      "source_institution": "Virtual Museums of Małopolska / Małopolska Institute of Culture",
+      "source_url": "https://sketchfab.com/3d-models/89ab133d90e64349a75f86eaa2901961",
+      "source_record_url": "https://muzea.malopolska.pl/en/objects-list/613",
+      "related_source_record_urls": [
+        "https://api.muzea.malopolska.pl/api/object/613"
+      ],
+      "download_api_url": "https://api.sketchfab.com/v3/models/89ab133d90e64349a75f86eaa2901961/download",
+      "download_format": "glb",
+      "download_size_bytes": null,
+      "downloadable_verified": true,
+      "downloadable_verified_at": "2026-10-19T13:52:43.769638+00:00",
+      "license": "CC0 1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_tier": 1,
+      "license_uid": "7c23a1ba438d4306920229c12afcb5f9",
+      "license_slug": "cc0",
+      "license_evidence_url": "https://api.sketchfab.com/v3/models/89ab133d90e64349a75f86eaa2901961",
+      "scan_author": "Virtual Museums of Małopolska (WirtualneMuzeaMalopolski)",
+      "publisher": "WirtualneMuzeaMalopolski",
+      "scan_source": "Institution-published digitization of the physical object by the Regional Digitisation Lab, Małopolska Institute of Culture",
+      "attribution": "3D model “Lajkonik’s costume by Stanisław Wyspiański” by Virtual Museums of Małopolska (WirtualneMuzeaMalopolski), Regional Digitisation Lab, Małopolska Institute of Culture, licensed CC0 1.0. Physical work: Stanisław Wyspiański (design), Museum of Kraków, MHK-60/X a/1-13.",
+      "note": "The 1904 costume designed by Wyspiański is digitized in a museum display arrangement with its hobby-horse and mannequin. Count the costume ensemble as one work; the mannequin is a support, not a modeled historical performer.",
+      "source_description": "The 1904 costume designed by Wyspiański is digitized in a museum display arrangement with its hobby-horse and mannequin. Count the costume ensemble as one work; the mannequin is a support, not a modeled historical performer.",
+      "published_at": "2016-03-10T10:34:07.156456",
+      "reference_image_url": "https://media.sketchfab.com/models/89ab133d90e64349a75f86eaa2901961/thumbnails/76cd1690570c41d2a1d456d12b07ae49/640x360.jpeg",
+      "representation": "Scan of the conserved physical object; costume displayed with mannequin and hobby-horse as one ensemble",
+      "face_count": 632257,
+      "face_count_scope": "api-detail-only-unmeasured",
+      "texture_count": 3,
+      "source_geometry": {
+        "format": "glb",
+        "bytes": null,
+        "faces": null,
+        "api_detail_faces": 632257,
+        "api_reported_glb_bytes_unverified": 56629476,
+        "api_reported_glb_texture_count": 3
+      },
+      "require_measured_integrity": true,
+      "logical_batch_id": "beautiful-expansion-20261019",
+      "scope_cautions": [
+        "Published measures distinguish parts or author roles and are not a calibrated whole-model size. Preserve all captured parts and any support; do not synthesize omitted interiors."
+      ],
+      "evidence": [
+        "https://muzea.malopolska.pl/en/objects-list/613 — Live primary museum API: exact accession, maker/role, date, production place or documented unknown, materials, labelled dimensions and physical-object identity read. Primary snapshot SHA256 090b12e48299a67bac0672e13cfedcf59cfc34d418918366e40d1e75698aa6bf (retrieved 2026-10-19T13:52:43.769638+00:00)",
+        "https://api.sketchfab.com/v3/models?user=WirtualneMuzeaMalopolski&count=100 — Live today institution model inventory has exact UID, isDownloadable=true and CC0 Public Domain license UID 7c23a1ba438d4306920229c12afcb5f9. Authenticated current selected GLB/license recheck remains required before acquisition. (retrieved 2026-10-19T13:52:43.769638+00:00)"
+      ],
+      "visual_qa": "Source thumbnail visually screened. Full native/production scope, measured integrity, orientation, actual final thumbnail and physical-size safety review remain required after acquisition."
+    },
+    {
+      "source": "sketchfab",
+      "archive": "",
+      "uid": "4f99a7f0bc0c4d2e9fadce541c75f57d",
+      "slug": "modern/ksiazek-devil-butterfly-4585",
+      "collection": "modern",
+      "wing": "europe",
+      "title": "Devil–Butterfly",
+      "artist": "Bolesław Książek",
+      "culture": "Polish modern art",
+      "geography": "Łysa Góra, Poland",
+      "original_location": "Łysa Góra, Poland",
+      "current_location": "Bolesław Książek Archive",
+      "museum": "Bolesław Książek Archive",
+      "year": "1980s",
+      "year_sort": 1985,
+      "period": "Modern",
+      "material": "Hand-formed glazed ceramic",
+      "dimensions": "width 30 cm (od dłoni do dłoni); height 47 cm (od stóp do czułek); thickness 3 cm",
+      "measures": [
+        {
+          "axis": "width",
+          "value": 30,
+          "value_text": "30",
+          "unit": "cm",
+          "scope": "od dłoni do dłoni",
+          "qualifier": "published",
+          "sourceUrls": [
+            "https://muzea.malopolska.pl/en/objects-list/4585"
+          ]
+        },
+        {
+          "axis": "height",
+          "value": 47,
+          "value_text": "47",
+          "unit": "cm",
+          "scope": "od stóp do czułek",
+          "qualifier": "published",
+          "sourceUrls": [
+            "https://muzea.malopolska.pl/en/objects-list/4585"
+          ]
+        },
+        {
+          "axis": "thickness",
+          "value": 3,
+          "value_text": "3",
+          "unit": "cm",
+          "scope": "Published museum object dimension; no mesh calibration implied",
+          "qualifier": "published",
+          "sourceUrls": [
+            "https://muzea.malopolska.pl/en/objects-list/4585"
+          ]
+        }
+      ],
+      "accession": "BK_MS_6",
+      "object_identity": "Bolesław Książek Archive | BK_MS_6",
+      "source_institution": "Virtual Museums of Małopolska / Małopolska Institute of Culture",
+      "source_url": "https://sketchfab.com/3d-models/4f99a7f0bc0c4d2e9fadce541c75f57d",
+      "source_record_url": "https://muzea.malopolska.pl/en/objects-list/4585",
+      "related_source_record_urls": [
+        "https://api.muzea.malopolska.pl/api/object/4585"
+      ],
+      "download_api_url": "https://api.sketchfab.com/v3/models/4f99a7f0bc0c4d2e9fadce541c75f57d/download",
+      "download_format": "glb",
+      "download_size_bytes": null,
+      "downloadable_verified": true,
+      "downloadable_verified_at": "2026-10-19T13:52:43.769638+00:00",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "license_tier": 2,
+      "license_uid": "322a749bcfa841b29dff1e8a1bb74b0b",
+      "license_slug": "by",
+      "license_evidence_url": "https://api.sketchfab.com/v3/models/4f99a7f0bc0c4d2e9fadce541c75f57d",
+      "scan_author": "Virtual Museums of Małopolska (WirtualneMuzeaMalopolski)",
+      "publisher": "WirtualneMuzeaMalopolski",
+      "scan_source": "Institution-published digitization of the physical object by the Regional Digitisation Lab, Małopolska Institute of Culture",
+      "attribution": "3D model “Devil–Butterfly” by Virtual Museums of Małopolska (WirtualneMuzeaMalopolski), Regional Digitisation Lab, Małopolska Institute of Culture, licensed CC BY 4.0. Physical work: Bolesław Książek, Bolesław Książek Archive, BK_MS_6.",
+      "note": "A fanciful ceramic relief merges a devil-like figure with butterfly wings. The archive dates it to the 1980s and licenses the model CC BY 4.0.",
+      "source_description": "A fanciful ceramic relief merges a devil-like figure with butterfly wings. The archive dates it to the 1980s and licenses the model CC BY 4.0.",
+      "published_at": "2026-06-11T09:55:05.120922",
+      "reference_image_url": "https://media.sketchfab.com/models/4f99a7f0bc0c4d2e9fadce541c75f57d/thumbnails/c5a799beffe2478baadd0c14d8c1af69/db9243540fec49cfb0acf3e04f4fafc9.jpeg",
+      "representation": "Scan of the conserved physical object",
+      "face_count": 70620,
+      "face_count_scope": "api-detail-only-unmeasured",
+      "texture_count": 5,
+      "source_geometry": {
+        "format": "glb",
+        "bytes": null,
+        "faces": null,
+        "api_detail_faces": 70620,
+        "api_reported_glb_bytes_unverified": 115634452,
+        "api_reported_glb_texture_count": 5
+      },
+      "require_measured_integrity": true,
+      "logical_batch_id": "beautiful-expansion-20261019",
+      "evidence": [
+        "https://muzea.malopolska.pl/en/objects-list/4585 — Live primary museum API: exact accession, maker/role, date, production place or documented unknown, materials, labelled dimensions and physical-object identity read. Primary snapshot SHA256 311f04c148511b304dfc53819f15e511ef6a6aa83212f561afda8b93ef1025ef (retrieved 2026-10-19T13:52:43.769638+00:00)",
+        "https://api.sketchfab.com/v3/models?user=WirtualneMuzeaMalopolski&count=100 — Live today institution model inventory has exact UID, isDownloadable=true and CC Attribution license UID 322a749bcfa841b29dff1e8a1bb74b0b. Authenticated current selected GLB/license recheck remains required before acquisition. (retrieved 2026-10-19T13:52:43.769638+00:00)"
+      ],
+      "visual_qa": "Source thumbnail visually screened. Full native/production scope, measured integrity, orientation, actual final thumbnail and physical-size safety review remain required after acquisition."
+    },
+    {
+      "source": "sketchfab",
+      "archive": "",
+      "uid": "14b4555a51b34b38896d0144be188e1e",
+      "slug": "modern/ksiazek-violinist-4607",
+      "collection": "modern",
+      "wing": "europe",
+      "title": "Violinist",
+      "artist": "Bolesław Książek; Kamionka Cooperative (manufacturer)",
+      "culture": "Polish modern art",
+      "geography": "Łysa Góra, Poland",
+      "original_location": "Łysa Góra, Poland",
+      "current_location": "Bolesław Książek Archive",
+      "museum": "Bolesław Książek Archive",
+      "year": "1959",
+      "year_sort": 1959,
+      "period": "Modern",
+      "material": "Glazed ceramic",
+      "dimensions": "width 24 cm (od skrzypiec do łokcia); height 30 cm; depth 20 cm (od kolana do pleców)",
+      "measures": [
+        {
+          "axis": "width",
+          "value": 24,
+          "value_text": "24",
+          "unit": "cm",
+          "scope": "od skrzypiec do łokcia",
+          "qualifier": "published",
+          "sourceUrls": [
+            "https://muzea.malopolska.pl/en/objects-list/4607"
+          ]
+        },
+        {
+          "axis": "height",
+          "value": 30,
+          "value_text": "30",
+          "unit": "cm",
+          "scope": "Published museum object dimension; no mesh calibration implied",
+          "qualifier": "published",
+          "sourceUrls": [
+            "https://muzea.malopolska.pl/en/objects-list/4607"
+          ]
+        },
+        {
+          "axis": "depth",
+          "value": 20,
+          "value_text": "20",
+          "unit": "cm",
+          "scope": "od kolana do pleców",
+          "qualifier": "published",
+          "sourceUrls": [
+            "https://muzea.malopolska.pl/en/objects-list/4607"
+          ]
+        }
+      ],
+      "accession": "BK_MS_28",
+      "object_identity": "Bolesław Książek Archive | BK_MS_28",
+      "source_institution": "Virtual Museums of Małopolska / Małopolska Institute of Culture",
+      "source_url": "https://sketchfab.com/3d-models/14b4555a51b34b38896d0144be188e1e",
+      "source_record_url": "https://muzea.malopolska.pl/en/objects-list/4607",
+      "related_source_record_urls": [
+        "https://api.muzea.malopolska.pl/api/object/4607"
+      ],
+      "download_api_url": "https://api.sketchfab.com/v3/models/14b4555a51b34b38896d0144be188e1e/download",
+      "download_format": "glb",
+      "download_size_bytes": null,
+      "downloadable_verified": true,
+      "downloadable_verified_at": "2026-10-19T13:52:43.769638+00:00",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "license_tier": 2,
+      "license_uid": "322a749bcfa841b29dff1e8a1bb74b0b",
+      "license_slug": "by",
+      "license_evidence_url": "https://api.sketchfab.com/v3/models/14b4555a51b34b38896d0144be188e1e",
+      "scan_author": "Virtual Museums of Małopolska (WirtualneMuzeaMalopolski)",
+      "publisher": "WirtualneMuzeaMalopolski",
+      "scan_source": "Institution-published digitization of the physical object by the Regional Digitisation Lab, Małopolska Institute of Culture",
+      "attribution": "3D model “Violinist - figurine” by Virtual Museums of Małopolska (WirtualneMuzeaMalopolski), Regional Digitisation Lab, Małopolska Institute of Culture, licensed CC BY 4.0. Physical work: Bolesław Książek; Kamionka Cooperative (manufacturer), Bolesław Książek Archive, BK_MS_28.",
+      "note": "A seated violinist is reduced to a continuous, curved ceramic silhouette. Designed by Książek and manufactured by the Kamionka Cooperative in Łysa Góra.",
+      "source_description": "A seated violinist is reduced to a continuous, curved ceramic silhouette. Designed by Książek and manufactured by the Kamionka Cooperative in Łysa Góra.",
+      "published_at": "2026-06-09T07:35:34.088679",
+      "reference_image_url": "https://media.sketchfab.com/models/14b4555a51b34b38896d0144be188e1e/thumbnails/50b5b227284145b991efb48525bc103a/54858c848d3e47569b53dc7841560867.jpeg",
+      "representation": "Scan of the conserved physical object",
+      "face_count": 55384,
+      "face_count_scope": "api-detail-only-unmeasured",
+      "texture_count": 3,
+      "source_geometry": {
+        "format": "glb",
+        "bytes": null,
+        "faces": null,
+        "api_detail_faces": 55384,
+        "api_reported_glb_bytes_unverified": 24613268,
+        "api_reported_glb_texture_count": 3
+      },
+      "require_measured_integrity": true,
+      "logical_batch_id": "beautiful-expansion-20261019",
+      "evidence": [
+        "https://muzea.malopolska.pl/en/objects-list/4607 — Live primary museum API: exact accession, maker/role, date, production place or documented unknown, materials, labelled dimensions and physical-object identity read. Primary snapshot SHA256 8532cc28e86cf7530a24838cebb75712b8ec60f0a216b141471f0c94ef80bbdd (retrieved 2026-10-19T13:52:43.769638+00:00)",
+        "https://api.sketchfab.com/v3/models?user=WirtualneMuzeaMalopolski&count=100 — Live today institution model inventory has exact UID, isDownloadable=true and CC Attribution license UID 322a749bcfa841b29dff1e8a1bb74b0b. Authenticated current selected GLB/license recheck remains required before acquisition. (retrieved 2026-10-19T13:52:43.769638+00:00)"
+      ],
+      "visual_qa": "Source thumbnail visually screened. Full native/production scope, measured integrity, orientation, actual final thumbnail and physical-size safety review remain required after acquisition."
+    },
+    {
+      "source": "sketchfab",
+      "archive": "",
+      "uid": "8424e8f5887b42d8a8e184f12409f1a4",
+      "slug": "modern/ksiazek-standing-woman-4609",
+      "collection": "modern",
+      "wing": "europe",
+      "title": "Standing Woman (Bolesław Książek; Kamionka Cooperative (manufacturer), BK_MS_30)",
+      "artist": "Bolesław Książek; Kamionka Cooperative (manufacturer)",
+      "culture": "Polish modern art",
+      "geography": "Łysa Góra, Poland",
+      "original_location": "Łysa Góra, Poland",
+      "current_location": "Bolesław Książek Archive",
+      "museum": "Bolesław Książek Archive",
+      "year": "1960s",
+      "year_sort": 1965,
+      "period": "Modern",
+      "material": "Glazed ceramic",
+      "dimensions": "width 5,5 cm (ramiona); height 22 cm; depth 7 cm (sukienka)",
+      "measures": [
+        {
+          "axis": "width",
+          "value": 5.5,
+          "value_text": "5,5",
+          "unit": "cm",
+          "scope": "ramiona",
+          "qualifier": "published",
+          "sourceUrls": [
+            "https://muzea.malopolska.pl/en/objects-list/4609"
+          ]
+        },
+        {
+          "axis": "height",
+          "value": 22,
+          "value_text": "22",
+          "unit": "cm",
+          "scope": "Published museum object dimension; no mesh calibration implied",
+          "qualifier": "published",
+          "sourceUrls": [
+            "https://muzea.malopolska.pl/en/objects-list/4609"
+          ]
+        },
+        {
+          "axis": "depth",
+          "value": 7,
+          "value_text": "7",
+          "unit": "cm",
+          "scope": "sukienka",
+          "qualifier": "published",
+          "sourceUrls": [
+            "https://muzea.malopolska.pl/en/objects-list/4609"
+          ]
+        }
+      ],
+      "accession": "BK_MS_30",
+      "object_identity": "Bolesław Książek Archive | BK_MS_30",
+      "source_institution": "Virtual Museums of Małopolska / Małopolska Institute of Culture",
+      "source_url": "https://sketchfab.com/3d-models/8424e8f5887b42d8a8e184f12409f1a4",
+      "source_record_url": "https://muzea.malopolska.pl/en/objects-list/4609",
+      "related_source_record_urls": [
+        "https://api.muzea.malopolska.pl/api/object/4609"
+      ],
+      "download_api_url": "https://api.sketchfab.com/v3/models/8424e8f5887b42d8a8e184f12409f1a4/download",
+      "download_format": "glb",
+      "download_size_bytes": null,
+      "downloadable_verified": true,
+      "downloadable_verified_at": "2026-10-19T13:52:43.769638+00:00",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "license_tier": 2,
+      "license_uid": "322a749bcfa841b29dff1e8a1bb74b0b",
+      "license_slug": "by",
+      "license_evidence_url": "https://api.sketchfab.com/v3/models/8424e8f5887b42d8a8e184f12409f1a4",
+      "scan_author": "Virtual Museums of Małopolska (WirtualneMuzeaMalopolski)",
+      "publisher": "WirtualneMuzeaMalopolski",
+      "scan_source": "Institution-published digitization of the physical object by the Regional Digitisation Lab, Małopolska Institute of Culture",
+      "attribution": "3D model “Ceramic sculpture \"Standing Woman\"” by Virtual Museums of Małopolska (WirtualneMuzeaMalopolski), Regional Digitisation Lab, Małopolska Institute of Culture, licensed CC BY 4.0. Physical work: Bolesław Książek; Kamionka Cooperative (manufacturer), Bolesław Książek Archive, BK_MS_30.",
+      "note": "An elongated woman in a long dress is shaped in glazed ceramic. The maker and manufacturer are recorded by the Bolesław Książek Archive.",
+      "source_description": "An elongated woman in a long dress is shaped in glazed ceramic. The maker and manufacturer are recorded by the Bolesław Książek Archive.",
+      "published_at": "2026-06-09T09:19:14.735189",
+      "reference_image_url": "https://media.sketchfab.com/models/8424e8f5887b42d8a8e184f12409f1a4/thumbnails/a242d22192a843a2bf91bc38189f6da5/946c8fdb637040cfa9a75e6a4df9f161.jpeg",
+      "representation": "Scan of the conserved physical object",
+      "face_count": 267632,
+      "face_count_scope": "api-detail-only-unmeasured",
+      "texture_count": 3,
+      "source_geometry": {
+        "format": "glb",
+        "bytes": null,
+        "faces": null,
+        "api_detail_faces": 267632,
+        "api_reported_glb_bytes_unverified": 112550584,
+        "api_reported_glb_texture_count": 3
+      },
+      "require_measured_integrity": true,
+      "logical_batch_id": "beautiful-expansion-20261019",
+      "evidence": [
+        "https://muzea.malopolska.pl/en/objects-list/4609 — Live primary museum API: exact accession, maker/role, date, production place or documented unknown, materials, labelled dimensions and physical-object identity read. Primary snapshot SHA256 2e5c8d68ed34859f8f37520520bba6494438c610a4815b968c8b00d456ed0af7 (retrieved 2026-10-19T13:52:43.769638+00:00)",
+        "https://api.sketchfab.com/v3/models?user=WirtualneMuzeaMalopolski&count=100 — Live today institution model inventory has exact UID, isDownloadable=true and CC Attribution license UID 322a749bcfa841b29dff1e8a1bb74b0b. Authenticated current selected GLB/license recheck remains required before acquisition. (retrieved 2026-10-19T13:52:43.769638+00:00)"
+      ],
+      "visual_qa": "Source thumbnail visually screened. Full native/production scope, measured integrity, orientation, actual final thumbnail and physical-size safety review remain required after acquisition."
+    },
+    {
+      "source": "sketchfab",
+      "archive": "",
+      "uid": "058e931bd278415ea826cd6c9024d66f",
+      "slug": "modern/ksiazek-ox-4608",
+      "collection": "modern",
+      "wing": "europe",
+      "title": "Ox",
+      "artist": "Bolesław Książek; Kamionka Cooperative (manufacturer)",
+      "culture": "Polish modern art",
+      "geography": "Łysa Góra, Poland",
+      "original_location": "Łysa Góra, Poland",
+      "current_location": "Bolesław Książek Archive",
+      "museum": "Bolesław Książek Archive",
+      "year": "1960s",
+      "year_sort": 1965,
+      "period": "Modern",
+      "material": "Glazed ceramic",
+      "dimensions": "width 10 cm; height 16 cm; length 19 cm",
+      "measures": [
+        {
+          "axis": "width",
+          "value": 10,
+          "value_text": "10",
+          "unit": "cm",
+          "scope": "Published museum object dimension; no mesh calibration implied",
+          "qualifier": "published",
+          "sourceUrls": [
+            "https://muzea.malopolska.pl/en/objects-list/4608"
+          ]
+        },
+        {
+          "axis": "height",
+          "value": 16,
+          "value_text": "16",
+          "unit": "cm",
+          "scope": "Published museum object dimension; no mesh calibration implied",
+          "qualifier": "published",
+          "sourceUrls": [
+            "https://muzea.malopolska.pl/en/objects-list/4608"
+          ]
+        },
+        {
+          "axis": "length",
+          "value": 19,
+          "value_text": "19",
+          "unit": "cm",
+          "scope": "Published museum object dimension; no mesh calibration implied",
+          "qualifier": "published",
+          "sourceUrls": [
+            "https://muzea.malopolska.pl/en/objects-list/4608"
+          ]
+        }
+      ],
+      "accession": "BK_MS_29",
+      "object_identity": "Bolesław Książek Archive | BK_MS_29",
+      "source_institution": "Virtual Museums of Małopolska / Małopolska Institute of Culture",
+      "source_url": "https://sketchfab.com/3d-models/058e931bd278415ea826cd6c9024d66f",
+      "source_record_url": "https://muzea.malopolska.pl/en/objects-list/4608",
+      "related_source_record_urls": [
+        "https://api.muzea.malopolska.pl/api/object/4608"
+      ],
+      "download_api_url": "https://api.sketchfab.com/v3/models/058e931bd278415ea826cd6c9024d66f/download",
+      "download_format": "glb",
+      "download_size_bytes": null,
+      "downloadable_verified": true,
+      "downloadable_verified_at": "2026-10-19T13:52:43.769638+00:00",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "license_tier": 2,
+      "license_uid": "322a749bcfa841b29dff1e8a1bb74b0b",
+      "license_slug": "by",
+      "license_evidence_url": "https://api.sketchfab.com/v3/models/058e931bd278415ea826cd6c9024d66f",
+      "scan_author": "Virtual Museums of Małopolska (WirtualneMuzeaMalopolski)",
+      "publisher": "WirtualneMuzeaMalopolski",
+      "scan_source": "Institution-published digitization of the physical object by the Regional Digitisation Lab, Małopolska Institute of Culture",
+      "attribution": "3D model “Ox” by Virtual Museums of Małopolska (WirtualneMuzeaMalopolski), Regional Digitisation Lab, Małopolska Institute of Culture, licensed CC BY 4.0. Physical work: Bolesław Książek; Kamionka Cooperative (manufacturer), Bolesław Książek Archive, BK_MS_29.",
+      "note": "Long horns and a narrow, four-legged body turn the ox into an economical ceramic silhouette. The dark mottled glaze belongs to the physical piece.",
+      "source_description": "Long horns and a narrow, four-legged body turn the ox into an economical ceramic silhouette. The dark mottled glaze belongs to the physical piece.",
+      "published_at": "2026-06-12T06:40:44.331372",
+      "reference_image_url": "https://media.sketchfab.com/models/058e931bd278415ea826cd6c9024d66f/thumbnails/08925036b9ed47bdb5c7ac931122593c/8b73a0350e50451289589adc368a38c3.jpeg",
+      "representation": "Scan of the conserved physical object",
+      "face_count": 420672,
+      "face_count_scope": "api-detail-only-unmeasured",
+      "texture_count": 3,
+      "source_geometry": {
+        "format": "glb",
+        "bytes": null,
+        "faces": null,
+        "api_detail_faces": 420672,
+        "api_reported_glb_bytes_unverified": 84640100,
+        "api_reported_glb_texture_count": 3
+      },
+      "require_measured_integrity": true,
+      "logical_batch_id": "beautiful-expansion-20261019",
+      "evidence": [
+        "https://muzea.malopolska.pl/en/objects-list/4608 — Live primary museum API: exact accession, maker/role, date, production place or documented unknown, materials, labelled dimensions and physical-object identity read. Primary snapshot SHA256 1c517545de4dfcd529ea3c1f56a24b798271df3112dc70f7a25ac8b994c86c86 (retrieved 2026-10-19T13:52:43.769638+00:00)",
+        "https://api.sketchfab.com/v3/models?user=WirtualneMuzeaMalopolski&count=100 — Live today institution model inventory has exact UID, isDownloadable=true and CC Attribution license UID 322a749bcfa841b29dff1e8a1bb74b0b. Authenticated current selected GLB/license recheck remains required before acquisition. (retrieved 2026-10-19T13:52:43.769638+00:00)"
+      ],
+      "visual_qa": "Source thumbnail visually screened. Full native/production scope, measured integrity, orientation, actual final thumbnail and physical-size safety review remain required after acquisition."
+    },
+    {
+      "source": "sketchfab",
+      "archive": "",
+      "uid": "492a7c28ac75400495a439290844afa0",
+      "slug": "modern/ksiazek-thinker-4610",
+      "collection": "modern",
+      "wing": "europe",
+      "title": "Thinker",
+      "artist": "Bolesław Książek; Kamionka Cooperative (manufacturer)",
+      "culture": "Polish modern art",
+      "geography": "Łysa Góra, Poland",
+      "original_location": "Łysa Góra, Poland",
+      "current_location": "Bolesław Książek Archive",
+      "museum": "Bolesław Książek Archive",
+      "year": "1950s",
+      "year_sort": 1955,
+      "period": "Modern",
+      "material": "Glazed ceramic",
+      "dimensions": "width 23 cm; height 40 cm; depth 40 cm (od palców stopy do pleców)",
+      "measures": [
+        {
+          "axis": "width",
+          "value": 23,
+          "value_text": "23",
+          "unit": "cm",
+          "scope": "Published museum object dimension; no mesh calibration implied",
+          "qualifier": "published",
+          "sourceUrls": [
+            "https://muzea.malopolska.pl/en/objects-list/4610"
+          ]
+        },
+        {
+          "axis": "height",
+          "value": 40,
+          "value_text": "40",
+          "unit": "cm",
+          "scope": "Published museum object dimension; no mesh calibration implied",
+          "qualifier": "published",
+          "sourceUrls": [
+            "https://muzea.malopolska.pl/en/objects-list/4610"
+          ]
+        },
+        {
+          "axis": "depth",
+          "value": 40,
+          "value_text": "40",
+          "unit": "cm",
+          "scope": "od palców stopy do pleców",
+          "qualifier": "published",
+          "sourceUrls": [
+            "https://muzea.malopolska.pl/en/objects-list/4610"
+          ]
+        }
+      ],
+      "accession": "BK_MS_31",
+      "object_identity": "Bolesław Książek Archive | BK_MS_31",
+      "source_institution": "Virtual Museums of Małopolska / Małopolska Institute of Culture",
+      "source_url": "https://sketchfab.com/3d-models/492a7c28ac75400495a439290844afa0",
+      "source_record_url": "https://muzea.malopolska.pl/en/objects-list/4610",
+      "related_source_record_urls": [
+        "https://api.muzea.malopolska.pl/api/object/4610"
+      ],
+      "download_api_url": "https://api.sketchfab.com/v3/models/492a7c28ac75400495a439290844afa0/download",
+      "download_format": "glb",
+      "download_size_bytes": null,
+      "downloadable_verified": true,
+      "downloadable_verified_at": "2026-10-19T13:52:43.769638+00:00",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "license_tier": 2,
+      "license_uid": "322a749bcfa841b29dff1e8a1bb74b0b",
+      "license_slug": "by",
+      "license_evidence_url": "https://api.sketchfab.com/v3/models/492a7c28ac75400495a439290844afa0",
+      "scan_author": "Virtual Museums of Małopolska (WirtualneMuzeaMalopolski)",
+      "publisher": "WirtualneMuzeaMalopolski",
+      "scan_source": "Institution-published digitization of the physical object by the Regional Digitisation Lab, Małopolska Institute of Culture",
+      "attribution": "3D model “Thinker - figurine” by Virtual Museums of Małopolska (WirtualneMuzeaMalopolski), Regional Digitisation Lab, Małopolska Institute of Culture, licensed CC BY 4.0. Physical work: Bolesław Książek; Kamionka Cooperative (manufacturer), Bolesław Książek Archive, BK_MS_31.",
+      "note": "A seated, contemplative figure curves over bent legs in this glazed ceramic sculpture. It is a distinct Książek work, not Rodin’s Thinker.",
+      "source_description": "A seated, contemplative figure curves over bent legs in this glazed ceramic sculpture. It is a distinct Książek work, not Rodin’s Thinker.",
+      "published_at": "2026-06-10T09:20:10.378212",
+      "reference_image_url": "https://media.sketchfab.com/models/492a7c28ac75400495a439290844afa0/thumbnails/71d23f35700e4d28961cfae9af29ffd5/8d8ac9bd0dbb434d899b53f1b4b121fa.jpeg",
+      "representation": "Scan of the conserved physical object",
+      "face_count": 14244,
+      "face_count_scope": "api-detail-only-unmeasured",
+      "texture_count": 4,
+      "source_geometry": {
+        "format": "glb",
+        "bytes": null,
+        "faces": null,
+        "api_detail_faces": 14244,
+        "api_reported_glb_bytes_unverified": 87177016,
+        "api_reported_glb_texture_count": 4
+      },
+      "require_measured_integrity": true,
+      "logical_batch_id": "beautiful-expansion-20261019",
+      "evidence": [
+        "https://muzea.malopolska.pl/en/objects-list/4610 — Live primary museum API: exact accession, maker/role, date, production place or documented unknown, materials, labelled dimensions and physical-object identity read. Primary snapshot SHA256 544cff98db42b27ebe0c17b42788e0e6f1244e54de79108a7c32506665edec2c (retrieved 2026-10-19T13:52:43.769638+00:00)",
+        "https://api.sketchfab.com/v3/models?user=WirtualneMuzeaMalopolski&count=100 — Live today institution model inventory has exact UID, isDownloadable=true and CC Attribution license UID 322a749bcfa841b29dff1e8a1bb74b0b. Authenticated current selected GLB/license recheck remains required before acquisition. (retrieved 2026-10-19T13:52:43.769638+00:00)"
+      ],
+      "visual_qa": "Source thumbnail visually screened. Full native/production scope, measured integrity, orientation, actual final thumbnail and physical-size safety review remain required after acquisition."
+    },
+    {
+      "source": "sketchfab",
+      "archive": "",
+      "uid": "20d9cdc4f0af443489f6e2498614295a",
+      "slug": "modern/ksiazek-abstract-linear-relief-4580",
+      "collection": "modern",
+      "wing": "europe",
+      "title": "Abstract Composition: Linear Relief",
+      "artist": "Bolesław Książek",
+      "culture": "Polish modern art",
+      "geography": "Łysa Góra, Poland",
+      "original_location": "Łysa Góra, Poland",
+      "current_location": "Bolesław Książek Archive",
+      "museum": "Bolesław Książek Archive",
+      "year": "1980s",
+      "year_sort": 1985,
+      "period": "Modern",
+      "material": "Glazed clay, metal and cement",
+      "dimensions": "width 60 cm; height 40 cm; thickness 4 cm",
+      "measures": [
+        {
+          "axis": "width",
+          "value": 60,
+          "value_text": "60",
+          "unit": "cm",
+          "scope": "Published museum object dimension; no mesh calibration implied",
+          "qualifier": "published",
+          "sourceUrls": [
+            "https://muzea.malopolska.pl/en/objects-list/4580"
+          ]
+        },
+        {
+          "axis": "height",
+          "value": 40,
+          "value_text": "40",
+          "unit": "cm",
+          "scope": "Published museum object dimension; no mesh calibration implied",
+          "qualifier": "published",
+          "sourceUrls": [
+            "https://muzea.malopolska.pl/en/objects-list/4580"
+          ]
+        },
+        {
+          "axis": "thickness",
+          "value": 4,
+          "value_text": "4",
+          "unit": "cm",
+          "scope": "Published museum object dimension; no mesh calibration implied",
+          "qualifier": "published",
+          "sourceUrls": [
+            "https://muzea.malopolska.pl/en/objects-list/4580"
+          ]
+        }
+      ],
+      "accession": "BK_MS_1",
+      "object_identity": "Bolesław Książek Archive | BK_MS_1",
+      "source_institution": "Virtual Museums of Małopolska / Małopolska Institute of Culture",
+      "source_url": "https://sketchfab.com/3d-models/20d9cdc4f0af443489f6e2498614295a",
+      "source_record_url": "https://muzea.malopolska.pl/en/objects-list/4580",
+      "related_source_record_urls": [
+        "https://api.muzea.malopolska.pl/api/object/4580"
+      ],
+      "download_api_url": "https://api.sketchfab.com/v3/models/20d9cdc4f0af443489f6e2498614295a/download",
+      "download_format": "glb",
+      "download_size_bytes": null,
+      "downloadable_verified": true,
+      "downloadable_verified_at": "2026-10-19T13:52:43.769638+00:00",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "license_tier": 2,
+      "license_uid": "322a749bcfa841b29dff1e8a1bb74b0b",
+      "license_slug": "by",
+      "license_evidence_url": "https://api.sketchfab.com/v3/models/20d9cdc4f0af443489f6e2498614295a",
+      "scan_author": "Virtual Museums of Małopolska (WirtualneMuzeaMalopolski)",
+      "publisher": "WirtualneMuzeaMalopolski",
+      "scan_source": "Institution-published digitization of the physical object by the Regional Digitisation Lab, Małopolska Institute of Culture",
+      "attribution": "3D model “Abstract composition – ceramic relief” by Virtual Museums of Małopolska (WirtualneMuzeaMalopolski), Regional Digitisation Lab, Małopolska Institute of Culture, licensed CC BY 4.0. Physical work: Bolesław Książek, Bolesław Książek Archive, BK_MS_1.",
+      "note": "Raised ceramic lines build an irregular grid over a colored relief panel. The primary record identifies clay, metal and cement and dates the object to the 1980s.",
+      "source_description": "Raised ceramic lines build an irregular grid over a colored relief panel. The primary record identifies clay, metal and cement and dates the object to the 1980s.",
+      "published_at": "2026-06-10T08:33:28.966260",
+      "reference_image_url": "https://media.sketchfab.com/models/20d9cdc4f0af443489f6e2498614295a/thumbnails/560643be593e4f4b984b6e2a9c8cccff/8b322cc10a1b4bda9aea1d7bda8169d0.jpeg",
+      "representation": "Scan of the conserved physical object",
+      "face_count": 299992,
+      "face_count_scope": "api-detail-only-unmeasured",
+      "texture_count": 3,
+      "source_geometry": {
+        "format": "glb",
+        "bytes": null,
+        "faces": null,
+        "api_detail_faces": 299992,
+        "api_reported_glb_bytes_unverified": 146287752,
+        "api_reported_glb_texture_count": 3
+      },
+      "require_measured_integrity": true,
+      "logical_batch_id": "beautiful-expansion-20261019",
+      "evidence": [
+        "https://muzea.malopolska.pl/en/objects-list/4580 — Live primary museum API: exact accession, maker/role, date, production place or documented unknown, materials, labelled dimensions and physical-object identity read. Primary snapshot SHA256 0036906226bad36c5b8b93019e58498c2f3a8ac01f9566c24efda889d0c15196 (retrieved 2026-10-19T13:52:43.769638+00:00)",
+        "https://api.sketchfab.com/v3/models?user=WirtualneMuzeaMalopolski&count=100 — Live today institution model inventory has exact UID, isDownloadable=true and CC Attribution license UID 322a749bcfa841b29dff1e8a1bb74b0b. Authenticated current selected GLB/license recheck remains required before acquisition. (retrieved 2026-10-19T13:52:43.769638+00:00)"
+      ],
+      "visual_qa": "Source thumbnail visually screened. Full native/production scope, measured integrity, orientation, actual final thumbnail and physical-size safety review remain required after acquisition."
+    },
+    {
+      "source": "sketchfab",
+      "archive": "",
+      "uid": "05e7f8d46fb94c6480be777b6b12bafe",
+      "slug": "modern/ksiazek-abstract-converging-relief-4582",
+      "collection": "modern",
+      "wing": "europe",
+      "title": "Abstract Composition: Converging Relief",
+      "artist": "Bolesław Książek",
+      "culture": "Polish modern art",
+      "geography": "Łysa Góra, Poland",
+      "original_location": "Łysa Góra, Poland",
+      "current_location": "Bolesław Książek Archive",
+      "museum": "Bolesław Książek Archive",
+      "year": "1970s",
+      "year_sort": 1975,
+      "period": "Modern",
+      "material": "Glazed clay, cement and metal",
+      "dimensions": "width 50 cm; height 50 cm; height 52 cm (z uchwytami); thickness 3 cm",
+      "measures": [
+        {
+          "axis": "width",
+          "value": 50,
+          "value_text": "50",
+          "unit": "cm",
+          "scope": "Published museum object dimension; no mesh calibration implied",
+          "qualifier": "published",
+          "sourceUrls": [
+            "https://muzea.malopolska.pl/en/objects-list/4582"
+          ]
+        },
+        {
+          "axis": "height",
+          "value": 50,
+          "value_text": "50",
+          "unit": "cm",
+          "scope": "Published museum object dimension; no mesh calibration implied",
+          "qualifier": "published",
+          "sourceUrls": [
+            "https://muzea.malopolska.pl/en/objects-list/4582"
+          ]
+        },
+        {
+          "axis": "height",
+          "value": 52,
+          "value_text": "52",
+          "unit": "cm",
+          "scope": "z uchwytami",
+          "qualifier": "published",
+          "sourceUrls": [
+            "https://muzea.malopolska.pl/en/objects-list/4582"
+          ]
+        },
+        {
+          "axis": "thickness",
+          "value": 3,
+          "value_text": "3",
+          "unit": "cm",
+          "scope": "Published museum object dimension; no mesh calibration implied",
+          "qualifier": "published",
+          "sourceUrls": [
+            "https://muzea.malopolska.pl/en/objects-list/4582"
+          ]
+        }
+      ],
+      "accession": "BK_MS_3",
+      "object_identity": "Bolesław Książek Archive | BK_MS_3",
+      "source_institution": "Virtual Museums of Małopolska / Małopolska Institute of Culture",
+      "source_url": "https://sketchfab.com/3d-models/05e7f8d46fb94c6480be777b6b12bafe",
+      "source_record_url": "https://muzea.malopolska.pl/en/objects-list/4582",
+      "related_source_record_urls": [
+        "https://api.muzea.malopolska.pl/api/object/4582"
+      ],
+      "download_api_url": "https://api.sketchfab.com/v3/models/05e7f8d46fb94c6480be777b6b12bafe/download",
+      "download_format": "glb",
+      "download_size_bytes": null,
+      "downloadable_verified": true,
+      "downloadable_verified_at": "2026-10-19T13:52:43.769638+00:00",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "license_tier": 2,
+      "license_uid": "322a749bcfa841b29dff1e8a1bb74b0b",
+      "license_slug": "by",
+      "license_evidence_url": "https://api.sketchfab.com/v3/models/05e7f8d46fb94c6480be777b6b12bafe",
+      "scan_author": "Virtual Museums of Małopolska (WirtualneMuzeaMalopolski)",
+      "publisher": "WirtualneMuzeaMalopolski",
+      "scan_source": "Institution-published digitization of the physical object by the Regional Digitisation Lab, Małopolska Institute of Culture",
+      "attribution": "3D model “Abstract composition – ceramic relief (scan)” by Virtual Museums of Małopolska (WirtualneMuzeaMalopolski), Regional Digitisation Lab, Małopolska Institute of Culture, licensed CC BY 4.0. Physical work: Bolesław Książek, Bolesław Książek Archive, BK_MS_3.",
+      "note": "Bands of colored ceramic converge around a small central form. The source record distinguishes the panel’s 50 cm height from 52 cm including its hanging fittings.",
+      "source_description": "Bands of colored ceramic converge around a small central form. The source record distinguishes the panel’s 50 cm height from 52 cm including its hanging fittings.",
+      "published_at": "2026-06-10T09:00:07.786627",
+      "reference_image_url": "https://media.sketchfab.com/models/05e7f8d46fb94c6480be777b6b12bafe/thumbnails/ae3f6c3f06344e1a8ffcef28eb35410b/5d98776b9e2141749095a79b46927891.jpeg",
+      "representation": "Scan of the conserved physical object",
+      "face_count": 199980,
+      "face_count_scope": "api-detail-only-unmeasured",
+      "texture_count": 4,
+      "source_geometry": {
+        "format": "glb",
+        "bytes": null,
+        "faces": null,
+        "api_detail_faces": 199980,
+        "api_reported_glb_bytes_unverified": 130476700,
+        "api_reported_glb_texture_count": 4
+      },
+      "require_measured_integrity": true,
+      "logical_batch_id": "beautiful-expansion-20261019",
+      "evidence": [
+        "https://muzea.malopolska.pl/en/objects-list/4582 — Live primary museum API: exact accession, maker/role, date, production place or documented unknown, materials, labelled dimensions and physical-object identity read. Primary snapshot SHA256 5b92cd9d20b412b5240cd77b33f3f3d5a9194865672b0db56e1ed4cd4ba6b592 (retrieved 2026-10-19T13:52:43.769638+00:00)",
+        "https://api.sketchfab.com/v3/models?user=WirtualneMuzeaMalopolski&count=100 — Live today institution model inventory has exact UID, isDownloadable=true and CC Attribution license UID 322a749bcfa841b29dff1e8a1bb74b0b. Authenticated current selected GLB/license recheck remains required before acquisition. (retrieved 2026-10-19T13:52:43.769638+00:00)"
+      ],
+      "visual_qa": "Source thumbnail visually screened. Full native/production scope, measured integrity, orientation, actual final thumbnail and physical-size safety review remain required after acquisition."
+    },
+    {
+      "source": "sketchfab",
+      "archive": "",
+      "uid": "9304c6cee6194ea499eb84ea3acadaa4",
+      "slug": "modern/ksiazek-vase-blue-glaze-4600",
+      "collection": "modern",
+      "wing": "europe",
+      "title": "Vase with Blue Glaze",
+      "artist": "Bolesław Książek; Kamionka Cooperative (manufacturer)",
+      "culture": "Polish modern art",
+      "geography": "Łysa Góra, Poland",
+      "original_location": "Łysa Góra, Poland",
+      "current_location": "Bolesław Książek Archive",
+      "museum": "Bolesław Książek Archive",
+      "year": "1960s",
+      "year_sort": 1965,
+      "period": "Modern",
+      "material": "Glazed ceramic",
+      "dimensions": "height 32 cm; diameter 14 cm",
+      "measures": [
+        {
+          "axis": "height",
+          "value": 32,
+          "value_text": "32",
+          "unit": "cm",
+          "scope": "Published museum object dimension; no mesh calibration implied",
+          "qualifier": "published",
+          "sourceUrls": [
+            "https://muzea.malopolska.pl/en/objects-list/4600"
+          ]
+        },
+        {
+          "axis": "diameter",
+          "value": 14,
+          "value_text": "14",
+          "unit": "cm",
+          "scope": "Published museum object dimension; no mesh calibration implied",
+          "qualifier": "published",
+          "sourceUrls": [
+            "https://muzea.malopolska.pl/en/objects-list/4600"
+          ]
+        }
+      ],
+      "accession": "BK_MS_21",
+      "object_identity": "Bolesław Książek Archive | BK_MS_21",
+      "source_institution": "Virtual Museums of Małopolska / Małopolska Institute of Culture",
+      "source_url": "https://sketchfab.com/3d-models/9304c6cee6194ea499eb84ea3acadaa4",
+      "source_record_url": "https://muzea.malopolska.pl/en/objects-list/4600",
+      "related_source_record_urls": [
+        "https://api.muzea.malopolska.pl/api/object/4600"
+      ],
+      "download_api_url": "https://api.sketchfab.com/v3/models/9304c6cee6194ea499eb84ea3acadaa4/download",
+      "download_format": "glb",
+      "download_size_bytes": null,
+      "downloadable_verified": true,
+      "downloadable_verified_at": "2026-10-19T13:52:43.769638+00:00",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "license_tier": 2,
+      "license_uid": "322a749bcfa841b29dff1e8a1bb74b0b",
+      "license_slug": "by",
+      "license_evidence_url": "https://api.sketchfab.com/v3/models/9304c6cee6194ea499eb84ea3acadaa4",
+      "scan_author": "Virtual Museums of Małopolska (WirtualneMuzeaMalopolski)",
+      "publisher": "WirtualneMuzeaMalopolski",
+      "scan_source": "Institution-published digitization of the physical object by the Regional Digitisation Lab, Małopolska Institute of Culture",
+      "attribution": "3D model “Vase” by Virtual Museums of Małopolska (WirtualneMuzeaMalopolski), Regional Digitisation Lab, Małopolska Institute of Culture, licensed CC BY 4.0. Physical work: Bolesław Książek; Kamionka Cooperative (manufacturer), Bolesław Książek Archive, BK_MS_21.",
+      "note": "Blue and olive-toned glaze breaks over this slender ceramic vase. The primary record identifies the exact archive object BK_MS_21.",
+      "source_description": "Blue and olive-toned glaze breaks over this slender ceramic vase. The primary record identifies the exact archive object BK_MS_21.",
+      "published_at": "2026-06-10T13:13:30.087666",
+      "reference_image_url": "https://media.sketchfab.com/models/9304c6cee6194ea499eb84ea3acadaa4/thumbnails/3f246d90ce2247fca49c563cdb949b3e/bfa0d8f5de1147f79bdd82771f616c5f.jpeg",
+      "representation": "Scan of the conserved physical object",
+      "face_count": 299999,
+      "face_count_scope": "api-detail-only-unmeasured",
+      "texture_count": 2,
+      "source_geometry": {
+        "format": "glb",
+        "bytes": null,
+        "faces": null,
+        "api_detail_faces": 299999,
+        "api_reported_glb_bytes_unverified": 50293896,
+        "api_reported_glb_texture_count": 2
+      },
+      "require_measured_integrity": true,
+      "logical_batch_id": "beautiful-expansion-20261019",
+      "evidence": [
+        "https://muzea.malopolska.pl/en/objects-list/4600 — Live primary museum API: exact accession, maker/role, date, production place or documented unknown, materials, labelled dimensions and physical-object identity read. Primary snapshot SHA256 6fcc2a45db32f47ba92e7c86e2817d2d0b2e9da5a5b2ae9ea99618b3b7dd14b5 (retrieved 2026-10-19T13:52:43.769638+00:00)",
+        "https://api.sketchfab.com/v3/models?user=WirtualneMuzeaMalopolski&count=100 — Live today institution model inventory has exact UID, isDownloadable=true and CC Attribution license UID 322a749bcfa841b29dff1e8a1bb74b0b. Authenticated current selected GLB/license recheck remains required before acquisition. (retrieved 2026-10-19T13:52:43.769638+00:00)"
+      ],
+      "visual_qa": "Source thumbnail visually screened. Full native/production scope, measured integrity, orientation, actual final thumbnail and physical-size safety review remain required after acquisition."
+    },
+    {
+      "source": "sketchfab",
+      "archive": "",
+      "uid": "12d82b8507a24d65b26388f1a0cf6343",
+      "slug": "modern/ksiazek-vase-mans-face-4588",
+      "collection": "modern",
+      "wing": "europe",
+      "title": "Vase with a Man’s Face",
+      "artist": "Bolesław Książek (design); Kamionka Cooperative (manufacturer)",
+      "culture": "Polish modern art",
+      "geography": "Łysa Góra, Poland",
+      "original_location": "Łysa Góra, Poland",
+      "current_location": "Bolesław Książek Archive",
+      "museum": "Bolesław Książek Archive",
+      "year": "1960s",
+      "year_sort": 1965,
+      "period": "Modern",
+      "material": "Glazed ceramic",
+      "dimensions": "width 21 cm; height 34 cm; depth 21 cm",
+      "measures": [
+        {
+          "axis": "width",
+          "value": 21,
+          "value_text": "21",
+          "unit": "cm",
+          "scope": "Published museum object dimension; no mesh calibration implied",
+          "qualifier": "published",
+          "sourceUrls": [
+            "https://muzea.malopolska.pl/en/objects-list/4588"
+          ]
+        },
+        {
+          "axis": "height",
+          "value": 34,
+          "value_text": "34",
+          "unit": "cm",
+          "scope": "Published museum object dimension; no mesh calibration implied",
+          "qualifier": "published",
+          "sourceUrls": [
+            "https://muzea.malopolska.pl/en/objects-list/4588"
+          ]
+        },
+        {
+          "axis": "depth",
+          "value": 21,
+          "value_text": "21",
+          "unit": "cm",
+          "scope": "Published museum object dimension; no mesh calibration implied",
+          "qualifier": "published",
+          "sourceUrls": [
+            "https://muzea.malopolska.pl/en/objects-list/4588"
+          ]
+        }
+      ],
+      "accession": "BK_MS_9",
+      "object_identity": "Bolesław Książek Archive | BK_MS_9",
+      "source_institution": "Virtual Museums of Małopolska / Małopolska Institute of Culture",
+      "source_url": "https://sketchfab.com/3d-models/12d82b8507a24d65b26388f1a0cf6343",
+      "source_record_url": "https://muzea.malopolska.pl/en/objects-list/4588",
+      "related_source_record_urls": [
+        "https://api.muzea.malopolska.pl/api/object/4588"
+      ],
+      "download_api_url": "https://api.sketchfab.com/v3/models/12d82b8507a24d65b26388f1a0cf6343/download",
+      "download_format": "glb",
+      "download_size_bytes": null,
+      "downloadable_verified": true,
+      "downloadable_verified_at": "2026-10-19T13:52:43.769638+00:00",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "license_tier": 2,
+      "license_uid": "322a749bcfa841b29dff1e8a1bb74b0b",
+      "license_slug": "by",
+      "license_evidence_url": "https://api.sketchfab.com/v3/models/12d82b8507a24d65b26388f1a0cf6343",
+      "scan_author": "Virtual Museums of Małopolska (WirtualneMuzeaMalopolski)",
+      "publisher": "WirtualneMuzeaMalopolski",
+      "scan_source": "Institution-published digitization of the physical object by the Regional Digitisation Lab, Małopolska Institute of Culture",
+      "attribution": "3D model “Vase with a man's face” by Virtual Museums of Małopolska (WirtualneMuzeaMalopolski), Regional Digitisation Lab, Małopolska Institute of Culture, licensed CC BY 4.0. Physical work: Bolesław Książek (design); Kamionka Cooperative (manufacturer), Bolesław Książek Archive, BK_MS_9.",
+      "note": "An angular male face is modeled into the vessel wall beneath its open rim. The work combines a functional vase with a sculpted portrait.",
+      "source_description": "An angular male face is modeled into the vessel wall beneath its open rim. The work combines a functional vase with a sculpted portrait.",
+      "published_at": "2026-06-12T07:20:16.805518",
+      "reference_image_url": "https://media.sketchfab.com/models/12d82b8507a24d65b26388f1a0cf6343/thumbnails/c6fdda8481bf4b6f8e00998f0280ff3e/73d9173723644edb8291d64fbc9d7ab1.jpeg",
+      "representation": "Scan of the conserved physical object",
+      "face_count": 299989,
+      "face_count_scope": "api-detail-only-unmeasured",
+      "texture_count": 3,
+      "source_geometry": {
+        "format": "glb",
+        "bytes": null,
+        "faces": null,
+        "api_detail_faces": 299989,
+        "api_reported_glb_bytes_unverified": 82761288,
+        "api_reported_glb_texture_count": 3
+      },
+      "require_measured_integrity": true,
+      "logical_batch_id": "beautiful-expansion-20261019",
+      "evidence": [
+        "https://muzea.malopolska.pl/en/objects-list/4588 — Live primary museum API: exact accession, maker/role, date, production place or documented unknown, materials, labelled dimensions and physical-object identity read. Primary snapshot SHA256 5f6fe1055fcc37699764b91cc3527955df8f280caa8bac4f0f1afb93d83a4b59 (retrieved 2026-10-19T13:52:43.769638+00:00)",
+        "https://api.sketchfab.com/v3/models?user=WirtualneMuzeaMalopolski&count=100 — Live today institution model inventory has exact UID, isDownloadable=true and CC Attribution license UID 322a749bcfa841b29dff1e8a1bb74b0b. Authenticated current selected GLB/license recheck remains required before acquisition. (retrieved 2026-10-19T13:52:43.769638+00:00)"
+      ],
+      "visual_qa": "Source thumbnail visually screened. Full native/production scope, measured integrity, orientation, actual final thumbnail and physical-size safety review remain required after acquisition."
+    },
+    {
+      "source": "sketchfab",
+      "archive": "",
+      "uid": "6827af1276ab407ebbfa1e7d0a4b9a19",
+      "slug": "modern/canova-terpsichore-lyran-cleveland-1968-212",
+      "collection": "modern",
+      "wing": "europe",
+      "title": "Terpsichore Lyran (Muse of Lyric Poetry)",
+      "artist": "Antonio Canova",
+      "culture": "European sculpture",
+      "geography": "Italy",
+      "original_location": "Italy",
+      "current_location": "Cleveland Museum of Art",
+      "museum": "Cleveland Museum of Art",
+      "year": "1816",
+      "year_sort": 1816,
+      "period": "Neoclassical",
+      "material": "Marble",
+      "dimensions": "Overall 177.5 × 78.1 × 61 cm",
+      "measures": [],
+      "accession": "1968.212",
+      "object_identity": "Cleveland Museum of Art | 1968.212",
+      "source_institution": "Cleveland Museum of Art",
+      "source_url": "https://sketchfab.com/3d-models/6827af1276ab407ebbfa1e7d0a4b9a19",
+      "source_record_url": "https://www.clevelandart.org/art/1968.212",
+      "related_source_record_urls": [],
+      "download_api_url": "https://api.sketchfab.com/v3/models/6827af1276ab407ebbfa1e7d0a4b9a19/download",
+      "download_format": "glb",
+      "download_size_bytes": null,
+      "downloadable_verified": true,
+      "downloadable_verified_at": "2026-10-19T13:46:17Z",
+      "license": "CC0 1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "license_tier": 1,
+      "license_uid": "7c23a1ba438d4306920229c12afcb5f9",
+      "license_slug": "cc0",
+      "license_evidence_url": "https://api.sketchfab.com/v3/models/6827af1276ab407ebbfa1e7d0a4b9a19",
+      "scan_author": "Cleveland Museum of Art (clevelandart)",
+      "publisher": "clevelandart",
+      "scan_source": "Institution-published 3D digitization of the physical museum sculpture",
+      "attribution": "3D model “1968.212 Terpsichore Lyran” by Cleveland Museum of Art (clevelandart), via Sketchfab, licensed CC0 1.0. Physical work: Antonio Canova, Cleveland Museum of Art, 1968.212. Museum credit: Leonard C. Hanna Jr. Fund.",
+      "note": "Canova made this marble version of the muse of lyric poetry for a British aristocrat. A lyre, Greek inscription and caduceus identify Terpsichore; this is Cleveland accession1968.212.",
+      "source_description": "Canova made this marble version of the muse of lyric poetry for a British aristocrat. A lyre, Greek inscription and caduceus identify Terpsichore; this is Cleveland accession1968.212.",
+      "reference_image_url": "https://media.sketchfab.com/models/6827af1276ab407ebbfa1e7d0a4b9a19/thumbnails/b9bcc6e416a544588f26cdf99403298d/f97b77ddc6164986930c6a09b8218dd8.jpeg",
+      "representation": "Scan of the physical museum original with exact accession",
+      "face_count": 114472,
+      "face_count_scope": "api-detail-only-unmeasured",
+      "texture_count": 3,
+      "source_geometry": {
+        "format": "glb",
+        "bytes": null,
+        "faces": null,
+        "api_detail_faces": 114472,
+        "api_detail_textures": 3
+      },
+      "require_measured_integrity": true,
+      "logical_batch_id": "beautiful-expansion-20261019",
+      "evidence": [
+        "https://www.clevelandart.org/art/1968.212 — Live primary institution record read: exact maker, date, material, museum accession and measurements; making place supported by museum attribution/associated scholarship. (retrieved 2026-10-19T13:52:43.769638+00:00)",
+        "https://api.sketchfab.com/v3/models/6827af1276ab407ebbfa1e7d0a4b9a19 — Live canonical model API has exact institutional publisher, downloadable=true and CC0 1.0. Private model snapshot SHA256 71cc5529d4fe966a7146145e03a21256b07c9e435888fa00fd719c83b2b39867 (retrieved 2026-10-19T13:46:17Z)"
+      ],
+      "visual_qa": "Source thumbnail visually screened. Full native/production scope, measured integrity, orientation, actual final thumbnail and physical-size safety review remain required after acquisition."
+    },
+    {
+      "source": "sketchfab",
+      "archive": "",
+      "uid": "8a503764de2a424da039386406d177ce",
+      "slug": "modern/gargallo-portrait-picasso-mnac-011012",
+      "collection": "modern",
+      "wing": "europe",
+      "title": "Portrait of Picasso",
+      "artist": "Pablo Gargallo",
+      "culture": "European sculpture",
+      "geography": "Paris, France",
+      "original_location": "Paris, France",
+      "current_location": "Museu Nacional d’Art de Catalunya",
+      "museum": "Museu Nacional d’Art de Catalunya",
+      "year": "1913",
+      "year_sort": 1913,
+      "period": "Modern",
+      "material": "Carved stone",
+      "dimensions": "22.5 × 21 × 23 cm (museum order; axes not labeled)",
+      "measures": [],
+      "accession": "011012-000",
+      "object_identity": "Museu Nacional d’Art de Catalunya | 011012-000",
+      "source_institution": "Giravolt",
+      "source_url": "https://sketchfab.com/3d-models/8a503764de2a424da039386406d177ce",
+      "source_record_url": "https://www.museunacional.cat/ca/colleccio/retrat-de-picasso/pablo-gargallo/011012-000",
+      "related_source_record_urls": [
+        "https://www.amicsmuseunacional.org/ca/retrat-de-picasso/"
+      ],
+      "download_api_url": "https://api.sketchfab.com/v3/models/8a503764de2a424da039386406d177ce/download",
+      "download_format": "glb",
+      "download_size_bytes": null,
+      "downloadable_verified": true,
+      "downloadable_verified_at": "2026-10-19T13:52:43.769638+00:00",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "license_tier": 2,
+      "license_uid": "322a749bcfa841b29dff1e8a1bb74b0b",
+      "license_slug": "by",
+      "license_evidence_url": "https://api.sketchfab.com/v3/models/8a503764de2a424da039386406d177ce",
+      "scan_author": "Giravolt (giravolt)",
+      "publisher": "giravolt",
+      "scan_source": "Institution-published 3D digitization of the physical museum sculpture",
+      "attribution": "3D model “Retrat de Pablo Picasso, MNAC” by Giravolt (giravolt), via Sketchfab, licensed CC BY 4.0. Physical work: Pablo Gargallo, Museu Nacional d’Art de Catalunya, 011012-000. Model: Laia Tubío; text: Àlex Rebollo.",
+      "note": "Gargallo carved his friend Picasso with a broad, ironic smile. This is MNAC’s original stone portrait, not one of the plaster, terracotta or bronze replicas.",
+      "source_description": "Gargallo carved his friend Picasso with a broad, ironic smile. This is MNAC’s original stone portrait, not one of the plaster, terracotta or bronze replicas.",
+      "reference_image_url": "https://media.sketchfab.com/models/8a503764de2a424da039386406d177ce/thumbnails/f02fc83108aa4275bda890583da0dd6e/6a168c2b52854ac7950dcf0bafb965e0.jpeg",
+      "representation": "Scan of the physical museum original with exact accession",
+      "face_count": 98758,
+      "face_count_scope": "api-detail-only-unmeasured",
+      "texture_count": 4,
+      "source_geometry": {
+        "format": "glb",
+        "bytes": null,
+        "faces": null,
+        "api_detail_faces": 98758,
+        "api_detail_textures": 4
+      },
+      "require_measured_integrity": true,
+      "logical_batch_id": "beautiful-expansion-20261019",
+      "evidence": [
+        "https://www.museunacional.cat/ca/colleccio/retrat-de-picasso/pablo-gargallo/011012-000 — Live primary institution record read: exact maker, date, material, museum accession and measurements; making place supported by museum attribution/associated scholarship. (retrieved 2026-10-19T13:52:43.769638+00:00)",
+        "https://api.sketchfab.com/v3/models/8a503764de2a424da039386406d177ce — Live canonical model API has exact institutional publisher, downloadable=true and CC BY 4.0. Private model snapshot SHA256 873cd3e2b43bd3c3a56c94f3ecfe36b3021fe157850086799e810f90578e8b48 (retrieved 2026-10-19T13:52:43.769638+00:00)"
+      ],
+      "visual_qa": "Source thumbnail visually screened. Full native/production scope, measured integrity, orientation, actual final thumbnail and physical-size safety review remain required after acquisition."
+    }
+  ]
+}

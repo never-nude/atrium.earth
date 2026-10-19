@@ -56,6 +56,12 @@ const milestoneConfig = { ...config, catalog: [{ ...config.catalog[0], ingest_ba
 assert.equal(bindRequest(milestoneRequest, milestoneConfig)[0].source.bytes, 1000);
 assert.throws(() => bindRequest(milestoneRequest, config), /outside/);
 assert.throws(() => bindRequest({ ...milestoneRequest, sourceArtifacts: [sourceArtifact] }, milestoneConfig), /binding/);
+const expansionBatch = 'beautiful-expansion-20261019';
+const expansionRequest = { ...withSource, batch: expansionBatch, sourceArtifacts: [{ ...sourceArtifact, name: `atrium-temporary-sources-${expansionBatch}-12345-1` }] };
+const expansionConfig = { ...config, catalog: [{ ...config.catalog[0], ingest_batch: expansionBatch }] };
+assert.equal(bindRequest(expansionRequest, expansionConfig)[0].source.bytes, 1000);
+assert.throws(() => bindRequest(expansionRequest, milestoneConfig), /outside/);
+assert.throws(() => bindRequest({ ...expansionRequest, sourceArtifacts: milestoneRequest.sourceArtifacts }, expansionConfig), /binding/);
 assert.throws(() => bindRequest({ ...request, batch: 'unreviewed-batch' }, config), /schema or batch/);
 for (const patch of [{ repository: 'another/repo' }, { runId: 12346 }, { artifactId: null }, { workflowHeadSha: '' }]) {
   assert.throws(() => bindRequest({ ...withSource, sourceArtifacts: [{ ...sourceArtifact, ...patch }] }, config));

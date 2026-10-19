@@ -213,14 +213,16 @@ export function auditAcquisition(manifest, fetched, report) {
 }
 
 /** Authenticated API metadata only: returned download URLs never leave memory. */
-export async function preflightMetadata(documents, { token, fetchImpl = fetch, clock = () => Date.now(),
+export async function preflightMetadata(documents, { token, batch = BATCH, fetchImpl = fetch, clock = () => Date.now(),
   sleep = milliseconds => new Promise(resolve => setTimeout(resolve, milliseconds)), intervalMs = 5000,
   retryBudgetMs = 600000, requestTimeoutMs = 60000 } = {}) {
   if (!text(token)) throw new Error('SKETCHFAB_TOKEN is required for metadata preflight');
+  if (![BATCH, 'beautiful-expansion-20261019'].includes(batch)) throw new Error('Unsupported metadata batch');
   if (!Number.isSafeInteger(intervalMs) || intervalMs < 5000) throw new Error('Metadata requests must be spaced at least 5000 ms apart');
   const leads = new Map();
   for (const document of documents) {
     if (document?.schema !== 'atrium-auto-ingest-candidates/1' || !Array.isArray(document.candidates)) throw new Error('Invalid discovery manifest schema');
+    if (document.logical_batch_id && document.logical_batch_id !== batch) throw new Error('Discovery manifest metadata batch mismatch');
     for (const candidate of document.candidates) {
       if (!UID.test(candidate?.uid || '')) throw new Error('Metadata preflight requires exact model UIDs');
       if (candidate.source !== 'sketchfab') throw new Error('Metadata preflight supports only Sketchfab');
@@ -276,7 +278,7 @@ export async function preflightMetadata(documents, { token, fetchImpl = fetch, c
       });
     } catch (error) { errors.push({ uid, slug, reason: error.message }); }
   }
-  return { schema: 'atrium-selected-download-metadata/1', batch: BATCH, generated_at: new Date(clock()).toISOString(),
+  return { schema: 'atrium-selected-download-metadata/1', batch, generated_at: new Date(clock()).toISOString(),
     expected: leads.size, checked: models.length, complete: models.length === leads.size && !errors.length, models, errors,
     scope: 'Live detail and authenticated download API metadata only. No source payload fetched; no returned download URL, token or account metadata retained. Null archive faces require actual post-fetch measured integrity.' };
 }

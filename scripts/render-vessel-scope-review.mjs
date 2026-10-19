@@ -14,7 +14,7 @@ import { Transform, Readable } from 'node:stream';
 import { parseModelTransform } from '../public/model-render-utils.js';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const REVIEW_BATCHES = new Set(['etruscan-greek-20261015', 'beautiful-2000-20261015']);
+const REVIEW_BATCHES = new Set(['etruscan-greek-20261015', 'beautiful-2000-20261015', 'beautiful-expansion-20261019']);
 const sha256 = (body) => createHash('sha256').update(body).digest('hex');
 function canonical(value) {
   if (Array.isArray(value)) return value.map(canonical);

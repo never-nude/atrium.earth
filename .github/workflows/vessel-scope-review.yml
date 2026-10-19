@@ -19,23 +19,29 @@ on:
         required: true
         default: 'docs/ingest/etruscan-greek-20261015-scope-review-request.json'
         type: string
+      shard_count:
+        description: 'Parallel review workers; larger batches benefit from 8 or 12'
+        required: false
+        default: '4'
+        type: choice
+        options: ['4', '8', '12']
 
 permissions:
   contents: read
   actions: read
 
 concurrency:
-  group: etruscan-greek-vessel-scope-review
+  group: source-scope-review-${{ github.ref }}-${{ inputs.request_file || 'push-request' }}
   cancel-in-progress: false
 
 jobs:
   render:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 120
     strategy:
       fail-fast: false
       matrix:
-        shard: [0, 1, 2, 3]
+        shard: ${{ fromJSON(inputs.shard_count == '12' && '[0,1,2,3,4,5,6,7,8,9,10,11]' || inputs.shard_count == '8' && '[0,1,2,3,4,5,6,7]' || '[0,1,2,3]') }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -54,6 +60,7 @@ jobs:
             /package-lock.json
             /docs/ingest/etruscan-greek-20261015-*
             /docs/ingest/beautiful-2000-20261015-*
+            /docs/ingest/beautiful-expansion-20261019-*
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -72,11 +79,11 @@ jobs:
           }
           if (fs.existsSync('public/models')) throw new Error('Unexpected serving model payloads in review sparse checkout');
           const requested = process.env.REQUEST_FILE;
-          if (!/^docs\/ingest\/(?:etruscan-greek-20261015|beautiful-2000-20261015)-[a-z0-9-]+\.json$/.test(requested)) throw new Error('Request must be an exact supported batch JSON under docs/ingest');
+          if (!/^docs\/ingest\/(?:etruscan-greek-20261015|beautiful-2000-20261015|beautiful-expansion-20261019)-[a-z0-9-]+\.json$/.test(requested)) throw new Error('Request must be an exact supported batch JSON under docs/ingest');
           const root = fs.realpathSync('docs/ingest'), file = fs.realpathSync(requested);
           if (path.dirname(file) !== root || !fs.statSync(file).isFile()) throw new Error('Request escaped ingest root');
           const request = JSON.parse(fs.readFileSync(file, 'utf8'));
-          if (!['etruscan-greek-20261015', 'beautiful-2000-20261015'].includes(request.batch) || !requested.startsWith(`docs/ingest/${request.batch}-`)) throw new Error('Request path and supported batch differ');
+          if (!['etruscan-greek-20261015', 'beautiful-2000-20261015', 'beautiful-expansion-20261019'].includes(request.batch) || !requested.startsWith(`docs/ingest/${request.batch}-`)) throw new Error('Request path and supported batch differ');
           const artifacts = request.sourceArtifacts || [];
           if (!Array.isArray(artifacts) || artifacts.length > 2) throw new Error('At most two exact source-only Actions artifacts may be supplied');
           for (const [i, artifact] of artifacts.entries()) {
@@ -122,10 +129,11 @@ jobs:
       - name: Render four distinct directions and native/source comparison
         env:
           CHROME_EXTRA_ARGS: '--no-sandbox --enable-unsafe-swiftshader --use-angle=swiftshader'
+          REVIEW_SHARDS: ${{ inputs.shard_count == '12' && '12' || inputs.shard_count == '8' && '8' || '4' }}
         run: |
           node scripts/render-vessel-scope-review.mjs \
             --request="${{ steps.request.outputs.request_file }}" \
-            --shards=4 --shard="${{ matrix.shard }}" \
+            --shards="$REVIEW_SHARDS" --shard="${{ matrix.shard }}" \
             --source-root="$RUNNER_TEMP/source-artifacts" \
             --work="$RUNNER_TEMP/review-models" \
             --out="$RUNNER_TEMP/scope-review"
