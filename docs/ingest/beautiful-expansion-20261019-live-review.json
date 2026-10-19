@@ -1,0 +1,1361 @@
+{
+  "schema": "atrium-live-batch-release-review/1",
+  "batch": "beautiful-expansion-20261019",
+  "started": "2026-10-19T16:42:18.583Z",
+  "checked": "2026-10-19T16:42:39.993Z",
+  "releaseSha": "a13698f21b86226b15d82ac7e3115d20e91c4be7",
+  "pages": {
+    "runId": "39284226855",
+    "url": "https://github.com/never-nude/atrium.earth/actions/runs/39284226855",
+    "workflowPath": ".github/workflows/deploy.yml",
+    "headSha": "a13698f21b86226b15d82ac7e3115d20e91c4be7",
+    "status": "completed",
+    "conclusion": "success",
+    "deployJob": {
+      "id": 118166183239,
+      "status": "completed",
+      "conclusion": "success",
+      "completedAt": "2026-10-19T16:30:22Z"
+    },
+    "latestSuccessfulPagesRun": true
+  },
+  "finalReviewSha256": "62e50b5000a239e0f13f5dace3c1d8c74177709c1f3b88d3b3ecc3eac17adcce",
+  "published": 51,
+  "ok": 51,
+  "publicWorks": 2051,
+  "totalCatalog": 2069,
+  "museumCountVerified": true,
+  "releaseDataBindings": {
+    "src/data/catalog.json": "d76db720bdb01baa2564f552041558479a3999341f20753c9c341fb8989fe6ab",
+    "src/data/previews.json": "b5dadef52ce814d38578f57b0da0505e7b9114c50701ccac40bef6031865d5d2",
+    "src/data/orientations.json": "955af0534f73d96be43f4a8a59dc646572bf11494afcc5b3607a3ed7758f2c62",
+    "src/data/physical-dimensions.json": "370e8bd3778f7459ce645fde85a898ffe3bed0b6106462f7076250c15cf09fb9",
+    "src/data/spatial-eligibility.json": "90377194c65fe04b45018be9ddd6acbd478a5be653bd2e7e5303dee8ffb612fc",
+    "src/data/renders.json": "27e00bcbaf3a54788d0b9dcb1bff5e9df8de4fb2da3713d7cabfed6f11bc360b",
+    "src/data/v3-content.json": "614a6a3a9f6613965143f063b4fb375d2490fb6739a30877f90119ee6b721049",
+    "src/data/featured-works.json": "aa74f35ef39e6075f0ca52d1bd8f870c2c0d11ae6aceb7fdbb28ce216918aac5",
+    "src/data/material-appearances.json": "0e71beeb295e7cb00cbf04fab4901b0c5a901e70fd26a4a108d4e8ab9d2e7963",
+    "src/data/appearance-overrides.json": "a53b4d28a45687e0dee010edfcee7ba31ece69127abc4a019046854be1d5ebd6",
+    "public/__render.html": "dc7b17364745949517986bbbdb87b4ef680bbf4e156f701d4143aaa86ae73f0e",
+    "public/model-render-utils.js": "afc875f080e2f1c7042ff6e2b5e41e298bfaf609d788774f48c8071950d3d2e0",
+    "scripts/render-thumbnails.mjs": "04aeca916a0d411321ba758860f6ce39094cb2c7bb013625e1ba7dacba2bb89d",
+    "docs/ingest/beautiful-expansion-20261019-chunk1-leads.json": "93c24698542389d719174c68344d5d7b509c910fb4689cacc9af65104ccc67ea",
+    "docs/ingest/beautiful-expansion-20261019-review-holds.json": "56194227b70c0e4069a37f9eca9cbc72bcef409caf019b00a582d5e689c86263",
+    "docs/ingest/beautiful-expansion-20261019-rejected.json": "61e92f183f4d3f858f3b39230cbd95eb8ed5725c38267d19794fec04b919fa2f"
+  },
+  "networkWorkers": 6,
+  "failures": [],
+  "newest": {
+    "status": 200,
+    "listed": 51,
+    "batchListed": 51,
+    "olderWorks": 0,
+    "orderMatches": true,
+    "entireLatestBatch": true
+  },
+  "held": [
+    {
+      "slug": "europe/reliquary-of-konrad-and-honorat-8f2002",
+      "status": 404
+    },
+    {
+      "slug": "asia/naga-enthroned-buddha-cleveland-1963-263-de8310",
+      "status": 404
+    },
+    {
+      "slug": "europe/monstrance-559b37",
+      "status": 404
+    },
+    {
+      "slug": "asia/kneeling-winged-monster-cleveland-1957-360-cb3834",
+      "status": 404
+    },
+    {
+      "slug": "asia/ravana-shaking-mount-kailasa-cleveland-1971-173-8007d4",
+      "status": 404
+    },
+    {
+      "slug": "modern/wyspianski-lajkonik-costume-613",
+      "status": 404
+    },
+    {
+      "slug": "egyptian/aset-iri-khet-es-mummy-sarcophagus-cartonnage-9ad64e",
+      "status": 404
+    },
+    {
+      "slug": "europe/altar-cruet-and-tray-set-1cf678",
+      "status": 404
+    }
+  ],
+  "exhibitions": [
+    {
+      "exhibition": "power-and-presence",
+      "slug": "sub-saharan-africa/prestige-chair-cleveland-1983-33-03d10a",
+      "status": 200,
+      "present": true,
+      "captionVerified": true
+    },
+    {
+      "exhibition": "sacred-forms",
+      "slug": "europe/holy-sepulchre-shaped-reliquary-0ffa1a",
+      "status": 200,
+      "present": true,
+      "captionVerified": true
+    },
+    {
+      "exhibition": "the-work-of-the-surface",
+      "slug": "modern/wyspianski-white-lily-casket-4636",
+      "status": 200,
+      "present": true,
+      "captionVerified": true
+    },
+    {
+      "exhibition": "the-work-of-the-surface",
+      "slug": "modern/ksiazek-abstract-linear-relief-4580",
+      "status": 200,
+      "present": true,
+      "captionVerified": true
+    },
+    {
+      "exhibition": "what-survives",
+      "slug": "asia/colossal-head-of-a-deva-cleveland-2011-147-2413aa",
+      "status": 200,
+      "present": true,
+      "captionVerified": true
+    },
+    {
+      "exhibition": "the-other-kingdom",
+      "slug": "asia/ink-dish-in-the-shape-of-a-chinese-lion-d84f02",
+      "status": 200,
+      "present": true,
+      "captionVerified": true
+    }
+  ],
+  "rows": [
+    {
+      "slug": "asia/raft-cup-cleveland-1977-7-a254ff",
+      "title": "Raft Cup",
+      "page": 200,
+      "pageHasTitle": true,
+      "pageReferencesModel": true,
+      "pageSha256": "1d7bf238fdc65b380f17521bd76aa14a0c164486dd50bbdcdcdd5c1d4571fa3e",
+      "thumbnail": {
+        "status": 200,
+        "sha256": "c4dbb8bb23be5070f313c157d5ee02a47bede7e5f8b8e2432409c75d836bb5c0",
+        "bytes": 55612,
+        "fullSHA256Verified": true
+      },
+      "model": {
+        "status": 200,
+        "url": "https://models.atrium.earth/models/previews/asia/raft-cup-cleveland-1977-7-a254ff/preview-4a42ffdcf0d0.glb",
+        "sha256": "4a42ffdcf0d0c8acccf37a9d3b04b450ab2e1a570a4344a0b6021bce9cc1ab62",
+        "bytes": 1492208,
+        "fullSHA256Verified": true,
+        "corsVerified": true,
+        "verifiedAt": "2026-10-19T16:42:19.789Z"
+      },
+      "ok": true
+    },
+    {
+      "slug": "modern/wyspianski-white-lily-casket-4636",
+      "title": "White Lily Casket",
+      "page": 200,
+      "pageHasTitle": true,
+      "pageReferencesModel": true,
+      "pageSha256": "2f3c79f93b02b9cd3099d21f1968a10083cb5efb9af9e3ddc9fe4e709c948b6b",
+      "thumbnail": {
+        "status": 200,
+        "sha256": "843853e1ffacf120cdc817267816274fbc67f0bef05638910c478f90f9d84422",
+        "bytes": 51542,
+        "fullSHA256Verified": true
+      },
+      "model": {
+        "status": 200,
+        "url": "https://models.atrium.earth/models/previews/modern/wyspianski-white-lily-casket-4636/preview-ed6ffec0fd42.glb",
+        "sha256": "ed6ffec0fd42260df4a54698a59006feedb632a65709ad091da944ed149eb940",
+        "bytes": 1104728,
+        "fullSHA256Verified": true,
+        "corsVerified": true,
+        "verifiedAt": "2026-10-19T16:42:19.847Z"
+      },
+      "ok": true
+    },
+    {
+      "slug": "europe/christ-crucified-by-veit-stoss-0637f5",
+      "title": "Christ Crucified by Veit Stoss",
+      "page": 200,
+      "pageHasTitle": true,
+      "pageReferencesModel": true,
+      "pageSha256": "4aadb2d736ceed8b53225925811eb11fbb2b8c987283c50eac3a8e1b9ee6a1ef",
+      "thumbnail": {
+        "status": 200,
+        "sha256": "da17f15475943c460a292767476ee471538578e3a02384377b294681454bc39a",
+        "bytes": 31082,
+        "fullSHA256Verified": true
+      },
+      "model": {
+        "status": 200,
+        "url": "https://models.atrium.earth/models/previews/europe/christ-crucified-by-veit-stoss-0637f5/preview-420880efc504.glb",
+        "sha256": "420880efc50497be116fac23024eb35d5cde7912230010f2a54b43c3ddd17b68",
+        "bytes": 2402084,
+        "fullSHA256Verified": true,
+        "corsVerified": true,
+        "verifiedAt": "2026-10-19T16:42:20.006Z"
+      },
+      "ok": true
+    },
+    {
+      "slug": "asia/surya-the-sun-god-cleveland-1965-557-0f5e1a",
+      "title": "Surya, the Sun God",
+      "page": 200,
+      "pageHasTitle": true,
+      "pageReferencesModel": true,
+      "pageSha256": "59e25d5cd96753d2b0a1846151f6eea8dddf72afc890fdcff32b4b7bb6f14ecb",
+      "thumbnail": {
+        "status": 200,
+        "sha256": "8244d8b08535b54c7bd1c8b78dae68bd946386e8bea957825f578a6ba82580f6",
+        "bytes": 49708,
+        "fullSHA256Verified": true
+      },
+      "model": {
+        "status": 200,
+        "url": "https://models.atrium.earth/models/previews/asia/surya-the-sun-god-cleveland-1965-557-0f5e1a/preview-2daea6190535.glb",
+        "sha256": "2daea6190535bb77463f09a7d959957ec49f5cec5b97fe78b7c56d2ee58b6593",
+        "bytes": 934376,
+        "fullSHA256Verified": true,
+        "corsVerified": true,
+        "verifiedAt": "2026-10-19T16:42:19.773Z"
+      },
+      "ok": true
+    },
+    {
+      "slug": "modern/szymanowski-mickiewicz-after-improvisation-8",
+      "title": "Mickiewicz after an Improvisation",
+      "page": 200,
+      "pageHasTitle": true,
+      "pageReferencesModel": true,
+      "pageSha256": "d13e02b4fd5f94580654657d254c77a9aabf5ee09706d02f340dfc9cb993f1ad",
+      "thumbnail": {
+        "status": 200,
+        "sha256": "1cf6b41595ef189fa45b97deed1839b0871d5eb5f0dacbf26345964fb07b4888",
+        "bytes": 48412,
+        "fullSHA256Verified": true
+      },
+      "model": {
+        "status": 200,
+        "url": "https://models.atrium.earth/models/previews/modern/szymanowski-mickiewicz-after-improvisation-8/preview-f85e7f10a41f.glb",
+        "sha256": "f85e7f10a41f39e69a5af3f4c74ee785cf9401c80db1dcb2ffb7df78b4139b83",
+        "bytes": 400076,
+        "fullSHA256Verified": true,
+        "corsVerified": true,
+        "verifiedAt": "2026-10-19T16:42:19.746Z"
+      },
+      "ok": true
+    },
+    {
+      "slug": "asia/colossal-head-of-a-deva-cleveland-2011-147-2413aa",
+      "title": "Colossal Head of a Deva",
+      "page": 200,
+      "pageHasTitle": true,
+      "pageReferencesModel": true,
+      "pageSha256": "1a7651905416a4140be770f2bc1921d918e940beebb920f2667811b467d80df7",
+      "thumbnail": {
+        "status": 200,
+        "sha256": "21a75ef7fe2c7a9dbf6124da6743c03459ff7d809371329bc69812bcbcd766d3",
+        "bytes": 53690,
+        "fullSHA256Verified": true
+      },
+      "model": {
+        "status": 200,
+        "url": "https://models.atrium.earth/models/previews/asia/colossal-head-of-a-deva-cleveland-2011-147-2413aa/preview-5a7108a29fc0.glb",
+        "sha256": "5a7108a29fc014d9b548bfdd865dc50042be738893ff768217c2bda166a03ae7",
+        "bytes": 1156564,
+        "fullSHA256Verified": true,
+        "corsVerified": true,
+        "verifiedAt": "2026-10-19T16:42:19.829Z"
+      },
+      "ok": true
+    },
+    {
+      "slug": "modern/drexler-in-the-theatre-box-490",
+      "title": "In the Theatre Box",
+      "page": 200,
+      "pageHasTitle": true,
+      "pageReferencesModel": true,
+      "pageSha256": "4ddf6573aef367dd20c7586c414f0e4528853c107792ab36b994749374f2bf32",
+      "thumbnail": {
+        "status": 200,
+        "sha256": "ae6f35005ff6d51cf6f9dd1d2a38db316ac1a9add638298e608b6055ad3b6efe",
+        "bytes": 46342,
+        "fullSHA256Verified": true
+      },
+      "model": {
+        "status": 200,
+        "url": "https://models.atrium.earth/models/previews/modern/drexler-in-the-theatre-box-490/preview-cfa5333e0999.glb",
+        "sha256": "cfa5333e099920c9bab4d22be0e81cca1513b4ac8b14bdf856ad4e35e256ad20",
+        "bytes": 726660,
+        "fullSHA256Verified": true,
+        "corsVerified": true,
+        "verifiedAt": "2026-10-19T16:42:21.032Z"
+      },
+      "ok": true
+    },
+    {
+      "slug": "europe/holy-sepulchre-shaped-reliquary-0ffa1a",
+      "title": "Holy Sepulchre-shaped reliquary",
+      "page": 200,
+      "pageHasTitle": true,
+      "pageReferencesModel": true,
+      "pageSha256": "c41fc88d3fac713bc0f1a72b25a90b5d14f5f0c7f6148e34eda7e062029c6a05",
+      "thumbnail": {
+        "status": 200,
+        "sha256": "c3070e198da0f3995a2f7d8181bd7789e8ef5ef66aeceda75e4b07173d911218",
+        "bytes": 61514,
+        "fullSHA256Verified": true
+      },
+      "model": {
+        "status": 200,
+        "url": "https://models.atrium.earth/models/previews/europe/holy-sepulchre-shaped-reliquary-0ffa1a/preview-3e801446a1b4.glb",
+        "sha256": "3e801446a1b41f2b0bc92c45e25c2eb771935bad7de68f73591a124939dd491a",
+        "bytes": 2156328,
+        "fullSHA256Verified": true,
+        "corsVerified": true,
+        "verifiedAt": "2026-10-19T16:42:20.995Z"
+      },
+      "ok": true
+    },
+    {
+      "slug": "asia/standing-buddha-cleveland-1966-30-dbdf5d",
+      "title": "Standing Buddha",
+      "page": 200,
+      "pageHasTitle": true,
+      "pageReferencesModel": true,
+      "pageSha256": "828ff5516dd1604088c4d526f555fc27af62952832c74a8bf33babbb830646f6",
+      "thumbnail": {
+        "status": 200,
+        "sha256": "bfa3064642f80d1352be27d3a99eaacde2a6118ccaf7dbe22f099e46b7bea46a",
+        "bytes": 44344,
+        "fullSHA256Verified": true
+      },
+      "model": {
+        "status": 200,
+        "url": "https://models.atrium.earth/models/previews/asia/standing-buddha-cleveland-1966-30-dbdf5d/preview-5f5e8e81e3c3.glb",
+        "sha256": "5f5e8e81e3c3e0ec91fc0f2637a09cc2ef2155f9701ce4416aa3abbfc7ecc375",
+        "bytes": 1093720,
+        "fullSHA256Verified": true,
+        "corsVerified": true,
+        "verifiedAt": "2026-10-19T16:42:21.096Z"
+      },
+      "ok": true
+    },
+    {
+      "slug": "modern/gadomski-portrait-zofia-potocka-18",
+      "title": "Portrait of Zofia Potocka",
+      "page": 200,
+      "pageHasTitle": true,
+      "pageReferencesModel": true,
+      "pageSha256": "fd08ac841ccf0602edb4cf8df9681b9994a30716b366a81992fcc6e810c88260",
+      "thumbnail": {
+        "status": 200,
+        "sha256": "8a702d5f3ad89aedcf7b847bd68ae121929727cd5cf21bcea1f784bfdd766729",
+        "bytes": 36428,
+        "fullSHA256Verified": true
+      },
+      "model": {
+        "status": 200,
+        "url": "https://models.atrium.earth/models/previews/modern/gadomski-portrait-zofia-potocka-18/preview-1cbc20af97e1.glb",
+        "sha256": "1cbc20af97e1a03d74dc12380410d7e963094f8b6bab11597562aa00be2a06f8",
+        "bytes": 378960,
+        "fullSHA256Verified": true,
+        "corsVerified": true,
+        "verifiedAt": "2026-10-19T16:42:21.091Z"
+      },
+      "ok": true
+    },
+    {
+      "slug": "europe/gothic-reliquary-herm-cb6485",
+      "title": "Gothic reliquary herm",
+      "page": 200,
+      "pageHasTitle": true,
+      "pageReferencesModel": true,
+      "pageSha256": "b84ea9b654f293c5f8cc6c8caf2687c4f7d823c2088adcc14e3916f70c6f7d99",
+      "thumbnail": {
+        "status": 200,
+        "sha256": "681a0c7f6e86051c6284808b065bee440b62773e8f83cd039b4243735124100e",
+        "bytes": 70520,
+        "fullSHA256Verified": true
+      },
+      "model": {
+        "status": 200,
+        "url": "https://models.atrium.earth/models/previews/europe/gothic-reliquary-herm-cb6485/preview-76741b4f0b15.glb",
+        "sha256": "76741b4f0b1559e25f387e53f1c3fb213dbbeb0983b497322ea728423efc65a1",
+        "bytes": 294444,
+        "fullSHA256Verified": true,
+        "corsVerified": true,
+        "verifiedAt": "2026-10-19T16:42:20.862Z"
+      },
+      "ok": true
+    },
+    {
+      "slug": "modern/sosnowski-count-kazimierz-potulicki-186",
+      "title": "Bust of Count Kazimierz Potulicki",
+      "page": 200,
+      "pageHasTitle": true,
+      "pageReferencesModel": true,
+      "pageSha256": "4a8652ec73ae2858d60d5d995904d462128b7788541425400ba1dab363e44b93",
+      "thumbnail": {
+        "status": 200,
+        "sha256": "ffe0c31cfc56069f36a2d9a6951498a3e43d661559ef3e499411edf223879ca0",
+        "bytes": 19176,
+        "fullSHA256Verified": true
+      },
+      "model": {
+        "status": 200,
+        "url": "https://models.atrium.earth/models/previews/modern/sosnowski-count-kazimierz-potulicki-186/preview-7d68e3ef18af.glb",
+        "sha256": "7d68e3ef18afe4deec021ee8921dc2a2bace86d5d2cfae7cd004f92b45c71fde",
+        "bytes": 353560,
+        "fullSHA256Verified": true,
+        "corsVerified": true,
+        "verifiedAt": "2026-10-19T16:42:21.368Z"
+      },
+      "ok": true
+    },
+    {
+      "slug": "asia/prince-shotoku-at-age-two-shotoku-taishi-cleveland-1989-76-78ae04",
+      "title": "Prince Shōtoku at Age Two (Shōtoku Taishi)",
+      "page": 200,
+      "pageHasTitle": true,
+      "pageReferencesModel": true,
+      "pageSha256": "f91e6b50d2b222bed45e92d1b3485c97a19321a1cabeddceb352235b5a904e53",
+      "thumbnail": {
+        "status": 200,
+        "sha256": "34127f2fb3cd9d269f229070725acc53a06486206608a0e45ff928a1db726f71",
+        "bytes": 33020,
+        "fullSHA256Verified": true
+      },
+      "model": {
+        "status": 200,
+        "url": "https://models.atrium.earth/models/previews/asia/prince-shotoku-at-age-two-shotoku-taishi-cleveland-1989-76-78ae04/preview-2739c9bb22bc.glb",
+        "sha256": "2739c9bb22bc9544348c0bef09b4ad50d2aa69ea17ec8c4d9e5a5446074ae53b",
+        "bytes": 874512,
+        "fullSHA256Verified": true,
+        "corsVerified": true,
+        "verifiedAt": "2026-10-19T16:42:21.361Z"
+      },
+      "ok": true
+    },
+    {
+      "slug": "modern/schluter-bust-woman-roza-loewenfeld-192",
+      "title": "Bust of a Woman (traditionally Róża Loewenfeld)",
+      "page": 200,
+      "pageHasTitle": true,
+      "pageReferencesModel": true,
+      "pageSha256": "aec22408e6e3f65922cb864d520bf97923d4e624e1287f9a125b532b3559f88b",
+      "thumbnail": {
+        "status": 200,
+        "sha256": "ecbdad24a5a1be1fa204b9b7bdc38b388a54ab9c44a011cf4e92745bc82b405f",
+        "bytes": 22388,
+        "fullSHA256Verified": true
+      },
+      "model": {
+        "status": 200,
+        "url": "https://models.atrium.earth/models/previews/modern/schluter-bust-woman-roza-loewenfeld-192/preview-72eac67ecd46.glb",
+        "sha256": "72eac67ecd463c5b36cc7eaa2cfd3a48dd9d8006b94c2517b6277c78aede793b",
+        "bytes": 461608,
+        "fullSHA256Verified": true,
+        "corsVerified": true,
+        "verifiedAt": "2026-10-19T16:42:21.602Z"
+      },
+      "ok": true
+    },
+    {
+      "slug": "europe/monstrance-8d8ebf",
+      "title": "Monstrance",
+      "page": 200,
+      "pageHasTitle": true,
+      "pageReferencesModel": true,
+      "pageSha256": "df037c9bf7bbd3b68f69ecb00a5553fc866b414d4688b2c70286eedc930f1551",
+      "thumbnail": {
+        "status": 200,
+        "sha256": "6f502976933f139597c31ee5b7fe48c911f42ae5b0924e36f86aa71cf778ee53",
+        "bytes": 76294,
+        "fullSHA256Verified": true
+      },
+      "model": {
+        "status": 200,
+        "url": "https://models.atrium.earth/models/previews/europe/monstrance-8d8ebf/preview-403ee462fe27.glb",
+        "sha256": "403ee462fe27e86495fa50e148db848cca1d1e21c9fba05febf0521c4a204311",
+        "bytes": 2338540,
+        "fullSHA256Verified": true,
+        "corsVerified": true,
+        "verifiedAt": "2026-10-19T16:42:21.826Z"
+      },
+      "ok": true
+    },
+    {
+      "slug": "sub-saharan-africa/prestige-chair-cleveland-1983-33-03d10a",
+      "title": "Prestige Chair",
+      "page": 200,
+      "pageHasTitle": true,
+      "pageReferencesModel": true,
+      "pageSha256": "9f5a4bd75ce0de3410f1efb25271ddd580b308046389fa95ad4a70af09109ce1",
+      "thumbnail": {
+        "status": 200,
+        "sha256": "b39b3dc2ec511f0124c4fcfcb43a78bba83d82fd63c326f7d172fdd082a55f3b",
+        "bytes": 49032,
+        "fullSHA256Verified": true
+      },
+      "model": {
+        "status": 200,
+        "url": "https://models.atrium.earth/models/previews/sub-saharan-africa/prestige-chair-cleveland-1983-33-03d10a/preview-e21d9348153c.glb",
+        "sha256": "e21d9348153c024519d50670ac5828b8da68d6189c70b3106c4894264296af62",
+        "bytes": 1784160,
+        "fullSHA256Verified": true,
+        "corsVerified": true,
+        "verifiedAt": "2026-10-19T16:42:21.626Z"
+      },
+      "ok": true
+    },
+    {
+      "slug": "modern/wowro-birds-332",
+      "title": "Birds",
+      "page": 200,
+      "pageHasTitle": true,
+      "pageReferencesModel": true,
+      "pageSha256": "79ec7138877834b4f635f719e49c65e14809ab97f2581282a89c90f764f386f7",
+      "thumbnail": {
+        "status": 200,
+        "sha256": "bd8590b1951f754071fade929969abb3c3ddf901c50febcb88edfe76161e4d88",
+        "bytes": 50906,
+        "fullSHA256Verified": true
+      },
+      "model": {
+        "status": 200,
+        "url": "https://models.atrium.earth/models/previews/modern/wowro-birds-332/preview-a0bf33b9c3f6.glb",
+        "sha256": "a0bf33b9c3f63006a6c599c9d8056699e9eb0fa26b723ee762368ea4b35ca854",
+        "bytes": 504096,
+        "fullSHA256Verified": true,
+        "corsVerified": true,
+        "verifiedAt": "2026-10-19T16:42:22.160Z"
+      },
+      "ok": true
+    },
+    {
+      "slug": "europe/wooden-feretory-with-representation-of-madonna-70c9db",
+      "title": "Wooden feretory with representation of Madonna",
+      "page": 200,
+      "pageHasTitle": true,
+      "pageReferencesModel": true,
+      "pageSha256": "e0235adff541d59002876e214da97e0f3f8d93f770409dba752c158d0331f06a",
+      "thumbnail": {
+        "status": 200,
+        "sha256": "ab62e7a5512ae15a99c42a9d775cdc307ec14cf1e1ac827d9b905502da9ddecb",
+        "bytes": 60954,
+        "fullSHA256Verified": true
+      },
+      "model": {
+        "status": 200,
+        "url": "https://models.atrium.earth/models/previews/europe/wooden-feretory-with-representation-of-madonna-70c9db/preview-6a20e9972ce1.glb",
+        "sha256": "6a20e9972ce1f4ffc93cd6064d64a7536bf595367f8b35fb2dfd5ae66021b3c6",
+        "bytes": 2752256,
+        "fullSHA256Verified": true,
+        "corsVerified": true,
+        "verifiedAt": "2026-10-19T16:42:21.830Z"
+      },
+      "ok": true
+    },
+    {
+      "slug": "modern/tombinski-bust-jan-matejko-2260",
+      "title": "Bust of Jan Matejko",
+      "page": 200,
+      "pageHasTitle": true,
+      "pageReferencesModel": true,
+      "pageSha256": "cd578ffa05e0103d6f39fa6d96ee33b82f2e73cb6e5e389b818fc05d6ba36f10",
+      "thumbnail": {
+        "status": 200,
+        "sha256": "35af48d33f2ecddb88798fcb41ea827f38fd9e171d8f4ce72fdc7663155cbaf5",
+        "bytes": 24900,
+        "fullSHA256Verified": true
+      },
+      "model": {
+        "status": 200,
+        "url": "https://models.atrium.earth/models/previews/modern/tombinski-bust-jan-matejko-2260/preview-7b9a4cca5845.glb",
+        "sha256": "7b9a4cca5845a951a3af9a6d18dade3fe396435d7c56971f8f5b46954c6bc1a1",
+        "bytes": 619200,
+        "fullSHA256Verified": true,
+        "corsVerified": true,
+        "verifiedAt": "2026-10-19T16:42:21.978Z"
+      },
+      "ok": true
+    },
+    {
+      "slug": "europe/cabinet-with-images-of-saints-94d705",
+      "title": "Cabinet with images of saints",
+      "page": 200,
+      "pageHasTitle": true,
+      "pageReferencesModel": true,
+      "pageSha256": "77e146071d7352af189aa82e21f0d53a97d39eeb545a7cfc02de9ab33288f252",
+      "thumbnail": {
+        "status": 200,
+        "sha256": "31199e454edabcf91d69996b57108769c3e7f20b6f7eb71bb7f40ce5d5523096",
+        "bytes": 86680,
+        "fullSHA256Verified": true
+      },
+      "model": {
+        "status": 200,
+        "url": "https://models.atrium.earth/models/previews/europe/cabinet-with-images-of-saints-94d705/preview-9c83c9bba3d4.glb",
+        "sha256": "9c83c9bba3d4e0e9686ae9be9717ec1552ddc47a1ef56b366c46a7d1186b244d",
+        "bytes": 1824776,
+        "fullSHA256Verified": true,
+        "corsVerified": true,
+        "verifiedAt": "2026-10-19T16:42:22.410Z"
+      },
+      "ok": true
+    },
+    {
+      "slug": "europe/cabinet-1cf7e6",
+      "title": "Cabinet",
+      "page": 200,
+      "pageHasTitle": true,
+      "pageReferencesModel": true,
+      "pageSha256": "c6d69aca238b678e00945173d1d40a22604338fb37a3609fe6121066c2c5f972",
+      "thumbnail": {
+        "status": 200,
+        "sha256": "f61068b7706d065ed7dfff4d68772e70e6b36e3d01806e6e86ca5c88f3342b86",
+        "bytes": 93498,
+        "fullSHA256Verified": true
+      },
+      "model": {
+        "status": 200,
+        "url": "https://models.atrium.earth/models/previews/europe/cabinet-1cf7e6/preview-8bf81b885ff7.glb",
+        "sha256": "8bf81b885ff73ea099eadbe98d3f8d60bfc2ac64852b410ceedf42ae91f0439d",
+        "bytes": 1481140,
+        "fullSHA256Verified": true,
+        "corsVerified": true,
+        "verifiedAt": "2026-10-19T16:42:22.083Z"
+      },
+      "ok": true
+    },
+    {
+      "slug": "asia/deep-vessel-cleveland-1998-32-abf57c",
+      "title": "Deep Vessel",
+      "page": 200,
+      "pageHasTitle": true,
+      "pageReferencesModel": true,
+      "pageSha256": "21cf0807cab442df1281bde9cca5e37ddf484247203147de5ea7759591f7b4fb",
+      "thumbnail": {
+        "status": 200,
+        "sha256": "f1ca0f865cec83634b6758740abec7d4e2e23906a183621f47dcc7ec2214cc0c",
+        "bytes": 32754,
+        "fullSHA256Verified": true
+      },
+      "model": {
+        "status": 200,
+        "url": "https://models.atrium.earth/models/previews/asia/deep-vessel-cleveland-1998-32-abf57c/preview-3b2719b19c46.glb",
+        "sha256": "3b2719b19c46a93ec7885bfca596c981b013a7e3b2875c8d0e393d6969a30aa6",
+        "bytes": 2463444,
+        "fullSHA256Verified": true,
+        "corsVerified": true,
+        "verifiedAt": "2026-10-19T16:42:22.394Z"
+      },
+      "ok": true
+    },
+    {
+      "slug": "modern/ksiazek-devil-butterfly-4585",
+      "title": "Devil–Butterfly",
+      "page": 200,
+      "pageHasTitle": true,
+      "pageReferencesModel": true,
+      "pageSha256": "62e970b4256e4ae97e0041388f1ec7c43d55927e96f9eb1ed50a77d19777f07d",
+      "thumbnail": {
+        "status": 200,
+        "sha256": "325b580bdb91eecc10db42e48d2401258aa295ab19225593a5e0973548647140",
+        "bytes": 132032,
+        "fullSHA256Verified": true
+      },
+      "model": {
+        "status": 200,
+        "url": "https://models.atrium.earth/models/previews/modern/ksiazek-devil-butterfly-4585/preview-3fdf9f07c2ed.glb",
+        "sha256": "3fdf9f07c2ed5a81653318c50d9c0e28620d9f85efe91932981a53bfe79ff27f",
+        "bytes": 1344464,
+        "fullSHA256Verified": true,
+        "corsVerified": true,
+        "verifiedAt": "2026-10-19T16:42:22.406Z"
+      },
+      "ok": true
+    },
+    {
+      "slug": "europe/tankard-depicting-the-queen-of-sheba-and-solomon-a1ed5f",
+      "title": "Tankard depicting the Queen of Sheba and Solomon",
+      "page": 200,
+      "pageHasTitle": true,
+      "pageReferencesModel": true,
+      "pageSha256": "16d048f42e3058b42047e1c75760845bfb60ae0d2805891883b0fe2cdbc9bb78",
+      "thumbnail": {
+        "status": 200,
+        "sha256": "8fe1001612acc481556f944c9f889635652b34014c20c0af86f1fcd35975e372",
+        "bytes": 60934,
+        "fullSHA256Verified": true
+      },
+      "model": {
+        "status": 200,
+        "url": "https://models.atrium.earth/models/previews/europe/tankard-depicting-the-queen-of-sheba-and-solomon-a1ed5f/preview-cccfcc2b0ba5.glb",
+        "sha256": "cccfcc2b0ba57430023da97b3110efcc965bc09eb08260414d2d8dec278e5006",
+        "bytes": 2031224,
+        "fullSHA256Verified": true,
+        "corsVerified": true,
+        "verifiedAt": "2026-10-19T16:42:22.432Z"
+      },
+      "ok": true
+    },
+    {
+      "slug": "asia/recumbent-bull-cleveland-1985-74-774c1c",
+      "title": "Recumbent Bull",
+      "page": 200,
+      "pageHasTitle": true,
+      "pageReferencesModel": true,
+      "pageSha256": "bd917963bd4bb44c0f4724fcb115bd4c03ae3fb9e5c6844741c6f476967ad54e",
+      "thumbnail": {
+        "status": 200,
+        "sha256": "1a52e893e25517249bfabc6cab3303d3df42f9eac21d5ff7ad471aeae336b261",
+        "bytes": 42374,
+        "fullSHA256Verified": true
+      },
+      "model": {
+        "status": 200,
+        "url": "https://models.atrium.earth/models/previews/asia/recumbent-bull-cleveland-1985-74-774c1c/preview-9371c9cc69b2.glb",
+        "sha256": "9371c9cc69b23a66cceafccbbaf3ec681664628eac7efa8a1fa840b5a93ae18e",
+        "bytes": 601916,
+        "fullSHA256Verified": true,
+        "corsVerified": true,
+        "verifiedAt": "2026-10-19T16:42:22.571Z"
+      },
+      "ok": true
+    },
+    {
+      "slug": "modern/ksiazek-violinist-4607",
+      "title": "Violinist",
+      "page": 200,
+      "pageHasTitle": true,
+      "pageReferencesModel": true,
+      "pageSha256": "92b16e16bbfdc08867e952173e7472f0e745773695d434a210a208b690e05989",
+      "thumbnail": {
+        "status": 200,
+        "sha256": "4dad896a3add81cd8342cd611f1d4c18551a46e1a3277bf13676f0d725a0d241",
+        "bytes": 43272,
+        "fullSHA256Verified": true
+      },
+      "model": {
+        "status": 200,
+        "url": "https://models.atrium.earth/models/previews/modern/ksiazek-violinist-4607/preview-8e76c4fb3f1a.glb",
+        "sha256": "8e76c4fb3f1a562703d1615392bce079beb5fbd2225931f4d700c897d2c85637",
+        "bytes": 582036,
+        "fullSHA256Verified": true,
+        "corsVerified": true,
+        "verifiedAt": "2026-10-19T16:42:22.613Z"
+      },
+      "ok": true
+    },
+    {
+      "slug": "europe/tabletop-clock-1670-c5d25a",
+      "title": "Tabletop clock (1670)",
+      "page": 200,
+      "pageHasTitle": true,
+      "pageReferencesModel": true,
+      "pageSha256": "f0761978f3ce8baf29d6a3963715361af3c067949d5e35a74ef082a063c7e801",
+      "thumbnail": {
+        "status": 200,
+        "sha256": "2ed8624035c752be683e043528c1cf1b298b32bcc967db459b678443e3b054bb",
+        "bytes": 53372,
+        "fullSHA256Verified": true
+      },
+      "model": {
+        "status": 200,
+        "url": "https://models.atrium.earth/models/previews/europe/tabletop-clock-1670-c5d25a/preview-8f10761d33ce.glb",
+        "sha256": "8f10761d33cec8dd2ce1c29da791785aea38270c7739c6f467ae41f58af1e788",
+        "bytes": 1751036,
+        "fullSHA256Verified": true,
+        "corsVerified": true,
+        "verifiedAt": "2026-10-19T16:42:22.833Z"
+      },
+      "ok": true
+    },
+    {
+      "slug": "asia/mother-goddess-cleveland-1970-12-78133a",
+      "title": "Mother Goddess",
+      "page": 200,
+      "pageHasTitle": true,
+      "pageReferencesModel": true,
+      "pageSha256": "7f0d188e17d5bd179d98ea3308eb80aa27b080f35972d347566bfb76436a4f3a",
+      "thumbnail": {
+        "status": 200,
+        "sha256": "979726b84f3d7ecd181e7693469d21dddd926a78b0c0726c5dad34fa7c592d7f",
+        "bytes": 47354,
+        "fullSHA256Verified": true
+      },
+      "model": {
+        "status": 200,
+        "url": "https://models.atrium.earth/models/previews/asia/mother-goddess-cleveland-1970-12-78133a/preview-a293737b1a52.glb",
+        "sha256": "a293737b1a52e0e852f47ba4bae08b5dd0893e911ff7b0c93be5692ca649d54d",
+        "bytes": 1525780,
+        "fullSHA256Verified": true,
+        "corsVerified": true,
+        "verifiedAt": "2026-10-19T16:42:22.909Z"
+      },
+      "ok": true
+    },
+    {
+      "slug": "modern/ksiazek-standing-woman-4609",
+      "title": "Standing Woman",
+      "page": 200,
+      "pageHasTitle": true,
+      "pageReferencesModel": true,
+      "pageSha256": "14f456a523a41310cadc007dc32e9fa53d3a9f8bb11ef0ba7d89e08b5fc38287",
+      "thumbnail": {
+        "status": 200,
+        "sha256": "9c2f8615dc7606a0a999fb93103fe0b02cbcd8470021c51eaad695a40e6f9b65",
+        "bytes": 34410,
+        "fullSHA256Verified": true
+      },
+      "model": {
+        "status": 200,
+        "url": "https://models.atrium.earth/models/previews/modern/ksiazek-standing-woman-4609/preview-368c8bee2024.glb",
+        "sha256": "368c8bee20241730f38c9e80d9612c0781011e85010be81011a86b556ddfb89f",
+        "bytes": 1856652,
+        "fullSHA256Verified": true,
+        "corsVerified": true,
+        "verifiedAt": "2026-10-19T16:42:22.857Z"
+      },
+      "ok": true
+    },
+    {
+      "slug": "asia/tripod-ding-cleveland-1962-281-af15e7",
+      "title": "Tripod (Ding)",
+      "page": 200,
+      "pageHasTitle": true,
+      "pageReferencesModel": true,
+      "pageSha256": "f8f55594b95a67ad8247a9d5e39547423e543e0d1747f95a64190f51a66eb110",
+      "thumbnail": {
+        "status": 200,
+        "sha256": "bdd5932b04177cf74ce4762fff284c868ba4b8ce44b1f17f1868181136eb877e",
+        "bytes": 62266,
+        "fullSHA256Verified": true
+      },
+      "model": {
+        "status": 200,
+        "url": "https://models.atrium.earth/models/previews/asia/tripod-ding-cleveland-1962-281-af15e7/preview-82008bda734b.glb",
+        "sha256": "82008bda734ba2e1431da22c102db378bee0f345cbb42b7b8436600cc83fd7dc",
+        "bytes": 1689840,
+        "fullSHA256Verified": true,
+        "corsVerified": true,
+        "verifiedAt": "2026-10-19T16:42:22.850Z"
+      },
+      "ok": true
+    },
+    {
+      "slug": "modern/ksiazek-ox-4608",
+      "title": "Ox",
+      "page": 200,
+      "pageHasTitle": true,
+      "pageReferencesModel": true,
+      "pageSha256": "33772772f560134636ca53b5c6907aa6cf1e560dad6918fd88ca14743da664be",
+      "thumbnail": {
+        "status": 200,
+        "sha256": "a712797e874bd4a9d020aff822a8a7ddb8a134fb16d389f4392d7d33de3fc653",
+        "bytes": 29198,
+        "fullSHA256Verified": true
+      },
+      "model": {
+        "status": 200,
+        "url": "https://models.atrium.earth/models/previews/modern/ksiazek-ox-4608/preview-ecc608f43015.glb",
+        "sha256": "ecc608f43015f691630eaf75d5ae2cb91cfb753ba4aff72c065af7b2128f97e2",
+        "bytes": 1351832,
+        "fullSHA256Verified": true,
+        "corsVerified": true,
+        "verifiedAt": "2026-10-19T16:42:23.320Z"
+      },
+      "ok": true
+    },
+    {
+      "slug": "asia/seated-zenki-and-koki-cleveland-2012-40-87781e",
+      "title": "Seated Zenki and Koki",
+      "page": 200,
+      "pageHasTitle": true,
+      "pageReferencesModel": true,
+      "pageSha256": "d3430881ab8e079def1144cce16ff1994953d0568f6e7e795de89693432a2751",
+      "thumbnail": {
+        "status": 200,
+        "sha256": "312fc3f43c391f1de772f78db5d8505b86cc35c1581e1549422ae7a7e802bec7",
+        "bytes": 24682,
+        "fullSHA256Verified": true
+      },
+      "model": {
+        "status": 200,
+        "url": "https://models.atrium.earth/models/previews/asia/seated-zenki-and-koki-cleveland-2012-40-87781e/preview-5848b01f0ca3.glb",
+        "sha256": "5848b01f0ca3a967f7e4e42bc5af46c20729b73077a83b6e4fdab6c1a5b28d06",
+        "bytes": 3130476,
+        "fullSHA256Verified": true,
+        "corsVerified": true,
+        "verifiedAt": "2026-10-19T16:42:23.146Z"
+      },
+      "ok": true
+    },
+    {
+      "slug": "modern/ksiazek-thinker-4610",
+      "title": "Thinker",
+      "page": 200,
+      "pageHasTitle": true,
+      "pageReferencesModel": true,
+      "pageSha256": "43e051194ef1026339a2c985a310ac53dc6acad21a42dd264a010646d0b059ab",
+      "thumbnail": {
+        "status": 200,
+        "sha256": "e81276f8465c8de8f3251f107b812a5aea5e314f4764cd74cd24741c8451ce1f",
+        "bytes": 48196,
+        "fullSHA256Verified": true
+      },
+      "model": {
+        "status": 200,
+        "url": "https://models.atrium.earth/models/previews/modern/ksiazek-thinker-4610/preview-6acfbd9cf4b7.glb",
+        "sha256": "6acfbd9cf4b78bd083d601dd5178a4fc1bd38da0a38f7642a17cadad82ab2124",
+        "bytes": 805044,
+        "fullSHA256Verified": true,
+        "corsVerified": true,
+        "verifiedAt": "2026-10-19T16:42:23.233Z"
+      },
+      "ok": true
+    },
+    {
+      "slug": "asia/ding-censer-with-an-openwork-cover-1034cd",
+      "title": "Ding censer with an openwork cover",
+      "page": 200,
+      "pageHasTitle": true,
+      "pageReferencesModel": true,
+      "pageSha256": "475819f72cb5f2215493fa1d87f203d557267d0c61d18b456e60391c790d47f1",
+      "thumbnail": {
+        "status": 200,
+        "sha256": "08830ff549438c4f61414edf5efd13c487b99032f52dd1b63181ffeaaec1538e",
+        "bytes": 82368,
+        "fullSHA256Verified": true
+      },
+      "model": {
+        "status": 200,
+        "url": "https://models.atrium.earth/models/previews/asia/ding-censer-with-an-openwork-cover-1034cd/preview-b7dd5398b12a.glb",
+        "sha256": "b7dd5398b12aba21a9f040f10f0dcebcbec10b23515a002b0117751a27d272aa",
+        "bytes": 1773904,
+        "fullSHA256Verified": true,
+        "corsVerified": true,
+        "verifiedAt": "2026-10-19T16:42:23.313Z"
+      },
+      "ok": true
+    },
+    {
+      "slug": "americas/head-with-animal-helmet-cleveland-1990-237-12841a",
+      "title": "Head with Animal Helmet",
+      "page": 200,
+      "pageHasTitle": true,
+      "pageReferencesModel": true,
+      "pageSha256": "6abc39a69e2d0211240ad2d2f1ff79404eb5c99ff850ef776dd9eb645941e63e",
+      "thumbnail": {
+        "status": 200,
+        "sha256": "d0e7faa7637b8244fec6405b6c5faf2c93493c8f46cc669ff3f0b5f62c9a8e34",
+        "bytes": 34976,
+        "fullSHA256Verified": true
+      },
+      "model": {
+        "status": 200,
+        "url": "https://models.atrium.earth/models/previews/americas/head-with-animal-helmet-cleveland-1990-237-12841a/preview-9957ff4f5504.glb",
+        "sha256": "9957ff4f55044ad10e88f4903a14c2fcfe89e00b87f020199cbda5531897e3c4",
+        "bytes": 1375272,
+        "fullSHA256Verified": true,
+        "corsVerified": true,
+        "verifiedAt": "2026-10-19T16:42:23.374Z"
+      },
+      "ok": true
+    },
+    {
+      "slug": "modern/ksiazek-abstract-linear-relief-4580",
+      "title": "Abstract Composition: Linear Relief",
+      "page": 200,
+      "pageHasTitle": true,
+      "pageReferencesModel": true,
+      "pageSha256": "1ac0a8f85b2928ca8066d977e701fb37881251e2f2e5ba3531c48fca173104c6",
+      "thumbnail": {
+        "status": 200,
+        "sha256": "945dd22c7f7164418018678a57616dab500def77aec1d78ae4a631a2e58b4db9",
+        "bytes": 123902,
+        "fullSHA256Verified": true
+      },
+      "model": {
+        "status": 200,
+        "url": "https://models.atrium.earth/models/previews/modern/ksiazek-abstract-linear-relief-4580/preview-9bfeb6ed2ef0.glb",
+        "sha256": "9bfeb6ed2ef099398a7c4e53f90b1be3237b822219e2cded7ede138527faf47f",
+        "bytes": 2537160,
+        "fullSHA256Verified": true,
+        "corsVerified": true,
+        "verifiedAt": "2026-10-19T16:42:23.505Z"
+      },
+      "ok": true
+    },
+    {
+      "slug": "asia/ink-dish-in-the-shape-of-a-chinese-lion-d84f02",
+      "title": "Ink dish in the shape of a Chinese lion",
+      "page": 200,
+      "pageHasTitle": true,
+      "pageReferencesModel": true,
+      "pageSha256": "b0c08bc707249ee0020b79d73a4b509bd8f920587442ef737e7b4e63a0314613",
+      "thumbnail": {
+        "status": 200,
+        "sha256": "3081e3d1cad6eb6cc11f95a3230cd1af38b631f790ecfc50d8c77662c1276e5f",
+        "bytes": 54776,
+        "fullSHA256Verified": true
+      },
+      "model": {
+        "status": 200,
+        "url": "https://models.atrium.earth/models/previews/asia/ink-dish-in-the-shape-of-a-chinese-lion-d84f02/preview-d306d9e4df69.glb",
+        "sha256": "d306d9e4df696799f47d49bad342085298ffda095088a1c28f1c35e3f90e99f5",
+        "bytes": 1790592,
+        "fullSHA256Verified": true,
+        "corsVerified": true,
+        "verifiedAt": "2026-10-19T16:42:24.143Z"
+      },
+      "ok": true
+    },
+    {
+      "slug": "americas/ballgame-palma-cleveland-1973-3-5c5227",
+      "title": "Ballgame Palma",
+      "page": 200,
+      "pageHasTitle": true,
+      "pageReferencesModel": true,
+      "pageSha256": "9ac719137d15215f6975680329beba01af9bf0e6f27a3ebddb6583b1f94fcdfd",
+      "thumbnail": {
+        "status": 200,
+        "sha256": "1ab40f1179bd7c99ef5a48025ff7a982d00861af0b97d3e1f9fa1d46cc8c155a",
+        "bytes": 58070,
+        "fullSHA256Verified": true
+      },
+      "model": {
+        "status": 200,
+        "url": "https://models.atrium.earth/models/previews/americas/ballgame-palma-cleveland-1973-3-5c5227/preview-73790a49314a.glb",
+        "sha256": "73790a49314a023652346582f92a75570a05e5781491aaafcb1d1560a395293f",
+        "bytes": 1191204,
+        "fullSHA256Verified": true,
+        "corsVerified": true,
+        "verifiedAt": "2026-10-19T16:42:23.592Z"
+      },
+      "ok": true
+    },
+    {
+      "slug": "modern/ksiazek-abstract-converging-relief-4582",
+      "title": "Abstract Composition: Converging Relief",
+      "page": 200,
+      "pageHasTitle": true,
+      "pageReferencesModel": true,
+      "pageSha256": "7780443439e5472b25fc6d2419e1a81b2e78133d1e731baf63543dc8819f9628",
+      "thumbnail": {
+        "status": 200,
+        "sha256": "3f92a534f430a2ca45b66aa65992b8c55f38ffa8e6f417aebe3bf9ea93191b0e",
+        "bytes": 195428,
+        "fullSHA256Verified": true
+      },
+      "model": {
+        "status": 200,
+        "url": "https://models.atrium.earth/models/previews/modern/ksiazek-abstract-converging-relief-4582/preview-68cd7bbd7dd3.glb",
+        "sha256": "68cd7bbd7dd3674fd74659f60f7ae8c864da7ae53d1d0516947c6ac13ec3dfe5",
+        "bytes": 1950848,
+        "fullSHA256Verified": true,
+        "corsVerified": true,
+        "verifiedAt": "2026-10-19T16:42:24.166Z"
+      },
+      "ok": true
+    },
+    {
+      "slug": "asia/figure-of-seated-arhat-with-a-vase-bcceaf",
+      "title": "Figure of seated arhat with a vase",
+      "page": 200,
+      "pageHasTitle": true,
+      "pageReferencesModel": true,
+      "pageSha256": "77f977bf6c8eb6f5944b790a7f1b32d7f2e50ddc95ddaf3d8178e95018f1d6da",
+      "thumbnail": {
+        "status": 200,
+        "sha256": "715cdd6f2c075489ca97500a445640cf8235df772b3a3a4060a232a19bd39029",
+        "bytes": 66298,
+        "fullSHA256Verified": true
+      },
+      "model": {
+        "status": 200,
+        "url": "https://models.atrium.earth/models/previews/asia/figure-of-seated-arhat-with-a-vase-bcceaf/preview-b504944cbd59.glb",
+        "sha256": "b504944cbd5904253f92c0f60264b8b7998b104178eece299991b0f9c8ee0cf9",
+        "bytes": 1124936,
+        "fullSHA256Verified": true,
+        "corsVerified": true,
+        "verifiedAt": "2026-10-19T16:42:24.138Z"
+      },
+      "ok": true
+    },
+    {
+      "slug": "americas/kero-waisted-cup-cleveland-1946-233-383bc7",
+      "title": "Kero (Waisted Cup)",
+      "page": 200,
+      "pageHasTitle": true,
+      "pageReferencesModel": true,
+      "pageSha256": "f6cf4abba10a587afd099efb649e73a505b61dcbe601e3467b0d96d1551f9670",
+      "thumbnail": {
+        "status": 200,
+        "sha256": "7f9fdad45ff8e0ef1d2216f22a7f94cc9ec2c536119bde43a38fc728ceac68b0",
+        "bytes": 57444,
+        "fullSHA256Verified": true
+      },
+      "model": {
+        "status": 200,
+        "url": "https://models.atrium.earth/models/previews/americas/kero-waisted-cup-cleveland-1946-233-383bc7/preview-38573345a514.glb",
+        "sha256": "38573345a5140da15c4de0d265976cb0c1b3cf00e15d1285f0adef46f4b955f7",
+        "bytes": 1721832,
+        "fullSHA256Verified": true,
+        "corsVerified": true,
+        "verifiedAt": "2026-10-19T16:42:24.215Z"
+      },
+      "ok": true
+    },
+    {
+      "slug": "modern/ksiazek-vase-blue-glaze-4600",
+      "title": "Vase with Blue Glaze",
+      "page": 200,
+      "pageHasTitle": true,
+      "pageReferencesModel": true,
+      "pageSha256": "c44cf1e1b9d10e0f1fc84ecdecb84b2719ad090f1358694cddc3c6bd51a3e0bf",
+      "thumbnail": {
+        "status": 200,
+        "sha256": "06dadf9f451f4d8d5332ab411ca7717688e59bb71a02bf6127b0be13ae73f56e",
+        "bytes": 40760,
+        "fullSHA256Verified": true
+      },
+      "model": {
+        "status": 200,
+        "url": "https://models.atrium.earth/models/previews/modern/ksiazek-vase-blue-glaze-4600/preview-047fa577b0e8.glb",
+        "sha256": "047fa577b0e8992f72917fc3728f10e114fe7084646e2ef19815884b44a69251",
+        "bytes": 989072,
+        "fullSHA256Verified": true,
+        "corsVerified": true,
+        "verifiedAt": "2026-10-19T16:42:24.397Z"
+      },
+      "ok": true
+    },
+    {
+      "slug": "europe/statuette-of-a-monkey-playing-the-horn-615cc5",
+      "title": "Statuette of a Monkey Playing the Horn",
+      "page": 200,
+      "pageHasTitle": true,
+      "pageReferencesModel": true,
+      "pageSha256": "ec963cec7b5867b2fbd5c098a43b459c3a0b0aa4e142ef9ba3d5a6b2d295f5d6",
+      "thumbnail": {
+        "status": 200,
+        "sha256": "687371e063b644b159706d936c308aa6861b03d6a8e08fc30f2d2d7fe278b71e",
+        "bytes": 35048,
+        "fullSHA256Verified": true
+      },
+      "model": {
+        "status": 200,
+        "url": "https://models.atrium.earth/models/previews/europe/statuette-of-a-monkey-playing-the-horn-615cc5/preview-1e6ff47525db.glb",
+        "sha256": "1e6ff47525db11c0a181d2b97a80dd16df4f1711b974f69849386e2cafc7cc25",
+        "bytes": 1644080,
+        "fullSHA256Verified": true,
+        "corsVerified": true,
+        "verifiedAt": "2026-10-19T16:42:24.465Z"
+      },
+      "ok": true
+    },
+    {
+      "slug": "sub-saharan-africa/prestige-cap-mpu-ngola-cleveland-1997-180-ca93a8",
+      "title": "Prestige Cap (mpu ngola)",
+      "page": 200,
+      "pageHasTitle": true,
+      "pageReferencesModel": true,
+      "pageSha256": "e3fb5046fb4efa763dcd117508c5b853ad9f175297ebd3734275460dec7d1a56",
+      "thumbnail": {
+        "status": 200,
+        "sha256": "dc2446b4fc59c652408323abd39f1da7fc96697199727af1e688912615a920c2",
+        "bytes": 72164,
+        "fullSHA256Verified": true
+      },
+      "model": {
+        "status": 200,
+        "url": "https://models.atrium.earth/models/previews/sub-saharan-africa/prestige-cap-mpu-ngola-cleveland-1997-180-ca93a8/preview-29031079a91e.glb",
+        "sha256": "29031079a91e7ff41dedceb7b258e646bfd0aab6d1af7d2226e5da3254c5892b",
+        "bytes": 2024544,
+        "fullSHA256Verified": true,
+        "corsVerified": true,
+        "verifiedAt": "2026-10-19T16:42:25.015Z"
+      },
+      "ok": true
+    },
+    {
+      "slug": "modern/ksiazek-vase-mans-face-4588",
+      "title": "Vase with a Man’s Face",
+      "page": 200,
+      "pageHasTitle": true,
+      "pageReferencesModel": true,
+      "pageSha256": "26eb2164c1f7db7f0a59271c3026dfcf877b91111dff920a5c0e83615d7dcbd5",
+      "thumbnail": {
+        "status": 200,
+        "sha256": "f1da2ddc42fbd6daeb3e5f6e25502405155e150674a041c4cd093e8230425963",
+        "bytes": 42246,
+        "fullSHA256Verified": true
+      },
+      "model": {
+        "status": 200,
+        "url": "https://models.atrium.earth/models/previews/modern/ksiazek-vase-mans-face-4588/preview-cfe212bc008e.glb",
+        "sha256": "cfe212bc008e81dca2f910cdca1de73a2153b6574aa55abaccc2e64520960074",
+        "bytes": 1839688,
+        "fullSHA256Verified": true,
+        "corsVerified": true,
+        "verifiedAt": "2026-10-19T16:42:25.008Z"
+      },
+      "ok": true
+    },
+    {
+      "slug": "europe/statuette-of-a-woman-selling-grapes-6db54b",
+      "title": "Statuette of a Woman Selling Grapes",
+      "page": 200,
+      "pageHasTitle": true,
+      "pageReferencesModel": true,
+      "pageSha256": "e6a9c2f6b4ef49c5bba10b330dcb3e25c899b54b008cea8b31feb26f2fe68d65",
+      "thumbnail": {
+        "status": 200,
+        "sha256": "49d14d6e9f19f30ee7b91941eabb4d94f1c05651eb439ba3df4ab6b01d0603a4",
+        "bytes": 31442,
+        "fullSHA256Verified": true
+      },
+      "model": {
+        "status": 200,
+        "url": "https://models.atrium.earth/models/previews/europe/statuette-of-a-woman-selling-grapes-6db54b/preview-b620f49b8146.glb",
+        "sha256": "b620f49b8146e79ef1cb05c2bde280d5483cbc5a0aee82e9c61240c9cf16d911",
+        "bytes": 1429664,
+        "fullSHA256Verified": true,
+        "corsVerified": true,
+        "verifiedAt": "2026-10-19T16:42:25.082Z"
+      },
+      "ok": true
+    },
+    {
+      "slug": "sub-saharan-africa/helmet-cleveland-1969-5-13600d",
+      "title": "Helmet",
+      "page": 200,
+      "pageHasTitle": true,
+      "pageReferencesModel": true,
+      "pageSha256": "e4121d2d0557dd8e492039b734f717eabd2970fddc745264bb18bffae93406b1",
+      "thumbnail": {
+        "status": 200,
+        "sha256": "0a0529a3e63d1bff959b32954241ff3a7a5603f932d38525aef30ab3aee2ddf1",
+        "bytes": 45010,
+        "fullSHA256Verified": true
+      },
+      "model": {
+        "status": 200,
+        "url": "https://models.atrium.earth/models/previews/sub-saharan-africa/helmet-cleveland-1969-5-13600d/preview-6fb098762b9d.glb",
+        "sha256": "6fb098762b9d821353d36ae96cf4a99e324f79644bc3d8ebf8630818ed84e40f",
+        "bytes": 1329256,
+        "fullSHA256Verified": true,
+        "corsVerified": true,
+        "verifiedAt": "2026-10-19T16:42:24.952Z"
+      },
+      "ok": true
+    },
+    {
+      "slug": "modern/canova-terpsichore-lyran-cleveland-1968-212",
+      "title": "Terpsichore Lyran (Muse of Lyric Poetry)",
+      "page": 200,
+      "pageHasTitle": true,
+      "pageReferencesModel": true,
+      "pageSha256": "de9770f8fab3d841dfbe4cea30d9bf97f81566ab6a7040db3d0694c09d81249a",
+      "thumbnail": {
+        "status": 200,
+        "sha256": "754faeff88374eb44d0d171e8f50d93f4adc685a12afc8979b6b54da34c6ac02",
+        "bytes": 34656,
+        "fullSHA256Verified": true
+      },
+      "model": {
+        "status": 200,
+        "url": "https://models.atrium.earth/models/previews/modern/canova-terpsichore-lyran-cleveland-1968-212/preview-9cd30a57d936.glb",
+        "sha256": "9cd30a57d936c5f4ed110fa711a9b7a7274a8d83f5affdc1c829ea6cdce7d6c4",
+        "bytes": 1662864,
+        "fullSHA256Verified": true,
+        "corsVerified": true,
+        "verifiedAt": "2026-10-19T16:42:25.011Z"
+      },
+      "ok": true
+    },
+    {
+      "slug": "asia/water-container-with-peonies-cleveland-2022-197-705115",
+      "title": "Water Container with Peonies",
+      "page": 200,
+      "pageHasTitle": true,
+      "pageReferencesModel": true,
+      "pageSha256": "eaaa30453a2377e2ab24d2f8ecb84b3eab9aa4b8260976b846367e1aa6e7deb5",
+      "thumbnail": {
+        "status": 200,
+        "sha256": "72b90f39d6e4d9fa7785d3e1807142e7dec13ebd1e0014bc7f94889a38053bf3",
+        "bytes": 18992,
+        "fullSHA256Verified": true
+      },
+      "model": {
+        "status": 200,
+        "url": "https://models.atrium.earth/models/previews/asia/water-container-with-peonies-cleveland-2022-197-705115/preview-c40699b2d6f7.glb",
+        "sha256": "c40699b2d6f705925443cd1641c2ad5d54164b620fa6937399b6e993e613aa4e",
+        "bytes": 223572,
+        "fullSHA256Verified": true,
+        "corsVerified": true,
+        "verifiedAt": "2026-10-19T16:42:24.901Z"
+      },
+      "ok": true
+    },
+    {
+      "slug": "modern/gargallo-portrait-picasso-mnac-011012",
+      "title": "Portrait of Picasso",
+      "page": 200,
+      "pageHasTitle": true,
+      "pageReferencesModel": true,
+      "pageSha256": "55ace1bb1262dda2f499b325ee70ae14c966a7232f4a774c83f42d389107370f",
+      "thumbnail": {
+        "status": 200,
+        "sha256": "c4dbd8be5ceb04139092bc635795635757a3b204b536912df4da4ce6dea40838",
+        "bytes": 56560,
+        "fullSHA256Verified": true
+      },
+      "model": {
+        "status": 200,
+        "url": "https://models.atrium.earth/models/previews/modern/gargallo-portrait-picasso-mnac-011012/preview-e5787a9068f6.glb",
+        "sha256": "e5787a9068f69a1d2f25f3428c6c416ef7e3c06fa0918fbe2acc1f519cd11193",
+        "bytes": 974392,
+        "fullSHA256Verified": true,
+        "corsVerified": true,
+        "verifiedAt": "2026-10-19T16:42:25.528Z"
+      },
+      "ok": true
+    },
+    {
+      "slug": "europe/reliquary-with-st-stanislauss-hand-b6a9c2",
+      "title": "Reliquary with St. Stanislaus’s hand",
+      "page": 200,
+      "pageHasTitle": true,
+      "pageReferencesModel": true,
+      "pageSha256": "3f54a219af22924fd954087b5aef6edc66658c71cc9b57f68cfaeb4404ade580",
+      "thumbnail": {
+        "status": 200,
+        "sha256": "3480115a100a91c682e588235be55c6efa173914873aad2f82ada1cfff9f8678",
+        "bytes": 36774,
+        "fullSHA256Verified": true
+      },
+      "model": {
+        "status": 200,
+        "url": "https://models.atrium.earth/models/previews/europe/reliquary-with-st-stanislauss-hand-b6a9c2/preview-56069da498d9.glb",
+        "sha256": "56069da498d90e3b8940b6ec32d25a472cb7dc1ed5b8e00d5744a6221e178f18",
+        "bytes": 536496,
+        "fullSHA256Verified": true,
+        "corsVerified": true,
+        "verifiedAt": "2026-10-19T16:42:25.535Z"
+      },
+      "ok": true
+    }
+  ],
+  "limits": "Complete live pages, exact titles/model URLs, full thumbnail SHA/bytes and full model SHA/bytes/CORS were checked against the exact deployed release and final visual-review ledger. Physical XR hardware is outside this verification."
+}
