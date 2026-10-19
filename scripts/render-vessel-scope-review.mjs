@@ -380,7 +380,7 @@ async function main() {
   if (!inside(realpathSync(join(ROOT, 'docs/ingest')), requestPath) && !inside(realpathSync(join(ROOT, '.atrium-ingest')), requestPath)) throw new Error('Review request must be in docs/ingest or ignored .atrium-ingest');
   const catalog = json(join(ROOT, 'src/data/catalog.json')), previews = json(join(ROOT, 'src/data/previews.json')), orientations = json(join(ROOT, 'src/data/orientations.json'));
   const shard = Number(values.shard), shards = Number(values.shards);
-  if (!Number.isInteger(shards) || shards < 1 || shards > 8 || !Number.isInteger(shard) || shard < 0 || shard >= shards) throw new Error('Invalid shard');
+  if (!Number.isInteger(shards) || shards < 1 || shards > 12 || !Number.isInteger(shard) || shard < 0 || shard >= shards) throw new Error('Invalid shard');
   const request = json(requestPath);
   const bound = bindRequest(request, { catalog, previews, orientations });
   const works = bound.filter((_item, i) => i % shards === shard);
