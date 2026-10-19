@@ -1,0 +1,690 @@
+{
+  "schema": "atrium-final-release-audit/1",
+  "batch": "beautiful-expansion-20261019",
+  "checked": "2026-10-19T17:10:26.403Z",
+  "status": "pass",
+  "baselineRef": "e018ef8c67d1d8253f9392b77cbf7690f1d9a2a4",
+  "headSha": "75e3eff818de52ca4f56d50e6e282eb328276e1c",
+  "counts": {
+    "baselineCatalog": 2018,
+    "baselinePublic": 2000,
+    "currentCatalog": 2120,
+    "currentPublic": 2102,
+    "expectedAdditions": 102,
+    "actualAdditions": 102,
+    "publicAdditions": 102,
+    "reviewedLedgerWorks": 102,
+    "featured": 250,
+    "failures": 0
+  },
+  "bindings": {
+    "expectedLeadRecordsFingerprint": "bedab9bc773dc61cf90c90cd5f4bd19f623b0dbd5b4f14aba6638e1ce1968af5",
+    "reviewLedgerFingerprint": "087986c4ed50db529bb35df66e453690de997758c4a3bb88f9c0bf8453c66ad3",
+    "sourceIndexFingerprints": [
+      "07445bdc9273fef62cef1f861c4a5644e865074f179f05cab9a35f09665f5b85",
+      "0c50d6cbad37f9f3f1d26d125a57d80700f944c8c6fef94dbd2be65787b372db"
+    ],
+    "acquisitionReportFingerprints": [
+      "ee55a5ad4865de7f099003445ee24a2d0056a91c4bcea7f75e18f9beb614aaab",
+      "d2c0e9615cb299e20817cbd2db96ef4a5443cbca1ade25240dc2a6be945827a2"
+    ],
+    "scopeReportFingerprints": [
+      "1498f4205b1e7659773f75430f1d03e04d0d6f464af237fa68972e9a8a783e40",
+      "9e26c54e6dac518e271526410f35fe4017947158aea4037a0c80d3208838b6c1",
+      "36bae1394be890ea661f5db530855c97b3aa98cdec27e40d9a28f21437df7bdd",
+      "8a18c0967b35d8f037d3f98f48d982a8a2eb50b26e37cfca83fa7e004e7aff90",
+      "44f521b0d70b83e454a0c6c4dfd3d1abf8df07d32c1c848f4c988242d0d7f1c7",
+      "37ae26b037e62352fee3f42b05d575e0f72e775f4bd4a49f6b1bf3872692cee9",
+      "e42084a1d34961dacfe9caa506319c82aff0a7608f21cc583a812361ac1ec1a0",
+      "efcf67fecce90083412f43ad3e35f10bc5bfd76c38aaf59e12e9822ce76061e8",
+      "3425740dfc9b41683e33f7f072cf9a7f79499fb3c0eec04eff1c473f4a8ddc21",
+      "878be6e061fbd1c90c39e50613cdaef342f7b327b8272fc676c87c8d36b08cda",
+      "e90c8cd127abc1c42dfeec4ee3b79aba89c1463d4426eb862fd47e00de4f2a77",
+      "210fa908f85b708ebd800aff3ed1baf4564e219006442132fd6ba1e0e9acea4f",
+      "15011a9283fbbda51e3a3e714a7ffd5df1b6f34ecd5152138251be4c065222f5",
+      "46513697ff30a1896b5196f6146c8b9ed317c61c07301828e71eaa0a0821920f",
+      "4b5d440ca322a9fa4a5a27f6880171e4415a2af0474f8b9b452f7984f62c9da3",
+      "64cf60d56587e749d134e041c69d4565e4494bda917213e88bb465ef4ab73758",
+      "e27b00b8a517f3c7367321cc7c804da62455d925565a2a3f27e983a8f3733b41",
+      "cff858dd5009b6b4beffae8f3f26fd7eb6a02ae90fbc034a075f81a1df5ae141",
+      "b955ebf9dc1693dc447dc8e2fa5dca5b1318709aa41ac8527ea318a34b7a9e3c",
+      "6c355f3e8a86f82fcfc4abe75e89583727de68a96367e678bc2a256c6315997a",
+      "5f5e73f9e292f0e3278cf13102a1d425b0dda020d2dc0121f6b78a89f9078a71",
+      "30d1bb1725bf0a28b55b69f210ac5b3c2a1c2113e1320dc439afecc29ccc7236",
+      "ed625cc8b9f0f13d3c1bc5354b14e5ef9ead080767f7588fd885b9428c476018",
+      "b711433d36bd82bf4a745a6b4489f3a482029c1c853cd4f4281e0b4102536a53",
+      "3cf9fd4c87c98986a421137d81b2b3055e1a7e33d4dfe48217fbd99c3358e966",
+      "1941b0414965be904d7f5245611a0754097212e7f057eff52724c8cb5fcc34dc",
+      "88807e8df8ea9ec13ced0bd786f213c8c497e9632ae0a64beac0ae30cf9b4932",
+      "32d1d82843d2b4221b90b18df38400a5ab0dd1971bd3f018dfb7d68cd2e84576",
+      "3e8d4d27d6be756ea28ba2821fb41ce8197520d65505831994ccc2440cea4c12",
+      "b7e2438b4f1015e8bc847d084bb3fe870e189ef7158189ba0e42a37e3bf31b29",
+      "9cbcb90822a2f324203b5af2b969bc1b6679b9160cc78e6ee394826360f61035",
+      "1bc42752fe082baaa979e46b47659e2eb9d56cf1c295e635d616efa86a9bb3d4",
+      "1b7af80740ac72e239bf83b2675d4fbca56b13624fcee2b7425680538deded78",
+      "237da57febc5c9316e476003b724e562abd8ebf128da345821126e32cc0c1a63",
+      "6b91693634603e22dc6d06ba03c2c17e70ca52c2eb5ffeb7bd9246120742d65b",
+      "973e0387228fb3e8e93fd0e3ff9633ba0f1673adefa0728ad82567c2309ec27b",
+      "ea9e23a2490d63176f2906b607e2c56b23b048cb9f374fbabb55e1f49ab0d886"
+    ],
+    "proposalFingerprint": "b5c898140a2a49ba81fb1e97e845773b8241b3135ca5efbe5dcd119f4cb0dfe1",
+    "rendererHashes": {
+      "public/__render.html": "dc7b17364745949517986bbbdb87b4ef680bbf4e156f701d4143aaa86ae73f0e",
+      "public/model-render-utils.js": "afc875f080e2f1c7042ff6e2b5e41e298bfaf609d788774f48c8071950d3d2e0",
+      "scripts/render-thumbnails.mjs": "04aeca916a0d411321ba758860f6ce39094cb2c7bb013625e1ba7dacba2bb89d"
+    },
+    "currentDataFingerprints": {
+      "catalog": "935f97ae12073ada098ff053b5cb56fe6c4900c1dc20056aee6dfdbc512aa5c4",
+      "previews": "4c2c8d43fcfb1178cb1c01a7505bdbabe50cd1373da372399a754279e291026b",
+      "orientations": "5ca123c9955901fadbcc4a9d541f0cbbbd3b650e965a0918ef00628966b1c02d",
+      "physical-dimensions": "f4523bf766646714903e42fc29ef0dd84c14e5fb8ce3938c9c0fddff809baeea",
+      "spatial-eligibility": "23a6464fc530795aeaa5945aac689cdaf1de928affaf077732928b73fe415acb",
+      "appearance-overrides": "3fd3f2f041c8f8907947d2ad465342ee88efff39bb1b939a87442bc9bdd0d9ce",
+      "material-appearances": "7341e311a354d7c9fd377137bc529d8a4d28e653f60ed2224bae1010c496dc4a",
+      "display-recommendations": "e285e813f2d8d75cae2ea956b9f8b6f3145e3d63787c3251b42b051e3ce31fd9",
+      "spatial-display-defaults": "b37b0be6f259dd5da3272fd26b23e495a0671031d5fa13db6cc99c0532893026",
+      "identity-corrections": "c7a1343d201cda33c398bb18e0081b71a881951a0fb0964bd1f6574404f1f1fa",
+      "additions": "ef1631166a6b01826e8aaea79cb43dc607ac4ff07741e811f77b052af5cd90f4",
+      "renders": "d815e1743d096707ff8b090ffcdfe7fcc19064b4d7843f9a855677a7dbcc6176",
+      "featured-works": "e12923f11fa19729d54153d3ac2e90a3e61e045413ddef96760c29d24624416f",
+      "v3-content": "9970ac3614eff6663b591639efdddef606f28a9ea22d5aa78000838cfecb606a"
+    },
+    "featuredFileSha256": "aa74f35ef39e6075f0ca52d1bd8f870c2c0d11ae6aceb7fdbb28ce216918aac5"
+  },
+  "results": [
+    {
+      "slug": "asia/raft-cup-cleveland-1977-7-a254ff",
+      "sourceUid": "a254ffe2ee5f4512a034e666b5eee4bd",
+      "status": "pass"
+    },
+    {
+      "slug": "modern/wyspianski-white-lily-casket-4636",
+      "sourceUid": "75a69fcb79424706a8a868498867b292",
+      "status": "pass"
+    },
+    {
+      "slug": "europe/christ-crucified-by-veit-stoss-0637f5",
+      "sourceUid": "0637f5f99178491abac2b5fcfc277913",
+      "status": "pass"
+    },
+    {
+      "slug": "asia/surya-the-sun-god-cleveland-1965-557-0f5e1a",
+      "sourceUid": "0f5e1ad4a1214e0c88d480e8945da422",
+      "status": "pass"
+    },
+    {
+      "slug": "modern/szymanowski-mickiewicz-after-improvisation-8",
+      "sourceUid": "51bfa9766bb5404f9da18b4c3574765c",
+      "status": "pass"
+    },
+    {
+      "slug": "asia/colossal-head-of-a-deva-cleveland-2011-147-2413aa",
+      "sourceUid": "2413aa3cdb504a368b58b47e5fbefe08",
+      "status": "pass"
+    },
+    {
+      "slug": "modern/drexler-in-the-theatre-box-490",
+      "sourceUid": "6385359e567c4a209b98deae17c4c401",
+      "status": "pass"
+    },
+    {
+      "slug": "europe/holy-sepulchre-shaped-reliquary-0ffa1a",
+      "sourceUid": "0ffa1a821a19492ebdc2141f4e247c72",
+      "status": "pass"
+    },
+    {
+      "slug": "asia/standing-buddha-cleveland-1966-30-dbdf5d",
+      "sourceUid": "dbdf5dff485f47e48ea89aa558e1f79b",
+      "status": "pass"
+    },
+    {
+      "slug": "modern/gadomski-portrait-zofia-potocka-18",
+      "sourceUid": "145f47b707134e809ad3de68b283eac0",
+      "status": "pass"
+    },
+    {
+      "slug": "europe/gothic-reliquary-herm-cb6485",
+      "sourceUid": "cb6485edcd4f454999415a2e74503e84",
+      "status": "pass"
+    },
+    {
+      "slug": "modern/sosnowski-count-kazimierz-potulicki-186",
+      "sourceUid": "9facedbad89e4bb19b8331f1f5bd4abf",
+      "status": "pass"
+    },
+    {
+      "slug": "asia/prince-shotoku-at-age-two-shotoku-taishi-cleveland-1989-76-78ae04",
+      "sourceUid": "78ae046fb1b5421fbd9684cae68fed03",
+      "status": "pass"
+    },
+    {
+      "slug": "modern/schluter-bust-woman-roza-loewenfeld-192",
+      "sourceUid": "fc6e731a0131471ba8e45511c7ea9996",
+      "status": "pass"
+    },
+    {
+      "slug": "europe/monstrance-8d8ebf",
+      "sourceUid": "8d8ebfceced7499a856174d061bcb516",
+      "status": "pass"
+    },
+    {
+      "slug": "sub-saharan-africa/prestige-chair-cleveland-1983-33-03d10a",
+      "sourceUid": "03d10a0ccb254061a8ec77b8cc14b40c",
+      "status": "pass"
+    },
+    {
+      "slug": "modern/wowro-birds-332",
+      "sourceUid": "ce5c834f6d9d41d8930456638ca5c320",
+      "status": "pass"
+    },
+    {
+      "slug": "europe/wooden-feretory-with-representation-of-madonna-70c9db",
+      "sourceUid": "70c9db48af544dd4a90c1387057d9fc4",
+      "status": "pass"
+    },
+    {
+      "slug": "modern/tombinski-bust-jan-matejko-2260",
+      "sourceUid": "d6203c12328743ee9b75ec32843fb089",
+      "status": "pass"
+    },
+    {
+      "slug": "europe/cabinet-with-images-of-saints-94d705",
+      "sourceUid": "94d7057b8de7404eb3a18b62ef79d663",
+      "status": "pass"
+    },
+    {
+      "slug": "europe/cabinet-1cf7e6",
+      "sourceUid": "1cf7e63269054b2e819fe3a8f5125bc9",
+      "status": "pass"
+    },
+    {
+      "slug": "asia/deep-vessel-cleveland-1998-32-abf57c",
+      "sourceUid": "abf57c7c2a6f4454aa8fc40d4a87ae50",
+      "status": "pass"
+    },
+    {
+      "slug": "modern/ksiazek-devil-butterfly-4585",
+      "sourceUid": "4f99a7f0bc0c4d2e9fadce541c75f57d",
+      "status": "pass"
+    },
+    {
+      "slug": "europe/tankard-depicting-the-queen-of-sheba-and-solomon-a1ed5f",
+      "sourceUid": "a1ed5f79b647481297366adc42bc6903",
+      "status": "pass"
+    },
+    {
+      "slug": "asia/recumbent-bull-cleveland-1985-74-774c1c",
+      "sourceUid": "774c1c5f1cd4484f98b68ee96d886950",
+      "status": "pass"
+    },
+    {
+      "slug": "modern/ksiazek-violinist-4607",
+      "sourceUid": "14b4555a51b34b38896d0144be188e1e",
+      "status": "pass"
+    },
+    {
+      "slug": "europe/tabletop-clock-1670-c5d25a",
+      "sourceUid": "c5d25a4967894a1683afeb3533658d5b",
+      "status": "pass"
+    },
+    {
+      "slug": "asia/mother-goddess-cleveland-1970-12-78133a",
+      "sourceUid": "78133a22b04c44a1bfcfcb9fcd63f3b6",
+      "status": "pass"
+    },
+    {
+      "slug": "modern/ksiazek-standing-woman-4609",
+      "sourceUid": "8424e8f5887b42d8a8e184f12409f1a4",
+      "status": "pass"
+    },
+    {
+      "slug": "asia/tripod-ding-cleveland-1962-281-af15e7",
+      "sourceUid": "af15e7980f9b4f718094fc2e16205d89",
+      "status": "pass"
+    },
+    {
+      "slug": "modern/ksiazek-ox-4608",
+      "sourceUid": "058e931bd278415ea826cd6c9024d66f",
+      "status": "pass"
+    },
+    {
+      "slug": "asia/seated-zenki-and-koki-cleveland-2012-40-87781e",
+      "sourceUid": "87781ebfa25d4bc68f4ca87a5879a666",
+      "status": "pass"
+    },
+    {
+      "slug": "modern/ksiazek-thinker-4610",
+      "sourceUid": "492a7c28ac75400495a439290844afa0",
+      "status": "pass"
+    },
+    {
+      "slug": "asia/ding-censer-with-an-openwork-cover-1034cd",
+      "sourceUid": "1034cd8e4df5430cb874f012415a43b0",
+      "status": "pass"
+    },
+    {
+      "slug": "americas/head-with-animal-helmet-cleveland-1990-237-12841a",
+      "sourceUid": "12841a53ba114c4492f2dbb410b164b9",
+      "status": "pass"
+    },
+    {
+      "slug": "modern/ksiazek-abstract-linear-relief-4580",
+      "sourceUid": "20d9cdc4f0af443489f6e2498614295a",
+      "status": "pass"
+    },
+    {
+      "slug": "asia/ink-dish-in-the-shape-of-a-chinese-lion-d84f02",
+      "sourceUid": "d84f02395b9b412a836afb20eaadcfd1",
+      "status": "pass"
+    },
+    {
+      "slug": "americas/ballgame-palma-cleveland-1973-3-5c5227",
+      "sourceUid": "5c5227e077e04654bcffa15002b9b51a",
+      "status": "pass"
+    },
+    {
+      "slug": "modern/ksiazek-abstract-converging-relief-4582",
+      "sourceUid": "05e7f8d46fb94c6480be777b6b12bafe",
+      "status": "pass"
+    },
+    {
+      "slug": "asia/figure-of-seated-arhat-with-a-vase-bcceaf",
+      "sourceUid": "bcceaf7ec75644ed94e30d88d02cdc0c",
+      "status": "pass"
+    },
+    {
+      "slug": "americas/kero-waisted-cup-cleveland-1946-233-383bc7",
+      "sourceUid": "383bc7b9f8db46278073d69112cb6e2f",
+      "status": "pass"
+    },
+    {
+      "slug": "modern/ksiazek-vase-blue-glaze-4600",
+      "sourceUid": "9304c6cee6194ea499eb84ea3acadaa4",
+      "status": "pass"
+    },
+    {
+      "slug": "europe/statuette-of-a-monkey-playing-the-horn-615cc5",
+      "sourceUid": "615cc59e73f3410bb510186ea69c48a1",
+      "status": "pass"
+    },
+    {
+      "slug": "sub-saharan-africa/prestige-cap-mpu-ngola-cleveland-1997-180-ca93a8",
+      "sourceUid": "ca93a8e164f040ffa246b64df348d11b",
+      "status": "pass"
+    },
+    {
+      "slug": "modern/ksiazek-vase-mans-face-4588",
+      "sourceUid": "12d82b8507a24d65b26388f1a0cf6343",
+      "status": "pass"
+    },
+    {
+      "slug": "europe/statuette-of-a-woman-selling-grapes-6db54b",
+      "sourceUid": "6db54b58a0944b6b8c9143a524d67a5d",
+      "status": "pass"
+    },
+    {
+      "slug": "sub-saharan-africa/helmet-cleveland-1969-5-13600d",
+      "sourceUid": "13600dbd9c79478a8380bb90ff8b6df5",
+      "status": "pass"
+    },
+    {
+      "slug": "modern/canova-terpsichore-lyran-cleveland-1968-212",
+      "sourceUid": "6827af1276ab407ebbfa1e7d0a4b9a19",
+      "status": "pass"
+    },
+    {
+      "slug": "asia/water-container-with-peonies-cleveland-2022-197-705115",
+      "sourceUid": "7051152ac78b426da1ad589f04fb8f38",
+      "status": "pass"
+    },
+    {
+      "slug": "modern/gargallo-portrait-picasso-mnac-011012",
+      "sourceUid": "8a503764de2a424da039386406d177ce",
+      "status": "pass"
+    },
+    {
+      "slug": "europe/reliquary-with-st-stanislauss-hand-b6a9c2",
+      "sourceUid": "b6a9c2c8b4464aafb0a7c8ff1ef9b3b5",
+      "status": "pass"
+    },
+    {
+      "slug": "asia/covered-jar-cleveland-1998-285-38e587",
+      "sourceUid": "38e5877fc22d4a81b28b0388b26fe4e4",
+      "status": "pass"
+    },
+    {
+      "slug": "europe/ceremonial-cross-of-count-liudolf-cleveland-1931-461",
+      "sourceUid": "c9b68c716acb44e6be7a58e40e1bbb31",
+      "status": "pass"
+    },
+    {
+      "slug": "europe/christ-in-gethsemane-2787cf",
+      "sourceUid": "2787cf9799ec467ab023e3839acae15c",
+      "status": "pass"
+    },
+    {
+      "slug": "asia/jar-cleveland-1983-28-1f0a28",
+      "sourceUid": "1f0a28465735411fb4292e63debf3ffa",
+      "status": "pass"
+    },
+    {
+      "slug": "europe/candelabrum-cleveland-1946-81",
+      "sourceUid": "c6cbf2bb14d840a9b7d444a54f5307a2",
+      "status": "pass"
+    },
+    {
+      "slug": "europe/late-mannerist-crucifix-6cb2d5",
+      "sourceUid": "6cb2d5022fb345448fe25aa6ba0323c0",
+      "status": "pass"
+    },
+    {
+      "slug": "asia/gigaku-mask-of-young-persian-boy-taikoji-cleveland-1949-158-908a26",
+      "sourceUid": "908a266ae8084123962cc99b6d29eae3",
+      "status": "pass"
+    },
+    {
+      "slug": "europe/mourner-from-the-tomb-of-philip-the-bold-duke-of-burgundy-13641404-1940-128-cleveland-1940-128",
+      "sourceUid": "b92f9560e7e44a87abb82401d1bb8578",
+      "status": "pass"
+    },
+    {
+      "slug": "asia/li-taibo-cleveland-1970-131-0203b5",
+      "sourceUid": "0203b5c17763438c8be2e173dad64ad5",
+      "status": "pass"
+    },
+    {
+      "slug": "europe/enthroned-virgin-with-the-writing-christ-child-cleveland-1970-13",
+      "sourceUid": "9ec47d9d285e4f40b22ef8e405923123",
+      "status": "pass"
+    },
+    {
+      "slug": "europe/candlestick-of-the-so-called-swan-set-576b88",
+      "sourceUid": "576b8819466a4775815379687602a788",
+      "status": "pass"
+    },
+    {
+      "slug": "asia/monster-caryatid-cleveland-1957-357-70d852",
+      "sourceUid": "70d852975dfb460982e45df02c20db05",
+      "status": "pass"
+    },
+    {
+      "slug": "europe/statue-of-augustus-iii-wettin-4dd155",
+      "sourceUid": "4dd1553c22b3414e9bda4e5ec1b3b5b5",
+      "status": "pass"
+    },
+    {
+      "slug": "asia/tengu-travelling-as-a-priest-cleveland-1920-493-375741",
+      "sourceUid": "37574160b8934951a612cac9a2fd1445",
+      "status": "pass"
+    },
+    {
+      "slug": "americas/plaque-cleveland-1938-431-26dee1",
+      "sourceUid": "26dee141e6024655b6cee75414203a1d",
+      "status": "pass"
+    },
+    {
+      "slug": "europe/salver-cleveland-1991-46",
+      "sourceUid": "c0a55688a4d44c32b4a1ac8d2a249c8d",
+      "status": "pass"
+    },
+    {
+      "slug": "europe/david-42fee8",
+      "sourceUid": "42fee8ebba6d46c981624da733d29b0f",
+      "status": "pass"
+    },
+    {
+      "slug": "asia/veneration-of-the-buddha-as-a-fiery-pillar-cleveland-1943-72-b8a8e6",
+      "sourceUid": "b8a8e6054c5f47e9af73bc11a215b209",
+      "status": "pass"
+    },
+    {
+      "slug": "europe/monstrance-with-the-paten-of-saint-bernward-cleveland-1930-505",
+      "sourceUid": "68c6c5b642a5488bb12794a6dff3ca9d",
+      "status": "pass"
+    },
+    {
+      "slug": "europe/aaron-e9d169",
+      "sourceUid": "e9d1699332224f96b4f911ec40ccf251",
+      "status": "pass"
+    },
+    {
+      "slug": "americas/vessel-with-ballplayer-cleveland-1990-180-c1ddf5",
+      "sourceUid": "c1ddf562b5bf4d5ba5304ddf2b567cd2",
+      "status": "pass"
+    },
+    {
+      "slug": "europe/david-victorious-over-goliath-cleveland-1966-126",
+      "sourceUid": "05c56014731d4ee2a28190cfc5171b6b",
+      "status": "pass"
+    },
+    {
+      "slug": "europe/john-the-evangelist-429b33",
+      "sourceUid": "429b334546514506b529e9e1d95f8776",
+      "status": "pass"
+    },
+    {
+      "slug": "asia/architectural-brick-with-dancer-in-relief-cleveland-1921-263-6c123d",
+      "sourceUid": "6c123dc391cc45858e4efa7ffddadbc1",
+      "status": "pass"
+    },
+    {
+      "slug": "europe/jesse-cleveland-2023-156",
+      "sourceUid": "6232dcc9e7674beb9ebddca96703a6cb",
+      "status": "pass"
+    },
+    {
+      "slug": "europe/christ-risen-32f0f7",
+      "sourceUid": "32f0f727841c467e81ff2f522f75fcf0",
+      "status": "pass"
+    },
+    {
+      "slug": "asia/bronze-ritual-bell-cleveland-1992-118-b48734",
+      "sourceUid": "b487349bf0ff4690adebb301edeaa179",
+      "status": "pass"
+    },
+    {
+      "slug": "europe/mourner-from-the-tomb-of-john-the-fearless-and-margaret-of-bavaria-1940-129-cleveland-1940-129",
+      "sourceUid": "a218ee3563b948278a4d48d4ff31bed7",
+      "status": "pass"
+    },
+    {
+      "slug": "europe/twin-capital-with-avian-pattern-dc94f4",
+      "sourceUid": "dc94f4e077f144928d2d13f7cc005237",
+      "status": "pass"
+    },
+    {
+      "slug": "asia/pitcher-cleveland-1917-357-9ea449",
+      "sourceUid": "9ea449f864ab495fb848de5cca753854",
+      "status": "pass"
+    },
+    {
+      "slug": "europe/pair-of-candle-stands-torcheres-cleveland-2018-203",
+      "sourceUid": "6e65ba98b92a4f8ab973a618bc63670f",
+      "status": "pass"
+    },
+    {
+      "slug": "europe/a-twin-capital-with-decoration-of-plant-motifs-0c16db",
+      "sourceUid": "0c16db638e0a45f2b4cbcb87fe455e6a",
+      "status": "pass"
+    },
+    {
+      "slug": "asia/sun-bodhisattva-nikko-bosatsu-cleveland-1961-48-d1f485",
+      "sourceUid": "d1f48511f45e4d0ba41eb0b27ed73f4d",
+      "status": "pass"
+    },
+    {
+      "slug": "europe/arm-reliquary-of-the-apostles-cleveland-1930-739",
+      "sourceUid": "df98bbcd1c3b46f0a9d640e925490f4a",
+      "status": "pass"
+    },
+    {
+      "slug": "europe/half-of-a-twin-capital-with-a-motif-of-hearts-0cadda",
+      "sourceUid": "0cadda3714d647939769cd222e53542f",
+      "status": "pass"
+    },
+    {
+      "slug": "europe/monstrance-with-a-relic-of-saint-sebastian-cleveland-1931-65",
+      "sourceUid": "e7b4b6274689480fb2ebf70be7afed52",
+      "status": "pass"
+    },
+    {
+      "slug": "europe/half-of-a-twin-capital-with-a-rosette-motif-489d18",
+      "sourceUid": "489d18a58e0a47d7b17f5d6be2e3ea53",
+      "status": "pass"
+    },
+    {
+      "slug": "asia/deity-cleveland-1954-373-6a4a0b",
+      "sourceUid": "6a4a0b76d2054c88b68acb049c13c188",
+      "status": "pass"
+    },
+    {
+      "slug": "europe/book-shaped-reliquary-cleveland-1930-741",
+      "sourceUid": "c54e6cbecf5e450d86052da35a86af6d",
+      "status": "pass"
+    },
+    {
+      "slug": "egyptian/hathor-capital-650d12",
+      "sourceUid": "650d12b9753d4509ac31354d8f05d6bf",
+      "status": "pass"
+    },
+    {
+      "slug": "asia/tripod-cauldron-ding-cleveland-1960-288-087210",
+      "sourceUid": "087210e905254535b31d1ee9edf8f7fc",
+      "status": "pass"
+    },
+    {
+      "slug": "europe/double-cup-mazer-cleveland-1950-83",
+      "sourceUid": "ee5fda83a9214ac8949271574bc951c8",
+      "status": "pass"
+    },
+    {
+      "slug": "asia/buddha-calling-on-earth-to-witness-cleveland-1935-146-e33fc2",
+      "sourceUid": "e33fc223cece454bb85f7c8756c3ac37",
+      "status": "pass"
+    },
+    {
+      "slug": "europe/ceremonial-cross-of-countess-gertrude-cleveland-1931-55",
+      "sourceUid": "a60d64e3ec4f4bf7ba289d92dff1b9a9",
+      "status": "pass"
+    },
+    {
+      "slug": "europe/coptic-figurine-d34307",
+      "sourceUid": "d34307b3365d4719b80231690cb87b17",
+      "status": "pass"
+    },
+    {
+      "slug": "asia/male-atlantean-figure-cleveland-1969-64-c2eb76",
+      "sourceUid": "c2eb76f0ca6c4f538b775b55069497f5",
+      "status": "pass"
+    },
+    {
+      "slug": "europe/philoctetes-on-the-island-of-lemnos-cleveland-1973-168",
+      "sourceUid": "86799381b2f04eb49b803dc8f2b48d86",
+      "status": "pass"
+    },
+    {
+      "slug": "europe/sundial-of-the-nuremberg-type-b3c273",
+      "sourceUid": "b3c273c5a87543cea2830bd14ef90c74",
+      "status": "pass"
+    },
+    {
+      "slug": "asia/supports-with-addorsed-figures-cleveland-2011-144-8dec5f",
+      "sourceUid": "8dec5f5b64db4252894aaa34f69a1528",
+      "status": "pass"
+    },
+    {
+      "slug": "europe/vesperbild-pieta-cleveland-1938-294",
+      "sourceUid": "aa3a38eda3c74c82baf7a019072ca368",
+      "status": "pass"
+    },
+    {
+      "slug": "europe/ring-of-the-krakow-s-mayors-edeb47",
+      "sourceUid": "edeb47bc024148debcc63b58a5ca9289",
+      "status": "pass"
+    }
+  ],
+  "permittedExhibitionBodyAdditions": [
+    {
+      "exhibitionSlug": "power-and-presence",
+      "slug": "sub-saharan-africa/prestige-chair-cleveland-1983-33-03d10a"
+    },
+    {
+      "exhibitionSlug": "sacred-forms",
+      "slug": "europe/holy-sepulchre-shaped-reliquary-0ffa1a"
+    },
+    {
+      "exhibitionSlug": "the-work-of-the-surface",
+      "slug": "modern/wyspianski-white-lily-casket-4636"
+    },
+    {
+      "exhibitionSlug": "the-work-of-the-surface",
+      "slug": "modern/ksiazek-abstract-linear-relief-4580"
+    },
+    {
+      "exhibitionSlug": "what-survives",
+      "slug": "asia/colossal-head-of-a-deva-cleveland-2011-147-2413aa"
+    },
+    {
+      "exhibitionSlug": "the-other-kingdom",
+      "slug": "asia/ink-dish-in-the-shape-of-a-chinese-lion-d84f02"
+    },
+    {
+      "exhibitionSlug": "power-and-presence",
+      "slug": "europe/ring-of-the-krakow-s-mayors-edeb47"
+    },
+    {
+      "exhibitionSlug": "sacred-forms",
+      "slug": "asia/veneration-of-the-buddha-as-a-fiery-pillar-cleveland-1943-72-b8a8e6"
+    },
+    {
+      "exhibitionSlug": "bodies-in-motion",
+      "slug": "americas/vessel-with-ballplayer-cleveland-1990-180-c1ddf5"
+    },
+    {
+      "exhibitionSlug": "what-survives",
+      "slug": "europe/book-shaped-reliquary-cleveland-1930-741"
+    },
+    {
+      "exhibitionSlug": "what-survives",
+      "slug": "asia/supports-with-addorsed-figures-cleveland-2011-144-8dec5f"
+    },
+    {
+      "exhibitionSlug": "the-other-kingdom",
+      "slug": "asia/li-taibo-cleveland-1970-131-0203b5"
+    }
+  ],
+  "failures": [],
+  "warnings": [],
+  "limits": "Read-only local metadata/asset audit. No network or source/model payload downloads. Full source and preview SHA values are bound to supplied acquisition and human-review evidence; this helper does not independently rehash remote model bytes or verify Drive contents. No current additions or final quality are inferred from preparation metadata. Actual eight-view WebP files are fully hashed against scope reports. Permanent archive coverage authenticates supplied fresh HMAC complete-readback receipts, exact ordered private Drive object identities, and embedded provenance/map members without new network requests; no Drive identity or key is printed.",
+  "actualScopeImages": {
+    "reviewedWorks": 102,
+    "checkedImages": 816
+  },
+  "permanentArchive": {
+    "selectedVerified": 102,
+    "metadataBindings": [
+      {
+        "provenanceSha256": "f629f0edbc9453b6e8f060b0f9b7d5d85b0d003dbc8da8a35ded34a429d2f99e",
+        "provenanceBytes": 7182638,
+        "restoreMapSha256": "926a52c8ca13ce2d175da61af76227a1f0d03df8f1cd12204f0ae9d7fc196e24",
+        "restoreMapBytes": 654108,
+        "incomingSourceIndexSha256": "249b4eb0907053814e5c0cf63129069c76fca2c4031ca00ce6d520137144c2bc",
+        "incomingSourceIndexBytes": 336237,
+        "originalCount": 59,
+        "selectedCovered": 51
+      },
+      {
+        "provenanceSha256": "950bee5709eeac732e4b8c9ff8465ec671261ab80d570f7ca368e0d04b41fe65",
+        "provenanceBytes": 5411348,
+        "restoreMapSha256": "6ce5311e178bf13131846403416ab570fc533fc00f38e9f7c921d5c742e2f043",
+        "restoreMapBytes": 678797,
+        "incomingSourceIndexSha256": "fa6a2c7bf6fd031ba66ac6a66cf6ad34b55345a4ab77896da4b07eafc0d14dab",
+        "incomingSourceIndexBytes": 354808,
+        "originalCount": 60,
+        "selectedCovered": 51
+      }
+    ]
+  },
+  "configBinding": "30622850aeb031e5cc412b4cbe1e82f9a945df652e14b405e17c55ffbfc45f68",
+  "privateReportSha256": "041bded4a693b78e2c43c813963973d3b8fa09849f22beed13c63174b42ecc3c"
+}
