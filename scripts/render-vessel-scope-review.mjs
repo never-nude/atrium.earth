@@ -390,4 +390,12 @@ async function main() {
   const bindings = { batch: request.batch, sourceArtifacts: request.sourceArtifacts || [], html: reviewHtml(html), appearance: productionAppearanceFactory(script, json(join(ROOT, 'src/data/material-appearances.json')), json(join(ROOT, 'src/data/appearance-overrides.json')), new Map(catalog.map((r) => [r.slug, r]))), hashes: { productionHtmlSha256: sha256(html), productionThumbnailScriptSha256: sha256(script), productionTransformUtilsSha256: sha256(readFileSync(join(ROOT, 'public/model-render-utils.js'))), requestSha256: sha256(readFileSync(requestPath)) } };
   await renderBound(works, { out: resolve(values.out || '.atrium-ingest/vessel-scope-review'), work: resolve(values.work || '.atrium-ingest/vessel-scope-models'), sourceRoot: values['source-root'] ? resolve(values['source-root']) : undefined }, bindings);
 }
-if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) main().catch((error) => { console.error(error.message); process.exitCode = 1; });
+if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  // All model writes, browser shutdown and server cleanup are awaited by main.
+  // Decoder/network runtimes may retain idle handles after that work is done.
+  const finish = (code) => process.stderr.write('', () => process.stdout.write('', () => process.exit(code)));
+  main().then(() => finish(process.exitCode || 0), (error) => {
+    console.error(error.message);
+    finish(1);
+  });
+}
