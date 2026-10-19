@@ -101340,5 +101340,3765 @@
       "Sculpture-only boundaries and the original hollow reverse require separate metric validation."
     ],
     "spatialNote": "Published measurements are available, but this model has not been calibrated to exact physical size. Display size is adjustable."
+  },
+  "asia/raft-cup-cleveland-1977-7-a254ff": {
+    "dimensions": "overall: height 16 cm; overall: length 20.5 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.clevelandart.org/art/1977.7",
+    "sourceTitle": "Cleveland Museum of Art — Raft Cup",
+    "note": "Published metric measurements describe this exact physical object or its stated components. Source-native appearance, capture scope, final pose and model measurement boundaries remain pending review. Physical size is unverified.",
+    "checked": "2026-10-19",
+    "researchStatus": "documented",
+    "identifiedObject": {
+      "title": "Raft Cup",
+      "artist": "Attributed to Zhu Bishan",
+      "institution": "Cleveland Museum of Art",
+      "accession": "1977.7",
+      "version_or_date": "1300s–1400s; hammered silver soldered together, with chased decoration",
+      "record_url": "https://www.clevelandart.org/art/1977.7",
+      "source_uid": "a254ffe2ee5f4512a034e666b5eee4bd",
+      "identity_confidence": "high",
+      "match_explanation": "Exact provider UID and individual primary record identify the documented physical object. This metadata draft makes no native-material, geometry, pose or calibration approval claim."
+    },
+    "measures": [
+      {
+        "axis": "height",
+        "value": 16,
+        "unit": "cm",
+        "scope": "overall",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://www.clevelandart.org/art/1977.7"
+        ],
+        "primaryValue": 0.16,
+        "primaryUnit": "m",
+        "sourceField": "dimensions.overall.height"
+      },
+      {
+        "axis": "length",
+        "value": 20.5,
+        "unit": "cm",
+        "scope": "overall",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://www.clevelandart.org/art/1977.7"
+        ],
+        "primaryValue": 0.205,
+        "primaryUnit": "m",
+        "sourceField": "dimensions.overall.length"
+      }
+    ],
+    "evidence": [
+      {
+        "sourceUrl": "https://www.clevelandart.org/art/1977.7",
+        "summary": "Primary metric dimensions: overall: height 16 cm; overall: length 20.5 cm",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Actual four-view source-native and four-view production comparison remains pending human review. Mesh calibration has not been performed.",
+    "calibrationBlockers": [
+      "Source-native/production appearance and captured object boundaries require actual eight-view human review.",
+      "Published physical measures have not been matched to exact measurement regions of the immutable final derivative."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "modern/wyspianski-white-lily-casket-4636": {
+    "dimensions": "szerokość 26,5 cm, wysokość 18 cm, głębokość 13,7 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/4636",
+    "sourceTitle": "Virtual Museums of Małopolska / Małopolska Institute of Culture — Kaseta Stanisława Wyspiańskiego z motywami lilii białej",
+    "note": "Published metric measurements describe this exact physical object or its stated components. Source-native appearance, capture scope, final pose and model measurement boundaries remain pending review. Physical size is unverified.",
+    "checked": "2026-10-19",
+    "researchStatus": "documented",
+    "identifiedObject": {
+      "title": "White Lily Casket",
+      "artist": "Stanisław Wyspiański (design and painted decoration); Andrzej Sydor",
+      "institution": "Virtual Museums of Małopolska / Małopolska Institute of Culture",
+      "accession": "MUJ-289-B",
+      "version_or_date": "1904; Pine and pear wood, iron; veneered and painted",
+      "record_url": "https://muzea.malopolska.pl/en/objects-list/4636",
+      "source_uid": "75a69fcb79424706a8a868498867b292",
+      "identity_confidence": "high",
+      "match_explanation": "Exact provider UID and individual primary record identify the documented physical object. This metadata draft makes no native-material, geometry, pose or calibration approval claim."
+    },
+    "measures": [
+      {
+        "axis": "width",
+        "value": 26.5,
+        "value_text": "26,5",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/4636"
+        ],
+        "sourceFragment": "szerokość 26,5 cm"
+      },
+      {
+        "axis": "height",
+        "value": 18,
+        "value_text": "18",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/4636"
+        ],
+        "sourceFragment": "wysokość 18 cm"
+      },
+      {
+        "axis": "depth",
+        "value": 13.7,
+        "value_text": "13,7",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/4636"
+        ],
+        "sourceFragment": "głębokość 13,7 cm"
+      }
+    ],
+    "evidence": [
+      {
+        "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/4636",
+        "summary": "Primary metric dimensions: szerokość 26,5 cm, wysokość 18 cm, głębokość 13,7 cm",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Actual four-view source-native and four-view production comparison remains pending human review. Mesh calibration has not been performed.",
+    "calibrationBlockers": [
+      "Source-native/production appearance and captured object boundaries require actual eight-view human review.",
+      "Published physical measures have not been matched to exact measurement regions of the immutable final derivative."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "europe/christ-crucified-by-veit-stoss-0637f5": {
+    "dimensions": "width 43,2 cm (ramion), height 54 cm, circumference 24 cm (klatki piersiowej), circumference 18 cm (talii), circumference 21 cm (bioder)",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/4527",
+    "sourceTitle": "Virtual Museums of Małopolska / Museum of Cistercian Spirituality and Culture with the Library in the Cistercian Abbey in Mogiła — Chrystus Ukrzyżowany",
+    "note": "Published metric measurements describe this exact physical object or its stated components. Source-native appearance, capture scope, final pose and model measurement boundaries remain pending review. Physical size is unverified.",
+    "checked": "2026-10-19",
+    "researchStatus": "documented",
+    "identifiedObject": {
+      "title": "Christ Crucified by Veit Stoss",
+      "artist": "Veit Stoss (1447–1533)",
+      "institution": "Virtual Museums of Małopolska / Museum of Cistercian Spirituality and Culture with the Library in the Cistercian Abbey in Mogiła",
+      "accession": "OCM-2024-Rz-4",
+      "version_or_date": "4th quarter of the 15th century; later physical restorations; pearwood, linden wood",
+      "record_url": "https://muzea.malopolska.pl/en/objects-list/4527",
+      "source_uid": "0637f5f99178491abac2b5fcfc277913",
+      "identity_confidence": "high",
+      "match_explanation": "Exact provider UID and individual primary record identify the documented physical object. This metadata draft makes no native-material, geometry, pose or calibration approval claim."
+    },
+    "measures": [
+      {
+        "axis": "width",
+        "value": 43.2,
+        "value_text": "43,2",
+        "unit": "cm",
+        "scope": "ramion",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/4527"
+        ],
+        "sourceFragment": "width 43,2 cm (ramion)"
+      },
+      {
+        "axis": "height",
+        "value": 54,
+        "value_text": "54",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/4527"
+        ],
+        "sourceFragment": "height 54 cm"
+      },
+      {
+        "axis": "circumference",
+        "value": 24,
+        "value_text": "24",
+        "unit": "cm",
+        "scope": "klatki piersiowej",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/4527"
+        ],
+        "sourceFragment": "circumference 24 cm (klatki piersiowej)"
+      },
+      {
+        "axis": "circumference",
+        "value": 18,
+        "value_text": "18",
+        "unit": "cm",
+        "scope": "talii",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/4527"
+        ],
+        "sourceFragment": "circumference 18 cm (talii)"
+      },
+      {
+        "axis": "circumference",
+        "value": 21,
+        "value_text": "21",
+        "unit": "cm",
+        "scope": "bioder",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/4527"
+        ],
+        "sourceFragment": "circumference 21 cm (bioder)"
+      }
+    ],
+    "evidence": [
+      {
+        "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/4527",
+        "summary": "Primary metric dimensions: width 43,2 cm (ramion), height 54 cm, circumference 24 cm (klatki piersiowej), circumference 18 cm (talii), circumference 21 cm (bioder)",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Actual four-view source-native and four-view production comparison remains pending human review. Mesh calibration has not been performed.",
+    "calibrationBlockers": [
+      "Source-native/production appearance and captured object boundaries require actual eight-view human review.",
+      "Published physical measures have not been matched to exact measurement regions of the immutable final derivative."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "asia/surya-the-sun-god-cleveland-1965-557-0f5e1a": {
+    "dimensions": "overall: height 50.4 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.clevelandart.org/art/1965.557",
+    "sourceTitle": "Cleveland Museum of Art — Surya, the Sun God",
+    "note": "Published metric measurements describe this exact physical object or its stated components. Source-native appearance, capture scope, final pose and model measurement boundaries remain pending review. Physical size is unverified.",
+    "checked": "2026-10-19",
+    "researchStatus": "documented",
+    "identifiedObject": {
+      "title": "Surya, the Sun God",
+      "artist": "Unknown maker",
+      "institution": "Cleveland Museum of Art",
+      "accession": "1965.557",
+      "version_or_date": "early 700s; brass with inlaid silver eyes and copper inlaid lips",
+      "record_url": "https://www.clevelandart.org/art/1965.557",
+      "source_uid": "0f5e1ad4a1214e0c88d480e8945da422",
+      "identity_confidence": "high",
+      "match_explanation": "Exact provider UID and individual primary record identify the documented physical object. This metadata draft makes no native-material, geometry, pose or calibration approval claim."
+    },
+    "measures": [
+      {
+        "axis": "height",
+        "value": 50.4,
+        "unit": "cm",
+        "scope": "overall",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://www.clevelandart.org/art/1965.557"
+        ],
+        "primaryValue": 0.504,
+        "primaryUnit": "m",
+        "sourceField": "dimensions.overall.height"
+      }
+    ],
+    "evidence": [
+      {
+        "sourceUrl": "https://www.clevelandart.org/art/1965.557",
+        "summary": "Primary metric dimensions: overall: height 50.4 cm",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Actual four-view source-native and four-view production comparison remains pending human review. Mesh calibration has not been performed.",
+    "calibrationBlockers": [
+      "Source-native/production appearance and captured object boundaries require actual eight-view human review.",
+      "Published physical measures have not been matched to exact measurement regions of the immutable final derivative."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "modern/szymanowski-mickiewicz-after-improvisation-8": {
+    "dimensions": "wysokość 110,5 cm, szerokość 124 cm, długość 89,5 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/8",
+    "sourceTitle": "Virtual Museums of Małopolska / Małopolska Institute of Culture — Mickiewicz po improwizacji",
+    "note": "Published metric measurements describe this exact physical object or its stated components. Source-native appearance, capture scope, final pose and model measurement boundaries remain pending review. Physical size is unverified.",
+    "checked": "2026-10-19",
+    "researchStatus": "documented",
+    "identifiedObject": {
+      "title": "Mickiewicz after an Improvisation",
+      "artist": "Wacław Szymanowski",
+      "institution": "Virtual Museums of Małopolska / Małopolska Institute of Culture",
+      "accession": "MNK II-rz-1235",
+      "version_or_date": "1898–1902; Bronze",
+      "record_url": "https://muzea.malopolska.pl/en/objects-list/8",
+      "source_uid": "51bfa9766bb5404f9da18b4c3574765c",
+      "identity_confidence": "high",
+      "match_explanation": "Exact provider UID and individual primary record identify the documented physical object. This metadata draft makes no native-material, geometry, pose or calibration approval claim."
+    },
+    "measures": [
+      {
+        "axis": "height",
+        "value": 110.5,
+        "value_text": "110,5",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/8"
+        ],
+        "sourceFragment": "wysokość 110,5 cm"
+      },
+      {
+        "axis": "width",
+        "value": 124,
+        "value_text": "124",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/8"
+        ],
+        "sourceFragment": "szerokość 124 cm"
+      },
+      {
+        "axis": "length",
+        "value": 89.5,
+        "value_text": "89,5",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/8"
+        ],
+        "sourceFragment": "długość 89,5 cm"
+      }
+    ],
+    "evidence": [
+      {
+        "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/8",
+        "summary": "Primary metric dimensions: wysokość 110,5 cm, szerokość 124 cm, długość 89,5 cm",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Actual four-view source-native and four-view production comparison remains pending human review. Mesh calibration has not been performed.",
+    "calibrationBlockers": [
+      "Source-native/production appearance and captured object boundaries require actual eight-view human review.",
+      "Published physical measures have not been matched to exact measurement regions of the immutable final derivative."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "asia/colossal-head-of-a-deva-cleveland-2011-147-2413aa": {
+    "dimensions": "overall: height 71.3 cm; overall: width 50 cm; overall: depth 47 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.clevelandart.org/art/2011.147",
+    "sourceTitle": "Cleveland Museum of Art — Colossal Head of a Deva",
+    "note": "Published metric measurements describe this exact physical object or its stated components. Source-native appearance, capture scope, final pose and model measurement boundaries remain pending review. Physical size is unverified.",
+    "checked": "2026-10-19",
+    "researchStatus": "documented",
+    "identifiedObject": {
+      "title": "Colossal Head of a Deva",
+      "artist": "Unknown maker",
+      "institution": "Cleveland Museum of Art",
+      "accession": "2011.147",
+      "version_or_date": "c. 1200; sandstone",
+      "record_url": "https://www.clevelandart.org/art/2011.147",
+      "source_uid": "2413aa3cdb504a368b58b47e5fbefe08",
+      "identity_confidence": "high",
+      "match_explanation": "Exact provider UID and individual primary record identify the documented physical object. This metadata draft makes no native-material, geometry, pose or calibration approval claim."
+    },
+    "measures": [
+      {
+        "axis": "height",
+        "value": 71.3,
+        "unit": "cm",
+        "scope": "overall",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://www.clevelandart.org/art/2011.147"
+        ],
+        "primaryValue": 0.713,
+        "primaryUnit": "m",
+        "sourceField": "dimensions.overall.height"
+      },
+      {
+        "axis": "width",
+        "value": 50,
+        "unit": "cm",
+        "scope": "overall",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://www.clevelandart.org/art/2011.147"
+        ],
+        "primaryValue": 0.5,
+        "primaryUnit": "m",
+        "sourceField": "dimensions.overall.width"
+      },
+      {
+        "axis": "depth",
+        "value": 47,
+        "unit": "cm",
+        "scope": "overall",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://www.clevelandart.org/art/2011.147"
+        ],
+        "primaryValue": 0.47,
+        "primaryUnit": "m",
+        "sourceField": "dimensions.overall.depth"
+      }
+    ],
+    "evidence": [
+      {
+        "sourceUrl": "https://www.clevelandart.org/art/2011.147",
+        "summary": "Primary metric dimensions: overall: height 71.3 cm; overall: width 50 cm; overall: depth 47 cm",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Actual four-view source-native and four-view production comparison remains pending human review. Mesh calibration has not been performed.",
+    "calibrationBlockers": [
+      "Source-native/production appearance and captured object boundaries require actual eight-view human review.",
+      "Published physical measures have not been matched to exact measurement regions of the immutable final derivative."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "modern/drexler-in-the-theatre-box-490": {
+    "dimensions": "wysokość 46 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/490",
+    "sourceTitle": "Virtual Museums of Małopolska / Małopolska Institute of Culture — W loży",
+    "note": "Published metric measurements describe this exact physical object or its stated components. Source-native appearance, capture scope, final pose and model measurement boundaries remain pending review. Physical size is unverified.",
+    "checked": "2026-10-19",
+    "researchStatus": "documented",
+    "identifiedObject": {
+      "title": "In the Theatre Box",
+      "artist": "Luna Amalia Drexler",
+      "institution": "Virtual Museums of Małopolska / Małopolska Institute of Culture",
+      "accession": "MCh-S/2758",
+      "version_or_date": "First quarter of the 20th century; Plaster",
+      "record_url": "https://muzea.malopolska.pl/en/objects-list/490",
+      "source_uid": "6385359e567c4a209b98deae17c4c401",
+      "identity_confidence": "high",
+      "match_explanation": "Exact provider UID and individual primary record identify the documented physical object. This metadata draft makes no native-material, geometry, pose or calibration approval claim."
+    },
+    "measures": [
+      {
+        "axis": "height",
+        "value": 46,
+        "value_text": "46",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/490"
+        ],
+        "sourceFragment": "wysokość 46 cm"
+      }
+    ],
+    "evidence": [
+      {
+        "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/490",
+        "summary": "Primary metric dimensions: wysokość 46 cm",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Actual four-view source-native and four-view production comparison remains pending human review. Mesh calibration has not been performed.",
+    "calibrationBlockers": [
+      "Source-native/production appearance and captured object boundaries require actual eight-view human review.",
+      "Published physical measures have not been matched to exact measurement regions of the immutable final derivative."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "europe/holy-sepulchre-shaped-reliquary-0ffa1a": {
+    "dimensions": "height 23,5 cm, width 31 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/2976",
+    "sourceTitle": "Virtual Museums of Małopolska / Museum of Miechów Land — Holy Sepulchre-shaped reliquary",
+    "note": "Published metric measurements describe this exact physical object or its stated components. Source-native appearance, capture scope, final pose and model measurement boundaries remain pending review. Physical size is unverified.",
+    "checked": "2026-10-19",
+    "researchStatus": "documented",
+    "identifiedObject": {
+      "title": "Holy Sepulchre-shaped reliquary",
+      "artist": "Unknown maker",
+      "institution": "Virtual Museums of Małopolska / Museum of Miechów Land",
+      "accession": "MZM/D/S/55",
+      "version_or_date": "Date uncertain; traditionally associated with a 1584 gift; silver",
+      "record_url": "https://muzea.malopolska.pl/en/objects-list/2976",
+      "source_uid": "0ffa1a821a19492ebdc2141f4e247c72",
+      "identity_confidence": "high",
+      "match_explanation": "Exact provider UID and individual primary record identify the documented physical object. This metadata draft makes no native-material, geometry, pose or calibration approval claim."
+    },
+    "measures": [
+      {
+        "axis": "height",
+        "value": 23.5,
+        "value_text": "23,5",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/2976"
+        ],
+        "sourceFragment": "height 23,5 cm"
+      },
+      {
+        "axis": "width",
+        "value": 31,
+        "value_text": "31",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/2976"
+        ],
+        "sourceFragment": "width 31 cm"
+      }
+    ],
+    "evidence": [
+      {
+        "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/2976",
+        "summary": "Primary metric dimensions: height 23,5 cm, width 31 cm",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Actual four-view source-native and four-view production comparison remains pending human review. Mesh calibration has not been performed.",
+    "calibrationBlockers": [
+      "Source-native/production appearance and captured object boundaries require actual eight-view human review.",
+      "Published physical measures have not been matched to exact measurement regions of the immutable final derivative."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "asia/standing-buddha-cleveland-1966-30-dbdf5d": {
+    "dimensions": "overall: height 98.1 cm; base: width 28.2 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.clevelandart.org/art/1966.30",
+    "sourceTitle": "Cleveland Museum of Art — Standing Buddha",
+    "note": "Published metric measurements describe this exact physical object or its stated components. Source-native appearance, capture scope, final pose and model measurement boundaries remain pending review. Physical size is unverified.",
+    "checked": "2026-10-19",
+    "researchStatus": "documented",
+    "identifiedObject": {
+      "title": "Standing Buddha",
+      "artist": "Unknown maker",
+      "institution": "Cleveland Museum of Art",
+      "accession": "1966.30",
+      "version_or_date": "c. 900; brass with silver and copper inlay",
+      "record_url": "https://www.clevelandart.org/art/1966.30",
+      "source_uid": "dbdf5dff485f47e48ea89aa558e1f79b",
+      "identity_confidence": "high",
+      "match_explanation": "Exact provider UID and individual primary record identify the documented physical object. This metadata draft makes no native-material, geometry, pose or calibration approval claim."
+    },
+    "measures": [
+      {
+        "axis": "height",
+        "value": 98.1,
+        "unit": "cm",
+        "scope": "overall",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://www.clevelandart.org/art/1966.30"
+        ],
+        "primaryValue": 0.981,
+        "primaryUnit": "m",
+        "sourceField": "dimensions.overall.height"
+      },
+      {
+        "axis": "width",
+        "value": 28.2,
+        "unit": "cm",
+        "scope": "base",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://www.clevelandart.org/art/1966.30"
+        ],
+        "primaryValue": 0.282,
+        "primaryUnit": "m",
+        "sourceField": "dimensions.base.width"
+      }
+    ],
+    "evidence": [
+      {
+        "sourceUrl": "https://www.clevelandart.org/art/1966.30",
+        "summary": "Primary metric dimensions: overall: height 98.1 cm; base: width 28.2 cm",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Actual four-view source-native and four-view production comparison remains pending human review. Mesh calibration has not been performed.",
+    "calibrationBlockers": [
+      "Source-native/production appearance and captured object boundaries require actual eight-view human review.",
+      "Published physical measures have not been matched to exact measurement regions of the immutable final derivative."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "modern/gadomski-portrait-zofia-potocka-18": {
+    "dimensions": "wysokość 49 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/18",
+    "sourceTitle": "Virtual Museums of Małopolska / Małopolska Institute of Culture — Portret Zofii Potockiej",
+    "note": "Published metric measurements describe this exact physical object or its stated components. Source-native appearance, capture scope, final pose and model measurement boundaries remain pending review. Physical size is unverified.",
+    "checked": "2026-10-19",
+    "researchStatus": "documented",
+    "identifiedObject": {
+      "title": "Portrait of Zofia Potocka",
+      "artist": "Walery Gadomski",
+      "institution": "Virtual Museums of Małopolska / Małopolska Institute of Culture",
+      "accession": "MNK II-rz-78",
+      "version_or_date": "c. 1875–1877; Marble",
+      "record_url": "https://muzea.malopolska.pl/en/objects-list/18",
+      "source_uid": "145f47b707134e809ad3de68b283eac0",
+      "identity_confidence": "high",
+      "match_explanation": "Exact provider UID and individual primary record identify the documented physical object. This metadata draft makes no native-material, geometry, pose or calibration approval claim."
+    },
+    "measures": [
+      {
+        "axis": "height",
+        "value": 49,
+        "value_text": "49",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/18"
+        ],
+        "sourceFragment": "wysokość 49 cm"
+      }
+    ],
+    "evidence": [
+      {
+        "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/18",
+        "summary": "Primary metric dimensions: wysokość 49 cm",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Actual four-view source-native and four-view production comparison remains pending human review. Mesh calibration has not been performed.",
+    "calibrationBlockers": [
+      "Source-native/production appearance and captured object boundaries require actual eight-view human review.",
+      "Published physical measures have not been matched to exact measurement regions of the immutable final derivative."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "europe/gothic-reliquary-herm-cb6485": {
+    "dimensions": "height 38 cm, width 26 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/321",
+    "sourceTitle": "Virtual Museums of Małopolska / Museum of Biecka Land in Biecz — Gothic reliquary herm",
+    "note": "Published metric measurements describe this exact physical object or its stated components. Source-native appearance, capture scope, final pose and model measurement boundaries remain pending review. Physical size is unverified.",
+    "checked": "2026-10-19",
+    "researchStatus": "documented",
+    "identifiedObject": {
+      "title": "Gothic reliquary herm",
+      "artist": "Biecz workshop",
+      "institution": "Virtual Museums of Małopolska / Museum of Biecka Land in Biecz",
+      "accession": "AH/1287",
+      "version_or_date": "Late 15th–early 16th century (tentative museum date); wood",
+      "record_url": "https://muzea.malopolska.pl/en/objects-list/321",
+      "source_uid": "cb6485edcd4f454999415a2e74503e84",
+      "identity_confidence": "high",
+      "match_explanation": "Exact provider UID and individual primary record identify the documented physical object. This metadata draft makes no native-material, geometry, pose or calibration approval claim."
+    },
+    "measures": [
+      {
+        "axis": "height",
+        "value": 38,
+        "value_text": "38",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/321"
+        ],
+        "sourceFragment": "height 38 cm"
+      },
+      {
+        "axis": "width",
+        "value": 26,
+        "value_text": "26",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/321"
+        ],
+        "sourceFragment": "width 26 cm"
+      }
+    ],
+    "evidence": [
+      {
+        "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/321",
+        "summary": "Primary metric dimensions: height 38 cm, width 26 cm",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Actual four-view source-native and four-view production comparison remains pending human review. Mesh calibration has not been performed.",
+    "calibrationBlockers": [
+      "Source-native/production appearance and captured object boundaries require actual eight-view human review.",
+      "Published physical measures have not been matched to exact measurement regions of the immutable final derivative."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "modern/sosnowski-count-kazimierz-potulicki-186": {
+    "dimensions": "wysokość 49 cm, szerokość 32,5 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/186",
+    "sourceTitle": "Virtual Museums of Małopolska / Małopolska Institute of Culture — Popiersie hrabiego Kazimierza Potulickiego",
+    "note": "Published metric measurements describe this exact physical object or its stated components. Source-native appearance, capture scope, final pose and model measurement boundaries remain pending review. Physical size is unverified.",
+    "checked": "2026-10-19",
+    "researchStatus": "documented",
+    "identifiedObject": {
+      "title": "Bust of Count Kazimierz Potulicki",
+      "artist": "Tomasz Oskar Sosnowski",
+      "institution": "Virtual Museums of Małopolska / Małopolska Institute of Culture",
+      "accession": "MCh-S/1034",
+      "version_or_date": "1839; Carrara marble",
+      "record_url": "https://muzea.malopolska.pl/en/objects-list/186",
+      "source_uid": "9facedbad89e4bb19b8331f1f5bd4abf",
+      "identity_confidence": "high",
+      "match_explanation": "Exact provider UID and individual primary record identify the documented physical object. This metadata draft makes no native-material, geometry, pose or calibration approval claim."
+    },
+    "measures": [
+      {
+        "axis": "height",
+        "value": 49,
+        "value_text": "49",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/186"
+        ],
+        "sourceFragment": "wysokość 49 cm"
+      },
+      {
+        "axis": "width",
+        "value": 32.5,
+        "value_text": "32,5",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/186"
+        ],
+        "sourceFragment": "szerokość 32,5 cm"
+      }
+    ],
+    "evidence": [
+      {
+        "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/186",
+        "summary": "Primary metric dimensions: wysokość 49 cm, szerokość 32,5 cm",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Actual four-view source-native and four-view production comparison remains pending human review. Mesh calibration has not been performed.",
+    "calibrationBlockers": [
+      "Source-native/production appearance and captured object boundaries require actual eight-view human review.",
+      "Published physical measures have not been matched to exact measurement regions of the immutable final derivative."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "europe/monstrance-559b37": {
+    "dimensions": "height 58,5 cm, width 21,5 cm, depth 17 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/3096",
+    "sourceTitle": "Virtual Museums of Małopolska / Museum of Miechów Land — Monstrancja",
+    "note": "Published metric measurements describe this exact physical object or its stated components. Source-native appearance, capture scope, final pose and model measurement boundaries remain pending review. Physical size is unverified.",
+    "checked": "2026-10-19",
+    "researchStatus": "documented",
+    "identifiedObject": {
+      "title": "Monstrance",
+      "artist": "Unknown maker",
+      "institution": "Virtual Museums of Małopolska / Museum of Miechów Land",
+      "accession": "MZM/DS/52",
+      "version_or_date": "1759; silver, gold, glass",
+      "record_url": "https://muzea.malopolska.pl/en/objects-list/3096",
+      "source_uid": "559b37e64f9a4e05acb1e2a1cd10bd54",
+      "identity_confidence": "high",
+      "match_explanation": "Exact provider UID and individual primary record identify the documented physical object. This metadata draft makes no native-material, geometry, pose or calibration approval claim."
+    },
+    "measures": [
+      {
+        "axis": "height",
+        "value": 58.5,
+        "value_text": "58,5",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/3096"
+        ],
+        "sourceFragment": "height 58,5 cm"
+      },
+      {
+        "axis": "width",
+        "value": 21.5,
+        "value_text": "21,5",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/3096"
+        ],
+        "sourceFragment": "width 21,5 cm"
+      },
+      {
+        "axis": "depth",
+        "value": 17,
+        "value_text": "17",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/3096"
+        ],
+        "sourceFragment": "depth 17 cm"
+      }
+    ],
+    "evidence": [
+      {
+        "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/3096",
+        "summary": "Primary metric dimensions: height 58,5 cm, width 21,5 cm, depth 17 cm",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Actual four-view source-native and four-view production comparison remains pending human review. Mesh calibration has not been performed.",
+    "calibrationBlockers": [
+      "Source-native/production appearance and captured object boundaries require actual eight-view human review.",
+      "Published physical measures have not been matched to exact measurement regions of the immutable final derivative."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "asia/prince-shotoku-at-age-two-shotoku-taishi-cleveland-1989-76-78ae04": {
+    "dimensions": "height: height 68.6 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.clevelandart.org/art/1989.76",
+    "sourceTitle": "Cleveland Museum of Art — Prince Shōtoku at Age Two (Shōtoku Taishi)",
+    "note": "Published metric measurements describe this exact physical object or its stated components. Source-native appearance, capture scope, final pose and model measurement boundaries remain pending review. Physical size is unverified.",
+    "checked": "2026-10-19",
+    "researchStatus": "documented",
+    "identifiedObject": {
+      "title": "Prince Shōtoku at Age Two (Shōtoku Taishi)",
+      "artist": "Unknown maker",
+      "institution": "Cleveland Museum of Art",
+      "accession": "1989.76",
+      "version_or_date": "early 1300s; Wood with lacquer, color, and rock-crystal inlaid eyes",
+      "record_url": "https://www.clevelandart.org/art/1989.76",
+      "source_uid": "78ae046fb1b5421fbd9684cae68fed03",
+      "identity_confidence": "high",
+      "match_explanation": "Exact provider UID and individual primary record identify the documented physical object. This metadata draft makes no native-material, geometry, pose or calibration approval claim."
+    },
+    "measures": [
+      {
+        "axis": "height",
+        "value": 68.6,
+        "unit": "cm",
+        "scope": "height",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://www.clevelandart.org/art/1989.76"
+        ],
+        "primaryValue": 0.686,
+        "primaryUnit": "m",
+        "sourceField": "dimensions.height.height"
+      }
+    ],
+    "evidence": [
+      {
+        "sourceUrl": "https://www.clevelandart.org/art/1989.76",
+        "summary": "Primary metric dimensions: height: height 68.6 cm",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Actual four-view source-native and four-view production comparison remains pending human review. Mesh calibration has not been performed.",
+    "calibrationBlockers": [
+      "Source-native/production appearance and captured object boundaries require actual eight-view human review.",
+      "Published physical measures have not been matched to exact measurement regions of the immutable final derivative."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "modern/schluter-bust-woman-roza-loewenfeld-192": {
+    "dimensions": "wysokość 50 cm, szerokość 40 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/192",
+    "sourceTitle": "Virtual Museums of Małopolska / Małopolska Institute of Culture — Popiersie kobiety",
+    "note": "Published metric measurements describe this exact physical object or its stated components. Source-native appearance, capture scope, final pose and model measurement boundaries remain pending review. Physical size is unverified.",
+    "checked": "2026-10-19",
+    "researchStatus": "documented",
+    "identifiedObject": {
+      "title": "Bust of a Woman (traditionally Róża Loewenfeld)",
+      "artist": "Carl Schlüter",
+      "institution": "Virtual Museums of Małopolska / Małopolska Institute of Culture",
+      "accession": "MCh-S/12",
+      "version_or_date": "1880; Stucco",
+      "record_url": "https://muzea.malopolska.pl/en/objects-list/192",
+      "source_uid": "fc6e731a0131471ba8e45511c7ea9996",
+      "identity_confidence": "high",
+      "match_explanation": "Exact provider UID and individual primary record identify the documented physical object. This metadata draft makes no native-material, geometry, pose or calibration approval claim."
+    },
+    "measures": [
+      {
+        "axis": "height",
+        "value": 50,
+        "value_text": "50",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/192"
+        ],
+        "sourceFragment": "wysokość 50 cm"
+      },
+      {
+        "axis": "width",
+        "value": 40,
+        "value_text": "40",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/192"
+        ],
+        "sourceFragment": "szerokość 40 cm"
+      }
+    ],
+    "evidence": [
+      {
+        "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/192",
+        "summary": "Primary metric dimensions: wysokość 50 cm, szerokość 40 cm",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Actual four-view source-native and four-view production comparison remains pending human review. Mesh calibration has not been performed.",
+    "calibrationBlockers": [
+      "Source-native/production appearance and captured object boundaries require actual eight-view human review.",
+      "Published physical measures have not been matched to exact measurement regions of the immutable final derivative."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "europe/monstrance-8d8ebf": {
+    "dimensions": "height 64,4 cm, height 21,1 cm (stopa), width 24,7 cm (stopa)",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/3093",
+    "sourceTitle": "Virtual Museums of Małopolska / Museum of Miechów Land — Monstrancja",
+    "note": "Published metric measurements describe this exact physical object or its stated components. Source-native appearance, capture scope, final pose and model measurement boundaries remain pending review. Physical size is unverified.",
+    "checked": "2026-10-19",
+    "researchStatus": "documented",
+    "identifiedObject": {
+      "title": "Monstrance",
+      "artist": "Unknown maker",
+      "institution": "Virtual Museums of Małopolska / Museum of Miechów Land",
+      "accession": "MZM/DS/64",
+      "version_or_date": "4th quarter of the 17th century; silver, gold",
+      "record_url": "https://muzea.malopolska.pl/en/objects-list/3093",
+      "source_uid": "8d8ebfceced7499a856174d061bcb516",
+      "identity_confidence": "high",
+      "match_explanation": "Exact provider UID and individual primary record identify the documented physical object. This metadata draft makes no native-material, geometry, pose or calibration approval claim."
+    },
+    "measures": [
+      {
+        "axis": "height",
+        "value": 64.4,
+        "value_text": "64,4",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/3093"
+        ],
+        "sourceFragment": "height 64,4 cm"
+      },
+      {
+        "axis": "height",
+        "value": 21.1,
+        "value_text": "21,1",
+        "unit": "cm",
+        "scope": "stopa",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/3093"
+        ],
+        "sourceFragment": "height 21,1 cm (stopa)"
+      },
+      {
+        "axis": "width",
+        "value": 24.7,
+        "value_text": "24,7",
+        "unit": "cm",
+        "scope": "stopa",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/3093"
+        ],
+        "sourceFragment": "width 24,7 cm (stopa)"
+      }
+    ],
+    "evidence": [
+      {
+        "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/3093",
+        "summary": "Primary metric dimensions: height 64,4 cm, height 21,1 cm (stopa), width 24,7 cm (stopa)",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Actual four-view source-native and four-view production comparison remains pending human review. Mesh calibration has not been performed.",
+    "calibrationBlockers": [
+      "Source-native/production appearance and captured object boundaries require actual eight-view human review.",
+      "Published physical measures have not been matched to exact measurement regions of the immutable final derivative."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "sub-saharan-africa/prestige-chair-cleveland-1983-33-03d10a": {
+    "dimensions": "overall: height 80.7 cm; overall: width 53.3 cm; overall: depth 44.5 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.clevelandart.org/art/1983.33",
+    "sourceTitle": "Cleveland Museum of Art — Prestige Chair",
+    "note": "Published metric measurements describe this exact physical object or its stated components. Source-native appearance, capture scope, final pose and model measurement boundaries remain pending review. Physical size is unverified.",
+    "checked": "2026-10-19",
+    "researchStatus": "documented",
+    "identifiedObject": {
+      "title": "Prestige Chair",
+      "artist": "Unknown maker",
+      "institution": "Cleveland Museum of Art",
+      "accession": "1983.33",
+      "version_or_date": "1800s; Wood and paint",
+      "record_url": "https://www.clevelandart.org/art/1983.33",
+      "source_uid": "03d10a0ccb254061a8ec77b8cc14b40c",
+      "identity_confidence": "high",
+      "match_explanation": "Exact provider UID and individual primary record identify the documented physical object. This metadata draft makes no native-material, geometry, pose or calibration approval claim."
+    },
+    "measures": [
+      {
+        "axis": "height",
+        "value": 80.7,
+        "unit": "cm",
+        "scope": "overall",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://www.clevelandart.org/art/1983.33"
+        ],
+        "primaryValue": 0.807,
+        "primaryUnit": "m",
+        "sourceField": "dimensions.overall.height"
+      },
+      {
+        "axis": "width",
+        "value": 53.3,
+        "unit": "cm",
+        "scope": "overall",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://www.clevelandart.org/art/1983.33"
+        ],
+        "primaryValue": 0.533,
+        "primaryUnit": "m",
+        "sourceField": "dimensions.overall.width"
+      },
+      {
+        "axis": "depth",
+        "value": 44.5,
+        "unit": "cm",
+        "scope": "overall",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://www.clevelandart.org/art/1983.33"
+        ],
+        "primaryValue": 0.445,
+        "primaryUnit": "m",
+        "sourceField": "dimensions.overall.depth"
+      }
+    ],
+    "evidence": [
+      {
+        "sourceUrl": "https://www.clevelandart.org/art/1983.33",
+        "summary": "Primary metric dimensions: overall: height 80.7 cm; overall: width 53.3 cm; overall: depth 44.5 cm",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Actual four-view source-native and four-view production comparison remains pending human review. Mesh calibration has not been performed.",
+    "calibrationBlockers": [
+      "Source-native/production appearance and captured object boundaries require actual eight-view human review.",
+      "Published physical measures have not been matched to exact measurement regions of the immutable final derivative."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "modern/wowro-birds-332": {
+    "dimensions": "wysokość 17 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/332",
+    "sourceTitle": "Virtual Museums of Małopolska / Małopolska Institute of Culture — Ptaszki",
+    "note": "Published metric measurements describe this exact physical object or its stated components. Source-native appearance, capture scope, final pose and model measurement boundaries remain pending review. Physical size is unverified.",
+    "checked": "2026-10-19",
+    "researchStatus": "documented",
+    "identifiedObject": {
+      "title": "Birds",
+      "artist": "Jędrzej Wowro",
+      "institution": "Virtual Museums of Małopolska / Małopolska Institute of Culture",
+      "accession": "449/97",
+      "version_or_date": "Interwar period; Carved and painted wood",
+      "record_url": "https://muzea.malopolska.pl/en/objects-list/332",
+      "source_uid": "ce5c834f6d9d41d8930456638ca5c320",
+      "identity_confidence": "high",
+      "match_explanation": "Exact provider UID and individual primary record identify the documented physical object. This metadata draft makes no native-material, geometry, pose or calibration approval claim."
+    },
+    "measures": [
+      {
+        "axis": "height",
+        "value": 17,
+        "value_text": "17",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/332"
+        ],
+        "sourceFragment": "wysokość 17 cm"
+      }
+    ],
+    "evidence": [
+      {
+        "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/332",
+        "summary": "Primary metric dimensions: wysokość 17 cm",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Actual four-view source-native and four-view production comparison remains pending human review. Mesh calibration has not been performed.",
+    "calibrationBlockers": [
+      "Source-native/production appearance and captured object boundaries require actual eight-view human review.",
+      "Published physical measures have not been matched to exact measurement regions of the immutable final derivative."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "europe/wooden-feretory-with-representation-of-madonna-70c9db": {
+    "dimensions": "height 103 cm, width 72 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/740",
+    "sourceTitle": "Virtual Museums of Małopolska / Vistula Ethnographic Park Museum in Wygiełzów and Lipowiec Castle — Wooden feretory with representation of Madonna",
+    "note": "Published metric measurements describe this exact physical object or its stated components. Source-native appearance, capture scope, final pose and model measurement boundaries remain pending review. Physical size is unverified.",
+    "checked": "2026-10-19",
+    "researchStatus": "documented",
+    "identifiedObject": {
+      "title": "Wooden feretory with representation of Madonna",
+      "artist": "Unknown maker",
+      "institution": "Virtual Museums of Małopolska / Vistula Ethnographic Park Museum in Wygiełzów and Lipowiec Castle",
+      "accession": "MNPE/S/101",
+      "version_or_date": "17th/18th century; gypsum, wood",
+      "record_url": "https://muzea.malopolska.pl/en/objects-list/740",
+      "source_uid": "70c9db48af544dd4a90c1387057d9fc4",
+      "identity_confidence": "high",
+      "match_explanation": "Exact provider UID and individual primary record identify the documented physical object. This metadata draft makes no native-material, geometry, pose or calibration approval claim."
+    },
+    "measures": [
+      {
+        "axis": "height",
+        "value": 103,
+        "value_text": "103",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/740"
+        ],
+        "sourceFragment": "height 103 cm"
+      },
+      {
+        "axis": "width",
+        "value": 72,
+        "value_text": "72",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/740"
+        ],
+        "sourceFragment": "width 72 cm"
+      }
+    ],
+    "evidence": [
+      {
+        "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/740",
+        "summary": "Primary metric dimensions: height 103 cm, width 72 cm",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Actual four-view source-native and four-view production comparison remains pending human review. Mesh calibration has not been performed.",
+    "calibrationBlockers": [
+      "Source-native/production appearance and captured object boundaries require actual eight-view human review.",
+      "Published physical measures have not been matched to exact measurement regions of the immutable final derivative."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "asia/kneeling-winged-monster-cleveland-1957-360-cb3834": {
+    "dimensions": "overall: height 75 cm; overall: width 63.6 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.clevelandart.org/art/1957.360",
+    "sourceTitle": "Cleveland Museum of Art — Kneeling Winged Monster",
+    "note": "Published metric measurements describe this exact physical object or its stated components. Source-native appearance, capture scope, final pose and model measurement boundaries remain pending review. Physical size is unverified.",
+    "checked": "2026-10-19",
+    "researchStatus": "documented",
+    "identifiedObject": {
+      "title": "Kneeling Winged Monster (1957.360)",
+      "artist": "Unknown maker",
+      "institution": "Cleveland Museum of Art",
+      "accession": "1957.360",
+      "version_or_date": "550–77; limestone",
+      "record_url": "https://www.clevelandart.org/art/1957.360",
+      "source_uid": "cb38348b07904e49b5d8c99ca0707cfc",
+      "identity_confidence": "high",
+      "match_explanation": "Exact provider UID and individual primary record identify the documented physical object. This metadata draft makes no native-material, geometry, pose or calibration approval claim."
+    },
+    "measures": [
+      {
+        "axis": "height",
+        "value": 75,
+        "unit": "cm",
+        "scope": "overall",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://www.clevelandart.org/art/1957.360"
+        ],
+        "primaryValue": 0.75,
+        "primaryUnit": "m",
+        "sourceField": "dimensions.overall.height"
+      },
+      {
+        "axis": "width",
+        "value": 63.6,
+        "unit": "cm",
+        "scope": "overall",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://www.clevelandart.org/art/1957.360"
+        ],
+        "primaryValue": 0.636,
+        "primaryUnit": "m",
+        "sourceField": "dimensions.overall.width"
+      }
+    ],
+    "evidence": [
+      {
+        "sourceUrl": "https://www.clevelandart.org/art/1957.360",
+        "summary": "Primary metric dimensions: overall: height 75 cm; overall: width 63.6 cm",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Actual four-view source-native and four-view production comparison remains pending human review. Mesh calibration has not been performed.",
+    "calibrationBlockers": [
+      "Source-native/production appearance and captured object boundaries require actual eight-view human review.",
+      "Published physical measures have not been matched to exact measurement regions of the immutable final derivative."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "modern/tombinski-bust-jan-matejko-2260": {
+    "dimensions": "wysokość 54 cm, szerokość 72 cm, długość 97 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/2260",
+    "sourceTitle": "Virtual Museums of Małopolska / Małopolska Institute of Culture — Popiersie Jana Matejki",
+    "note": "Published metric measurements describe this exact physical object or its stated components. Source-native appearance, capture scope, final pose and model measurement boundaries remain pending review. Physical size is unverified.",
+    "checked": "2026-10-19",
+    "researchStatus": "documented",
+    "identifiedObject": {
+      "title": "Bust of Jan Matejko",
+      "artist": "Jan Tombiński",
+      "institution": "Virtual Museums of Małopolska / Małopolska Institute of Culture",
+      "accession": "Rz 76",
+      "version_or_date": "1894; Plaster",
+      "record_url": "https://muzea.malopolska.pl/en/objects-list/2260",
+      "source_uid": "d6203c12328743ee9b75ec32843fb089",
+      "identity_confidence": "high",
+      "match_explanation": "Exact provider UID and individual primary record identify the documented physical object. This metadata draft makes no native-material, geometry, pose or calibration approval claim."
+    },
+    "measures": [
+      {
+        "axis": "height",
+        "value": 54,
+        "value_text": "54",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/2260"
+        ],
+        "sourceFragment": "wysokość 54 cm"
+      },
+      {
+        "axis": "width",
+        "value": 72,
+        "value_text": "72",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/2260"
+        ],
+        "sourceFragment": "szerokość 72 cm"
+      },
+      {
+        "axis": "length",
+        "value": 97,
+        "value_text": "97",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/2260"
+        ],
+        "sourceFragment": "długość 97 cm"
+      }
+    ],
+    "evidence": [
+      {
+        "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/2260",
+        "summary": "Primary metric dimensions: wysokość 54 cm, szerokość 72 cm, długość 97 cm",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Actual four-view source-native and four-view production comparison remains pending human review. Mesh calibration has not been performed.",
+    "calibrationBlockers": [
+      "Source-native/production appearance and captured object boundaries require actual eight-view human review.",
+      "Published physical measures have not been matched to exact measurement regions of the immutable final derivative."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "europe/cabinet-with-images-of-saints-94d705": {
+    "dimensions": "height 22 cm, length 42 cm, depth 26 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/266",
+    "sourceTitle": "Virtual Museums of Małopolska / National Museum in Kraków — Cabinet with images of saints",
+    "note": "Published metric measurements describe this exact physical object or its stated components. Source-native appearance, capture scope, final pose and model measurement boundaries remain pending review. Physical size is unverified.",
+    "checked": "2026-10-19",
+    "researchStatus": "documented",
+    "identifiedObject": {
+      "title": "Cabinet with images of saints",
+      "artist": "Unknown maker",
+      "institution": "Virtual Museums of Małopolska / National Museum in Kraków",
+      "accession": "MNK IV-Sp-227",
+      "version_or_date": "mid–17th century; iron, birch wood, beech wood",
+      "record_url": "https://muzea.malopolska.pl/en/objects-list/266",
+      "source_uid": "94d7057b8de7404eb3a18b62ef79d663",
+      "identity_confidence": "high",
+      "match_explanation": "Exact provider UID and individual primary record identify the documented physical object. This metadata draft makes no native-material, geometry, pose or calibration approval claim."
+    },
+    "measures": [
+      {
+        "axis": "height",
+        "value": 22,
+        "value_text": "22",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/266"
+        ],
+        "sourceFragment": "height 22 cm"
+      },
+      {
+        "axis": "length",
+        "value": 42,
+        "value_text": "42",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/266"
+        ],
+        "sourceFragment": "length 42 cm"
+      },
+      {
+        "axis": "depth",
+        "value": 26,
+        "value_text": "26",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/266"
+        ],
+        "sourceFragment": "depth 26 cm"
+      }
+    ],
+    "evidence": [
+      {
+        "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/266",
+        "summary": "Primary metric dimensions: height 22 cm, length 42 cm, depth 26 cm",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Actual four-view source-native and four-view production comparison remains pending human review. Mesh calibration has not been performed.",
+    "calibrationBlockers": [
+      "Source-native/production appearance and captured object boundaries require actual eight-view human review.",
+      "Published physical measures have not been matched to exact measurement regions of the immutable final derivative."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "asia/ravana-shaking-mount-kailasa-cleveland-1971-173-8007d4": {
+    "dimensions": "overall: height 139 cm; overall: width 72 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.clevelandart.org/art/1971.173",
+    "sourceTitle": "Cleveland Museum of Art — Ravana Shaking Mount Kailasa",
+    "note": "Published metric measurements describe this exact physical object or its stated components. Source-native appearance, capture scope, final pose and model measurement boundaries remain pending review. Physical size is unverified.",
+    "checked": "2026-10-19",
+    "researchStatus": "documented",
+    "identifiedObject": {
+      "title": "Ravana Shaking Mount Kailasa",
+      "artist": "Unknown maker",
+      "institution": "Cleveland Museum of Art",
+      "accession": "1971.173",
+      "version_or_date": "700s; sandstone",
+      "record_url": "https://www.clevelandart.org/art/1971.173",
+      "source_uid": "8007d485d2de4b709f86579028f9539b",
+      "identity_confidence": "high",
+      "match_explanation": "Exact provider UID and individual primary record identify the documented physical object. This metadata draft makes no native-material, geometry, pose or calibration approval claim."
+    },
+    "measures": [
+      {
+        "axis": "height",
+        "value": 139,
+        "unit": "cm",
+        "scope": "overall",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://www.clevelandart.org/art/1971.173"
+        ],
+        "primaryValue": 1.39,
+        "primaryUnit": "m",
+        "sourceField": "dimensions.overall.height"
+      },
+      {
+        "axis": "width",
+        "value": 72,
+        "unit": "cm",
+        "scope": "overall",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://www.clevelandart.org/art/1971.173"
+        ],
+        "primaryValue": 0.72,
+        "primaryUnit": "m",
+        "sourceField": "dimensions.overall.width"
+      }
+    ],
+    "evidence": [
+      {
+        "sourceUrl": "https://www.clevelandart.org/art/1971.173",
+        "summary": "Primary metric dimensions: overall: height 139 cm; overall: width 72 cm",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Actual four-view source-native and four-view production comparison remains pending human review. Mesh calibration has not been performed.",
+    "calibrationBlockers": [
+      "Source-native/production appearance and captured object boundaries require actual eight-view human review.",
+      "Published physical measures have not been matched to exact measurement regions of the immutable final derivative."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "europe/cabinet-1cf7e6": {
+    "dimensions": "height 52 cm, width 74 cm, depth 45 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/769",
+    "sourceTitle": "Virtual Museums of Małopolska / Wawel Royal Castle – National Art Collection — Cabinet",
+    "note": "Published metric measurements describe this exact physical object or its stated components. Source-native appearance, capture scope, final pose and model measurement boundaries remain pending review. Physical size is unverified.",
+    "checked": "2026-10-19",
+    "researchStatus": "documented",
+    "identifiedObject": {
+      "title": "Cabinet",
+      "artist": "Unknown maker",
+      "institution": "Virtual Museums of Małopolska / Wawel Royal Castle – National Art Collection",
+      "accession": "ZKWawel 1794",
+      "version_or_date": "4th quarter of the 17th century; brass, cardboard, ivory, oak wood, tin, nacre, rosewood, tortoiseshell",
+      "record_url": "https://muzea.malopolska.pl/en/objects-list/769",
+      "source_uid": "1cf7e63269054b2e819fe3a8f5125bc9",
+      "identity_confidence": "high",
+      "match_explanation": "Exact provider UID and individual primary record identify the documented physical object. This metadata draft makes no native-material, geometry, pose or calibration approval claim."
+    },
+    "measures": [
+      {
+        "axis": "height",
+        "value": 52,
+        "value_text": "52",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/769"
+        ],
+        "sourceFragment": "height 52 cm"
+      },
+      {
+        "axis": "width",
+        "value": 74,
+        "value_text": "74",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/769"
+        ],
+        "sourceFragment": "width 74 cm"
+      },
+      {
+        "axis": "depth",
+        "value": 45,
+        "value_text": "45",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/769"
+        ],
+        "sourceFragment": "depth 45 cm"
+      }
+    ],
+    "evidence": [
+      {
+        "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/769",
+        "summary": "Primary metric dimensions: height 52 cm, width 74 cm, depth 45 cm",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Actual four-view source-native and four-view production comparison remains pending human review. Mesh calibration has not been performed.",
+    "calibrationBlockers": [
+      "Source-native/production appearance and captured object boundaries require actual eight-view human review.",
+      "Published physical measures have not been matched to exact measurement regions of the immutable final derivative."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "asia/deep-vessel-cleveland-1998-32-abf57c": {
+    "dimensions": "diameter: width 36.8 cm; height: height 44.7 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.clevelandart.org/art/1998.32",
+    "sourceTitle": "Cleveland Museum of Art — Deep Vessel",
+    "note": "Published metric measurements describe this exact physical object or its stated components. Source-native appearance, capture scope, final pose and model measurement boundaries remain pending review. Physical size is unverified.",
+    "checked": "2026-10-19",
+    "researchStatus": "documented",
+    "identifiedObject": {
+      "title": "Deep Vessel",
+      "artist": "Unknown maker",
+      "institution": "Cleveland Museum of Art",
+      "accession": "1998.32",
+      "version_or_date": "c. 2500 BCE; Earthenware with impressed and carved decoration",
+      "record_url": "https://www.clevelandart.org/art/1998.32",
+      "source_uid": "abf57c7c2a6f4454aa8fc40d4a87ae50",
+      "identity_confidence": "high",
+      "match_explanation": "Exact provider UID and individual primary record identify the documented physical object. This metadata draft makes no native-material, geometry, pose or calibration approval claim."
+    },
+    "measures": [
+      {
+        "axis": "width",
+        "value": 36.8,
+        "unit": "cm",
+        "scope": "diameter",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://www.clevelandart.org/art/1998.32"
+        ],
+        "primaryValue": 0.368,
+        "primaryUnit": "m",
+        "sourceField": "dimensions.diameter.width"
+      },
+      {
+        "axis": "height",
+        "value": 44.7,
+        "unit": "cm",
+        "scope": "height",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://www.clevelandart.org/art/1998.32"
+        ],
+        "primaryValue": 0.447,
+        "primaryUnit": "m",
+        "sourceField": "dimensions.height.height"
+      }
+    ],
+    "evidence": [
+      {
+        "sourceUrl": "https://www.clevelandart.org/art/1998.32",
+        "summary": "Primary metric dimensions: diameter: width 36.8 cm; height: height 44.7 cm",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Actual four-view source-native and four-view production comparison remains pending human review. Mesh calibration has not been performed.",
+    "calibrationBlockers": [
+      "Source-native/production appearance and captured object boundaries require actual eight-view human review.",
+      "Published physical measures have not been matched to exact measurement regions of the immutable final derivative."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "modern/ksiazek-devil-butterfly-4585": {
+    "dimensions": "szerokość 30 cm (od dłoni do dłoni), wysokość 47 cm (od stóp do czułek), grubość 3 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/4585",
+    "sourceTitle": "Virtual Museums of Małopolska / Małopolska Institute of Culture — Diabeł–motyl",
+    "note": "Published metric measurements describe this exact physical object or its stated components. Source-native appearance, capture scope, final pose and model measurement boundaries remain pending review. Physical size is unverified.",
+    "checked": "2026-10-19",
+    "researchStatus": "documented",
+    "identifiedObject": {
+      "title": "Devil–Butterfly",
+      "artist": "Bolesław Książek",
+      "institution": "Virtual Museums of Małopolska / Małopolska Institute of Culture",
+      "accession": "BK_MS_6",
+      "version_or_date": "1980s; Hand-formed glazed ceramic",
+      "record_url": "https://muzea.malopolska.pl/en/objects-list/4585",
+      "source_uid": "4f99a7f0bc0c4d2e9fadce541c75f57d",
+      "identity_confidence": "high",
+      "match_explanation": "Exact provider UID and individual primary record identify the documented physical object. This metadata draft makes no native-material, geometry, pose or calibration approval claim."
+    },
+    "measures": [
+      {
+        "axis": "width",
+        "value": 30,
+        "value_text": "30",
+        "unit": "cm",
+        "scope": "od dłoni do dłoni",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/4585"
+        ],
+        "sourceFragment": "szerokość 30 cm (od dłoni do dłoni)"
+      },
+      {
+        "axis": "height",
+        "value": 47,
+        "value_text": "47",
+        "unit": "cm",
+        "scope": "od stóp do czułek",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/4585"
+        ],
+        "sourceFragment": "wysokość 47 cm (od stóp do czułek)"
+      },
+      {
+        "axis": "thickness",
+        "value": 3,
+        "value_text": "3",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/4585"
+        ],
+        "sourceFragment": "grubość 3 cm"
+      }
+    ],
+    "evidence": [
+      {
+        "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/4585",
+        "summary": "Primary metric dimensions: szerokość 30 cm (od dłoni do dłoni), wysokość 47 cm (od stóp do czułek), grubość 3 cm",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Actual four-view source-native and four-view production comparison remains pending human review. Mesh calibration has not been performed.",
+    "calibrationBlockers": [
+      "Source-native/production appearance and captured object boundaries require actual eight-view human review.",
+      "Published physical measures have not been matched to exact measurement regions of the immutable final derivative."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "europe/tankard-depicting-the-queen-of-sheba-and-solomon-a1ed5f": {
+    "dimensions": "height 23,3 cm (with the pinnacle), width 26,2 cm (with the ear), diameter 15,3–15,7 cm (of upper part), diameter 19,5 cm (base)",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/2802",
+    "sourceTitle": "Virtual Museums of Małopolska / Jagiellonian University Museum, Collegium Maius — Tankard depicting the Queen of Sheba in front of King Solomon",
+    "note": "Published metric measurements describe this exact physical object or its stated components. Source-native appearance, capture scope, final pose and model measurement boundaries remain pending review. Physical size is unverified.",
+    "checked": "2026-10-19",
+    "researchStatus": "documented",
+    "identifiedObject": {
+      "title": "Tankard depicting the Queen of Sheba and Solomon",
+      "artist": "Otto Schwerdfeger",
+      "institution": "Virtual Museums of Małopolska / Jagiellonian University Museum, Collegium Maius",
+      "accession": "8743; 3430/IV",
+      "version_or_date": "1686–1689; silver",
+      "record_url": "https://muzea.malopolska.pl/en/objects-list/2802",
+      "source_uid": "a1ed5f79b647481297366adc42bc6903",
+      "identity_confidence": "high",
+      "match_explanation": "Exact provider UID and individual primary record identify the documented physical object. This metadata draft makes no native-material, geometry, pose or calibration approval claim."
+    },
+    "measures": [
+      {
+        "axis": "height",
+        "value": 23.3,
+        "value_text": "23,3",
+        "unit": "cm",
+        "scope": "with the pinnacle",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/2802"
+        ],
+        "sourceFragment": "height 23,3 cm (with the pinnacle)"
+      },
+      {
+        "axis": "width",
+        "value": 26.2,
+        "value_text": "26,2",
+        "unit": "cm",
+        "scope": "with the ear",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/2802"
+        ],
+        "sourceFragment": "width 26,2 cm (with the ear)"
+      },
+      {
+        "axis": "diameter",
+        "value": 19.5,
+        "value_text": "19,5",
+        "unit": "cm",
+        "scope": "base",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/2802"
+        ],
+        "sourceFragment": "diameter 19,5 cm (base)"
+      }
+    ],
+    "evidence": [
+      {
+        "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/2802",
+        "summary": "Primary metric dimensions: height 23,3 cm (with the pinnacle), width 26,2 cm (with the ear), diameter 15,3–15,7 cm (of upper part), diameter 19,5 cm (base)",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Actual four-view source-native and four-view production comparison remains pending human review. Mesh calibration has not been performed.",
+    "calibrationBlockers": [
+      "Source-native/production appearance and captured object boundaries require actual eight-view human review.",
+      "Published physical measures have not been matched to exact measurement regions of the immutable final derivative."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable.",
+    "unresolvedPublishedMeasurements": [
+      {
+        "axis": "diameter",
+        "value_text": "15,3–15,7",
+        "unit": "cm",
+        "scope": "of upper part",
+        "sourceFragment": "diameter 15,3–15,7 cm (of upper part)",
+        "reason": "Published range retained without inventing one scalar measurement."
+      }
+    ]
+  },
+  "asia/recumbent-bull-cleveland-1985-74-774c1c": {
+    "dimensions": "overall: height 3.5 cm; overall: width 7 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.clevelandart.org/art/1985.74",
+    "sourceTitle": "Cleveland Museum of Art — Recumbent Bull",
+    "note": "Published metric measurements describe this exact physical object or its stated components. Source-native appearance, capture scope, final pose and model measurement boundaries remain pending review. Physical size is unverified.",
+    "checked": "2026-10-19",
+    "researchStatus": "documented",
+    "identifiedObject": {
+      "title": "Recumbent Bull",
+      "artist": "Unknown maker",
+      "institution": "Cleveland Museum of Art",
+      "accession": "1985.74",
+      "version_or_date": "700s; gilt bronze",
+      "record_url": "https://www.clevelandart.org/art/1985.74",
+      "source_uid": "774c1c5f1cd4484f98b68ee96d886950",
+      "identity_confidence": "high",
+      "match_explanation": "Exact provider UID and individual primary record identify the documented physical object. This metadata draft makes no native-material, geometry, pose or calibration approval claim."
+    },
+    "measures": [
+      {
+        "axis": "height",
+        "value": 3.5,
+        "unit": "cm",
+        "scope": "overall",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://www.clevelandart.org/art/1985.74"
+        ],
+        "primaryValue": 0.035,
+        "primaryUnit": "m",
+        "sourceField": "dimensions.overall.height"
+      },
+      {
+        "axis": "width",
+        "value": 7,
+        "unit": "cm",
+        "scope": "overall",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://www.clevelandart.org/art/1985.74"
+        ],
+        "primaryValue": 0.07,
+        "primaryUnit": "m",
+        "sourceField": "dimensions.overall.width"
+      }
+    ],
+    "evidence": [
+      {
+        "sourceUrl": "https://www.clevelandart.org/art/1985.74",
+        "summary": "Primary metric dimensions: overall: height 3.5 cm; overall: width 7 cm",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Actual four-view source-native and four-view production comparison remains pending human review. Mesh calibration has not been performed.",
+    "calibrationBlockers": [
+      "Source-native/production appearance and captured object boundaries require actual eight-view human review.",
+      "Published physical measures have not been matched to exact measurement regions of the immutable final derivative."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "modern/ksiazek-violinist-4607": {
+    "dimensions": "szerokość 24 cm (od skrzypiec do łokcia), wysokość 30 cm, głębokość 20 cm (od kolana do pleców)",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/4607",
+    "sourceTitle": "Virtual Museums of Małopolska / Małopolska Institute of Culture — Skrzypaczka",
+    "note": "Published metric measurements describe this exact physical object or its stated components. Source-native appearance, capture scope, final pose and model measurement boundaries remain pending review. Physical size is unverified.",
+    "checked": "2026-10-19",
+    "researchStatus": "documented",
+    "identifiedObject": {
+      "title": "Violinist",
+      "artist": "Bolesław Książek; Kamionka Cooperative (manufacturer)",
+      "institution": "Virtual Museums of Małopolska / Małopolska Institute of Culture",
+      "accession": "BK_MS_28",
+      "version_or_date": "1959; Glazed ceramic",
+      "record_url": "https://muzea.malopolska.pl/en/objects-list/4607",
+      "source_uid": "14b4555a51b34b38896d0144be188e1e",
+      "identity_confidence": "high",
+      "match_explanation": "Exact provider UID and individual primary record identify the documented physical object. This metadata draft makes no native-material, geometry, pose or calibration approval claim."
+    },
+    "measures": [
+      {
+        "axis": "width",
+        "value": 24,
+        "value_text": "24",
+        "unit": "cm",
+        "scope": "od skrzypiec do łokcia",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/4607"
+        ],
+        "sourceFragment": "szerokość 24 cm (od skrzypiec do łokcia)"
+      },
+      {
+        "axis": "height",
+        "value": 30,
+        "value_text": "30",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/4607"
+        ],
+        "sourceFragment": "wysokość 30 cm"
+      },
+      {
+        "axis": "depth",
+        "value": 20,
+        "value_text": "20",
+        "unit": "cm",
+        "scope": "od kolana do pleców",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/4607"
+        ],
+        "sourceFragment": "głębokość 20 cm (od kolana do pleców)"
+      }
+    ],
+    "evidence": [
+      {
+        "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/4607",
+        "summary": "Primary metric dimensions: szerokość 24 cm (od skrzypiec do łokcia), wysokość 30 cm, głębokość 20 cm (od kolana do pleców)",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Actual four-view source-native and four-view production comparison remains pending human review. Mesh calibration has not been performed.",
+    "calibrationBlockers": [
+      "Source-native/production appearance and captured object boundaries require actual eight-view human review.",
+      "Published physical measures have not been matched to exact measurement regions of the immutable final derivative."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "europe/tabletop-clock-1670-c5d25a": {
+    "dimensions": "height 11,6 cm, width 20,6 cm, depth 17,8 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/2435",
+    "sourceTitle": "Virtual Museums of Małopolska / National Museum in Kraków — Tabletop clock, so-called tile clock",
+    "note": "Published metric measurements describe this exact physical object or its stated components. Source-native appearance, capture scope, final pose and model measurement boundaries remain pending review. Physical size is unverified.",
+    "checked": "2026-10-19",
+    "researchStatus": "documented",
+    "identifiedObject": {
+      "title": "Tabletop clock (1670)",
+      "artist": "Wolfgang Prenner",
+      "institution": "Virtual Museums of Małopolska / National Museum in Kraków",
+      "accession": "MNK IV-Zeg-11",
+      "version_or_date": "ca. 1670; bronze, steel, copper",
+      "record_url": "https://muzea.malopolska.pl/en/objects-list/2435",
+      "source_uid": "c5d25a4967894a1683afeb3533658d5b",
+      "identity_confidence": "high",
+      "match_explanation": "Exact provider UID and individual primary record identify the documented physical object. This metadata draft makes no native-material, geometry, pose or calibration approval claim."
+    },
+    "measures": [
+      {
+        "axis": "height",
+        "value": 11.6,
+        "value_text": "11,6",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/2435"
+        ],
+        "sourceFragment": "height 11,6 cm"
+      },
+      {
+        "axis": "width",
+        "value": 20.6,
+        "value_text": "20,6",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/2435"
+        ],
+        "sourceFragment": "width 20,6 cm"
+      },
+      {
+        "axis": "depth",
+        "value": 17.8,
+        "value_text": "17,8",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/2435"
+        ],
+        "sourceFragment": "depth 17,8 cm"
+      }
+    ],
+    "evidence": [
+      {
+        "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/2435",
+        "summary": "Primary metric dimensions: height 11,6 cm, width 20,6 cm, depth 17,8 cm",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Actual four-view source-native and four-view production comparison remains pending human review. Mesh calibration has not been performed.",
+    "calibrationBlockers": [
+      "Source-native/production appearance and captured object boundaries require actual eight-view human review.",
+      "Published physical measures have not been matched to exact measurement regions of the immutable final derivative."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "asia/mother-goddess-cleveland-1970-12-78133a": {
+    "dimensions": "overall: height 79.4 cm; overall: width 23.2 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.clevelandart.org/art/1970.12",
+    "sourceTitle": "Cleveland Museum of Art — Mother Goddess",
+    "note": "Published metric measurements describe this exact physical object or its stated components. Source-native appearance, capture scope, final pose and model measurement boundaries remain pending review. Physical size is unverified.",
+    "checked": "2026-10-19",
+    "researchStatus": "documented",
+    "identifiedObject": {
+      "title": "Mother Goddess",
+      "artist": "Unknown maker",
+      "institution": "Cleveland Museum of Art",
+      "accession": "1970.12",
+      "version_or_date": "c. 600; schist",
+      "record_url": "https://www.clevelandart.org/art/1970.12",
+      "source_uid": "78133a22b04c44a1bfcfcb9fcd63f3b6",
+      "identity_confidence": "high",
+      "match_explanation": "Exact provider UID and individual primary record identify the documented physical object. This metadata draft makes no native-material, geometry, pose or calibration approval claim."
+    },
+    "measures": [
+      {
+        "axis": "height",
+        "value": 79.4,
+        "unit": "cm",
+        "scope": "overall",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://www.clevelandart.org/art/1970.12"
+        ],
+        "primaryValue": 0.794,
+        "primaryUnit": "m",
+        "sourceField": "dimensions.overall.height"
+      },
+      {
+        "axis": "width",
+        "value": 23.2,
+        "unit": "cm",
+        "scope": "overall",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://www.clevelandart.org/art/1970.12"
+        ],
+        "primaryValue": 0.232,
+        "primaryUnit": "m",
+        "sourceField": "dimensions.overall.width"
+      }
+    ],
+    "evidence": [
+      {
+        "sourceUrl": "https://www.clevelandart.org/art/1970.12",
+        "summary": "Primary metric dimensions: overall: height 79.4 cm; overall: width 23.2 cm",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Actual four-view source-native and four-view production comparison remains pending human review. Mesh calibration has not been performed.",
+    "calibrationBlockers": [
+      "Source-native/production appearance and captured object boundaries require actual eight-view human review.",
+      "Published physical measures have not been matched to exact measurement regions of the immutable final derivative."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "modern/ksiazek-standing-woman-4609": {
+    "dimensions": "szerokość 5,5 cm (ramiona), wysokość 22 cm, głębokość 7 cm (sukienka)",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/4609",
+    "sourceTitle": "Virtual Museums of Małopolska / Małopolska Institute of Culture — Stojąca kobieta",
+    "note": "Published metric measurements describe this exact physical object or its stated components. Source-native appearance, capture scope, final pose and model measurement boundaries remain pending review. Physical size is unverified.",
+    "checked": "2026-10-19",
+    "researchStatus": "documented",
+    "identifiedObject": {
+      "title": "Standing Woman (Bolesław Książek; Kamionka Cooperative (manufacturer), BK_MS_30)",
+      "artist": "Bolesław Książek; Kamionka Cooperative (manufacturer)",
+      "institution": "Virtual Museums of Małopolska / Małopolska Institute of Culture",
+      "accession": "BK_MS_30",
+      "version_or_date": "1960s; Glazed ceramic",
+      "record_url": "https://muzea.malopolska.pl/en/objects-list/4609",
+      "source_uid": "8424e8f5887b42d8a8e184f12409f1a4",
+      "identity_confidence": "high",
+      "match_explanation": "Exact provider UID and individual primary record identify the documented physical object. This metadata draft makes no native-material, geometry, pose or calibration approval claim."
+    },
+    "measures": [
+      {
+        "axis": "width",
+        "value": 5.5,
+        "value_text": "5,5",
+        "unit": "cm",
+        "scope": "ramiona",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/4609"
+        ],
+        "sourceFragment": "szerokość 5,5 cm (ramiona)"
+      },
+      {
+        "axis": "height",
+        "value": 22,
+        "value_text": "22",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/4609"
+        ],
+        "sourceFragment": "wysokość 22 cm"
+      },
+      {
+        "axis": "depth",
+        "value": 7,
+        "value_text": "7",
+        "unit": "cm",
+        "scope": "sukienka",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/4609"
+        ],
+        "sourceFragment": "głębokość 7 cm (sukienka)"
+      }
+    ],
+    "evidence": [
+      {
+        "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/4609",
+        "summary": "Primary metric dimensions: szerokość 5,5 cm (ramiona), wysokość 22 cm, głębokość 7 cm (sukienka)",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Actual four-view source-native and four-view production comparison remains pending human review. Mesh calibration has not been performed.",
+    "calibrationBlockers": [
+      "Source-native/production appearance and captured object boundaries require actual eight-view human review.",
+      "Published physical measures have not been matched to exact measurement regions of the immutable final derivative."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "asia/tripod-ding-cleveland-1962-281-af15e7": {
+    "dimensions": "overall: height 24.5 cm; overall: width 20 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.clevelandart.org/art/1962.281",
+    "sourceTitle": "Cleveland Museum of Art — Tripod (Ding)",
+    "note": "Published metric measurements describe this exact physical object or its stated components. Source-native appearance, capture scope, final pose and model measurement boundaries remain pending review. Physical size is unverified.",
+    "checked": "2026-10-19",
+    "researchStatus": "documented",
+    "identifiedObject": {
+      "title": "Tripod (Ding)",
+      "artist": "Unknown maker",
+      "institution": "Cleveland Museum of Art",
+      "accession": "1962.281",
+      "version_or_date": "c. 1250–1046 BCE; bronze",
+      "record_url": "https://www.clevelandart.org/art/1962.281",
+      "source_uid": "af15e7980f9b4f718094fc2e16205d89",
+      "identity_confidence": "high",
+      "match_explanation": "Exact provider UID and individual primary record identify the documented physical object. This metadata draft makes no native-material, geometry, pose or calibration approval claim."
+    },
+    "measures": [
+      {
+        "axis": "height",
+        "value": 24.5,
+        "unit": "cm",
+        "scope": "overall",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://www.clevelandart.org/art/1962.281"
+        ],
+        "primaryValue": 0.245,
+        "primaryUnit": "m",
+        "sourceField": "dimensions.overall.height"
+      },
+      {
+        "axis": "width",
+        "value": 20,
+        "unit": "cm",
+        "scope": "overall",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://www.clevelandart.org/art/1962.281"
+        ],
+        "primaryValue": 0.2,
+        "primaryUnit": "m",
+        "sourceField": "dimensions.overall.width"
+      }
+    ],
+    "evidence": [
+      {
+        "sourceUrl": "https://www.clevelandart.org/art/1962.281",
+        "summary": "Primary metric dimensions: overall: height 24.5 cm; overall: width 20 cm",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Actual four-view source-native and four-view production comparison remains pending human review. Mesh calibration has not been performed.",
+    "calibrationBlockers": [
+      "Source-native/production appearance and captured object boundaries require actual eight-view human review.",
+      "Published physical measures have not been matched to exact measurement regions of the immutable final derivative."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "modern/ksiazek-ox-4608": {
+    "dimensions": "szerokość 10 cm, wysokość 16 cm, długość 19 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/4608",
+    "sourceTitle": "Virtual Museums of Małopolska / Małopolska Institute of Culture — Wół",
+    "note": "Published metric measurements describe this exact physical object or its stated components. Source-native appearance, capture scope, final pose and model measurement boundaries remain pending review. Physical size is unverified.",
+    "checked": "2026-10-19",
+    "researchStatus": "documented",
+    "identifiedObject": {
+      "title": "Ox",
+      "artist": "Bolesław Książek; Kamionka Cooperative (manufacturer)",
+      "institution": "Virtual Museums of Małopolska / Małopolska Institute of Culture",
+      "accession": "BK_MS_29",
+      "version_or_date": "1960s; Glazed ceramic",
+      "record_url": "https://muzea.malopolska.pl/en/objects-list/4608",
+      "source_uid": "058e931bd278415ea826cd6c9024d66f",
+      "identity_confidence": "high",
+      "match_explanation": "Exact provider UID and individual primary record identify the documented physical object. This metadata draft makes no native-material, geometry, pose or calibration approval claim."
+    },
+    "measures": [
+      {
+        "axis": "width",
+        "value": 10,
+        "value_text": "10",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/4608"
+        ],
+        "sourceFragment": "szerokość 10 cm"
+      },
+      {
+        "axis": "height",
+        "value": 16,
+        "value_text": "16",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/4608"
+        ],
+        "sourceFragment": "wysokość 16 cm"
+      },
+      {
+        "axis": "length",
+        "value": 19,
+        "value_text": "19",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/4608"
+        ],
+        "sourceFragment": "długość 19 cm"
+      }
+    ],
+    "evidence": [
+      {
+        "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/4608",
+        "summary": "Primary metric dimensions: szerokość 10 cm, wysokość 16 cm, długość 19 cm",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Actual four-view source-native and four-view production comparison remains pending human review. Mesh calibration has not been performed.",
+    "calibrationBlockers": [
+      "Source-native/production appearance and captured object boundaries require actual eight-view human review.",
+      "Published physical measures have not been matched to exact measurement regions of the immutable final derivative."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "asia/seated-zenki-and-koki-cleveland-2012-40-87781e": {
+    "dimensions": "Unknown",
+    "status": "unresolved",
+    "basis": "object",
+    "sourceUrl": "https://www.clevelandart.org/art/2012.40",
+    "sourceTitle": "Cleveland Museum of Art — Seated Zenki and Koki",
+    "note": "No unambiguous labeled metric measure is available. Published numeric sequences remain evidence without guessed axes. Physical size is unverified.",
+    "checked": "2026-10-19",
+    "researchStatus": "unresolved",
+    "identifiedObject": {
+      "title": "Seated Zenki and Koki",
+      "artist": "Unknown maker",
+      "institution": "Cleveland Museum of Art",
+      "accession": "2012.40",
+      "version_or_date": "1400s; wood with pigment",
+      "record_url": "https://www.clevelandart.org/art/2012.40",
+      "source_uid": "87781ebfa25d4bc68f4ca87a5879a666",
+      "identity_confidence": "high",
+      "match_explanation": "Exact provider UID and individual primary record identify the documented physical object. This metadata draft makes no native-material, geometry, pose or calibration approval claim."
+    },
+    "measures": [],
+    "evidence": [
+      {
+        "sourceUrl": "https://www.clevelandart.org/art/2012.40",
+        "summary": "Primary metric dimensions: Unknown",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Actual four-view source-native and four-view production comparison remains pending human review. Mesh calibration has not been performed.",
+    "calibrationBlockers": [
+      "Source-native/production appearance and captured object boundaries require actual eight-view human review.",
+      "Published physical measures have not been matched to exact measurement regions of the immutable final derivative."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "modern/ksiazek-thinker-4610": {
+    "dimensions": "szerokość 23 cm, wysokość 40 cm, głębokość 40 cm (od palców stopy do pleców)",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/4610",
+    "sourceTitle": "Virtual Museums of Małopolska / Małopolska Institute of Culture — Myśliciel",
+    "note": "Published metric measurements describe this exact physical object or its stated components. Source-native appearance, capture scope, final pose and model measurement boundaries remain pending review. Physical size is unverified.",
+    "checked": "2026-10-19",
+    "researchStatus": "documented",
+    "identifiedObject": {
+      "title": "Thinker",
+      "artist": "Bolesław Książek; Kamionka Cooperative (manufacturer)",
+      "institution": "Virtual Museums of Małopolska / Małopolska Institute of Culture",
+      "accession": "BK_MS_31",
+      "version_or_date": "1950s; Glazed ceramic",
+      "record_url": "https://muzea.malopolska.pl/en/objects-list/4610",
+      "source_uid": "492a7c28ac75400495a439290844afa0",
+      "identity_confidence": "high",
+      "match_explanation": "Exact provider UID and individual primary record identify the documented physical object. This metadata draft makes no native-material, geometry, pose or calibration approval claim."
+    },
+    "measures": [
+      {
+        "axis": "width",
+        "value": 23,
+        "value_text": "23",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/4610"
+        ],
+        "sourceFragment": "szerokość 23 cm"
+      },
+      {
+        "axis": "height",
+        "value": 40,
+        "value_text": "40",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/4610"
+        ],
+        "sourceFragment": "wysokość 40 cm"
+      },
+      {
+        "axis": "depth",
+        "value": 40,
+        "value_text": "40",
+        "unit": "cm",
+        "scope": "od palców stopy do pleców",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/4610"
+        ],
+        "sourceFragment": "głębokość 40 cm (od palców stopy do pleców)"
+      }
+    ],
+    "evidence": [
+      {
+        "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/4610",
+        "summary": "Primary metric dimensions: szerokość 23 cm, wysokość 40 cm, głębokość 40 cm (od palców stopy do pleców)",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Actual four-view source-native and four-view production comparison remains pending human review. Mesh calibration has not been performed.",
+    "calibrationBlockers": [
+      "Source-native/production appearance and captured object boundaries require actual eight-view human review.",
+      "Published physical measures have not been matched to exact measurement regions of the immutable final derivative."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "asia/ding-censer-with-an-openwork-cover-1034cd": {
+    "dimensions": "height 26,2 cm (with lid), diameter 22,3 cm (with handles), height 17,6 cm (without lid), diameter 12 cm (mouth diameter)",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/2490",
+    "sourceTitle": "Virtual Museums of Małopolska / National Museum in Kraków — Ding censer with an openwork cover and handles in the shape of stylised dragons",
+    "note": "Published metric measurements describe this exact physical object or its stated components. Source-native appearance, capture scope, final pose and model measurement boundaries remain pending review. Physical size is unverified.",
+    "checked": "2026-10-19",
+    "researchStatus": "documented",
+    "identifiedObject": {
+      "title": "Ding censer with an openwork cover",
+      "artist": "Unknown maker",
+      "institution": "Virtual Museums of Małopolska / National Museum in Kraków",
+      "accession": "MNK VI-NN-33 ab",
+      "version_or_date": "1736–1795 (Qianlong period, 1736–1795; epoque Quing, 1644–1911); copper, bronze, gold",
+      "record_url": "https://muzea.malopolska.pl/en/objects-list/2490",
+      "source_uid": "1034cd8e4df5430cb874f012415a43b0",
+      "identity_confidence": "high",
+      "match_explanation": "Exact provider UID and individual primary record identify the documented physical object. This metadata draft makes no native-material, geometry, pose or calibration approval claim."
+    },
+    "measures": [
+      {
+        "axis": "height",
+        "value": 26.2,
+        "value_text": "26,2",
+        "unit": "cm",
+        "scope": "with lid",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/2490"
+        ],
+        "sourceFragment": "height 26,2 cm (with lid)"
+      },
+      {
+        "axis": "diameter",
+        "value": 22.3,
+        "value_text": "22,3",
+        "unit": "cm",
+        "scope": "with handles",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/2490"
+        ],
+        "sourceFragment": "diameter 22,3 cm (with handles)"
+      },
+      {
+        "axis": "height",
+        "value": 17.6,
+        "value_text": "17,6",
+        "unit": "cm",
+        "scope": "without lid",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/2490"
+        ],
+        "sourceFragment": "height 17,6 cm (without lid)"
+      },
+      {
+        "axis": "diameter",
+        "value": 12,
+        "value_text": "12",
+        "unit": "cm",
+        "scope": "mouth diameter",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/2490"
+        ],
+        "sourceFragment": "diameter 12 cm (mouth diameter)"
+      }
+    ],
+    "evidence": [
+      {
+        "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/2490",
+        "summary": "Primary metric dimensions: height 26,2 cm (with lid), diameter 22,3 cm (with handles), height 17,6 cm (without lid), diameter 12 cm (mouth diameter)",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Actual four-view source-native and four-view production comparison remains pending human review. Mesh calibration has not been performed.",
+    "calibrationBlockers": [
+      "Source-native/production appearance and captured object boundaries require actual eight-view human review.",
+      "Published physical measures have not been matched to exact measurement regions of the immutable final derivative."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "americas/head-with-animal-helmet-cleveland-1990-237-12841a": {
+    "dimensions": "overall: height 39.1 cm; overall: width 23.4 cm; overall: depth 16.5 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.clevelandart.org/art/1990.237",
+    "sourceTitle": "Cleveland Museum of Art — Head with Animal Helmet",
+    "note": "Published metric measurements describe this exact physical object or its stated components. Source-native appearance, capture scope, final pose and model measurement boundaries remain pending review. Physical size is unverified.",
+    "checked": "2026-10-19",
+    "researchStatus": "documented",
+    "identifiedObject": {
+      "title": "Head with Animal Helmet",
+      "artist": "Unknown maker",
+      "institution": "Cleveland Museum of Art",
+      "accession": "1990.237",
+      "version_or_date": "c. 600–1000; earthenware, pigment",
+      "record_url": "https://www.clevelandart.org/art/1990.237",
+      "source_uid": "12841a53ba114c4492f2dbb410b164b9",
+      "identity_confidence": "high",
+      "match_explanation": "Exact provider UID and individual primary record identify the documented physical object. This metadata draft makes no native-material, geometry, pose or calibration approval claim."
+    },
+    "measures": [
+      {
+        "axis": "height",
+        "value": 39.1,
+        "unit": "cm",
+        "scope": "overall",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://www.clevelandart.org/art/1990.237"
+        ],
+        "primaryValue": 0.391,
+        "primaryUnit": "m",
+        "sourceField": "dimensions.overall.height"
+      },
+      {
+        "axis": "width",
+        "value": 23.4,
+        "unit": "cm",
+        "scope": "overall",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://www.clevelandart.org/art/1990.237"
+        ],
+        "primaryValue": 0.234,
+        "primaryUnit": "m",
+        "sourceField": "dimensions.overall.width"
+      },
+      {
+        "axis": "depth",
+        "value": 16.5,
+        "unit": "cm",
+        "scope": "overall",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://www.clevelandart.org/art/1990.237"
+        ],
+        "primaryValue": 0.165,
+        "primaryUnit": "m",
+        "sourceField": "dimensions.overall.depth"
+      }
+    ],
+    "evidence": [
+      {
+        "sourceUrl": "https://www.clevelandart.org/art/1990.237",
+        "summary": "Primary metric dimensions: overall: height 39.1 cm; overall: width 23.4 cm; overall: depth 16.5 cm",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Actual four-view source-native and four-view production comparison remains pending human review. Mesh calibration has not been performed.",
+    "calibrationBlockers": [
+      "Source-native/production appearance and captured object boundaries require actual eight-view human review.",
+      "Published physical measures have not been matched to exact measurement regions of the immutable final derivative."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "modern/ksiazek-abstract-linear-relief-4580": {
+    "dimensions": "szerokość 60 cm, wysokość 40 cm, grubość 4 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/4580",
+    "sourceTitle": "Virtual Museums of Małopolska / Małopolska Institute of Culture — Kompozycja abstrakcyjna",
+    "note": "Published metric measurements describe this exact physical object or its stated components. Source-native appearance, capture scope, final pose and model measurement boundaries remain pending review. Physical size is unverified.",
+    "checked": "2026-10-19",
+    "researchStatus": "documented",
+    "identifiedObject": {
+      "title": "Abstract Composition: Linear Relief",
+      "artist": "Bolesław Książek",
+      "institution": "Virtual Museums of Małopolska / Małopolska Institute of Culture",
+      "accession": "BK_MS_1",
+      "version_or_date": "1980s; Glazed clay, metal and cement",
+      "record_url": "https://muzea.malopolska.pl/en/objects-list/4580",
+      "source_uid": "20d9cdc4f0af443489f6e2498614295a",
+      "identity_confidence": "high",
+      "match_explanation": "Exact provider UID and individual primary record identify the documented physical object. This metadata draft makes no native-material, geometry, pose or calibration approval claim."
+    },
+    "measures": [
+      {
+        "axis": "width",
+        "value": 60,
+        "value_text": "60",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/4580"
+        ],
+        "sourceFragment": "szerokość 60 cm"
+      },
+      {
+        "axis": "height",
+        "value": 40,
+        "value_text": "40",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/4580"
+        ],
+        "sourceFragment": "wysokość 40 cm"
+      },
+      {
+        "axis": "thickness",
+        "value": 4,
+        "value_text": "4",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/4580"
+        ],
+        "sourceFragment": "grubość 4 cm"
+      }
+    ],
+    "evidence": [
+      {
+        "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/4580",
+        "summary": "Primary metric dimensions: szerokość 60 cm, wysokość 40 cm, grubość 4 cm",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Actual four-view source-native and four-view production comparison remains pending human review. Mesh calibration has not been performed.",
+    "calibrationBlockers": [
+      "Source-native/production appearance and captured object boundaries require actual eight-view human review.",
+      "Published physical measures have not been matched to exact measurement regions of the immutable final derivative."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "asia/ink-dish-in-the-shape-of-a-chinese-lion-d84f02": {
+    "dimensions": "height 22,9 cm, length 18,9 cm, diameter 8 cm (ball)",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/2489",
+    "sourceTitle": "Virtual Museums of Małopolska / National Museum in Kraków — Ink dish in the shape of a Chinese imperial guardian lion with a small cub",
+    "note": "Published metric measurements describe this exact physical object or its stated components. Source-native appearance, capture scope, final pose and model measurement boundaries remain pending review. Physical size is unverified.",
+    "checked": "2026-10-19",
+    "researchStatus": "documented",
+    "identifiedObject": {
+      "title": "Ink dish in the shape of a Chinese lion",
+      "artist": "Unknown maker",
+      "institution": "Virtual Museums of Małopolska / National Museum in Kraków",
+      "accession": "MNK VI-7857/a-b",
+      "version_or_date": "18th century (epoque Quing, 1644–1911); bronze, gold",
+      "record_url": "https://muzea.malopolska.pl/en/objects-list/2489",
+      "source_uid": "d84f02395b9b412a836afb20eaadcfd1",
+      "identity_confidence": "high",
+      "match_explanation": "Exact provider UID and individual primary record identify the documented physical object. This metadata draft makes no native-material, geometry, pose or calibration approval claim."
+    },
+    "measures": [
+      {
+        "axis": "height",
+        "value": 22.9,
+        "value_text": "22,9",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/2489"
+        ],
+        "sourceFragment": "height 22,9 cm"
+      },
+      {
+        "axis": "length",
+        "value": 18.9,
+        "value_text": "18,9",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/2489"
+        ],
+        "sourceFragment": "length 18,9 cm"
+      },
+      {
+        "axis": "diameter",
+        "value": 8,
+        "value_text": "8",
+        "unit": "cm",
+        "scope": "ball",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/2489"
+        ],
+        "sourceFragment": "diameter 8 cm (ball)"
+      }
+    ],
+    "evidence": [
+      {
+        "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/2489",
+        "summary": "Primary metric dimensions: height 22,9 cm, length 18,9 cm, diameter 8 cm (ball)",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Actual four-view source-native and four-view production comparison remains pending human review. Mesh calibration has not been performed.",
+    "calibrationBlockers": [
+      "Source-native/production appearance and captured object boundaries require actual eight-view human review.",
+      "Published physical measures have not been matched to exact measurement regions of the immutable final derivative."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "americas/ballgame-palma-cleveland-1973-3-5c5227": {
+    "dimensions": "overall: height 49.2 cm; overall: width 23.5 cm; overall: depth 11.4 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.clevelandart.org/art/1973.3",
+    "sourceTitle": "Cleveland Museum of Art — Ballgame Palma",
+    "note": "Published metric measurements describe this exact physical object or its stated components. Source-native appearance, capture scope, final pose and model measurement boundaries remain pending review. Physical size is unverified.",
+    "checked": "2026-10-19",
+    "researchStatus": "documented",
+    "identifiedObject": {
+      "title": "Ballgame Palma",
+      "artist": "Unknown maker",
+      "institution": "Cleveland Museum of Art",
+      "accession": "1973.3",
+      "version_or_date": "c. 900–1100; stone",
+      "record_url": "https://www.clevelandart.org/art/1973.3",
+      "source_uid": "5c5227e077e04654bcffa15002b9b51a",
+      "identity_confidence": "high",
+      "match_explanation": "Exact provider UID and individual primary record identify the documented physical object. This metadata draft makes no native-material, geometry, pose or calibration approval claim."
+    },
+    "measures": [
+      {
+        "axis": "height",
+        "value": 49.2,
+        "unit": "cm",
+        "scope": "overall",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://www.clevelandart.org/art/1973.3"
+        ],
+        "primaryValue": 0.492,
+        "primaryUnit": "m",
+        "sourceField": "dimensions.overall.height"
+      },
+      {
+        "axis": "width",
+        "value": 23.5,
+        "unit": "cm",
+        "scope": "overall",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://www.clevelandart.org/art/1973.3"
+        ],
+        "primaryValue": 0.235,
+        "primaryUnit": "m",
+        "sourceField": "dimensions.overall.width"
+      },
+      {
+        "axis": "depth",
+        "value": 11.4,
+        "unit": "cm",
+        "scope": "overall",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://www.clevelandart.org/art/1973.3"
+        ],
+        "primaryValue": 0.114,
+        "primaryUnit": "m",
+        "sourceField": "dimensions.overall.depth"
+      }
+    ],
+    "evidence": [
+      {
+        "sourceUrl": "https://www.clevelandart.org/art/1973.3",
+        "summary": "Primary metric dimensions: overall: height 49.2 cm; overall: width 23.5 cm; overall: depth 11.4 cm",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Actual four-view source-native and four-view production comparison remains pending human review. Mesh calibration has not been performed.",
+    "calibrationBlockers": [
+      "Source-native/production appearance and captured object boundaries require actual eight-view human review.",
+      "Published physical measures have not been matched to exact measurement regions of the immutable final derivative."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "modern/ksiazek-abstract-converging-relief-4582": {
+    "dimensions": "szerokość 50 cm, wysokość 50 cm, wysokość 52 cm (z uchwytami), grubość 3 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/4582",
+    "sourceTitle": "Virtual Museums of Małopolska / Małopolska Institute of Culture — Kompozycja abstrakcyjna",
+    "note": "Published metric measurements describe this exact physical object or its stated components. Source-native appearance, capture scope, final pose and model measurement boundaries remain pending review. Physical size is unverified.",
+    "checked": "2026-10-19",
+    "researchStatus": "documented",
+    "identifiedObject": {
+      "title": "Abstract Composition: Converging Relief",
+      "artist": "Bolesław Książek",
+      "institution": "Virtual Museums of Małopolska / Małopolska Institute of Culture",
+      "accession": "BK_MS_3",
+      "version_or_date": "1970s; Glazed clay, cement and metal",
+      "record_url": "https://muzea.malopolska.pl/en/objects-list/4582",
+      "source_uid": "05e7f8d46fb94c6480be777b6b12bafe",
+      "identity_confidence": "high",
+      "match_explanation": "Exact provider UID and individual primary record identify the documented physical object. This metadata draft makes no native-material, geometry, pose or calibration approval claim."
+    },
+    "measures": [
+      {
+        "axis": "width",
+        "value": 50,
+        "value_text": "50",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/4582"
+        ],
+        "sourceFragment": "szerokość 50 cm"
+      },
+      {
+        "axis": "height",
+        "value": 50,
+        "value_text": "50",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/4582"
+        ],
+        "sourceFragment": "wysokość 50 cm"
+      },
+      {
+        "axis": "height",
+        "value": 52,
+        "value_text": "52",
+        "unit": "cm",
+        "scope": "z uchwytami",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/4582"
+        ],
+        "sourceFragment": "wysokość 52 cm (z uchwytami)"
+      },
+      {
+        "axis": "thickness",
+        "value": 3,
+        "value_text": "3",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/4582"
+        ],
+        "sourceFragment": "grubość 3 cm"
+      }
+    ],
+    "evidence": [
+      {
+        "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/4582",
+        "summary": "Primary metric dimensions: szerokość 50 cm, wysokość 50 cm, wysokość 52 cm (z uchwytami), grubość 3 cm",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Actual four-view source-native and four-view production comparison remains pending human review. Mesh calibration has not been performed.",
+    "calibrationBlockers": [
+      "Source-native/production appearance and captured object boundaries require actual eight-view human review.",
+      "Published physical measures have not been matched to exact measurement regions of the immutable final derivative."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "asia/figure-of-seated-arhat-with-a-vase-bcceaf": {
+    "dimensions": "height 39 cm, width 27,7 cm, depth 19 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/2488",
+    "sourceTitle": "Virtual Museums of Małopolska / National Museum in Kraków — Figure of seated arhat with a vase",
+    "note": "Published metric measurements describe this exact physical object or its stated components. Source-native appearance, capture scope, final pose and model measurement boundaries remain pending review. Physical size is unverified.",
+    "checked": "2026-10-19",
+    "researchStatus": "documented",
+    "identifiedObject": {
+      "title": "Figure of seated arhat with a vase",
+      "artist": "Unknown maker",
+      "institution": "Virtual Museums of Małopolska / National Museum in Kraków",
+      "accession": "MNK VI-7853",
+      "version_or_date": "18th century (epoque Quing, 1644–1911); bronze, gold",
+      "record_url": "https://muzea.malopolska.pl/en/objects-list/2488",
+      "source_uid": "bcceaf7ec75644ed94e30d88d02cdc0c",
+      "identity_confidence": "high",
+      "match_explanation": "Exact provider UID and individual primary record identify the documented physical object. This metadata draft makes no native-material, geometry, pose or calibration approval claim."
+    },
+    "measures": [
+      {
+        "axis": "height",
+        "value": 39,
+        "value_text": "39",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/2488"
+        ],
+        "sourceFragment": "height 39 cm"
+      },
+      {
+        "axis": "width",
+        "value": 27.7,
+        "value_text": "27,7",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/2488"
+        ],
+        "sourceFragment": "width 27,7 cm"
+      },
+      {
+        "axis": "depth",
+        "value": 19,
+        "value_text": "19",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/2488"
+        ],
+        "sourceFragment": "depth 19 cm"
+      }
+    ],
+    "evidence": [
+      {
+        "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/2488",
+        "summary": "Primary metric dimensions: height 39 cm, width 27,7 cm, depth 19 cm",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Actual four-view source-native and four-view production comparison remains pending human review. Mesh calibration has not been performed.",
+    "calibrationBlockers": [
+      "Source-native/production appearance and captured object boundaries require actual eight-view human review.",
+      "Published physical measures have not been matched to exact measurement regions of the immutable final derivative."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "americas/kero-waisted-cup-cleveland-1946-233-383bc7": {
+    "dimensions": "diameter of mouth: height 18.3 cm; diameter of mouth: width 14.4 cm; overall: height 18.3 cm; overall: width 14.4 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.clevelandart.org/art/1946.233",
+    "sourceTitle": "Cleveland Museum of Art — Kero (Waisted Cup)",
+    "note": "Published metric measurements describe this exact physical object or its stated components. Source-native appearance, capture scope, final pose and model measurement boundaries remain pending review. Physical size is unverified.",
+    "checked": "2026-10-19",
+    "researchStatus": "documented",
+    "identifiedObject": {
+      "title": "Kero (Waisted Cup)",
+      "artist": "Unknown maker",
+      "institution": "Cleveland Museum of Art",
+      "accession": "1946.233",
+      "version_or_date": "after 1550; wood, inlaid pigments",
+      "record_url": "https://www.clevelandart.org/art/1946.233",
+      "source_uid": "383bc7b9f8db46278073d69112cb6e2f",
+      "identity_confidence": "high",
+      "match_explanation": "Exact provider UID and individual primary record identify the documented physical object. This metadata draft makes no native-material, geometry, pose or calibration approval claim."
+    },
+    "measures": [
+      {
+        "axis": "height",
+        "value": 18.3,
+        "unit": "cm",
+        "scope": "diameter of mouth",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://www.clevelandart.org/art/1946.233"
+        ],
+        "primaryValue": 0.183,
+        "primaryUnit": "m",
+        "sourceField": "dimensions.diameter of mouth.height"
+      },
+      {
+        "axis": "width",
+        "value": 14.4,
+        "unit": "cm",
+        "scope": "diameter of mouth",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://www.clevelandart.org/art/1946.233"
+        ],
+        "primaryValue": 0.144,
+        "primaryUnit": "m",
+        "sourceField": "dimensions.diameter of mouth.width"
+      },
+      {
+        "axis": "height",
+        "value": 18.3,
+        "unit": "cm",
+        "scope": "overall",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://www.clevelandart.org/art/1946.233"
+        ],
+        "primaryValue": 0.183,
+        "primaryUnit": "m",
+        "sourceField": "dimensions.overall.height"
+      },
+      {
+        "axis": "width",
+        "value": 14.4,
+        "unit": "cm",
+        "scope": "overall",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://www.clevelandart.org/art/1946.233"
+        ],
+        "primaryValue": 0.144,
+        "primaryUnit": "m",
+        "sourceField": "dimensions.overall.width"
+      }
+    ],
+    "evidence": [
+      {
+        "sourceUrl": "https://www.clevelandart.org/art/1946.233",
+        "summary": "Primary metric dimensions: diameter of mouth: height 18.3 cm; diameter of mouth: width 14.4 cm; overall: height 18.3 cm; overall: width 14.4 cm",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Actual four-view source-native and four-view production comparison remains pending human review. Mesh calibration has not been performed.",
+    "calibrationBlockers": [
+      "Source-native/production appearance and captured object boundaries require actual eight-view human review.",
+      "Published physical measures have not been matched to exact measurement regions of the immutable final derivative."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "modern/ksiazek-vase-blue-glaze-4600": {
+    "dimensions": "wysokość 32 cm, średnica 14 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/4600",
+    "sourceTitle": "Virtual Museums of Małopolska / Małopolska Institute of Culture — Wazon",
+    "note": "Published metric measurements describe this exact physical object or its stated components. Source-native appearance, capture scope, final pose and model measurement boundaries remain pending review. Physical size is unverified.",
+    "checked": "2026-10-19",
+    "researchStatus": "documented",
+    "identifiedObject": {
+      "title": "Vase with Blue Glaze",
+      "artist": "Bolesław Książek; Kamionka Cooperative (manufacturer)",
+      "institution": "Virtual Museums of Małopolska / Małopolska Institute of Culture",
+      "accession": "BK_MS_21",
+      "version_or_date": "1960s; Glazed ceramic",
+      "record_url": "https://muzea.malopolska.pl/en/objects-list/4600",
+      "source_uid": "9304c6cee6194ea499eb84ea3acadaa4",
+      "identity_confidence": "high",
+      "match_explanation": "Exact provider UID and individual primary record identify the documented physical object. This metadata draft makes no native-material, geometry, pose or calibration approval claim."
+    },
+    "measures": [
+      {
+        "axis": "height",
+        "value": 32,
+        "value_text": "32",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/4600"
+        ],
+        "sourceFragment": "wysokość 32 cm"
+      },
+      {
+        "axis": "diameter",
+        "value": 14,
+        "value_text": "14",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/4600"
+        ],
+        "sourceFragment": "średnica 14 cm"
+      }
+    ],
+    "evidence": [
+      {
+        "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/4600",
+        "summary": "Primary metric dimensions: wysokość 32 cm, średnica 14 cm",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Actual four-view source-native and four-view production comparison remains pending human review. Mesh calibration has not been performed.",
+    "calibrationBlockers": [
+      "Source-native/production appearance and captured object boundaries require actual eight-view human review.",
+      "Published physical measures have not been matched to exact measurement regions of the immutable final derivative."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "europe/statuette-of-a-monkey-playing-the-horn-615cc5": {
+    "dimensions": "height 15,1 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/758",
+    "sourceTitle": "Virtual Museums of Małopolska / Wawel Royal Castle – National Art Collection — Statuette of a Monkey Playing the Horn",
+    "note": "Published metric measurements describe this exact physical object or its stated components. Source-native appearance, capture scope, final pose and model measurement boundaries remain pending review. Physical size is unverified.",
+    "checked": "2026-10-19",
+    "researchStatus": "documented",
+    "identifiedObject": {
+      "title": "Statuette of a Monkey Playing the Horn",
+      "artist": "Johann Joachim Kändler; Peter Reinicke",
+      "institution": "Virtual Museums of Małopolska / Wawel Royal Castle – National Art Collection",
+      "accession": "ZKWawel 5132",
+      "version_or_date": "after 1765; porcelain",
+      "record_url": "https://muzea.malopolska.pl/en/objects-list/758",
+      "source_uid": "615cc59e73f3410bb510186ea69c48a1",
+      "identity_confidence": "high",
+      "match_explanation": "Exact provider UID and individual primary record identify the documented physical object. This metadata draft makes no native-material, geometry, pose or calibration approval claim."
+    },
+    "measures": [
+      {
+        "axis": "height",
+        "value": 15.1,
+        "value_text": "15,1",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/758"
+        ],
+        "sourceFragment": "height 15,1 cm"
+      }
+    ],
+    "evidence": [
+      {
+        "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/758",
+        "summary": "Primary metric dimensions: height 15,1 cm",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Actual four-view source-native and four-view production comparison remains pending human review. Mesh calibration has not been performed.",
+    "calibrationBlockers": [
+      "Source-native/production appearance and captured object boundaries require actual eight-view human review.",
+      "Published physical measures have not been matched to exact measurement regions of the immutable final derivative."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "sub-saharan-africa/prestige-cap-mpu-ngola-cleveland-1997-180-ca93a8": {
+    "dimensions": "overall: height 42 cm; overall: width 19.3 cm; overall: depth 19 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.clevelandart.org/art/1997.180",
+    "sourceTitle": "Cleveland Museum of Art — Prestige Cap (mpu ngola)",
+    "note": "Published metric measurements describe this exact physical object or its stated components. Source-native appearance, capture scope, final pose and model measurement boundaries remain pending review. Physical size is unverified.",
+    "checked": "2026-10-19",
+    "researchStatus": "documented",
+    "identifiedObject": {
+      "title": "Prestige Cap (mpu ngola)",
+      "artist": "Unknown maker",
+      "institution": "Cleveland Museum of Art",
+      "accession": "1997.180",
+      "version_or_date": "late 1800s–early 1900s; Raffia palm fiber (Raphia ruffia or R. vinifera) and leopard claws",
+      "record_url": "https://www.clevelandart.org/art/1997.180",
+      "source_uid": "ca93a8e164f040ffa246b64df348d11b",
+      "identity_confidence": "high",
+      "match_explanation": "Exact provider UID and individual primary record identify the documented physical object. This metadata draft makes no native-material, geometry, pose or calibration approval claim."
+    },
+    "measures": [
+      {
+        "axis": "height",
+        "value": 42,
+        "unit": "cm",
+        "scope": "overall",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://www.clevelandart.org/art/1997.180"
+        ],
+        "primaryValue": 0.42,
+        "primaryUnit": "m",
+        "sourceField": "dimensions.overall.height"
+      },
+      {
+        "axis": "width",
+        "value": 19.3,
+        "unit": "cm",
+        "scope": "overall",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://www.clevelandart.org/art/1997.180"
+        ],
+        "primaryValue": 0.193,
+        "primaryUnit": "m",
+        "sourceField": "dimensions.overall.width"
+      },
+      {
+        "axis": "depth",
+        "value": 19,
+        "unit": "cm",
+        "scope": "overall",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://www.clevelandart.org/art/1997.180"
+        ],
+        "primaryValue": 0.19,
+        "primaryUnit": "m",
+        "sourceField": "dimensions.overall.depth"
+      }
+    ],
+    "evidence": [
+      {
+        "sourceUrl": "https://www.clevelandart.org/art/1997.180",
+        "summary": "Primary metric dimensions: overall: height 42 cm; overall: width 19.3 cm; overall: depth 19 cm",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Actual four-view source-native and four-view production comparison remains pending human review. Mesh calibration has not been performed.",
+    "calibrationBlockers": [
+      "Source-native/production appearance and captured object boundaries require actual eight-view human review.",
+      "Published physical measures have not been matched to exact measurement regions of the immutable final derivative."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "modern/ksiazek-vase-mans-face-4588": {
+    "dimensions": "szerokość 21 cm, wysokość 34 cm, głębokość 21 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/4588",
+    "sourceTitle": "Virtual Museums of Małopolska / Małopolska Institute of Culture — Wazon z twarzą mężczyzny",
+    "note": "Published metric measurements describe this exact physical object or its stated components. Source-native appearance, capture scope, final pose and model measurement boundaries remain pending review. Physical size is unverified.",
+    "checked": "2026-10-19",
+    "researchStatus": "documented",
+    "identifiedObject": {
+      "title": "Vase with a Man’s Face",
+      "artist": "Bolesław Książek (design); Kamionka Cooperative (manufacturer)",
+      "institution": "Virtual Museums of Małopolska / Małopolska Institute of Culture",
+      "accession": "BK_MS_9",
+      "version_or_date": "1960s; Glazed ceramic",
+      "record_url": "https://muzea.malopolska.pl/en/objects-list/4588",
+      "source_uid": "12d82b8507a24d65b26388f1a0cf6343",
+      "identity_confidence": "high",
+      "match_explanation": "Exact provider UID and individual primary record identify the documented physical object. This metadata draft makes no native-material, geometry, pose or calibration approval claim."
+    },
+    "measures": [
+      {
+        "axis": "width",
+        "value": 21,
+        "value_text": "21",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/4588"
+        ],
+        "sourceFragment": "szerokość 21 cm"
+      },
+      {
+        "axis": "height",
+        "value": 34,
+        "value_text": "34",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/4588"
+        ],
+        "sourceFragment": "wysokość 34 cm"
+      },
+      {
+        "axis": "depth",
+        "value": 21,
+        "value_text": "21",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/4588"
+        ],
+        "sourceFragment": "głębokość 21 cm"
+      }
+    ],
+    "evidence": [
+      {
+        "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/4588",
+        "summary": "Primary metric dimensions: szerokość 21 cm, wysokość 34 cm, głębokość 21 cm",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Actual four-view source-native and four-view production comparison remains pending human review. Mesh calibration has not been performed.",
+    "calibrationBlockers": [
+      "Source-native/production appearance and captured object boundaries require actual eight-view human review.",
+      "Published physical measures have not been matched to exact measurement regions of the immutable final derivative."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "europe/statuette-of-a-woman-selling-grapes-6db54b": {
+    "dimensions": "height 11,2 cm, width 5,5 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/749",
+    "sourceTitle": "Virtual Museums of Małopolska / Wawel Royal Castle – National Art Collection — Statuette of a Woman Selling Grapes",
+    "note": "Published metric measurements describe this exact physical object or its stated components. Source-native appearance, capture scope, final pose and model measurement boundaries remain pending review. Physical size is unverified.",
+    "checked": "2026-10-19",
+    "researchStatus": "documented",
+    "identifiedObject": {
+      "title": "Statuette of a Woman Selling Grapes",
+      "artist": "Peter Reinicke (model)",
+      "institution": "Virtual Museums of Małopolska / Wawel Royal Castle – National Art Collection",
+      "accession": "ZKWawel 5098",
+      "version_or_date": "ca. 1760; porcelain",
+      "record_url": "https://muzea.malopolska.pl/en/objects-list/749",
+      "source_uid": "6db54b58a0944b6b8c9143a524d67a5d",
+      "identity_confidence": "high",
+      "match_explanation": "Exact provider UID and individual primary record identify the documented physical object. This metadata draft makes no native-material, geometry, pose or calibration approval claim."
+    },
+    "measures": [
+      {
+        "axis": "height",
+        "value": 11.2,
+        "value_text": "11,2",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/749"
+        ],
+        "sourceFragment": "height 11,2 cm"
+      },
+      {
+        "axis": "width",
+        "value": 5.5,
+        "value_text": "5,5",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/749"
+        ],
+        "sourceFragment": "width 5,5 cm"
+      }
+    ],
+    "evidence": [
+      {
+        "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/749",
+        "summary": "Primary metric dimensions: height 11,2 cm, width 5,5 cm",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Actual four-view source-native and four-view production comparison remains pending human review. Mesh calibration has not been performed.",
+    "calibrationBlockers": [
+      "Source-native/production appearance and captured object boundaries require actual eight-view human review.",
+      "Published physical measures have not been matched to exact measurement regions of the immutable final derivative."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "sub-saharan-africa/helmet-cleveland-1969-5-13600d": {
+    "dimensions": "overall: height 62.9 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.clevelandart.org/art/1969.5",
+    "sourceTitle": "Cleveland Museum of Art — Helmet",
+    "note": "Published metric measurements describe this exact physical object or its stated components. Source-native appearance, capture scope, final pose and model measurement boundaries remain pending review. Physical size is unverified.",
+    "checked": "2026-10-19",
+    "researchStatus": "documented",
+    "identifiedObject": {
+      "title": "Helmet",
+      "artist": "Unknown maker",
+      "institution": "Cleveland Museum of Art",
+      "accession": "1969.5",
+      "version_or_date": "late 1800s–early 1900s; Wood and paint",
+      "record_url": "https://www.clevelandart.org/art/1969.5",
+      "source_uid": "13600dbd9c79478a8380bb90ff8b6df5",
+      "identity_confidence": "high",
+      "match_explanation": "Exact provider UID and individual primary record identify the documented physical object. This metadata draft makes no native-material, geometry, pose or calibration approval claim."
+    },
+    "measures": [
+      {
+        "axis": "height",
+        "value": 62.9,
+        "unit": "cm",
+        "scope": "overall",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://www.clevelandart.org/art/1969.5"
+        ],
+        "primaryValue": 0.629,
+        "primaryUnit": "m",
+        "sourceField": "dimensions.overall.height"
+      }
+    ],
+    "evidence": [
+      {
+        "sourceUrl": "https://www.clevelandart.org/art/1969.5",
+        "summary": "Primary metric dimensions: overall: height 62.9 cm",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Actual four-view source-native and four-view production comparison remains pending human review. Mesh calibration has not been performed.",
+    "calibrationBlockers": [
+      "Source-native/production appearance and captured object boundaries require actual eight-view human review.",
+      "Published physical measures have not been matched to exact measurement regions of the immutable final derivative."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "modern/canova-terpsichore-lyran-cleveland-1968-212": {
+    "dimensions": "overall: height 177.5 cm; overall: width 78.1 cm; overall: depth 61 cm; No Extent Specified: height 178.1 cm; No Extent Specified: width 78.4 cm; No Extent Specified: depth 61.3 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.clevelandart.org/art/1968.212",
+    "sourceTitle": "Cleveland Museum of Art — Terpsichore Lyran (Muse of Lyric Poetry)",
+    "note": "Published metric measurements describe this exact physical object or its stated components. Source-native appearance, capture scope, final pose and model measurement boundaries remain pending review. Physical size is unverified.",
+    "checked": "2026-10-19",
+    "researchStatus": "documented",
+    "identifiedObject": {
+      "title": "Terpsichore Lyran (Muse of Lyric Poetry)",
+      "artist": "Antonio Canova",
+      "institution": "Cleveland Museum of Art",
+      "accession": "1968.212",
+      "version_or_date": "1816; Marble",
+      "record_url": "https://www.clevelandart.org/art/1968.212",
+      "source_uid": "6827af1276ab407ebbfa1e7d0a4b9a19",
+      "identity_confidence": "high",
+      "match_explanation": "Exact provider UID and individual primary record identify the documented physical object. This metadata draft makes no native-material, geometry, pose or calibration approval claim."
+    },
+    "measures": [
+      {
+        "axis": "height",
+        "value": 177.5,
+        "unit": "cm",
+        "scope": "overall",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://www.clevelandart.org/art/1968.212"
+        ],
+        "primaryValue": 1.775,
+        "primaryUnit": "m",
+        "sourceField": "dimensions.overall.height"
+      },
+      {
+        "axis": "width",
+        "value": 78.1,
+        "unit": "cm",
+        "scope": "overall",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://www.clevelandart.org/art/1968.212"
+        ],
+        "primaryValue": 0.781,
+        "primaryUnit": "m",
+        "sourceField": "dimensions.overall.width"
+      },
+      {
+        "axis": "depth",
+        "value": 61,
+        "unit": "cm",
+        "scope": "overall",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://www.clevelandart.org/art/1968.212"
+        ],
+        "primaryValue": 0.61,
+        "primaryUnit": "m",
+        "sourceField": "dimensions.overall.depth"
+      },
+      {
+        "axis": "height",
+        "value": 178.1,
+        "unit": "cm",
+        "scope": "No Extent Specified",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://www.clevelandart.org/art/1968.212"
+        ],
+        "primaryValue": 1.781,
+        "primaryUnit": "m",
+        "sourceField": "dimensions.No Extent Specified.height"
+      },
+      {
+        "axis": "width",
+        "value": 78.4,
+        "unit": "cm",
+        "scope": "No Extent Specified",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://www.clevelandart.org/art/1968.212"
+        ],
+        "primaryValue": 0.784,
+        "primaryUnit": "m",
+        "sourceField": "dimensions.No Extent Specified.width"
+      },
+      {
+        "axis": "depth",
+        "value": 61.3,
+        "unit": "cm",
+        "scope": "No Extent Specified",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://www.clevelandart.org/art/1968.212"
+        ],
+        "primaryValue": 0.613,
+        "primaryUnit": "m",
+        "sourceField": "dimensions.No Extent Specified.depth"
+      }
+    ],
+    "evidence": [
+      {
+        "sourceUrl": "https://www.clevelandart.org/art/1968.212",
+        "summary": "Primary metric dimensions: overall: height 177.5 cm; overall: width 78.1 cm; overall: depth 61 cm; No Extent Specified: height 178.1 cm; No Extent Specified: width 78.4 cm; No Extent Specified: depth 61.3 cm",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Actual four-view source-native and four-view production comparison remains pending human review. Mesh calibration has not been performed.",
+    "calibrationBlockers": [
+      "Source-native/production appearance and captured object boundaries require actual eight-view human review.",
+      "Published physical measures have not been matched to exact measurement regions of the immutable final derivative."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "asia/water-container-with-peonies-cleveland-2022-197-705115": {
+    "dimensions": "height with lid: height 17.8 cm; diameter of foot: width 8 cm; lid: height 1.5 cm; lid: width 10 cm; height: height 16.2 cm; diameter: width 16 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://www.clevelandart.org/art/2022.197",
+    "sourceTitle": "Cleveland Museum of Art — Water Container with Peonies",
+    "note": "Published metric measurements describe this exact physical object or its stated components. Source-native appearance, capture scope, final pose and model measurement boundaries remain pending review. Physical size is unverified.",
+    "checked": "2026-10-19",
+    "researchStatus": "documented",
+    "identifiedObject": {
+      "title": "Water Container with Peonies",
+      "artist": "Seifū Yohei III",
+      "institution": "Cleveland Museum of Art",
+      "accession": "2022.197",
+      "version_or_date": "1900–1914; Porcelain with molded and carved design, green glaze, and black lacquered lid",
+      "record_url": "https://www.clevelandart.org/art/2022.197",
+      "source_uid": "7051152ac78b426da1ad589f04fb8f38",
+      "identity_confidence": "high",
+      "match_explanation": "Exact provider UID and individual primary record identify the documented physical object. This metadata draft makes no native-material, geometry, pose or calibration approval claim."
+    },
+    "measures": [
+      {
+        "axis": "height",
+        "value": 17.8,
+        "unit": "cm",
+        "scope": "height with lid",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://www.clevelandart.org/art/2022.197"
+        ],
+        "primaryValue": 0.178,
+        "primaryUnit": "m",
+        "sourceField": "dimensions.height with lid.height"
+      },
+      {
+        "axis": "width",
+        "value": 8,
+        "unit": "cm",
+        "scope": "diameter of foot",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://www.clevelandart.org/art/2022.197"
+        ],
+        "primaryValue": 0.08,
+        "primaryUnit": "m",
+        "sourceField": "dimensions.diameter of foot.width"
+      },
+      {
+        "axis": "height",
+        "value": 1.5,
+        "unit": "cm",
+        "scope": "lid",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://www.clevelandart.org/art/2022.197"
+        ],
+        "primaryValue": 0.015,
+        "primaryUnit": "m",
+        "sourceField": "dimensions.lid.height"
+      },
+      {
+        "axis": "width",
+        "value": 10,
+        "unit": "cm",
+        "scope": "lid",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://www.clevelandart.org/art/2022.197"
+        ],
+        "primaryValue": 0.1,
+        "primaryUnit": "m",
+        "sourceField": "dimensions.lid.width"
+      },
+      {
+        "axis": "height",
+        "value": 16.2,
+        "unit": "cm",
+        "scope": "height",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://www.clevelandart.org/art/2022.197"
+        ],
+        "primaryValue": 0.162,
+        "primaryUnit": "m",
+        "sourceField": "dimensions.height.height"
+      },
+      {
+        "axis": "width",
+        "value": 16,
+        "unit": "cm",
+        "scope": "diameter",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://www.clevelandart.org/art/2022.197"
+        ],
+        "primaryValue": 0.16,
+        "primaryUnit": "m",
+        "sourceField": "dimensions.diameter.width"
+      }
+    ],
+    "evidence": [
+      {
+        "sourceUrl": "https://www.clevelandart.org/art/2022.197",
+        "summary": "Primary metric dimensions: height with lid: height 17.8 cm; diameter of foot: width 8 cm; lid: height 1.5 cm; lid: width 10 cm; height: height 16.2 cm; diameter: width 16 cm",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Actual four-view source-native and four-view production comparison remains pending human review. Mesh calibration has not been performed.",
+    "calibrationBlockers": [
+      "Source-native/production appearance and captured object boundaries require actual eight-view human review.",
+      "Published physical measures have not been matched to exact measurement regions of the immutable final derivative."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "modern/gargallo-portrait-picasso-mnac-011012": {
+    "dimensions": "22,5 x 21 x 23 cm (published sequence; axes unresolved)",
+    "status": "unresolved",
+    "basis": "object",
+    "sourceUrl": "https://www.museunacional.cat/ca/colleccio/retrat-de-picasso/pablo-gargallo/011012-000",
+    "sourceTitle": "Giravolt — Portrait of Picasso",
+    "note": "No unambiguous labeled metric measure is available. Published numeric sequences remain evidence without guessed axes. Physical size is unverified.",
+    "checked": "2026-10-19",
+    "researchStatus": "unresolved",
+    "identifiedObject": {
+      "title": "Portrait of Picasso",
+      "artist": "Pablo Gargallo",
+      "institution": "Giravolt",
+      "accession": "011012-000",
+      "version_or_date": "1913; Carved stone",
+      "record_url": "https://www.museunacional.cat/ca/colleccio/retrat-de-picasso/pablo-gargallo/011012-000",
+      "source_uid": "8a503764de2a424da039386406d177ce",
+      "identity_confidence": "high",
+      "match_explanation": "Exact provider UID and individual primary record identify the documented physical object. This metadata draft makes no native-material, geometry, pose or calibration approval claim."
+    },
+    "measures": [],
+    "evidence": [
+      {
+        "sourceUrl": "https://www.museunacional.cat/ca/colleccio/retrat-de-picasso/pablo-gargallo/011012-000",
+        "summary": "Primary metric dimensions: 22,5 x 21 x 23 cm (published sequence; axes unresolved)",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Actual four-view source-native and four-view production comparison remains pending human review. Mesh calibration has not been performed.",
+    "calibrationBlockers": [
+      "Source-native/production appearance and captured object boundaries require actual eight-view human review.",
+      "Published physical measures have not been matched to exact measurement regions of the immutable final derivative."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable.",
+    "unresolvedPublishedMeasurements": [
+      {
+        "value_text": "22,5 x 21 x 23 cm",
+        "reason": "Primary publishes an unlabeled numeric sequence. No height, width or depth is inferred."
+      }
+    ]
+  },
+  "europe/reliquary-with-st-stanislauss-hand-b6a9c2": {
+    "dimensions": "height 41 cm, width 16 cm",
+    "status": "documented",
+    "basis": "object",
+    "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/529",
+    "sourceTitle": "Virtual Museums of Małopolska / Cardinal Karol Wojtyła Archdiocesan Museum in Kraków — Reliquary with St. Stanislaus’s hand",
+    "note": "Published metric measurements describe this exact physical object or its stated components. Source-native appearance, capture scope, final pose and model measurement boundaries remain pending review. Physical size is unverified.",
+    "checked": "2026-10-19",
+    "researchStatus": "documented",
+    "identifiedObject": {
+      "title": "Reliquary with St. Stanislaus’s hand",
+      "artist": "Unknown maker",
+      "institution": "Virtual Museums of Małopolska / Cardinal Karol Wojtyła Archdiocesan Museum in Kraków",
+      "accession": "125/III",
+      "version_or_date": "18th century; linden wood",
+      "record_url": "https://muzea.malopolska.pl/en/objects-list/529",
+      "source_uid": "b6a9c2c8b4464aafb0a7c8ff1ef9b3b5",
+      "identity_confidence": "high",
+      "match_explanation": "Exact provider UID and individual primary record identify the documented physical object. This metadata draft makes no native-material, geometry, pose or calibration approval claim."
+    },
+    "measures": [
+      {
+        "axis": "height",
+        "value": 41,
+        "value_text": "41",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/529"
+        ],
+        "sourceFragment": "height 41 cm"
+      },
+      {
+        "axis": "width",
+        "value": 16,
+        "value_text": "16",
+        "unit": "cm",
+        "scope": "Scope unspecified in published axis label; see complete primary dimension text.",
+        "qualifier": "published",
+        "sourceUrls": [
+          "https://muzea.malopolska.pl/en/objects-list/529"
+        ],
+        "sourceFragment": "width 16 cm"
+      }
+    ],
+    "evidence": [
+      {
+        "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/529",
+        "summary": "Primary metric dimensions: height 41 cm, width 16 cm",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "geometryStatus": "unresolved",
+    "calibrationReady": false,
+    "geometryReviewNote": "Actual four-view source-native and four-view production comparison remains pending human review. Mesh calibration has not been performed.",
+    "calibrationBlockers": [
+      "Source-native/production appearance and captured object boundaries require actual eight-view human review.",
+      "Published physical measures have not been matched to exact measurement regions of the immutable final derivative."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
   }
 }

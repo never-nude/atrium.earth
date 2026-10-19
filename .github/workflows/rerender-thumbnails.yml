@@ -1,8 +1,8 @@
 name: Re-render batch thumbnails (temporary review aid)
 
 # Re-renders the thumbnails listed in docs/ingest/<batch>-rerender.txt with the
-# current orientations across parallel runners, and pushes them to an orphan
-# branch for review. Temporary: remove before merging to main.
+# current orientations across parallel runners and preserves verified image
+# artifacts for review. Temporary: remove before merging to main.
 
 on:
   push:
@@ -22,7 +22,7 @@ on:
         type: string
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: rerender-thumbnails
@@ -151,11 +151,10 @@ jobs:
             --root=rerendered \
             --kind=thumbnail
 
-      - name: Push thumbnails branch
-        run: |
-          find rerendered -name thumb.webp | wc -l
-          git switch --orphan "claude/atrium-rerender-${BATCH}"
-          git add -f rerendered
-          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
-            commit -q -m "Re-rendered thumbnails for ${BATCH} (run ${GITHUB_RUN_ID})"
-          git push -f origin "HEAD:refs/heads/claude/atrium-rerender-${BATCH}"
+      - name: Upload the complete verified image set
+        uses: actions/upload-artifact@v4
+        with:
+          name: complete-thumbnails-${{ env.BATCH }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: rerendered/
+          retention-days: 30
+          if-no-files-found: error
