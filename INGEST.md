@@ -132,6 +132,12 @@ artists associated with Dia Beacon when suitable openly licensed models are
 available; their works may come from other collections. This is a preference,
 not a reason to relax source, license, duplicate, or visual-quality checks.
 
+The owner clarified on October 19 that fine art and anthropological objects lead
+acquisitions. Furniture and everyday objects qualify when their artistic or
+cultural significance is exceptional, with an Eames chair as the stated benchmark;
+ordinary household utility alone is insufficient. State the specific significance
+when selecting a design object.
+
 Assign every addition through the existing wing rules using the work's origin,
 not the location of the holding museum. Review the curated exhibitions and add
 works only where the theme fits, with a caption explaining that connection.
