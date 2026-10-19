@@ -61,17 +61,19 @@ jobs:
           if (input.schema === 'atrium-bounded-institution-inventory-request/1') {
             if (batch !== 'beautiful-expansion-20261019' || input.user !== 'giravolt' || input.max_pages !== 15 || input.count !== 24) throw new Error('Unsupported inventory scope');
             const models = [], seen = new Set();
-            let next = 'https://api.sketchfab.com/v3/models?user=giravolt&count=24';
+            const owner = '15422e6e108a4caf9d1b09c6edf49eaa';
+            const endpoint = `/v3/users/${owner}/models`;
+            let next = `https://api.sketchfab.com${endpoint}?count=24`;
             for (let page = 0; next && page < input.max_pages; page++) {
               if (page) await new Promise(resolve => setTimeout(resolve, 5000));
               const target = new URL(next);
-              if (target.origin !== 'https://api.sketchfab.com' || target.pathname !== '/v3/models' || target.searchParams.get('user') !== input.user) throw new Error('Inventory pagination escaped institution');
+              if (target.origin !== 'https://api.sketchfab.com' || target.pathname.replace(/\/$/, '') !== endpoint) throw new Error('Inventory pagination escaped institution');
               const response = await fetch(target, { headers: { Accept: 'application/json' }, signal: AbortSignal.timeout(60000) });
               if (!response.ok) throw new Error(`Institution inventory HTTP${response.status}; no burst retry`);
               const pageData = await response.json();
               if (!Array.isArray(pageData.results) || pageData.results.length > 24) throw new Error('Invalid bounded inventory page');
               for (const model of pageData.results) {
-                if (model.user?.username?.toLowerCase() !== input.user || !/^[a-f0-9]{32}$/.test(model.uid || '') || seen.has(model.uid)) throw new Error('Inventory institution/identity changed');
+                if (model.user?.username?.toLowerCase() !== input.user || model.user?.uid !== owner || !/^[a-f0-9]{32}$/.test(model.uid || '') || seen.has(model.uid)) throw new Error('Inventory institution/identity changed');
                 seen.add(model.uid); models.push(model);
               }
               next = pageData.next;
