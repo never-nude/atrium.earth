@@ -258,3 +258,35 @@ test('metadata adapter preserves discovery records, accepts null archive faces a
   assert.throws(() => applyDownloadMetadata([original], badLicense), /license disagrees/);
   assert.throws(() => applyDownloadMetadata([document([candidate(1, { download_size_bytes: 999 })])], metadata), /size changed/);
 });
+
+test('expansion permits later art with unchanged identity, license and measured-integrity gates', () => {
+  const batch = 'beautiful-expansion-20261019';
+  const work = candidate(1, { slug: 'modern/test-sculpture-1', collection: 'modern', wing: 'europe', year: '1960s', year_sort: 1960, period: 'Modern', logical_batch_id: batch });
+  assert.deepEqual(checkCandidate(work, { now, batch }), []);
+  assert.match(checkCandidate(work, { now }).join(';'), /unsupported slug|ancient date/);
+  const input = { ...document([work]), logical_batch_id: batch };
+  const result = prepareLeads([input], [], { now, batch, expectedCount: 1, chunk: 2, sequenceOffset: 60 });
+  assert.equal(result.audit.ready, true, reasons(result.audit));
+  assert.equal(result.manifest.logical_batch_id, batch);
+  assert.equal(result.manifest.chunk, 2);
+  assert.equal(result.manifest.candidates[0].batch_sequence, 61);
+  assert.equal(result.manifest.candidates[0].batch_chunk, 2);
+  assert.equal(result.manifest.candidates[0].require_measured_integrity, true);
+  assert.match(checkCandidate({ ...work, skip_integrity: true }, { now, batch }).join(';'), /override forbidden/);
+  assert.match(checkCandidate({ ...work, slug: 'modern/../test' }, { now, batch }).join(';'), /unsupported slug/);
+  assert.match(checkCandidate({ ...work, wing: 'americas' }, { now, batch }).join(';'), /wing must/);
+  assert.throws(() => prepareLeads([input], [], { batch: 'other' }), /Unsupported preparation batch/);
+  assert.match(reasons(prepareLeads([{ ...input, logical_batch_id: BATCH }], [], { now, batch, expectedCount: 1 }).audit), /batch mismatch/);
+});
+
+test('expansion download adapter rejects crossed batch and changed licenses', () => {
+  const batch = 'beautiful-expansion-20261019';
+  const work = candidate(1, { logical_batch_id: batch });
+  const input = { ...document([work]), logical_batch_id: batch };
+  const metadata = { schema: 'atrium-selected-download-metadata/1', batch, models: [{ uid: work.uid, checked_at: now.toISOString(), downloadable: true, license: { url: work.license_url }, selected_download: { format: 'glb', bytes: 1000, faces: null }, api_detail: { faces: 70712 } }] };
+  assert.equal(applyDownloadMetadata([input], metadata, { batch })[0].candidates[0].source_geometry.api_detail_faces, 70712);
+  assert.throws(() => applyDownloadMetadata([input], { ...metadata, batch: BATCH }, { batch }), /schema\/batch/);
+  assert.throws(() => applyDownloadMetadata([input], metadata), /batch mismatch/);
+  metadata.models[0].license.url = 'https://creativecommons.org/licenses/by-nc/4.0/';
+  assert.throws(() => applyDownloadMetadata([input], metadata, { batch }), /license disagrees/);
+});

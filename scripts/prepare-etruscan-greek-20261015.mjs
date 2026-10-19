@@ -9,6 +9,7 @@ import { candidateIsKnown, catalogIndexes } from './ingest-utils.mjs';
 
 export const BATCH = 'etruscan-greek-20261015';
 export const EXPECTED_COUNT = 60;
+const SUPPORTED_BATCHES = new Set([BATCH, 'beautiful-expansion-20261019']);
 const ROOT = path.resolve(import.meta.dirname, '..');
 const UID = /^[a-f0-9]{32}$/;
 const SHA = /^[a-f0-9]{64}$/;
@@ -85,7 +86,8 @@ function findPrivate(value, at = '') {
   return problems;
 }
 
-export function checkCandidate(candidate, { now = new Date(), maxAgeDays = 7 } = {}) {
+export function checkCandidate(candidate, { now = new Date(), maxAgeDays = 7, batch = BATCH } = {}) {
+  if (!SUPPORTED_BATCHES.has(batch)) throw new Error('Unsupported preparation batch');
   const issues = [];
   const require = (condition, reason) => { if (!condition) issues.push(reason); };
   require(candidate && typeof candidate === 'object' && !Array.isArray(candidate), 'candidate must be an object');
@@ -96,13 +98,13 @@ export function checkCandidate(candidate, { now = new Date(), maxAgeDays = 7 } =
   require(typeof candidate.artist === 'string', 'artist must be a string; an unknown maker may remain empty');
   require(candidate.source === 'sketchfab', 'this batch requires direct Sketchfab model identities');
   require(UID.test(candidate.uid || ''), 'invalid Sketchfab UID');
-  require(/^(?:greek|roman)\/[a-z0-9]+(?:-[a-z0-9]+)*$/.test(candidate.slug || ''), 'unsafe or unsupported slug');
+  require((batch === BATCH ? /^(?:greek|roman)\/[a-z0-9]+(?:-[a-z0-9]+)*$/ : /^[a-z][a-z0-9-]*\/[a-z0-9]+(?:-[a-z0-9]+)*$/).test(candidate.slug || ''), 'unsafe or unsupported slug');
   require(candidate.collection === candidate.slug?.split('/')[0], 'collection differs from slug prefix');
   require(WINGS.has(candidate.wing), 'wing must be an existing origin-based wing or explicitly unfiled');
   if (candidate.wing === 'unfiled') require(text(candidate.wing_unfiled_reason).length >= 30 && !text(candidate.geography) && !text(candidate.original_location), 'Unfiled requires a documented unknown origin, without a museum-derived origin');
   else require(text(candidate.geography) || text(candidate.original_location), 'document the object origin separately from its holding museum');
-  require(candidate.period === 'Ancient' && ((Number.isFinite(candidate.year_sort) && candidate.year_sort < 500)
-    || (candidate.year_sort === null && /^unknown\b/i.test(text(candidate.year)))), 'explicit ancient date or honestly unknown chronology required');
+  require(batch !== BATCH || (candidate.period === 'Ancient' && ((Number.isFinite(candidate.year_sort) && candidate.year_sort < 500)
+    || (candidate.year_sort === null && /^unknown\b/i.test(text(candidate.year))))), 'explicit ancient date or honestly unknown chronology required');
   require(url(candidate.source_url)?.hostname === 'sketchfab.com' && sourceUids({ source_url: candidate.source_url }).has(candidate.uid), 'source page must identify this exact UID');
   require(candidate.download_api_url === `https://api.sketchfab.com/v3/models/${candidate.uid}/download`, 'download API must identify this exact UID');
   require(candidate.license_evidence_url === `https://api.sketchfab.com/v3/models/${candidate.uid}`, 'license evidence must be the exact live model detail');
@@ -130,7 +132,9 @@ export function checkCandidate(candidate, { now = new Date(), maxAgeDays = 7 } =
   return issues;
 }
 
-export function prepareLeads(documents, catalog, { expectedCount = EXPECTED_COUNT, selection, now = new Date(), corrections = {} } = {}) {
+export function prepareLeads(documents, catalog, { expectedCount = EXPECTED_COUNT, selection, now = new Date(), corrections = {}, batch = BATCH, chunk = 1, sequenceOffset = 0 } = {}) {
+  if (!SUPPORTED_BATCHES.has(batch)) throw new Error('Unsupported preparation batch');
+  if (!positiveInteger(chunk) || !Number.isSafeInteger(sequenceOffset) || sequenceOffset < 0) throw new Error('Invalid cumulative chunk/sequence offset');
   const issues = [], candidates = [], duplicates = [], byUid = new Map(), seenSlug = new Map(), seenObject = new Map();
   const existing = catalog.map(item => ({ ...item, ...(corrections[item.slug]?.catalog || {}), ...(corrections[item.slug]?.title ? { title: corrections[item.slug].title } : {}) }));
   const indexes = catalogIndexes(existing);
@@ -141,12 +145,14 @@ export function prepareLeads(documents, catalog, { expectedCount = EXPECTED_COUN
   const found = new Set();
   for (const document of documents) {
     if (document?.schema !== 'atrium-auto-ingest-candidates/1' || !Array.isArray(document.candidates)) { issues.push({ reason: 'discovery input must use atrium-auto-ingest-candidates/1 and candidates[]' }); continue; }
+    if (document.logical_batch_id && document.logical_batch_id !== batch) { issues.push({ reason: 'Discovery document batch mismatch' }); continue; }
     for (const input of document.candidates) {
       if (!input || typeof input !== 'object' || Array.isArray(input)) { issues.push({ reason: 'candidate must be an object' }); continue; }
       if (selected && !selected.has(input.slug)) continue;
       found.add(input.slug);
       const candidate = structuredClone(input);
-      const problems = checkCandidate(candidate, { now });
+      const problems = checkCandidate(candidate, { now, batch });
+      if (candidate.logical_batch_id && candidate.logical_batch_id !== batch) problems.push('Candidate batch mismatch');
       if (problems.length) issues.push({ slug: candidate.slug, reasons: problems });
       if (byUid.has(candidate.uid)) {
         const previous = byUid.get(candidate.uid);
@@ -170,12 +176,12 @@ export function prepareLeads(documents, catalog, { expectedCount = EXPECTED_COUN
   if (selected) for (const slug of selected) if (!found.has(slug)) issues.push({ slug, reason: 'selected slug missing from discovery inputs' });
   if (candidates.length !== expectedCount) issues.push({ reason: `expected exactly ${expectedCount} unique selected leads; found ${candidates.length}` });
   const manifest = {
-    schema: 'atrium-auto-ingest-candidates/1', generated_at: now.toISOString(), logical_batch_id: BATCH,
-    chunk: 1, expected_count: expectedCount, strict_acquisition: false,
+    schema: 'atrium-auto-ingest-candidates/1', generated_at: now.toISOString(), logical_batch_id: batch,
+    chunk, expected_count: expectedCount, strict_acquisition: false,
     note: 'Preparation only. All selected sources require measured integrity without exemptions, unchanged provider archive preservation, native material and full capture review, final orientation, size review and rendered thumbnails. No automatic featured membership. Selected archive metadata is separate from API detail counts; source hashes are recorded after actual acquisition.',
-    candidates: candidates.map((candidate, index) => ({ ...candidate, logical_batch_id: BATCH, batch_sequence: index + 1, batch_chunk: 1 })),
+    candidates: candidates.map((candidate, index) => ({ ...candidate, logical_batch_id: batch, batch_sequence: sequenceOffset + index + 1, batch_chunk: chunk })),
   };
-  return { manifest, audit: { schema: 'atrium-etruscan-greek-preparation/1', batch: BATCH, generated_at: now.toISOString(),
+  return { manifest, audit: { schema: 'atrium-source-leads-preparation/1', batch, generated_at: now.toISOString(),
     ready: issues.length === 0, catalog_count: catalog.length, selected_count: candidates.length, duplicate_entries: duplicates,
     selected_archive_bytes: candidates.reduce((sum, candidate) => sum + (positiveInteger(candidate.download_size_bytes) ? candidate.download_size_bytes : 0), 0), issues } };
 }
@@ -283,8 +289,10 @@ export async function preflightMetadata(documents, { token, batch = BATCH, fetch
     scope: 'Live detail and authenticated download API metadata only. No source payload fetched; no returned download URL, token or account metadata retained. Null archive faces require actual post-fetch measured integrity.' };
 }
 
-export function applyDownloadMetadata(documents, metadata) {
-  if (metadata?.schema !== 'atrium-selected-download-metadata/1' || metadata.batch !== BATCH || !Array.isArray(metadata.models)) throw new Error('Wrong selected-download metadata schema/batch');
+export function applyDownloadMetadata(documents, metadata, { batch = BATCH } = {}) {
+  if (!SUPPORTED_BATCHES.has(batch)) throw new Error('Unsupported metadata batch');
+  if (documents.some(document => document.logical_batch_id && document.logical_batch_id !== batch)) throw new Error('Discovery document batch mismatch');
+  if (metadata?.schema !== 'atrium-selected-download-metadata/1' || metadata.batch !== batch || !Array.isArray(metadata.models)) throw new Error('Wrong selected-download metadata schema/batch');
   const models = new Map();
   for (const row of metadata.models) {
     if (!UID.test(row.uid || '') || models.has(row.uid)) throw new Error('Metadata UIDs must be valid and unique');
