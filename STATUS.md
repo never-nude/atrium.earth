@@ -849,3 +849,15 @@ Commit `1afb322` is deployment-verified. [GitHub Pages run 37334355346](https://
 - The owner authorized deploying the next51 ready works in one push; new acquisitions remain paused. Chunk3 run39291101276 stays canceled and no replacement run is scheduled.
 - The cumulative102 final audit passed at75e3eff8 with zero failures, all816 actual comparison images, authenticated permanent backups and preserved earlier2018 records/featured250. Actual final browser checks passed102 pages, all17 held404s, fullNewest102,12 exhibition placements and3 interactive viewers. The reviewed production build passed5783 pages. Public-safe cumulative audit/browser reports are saved separately from the earlier51-work evidence.
 - The publication will add51 works to the51 already live today, yielding2120 catalog records and2102 public works. One Pages deployment is intended; no new acquisition, rerender or offload workflow is part of this authorization. Deployment and full live asset verification remain pending. All119 originals stay protected locally and in their verified private archives.
+
+
+## 2026-10-20 — Sixty famous works: acquisition in progress
+
+- Owner: local Codex session on `codex/famous-sculpture-20261020`, based on fetched main `c2b6ba84`. The user requested 60 famous works absent from Atrium. Duplicate screening includes the separate locally prepared 60-work charged batch, which remains protected on its own branch. Venus de Milo is already present and is not a new acquisition.
+- Scope: source-backed iconic sculpture, fine art and culturally significant objects, prioritizing public-domain artworks and accessible permissively licensed native models. Login-dependent downloads are skipped. No new work is counted as acquired until its actual files and identity are verified.
+- Delivery: local research and preparation only. No push, public upload, Actions dispatch or deployment is authorized. The separate October19 acquisition remains paused.
+- Next: verify canonical gaps, acquire eligible models, review geometry and native materials, archive originals privately, and prepare a local preview.
+
+### Owner-requested pause
+
+- The owner requested “wait first push last batch”. All famous-work acquisition lanes are paused and their source files/research are preserved outside Git, with explicit pending QA and identity checks. No famous work is integrated or published. The root session is publishing the separately reviewed prior 60-work charged batch under this new authorization. Resume famous acquisitions only after resolving the owner’s sequencing request.
