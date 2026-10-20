@@ -851,6 +851,38 @@ Commit `1afb322` is deployment-verified. [GitHub Pages run 37334355346](https://
 - The publication will add51 works to the51 already live today, yielding2120 catalog records and2102 public works. One Pages deployment is intended; no new acquisition, rerender or offload workflow is part of this authorization. Deployment and full live asset verification remain pending. All119 originals stay protected locally and in their verified private archives.
 
 
+## 2026-10-20 — Sixty provocative adult-intimacy works (local preparation)
+
+- Owner/branch: this local Codex session on `codex/charged-sculpture-20261020`, starting from main `c2b6ba84`. The owner requested 60 more charged works, allowing homoerotic and heterosexual themes and a more provocative curatorial tone. The baseline contains 2,120 catalog records and 2,102 public works.
+- Scope: distinct actual 3D works centered on adult desire and intimate poses, with public-domain artworks prioritized and openly licensed scan sources. No count is inferred from search hits. Login-dependent downloads remain excluded. Existing acquisition review, native-appearance, physical-size and permanent private-archive requirements apply.
+- Delivery: research and local preparation only; the prior publication hold remains the default for this new batch until explicit approval. No new GitHub Actions run, push, deployment or local-source removal is authorized by this checkpoint. The new acquisition request does not resume the separate October19 batch or its canceled third chunk.
+- Next: current-source discovery, composition/source deduplication, eligible public file acquisition, complete model and material review, private archive verification and a concrete local preview. All earlier records, featured250, existing assets and other worktrees remain protected.
+
+### Sixty-work local review complete — 2026-10-20
+
+- Prepared exactly 60 distinct 3D works in `charged-sculpture-20261020`: historical adult figures, intimate pairs, mythological subjects and ten artist-published Tim Holmes works. Actual scans and license evidence are acquired; login-dependent sources are excluded. The local catalog now has 2,180 records and 2,162 public works. All 2,120 prior records are preserved except their recomputed collection total; prior settings and the featured 250 are unchanged.
+- All 60 have six-view geometry review, unchanged native geometry/materials, full source/serving GLB hash checks, real thumbnails, explicit physical-size review statuses and correct existing wing assignments. Four additions have captions in three existing exhibitions. Unknown dates, exact cast identities and dimensions remain qualified. Scan limitations, including rough supports, captured ground, baked lighting and localized surface defects, are recorded in `docs/ingest/charged-sculpture-20261020.json`. The models have no new physical calibration.
+- Unchanged provider originals, textures, materials, licenses and attribution for every accepted work have permanent private Drive coverage verified by complete SHA-256 readback, exact byte counts and owner-only sharing. The portable recovery manifest and verification checkpoint are also fully verified. Private recovery identities and signing material remain outside Git. This coverage statement concerns the accepted 60, not every rejected research lead; zero local source files were removed.
+- Validation passed: production build (5,953 pages), asset verification, addition grouping, wing routing, featured selection, museum labels across all 2,162 public works, and local HTTP delivery for all 60 pages/models/thumbnails. Actual browser review confirms Newest shows exactly 60 and an interactive representative viewer loads. All 60 new dimension-review entries pass independent validation; the full dimensions suite still stops at the pre-existing LeWitt omission, with 214 older public works lacking reviews both before and after this batch.
+- Delivery: local only on `codex/charged-sculpture-20261020`; no Git push, public model upload, Actions dispatch or deployment. Other devices cannot fetch this unpublished work yet. Review is available from the task's local preview. The separate October19 paused acquisition remains untouched.
+- Next: await the owner's explicit publication approval. Then fetch/reconcile main, upload and verify immutable serving models, update their public URLs, rerun release checks and publish the reviewed batch. Local checks do not establish production deployment.
+
+### Publication authorized — 2026-10-20
+
+- The owner requested “wait first push last batch”, explicitly authorizing this reviewed 60-work release. The separate famous-work search is paused with its sources and pending QA preserved; it contributes no catalog entry to this release.
+- All60 serving models now use immutable content-hashed URLs on the existing public model host. Complete readbacks match reviewed SHA-256 hashes and byte counts; production-origin CORS and model content types pass. Source geometry, materials, orientation and thumbnails are unchanged.
+- An independent24-check audit confirms all2120 earlier records/settings and featured250 are preserved, all60 source/serving models and225 native dependencies match, and all17 signed private backup receipts authenticate. No local source was removed.
+- Asset, addition, featured and wing checks pass. Final production build and deployment verification are recorded separately below; this checkpoint does not itself establish live publication.
+- The final production build passed after public-model binding (5953 pages), and built Newest contains exactly the reviewed60 slugs. Existing2120 preview mappings are unchanged. Main deployment and post-deployment checks remain pending.
+
+### Prior sixty-work batch verified live — 2026-10-20
+
+- Release `4d910a34c269001de693d0260d7502a422ae7f1e` is pushed to main and deployed successfully by [Pages run 39515050799](https://github.com/never-nude/atrium.earth/actions/runs/39515050799). Both build and deployment jobs succeeded.
+- Production verification passed the exact 60-work Newest cohort, all 60 page titles and immutable model bindings, complete model/thumbnail hashes and byte counts, model CORS, and four placements across three existing exhibitions. The production browser shows 60 newest works and 2,162 public works; Mermaids of Earth and Boxer at Rest both render and respond to drag/orbit. Evidence is `docs/ingest/charged-sculpture-20261020-live.json`.
+- All source archives and local originals remain protected; zero sources were offloaded. Existing records and featured 250 remain unchanged. The famous-work acquisition is saved and paused separately, with no famous-batch catalog additions published; the older October 19 acquisition remains paused.
+- This verification-only documentation commit uses `[skip ci]` to preserve Actions allowance; the deployed site remains the verified release above. Next: resume the separate famous-work batch only when requested, reconcile its branch with current main, complete source/quality/archive checks, and keep publication subject to the owner’s standing approval hold.
+
+
 ## 2026-10-20 — Sixty famous works: acquisition in progress
 
 - Owner: local Codex session on `codex/famous-sculpture-20261020`, based on fetched main `c2b6ba84`. The user requested 60 famous works absent from Atrium. Duplicate screening includes the separate locally prepared 60-work charged batch, which remains protected on its own branch. Venus de Milo is already present and is not a new acquisition.
@@ -861,3 +893,8 @@ Commit `1afb322` is deployment-verified. [GitHub Pages run 37334355346](https://
 ### Owner-requested pause
 
 - The owner requested “wait first push last batch”. All famous-work acquisition lanes are paused and their source files/research are preserved outside Git, with explicit pending QA and identity checks. No famous work is integrated or published. The root session is publishing the separately reviewed prior 60-work charged batch under this new authorization. Resume famous acquisitions only after resolving the owner’s sequencing request.
+
+### Famous-work acquisition resumed — 2026-10-20
+
+- The owner said “next” after the prior 60-work batch was deployed and fully verified. All three acquisition lanes resume from their saved checkpoints. This branch now incorporates main through `eb6cc0a5`, with 2,180 catalog records and 2,162 public works.
+- Only local acquisition, quality review, private source preservation and preview preparation are authorized for this new batch. Publishing awaits explicit owner approval. Existing source files and unrelated paused work remain protected.

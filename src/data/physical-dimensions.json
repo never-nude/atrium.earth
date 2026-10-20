@@ -33245,7 +33245,7 @@
       "measurementRegion": {
         "method": "position-welded connected triangles",
         "description": "The sculpture is separate from the modern pedestal. Connected components ranks 0, 1 and 3 contain the marble group; rank 2 is the rectangular pedestal. Their union runs from normalized Y -0.1190040436654394 to 0.5. Use the confirmed 197.5 cm height of the marble group, retaining the pedestal at the same uniform scale.",
-        "weldToleranceNormalizedUnits": 0.000001,
+        "weldToleranceNormalizedUnits": 1e-06,
         "ranksByDescendingTriangleCount": [
           0,
           1,
@@ -69278,7 +69278,7 @@
       "measurementRegion": {
         "method": "position-welded connected triangles",
         "description": "Connected component rank 0 is the rigid monitor body; all display/button components remain within its lateral body endpoints. Hanging cable components extend farther left and below and are excluded from the reference. Use the museum body-only width 58.4 cm for the rank-0 X span, retaining all cables at that scale.",
-        "weldToleranceNormalizedUnits": 0.000001,
+        "weldToleranceNormalizedUnits": 1e-06,
         "ranksByDescendingTriangleCount": [
           0
         ],
@@ -76991,7 +76991,7 @@
       "measurementRegion": {
         "method": "position-welded connected triangles",
         "description": "Connected component rank 0 is the complete sculpture, including its lowest foot/curved lower edge; rank 1 is the added green platform. All other sculpture fragments and the apple are within rank-0 height. Use the scan creator’s explicitly approximate 57 cm sculpture height, excluding the green platform from the reference while retaining it in the scene.",
-        "weldToleranceNormalizedUnits": 0.000001,
+        "weldToleranceNormalizedUnits": 1e-06,
         "ranksByDescendingTriangleCount": [
           0
         ],
@@ -108414,6 +108414,966 @@
     "geometryReviewNote": "Independent actual eight-view and provider-photo review accepts the normalized material appearance, including warm gold and the dark blue engraved stone. The normalized-reference process preserves raw node transforms, accessor-signature registry, binary data and scene/mesh mapping with a verified geometry fingerprint and no simplification or reference texture compression. Geometry proof was reviewed separately from this material decision.",
     "calibrationBlockers": [
       "Published physical measurements have not been matched to exact measurement regions of the immutable final derivative."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "greek/aphrodite-torso-cleveland-1988-9": {
+    "status": "documented",
+    "basis": "object",
+    "dimensions": "66.3 × 36.2 cm",
+    "sourceUrl": "https://www.clevelandart.org/art/1988.9",
+    "sourceTitle": "Cleveland Museum of Art — Aphrodite Torso",
+    "checked": "2026-10-20",
+    "note": "Object dimensions are kept separate from model scale. No physical calibration is asserted.",
+    "geometryStatus": "reviewed-blocked",
+    "calibrationReady": false,
+    "geometryReviewNote": "Ancient head, arms and lower legs are absent; do not reconstruct them. Source includes the museum display support. Actual sculpture is complete as surviving ancient fragment. Partial modern display pedestal is open underneath and has hanging scan skirts; not missing ancient anatomy. Retain source as requested but consider display-quality selection.",
+    "calibrationBlockers": [
+      "The preserved scan and any display supports have not been calibrated to exact object measurements."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "roman/torso-venus-cleveland-1926-565": {
+    "status": "documented",
+    "basis": "object",
+    "dimensions": "H 64.2 cm; with base 78.8 cm",
+    "sourceUrl": "https://www.clevelandart.org/art/1926.565",
+    "sourceTitle": "Cleveland Museum of Art — Torso of Venus",
+    "checked": "2026-10-20",
+    "note": "Object dimensions are kept separate from model scale. No physical calibration is asserted.",
+    "geometryStatus": "reviewed-blocked",
+    "calibrationReady": false,
+    "geometryReviewNote": "Ancient losses include the head, most arms, and lower legs. Source includes the modern display base. Actual sculpture is complete as surviving ancient fragment. Partial modern display pedestal is open underneath and has hanging scan skirts; not missing ancient anatomy. Retain source as requested but consider display-quality selection.",
+    "calibrationBlockers": [
+      "The preserved scan and any display supports have not been calibrated to exact object measurements."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "roman/hermes-atalante-nama-240": {
+    "status": "unresolved",
+    "basis": "object",
+    "dimensions": "",
+    "sourceUrl": "https://www.searchculture.gr/aggregator/edm/mnam/000150-457960?language=en",
+    "sourceTitle": "National Archaeological Museum, Athens — Hermes from Atalante",
+    "checked": "2026-10-20",
+    "note": "Object dimensions are kept separate from model scale. No physical calibration is asserted.",
+    "geometryStatus": "reviewed-blocked",
+    "calibrationReady": false,
+    "geometryReviewNote": "Modern repairs and small ancient finger losses are documented by the museum. Source thumbnail includes a broad floor/context patch; root render QA must judge framing. Do not assign the original fourth-century BCE date to this Roman-period statue. Strong red reflected color on back and top of head; broad floor context visible. Whole surviving figure preserved.",
+    "calibrationBlockers": [
+      "The preserved scan and any display supports have not been calibrated to exact object measurements."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "roman/hermes-ram-troizen-nama-243": {
+    "status": "unresolved",
+    "basis": "object",
+    "dimensions": "",
+    "sourceUrl": "https://www.namuseum.gr/en/to-moyseio/istoria-toy-moyseioy/the-rescue-of-the-statues/",
+    "sourceTitle": "National Archaeological Museum, Athens — Hermes with a Ram, from Troizen",
+    "checked": "2026-10-20",
+    "note": "Object dimensions are kept separate from model scale. No physical calibration is asserted.",
+    "geometryStatus": "reviewed-blocked",
+    "calibrationReady": false,
+    "geometryReviewNote": "Museum primary evidence confirms Roman period and accession; exact second-century dating, Pentelic marble, height and Naukydes attribution are omitted pending stronger direct evidence. Ancient losses include right arm and left hand; scan appears to include surviving whole statue and rectangular display support.",
+    "calibrationBlockers": [
+      "The preserved scan and any display supports have not been calibrated to exact object measurements."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "roman/apollo-omphalos-nama-45": {
+    "status": "documented",
+    "basis": "object",
+    "dimensions": "H 176 cm",
+    "sourceUrl": "https://museum.classics.cam.ac.uk/collections/casts/omphalos-apollo",
+    "sourceTitle": "National Archaeological Museum, Athens — Apollo of the Omphalos Type",
+    "checked": "2026-10-20",
+    "note": "Object dimensions are kept separate from model scale. No physical calibration is asserted.",
+    "geometryStatus": "reviewed-blocked",
+    "calibrationReady": false,
+    "geometryReviewNote": "Whole surviving artifact is scanned; ancient forearms and feet are absent. No reconstruction. Low-polygon source has visible faceting, especially on the back; rear texture differs in lightness. Cambridge primary cast catalogue explicitly distinguishes original Athens45 from its own cast109; dimensions/material here refer to Athens original. Exact second-century date omitted.",
+    "calibrationBlockers": [
+      "The preserved scan and any display supports have not been calibrated to exact object measurements."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "roman/hermes-aigion-nama-241": {
+    "status": "unresolved",
+    "basis": "object",
+    "dimensions": "",
+    "sourceUrl": "https://www.namuseum.gr/en/to-moyseio/istoria-toy-moyseioy/the-rescue-of-the-statues/",
+    "sourceTitle": "National Archaeological Museum, Athens — Hermes from Aigion",
+    "checked": "2026-10-20",
+    "note": "Object dimensions are kept separate from model scale. No physical calibration is asserted.",
+    "geometryStatus": "reviewed-blocked",
+    "calibrationReady": false,
+    "geometryReviewNote": "Source has a strong red reflected color on the back; retain original texture but review display quality. The rectangular museum label appears in the scan and the back of its display support has a small irregular margin. Official primary museum record confirms object241 and Roman period. More precise Augustan date/Pentelic material/height are not asserted without stronger primary text.",
+    "calibrationBlockers": [
+      "The preserved scan and any display supports have not been calibrated to exact object measurements."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "roman/aphrodite-syracuse-nama-3524": {
+    "status": "unresolved",
+    "basis": "object",
+    "dimensions": "",
+    "sourceUrl": "https://www.searchculture.gr/aggregator/edm/mnam/000150-457643?language=en",
+    "sourceTitle": "National Archaeological Museum, Athens — Aphrodite of the Syracuse Type",
+    "checked": "2026-10-20",
+    "note": "Object dimensions are kept separate from model scale. No physical calibration is asserted.",
+    "geometryStatus": "reviewed-blocked",
+    "calibrationReady": false,
+    "geometryReviewNote": "The head, neck and right arm are historic Canova restorations, not ancient Roman carving. Strong red reflected color on the back and visible original mesh faceting; source bytes retained unchanged. Do not call this an autograph Canova statue or a sculpture made in Syracuse; found at Baiae, type named Syracuse.",
+    "calibrationBlockers": [
+      "The preserved scan and any display supports have not been calibrated to exact object measurements."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "greek/poseidon-melos-nama-235": {
+    "status": "unresolved",
+    "basis": "object",
+    "dimensions": "",
+    "sourceUrl": "https://www.namuseum.gr/wp-content/uploads/2020/10/ebook-Memories-1940-1941.pdf",
+    "sourceTitle": "National Archaeological Museum, Athens — Poseidon from Melos",
+    "checked": "2026-10-20",
+    "note": "Object dimensions are kept separate from model scale. No physical calibration is asserted.",
+    "geometryStatus": "reviewed-blocked",
+    "calibrationReady": false,
+    "geometryReviewNote": "Whole surviving statue, base and large floor patch preserved. No object geometry removed. Trident is absent in the physical museum object; do not reconstruct it. Original photogrammetry faceting remains visible.",
+    "calibrationBlockers": [
+      "The preserved scan and any display supports have not been calibrated to exact object measurements."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "europe/chloris-pradier-toulouse-garden": {
+    "status": "unresolved",
+    "basis": "object",
+    "dimensions": "",
+    "sourceUrl": "https://collections.augustins.toulouse.fr/fr/notice/2004-1-103-chloris-caressee-par-zephir-9e2d67bd-a800-45fc-addb-8889d8ecf2cd",
+    "sourceTitle": "Jardin des Plantes, Toulouse — Chloris Caressed by Zephyr (Toulouse garden copy)",
+    "checked": "2026-10-20",
+    "note": "Object dimensions are kept separate from model scale. No physical calibration is asserted.",
+    "geometryStatus": "reviewed-blocked",
+    "calibrationReady": false,
+    "geometryReviewNote": "Whole standing figure and integral base are present, with good drapery and hair detail. Crown has a conspicuously flat pale cap in overhead view; do not describe that cap as verified original marble detail.",
+    "calibrationBlockers": [
+      "The preserved scan and any display supports have not been calibrated to exact object measurements."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "europe/ondines-boucher-sevres": {
+    "status": "unresolved",
+    "basis": "object",
+    "dimensions": "",
+    "sourceUrl": "https://museecamilleclaudel.fr/ondines",
+    "sourceTitle": "Collection unconfirmed; possible Musée Camille Claudel, Nogent-sur-Seine — Les Ondines (Nymphs of the Seine)",
+    "checked": "2026-10-20",
+    "note": "Object dimensions are kept separate from model scale. No physical calibration is asserted.",
+    "geometryStatus": "reviewed-blocked",
+    "calibrationReady": false,
+    "geometryReviewNote": "All three figures are present and legible around the column. Top is flat/capped; source includes a uniformly gold display base. Both are retained source geometry, not new Atrium reconstruction.",
+    "calibrationBlockers": [
+      "The preserved scan and any display supports have not been calibrated to exact object measurements."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "rodin/hand-of-god-met": {
+    "status": "documented",
+    "basis": "object",
+    "dimensions": "73.7 × 60.3 × 64.1 cm",
+    "sourceUrl": "https://www.metmuseum.org/art/collection/search/191046",
+    "sourceTitle": "The Metropolitan Museum of Art, New York — The Hand of God",
+    "checked": "2026-10-20",
+    "note": "Object dimensions are kept separate from model scale. No physical calibration is asserted.",
+    "geometryStatus": "reviewed-blocked",
+    "calibrationReady": false,
+    "geometryReviewNote": "Whole above-base composition is legible, though anatomy is soft. Base underside was not captured; underside view is open and backface-culled. Orange and pale surface patches are baked into source appearance.",
+    "calibrationBlockers": [
+      "The preserved scan and any display supports have not been calibrated to exact object measurements."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "americas/fragilina-piccirilli-met": {
+    "status": "documented",
+    "basis": "object",
+    "dimensions": "123.2 × 39.4 × 63.5 cm",
+    "sourceUrl": "https://www.metmuseum.org/art/collection/search/11768",
+    "sourceTitle": "The Metropolitan Museum of Art, New York — Fragilina",
+    "checked": "2026-10-20",
+    "note": "Object dimensions are kept separate from model scale. No physical calibration is asserted.",
+    "geometryStatus": "reviewed-blocked",
+    "calibrationReady": false,
+    "geometryReviewNote": "Raised arm, head, knees and feet are present: thumbnail framing had not indicated lost arm geometry. Bottom of display block is incomplete and there is a large opening under its rear edge at yaw 270. Face is simplified partly by the original sculptural design; capture also softens details.",
+    "calibrationBlockers": [
+      "The preserved scan and any display supports have not been calibrated to exact object measurements."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "americas/isoult-mccartan-nga": {
+    "status": "documented",
+    "basis": "object",
+    "dimensions": "210.82 × 124.46 × 73.66 cm",
+    "sourceUrl": "https://www.nga.gov/artworks/131118-isoult",
+    "sourceTitle": "National Gallery of Art, Washington — Isoult",
+    "checked": "2026-10-20",
+    "note": "Object dimensions are kept separate from model scale. No physical calibration is asserted.",
+    "geometryStatus": "reviewed-blocked",
+    "calibrationReady": false,
+    "geometryReviewNote": "Head and complete standing figure/fawn are present; source thumbnail crop was not a missing head. Display-pedestal reverse and underside are open, with thin fragments. Front bronze is dark and low contrast.",
+    "calibrationBlockers": [
+      "The preserved scan and any display supports have not been calibrated to exact object measurements."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "europe/eve-after-fall-delaplanche-orsay": {
+    "status": "documented",
+    "basis": "object",
+    "dimensions": "145 × 92.5 × 74 cm",
+    "sourceUrl": "https://www.musee-orsay.fr/fr/oeuvres/eve-apres-le-peche-6428",
+    "sourceTitle": "Musée d’Orsay, Paris — Eve after the Fall (Ève après le péché)",
+    "checked": "2026-10-20",
+    "note": "Object dimensions are kept separate from model scale. No physical calibration is asserted.",
+    "geometryStatus": "reviewed-blocked",
+    "calibrationReady": false,
+    "geometryReviewNote": "Complete above-base figure and integral serpent support are legible; face and body details are soft. Display pedestal/label is partly open below and behind; tiny floating points remain.",
+    "calibrationBlockers": [
+      "The preserved scan and any display supports have not been calibrated to exact object measurements."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "europe/the-tub-degas-artic": {
+    "status": "unresolved",
+    "basis": "object",
+    "dimensions": "",
+    "sourceUrl": "https://www.artic.edu/artworks/68369/the-tub",
+    "sourceTitle": "Art Institute of Chicago — The Tub",
+    "checked": "2026-10-20",
+    "note": "Object dimensions are kept separate from model scale. No physical calibration is asserted.",
+    "geometryStatus": "reviewed-blocked",
+    "calibrationReady": false,
+    "geometryReviewNote": "Whole bather and tub are legible; elevated view is more informative than any low yaw. Recommend yaw 0 with about 40 degrees elevation for the initial camera. Underside is not captured; source has ragged outer base edges.",
+    "calibrationBlockers": [
+      "The preserved scan and any display supports have not been calibrated to exact object measurements."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "europe/sappho-epinay-met": {
+    "status": "documented",
+    "basis": "object",
+    "dimensions": "H 166.1 cm",
+    "sourceUrl": "https://www.metmuseum.org/art/collection/search/209017",
+    "sourceTitle": "The Metropolitan Museum of Art, New York (artist loan) — Sappho",
+    "checked": "2026-10-20",
+    "note": "Object dimensions are kept separate from model scale. No physical calibration is asserted.",
+    "geometryStatus": "reviewed-blocked",
+    "calibrationReady": false,
+    "geometryReviewNote": "Whole seated figure, lyre and chair are present. Yaw 180 gives both face profile and lyre; yaw 90 is more frontal. Floor slab remains. Underside and chair lower recesses have uncaptured surfaces; baked light is noticeably uneven. Curatorial reserve: fully draped and less directly charged.",
+    "calibrationBlockers": [
+      "The preserved scan and any display supports have not been calibrated to exact object measurements."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "europe/grief-llimona-prado": {
+    "status": "documented",
+    "basis": "object",
+    "dimensions": "H 62 cm (primary museum tour); full dimensions unconfirmed",
+    "sourceUrl": "https://www.museodelprado.es/coleccion/obra-de-arte/desconsuelo-desesperacion/707dd3aa-8efc-47e2-8d0c-b756ef0fa2d8",
+    "sourceTitle": "Museo Nacional del Prado, Madrid — Desconsuelo (Grief)",
+    "checked": "2026-10-20",
+    "note": "Object dimensions are kept separate from model scale. No physical calibration is asserted.",
+    "geometryStatus": "reviewed-blocked",
+    "calibrationReady": false,
+    "geometryReviewNote": "Complete adult figure and carved support are present; surface detail and silhouette read well. Underside is uncaptured and the display board remains. Curatorial reserve: emotional nude rather than intimate erotic subject.",
+    "calibrationBlockers": [
+      "The preserved scan and any display supports have not been calibrated to exact object measurements."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "europe/love-psyche-benzoni-marmottan": {
+    "status": "documented",
+    "basis": "object",
+    "dimensions": "142 × 90 × 55 cm",
+    "sourceUrl": "https://www.marmottan.fr/notice/956/",
+    "sourceTitle": "Musée Marmottan Monet, Paris — Love and Psyche",
+    "checked": "2026-10-20",
+    "note": "Object dimensions are kept separate from model scale. No physical calibration is asserted.",
+    "geometryStatus": "reviewed-blocked",
+    "calibrationReady": false,
+    "geometryReviewNote": "Both standing figures, hands, feet and wings are present. Some high wing/feather surfaces are softened; wood display base and label retained. Open underside of display base.",
+    "calibrationBlockers": [
+      "The preserved scan and any display supports have not been calibrated to exact object measurements."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "europe/truth-mackennal": {
+    "status": "unresolved",
+    "basis": "object",
+    "dimensions": "",
+    "sourceUrl": "https://collection.qagoma.qld.gov.au/objects/8007",
+    "sourceTitle": "Australian collection; exact captured cast unconfirmed — Truth",
+    "checked": "2026-10-20",
+    "note": "Object dimensions are kept separate from model scale. No physical calibration is asserted.",
+    "geometryStatus": "reviewed-blocked",
+    "calibrationReady": false,
+    "geometryReviewNote": "Full standing adult figure, wings and integral pedestal are legible. Small floor sheet remains; underside and tight wing recesses are incomplete. Surface is mottled/dark. Exact institutional cast remains unresolved.",
+    "calibrationBlockers": [
+      "The preserved scan and any display supports have not been calibrated to exact object measurements."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "americas/memory-french-met": {
+    "status": "documented",
+    "basis": "object",
+    "dimensions": "146.1 × 63.5 × 108 cm",
+    "sourceUrl": "https://www.metmuseum.org/art/collection/search/10911",
+    "sourceTitle": "The Metropolitan Museum of Art, New York — Memory",
+    "checked": "2026-10-20",
+    "note": "Object dimensions are kept separate from model scale. No physical calibration is asserted.",
+    "geometryStatus": "reviewed-blocked",
+    "calibrationReady": false,
+    "geometryReviewNote": "Whole seated figure, mirror and integral drapery support are present. Large cutout in display-pedestal side and missing underside; broad blue/warm lighting shifts baked into texture.",
+    "calibrationBlockers": [
+      "The preserved scan and any display supports have not been calibrated to exact object measurements."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "europe/loves-mirror-cantalamessa-papotti-mag": {
+    "status": "documented",
+    "basis": "object",
+    "dimensions": "Overall height: 215.9 cm",
+    "sourceUrl": "https://www.si.edu/object/loves-mirror-sculpture%3Asiris_ari_466420",
+    "sourceTitle": "Memorial Art Gallery, University of Rochester — Love’s Mirror",
+    "checked": "2026-10-20",
+    "note": "Object dimensions are kept separate from model scale. No physical calibration is asserted.",
+    "geometryStatus": "reviewed-blocked",
+    "calibrationReady": false,
+    "geometryReviewNote": "Normal views preserve full adult figure, mirror-bearing non-sexual Cupid and ornate pedestal. Pedestal bottom is open, visible only from below. Good readable front.",
+    "calibrationBlockers": [
+      "The preserved scan and any display supports have not been calibrated to exact object measurements."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "europe/venus-doves-falconet-nga": {
+    "status": "documented",
+    "basis": "object",
+    "dimensions": "75.1 × 71.3 × 45.7 cm",
+    "sourceUrl": "https://www.nga.gov/artworks/41716-venus-doves",
+    "sourceTitle": "National Gallery of Art, Washington — Venus of the Doves",
+    "checked": "2026-10-20",
+    "note": "Object dimensions are kept separate from model scale. No physical calibration is asserted.",
+    "geometryStatus": "reviewed-blocked",
+    "calibrationReady": false,
+    "geometryReviewNote": "Whole group and shell support readable all normal views. Thin extra floor strip remains behind base. Base underside is open. No explicit interaction; putti are attendants.",
+    "calibrationBlockers": [
+      "The preserved scan and any display supports have not been calibrated to exact object measurements."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "renaissance/venus-cupid-giambologna-follower-nga": {
+    "status": "documented",
+    "basis": "object",
+    "dimensions": "Overall height: 124.5 cm",
+    "sourceUrl": "https://www.nga.gov/artworks/74731-venus-and-cupid",
+    "sourceTitle": "National Gallery of Art, Washington — Venus and Cupid",
+    "checked": "2026-10-20",
+    "note": "Object dimensions are kept separate from model scale. No physical calibration is asserted.",
+    "geometryStatus": "reviewed-blocked",
+    "calibrationReady": false,
+    "geometryReviewNote": "Whole adult figure with hair, non-sexual shell-bearing Cupid and pedestal. Source has uneven baked lighting and dark face. Open pedestal underside. Normal-view silhouette intact.",
+    "calibrationBlockers": [
+      "The preserved scan and any display supports have not been calibrated to exact object measurements."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "greek/aphrodite-eros-toledo-1968-71": {
+    "status": "documented",
+    "basis": "object",
+    "dimensions": "41.5 × 17 × 15.1 cm",
+    "sourceUrl": "https://emuseum.toledomuseum.org/objects/56298/statuette-of-aphrodite-and-eros",
+    "sourceTitle": "Toledo Museum of Art — Statuette of Aphrodite and Eros",
+    "checked": "2026-10-20",
+    "note": "Object dimensions are kept separate from model scale. No physical calibration is asserted.",
+    "geometryStatus": "reviewed-blocked",
+    "calibrationReady": false,
+    "geometryReviewNote": "Complete surviving ancient group and circular base, with clear front/side/back. Small figure remains a non-sexual attendant. Bottom of base uncaptured/open; some dark face texture.",
+    "calibrationBlockers": [
+      "The preserved scan and any display supports have not been calibrated to exact object measurements."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "modern/tim-holmes-syzygy": {
+    "status": "documented",
+    "basis": "object",
+    "dimensions": "Artist’s listing: 23 H × 12 W × 9 D inches; the exact scanned edition and base have not been independently measured.",
+    "sourceUrl": "https://timholmesstudio.com/home-2/sculpture/",
+    "sourceTitle": "Tim Holmes Studio — Syzygy",
+    "checked": "2026-10-20",
+    "note": "Object dimensions are kept separate from model scale. No physical calibration is asserted.",
+    "geometryStatus": "reviewed-blocked",
+    "calibrationReady": false,
+    "geometryReviewNote": "Two interlinked adult figures are clear across all six views; elongated, rough modelling is the artwork. No floor debris. 0 degrees gives a readable full paired silhouette.",
+    "calibrationBlockers": [
+      "The preserved scan and any display supports have not been calibrated to exact object measurements."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "modern/tim-holmes-body-inhabits-the-soul": {
+    "status": "unresolved",
+    "basis": "object",
+    "dimensions": "",
+    "sourceUrl": "https://timholmesstudio.com/home-2/sculpture/",
+    "sourceTitle": "Tim Holmes Studio — Body Inhabits the Soul",
+    "checked": "2026-10-20",
+    "note": "Object dimensions are kept separate from model scale. No physical calibration is asserted.",
+    "geometryStatus": "reviewed-blocked",
+    "calibrationReady": false,
+    "geometryReviewNote": "Nested female torso concept is readable, with support rod and stone base. Upper rim has a small flat light patch; underside of stone base is open. Deliberate fragment remains intact.",
+    "calibrationBlockers": [
+      "The preserved scan and any display supports have not been calibrated to exact object measurements."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "modern/tim-holmes-small-world": {
+    "status": "unresolved",
+    "basis": "object",
+    "dimensions": "",
+    "sourceUrl": "https://timholmesstudio.com/home-2/sculpture/",
+    "sourceTitle": "Tim Holmes Studio — Small World",
+    "checked": "2026-10-20",
+    "note": "Object dimensions are kept separate from model scale. No physical calibration is asserted.",
+    "geometryStatus": "reviewed-blocked",
+    "calibrationReady": false,
+    "geometryReviewNote": "Interwoven paired figures and banded metal construction are legible around the composition. Fine gaps are bridged by some scan material and texture is coarse. No gross missing half or detached context. 0 degrees reads embrace, 90 degrees shows the construction.",
+    "calibrationBlockers": [
+      "The preserved scan and any display supports have not been calibrated to exact object measurements."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "modern/tim-holmes-within-be-fed": {
+    "status": "documented",
+    "basis": "object",
+    "dimensions": "Artist’s listing: 45.7 H × 25.4 W × 20.3 D cm; edition of 25; exact scanned cast and base uncalibrated.",
+    "sourceUrl": "https://timholmesstudio.com/home-2/sculpture/",
+    "sourceTitle": "Tim Holmes Studio — Within Be Fed",
+    "checked": "2026-10-20",
+    "note": "Object dimensions are kept separate from model scale. No physical calibration is asserted.",
+    "geometryStatus": "reviewed-blocked",
+    "calibrationReady": false,
+    "geometryReviewNote": "90 degrees best shows the extreme adult backbend and full silhouette; 0 degrees is foreshortened. Sculpture and display disk are intact in normal views. Display disk underside is uncaptured/open.",
+    "calibrationBlockers": [
+      "The preserved scan and any display supports have not been calibrated to exact object measurements."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "modern/tim-holmes-the-olympian": {
+    "status": "unresolved",
+    "basis": "object",
+    "dimensions": "",
+    "sourceUrl": "https://timholmesstudio.com/home-2/sculpture/",
+    "sourceTitle": "Tim Holmes Studio — The Olympian",
+    "checked": "2026-10-20",
+    "note": "Object dimensions are kept separate from model scale. No physical calibration is asserted.",
+    "geometryStatus": "reviewed-blocked",
+    "calibrationReady": false,
+    "geometryReviewNote": "90 degrees best shows complete airborne male figure. Dark texture and coarse surface details; display pedestal underside is open. Body readable at normal elevations.",
+    "calibrationBlockers": [
+      "The preserved scan and any display supports have not been calibrated to exact object measurements."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "modern/tim-holmes-cycle-of-renewal": {
+    "status": "unresolved",
+    "basis": "object",
+    "dimensions": "",
+    "sourceUrl": "https://timholmesstudio.com/home-2/sculpture/",
+    "sourceTitle": "Tim Holmes Studio — Cycle of Renewal",
+    "checked": "2026-10-20",
+    "note": "Object dimensions are kept separate from model scale. No physical calibration is asserted.",
+    "geometryStatus": "reviewed-blocked",
+    "calibrationReady": false,
+    "geometryReviewNote": "90 degrees best shows adult torso arch and organic base. Upper form is intentionally truncated/abstract; keep conservative title and do not claim a complete naturalistic body. Stone display base has open underside.",
+    "calibrationBlockers": [
+      "The preserved scan and any display supports have not been calibrated to exact object measurements."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "modern/tim-holmes-flying-cathedral-dancer": {
+    "status": "unresolved",
+    "basis": "object",
+    "dimensions": "",
+    "sourceUrl": "https://timholmesstudio.com/home-2/sculpture/",
+    "sourceTitle": "Tim Holmes Studio — Flying Cathedral Dancer",
+    "checked": "2026-10-20",
+    "note": "Object dimensions are kept separate from model scale. No physical calibration is asserted.",
+    "geometryStatus": "reviewed-blocked",
+    "calibrationReady": false,
+    "geometryReviewNote": "90 degrees reveals bent knees, torso and arms more clearly than 0 degrees. Rough clay modelling is intentional. Integral support/base captured, underside open.",
+    "calibrationBlockers": [
+      "The preserved scan and any display supports have not been calibrated to exact object measurements."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "greek/aphrodite-necklace-toledo-1968-72": {
+    "status": "documented",
+    "basis": "object",
+    "dimensions": "Sculpture: 35.5 × 17.8 × 10.5 cm; overall height with base: 44 cm",
+    "sourceUrl": "https://emuseum.toledomuseum.org/objects/56296/large-statuette-of-aphrodite-fastening-a-necklace",
+    "sourceTitle": "Toledo Museum of Art — Aphrodite Fastening a Necklace",
+    "checked": "2026-10-20",
+    "note": "Object dimensions are kept separate from model scale. No physical calibration is asserted.",
+    "geometryStatus": "reviewed-blocked",
+    "calibrationReady": false,
+    "geometryReviewNote": "Whole surviving ancient fragment and modern mount are legible. Ancient left-arm/lower-leg losses are documented, not scan defects. Underside is partly closed/rough.",
+    "calibrationBlockers": [
+      "The preserved scan and any display supports have not been calibrated to exact object measurements."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "greek/hellenistic-prince-palazzo-massimo": {
+    "status": "documented",
+    "basis": "object",
+    "dimensions": "Height: 204 cm",
+    "sourceUrl": "https://museonazionaleromano.beniculturali.it/sito/wp-content/uploads/2020/06/Palazzo-Massimo.pdf",
+    "sourceTitle": "Museo Nazionale Romano, Palazzo Massimo, Rome — So-called Hellenistic Prince",
+    "checked": "2026-10-20",
+    "note": "Object dimensions are kept separate from model scale. No physical calibration is asserted.",
+    "geometryStatus": "reviewed-blocked",
+    "calibrationReady": false,
+    "geometryReviewNote": "Full body, spear restoration and pedestal are legible. Irregular museum floor patch is captured and retained. Body has uneven baked lighting; underside is open. 0 degrees gives useful three-quarter front; 45 degrees would be closer to anatomical front.",
+    "calibrationBlockers": [
+      "The preserved scan and any display supports have not been calibrated to exact object measurements."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "europe/bather-houdon-met-14-40-673": {
+    "status": "documented",
+    "basis": "object",
+    "dimensions": "119.4 × 109.2 × 71.1 cm",
+    "sourceUrl": "https://www.metmuseum.org/art/collection/search/192714",
+    "sourceTitle": "The Metropolitan Museum of Art — Bather (from a fountain group)",
+    "checked": "2026-10-20",
+    "note": "Object dimensions are kept separate from model scale. No physical calibration is asserted.",
+    "geometryStatus": "reviewed-blocked",
+    "calibrationReady": false,
+    "geometryReviewNote": "Body, hands, feet and draped support are continuous and legible in the four normal views. Underside is substantially open and ragged; retain as capture limitation.",
+    "calibrationBlockers": [
+      "The preserved scan and any display supports have not been calibrated to exact object measurements."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "asia/pompeii-ivory-yakshi-courtesan-naples": {
+    "status": "documented",
+    "basis": "object",
+    "dimensions": "Height approximately 24.5 cm (secondary measurement; do not calibrate from it yet)",
+    "sourceUrl": "https://www.metmuseum.org/exhibitions/tree-and-serpent/visiting-guide",
+    "sourceTitle": "Museo Archeologico Nazionale di Napoli — Figurine of a Yakshi or Courtesan (Pompeii Ivory)",
+    "checked": "2026-10-20",
+    "note": "Object dimensions are kept separate from model scale. No physical calibration is asserted.",
+    "geometryStatus": "reviewed-blocked",
+    "calibrationReady": false,
+    "geometryReviewNote": "Whole surviving decorated ivory is readable on front and back. A large square museum support/floor sheet is captured; rough/open underside retained. 0 degrees is a three-quarter front, approximately 45 degrees would be frontal.",
+    "calibrationBlockers": [
+      "The preserved scan and any display supports have not been calibrated to exact object measurements."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "europe/ringerkolonnade-wrestlers-iii-potsdam": {
+    "status": "unresolved",
+    "basis": "object",
+    "dimensions": "",
+    "sourceUrl": "https://www.potsdam.de/de/165-potsdamer-mitte-instandsetzung-und-sicherung-der-ringerkolonnade",
+    "sourceTitle": "Ringerkolonnade, Potsdam — Wrestlers III — Ringerkolonnade",
+    "checked": "2026-10-20",
+    "note": "Object dimensions are kept separate from model scale. No physical calibration is asserted.",
+    "geometryStatus": "reviewed-blocked",
+    "calibrationReady": false,
+    "geometryReviewNote": "Complete adult wrestling pair; wooden scanning support retained. Uncaptured underside and small support fragments visible from below.",
+    "calibrationBlockers": [
+      "The preserved scan and any display supports have not been calibrated to exact object measurements."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "europe/ringerkolonnade-wrestlers-iv-potsdam": {
+    "status": "unresolved",
+    "basis": "object",
+    "dimensions": "",
+    "sourceUrl": "https://www.potsdam.de/de/165-potsdamer-mitte-instandsetzung-und-sicherung-der-ringerkolonnade",
+    "sourceTitle": "Ringerkolonnade, Potsdam — Wrestlers IV — Ringerkolonnade",
+    "checked": "2026-10-20",
+    "note": "Object dimensions are kept separate from model scale. No physical calibration is asserted.",
+    "geometryStatus": "reviewed-blocked",
+    "calibrationReady": false,
+    "geometryReviewNote": "Complete adult wrestling pair with preserved weathering. Open base underside.",
+    "calibrationBlockers": [
+      "The preserved scan and any display supports have not been calibrated to exact object measurements."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "europe/baigneuse-drapee-maillol-serralves": {
+    "status": "documented",
+    "basis": "object",
+    "dimensions": "179 × 69 × 45 cm",
+    "sourceUrl": "https://www.serralves.pt/en/ciclo-serralves/esculturas-no-parque/",
+    "sourceTitle": "Fundação de Serralves, Porto — The Draped Bather (The Seine)",
+    "checked": "2026-10-20",
+    "note": "Object dimensions are kept separate from model scale. No physical calibration is asserted.",
+    "geometryStatus": "reviewed-blocked",
+    "calibrationReady": false,
+    "geometryReviewNote": "Complete bronze figure; broad gravel/grass context retained. Frame more tightly on the figure without altering geometry.",
+    "calibrationBlockers": [
+      "The preserved scan and any display supports have not been calibrated to exact object measurements."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "americas/mermaids-of-earth-landi-beach-cleveland": {
+    "status": "unresolved",
+    "basis": "object",
+    "dimensions": "",
+    "sourceUrl": "https://sculpturecenter.org/oosi/items/show/1366",
+    "sourceTitle": "Wade Lagoon, Cleveland — Mermaids of Earth",
+    "checked": "2026-10-20",
+    "note": "Object dimensions are kept separate from model scale. No physical calibration is asserted.",
+    "geometryStatus": "reviewed-blocked",
+    "calibrationReady": false,
+    "geometryReviewNote": "Complete paired figures; moderate texture softness and broad lawn/paving context. Open unseen ground underside.",
+    "calibrationBlockers": [
+      "The preserved scan and any display supports have not been calibrated to exact object measurements."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "europe/eve-before-fall-delaplanche-orsay": {
+    "status": "documented",
+    "basis": "object",
+    "dimensions": "93 × 67 × 58 cm",
+    "sourceUrl": "https://www.musee-orsay.fr/it/opere/eve-avant-le-peche-6431",
+    "sourceTitle": "Musée d’Orsay — Eve before the Fall",
+    "checked": "2026-10-20",
+    "note": "Object dimensions are kept separate from model scale. No physical calibration is asserted.",
+    "geometryStatus": "reviewed-blocked",
+    "calibrationReady": false,
+    "geometryReviewNote": "Complete sculpture above integral base; modern display pedestal has incomplete lower edges. Open underside.",
+    "calibrationBlockers": [
+      "The preserved scan and any display supports have not been calibrated to exact object measurements."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "europe/volubilis-boucher-marble-version": {
+    "status": "unresolved",
+    "basis": "object",
+    "dimensions": "",
+    "sourceUrl": "https://musee-camille-claudel.org/en/node/1515",
+    "sourceTitle": "Holding collection unconfirmed — Volubilis (marble version)",
+    "checked": "2026-10-20",
+    "note": "Object dimensions are kept separate from model scale. No physical calibration is asserted.",
+    "geometryStatus": "reviewed-blocked",
+    "calibrationReady": false,
+    "geometryReviewNote": "Complete marble woman and rocky support; open unseen base underside. Exact holding variant remains unconfirmed.",
+    "calibrationBlockers": [
+      "The preserved scan and any display supports have not been calibrated to exact object measurements."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "europe/mermaid-carl-nielsen-royal-library": {
+    "status": "unresolved",
+    "basis": "object",
+    "dimensions": "",
+    "sourceUrl": "https://cphmuseum.kk.dk/nyheder/tag-paa-havfrue-hunt-i-koebenhavn-langelinies-lille-havfrue-110-aar",
+    "sourceTitle": "Royal Danish Library, Copenhagen — Mermaid (Royal Library cast)",
+    "checked": "2026-10-20",
+    "note": "Object dimensions are kept separate from model scale. No physical calibration is asserted.",
+    "geometryStatus": "reviewed-blocked",
+    "calibrationReady": false,
+    "geometryReviewNote": "Complete bronze and substantial granite display pedestal; cobblestone context retained. Strong directional lighting baked into scan.",
+    "calibrationBlockers": [
+      "The preserved scan and any display supports have not been calibrated to exact object measurements."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "americas/naiad-tragic-mask-calder-pafa": {
+    "status": "documented",
+    "basis": "object",
+    "dimensions": "41.275 × 24.765 × 28.575 cm",
+    "sourceUrl": "https://www.pafa.org/museum/collection/item/naiad-tragic-mask",
+    "sourceTitle": "Pennsylvania Academy of the Fine Arts — Naiad with Tragic Mask",
+    "checked": "2026-10-20",
+    "note": "Object dimensions are kept separate from model scale. No physical calibration is asserted.",
+    "geometryStatus": "reviewed-blocked",
+    "calibrationReady": false,
+    "geometryReviewNote": "Complete painted plaster figure and pedestal. Surface colors preserved; underside uncaptured.",
+    "calibrationBlockers": [
+      "The preserved scan and any display supports have not been calibrated to exact object measurements."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "europe/eurydice-macdonald-ngi": {
+    "status": "unresolved",
+    "basis": "object",
+    "dimensions": "",
+    "sourceUrl": "https://onlinecollection.nationalgallery.ie/objects/11532/eurydice",
+    "sourceTitle": "National Gallery of Ireland — Eurydice",
+    "checked": "2026-10-20",
+    "note": "Object dimensions are kept separate from model scale. No physical calibration is asserted.",
+    "geometryStatus": "reviewed-blocked",
+    "calibrationReady": false,
+    "geometryReviewNote": "Complete marble bathing figure and base. Warm red reflected light baked into scan; it is not original marble coloration.",
+    "calibrationBlockers": [
+      "The preserved scan and any display supports have not been calibrated to exact object measurements."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "americas/spirit-waters-french-harvard": {
+    "status": "unresolved",
+    "basis": "object",
+    "dimensions": "",
+    "sourceUrl": "https://harvardartmuseums.org/collections/object/229985",
+    "sourceTitle": "Harvard Art Museums / Fogg Museum — Spirit of the Waters",
+    "checked": "2026-10-20",
+    "note": "Object dimensions are kept separate from model scale. No physical calibration is asserted.",
+    "geometryStatus": "reviewed-blocked",
+    "calibrationReady": false,
+    "geometryReviewNote": "Full winged adult figure with hands, feet and wings retained in normal views. Rear wings obscure the body by design. Circular captured mounting sheet extends beyond the sculpture base; underside appears closed. Uneven dark baked lighting on face/back.",
+    "calibrationBlockers": [
+      "The preserved scan and any display supports have not been calibrated to exact object measurements."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "americas/dancer-gazelles-manship-nga": {
+    "status": "documented",
+    "basis": "object",
+    "dimensions": "177.17 × 185.42 × 48.26 cm",
+    "sourceUrl": "https://www.nga.gov/artworks/176527-dancer-and-gazelles",
+    "sourceTitle": "National Gallery of Art, Washington — Dancer and Gazelles",
+    "checked": "2026-10-20",
+    "note": "Object dimensions are kept separate from model scale. No physical calibration is asserted.",
+    "geometryStatus": "reviewed-blocked",
+    "calibrationReady": false,
+    "geometryReviewNote": "Complete adult dancer, fabric, both gazelles and thin integral support are readable around all sides. A small irregular floor tab remains near the base. The animals are non-sexual attendants in a dancing composition. Native texture has uneven lighting.",
+    "calibrationBlockers": [
+      "The preserved scan and any display supports have not been calibrated to exact object measurements."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "europe/balzac-second-nude-f-rodin-cantor": {
+    "status": "unresolved",
+    "basis": "object",
+    "dimensions": "",
+    "sourceUrl": "https://web.stanford.edu/dept/suma/news_room/documents/photos/Rodin_The_Shock_of_the_Modern_Body/Checklist/Rodin%20PR%20checklist%20Final.pdf",
+    "sourceTitle": "Cantor Arts Center, Stanford University — Balzac, Second Study for Nude F",
+    "checked": "2026-10-20",
+    "note": "Object dimensions are kept separate from model scale. No physical calibration is asserted.",
+    "geometryStatus": "reviewed-blocked",
+    "calibrationReady": false,
+    "geometryReviewNote": "Headless adult study is complete as designed, with continuous body, arms and base in all normal views. The absent head is documented artwork design, not a capture omission. Strong uneven illumination darkens rear; base underside appears closed.",
+    "calibrationBlockers": [
+      "The preserved scan and any display supports have not been calibrated to exact object measurements."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "europe/wisdom-supporting-liberty-dalou": {
+    "status": "unresolved",
+    "basis": "object",
+    "dimensions": "",
+    "sourceUrl": "https://museum.wales/collections/online/object/f793ae16-3d2e-3e69-a5d3-26e30eb5ad76/Wisdom-supporting-Liberty/",
+    "sourceTitle": "Collection unconfirmed; captured in Australia — Wisdom Supporting Liberty (cast unconfirmed)",
+    "checked": "2026-10-20",
+    "note": "Object dimensions are kept separate from model scale. No physical calibration is asserted.",
+    "geometryStatus": "reviewed-blocked",
+    "calibrationReady": false,
+    "geometryReviewNote": "Both allegorical figures and marble pedestal are continuous around the work. Broad uneven floor/display sheet remains attached and underside is open. Bronze details are coarse and back strongly shadowed. Exact cast remains unconfirmed; do not assign Queensland dimensions or accession.",
+    "calibrationBlockers": [
+      "The preserved scan and any display supports have not been calibrated to exact object measurements."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "modern/tim-holmes-creators-delight": {
+    "status": "unresolved",
+    "basis": "object",
+    "dimensions": "",
+    "sourceUrl": "https://timholmesstudio.com/home-2/sculpture/",
+    "sourceTitle": "Tim Holmes Studio — The Creator’s Delight",
+    "checked": "2026-10-20",
+    "note": "Object dimensions are kept separate from model scale. No physical calibration is asserted.",
+    "geometryStatus": "reviewed-blocked",
+    "calibrationReady": false,
+    "geometryReviewNote": "90 degrees reveals the interwoven adult figures more clearly than frontal foreshortening. Original rough modelling and low contrast obscure small details. Rectangular display base has open underside. Keep interpretation neutral; artist title is verified, specific relationship or action is not.",
+    "calibrationBlockers": [
+      "The preserved scan and any display supports have not been calibrated to exact object measurements."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "modern/tim-holmes-seized-by-the-mystery": {
+    "status": "unresolved",
+    "basis": "object",
+    "dimensions": "",
+    "sourceUrl": "https://timholmesstudio.com/home-2/sculpture/",
+    "sourceTitle": "Tim Holmes Studio — Seized by the Mystery",
+    "checked": "2026-10-20",
+    "note": "Object dimensions are kept separate from model scale. No physical calibration is asserted.",
+    "geometryStatus": "reviewed-blocked",
+    "calibrationReady": false,
+    "geometryReviewNote": "Twisting integrated figures and vertical wing-like form are complete in the four normal views. Stone base underside is open. Deliberately abstract modelling. Supporting adult bodily encounter; official Jacob Wrestling context means this should not be described as a romance or sexual coercion.",
+    "calibrationBlockers": [
+      "The preserved scan and any display supports have not been calibrated to exact object measurements."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "modern/tim-holmes-olympic-africa": {
+    "status": "unresolved",
+    "basis": "object",
+    "dimensions": "",
+    "sourceUrl": "https://timholmesstudio.com/home-2/sculpture/",
+    "sourceTitle": "Tim Holmes Studio — Olympic Africa",
+    "checked": "2026-10-20",
+    "note": "Object dimensions are kept separate from model scale. No physical calibration is asserted.",
+    "geometryStatus": "reviewed-blocked",
+    "calibrationReady": false,
+    "geometryReviewNote": "90 degrees best reveals the crouching athletic adult male form. Rough abstract anatomy and broad native bronze texture retained. Circular display pedestal is open underneath; captured colored mark remains. Full silhouette intact in normal views.",
+    "calibrationBlockers": [
+      "The preserved scan and any display supports have not been calibrated to exact object measurements."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "greek/boxer-at-rest-palazzo-massimo-1055": {
+    "status": "documented",
+    "basis": "object",
+    "dimensions": "H 128 cm",
+    "sourceUrl": "https://museonazionaleromano.it/mostra_umano-troppo-umano/eroe-sconfitta-umanita/",
+    "sourceTitle": "Museo Nazionale Romano, Palazzo Massimo — Boxer at Rest",
+    "checked": "2026-10-20",
+    "note": "Object dimensions are kept separate from model scale. No physical calibration is asserted.",
+    "geometryStatus": "reviewed-blocked",
+    "calibrationReady": false,
+    "geometryReviewNote": "Whole seated figure and its display support are retained; no geometry removed. Source texture records uneven museum lighting, especially the bright head and shoulders. Dating follows the present museum source; broader Hellenistic dates appear in scholarship.",
+    "calibrationBlockers": [
+      "The preserved scan and any display supports have not been calibrated to exact object measurements."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "europe/valkyrie-sinding-copenhagen": {
+    "status": "unresolved",
+    "basis": "object",
+    "dimensions": "",
+    "sourceUrl": "https://kk.sites.itera.dk/apps/kk_monuments/pdf/96_15f2__44.pdf",
+    "sourceTitle": "Churchillparken, Copenhagen — Valkyrie",
+    "checked": "2026-10-20",
+    "note": "Object dimensions are kept separate from model scale. No physical calibration is asserted.",
+    "geometryStatus": "reviewed-blocked",
+    "calibrationReady": false,
+    "geometryReviewNote": "Whole adult rider, horse, spear, cloak and integral base are present, with coherent silhouettes in all four yaw views. Native bronze/patina renders dark blue and low contrast in side views; all original PBR material maps retained. Minor jagged ground rim and flat/capped base underside remain.",
+    "calibrationBlockers": [
+      "The preserved scan and any display supports have not been calibrated to exact object measurements."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "americas/urn-of-life-barnard-carnegie": {
+    "status": "unresolved",
+    "basis": "object",
+    "dimensions": "",
+    "sourceUrl": "https://carnegiemuseums.org/magazine-archive/2013/spring/article-360.html",
+    "sourceTitle": "Carnegie Museum of Art, Pittsburgh — Urn of Life",
+    "checked": "2026-10-20",
+    "note": "Object dimensions are kept separate from model scale. No physical calibration is asserted.",
+    "geometryStatus": "reviewed-blocked",
+    "calibrationReady": false,
+    "geometryReviewNote": "Whole circumferential urn and its figure groups are present. Yaw 90 presents the adult couple and working man most legibly; retain the complete object. Top interior is a pale flat/soft cap rather than detailed captured interior, and the underside is uncaptured. Figures and faces are coarsened. Curatorial supporting piece: life-cycle allegory contains nonsexual family/newborn groups; do not frame it as an erotic scene or isolate those figures.",
+    "calibrationBlockers": [
+      "The preserved scan and any display supports have not been calibrated to exact object measurements."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "europe/repentant-magdelen-geefs-ngi": {
+    "status": "documented",
+    "basis": "object",
+    "dimensions": "135 × 41.5 × 67 cm",
+    "sourceUrl": "https://onlinecollection.nationalgallery.ie/objects/11483/the-repentant-magdelen",
+    "sourceTitle": "National Gallery of Ireland — The Repentant Magdelen",
+    "checked": "2026-10-20",
+    "note": "Object dimensions are kept separate from model scale. No physical calibration is asserted.",
+    "geometryStatus": "reviewed-blocked",
+    "calibrationReady": false,
+    "geometryReviewNote": "Complete adult seated figure, hands, feet, hair and net retained. Partial display base has open underside and thin peripheral scan skirts. Strong red reflected gallery light is baked into the marble texture. It is retained as captured, not interpreted as original surface color.",
+    "calibrationBlockers": [
+      "The preserved scan and any display supports have not been calibrated to exact object measurements."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "europe/faun-bacchus-rusconi-bode-1-86": {
+    "status": "documented",
+    "basis": "object",
+    "dimensions": "77.1 × 30 × 23 cm; figure height 73.6 cm",
+    "sourceUrl": "https://id.smb.museum/object/871583",
+    "sourceTitle": "Bode-Museum, Staatliche Museen zu Berlin — Faun from the Retinue of Bacchus",
+    "checked": "2026-10-20",
+    "note": "Object dimensions are kept separate from model scale. No physical calibration is asserted.",
+    "geometryStatus": "reviewed-blocked",
+    "calibrationReady": false,
+    "geometryReviewNote": "Source geometry is visibly faceted, especially the face and torso. Thin capture bridges occupy parts of the natural gap between the right arm and body; body, limbs, grapes and base are all present. Museum identity overrides uploader’s inaccurate label Roman sculpture. Possible completion by Giuseppe Rusconi is qualified in the museum text; do not assert an independently documented joint signature. Plinth underside is open; no closed-bottom reconstruction was made.",
+    "calibrationBlockers": [
+      "The preserved scan and any display supports have not been calibrated to exact object measurements."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "europe/galatea-le-lorrain-nga": {
+    "status": "documented",
+    "basis": "object",
+    "dimensions": "75.1 × 37.7 × 45.1 cm",
+    "sourceUrl": "https://www.nga.gov/artworks/41720-galatea",
+    "sourceTitle": "National Gallery of Art, Washington — Galatea",
+    "checked": "2026-10-20",
+    "note": "Object dimensions are kept separate from model scale. No physical calibration is asserted.",
+    "geometryStatus": "reviewed-blocked",
+    "calibrationReady": false,
+    "geometryReviewNote": "Complete seated adult figure, drapery, rocky support, sea creatures and inscribed marble base are legible in all four yaw views. Surface and facial details are smooth/soft; lower base underside is uncaptured. No substantive above-base figure loss is visible.",
+    "calibrationBlockers": [
+      "The preserved scan and any display supports have not been calibrated to exact object measurements."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "greek/hermaphrodite-princeton-2009-81": {
+    "status": "documented",
+    "basis": "object",
+    "dimensions": "60.3 × 30.5 × 16.5 cm",
+    "sourceUrl": "https://artmuseum.princeton.edu/art/collections/objects/57122",
+    "sourceTitle": "Princeton University Art Museum — Hermaphrodite",
+    "checked": "2026-10-20",
+    "note": "Object dimensions are kept separate from model scale. No physical calibration is asserted.",
+    "geometryStatus": "reviewed-blocked",
+    "calibrationReady": false,
+    "geometryReviewNote": "Entire standing surviving figure and base are legible. Reverse surfaces are coarser than the front; a small triangular opening and flat bridge beside the bent left arm are localized capture distortion. Do not interpret that defect as original marble damage. Crown and base have smooth closure patches; not a watertight printing model.",
+    "calibrationBlockers": [
+      "The preserved scan and any display supports have not been calibrated to exact object measurements."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "greek/aphrodite-torso-nga-1969-9-1": {
+    "status": "documented",
+    "basis": "object",
+    "dimensions": "98.1 × 42.6 × 33.4 cm overall",
+    "sourceUrl": "https://www.nga.gov/artworks/51135-torso-aphrodite",
+    "sourceTitle": "National Gallery of Art, Washington — Torso of Aphrodite",
+    "checked": "2026-10-20",
+    "note": "Object dimensions are kept separate from model scale. No physical calibration is asserted.",
+    "geometryStatus": "reviewed-blocked",
+    "calibrationReady": false,
+    "geometryReviewNote": "Whole historical torso survives in the model: neck, shoulder breaks, abdomen, thighs and differing knee stumps match museum description. Modern support remains. Back and break surfaces are visibly coarse/smoothed; underside around support is open. No artificial genital-only crop.",
+    "calibrationBlockers": [
+      "The preserved scan and any display supports have not been calibrated to exact object measurements."
+    ],
+    "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "greek/aphrodite-pontia-euploia-harvard-1900-17": {
+    "status": "unresolved",
+    "basis": "object",
+    "dimensions": "",
+    "sourceUrl": "https://harvardartmuseums.org/collections/object/292450",
+    "sourceTitle": "Harvard Art Museums / Arthur M. Sackler Museum — Torso of Aphrodite (Pontia-Euploia type)",
+    "checked": "2026-10-20",
+    "note": "Object dimensions are kept separate from model scale. No physical calibration is asserted.",
+    "geometryStatus": "reviewed-blocked",
+    "calibrationReady": false,
+    "geometryReviewNote": "Whole surviving marble fragment with chest, draped hips and ancient shoulder/neck losses. Rear is captured, with strongly uneven white/brown native texture and coarse recessed drapery. Bottom is closed dark. Sculpture remains upright and legible from all normal sides.",
+    "calibrationBlockers": [
+      "The preserved scan and any display supports have not been calibrated to exact object measurements."
     ],
     "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
   }
