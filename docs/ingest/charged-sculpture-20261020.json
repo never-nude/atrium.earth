@@ -1,7 +1,7 @@
 {
   "batch": "charged-sculpture-20261020",
   "prepared_at": "2026-10-20T21:44:16.000Z",
-  "state": "publication-prepared",
+  "state": "deployment-verified",
   "target": 60,
   "accepted_count": 60,
   "baseline_count": 2120,
@@ -1736,7 +1736,9 @@
     "source_archive": "All60 accepted source packages, portable recovery manifest and verification checkpoint fully read back and SHA-256 verified; private sharing checked.",
     "independent_release_audit": "passed: 24 checks; all prior records/settings preserved, all60 source packages and17 private backup receipts authenticated",
     "immutable_public_models": "All60 complete SHA-256 and byte counts verified; production-origin CORS and model/gltf-binary content type passed.",
-    "release_build": "passed after binding all60 verified immutable model URLs; exact60-work Newest selection confirmed"
+    "release_build": "passed after binding all60 verified immutable model URLs; exact60-work Newest selection confirmed",
+    "live_publication": "Passed: exact 60-work Newest cohort, all 60 work pages, full model and thumbnail SHA-256/bytes, model CORS, four exhibition placements, and two actual browser viewers with drag/orbit.",
+    "live_evidence": "docs/ingest/charged-sculpture-20261020-live.json"
   },
   "exhibition_additions": {
     "bodies-in-motion": [
@@ -1764,5 +1766,8 @@
       "reason": "Substantial missing rear geometry; excluded."
     }
   ],
-  "publication_authorized_at": "2026-10-20T23:26:06.486059+00:00"
+  "publication_authorized_at": "2026-10-20T23:26:06.486059+00:00",
+  "deployed_release_sha": "4d910a34c269001de693d0260d7502a422ae7f1e",
+  "deployment_run_url": "https://github.com/never-nude/atrium.earth/actions/runs/39515050799",
+  "live_verified_at": "2026-10-20T23:29:22.853726+00:00"
 }

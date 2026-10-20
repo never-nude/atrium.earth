@@ -874,3 +874,10 @@ Commit `1afb322` is deployment-verified. [GitHub Pages run 37334355346](https://
 - An independent24-check audit confirms all2120 earlier records/settings and featured250 are preserved, all60 source/serving models and225 native dependencies match, and all17 signed private backup receipts authenticate. No local source was removed.
 - Asset, addition, featured and wing checks pass. Final production build and deployment verification are recorded separately below; this checkpoint does not itself establish live publication.
 - The final production build passed after public-model binding (5953 pages), and built Newest contains exactly the reviewed60 slugs. Existing2120 preview mappings are unchanged. Main deployment and post-deployment checks remain pending.
+
+### Prior sixty-work batch verified live — 2026-10-20
+
+- Release `4d910a34c269001de693d0260d7502a422ae7f1e` is pushed to main and deployed successfully by [Pages run 39515050799](https://github.com/never-nude/atrium.earth/actions/runs/39515050799). Both build and deployment jobs succeeded.
+- Production verification passed the exact 60-work Newest cohort, all 60 page titles and immutable model bindings, complete model/thumbnail hashes and byte counts, model CORS, and four placements across three existing exhibitions. The production browser shows 60 newest works and 2,162 public works; Mermaids of Earth and Boxer at Rest both render and respond to drag/orbit. Evidence is `docs/ingest/charged-sculpture-20261020-live.json`.
+- All source archives and local originals remain protected; zero sources were offloaded. Existing records and featured 250 remain unchanged. The famous-work acquisition is saved and paused separately, with no famous-batch catalog additions published; the older October 19 acquisition remains paused.
+- This verification-only documentation commit uses `[skip ci]` to preserve Actions allowance; the deployed site remains the verified release above. Next: resume the separate famous-work batch only when requested, reconcile its branch with current main, complete source/quality/archive checks, and keep publication subject to the owner’s standing approval hold.
