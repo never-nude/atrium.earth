@@ -195,6 +195,7 @@ export type MaterialAppearance = {
   rimLightIntensity?: number;
   hemiLightIntensity?: number;
   preserveSourceUnlit?: boolean;
+  preserveSourceMaterials?: boolean;
   // Pair with a source-grounded white/zero-tint/zero-variation page override
   // and exact source PBR values; this flag only prevents spatial reclassification.
   preserveSpatialMaterialValues?: boolean;

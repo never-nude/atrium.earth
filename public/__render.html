@@ -109,6 +109,7 @@ function addMaterialVariation(mesh, material, appearance) {
   material.vertexColors=true;
 }
 function prepareMaterial(source, appearance = {}) {
+  if(appearance.preserveSourceMaterials === true) return source;
   if(appearance.preserveSourceUnlit === true && source.isMeshBasicMaterial) return source;
   if('roughness' in source && 'metalness' in source && 'emissive' in source) return source;
   const prepared=new THREE.MeshStandardMaterial({
@@ -166,6 +167,7 @@ function hasSourceTexture(material) {
   );
 }
 function applyMaterialAppearance(mesh, material, appearance) {
+  if(appearance.preserveSourceMaterials === true) return;
   if(!('color' in material)) return;
   // An explicit per-work decision leaves source bytes, attributes and PBR intact.
   if(appearance.sourceVertexColors === 'ignore-invalid' && hasAuthoredVertexColors(mesh)){

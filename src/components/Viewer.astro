@@ -216,6 +216,7 @@ const transformJson = JSON.stringify(modelTransform);
     hemiLightIntensity?: number;
     sourceVertexColors?: 'ignore-invalid';
     preserveSourceUnlit?: boolean;
+    preserveSourceMaterials?: boolean;
   };
 
   const WIREFRAME_COLOR = 0xE3DAC9;
@@ -315,6 +316,7 @@ const transformJson = JSON.stringify(modelTransform);
   }
 
   function prepareMaterial(THREE: any, source: any, appearance?: Appearance) {
+    if (appearance?.preserveSourceMaterials === true) return source;
     if (appearance?.preserveSourceUnlit === true && source.isMeshBasicMaterial) return source;
     if ('roughness' in source && 'metalness' in source && 'emissive' in source) return source;
     const prepared = new THREE.MeshStandardMaterial({
@@ -383,6 +385,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
   }
 
   function applyMaterialAppearance(THREE: any, mesh: any, material: any, appearance: Appearance) {
+    if (appearance.preserveSourceMaterials === true) return;
     if (!('color' in material)) return;
     // Explicit, evidence-backed per-work decision; retain the source attribute
     // and material multiplier, and never replace it with a generated palette.
@@ -674,6 +677,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     // Keep pending cleanup attached through material setup and the first render.
     // If initialization throws, start() aborts the activation and releases its context.
     signal.removeEventListener('abort', releasePending);
+    const textureControl = createTextureControl(materials);
     return {
       spatial: {
         THREE, renderer, scene, camera, model, ground, grid, box, verifiedAsset,
@@ -725,10 +729,10 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
         renderer.forceContextLoss();
         renderer.domElement.remove();
       },
-      texture: createTextureControl(materials),
+      texture: textureControl,
       setBrightness: (pct) => { renderer.toneMappingExposure = pct / 100; },
       // Slider runs rough (0) → shiny (100); roughness is the inverse.
-      setTexture: (pct) => { const r = 1 - pct / 100; for (const m of materials) { m.roughness = r; m.needsUpdate = true; } },
+      setTexture: (pct) => { if (appearance.preserveSourceMaterials === true) { textureControl.setValue(pct); return; } const r = 1 - pct / 100; for (const m of materials) { m.roughness = r; m.needsUpdate = true; } },
       setWireframe: (on) => { wireframe = on; for (const item of wireframeMeshes) item.mesh.material = on ? item.wireframeMaterial : item.solidMaterial; },
       setAutoRotate: (on) => { rotating = on; controls.autoRotate = !turnsModel && on; },
       zoom: (factor) => {
@@ -739,7 +743,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
         controls.update(timedRotation ? 0 : undefined);
       },
       reset: () => { turntable.rotation.y = 0; camera.position.copy(home.pos); controls.target.copy(home.tgt); controls.update(timedRotation ? 0 : undefined); },
-      defaults: { exposure: Math.round(appearance.exposure * 100), texture: appearance.textureDefault, autoRotate: rotating },
+      defaults: { exposure: Math.round(appearance.exposure * 100), texture: appearance.preserveSourceMaterials === true ? textureControl.defaultValue : appearance.textureDefault, autoRotate: rotating },
     };
   }
 
