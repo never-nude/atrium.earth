@@ -1,0 +1,2152 @@
+{
+  "schema": "atrium-independent-release-audit/1",
+  "batch": "famous-sculpture-20261020",
+  "audited_at": "2026-10-21T01:25:23.654133+00:00",
+  "baseline_commit": "eb6cc0a506f60b9bc9117b449f4f68ed48606cfb",
+  "reviewed_commit": "c458e36cd6aec4f0a4429d283da6e9a8b47179e1",
+  "status": "pass",
+  "scope": "Read-only verification of committed content and local native/serving bytes. This report does not assert deployment, final public preview URLs, live downloads, or private archive readback. Publication URL bindings and release documentation may be updated separately by the release owner.",
+  "counts": {
+    "baseline": 2180,
+    "catalogue": 2240,
+    "accepted_additions": 60,
+    "featured_reviewed": 250,
+    "homepage_approved_flags": 193,
+    "homepage_loading_budget_eligible": 192,
+    "exhibition_placements_added": 8,
+    "new_posters_and_thumbnails": 120,
+    "source_glbs_verified": 60,
+    "local_previews_byte_identical_to_source": 60,
+    "native_files_verified": 159,
+    "native_verified_bytes_including_packages": 2682012022,
+    "serving_source_bytes": 3254335896,
+    "rendered_new_works": 60
+  },
+  "baseline_preservation": {
+    "catalogue_records_unchanged_except_index_and_total": true,
+    "missing_existing_records": [],
+    "changed_existing_records": [],
+    "sidecars": {
+      "orientations": {
+        "existing_entries_unchanged": true,
+        "added_entries": 60
+      },
+      "physical-dimensions": {
+        "existing_entries_unchanged": true,
+        "added_entries": 60
+      },
+      "spatial-eligibility": {
+        "existing_entries_unchanged": true,
+        "added_entries": 60
+      },
+      "appearance-overrides": {
+        "existing_entries_unchanged": true,
+        "added_entries": 60
+      },
+      "previews": {
+        "existing_entries_unchanged": true,
+        "added_entries": 60
+      }
+    },
+    "featured_review_byte_identical": true,
+    "featured_and_homepage_policy_unchanged": true,
+    "existing_thumbnail_and_poster_files_unchanged": true,
+    "existing_curated_content_preserved": true
+  },
+  "license_counts": {
+    "CC0 1.0": 3,
+    "CC BY 4.0": 39,
+    "Public domain": 12,
+    "Public Domain": 6
+  },
+  "wing_counts": {
+    "greece-rome": 20,
+    "near-east": 8,
+    "europe": 23,
+    "americas-oceania": 4,
+    "africa": 1,
+    "asia": 4
+  },
+  "physical_dimensions_status": {
+    "documented": 34,
+    "unresolved": 23,
+    "approximate": 3
+  },
+  "physical_scale": {
+    "new_spatial_enabled": 0,
+    "new_preserve_source_materials": 60,
+    "policy": "Catalogue dimensions are descriptive. Unverified display scale, support geometry and original-versus-replica uncertainty do not imply physical calibration."
+  },
+  "qualifications_verified": [
+    "Historical casts and replicas retain explicit identity, material and date qualifications.",
+    "All 18 SMK casts identify plaster; documented cast dimensions are not silently replaced by original-object dimensions.",
+    "Both Japanese figurines label dimensions as underlying originals and retain uncertainty about the photographed 2019 museum display.",
+    "Shigir remains a physical head fragment with no whole-idol dimension assigned.",
+    "The Stone of Tizoc remains a historical miniature replica with unknown material and dimensions.",
+    "The unidentified Rodin Saint John cast remains unconfirmed with no invented accession or size.",
+    "Architectural installations and partial/unrecorded surfaces retain the reviewed source qualifications."
+  ],
+  "deduplication": {
+    "unique_new_source_identities": 60,
+    "baseline_source_collisions": 0,
+    "manual_composition_review": "The independent pre-release metadata audit checked translated title aliases, artists, accessions and composition against all2180 baseline records; no confirmed composition repeats. Distinct preparatory studies and explicitly identified historical representations were retained as reviewed."
+  },
+  "exhibition_placements": [
+    {
+      "exhibition": "power-and-presence",
+      "slug": "egyptian/narmer-palette-cairo-je32169",
+      "caption": "Narmer appears at a commanding scale on both sides of this ceremonial palette. Crowns, attendants and defeated figures turn the ruler’s body into an image of authority. Rotate the object to compare its two carved faces."
+    },
+    {
+      "exhibition": "power-and-presence",
+      "slug": "ancient-near-east/code-of-hammurabi-louvre-sb8",
+      "caption": "A royal encounter occupies the top of a tall field of writing. The carved image and the inscribed laws give Hammurabi’s authority both a visible form and a durable material presence."
+    },
+    {
+      "exhibition": "sacred-forms",
+      "slug": "donatello/cavalcanti-annunciation-santa-croce",
+      "caption": "Donatello places the Annunciation inside an elaborate architectural frame. The figures’ gestures bring an intimate exchange into the public setting of Santa Croce; the surrounding wall remains part of this in-place recording."
+    },
+    {
+      "exhibition": "bodies-in-motion",
+      "slug": "greek/boy-with-goose-munich-gl268",
+      "caption": "The child wraps his arms around the goose as their bodies press in opposite directions. This Roman marble after a Greek composition makes a small struggle into a balanced group, inviting comparison from the sides and back."
+    },
+    {
+      "exhibition": "what-survives",
+      "slug": "prehistoric/shigir-idol-head-sverdlovsk",
+      "caption": "This surviving head fragment belongs to the Great Shigir Idol, carved from larch in the early Mesolithic. Its open mouth, incised face and broken neck remain legible in the museum’s separate model of the head. The untextured model records form without recreating the wood’s surface color."
+    },
+    {
+      "exhibition": "what-survives",
+      "slug": "roman/pasquino-rome",
+      "caption": "A damaged ancient group acquired another life as one of Rome’s talking statues. The surviving bodies now stand on a street pedestal associated with anonymous satire. Both ancient losses and the later urban setting shape how the work is encountered."
+    },
+    {
+      "exhibition": "the-other-kingdom",
+      "slug": "egyptian/william-the-hippo-met-17-9-1",
+      "caption": "A blue hippopotamus carries painted river plants across its body. The animal’s rounded form and small scale belong to a Middle Kingdom funerary object; three of its legs are museum restorations, retained in this recording."
+    },
+    {
+      "exhibition": "the-other-kingdom",
+      "slug": "egyptian/gayer-anderson-cat-bm-ea64391",
+      "caption": "Jewelry and carefully modeled features distinguish this bronze cat. The seated pose combines an observed animal with the ceremonial presence of an Egyptian sacred image. Turn the model to follow its tail and the shape of its back."
+    }
+  ],
+  "works": [
+    {
+      "slug": "greek/charioteer-delphi-krakow-rz37",
+      "source_url": "https://sketchfab.com/3d-models/charioteer-of-delphi-a-plaster-cast-0d55b629f1334200ab8efa7195e1450f",
+      "license": "CC0 1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_glb_sha256": "eafc797e47d6faaecabcc63fffb5534b40e565d973f0bb30204bde7169021e0c",
+      "source_glb_bytes": 32324236,
+      "local_preview_matches_source": true,
+      "native_files": [
+        {
+          "file": "original/license.txt",
+          "role": "provider dependency",
+          "bytes": 435,
+          "sha256": "c139125dd8022009271c7e54e00995870f0c93d7aed8963e651ea690e88fb4d1",
+          "verified": true
+        },
+        {
+          "file": "original/scene.bin",
+          "role": "provider dependency",
+          "bytes": 17274404,
+          "sha256": "1608cee15595efec28f11c915f44b5076e5d92a0a7d121718f9cd1a62491edd1",
+          "verified": true
+        },
+        {
+          "file": "original/scene.gltf",
+          "role": "provider dependency",
+          "bytes": 11346,
+          "sha256": "fda48b747d862715cc744e37c59e9bac4e96a457fb7f54763afeedeff8e9687c",
+          "verified": true
+        },
+        {
+          "file": "original/textures/rz37_2_Material_u1_v1_baseColor.jpeg",
+          "role": "provider dependency",
+          "bytes": 6787354,
+          "sha256": "e220e969738c5fab35b15f97a18d46372033aef0ef5316a9e73a375bc1f91f7d",
+          "verified": true
+        },
+        {
+          "file": "original/textures/rz37_2_Material_u1_v1_metallicRoughness.png",
+          "role": "provider dependency",
+          "bytes": 8255565,
+          "sha256": "613dbb8187fbba880717e3769891d82ffa16230232ad4e1779cbcb323244dff2",
+          "verified": true
+        },
+        {
+          "file": "provider.zip",
+          "role": "provider ZIP",
+          "bytes": 26161646,
+          "sha256": "b61618ea309f9c0f91838e75a6c7006e1deefa1eb6d30157b784c1bc40ecb038",
+          "verified": true
+        }
+      ],
+      "source_license_evidence_present": true,
+      "reviewed_views": 6,
+      "thumbnail_sha256": "aeb58d696403ee7624b4aaeb09d6e1eb5cb52f535bb868e1c86f9a453308ecac",
+      "thumbnail_bytes": 45208
+    },
+    {
+      "slug": "roman/portland-vase-iziko-pottery-copy",
+      "source_url": "https://sketchfab.com/3d-models/copy-of-the-portland-vase-667c25404a074d6389da9a6207098d7f",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_glb_sha256": "c1986232de36726153fd274bf4c1481043ab424b8b6c28d26a2fe9e5fb87b791",
+      "source_glb_bytes": 10153464,
+      "local_preview_matches_source": true,
+      "native_files": [
+        {
+          "file": "original/license.txt",
+          "role": "provider dependency",
+          "bytes": 800,
+          "sha256": "6902e08535626767ebec19ff19e03ad2e9f55da624ee35a26628856485d0a5a3",
+          "verified": true
+        },
+        {
+          "file": "original/scene.bin",
+          "role": "provider dependency",
+          "bytes": 150000,
+          "sha256": "1820f15fbe3e6d81f47965a82c5a035444027ebca27ffabedf9e1d1e8e1561c8",
+          "verified": true
+        },
+        {
+          "file": "original/scene.gltf",
+          "role": "provider dependency",
+          "bytes": 4046,
+          "sha256": "86a39929ba88c730753ebb72560d45829f67e018745d9bdf10cea13f99058861",
+          "verified": true
+        },
+        {
+          "file": "original/textures/material0_baseColor.jpeg",
+          "role": "provider dependency",
+          "bytes": 10000978,
+          "sha256": "6def17cae50d2638d72639b4341733367e2a218b13b5e6f4890769e435c524e0",
+          "verified": true
+        },
+        {
+          "file": "provider.zip",
+          "role": "provider ZIP",
+          "bytes": 9766169,
+          "sha256": "78e8aa9e1e485d7d8f2eab6659866461c8f1ab02e933078bad49d3b746c97f28",
+          "verified": true
+        }
+      ],
+      "source_license_evidence_present": true,
+      "reviewed_views": 6,
+      "thumbnail_sha256": "e78461c9b235ccc3f574d3b1b682dba0ca64fd4243f9fe58d7aa965d4785a618",
+      "thumbnail_bytes": 40842
+    },
+    {
+      "slug": "roman/four-tetrarchs-san-marco",
+      "source_url": "https://sketchfab.com/3d-models/portrait-of-the-four-tetrarchs-300-ad-f70183b892e24855acd18043943be86d",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_glb_sha256": "7c17baddb094bff34cf1f4ddecb80ad3d15d8230820dd78f69f644bbcae89b35",
+      "source_glb_bytes": 33122072,
+      "local_preview_matches_source": true,
+      "native_files": [
+        {
+          "file": "original/license.txt",
+          "role": "provider dependency",
+          "bytes": 796,
+          "sha256": "2b4b3a7ed8a131b1def543a56ecd9bce225e8df0c9edbbe60c0e7c322c8d214e",
+          "verified": true
+        },
+        {
+          "file": "original/scene.bin",
+          "role": "provider dependency",
+          "bytes": 5394932,
+          "sha256": "5513b64b2933edd56bad244c4b2f8178a2c4bc4e71382d3fa14b6c09bda89557",
+          "verified": true
+        },
+        {
+          "file": "original/scene.gltf",
+          "role": "provider dependency",
+          "bytes": 8361,
+          "sha256": "185e8a702fcd8b32e17185865b46d6aea47fcc8caa4a3fc65755f9f8073d112c",
+          "verified": true
+        },
+        {
+          "file": "original/textures/White_baseColor.png",
+          "role": "provider dependency",
+          "bytes": 20590820,
+          "sha256": "8aaa86fd42e3cae89bead06db81de8f2671f871193a188d44c9cf7b48aa120cd",
+          "verified": true
+        },
+        {
+          "file": "original/textures/White_metallicRoughness.png",
+          "role": "provider dependency",
+          "bytes": 7131362,
+          "sha256": "4c6428ad6ec9821766528dcda32e9b314731e436431cae68307f7b13aa26d769",
+          "verified": true
+        },
+        {
+          "file": "provider.zip",
+          "role": "provider ZIP",
+          "bytes": 30986846,
+          "sha256": "8a3c6f89a110e3df4a3c5b54649adc70c1f3f5bb3bf62111cb8723c1e4a2cda4",
+          "verified": true
+        }
+      ],
+      "source_license_evidence_present": true,
+      "reviewed_views": 6,
+      "thumbnail_sha256": "32a262668113b790bea52e755ef1ee747d391a13965af5a51fda1bb22aa5a505",
+      "thumbnail_bytes": 97736
+    },
+    {
+      "slug": "roman/pasquino-rome",
+      "source_url": "https://sketchfab.com/3d-models/statue-of-pasquino-cbc5c5231f43406d9a0849a3544110bf",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_glb_sha256": "8a4a2a825db9d66549f6f67126c821a85b92ab27403515b9b07dcd2d517c3bd4",
+      "source_glb_bytes": 27397076,
+      "local_preview_matches_source": true,
+      "native_files": [
+        {
+          "file": "original/license.txt",
+          "role": "provider dependency",
+          "bytes": 696,
+          "sha256": "0a37b2dd0f9e47f50f00a2ce84c99d202a43bf4b5c12e99d493d72dfbcc60cb3",
+          "verified": true
+        },
+        {
+          "file": "original/scene.bin",
+          "role": "provider dependency",
+          "bytes": 13776296,
+          "sha256": "d7bf3168a4f3dba0c3ee684b47cb5ff20544d944ad5476310ed14d82b0e4e05d",
+          "verified": true
+        },
+        {
+          "file": "original/scene.gltf",
+          "role": "provider dependency",
+          "bytes": 11053,
+          "sha256": "04a8fd7e8a750057a8e685a233ea41081d7bc1220a0fbb4a8b82ccfa2a367f33",
+          "verified": true
+        },
+        {
+          "file": "original/textures/RomeStatueOfPasquino01_Model_4RomeStatueOfPasquino01_Model_4_u1_v1_baseColor.jpeg",
+          "role": "provider dependency",
+          "bytes": 13614207,
+          "sha256": "51c8afc34079f2c64d75db0fcdbbda98e27e4198ef92789f567bc668d39ddce8",
+          "verified": true
+        },
+        {
+          "file": "provider.zip",
+          "role": "provider ZIP",
+          "bytes": 21902937,
+          "sha256": "d2b73b3a100a8351954355a467190b3a10521549f7a38a9f5bb7f9ccb7c2dd75",
+          "verified": true
+        }
+      ],
+      "source_license_evidence_present": true,
+      "reviewed_views": 6,
+      "thumbnail_sha256": "30e0c5f9f86aa361547e5e968e468c02a855bd9e0f078570320b329acf9acfe5",
+      "thumbnail_bytes": 89794
+    },
+    {
+      "slug": "roman/spinario-british-museum-1880-0807-1",
+      "source_url": "https://poly.cam/explore/capture/2EC5682B-9B86-4401-9D99-9B6354E4E767/Spinario%2BBritish%2BMuseum",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_glb_sha256": "9dffaa02c1d70d0ad6ad59712270115a1b7bbeb2e7ff535aab4d884fe6ad0fe7",
+      "source_glb_bytes": 8427164,
+      "local_preview_matches_source": true,
+      "native_files": [
+        {
+          "file": "raw.gltf",
+          "role": "provider dependency",
+          "bytes": 1301,
+          "sha256": "1cba1e006561a208c59ccd55713433210186b9a90fadcfa46c236472ec2f2acb",
+          "verified": true
+        },
+        {
+          "file": "raw_geometry.bin",
+          "role": "provider dependency",
+          "bytes": 2295932,
+          "sha256": "6913a6ad468ba7254354536707fdccdd25eb371fd3f0e2a58fcef857cb2ca561",
+          "verified": true
+        },
+        {
+          "file": "textures/964027052afd5604e1b19991999ca296.jpg",
+          "role": "provider dependency",
+          "bytes": 2968284,
+          "sha256": "f7ffb8f26e1748916ff19e67cba50264b923c314931113eec5a9353036158c3b",
+          "verified": true
+        },
+        {
+          "file": "textures/75071ed279ac83574fdac8657735d4ab.jpg",
+          "role": "provider dependency",
+          "bytes": 1578968,
+          "sha256": "55d0b8eaf11f95060c220b6f9f6d6e6404ca847f9a67e88ff316947d238add84",
+          "verified": true
+        },
+        {
+          "file": "textures/c1b3227e792ed8a7f70becace1658f29.jpg",
+          "role": "provider dependency",
+          "bytes": 1582368,
+          "sha256": "c33c3d310b11e055675f1797a5a606d082c27cb83ff587ca8e04c464710c01ee",
+          "verified": true
+        }
+      ],
+      "source_license_evidence_present": true,
+      "reviewed_views": 6,
+      "thumbnail_sha256": "5b4f8804d2c2089889c7c2e174d7bfadeed2d6bef3712f8525799baca77186d0",
+      "thumbnail_bytes": 33060
+    },
+    {
+      "slug": "greek/venus-medici-telfair-cast",
+      "source_url": "https://poly.cam/explore/capture/65D3FA74-4894-4F03-A0D0-C2C762B645CD/Venus%2BdeMedici%2BPlaster%2BCast%2BTelfair%2BAcademy",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_glb_sha256": "5d47f043a33eb1093290d693703e9f98c782ce9825b08cf0a5e9eef13375c4ee",
+      "source_glb_bytes": 30882284,
+      "local_preview_matches_source": true,
+      "native_files": [
+        {
+          "file": "raw.gltf",
+          "role": "provider dependency",
+          "bytes": 2100,
+          "sha256": "aa0f932f114b85f1f414eef5d3d223dc113e8810527da32183cad21de97028e8",
+          "verified": true
+        },
+        {
+          "file": "raw_geometry.bin",
+          "role": "provider dependency",
+          "bytes": 18223416,
+          "sha256": "592f9e3a59b2d89d5edf0719a4e72b39c91ebae309f0275aca4300121ee99423",
+          "verified": true
+        },
+        {
+          "file": "textures/d3730656004b4265e9ed86437c219223.jpg",
+          "role": "provider dependency",
+          "bytes": 6340612,
+          "sha256": "4719f8f9891223e36fc9f23622b35d4a5503d7c8f70d9dfd3fa5cef2429e6113",
+          "verified": true
+        },
+        {
+          "file": "textures/2d5ce534fdc6adc9d454f4bc89048e1d.jpg",
+          "role": "provider dependency",
+          "bytes": 6315920,
+          "sha256": "6c06568cb96d55e42dd2e634b597be23c90ec846dbf2ec7edea8989ad020f504",
+          "verified": true
+        }
+      ],
+      "source_license_evidence_present": true,
+      "reviewed_views": 6,
+      "thumbnail_sha256": "8f3d6bf96c2354db986db4af86cd718b41d270e62dbf43980b7f382a4c94a5d4",
+      "thumbnail_bytes": 31800
+    },
+    {
+      "slug": "greek/boy-with-goose-munich-gl268",
+      "source_url": "https://poly.cam/explore/capture/0AA78705-7FD0-40A4-BB44-ED9FCF5940A1/Boethussculpture%2Bof%2Ba%2Bboy%2Bplaying%2Bwith%2Ba%2Bgoose%2BG",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_glb_sha256": "720f6b425d042dc7f1368b7caca957a1d743055ebe25c12ba441a452b196e635",
+      "source_glb_bytes": 11980228,
+      "local_preview_matches_source": true,
+      "native_files": [
+        {
+          "file": "raw.gltf",
+          "role": "provider dependency",
+          "bytes": 983,
+          "sha256": "cc36b357c94811070bf2adc0cfd73e08f0614192f89a4bf727bd9f64f2557660",
+          "verified": true
+        },
+        {
+          "file": "raw_geometry.bin",
+          "role": "provider dependency",
+          "bytes": 5096048,
+          "sha256": "46c1c9c66dbacdc6efce71c450afe134c672a54e1c29934becaef38033010de6",
+          "verified": true
+        },
+        {
+          "file": "textures/d48a0c9f339f9d12ad14609e185b1246.jpg",
+          "role": "provider dependency",
+          "bytes": 6882936,
+          "sha256": "ca50d1ed2a8b2698b56b97aedb0f07698eeaa2b786925b93d9f75c47eaa9f916",
+          "verified": true
+        }
+      ],
+      "source_license_evidence_present": true,
+      "reviewed_views": 6,
+      "thumbnail_sha256": "e7e3650822cac1bea8bbc526abd17fda493d5279797d11c56177e0e89c0476f6",
+      "thumbnail_bytes": 38058
+    },
+    {
+      "slug": "greek/demeter-knidos-smk-kas128",
+      "source_url": "https://open.smk.dk/artwork/image/KAS128",
+      "license": "Public domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "source_glb_sha256": "731141c475bad0210b1af55437bf85ebcc017a917983eeb6d30021ab10425747",
+      "source_glb_bytes": 191010324,
+      "local_preview_matches_source": true,
+      "native_files": [
+        {
+          "file": "original.stl",
+          "role": "provider STL",
+          "bytes": 132645484,
+          "sha256": "cd4d2061e712f6cce0fa54f65a0c94f21bdd4555542e101676f23a80803a9c38",
+          "verified": true
+        }
+      ],
+      "source_license_evidence_present": true,
+      "reviewed_views": 6,
+      "thumbnail_sha256": "411ae3895a78f9a4a93bcbc2e555d321a39b1001666fbbe733bbbc6e24ddb941",
+      "thumbnail_bytes": 57356
+    },
+    {
+      "slug": "greek/pseudo-seneca-smk-kas94",
+      "source_url": "https://open.smk.dk/artwork/image/KAS94",
+      "license": "Public domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "source_glb_sha256": "82a4620c51c7967dbb9e6fd634e52142cbd503d78b3f5a06cabc0d02c4790059",
+      "source_glb_bytes": 27033024,
+      "local_preview_matches_source": true,
+      "native_files": [
+        {
+          "file": "original.stl",
+          "role": "provider STL",
+          "bytes": 18772384,
+          "sha256": "8d70e62521b5b6905f48a6cf6fbd5b4dfb21f1b2dca619555d30f307cc47b780",
+          "verified": true
+        }
+      ],
+      "source_license_evidence_present": true,
+      "reviewed_views": 6,
+      "thumbnail_sha256": "cc234ff139089712f9094a4dcd4715a1f2c16cd255ecc7a66a5e8fdc1311e991",
+      "thumbnail_bytes": 30700
+    },
+    {
+      "slug": "roman/fonseca-bust-smk-kas843",
+      "source_url": "https://open.smk.dk/artwork/image/KAS843",
+      "license": "Public domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "source_glb_sha256": "47bd5c6bb39920de087d2040d360972d11683bf0cfe36a9594f0140dc1679af5",
+      "source_glb_bytes": 62144400,
+      "local_preview_matches_source": true,
+      "native_files": [
+        {
+          "file": "original.stl",
+          "role": "provider STL",
+          "bytes": 43155284,
+          "sha256": "06ea2e29b314d2bb05333f50b702ccecb40442b256505fc0b1109185a5e31b60",
+          "verified": true
+        }
+      ],
+      "source_license_evidence_present": true,
+      "reviewed_views": 6,
+      "thumbnail_sha256": "78504ab573c72fb89a3f54abacef17c9c60ea97b575e37cdf5ca19bcbc4d9fe3",
+      "thumbnail_bytes": 34268
+    },
+    {
+      "slug": "greek/old-drunken-woman-smk-kas537",
+      "source_url": "https://open.smk.dk/artwork/image/KAS537",
+      "license": "Public domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "source_glb_sha256": "61e9e0712b6a9de2a30973b65a4b1d1799cb77ff6fa289e5123ef96325be9339",
+      "source_glb_bytes": 72001184,
+      "local_preview_matches_source": true,
+      "native_files": [
+        {
+          "file": "original.stl",
+          "role": "provider STL",
+          "bytes": 50000284,
+          "sha256": "c3b9f2803e465e86b3d423e57bb80c220f52eda962d7cb44d910fbba92ac748e",
+          "verified": true
+        }
+      ],
+      "source_license_evidence_present": true,
+      "reviewed_views": 6,
+      "thumbnail_sha256": "341cd3d546a2dae731c1c8bd44abfb41d0b3a989cd336475656fd3253b7653e6",
+      "thumbnail_bytes": 37330
+    },
+    {
+      "slug": "greek/socrates-tusculum-smk-kas635",
+      "source_url": "https://open.smk.dk/artwork/image/KAS635",
+      "license": "Public domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "source_glb_sha256": "7886d53c67561e0ed56b0157f65cb106cb2d115129d6445e16b7b95bf4b658bf",
+      "source_glb_bytes": 144000596,
+      "local_preview_matches_source": true,
+      "native_files": [
+        {
+          "file": "original.stl",
+          "role": "provider STL",
+          "bytes": 99999884,
+          "sha256": "ee8a78834aa619e52803ce7bfa8d9a4c14d8ad2fdfce898bc408409b954d7496",
+          "verified": true
+        }
+      ],
+      "source_license_evidence_present": true,
+      "reviewed_views": 6,
+      "thumbnail_sha256": "b95700e155cac9755c18c3d4d2df5cad15a7f671ac329cd34f6ffcaeb8529082",
+      "thumbnail_bytes": 29594
+    },
+    {
+      "slug": "greek/hypnos-smk-kas900",
+      "source_url": "https://open.smk.dk/artwork/image/KAS900",
+      "license": "Public domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "source_glb_sha256": "f736e904748c1eebe2b47f6daf926f8fbf044199c6b9a1899d836c12afb482f4",
+      "source_glb_bytes": 72000468,
+      "local_preview_matches_source": true,
+      "native_files": [
+        {
+          "file": "original.stl",
+          "role": "provider STL",
+          "bytes": 49999784,
+          "sha256": "a6bc9aa623cbc772e62ac3e6879911b96e8b197b80a108ef90bc34f36d060c84",
+          "verified": true
+        }
+      ],
+      "source_license_evidence_present": true,
+      "reviewed_views": 6,
+      "thumbnail_sha256": "adde6f4630ba345fcb429695737760e0a1f6480e9226b09091230f4eff5f9cb9",
+      "thumbnail_bytes": 36650
+    },
+    {
+      "slug": "greek/farnese-diadumenos-smk-kas79",
+      "source_url": "https://open.smk.dk/artwork/image/KAS79",
+      "license": "Public domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "source_glb_sha256": "2a65876e1bf84752628fe930a38db49ec8ce7f60655a4ae45b71746f035472c4",
+      "source_glb_bytes": 209884468,
+      "local_preview_matches_source": true,
+      "native_files": [
+        {
+          "file": "original.stl",
+          "role": "provider STL",
+          "bytes": 145752584,
+          "sha256": "4605e4b8e250e63f1cd863b81402045ca168b11de74280bab1ea2c672e20f312",
+          "verified": true
+        }
+      ],
+      "source_license_evidence_present": true,
+      "reviewed_views": 6,
+      "thumbnail_sha256": "9ff5dc63f3adde54f3059ae28c41fcfe437481892d6b778b2d1a8ad382a10436",
+      "thumbnail_bytes": 34700
+    },
+    {
+      "slug": "greek/dying-alexander-face-smk-kas282",
+      "source_url": "https://open.smk.dk/artwork/image/KAS282",
+      "license": "Public domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "source_glb_sha256": "ca067734954169575f3bd0c355daae67615a2d7bd13486e56f0cdcc5eb5f4066",
+      "source_glb_bytes": 133709748,
+      "local_preview_matches_source": true,
+      "native_files": [
+        {
+          "file": "original.stl",
+          "role": "provider STL",
+          "bytes": 92853484,
+          "sha256": "e63d25ad3fecd758e4ae19a50a3cc2ca24133175f4dd3b273d20bd683986d631",
+          "verified": true
+        }
+      ],
+      "source_license_evidence_present": true,
+      "reviewed_views": 6,
+      "thumbnail_sha256": "2a83b529d9a2146c51eae556985fc233002c87a851f3821cf8c763df13cdbf63",
+      "thumbnail_bytes": 35232
+    },
+    {
+      "slug": "greek/agias-delphi-smk-kas1289",
+      "source_url": "https://open.smk.dk/artwork/image/KAS1289",
+      "license": "Public domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "source_glb_sha256": "b1c1d63fb1ebfbd1f5e99cb037db406cdcd965578d23a57f8069befb988900ba",
+      "source_glb_bytes": 162754740,
+      "local_preview_matches_source": true,
+      "native_files": [
+        {
+          "file": "original.stl",
+          "role": "provider STL",
+          "bytes": 113023584,
+          "sha256": "16d0369c7588c14c376badc2a0787a3f45bca14bef9697efcd1436ffe2e8c47c",
+          "verified": true
+        }
+      ],
+      "source_license_evidence_present": true,
+      "reviewed_views": 6,
+      "thumbnail_sha256": "cc06ac7fcb8ebe88c6de6c6a0f1228965862333cb60c811d0cb00b15b467c109",
+      "thumbnail_bytes": 21720
+    },
+    {
+      "slug": "greek/vatican-runner-smk-kas423",
+      "source_url": "https://open.smk.dk/artwork/image/KAS423",
+      "license": "Public domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "source_glb_sha256": "b64aced9fcc5f8279caa1f07b4a0ba3bdd17c579a5827b2de9f4fbf94be20ae1",
+      "source_glb_bytes": 143982164,
+      "local_preview_matches_source": true,
+      "native_files": [
+        {
+          "file": "original.stl",
+          "role": "provider STL",
+          "bytes": 99987084,
+          "sha256": "4e651b7988815702c859535d4991053b1a3191748f9c37e31f11ee2a278e8324",
+          "verified": true
+        }
+      ],
+      "source_license_evidence_present": true,
+      "reviewed_views": 6,
+      "thumbnail_sha256": "eda907bc5a5610a3521a44aa29e984dc6675cf28ef94eb669deb555ea77d85f5",
+      "thumbnail_bytes": 29066
+    },
+    {
+      "slug": "greek/alexander-rondanini-smk-kas538",
+      "source_url": "https://open.smk.dk/artwork/image/KAS538",
+      "license": "Public domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "source_glb_sha256": "ac4d1cae18556bf623907d9f272603a27fc60067086a64a3ae778629a37d6a0c",
+      "source_glb_bytes": 95182716,
+      "local_preview_matches_source": true,
+      "native_files": [
+        {
+          "file": "original.stl",
+          "role": "provider STL",
+          "bytes": 66098584,
+          "sha256": "b3c56b8edf9a34d88619fc236e2ec0fba28a05a9732005966560667137f51322",
+          "verified": true
+        }
+      ],
+      "source_license_evidence_present": true,
+      "reviewed_views": 6,
+      "thumbnail_sha256": "03ad0c3c01b061ec8277ad40dce9630936f44e6f3f4b78db3f9f463c3afd04b0",
+      "thumbnail_bytes": 35628
+    },
+    {
+      "slug": "greek/kouros-merenda-athens-4890",
+      "source_url": "https://poly.cam/explore/capture/9362acbd-0807-4cba-941c-6f921e7a7de9/Kouros%2B540530%2BBC%2BNational%2BArchaeological%2BMuseum",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_glb_sha256": "9476b76bf6661d3fd57befb32242eafe6a012f924670e38933d83ad0d37609ae",
+      "source_glb_bytes": 21924560,
+      "local_preview_matches_source": true,
+      "native_files": [
+        {
+          "file": "raw.gltf",
+          "role": "provider dependency",
+          "bytes": 1283,
+          "sha256": "38f305000ab2f5a4ad209735e0628682b4547b37dde23b67001ea3af961072ca",
+          "verified": true
+        },
+        {
+          "file": "raw_geometry.bin",
+          "role": "provider dependency",
+          "bytes": 1204476,
+          "sha256": "e22dc2cfedd793e3f01a3d4c8a42c742ed4404f810e2877764da7034e7996c91",
+          "verified": true
+        },
+        {
+          "file": "textures/679ac5fe6986adfa0d8e8178e3da910c.jpg",
+          "role": "provider dependency",
+          "bytes": 6069240,
+          "sha256": "07ef790c04ef652bd5580ca9f0d1964a3e7e5278eddcbee399a5dddb3d87395b",
+          "verified": true
+        },
+        {
+          "file": "textures/1683ffa56e049b4183d9e9b86a95d1a0.jpg",
+          "role": "provider dependency",
+          "bytes": 2884352,
+          "sha256": "99e567e9b4a9107bcf593ae87f57a4e7ef994ceb0402028ce544d38f49dd37a3",
+          "verified": true
+        },
+        {
+          "file": "textures/edd28ac5efac4ae274cebf5b35c9febe.jpg",
+          "role": "provider dependency",
+          "bytes": 2720500,
+          "sha256": "9fc4c2f67d2cc5b09b4bde2a691eb0be15ea7dd73d5683c409f77ed8d3b72aea",
+          "verified": true
+        },
+        {
+          "file": "textures/dca88fe8bd3c925a0e4d8fc31e5751d5.jpg",
+          "role": "provider dependency",
+          "bytes": 9044336,
+          "sha256": "544f5de28aff3087514a85b96e2de6bea3cc69ab59c81f40f3212bf31fa67c64",
+          "verified": true
+        }
+      ],
+      "source_license_evidence_present": true,
+      "reviewed_views": 6,
+      "thumbnail_sha256": "538972169c389aa0c32b9695f0e59b1c5f7fe7c0ed8224d70fffba84cbcb4081",
+      "thumbnail_bytes": 26808
+    },
+    {
+      "slug": "greek/caryatid-erechtheion-smk-kas838",
+      "source_url": "https://open.smk.dk/artwork/image/KAS838",
+      "license": "Public domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "source_glb_sha256": "8c99055eca8913689ed609af518fb583de79f0454813b13c20310a6564621b6a",
+      "source_glb_bytes": 86245932,
+      "local_preview_matches_source": true,
+      "native_files": [
+        {
+          "file": "original.stl",
+          "role": "provider STL",
+          "bytes": 59892484,
+          "sha256": "4f26d3f7f5d6ad9afa583bf804e623906cd0dec010b150ca5b95dfc0a9dfe798",
+          "verified": true
+        }
+      ],
+      "source_license_evidence_present": true,
+      "reviewed_views": 6,
+      "thumbnail_sha256": "22f188429bf67e9236d1076efae4771033603d91e3b2a541aa4f1c89add56696",
+      "thumbnail_bytes": 38578
+    },
+    {
+      "slug": "egyptian/gayer-anderson-cat-bm-ea64391",
+      "source_url": "https://sketchfab.com/3d-models/the-gayer-anderson-cat-polycam-2c315a3fdd3140a8a4d1f53f3d7e3d12",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_glb_sha256": "dcbf7914bb75d4cf5f228bf8d06141764e7cc89cdaf82d3b4b174e21c7b78976",
+      "source_glb_bytes": 5312256,
+      "local_preview_matches_source": true,
+      "native_files": [
+        {
+          "file": "source.glb",
+          "role": "unchanged archived provider GLB",
+          "bytes": 5312256,
+          "sha256": "dcbf7914bb75d4cf5f228bf8d06141764e7cc89cdaf82d3b4b174e21c7b78976",
+          "verified": true
+        }
+      ],
+      "source_license_evidence_present": true,
+      "reviewed_views": 6,
+      "thumbnail_sha256": "cbee76d8b088ce5001e3e69d50ee04daa4bb75af406589cd37d1069e5cc613dd",
+      "thumbnail_bytes": 46926
+    },
+    {
+      "slug": "egyptian/narmer-palette-cairo-je32169",
+      "source_url": "https://poly.cam/explore/capture/26ef708d-4621-405d-bd55-5b5f5f638fb8/The%2BNarmer%2BPalette%2C%2BJE%2B32169",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_glb_sha256": "1eb1fd7e24f1b2512f9c7d3a689a5dd10b85f706bfe985225b93372fd75db804",
+      "source_glb_bytes": 4836416,
+      "local_preview_matches_source": true,
+      "native_files": [
+        {
+          "file": "raw.gltf",
+          "role": "provider dependency",
+          "bytes": 1169,
+          "sha256": "0ce37ea2bf6ae60c3458869114c475bcad4df37bb385dba20745d395d1e8a0ce",
+          "verified": true
+        },
+        {
+          "file": "raw_geometry.bin",
+          "role": "provider dependency",
+          "bytes": 421156,
+          "sha256": "44f84992c37f3889b5891c0f5deafa3be3c1a6ada25457616378570766bc1fe8",
+          "verified": true
+        },
+        {
+          "file": "textures/3c474cf99bc02a1fd833f7aa83ffa649.jpg",
+          "role": "provider dependency",
+          "bytes": 985896,
+          "sha256": "dcd6f32ace37eedf91673878b4eb080b371d2d305cdd32897196e498ddd441b8",
+          "verified": true
+        },
+        {
+          "file": "textures/60410b8123b0540b5d1c7ab840905314.jpg",
+          "role": "provider dependency",
+          "bytes": 2268712,
+          "sha256": "18985c9350d86f298d75378e0462adabd036f269e499e57f49279f10da509b53",
+          "verified": true
+        },
+        {
+          "file": "textures/990271df66602b3011ec464c6a7ee801.jpg",
+          "role": "provider dependency",
+          "bytes": 1159212,
+          "sha256": "ac6f4cd4be9234b7096ac63ead29370788690333552d196f72a3bde2662300c0",
+          "verified": true
+        }
+      ],
+      "source_license_evidence_present": true,
+      "reviewed_views": 6,
+      "thumbnail_sha256": "4d02d3e54747f1b88d2ca379cdf59f74165de55558d2aef2e04df8a7c5c7f344",
+      "thumbnail_bytes": 92894
+    },
+    {
+      "slug": "egyptian/khafre-enthroned-cairo-je10062",
+      "source_url": "https://poly.cam/explore/capture/fcb25892-a750-4f98-81ae-3be61683d5a1/Seated%2Bstatue%2Bof%2BKhafre%2C%2BJE%2B10062",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_glb_sha256": "a2b06a698c72fcb3b1a106185dd7f74a4308da853945602172c808925fb969d4",
+      "source_glb_bytes": 8316488,
+      "local_preview_matches_source": true,
+      "native_files": [
+        {
+          "file": "raw.gltf",
+          "role": "provider dependency",
+          "bytes": 1169,
+          "sha256": "b30eadfa6323d6869412f499f10661fab0d2252b3c1d6a2974a23412f587b8a0",
+          "verified": true
+        },
+        {
+          "file": "raw_geometry.bin",
+          "role": "provider dependency",
+          "bytes": 1444608,
+          "sha256": "f43680a81d866b08ea8d277a17aa8acd68bbacfbd415f75cc54bdd74778bfa34",
+          "verified": true
+        },
+        {
+          "file": "textures/70f0c9a6ad6419100fbc3115caa839b7.jpg",
+          "role": "provider dependency",
+          "bytes": 2069476,
+          "sha256": "163521030dc42bf7a90292840738ff89d06d1489d9e0d8a64e904cb8515d2f06",
+          "verified": true
+        },
+        {
+          "file": "textures/733e21213e9d458def883ac03c5c57e6.jpg",
+          "role": "provider dependency",
+          "bytes": 2890928,
+          "sha256": "386dd3dd8b858e6b95f248ea1742f8aa0202e75fc172779effb89c42fe693324",
+          "verified": true
+        },
+        {
+          "file": "textures/7b6b1c8d9bf0733c605228ccb80e7409.jpg",
+          "role": "provider dependency",
+          "bytes": 1910028,
+          "sha256": "b680be627d18cb94588873c660b4a6a834f0279e8226c40183657f58475b7f05",
+          "verified": true
+        }
+      ],
+      "source_license_evidence_present": true,
+      "reviewed_views": 6,
+      "thumbnail_sha256": "46283af2cbf7835be198dca9cb4335f710bbd7a546c1ec77d218fa055c524696",
+      "thumbnail_bytes": 73544
+    },
+    {
+      "slug": "egyptian/menkaure-hathor-bat-triad-cairo-je46499",
+      "source_url": "https://poly.cam/explore/capture/a565ed83-d198-499f-8fa7-03423dac620c/Triad%2Bof%2BMenkaure%2C%2BBat%2Bnome%2C%2BJE%2B46499",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_glb_sha256": "adfbacf7f183f464f52d0a05401c294367f9814dd8908df941ed7ad3ca73fc36",
+      "source_glb_bytes": 6979336,
+      "local_preview_matches_source": true,
+      "native_files": [
+        {
+          "file": "raw.gltf",
+          "role": "provider dependency",
+          "bytes": 1172,
+          "sha256": "ce38ec7ac8c594dd2c276b40bedf29455620f807bca797df2d3587b9f9ea49bd",
+          "verified": true
+        },
+        {
+          "file": "raw_geometry.bin",
+          "role": "provider dependency",
+          "bytes": 1242008,
+          "sha256": "28480457e00fd636710dd5324304f2b03f69a1af49a15a8e57ffd20843c1233e",
+          "verified": true
+        },
+        {
+          "file": "textures/0d271da37e030cfc946bb9015f53e260.jpg",
+          "role": "provider dependency",
+          "bytes": 1537148,
+          "sha256": "2775d3d629f8acb526ca82aca690dba4b8989f002833c79ddc277f1e3def0659",
+          "verified": true
+        },
+        {
+          "file": "textures/0faa89dfbdbfb3a8e0a6a2956081d3d7.jpg",
+          "role": "provider dependency",
+          "bytes": 2497440,
+          "sha256": "05a30a2e2bf8b857ab19c06af1ba0d04604f313381584001d6c9cf884b186624",
+          "verified": true
+        },
+        {
+          "file": "textures/9600b6bcef44e56e20ec7a34922b4fb8.jpg",
+          "role": "provider dependency",
+          "bytes": 1701284,
+          "sha256": "80c7fd0f7d45c6e5fec9ce163b8529d59d74cb6e7afe5c9fa4ca26abd024826e",
+          "verified": true
+        }
+      ],
+      "source_license_evidence_present": true,
+      "reviewed_views": 6,
+      "thumbnail_sha256": "863b3877426c13f3681595a2ee722524090b7f33fe4c7bb589673bfd88abc73c",
+      "thumbnail_bytes": 119194
+    },
+    {
+      "slug": "egyptian/akhenaten-offering-table-cairo-je43580",
+      "source_url": "https://poly.cam/explore/capture/daf9ebe1-a5d0-45e5-a432-4fc802fcbb02/Akhenaten%2C%2B%2Bwith%2Boffering%2Btablet%2C%2BJE%2B43580",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_glb_sha256": "9f0a453b0838feedb08d1830cd4e9e3bc0565094dc036662e3d7a7edc76a4efc",
+      "source_glb_bytes": 4710724,
+      "local_preview_matches_source": true,
+      "native_files": [
+        {
+          "file": "raw.gltf",
+          "role": "provider dependency",
+          "bytes": 1169,
+          "sha256": "94347310a4abb941ecf4c863c950084713f5b022aa12165d8c1c50449d42bd35",
+          "verified": true
+        },
+        {
+          "file": "raw_geometry.bin",
+          "role": "provider dependency",
+          "bytes": 114544,
+          "sha256": "582c41e51d61f4396d2330ec6344822d8843a15fdf5b62740e807d99ca348710",
+          "verified": true
+        },
+        {
+          "file": "textures/107fe826a5f7b8e082f09b49914949b4.jpg",
+          "role": "provider dependency",
+          "bytes": 1874148,
+          "sha256": "b2f9e9b47b47fdeef199ebc7c73abf4f432c6c254e34288db96c56242d5b8996",
+          "verified": true
+        },
+        {
+          "file": "textures/65e84e534c6e116cbd247978453e78a3.jpg",
+          "role": "provider dependency",
+          "bytes": 1496408,
+          "sha256": "6d54f1f290154604aad3d50e2cc90e563e3c0c1d4f34884806e8186ce33802e1",
+          "verified": true
+        },
+        {
+          "file": "textures/aa5de8d375377b20eb6fceb4fbfde459.jpg",
+          "role": "provider dependency",
+          "bytes": 1224168,
+          "sha256": "8b3732f70d388f8d1529cb99939292ac46c9487918800cf5ff9c2d9ce3a2d31e",
+          "verified": true
+        }
+      ],
+      "source_license_evidence_present": true,
+      "reviewed_views": 6,
+      "thumbnail_sha256": "2dd67cf179cdba325954fe5b40064b1ea30940e0e14db5f88dec2f5d78e6e232",
+      "thumbnail_bytes": 28520
+    },
+    {
+      "slug": "ancient-near-east/code-of-hammurabi-louvre-sb8",
+      "source_url": "https://poly.cam/explore/capture/7B82BA3F-F7AC-40BE-B1BD-54F2DA6662FB/Hammurabi%2Bcode%2Bin%2BLouvre%2BMuseum%2B-%2BParis",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_glb_sha256": "5044dd6ef6c19edf120d8f98bfac0982495ee3160516c0dd12653c172e16e459",
+      "source_glb_bytes": 8623012,
+      "local_preview_matches_source": true,
+      "native_files": [
+        {
+          "file": "raw.gltf",
+          "role": "provider dependency",
+          "bytes": 1302,
+          "sha256": "887b3ca16e01efe53b1ddba81b92ccd743e647caecaf0034a6f064fe628f168a",
+          "verified": true
+        },
+        {
+          "file": "raw_geometry.bin",
+          "role": "provider dependency",
+          "bytes": 1640264,
+          "sha256": "3bd2b7b0d90ec75b29f7f7b2a66f8c19c29ae1de48c546bf5493ffd2f8a753a1",
+          "verified": true
+        },
+        {
+          "file": "textures/19e588677b55e06e73bcea9bec290de7.jpg",
+          "role": "provider dependency",
+          "bytes": 2332760,
+          "sha256": "35e3351e698cc950e97eb3fe9d6ddb7aa169780d220dad81ef3bba5b1a321cee",
+          "verified": true
+        },
+        {
+          "file": "textures/6a30fc5ce939d1786eef1d354cc71491.jpg",
+          "role": "provider dependency",
+          "bytes": 1876616,
+          "sha256": "deda984b444be5753d510e7941e78b5e6530df1b1b48117a56e7c5dac547f0b6",
+          "verified": true
+        },
+        {
+          "file": "textures/daa7f48462517a803b41fddf7a4ce9c6.jpg",
+          "role": "provider dependency",
+          "bytes": 2771776,
+          "sha256": "31a8b49c0c8f41a4edc3382ea112537472c749dfc09834760e37e033271adf45",
+          "verified": true
+        }
+      ],
+      "source_license_evidence_present": true,
+      "reviewed_views": 6,
+      "thumbnail_sha256": "b26c290fabc4417916a826d98aafbb5072cf6a07d22c3fad4bfdcbe0f7c5a95a",
+      "thumbnail_bytes": 62906
+    },
+    {
+      "slug": "egyptian/william-the-hippo-met-17-9-1",
+      "source_url": "https://sketchfab.com/3d-models/william-the-hippo-0b9fbe90b400462f89da1a3de9caf6ff",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_glb_sha256": "05ba2f8c6bcc2e0c42a3a3e6808bf04e12319833b4c6906225c6475795ee4cd6",
+      "source_glb_bytes": 22315568,
+      "local_preview_matches_source": true,
+      "native_files": [
+        {
+          "file": "source.glb",
+          "role": "unchanged archived provider GLB",
+          "bytes": 22315568,
+          "sha256": "05ba2f8c6bcc2e0c42a3a3e6808bf04e12319833b4c6906225c6475795ee4cd6",
+          "verified": true
+        }
+      ],
+      "source_license_evidence_present": true,
+      "reviewed_views": 6,
+      "thumbnail_sha256": "450270f02bc6ebc33ec11fbe267c63ee53c76817ebc832fb9b39eeaf833cf2c2",
+      "thumbnail_bytes": 42862
+    },
+    {
+      "slug": "egyptian/menkaure-and-queen-mfa-11-1738",
+      "source_url": "https://poly.cam/explore/capture/e3cc4124-0590-4459-ac52-8f36bfb21925/Menkaure%2Band%2BQueen%2BMFA%2B11.1728",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_glb_sha256": "9a1a88f4fb6d208bf457ac5ece138da352e778deff610629f901d9f0eb2952b7",
+      "source_glb_bytes": 8655408,
+      "local_preview_matches_source": true,
+      "native_files": [
+        {
+          "file": "raw.gltf",
+          "role": "provider dependency",
+          "bytes": 1307,
+          "sha256": "9771f0411cbe6a8649a7e9b01f648286e674f546d5fb22bdaea748b755684703",
+          "verified": true
+        },
+        {
+          "file": "raw_geometry.bin",
+          "role": "provider dependency",
+          "bytes": 2758088,
+          "sha256": "9d62c564d3081e8231145768276586b6e03617a6302fb187182cea9c9708ac34",
+          "verified": true
+        },
+        {
+          "file": "textures/2e5ef30da286549fb1d7b4103c06aabe.jpg",
+          "role": "provider dependency",
+          "bytes": 1562624,
+          "sha256": "5f84e24648732876ed3db4c89578a80f38a684876e0522c81fde962567f97dbd",
+          "verified": true
+        },
+        {
+          "file": "textures/4d6f874645b0e1e14a67accfb19576f2.jpg",
+          "role": "provider dependency",
+          "bytes": 1421856,
+          "sha256": "77a8ad815fe1df5f33f48a7ab17be44607a8462900981021473a800579ac2396",
+          "verified": true
+        },
+        {
+          "file": "textures/556b3b1bba84729b616d5064464787f5.jpg",
+          "role": "provider dependency",
+          "bytes": 2911256,
+          "sha256": "4dda94e84b662306eb5970f161fdf51bd370ba47391eefb465de2c2e475472e8",
+          "verified": true
+        }
+      ],
+      "source_license_evidence_present": true,
+      "reviewed_views": 6,
+      "thumbnail_sha256": "71da3bc16ce38c6e39459812cd7da1953f3aac6048705128d73313648d7b2e09",
+      "thumbnail_bytes": 72956
+    },
+    {
+      "slug": "europe/lady-of-elche-man-1971-10-1",
+      "source_url": "https://poly.cam/explore/capture/75FA85F1-C1A0-42EE-B33D-0EAE931DF1BC/Dama%2Bde%2BElche%2BMuseo%2BArquelologico%2BNacional%2BMadrid%2BSpain",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_glb_sha256": "7382dcdd348cd1ef7bde7a83cd47c5ef61d557db1b3202176cc199ff72080b18",
+      "source_glb_bytes": 5776208,
+      "local_preview_matches_source": true,
+      "native_files": [
+        {
+          "file": "raw.gltf",
+          "role": "provider dependency",
+          "bytes": 1154,
+          "sha256": "a55430b08a091b9b1e3c6793fcf784f8a7338e28f6d5ecf6e21ff04a96b18638",
+          "verified": true
+        },
+        {
+          "file": "raw_geometry.bin",
+          "role": "provider dependency",
+          "bytes": 3377920,
+          "sha256": "f3a87edcfdd7ab4dfad2dca18971f233ef010d342f836fdc1b2fd2a6ac3341bb",
+          "verified": true
+        },
+        {
+          "file": "textures/9a57f622d1b0e844529fcfe5e3cb6a6d.jpg",
+          "role": "provider dependency",
+          "bytes": 2396936,
+          "sha256": "73d8d88154601ff3ec6cef36c1e4f8f327f8a2ff99d6c5e260782c07c6c487cf",
+          "verified": true
+        }
+      ],
+      "source_license_evidence_present": true,
+      "reviewed_views": 6,
+      "thumbnail_sha256": "5e79e7e74d38e5d78fddee5c2525091c0e32f2fa7e55e0cde03abd748e3f8d30",
+      "thumbnail_bytes": 89048
+    },
+    {
+      "slug": "americas/stone-of-tizoc-smvk-historical-miniature",
+      "source_url": "https://sketchfab.com/3d-models/copy-of-stone-of-tizoc-miniature-c2c699cd08ac4b6f853e7a00bdbfed45",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_glb_sha256": "722ee047f5da6a4a1fe6ed326111fc639454ed28b9e9430a324e43e6d8c55d11",
+      "source_glb_bytes": 4130968,
+      "local_preview_matches_source": true,
+      "native_files": [
+        {
+          "file": "source.glb",
+          "role": "unchanged archived provider GLB",
+          "bytes": 4130968,
+          "sha256": "722ee047f5da6a4a1fe6ed326111fc639454ed28b9e9430a324e43e6d8c55d11",
+          "verified": true
+        }
+      ],
+      "source_license_evidence_present": true,
+      "reviewed_views": 6,
+      "thumbnail_sha256": "23e8913cd3853eaf832386ae3a28155d61a6ee7aa04e93b0e2d2cbf092b195bb",
+      "thumbnail_bytes": 87358
+    },
+    {
+      "slug": "africa/sphinx-of-taharqo-bm-ea1770",
+      "source_url": "https://sketchfab.com/3d-models/sphinx-de-taharqa-pharaon-du-viie-s-aec-54eea2cd94c84a9eb6770135850decff",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_glb_sha256": "98866523b77c167c2e61f87306375880c3d106dcddb917d3df0cecbcd0a43805",
+      "source_glb_bytes": 19740636,
+      "local_preview_matches_source": true,
+      "native_files": [
+        {
+          "file": "source.glb",
+          "role": "unchanged archived provider GLB",
+          "bytes": 19740636,
+          "sha256": "98866523b77c167c2e61f87306375880c3d106dcddb917d3df0cecbcd0a43805",
+          "verified": true
+        }
+      ],
+      "source_license_evidence_present": true,
+      "reviewed_views": 6,
+      "thumbnail_sha256": "1a7cff276af2785e2c9efebf544854facf6fc5a9ea5dbb21f2ee7621ca26d259",
+      "thumbnail_bytes": 24338
+    },
+    {
+      "slug": "prehistoric/shigir-idol-head-sverdlovsk",
+      "source_url": "https://sketchfab.com/3d-models/none-d97f20316a6c42f78765b54f8f91723e",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_glb_sha256": "589ae4d48d5907e4378f4a15fb302a92cad1f0eb2214510fe38fde36ca900037",
+      "source_glb_bytes": 611336,
+      "local_preview_matches_source": true,
+      "native_files": [
+        {
+          "file": "source.glb",
+          "role": "unchanged archived provider GLB",
+          "bytes": 611336,
+          "sha256": "589ae4d48d5907e4378f4a15fb302a92cad1f0eb2214510fe38fde36ca900037",
+          "verified": true
+        }
+      ],
+      "source_license_evidence_present": true,
+      "reviewed_views": 6,
+      "thumbnail_sha256": "d6ba6d39f0892818358466649bf4b478b2ef7e9303c1055b13897ff7f0277dc4",
+      "thumbnail_bytes": 20588
+    },
+    {
+      "slug": "asia/kaen-doki-umataka-no1",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Kaen_doki.stl",
+      "license": "CC0 1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_glb_sha256": "29e96ac2cef68689495b2e68d7cd9f75ce6dcf00d5ed7f9f1b1598b6d09eb038",
+      "source_glb_bytes": 60398560,
+      "local_preview_matches_source": true,
+      "native_files": [
+        {
+          "file": "Kaen_doki.stl",
+          "role": "provider STL",
+          "bytes": 41942884,
+          "sha256": "3017b7953041f19c9d876720a38ee598fa91c48d0600b5fddc2fc15c1da9baf4",
+          "verified": true
+        }
+      ],
+      "source_license_evidence_present": true,
+      "reviewed_views": 18,
+      "thumbnail_sha256": "c5a99362635b1f41a3c349115a311ffcfe9a145ba255ae9308d425b46c074bfe",
+      "thumbnail_bytes": 35234
+    },
+    {
+      "slug": "asia/jomon-venus-togariishi",
+      "source_url": "https://sketchfab.com/3d-models/3d-74fca33df78243a8b6e38fe788d54239",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_glb_sha256": "69ef5a6e7b7732cc7de4e916c211aa46724cf880d8c17d65f6bdaef6ecf0c92d",
+      "source_glb_bytes": 1075584,
+      "local_preview_matches_source": true,
+      "native_files": [
+        {
+          "file": "source.glb",
+          "role": "unchanged archived provider GLB",
+          "bytes": 1075584,
+          "sha256": "69ef5a6e7b7732cc7de4e916c211aa46724cf880d8c17d65f6bdaef6ecf0c92d",
+          "verified": true
+        }
+      ],
+      "source_license_evidence_present": true,
+      "reviewed_views": 6,
+      "thumbnail_sha256": "9cc0ca358a2a8741140a428715dda4c7ed8e50979c929f3147dca95818112cbd",
+      "thumbnail_bytes": 68388
+    },
+    {
+      "slug": "asia/masked-goddess-togariishi",
+      "source_url": "https://sketchfab.com/3d-models/3d-c4f7f5028d90485abfcd107442e228ca",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_glb_sha256": "7f364621305c1b6969d4f4ab08563cfbcb12e6f4cce4093b1b876710a02f2ff7",
+      "source_glb_bytes": 2141364,
+      "local_preview_matches_source": true,
+      "native_files": [
+        {
+          "file": "source.glb",
+          "role": "unchanged archived provider GLB",
+          "bytes": 2141364,
+          "sha256": "7f364621305c1b6969d4f4ab08563cfbcb12e6f4cce4093b1b876710a02f2ff7",
+          "verified": true
+        }
+      ],
+      "source_license_evidence_present": true,
+      "reviewed_views": 6,
+      "thumbnail_sha256": "d3c6c8868637877b5d598d3a1f1c87a93a62f2508530f141e2d8d5ef1ff742ab",
+      "thumbnail_bytes": 69716
+    },
+    {
+      "slug": "medieval/synagoga-strasbourg-smk-cast",
+      "source_url": "https://open.smk.dk/artwork/image/KAS397",
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "source_glb_sha256": "ca5160cdcde63d701196bc6470b36ef40e87f1f21c36e59349b19c6e51251425",
+      "source_glb_bytes": 38903956,
+      "local_preview_matches_source": true,
+      "native_files": [
+        {
+          "file": "original.stl",
+          "role": "provider STL",
+          "bytes": 27016084,
+          "sha256": "b2e9e4b91f79d6504b1ad3f56fa553bcf201cf9fa1b5c751e6afb89c9b1e204e",
+          "verified": true
+        }
+      ],
+      "source_license_evidence_present": true,
+      "reviewed_views": 6,
+      "thumbnail_sha256": "8000701c807be1dd2ad7f87f4e91f947f875b217aadfaaa509c4df86c922c3f4",
+      "thumbnail_bytes": 29204
+    },
+    {
+      "slug": "medieval/ecclesia-strasbourg-smk-cast",
+      "source_url": "https://open.smk.dk/artwork/image/KAS396",
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "source_glb_sha256": "efd65a267c464e3b0890380ecc54cd884e5c7b05b7983a0ed400ef2cb41e44de",
+      "source_glb_bytes": 144010700,
+      "local_preview_matches_source": true,
+      "native_files": [
+        {
+          "file": "original.stl",
+          "role": "provider STL",
+          "bytes": 100006884,
+          "sha256": "42f83339ab1da2d522a6bb47bbdf127dfc2f0ca452fe1b00c39db5a8cb2dbde4",
+          "verified": true
+        }
+      ],
+      "source_license_evidence_present": true,
+      "reviewed_views": 6,
+      "thumbnail_sha256": "b18ed35589970eaf551ab9da7c2dfa4070bb06247120d13d0501804383082746",
+      "thumbnail_bytes": 42862
+    },
+    {
+      "slug": "renaissance/marietta-strozzi-desiderio-smk-cast",
+      "source_url": "https://open.smk.dk/artwork/image/KAS14",
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "source_glb_sha256": "d707ce62f10ffe311be84a09d87c41dda2955bd1eb984df96092d1d41de99e0b",
+      "source_glb_bytes": 151485880,
+      "local_preview_matches_source": true,
+      "native_files": [
+        {
+          "file": "original.stl",
+          "role": "provider STL",
+          "bytes": 105197984,
+          "sha256": "146a8994d22f1a392240814f898e2b2549a5b640207f45ac8891a24aec2b67e0",
+          "verified": true
+        }
+      ],
+      "source_license_evidence_present": true,
+      "reviewed_views": 6,
+      "thumbnail_sha256": "4985f1dd2f3d33dad92d1bcb9429d0ad40544cbb1b87466452237655c8f22b13",
+      "thumbnail_bytes": 30328
+    },
+    {
+      "slug": "renaissance/filippo-strozzi-benedetto-smk-cast",
+      "source_url": "https://open.smk.dk/artwork/image/KAS466",
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "source_glb_sha256": "b52afd481f1da7ee765fc7181330c00f5d3e57c43e726e5662f7537135108624",
+      "source_glb_bytes": 166172748,
+      "local_preview_matches_source": true,
+      "native_files": [
+        {
+          "file": "original.stl",
+          "role": "provider STL",
+          "bytes": 115397184,
+          "sha256": "7a3daa3a8092d1b2c59b7af8ef6b5444c3d9713c39bbcdd5d000b59847efa2b5",
+          "verified": true
+        }
+      ],
+      "source_license_evidence_present": true,
+      "reviewed_views": 6,
+      "thumbnail_sha256": "7b7d8cca67c37b1a835b558d6e0394cefd0766acf92f0ddc3294f796f8881680",
+      "thumbnail_bytes": 25530
+    },
+    {
+      "slug": "donatello/saint-john-baptist-siena-smk-cast",
+      "source_url": "https://open.smk.dk/artwork/image/KAS446",
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "source_glb_sha256": "272d997d7d618019a6a3a0314aecd5842eb6dc86b681fe649121978915082275",
+      "source_glb_bytes": 143997136,
+      "local_preview_matches_source": true,
+      "native_files": [
+        {
+          "file": "original.stl",
+          "role": "provider STL",
+          "bytes": 99997484,
+          "sha256": "dca7f5558023945c58087856646d1f888ce06c13c787c4801d00460ed142e7e8",
+          "verified": true
+        }
+      ],
+      "source_license_evidence_present": true,
+      "reviewed_views": 6,
+      "thumbnail_sha256": "4a661e0b3c7e91d32c40973cea426b6112f7a825cb5b9927c8e060e7e692e7f9",
+      "thumbnail_bytes": 46422
+    },
+    {
+      "slug": "renaissance/piero-medici-mino-smk-cast",
+      "source_url": "https://open.smk.dk/artwork/image/KAS469",
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "source_glb_sha256": "901729c59c5b2084f0fc3bb466531edc9572ee0d1be912b6be8dbc999c0a9892",
+      "source_glb_bytes": 273799496,
+      "local_preview_matches_source": true,
+      "native_files": [
+        {
+          "file": "original.stl",
+          "role": "provider STL",
+          "bytes": 190137984,
+          "sha256": "a538893b00111f474934acfec463267b37356b7b0469f42ccdd3e83bde6af254",
+          "verified": true
+        }
+      ],
+      "source_license_evidence_present": true,
+      "reviewed_views": 6,
+      "thumbnail_sha256": "ec8831be5f2b401a9c78ce11948f85c5f588b6e04af00c0afb9dbac477817b9b",
+      "thumbnail_bytes": 34212
+    },
+    {
+      "slug": "donatello/cavalcanti-annunciation-santa-croce",
+      "source_url": "https://poly.cam/explore/capture/96A1260F-3320-4729-8728-99441AC14FD1",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_glb_sha256": "71527ff37a32b736b5124ccb7ff170f83f239ffbbba76a17fb1d66de4b9d64a7",
+      "source_glb_bytes": 20345856,
+      "local_preview_matches_source": true,
+      "native_files": [
+        {
+          "file": "poly.gltf",
+          "role": "provider dependency",
+          "bytes": 1158,
+          "sha256": "38566018ca55e8b6182e49a93672b69ee51ad1b637efb384f5731f50435e975e",
+          "verified": true
+        },
+        {
+          "file": "poly_geometry.bin",
+          "role": "provider dependency",
+          "bytes": 11648292,
+          "sha256": "218e3a79157f8a4c767f295ba2ddcab90d15d360a8c226e2f07762eed4a73d23",
+          "verified": true
+        },
+        {
+          "file": "textures/827727a8fa0d4fceb970942a76c37139.jpg",
+          "role": "provider dependency",
+          "bytes": 8696388,
+          "sha256": "235eac910bc40907060eca9ccb08c1b463cc8b641b6c17b9361dcf6b6b3f0009",
+          "verified": true
+        }
+      ],
+      "source_license_evidence_present": true,
+      "reviewed_views": 6,
+      "thumbnail_sha256": "3a6c30603f53cd6654024cca869f3096b9815072683125e31832352e6c85554a",
+      "thumbnail_bytes": 113230
+    },
+    {
+      "slug": "medieval/torrijos-dome-madrid-man",
+      "source_url": "https://poly.cam/explore/capture/A0EACE54-6B8D-49B8-807B-AD3936B2280D",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_glb_sha256": "4c7d7f82cb866a262cc7fa3263bf79a9d8a9da65ad3ea6e4b5cc05ad53ed07e7",
+      "source_glb_bytes": 12944200,
+      "local_preview_matches_source": true,
+      "native_files": [
+        {
+          "file": "poly.gltf",
+          "role": "provider dependency",
+          "bytes": 1158,
+          "sha256": "8d49f9b19edc86cf09999b652fb8d40d4fa9ddff9fe76ae3b70f5c340613abf8",
+          "verified": true
+        },
+        {
+          "file": "poly_geometry.bin",
+          "role": "provider dependency",
+          "bytes": 4614780,
+          "sha256": "fad0e5b08863bf3aa2019b49805fb1060c7d9650c7a4d93b5b58931e5b22f2db",
+          "verified": true
+        },
+        {
+          "file": "textures/4a4a4f12a6170ccc025f965296b1100a.jpg",
+          "role": "provider dependency",
+          "bytes": 8328244,
+          "sha256": "a3d022f0c6f0219eb5307285ff9cb73ef4e2d7891a4f933663b606ba3b897d6b",
+          "verified": true
+        }
+      ],
+      "source_license_evidence_present": true,
+      "reviewed_views": 6,
+      "thumbnail_sha256": "fbaf4ad2b2b64b9ebca274213b9972a2e65ec38714d26d5e0965da8576da1e4e",
+      "thumbnail_bytes": 141158
+    },
+    {
+      "slug": "baroque/chigi-triton-bernini-rijksmuseum",
+      "source_url": "https://poly.cam/explore/capture/c3165808-ddf6-4160-9d6c-a341220bd770",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_glb_sha256": "76c43f6cb62bd642873d4fd36fa9e233384c01bb8e15820645666720e0b67ddb",
+      "source_glb_bytes": 4566468,
+      "local_preview_matches_source": true,
+      "native_files": [
+        {
+          "file": "poly.gltf",
+          "role": "provider dependency",
+          "bytes": 1588,
+          "sha256": "0ddb1fd93bc1ba78d753373485752dc5ab67f31d4794fe8e269b0d396ee6b11e",
+          "verified": true
+        },
+        {
+          "file": "poly_geometry.bin",
+          "role": "provider dependency",
+          "bytes": 888800,
+          "sha256": "4fdfc763c890828996b23694b15929989f2dde237f90ea98fef484d43f640494",
+          "verified": true
+        },
+        {
+          "file": "textures/d89305ed6a164062fb3f4df924350c5c.jpg",
+          "role": "provider dependency",
+          "bytes": 1106780,
+          "sha256": "f05fbb261ff2992cec5cadfd24b9fe3c30feae58f4b659ea8364ef4a022dd71e",
+          "verified": true
+        },
+        {
+          "file": "textures/5f40611c37c4528de916255bfe05a951.jpg",
+          "role": "provider dependency",
+          "bytes": 432776,
+          "sha256": "1775e9f81cf66d8d07caa5c1b0ee00d23a63d087d277e0d9034cfc924fd68ac4",
+          "verified": true
+        },
+        {
+          "file": "textures/0c108ced3e02631a7d9059bcff11432d.jpg",
+          "role": "provider dependency",
+          "bytes": 2136476,
+          "sha256": "135ff06eb849b714b2396050905d69399c5478f255b3214edb03d08b3f303e5e",
+          "verified": true
+        }
+      ],
+      "source_license_evidence_present": true,
+      "reviewed_views": 6,
+      "thumbnail_sha256": "825a1d62f78ddaaf427ad808fc0a93a374018b802038b51b72cf2ae53fd8fcc6",
+      "thumbnail_bytes": 45070
+    },
+    {
+      "slug": "baroque/royal-chapel-organ-versailles",
+      "source_url": "https://sketchfab.com/3d-models/none-8bdb31e3a70643039a6326bea5e0679a",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_glb_sha256": "324ca5a20822f4a1f8a333b89e571da3e927a30a37e5faeac8789eb38dc7b621",
+      "source_glb_bytes": 13309568,
+      "local_preview_matches_source": true,
+      "native_files": [
+        {
+          "file": "native/scene.gltf",
+          "role": "provider dependency",
+          "bytes": 7736,
+          "sha256": "baf3293d3dbfa0d154f3acec52cc05cebf41db7f4fd952ae6f2901af5ddae444",
+          "verified": true
+        },
+        {
+          "file": "native/scene.bin",
+          "role": "provider dependency",
+          "bytes": 5462636,
+          "sha256": "e36f16c5ac13e22fee43a42384fd59e1659083b099c1173ef512dc85763bd107",
+          "verified": true
+        },
+        {
+          "file": "native/license.txt",
+          "role": "provider dependency",
+          "bytes": 774,
+          "sha256": "542e94c190c78f4cea353f9e89a493a1c49d20bd16c223d393e113d9f8a44fcb",
+          "verified": true
+        },
+        {
+          "file": "native/textures/None_Untitled_baseColor.jpeg",
+          "role": "provider dependency",
+          "bytes": 7842327,
+          "sha256": "7ca71cd4793a33a0da677a73279bc3b8d177e0e63e627e03e460dee2866e2bfb",
+          "verified": true
+        },
+        {
+          "file": "original.zip",
+          "role": "provider ZIP",
+          "bytes": 10429965,
+          "sha256": "65c1298c4c6c9aa850d59fc0bf2fc1e9b463c9c9a28ded2e8e2316063c65a120",
+          "verified": true
+        }
+      ],
+      "source_license_evidence_present": true,
+      "reviewed_views": 6,
+      "thumbnail_sha256": "cf5be7ec2dd23186b22063039cc14c4fbe59ff7c5d126259452c94abf981772a",
+      "thumbnail_bytes": 139878
+    },
+    {
+      "slug": "renaissance/incredulity-thomas-verrocchio-orsanmichele",
+      "source_url": "https://sketchfab.com/3d-models/andrea-del-verrocchio-incredulity-of-thomas-v2-5ead7de2e1b24311820935ab2b910939",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_glb_sha256": "f40741e6a982a188a95e935cbe853d2b255b19bbf222655510a15acfb28e27ce",
+      "source_glb_bytes": 24297088,
+      "local_preview_matches_source": true,
+      "native_files": [
+        {
+          "file": "native/scene.gltf",
+          "role": "provider dependency",
+          "bytes": 8265,
+          "sha256": "8023ebd25799fedc10a490babb26aeb5568c95af4f1b057af6d21c2f8bf4d173",
+          "verified": true
+        },
+        {
+          "file": "native/scene.bin",
+          "role": "provider dependency",
+          "bytes": 12346352,
+          "sha256": "b7ac113cda3993a4d79961cfdd9b6412ec9050344418d71b69c5a5aea889060e",
+          "verified": true
+        },
+        {
+          "file": "native/license.txt",
+          "role": "provider dependency",
+          "bytes": 818,
+          "sha256": "7088c23c120dcbb73e8ace276df030e5e92881850e0d653034321e46afe0f09c",
+          "verified": true
+        },
+        {
+          "file": "native/textures/output_v2_baseColor.jpeg",
+          "role": "provider dependency",
+          "bytes": 11945652,
+          "sha256": "f4e8497fe7fbdec0b0bcf6901acfaa74be4d39aecfad853cb14fd151c4fc224b",
+          "verified": true
+        },
+        {
+          "file": "original.zip",
+          "role": "provider ZIP",
+          "bytes": 19594740,
+          "sha256": "22e4385f0478f46072d0c9b5f87ac994256ad038f38da18751786f361946b098",
+          "verified": true
+        }
+      ],
+      "source_license_evidence_present": true,
+      "reviewed_views": 6,
+      "thumbnail_sha256": "76145cba63e8c9b263ce94912d3b75b39e6edd59695a2bc2a6dec443d6eb5d0e",
+      "thumbnail_bytes": 119212
+    },
+    {
+      "slug": "europe/lion-monument-lucerne-thorvaldsen-ahorn",
+      "source_url": "https://sketchfab.com/3d-models/the-dying-lion-lucerne-dccd60b56cc8411a8ab612771d11933c",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_glb_sha256": "45803acaac1dae8353b0e926465ef5991fc81b6cb55cff38d4590f6847682738",
+      "source_glb_bytes": 17205052,
+      "local_preview_matches_source": true,
+      "native_files": [
+        {
+          "file": "source.glb",
+          "role": "unchanged archived provider GLB",
+          "bytes": 17205052,
+          "sha256": "45803acaac1dae8353b0e926465ef5991fc81b6cb55cff38d4590f6847682738",
+          "verified": true
+        }
+      ],
+      "source_license_evidence_present": true,
+      "reviewed_views": 6,
+      "thumbnail_sha256": "1b1cfe41160d20be24f0334953e37f70a96f8693b264c1e44aa0eb2ad969853c",
+      "thumbnail_bytes": 61924
+    },
+    {
+      "slug": "baroque/louis-xiv-victory-coysevox-versailles",
+      "source_url": "https://sketchfab.com/3d-models/louis-xiv-a-cheval-dbc66233078c4f7b994541deda86333e",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_glb_sha256": "5359342f0d9904400e9000a38265fe1e83a2ed218103eef8aa14446b7a255dc9",
+      "source_glb_bytes": 14323716,
+      "local_preview_matches_source": true,
+      "native_files": [
+        {
+          "file": "native/scene.gltf",
+          "role": "provider dependency",
+          "bytes": 7975,
+          "sha256": "59ef17b61f55567a4de070c2e150fce3b7ac5df63cbf45f84905557366a72f3e",
+          "verified": true
+        },
+        {
+          "file": "native/scene.bin",
+          "role": "provider dependency",
+          "bytes": 5532792,
+          "sha256": "4cd299f553746a9e3a7b54bcd70395c5ed3959568512892220d3a603ef14d52a",
+          "verified": true
+        },
+        {
+          "file": "native/license.txt",
+          "role": "provider dependency",
+          "bytes": 740,
+          "sha256": "458683aafcba463e25fad171dc707d385d7bcb57be4929a37662eaa1db9c1018",
+          "verified": true
+        },
+        {
+          "file": "native/textures/None_Untitled_baseColor.jpeg",
+          "role": "provider dependency",
+          "bytes": 8786076,
+          "sha256": "5ab6a7f2a9d24f1a258c99d1c102fe3d1e9591f2de2f3585c03acbdd23ebea56",
+          "verified": true
+        },
+        {
+          "file": "original.zip",
+          "role": "provider ZIP",
+          "bytes": 11395450,
+          "sha256": "90e1393b09c44c7da1d539816a0b12fc00a0625ff2dd3155fdb0486c349358aa",
+          "verified": true
+        }
+      ],
+      "source_license_evidence_present": true,
+      "reviewed_views": 6,
+      "thumbnail_sha256": "145d2292ba3dffc66917ae343283b0367e94a46c5f29278a8e8ecbc635ebd0f1",
+      "thumbnail_bytes": 172464
+    },
+    {
+      "slug": "baroque/habakkuk-angel-bernini-chigi-chapel",
+      "source_url": "https://sketchfab.com/3d-models/bernin-piazza-del-poppolo-78e1293a566b4a3eb72541361d30acc4",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_glb_sha256": "dc9b7c57ce3dea6fed961b15e81c3ea72cb88976b532e26142776698acb65113",
+      "source_glb_bytes": 36091988,
+      "local_preview_matches_source": true,
+      "native_files": [
+        {
+          "file": "native/scene.gltf",
+          "role": "provider dependency",
+          "bytes": 18843,
+          "sha256": "7af17587f1ed7e0852454f048555d737ba33d06a1b459345c08fdd17acf38ac8",
+          "verified": true
+        },
+        {
+          "file": "native/scene.bin",
+          "role": "provider dependency",
+          "bytes": 33213164,
+          "sha256": "d605557d57f767e8173c4edfbb102d9d62391f9901fb61860b37ac9a869d0b66",
+          "verified": true
+        },
+        {
+          "file": "native/license.txt",
+          "role": "provider dependency",
+          "bytes": 730,
+          "sha256": "b199ebd9736a3690fb7b9965dea1cf82d445b44a6b17e5387eb36722d19a3ae5",
+          "verified": true
+        },
+        {
+          "file": "native/textures/material_0_baseColor.jpeg",
+          "role": "provider dependency",
+          "bytes": 2867671,
+          "sha256": "2d43ed4b81ccafa1b4e24403ac755f8ce4428a9486f404f7d670702eec5dd334",
+          "verified": true
+        },
+        {
+          "file": "original.zip",
+          "role": "provider ZIP",
+          "bytes": 24246853,
+          "sha256": "c1d42a6d437b2ba71e2bdff752f859cb1988485bc6e6642336639fddc001623b",
+          "verified": true
+        }
+      ],
+      "source_license_evidence_present": true,
+      "reviewed_views": 6,
+      "thumbnail_sha256": "e77053aac33ce9378dc55d811e11d34bf1e4c77900f28511cff94bf0443e26cb",
+      "thumbnail_bytes": 75768
+    },
+    {
+      "slug": "americas/adams-memorial-saint-gaudens-cornish",
+      "source_url": "https://poly.cam/explore/capture/4476928F-59F1-467C-8054-EFF54A64A8F7/Adams%2BMemorial%2B%2BA%2BSaintGaudens",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_glb_sha256": "780c149d18a0607568b60e3a906e02ad093fc6daa5cc58b49471b4c52f19a592",
+      "source_glb_bytes": 67453488,
+      "local_preview_matches_source": true,
+      "native_files": [
+        {
+          "file": "raw.gltf",
+          "role": "provider dependency",
+          "bytes": 1284,
+          "sha256": "82aa5d46c194b8698f3de3adbbad443f031c11f1f2e2ce5c15ea9416e2412e7d",
+          "verified": true
+        },
+        {
+          "file": "raw_geometry.bin",
+          "role": "provider dependency",
+          "bytes": 4783256,
+          "sha256": "6910ea6fcc1586738703dee62180d7a2482bb2f8369abc561f092556b7e8a44a",
+          "verified": true
+        },
+        {
+          "file": "textures/dbb19c2d383fd066818614f994ecadda.jpg",
+          "role": "provider dependency",
+          "bytes": 19428720,
+          "sha256": "ae0ba20838bb598efca34d81923593e48820daf42fe664aa3ed636b13b98d870",
+          "verified": true
+        },
+        {
+          "file": "textures/a4146e53f7aeab46edbd872fe53b62f9.jpg",
+          "role": "provider dependency",
+          "bytes": 9526868,
+          "sha256": "0ae9fdf2c64775c5d5ff03722876a5f8e470d4c584aa2c057e7a766d1ad9f40b",
+          "verified": true
+        },
+        {
+          "file": "textures/06cc9d3ef73de8720e01581e3b01c1ef.jpg",
+          "role": "provider dependency",
+          "bytes": 10146136,
+          "sha256": "63ba66706720f32a5b4f026da154754e831a4aea6bbfa5c38e34fb4f97b82582",
+          "verified": true
+        },
+        {
+          "file": "textures/be810fa4c61e37fccffba4e72062f972.jpg",
+          "role": "provider dependency",
+          "bytes": 23566872,
+          "sha256": "cdf71ffc31e9ae109ac3e3b11f32d3966502df47672761daa5cfc755825f6394",
+          "verified": true
+        }
+      ],
+      "source_license_evidence_present": true,
+      "reviewed_views": 6,
+      "thumbnail_sha256": "737977843335cd02fa3b24e994c68201f7c27b2731ce8d9afb08ce244df38846",
+      "thumbnail_bytes": 64580
+    },
+    {
+      "slug": "americas/shaw-54th-massachusetts-memorial-boston",
+      "source_url": "https://poly.cam/explore/capture/77532027-164e-4147-a311-6e4a90c794ab/Shaw%2BMemorial%2BBoston%2BCommon",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_glb_sha256": "2a20fa08eb649180cd934a158e2d615547ac3b85588a0b9c740725cf0e819986",
+      "source_glb_bytes": 10290844,
+      "local_preview_matches_source": true,
+      "native_files": [
+        {
+          "file": "raw.gltf",
+          "role": "provider dependency",
+          "bytes": 1302,
+          "sha256": "ace453e882c9a9351398834a79daff9fb3cffb55a7ea20e0abc15f7fb08eff44",
+          "verified": true
+        },
+        {
+          "file": "raw_geometry.bin",
+          "role": "provider dependency",
+          "bytes": 1551252,
+          "sha256": "906d7a37148e329e23368ad8cbf6e7ef985a38a166c25f463467f5da6f018694",
+          "verified": true
+        },
+        {
+          "file": "textures/31275e99850f883ca42c6af5beef0cd0.jpg",
+          "role": "provider dependency",
+          "bytes": 3367588,
+          "sha256": "0b30831f43b3257bb3fd7d52155216e026bd6c8847d034dad9f9b70f9d45f80c",
+          "verified": true
+        },
+        {
+          "file": "textures/27d525031b5977f364ec5cdf66e46585.jpg",
+          "role": "provider dependency",
+          "bytes": 2698636,
+          "sha256": "7c294b14f09f543966dbfa19d905a75dc0f9d06022ae53f3a3dd251da10aba5f",
+          "verified": true
+        },
+        {
+          "file": "textures/8d939b83cc3972ce26e96f1adb65df0e.jpg",
+          "role": "provider dependency",
+          "bytes": 2671768,
+          "sha256": "77e5ce2bd5999ffc823cb13cc8f8b3bf5c7e498b365aaa6ae06e31a0a53f3587",
+          "verified": true
+        }
+      ],
+      "source_license_evidence_present": true,
+      "reviewed_views": 6,
+      "thumbnail_sha256": "e7ae93b1aa00d7927fc697d1d18c662f22e0c61e9384585a50f468bfad3ff324",
+      "thumbnail_bytes": 76340
+    },
+    {
+      "slug": "rodin/saint-john-baptist-preaching-cast-unconfirmed",
+      "source_url": "https://poly.cam/explore/capture/9ED058C1-371A-4FA7-BCBA-61757FE042F3/Saint%2BJohn%2Bthe%2BBaptist%2Bbronze%2Bsculpture%2Bby%2BAugus",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_glb_sha256": "abe0bbde9df121d35b1f251e5d58e409252eda9fdc07b011e32043bccad3f0f7",
+      "source_glb_bytes": 6030668,
+      "local_preview_matches_source": true,
+      "native_files": [
+        {
+          "file": "raw.gltf",
+          "role": "provider dependency",
+          "bytes": 1170,
+          "sha256": "b4e7e172034d64d47b463dd057018807189a1243b60a2909f55a7f2f9d078cd9",
+          "verified": true
+        },
+        {
+          "file": "raw_geometry.bin",
+          "role": "provider dependency",
+          "bytes": 680932,
+          "sha256": "a2555cfcd55c9eb5e307c6adf5d6d56dbdae345a7ddccc9ac0280356e7e238c1",
+          "verified": true
+        },
+        {
+          "file": "textures/a1743fd676755a0db870ef6e1343cdb6.jpg",
+          "role": "provider dependency",
+          "bytes": 2360836,
+          "sha256": "59d68719f13a379f14c928a0c3fc4029e858e48c8c90d86caae1db6871b0eca5",
+          "verified": true
+        },
+        {
+          "file": "textures/5b7e4bf3a0af20ec97108b3ed0ef7322.jpg",
+          "role": "provider dependency",
+          "bytes": 1385904,
+          "sha256": "6b2a7dab7bcc3c639ddaee5272a904806af57a15ca85c5d8710f55537ea725fb",
+          "verified": true
+        },
+        {
+          "file": "textures/b1a392721e45692107913f1915c6b38b.jpg",
+          "role": "provider dependency",
+          "bytes": 1601500,
+          "sha256": "24d2b2b19007bdda464398a48c3bec8298fabef916b9de3919f8ef55abb51a1c",
+          "verified": true
+        }
+      ],
+      "source_license_evidence_present": true,
+      "reviewed_views": 6,
+      "thumbnail_sha256": "c0bcfdab40a1229b574b9978f6f3d2d741db315486231c34dc480da2071aebd8",
+      "thumbnail_bytes": 39918
+    },
+    {
+      "slug": "modern/little-dancer-degas-nga-wax-original",
+      "source_url": "https://poly.cam/explore/capture/33C60FF4-70F8-4C00-A84E-FCBA1DD7609D/Degas%2B%2BLittle%2BDancer%2BNGA",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_glb_sha256": "f1f99e797cbc5ca6d86f117b01f6a7a64b7d09a27513fb418aff95750e97369b",
+      "source_glb_bytes": 7383796,
+      "local_preview_matches_source": true,
+      "native_files": [
+        {
+          "file": "raw.gltf",
+          "role": "provider dependency",
+          "bytes": 1173,
+          "sha256": "4117250a4ddd259d7cdb735f53abf92ea267ebcbfc6e801cf6a74fa60b1285cc",
+          "verified": true
+        },
+        {
+          "file": "raw_geometry.bin",
+          "role": "provider dependency",
+          "bytes": 730460,
+          "sha256": "11aae4b3c5db76176934f63edfd92b14e41942d87bba555b16624e21c78e4b85",
+          "verified": true
+        },
+        {
+          "file": "textures/5e9555d8b19f7a1b0767975d04490e80.jpg",
+          "role": "provider dependency",
+          "bytes": 2997564,
+          "sha256": "1e4d9b8b898d47dca35b0e153e9ce987aab684689003ea8ccdb5fd3141c15b00",
+          "verified": true
+        },
+        {
+          "file": "textures/230e2f6f0b816cb5abf4996df4758798.jpg",
+          "role": "provider dependency",
+          "bytes": 1582156,
+          "sha256": "6ec3b498796dd17d59dba58a9773ba07160b1f025f678a43b00bf6323d1c191f",
+          "verified": true
+        },
+        {
+          "file": "textures/d2528d95d7e4767784483cc0525f1c4c.jpg",
+          "role": "provider dependency",
+          "bytes": 2072144,
+          "sha256": "aeaee594706f2ec0c3ec397c389256e741be13c44915d434554c21e17783097c",
+          "verified": true
+        }
+      ],
+      "source_license_evidence_present": true,
+      "reviewed_views": 6,
+      "thumbnail_sha256": "6109b79a5c6d469160a870ea97bfdc15d1e8cb922916445f54dbd0008a1a2c73",
+      "thumbnail_bytes": 73710
+    },
+    {
+      "slug": "rodin/monument-balzac-middelheim-1931",
+      "source_url": "https://sketchfab.com/3d-models/monument-a-balzac-0de8117fc262431e81066cba6697bc6c",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_glb_sha256": "c273de33be33e2cade9e9d0944040e8f73bcd59be1f00e9bdf60c40ec9c83384",
+      "source_glb_bytes": 26116316,
+      "local_preview_matches_source": true,
+      "native_files": [
+        {
+          "file": "source.glb",
+          "role": "unchanged archived provider GLB",
+          "bytes": 26116316,
+          "sha256": "c273de33be33e2cade9e9d0944040e8f73bcd59be1f00e9bdf60c40ec9c83384",
+          "verified": true
+        }
+      ],
+      "source_license_evidence_present": true,
+      "reviewed_views": 6,
+      "thumbnail_sha256": "c5e61f8ebcf430736e4133be17d34d5689a693a12249618ca1ebe37d65db5fc6",
+      "thumbnail_bytes": 21890
+    },
+    {
+      "slug": "modern/statue-liberty-bartholdi-luxembourg-replica",
+      "source_url": "https://sketchfab.com/3d-models/statue-of-liberty-04a8e7b1ba9142ba8cebc6108cd5bb97",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_glb_sha256": "c98a529e07247eb89b20745df5016694091fac735022040815e337352a895fb4",
+      "source_glb_bytes": 5147688,
+      "local_preview_matches_source": true,
+      "native_files": [
+        {
+          "file": "source.glb",
+          "role": "unchanged archived provider GLB",
+          "bytes": 5147688,
+          "sha256": "c98a529e07247eb89b20745df5016694091fac735022040815e337352a895fb4",
+          "verified": true
+        }
+      ],
+      "source_license_evidence_present": true,
+      "reviewed_views": 6,
+      "thumbnail_sha256": "97f9a6d3e1a1ec10f1923246b938747928814789ba8fda6cf935ebe5dbd77124",
+      "thumbnail_bytes": 65630
+    },
+    {
+      "slug": "modern/lion-belfort-bartholdi-lille-sc-130",
+      "source_url": "https://sketchfab.com/3d-models/lion-de-belfort-by-auguste-bartholdi-1875-8bfcfec1dc8d4505a606b12c9026d387",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_glb_sha256": "6861963de5894460dfeb8d2e9665f58eaf246e0a656fdbb65f122a6003a5dae9",
+      "source_glb_bytes": 7483656,
+      "local_preview_matches_source": true,
+      "native_files": [
+        {
+          "file": "source.glb",
+          "role": "unchanged archived provider GLB",
+          "bytes": 7483656,
+          "sha256": "6861963de5894460dfeb8d2e9665f58eaf246e0a656fdbb65f122a6003a5dae9",
+          "verified": true
+        }
+      ],
+      "source_license_evidence_present": true,
+      "reviewed_views": 6,
+      "thumbnail_sha256": "4717c2e870c4ed6341ad12e893c8ba89d66fb842f11e67131200ca862dacce1d",
+      "thumbnail_bytes": 23512
+    },
+    {
+      "slug": "rodin/the-cathedral-musee-rodin-s1001",
+      "source_url": "https://sketchfab.com/3d-models/la-cathedrale-d0ba1f143173484f87961fc50d46bdcf",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_glb_sha256": "04ee8899c52c78ed509cecd4150f85916352758c1656c07a29b49d0b8234bdee",
+      "source_glb_bytes": 40940028,
+      "local_preview_matches_source": true,
+      "native_files": [
+        {
+          "file": "source.glb",
+          "role": "unchanged archived provider GLB",
+          "bytes": 40940028,
+          "sha256": "04ee8899c52c78ed509cecd4150f85916352758c1656c07a29b49d0b8234bdee",
+          "verified": true
+        }
+      ],
+      "source_license_evidence_present": true,
+      "reviewed_views": 6,
+      "thumbnail_sha256": "6ab70eafcaea2e2d093b8b51d1a5af97871a7c0fc40b4494d01f9f20fe74d2fe",
+      "thumbnail_bytes": 46544
+    },
+    {
+      "slug": "modern/triumph-republic-dalou-place-nation",
+      "source_url": "https://sketchfab.com/3d-models/place-de-la-nation-the-triumphe-of-the-republic-1cbbb828ebae4d128cf86c78ac66e282",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_glb_sha256": "7b522d040a9a4edec5bed0a6d07df912b3417b89ebb6771476f642dd676dfdb8",
+      "source_glb_bytes": 208743008,
+      "local_preview_matches_source": true,
+      "native_files": [
+        {
+          "file": "source.glb",
+          "role": "unchanged archived provider GLB",
+          "bytes": 208743008,
+          "sha256": "7b522d040a9a4edec5bed0a6d07df912b3417b89ebb6771476f642dd676dfdb8",
+          "verified": true
+        }
+      ],
+      "source_license_evidence_present": true,
+      "reviewed_views": 6,
+      "thumbnail_sha256": "05f712bce21791aaf1af4a3377abcae2cdf0fa33793d691dbe4baf2726c739a3",
+      "thumbnail_bytes": 50288
+    },
+    {
+      "slug": "design/peacock-table-lamp-tiffany-cma2018-281",
+      "source_url": "https://sketchfab.com/3d-models/2018281-peacock-table-lamp-a24bcb6b7a2e448fad661004f403ae12",
+      "license": "CC0 1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source_glb_sha256": "2184c2e238213221ff7d664f973765fddbc506b21fd009c9dea2bac191670aa0",
+      "source_glb_bytes": 15264964,
+      "local_preview_matches_source": true,
+      "native_files": [
+        {
+          "file": "source.glb",
+          "role": "unchanged archived provider GLB",
+          "bytes": 15264964,
+          "sha256": "2184c2e238213221ff7d664f973765fddbc506b21fd009c9dea2bac191670aa0",
+          "verified": true
+        }
+      ],
+      "source_license_evidence_present": true,
+      "reviewed_views": 6,
+      "thumbnail_sha256": "c2a311a2d721d91183501d972db03c14fbc1dfe7ec267e5622e7dfcd2020f3bd",
+      "thumbnail_bytes": 18806
+    },
+    {
+      "slug": "modern/standing-iguanodon-hawkins-crystal-palace",
+      "source_url": "https://sketchfab.com/3d-models/standing-iguanodon-crystal-palace-park-16b0bc5ccc334357811f3deacc695e3b",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_glb_sha256": "06edeb5c4c2ca6c9bb077d5302fa6866731216a8ba6677b62b1e2e42dec7a849",
+      "source_glb_bytes": 58242876,
+      "local_preview_matches_source": true,
+      "native_files": [
+        {
+          "file": "source.glb",
+          "role": "unchanged archived provider GLB",
+          "bytes": 58242876,
+          "sha256": "06edeb5c4c2ca6c9bb077d5302fa6866731216a8ba6677b62b1e2e42dec7a849",
+          "verified": true
+        }
+      ],
+      "source_license_evidence_present": true,
+      "reviewed_views": 6,
+      "thumbnail_sha256": "65f2eee30102c9d1705335c9cb9f85c2977e36208a061ab667ac2d72b91868fe",
+      "thumbnail_bytes": 55590
+    }
+  ],
+  "findings": []
+}
