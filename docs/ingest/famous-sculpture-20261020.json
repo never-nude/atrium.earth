@@ -3004,7 +3004,7 @@
     "design/1903-wright-flyer-smithsonian",
     "design/eiffel-tower-digital-reconstruction-koters"
   ],
-  "source_archive": "Provider originals, dependencies and provenance remain local while private archive preparation and complete-content verification proceed. No source offload, public asset upload, Git push or deployment is authorized by this report.",
+  "source_archive": "All 60 accepted source packages, two recovery-control bundles, the saved review state and the portable recovery map have permanent private backups verified by complete SHA-256 readback, exact byte counts and private-sharing evidence. Available provider files, dependencies, licenses, credits and recovery mappings are preserved; unavailable pre-export authoring projects and one incomplete optional alternative are explicitly qualified. No source has been offloaded. This report does not authorize public uploads, Git pushes or deployment.",
   "exhibition_placements": [
     {
       "exhibition": "power-and-presence",
@@ -3084,5 +3084,35 @@
       "errors": [],
       "limitation": "Desktop Chromium with mobile viewport; not a physical mobile-device performance measurement."
     }
+  },
+  "archive_verification": {
+    "verified_at": "2026-10-21T00:15:58.800Z",
+    "accepted_source_packages": 60,
+    "source_package_bytes": 3471885787,
+    "source_package_parts": 77,
+    "verified_archive_blobs": 64,
+    "verified_private_remote_objects": 81,
+    "total_verified_archive_bytes": 3481692657,
+    "method": "complete-content SHA-256 readback with authenticated receipts and current private-sharing checks",
+    "recovery_control_bundles": 2,
+    "review_state_verified": true,
+    "portable_recovery_map_verified": true,
+    "accepted_source_bindings_verified": 60,
+    "source_members": 439,
+    "portable_recovery_mappings": 488,
+    "source_completeness": {
+      "complete-provider-native-ZIP-plus-distinct-serving-GLB": 8,
+      "complete-native-glTF-buffer-and-texture-downloads-plus-distinct-serving-GLB": 18,
+      "complete-institutional-original-STL-plus-distinct-serving-GLB": 19,
+      "unchanged-public-archive-delivery-GLB; pre-export-authoring-project-not-provided": 15
+    },
+    "missing_acquired_files": 0,
+    "missing_serving_dependencies": 0,
+    "limitations": [
+      "For 15 works, the publisher supplies an archive-delivery GLB; pre-export authoring projects were not provided and are not claimed as preserved.",
+      "The Caryatid supplemental OBJ references an unavailable MTL. It is explicitly incomplete and is not the serving source; the complete institutional STL is separately preserved."
+    ],
+    "local_source_files_removed": 0,
+    "collection_wide_coverage_claimed": false
   }
 }
