@@ -1,0 +1,2425 @@
+{
+  "schema": "atrium-famous-live-verification/1",
+  "batch": "famous-sculpture-20261020",
+  "releaseSha": "99802dae241f67b2ecadf6ba920fcec4948ac8fb",
+  "startedAt": "2026-10-21T01:32:31.971163Z",
+  "mode": "production-delivery",
+  "scope": "60 titles and main viewer bindings; complete model and thumbnail SHA-256/bytes; public-origin model CORS; exact Newest; eight exhibition placements; 2240 catalog/2222 public",
+  "limitations": "Read-only delivery checks; does not establish interactive rendering, source rights, or private backup status. Deployment readiness and release/run identity are supplied by the caller.",
+  "deploymentRun": "39527627413",
+  "expectations": {
+    "cohortCount": 60,
+    "catalogCount": 2240,
+    "publicCount": 2222,
+    "immutableBindings": 60,
+    "exhibitionPlacements": 8,
+    "exhibitionPages": 5,
+    "committedInputSha256": {
+      "docs/ingest/famous-sculpture-20261020.json": "84261c024ea97a6e013f8434fafb092aaa4f7af22c460f0c49486c6126e7bc49",
+      "src/data/catalog.json": "7c2f1280c36c2e917bfbb16ffaa1b7427c147ee0da08f48ad3377ddc603e236f",
+      "src/data/previews.json": "2a8365dbbc1dfe43d8f0338c661cdc25fc1da2fcc2f911f7c8a07caa21c12ba4",
+      "src/data/renders.json": "221278837fd1e29d4a05fdc99a96e86e453ccbeac24492ecb4ce41302cd0b64e"
+    }
+  },
+  "status": "pass",
+  "works": [
+    {
+      "slug": "africa/sphinx-of-taharqo-bm-ea1770",
+      "title": "Sphinx of Taharqo",
+      "page": {
+        "title": "Sphinx of Taharqo",
+        "primaryViewerBinding": true,
+        "primaryThumbnailBinding": true,
+        "sourceMaterialsPreserved": true,
+        "openingTransformMatches": true,
+        "url": "https://atrium.earth/works/africa/sphinx-of-taharqo-bm-ea1770/",
+        "status": 200,
+        "bytes": 32508,
+        "sha256": "cfca0ce1cc1ed4edd3edd27548e2d57a4a02d0c2804192fcb787d318c4c2abfd",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:33:07.712922Z"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/africa/sphinx-of-taharqo-bm-ea1770/thumb.webp",
+        "status": 200,
+        "bytes": 24338,
+        "sha256": "1a7cff276af2785e2c9efebf544854facf6fc5a9ea5dbb21f2ee7621ca26d259",
+        "contentType": "image/webp",
+        "checkedAt": "2026-10-21T01:33:07.824408Z"
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/africa/sphinx-of-taharqo-bm-ea1770/preview-98866523b77c.glb",
+        "status": 200,
+        "bytes": 19740636,
+        "sha256": "98866523b77c167c2e61f87306375880c3d106dcddb917d3df0cecbcd0a43805",
+        "contentType": "model/gltf-binary",
+        "checkedAt": "2026-10-21T01:33:09.459979Z",
+        "requestOrigin": "https://atrium.earth",
+        "allowOrigin": "https://atrium.earth",
+        "corsVerified": true
+      },
+      "status": "pass"
+    },
+    {
+      "slug": "americas/adams-memorial-saint-gaudens-cornish",
+      "title": "Adams Memorial (Cornish recast)",
+      "page": {
+        "title": "Adams Memorial (Cornish recast)",
+        "primaryViewerBinding": true,
+        "primaryThumbnailBinding": true,
+        "sourceMaterialsPreserved": true,
+        "openingTransformMatches": true,
+        "url": "https://atrium.earth/works/americas/adams-memorial-saint-gaudens-cornish/",
+        "status": 200,
+        "bytes": 32272,
+        "sha256": "8021923c693f127a4666f1fc339027a9b05b699846ad38d318a0c65db6b3d62f",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:33:32.994692Z"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/americas/adams-memorial-saint-gaudens-cornish/thumb.webp",
+        "status": 200,
+        "bytes": 64580,
+        "sha256": "737977843335cd02fa3b24e994c68201f7c27b2731ce8d9afb08ce244df38846",
+        "contentType": "image/webp",
+        "checkedAt": "2026-10-21T01:33:33.045085Z"
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/americas/adams-memorial-saint-gaudens-cornish/preview-780c149d18a0.glb",
+        "status": 200,
+        "bytes": 67453488,
+        "sha256": "780c149d18a0607568b60e3a906e02ad093fc6daa5cc58b49471b4c52f19a592",
+        "contentType": "model/gltf-binary",
+        "checkedAt": "2026-10-21T01:33:34.542870Z",
+        "requestOrigin": "https://atrium.earth",
+        "allowOrigin": "https://atrium.earth",
+        "corsVerified": true
+      },
+      "status": "pass"
+    },
+    {
+      "slug": "americas/shaw-54th-massachusetts-memorial-boston",
+      "title": "Robert Gould Shaw and 54th Massachusetts Regiment Memorial",
+      "page": {
+        "title": "Robert Gould Shaw and 54th Massachusetts Regiment Memorial",
+        "primaryViewerBinding": true,
+        "primaryThumbnailBinding": true,
+        "sourceMaterialsPreserved": true,
+        "openingTransformMatches": true,
+        "url": "https://atrium.earth/works/americas/shaw-54th-massachusetts-memorial-boston/",
+        "status": 200,
+        "bytes": 33146,
+        "sha256": "37905138efcf8f6af447d419a85ad87ed81d164d5580acf9d3e11d44b039f14b",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:33:34.700674Z"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/americas/shaw-54th-massachusetts-memorial-boston/thumb.webp",
+        "status": 200,
+        "bytes": 76340,
+        "sha256": "e7ae93b1aa00d7927fc697d1d18c662f22e0c61e9384585a50f468bfad3ff324",
+        "contentType": "image/webp",
+        "checkedAt": "2026-10-21T01:33:35.291404Z"
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/americas/shaw-54th-massachusetts-memorial-boston/preview-2a20fa08eb64.glb",
+        "status": 200,
+        "bytes": 10290844,
+        "sha256": "2a20fa08eb649180cd934a158e2d615547ac3b85588a0b9c740725cf0e819986",
+        "contentType": "model/gltf-binary",
+        "checkedAt": "2026-10-21T01:33:35.756878Z",
+        "requestOrigin": "https://atrium.earth",
+        "allowOrigin": "https://atrium.earth",
+        "corsVerified": true
+      },
+      "status": "pass"
+    },
+    {
+      "slug": "americas/stone-of-tizoc-smvk-historical-miniature",
+      "title": "Stone of Tizoc — Historical Miniature Replica",
+      "page": {
+        "title": "Stone of Tizoc — Historical Miniature Replica",
+        "primaryViewerBinding": true,
+        "primaryThumbnailBinding": true,
+        "sourceMaterialsPreserved": true,
+        "openingTransformMatches": true,
+        "url": "https://atrium.earth/works/americas/stone-of-tizoc-smvk-historical-miniature/",
+        "status": 200,
+        "bytes": 34327,
+        "sha256": "43f22d47a258e0f74663863886e97f6e5e5f7ab041ab40ff425dad83bfb4fb1d",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:33:07.189344Z"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/americas/stone-of-tizoc-smvk-historical-miniature/thumb.webp",
+        "status": 200,
+        "bytes": 87358,
+        "sha256": "23e8913cd3853eaf832386ae3a28155d61a6ee7aa04e93b0e2d2cbf092b195bb",
+        "contentType": "image/webp",
+        "checkedAt": "2026-10-21T01:33:07.285375Z"
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/americas/stone-of-tizoc-smvk-historical-miniature/preview-722ee047f5da.glb",
+        "status": 200,
+        "bytes": 4130968,
+        "sha256": "722ee047f5da6a4a1fe6ed326111fc639454ed28b9e9430a324e43e6d8c55d11",
+        "contentType": "model/gltf-binary",
+        "checkedAt": "2026-10-21T01:33:07.636038Z",
+        "requestOrigin": "https://atrium.earth",
+        "allowOrigin": "https://atrium.earth",
+        "corsVerified": true
+      },
+      "status": "pass"
+    },
+    {
+      "slug": "ancient-near-east/code-of-hammurabi-louvre-sb8",
+      "title": "Code of Hammurabi",
+      "page": {
+        "title": "Code of Hammurabi",
+        "primaryViewerBinding": true,
+        "primaryThumbnailBinding": true,
+        "sourceMaterialsPreserved": true,
+        "openingTransformMatches": true,
+        "url": "https://atrium.earth/works/ancient-near-east/code-of-hammurabi-louvre-sb8/",
+        "status": 200,
+        "bytes": 33684,
+        "sha256": "6857118a8ea07159817128c5c4a4b8c93de72b20732867578f1c8edb90563db1",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:33:05.738710Z"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/ancient-near-east/code-of-hammurabi-louvre-sb8/thumb.webp",
+        "status": 200,
+        "bytes": 62906,
+        "sha256": "b26c290fabc4417916a826d98aafbb5072cf6a07d22c3fad4bfdcbe0f7c5a95a",
+        "contentType": "image/webp",
+        "checkedAt": "2026-10-21T01:33:05.838116Z"
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/ancient-near-east/code-of-hammurabi-louvre-sb8/preview-5044dd6ef6c1.glb",
+        "status": 200,
+        "bytes": 8623012,
+        "sha256": "5044dd6ef6c19edf120d8f98bfac0982495ee3160516c0dd12653c172e16e459",
+        "contentType": "model/gltf-binary",
+        "checkedAt": "2026-10-21T01:33:06.158030Z",
+        "requestOrigin": "https://atrium.earth",
+        "allowOrigin": "https://atrium.earth",
+        "corsVerified": true
+      },
+      "status": "pass"
+    },
+    {
+      "slug": "asia/jomon-venus-togariishi",
+      "title": "Jōmon Venus",
+      "page": {
+        "title": "Jōmon Venus",
+        "primaryViewerBinding": true,
+        "primaryThumbnailBinding": true,
+        "sourceMaterialsPreserved": true,
+        "openingTransformMatches": true,
+        "url": "https://atrium.earth/works/asia/jomon-venus-togariishi/",
+        "status": 200,
+        "bytes": 33250,
+        "sha256": "1701a8d28c58503244136d248c8d2abc3f753ca619ff3390d8279d575d59e667",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:33:09.557495Z"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/asia/jomon-venus-togariishi/thumb.webp",
+        "status": 200,
+        "bytes": 68388,
+        "sha256": "9cc0ca358a2a8741140a428715dda4c7ed8e50979c929f3147dca95818112cbd",
+        "contentType": "image/webp",
+        "checkedAt": "2026-10-21T01:33:09.671638Z"
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/asia/jomon-venus-togariishi/preview-69ef5a6e7b77.glb",
+        "status": 200,
+        "bytes": 1075584,
+        "sha256": "69ef5a6e7b7732cc7de4e916c211aa46724cf880d8c17d65f6bdaef6ecf0c92d",
+        "contentType": "model/gltf-binary",
+        "checkedAt": "2026-10-21T01:33:10.069923Z",
+        "requestOrigin": "https://atrium.earth",
+        "allowOrigin": "https://atrium.earth",
+        "corsVerified": true
+      },
+      "status": "pass"
+    },
+    {
+      "slug": "asia/kaen-doki-umataka-no1",
+      "title": "Kaen Doki (Flame Pot), Umataka No. 1",
+      "page": {
+        "title": "Kaen Doki (Flame Pot), Umataka No. 1",
+        "primaryViewerBinding": true,
+        "primaryThumbnailBinding": true,
+        "sourceMaterialsPreserved": true,
+        "openingTransformMatches": true,
+        "url": "https://atrium.earth/works/asia/kaen-doki-umataka-no1/",
+        "status": 200,
+        "bytes": 33640,
+        "sha256": "169af684da663ce459f044c13e0be61d409eb33fd9f08e1de6b35128822d42e4",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:33:08.212123Z"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/asia/kaen-doki-umataka-no1/thumb.webp",
+        "status": 200,
+        "bytes": 35234,
+        "sha256": "c5a99362635b1f41a3c349115a311ffcfe9a145ba255ae9308d425b46c074bfe",
+        "contentType": "image/webp",
+        "checkedAt": "2026-10-21T01:33:08.335962Z"
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/asia/kaen-doki-umataka-no1/preview-29e96ac2cef6.glb",
+        "status": 200,
+        "bytes": 60398560,
+        "sha256": "29e96ac2cef68689495b2e68d7cd9f75ce6dcf00d5ed7f9f1b1598b6d09eb038",
+        "contentType": "model/gltf-binary",
+        "checkedAt": "2026-10-21T01:33:10.268421Z",
+        "requestOrigin": "https://atrium.earth",
+        "allowOrigin": "https://atrium.earth",
+        "corsVerified": true
+      },
+      "status": "pass"
+    },
+    {
+      "slug": "asia/masked-goddess-togariishi",
+      "title": "Masked Goddess (Kamen no Megami)",
+      "page": {
+        "title": "Masked Goddess (Kamen no Megami)",
+        "primaryViewerBinding": true,
+        "primaryThumbnailBinding": true,
+        "sourceMaterialsPreserved": true,
+        "openingTransformMatches": true,
+        "url": "https://atrium.earth/works/asia/masked-goddess-togariishi/",
+        "status": 200,
+        "bytes": 33279,
+        "sha256": "6a113feda49f4bc34ca94303a8b1b73b3623f2a490c49fcd56bf0d60076d594b",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:33:10.151855Z"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/asia/masked-goddess-togariishi/thumb.webp",
+        "status": 200,
+        "bytes": 69716,
+        "sha256": "d3c6c8868637877b5d598d3a1f1c87a93a62f2508530f141e2d8d5ef1ff742ab",
+        "contentType": "image/webp",
+        "checkedAt": "2026-10-21T01:33:10.290471Z"
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/asia/masked-goddess-togariishi/preview-7f364621305c.glb",
+        "status": 200,
+        "bytes": 2141364,
+        "sha256": "7f364621305c1b6969d4f4ab08563cfbcb12e6f4cce4093b1b876710a02f2ff7",
+        "contentType": "model/gltf-binary",
+        "checkedAt": "2026-10-21T01:33:10.521805Z",
+        "requestOrigin": "https://atrium.earth",
+        "allowOrigin": "https://atrium.earth",
+        "corsVerified": true
+      },
+      "status": "pass"
+    },
+    {
+      "slug": "baroque/chigi-triton-bernini-rijksmuseum",
+      "title": "Triton (Chigi study model)",
+      "page": {
+        "title": "Triton (Chigi study model)",
+        "primaryViewerBinding": true,
+        "primaryThumbnailBinding": true,
+        "sourceMaterialsPreserved": true,
+        "openingTransformMatches": true,
+        "url": "https://atrium.earth/works/baroque/chigi-triton-bernini-rijksmuseum/",
+        "status": 200,
+        "bytes": 33031,
+        "sha256": "b306f5870628283d4639e8791e6d2448dd619a11ee04aa8dd94cf4af61b899fb",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:33:29.779876Z"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/baroque/chigi-triton-bernini-rijksmuseum/thumb.webp",
+        "status": 200,
+        "bytes": 45070,
+        "sha256": "825a1d62f78ddaaf427ad808fc0a93a374018b802038b51b72cf2ae53fd8fcc6",
+        "contentType": "image/webp",
+        "checkedAt": "2026-10-21T01:33:29.870742Z"
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/baroque/chigi-triton-bernini-rijksmuseum/preview-76c43f6cb62b.glb",
+        "status": 200,
+        "bytes": 4566468,
+        "sha256": "76c43f6cb62bd642873d4fd36fa9e233384c01bb8e15820645666720e0b67ddb",
+        "contentType": "model/gltf-binary",
+        "checkedAt": "2026-10-21T01:33:30.188478Z",
+        "requestOrigin": "https://atrium.earth",
+        "allowOrigin": "https://atrium.earth",
+        "corsVerified": true
+      },
+      "status": "pass"
+    },
+    {
+      "slug": "baroque/habakkuk-angel-bernini-chigi-chapel",
+      "title": "Habakkuk and the Angel (Chigi Chapel installation)",
+      "page": {
+        "title": "Habakkuk and the Angel (Chigi Chapel installation)",
+        "primaryViewerBinding": true,
+        "primaryThumbnailBinding": true,
+        "sourceMaterialsPreserved": true,
+        "openingTransformMatches": true,
+        "url": "https://atrium.earth/works/baroque/habakkuk-angel-bernini-chigi-chapel/",
+        "status": 200,
+        "bytes": 33121,
+        "sha256": "7a295c875ee319c27867e23df91efd5f73bacd3e3df34bde1cf33f2e93d94128",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:33:32.245965Z"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/baroque/habakkuk-angel-bernini-chigi-chapel/thumb.webp",
+        "status": 200,
+        "bytes": 75768,
+        "sha256": "e77053aac33ce9378dc55d811e11d34bf1e4c77900f28511cff94bf0443e26cb",
+        "contentType": "image/webp",
+        "checkedAt": "2026-10-21T01:33:32.336598Z"
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/baroque/habakkuk-angel-bernini-chigi-chapel/preview-dc9b7c57ce3d.glb",
+        "status": 200,
+        "bytes": 36091988,
+        "sha256": "dc9b7c57ce3dea6fed961b15e81c3ea72cb88976b532e26142776698acb65113",
+        "contentType": "model/gltf-binary",
+        "checkedAt": "2026-10-21T01:33:35.250512Z",
+        "requestOrigin": "https://atrium.earth",
+        "allowOrigin": "https://atrium.earth",
+        "corsVerified": true
+      },
+      "status": "pass"
+    },
+    {
+      "slug": "baroque/louis-xiv-victory-coysevox-versailles",
+      "title": "Louis XIV on Horseback Crowned by Victory (War Room)",
+      "page": {
+        "title": "Louis XIV on Horseback Crowned by Victory (War Room)",
+        "primaryViewerBinding": true,
+        "primaryThumbnailBinding": true,
+        "sourceMaterialsPreserved": true,
+        "openingTransformMatches": true,
+        "url": "https://atrium.earth/works/baroque/louis-xiv-victory-coysevox-versailles/",
+        "status": 200,
+        "bytes": 33253,
+        "sha256": "4ffeb606403b37c0bcccdbb3dd7deff4acadc68f30a7b06f37681a3b858badf7",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:33:31.542303Z"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/baroque/louis-xiv-victory-coysevox-versailles/thumb.webp",
+        "status": 200,
+        "bytes": 172464,
+        "sha256": "145d2292ba3dffc66917ae343283b0367e94a46c5f29278a8e8ecbc635ebd0f1",
+        "contentType": "image/webp",
+        "checkedAt": "2026-10-21T01:33:31.705481Z"
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/baroque/louis-xiv-victory-coysevox-versailles/preview-5359342f0d99.glb",
+        "status": 200,
+        "bytes": 14323716,
+        "sha256": "5359342f0d9904400e9000a38265fe1e83a2ed218103eef8aa14446b7a255dc9",
+        "contentType": "model/gltf-binary",
+        "checkedAt": "2026-10-21T01:33:32.881429Z",
+        "requestOrigin": "https://atrium.earth",
+        "allowOrigin": "https://atrium.earth",
+        "corsVerified": true
+      },
+      "status": "pass"
+    },
+    {
+      "slug": "baroque/royal-chapel-organ-versailles",
+      "title": "Sculpted Organ Case of the Royal Chapel, Versailles",
+      "page": {
+        "title": "Sculpted Organ Case of the Royal Chapel, Versailles",
+        "primaryViewerBinding": true,
+        "primaryThumbnailBinding": true,
+        "sourceMaterialsPreserved": true,
+        "openingTransformMatches": true,
+        "url": "https://atrium.earth/works/baroque/royal-chapel-organ-versailles/",
+        "status": 200,
+        "bytes": 33709,
+        "sha256": "f7992d029786a522bf0e07fccad5744ec45226b50222093e7f55f8dce8e800b0",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:33:30.305682Z"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/baroque/royal-chapel-organ-versailles/thumb.webp",
+        "status": 200,
+        "bytes": 139878,
+        "sha256": "cf5be7ec2dd23186b22063039cc14c4fbe59ff7c5d126259452c94abf981772a",
+        "contentType": "image/webp",
+        "checkedAt": "2026-10-21T01:33:30.462957Z"
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/baroque/royal-chapel-organ-versailles/preview-324ca5a20822.glb",
+        "status": 200,
+        "bytes": 13309568,
+        "sha256": "324ca5a20822f4a1f8a333b89e571da3e927a30a37e5faeac8789eb38dc7b621",
+        "contentType": "model/gltf-binary",
+        "checkedAt": "2026-10-21T01:33:31.294890Z",
+        "requestOrigin": "https://atrium.earth",
+        "allowOrigin": "https://atrium.earth",
+        "corsVerified": true
+      },
+      "status": "pass"
+    },
+    {
+      "slug": "design/peacock-table-lamp-tiffany-cma2018-281",
+      "title": "Peacock Table Lamp",
+      "page": {
+        "title": "Peacock Table Lamp",
+        "primaryViewerBinding": true,
+        "primaryThumbnailBinding": true,
+        "sourceMaterialsPreserved": true,
+        "openingTransformMatches": true,
+        "url": "https://atrium.earth/works/design/peacock-table-lamp-tiffany-cma2018-281/",
+        "status": 200,
+        "bytes": 32327,
+        "sha256": "72d3458b2ccb925761175f0499789cd3d210aeeb4ba7544c2fc1b8e6370616b8",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:33:39.405640Z"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/design/peacock-table-lamp-tiffany-cma2018-281/thumb.webp",
+        "status": 200,
+        "bytes": 18806,
+        "sha256": "c2a311a2d721d91183501d972db03c14fbc1dfe7ec267e5622e7dfcd2020f3bd",
+        "contentType": "image/webp",
+        "checkedAt": "2026-10-21T01:33:39.548335Z"
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/design/peacock-table-lamp-tiffany-cma2018-281/preview-2184c2e23821.glb",
+        "status": 200,
+        "bytes": 15264964,
+        "sha256": "2184c2e238213221ff7d664f973765fddbc506b21fd009c9dea2bac191670aa0",
+        "contentType": "model/gltf-binary",
+        "checkedAt": "2026-10-21T01:33:40.453012Z",
+        "requestOrigin": "https://atrium.earth",
+        "allowOrigin": "https://atrium.earth",
+        "corsVerified": true
+      },
+      "status": "pass"
+    },
+    {
+      "slug": "donatello/cavalcanti-annunciation-santa-croce",
+      "title": "Cavalcanti Annunciation",
+      "page": {
+        "title": "Cavalcanti Annunciation",
+        "primaryViewerBinding": true,
+        "primaryThumbnailBinding": true,
+        "sourceMaterialsPreserved": true,
+        "openingTransformMatches": true,
+        "url": "https://atrium.earth/works/donatello/cavalcanti-annunciation-santa-croce/",
+        "status": 200,
+        "bytes": 33335,
+        "sha256": "d0051f083da0437ba27f72b1ebaa345b9f01d22ea34199d1f813a1453e60bc29",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:33:28.467109Z"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/donatello/cavalcanti-annunciation-santa-croce/thumb.webp",
+        "status": 200,
+        "bytes": 113230,
+        "sha256": "3a6c30603f53cd6654024cca869f3096b9815072683125e31832352e6c85554a",
+        "contentType": "image/webp",
+        "checkedAt": "2026-10-21T01:33:28.579139Z"
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/donatello/cavalcanti-annunciation-santa-croce/preview-71527ff37a32.glb",
+        "status": 200,
+        "bytes": 20345856,
+        "sha256": "71527ff37a32b736b5124ccb7ff170f83f239ffbbba76a17fb1d66de4b9d64a7",
+        "contentType": "model/gltf-binary",
+        "checkedAt": "2026-10-21T01:33:29.657153Z",
+        "requestOrigin": "https://atrium.earth",
+        "allowOrigin": "https://atrium.earth",
+        "corsVerified": true
+      },
+      "status": "pass"
+    },
+    {
+      "slug": "donatello/saint-john-baptist-siena-smk-cast",
+      "title": "Saint John the Baptist, Siena composition (SMK cast)",
+      "page": {
+        "title": "Saint John the Baptist, Siena composition (SMK cast)",
+        "primaryViewerBinding": true,
+        "primaryThumbnailBinding": true,
+        "sourceMaterialsPreserved": true,
+        "openingTransformMatches": true,
+        "url": "https://atrium.earth/works/donatello/saint-john-baptist-siena-smk-cast/",
+        "status": 200,
+        "bytes": 34740,
+        "sha256": "5a9385e86a823df55fac2afdda953ecea030e144ce79e61a1ad8794de0bc1d31",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:33:17.250606Z"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/donatello/saint-john-baptist-siena-smk-cast/thumb.webp",
+        "status": 200,
+        "bytes": 46422,
+        "sha256": "4a661e0b3c7e91d32c40973cea426b6112f7a825cb5b9927c8e060e7e692e7f9",
+        "contentType": "image/webp",
+        "checkedAt": "2026-10-21T01:33:17.356209Z"
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/donatello/saint-john-baptist-siena-smk-cast/preview-272d997d7d61.glb",
+        "status": 200,
+        "bytes": 143997136,
+        "sha256": "272d997d7d618019a6a3a0314aecd5842eb6dc86b681fe649121978915082275",
+        "contentType": "model/gltf-binary",
+        "checkedAt": "2026-10-21T01:33:28.248910Z",
+        "requestOrigin": "https://atrium.earth",
+        "allowOrigin": "https://atrium.earth",
+        "corsVerified": true
+      },
+      "status": "pass"
+    },
+    {
+      "slug": "egyptian/akhenaten-offering-table-cairo-je43580",
+      "title": "Akhenaten Presenting an Offering Table",
+      "page": {
+        "title": "Akhenaten Presenting an Offering Table",
+        "primaryViewerBinding": true,
+        "primaryThumbnailBinding": true,
+        "sourceMaterialsPreserved": true,
+        "openingTransformMatches": true,
+        "url": "https://atrium.earth/works/egyptian/akhenaten-offering-table-cairo-je43580/",
+        "status": 200,
+        "bytes": 33674,
+        "sha256": "a932a3235f617ea53c4585b2f3e2df28cb3ab812ea339b0fcd04265e648b95fb",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:33:05.660323Z"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/egyptian/akhenaten-offering-table-cairo-je43580/thumb.webp",
+        "status": 200,
+        "bytes": 28520,
+        "sha256": "2dd67cf179cdba325954fe5b40064b1ea30940e0e14db5f88dec2f5d78e6e232",
+        "contentType": "image/webp",
+        "checkedAt": "2026-10-21T01:33:05.778771Z"
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/egyptian/akhenaten-offering-table-cairo-je43580/preview-9f0a453b0838.glb",
+        "status": 200,
+        "bytes": 4710724,
+        "sha256": "9f0a453b0838feedb08d1830cd4e9e3bc0565094dc036662e3d7a7edc76a4efc",
+        "contentType": "model/gltf-binary",
+        "checkedAt": "2026-10-21T01:33:06.147212Z",
+        "requestOrigin": "https://atrium.earth",
+        "allowOrigin": "https://atrium.earth",
+        "corsVerified": true
+      },
+      "status": "pass"
+    },
+    {
+      "slug": "egyptian/gayer-anderson-cat-bm-ea64391",
+      "title": "The Gayer-Anderson Cat",
+      "page": {
+        "title": "The Gayer-Anderson Cat",
+        "primaryViewerBinding": true,
+        "primaryThumbnailBinding": true,
+        "sourceMaterialsPreserved": true,
+        "openingTransformMatches": true,
+        "url": "https://atrium.earth/works/egyptian/gayer-anderson-cat-bm-ea64391/",
+        "status": 200,
+        "bytes": 33158,
+        "sha256": "82cfd80033732d8a477e0a9c555f64e4d37ab912c9288282a1e5406dd3bee2b9",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:33:04.020388Z"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/egyptian/gayer-anderson-cat-bm-ea64391/thumb.webp",
+        "status": 200,
+        "bytes": 46926,
+        "sha256": "cbee76d8b088ce5001e3e69d50ee04daa4bb75af406589cd37d1069e5cc613dd",
+        "contentType": "image/webp",
+        "checkedAt": "2026-10-21T01:33:04.175029Z"
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/egyptian/gayer-anderson-cat-bm-ea64391/preview-dcbf7914bb75.glb",
+        "status": 200,
+        "bytes": 5312256,
+        "sha256": "dcbf7914bb75d4cf5f228bf8d06141764e7cc89cdaf82d3b4b174e21c7b78976",
+        "contentType": "model/gltf-binary",
+        "checkedAt": "2026-10-21T01:33:04.721679Z",
+        "requestOrigin": "https://atrium.earth",
+        "allowOrigin": "https://atrium.earth",
+        "corsVerified": true
+      },
+      "status": "pass"
+    },
+    {
+      "slug": "egyptian/khafre-enthroned-cairo-je10062",
+      "title": "Khafre Enthroned",
+      "page": {
+        "title": "Khafre Enthroned",
+        "primaryViewerBinding": true,
+        "primaryThumbnailBinding": true,
+        "sourceMaterialsPreserved": true,
+        "openingTransformMatches": true,
+        "url": "https://atrium.earth/works/egyptian/khafre-enthroned-cairo-je10062/",
+        "status": 200,
+        "bytes": 33316,
+        "sha256": "14d4168fcbae2075af2c27f3a781ec5e161e119647afd4cc4f9a83c7254970f7",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:33:04.868249Z"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/egyptian/khafre-enthroned-cairo-je10062/thumb.webp",
+        "status": 200,
+        "bytes": 73544,
+        "sha256": "46283af2cbf7835be198dca9cb4335f710bbd7a546c1ec77d218fa055c524696",
+        "contentType": "image/webp",
+        "checkedAt": "2026-10-21T01:33:05.033959Z"
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/egyptian/khafre-enthroned-cairo-je10062/preview-a2b06a698c72.glb",
+        "status": 200,
+        "bytes": 8316488,
+        "sha256": "a2b06a698c72fcb3b1a106185dd7f74a4308da853945602172c808925fb969d4",
+        "contentType": "model/gltf-binary",
+        "checkedAt": "2026-10-21T01:33:05.550586Z",
+        "requestOrigin": "https://atrium.earth",
+        "allowOrigin": "https://atrium.earth",
+        "corsVerified": true
+      },
+      "status": "pass"
+    },
+    {
+      "slug": "egyptian/menkaure-and-queen-mfa-11-1738",
+      "title": "King Menkaure and Queen",
+      "page": {
+        "title": "King Menkaure and Queen",
+        "primaryViewerBinding": true,
+        "primaryThumbnailBinding": true,
+        "sourceMaterialsPreserved": true,
+        "openingTransformMatches": true,
+        "url": "https://atrium.earth/works/egyptian/menkaure-and-queen-mfa-11-1738/",
+        "status": 200,
+        "bytes": 33341,
+        "sha256": "50689afd291dfa0c24b310c8bd0652d98ea00decef863a8db292b2919915474e",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:33:06.259418Z"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/egyptian/menkaure-and-queen-mfa-11-1738/thumb.webp",
+        "status": 200,
+        "bytes": 72956,
+        "sha256": "71da3bc16ce38c6e39459812cd7da1953f3aac6048705128d73313648d7b2e09",
+        "contentType": "image/webp",
+        "checkedAt": "2026-10-21T01:33:06.368186Z"
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/egyptian/menkaure-and-queen-mfa-11-1738/preview-9a1a88f4fb6d.glb",
+        "status": 200,
+        "bytes": 8655408,
+        "sha256": "9a1a88f4fb6d208bf457ac5ece138da352e778deff610629f901d9f0eb2952b7",
+        "contentType": "model/gltf-binary",
+        "checkedAt": "2026-10-21T01:33:06.830553Z",
+        "requestOrigin": "https://atrium.earth",
+        "allowOrigin": "https://atrium.earth",
+        "corsVerified": true
+      },
+      "status": "pass"
+    },
+    {
+      "slug": "egyptian/menkaure-hathor-bat-triad-cairo-je46499",
+      "title": "Menkaure with Hathor and the Goddess of the Bat Nome",
+      "page": {
+        "title": "Menkaure with Hathor and the Goddess of the Bat Nome",
+        "primaryViewerBinding": true,
+        "primaryThumbnailBinding": true,
+        "sourceMaterialsPreserved": true,
+        "openingTransformMatches": true,
+        "url": "https://atrium.earth/works/egyptian/menkaure-hathor-bat-triad-cairo-je46499/",
+        "status": 200,
+        "bytes": 34120,
+        "sha256": "ce8e0bcc7337d52aae37d502d6ef44041f30faa7625f17f4843e551bf64c0a72",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:33:05.221026Z"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/egyptian/menkaure-hathor-bat-triad-cairo-je46499/thumb.webp",
+        "status": 200,
+        "bytes": 119194,
+        "sha256": "863b3877426c13f3681595a2ee722524090b7f33fe4c7bb589673bfd88abc73c",
+        "contentType": "image/webp",
+        "checkedAt": "2026-10-21T01:33:05.340775Z"
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/egyptian/menkaure-hathor-bat-triad-cairo-je46499/preview-adfbacf7f183.glb",
+        "status": 200,
+        "bytes": 6979336,
+        "sha256": "adfbacf7f183f464f52d0a05401c294367f9814dd8908df941ed7ad3ca73fc36",
+        "contentType": "model/gltf-binary",
+        "checkedAt": "2026-10-21T01:33:05.656326Z",
+        "requestOrigin": "https://atrium.earth",
+        "allowOrigin": "https://atrium.earth",
+        "corsVerified": true
+      },
+      "status": "pass"
+    },
+    {
+      "slug": "egyptian/narmer-palette-cairo-je32169",
+      "title": "Narmer Palette",
+      "page": {
+        "title": "Narmer Palette",
+        "primaryViewerBinding": true,
+        "primaryThumbnailBinding": true,
+        "sourceMaterialsPreserved": true,
+        "openingTransformMatches": true,
+        "url": "https://atrium.earth/works/egyptian/narmer-palette-cairo-je32169/",
+        "status": 200,
+        "bytes": 33487,
+        "sha256": "7c19a678cebc0e6b8ab02bdf0611d313ad06f95354fcfdb1dd82681d2faf5ec8",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:33:04.705905Z"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/egyptian/narmer-palette-cairo-je32169/thumb.webp",
+        "status": 200,
+        "bytes": 92894,
+        "sha256": "4d02d3e54747f1b88d2ca379cdf59f74165de55558d2aef2e04df8a7c5c7f344",
+        "contentType": "image/webp",
+        "checkedAt": "2026-10-21T01:33:04.860244Z"
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/egyptian/narmer-palette-cairo-je32169/preview-1eb1fd7e24f1.glb",
+        "status": 200,
+        "bytes": 4836416,
+        "sha256": "1eb1fd7e24f1b2512f9c7d3a689a5dd10b85f706bfe985225b93372fd75db804",
+        "contentType": "model/gltf-binary",
+        "checkedAt": "2026-10-21T01:33:05.145842Z",
+        "requestOrigin": "https://atrium.earth",
+        "allowOrigin": "https://atrium.earth",
+        "corsVerified": true
+      },
+      "status": "pass"
+    },
+    {
+      "slug": "egyptian/william-the-hippo-met-17-9-1",
+      "title": "Hippopotamus (\"William\")",
+      "page": {
+        "title": "Hippopotamus (\"William\")",
+        "primaryViewerBinding": true,
+        "primaryThumbnailBinding": true,
+        "sourceMaterialsPreserved": true,
+        "openingTransformMatches": true,
+        "url": "https://atrium.earth/works/egyptian/william-the-hippo-met-17-9-1/",
+        "status": 200,
+        "bytes": 33324,
+        "sha256": "928a47ed0eb0f5fe68ee9329e5aec5eeda4bfaf6c42b3460a2516e314fb2064c",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:33:06.221193Z"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/egyptian/william-the-hippo-met-17-9-1/thumb.webp",
+        "status": 200,
+        "bytes": 42862,
+        "sha256": "450270f02bc6ebc33ec11fbe267c63ee53c76817ebc832fb9b39eeaf833cf2c2",
+        "contentType": "image/webp",
+        "checkedAt": "2026-10-21T01:33:06.282633Z"
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/egyptian/william-the-hippo-met-17-9-1/preview-05ba2f8c6bcc.glb",
+        "status": 200,
+        "bytes": 22315568,
+        "sha256": "05ba2f8c6bcc2e0c42a3a3e6808bf04e12319833b4c6906225c6475795ee4cd6",
+        "contentType": "model/gltf-binary",
+        "checkedAt": "2026-10-21T01:33:07.069460Z",
+        "requestOrigin": "https://atrium.earth",
+        "allowOrigin": "https://atrium.earth",
+        "corsVerified": true
+      },
+      "status": "pass"
+    },
+    {
+      "slug": "europe/lady-of-elche-man-1971-10-1",
+      "title": "Lady of Elche",
+      "page": {
+        "title": "Lady of Elche",
+        "primaryViewerBinding": true,
+        "primaryThumbnailBinding": true,
+        "sourceMaterialsPreserved": true,
+        "openingTransformMatches": true,
+        "url": "https://atrium.earth/works/europe/lady-of-elche-man-1971-10-1/",
+        "status": 200,
+        "bytes": 33667,
+        "sha256": "b4c26c61b1b13107b922b92bfd5ec9cceefebb9b53aaf8b907b5141c8559b870",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:33:06.922563Z"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/europe/lady-of-elche-man-1971-10-1/thumb.webp",
+        "status": 200,
+        "bytes": 89048,
+        "sha256": "5e79e7e74d38e5d78fddee5c2525091c0e32f2fa7e55e0cde03abd748e3f8d30",
+        "contentType": "image/webp",
+        "checkedAt": "2026-10-21T01:33:07.007054Z"
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/europe/lady-of-elche-man-1971-10-1/preview-7382dcdd348c.glb",
+        "status": 200,
+        "bytes": 5776208,
+        "sha256": "7382dcdd348cd1ef7bde7a83cd47c5ef61d557db1b3202176cc199ff72080b18",
+        "contentType": "model/gltf-binary",
+        "checkedAt": "2026-10-21T01:33:07.684019Z",
+        "requestOrigin": "https://atrium.earth",
+        "allowOrigin": "https://atrium.earth",
+        "corsVerified": true
+      },
+      "status": "pass"
+    },
+    {
+      "slug": "europe/lion-monument-lucerne-thorvaldsen-ahorn",
+      "title": "Lion Monument, Lucerne",
+      "page": {
+        "title": "Lion Monument, Lucerne",
+        "primaryViewerBinding": true,
+        "primaryThumbnailBinding": true,
+        "sourceMaterialsPreserved": true,
+        "openingTransformMatches": true,
+        "url": "https://atrium.earth/works/europe/lion-monument-lucerne-thorvaldsen-ahorn/",
+        "status": 200,
+        "bytes": 32904,
+        "sha256": "2a190523bc1c66d484b8ff55c1308a4db4af6558f2802adddf20ba9ec026d209",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:33:31.403473Z"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/europe/lion-monument-lucerne-thorvaldsen-ahorn/thumb.webp",
+        "status": 200,
+        "bytes": 61924,
+        "sha256": "1b1cfe41160d20be24f0334953e37f70a96f8693b264c1e44aa0eb2ad969853c",
+        "contentType": "image/webp",
+        "checkedAt": "2026-10-21T01:33:31.472761Z"
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/europe/lion-monument-lucerne-thorvaldsen-ahorn/preview-45803acaac1d.glb",
+        "status": 200,
+        "bytes": 17205052,
+        "sha256": "45803acaac1dae8353b0e926465ef5991fc81b6cb55cff38d4590f6847682738",
+        "contentType": "model/gltf-binary",
+        "checkedAt": "2026-10-21T01:33:32.157048Z",
+        "requestOrigin": "https://atrium.earth",
+        "allowOrigin": "https://atrium.earth",
+        "corsVerified": true
+      },
+      "status": "pass"
+    },
+    {
+      "slug": "greek/agias-delphi-smk-kas1289",
+      "title": "Agias of Delphi — SMK Plaster Cast",
+      "page": {
+        "title": "Agias of Delphi — SMK Plaster Cast",
+        "primaryViewerBinding": true,
+        "primaryThumbnailBinding": true,
+        "sourceMaterialsPreserved": true,
+        "openingTransformMatches": true,
+        "url": "https://atrium.earth/works/greek/agias-delphi-smk-kas1289/",
+        "status": 200,
+        "bytes": 35184,
+        "sha256": "5049491ebccc53cdef346198e2404e4da0095f5beea138a51d73f8fe6273007b",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:32:52.543174Z"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/greek/agias-delphi-smk-kas1289/thumb.webp",
+        "status": 200,
+        "bytes": 21720,
+        "sha256": "cc06ac7fcb8ebe88c6de6c6a0f1228965862333cb60c811d0cb00b15b467c109",
+        "contentType": "image/webp",
+        "checkedAt": "2026-10-21T01:32:52.662161Z"
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/greek/agias-delphi-smk-kas1289/preview-b1c1d63fb1eb.glb",
+        "status": 200,
+        "bytes": 162754740,
+        "sha256": "b1c1d63fb1ebfbd1f5e99cb037db406cdcd965578d23a57f8069befb988900ba",
+        "contentType": "model/gltf-binary",
+        "checkedAt": "2026-10-21T01:32:58.962383Z",
+        "requestOrigin": "https://atrium.earth",
+        "allowOrigin": "https://atrium.earth",
+        "corsVerified": true
+      },
+      "status": "pass"
+    },
+    {
+      "slug": "greek/alexander-rondanini-smk-kas538",
+      "title": "Alexander Rondanini — SMK Plaster Cast",
+      "page": {
+        "title": "Alexander Rondanini — SMK Plaster Cast",
+        "primaryViewerBinding": true,
+        "primaryThumbnailBinding": true,
+        "sourceMaterialsPreserved": true,
+        "openingTransformMatches": true,
+        "url": "https://atrium.earth/works/greek/alexander-rondanini-smk-kas538/",
+        "status": 200,
+        "bytes": 35913,
+        "sha256": "c2b897bb7811bc0bfb18e431e01472b56131d4038da0fb4c9928e4732ce1ad72",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:32:59.244615Z"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/greek/alexander-rondanini-smk-kas538/thumb.webp",
+        "status": 200,
+        "bytes": 35628,
+        "sha256": "03ad0c3c01b061ec8277ad40dce9630936f44e6f3f4b78db3f9f463c3afd04b0",
+        "contentType": "image/webp",
+        "checkedAt": "2026-10-21T01:32:59.366601Z"
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/greek/alexander-rondanini-smk-kas538/preview-ac4d1cae1855.glb",
+        "status": 200,
+        "bytes": 95182716,
+        "sha256": "ac4d1cae18556bf623907d9f272603a27fc60067086a64a3ae778629a37d6a0c",
+        "contentType": "model/gltf-binary",
+        "checkedAt": "2026-10-21T01:33:02.321811Z",
+        "requestOrigin": "https://atrium.earth",
+        "allowOrigin": "https://atrium.earth",
+        "corsVerified": true
+      },
+      "status": "pass"
+    },
+    {
+      "slug": "greek/boy-with-goose-munich-gl268",
+      "title": "Boy with a Goose — Munich Marble",
+      "page": {
+        "title": "Boy with a Goose — Munich Marble",
+        "primaryViewerBinding": true,
+        "primaryThumbnailBinding": true,
+        "sourceMaterialsPreserved": true,
+        "openingTransformMatches": true,
+        "url": "https://atrium.earth/works/greek/boy-with-goose-munich-gl268/",
+        "status": 200,
+        "bytes": 33337,
+        "sha256": "003714edfa81689b113e353a216abe7afb0cbec3a3014c6491e3b401abcee36c",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:32:36.243336Z"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/greek/boy-with-goose-munich-gl268/thumb.webp",
+        "status": 200,
+        "bytes": 38058,
+        "sha256": "e7e3650822cac1bea8bbc526abd17fda493d5279797d11c56177e0e89c0476f6",
+        "contentType": "image/webp",
+        "checkedAt": "2026-10-21T01:32:36.365356Z"
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/greek/boy-with-goose-munich-gl268/preview-720f6b425d04.glb",
+        "status": 200,
+        "bytes": 11980228,
+        "sha256": "720f6b425d042dc7f1368b7caca957a1d743055ebe25c12ba441a452b196e635",
+        "contentType": "model/gltf-binary",
+        "checkedAt": "2026-10-21T01:32:37.202929Z",
+        "requestOrigin": "https://atrium.earth",
+        "allowOrigin": "https://atrium.earth",
+        "corsVerified": true
+      },
+      "status": "pass"
+    },
+    {
+      "slug": "greek/caryatid-erechtheion-smk-kas838",
+      "title": "Caryatid after the Erechtheion — SMK Plaster Cast",
+      "page": {
+        "title": "Caryatid after the Erechtheion — SMK Plaster Cast",
+        "primaryViewerBinding": true,
+        "primaryThumbnailBinding": true,
+        "sourceMaterialsPreserved": true,
+        "openingTransformMatches": true,
+        "url": "https://atrium.earth/works/greek/caryatid-erechtheion-smk-kas838/",
+        "status": 200,
+        "bytes": 35516,
+        "sha256": "11f6f6772bd3248a3a7fc97cf631b868ca2aaadcae3beb26c740b7a3468cb864",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:33:02.790558Z"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/greek/caryatid-erechtheion-smk-kas838/thumb.webp",
+        "status": 200,
+        "bytes": 38578,
+        "sha256": "22f188429bf67e9236d1076efae4771033603d91e3b2a541aa4f1c89add56696",
+        "contentType": "image/webp",
+        "checkedAt": "2026-10-21T01:33:02.918927Z"
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/greek/caryatid-erechtheion-smk-kas838/preview-8c99055eca89.glb",
+        "status": 200,
+        "bytes": 86245932,
+        "sha256": "8c99055eca8913689ed609af518fb583de79f0454813b13c20310a6564621b6a",
+        "contentType": "model/gltf-binary",
+        "checkedAt": "2026-10-21T01:33:04.589999Z",
+        "requestOrigin": "https://atrium.earth",
+        "allowOrigin": "https://atrium.earth",
+        "corsVerified": true
+      },
+      "status": "pass"
+    },
+    {
+      "slug": "greek/charioteer-delphi-krakow-rz37",
+      "title": "Charioteer of Delphi — Kraków Plaster Cast",
+      "page": {
+        "title": "Charioteer of Delphi — Kraków Plaster Cast",
+        "primaryViewerBinding": true,
+        "primaryThumbnailBinding": true,
+        "sourceMaterialsPreserved": true,
+        "openingTransformMatches": true,
+        "url": "https://atrium.earth/works/greek/charioteer-delphi-krakow-rz37/",
+        "status": 200,
+        "bytes": 34256,
+        "sha256": "1e37dc661f528bfb35ac4df1ca73ba874212a61202d5cf1eb2108235f25661d2",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:32:32.579072Z"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/greek/charioteer-delphi-krakow-rz37/thumb.webp",
+        "status": 200,
+        "bytes": 45208,
+        "sha256": "aeb58d696403ee7624b4aaeb09d6e1eb5cb52f535bb868e1c86f9a453308ecac",
+        "contentType": "image/webp",
+        "checkedAt": "2026-10-21T01:32:32.717230Z"
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/greek/charioteer-delphi-krakow-rz37/preview-eafc797e47d6.glb",
+        "status": 200,
+        "bytes": 32324236,
+        "sha256": "eafc797e47d6faaecabcc63fffb5534b40e565d973f0bb30204bde7169021e0c",
+        "contentType": "model/gltf-binary",
+        "checkedAt": "2026-10-21T01:32:34.505634Z",
+        "requestOrigin": "https://atrium.earth",
+        "allowOrigin": "https://atrium.earth",
+        "corsVerified": true
+      },
+      "status": "pass"
+    },
+    {
+      "slug": "greek/demeter-knidos-smk-kas128",
+      "title": "Demeter of Knidos — SMK Plaster Cast",
+      "page": {
+        "title": "Demeter of Knidos — SMK Plaster Cast",
+        "primaryViewerBinding": true,
+        "primaryThumbnailBinding": true,
+        "sourceMaterialsPreserved": true,
+        "openingTransformMatches": true,
+        "url": "https://atrium.earth/works/greek/demeter-knidos-smk-kas128/",
+        "status": 200,
+        "bytes": 35185,
+        "sha256": "8aff5ab954092357ecca241b501a1abfbed383aba7b589ac2af8742d9cd1bfc0",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:32:37.311293Z"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/greek/demeter-knidos-smk-kas128/thumb.webp",
+        "status": 200,
+        "bytes": 57356,
+        "sha256": "411ae3895a78f9a4a93bcbc2e555d321a39b1001666fbbe733bbbc6e24ddb941",
+        "contentType": "image/webp",
+        "checkedAt": "2026-10-21T01:32:37.436644Z"
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/greek/demeter-knidos-smk-kas128/preview-731141c475ba.glb",
+        "status": 200,
+        "bytes": 191010324,
+        "sha256": "731141c475bad0210b1af55437bf85ebcc017a917983eeb6d30021ab10425747",
+        "contentType": "model/gltf-binary",
+        "checkedAt": "2026-10-21T01:32:43.807351Z",
+        "requestOrigin": "https://atrium.earth",
+        "allowOrigin": "https://atrium.earth",
+        "corsVerified": true
+      },
+      "status": "pass"
+    },
+    {
+      "slug": "greek/dying-alexander-face-smk-kas282",
+      "title": "Face of the So-called Dying Alexander — SMK Plaster Cast",
+      "page": {
+        "title": "Face of the So-called Dying Alexander — SMK Plaster Cast",
+        "primaryViewerBinding": true,
+        "primaryThumbnailBinding": true,
+        "sourceMaterialsPreserved": true,
+        "openingTransformMatches": true,
+        "url": "https://atrium.earth/works/greek/dying-alexander-face-smk-kas282/",
+        "status": 200,
+        "bytes": 34143,
+        "sha256": "c6acdce8eb3cc0acdc20d658970ab009591d8f78b77f442324b0cdd8a3ba2866",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:32:52.485938Z"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/greek/dying-alexander-face-smk-kas282/thumb.webp",
+        "status": 200,
+        "bytes": 35232,
+        "sha256": "2a83b529d9a2146c51eae556985fc233002c87a851f3821cf8c763df13cdbf63",
+        "contentType": "image/webp",
+        "checkedAt": "2026-10-21T01:32:52.565884Z"
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/greek/dying-alexander-face-smk-kas282/preview-ca0677349541.glb",
+        "status": 200,
+        "bytes": 133709748,
+        "sha256": "ca067734954169575f3bd0c355daae67615a2d7bd13486e56f0cdcc5eb5f4066",
+        "contentType": "model/gltf-binary",
+        "checkedAt": "2026-10-21T01:32:56.704753Z",
+        "requestOrigin": "https://atrium.earth",
+        "allowOrigin": "https://atrium.earth",
+        "corsVerified": true
+      },
+      "status": "pass"
+    },
+    {
+      "slug": "greek/farnese-diadumenos-smk-kas79",
+      "title": "Farnese Diadumenos — SMK Plaster Cast",
+      "page": {
+        "title": "Farnese Diadumenos — SMK Plaster Cast",
+        "primaryViewerBinding": true,
+        "primaryThumbnailBinding": true,
+        "sourceMaterialsPreserved": true,
+        "openingTransformMatches": true,
+        "url": "https://atrium.earth/works/greek/farnese-diadumenos-smk-kas79/",
+        "status": 200,
+        "bytes": 35166,
+        "sha256": "03a042a66bc00f090d9f33ad9b983bb7c7bec30c056e6ba0a19c34d973e450b6",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:32:47.345126Z"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/greek/farnese-diadumenos-smk-kas79/thumb.webp",
+        "status": 200,
+        "bytes": 34700,
+        "sha256": "9ff5dc63f3adde54f3059ae28c41fcfe437481892d6b778b2d1a8ad382a10436",
+        "contentType": "image/webp",
+        "checkedAt": "2026-10-21T01:32:47.468869Z"
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/greek/farnese-diadumenos-smk-kas79/preview-2a65876e1bf8.glb",
+        "status": 200,
+        "bytes": 209884468,
+        "sha256": "2a65876e1bf84752628fe930a38db49ec8ce7f60655a4ae45b71746f035472c4",
+        "contentType": "model/gltf-binary",
+        "checkedAt": "2026-10-21T01:32:52.434613Z",
+        "requestOrigin": "https://atrium.earth",
+        "allowOrigin": "https://atrium.earth",
+        "corsVerified": true
+      },
+      "status": "pass"
+    },
+    {
+      "slug": "greek/hypnos-smk-kas900",
+      "title": "Head of Hypnos — SMK Plaster Cast",
+      "page": {
+        "title": "Head of Hypnos — SMK Plaster Cast",
+        "primaryViewerBinding": true,
+        "primaryThumbnailBinding": true,
+        "sourceMaterialsPreserved": true,
+        "openingTransformMatches": true,
+        "url": "https://atrium.earth/works/greek/hypnos-smk-kas900/",
+        "status": 200,
+        "bytes": 34752,
+        "sha256": "5c3897dd45af6f94caf21a1c7fd21870f4df77b7416785c5b73e8ed2cf5f592d",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:32:44.773661Z"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/greek/hypnos-smk-kas900/thumb.webp",
+        "status": 200,
+        "bytes": 36650,
+        "sha256": "adde6f4630ba345fcb429695737760e0a1f6480e9226b09091230f4eff5f9cb9",
+        "contentType": "image/webp",
+        "checkedAt": "2026-10-21T01:32:44.913165Z"
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/greek/hypnos-smk-kas900/preview-f736e904748c.glb",
+        "status": 200,
+        "bytes": 72000468,
+        "sha256": "f736e904748c1eebe2b47f6daf926f8fbf044199c6b9a1899d836c12afb482f4",
+        "contentType": "model/gltf-binary",
+        "checkedAt": "2026-10-21T01:32:47.195570Z",
+        "requestOrigin": "https://atrium.earth",
+        "allowOrigin": "https://atrium.earth",
+        "corsVerified": true
+      },
+      "status": "pass"
+    },
+    {
+      "slug": "greek/kouros-merenda-athens-4890",
+      "title": "Kouros of Merenda",
+      "page": {
+        "title": "Kouros of Merenda",
+        "primaryViewerBinding": true,
+        "primaryThumbnailBinding": true,
+        "sourceMaterialsPreserved": true,
+        "openingTransformMatches": true,
+        "url": "https://atrium.earth/works/greek/kouros-merenda-athens-4890/",
+        "status": 200,
+        "bytes": 32398,
+        "sha256": "5398c5220be1d253975dcb30c24f6cbe6b43f95a2776bcb5354b18d8df30eaa3",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:33:02.469450Z"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/greek/kouros-merenda-athens-4890/thumb.webp",
+        "status": 200,
+        "bytes": 26808,
+        "sha256": "538972169c389aa0c32b9695f0e59b1c5f7fe7c0ed8224d70fffba84cbcb4081",
+        "contentType": "image/webp",
+        "checkedAt": "2026-10-21T01:33:02.639704Z"
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/greek/kouros-merenda-athens-4890/preview-9476b76bf666.glb",
+        "status": 200,
+        "bytes": 21924560,
+        "sha256": "9476b76bf6661d3fd57befb32242eafe6a012f924670e38933d83ad0d37609ae",
+        "contentType": "model/gltf-binary",
+        "checkedAt": "2026-10-21T01:33:03.896993Z",
+        "requestOrigin": "https://atrium.earth",
+        "allowOrigin": "https://atrium.earth",
+        "corsVerified": true
+      },
+      "status": "pass"
+    },
+    {
+      "slug": "greek/old-drunken-woman-smk-kas537",
+      "title": "Old Drunken Woman — SMK Plaster Cast",
+      "page": {
+        "title": "Old Drunken Woman — SMK Plaster Cast",
+        "primaryViewerBinding": true,
+        "primaryThumbnailBinding": true,
+        "sourceMaterialsPreserved": true,
+        "openingTransformMatches": true,
+        "url": "https://atrium.earth/works/greek/old-drunken-woman-smk-kas537/",
+        "status": 200,
+        "bytes": 35111,
+        "sha256": "76046f36dc7962117abad2062ae04a72fa68f8d43c02a212c6a03580fc3efa8e",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:32:42.450536Z"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/greek/old-drunken-woman-smk-kas537/thumb.webp",
+        "status": 200,
+        "bytes": 37330,
+        "sha256": "341cd3d546a2dae731c1c8bd44abfb41d0b3a989cd336475656fd3253b7653e6",
+        "contentType": "image/webp",
+        "checkedAt": "2026-10-21T01:32:42.593039Z"
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/greek/old-drunken-woman-smk-kas537/preview-61e9e0712b6a.glb",
+        "status": 200,
+        "bytes": 72001184,
+        "sha256": "61e9e0712b6a9de2a30973b65a4b1d1799cb77ff6fa289e5123ef96325be9339",
+        "contentType": "model/gltf-binary",
+        "checkedAt": "2026-10-21T01:32:44.676895Z",
+        "requestOrigin": "https://atrium.earth",
+        "allowOrigin": "https://atrium.earth",
+        "corsVerified": true
+      },
+      "status": "pass"
+    },
+    {
+      "slug": "greek/pseudo-seneca-smk-kas94",
+      "title": "Pseudo-Seneca — SMK Plaster Cast",
+      "page": {
+        "title": "Pseudo-Seneca — SMK Plaster Cast",
+        "primaryViewerBinding": true,
+        "primaryThumbnailBinding": true,
+        "sourceMaterialsPreserved": true,
+        "openingTransformMatches": true,
+        "url": "https://atrium.earth/works/greek/pseudo-seneca-smk-kas94/",
+        "status": 200,
+        "bytes": 34783,
+        "sha256": "8453384dcd770f91a3b8358b3ca9fb8b11881d864f006de7944828685a7db9d0",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:32:37.988216Z"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/greek/pseudo-seneca-smk-kas94/thumb.webp",
+        "status": 200,
+        "bytes": 30700,
+        "sha256": "cc234ff139089712f9094a4dcd4715a1f2c16cd255ecc7a66a5e8fdc1311e991",
+        "contentType": "image/webp",
+        "checkedAt": "2026-10-21T01:32:38.131608Z"
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/greek/pseudo-seneca-smk-kas94/preview-82a4620c51c7.glb",
+        "status": 200,
+        "bytes": 27033024,
+        "sha256": "82a4620c51c7967dbb9e6fd634e52142cbd503d78b3f5a06cabc0d02c4790059",
+        "contentType": "model/gltf-binary",
+        "checkedAt": "2026-10-21T01:32:40.145539Z",
+        "requestOrigin": "https://atrium.earth",
+        "allowOrigin": "https://atrium.earth",
+        "corsVerified": true
+      },
+      "status": "pass"
+    },
+    {
+      "slug": "greek/socrates-tusculum-smk-kas635",
+      "title": "Portrait of Socrates — SMK Plaster Cast",
+      "page": {
+        "title": "Portrait of Socrates — SMK Plaster Cast",
+        "primaryViewerBinding": true,
+        "primaryThumbnailBinding": true,
+        "sourceMaterialsPreserved": true,
+        "openingTransformMatches": true,
+        "url": "https://atrium.earth/works/greek/socrates-tusculum-smk-kas635/",
+        "status": 200,
+        "bytes": 34795,
+        "sha256": "9c9cbbd09f2cd6af14801db16e2dba518013af57284f26b99b018ffa390435a3",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:32:43.924381Z"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/greek/socrates-tusculum-smk-kas635/thumb.webp",
+        "status": 200,
+        "bytes": 29594,
+        "sha256": "b95700e155cac9755c18c3d4d2df5cad15a7f671ac329cd34f6ffcaeb8529082",
+        "contentType": "image/webp",
+        "checkedAt": "2026-10-21T01:32:44.023400Z"
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/greek/socrates-tusculum-smk-kas635/preview-7886d53c6756.glb",
+        "status": 200,
+        "bytes": 144000596,
+        "sha256": "7886d53c67561e0ed56b0157f65cb106cb2d115129d6445e16b7b95bf4b658bf",
+        "contentType": "model/gltf-binary",
+        "checkedAt": "2026-10-21T01:32:52.361004Z",
+        "requestOrigin": "https://atrium.earth",
+        "allowOrigin": "https://atrium.earth",
+        "corsVerified": true
+      },
+      "status": "pass"
+    },
+    {
+      "slug": "greek/vatican-runner-smk-kas423",
+      "title": "Vatican Runner — SMK Plaster Cast",
+      "page": {
+        "title": "Vatican Runner — SMK Plaster Cast",
+        "primaryViewerBinding": true,
+        "primaryThumbnailBinding": true,
+        "sourceMaterialsPreserved": true,
+        "openingTransformMatches": true,
+        "url": "https://atrium.earth/works/greek/vatican-runner-smk-kas423/",
+        "status": 200,
+        "bytes": 34941,
+        "sha256": "ce23b498776b99b2da4d78bc6e473c84886222c0047a39538aac6fe22088a5e1",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:32:56.793337Z"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/greek/vatican-runner-smk-kas423/thumb.webp",
+        "status": 200,
+        "bytes": 29066,
+        "sha256": "eda907bc5a5610a3521a44aa29e984dc6675cf28ef94eb669deb555ea77d85f5",
+        "contentType": "image/webp",
+        "checkedAt": "2026-10-21T01:32:56.905790Z"
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/greek/vatican-runner-smk-kas423/preview-b64aced9fcc5.glb",
+        "status": 200,
+        "bytes": 143982164,
+        "sha256": "b64aced9fcc5f8279caa1f07b4a0ba3bdd17c579a5827b2de9f4fbf94be20ae1",
+        "contentType": "model/gltf-binary",
+        "checkedAt": "2026-10-21T01:33:02.671598Z",
+        "requestOrigin": "https://atrium.earth",
+        "allowOrigin": "https://atrium.earth",
+        "corsVerified": true
+      },
+      "status": "pass"
+    },
+    {
+      "slug": "greek/venus-medici-telfair-cast",
+      "title": "Venus de’ Medici — Telfair Plaster Cast",
+      "page": {
+        "title": "Venus de’ Medici — Telfair Plaster Cast",
+        "primaryViewerBinding": true,
+        "primaryThumbnailBinding": true,
+        "sourceMaterialsPreserved": true,
+        "openingTransformMatches": true,
+        "url": "https://atrium.earth/works/greek/venus-medici-telfair-cast/",
+        "status": 200,
+        "bytes": 33331,
+        "sha256": "20e8076a59bbb182ad34a23ef577e95a3404cdad8687953172eca6fa3816ff4c",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:32:35.292088Z"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/greek/venus-medici-telfair-cast/thumb.webp",
+        "status": 200,
+        "bytes": 31800,
+        "sha256": "8f3d6bf96c2354db986db4af86cd718b41d270e62dbf43980b7f382a4c94a5d4",
+        "contentType": "image/webp",
+        "checkedAt": "2026-10-21T01:32:35.427840Z"
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/greek/venus-medici-telfair-cast/preview-5d47f043a33e.glb",
+        "status": 200,
+        "bytes": 30882284,
+        "sha256": "5d47f043a33eb1093290d693703e9f98c782ce9825b08cf0a5e9eef13375c4ee",
+        "contentType": "model/gltf-binary",
+        "checkedAt": "2026-10-21T01:32:36.153885Z",
+        "requestOrigin": "https://atrium.earth",
+        "allowOrigin": "https://atrium.earth",
+        "corsVerified": true
+      },
+      "status": "pass"
+    },
+    {
+      "slug": "medieval/ecclesia-strasbourg-smk-cast",
+      "title": "Ecclesia (SMK plaster cast)",
+      "page": {
+        "title": "Ecclesia (SMK plaster cast)",
+        "primaryViewerBinding": true,
+        "primaryThumbnailBinding": true,
+        "sourceMaterialsPreserved": true,
+        "openingTransformMatches": true,
+        "url": "https://atrium.earth/works/medieval/ecclesia-strasbourg-smk-cast/",
+        "status": 200,
+        "bytes": 33924,
+        "sha256": "04cc315006081756d314119f06e71410a34d39850cf3c46420438baa5d150dba",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:33:10.626271Z"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/medieval/ecclesia-strasbourg-smk-cast/thumb.webp",
+        "status": 200,
+        "bytes": 42862,
+        "sha256": "b18ed35589970eaf551ab9da7c2dfa4070bb06247120d13d0501804383082746",
+        "contentType": "image/webp",
+        "checkedAt": "2026-10-21T01:33:10.784218Z"
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/medieval/ecclesia-strasbourg-smk-cast/preview-efd65a267c46.glb",
+        "status": 200,
+        "bytes": 144010700,
+        "sha256": "efd65a267c464e3b0890380ecc54cd884e5c7b05b7983a0ed400ef2cb41e44de",
+        "contentType": "model/gltf-binary",
+        "checkedAt": "2026-10-21T01:33:13.442630Z",
+        "requestOrigin": "https://atrium.earth",
+        "allowOrigin": "https://atrium.earth",
+        "corsVerified": true
+      },
+      "status": "pass"
+    },
+    {
+      "slug": "medieval/synagoga-strasbourg-smk-cast",
+      "title": "Synagoga (SMK plaster cast)",
+      "page": {
+        "title": "Synagoga (SMK plaster cast)",
+        "primaryViewerBinding": true,
+        "primaryThumbnailBinding": true,
+        "sourceMaterialsPreserved": true,
+        "openingTransformMatches": true,
+        "url": "https://atrium.earth/works/medieval/synagoga-strasbourg-smk-cast/",
+        "status": 200,
+        "bytes": 33670,
+        "sha256": "9e50d60dbd7aabc449b677131b80f14a05843fa41a870dda64a1a94b3e5baa8c",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:33:10.354137Z"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/medieval/synagoga-strasbourg-smk-cast/thumb.webp",
+        "status": 200,
+        "bytes": 29204,
+        "sha256": "8000701c807be1dd2ad7f87f4e91f947f875b217aadfaaa509c4df86c922c3f4",
+        "contentType": "image/webp",
+        "checkedAt": "2026-10-21T01:33:10.459095Z"
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/medieval/synagoga-strasbourg-smk-cast/preview-ca5160cdcde6.glb",
+        "status": 200,
+        "bytes": 38903956,
+        "sha256": "ca5160cdcde63d701196bc6470b36ef40e87f1f21c36e59349b19c6e51251425",
+        "contentType": "model/gltf-binary",
+        "checkedAt": "2026-10-21T01:33:11.110238Z",
+        "requestOrigin": "https://atrium.earth",
+        "allowOrigin": "https://atrium.earth",
+        "corsVerified": true
+      },
+      "status": "pass"
+    },
+    {
+      "slug": "medieval/torrijos-dome-madrid-man",
+      "title": "Dome from the Palace of Torrijos",
+      "page": {
+        "title": "Dome from the Palace of Torrijos",
+        "primaryViewerBinding": true,
+        "primaryThumbnailBinding": true,
+        "sourceMaterialsPreserved": true,
+        "openingTransformMatches": true,
+        "url": "https://atrium.earth/works/medieval/torrijos-dome-madrid-man/",
+        "status": 200,
+        "bytes": 32618,
+        "sha256": "6a238f1e77ce863e5d65940c4121c54180da9611cb65afcb4a10c1335a40d990",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:33:29.774280Z"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/medieval/torrijos-dome-madrid-man/thumb.webp",
+        "status": 200,
+        "bytes": 141158,
+        "sha256": "fbaf4ad2b2b64b9ebca274213b9972a2e65ec38714d26d5e0965da8576da1e4e",
+        "contentType": "image/webp",
+        "checkedAt": "2026-10-21T01:33:29.893168Z"
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/medieval/torrijos-dome-madrid-man/preview-4c7d7f82cb86.glb",
+        "status": 200,
+        "bytes": 12944200,
+        "sha256": "4c7d7f82cb866a262cc7fa3263bf79a9d8a9da65ad3ea6e4b5cc05ad53ed07e7",
+        "contentType": "model/gltf-binary",
+        "checkedAt": "2026-10-21T01:33:30.474124Z",
+        "requestOrigin": "https://atrium.earth",
+        "allowOrigin": "https://atrium.earth",
+        "corsVerified": true
+      },
+      "status": "pass"
+    },
+    {
+      "slug": "modern/lion-belfort-bartholdi-lille-sc-130",
+      "title": "Lion of Belfort (plaster model)",
+      "page": {
+        "title": "Lion of Belfort (plaster model)",
+        "primaryViewerBinding": true,
+        "primaryThumbnailBinding": true,
+        "sourceMaterialsPreserved": true,
+        "openingTransformMatches": true,
+        "url": "https://atrium.earth/works/modern/lion-belfort-bartholdi-lille-sc-130/",
+        "status": 200,
+        "bytes": 32267,
+        "sha256": "952f63c07ba271b8253cebd96eb2439025936db88e8c4eb52cf37da230249013",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:33:37.167456Z"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/modern/lion-belfort-bartholdi-lille-sc-130/thumb.webp",
+        "status": 200,
+        "bytes": 23512,
+        "sha256": "4717c2e870c4ed6341ad12e893c8ba89d66fb842f11e67131200ca862dacce1d",
+        "contentType": "image/webp",
+        "checkedAt": "2026-10-21T01:33:37.222636Z"
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/modern/lion-belfort-bartholdi-lille-sc-130/preview-6861963de589.glb",
+        "status": 200,
+        "bytes": 7483656,
+        "sha256": "6861963de5894460dfeb8d2e9665f58eaf246e0a656fdbb65f122a6003a5dae9",
+        "contentType": "model/gltf-binary",
+        "checkedAt": "2026-10-21T01:33:37.709072Z",
+        "requestOrigin": "https://atrium.earth",
+        "allowOrigin": "https://atrium.earth",
+        "corsVerified": true
+      },
+      "status": "pass"
+    },
+    {
+      "slug": "modern/little-dancer-degas-nga-wax-original",
+      "title": "Little Dancer Aged Fourteen (original wax)",
+      "page": {
+        "title": "Little Dancer Aged Fourteen (original wax)",
+        "primaryViewerBinding": true,
+        "primaryThumbnailBinding": true,
+        "sourceMaterialsPreserved": true,
+        "openingTransformMatches": true,
+        "url": "https://atrium.earth/works/modern/little-dancer-degas-nga-wax-original/",
+        "status": 200,
+        "bytes": 32511,
+        "sha256": "3dc393f8e5a852b537bc3b0eefff21cb1e7dacd84f26b63514e6aa4d8ce304df",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:33:35.975000Z"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/modern/little-dancer-degas-nga-wax-original/thumb.webp",
+        "status": 200,
+        "bytes": 73710,
+        "sha256": "6109b79a5c6d469160a870ea97bfdc15d1e8cb922916445f54dbd0008a1a2c73",
+        "contentType": "image/webp",
+        "checkedAt": "2026-10-21T01:33:36.168808Z"
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/modern/little-dancer-degas-nga-wax-original/preview-f1f99e797cbc.glb",
+        "status": 200,
+        "bytes": 7383796,
+        "sha256": "f1f99e797cbc5ca6d86f117b01f6a7a64b7d09a27513fb418aff95750e97369b",
+        "contentType": "model/gltf-binary",
+        "checkedAt": "2026-10-21T01:33:36.555179Z",
+        "requestOrigin": "https://atrium.earth",
+        "allowOrigin": "https://atrium.earth",
+        "corsVerified": true
+      },
+      "status": "pass"
+    },
+    {
+      "slug": "modern/standing-iguanodon-hawkins-crystal-palace",
+      "title": "Standing Iguanodon (Crystal Palace)",
+      "page": {
+        "title": "Standing Iguanodon (Crystal Palace)",
+        "primaryViewerBinding": true,
+        "primaryThumbnailBinding": true,
+        "sourceMaterialsPreserved": true,
+        "openingTransformMatches": true,
+        "url": "https://atrium.earth/works/modern/standing-iguanodon-hawkins-crystal-palace/",
+        "status": 200,
+        "bytes": 32367,
+        "sha256": "a7d62342957b181c0ce0eaad476bffa5ddff65b5938a23ea5ea3537c8af26731",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:33:40.551334Z"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/modern/standing-iguanodon-hawkins-crystal-palace/thumb.webp",
+        "status": 200,
+        "bytes": 55590,
+        "sha256": "65f2eee30102c9d1705335c9cb9f85c2977e36208a061ab667ac2d72b91868fe",
+        "contentType": "image/webp",
+        "checkedAt": "2026-10-21T01:33:40.622172Z"
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/modern/standing-iguanodon-hawkins-crystal-palace/preview-06edeb5c4c2c.glb",
+        "status": 200,
+        "bytes": 58242876,
+        "sha256": "06edeb5c4c2ca6c9bb077d5302fa6866731216a8ba6677b62b1e2e42dec7a849",
+        "contentType": "model/gltf-binary",
+        "checkedAt": "2026-10-21T01:33:43.013512Z",
+        "requestOrigin": "https://atrium.earth",
+        "allowOrigin": "https://atrium.earth",
+        "corsVerified": true
+      },
+      "status": "pass"
+    },
+    {
+      "slug": "modern/statue-liberty-bartholdi-luxembourg-replica",
+      "title": "Liberty Enlightening the World (Luxembourg Garden replica)",
+      "page": {
+        "title": "Liberty Enlightening the World (Luxembourg Garden replica)",
+        "primaryViewerBinding": true,
+        "primaryThumbnailBinding": true,
+        "sourceMaterialsPreserved": true,
+        "openingTransformMatches": true,
+        "url": "https://atrium.earth/works/modern/statue-liberty-bartholdi-luxembourg-replica/",
+        "status": 200,
+        "bytes": 32500,
+        "sha256": "852ddf284c167336ea29a86f069159db174e8cf835b9318844a01acead865939",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:33:36.619395Z"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/modern/statue-liberty-bartholdi-luxembourg-replica/thumb.webp",
+        "status": 200,
+        "bytes": 65630,
+        "sha256": "97f9a6d3e1a1ec10f1923246b938747928814789ba8fda6cf935ebe5dbd77124",
+        "contentType": "image/webp",
+        "checkedAt": "2026-10-21T01:33:36.669633Z"
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/modern/statue-liberty-bartholdi-luxembourg-replica/preview-c98a529e0724.glb",
+        "status": 200,
+        "bytes": 5147688,
+        "sha256": "c98a529e07247eb89b20745df5016694091fac735022040815e337352a895fb4",
+        "contentType": "model/gltf-binary",
+        "checkedAt": "2026-10-21T01:33:37.033204Z",
+        "requestOrigin": "https://atrium.earth",
+        "allowOrigin": "https://atrium.earth",
+        "corsVerified": true
+      },
+      "status": "pass"
+    },
+    {
+      "slug": "modern/triumph-republic-dalou-place-nation",
+      "title": "The Triumph of the Republic (Place de la Nation)",
+      "page": {
+        "title": "The Triumph of the Republic (Place de la Nation)",
+        "primaryViewerBinding": true,
+        "primaryThumbnailBinding": true,
+        "sourceMaterialsPreserved": true,
+        "openingTransformMatches": true,
+        "url": "https://atrium.earth/works/modern/triumph-republic-dalou-place-nation/",
+        "status": 200,
+        "bytes": 32501,
+        "sha256": "0ce9066c7e16e0d7ff67d6b685ce3ae8646af538ea4d3ab617391b3e03d7c8a6",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:33:37.819782Z"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/modern/triumph-republic-dalou-place-nation/thumb.webp",
+        "status": 200,
+        "bytes": 50288,
+        "sha256": "05f712bce21791aaf1af4a3377abcae2cdf0fa33793d691dbe4baf2726c739a3",
+        "contentType": "image/webp",
+        "checkedAt": "2026-10-21T01:33:37.871599Z"
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/modern/triumph-republic-dalou-place-nation/preview-7b522d040a9a.glb",
+        "status": 200,
+        "bytes": 208743008,
+        "sha256": "7b522d040a9a4edec5bed0a6d07df912b3417b89ebb6771476f642dd676dfdb8",
+        "contentType": "model/gltf-binary",
+        "checkedAt": "2026-10-21T01:33:42.560712Z",
+        "requestOrigin": "https://atrium.earth",
+        "allowOrigin": "https://atrium.earth",
+        "corsVerified": true
+      },
+      "status": "pass"
+    },
+    {
+      "slug": "prehistoric/shigir-idol-head-sverdlovsk",
+      "title": "Head Fragment of the Great Shigir Idol",
+      "page": {
+        "title": "Head Fragment of the Great Shigir Idol",
+        "primaryViewerBinding": true,
+        "primaryThumbnailBinding": true,
+        "sourceMaterialsPreserved": true,
+        "openingTransformMatches": true,
+        "url": "https://atrium.earth/works/prehistoric/shigir-idol-head-sverdlovsk/",
+        "status": 200,
+        "bytes": 33146,
+        "sha256": "08e84991a7811b12d85aa04f8fe5753c9e164bce11ddd47a59dee2b72707bf13",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:33:07.764368Z"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/prehistoric/shigir-idol-head-sverdlovsk/thumb.webp",
+        "status": 200,
+        "bytes": 20588,
+        "sha256": "d6ba6d39f0892818358466649bf4b478b2ef7e9303c1055b13897ff7f0277dc4",
+        "contentType": "image/webp",
+        "checkedAt": "2026-10-21T01:33:07.858662Z"
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/prehistoric/shigir-idol-head-sverdlovsk/preview-589ae4d48d59.glb",
+        "status": 200,
+        "bytes": 611336,
+        "sha256": "589ae4d48d5907e4378f4a15fb302a92cad1f0eb2214510fe38fde36ca900037",
+        "contentType": "model/gltf-binary",
+        "checkedAt": "2026-10-21T01:33:08.157508Z",
+        "requestOrigin": "https://atrium.earth",
+        "allowOrigin": "https://atrium.earth",
+        "corsVerified": true
+      },
+      "status": "pass"
+    },
+    {
+      "slug": "renaissance/filippo-strozzi-benedetto-smk-cast",
+      "title": "Filippo Strozzi (SMK plaster cast)",
+      "page": {
+        "title": "Filippo Strozzi (SMK plaster cast)",
+        "primaryViewerBinding": true,
+        "primaryThumbnailBinding": true,
+        "sourceMaterialsPreserved": true,
+        "openingTransformMatches": true,
+        "url": "https://atrium.earth/works/renaissance/filippo-strozzi-benedetto-smk-cast/",
+        "status": 200,
+        "bytes": 33892,
+        "sha256": "bfaad15667c5cf3382da5204b659b0493d6fa16eef81301fc7ccbb0c268ca0ca",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:33:13.586587Z"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/renaissance/filippo-strozzi-benedetto-smk-cast/thumb.webp",
+        "status": 200,
+        "bytes": 25530,
+        "sha256": "7b7d8cca67c37b1a835b558d6e0394cefd0766acf92f0ddc3294f796f8881680",
+        "contentType": "image/webp",
+        "checkedAt": "2026-10-21T01:33:13.713363Z"
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/renaissance/filippo-strozzi-benedetto-smk-cast/preview-b52afd481f1d.glb",
+        "status": 200,
+        "bytes": 166172748,
+        "sha256": "b52afd481f1da7ee765fc7181330c00f5d3e57c43e726e5662f7537135108624",
+        "contentType": "model/gltf-binary",
+        "checkedAt": "2026-10-21T01:33:23.130400Z",
+        "requestOrigin": "https://atrium.earth",
+        "allowOrigin": "https://atrium.earth",
+        "corsVerified": true
+      },
+      "status": "pass"
+    },
+    {
+      "slug": "renaissance/incredulity-thomas-verrocchio-orsanmichele",
+      "title": "The Incredulity of Saint Thomas (Orsanmichele exterior copy)",
+      "page": {
+        "title": "The Incredulity of Saint Thomas (Orsanmichele exterior copy)",
+        "primaryViewerBinding": true,
+        "primaryThumbnailBinding": true,
+        "sourceMaterialsPreserved": true,
+        "openingTransformMatches": true,
+        "url": "https://atrium.earth/works/renaissance/incredulity-thomas-verrocchio-orsanmichele/",
+        "status": 200,
+        "bytes": 34329,
+        "sha256": "9e36d163eb0bf15e4d02acd868f0669805dc1fd3c5dc4a8e958568d268da5f8c",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:33:30.556104Z"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/renaissance/incredulity-thomas-verrocchio-orsanmichele/thumb.webp",
+        "status": 200,
+        "bytes": 119212,
+        "sha256": "76145cba63e8c9b263ce94912d3b75b39e6edd59695a2bc2a6dec443d6eb5d0e",
+        "contentType": "image/webp",
+        "checkedAt": "2026-10-21T01:33:30.709324Z"
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/renaissance/incredulity-thomas-verrocchio-orsanmichele/preview-f40741e6a982.glb",
+        "status": 200,
+        "bytes": 24297088,
+        "sha256": "f40741e6a982a188a95e935cbe853d2b255b19bbf222655510a15acfb28e27ce",
+        "contentType": "model/gltf-binary",
+        "checkedAt": "2026-10-21T01:33:31.460232Z",
+        "requestOrigin": "https://atrium.earth",
+        "allowOrigin": "https://atrium.earth",
+        "corsVerified": true
+      },
+      "status": "pass"
+    },
+    {
+      "slug": "renaissance/marietta-strozzi-desiderio-smk-cast",
+      "title": "Portrait of a Young Woman, possibly Marietta Strozzi (SMK cast)",
+      "page": {
+        "title": "Portrait of a Young Woman, possibly Marietta Strozzi (SMK cast)",
+        "primaryViewerBinding": true,
+        "primaryThumbnailBinding": true,
+        "sourceMaterialsPreserved": true,
+        "openingTransformMatches": true,
+        "url": "https://atrium.earth/works/renaissance/marietta-strozzi-desiderio-smk-cast/",
+        "status": 200,
+        "bytes": 34607,
+        "sha256": "fea35be24e27d3f55046e6dab2201bd1d6b4726d2a2bc601952d601a9cdb94c6",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:33:11.181618Z"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/renaissance/marietta-strozzi-desiderio-smk-cast/thumb.webp",
+        "status": 200,
+        "bytes": 30328,
+        "sha256": "4985f1dd2f3d33dad92d1bcb9429d0ad40544cbb1b87466452237655c8f22b13",
+        "contentType": "image/webp",
+        "checkedAt": "2026-10-21T01:33:11.282438Z"
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/renaissance/marietta-strozzi-desiderio-smk-cast/preview-d707ce62f10f.glb",
+        "status": 200,
+        "bytes": 151485880,
+        "sha256": "d707ce62f10ffe311be84a09d87c41dda2955bd1eb984df96092d1d41de99e0b",
+        "contentType": "model/gltf-binary",
+        "checkedAt": "2026-10-21T01:33:17.101264Z",
+        "requestOrigin": "https://atrium.earth",
+        "allowOrigin": "https://atrium.earth",
+        "corsVerified": true
+      },
+      "status": "pass"
+    },
+    {
+      "slug": "renaissance/piero-medici-mino-smk-cast",
+      "title": "Piero de’ Medici (SMK plaster cast)",
+      "page": {
+        "title": "Piero de’ Medici (SMK plaster cast)",
+        "primaryViewerBinding": true,
+        "primaryThumbnailBinding": true,
+        "sourceMaterialsPreserved": true,
+        "openingTransformMatches": true,
+        "url": "https://atrium.earth/works/renaissance/piero-medici-mino-smk-cast/",
+        "status": 200,
+        "bytes": 34090,
+        "sha256": "68fd32ec82f683aa37125edf0de548e94454aadf0fb4089ab0bb858db74cb490",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:33:23.236815Z"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/renaissance/piero-medici-mino-smk-cast/thumb.webp",
+        "status": 200,
+        "bytes": 34212,
+        "sha256": "ec8831be5f2b401a9c78ce11948f85c5f588b6e04af00c0afb9dbac477817b9b",
+        "contentType": "image/webp",
+        "checkedAt": "2026-10-21T01:33:23.355738Z"
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/renaissance/piero-medici-mino-smk-cast/preview-901729c59c5b.glb",
+        "status": 200,
+        "bytes": 273799496,
+        "sha256": "901729c59c5b2084f0fc3bb466531edc9572ee0d1be912b6be8dbc999c0a9892",
+        "contentType": "model/gltf-binary",
+        "checkedAt": "2026-10-21T01:33:29.684495Z",
+        "requestOrigin": "https://atrium.earth",
+        "allowOrigin": "https://atrium.earth",
+        "corsVerified": true
+      },
+      "status": "pass"
+    },
+    {
+      "slug": "rodin/monument-balzac-middelheim-1931",
+      "title": "Monument to Balzac (Middelheim bronze)",
+      "page": {
+        "title": "Monument to Balzac (Middelheim bronze)",
+        "primaryViewerBinding": true,
+        "primaryThumbnailBinding": true,
+        "sourceMaterialsPreserved": true,
+        "openingTransformMatches": true,
+        "url": "https://atrium.earth/works/rodin/monument-balzac-middelheim-1931/",
+        "status": 200,
+        "bytes": 32125,
+        "sha256": "f19beaf9de19c22fe0ccae9a08d1967fdd898c5a16f8666238c0aba6c5c0597b",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:33:36.549601Z"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/rodin/monument-balzac-middelheim-1931/thumb.webp",
+        "status": 200,
+        "bytes": 21890,
+        "sha256": "c5e61f8ebcf430736e4133be17d34d5689a693a12249618ca1ebe37d65db5fc6",
+        "contentType": "image/webp",
+        "checkedAt": "2026-10-21T01:33:36.619280Z"
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/rodin/monument-balzac-middelheim-1931/preview-c273de33be33.glb",
+        "status": 200,
+        "bytes": 26116316,
+        "sha256": "c273de33be33e2cade9e9d0944040e8f73bcd59be1f00e9bdf60c40ec9c83384",
+        "contentType": "model/gltf-binary",
+        "checkedAt": "2026-10-21T01:33:37.603304Z",
+        "requestOrigin": "https://atrium.earth",
+        "allowOrigin": "https://atrium.earth",
+        "corsVerified": true
+      },
+      "status": "pass"
+    },
+    {
+      "slug": "rodin/saint-john-baptist-preaching-cast-unconfirmed",
+      "title": "Saint John the Baptist Preaching (cast unconfirmed)",
+      "page": {
+        "title": "Saint John the Baptist Preaching (cast unconfirmed)",
+        "primaryViewerBinding": true,
+        "primaryThumbnailBinding": true,
+        "sourceMaterialsPreserved": true,
+        "openingTransformMatches": true,
+        "url": "https://atrium.earth/works/rodin/saint-john-baptist-preaching-cast-unconfirmed/",
+        "status": 200,
+        "bytes": 32016,
+        "sha256": "beb0a9c9bef5d7d3ab2d3744127b49200e58afb918a99b38ae95374d3c996fc9",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:33:35.716409Z"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/rodin/saint-john-baptist-preaching-cast-unconfirmed/thumb.webp",
+        "status": 200,
+        "bytes": 39918,
+        "sha256": "c0bcfdab40a1229b574b9978f6f3d2d741db315486231c34dc480da2071aebd8",
+        "contentType": "image/webp",
+        "checkedAt": "2026-10-21T01:33:35.781562Z"
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/rodin/saint-john-baptist-preaching-cast-unconfirmed/preview-abe0bbde9df1.glb",
+        "status": 200,
+        "bytes": 6030668,
+        "sha256": "abe0bbde9df121d35b1f251e5d58e409252eda9fdc07b011e32043bccad3f0f7",
+        "contentType": "model/gltf-binary",
+        "checkedAt": "2026-10-21T01:33:36.330698Z",
+        "requestOrigin": "https://atrium.earth",
+        "allowOrigin": "https://atrium.earth",
+        "corsVerified": true
+      },
+      "status": "pass"
+    },
+    {
+      "slug": "rodin/the-cathedral-musee-rodin-s1001",
+      "title": "The Cathedral",
+      "page": {
+        "title": "The Cathedral",
+        "primaryViewerBinding": true,
+        "primaryThumbnailBinding": true,
+        "sourceMaterialsPreserved": true,
+        "openingTransformMatches": true,
+        "url": "https://atrium.earth/works/rodin/the-cathedral-musee-rodin-s1001/",
+        "status": 200,
+        "bytes": 31225,
+        "sha256": "5bfe1064c2b5d383f06b486816190676e68ff462bec9e3e7b35a98b8a993489e",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:33:37.709440Z"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/rodin/the-cathedral-musee-rodin-s1001/thumb.webp",
+        "status": 200,
+        "bytes": 46544,
+        "sha256": "6ab70eafcaea2e2d093b8b51d1a5af97871a7c0fc40b4494d01f9f20fe74d2fe",
+        "contentType": "image/webp",
+        "checkedAt": "2026-10-21T01:33:37.759748Z"
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/rodin/the-cathedral-musee-rodin-s1001/preview-04ee8899c52c.glb",
+        "status": 200,
+        "bytes": 40940028,
+        "sha256": "04ee8899c52c78ed509cecd4150f85916352758c1656c07a29b49d0b8234bdee",
+        "contentType": "model/gltf-binary",
+        "checkedAt": "2026-10-21T01:33:39.305844Z",
+        "requestOrigin": "https://atrium.earth",
+        "allowOrigin": "https://atrium.earth",
+        "corsVerified": true
+      },
+      "status": "pass"
+    },
+    {
+      "slug": "roman/fonseca-bust-smk-kas843",
+      "title": "Fonseca Bust — SMK Plaster Cast",
+      "page": {
+        "title": "Fonseca Bust — SMK Plaster Cast",
+        "primaryViewerBinding": true,
+        "primaryThumbnailBinding": true,
+        "sourceMaterialsPreserved": true,
+        "openingTransformMatches": true,
+        "url": "https://atrium.earth/works/roman/fonseca-bust-smk-kas843/",
+        "status": 200,
+        "bytes": 34839,
+        "sha256": "77590aa38583d735380fdb934e36b2af86c0264a056be2ed74ac73837e51ba05",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:32:40.250487Z"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/roman/fonseca-bust-smk-kas843/thumb.webp",
+        "status": 200,
+        "bytes": 34268,
+        "sha256": "78504ab573c72fb89a3f54abacef17c9c60ea97b575e37cdf5ca19bcbc4d9fe3",
+        "contentType": "image/webp",
+        "checkedAt": "2026-10-21T01:32:40.325012Z"
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/roman/fonseca-bust-smk-kas843/preview-47bd5c6bb399.glb",
+        "status": 200,
+        "bytes": 62144400,
+        "sha256": "47bd5c6bb39920de087d2040d360972d11683bf0cfe36a9594f0140dc1679af5",
+        "contentType": "model/gltf-binary",
+        "checkedAt": "2026-10-21T01:32:42.317954Z",
+        "requestOrigin": "https://atrium.earth",
+        "allowOrigin": "https://atrium.earth",
+        "corsVerified": true
+      },
+      "status": "pass"
+    },
+    {
+      "slug": "roman/four-tetrarchs-san-marco",
+      "title": "Portrait of the Four Tetrarchs",
+      "page": {
+        "title": "Portrait of the Four Tetrarchs",
+        "primaryViewerBinding": true,
+        "primaryThumbnailBinding": true,
+        "sourceMaterialsPreserved": true,
+        "openingTransformMatches": true,
+        "url": "https://atrium.earth/works/roman/four-tetrarchs-san-marco/",
+        "status": 200,
+        "bytes": 32202,
+        "sha256": "bda4640b9b74bf2e4a3300f1831ec6902eed3ec0c1feef1f7075c94c81738077",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:32:33.244969Z"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/roman/four-tetrarchs-san-marco/thumb.webp",
+        "status": 200,
+        "bytes": 97736,
+        "sha256": "32a262668113b790bea52e755ef1ee747d391a13965af5a51fda1bb22aa5a505",
+        "contentType": "image/webp",
+        "checkedAt": "2026-10-21T01:32:33.356968Z"
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/roman/four-tetrarchs-san-marco/preview-7c17baddb094.glb",
+        "status": 200,
+        "bytes": 33122072,
+        "sha256": "7c17baddb094bff34cf1f4ddecb80ad3d15d8230820dd78f69f644bbcae89b35",
+        "contentType": "model/gltf-binary",
+        "checkedAt": "2026-10-21T01:32:34.477504Z",
+        "requestOrigin": "https://atrium.earth",
+        "allowOrigin": "https://atrium.earth",
+        "corsVerified": true
+      },
+      "status": "pass"
+    },
+    {
+      "slug": "roman/pasquino-rome",
+      "title": "Pasquino",
+      "page": {
+        "title": "Pasquino",
+        "primaryViewerBinding": true,
+        "primaryThumbnailBinding": true,
+        "sourceMaterialsPreserved": true,
+        "openingTransformMatches": true,
+        "url": "https://atrium.earth/works/roman/pasquino-rome/",
+        "status": 200,
+        "bytes": 32202,
+        "sha256": "d382cdb055ecbd88949f37edcaf4db521fddb0753176a46da5084479cfd3ba70",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:32:34.622784Z"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/roman/pasquino-rome/thumb.webp",
+        "status": 200,
+        "bytes": 89794,
+        "sha256": "30e0c5f9f86aa361547e5e968e468c02a855bd9e0f078570320b329acf9acfe5",
+        "contentType": "image/webp",
+        "checkedAt": "2026-10-21T01:32:34.735185Z"
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/roman/pasquino-rome/preview-8a4a2a825db9.glb",
+        "status": 200,
+        "bytes": 27397076,
+        "sha256": "8a4a2a825db9d66549f6f67126c821a85b92ab27403515b9b07dcd2d517c3bd4",
+        "contentType": "model/gltf-binary",
+        "checkedAt": "2026-10-21T01:32:37.898701Z",
+        "requestOrigin": "https://atrium.earth",
+        "allowOrigin": "https://atrium.earth",
+        "corsVerified": true
+      },
+      "status": "pass"
+    },
+    {
+      "slug": "roman/portland-vase-iziko-pottery-copy",
+      "title": "Portland Vase — Iziko Pottery Copy",
+      "page": {
+        "title": "Portland Vase — Iziko Pottery Copy",
+        "primaryViewerBinding": true,
+        "primaryThumbnailBinding": true,
+        "sourceMaterialsPreserved": true,
+        "openingTransformMatches": true,
+        "url": "https://atrium.earth/works/roman/portland-vase-iziko-pottery-copy/",
+        "status": 200,
+        "bytes": 33079,
+        "sha256": "3bd3760c47144b12d8ec66f59f7711497adbec2e154ad62578421362f5797e33",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:32:32.606756Z"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/roman/portland-vase-iziko-pottery-copy/thumb.webp",
+        "status": 200,
+        "bytes": 40842,
+        "sha256": "e78461c9b235ccc3f574d3b1b682dba0ca64fd4243f9fe58d7aa965d4785a618",
+        "contentType": "image/webp",
+        "checkedAt": "2026-10-21T01:32:32.733182Z"
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/roman/portland-vase-iziko-pottery-copy/preview-c1986232de36.glb",
+        "status": 200,
+        "bytes": 10153464,
+        "sha256": "c1986232de36726153fd274bf4c1481043ab424b8b6c28d26a2fe9e5fb87b791",
+        "contentType": "model/gltf-binary",
+        "checkedAt": "2026-10-21T01:32:33.151645Z",
+        "requestOrigin": "https://atrium.earth",
+        "allowOrigin": "https://atrium.earth",
+        "corsVerified": true
+      },
+      "status": "pass"
+    },
+    {
+      "slug": "roman/spinario-british-museum-1880-0807-1",
+      "title": "Spinario — British Museum Marble",
+      "page": {
+        "title": "Spinario — British Museum Marble",
+        "primaryViewerBinding": true,
+        "primaryThumbnailBinding": true,
+        "sourceMaterialsPreserved": true,
+        "openingTransformMatches": true,
+        "url": "https://atrium.earth/works/roman/spinario-british-museum-1880-0807-1/",
+        "status": 200,
+        "bytes": 32810,
+        "sha256": "e7533306c8e49d29ec7e87481964524d7f1736521fb6aa59b73d5b5d33cd77df",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:32:34.613357Z"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/roman/spinario-british-museum-1880-0807-1/thumb.webp",
+        "status": 200,
+        "bytes": 33060,
+        "sha256": "5b4f8804d2c2089889c7c2e174d7bfadeed2d6bef3712f8525799baca77186d0",
+        "contentType": "image/webp",
+        "checkedAt": "2026-10-21T01:32:34.725040Z"
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/roman/spinario-british-museum-1880-0807-1/preview-9dffaa02c1d7.glb",
+        "status": 200,
+        "bytes": 8427164,
+        "sha256": "9dffaa02c1d70d0ad6ad59712270115a1b7bbeb2e7ff535aab4d884fe6ad0fe7",
+        "contentType": "model/gltf-binary",
+        "checkedAt": "2026-10-21T01:32:35.227965Z",
+        "requestOrigin": "https://atrium.earth",
+        "allowOrigin": "https://atrium.earth",
+        "corsVerified": true
+      },
+      "status": "pass"
+    }
+  ],
+  "pages": {
+    "newest": {
+      "status": "pass",
+      "count": 60,
+      "exactMembership": true,
+      "exactOrder": true,
+      "slugs": [
+        "modern/standing-iguanodon-hawkins-crystal-palace",
+        "design/peacock-table-lamp-tiffany-cma2018-281",
+        "modern/triumph-republic-dalou-place-nation",
+        "rodin/the-cathedral-musee-rodin-s1001",
+        "modern/lion-belfort-bartholdi-lille-sc-130",
+        "modern/statue-liberty-bartholdi-luxembourg-replica",
+        "rodin/monument-balzac-middelheim-1931",
+        "modern/little-dancer-degas-nga-wax-original",
+        "rodin/saint-john-baptist-preaching-cast-unconfirmed",
+        "americas/shaw-54th-massachusetts-memorial-boston",
+        "americas/adams-memorial-saint-gaudens-cornish",
+        "baroque/habakkuk-angel-bernini-chigi-chapel",
+        "baroque/louis-xiv-victory-coysevox-versailles",
+        "europe/lion-monument-lucerne-thorvaldsen-ahorn",
+        "renaissance/incredulity-thomas-verrocchio-orsanmichele",
+        "baroque/royal-chapel-organ-versailles",
+        "baroque/chigi-triton-bernini-rijksmuseum",
+        "medieval/torrijos-dome-madrid-man",
+        "donatello/cavalcanti-annunciation-santa-croce",
+        "renaissance/piero-medici-mino-smk-cast",
+        "donatello/saint-john-baptist-siena-smk-cast",
+        "renaissance/filippo-strozzi-benedetto-smk-cast",
+        "renaissance/marietta-strozzi-desiderio-smk-cast",
+        "medieval/ecclesia-strasbourg-smk-cast",
+        "medieval/synagoga-strasbourg-smk-cast",
+        "asia/masked-goddess-togariishi",
+        "asia/jomon-venus-togariishi",
+        "asia/kaen-doki-umataka-no1",
+        "prehistoric/shigir-idol-head-sverdlovsk",
+        "africa/sphinx-of-taharqo-bm-ea1770",
+        "americas/stone-of-tizoc-smvk-historical-miniature",
+        "europe/lady-of-elche-man-1971-10-1",
+        "egyptian/menkaure-and-queen-mfa-11-1738",
+        "egyptian/william-the-hippo-met-17-9-1",
+        "ancient-near-east/code-of-hammurabi-louvre-sb8",
+        "egyptian/akhenaten-offering-table-cairo-je43580",
+        "egyptian/menkaure-hathor-bat-triad-cairo-je46499",
+        "egyptian/khafre-enthroned-cairo-je10062",
+        "egyptian/narmer-palette-cairo-je32169",
+        "egyptian/gayer-anderson-cat-bm-ea64391",
+        "greek/caryatid-erechtheion-smk-kas838",
+        "greek/kouros-merenda-athens-4890",
+        "greek/alexander-rondanini-smk-kas538",
+        "greek/vatican-runner-smk-kas423",
+        "greek/agias-delphi-smk-kas1289",
+        "greek/dying-alexander-face-smk-kas282",
+        "greek/farnese-diadumenos-smk-kas79",
+        "greek/hypnos-smk-kas900",
+        "greek/socrates-tusculum-smk-kas635",
+        "greek/old-drunken-woman-smk-kas537",
+        "roman/fonseca-bust-smk-kas843",
+        "greek/pseudo-seneca-smk-kas94",
+        "greek/demeter-knidos-smk-kas128",
+        "greek/boy-with-goose-munich-gl268",
+        "greek/venus-medici-telfair-cast",
+        "roman/spinario-british-museum-1880-0807-1",
+        "roman/pasquino-rome",
+        "roman/four-tetrarchs-san-marco",
+        "roman/portland-vase-iziko-pottery-copy",
+        "greek/charioteer-delphi-krakow-rz37"
+      ],
+      "response": {
+        "url": "https://atrium.earth/newest/",
+        "status": 200,
+        "bytes": 86667,
+        "sha256": "b0aba11409f7816b4f32e3b6df63907adf37f05e2a532a7ea1f90d1fdf199d5d",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:33:43.168115Z"
+      }
+    },
+    "totals": {
+      "status": "pass",
+      "catalog": 2240,
+      "public": 2222,
+      "publicCards": 2222,
+      "uniquePublicCards": 2222,
+      "evidence": "/museum/",
+      "response": {
+        "url": "https://atrium.earth/museum/",
+        "status": 200,
+        "bytes": 2441086,
+        "sha256": "7bdee58bac4dbaaf80a5736fe57d2b865f3510ceb66be714336f828dfb4c3319",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:33:43.481850Z"
+      }
+    },
+    "exhibition:power-and-presence": {
+      "status": "pass",
+      "slugs": [
+        "egyptian/narmer-palette-cairo-je32169",
+        "ancient-near-east/code-of-hammurabi-louvre-sb8"
+      ],
+      "actualStopBindings": true,
+      "response": {
+        "url": "https://atrium.earth/exhibitions/power-and-presence/",
+        "status": 200,
+        "bytes": 121078,
+        "sha256": "6afa0b6172ecd188032e15b514401d4af7a4ff39600f4fb2227e15771fd802a1",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:33:43.755153Z"
+      }
+    },
+    "exhibition:sacred-forms": {
+      "status": "pass",
+      "slugs": [
+        "donatello/cavalcanti-annunciation-santa-croce"
+      ],
+      "actualStopBindings": true,
+      "response": {
+        "url": "https://atrium.earth/exhibitions/sacred-forms/",
+        "status": 200,
+        "bytes": 142794,
+        "sha256": "aa6f086acda2322772d694a9f185492f58f93b5c41a0692c0ef63618cbce26be",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:33:43.892398Z"
+      }
+    },
+    "exhibition:bodies-in-motion": {
+      "status": "pass",
+      "slugs": [
+        "greek/boy-with-goose-munich-gl268"
+      ],
+      "actualStopBindings": true,
+      "response": {
+        "url": "https://atrium.earth/exhibitions/bodies-in-motion/",
+        "status": 200,
+        "bytes": 205678,
+        "sha256": "ecfef6c2c010668562e4d98c97378eae55a7e45cb3dc6e992565ca7a078b9ec3",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:33:43.999903Z"
+      }
+    },
+    "exhibition:what-survives": {
+      "status": "pass",
+      "slugs": [
+        "prehistoric/shigir-idol-head-sverdlovsk",
+        "roman/pasquino-rome"
+      ],
+      "actualStopBindings": true,
+      "response": {
+        "url": "https://atrium.earth/exhibitions/what-survives/",
+        "status": 200,
+        "bytes": 169312,
+        "sha256": "c3485055b81afe7711aa159d6ab04cee49d5930f4a3b66ee0768247125ed8fa9",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:33:44.198678Z"
+      }
+    },
+    "exhibition:the-other-kingdom": {
+      "status": "pass",
+      "slugs": [
+        "egyptian/william-the-hippo-met-17-9-1",
+        "egyptian/gayer-anderson-cat-bm-ea64391"
+      ],
+      "actualStopBindings": true,
+      "response": {
+        "url": "https://atrium.earth/exhibitions/the-other-kingdom/",
+        "status": 200,
+        "bytes": 118948,
+        "sha256": "c545eed7ef454ef1173df506334381683f85441935a6869f4ace4991855f7ddb",
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-10-21T01:33:44.272182Z"
+      }
+    }
+  },
+  "errors": [],
+  "verifiedModels": 60,
+  "verifiedThumbnails": 60,
+  "modelBytesRead": 3254335896,
+  "exhibitionPlacementsVerified": 8,
+  "completedAt": "2026-10-21T01:33:44.282197Z"
+}

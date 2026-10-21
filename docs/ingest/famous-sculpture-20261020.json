@@ -1,7 +1,7 @@
 {
   "batch": "famous-sculpture-20261020",
   "prepared_at": "2026-10-20T23:50:26.534Z",
-  "state": "publication-ready",
+  "state": "live-verified",
   "target": 60,
   "accepted_count": 60,
   "baseline_count": 2180,
@@ -3184,9 +3184,20 @@
     "existing_preview_mappings_preserved": 2180,
     "source_geometry_materials_and_thumbnails_unchanged": true,
     "dimension_and_spatial_rebinding_required": false,
-    "deployment_verified": false,
+    "deployment_verified": true,
     "release_build_pages": 6130,
     "release_build_passed": true,
-    "release_independent_audit": "passed"
+    "release_independent_audit": "passed",
+    "release_sha": "99802dae241f67b2ecadf6ba920fcec4948ac8fb",
+    "deployment_run_id": 39527627413,
+    "live_verified_at": "2026-10-21T01:33:44.282197Z",
+    "live_report": "docs/ingest/famous-sculpture-20261020-live.json",
+    "live_browser_report": "docs/ingest/famous-sculpture-20261020-live-browser.json",
+    "live_verified_pages": 60,
+    "live_verified_models": 60,
+    "live_verified_thumbnails": 60,
+    "live_verified_exhibition_placements": 8,
+    "live_observed_catalog_total": 2240,
+    "live_observed_public_total": 2222
   }
 }

@@ -1,0 +1,36 @@
+{
+  "batch": "famous-sculpture-20261020",
+  "release_sha": "99802dae241f67b2ecadf6ba920fcec4948ac8fb",
+  "deployment_run_id": 39527627413,
+  "verified_at": "2026-10-21T01:33:15.829306+00:00",
+  "status": "passed",
+  "method": "Actual in-app browser observations on production after successful Pages deployment",
+  "newest_url": "https://atrium.earth/newest/",
+  "newest_visible_count": 60,
+  "public_count_visible_in_footer": 2222,
+  "newest_screenshot_sha256": "4f3a8364332ea1e8483f42bb1e33c751e4844f526f0fdaa58e18703c5e2b7b0f",
+  "interactive_viewers": [
+    {
+      "slug": "egyptian/william-the-hippo-met-17-9-1",
+      "url": "https://atrium.earth/works/egyptian/william-the-hippo-met-17-9-1/",
+      "rendered": true,
+      "native_surface_visible": true,
+      "rotation_toggle_responded": true,
+      "drag_orbit_responded": true,
+      "screenshot_sha256": "19364e0670e7751fed8666b209bfbd4d43691772eb30031226f5b434847f96e3"
+    },
+    {
+      "slug": "baroque/habakkuk-angel-bernini-chigi-chapel",
+      "url": "https://atrium.earth/works/baroque/habakkuk-angel-bernini-chigi-chapel/",
+      "rendered": true,
+      "native_surface_visible": true,
+      "rotation_toggle_responded": true,
+      "drag_orbit_responded": true,
+      "screenshot_sha256": "5ddbf03ae5bca1e87b48cfd1a8fe2529734c514f3fd342d720efa3d49faaff8c"
+    }
+  ],
+  "limitations": [
+    "Two representative live interactive viewers checked; all sixty page and asset bindings are verified separately in the full live-delivery report.",
+    "No physical AR device test was performed."
+  ]
+}
