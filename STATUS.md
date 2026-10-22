@@ -970,3 +970,12 @@ Commit `1afb322` is deployment-verified. [GitHub Pages run 37334355346](https://
 - Continuation release checks passed: production build, assets, featured selection, wings and additions. Publication pending at this checkpoint.
 
 - Continuation verified live: release `e0f1587b4f5dfde45be5ff326ac41121e21d08fd`, Pages run `39725505095` succeeded. All 55 cumulative live work pages returned 200; full model and thumbnail SHA-256/bytes and model CORS passed. Newest contains all 55 and all seven cumulative exhibition placements are present. The 39 new works are live; five quality holds remain unpublished. Batch review is complete; no further acquisition/review jobs or cleanup are running here.
+
+
+### 2026-10-22 — new crowd-pleaser batch started
+
+- Owner requested more crowd pleasers and specifically asked not to get hung up on damaged/incomplete pieces. Target another roughly 60 strong works; skip problematic captures promptly, without extending this round into repairs or research of the five previous holds.
+- Branch `codex/crowd-pleasers-20261022` starts from clean fetched main `a0db2b4c`, preserving 2,295 records / 2,277 public works and all prior source evidence. Discovery and duplicate screening are underway; no new source payload, permanent backup, public model upload or deployment is claimed yet.
+- Continue the established private archive, source-material preservation, real-thumbnail and origin-wing/exhibition workflow. Another thread owns disk housekeeping; no local offload or cleanup is part of this task.
+
+Crowd-pleasers October22 discovery checkpoint:50 distinct candidate objects selected after exact provider/object cross-pool deduplication. Includes10 European artist leads,2 contemporary works and38 broader museum/anthropological candidates. New unknown manufacture locations remain explicitly Unfiled; existing works and featured selections unchanged. Only source metadata/images reviewed; authenticated GLB metadata, measured integrity, full source/production capture review and permanent original backup remain pending. No new source payloads or production publication yet. Preparation and scope batch-support tests:24passed.

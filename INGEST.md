@@ -140,6 +140,8 @@ when selecting a design object.
 
 The owner's October 21 direction for the following acquisition round is artist-led: build meaningful groups around notable makers from antiquity to the present, with Canova, Bernini and John Chamberlain as explicit examples. The current sixty-work crowd-pleaser batch prioritizes recognizable works and visual appeal; this future direction does not schedule another acquisition or relax model, identity, licensing or quality checks.
 
+The owner clarified on October 22 that crowd-pleaser acquisitions should move promptly past problematic scans. Skip incomplete or damaged captures rather than spending a batch repairing or investigating them. An authentic historical fragment can still qualify when its identity, surviving form and capture limits are clear; do not reconstruct missing surfaces to meet a count.
+
 Assign every addition through the existing wing rules using the work's origin,
 not the location of the holding museum. Review the curated exhibitions and add
 works only where the theme fits, with a caption explaining that connection.

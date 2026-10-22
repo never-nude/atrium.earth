@@ -9,7 +9,7 @@ import { candidateIsKnown, catalogIndexes } from './ingest-utils.mjs';
 
 export const BATCH = 'etruscan-greek-20261015';
 export const EXPECTED_COUNT = 60;
-const SUPPORTED_BATCHES = new Set([BATCH, 'beautiful-expansion-20261019', 'crowd-pleasers-20261021']);
+const SUPPORTED_BATCHES = new Set([BATCH, 'beautiful-expansion-20261019', 'crowd-pleasers-20261021', 'crowd-pleasers-20261022']);
 const ROOT = path.resolve(import.meta.dirname, '..');
 const UID = /^[a-f0-9]{32}$/;
 const SHA = /^[a-f0-9]{64}$/;

@@ -75,6 +75,12 @@ const crowdConfig = { ...config, catalog: [{ ...config.catalog[0], ingest_batch:
 assert.equal(bindRequest(crowdRequest, crowdConfig)[0].source.bytes, 1000);
 assert.throws(() => bindRequest(crowdRequest, expansionConfig), /outside/);
 assert.throws(() => bindRequest({ ...crowdRequest, sourceArtifacts: expansionRequest.sourceArtifacts }, crowdConfig), /binding/);
+const nextCrowdBatch = 'crowd-pleasers-20261022';
+const nextCrowdRequest = { ...withSource, batch: nextCrowdBatch, sourceArtifacts: [{ ...sourceArtifact, name: `atrium-temporary-sources-${nextCrowdBatch}-12345-1` }] };
+const nextCrowdConfig = { ...config, catalog: [{ ...config.catalog[0], ingest_batch: nextCrowdBatch }] };
+assert.equal(bindRequest(nextCrowdRequest, nextCrowdConfig)[0].source.bytes, 1000);
+assert.throws(() => bindRequest(nextCrowdRequest, crowdConfig), /outside/);
+assert.throws(() => bindRequest({ ...nextCrowdRequest, sourceArtifacts: crowdRequest.sourceArtifacts }, nextCrowdConfig), /binding/);
 assert.throws(() => bindRequest({ ...request, batch: 'unreviewed-batch' }, config), /schema or batch/);
 for (const patch of [{ repository: 'another/repo' }, { runId: 12346 }, { artifactId: null }, { workflowHeadSha: '' }]) {
   assert.throws(() => bindRequest({ ...withSource, sourceArtifacts: [{ ...sourceArtifact, ...patch }] }, config));
