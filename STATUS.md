@@ -958,3 +958,13 @@ Commit `1afb322` is deployment-verified. [GitHub Pages run 37334355346](https://
 - Production build passed on the selected 16-work catalog; static pages and redirects generated successfully.
 
 - Live deployment verified: release `ad9a84916e1b4f2b7020da2062c5085e65cb3b8b`, Actions run `39723520117` succeeded. All 16 live pages returned 200; every serving preview and final thumbnail matched full SHA-256 and byte counts, preview CORS passed, and `/newest/` contains every selected work. No further acquisitions/reviews or cleanup are running in this task.
+
+
+### 2026-10-22 — crowd-pleaser continuation reviewed
+
+- Owner requested “keep going”; resumed only the same deferred 44, without new acquisitions or cloud acquisition workflows. Reused completed renders/thumbnails, finished missing actual reviews locally, and corrected the Gormley, corn-mummy and silver-bowl opening orientations with fresh eight-view review.
+- 39 more works passed; this logical batch now has 55 approved works and five holds: Koons (mesh integrity), Medusa, Elephant and Obelisk, Penitent Magdalene and the Noble/Official head (substantial or uncertain missing capture). All 60 unchanged originals remain permanently privately backed up; no local offload or housekeeping was performed.
+- Strict cumulative audit passes with zero findings: 55 source/model bindings, 440 actual reviewed images, final thumbnails/posters, complete authenticated archive evidence, preserved source materials and explicit uncalibrated dimensions/size eligibility. Previously published 16 and all earlier work remain unchanged except catalog counters. Featured250/home192 are unchanged. Seven cumulative exhibition body placements are recorded.
+- Candidate totals: 2,295 catalog records / 2,277 public / 18 hidden. Existing global dimension/eligibility test gaps documented above remain unchanged. Next: complete build/release checks, publish this continuation once, verify live delivery, then stop this batch.
+
+- Continuation release checks passed: production build, assets, featured selection, wings and additions. Publication pending at this checkpoint.
