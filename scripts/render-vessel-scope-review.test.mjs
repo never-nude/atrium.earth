@@ -7,10 +7,17 @@ import { tmpdir } from 'node:os';
 import * as THREE from 'three';
 import { Document } from '@gltf-transform/core';
 import { chromium } from 'playwright';
-import { cameraViews, bindRequest, inspectGlb, productionAppearanceFactory, reviewHtml, transformFingerprint, createLegacyMaterialReference, documentGeometryFingerprint, preserveReferenceNodeTransforms } from './render-vessel-scope-review.mjs';
+import { cameraViews, bindRequest, inspectGlb, productionAppearanceFactory, reviewHtml, transformFingerprint, createLegacyMaterialReference, documentGeometryFingerprint, preserveReferenceNodeTransforms, closeReviewResources } from './render-vessel-scope-review.mjs';
 import { frameCameraToBox } from '../public/model-render-utils.js';
 
 const root = resolve('.');
+let cleaned = 0;
+await closeReviewResources({ close: async () => {} }, async () => { cleaned++; });
+assert.equal(cleaned, 1);
+await assert.rejects(closeReviewResources({ close: () => new Promise(() => {}) }, async () => { cleaned++; }, 10), /shutdown timed out/);
+assert.equal(cleaned, 2, 'A stalled browser still releases the local server and model scratch');
+await assert.rejects(closeReviewResources({ close: async () => { throw new Error('close failure'); } }, async () => { cleaned++; }), /close failure/);
+assert.equal(cleaned, 3, 'A rejected close still runs cleanup');
 const productionHtml = readFileSync('public/__render.html', 'utf8');
 const html = reviewHtml(productionHtml);
 const script = readFileSync('scripts/render-thumbnails.mjs', 'utf8');
@@ -62,6 +69,12 @@ const expansionConfig = { ...config, catalog: [{ ...config.catalog[0], ingest_ba
 assert.equal(bindRequest(expansionRequest, expansionConfig)[0].source.bytes, 1000);
 assert.throws(() => bindRequest(expansionRequest, milestoneConfig), /outside/);
 assert.throws(() => bindRequest({ ...expansionRequest, sourceArtifacts: milestoneRequest.sourceArtifacts }, expansionConfig), /binding/);
+const crowdBatch = 'crowd-pleasers-20261021';
+const crowdRequest = { ...withSource, batch: crowdBatch, sourceArtifacts: [{ ...sourceArtifact, name: `atrium-temporary-sources-${crowdBatch}-12345-1` }] };
+const crowdConfig = { ...config, catalog: [{ ...config.catalog[0], ingest_batch: crowdBatch }] };
+assert.equal(bindRequest(crowdRequest, crowdConfig)[0].source.bytes, 1000);
+assert.throws(() => bindRequest(crowdRequest, expansionConfig), /outside/);
+assert.throws(() => bindRequest({ ...crowdRequest, sourceArtifacts: expansionRequest.sourceArtifacts }, crowdConfig), /binding/);
 assert.throws(() => bindRequest({ ...request, batch: 'unreviewed-batch' }, config), /schema or batch/);
 for (const patch of [{ repository: 'another/repo' }, { runId: 12346 }, { artifactId: null }, { workflowHeadSha: '' }]) {
   assert.throws(() => bindRequest({ ...withSource, sourceArtifacts: [{ ...sourceArtifact, ...patch }] }, config));

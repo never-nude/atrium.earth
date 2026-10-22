@@ -33245,7 +33245,7 @@
       "measurementRegion": {
         "method": "position-welded connected triangles",
         "description": "The sculpture is separate from the modern pedestal. Connected components ranks 0, 1 and 3 contain the marble group; rank 2 is the rectangular pedestal. Their union runs from normalized Y -0.1190040436654394 to 0.5. Use the confirmed 197.5 cm height of the marble group, retaining the pedestal at the same uniform scale.",
-        "weldToleranceNormalizedUnits": 1e-06,
+        "weldToleranceNormalizedUnits": 0.000001,
         "ranksByDescendingTriangleCount": [
           0,
           1,
@@ -69278,7 +69278,7 @@
       "measurementRegion": {
         "method": "position-welded connected triangles",
         "description": "Connected component rank 0 is the rigid monitor body; all display/button components remain within its lateral body endpoints. Hanging cable components extend farther left and below and are excluded from the reference. Use the museum body-only width 58.4 cm for the rank-0 X span, retaining all cables at that scale.",
-        "weldToleranceNormalizedUnits": 1e-06,
+        "weldToleranceNormalizedUnits": 0.000001,
         "ranksByDescendingTriangleCount": [
           0
         ],
@@ -76991,7 +76991,7 @@
       "measurementRegion": {
         "method": "position-welded connected triangles",
         "description": "Connected component rank 0 is the complete sculpture, including its lowest foot/curved lower edge; rank 1 is the added green platform. All other sculpture fragments and the apple are within rank-0 height. Use the scan creator’s explicitly approximate 57 cm sculpture height, excluding the green platform from the reference while retaining it in the scene.",
-        "weldToleranceNormalizedUnits": 1e-06,
+        "weldToleranceNormalizedUnits": 0.000001,
         "ranksByDescendingTriangleCount": [
           0
         ],
@@ -110336,5 +110336,245 @@
       "The preserved source and any display supports have not been calibrated to exact object measurements."
     ],
     "spatialNote": "Physical size is unverified for this model. Display size is adjustable."
+  },
+  "modern/francois-pompon-cosette": {
+    "status": "documented",
+    "basis": "object",
+    "dimensions": "H 40.5 × W 19 × D 12 cm",
+    "sourceUrl": "https://parismuseescollections.paris.fr/en/maison-de-victor-hugo/oeuvres/cosette",
+    "note": "Published measurements describe the collection object or the separately named components; their original scope is retained.",
+    "spatialNote": "Physical measurements have not been matched to exact regions of this model. Display size is adjustable.",
+    "checked": "2026-10-22",
+    "calibrationReady": false,
+    "geometryStatus": "reviewed-blocked",
+    "geometryReviewNote": "Actual normalized source-reference and production rows agree on figure, bucket, back and hollow mounting base; original unsupported shader appearance is not asserted.",
+    "calibrationBlockers": [
+      "Published physical measurements have not been matched to exact measurement regions of the immutable final derivative."
+    ]
+  },
+  "roman/portrait-bust-of-the-empress-claudia-octavia-cleveland-1925-943-9b2fbf": {
+    "status": "documented",
+    "basis": "object",
+    "dimensions": "Overall: 38.2 cm (15 1/16 in.)",
+    "sourceUrl": "https://www.clevelandart.org/art/1925.943",
+    "note": "Published measurements describe the collection object or the separately named components; their original scope is retained.",
+    "spatialNote": "Physical measurements have not been matched to exact regions of this model. Display size is adjustable.",
+    "checked": "2026-10-22",
+    "calibrationReady": false,
+    "geometryStatus": "reviewed-blocked",
+    "geometryReviewNote": "The front, rear hair, top and flat bust underside agree between actual source-native and production images without a new open shell.",
+    "calibrationBlockers": [
+      "Published physical measurements have not been matched to exact measurement regions of the immutable final derivative."
+    ]
+  },
+  "greek/dancing-eros-cleveland-1915-1-d47e4c": {
+    "status": "documented",
+    "basis": "object",
+    "dimensions": "Overall: 29 cm (11 7/16 in.)",
+    "sourceUrl": "https://www.clevelandart.org/art/1915.1",
+    "note": "Published measurements describe the collection object or the separately named components; their original scope is retained.",
+    "spatialNote": "Physical measurements have not been matched to exact regions of this model. Display size is adjustable.",
+    "checked": "2026-10-22",
+    "calibrationReady": false,
+    "geometryStatus": "reviewed-blocked",
+    "geometryReviewNote": "Actual source-native and production show the same limb losses and round rear mounting opening; these visible fragment boundaries are not repaired.",
+    "calibrationBlockers": [
+      "Published physical measurements have not been matched to exact measurement regions of the immutable final derivative."
+    ]
+  },
+  "near-east/composite-lion-and-bull-cleveland-1969-122-322c07": {
+    "status": "documented",
+    "basis": "object",
+    "dimensions": "Overall: 11.4 x 9.7 x 14.8 cm (4 1/2 x 3 13/16 x 5 13/16 in.)",
+    "sourceUrl": "https://www.clevelandart.org/art/1969.122",
+    "note": "Published measurements describe the collection object or the separately named components; their original scope is retained.",
+    "spatialNote": "Physical measurements have not been matched to exact regions of this model. Display size is adjustable.",
+    "checked": "2026-10-22",
+    "calibrationReady": false,
+    "geometryStatus": "reviewed-blocked",
+    "geometryReviewNote": "Actual source-native and production show the same two-headed body, projecting lower legs and recessed openings without new missing exterior geometry.",
+    "calibrationBlockers": [
+      "Published physical measurements have not been matched to exact measurement regions of the immutable final derivative."
+    ]
+  },
+  "near-east/priest-king-or-deity-cleveland-1971-45-2f8f0e": {
+    "status": "documented",
+    "basis": "object",
+    "dimensions": "Overall: 87.6 cm (34 1/2 in.)",
+    "sourceUrl": "https://www.clevelandart.org/art/1971.45",
+    "note": "Published measurements describe the collection object or the separately named components; their original scope is retained.",
+    "spatialNote": "Physical measurements have not been matched to exact regions of this model. Display size is adjustable.",
+    "checked": "2026-10-22",
+    "calibrationReady": false,
+    "geometryStatus": "reviewed-blocked",
+    "geometryReviewNote": "Actual source-native and production preserve the same headdress, front details, rear surface and central base opening without new losses.",
+    "calibrationBlockers": [
+      "Published physical measurements have not been matched to exact measurement regions of the immutable final derivative."
+    ]
+  },
+  "europe/the-seesaw-la-bascule-d6d523": {
+    "status": "documented",
+    "basis": "object",
+    "dimensions": "H 20.2 × W 28.4 × D 4 cm",
+    "sourceUrl": "https://parismuseescollections.paris.fr/en/node/185825",
+    "note": "Published measurements describe the collection object or the separately named components; their original scope is retained.",
+    "spatialNote": "Physical measurements have not been matched to exact regions of this model. Display size is adjustable.",
+    "checked": "2026-10-22",
+    "calibrationReady": false,
+    "geometryStatus": "reviewed-blocked",
+    "geometryReviewNote": "The actual normalized source-reference row matches the production relief, backing and edge geometry; original unsupported shader appearance is not asserted.",
+    "calibrationBlockers": [
+      "Published physical measurements have not been matched to exact measurement regions of the immutable final derivative."
+    ]
+  },
+  "europe/love-and-faithfulness-e7284d": {
+    "status": "documented",
+    "basis": "object",
+    "dimensions": "H 32 × W 19 × D 13.5 cm",
+    "sourceUrl": "https://parismuseescollections.paris.fr/en/node/185824",
+    "note": "Published measurements describe the collection object or the separately named components; their original scope is retained.",
+    "spatialNote": "Physical measurements have not been matched to exact regions of this model. Display size is adjustable.",
+    "checked": "2026-10-22",
+    "calibrationReady": false,
+    "geometryStatus": "reviewed-blocked",
+    "geometryReviewNote": "The actual material-normalized source-reference row agrees with production across the standing group, rear supports and hollow circular base.",
+    "calibrationBlockers": [
+      "Published physical measurements have not been matched to exact measurement regions of the immutable final derivative."
+    ]
+  },
+  "europe/cybele-083ef9": {
+    "status": "documented",
+    "basis": "object",
+    "dimensions": "H 35 × W 24 × D 16 cm",
+    "sourceUrl": "https://parismuseescollections.paris.fr/en/node/185754",
+    "note": "Published measurements describe the collection object or the separately named components; their original scope is retained.",
+    "spatialNote": "Physical measurements have not been matched to exact regions of this model. Display size is adjustable.",
+    "checked": "2026-10-22",
+    "calibrationReady": false,
+    "geometryStatus": "reviewed-blocked",
+    "geometryReviewNote": "Actual material-normalized source reference and production agree on seated figure, lions and rear relief; the partly recorded underside is not presented as a sealed base.",
+    "calibrationBlockers": [
+      "Published physical measurements have not been matched to exact measurement regions of the immutable final derivative."
+    ]
+  },
+  "roman/eros-the-god-of-love-b72f9d": {
+    "status": "documented",
+    "basis": "object",
+    "dimensions": "Overall: 22.6 x 15.3 x 17.8 cm (8 7/8 x 6 x 7 in.)",
+    "sourceUrl": "https://www.clevelandart.org/art/1920.167",
+    "note": "Published measurements describe the collection object or the separately named components; their original scope is retained.",
+    "spatialNote": "Physical measurements have not been matched to exact regions of this model. Display size is adjustable.",
+    "checked": "2026-10-22",
+    "calibrationReady": false,
+    "geometryStatus": "reviewed-blocked",
+    "geometryReviewNote": "Actual normalized source reference and production agree on the head, rear hair and broken neck opening; this is a head fragment rather than a full figure.",
+    "calibrationBlockers": [
+      "Published physical measurements have not been matched to exact measurement regions of the immutable final derivative."
+    ]
+  },
+  "roman/barbarian-possibly-a-dacian-cleveland-1987-64-2883b2": {
+    "status": "documented",
+    "basis": "object",
+    "dimensions": "Overall: 8.5 × 3.3 × 1.8 cm",
+    "sourceUrl": "https://www.clevelandart.org/art/1987.64",
+    "note": "Published measurements describe the collection object or the separately named components; their original scope is retained.",
+    "spatialNote": "Physical measurements have not been matched to exact regions of this model. Display size is adjustable.",
+    "checked": "2026-10-22",
+    "calibrationReady": false,
+    "geometryStatus": "reviewed-blocked",
+    "geometryReviewNote": "Production matches the actual material-normalized source reference, including fragmentary raised-hand and head-covering edges; no reconstruction is implied.",
+    "calibrationBlockers": [
+      "Published physical measurements have not been matched to exact measurement regions of the immutable final derivative."
+    ]
+  },
+  "asia/censer-in-the-shape-of-a-mythical-beast-mia-2022-32a-b-255956": {
+    "status": "documented",
+    "basis": "object",
+    "dimensions": "24.8 × 19.4 × 16.8 cm",
+    "sourceUrl": "https://collections.artsmia.org/art/143591",
+    "note": "Published measurements describe the collection object or the separately named components; their original scope is retained.",
+    "spatialNote": "Physical measurements have not been matched to exact regions of this model. Display size is adjustable.",
+    "checked": "2026-10-22",
+    "calibrationReady": false,
+    "geometryStatus": "reviewed-blocked",
+    "geometryReviewNote": "Actual source-native and production preserve the same openwork body, lid, feet and underside; no solid cap or missing rear shell appears.",
+    "calibrationBlockers": [
+      "Published physical measurements have not been matched to exact measurement regions of the immutable final derivative."
+    ]
+  },
+  "modern/wmm-20-first-whispers-of-love-secrets-of-love-20": {
+    "status": "documented",
+    "basis": "object",
+    "dimensions": "height 138 cm; width 32 cm; length 80 cm",
+    "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/20",
+    "note": "Published measurements describe the collection object or the separately named components; their original scope is retained.",
+    "spatialNote": "Physical measurements have not been matched to exact regions of this model. Display size is adjustable.",
+    "checked": "2026-10-22",
+    "calibrationReady": false,
+    "geometryStatus": "reviewed-blocked",
+    "geometryReviewNote": "The actual normalized source-reference row matches the production group and plain flat bottom face; no detailed physical underside or reconstruction is asserted.",
+    "calibrationBlockers": [
+      "Published physical measurements have not been matched to exact measurement regions of the immutable final derivative."
+    ]
+  },
+  "asia/temple-lion-censer-one-of-a-pair-mia-99-24-1-1a-b-55a388": {
+    "status": "unresolved",
+    "basis": "object",
+    "dimensions": "",
+    "sourceUrl": "https://collections.artsmia.org/art/32120",
+    "note": "The available measurement evidence does not establish one unambiguous size for the captured object.",
+    "spatialNote": "Physical measurements have not been matched to exact regions of this model. Display size is adjustable.",
+    "checked": "2026-10-22",
+    "calibrationReady": false,
+    "geometryStatus": "reviewed-blocked",
+    "geometryReviewNote": "Actual material-normalized source reference and production match the lion body, elaborate lid, back, feet and underside without a new missing shell.",
+    "calibrationBlockers": [
+      "Published physical measurements have not been matched to exact measurement regions of the immutable final derivative."
+    ]
+  },
+  "asia/landscape-cleveland-1917-25-6ccbd7": {
+    "status": "documented",
+    "basis": "object",
+    "dimensions": "Overall: H 15.3 cm; Overall: W 22.3 cm; Overall: D 9.6 cm",
+    "sourceUrl": "https://www.clevelandart.org/art/1917.25",
+    "note": "Published measurements describe the collection object or the separately named components; their original scope is retained.",
+    "spatialNote": "Physical measurements have not been matched to exact regions of this model. Display size is adjustable.",
+    "checked": "2026-10-22",
+    "calibrationReady": false,
+    "geometryStatus": "reviewed-blocked",
+    "geometryReviewNote": "Source-native and production retain the same irregular openwork landscape and perforated underside; no large newly omitted surface is visible.",
+    "calibrationBlockers": [
+      "Published physical measurements have not been matched to exact measurement regions of the immutable final derivative."
+    ]
+  },
+  "egyptian/canopic-jar-with-a-lid-f2a608": {
+    "status": "documented",
+    "basis": "object",
+    "dimensions": "height 24,5 cm (jar), diameter 22 cm (jar), height 11 cm (cover), width 12,3 cm (cover)",
+    "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/1539",
+    "note": "Published measurements describe the collection object or the separately named components; their original scope is retained.",
+    "spatialNote": "Physical measurements have not been matched to exact regions of this model. Display size is adjustable.",
+    "checked": "2026-10-22",
+    "calibrationReady": false,
+    "geometryStatus": "reviewed-blocked",
+    "geometryReviewNote": "Actual source-native and production retain the same separated lid, jar body and circular base; the lid gap is captured arrangement rather than missing geometry.",
+    "calibrationBlockers": [
+      "Published physical measurements have not been matched to exact measurement regions of the immutable final derivative."
+    ]
+  },
+  "europe/lion-with-extended-paws-f6a553": {
+    "status": "documented",
+    "basis": "object",
+    "dimensions": "width 30 cm, height 46 cm, length 101,6 cm",
+    "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/4421",
+    "note": "Published measurements describe the collection object or the separately named components; their original scope is retained.",
+    "spatialNote": "Physical measurements have not been matched to exact regions of this model. Display size is adjustable.",
+    "checked": "2026-10-22",
+    "calibrationReady": false,
+    "geometryStatus": "reviewed-blocked",
+    "geometryReviewNote": "Actual normalized source-reference and production agree on the elongated lion, mane, extended paws and lower body; unresolved underside recesses are not filled.",
+    "calibrationBlockers": [
+      "Published physical measurements have not been matched to exact measurement regions of the immutable final derivative."
+    ]
   }
 }

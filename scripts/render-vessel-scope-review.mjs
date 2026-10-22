@@ -14,7 +14,7 @@ import { Transform, Readable } from 'node:stream';
 import { parseModelTransform } from '../public/model-render-utils.js';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const REVIEW_BATCHES = new Set(['etruscan-greek-20261015', 'beautiful-2000-20261015', 'beautiful-expansion-20261019']);
+const REVIEW_BATCHES = new Set(['etruscan-greek-20261015', 'beautiful-2000-20261015', 'beautiful-expansion-20261019', 'crowd-pleasers-20261021']);
 const sha256 = (body) => createHash('sha256').update(body).digest('hex');
 function canonical(value) {
   if (Array.isArray(value)) return value.map(canonical);
@@ -38,6 +38,19 @@ export function cameraViews(rawTransform) {
     { key: 'ABOVE', direction: [0, 1, 0], up: [0, 0, -1] },
     { key: 'UNDERSIDE', direction: [0, -1, 0], up: [0, 0, 1] },
   ];
+}
+
+export async function closeReviewResources(browser, cleanup, timeoutMs = 15000) {
+  let timer;
+  try {
+    if (browser) await Promise.race([
+      browser.close(),
+      new Promise((_resolve, reject) => { timer = setTimeout(() => reject(new Error('Review browser shutdown timed out after completed render work')), timeoutMs); }),
+    ]);
+  } finally {
+    clearTimeout(timer);
+    await cleanup();
+  }
 }
 
 export function bindRequest(request, { catalog, previews, orientations }) {
@@ -367,9 +380,10 @@ async function renderBound(works, options, bindings) {
       }
     }
   } finally {
-    if (browser) await browser.close();
-    rmSync(modelScratch, { recursive: true, force: true });
-    server.closeAllConnections(); await new Promise((yes) => server.close(yes));
+    await closeReviewResources(browser, async () => {
+      rmSync(modelScratch, { recursive: true, force: true });
+      server.closeAllConnections(); await new Promise((yes) => server.close(yes));
+    });
   }
 }
 
