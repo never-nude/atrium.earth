@@ -1,0 +1,116 @@
+{
+  "schema": "atrium-public-release-selection/1",
+  "batch": "crowd-pleasers-20261022",
+  "checked": "2026-10-22T07:38:21.632Z",
+  "frozenCandidates": 40,
+  "added": 30,
+  "pipelineRejected": [
+    {
+      "slug": "europe/tarcisius-christian-martyr-30d0fd",
+      "reason": "Measured geometry integrity gate did not pass; no exemption or repair attempted."
+    },
+    {
+      "slug": "baroque/the-goat-amalthea-with-the-infant-jupiter-and-a-faun-f838ca",
+      "reason": "Measured geometry integrity gate did not pass; no exemption or repair attempted."
+    },
+    {
+      "slug": "modern/magdalena-abakanowicz-two-figures-from-sages",
+      "reason": "Measured geometry integrity gate did not pass; no exemption or repair attempted."
+    },
+    {
+      "slug": "modern/juan-munoz-last-conversation-piece-one-figure",
+      "reason": "Measured geometry integrity gate did not pass; no exemption or repair attempted."
+    },
+    {
+      "slug": "asia/seated-buddha-d86bda",
+      "reason": "Measured geometry integrity gate did not pass; no exemption or repair attempted."
+    },
+    {
+      "slug": "asia/mortuary-figures-of-the-zodiac-signs-78d3fa",
+      "reason": "Measured geometry integrity gate did not pass; no exemption or repair attempted."
+    }
+  ],
+  "heldAccepted": [
+    {
+      "slug": "egyptian/female-offering-bearer-5ae6e7",
+      "reason": "Deferred from this expedited release because its derived catalog text triggers an overbroad metadata validation check. Preserve the original and provenance; do not alter or exempt the public-data guard."
+    },
+    {
+      "slug": "modern/bust-of-juan-antonio-benlliure-tomas-d66a79",
+      "reason": "Hold this release: visibly soft/blobby portrait and clothing capture, with an open pedestal cutoff. No repair attempted."
+    },
+    {
+      "slug": "europe/equestrian-statue-of-vercingetorix-18ff06",
+      "reason": "Identity/material hold: apparent pale plaster or stone edition does not establish the stated public bronze monument; root independently agrees, no research or repair."
+    },
+    {
+      "slug": "islamic/bowl-depicting-ladies-on-horseback-b4eaea",
+      "reason": "Opening-view hold: FRONT hides the defining painted riders; no pose or thumbnail repair requested."
+    }
+  ],
+  "selectedSlugs": [
+    "europe/lamour-menacant-threatening-love-32ecae",
+    "neoclassical/lord-byron-porcelain-copy-after-thorvaldsen-a5c17f",
+    "modern/bust-of-oskar-von-miller-fc6914",
+    "modern/head-of-a-caryatid-for-avala-a8392f",
+    "modern/kathe-kollwitz-memorial-1802c8",
+    "europe/la-joueuse-dosselets-jacks-player-efad4e",
+    "asia/piggy-bank-14bfd1",
+    "near-east/plate-with-winged-griffin-580238",
+    "asia/box-with-ink-cakes-green-ink-cake-in-shape-of-coiled-dragon-15d18e",
+    "asia/octafoil-shaped-mirror-featuring-ci-fei-the-dragon-slayer-399da7",
+    "egyptian/striding-statue-of-minnefer-5697bb",
+    "egyptian/canopic-jar-with-falcon-s-head-e1e86d",
+    "americas/celt-with-deity-331d0c",
+    "asia/shengding-food-vessel-8f45c5",
+    "asia/snuff-bottle-364db1",
+    "asia/elephant-shaped-jar-5457e0",
+    "asia/buddha-subduing-mara-c1c3d5",
+    "asia/pair-of-children-s-tiger-hats-f04df0",
+    "oceania/ika-miro-carved-fish-dd198c",
+    "oceania/moai-miro-half-body-figure-0951b7",
+    "asia/vajrasattva-cleveland-1947-494-576fcf",
+    "europe/portable-altar-of-countess-gertrude-cleveland-1931-462",
+    "asia/portable-buddhist-temple-cleveland-1971-167-63afd3",
+    "europe/statuette-of-a-polish-nobleman-d8046d",
+    "europe/saint-andrew-cleveland-1938-169",
+    "americas/double-vessel-with-a-birds-head-e6e448",
+    "americas/a-spherical-vessel-with-a-reclining-figure-d85979",
+    "asia/adoring-attendant-from-a-buddhist-shrine-cleveland-1943-395-690856",
+    "modern/wmm-4612-bear-ceramic-sculpture-4612",
+    "modern/wmm-4583-devil-4583"
+  ],
+  "review": {
+    "actualEightViewWorks": 30,
+    "actualImages": 240,
+    "finalThumbnails": 30,
+    "thumbnailMethod": "Unchanged horizontal FRONT frames from the actual production comparisons, separately approved on final contact sheets. Pose and effective appearance match; the small elevation difference from the regular opening camera is not claimed identical.",
+    "nativeSourceMaterialsPreserved": true,
+    "exactSizeCalibrationAdded": false,
+    "exhibitionBodyAdditions": 3
+  },
+  "preservation": {
+    "unchangedOriginals": 40,
+    "originalBytes": 801514492,
+    "permanentPrivateArchiveVerified": true,
+    "completeAuthenticatedReadbacks": true,
+    "localSourcesRetained": true,
+    "localOffloadPerformed": false
+  },
+  "validation": {
+    "releaseAuditStatus": "pass",
+    "releaseAuditFailures": 0,
+    "catalogTotal": 2325,
+    "publicWorks": 2307,
+    "hiddenWorks": 18,
+    "oldCatalogRecordsPreserved": 2295,
+    "featuredCount": 250,
+    "homepageEligibleCount": 192,
+    "additions": "pass",
+    "featured": "pass",
+    "wings": "pass",
+    "assets": "pass",
+    "productionBuild": "pass"
+  },
+  "delivery": "Prepared for publication; deployment and live asset checks recorded separately."
+}
