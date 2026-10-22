@@ -1,0 +1,597 @@
+{
+  "schema": "atrium-public-batch-quality-review/1",
+  "batch": "artist-trios-20261022",
+  "checked": "2026-10-22T15:52:39.412Z",
+  "added": 2,
+  "renderers": {
+    "public/__render.html": "5d379f48cf6e6d7db598a39e24d15667ecd0650017d1393183458cbac9b89bf2",
+    "public/model-render-utils.js": "afc875f080e2f1c7042ff6e2b5e41e298bfaf609d788774f48c8071950d3d2e0",
+    "scripts/render-thumbnails.mjs": "04aeca916a0d411321ba758860f6ce39094cb2c7bb013625e1ba7dacba2bb89d"
+  },
+  "thumbnailContactIndexSha256": "76331d2fe3c4fa0df36ee302329475dfaffb692ffb00bccde4641e0389f12761",
+  "works": [
+    {
+      "slug": "donatello/marzocco-lion-vam-lelli-cast",
+      "sourceUid": "7346f61f787748fcb0dd8089cc7acd91",
+      "source": {
+        "sha256": "3ed03303915f7ea0fbf93251fc96119a3d8fb6e74616845118ac54f254c7abaa",
+        "bytes": 31593464,
+        "selfContained": true,
+        "preservationReviewed": true,
+        "nativeAppearanceCompared": true,
+        "appearanceKind": "original-native"
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/donatello/marzocco-lion-vam-lelli-cast/preview-4d128cde3d8f.glb",
+        "sha256": "4d128cde3d8f374a6ac58bd6805d182b1c817607517f8fe2f1d2af1a07a1bc83",
+        "bytes": 1150428
+      },
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0,
+          0.14,
+          1
+        ],
+        "status": "manual",
+        "note": "Provider-native Y-up opening proposal, pending actual source/production review."
+      },
+      "measuredIntegrity": {
+        "faces": 896895,
+        "bratio": 0,
+        "ncomp": 4,
+        "largest_frac": 1
+      },
+      "geometry": {
+        "sourceFaces": 896895,
+        "previewFaces": 399882
+      },
+      "appearanceFingerprint": "9d17a2fa6d3bc2cadf3f56581c55a1d9c1cdbbc28f472c94172cfa408fd52702",
+      "dimensionsFingerprint": "c83ca7c0058bef3cbdd311346803c9e186cb3288686f03228d0ffcf5e57e61f4",
+      "eligibilityFingerprint": "427d53f5c359c303dac993ede8830427798a1c417d93f5541612b97a6d9ab9b8",
+      "thumbnail": {
+        "sha256": "6c255806a9d4deddf982e4da43c708381b97274c2e69747b53d0c7a5256a68fa",
+        "bytes": 45026,
+        "reviewed": true
+      },
+      "poster": {
+        "sha256": "a5dd42b25389b95363d05e572da200c0e503861e69cc45f2d3389e606fc18e14",
+        "bytes": 60408
+      },
+      "reviewedViews": [
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "direction": [
+            0,
+            0,
+            1
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "camera": [
+            -4.440892098500626e-16,
+            1.1102230246251565e-16,
+            2.143954133408431
+          ],
+          "target": [
+            -4.440892098500626e-16,
+            1.1102230246251565e-16,
+            0
+          ],
+          "distance": 2.143954133408431,
+          "padding": 1.16,
+          "imageSha256": "6c255806a9d4deddf982e4da43c708381b97274c2e69747b53d0c7a5256a68fa",
+          "reviewed": true
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "direction": [
+            0,
+            0,
+            -1
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "camera": [
+            -4.440892098500626e-16,
+            1.1102230246251565e-16,
+            -2.143954133408431
+          ],
+          "target": [
+            -4.440892098500626e-16,
+            1.1102230246251565e-16,
+            0
+          ],
+          "distance": 2.143954133408431,
+          "padding": 1.16,
+          "imageSha256": "21f3abfaa16b945816aa5f030bd37f3b49154beaa348f959b69348f852057042",
+          "reviewed": true
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "direction": [
+            0,
+            1,
+            0
+          ],
+          "up": [
+            0,
+            0,
+            -1
+          ],
+          "camera": [
+            -4.440892098500626e-16,
+            2.178638584856664,
+            0
+          ],
+          "target": [
+            -4.440892098500626e-16,
+            1.1102230246251565e-16,
+            0
+          ],
+          "distance": 2.178638584856664,
+          "padding": 1.16,
+          "imageSha256": "af712ab34702293559d08977f6d11bf882cdda07545e58189d90d59f229f7998",
+          "reviewed": true
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "direction": [
+            0,
+            -1,
+            0
+          ],
+          "up": [
+            0,
+            0,
+            1
+          ],
+          "camera": [
+            -4.440892098500626e-16,
+            -2.178638584856664,
+            0
+          ],
+          "target": [
+            -4.440892098500626e-16,
+            1.1102230246251565e-16,
+            0
+          ],
+          "distance": 2.178638584856664,
+          "padding": 1.16,
+          "imageSha256": "454899204cccb18448ee5e919f434458915b41c6e29a5e3a703475e5e060fa9b",
+          "reviewed": true
+        }
+      ],
+      "sourceReviewedViews": [
+        {
+          "mode": "source-native",
+          "key": "FRONT",
+          "direction": [
+            0,
+            0,
+            1
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "camera": [
+            0,
+            1.1102230246251565e-16,
+            2.1439652951094077
+          ],
+          "target": [
+            0,
+            1.1102230246251565e-16,
+            5.551115123125783e-17
+          ],
+          "distance": 2.1439652951094077,
+          "padding": 1.16,
+          "imageSha256": "4c59a29593ab2ca10c20ed8a8040a30920a58d9277a454418bbf60fde0110f90",
+          "reviewed": true
+        },
+        {
+          "mode": "source-native",
+          "key": "REVERSE",
+          "direction": [
+            0,
+            0,
+            -1
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "camera": [
+            0,
+            1.1102230246251565e-16,
+            -2.1439652951094077
+          ],
+          "target": [
+            0,
+            1.1102230246251565e-16,
+            5.551115123125783e-17
+          ],
+          "distance": 2.1439652951094077,
+          "padding": 1.16,
+          "imageSha256": "a73983000abc7a3c9ca6f2c06ca12819f3f0b0ace7d2f20c0561d4feeb836a18",
+          "reviewed": true
+        },
+        {
+          "mode": "source-native",
+          "key": "ABOVE",
+          "direction": [
+            0,
+            1,
+            0
+          ],
+          "up": [
+            0,
+            0,
+            -1
+          ],
+          "camera": [
+            0,
+            2.178943751074457,
+            5.551115123125783e-17
+          ],
+          "target": [
+            0,
+            1.1102230246251565e-16,
+            5.551115123125783e-17
+          ],
+          "distance": 2.178943751074457,
+          "padding": 1.16,
+          "imageSha256": "3b744b7389ada8ea040f6b07a1fd643a429312432af82bdb29836cd399dd0cb9",
+          "reviewed": true
+        },
+        {
+          "mode": "source-native",
+          "key": "UNDERSIDE",
+          "direction": [
+            0,
+            -1,
+            0
+          ],
+          "up": [
+            0,
+            0,
+            1
+          ],
+          "camera": [
+            0,
+            -2.178943751074457,
+            5.551115123125783e-17
+          ],
+          "target": [
+            0,
+            1.1102230246251565e-16,
+            5.551115123125783e-17
+          ],
+          "distance": 2.178943751074457,
+          "padding": 1.16,
+          "imageSha256": "60c8d3bee2c56fb034647e0b8e522f3cf5a2ce10bd0256f369e679242622123c",
+          "reviewed": true
+        }
+      ],
+      "decision": {
+        "pose": "pass",
+        "nativeAppearance": "pass",
+        "captureScope": "pass",
+        "scopeNote": "The lion and its display pedestal stand upright in native Y-up coordinates. Exposure0.85 makes the existing painted plaster texture legible without changing source color or material. Source and production preserve the same complete silhouette and surface markings.",
+        "underside": "unrecorded",
+        "undersideNote": "The underside appears as the same flat dark area in source and preview; physical underside details are unrecorded."
+      }
+    },
+    {
+      "slug": "europe/peasant-dalou-cast-unconfirmed-dfb63b",
+      "sourceUid": "dfb63bdbb7cd4d438d4e1daa03dbcb68",
+      "source": {
+        "sha256": "c009e59f3adab38a54185d1acbeccc6a1bba4b5b8554634ad1ed972c9919308a",
+        "bytes": 3751796,
+        "selfContained": true,
+        "preservationReviewed": true,
+        "nativeAppearanceCompared": true,
+        "appearanceKind": "original-native"
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/europe/peasant-dalou-cast-unconfirmed-dfb63b/preview-41bfcc60c3aa.glb",
+        "sha256": "41bfcc60c3aad9151b477ba973c83f9d8c41077fc5258e004754963e3c2a9981",
+        "bytes": 301884
+      },
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0,
+          0.14,
+          1
+        ],
+        "status": "manual",
+        "note": "Provider-native Y-up opening proposal, pending actual source/production review."
+      },
+      "measuredIntegrity": {
+        "faces": 116712,
+        "bratio": 0,
+        "ncomp": 1,
+        "largest_frac": 1
+      },
+      "geometry": {
+        "sourceFaces": 116712,
+        "previewFaces": 116712
+      },
+      "appearanceFingerprint": "69e2eaac284676099f03e5e511fc51b3471df51bef212262bfc9dede3d24d90c",
+      "dimensionsFingerprint": "72899e0c6c00de70cfc87bfc2e899f2e0aa00cd938d9569f6d89468b63f30515",
+      "eligibilityFingerprint": "427d53f5c359c303dac993ede8830427798a1c417d93f5541612b97a6d9ab9b8",
+      "thumbnail": {
+        "sha256": "79efcd648634c4b7bd4b7f3834ab07067415e98c843ddad8b528833633c3bbb2",
+        "bytes": 27212,
+        "reviewed": true
+      },
+      "poster": {
+        "sha256": "509947d150fff0357d692e8c704421af858963cd6eac1db64deea05410d3af97",
+        "bytes": 36644
+      },
+      "reviewedViews": [
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "direction": [
+            0,
+            0,
+            1
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "camera": [
+            0,
+            0,
+            2.276500062366
+          ],
+          "target": [
+            0,
+            0,
+            0
+          ],
+          "distance": 2.276500062366,
+          "padding": 1.16,
+          "imageSha256": "79efcd648634c4b7bd4b7f3834ab07067415e98c843ddad8b528833633c3bbb2",
+          "reviewed": true
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "direction": [
+            0,
+            0,
+            -1
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "camera": [
+            0,
+            0,
+            -2.276500062366
+          ],
+          "target": [
+            0,
+            0,
+            0
+          ],
+          "distance": 2.276500062366,
+          "padding": 1.16,
+          "imageSha256": "2be6897499e41f383d8fc7ca6a7473bb60be295a77745f064e9c3afca8df6dfd",
+          "reviewed": true
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "direction": [
+            0,
+            1,
+            0
+          ],
+          "up": [
+            0,
+            0,
+            -1
+          ],
+          "camera": [
+            0,
+            1.5267214370309994,
+            0
+          ],
+          "target": [
+            0,
+            0,
+            0
+          ],
+          "distance": 1.5267214370309994,
+          "padding": 1.16,
+          "imageSha256": "c4de316b8c60e47238c465741a480972fb3fb1ac4181cc5fc62e9ded2e03be05",
+          "reviewed": true
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "direction": [
+            0,
+            -1,
+            0
+          ],
+          "up": [
+            0,
+            0,
+            1
+          ],
+          "camera": [
+            0,
+            -1.5267214370309994,
+            0
+          ],
+          "target": [
+            0,
+            0,
+            0
+          ],
+          "distance": 1.5267214370309994,
+          "padding": 1.16,
+          "imageSha256": "5b7e3e3ddc9186a630cbe465a328b7bbbdac06ab3401ad1891b810d0bc19de19",
+          "reviewed": true
+        }
+      ],
+      "sourceReviewedViews": [
+        {
+          "mode": "source-native",
+          "key": "FRONT",
+          "direction": [
+            0,
+            0,
+            1
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "camera": [
+            0,
+            0,
+            2.2764904578363563
+          ],
+          "target": [
+            0,
+            0,
+            0
+          ],
+          "distance": 2.2764904578363563,
+          "padding": 1.16,
+          "imageSha256": "ade01fefb040fd9c875486bfbb3d75dfa7e697c579e835e9c664c775b5fe6d3b",
+          "reviewed": true
+        },
+        {
+          "mode": "source-native",
+          "key": "REVERSE",
+          "direction": [
+            0,
+            0,
+            -1
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "camera": [
+            0,
+            0,
+            -2.2764904578363563
+          ],
+          "target": [
+            0,
+            0,
+            0
+          ],
+          "distance": 2.2764904578363563,
+          "padding": 1.16,
+          "imageSha256": "4ec20de624e6b895cba9a5c14fa4b0723303140390d86f4a19d02c498c1c4123",
+          "reviewed": true
+        },
+        {
+          "mode": "source-native",
+          "key": "ABOVE",
+          "direction": [
+            0,
+            1,
+            0
+          ],
+          "up": [
+            0,
+            0,
+            -1
+          ],
+          "camera": [
+            0,
+            1.5266825828599622,
+            0
+          ],
+          "target": [
+            0,
+            0,
+            0
+          ],
+          "distance": 1.5266825828599622,
+          "padding": 1.16,
+          "imageSha256": "6e742a2d7117389a890a30dfc965bec8f1dbd6b1382f2300c3ad372eb9fd37b6",
+          "reviewed": true
+        },
+        {
+          "mode": "source-native",
+          "key": "UNDERSIDE",
+          "direction": [
+            0,
+            -1,
+            0
+          ],
+          "up": [
+            0,
+            0,
+            1
+          ],
+          "camera": [
+            0,
+            -1.5266825828599622,
+            0
+          ],
+          "target": [
+            0,
+            0,
+            0
+          ],
+          "distance": 1.5266825828599622,
+          "padding": 1.16,
+          "imageSha256": "f9a5ab4704cae673924169c6971bc6b9265a8317905447f92f1a5eed4b60546d",
+          "reviewed": true
+        }
+      ],
+      "decision": {
+        "pose": "pass",
+        "nativeAppearance": "pass",
+        "captureScope": "pass",
+        "scopeNote": "The full figure stands upright and the sleeve-rolling gesture is legible. All four production directions match the native source geometry, bronze-colored texture and recorded highlights. Minor irregular base margins remain disclosed without reconstruction.",
+        "underside": "unrecorded",
+        "undersideNote": "The source and preview retain the same broad plain underside. The physical underside and exact base thickness are not established."
+      }
+    }
+  ],
+  "limits": "Actual four-direction views of every original source or explicitly identified material-normalized source reference were compared with the production preview. Documented capture limitations remain disclosed. No exact physical-size calibration or local offload is claimed."
+}

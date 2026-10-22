@@ -1,0 +1,55 @@
+{
+  "schema": "atrium-public-release-selection/1",
+  "batch": "artist-trios-20261022",
+  "checked": "2026-10-22T15:54:32.109Z",
+  "acquiredSources": 3,
+  "added": 2,
+  "selectedSlugs": [
+    "donatello/marzocco-lion-vam-lelli-cast",
+    "europe/peasant-dalou-cast-unconfirmed-dfb63b"
+  ],
+  "heldAccepted": [
+    {
+      "slug": "modern/coquelin-as-crispin-bourdelle-museum-cast-d2071f",
+      "reason": "Keep unpublished: preview sourceFaces differs from actual measured source geometry. Preserve source and evidence; no metadata inference or integrity exemption.",
+      "bindingInconsistencies": [
+        {
+          "field": "preview.sourceFaces",
+          "reportedSourceFaces": 628714,
+          "measuredSourceFaces": 628648
+        }
+      ]
+    }
+  ],
+  "review": {
+    "actualEightViewWorks": 2,
+    "actualImages": 16,
+    "finalThumbnails": 2,
+    "nativeSourceMaterialsPreserved": true,
+    "exposureAdjustment": "Marzocco0.85, independently reviewed against the unchanged source; no source color/material replacement.",
+    "exactPhysicalCalibrationAdded": false,
+    "exhibitionBodyAdditions": 2
+  },
+  "archive": {
+    "unchangedOriginals": 3,
+    "originalBytes": 59839580,
+    "completeProvenanceAndRecoveryMap": true,
+    "authenticatedCompletePrivateReadback": true,
+    "localOriginalsRetained": true
+  },
+  "validation": {
+    "releaseAudit": "pass",
+    "failures": 0,
+    "additions": "pass",
+    "featured": "pass",
+    "wings": "pass",
+    "assets": "pass",
+    "productionBuild": "pass",
+    "catalogTotal": 2327,
+    "publicWorks": 2309,
+    "hiddenWorks": 18,
+    "featuredCount": 250,
+    "homepageEligibleCount": 192
+  },
+  "delivery": "Prepared for publication; deployment/live checks recorded separately."
+}
