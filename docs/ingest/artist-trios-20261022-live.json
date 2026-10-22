@@ -1,0 +1,88 @@
+{
+  "schema": "atrium-public-live-release-verification/1",
+  "batch": "artist-trios-20261022",
+  "releaseCommit": "d140e986b63460c00e489beed3c79eae3a1a11f8",
+  "deploymentRun": "39809246964",
+  "checkedAt": "2026-10-22T15:58:04.910Z",
+  "status": "pass",
+  "liveWorks": 2,
+  "modelBytes": 1452312,
+  "thumbnailBytes": 72238,
+  "newest": {
+    "url": "https://atrium.earth/newest/",
+    "status": "pass",
+    "sha256": "f4d65ba5a5a961d8f14eca1da287ab5c2e25c2c0ee5880121216dd79b0522433",
+    "bytes": 52413,
+    "missingSlugs": [],
+    "containsEverySelectedWork": true
+  },
+  "exhibitions": [
+    {
+      "slug": "donatello/marzocco-lion-vam-lelli-cast",
+      "exhibition": "power-and-presence",
+      "status": 200,
+      "placementPresent": true
+    },
+    {
+      "slug": "europe/peasant-dalou-cast-unconfirmed-dfb63b",
+      "exhibition": "power-and-presence",
+      "status": 200,
+      "placementPresent": true
+    }
+  ],
+  "works": [
+    {
+      "slug": "donatello/marzocco-lion-vam-lelli-cast",
+      "sourceUid": "7346f61f787748fcb0dd8089cc7acd91",
+      "status": "pass",
+      "startedAt": "2026-10-22T15:58:04.134Z",
+      "checkedAt": "2026-10-22T15:58:04.798Z",
+      "page": {
+        "url": "https://atrium.earth/works/donatello/marzocco-lion-vam-lelli-cast/",
+        "status": 200,
+        "sha256": "53eb009f3194c99f52c9e0888eb8896f844dab9594263c0f85db8cb127a3376b",
+        "bytes": 33024,
+        "exactModelURLPresent": true
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/donatello/marzocco-lion-vam-lelli-cast/thumb.webp",
+        "bytes": 45026,
+        "sha256": "6c255806a9d4deddf982e4da43c708381b97274c2e69747b53d0c7a5256a68fa"
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/donatello/marzocco-lion-vam-lelli-cast/preview-4d128cde3d8f.glb",
+        "bytes": 1150428,
+        "sha256": "4d128cde3d8f374a6ac58bd6805d182b1c817607517f8fe2f1d2af1a07a1bc83",
+        "corsAllowOrigin": "https://atrium.earth",
+        "requestOrigin": "https://atrium.earth"
+      }
+    },
+    {
+      "slug": "europe/peasant-dalou-cast-unconfirmed-dfb63b",
+      "sourceUid": "dfb63bdbb7cd4d438d4e1daa03dbcb68",
+      "status": "pass",
+      "startedAt": "2026-10-22T15:58:04.169Z",
+      "checkedAt": "2026-10-22T15:58:04.762Z",
+      "page": {
+        "url": "https://atrium.earth/works/europe/peasant-dalou-cast-unconfirmed-dfb63b/",
+        "status": 200,
+        "sha256": "88cf908718b91bb721323acd26f3bfccdc81221fbbf940a042ee530faaf1c285",
+        "bytes": 32326,
+        "exactModelURLPresent": true
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/europe/peasant-dalou-cast-unconfirmed-dfb63b/thumb.webp",
+        "bytes": 27212,
+        "sha256": "79efcd648634c4b7bd4b7f3834ab07067415e98c843ddad8b528833633c3bbb2"
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/europe/peasant-dalou-cast-unconfirmed-dfb63b/preview-41bfcc60c3aa.glb",
+        "bytes": 301884,
+        "sha256": "41bfcc60c3aad9151b477ba973c83f9d8c41077fc5258e004754963e3c2a9981",
+        "corsAllowOrigin": "https://atrium.earth",
+        "requestOrigin": "https://atrium.earth"
+      }
+    }
+  ],
+  "limits": "Complete live page/model/thumbnail readbacks, exact SHA-256/bytes and model CORS verified. No separate live interaction or physical-device AR claim. Private original-source archive verified separately; no local cleanup."
+}
