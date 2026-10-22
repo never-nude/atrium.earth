@@ -221,7 +221,7 @@ jobs:
           # Keep the longer outer budget for measured geometry integrity.
           # This batch receives independent native/production pose review.
           # Bound only the advisory pose solve; measured integrity is unchanged.
-          ATRIUM_POSE_TIMEOUT: ${{ inputs.batch == 'crowd-pleasers-20261022' && '1' || '15' }}
+          ATRIUM_POSE_TIMEOUT: ${{ (inputs.batch == 'crowd-pleasers-20261022' || inputs.batch == 'artist-trios-20261022') && '1' || '15' }}
 
       - name: Verify strict assembled batch
         if: ${{ !cancelled() && steps.assemble.outcome == 'success' }}

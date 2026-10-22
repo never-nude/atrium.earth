@@ -222,7 +222,7 @@ test('metadata preflight honors 429 Retry-After and fails bounded retries withou
 });
 
 test('metadata supports the reviewed expansion batch and rejects crossed or unsupported identities', async () => {
-  for (const batch of ['beautiful-expansion-20261019', 'crowd-pleasers-20261021', 'crowd-pleasers-20261022']) {
+  for (const batch of ['beautiful-expansion-20261019', 'crowd-pleasers-20261021', 'crowd-pleasers-20261022', 'artist-trios-20261022']) {
   let time = now.getTime();
   const input = { ...document([candidate()]), logical_batch_id: batch };
   const options = { token: 'fixture', batch, clock: () => time, sleep: async ms => { time += ms; },

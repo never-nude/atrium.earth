@@ -48,11 +48,11 @@ jobs:
           import path from 'node:path';
           import { preflightMetadata } from './scripts/prepare-etruscan-greek-20261015.mjs';
           const file = process.env.LEADS_FILE;
-          const batches = ['etruscan-greek-20261015', 'beautiful-expansion-20261019', 'crowd-pleasers-20261021', 'crowd-pleasers-20261022'];
+          const batches = ['etruscan-greek-20261015', 'beautiful-expansion-20261019', 'crowd-pleasers-20261021', 'crowd-pleasers-20261022', 'artist-trios-20261022'];
           const batch = batches.find(value => file?.startsWith(`docs/ingest/${value}-`));
           if (!batch) throw new Error('Unsupported batch');
           if (!/^[a-f0-9]{40}$/.test(process.env.EXACT_REF || '')) throw new Error('A full exact commit SHA is required');
-          if (!/^docs\/ingest\/(?:etruscan-greek-20261015|beautiful-expansion-20261019|crowd-pleasers-20261021|crowd-pleasers-20261022)-[a-z0-9-]+\.json$/.test(file || '')) throw new Error('Candidate path is outside the reviewed batch');
+          if (!/^docs\/ingest\/(?:etruscan-greek-20261015|beautiful-expansion-20261019|crowd-pleasers-20261021|crowd-pleasers-20261022|artist-trios-20261022)-[a-z0-9-]+\.json$/.test(file || '')) throw new Error('Candidate path is outside the reviewed batch');
           const root = fs.realpathSync('docs/ingest'), target = fs.realpathSync(file);
           if (path.dirname(target) !== root || !fs.statSync(target).isFile()) throw new Error('Candidate escaped ingest root');
           const input = JSON.parse(fs.readFileSync(target, 'utf8'));
