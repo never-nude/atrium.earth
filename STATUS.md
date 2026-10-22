@@ -956,3 +956,5 @@ Commit `1afb322` is deployment-verified. [GitHub Pages run 37334355346](https://
 - Next step: verify this deployment, then stop. Resume the deferred 44 only on a future request; public selection/hold record is in docs/ingest/crowd-pleasers-20261021-release-selection.json.
 
 - Production build passed on the selected 16-work catalog; static pages and redirects generated successfully.
+
+- Live deployment verified: release `ad9a84916e1b4f2b7020da2062c5085e65cb3b8b`, Actions run `39723520117` succeeded. All 16 live pages returned 200; every serving preview and final thumbnail matched full SHA-256 and byte counts, preview CORS passed, and `/newest/` contains every selected work. No further acquisitions/reviews or cleanup are running in this task.
