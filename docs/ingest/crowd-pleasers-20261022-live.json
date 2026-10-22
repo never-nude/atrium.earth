@@ -1,0 +1,822 @@
+{
+  "schema": "atrium-public-live-release-verification/1",
+  "batch": "crowd-pleasers-20261022",
+  "releaseCommit": "4fcc4d281073b13b03c56ee75c172a040dad7b60",
+  "deploymentRun": "39741947224",
+  "checkedAt": "2026-10-22T07:46:17.259Z",
+  "status": "pass",
+  "liveWorks": 30,
+  "modelBytes": 39527804,
+  "thumbnailBytes": 1255400,
+  "newest": {
+    "url": "https://atrium.earth/newest/",
+    "status": "pass",
+    "sha256": "2af9e4d10373b77fba01bc1d9a9c9239297cdcf95823a8547bf4d68463a7d0e6",
+    "bytes": 52385,
+    "missingSlugs": [],
+    "containsEverySelectedWork": true
+  },
+  "exhibitions": [
+    {
+      "slug": "asia/piggy-bank-14bfd1",
+      "exhibition": "the-other-kingdom",
+      "status": 200,
+      "placementPresent": true
+    },
+    {
+      "slug": "asia/box-with-ink-cakes-green-ink-cake-in-shape-of-coiled-dragon-15d18e",
+      "exhibition": "the-work-of-the-surface",
+      "status": 200,
+      "placementPresent": true
+    },
+    {
+      "slug": "neoclassical/lord-byron-porcelain-copy-after-thorvaldsen-a5c17f",
+      "exhibition": "what-survives",
+      "status": 200,
+      "placementPresent": true
+    }
+  ],
+  "works": [
+    {
+      "slug": "neoclassical/lord-byron-porcelain-copy-after-thorvaldsen-a5c17f",
+      "sourceUid": "a5c17ff57fdc4891be5880e3df9c5bfc",
+      "status": "pass",
+      "startedAt": "2026-10-22T07:46:06.090Z",
+      "checkedAt": "2026-10-22T07:46:06.843Z",
+      "page": {
+        "url": "https://atrium.earth/works/neoclassical/lord-byron-porcelain-copy-after-thorvaldsen-a5c17f/",
+        "status": 200,
+        "sha256": "f8d9de616a97d8bcf6e19f005f6ada8192381cd5ddeec4dedc0fb0f3a7720f6e",
+        "bytes": 32697,
+        "exactModelURLPresent": true
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/neoclassical/lord-byron-porcelain-copy-after-thorvaldsen-a5c17f/thumb.webp",
+        "bytes": 23924,
+        "sha256": "8cc125d30d038d4131fc8a3d7165f459fc7b89a995a30376c8616faf846491f5"
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/neoclassical/lord-byron-porcelain-copy-after-thorvaldsen-a5c17f/preview-40811bf6ad6c.glb",
+        "bytes": 1002268,
+        "sha256": "40811bf6ad6c12d058316d7866a6f7c5cd71d8c6bc2f7bed2846f60aa6782a31",
+        "corsAllowOrigin": "https://atrium.earth",
+        "requestOrigin": "https://atrium.earth"
+      }
+    },
+    {
+      "slug": "modern/kathe-kollwitz-memorial-1802c8",
+      "sourceUid": "1802c85f97764eb69d181bae380f0025",
+      "status": "pass",
+      "startedAt": "2026-10-22T07:46:06.116Z",
+      "checkedAt": "2026-10-22T07:46:07.438Z",
+      "page": {
+        "url": "https://atrium.earth/works/modern/kathe-kollwitz-memorial-1802c8/",
+        "status": 200,
+        "sha256": "35d8d084e1d44d70d94e6d6e5dd7fce3d2f2793816d0d76969f4cc6e14aea4e0",
+        "bytes": 31749,
+        "exactModelURLPresent": true
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/modern/kathe-kollwitz-memorial-1802c8/thumb.webp",
+        "bytes": 38422,
+        "sha256": "e82607d7aac0863e3aa97452a1e3fe15a70e5feef8402d1375162464af3392fa"
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/modern/kathe-kollwitz-memorial-1802c8/preview-d1bc9f3999e0.glb",
+        "bytes": 1356400,
+        "sha256": "d1bc9f3999e0be52ae7e40bdc98b244c4da021e33ba9569cb7e6798f5f1b64f0",
+        "corsAllowOrigin": "https://atrium.earth",
+        "requestOrigin": "https://atrium.earth"
+      }
+    },
+    {
+      "slug": "near-east/plate-with-winged-griffin-580238",
+      "sourceUid": "5802382f24eb490caacbcb0e1de3fb22",
+      "status": "pass",
+      "startedAt": "2026-10-22T07:46:06.116Z",
+      "checkedAt": "2026-10-22T07:46:07.401Z",
+      "page": {
+        "url": "https://atrium.earth/works/near-east/plate-with-winged-griffin-580238/",
+        "status": 200,
+        "sha256": "4e88f3d4f648e2fe314d387a08f4d9f1909842ff0f51a8d6d7265c7ea4a6e5dc",
+        "bytes": 31759,
+        "exactModelURLPresent": true
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/near-east/plate-with-winged-griffin-580238/thumb.webp",
+        "bytes": 87670,
+        "sha256": "87c12c72c759f14fcabb5709b92ed69f2fea0b545e500e7028f167706ec37c08"
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/near-east/plate-with-winged-griffin-580238/preview-13f25f9d1a05.glb",
+        "bytes": 1124812,
+        "sha256": "13f25f9d1a0529da0d075661967ada8a4df455b3f76589242d48b9840a67c858",
+        "corsAllowOrigin": "https://atrium.earth",
+        "requestOrigin": "https://atrium.earth"
+      }
+    },
+    {
+      "slug": "egyptian/canopic-jar-with-falcon-s-head-e1e86d",
+      "sourceUid": "e1e86d7848ce42089343b700c3b9c5ae",
+      "status": "pass",
+      "startedAt": "2026-10-22T07:46:06.117Z",
+      "checkedAt": "2026-10-22T07:46:07.661Z",
+      "page": {
+        "url": "https://atrium.earth/works/egyptian/canopic-jar-with-falcon-s-head-e1e86d/",
+        "status": 200,
+        "sha256": "411d40f003e191999bfec4ca0f9458282ab9734ae1323cda5bfa35389d0cc7cd",
+        "bytes": 31872,
+        "exactModelURLPresent": true
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/egyptian/canopic-jar-with-falcon-s-head-e1e86d/thumb.webp",
+        "bytes": 23014,
+        "sha256": "18a86a268dfc98d8b78dc6c0f618218eaaa8b01eaa97c4a10193cec19c1b88b9"
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/egyptian/canopic-jar-with-falcon-s-head-e1e86d/preview-8efa820313ad.glb",
+        "bytes": 1728196,
+        "sha256": "8efa820313ad3fa61719672854ca1902b7d4441c8fe6d38e882357e3b7d254f7",
+        "corsAllowOrigin": "https://atrium.earth",
+        "requestOrigin": "https://atrium.earth"
+      }
+    },
+    {
+      "slug": "asia/snuff-bottle-364db1",
+      "sourceUid": "364db1752efa44d1bd1308879f71bc57",
+      "status": "pass",
+      "startedAt": "2026-10-22T07:46:06.843Z",
+      "checkedAt": "2026-10-22T07:46:07.526Z",
+      "page": {
+        "url": "https://atrium.earth/works/asia/snuff-bottle-364db1/",
+        "status": 200,
+        "sha256": "a28983346cc74b4556b320f9db9572c985c2a81eebaf52252b896cae07dba975",
+        "bytes": 31743,
+        "exactModelURLPresent": true
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/asia/snuff-bottle-364db1/thumb.webp",
+        "bytes": 59646,
+        "sha256": "20c11fd0671ebeb71083c9db12bc8d2204fc8aca9f9713f9406a612be14b6cfb"
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/asia/snuff-bottle-364db1/preview-b619ee86b350.glb",
+        "bytes": 805816,
+        "sha256": "b619ee86b350b9a922c3171ac44f27149e2be12234dcd3248a771436c921ddcb",
+        "corsAllowOrigin": "https://atrium.earth",
+        "requestOrigin": "https://atrium.earth"
+      }
+    },
+    {
+      "slug": "oceania/ika-miro-carved-fish-dd198c",
+      "sourceUid": "dd198c4725b44468899648ac61d14613",
+      "status": "pass",
+      "startedAt": "2026-10-22T07:46:07.401Z",
+      "checkedAt": "2026-10-22T07:46:08.374Z",
+      "page": {
+        "url": "https://atrium.earth/works/oceania/ika-miro-carved-fish-dd198c/",
+        "status": 200,
+        "sha256": "f4b093bbbbacaf941d2a164214f52e73149f94ae84d8fab3a3a0e28656339d1f",
+        "bytes": 31325,
+        "exactModelURLPresent": true
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/oceania/ika-miro-carved-fish-dd198c/thumb.webp",
+        "bytes": 22884,
+        "sha256": "69b129d26aa71607f88bedbe4e834fc165810d0e3a2e96cdfe83d79224d3550d"
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/oceania/ika-miro-carved-fish-dd198c/preview-e56b49c63580.glb",
+        "bytes": 1302044,
+        "sha256": "e56b49c63580d20cfb7506c488c86fb0b56058f55eebac2c88900ceb40e9c573",
+        "corsAllowOrigin": "https://atrium.earth",
+        "requestOrigin": "https://atrium.earth"
+      }
+    },
+    {
+      "slug": "asia/portable-buddhist-temple-cleveland-1971-167-63afd3",
+      "sourceUid": "63afd3211ec44bd186b20dc47ddafa9e",
+      "status": "pass",
+      "startedAt": "2026-10-22T07:46:07.438Z",
+      "checkedAt": "2026-10-22T07:46:08.341Z",
+      "page": {
+        "url": "https://atrium.earth/works/asia/portable-buddhist-temple-cleveland-1971-167-63afd3/",
+        "status": 200,
+        "sha256": "fb83e80025169edf034655e72110a9385d944ed33927a5fcf8634a089248bfc0",
+        "bytes": 32287,
+        "exactModelURLPresent": true
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/asia/portable-buddhist-temple-cleveland-1971-167-63afd3/thumb.webp",
+        "bytes": 39888,
+        "sha256": "a24a6a242ef496c51ce1c6cbd00d6cb897d21b06e9114889021824cf7cb21cfd"
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/asia/portable-buddhist-temple-cleveland-1971-167-63afd3/preview-f43cc9a0d8c8.glb",
+        "bytes": 1735516,
+        "sha256": "f43cc9a0d8c8147d130dc95f8621083f708ff02a741a2d8bf3827a1d33654bda",
+        "corsAllowOrigin": "https://atrium.earth",
+        "requestOrigin": "https://atrium.earth"
+      }
+    },
+    {
+      "slug": "americas/a-spherical-vessel-with-a-reclining-figure-d85979",
+      "sourceUid": "d8597918fa144be7b6a79f3ac9351967",
+      "status": "pass",
+      "startedAt": "2026-10-22T07:46:07.526Z",
+      "checkedAt": "2026-10-22T07:46:07.964Z",
+      "page": {
+        "url": "https://atrium.earth/works/americas/a-spherical-vessel-with-a-reclining-figure-d85979/",
+        "status": 200,
+        "sha256": "82a624899335d369e795dad23017df589c607ba1d48035f37f00b3ca6cf92bd4",
+        "bytes": 32781,
+        "exactModelURLPresent": true
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/americas/a-spherical-vessel-with-a-reclining-figure-d85979/thumb.webp",
+        "bytes": 27236,
+        "sha256": "f4365739055b912e0e219e0f6c3f3662e5532b71784818a0ad3aefb12917014b"
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/americas/a-spherical-vessel-with-a-reclining-figure-d85979/preview-35566f2a4a1d.glb",
+        "bytes": 381344,
+        "sha256": "35566f2a4a1da198d92502e5e40933d14bbfd28d9550f0edeafa2eca91079a5b",
+        "corsAllowOrigin": "https://atrium.earth",
+        "requestOrigin": "https://atrium.earth"
+      }
+    },
+    {
+      "slug": "europe/la-joueuse-dosselets-jacks-player-efad4e",
+      "sourceUid": "efad4ecb01bd4e0886c8daa6d7aa36cc",
+      "status": "pass",
+      "startedAt": "2026-10-22T07:46:07.661Z",
+      "checkedAt": "2026-10-22T07:46:09.126Z",
+      "page": {
+        "url": "https://atrium.earth/works/europe/la-joueuse-dosselets-jacks-player-efad4e/",
+        "status": 200,
+        "sha256": "7cf3d7a9437799b529de1b85eef5afd5a92683c35909e8483b109bf26cea49a6",
+        "bytes": 31420,
+        "exactModelURLPresent": true
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/europe/la-joueuse-dosselets-jacks-player-efad4e/thumb.webp",
+        "bytes": 19274,
+        "sha256": "0e2f894e9b8c8922ff624d03df48e6af5195931b7d0b8aa45c5964ca45970523"
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/europe/la-joueuse-dosselets-jacks-player-efad4e/preview-7aef3bb08a5e.glb",
+        "bytes": 1728028,
+        "sha256": "7aef3bb08a5ef8cbd7c024ee0feb561380627ba885e71d635b7f63472479a4cf",
+        "corsAllowOrigin": "https://atrium.earth",
+        "requestOrigin": "https://atrium.earth"
+      }
+    },
+    {
+      "slug": "asia/octafoil-shaped-mirror-featuring-ci-fei-the-dragon-slayer-399da7",
+      "sourceUid": "399da740c8e844a6b998db53aaf511b6",
+      "status": "pass",
+      "startedAt": "2026-10-22T07:46:07.964Z",
+      "checkedAt": "2026-10-22T07:46:09.159Z",
+      "page": {
+        "url": "https://atrium.earth/works/asia/octafoil-shaped-mirror-featuring-ci-fei-the-dragon-slayer-399da7/",
+        "status": 200,
+        "sha256": "dc1ac294dbc1abeddb65775ada559334e7076cb6d950c02a305ab96f3a44be9f",
+        "bytes": 32547,
+        "exactModelURLPresent": true
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/asia/octafoil-shaped-mirror-featuring-ci-fei-the-dragon-slayer-399da7/thumb.webp",
+        "bytes": 77124,
+        "sha256": "6ca1214c982837cd3dde557ff95974bfb26f29f35eda070a4a60d8fd7a58a576"
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/asia/octafoil-shaped-mirror-featuring-ci-fei-the-dragon-slayer-399da7/preview-e004485832b5.glb",
+        "bytes": 1470624,
+        "sha256": "e004485832b5b09159a85627e66a6af46ec2ee136862bd3ad8a15922075e35a9",
+        "corsAllowOrigin": "https://atrium.earth",
+        "requestOrigin": "https://atrium.earth"
+      }
+    },
+    {
+      "slug": "asia/shengding-food-vessel-8f45c5",
+      "sourceUid": "8f45c5ab58794f4faca0c242f89fdf22",
+      "status": "pass",
+      "startedAt": "2026-10-22T07:46:08.341Z",
+      "checkedAt": "2026-10-22T07:46:09.675Z",
+      "page": {
+        "url": "https://atrium.earth/works/asia/shengding-food-vessel-8f45c5/",
+        "status": 200,
+        "sha256": "60c5522ac72649d59a4c7ea2fd2db131baa27fded2e60fce62b64df42648c566",
+        "bytes": 32023,
+        "exactModelURLPresent": true
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/asia/shengding-food-vessel-8f45c5/thumb.webp",
+        "bytes": 41298,
+        "sha256": "98a28cfaec706343666716630792df518866311124fb9e930114ae28d73bc4e4"
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/asia/shengding-food-vessel-8f45c5/preview-6d45caaa5e8e.glb",
+        "bytes": 646064,
+        "sha256": "6d45caaa5e8e0483419aceed79f50c694bb18275413cca8f560a6f50c7db1754",
+        "corsAllowOrigin": "https://atrium.earth",
+        "requestOrigin": "https://atrium.earth"
+      }
+    },
+    {
+      "slug": "asia/buddha-subduing-mara-c1c3d5",
+      "sourceUid": "c1c3d5a4878c42778eceded83673dea7",
+      "status": "pass",
+      "startedAt": "2026-10-22T07:46:08.374Z",
+      "checkedAt": "2026-10-22T07:46:09.598Z",
+      "page": {
+        "url": "https://atrium.earth/works/asia/buddha-subduing-mara-c1c3d5/",
+        "status": 200,
+        "sha256": "bad86d8a732380e2b76162aa9789bf67216185fbc38cd5463d338e43f738d03f",
+        "bytes": 31291,
+        "exactModelURLPresent": true
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/asia/buddha-subduing-mara-c1c3d5/thumb.webp",
+        "bytes": 73560,
+        "sha256": "df1b23aebe95936a86261fd3af0a771fc1d2b7c3fbe78f52cc24f3f60acbd247"
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/asia/buddha-subduing-mara-c1c3d5/preview-5ee74f1c66b6.glb",
+        "bytes": 934524,
+        "sha256": "5ee74f1c66b63aa2761830eee58d6393bc1d31f57e893f7f2796679f62170302",
+        "corsAllowOrigin": "https://atrium.earth",
+        "requestOrigin": "https://atrium.earth"
+      }
+    },
+    {
+      "slug": "asia/vajrasattva-cleveland-1947-494-576fcf",
+      "sourceUid": "576fcff691294074b6a7a64a44d69c51",
+      "status": "pass",
+      "startedAt": "2026-10-22T07:46:09.126Z",
+      "checkedAt": "2026-10-22T07:46:10.719Z",
+      "page": {
+        "url": "https://atrium.earth/works/asia/vajrasattva-cleveland-1947-494-576fcf/",
+        "status": 200,
+        "sha256": "83b7272376e58f0311f6bcf7208e976eed4f6f2dabb55c9c11230ea2963e4b37",
+        "bytes": 31562,
+        "exactModelURLPresent": true
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/asia/vajrasattva-cleveland-1947-494-576fcf/thumb.webp",
+        "bytes": 35652,
+        "sha256": "2cfa413546f1f0c6de2487d7dc8f62c942bbbd9a0e8b64f3832905320dc4ac6f"
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/asia/vajrasattva-cleveland-1947-494-576fcf/preview-526937e5ce95.glb",
+        "bytes": 1002800,
+        "sha256": "526937e5ce955312a0ba7d7420f14d1a8d0918b2a80b00c5352c7d50f3c03b9d",
+        "corsAllowOrigin": "https://atrium.earth",
+        "requestOrigin": "https://atrium.earth"
+      }
+    },
+    {
+      "slug": "europe/saint-andrew-cleveland-1938-169",
+      "sourceUid": "c530a3a4ce5d468e84a96ad96bda44a7",
+      "status": "pass",
+      "startedAt": "2026-10-22T07:46:09.159Z",
+      "checkedAt": "2026-10-22T07:46:11.736Z",
+      "page": {
+        "url": "https://atrium.earth/works/europe/saint-andrew-cleveland-1938-169/",
+        "status": 200,
+        "sha256": "6e6fe69d7094feb23ee07bb4ea3f743f0500ff2e2d09f712f66fcb844c80ce43",
+        "bytes": 31425,
+        "exactModelURLPresent": true
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/europe/saint-andrew-cleveland-1938-169/thumb.webp",
+        "bytes": 50424,
+        "sha256": "54efd6dc533deb02bb4d1ec3c3ef217e0329ab76ecf520c860918f8257d39a40"
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/europe/saint-andrew-cleveland-1938-169/preview-7da8bbd881fc.glb",
+        "bytes": 2043036,
+        "sha256": "7da8bbd881fcd43bafed9c5fe9ec243864b820f9cfc2ce1ccbccef8e36c3cfb2",
+        "corsAllowOrigin": "https://atrium.earth",
+        "requestOrigin": "https://atrium.earth"
+      }
+    },
+    {
+      "slug": "modern/wmm-4612-bear-ceramic-sculpture-4612",
+      "sourceUid": "243a088c7bc941dd870ee0d94d90d9e2",
+      "status": "pass",
+      "startedAt": "2026-10-22T07:46:09.598Z",
+      "checkedAt": "2026-10-22T07:46:11.659Z",
+      "page": {
+        "url": "https://atrium.earth/works/modern/wmm-4612-bear-ceramic-sculpture-4612/",
+        "status": 200,
+        "sha256": "219e765dff569d1f5ace1e9694394935cffcca3862da11b7cbfbb5144606134d",
+        "bytes": 32248,
+        "exactModelURLPresent": true
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/modern/wmm-4612-bear-ceramic-sculpture-4612/thumb.webp",
+        "bytes": 22038,
+        "sha256": "8c72adc725119171281e3ff0155f5830fb49cd42a9d65dbce1c7e1931474a8d3"
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/modern/wmm-4612-bear-ceramic-sculpture-4612/preview-4c5fa92e58b8.glb",
+        "bytes": 1295960,
+        "sha256": "4c5fa92e58b86f280c2b709ae3c8d75a4f8759a9559a9720bb8cd04dd2a532b7",
+        "corsAllowOrigin": "https://atrium.earth",
+        "requestOrigin": "https://atrium.earth"
+      }
+    },
+    {
+      "slug": "europe/lamour-menacant-threatening-love-32ecae",
+      "sourceUid": "32ecae8ddf1b4feb806d7854ee072791",
+      "status": "pass",
+      "startedAt": "2026-10-22T07:46:09.675Z",
+      "checkedAt": "2026-10-22T07:46:12.736Z",
+      "page": {
+        "url": "https://atrium.earth/works/europe/lamour-menacant-threatening-love-32ecae/",
+        "status": 200,
+        "sha256": "eed5409ab5d7e5048769bc14ae87b7e1f3eeca561f59e7a588e20e84f0b65947",
+        "bytes": 31364,
+        "exactModelURLPresent": true
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/europe/lamour-menacant-threatening-love-32ecae/thumb.webp",
+        "bytes": 29700,
+        "sha256": "a2dfe4af40b71881706fb1b36ff40012dc636c87ae026cab71128c37a965d4fc"
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/europe/lamour-menacant-threatening-love-32ecae/preview-af4aae530f84.glb",
+        "bytes": 2226928,
+        "sha256": "af4aae530f84c451543f1fc9d8b2637db35c9fb8e2640cf6abb1b2df93c45663",
+        "corsAllowOrigin": "https://atrium.earth",
+        "requestOrigin": "https://atrium.earth"
+      }
+    },
+    {
+      "slug": "modern/head-of-a-caryatid-for-avala-a8392f",
+      "sourceUid": "a8392f2a78f3481c88f0c91a9728f244",
+      "status": "pass",
+      "startedAt": "2026-10-22T07:46:10.719Z",
+      "checkedAt": "2026-10-22T07:46:12.096Z",
+      "page": {
+        "url": "https://atrium.earth/works/modern/head-of-a-caryatid-for-avala-a8392f/",
+        "status": 200,
+        "sha256": "b735097b998f4613c96f37441c39dfa0e09b05a5382309878528cdb78c18d289",
+        "bytes": 31542,
+        "exactModelURLPresent": true
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/modern/head-of-a-caryatid-for-avala-a8392f/thumb.webp",
+        "bytes": 81164,
+        "sha256": "607c1308aa80e9917cac82c6f9afe017cb8b1a474373fa0d513758c599bb9791"
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/modern/head-of-a-caryatid-for-avala-a8392f/preview-dbb4949184c8.glb",
+        "bytes": 1880576,
+        "sha256": "dbb4949184c81d080958285e66309532748edffdfc216959ab2533fe24e76618",
+        "corsAllowOrigin": "https://atrium.earth",
+        "requestOrigin": "https://atrium.earth"
+      }
+    },
+    {
+      "slug": "asia/piggy-bank-14bfd1",
+      "sourceUid": "14bfd106baf14d62aebf6eafbe25b3c3",
+      "status": "pass",
+      "startedAt": "2026-10-22T07:46:11.659Z",
+      "checkedAt": "2026-10-22T07:46:12.733Z",
+      "page": {
+        "url": "https://atrium.earth/works/asia/piggy-bank-14bfd1/",
+        "status": 200,
+        "sha256": "60ffb14e62527964c14a71512904d9586047394f7bc416e1b4566a349b99ee07",
+        "bytes": 32404,
+        "exactModelURLPresent": true
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/asia/piggy-bank-14bfd1/thumb.webp",
+        "bytes": 42424,
+        "sha256": "1597c2636d4f0af070d62e0471308435a66ef3ff5284eebb1f0cf2ceaa2db1c0"
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/asia/piggy-bank-14bfd1/preview-cdaf79487a56.glb",
+        "bytes": 932768,
+        "sha256": "cdaf79487a564267f02c1748cb5eec79f8842563dd90ee00c67657f406602cb2",
+        "corsAllowOrigin": "https://atrium.earth",
+        "requestOrigin": "https://atrium.earth"
+      }
+    },
+    {
+      "slug": "egyptian/striding-statue-of-minnefer-5697bb",
+      "sourceUid": "5697bb6a10c04f9c9eda558a3d125527",
+      "status": "pass",
+      "startedAt": "2026-10-22T07:46:11.736Z",
+      "checkedAt": "2026-10-22T07:46:13.142Z",
+      "page": {
+        "url": "https://atrium.earth/works/egyptian/striding-statue-of-minnefer-5697bb/",
+        "status": 200,
+        "sha256": "60a89f82d196c9126710ccc1f8ca1fda26f7433fe8c5291770e5393838bf9580",
+        "bytes": 31804,
+        "exactModelURLPresent": true
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/egyptian/striding-statue-of-minnefer-5697bb/thumb.webp",
+        "bytes": 25706,
+        "sha256": "ff041a33d2b3b8662f9578169081c805f203e34e211e4bcdc1c8a4c6de61a459"
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/egyptian/striding-statue-of-minnefer-5697bb/preview-2a32fa8c70ed.glb",
+        "bytes": 1190716,
+        "sha256": "2a32fa8c70ed70393c0aea8fa1e76fd665dcf63010a6ae35cf64d631a325d315",
+        "corsAllowOrigin": "https://atrium.earth",
+        "requestOrigin": "https://atrium.earth"
+      }
+    },
+    {
+      "slug": "asia/pair-of-children-s-tiger-hats-f04df0",
+      "sourceUid": "f04df02cc20f47758fb4973fda95ffe6",
+      "status": "pass",
+      "startedAt": "2026-10-22T07:46:12.096Z",
+      "checkedAt": "2026-10-22T07:46:13.126Z",
+      "page": {
+        "url": "https://atrium.earth/works/asia/pair-of-children-s-tiger-hats-f04df0/",
+        "status": 200,
+        "sha256": "9b9ab53c9fda093c49e323837aed1be5e970ee7bb35d693beeb779a3e0cf96f8",
+        "bytes": 32956,
+        "exactModelURLPresent": true
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/asia/pair-of-children-s-tiger-hats-f04df0/thumb.webp",
+        "bytes": 42490,
+        "sha256": "d9456c309b5274ba31db7ca11f4cf34c9137c21fc35e6d7f47b92865a107c338"
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/asia/pair-of-children-s-tiger-hats-f04df0/preview-b5d9d3314374.glb",
+        "bytes": 1829608,
+        "sha256": "b5d9d331437440f991e7f83465b0fe9a72290f3018400e7b9a86410fc34b33cf",
+        "corsAllowOrigin": "https://atrium.earth",
+        "requestOrigin": "https://atrium.earth"
+      }
+    },
+    {
+      "slug": "europe/portable-altar-of-countess-gertrude-cleveland-1931-462",
+      "sourceUid": "84c7d3dc1dcb493081ee8e177dcc9107",
+      "status": "pass",
+      "startedAt": "2026-10-22T07:46:12.733Z",
+      "checkedAt": "2026-10-22T07:46:15.784Z",
+      "page": {
+        "url": "https://atrium.earth/works/europe/portable-altar-of-countess-gertrude-cleveland-1931-462/",
+        "status": 200,
+        "sha256": "3ebd2a3291401ab9ab2fcadf1dccae96df57b49e72048dfd8342fe5d81a2303d",
+        "bytes": 33240,
+        "exactModelURLPresent": true
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/europe/portable-altar-of-countess-gertrude-cleveland-1931-462/thumb.webp",
+        "bytes": 59458,
+        "sha256": "4962c9bbf8cdc73df9e4d772483d0bd17eb05784580a17865e65445b0318332b"
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/europe/portable-altar-of-countess-gertrude-cleveland-1931-462/preview-76d2c2c227e1.glb",
+        "bytes": 2140424,
+        "sha256": "76d2c2c227e1b23835ddac38cea50eca20a2626717280ee4d20258e2e7453602",
+        "corsAllowOrigin": "https://atrium.earth",
+        "requestOrigin": "https://atrium.earth"
+      }
+    },
+    {
+      "slug": "americas/double-vessel-with-a-birds-head-e6e448",
+      "sourceUid": "e6e448ff622a478083b53b6fa50b9c61",
+      "status": "pass",
+      "startedAt": "2026-10-22T07:46:12.736Z",
+      "checkedAt": "2026-10-22T07:46:13.322Z",
+      "page": {
+        "url": "https://atrium.earth/works/americas/double-vessel-with-a-birds-head-e6e448/",
+        "status": 200,
+        "sha256": "c927a64c636d9708457e5f4645d373458f69fde8b5b2a745533ee1a9ee298871",
+        "bytes": 32908,
+        "exactModelURLPresent": true
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/americas/double-vessel-with-a-birds-head-e6e448/thumb.webp",
+        "bytes": 24062,
+        "sha256": "31aed81704d18582e3832c192dc71e1abe69be722489a8eba9dcb6fc3920e88d"
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/americas/double-vessel-with-a-birds-head-e6e448/preview-3a51f25aeb71.glb",
+        "bytes": 400288,
+        "sha256": "3a51f25aeb71733f5ab38e5e9c6909f20d091812551cf90343a38c2c4d40bdb2",
+        "corsAllowOrigin": "https://atrium.earth",
+        "requestOrigin": "https://atrium.earth"
+      }
+    },
+    {
+      "slug": "modern/wmm-4583-devil-4583",
+      "sourceUid": "85828435fec24eb69a95b4276debd584",
+      "status": "pass",
+      "startedAt": "2026-10-22T07:46:13.126Z",
+      "checkedAt": "2026-10-22T07:46:14.757Z",
+      "page": {
+        "url": "https://atrium.earth/works/modern/wmm-4583-devil-4583/",
+        "status": 200,
+        "sha256": "bc0efb22b89c4fade8b030030079fa4b29e910568c1b6f2f9249f4d9f41f6b08",
+        "bytes": 31928,
+        "exactModelURLPresent": true
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/modern/wmm-4583-devil-4583/thumb.webp",
+        "bytes": 63238,
+        "sha256": "f16cde0f77a48c718eaa43386303ce2d930e3ff52caf01fd4a59a66b6d4eb2b7"
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/modern/wmm-4583-devil-4583/preview-0f6dd4426fa7.glb",
+        "bytes": 1973276,
+        "sha256": "0f6dd4426fa70d9183d2b1c7595c00af34b9331aa09741c0206829fe8244d709",
+        "corsAllowOrigin": "https://atrium.earth",
+        "requestOrigin": "https://atrium.earth"
+      }
+    },
+    {
+      "slug": "modern/bust-of-oskar-von-miller-fc6914",
+      "sourceUid": "fc6914bec662495b8dd5832f373dd42a",
+      "status": "pass",
+      "startedAt": "2026-10-22T07:46:13.142Z",
+      "checkedAt": "2026-10-22T07:46:15.876Z",
+      "page": {
+        "url": "https://atrium.earth/works/modern/bust-of-oskar-von-miller-fc6914/",
+        "status": 200,
+        "sha256": "010c23c39899ecc2f12640428c4c726ba956da97e981426b87b12513b9ea81c3",
+        "bytes": 31536,
+        "exactModelURLPresent": true
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/modern/bust-of-oskar-von-miller-fc6914/thumb.webp",
+        "bytes": 24686,
+        "sha256": "70e3e88e132031429b0efa39d9206ae9fc117a3130f6ba060eec26fe5193aa32"
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/modern/bust-of-oskar-von-miller-fc6914/preview-c1535dcb76f4.glb",
+        "bytes": 2129712,
+        "sha256": "c1535dcb76f422fb9da98e885e81f22d6cf04cfb911c8bf2b1958077ebaee969",
+        "corsAllowOrigin": "https://atrium.earth",
+        "requestOrigin": "https://atrium.earth"
+      }
+    },
+    {
+      "slug": "asia/box-with-ink-cakes-green-ink-cake-in-shape-of-coiled-dragon-15d18e",
+      "sourceUid": "15d18e208095465dbcc6912c54cf00ee",
+      "status": "pass",
+      "startedAt": "2026-10-22T07:46:13.322Z",
+      "checkedAt": "2026-10-22T07:46:14.458Z",
+      "page": {
+        "url": "https://atrium.earth/works/asia/box-with-ink-cakes-green-ink-cake-in-shape-of-coiled-dragon-15d18e/",
+        "status": 200,
+        "sha256": "7028b1f7cf701de56e842fec176f71e29fb90d1f7ab680d5f80ecf24fc48fb41",
+        "bytes": 33691,
+        "exactModelURLPresent": true
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/asia/box-with-ink-cakes-green-ink-cake-in-shape-of-coiled-dragon-15d18e/thumb.webp",
+        "bytes": 35602,
+        "sha256": "d6d532712aaf56c02b857a1d0135fbcc48e4ac0396385eea264d2cf7213b7aee"
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/asia/box-with-ink-cakes-green-ink-cake-in-shape-of-coiled-dragon-15d18e/preview-97058f63ba4c.glb",
+        "bytes": 596796,
+        "sha256": "97058f63ba4c754526d90aefa6649bbc8b207def5467fba2b8f84bfe7b88d67e",
+        "corsAllowOrigin": "https://atrium.earth",
+        "requestOrigin": "https://atrium.earth"
+      }
+    },
+    {
+      "slug": "americas/celt-with-deity-331d0c",
+      "sourceUid": "331d0c212c0c4646ab6e66b053133f0f",
+      "status": "pass",
+      "startedAt": "2026-10-22T07:46:14.458Z",
+      "checkedAt": "2026-10-22T07:46:15.666Z",
+      "page": {
+        "url": "https://atrium.earth/works/americas/celt-with-deity-331d0c/",
+        "status": 200,
+        "sha256": "3d81c80196e5e44315509739ec0f1d698351d01cfae4c933772303e5c48b7809",
+        "bytes": 31670,
+        "exactModelURLPresent": true
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/americas/celt-with-deity-331d0c/thumb.webp",
+        "bytes": 46732,
+        "sha256": "fb96d5539db0d2e434d5458fd611542c21732815a4b09b436021017246e207e1"
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/americas/celt-with-deity-331d0c/preview-86674a74255b.glb",
+        "bytes": 908152,
+        "sha256": "86674a74255bb57835a7ee5bf2620de935b381f174ee2264613e36a44fa66e31",
+        "corsAllowOrigin": "https://atrium.earth",
+        "requestOrigin": "https://atrium.earth"
+      }
+    },
+    {
+      "slug": "asia/elephant-shaped-jar-5457e0",
+      "sourceUid": "5457e055974041c28b24edd77c29b0fe",
+      "status": "pass",
+      "startedAt": "2026-10-22T07:46:14.757Z",
+      "checkedAt": "2026-10-22T07:46:15.451Z",
+      "page": {
+        "url": "https://atrium.earth/works/asia/elephant-shaped-jar-5457e0/",
+        "status": 200,
+        "sha256": "d82466de6e2bca2db44fdc032951ffd2ea707dbf5728ef3ccdc9502c2db8e34f",
+        "bytes": 31522,
+        "exactModelURLPresent": true
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/asia/elephant-shaped-jar-5457e0/thumb.webp",
+        "bytes": 49830,
+        "sha256": "9bb08038e0c76f06b83e5b741c5038483c1f0b55d57b86b226e6b83a281c8d69"
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/asia/elephant-shaped-jar-5457e0/preview-56429ca4e605.glb",
+        "bytes": 524160,
+        "sha256": "56429ca4e6052547b48422d4719b91253e964b6d1658143be324ae705d0759cc",
+        "corsAllowOrigin": "https://atrium.earth",
+        "requestOrigin": "https://atrium.earth"
+      }
+    },
+    {
+      "slug": "oceania/moai-miro-half-body-figure-0951b7",
+      "sourceUid": "0951b7e4611f4df2bc569a80f518d41b",
+      "status": "pass",
+      "startedAt": "2026-10-22T07:46:15.451Z",
+      "checkedAt": "2026-10-22T07:46:16.560Z",
+      "page": {
+        "url": "https://atrium.earth/works/oceania/moai-miro-half-body-figure-0951b7/",
+        "status": 200,
+        "sha256": "a7d0ad846660e4edfaefbc3e0fc0b0a2fb0a09450ab97bde549c7c1501535824",
+        "bytes": 31761,
+        "exactModelURLPresent": true
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/oceania/moai-miro-half-body-figure-0951b7/thumb.webp",
+        "bytes": 18054,
+        "sha256": "2702cd81c88622e8be6a99f5331a91c48f1b320435b6a65c139ad35f9c9cd634"
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/oceania/moai-miro-half-body-figure-0951b7/preview-97aa85a1d0a6.glb",
+        "bytes": 1267128,
+        "sha256": "97aa85a1d0a6819a6f8f2281965f68ca7749853ecc28f101efd3fd3423ed7354",
+        "corsAllowOrigin": "https://atrium.earth",
+        "requestOrigin": "https://atrium.earth"
+      }
+    },
+    {
+      "slug": "europe/statuette-of-a-polish-nobleman-d8046d",
+      "sourceUid": "d8046d3ab1a64ac99e46573839f48b8e",
+      "status": "pass",
+      "startedAt": "2026-10-22T07:46:15.666Z",
+      "checkedAt": "2026-10-22T07:46:17.070Z",
+      "page": {
+        "url": "https://atrium.earth/works/europe/statuette-of-a-polish-nobleman-d8046d/",
+        "status": 200,
+        "sha256": "f247fba14c1177afd062cb24c1034840b8cece91864eb48c818cebade9cf3414",
+        "bytes": 33105,
+        "exactModelURLPresent": true
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/europe/statuette-of-a-polish-nobleman-d8046d/thumb.webp",
+        "bytes": 34810,
+        "sha256": "9d38a5977ac238299497eb1ffa076fe9cebb91e8da7d8eb449d26b08e19bf309"
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/europe/statuette-of-a-polish-nobleman-d8046d/preview-b781343225cf.glb",
+        "bytes": 1462768,
+        "sha256": "b781343225cfd5ac7964a10922995bbbe21dba86363b56e472e8450bc5c67497",
+        "corsAllowOrigin": "https://atrium.earth",
+        "requestOrigin": "https://atrium.earth"
+      }
+    },
+    {
+      "slug": "asia/adoring-attendant-from-a-buddhist-shrine-cleveland-1943-395-690856",
+      "sourceUid": "690856370c234dd6b03db55fd157a607",
+      "status": "pass",
+      "startedAt": "2026-10-22T07:46:15.784Z",
+      "checkedAt": "2026-10-22T07:46:17.210Z",
+      "page": {
+        "url": "https://atrium.earth/works/asia/adoring-attendant-from-a-buddhist-shrine-cleveland-1943-395-690856/",
+        "status": 200,
+        "sha256": "0a21f270b1152e85adf8d6f6b6f138b6df27f762009e754cf18bf93e52456da1",
+        "bytes": 32111,
+        "exactModelURLPresent": true
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/asia/adoring-attendant-from-a-buddhist-shrine-cleveland-1943-395-690856/thumb.webp",
+        "bytes": 35390,
+        "sha256": "5e457e8f431142089e8c972348ad1519d34a07c3f3d201dbb29dff9ad2306598"
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/asia/adoring-attendant-from-a-buddhist-shrine-cleveland-1943-395-690856/preview-91370968d1cd.glb",
+        "bytes": 1507072,
+        "sha256": "91370968d1cd9d9408272bfe74da9518ea3047f4962df3762e360323621041e9",
+        "corsAllowOrigin": "https://atrium.earth",
+        "requestOrigin": "https://atrium.earth"
+      }
+    }
+  ],
+  "limits": "Actual complete live page/model/thumbnail readbacks and exact hashes/bytes; model CORS verified. No physical-device AR or separate live interaction claim. Private original-source archive already verified; local source cleanup not performed."
+}
