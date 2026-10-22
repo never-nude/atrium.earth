@@ -1,6 +1,6 @@
 {
   "schema": "atrium-auto-ingest-candidates/1",
-  "generated_at": "2026-10-22T15:28:44.930Z",
+  "generated_at": "2026-10-22T15:42:21.315Z",
   "logical_batch_id": "artist-trios-20261022",
   "chunk": 1,
   "expected_count": 3,
@@ -37,7 +37,7 @@
       ],
       "download_api_url": "https://api.sketchfab.com/v3/models/7346f61f787748fcb0dd8089cc7acd91/download",
       "download_format": "glb",
-      "download_size_bytes": 41800336,
+      "download_size_bytes": 31593464,
       "downloadable_verified": true,
       "downloadable_verified_at": "2026-10-22T15:23:43.900730+00:00",
       "license": "CC BY 4.0",
@@ -61,7 +61,7 @@
       "texture_count": 1,
       "source_geometry": {
         "format": "glb",
-        "bytes": 41800336,
+        "bytes": 31593464,
         "faces": null,
         "api_detail_faces": 896896
       },
@@ -72,11 +72,13 @@
       "evidence": [
         "https://api.sketchfab.com/v3/models/7346f61f787748fcb0dd8089cc7acd91 — Fresh full public detail verifies downloadable=true, CC BY4.0, uploader and V&A cast description.",
         "https://api.vam.ac.uk/v2/museumobject/O12515 — Full primary JSON identifies accession REPRO.1896-2, Giuseppe Lelli cast ca1895 made Florence, painted plaster, original by Donatello1418–20; dimensions empty.",
-        "https://api.sketchfab.com/v3/search?type=models&q=Donatello&downloadable=true&cursor=24 — Fresh full search record contains archives.glb.size=41800336; detail.archives is null."
+        "https://api.sketchfab.com/v3/search?type=models&q=Donatello&downloadable=true&cursor=24 — Fresh full search record contains archives.glb.size=41800336; detail.archives is null.",
+        "https://github.com/never-nude/atrium.earth/actions/runs/39805293144 — Selected unchanged authenticated provider GLB independently measured from complete SHA-256/CRC-verified source artifact: 31593464 bytes, SHA-256 3ed03303915f7ea0fbf93251fc96119a3d8fb6e74616845118ac54f254c7abaa. Public search archive size describes a different delivery representation."
       ],
       "visual_qa": "Provider thumbnail actually viewed and approved for acquisition. Full native/production capture, orientation, materials and final thumbnail review remain required after acquisition.",
       "batch_sequence": 1,
-      "batch_chunk": 1
+      "batch_chunk": 1,
+      "expected_sha256": "3ed03303915f7ea0fbf93251fc96119a3d8fb6e74616845118ac54f254c7abaa"
     },
     {
       "source": "sketchfab",
@@ -111,7 +113,7 @@
       ],
       "download_api_url": "https://api.sketchfab.com/v3/models/d2071f42303c46e0881cd5425852af78/download",
       "download_format": "glb",
-      "download_size_bytes": 39977396,
+      "download_size_bytes": 24494320,
       "downloadable_verified": true,
       "downloadable_verified_at": "2026-10-22T15:26:20.785070Z",
       "license": "CC BY 4.0",
@@ -135,7 +137,7 @@
       "texture_count": 1,
       "source_geometry": {
         "format": "glb",
-        "bytes": 39977396,
+        "bytes": 24494320,
         "faces": 628714,
         "api_detail_faces": 628714
       },
@@ -146,12 +148,14 @@
         "https://api.sketchfab.com/v3/models/d2071f42303c46e0881cd5425852af78 — Fresh public detail on 2026-10-22T15:26:20.785070Z confirms downloadable=true and CC BY4.0; unmodified full provider description saved privately.",
         "https://api.sketchfab.com/v3/search?type=models&q=coquelin&downloadable=true&count=24 — Exact UID row0 has archives.glb.size39,977,396B, faceCount628,714 and textureCount1; selected format GLB. No download/auth endpoint requested.",
         "https://comedie-francaise.bibli.fr/ark:/63615/ntkddzq2n5 — Institutional record supports Bourdelle’s1893Coquelin/Crispin composition, but identifies a different documented1989Clémenticast3; not an exact cast binding for this scan.",
-        "Current all2325catalog rows including hidden and identity corrections checked; no Coquelin/Crispin composition or exact providerUID duplicate. Existing Bourdelle Héraklèsarcher and Alvearhorse are different works."
+        "Current all2325catalog rows including hidden and identity corrections checked; no Coquelin/Crispin composition or exact providerUID duplicate. Existing Bourdelle Héraklèsarcher and Alvearhorse are different works.",
+        "https://github.com/never-nude/atrium.earth/actions/runs/39805293144 — Selected unchanged authenticated provider GLB independently measured from complete SHA-256/CRC-verified source artifact: 24494320 bytes, SHA-256 3a6cd729037a73dc378908eb001e4a32104105dc9cd6d972ee6ae0fe1251c542. Public search archive size describes a different delivery representation."
       ],
       "visual_qa": "Provider thumbnail actually viewed and approved for acquisition. Full native/production capture, orientation, materials and final thumbnail review remain required after acquisition.",
       "source_geometry_face_count": 628714,
       "batch_sequence": 2,
-      "batch_chunk": 1
+      "batch_chunk": 1,
+      "expected_sha256": "3a6cd729037a73dc378908eb001e4a32104105dc9cd6d972ee6ae0fe1251c542"
     },
     {
       "source": "sketchfab",
@@ -184,7 +188,7 @@
       ],
       "download_api_url": "https://api.sketchfab.com/v3/models/dfb63bdbb7cd4d438d4e1daa03dbcb68/download",
       "download_format": "glb",
-      "download_size_bytes": 4413876,
+      "download_size_bytes": 3751796,
       "downloadable_verified": true,
       "downloadable_verified_at": "2026-10-22T15:26:31.380946+00:00",
       "download_verification_scope": "Fresh exact public API detail isDownloadable=true plus fresh search archives.glb.size; authenticated acquisition not performed. Selected bytes remain provisional until acquisition verifies full bytes and SHA256.",
@@ -209,7 +213,7 @@
       "texture_count": 1,
       "source_geometry": {
         "format": "glb",
-        "bytes": 4413876,
+        "bytes": 3751796,
         "faces": null,
         "api_detail_faces": 116712
       },
@@ -219,12 +223,14 @@
       "evidence": [
         "https://api.sketchfab.com/v3/models/dfb63bdbb7cd4d438d4e1daa03dbcb68 — Fresh exact detail: downloadable=true, CC BY-SA4.0 exact license URL, artist and model date.",
         "https://api.sketchfab.com/v3/search?type=models&downloadable=true&q=Dalou&count=100 — Fresh exact UID search result: GLB4413876bytes,1texture,116712faces,61031vertices; metadata only.",
-        "https://www.musee-orsay.fr/en/artworks/grand-paysan-6294 — Composition context only, not an identification of this scanned cast. Direct HTTP fetch returned403; page text was readable through web.open."
+        "https://www.musee-orsay.fr/en/artworks/grand-paysan-6294 — Composition context only, not an identification of this scanned cast. Direct HTTP fetch returned403; page text was readable through web.open.",
+        "https://github.com/never-nude/atrium.earth/actions/runs/39805293144 — Selected unchanged authenticated provider GLB independently measured from complete SHA-256/CRC-verified source artifact: 3751796 bytes, SHA-256 c009e59f3adab38a54185d1acbeccc6a1bba4b5b8554634ad1ed972c9919308a. Public search archive size describes a different delivery representation."
       ],
       "visual_qa": "Provider thumbnail actually viewed and approved for acquisition. Full native/production capture, orientation, materials and final thumbnail review remain required after acquisition.",
       "source_geometry_face_count": null,
       "batch_sequence": 3,
-      "batch_chunk": 1
+      "batch_chunk": 1,
+      "expected_sha256": "c009e59f3adab38a54185d1acbeccc6a1bba4b5b8554634ad1ed972c9919308a"
     }
   ]
 }

@@ -142,6 +142,10 @@ The owner's October 21 direction for the following acquisition round is artist-l
 
 The owner clarified on October 22 that crowd-pleaser acquisitions should move promptly past problematic scans. Skip incomplete or damaged captures rather than spending a batch repairing or investigating them. An authentic historical fragment can still qualify when its identity, surviving form and capture limits are clear; do not reconstruct missing surfaces to meet a count.
 
+The owner's artist-led direction, reaffirmed October 22, is to focus each round on two or three important makers beyond Rodin and Michelangelo. Keep searches bounded, choose ready strong works, and publish a small accepted set without padding a quota or extending the round into repair waves.
+
+Sketchfab public search `archives.glb.size` can describe a different delivery representation from the authenticated download endpoint. Freeze selected source bytes from authenticated download metadata or a completely verified original download, and preserve full SHA-256 pins once measured; public listing sizes alone are not exact source-package proof.
+
 Assign every addition through the existing wing rules using the work's origin,
 not the location of the holding museum. Review the curated exhibitions and add
 works only where the theme fits, with a caption explaining that connection.

@@ -72,6 +72,8 @@ jobs:
           echo "Cloudflare R2 credentials are available."
 
       - name: Free runner disk
+        # The bounded artist round has only three small sources.
+        if: ${{ inputs.batch != 'artist-trios-20261022' }}
         run: |
           sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL
           df -h /
@@ -113,8 +115,16 @@ jobs:
       - name: Install Playwright Chromium
         id: playwright
         run: |
-          npx playwright install --with-deps chromium
-          CHROME_PATH="$(node -e 'console.log(require("playwright").chromium.executablePath())')"
+          # Prefer the runner's working system Chrome for the small artist round;
+          # retain the existing installation path when it is unavailable.
+          CHROME_PATH=""
+          if [ "$BATCH" = "artist-trios-20261022" ]; then
+            CHROME_PATH="$(command -v google-chrome || command -v google-chrome-stable || true)"
+          fi
+          if [ -z "$CHROME_PATH" ] || [ ! -x "$CHROME_PATH" ]; then
+            npx playwright install --with-deps chromium
+            CHROME_PATH="$(node -e 'console.log(require("playwright").chromium.executablePath())')"
+          fi
           test -x "$CHROME_PATH" || { echo "Playwright Chromium not found at '$CHROME_PATH'"; exit 1; }
           echo "chrome-path=$CHROME_PATH" >> "$GITHUB_OUTPUT"
 
