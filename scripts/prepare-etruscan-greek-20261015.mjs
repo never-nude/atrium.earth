@@ -9,7 +9,7 @@ import { candidateIsKnown, catalogIndexes } from './ingest-utils.mjs';
 
 export const BATCH = 'etruscan-greek-20261015';
 export const EXPECTED_COUNT = 60;
-const SUPPORTED_BATCHES = new Set([BATCH, 'beautiful-expansion-20261019']);
+const SUPPORTED_BATCHES = new Set([BATCH, 'beautiful-expansion-20261019', 'crowd-pleasers-20261021']);
 const ROOT = path.resolve(import.meta.dirname, '..');
 const UID = /^[a-f0-9]{32}$/;
 const SHA = /^[a-f0-9]{64}$/;
@@ -223,7 +223,7 @@ export async function preflightMetadata(documents, { token, batch = BATCH, fetch
   sleep = milliseconds => new Promise(resolve => setTimeout(resolve, milliseconds)), intervalMs = 5000,
   retryBudgetMs = 600000, requestTimeoutMs = 60000 } = {}) {
   if (!text(token)) throw new Error('SKETCHFAB_TOKEN is required for metadata preflight');
-  if (![BATCH, 'beautiful-expansion-20261019'].includes(batch)) throw new Error('Unsupported metadata batch');
+  if (!SUPPORTED_BATCHES.has(batch)) throw new Error('Unsupported metadata batch');
   if (!Number.isSafeInteger(intervalMs) || intervalMs < 5000) throw new Error('Metadata requests must be spaced at least 5000 ms apart');
   const leads = new Map();
   for (const document of documents) {

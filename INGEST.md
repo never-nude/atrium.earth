@@ -138,6 +138,8 @@ cultural significance is exceptional, with an Eames chair as the stated benchmar
 ordinary household utility alone is insufficient. State the specific significance
 when selecting a design object.
 
+The owner's October 21 direction for the following acquisition round is artist-led: build meaningful groups around notable makers from antiquity to the present, with Canova, Bernini and John Chamberlain as explicit examples. The current sixty-work crowd-pleaser batch prioritizes recognizable works and visual appeal; this future direction does not schedule another acquisition or relax model, identity, licensing or quality checks.
+
 Assign every addition through the existing wing rules using the work's origin,
 not the location of the holding museum. Review the curated exhibitions and add
 works only where the theme fits, with a caption explaining that connection.
