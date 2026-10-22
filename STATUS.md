@@ -968,3 +968,5 @@ Commit `1afb322` is deployment-verified. [GitHub Pages run 37334355346](https://
 - Candidate totals: 2,295 catalog records / 2,277 public / 18 hidden. Existing global dimension/eligibility test gaps documented above remain unchanged. Next: complete build/release checks, publish this continuation once, verify live delivery, then stop this batch.
 
 - Continuation release checks passed: production build, assets, featured selection, wings and additions. Publication pending at this checkpoint.
+
+- Continuation verified live: release `e0f1587b4f5dfde45be5ff326ac41121e21d08fd`, Pages run `39725505095` succeeded. All 55 cumulative live work pages returned 200; full model and thumbnail SHA-256/bytes and model CORS passed. Newest contains all 55 and all seven cumulative exhibition placements are present. The 39 new works are live; five quality holds remain unpublished. Batch review is complete; no further acquisition/review jobs or cleanup are running here.
