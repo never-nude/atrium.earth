@@ -2,7 +2,7 @@
   "schema": "atrium-independent-release-audit/1",
   "batch": "rodin-bulk-20261023",
   "baseline_commit": "6c85d47883fda38379efb1d30ca994ae183ffb85",
-  "checked_at": "2026-10-23T19:00:12.234778+00:00",
+  "checked_at": "2026-10-23T19:02:21.469018+00:00",
   "checks": [
     {
       "name": "catalog-counts-and-unique-slugs",
@@ -166,21 +166,31 @@
       "passed": true
     },
     {
+      "name": "permanent-private-archive-summary-complete",
+      "passed": true,
+      "detail": {
+        "summary_sha256": "dcf8d6b0d3c11ea23ed6f9c6035d046407b704ec945d5cfebd1baa6dc3dcbbd5",
+        "signed_receipts_independently_revalidated": 22,
+        "source_pin_bindings_independently_revalidated": 21,
+        "packaged_files_hashchecked": 266,
+        "verified_package_bytes": 405214301,
+        "public_proof": "rodin-bulk-20261023-archive.json"
+      }
+    },
+    {
       "name": "changed-public-data-and-documents-no-private-paths-drive-links-signed-urls-or-token-fields",
       "passed": true,
       "detail": {
-        "files_checked": 11,
+        "files_checked": 12,
         "findings": []
       }
     }
   ],
   "findings": [],
-  "pending": [
-    "Permanent private archive final signed full-readback summary"
-  ],
+  "pending": [],
   "passed_completed_checks": true,
   "ready_for_deployment_data_and_asset_gate": true,
-  "ready_for_deployment_including_archive_gate": false,
+  "ready_for_deployment_including_archive_gate": true,
   "live_deployment_verified": false,
   "observations": [
     "Owner explicitly requested 20\u201330 works by one artist and publication before detailed fixes. 21 provider-attributed Rodin captures satisfy this range.",

@@ -1,7 +1,7 @@
 {
   "batch": "rodin-bulk-20261023",
   "ingested_at": "2026-10-23T18:57:13.014Z",
-  "state": "release-ready-presentation-review-deferred",
+  "state": "deployed-and-live-verified-presentation-review-deferred",
   "baseline_count": 2334,
   "requested_artist": "Auguste Rodin",
   "requested_range": [
@@ -1513,5 +1513,12 @@
     "presentation_review": "deferred-by-owner"
   },
   "render_receipt": "rodin-bulk-20261023-renders.json",
-  "independent_audit": "rodin-bulk-20261023-independent-audit.json"
+  "independent_audit": "rodin-bulk-20261023-independent-audit.json",
+  "deployment": {
+    "commit": "ecad0df519901e4c426a12f8a9c95360ebb9afa1",
+    "run_url": "https://github.com/never-nude/atrium.earth/actions/runs/40008222397",
+    "conclusion": "success"
+  },
+  "live_verification": "rodin-bulk-20261023-live.json",
+  "live_browser_check": "rodin-bulk-20261023-live-browser.json"
 }
