@@ -33245,7 +33245,7 @@
       "measurementRegion": {
         "method": "position-welded connected triangles",
         "description": "The sculpture is separate from the modern pedestal. Connected components ranks 0, 1 and 3 contain the marble group; rank 2 is the rectangular pedestal. Their union runs from normalized Y -0.1190040436654394 to 0.5. Use the confirmed 197.5 cm height of the marble group, retaining the pedestal at the same uniform scale.",
-        "weldToleranceNormalizedUnits": 0.000001,
+        "weldToleranceNormalizedUnits": 1e-06,
         "ranksByDescendingTriangleCount": [
           0,
           1,
@@ -69278,7 +69278,7 @@
       "measurementRegion": {
         "method": "position-welded connected triangles",
         "description": "Connected component rank 0 is the rigid monitor body; all display/button components remain within its lateral body endpoints. Hanging cable components extend farther left and below and are excluded from the reference. Use the museum body-only width 58.4 cm for the rank-0 X span, retaining all cables at that scale.",
-        "weldToleranceNormalizedUnits": 0.000001,
+        "weldToleranceNormalizedUnits": 1e-06,
         "ranksByDescendingTriangleCount": [
           0
         ],
@@ -76991,7 +76991,7 @@
       "measurementRegion": {
         "method": "position-welded connected triangles",
         "description": "Connected component rank 0 is the complete sculpture, including its lowest foot/curved lower edge; rank 1 is the added green platform. All other sculpture fragments and the apple are within rank-0 height. Use the scan creator’s explicitly approximate 57 cm sculpture height, excluding the green platform from the reference while retaining it in the scene.",
-        "weldToleranceNormalizedUnits": 0.000001,
+        "weldToleranceNormalizedUnits": 1e-06,
         "ranksByDescendingTriangleCount": [
           0
         ],
@@ -111640,6 +111640,118 @@
     "geometryReviewNote": "The full standing figure, sleeve-rolling arms, clothing, shoes and integral base match in all native and production directions. Small ragged capture margins remain near the base edge; the broad plain underside is modeled rather than documented physical underside detail.",
     "calibrationBlockers": [
       "Published physical measurements have not been matched to exact measurement regions of the immutable final derivative."
+    ]
+  },
+  "greek/mattei-amazon-smk-kas232": {
+    "status": "documented",
+    "basis": "object",
+    "dimensions": "211 × 76 × 87.5 cm (cast, including support)",
+    "sourceUrl": "https://api.smk.dk/api/v1/art?object_number=KAS232",
+    "sourceTitle": "SMK – National Gallery of Denmark, Royal Cast Collection — Mattei Amazon — SMK Plaster Cast",
+    "checked": "2026-10-23",
+    "note": "Published measurements refer to the identified physical object; source and serving geometry have not been calibrated to exact life size.",
+    "spatialNote": "Physical measurements have not been matched to exact regions of this model. Display size is adjustable.",
+    "calibrationReady": false,
+    "geometryStatus": "reviewed-blocked",
+    "geometryReviewNote": "The digitized object is the named historic plaster cast, with its physical restorations and supports retained. Physical cast dimensions are documented, but native mesh units are uncalibrated. STL carries no textures or material. Display uses a documented restrained neutral plaster appearance.",
+    "calibrationBlockers": [
+      "Published physical measurements have not been matched to exact measurement regions of the final derivative."
+    ]
+  },
+  "greek/eros-stringing-bow-smk-kas1294": {
+    "status": "documented",
+    "basis": "object",
+    "dimensions": "132 × 82.5 × 56.5 cm (cast, including support)",
+    "sourceUrl": "https://api.smk.dk/api/v1/art?object_number=KAS1294",
+    "sourceTitle": "SMK – National Gallery of Denmark, Royal Cast Collection — Eros Stringing His Bow — SMK Plaster Cast",
+    "checked": "2026-10-23",
+    "note": "Published measurements refer to the identified physical object; source and serving geometry have not been calibrated to exact life size.",
+    "spatialNote": "Physical measurements have not been matched to exact regions of this model. Display size is adjustable.",
+    "calibrationReady": false,
+    "geometryStatus": "reviewed-blocked",
+    "geometryReviewNote": "The digitized object is the named historic plaster cast, with its physical restorations and supports retained. Physical cast dimensions are documented, but native mesh units are uncalibrated. STL carries no textures or material. Display uses a documented restrained neutral plaster appearance.",
+    "calibrationBlockers": [
+      "Published physical measurements have not been matched to exact measurement regions of the final derivative."
+    ]
+  },
+  "modern/reclining-figure-moore-lh452-elmwood": {
+    "status": "documented",
+    "basis": "object",
+    "dimensions": "114.3 × 261.6 × 86.4 cm",
+    "sourceUrl": "https://www.mfa.org/exhibition/georgia-okeeffe-and-henry-moore",
+    "sourceTitle": "The Henry Moore Foundation — Reclining Figure",
+    "checked": "2026-10-23",
+    "note": "Published measurements refer to the identified physical object; source and serving geometry have not been calibrated to exact life size.",
+    "spatialNote": "Physical measurements have not been matched to exact regions of this model. Display size is adjustable.",
+    "calibrationReady": false,
+    "geometryStatus": "reviewed-blocked",
+    "geometryReviewNote": "The surviving sculpture is recorded from all four sides and above; its dark underside is uncaptured and open. Softness and baked lighting in the scan do not reproduce every detail of the carved wood surface. LH 452 identifies this elmwood composition, distinct from the Tate’s 1938 Reclining Figure already in Atrium.",
+    "calibrationBlockers": [
+      "Published physical measurements have not been matched to exact measurement regions of the final derivative."
+    ]
+  },
+  "modern/woman-walking-giacometti-venice-pg133": {
+    "status": "documented",
+    "basis": "object",
+    "dimensions": "145 × 27 × 37.5 cm",
+    "sourceUrl": "https://www.guggenheim-venice.it/en/art/works/woman-walking-2/",
+    "sourceTitle": "Peggy Guggenheim Collection, Venice — Woman Walking",
+    "checked": "2026-10-23",
+    "note": "Published measurements refer to the identified physical object; source and serving geometry have not been calibrated to exact life size.",
+    "spatialNote": "Physical measurements have not been matched to exact regions of this model. Display size is adjustable.",
+    "calibrationReady": false,
+    "geometryStatus": "reviewed-blocked",
+    "geometryReviewNote": "The absent head and arms belong to the sculpture’s intended form. The tiled courtyard patch and plinth remain attached to the capture. Bottom surfaces are uncaptured; some surface rippling is visible.",
+    "calibrationBlockers": [
+      "Published physical measurements have not been matched to exact measurement regions of the final derivative."
+    ]
+  },
+  "modern/she-goat-picasso-moma-611-1959": {
+    "status": "documented",
+    "basis": "object",
+    "dimensions": "117.7 × 143.1 × 71.4 cm",
+    "sourceUrl": "https://www.moma.org/collection/works/81670",
+    "sourceTitle": "The Museum of Modern Art, New York — She-Goat",
+    "checked": "2026-10-23",
+    "note": "Published measurements refer to the identified physical object; source and serving geometry have not been calibrated to exact life size.",
+    "spatialNote": "Physical measurements have not been matched to exact regions of this model. Display size is adjustable.",
+    "calibrationReady": false,
+    "geometryStatus": "reviewed-blocked",
+    "geometryReviewNote": "The goat and integral sculpture base are recorded in the round; garden pavement and ivy remain around the subject. The broad floor patch has an open underside. Surface lighting is baked into the photogrammetric texture.",
+    "calibrationBlockers": [
+      "Published physical measurements have not been matched to exact measurement regions of the final derivative."
+    ]
+  },
+  "renaissance/saint-michael-archangel-andrea-della-robbia-met-60-127-2": {
+    "status": "documented",
+    "basis": "object",
+    "dimensions": "79.1 × 157.2 cm",
+    "sourceUrl": "https://www.metmuseum.org/art/collection/search/202499",
+    "sourceTitle": "The Metropolitan Museum of Art, New York — Saint Michael the Archangel",
+    "checked": "2026-10-23",
+    "note": "Published measurements refer to the identified physical object; source and serving geometry have not been calibrated to exact life size.",
+    "spatialNote": "Physical measurements have not been matched to exact regions of this model. Display size is adjustable.",
+    "calibrationReady": false,
+    "geometryStatus": "reviewed-blocked",
+    "geometryReviewNote": "Frontal relief representation: front and visible side thickness are recorded; the wall-facing reverse is mostly uncaptured. The museum reports historical damage and restoration to the physical relief; the source records its present restored appearance. Do not describe this capture as a complete freestanding object.",
+    "calibrationBlockers": [
+      "Published physical measurements have not been matched to exact measurement regions of the final derivative."
+    ]
+  },
+  "modern/pink-panther-koons-moma-187-1996": {
+    "status": "documented",
+    "basis": "object",
+    "dimensions": "104.1 × 52 × 48.2 cm",
+    "sourceUrl": "https://www.moma.org/collection/works/81095/",
+    "sourceTitle": "The Museum of Modern Art, New York — Pink Panther",
+    "checked": "2026-10-23",
+    "note": "Published measurements refer to the identified physical object; source and serving geometry have not been calibrated to exact life size.",
+    "spatialNote": "Physical measurements have not been matched to exact regions of this model. Display size is adjustable.",
+    "calibrationReady": false,
+    "geometryStatus": "reviewed-blocked",
+    "geometryReviewNote": "The figure and character are complete above their base in the reviewed source. Ears, face and hair are softly and noisily reconstructed; baked texture does not faithfully convey glossy porcelain. The bottom is open and base edges are very thin. Keep these source limitations visible in the record.",
+    "calibrationBlockers": [
+      "Published physical measurements have not been matched to exact measurement regions of the final derivative."
     ]
   }
 }

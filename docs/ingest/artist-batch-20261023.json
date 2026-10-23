@@ -1,0 +1,400 @@
+{
+  "batch": "artist-batch-20261023",
+  "ingested_at": "2026-10-23T17:33:41.485Z",
+  "state": "release-checks-passed-ready-for-deployment",
+  "baseline_count": 2327,
+  "acquired_sources": 14,
+  "selected_count": 7,
+  "selected": [
+    {
+      "slug": "greek/mattei-amazon-smk-kas232",
+      "source_uid": "smk-KAS232",
+      "title": "Mattei Amazon \u2014 SMK Plaster Cast",
+      "artist": "Malpieri workshop, after the Mattei Amazon type attributed to Phidias",
+      "source_url": "https://open.smk.dk/artwork/image/KAS232",
+      "source_record_url": "https://api.smk.dk/api/v1/art?object_number=KAS232",
+      "license": "Public Domain Mark 1.0",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "license_scope": "SMK marks the institutional digitization of this historical plaster cast Public Domain Mark 1.0. No scan license is being used to assert a broader clearance of unrelated third-party materials.",
+      "source_sha256": "c1d29924b61ab2921f73fa85799ff09ff1f2306c0f8bd60c67829e2a37a26ce0",
+      "source_bytes": 231669796,
+      "source_faces": 3217624,
+      "preview_sha256": "d913b274df9981cc96d609c18156d3aef6572b95519a03381a939f2c91428452",
+      "preview_bytes": 382336,
+      "preview_faces": 250000,
+      "processing": "STL duplicated facet-normal positions welded on disposable derivative; repository generate-previews.py simplify(mesh,250000) quadric decimation, exact source neutral material restored and equality-checked; glTF-Transform optimize with Draco and no further simplification. Vertex normals recalculated for reduced mesh. No crop,hole filling,reconstruction,pose transform or source modification.",
+      "measured_integrity": {
+        "source": {
+          "faces": 3217624,
+          "bratio": 0.0,
+          "ncomp": 1,
+          "largest_frac": 1.0
+        },
+        "preview": {
+          "faces": 249987,
+          "bratio": 0.0,
+          "ncomp": 1,
+          "largest_frac": 1.0
+        },
+        "status": "pass"
+      },
+      "cautions": [
+        "The digitized object is the named historic plaster cast, with its physical restorations and supports retained.",
+        "Physical cast dimensions are documented, but native mesh units are uncalibrated.",
+        "STL carries no textures or material. Display uses a documented restrained neutral plaster appearance."
+      ],
+      "spatial_eligible": false
+    },
+    {
+      "slug": "greek/eros-stringing-bow-smk-kas1294",
+      "source_uid": "smk-KAS1294",
+      "title": "Eros Stringing His Bow \u2014 SMK Plaster Cast",
+      "artist": "Silvio Dolce, after the Eros type attributed to Lysippos",
+      "source_url": "https://open.smk.dk/artwork/image/KAS1294",
+      "source_record_url": "https://api.smk.dk/api/v1/art?object_number=KAS1294",
+      "license": "Public Domain Mark 1.0",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "license_scope": "SMK marks the institutional digitization of this historical plaster cast Public Domain Mark 1.0. No scan license is being used to assert a broader clearance of unrelated third-party materials.",
+      "source_sha256": "3906966d53ffa7eca2381d82d9cb4afc5d34ed86768abd7013ffa0103e34f554",
+      "source_bytes": 144001480,
+      "source_faces": 2000008,
+      "preview_sha256": "a415863c73cc2cebc7d61fb2695fd57d88142fe3f75b74eed1a3568c88df3ca7",
+      "preview_bytes": 382712,
+      "preview_faces": 250000,
+      "processing": "STL duplicated facet-normal positions welded on disposable derivative; repository generate-previews.py simplify(mesh,250000) quadric decimation, exact source neutral material restored and equality-checked; glTF-Transform optimize with Draco and no further simplification. Vertex normals recalculated for reduced mesh. No crop,hole filling,reconstruction,pose transform or source modification.",
+      "measured_integrity": {
+        "source": {
+          "faces": 2000008,
+          "bratio": 0.0,
+          "ncomp": 1,
+          "largest_frac": 1.0
+        },
+        "preview": {
+          "faces": 249999,
+          "bratio": 0.0,
+          "ncomp": 1,
+          "largest_frac": 1.0
+        },
+        "status": "pass"
+      },
+      "cautions": [
+        "The digitized object is the named historic plaster cast, with its physical restorations and supports retained.",
+        "Physical cast dimensions are documented, but native mesh units are uncalibrated.",
+        "STL carries no textures or material. Display uses a documented restrained neutral plaster appearance."
+      ],
+      "spatial_eligible": false
+    },
+    {
+      "slug": "modern/reclining-figure-moore-lh452-elmwood",
+      "source_uid": "4AE783DD-8B29-4EA0-AD49-BCDC9BACDF88",
+      "title": "Reclining Figure",
+      "artist": "Henry Moore",
+      "source_url": "https://poly.cam/explore/capture/4AE783DD-8B29-4EA0-AD49-BCDC9BACDF88/Henry%2BMoore",
+      "source_record_url": "https://www.mfa.org/exhibition/georgia-okeeffe-and-henry-moore",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "license_scope": "CC BY 4.0 applies to the published community capture. It does not establish permission for the depicted artwork; underlying artwork rights remain with their respective holders.",
+      "source_sha256": "ebf87989da4f4511e4cd1969801493cef1a121ef207301100e94d1d2dfc9e12c",
+      "source_bytes": 8878948,
+      "source_faces": 78380,
+      "preview_sha256": "c1174581fa4df07b8e5ed2dae40bb9b13e0ce906975f396c1c49ed17b287a087",
+      "preview_bytes": 1179572,
+      "preview_faces": 78380,
+      "processing": "Repo generate-previews.py optimize_glb command sequence; metalrough normalization, Draco,WebP2048,simplify error0.005. Geometry-only decimation where target is below source; no reconstruction,crop,hole filling,paint changes or pose transforms.",
+      "measured_integrity": {
+        "source": {
+          "faces": 78380,
+          "bratio": 0.0,
+          "ncomp": 1,
+          "largest_frac": 1.0
+        },
+        "preview": {
+          "faces": 78380,
+          "bratio": 0.0,
+          "ncomp": 1,
+          "largest_frac": 1.0
+        },
+        "status": "pass"
+      },
+      "cautions": [
+        "The surviving sculpture is recorded from all four sides and above; its dark underside is uncaptured and open.",
+        "Softness and baked lighting in the scan do not reproduce every detail of the carved wood surface.",
+        "LH 452 identifies this elmwood composition, distinct from the Tate\u2019s 1938 Reclining Figure already in Atrium."
+      ],
+      "spatial_eligible": false
+    },
+    {
+      "slug": "modern/woman-walking-giacometti-venice-pg133",
+      "source_uid": "B035A9F3-4DF0-4EFB-9DF9-4E43CF1CD356",
+      "title": "Woman Walking",
+      "artist": "Alberto Giacometti",
+      "source_url": "https://poly.cam/explore/capture/B035A9F3-4DF0-4EFB-9DF9-4E43CF1CD356/Woman%2BWalking%2B%2BAlberto%2BGiacometti",
+      "source_record_url": "https://www.guggenheim-venice.it/en/art/works/woman-walking-2/",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "license_scope": "CC BY 4.0 applies to the published community capture. It does not establish permission for the depicted artwork; underlying artwork rights remain with their respective holders.",
+      "source_sha256": "05d90688d743a5417ae1fde379eeda6f405e4667f1d1a2044b0fbde557bba2c0",
+      "source_bytes": 37860504,
+      "source_faces": 68974,
+      "preview_sha256": "c29d46c67e1b39bc893246ce3b441c5e06f8d2e4c226e2e1fb29a9ff6a0a115f",
+      "preview_bytes": 1760964,
+      "preview_faces": 68974,
+      "processing": "Repo generate-previews.py optimize_glb command sequence; metalrough normalization, Draco,WebP2048,simplify error0.005. Geometry-only decimation where target is below source; no reconstruction,crop,hole filling,paint changes or pose transforms.",
+      "measured_integrity": {
+        "source": {
+          "faces": 68974,
+          "bratio": 0.005,
+          "ncomp": 1,
+          "largest_frac": 1.0
+        },
+        "preview": {
+          "faces": 68974,
+          "bratio": 0.005,
+          "ncomp": 1,
+          "largest_frac": 1.0
+        },
+        "status": "pass"
+      },
+      "cautions": [
+        "The absent head and arms belong to the sculpture\u2019s intended form.",
+        "The tiled courtyard patch and plinth remain attached to the capture. Bottom surfaces are uncaptured; some surface rippling is visible."
+      ],
+      "spatial_eligible": false
+    },
+    {
+      "slug": "modern/she-goat-picasso-moma-611-1959",
+      "source_uid": "84F59431-A03B-4B1F-8535-A12D8CBD8BC8",
+      "title": "She-Goat",
+      "artist": "Pablo Picasso",
+      "source_url": "https://poly.cam/explore/capture/84F59431-A03B-4B1F-8535-A12D8CBD8BC8/SheGoat1950%2B%2BPablo%2BPicasso",
+      "source_record_url": "https://www.moma.org/collection/works/81670",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "license_scope": "CC BY 4.0 applies to the published community capture. It does not establish permission for the depicted artwork; underlying artwork rights remain with their respective holders.",
+      "source_sha256": "5ca87db53f84300b976e4c00e00888bcc59c9ad52b41ff9966c1167d3b22a6ca",
+      "source_bytes": 49164988,
+      "source_faces": 217491,
+      "preview_sha256": "91a1c60581cd60bc4b1ac4fdc4528c3156dad60e9366f3171b963d3356ebd04a",
+      "preview_bytes": 2478012,
+      "preview_faces": 148448,
+      "processing": "Native-context trim, then repository metalrough compatibility normalization and Draco plus WebP2048; simplification disabled. Retained source coordinates/UVs/normals exact before standard compression. Only extraneous floor and ivy outside native X[-0.8,0.8], Z[-1.1,1.1] were removed from the serving copy. Full goat, integral base and display pedestal retained; original complete source unchanged. No Y crop or reconstruction.",
+      "measured_integrity": {
+        "source": {
+          "faces": 217491,
+          "bratio": 0.004,
+          "ncomp": 2,
+          "largest_frac": 1.0
+        },
+        "preview": {
+          "faces": 148448,
+          "bratio": 0.002,
+          "ncomp": 1,
+          "largest_frac": 1.0
+        },
+        "status": "pass"
+      },
+      "cautions": [
+        "The goat and integral sculpture base are recorded in the round; garden pavement and ivy remain around the subject.",
+        "The broad floor patch has an open underside. Surface lighting is baked into the photogrammetric texture."
+      ],
+      "spatial_eligible": false
+    },
+    {
+      "slug": "renaissance/saint-michael-archangel-andrea-della-robbia-met-60-127-2",
+      "source_uid": "2405AC7E-2F29-4D37-AA3D-802F0EE4E740",
+      "title": "Saint Michael the Archangel",
+      "artist": "Andrea della Robbia",
+      "source_url": "https://poly.cam/explore/capture/2405AC7E-2F29-4D37-AA3D-802F0EE4E740/Saint%2BMichael%2Bthe%2BArchangel%2BAndrea%2Bdella%2BRobbia",
+      "source_record_url": "https://www.metmuseum.org/art/collection/search/202499",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "license_scope": "Historical artwork. The Met marks its object image Public Domain; this independently made community 3D capture is licensed CC BY 4.0. No museum endorsement or broader rights grant is implied.",
+      "source_sha256": "7fe49fdd0040912d84895bed18df4099e732c7a6311903e4a9d21dc9785463a9",
+      "source_bytes": 6081412,
+      "source_faces": 141392,
+      "preview_sha256": "d03af83a5323e4185a4454658bc7e55b68b349899ff3a073716b42af0e68a575",
+      "preview_bytes": 692288,
+      "preview_faces": 141392,
+      "processing": "Repo generate-previews.py optimize_glb command sequence; metalrough normalization, Draco,WebP2048,simplify error0.005. Geometry-only decimation where target is below source; no reconstruction,crop,hole filling,paint changes or pose transforms.",
+      "measured_integrity": {
+        "source": {
+          "faces": 141392,
+          "bratio": 0.002,
+          "ncomp": 1,
+          "largest_frac": 1.0
+        },
+        "preview": {
+          "faces": 141392,
+          "bratio": 0.002,
+          "ncomp": 1,
+          "largest_frac": 1.0
+        },
+        "status": "pass"
+      },
+      "cautions": [
+        "Frontal relief representation: front and visible side thickness are recorded; the wall-facing reverse is mostly uncaptured.",
+        "The museum reports historical damage and restoration to the physical relief; the source records its present restored appearance.",
+        "Do not describe this capture as a complete freestanding object."
+      ],
+      "spatial_eligible": false
+    },
+    {
+      "slug": "modern/pink-panther-koons-moma-187-1996",
+      "source_uid": "DA082CD8-D36F-43BA-A040-5EB7FCD7AB0C",
+      "title": "Pink Panther",
+      "artist": "Jeff Koons",
+      "source_url": "https://poly.cam/explore/capture/DA082CD8-D36F-43BA-A040-5EB7FCD7AB0C/MoMA%2BJeff%2BKoons%2BPink%2BPanther%2Bsculpture",
+      "source_record_url": "https://www.moma.org/collection/works/81095/",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "license_scope": "MoMA records \u00a9 Jeff Koons. The community scan\u2019s CC BY 4.0 license does not establish clearance of the underlying sculpture or Pink Panther character rights.",
+      "source_sha256": "35490da1884d34fc0b67ec253d1ff1931cc0f3838cc38464a959263538c247d3",
+      "source_bytes": 6895308,
+      "source_faces": 48161,
+      "preview_sha256": "71fec3f075354d417c42ea975f2b0ca82a85779bc35f51c9d04d8d8f9921ba5d",
+      "preview_bytes": 764916,
+      "preview_faces": 48161,
+      "processing": "Repo generate-previews.py optimize_glb command sequence; metalrough normalization, Draco,WebP2048,simplify error0.005. Geometry-only decimation where target is below source; no reconstruction,crop,hole filling,paint changes or pose transforms.",
+      "measured_integrity": {
+        "source": {
+          "faces": 48161,
+          "bratio": 0.002,
+          "ncomp": 1,
+          "largest_frac": 1.0
+        },
+        "preview": {
+          "faces": 48161,
+          "bratio": 0.002,
+          "ncomp": 1,
+          "largest_frac": 1.0
+        },
+        "status": "pass"
+      },
+      "cautions": [
+        "The figure and character are complete above their base in the reviewed source.",
+        "Ears, face and hair are softly and noisily reconstructed; baked texture does not faithfully convey glossy porcelain.",
+        "The bottom is open and base edges are very thin. Keep these source limitations visible in the record."
+      ],
+      "spatial_eligible": false
+    }
+  ],
+  "held": [
+    {
+      "source_uid": "08FA4B68-C7D3-49F5-8133-3302BBA505CB",
+      "artist": "Constantin Br\u00e2ncu\u0219i",
+      "title": "Le Coq variants (three-work display group)",
+      "admission": "exclude-from-this-publication",
+      "reason_code": "quality-and-identity-hold",
+      "reason": "Three-work Coq display group, with softened/lumpy reflective geometry, floating scraps and unresolved exact variants/accessions. Exclude rather than splitting or repairing the group.",
+      "source_url": "https://poly.cam/explore/capture/08FA4B68-C7D3-49F5-8133-3302BBA505CB/Brancusi%2BParis%2BBeaubourg%2B2023%2Bcoq",
+      "source_record_url": "https://www.centrepompidou.fr/en/ressources/oeuvre/cgzXbkK",
+      "disposition": "Retain in the verified private source archive; no repair or additional investigation required for this publication."
+    },
+    {
+      "source_uid": "0551E595-45CE-4067-AA50-5C3FB1229FEE",
+      "artist": "Louise Bourgeois",
+      "title": "D\u00e9contract\u00e9e",
+      "admission": "exclude-from-this-publication",
+      "reason_code": "incomplete-capture",
+      "reason": "Substantial rear and underside of the marble slab are absent, and documented steel support is missing.",
+      "source_url": "https://poly.cam/explore/capture/0551E595-45CE-4067-AA50-5C3FB1229FEE/Dcontracte%2B1990%2BLouise%2BBourgeois",
+      "source_record_url": "https://asac.labiennale.org/attivita/arti-visive/359927",
+      "disposition": "Retain in the verified private source archive; no repair or additional investigation required for this publication."
+    },
+    {
+      "source_uid": "7AF9B37A-DFB4-4F81-AF66-E9F55E2FFAB1",
+      "artist": "Ai Weiwei",
+      "title": "Rooster, from Circle of Animals/Zodiac Heads",
+      "admission": "exclude-from-this-publication",
+      "reason_code": "damaged-capture",
+      "reason": "Blue void/background patches at comb and eye, plus dark/soft backside. These are scan defects rather than authored artwork colors.",
+      "source_url": "https://poly.cam/explore/capture/7AF9B37A-DFB4-4F81-AF66-E9F55E2FFAB1/Sculpture%2BBy%2BArtist%2BAi%2BWeiwei%2Bat%2Bthe%2BLACMA%2BLos%2BAn",
+      "source_record_url": "https://unframed.lacma.org/node/3052",
+      "disposition": "Retain in the verified private source archive; no repair or additional investigation required for this publication."
+    },
+    {
+      "source_uid": "9F1D0344-7834-43BF-9948-D01663419AE7",
+      "artist": "Henri Matisse",
+      "title": "Jeannette (III) \u2014 probable identification",
+      "admission": "exclude-from-this-publication",
+      "reason_code": "identity-hold",
+      "reason": "MoMA confirms the Jeannette III composition, date and accession 8.1952, but source title only says Matisse @MOMA. No new source label/edition evidence anchors this mesh to that exact cast. Do not assign the institutional accession by inference.",
+      "source_url": "https://poly.cam/explore/capture/9F1D0344-7834-43BF-9948-D01663419AE7/Matisse%2BMOMA",
+      "source_record_url": "https://www.moma.org/collection/works/80791",
+      "disposition": "Retain in the verified private source archive; no repair or additional investigation required for this publication."
+    },
+    {
+      "source_uid": "52910594-9026-4A96-BC02-76FD9D25DB8E",
+      "artist": "Alberto Giacometti",
+      "title": "Walking Man I",
+      "admission": "exclude-from-this-publication",
+      "reason_code": "identity-hold",
+      "reason": "Walking Man I composition is credible, but exact cast, date, collection and accession are unresolved; comparative private-collection/foundation sources do not identify this source mesh.",
+      "source_url": "https://poly.cam/explore/capture/52910594-9026-4A96-BC02-76FD9D25DB8E/Giocometti%2BWalking%2BMan%2B1",
+      "source_record_url": "https://www.fondation-giacometti.fr/en/database/174203/walking-man-i",
+      "disposition": "Retain in the verified private source archive; no repair or additional investigation required for this publication."
+    },
+    {
+      "source_uid": "68b644101e5c43d49e27d989d2b78da8",
+      "artist": "Lorenzo Ghiberti (composition); modern replica maker unconfirmed",
+      "title": "Solomon and the Queen of Sheba \u2014 Gates of Paradise replica panel",
+      "admission": "exclude-from-this-publication",
+      "reason_code": "incomplete-frontal-capture",
+      "reason": "Clipped panel edges and a wholly open rear make this an incomplete study of a modern Gates of Paradise replica. Frontal-surface precedent does not override the October22 instruction to skip incomplete captures. Exact replica-maker/rights also remain qualified.",
+      "source_url": "https://sketchfab.com/3d-models/ghiberti-bas-relief-the-gates-of-paradise-68b644101e5c43d49e27d989d2b78da8",
+      "source_record_url": "https://catalogo.duomo.firenze.it/operedarte/2941",
+      "disposition": "Retain in the verified private source archive; no repair or additional investigation required for this publication."
+    },
+    {
+      "source_uid": "E6DAAE33-C409-4635-B2CB-04792F17EFE3",
+      "title": "Five Plates Counter Clockwise",
+      "reason": "Selected source triangle count mismatch: native metadata 11261 vs measured nondegenerate 11256"
+    }
+  ],
+  "exhibition_placements": [
+    {
+      "exhibition": "bodies-in-motion",
+      "slug": "modern/woman-walking-giacometti-venice-pg133",
+      "caption": "One leg advances as the tall torso remains rigid. The missing head and arms belong to Giacometti\u2019s conceived form; the courtyard and plinth belong to this capture of the Venice bronze."
+    },
+    {
+      "exhibition": "sacred-forms",
+      "slug": "renaissance/saint-michael-archangel-andrea-della-robbia-met-60-127-2",
+      "caption": "Michael holds the sword of a defender and the scales used to weigh souls. Andrea della Robbia\u2019s glazed relief turns a church entrance into an image of protection and judgment. This recording preserves its front; the wall-facing reverse is inaccessible."
+    },
+    {
+      "exhibition": "what-survives",
+      "slug": "greek/eros-stringing-bow-smk-kas1294",
+      "caption": "Silvio Dolce\u2019s plaster carries an ancient pose from a Roman marble into a twentieth-century teaching collection. Its bow is absent from the physical cast. The association with Lysippos concerns the ancient type, rather than the maker of this plaster."
+    },
+    {
+      "exhibition": "the-work-of-the-surface",
+      "slug": "modern/reclining-figure-moore-lh452-elmwood",
+      "caption": "The grain follows the reclining body through its rounded masses and openings. Moore\u2019s elmwood figure makes the material\u2019s growth visible beside the forms he carved into it. The soft texture of the recording remains distinct from the physical wood."
+    }
+  ],
+  "archive": {
+    "source_packages": 14,
+    "complete_private_readback": true,
+    "recovery_map_verified": true,
+    "local_originals_retained": true,
+    "local_offload": false
+  },
+  "featured_selection_unchanged": true,
+  "exact_physical_calibration_added": false,
+  "final_review": "artist-batch-20261023-final-review.json",
+  "preview_bytes": 7640800,
+  "production_build": {
+    "status": "pass",
+    "pages": 6387
+  },
+  "archive_verified": {
+    "source_packages": 14,
+    "packages": 16,
+    "parts": 19,
+    "signature_and_full_readback": "pass",
+    "source_originals_retained": true
+  },
+  "browser_check": "artist-batch-20261023-browser-check.json",
+  "independent_audit": "artist-batch-20261023-independent-audit.json"
+}

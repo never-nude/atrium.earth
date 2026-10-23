@@ -1,0 +1,394 @@
+{
+  "schema": "atrium-independent-release-audit/1",
+  "batch": "artist-batch-20261023",
+  "baseline_commit": "968f47a822deb34693471892bcb9a03eb4b8deac",
+  "checked_at": "2026-10-23T17:46:07.404014+00:00",
+  "checks": [
+    {
+      "name": "catalog-preservation-counts-stamps",
+      "passed": true,
+      "detail": {
+        "old_records_preserved": 2327,
+        "new": 7,
+        "total": 2334,
+        "public": 2316,
+        "hidden": 18
+      }
+    },
+    {
+      "name": "exact-selected-set",
+      "passed": true
+    },
+    {
+      "name": "old-previews-preserved-and-only-seven-new-keys",
+      "passed": true
+    },
+    {
+      "name": "old-orientations-preserved-and-only-seven-new-keys",
+      "passed": true
+    },
+    {
+      "name": "old-appearance-overrides-preserved-and-only-seven-new-keys",
+      "passed": true
+    },
+    {
+      "name": "old-physical-dimensions-preserved-and-only-seven-new-keys",
+      "passed": true
+    },
+    {
+      "name": "old-spatial-eligibility-preserved-and-only-seven-new-keys",
+      "passed": true
+    },
+    {
+      "name": "all-other-data-files-unchanged",
+      "passed": true,
+      "detail": {
+        "unexpected_changes": []
+      }
+    },
+    {
+      "name": "featured250-homepage192-preserved",
+      "passed": true
+    },
+    {
+      "name": "four-body-placements-append-only-covers-and-earlier-content-preserved",
+      "passed": true,
+      "detail": {
+        "caption_additions": 4,
+        "work_list_additions": 4,
+        "unexpected_changes": []
+      }
+    },
+    {
+      "name": "reviewed-identity-origin-cast-license-metadata",
+      "passed": true
+    },
+    {
+      "name": "seven-dimensions-reviewed-uncalibrated-and-exactsize-disabled",
+      "passed": true
+    },
+    {
+      "name": "source-material-preservation-enabled",
+      "passed": true
+    },
+    {
+      "name": "final-local-model-hashes-byte-counts-raw-and-measured-geometry",
+      "passed": true,
+      "detail": [
+        {
+          "slug": "greek/mattei-amazon-smk-kas232",
+          "passed": true,
+          "source_sha256": "c1d29924b61ab2921f73fa85799ff09ff1f2306c0f8bd60c67829e2a37a26ce0",
+          "source_bytes": 231669796,
+          "preview_sha256": "d913b274df9981cc96d609c18156d3aef6572b95519a03381a939f2c91428452",
+          "preview_bytes": 382336,
+          "source_faces": 3217624,
+          "preview_draw_triangles": 250000,
+          "preview_measured_nondegenerate_faces": 249987
+        },
+        {
+          "slug": "greek/eros-stringing-bow-smk-kas1294",
+          "passed": true,
+          "source_sha256": "3906966d53ffa7eca2381d82d9cb4afc5d34ed86768abd7013ffa0103e34f554",
+          "source_bytes": 144001480,
+          "preview_sha256": "a415863c73cc2cebc7d61fb2695fd57d88142fe3f75b74eed1a3568c88df3ca7",
+          "preview_bytes": 382712,
+          "source_faces": 2000008,
+          "preview_draw_triangles": 250000,
+          "preview_measured_nondegenerate_faces": 249999
+        },
+        {
+          "slug": "modern/reclining-figure-moore-lh452-elmwood",
+          "passed": true,
+          "source_sha256": "ebf87989da4f4511e4cd1969801493cef1a121ef207301100e94d1d2dfc9e12c",
+          "source_bytes": 8878948,
+          "preview_sha256": "c1174581fa4df07b8e5ed2dae40bb9b13e0ce906975f396c1c49ed17b287a087",
+          "preview_bytes": 1179572,
+          "source_faces": 78380,
+          "preview_draw_triangles": 78380,
+          "preview_measured_nondegenerate_faces": 78380
+        },
+        {
+          "slug": "modern/woman-walking-giacometti-venice-pg133",
+          "passed": true,
+          "source_sha256": "05d90688d743a5417ae1fde379eeda6f405e4667f1d1a2044b0fbde557bba2c0",
+          "source_bytes": 37860504,
+          "preview_sha256": "c29d46c67e1b39bc893246ce3b441c5e06f8d2e4c226e2e1fb29a9ff6a0a115f",
+          "preview_bytes": 1760964,
+          "source_faces": 68974,
+          "preview_draw_triangles": 68974,
+          "preview_measured_nondegenerate_faces": 68974
+        },
+        {
+          "slug": "modern/she-goat-picasso-moma-611-1959",
+          "passed": true,
+          "source_sha256": "5ca87db53f84300b976e4c00e00888bcc59c9ad52b41ff9966c1167d3b22a6ca",
+          "source_bytes": 49164988,
+          "preview_sha256": "91a1c60581cd60bc4b1ac4fdc4528c3156dad60e9366f3171b963d3356ebd04a",
+          "preview_bytes": 2478012,
+          "source_faces": 217491,
+          "preview_draw_triangles": 148448,
+          "preview_measured_nondegenerate_faces": 148448
+        },
+        {
+          "slug": "renaissance/saint-michael-archangel-andrea-della-robbia-met-60-127-2",
+          "passed": true,
+          "source_sha256": "7fe49fdd0040912d84895bed18df4099e732c7a6311903e4a9d21dc9785463a9",
+          "source_bytes": 6081412,
+          "preview_sha256": "d03af83a5323e4185a4454658bc7e55b68b349899ff3a073716b42af0e68a575",
+          "preview_bytes": 692288,
+          "source_faces": 141392,
+          "preview_draw_triangles": 141392,
+          "preview_measured_nondegenerate_faces": 141392
+        },
+        {
+          "slug": "modern/pink-panther-koons-moma-187-1996",
+          "passed": true,
+          "source_sha256": "35490da1884d34fc0b67ec253d1ff1931cc0f3838cc38464a959263538c247d3",
+          "source_bytes": 6895308,
+          "preview_sha256": "71fec3f075354d417c42ea975f2b0ca82a85779bc35f51c9d04d8d8f9921ba5d",
+          "preview_bytes": 764916,
+          "source_faces": 48161,
+          "preview_draw_triangles": 48161,
+          "preview_measured_nondegenerate_faces": 48161
+        }
+      ]
+    },
+    {
+      "name": "56-final-source-production-frames-current-and-approved",
+      "passed": true,
+      "detail": {
+        "works": 7,
+        "bound_frames": 56,
+        "visual_approval": "Release owner reviewed all7; independent auditor additionally inspected final Picasso and Koons comparison sheets."
+      }
+    },
+    {
+      "name": "seven-current-thumbnails-and-posters-bound",
+      "passed": true,
+      "detail": [
+        {
+          "slug": "greek/mattei-amazon-smk-kas232",
+          "frames": 8,
+          "frame_bindings_passed": true,
+          "thumbnail_sha256": "98ed724940db89828e9b8c88d6cd583e6459ec4989f2ec1a61c4bc839b1aab57",
+          "thumbnail_bytes": 15240,
+          "thumbnail_binding_passed": true,
+          "poster_sha256": "61898055073312cde293ee02f56df25eda95af82ab3c27507058bd7c2422459b",
+          "poster_binding_passed": true
+        },
+        {
+          "slug": "greek/eros-stringing-bow-smk-kas1294",
+          "frames": 8,
+          "frame_bindings_passed": true,
+          "thumbnail_sha256": "d6671eb753b42a1bf381b60b96eb9c54654fd7db2ee6afb03d3ea9436566a59e",
+          "thumbnail_bytes": 16748,
+          "thumbnail_binding_passed": true,
+          "poster_sha256": "f656cb1e11d2c7f1fa3d10abad09accb3d148a96fd1ba4b89d1f6e33f85a43bb",
+          "poster_binding_passed": true
+        },
+        {
+          "slug": "modern/reclining-figure-moore-lh452-elmwood",
+          "frames": 8,
+          "frame_bindings_passed": true,
+          "thumbnail_sha256": "4f73a1ba1c518f83b5b9d7d3dce7038703bf4ba75827a2a39258fbaeb07b2c36",
+          "thumbnail_bytes": 23110,
+          "thumbnail_binding_passed": true,
+          "poster_sha256": "af1aa1641bf88771ad6b4eb2e437feeac41403622a771b0fa0122115af483703",
+          "poster_binding_passed": true
+        },
+        {
+          "slug": "modern/woman-walking-giacometti-venice-pg133",
+          "frames": 8,
+          "frame_bindings_passed": true,
+          "thumbnail_sha256": "a7cbef26ec76e53ad644335f769a20ebfb025fb84e9ec5743029576ee51b1a48",
+          "thumbnail_bytes": 17316,
+          "thumbnail_binding_passed": true,
+          "poster_sha256": "e3d767b793c51f51cf68c11c1349a89ea3e0fbefdd8993329a81d3f118fc4e58",
+          "poster_binding_passed": true
+        },
+        {
+          "slug": "modern/she-goat-picasso-moma-611-1959",
+          "frames": 8,
+          "frame_bindings_passed": true,
+          "thumbnail_sha256": "4658c39389f1da3e2e346b7584e1dcf4af3ae1bb953d411a9a6f113496a9a847",
+          "thumbnail_bytes": 22660,
+          "thumbnail_binding_passed": true,
+          "poster_sha256": "89f5f323ab8a47348c7a3a0230aa8f7a5eb9b6c0744f42a7ac5b7cf102ba4dad",
+          "poster_binding_passed": true
+        },
+        {
+          "slug": "renaissance/saint-michael-archangel-andrea-della-robbia-met-60-127-2",
+          "frames": 8,
+          "frame_bindings_passed": true,
+          "thumbnail_sha256": "17ce32c1f4c626ec79f37993b28544c8d8e1f6bbb3659e4c2edcb163e52fab15",
+          "thumbnail_bytes": 38042,
+          "thumbnail_binding_passed": true,
+          "poster_sha256": "5b54a522b1974572f9e057186cd321c7adc30a0d5a55ac564ed0715e6d680055",
+          "poster_binding_passed": true
+        },
+        {
+          "slug": "modern/pink-panther-koons-moma-187-1996",
+          "frames": 8,
+          "frame_bindings_passed": true,
+          "thumbnail_sha256": "46c414f76bd3672a60eb5ccc9569122a9a8b61493ec7a29e85234ba579f6f986",
+          "thumbnail_bytes": 44106,
+          "thumbnail_binding_passed": true,
+          "poster_sha256": "ff16f9cc352e6752b358421d5a3dcf55e7a745ddf8b8e5366fef8a75e5c7cbf9",
+          "poster_binding_passed": true
+        }
+      ]
+    },
+    {
+      "name": "render-membership-preserved-plus-seven",
+      "passed": true
+    },
+    {
+      "name": "picasso-context-trim-explicit-and-source-unchanged",
+      "passed": true
+    },
+    {
+      "name": "production-build-contains-seven-current-bindings-and-newest",
+      "passed": true,
+      "detail": {
+        "production_pages": 6387,
+        "seven_final_model_and_thumbnail_bindings_checked": true
+      }
+    },
+    {
+      "name": "independent-additions-verification",
+      "passed": true,
+      "detail": {
+        "command": "npm run test:additions",
+        "runtime": "Node22",
+        "result": "passed"
+      }
+    },
+    {
+      "name": "independent-featured-verification",
+      "passed": true,
+      "detail": {
+        "command": "npm run test:featured",
+        "runtime": "Node22",
+        "result": "passed"
+      }
+    },
+    {
+      "name": "independent-wings-verification",
+      "passed": true,
+      "detail": {
+        "command": "npm run test:wings",
+        "runtime": "Node22",
+        "result": "passed"
+      }
+    },
+    {
+      "name": "independent-assets-verification",
+      "passed": true,
+      "detail": {
+        "command": "npm run verify:assets",
+        "runtime": "Node22",
+        "result": "passed"
+      }
+    },
+    {
+      "name": "permanent-private-archive-receipts-still-authenticate",
+      "passed": true,
+      "detail": {
+        "packages": 16,
+        "source_packages": 14,
+        "receipt_signatures_valid": true,
+        "owner_private": true
+      }
+    },
+    {
+      "name": "final-immutable-r2-full-hashes-bytes-and-cors",
+      "passed": true,
+      "detail": [
+        {
+          "slug": "greek/mattei-amazon-smk-kas232",
+          "passed": true,
+          "bytes": 382336,
+          "sha256": "d913b274df9981cc96d609c18156d3aef6572b95519a03381a939f2c91428452",
+          "cors": "https://atrium.earth"
+        },
+        {
+          "slug": "greek/eros-stringing-bow-smk-kas1294",
+          "passed": true,
+          "bytes": 382712,
+          "sha256": "a415863c73cc2cebc7d61fb2695fd57d88142fe3f75b74eed1a3568c88df3ca7",
+          "cors": "https://atrium.earth"
+        },
+        {
+          "slug": "modern/reclining-figure-moore-lh452-elmwood",
+          "passed": true,
+          "bytes": 1179572,
+          "sha256": "c1174581fa4df07b8e5ed2dae40bb9b13e0ce906975f396c1c49ed17b287a087",
+          "cors": "https://atrium.earth"
+        },
+        {
+          "slug": "modern/woman-walking-giacometti-venice-pg133",
+          "passed": true,
+          "bytes": 1760964,
+          "sha256": "c29d46c67e1b39bc893246ce3b441c5e06f8d2e4c226e2e1fb29a9ff6a0a115f",
+          "cors": "https://atrium.earth"
+        },
+        {
+          "slug": "modern/she-goat-picasso-moma-611-1959",
+          "passed": true,
+          "bytes": 2478012,
+          "sha256": "91a1c60581cd60bc4b1ac4fdc4528c3156dad60e9366f3171b963d3356ebd04a",
+          "cors": "https://atrium.earth"
+        },
+        {
+          "slug": "renaissance/saint-michael-archangel-andrea-della-robbia-met-60-127-2",
+          "passed": true,
+          "bytes": 692288,
+          "sha256": "d03af83a5323e4185a4454658bc7e55b68b349899ff3a073716b42af0e68a575",
+          "cors": "https://atrium.earth"
+        },
+        {
+          "slug": "modern/pink-panther-koons-moma-187-1996",
+          "passed": true,
+          "bytes": 764916,
+          "sha256": "71fec3f075354d417c42ea975f2b0ca82a85779bc35f51c9d04d8d8f9921ba5d",
+          "cors": "https://atrium.earth"
+        }
+      ]
+    },
+    {
+      "name": "public-release-evidence-no-private-paths-cloud-identities-or-signed-urls",
+      "passed": true,
+      "detail": []
+    }
+  ],
+  "findings": [],
+  "observations": [],
+  "pending": [
+    "Successful Pages deployment and final live page/Newest/exhibition/interactive-viewer verification"
+  ],
+  "passed_completed_checks": true,
+  "ready_for_deployment_data_and_asset_gate": true,
+  "live_deployment_verified": false,
+  "model_bytes": 7640800,
+  "thumbnail_bytes": 177222,
+  "limitations": [
+    "Exact physical calibration remains disabled.",
+    "Scan licenses are distinguished from underlying artwork rights.",
+    "Raw preview draw triangles and nondegenerate integrity triangle counts are separately documented where they differ.",
+    "Live deployment verification remains a separate final gate."
+  ],
+  "snapshot_sha256": {
+    "src/data/catalog.json": "cdc593b4ce23d4f7ae44418d22413aecabe794d34d038e0712e6ac89ea348a6d",
+    "src/data/previews.json": "87bd62c80259dc320cc924143b8d58dc2c286b0d9ae2dd7df76f988c810a3674",
+    "src/data/orientations.json": "cb7379194c372f6a9697b2d215f0eb55ad145de0a99a440f6d7a7657e4ddd890",
+    "src/data/appearance-overrides.json": "59dc45e22a1fd439daa1d2a3e9681c9ec5497c5f0a2d571c29265a4037b3e05d",
+    "src/data/physical-dimensions.json": "6eeb57204502b4061f71eb73bd88aa0f543b4cd2f78e5a0abfdec6eb5e146451",
+    "src/data/spatial-eligibility.json": "42c55505a9d9c513effe52284ff5573d2b9e7a54b39a11e5d80ccc2275d1ce50",
+    "src/data/renders.json": "f58749e3fc73ce2742d4afc17c2ea6979925350763ddecbec8a4712c156a2ee8",
+    "src/data/v3-content.json": "55aa4bc499df6af1f4f30f332bb5fd15ce8609635dfc133f966c3bc1a84eaf78",
+    "docs/ingest/artist-batch-20261023.json": "ea41eb9bf7981d90cb049e9eb5352562f5400902760e5d68ee677bc572a514a6",
+    "docs/ingest/artist-batch-20261023-final-review.json": "f293de24a049b8ba7a04741a17e955a71564c8b09f6fa83b32457687fe618f39"
+  },
+  "checks_count": 26
+}
