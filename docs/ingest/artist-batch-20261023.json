@@ -1,7 +1,7 @@
 {
   "batch": "artist-batch-20261023",
   "ingested_at": "2026-10-23T17:33:41.485Z",
-  "state": "release-checks-passed-ready-for-deployment",
+  "state": "deployed-and-live-verified",
   "baseline_count": 2327,
   "acquired_sources": 14,
   "selected_count": 7,
@@ -396,5 +396,12 @@
     "source_originals_retained": true
   },
   "browser_check": "artist-batch-20261023-browser-check.json",
-  "independent_audit": "artist-batch-20261023-independent-audit.json"
+  "independent_audit": "artist-batch-20261023-independent-audit.json",
+  "deployment": {
+    "commit": "f1926076a9c29a7fe65f0b09cde4d4af57bf72b6",
+    "run_url": "https://github.com/never-nude/atrium.earth/actions/runs/39997969336",
+    "conclusion": "success"
+  },
+  "live_verification": "artist-batch-20261023-live.json",
+  "live_browser_check": "artist-batch-20261023-live-browser.json"
 }
