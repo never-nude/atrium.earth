@@ -1,0 +1,194 @@
+{
+  "schema": "atrium-independent-release-audit/1",
+  "batch": "rodin-bulk-20261023",
+  "baseline_commit": "6c85d47883fda38379efb1d30ca994ae183ffb85",
+  "checked_at": "2026-10-23T19:00:12.234778+00:00",
+  "checks": [
+    {
+      "name": "catalog-counts-and-unique-slugs",
+      "passed": true,
+      "detail": {
+        "baseline": 2334,
+        "new": 21,
+        "total": 2355,
+        "public": 2337,
+        "hidden": 18
+      }
+    },
+    {
+      "name": "all-baseline-rows-preserved-except-total",
+      "passed": true
+    },
+    {
+      "name": "all-total-fields-updated",
+      "passed": true
+    },
+    {
+      "name": "exact-selected-21-set",
+      "passed": true
+    },
+    {
+      "name": "one-new-batch-and-utc-stamp",
+      "passed": true
+    },
+    {
+      "name": "baseline-previews-preserved-and-only-new-keys",
+      "passed": true
+    },
+    {
+      "name": "baseline-orientations-preserved-and-only-new-keys",
+      "passed": true
+    },
+    {
+      "name": "baseline-physical-dimensions-preserved-and-only-new-keys",
+      "passed": true
+    },
+    {
+      "name": "baseline-spatial-eligibility-preserved-and-only-new-keys",
+      "passed": true
+    },
+    {
+      "name": "baseline-appearance-overrides-preserved-and-only-new-keys",
+      "passed": true
+    },
+    {
+      "name": "unchanged-featured-works.json",
+      "passed": true
+    },
+    {
+      "name": "unchanged-v3-content.json",
+      "passed": true
+    },
+    {
+      "name": "unchanged-wings.ts",
+      "passed": true
+    },
+    {
+      "name": "unchanged-additions.json",
+      "passed": true
+    },
+    {
+      "name": "unchanged-display-recommendations.json",
+      "passed": true
+    },
+    {
+      "name": "unchanged-spatial-display-defaults.json",
+      "passed": true
+    },
+    {
+      "name": "unchanged-material-appearances.json",
+      "passed": true
+    },
+    {
+      "name": "unchanged-identity-corrections.json",
+      "passed": true
+    },
+    {
+      "name": "featured-selection-remains-250",
+      "passed": true
+    },
+    {
+      "name": "all-new-origin-uncertainty-explicit",
+      "passed": true
+    },
+    {
+      "name": "all-new-capture-license-and-credit-scope",
+      "passed": true
+    },
+    {
+      "name": "unresolved-dimensions-exact-size-disabled",
+      "passed": true
+    },
+    {
+      "name": "source-material-preservation-explicit",
+      "passed": true
+    },
+    {
+      "name": "pose-and-visual-review-honestly-deferred",
+      "passed": true
+    },
+    {
+      "name": "public-savable-captures-native-packages-and-model-hashes",
+      "passed": true,
+      "detail": {
+        "native_package_files_checked": 109,
+        "source_glb_bytes": 206919692,
+        "preview_bytes": 18242928,
+        "errors": []
+      }
+    },
+    {
+      "name": "42-glb-containers-and-raw-triangle-counts",
+      "passed": true,
+      "detail": {
+        "containers": 42,
+        "errors": []
+      }
+    },
+    {
+      "name": "public-and-runtime-raw-measured-byte-hash-bindings",
+      "passed": true,
+      "detail": {
+        "errors": []
+      }
+    },
+    {
+      "name": "no-measured-geometry-or-visual-admission-claim",
+      "passed": true
+    },
+    {
+      "name": "21-independent-full-r2-readbacks",
+      "passed": true,
+      "detail": {
+        "bytes": 18242928,
+        "full_sha256": true,
+        "type_and_cors": true
+      }
+    },
+    {
+      "name": "21-actual-rendered-thumbnails-current-model-pose-material-bindings",
+      "passed": true,
+      "detail": {
+        "frames": 21,
+        "visual_review": "deferred",
+        "errors": []
+      }
+    },
+    {
+      "name": "public-deferred-render-receipt-and-all-21-posters",
+      "passed": true,
+      "detail": {
+        "errors": []
+      }
+    },
+    {
+      "name": "render-markers-preserved-and-21-added",
+      "passed": true
+    },
+    {
+      "name": "changed-public-data-and-documents-no-private-paths-drive-links-signed-urls-or-token-fields",
+      "passed": true,
+      "detail": {
+        "files_checked": 11,
+        "findings": []
+      }
+    }
+  ],
+  "findings": [],
+  "pending": [
+    "Permanent private archive final signed full-readback summary"
+  ],
+  "passed_completed_checks": true,
+  "ready_for_deployment_data_and_asset_gate": true,
+  "ready_for_deployment_including_archive_gate": false,
+  "live_deployment_verified": false,
+  "observations": [
+    "Owner explicitly requested 20\u201330 works by one artist and publication before detailed fixes. 21 provider-attributed Rodin captures satisfy this range.",
+    "Native geometry/material source packages remain separately preserved. Serving derivatives use disclosed compatibility, Draco/WebP and optional simplification processing.",
+    "Thumbnails are real renderer outputs. Detailed presentation, completeness, source-attributed identity/cast scholarship and physical calibration remain deferred; this audit does not claim visual approval.",
+    "Rodin attribution follows public capture publishers; three generically named studies remain identification pending. All new manufacture origins are Unfiled.",
+    "Capture CC BY 4.0 policy verified at the official Polycam Usage Rights and Ownership page on the audit date; underlying artwork/cast rights remain separate."
+  ],
+  "source_glb_bytes": 206919692,
+  "preview_bytes": 18242928
+}
