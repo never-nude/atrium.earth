@@ -1,7 +1,7 @@
 {
   "schema": "atrium-artist-acquisition/1",
   "batch": "miro-20261023",
-  "state": "reviewed-pending-build-and-publication",
+  "state": "reviewed-ready-for-publication",
   "baseline_commit": "bd959ab1",
   "baseline_count": 2361,
   "selected_count": 1,
@@ -93,5 +93,26 @@
       "title": "Polycam search",
       "reason": "No qualifying new artwork capture established within the bounded search."
     }
-  ]
+  ],
+  "reconciliation": {
+    "incoming_main_commit": "0aac77afbc59ddf20f882aeb5cc2d610c1c1295d",
+    "incoming_catalog_count": 2369,
+    "concurrent_dali_additions_preserved": 8,
+    "final_catalog_count": 2370,
+    "final_public_count": 2352,
+    "hidden_count": 18
+  },
+  "validation": {
+    "additions": "pass",
+    "featured": "pass",
+    "wings": "pass",
+    "assets": "pass",
+    "whitespace": "pass",
+    "build": "pass",
+    "built_pages": 6467,
+    "independent_reconciliation_audit": "pass",
+    "independent_reconciliation_sha256": "0a53143d8c56597131d18eb33bc5e215c8072cc22ff45ee85975034ce3a74d49",
+    "preserved_featured": 250,
+    "preserved_homepage_eligible": 192
+  }
 }

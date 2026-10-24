@@ -1,0 +1,414 @@
+{
+  "schema": "atrium-live-artist-release-verification/1",
+  "batch": "salvador-dali-20261023",
+  "releaseCommit": "a9c1070e344e56c29843a37903b4c944f337c527",
+  "deployment": {
+    "runId": 40051267819,
+    "url": "https://github.com/never-nude/atrium.earth/actions/runs/40051267819",
+    "workflowName": "Deploy to GitHub Pages",
+    "status": "completed",
+    "conclusion": "success",
+    "headSha": "a9c1070e344e56c29843a37903b4c944f337c527"
+  },
+  "checkedAt": "2026-10-24T01:48:59.480Z",
+  "status": "pass",
+  "expectedCount": 8,
+  "newest": {
+    "url": "https://atrium.earth/newest/",
+    "status": 200,
+    "bytes": 51844,
+    "sha256": "dc8aa57be603abd9317df2d2b97b06d9f89cb1283ffc007504db7278a50fdd4a",
+    "mime": "text/html; charset=utf-8",
+    "allBatchWorksPresent": true,
+    "slugs": [
+      "modern/dali-saint-john-the-baptist-a39aad",
+      "modern/dali-nude-woman-ascending-a-staircase-5df8ba",
+      "modern/dali-icarus-476432",
+      "modern/dali-cosmic-elephant-15f04b",
+      "modern/dali-gala-at-the-window-064c6f",
+      "modern/dali-la-crotalos-54327e",
+      "modern/dali-man-on-a-dolphin-082dca",
+      "modern/dali-winged-triton-22109a"
+    ]
+  },
+  "works": [
+    {
+      "slug": "modern/dali-saint-john-the-baptist-a39aad",
+      "title": "Saint John the Baptist (captured version unconfirmed)",
+      "page": {
+        "url": "https://atrium.earth/works/modern/dali-saint-john-the-baptist-a39aad/",
+        "status": 200,
+        "bytes": 33068,
+        "sha256": "d4443f386a55b153efe0fbe6db6a1b82afa56c1d6eb7cf4aeffbd0e510ae48be",
+        "mime": "text/html; charset=utf-8",
+        "titlePresent": true,
+        "modelBinding": true,
+        "thumbnailBinding": true
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/modern/dali-saint-john-the-baptist-a39aad/preview-8e8f0e6cdf94.glb",
+        "status": 200,
+        "bytes": 434484,
+        "sha256": "8e8f0e6cdf94b086cfc5fed9316b30aad9280fff9b9d74720632a20c0387a6de",
+        "mime": "model/gltf-binary",
+        "cors": "https://atrium.earth",
+        "originChecked": "https://atrium.earth",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/modern/dali-saint-john-the-baptist-a39aad/thumb.webp",
+        "status": 200,
+        "bytes": 38950,
+        "sha256": "dd485664c584a86801ee0b89d6ccbaa3b346de7abbcca2ca20074a7f9e04247b",
+        "mime": "image/webp",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "poster": {
+        "url": "https://atrium.earth/previews/posters/modern/dali-saint-john-the-baptist-a39aad/poster.svg",
+        "status": 200,
+        "bytes": 52342,
+        "sha256": "d57667f4df89c512858b4eec3631d148704d2918cd89ca5026437ee24a6bd7f8",
+        "mime": "image/svg+xml",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "newestPresent": true,
+      "sourceMaterialsPreserved": true,
+      "physicalSize": "unknown",
+      "exactSizeArEnabled": false
+    },
+    {
+      "slug": "modern/dali-nude-woman-ascending-a-staircase-5df8ba",
+      "title": "Nude Woman Ascending a Staircase (captured version unconfirmed)",
+      "page": {
+        "url": "https://atrium.earth/works/modern/dali-nude-woman-ascending-a-staircase-5df8ba/",
+        "status": 200,
+        "bytes": 33316,
+        "sha256": "40cd13d36d839694ef4432852edd387f97b659307158d40628a4895847e33aac",
+        "mime": "text/html; charset=utf-8",
+        "titlePresent": true,
+        "modelBinding": true,
+        "thumbnailBinding": true
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/modern/dali-nude-woman-ascending-a-staircase-5df8ba/preview-35d18a03c2df.glb",
+        "status": 200,
+        "bytes": 381196,
+        "sha256": "35d18a03c2dff5c341acd3c46d9287430fc2bc472c0576b8b0da7ee1a0c3095c",
+        "mime": "model/gltf-binary",
+        "cors": "https://atrium.earth",
+        "originChecked": "https://atrium.earth",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/modern/dali-nude-woman-ascending-a-staircase-5df8ba/thumb.webp",
+        "status": 200,
+        "bytes": 39116,
+        "sha256": "e6c5aec7c7d68d00ca6f79ff6c5a5636c4825ffa3bde39543196250f6054e5db",
+        "mime": "image/webp",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "poster": {
+        "url": "https://atrium.earth/previews/posters/modern/dali-nude-woman-ascending-a-staircase-5df8ba/poster.svg",
+        "status": 200,
+        "bytes": 52582,
+        "sha256": "fc004e4d8258cb5a0d422f865602ac98442cc74d4585a104aa8fa30b2701294e",
+        "mime": "image/svg+xml",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "newestPresent": true,
+      "sourceMaterialsPreserved": true,
+      "physicalSize": "unknown",
+      "exactSizeArEnabled": false
+    },
+    {
+      "slug": "modern/dali-icarus-476432",
+      "title": "Icarus (captured version unconfirmed)",
+      "page": {
+        "url": "https://atrium.earth/works/modern/dali-icarus-476432/",
+        "status": 200,
+        "bytes": 32676,
+        "sha256": "852faed91146f5e5461039286cc510cff57a61f79a69bc2a0ce6949ba6ff7491",
+        "mime": "text/html; charset=utf-8",
+        "titlePresent": true,
+        "modelBinding": true,
+        "thumbnailBinding": true
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/modern/dali-icarus-476432/preview-acd975efa28e.glb",
+        "status": 200,
+        "bytes": 478164,
+        "sha256": "acd975efa28eb153f293611f55825712142da1bd88591dd066e40e797fbe2295",
+        "mime": "model/gltf-binary",
+        "cors": "https://atrium.earth",
+        "originChecked": "https://atrium.earth",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/modern/dali-icarus-476432/thumb.webp",
+        "status": 200,
+        "bytes": 59866,
+        "sha256": "7ce6027396b3f86d9736cd1d51242718814f490f7f517dfb5a8913331b493939",
+        "mime": "image/webp",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "poster": {
+        "url": "https://atrium.earth/previews/posters/modern/dali-icarus-476432/poster.svg",
+        "status": 200,
+        "bytes": 80198,
+        "sha256": "3d62ac7807830a2c7449a569e6e749d3f4ca6d01797cfe8b6672ae01ed476736",
+        "mime": "image/svg+xml",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "newestPresent": true,
+      "sourceMaterialsPreserved": true,
+      "physicalSize": "unknown",
+      "exactSizeArEnabled": false
+    },
+    {
+      "slug": "modern/dali-cosmic-elephant-15f04b",
+      "title": "Cosmic Elephant (captured version unconfirmed)",
+      "page": {
+        "url": "https://atrium.earth/works/modern/dali-cosmic-elephant-15f04b/",
+        "status": 200,
+        "bytes": 33543,
+        "sha256": "6161642831ad7726ca1871e132877ad00de227b5f31e7c26d1fa77268b95eae9",
+        "mime": "text/html; charset=utf-8",
+        "titlePresent": true,
+        "modelBinding": true,
+        "thumbnailBinding": true
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/modern/dali-cosmic-elephant-15f04b/preview-6cad42a705ff.glb",
+        "status": 200,
+        "bytes": 362560,
+        "sha256": "6cad42a705ffb009c950e5ee491804cee350c9b93c64de47f9484ca8532fbc99",
+        "mime": "model/gltf-binary",
+        "cors": "https://atrium.earth",
+        "originChecked": "https://atrium.earth",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/modern/dali-cosmic-elephant-15f04b/thumb.webp",
+        "status": 200,
+        "bytes": 27240,
+        "sha256": "cf026bf3c74c177202a26646038447df1e819ac076b73a9e40ae20660e0be5a8",
+        "mime": "image/webp",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "poster": {
+        "url": "https://atrium.earth/previews/posters/modern/dali-cosmic-elephant-15f04b/poster.svg",
+        "status": 200,
+        "bytes": 36712,
+        "sha256": "60f77feed645f68d709f71c3548f12ceeb781cc975e180e0e044713b2f9002bf",
+        "mime": "image/svg+xml",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "newestPresent": true,
+      "sourceMaterialsPreserved": true,
+      "physicalSize": "unknown",
+      "exactSizeArEnabled": false
+    },
+    {
+      "slug": "modern/dali-gala-at-the-window-064c6f",
+      "title": "Gala at the Window (captured version unconfirmed)",
+      "page": {
+        "url": "https://atrium.earth/works/modern/dali-gala-at-the-window-064c6f/",
+        "status": 200,
+        "bytes": 33035,
+        "sha256": "94b41db0aade7dac2518a05c45b08334a2c47eab147ebe651d5fb2e5925c58f5",
+        "mime": "text/html; charset=utf-8",
+        "titlePresent": true,
+        "modelBinding": true,
+        "thumbnailBinding": true
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/modern/dali-gala-at-the-window-064c6f/preview-ebd6ccdb1957.glb",
+        "status": 200,
+        "bytes": 415556,
+        "sha256": "ebd6ccdb1957dfddf4f2e4467be396b554af29b728549563f3b6184c9b2dc16c",
+        "mime": "model/gltf-binary",
+        "cors": "https://atrium.earth",
+        "originChecked": "https://atrium.earth",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/modern/dali-gala-at-the-window-064c6f/thumb.webp",
+        "status": 200,
+        "bytes": 66428,
+        "sha256": "0aec3deeab8ea828e53ef329ee33d9e1b3b56043dacd3ff55b7cc754f5ea7a38",
+        "mime": "image/webp",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "poster": {
+        "url": "https://atrium.earth/previews/posters/modern/dali-gala-at-the-window-064c6f/poster.svg",
+        "status": 200,
+        "bytes": 88970,
+        "sha256": "2e91dcb24cc3f5736c7cef358a349acb446f3902b54e77f42de18805766371c0",
+        "mime": "image/svg+xml",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "newestPresent": true,
+      "sourceMaterialsPreserved": true,
+      "physicalSize": "unknown",
+      "exactSizeArEnabled": false
+    },
+    {
+      "slug": "modern/dali-la-crotalos-54327e",
+      "title": "La Crótalos (captured version unconfirmed)",
+      "page": {
+        "url": "https://atrium.earth/works/modern/dali-la-crotalos-54327e/",
+        "status": 200,
+        "bytes": 32889,
+        "sha256": "6991ef1bece52a35c01ef99df5c87f405de90a38927052dcbaed10f1bfcf8d94",
+        "mime": "text/html; charset=utf-8",
+        "titlePresent": true,
+        "modelBinding": true,
+        "thumbnailBinding": true
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/modern/dali-la-crotalos-54327e/preview-fa52baecf54f.glb",
+        "status": 200,
+        "bytes": 409408,
+        "sha256": "fa52baecf54fc2a17e028f5f90ee8553def36e17cf4f4743f30c56de1ce1ffa8",
+        "mime": "model/gltf-binary",
+        "cors": "https://atrium.earth",
+        "originChecked": "https://atrium.earth",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/modern/dali-la-crotalos-54327e/thumb.webp",
+        "status": 200,
+        "bytes": 51928,
+        "sha256": "0f5dd8ec679aa0ec5d1dbc1df78d9719b1c60eaec2cb9a39a41d668b93a009f9",
+        "mime": "image/webp",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "poster": {
+        "url": "https://atrium.earth/previews/posters/modern/dali-la-crotalos-54327e/poster.svg",
+        "status": 200,
+        "bytes": 69626,
+        "sha256": "570d7de8d8ae1c189dd0a1b1c2544e081e144ff0272de73e9fc1791cdb7b2616",
+        "mime": "image/svg+xml",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "newestPresent": true,
+      "sourceMaterialsPreserved": true,
+      "physicalSize": "unknown",
+      "exactSizeArEnabled": false
+    },
+    {
+      "slug": "modern/dali-man-on-a-dolphin-082dca",
+      "title": "Man on a Dolphin (captured version unconfirmed)",
+      "page": {
+        "url": "https://atrium.earth/works/modern/dali-man-on-a-dolphin-082dca/",
+        "status": 200,
+        "bytes": 33345,
+        "sha256": "feddb6905242bd3650fc0facf2a7e5bb2895ff601537838f3641779fd92f82e7",
+        "mime": "text/html; charset=utf-8",
+        "titlePresent": true,
+        "modelBinding": true,
+        "thumbnailBinding": true
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/modern/dali-man-on-a-dolphin-082dca/preview-2655ccfbaa94.glb",
+        "status": 200,
+        "bytes": 408576,
+        "sha256": "2655ccfbaa944c1a4ad7bfb4d4971953af600908251a0b3c49ed0f698806d473",
+        "mime": "model/gltf-binary",
+        "cors": "https://atrium.earth",
+        "originChecked": "https://atrium.earth",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/modern/dali-man-on-a-dolphin-082dca/thumb.webp",
+        "status": 200,
+        "bytes": 54824,
+        "sha256": "215251ac1bf4e98f6c656a261dd2331c8cb223007ba1ca4b409051d92b05c8d9",
+        "mime": "image/webp",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "poster": {
+        "url": "https://atrium.earth/previews/posters/modern/dali-man-on-a-dolphin-082dca/poster.svg",
+        "status": 200,
+        "bytes": 73494,
+        "sha256": "5f1f97231806500c46ed6dcb4fb8e869599444db27c680fdacfb34953dfdea5e",
+        "mime": "image/svg+xml",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "newestPresent": true,
+      "sourceMaterialsPreserved": true,
+      "physicalSize": "unknown",
+      "exactSizeArEnabled": false
+    },
+    {
+      "slug": "modern/dali-winged-triton-22109a",
+      "title": "Winged Triton (captured version unconfirmed)",
+      "page": {
+        "url": "https://atrium.earth/works/modern/dali-winged-triton-22109a/",
+        "status": 200,
+        "bytes": 32846,
+        "sha256": "cd367a23f1b10104cc98874f7407e1aaa2614f4f25343d2732ee422a0fc1df32",
+        "mime": "text/html; charset=utf-8",
+        "titlePresent": true,
+        "modelBinding": true,
+        "thumbnailBinding": true
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/modern/dali-winged-triton-22109a/preview-4a6826ad87f9.glb",
+        "status": 200,
+        "bytes": 317772,
+        "sha256": "4a6826ad87f9f408350440206faf185aa164ee3043af9a380d68b545dc153435",
+        "mime": "model/gltf-binary",
+        "cors": "https://atrium.earth",
+        "originChecked": "https://atrium.earth",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/modern/dali-winged-triton-22109a/thumb.webp",
+        "status": 200,
+        "bytes": 44320,
+        "sha256": "f13d3cb19b1a21bf3d4cc9611a1b769e13bfe99d11569eb977f068f10c578e49",
+        "mime": "image/webp",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "poster": {
+        "url": "https://atrium.earth/previews/posters/modern/dali-winged-triton-22109a/poster.svg",
+        "status": 200,
+        "bytes": 59484,
+        "sha256": "2e22ae823cd45e4c008f7bc702a4a589405c177a17564e5ee04adb9915bc199c",
+        "mime": "image/svg+xml",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "newestPresent": true,
+      "sourceMaterialsPreserved": true,
+      "physicalSize": "unknown",
+      "exactSizeArEnabled": false
+    }
+  ],
+  "scope": "Complete public model/thumbnail/poster hashes and bytes, exact release Pages success, work-page model/title/thumbnail bindings and all selected batch links on Newest. Native/capture and browser behavior are reviewed separately. No private archive IDs, account data, credentials or local paths.",
+  "completedAt": "2026-10-24T01:49:10.206Z"
+}

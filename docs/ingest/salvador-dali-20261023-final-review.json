@@ -1,0 +1,1527 @@
+{
+  "schema": "atrium-final-artist-review/1",
+  "batch": "salvador-dali-20261023",
+  "status": "approved-for-publication",
+  "reviewedAt": "2026-10-24T01:44:44.447Z",
+  "artist": "Salvador Dalí",
+  "acquisition": {
+    "runId": 40049739466,
+    "head": "c6e1d3633bd775e2744f3b79bd97330b6b503c9e",
+    "status": "success",
+    "sourcesFetched": 13
+  },
+  "acceptedWorks": 8,
+  "heldWorks": 5,
+  "reviewScope": "Root inspected all13eight-direction paired native/serving contact sheets (208framepanels), full-resolution Horse reverse and Quixote above, and all8final opening thumbnails. Independent visual reviewer reached matching final decisions. Captured originals are retained unchanged; serving models use the existing compression pipeline.",
+  "renderer": {
+    "nativeOriginalsRendered": 13,
+    "pairedDirections": 8,
+    "totalFrames": 208,
+    "pageErrors": 0,
+    "observedBrowserAborts": [
+      {
+        "slug": "modern/dali-christ-of-saint-john-of-the-cross-6c859c",
+        "mode": "source-native",
+        "asset": "native-0.glb",
+        "error": "net::ERR_ABORTED",
+        "qualification": "Observed browser request abort despite a complete server response and successfully decoded/rendered model. This event is retained; complete server writes do not prove complete browser receipt for unused preloads."
+      },
+      {
+        "slug": "modern/dali-christ-of-saint-john-of-the-cross-6c859c",
+        "mode": "preview-production",
+        "asset": "preview-0.glb",
+        "error": "net::ERR_ABORTED",
+        "qualification": "Observed browser request abort despite a complete server response and successfully decoded/rendered model. This event is retained; complete server writes do not prove complete browser receipt for unused preloads."
+      },
+      {
+        "slug": "modern/dali-saint-john-the-baptist-a39aad",
+        "mode": "source-native",
+        "asset": "native-1.glb",
+        "error": "net::ERR_ABORTED",
+        "qualification": "Observed browser request abort despite a complete server response and successfully decoded/rendered model. This event is retained; complete server writes do not prove complete browser receipt for unused preloads."
+      },
+      {
+        "slug": "modern/dali-head-of-a-laughing-horse-9bdaa1",
+        "mode": "source-native",
+        "asset": "native-2.glb",
+        "error": "net::ERR_ABORTED",
+        "qualification": "Observed browser request abort despite a complete server response and successfully decoded/rendered model. This event is retained; complete server writes do not prove complete browser receipt for unused preloads."
+      },
+      {
+        "slug": "modern/dali-nude-woman-ascending-a-staircase-5df8ba",
+        "mode": "source-native",
+        "asset": "native-3.glb",
+        "error": "net::ERR_ABORTED",
+        "qualification": "Observed browser request abort despite a complete server response and successfully decoded/rendered model. This event is retained; complete server writes do not prove complete browser receipt for unused preloads."
+      },
+      {
+        "slug": "modern/dali-nude-woman-ascending-a-staircase-5df8ba",
+        "mode": "preview-production",
+        "asset": "draco_wasm_wrapper.js",
+        "error": "net::ERR_ABORTED",
+        "qualification": "Observed browser request abort despite a complete server response and successfully decoded/rendered model. This event is retained; complete server writes do not prove complete browser receipt for unused preloads."
+      },
+      {
+        "slug": "modern/dali-nude-woman-ascending-a-staircase-5df8ba",
+        "mode": "preview-production",
+        "asset": "draco_decoder.wasm",
+        "error": "net::ERR_ABORTED",
+        "qualification": "Observed browser request abort despite a complete server response and successfully decoded/rendered model. This event is retained; complete server writes do not prove complete browser receipt for unused preloads."
+      },
+      {
+        "slug": "modern/dali-the-housekeeper-d6a344",
+        "mode": "source-native",
+        "asset": "native-4.glb",
+        "error": "net::ERR_ABORTED",
+        "qualification": "Observed browser request abort despite a complete server response and successfully decoded/rendered model. This event is retained; complete server writes do not prove complete browser receipt for unused preloads."
+      },
+      {
+        "slug": "modern/dali-the-housekeeper-d6a344",
+        "mode": "preview-production",
+        "asset": "draco_wasm_wrapper.js",
+        "error": "net::ERR_ABORTED",
+        "qualification": "Observed browser request abort despite a complete server response and successfully decoded/rendered model. This event is retained; complete server writes do not prove complete browser receipt for unused preloads."
+      },
+      {
+        "slug": "modern/dali-the-soul-of-don-quixote-816b0a",
+        "mode": "source-native",
+        "asset": "native-5.glb",
+        "error": "net::ERR_ABORTED",
+        "qualification": "Observed browser request abort despite a complete server response and successfully decoded/rendered model. This event is retained; complete server writes do not prove complete browser receipt for unused preloads."
+      },
+      {
+        "slug": "modern/dali-the-soul-of-don-quixote-816b0a",
+        "mode": "preview-production",
+        "asset": "draco_decoder.wasm",
+        "error": "net::ERR_ABORTED",
+        "qualification": "Observed browser request abort despite a complete server response and successfully decoded/rendered model. This event is retained; complete server writes do not prove complete browser receipt for unused preloads."
+      },
+      {
+        "slug": "modern/dali-icarus-476432",
+        "mode": "source-native",
+        "asset": "native-6.glb",
+        "error": "net::ERR_ABORTED",
+        "qualification": "Observed browser request abort despite a complete server response and successfully decoded/rendered model. This event is retained; complete server writes do not prove complete browser receipt for unused preloads."
+      },
+      {
+        "slug": "modern/dali-cosmic-elephant-15f04b",
+        "mode": "source-native",
+        "asset": "native-0.glb",
+        "error": "net::ERR_ABORTED",
+        "qualification": "Observed browser request abort despite a complete server response and successfully decoded/rendered model. This event is retained; complete server writes do not prove complete browser receipt for unused preloads."
+      },
+      {
+        "slug": "modern/dali-cosmic-elephant-15f04b",
+        "mode": "preview-production",
+        "asset": "preview-0.glb",
+        "error": "net::ERR_ABORTED",
+        "qualification": "Observed browser request abort despite a complete server response and successfully decoded/rendered model. This event is retained; complete server writes do not prove complete browser receipt for unused preloads."
+      },
+      {
+        "slug": "modern/dali-cosmic-elephant-15f04b",
+        "mode": "preview-production",
+        "asset": "draco_decoder.wasm",
+        "error": "net::ERR_ABORTED",
+        "qualification": "Observed browser request abort despite a complete server response and successfully decoded/rendered model. This event is retained; complete server writes do not prove complete browser receipt for unused preloads."
+      },
+      {
+        "slug": "modern/dali-la-crotalos-54327e",
+        "mode": "source-native",
+        "asset": "native-2.glb",
+        "error": "net::ERR_ABORTED",
+        "qualification": "Observed browser request abort despite a complete server response and successfully decoded/rendered model. This event is retained; complete server writes do not prove complete browser receipt for unused preloads."
+      },
+      {
+        "slug": "modern/dali-man-on-a-dolphin-082dca",
+        "mode": "source-native",
+        "asset": "native-3.glb",
+        "error": "net::ERR_ABORTED",
+        "qualification": "Observed browser request abort despite a complete server response and successfully decoded/rendered model. This event is retained; complete server writes do not prove complete browser receipt for unused preloads."
+      },
+      {
+        "slug": "modern/dali-dulcinea-0dfe7c",
+        "mode": "source-native",
+        "asset": "native-4.glb",
+        "error": "net::ERR_ABORTED",
+        "qualification": "Observed browser request abort despite a complete server response and successfully decoded/rendered model. This event is retained; complete server writes do not prove complete browser receipt for unused preloads."
+      },
+      {
+        "slug": "modern/dali-winged-triton-22109a",
+        "mode": "source-native",
+        "asset": "native-5.glb",
+        "error": "net::ERR_ABORTED",
+        "qualification": "Observed browser request abort despite a complete server response and successfully decoded/rendered model. This event is retained; complete server writes do not prove complete browser receipt for unused preloads."
+      },
+      {
+        "slug": "modern/dali-winged-triton-22109a",
+        "mode": "preview-production",
+        "asset": "draco_wasm_wrapper.js",
+        "error": "net::ERR_ABORTED",
+        "qualification": "Observed browser request abort despite a complete server response and successfully decoded/rendered model. This event is retained; complete server writes do not prove complete browser receipt for unused preloads."
+      }
+    ],
+    "qualification": "All16frames/model decoded and rendered. Observed request aborts are retained as harness limitations; they are not represented as successful browser receipt. Full-file source, preview and live delivery hashes are independently verified.",
+    "reports": [
+      {
+        "sha256": "6fa7c8b3078fba57f103609dabccccb55df117080f5a5e7791aa5638ed1bfeda",
+        "shard": 0
+      },
+      {
+        "sha256": "1bb96b150f914147c4f12ce7a62e97f4dbe53521c25b84fd42f840eb0da017e2",
+        "shard": 1
+      }
+    ]
+  },
+  "works": [
+    {
+      "slug": "modern/dali-saint-john-the-baptist-a39aad",
+      "title": "Saint John the Baptist (captured version unconfirmed)",
+      "date": "1973 composition; cast date unconfirmed",
+      "primarySource": "https://www.coleccionclot.com/esculturas/san-juan-bautista",
+      "providerSource": "https://sketchfab.com/3d-models/a39aade75f144caa842e43f2b318a3de",
+      "source": {
+        "uid": "a39aade75f144caa842e43f2b318a3de",
+        "bytes": 3588888,
+        "sha256": "b81bf6ac7c1e25de58038853adda2ef011dc2f2b3b748ec1c14814938a68ea6f"
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/modern/dali-saint-john-the-baptist-a39aad/preview-8e8f0e6cdf94.glb",
+        "bytes": 434484,
+        "sourceBytes": 3588888,
+        "sourceFormat": "glb",
+        "faces": 100000,
+        "sourceFaces": 100000,
+        "sha256": "8e8f0e6cdf94b086cfc5fed9316b30aad9280fff9b9d74720632a20c0387a6de"
+      },
+      "measuredIntegrity": {
+        "faces": 100000,
+        "bratio": 0,
+        "ncomp": 1,
+        "largest_frac": 1
+      },
+      "transform": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0,
+          0,
+          1
+        ],
+        "status": "manual",
+        "note": "Upright native pose and front opening approved from eight-direction paired original/serving inspection. Provider geometry, textures, materials and captured supports remain unchanged."
+      },
+      "appearance": {
+        "preserveSourceMaterials": true,
+        "originalRenderedDirectly": true,
+        "nativeFaces": 100000,
+        "previewFaces": 100000,
+        "topologySimplification": false,
+        "reconstruction": false,
+        "cropping": false,
+        "recoloring": false
+      },
+      "frames": [
+        {
+          "mode": "source-native",
+          "key": "FRONT",
+          "bytes": 411876,
+          "sha256": "d1e76d38bd286ede86a27534d2fd452be7938f09198a62d642a392efad3367ac"
+        },
+        {
+          "mode": "source-native",
+          "key": "RIGHT",
+          "bytes": 317976,
+          "sha256": "3afc6e487967c4a32e28993d8fa39818408c08f1bc16009d71f157675c51f5f9"
+        },
+        {
+          "mode": "source-native",
+          "key": "REVERSE",
+          "bytes": 309999,
+          "sha256": "467f9204a24f5f7c59de24071a2e5fe6b1ecd6d4fd3386ae862861b166f109b3"
+        },
+        {
+          "mode": "source-native",
+          "key": "LEFT",
+          "bytes": 307044,
+          "sha256": "ed7e4b6fdbea71c0509e65d7fda388c8385942d639ccb7f32aa3e058ae7e52ee"
+        },
+        {
+          "mode": "source-native",
+          "key": "ABOVE",
+          "bytes": 233321,
+          "sha256": "5a7f5b547175bb3b1aabc4eb4bfb046f333a624c65315c7d018efd44aba01dff"
+        },
+        {
+          "mode": "source-native",
+          "key": "UNDERSIDE",
+          "bytes": 247835,
+          "sha256": "1c54e9615da1e9287e4b5a874f72339179b60b76ba29bba42b0131e02f6600d8"
+        },
+        {
+          "mode": "source-native",
+          "key": "FRONT-THREE-QUARTER",
+          "bytes": 346695,
+          "sha256": "b18cbbce303ef4b9ea47af7d882dc74fc18fc9404bf8b485b89de9a99fdd1acf"
+        },
+        {
+          "mode": "source-native",
+          "key": "BACK-THREE-QUARTER",
+          "bytes": 275199,
+          "sha256": "ebbffc7f607e549d185c52d5a608202af9a12d8c4bb044773a9542ce8ef32a06"
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "bytes": 401439,
+          "sha256": "0929b0e58d50fb5b53cd83e09a1fef3ff699e2ce6bfc7a23212fd43a1f132cc4"
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "bytes": 311326,
+          "sha256": "80c573e3422c3d954829ca9fe1c99068f24989a7524c79867947a5cd70e8aefc"
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "bytes": 295670,
+          "sha256": "ec915cb27e1c78d39e8aa549aef144264ccd7407ce9305dd10d60bab2017e27d"
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "bytes": 298047,
+          "sha256": "a1657a1c17c4dc6bf88b8d8ebe85b76022009f4fd30346ec295d013a131a58ee"
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "bytes": 226796,
+          "sha256": "e675324d7e1ea5a1b00f6f4f25425090090deeffe83accba6f1d78aeb66d32a4"
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "bytes": 230176,
+          "sha256": "d11eacffa0da5ba74664f8bc47b8e9a8895b8ac45f4f638ddda58898f6b1a433"
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "bytes": 339733,
+          "sha256": "cb084d783b42967a1d0840f5cee1a1d0eb2494aa337734b077fa4b085d76537f"
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "bytes": 264604,
+          "sha256": "df67810f8628ac9af4ab0b9ad5834ea5d77a81680b6591d49cc027b10280cb9c"
+        }
+      ],
+      "rootActualFramesReviewed": 16,
+      "independentVisualDecision": "Standing figure, feet and shaped support remain coherent around all eight directions. The slender cross is present in actual source and preview geometry; the earlier thumbnail concern is cleared.",
+      "captureScope": "Dalí presents the Baptist as a standing preacher, combining Christian imagery with his interest in nuclear mysticism. The composition draws on the expressive religious figures of Spanish Baroque art. The captured example’s cast date, edition, material and physical collection are unconfirmed; the documented monumental version is a separate reference. The captured cross and figure are retained intact. The irregular support and its underside are preserved; no physical-size calibration is available.",
+      "finalThumbnail": {
+        "bytes": 38950,
+        "sha256": "dd485664c584a86801ee0b89d6ccbaa3b346de7abbcca2ca20074a7f9e04247b",
+        "actualImageReviewedByRoot": true
+      },
+      "poster": {
+        "bytes": 52342,
+        "sha256": "d57667f4df89c512858b4eec3631d148704d2918cd89ca5026437ee24a6bd7f8"
+      }
+    },
+    {
+      "slug": "modern/dali-nude-woman-ascending-a-staircase-5df8ba",
+      "title": "Nude Woman Ascending a Staircase (captured version unconfirmed)",
+      "date": "1974 composition; cast date unconfirmed",
+      "primarySource": "https://www.coleccionclot.com/esculturas/mujer-desnuda-subiendo-la-escalera",
+      "providerSource": "https://sketchfab.com/3d-models/5df8baa8a71f4644ae202c3b94f67732",
+      "source": {
+        "uid": "5df8baa8a71f4644ae202c3b94f67732",
+        "bytes": 3185196,
+        "sha256": "d1478e62c294c5c18ea8616378918b67f9d3413cff5a5be86a246db1e7183f2b"
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/modern/dali-nude-woman-ascending-a-staircase-5df8ba/preview-35d18a03c2df.glb",
+        "bytes": 381196,
+        "sourceBytes": 3185196,
+        "sourceFormat": "glb",
+        "faces": 88326,
+        "sourceFaces": 88326,
+        "sha256": "35d18a03c2dff5c341acd3c46d9287430fc2bc472c0576b8b0da7ee1a0c3095c"
+      },
+      "measuredIntegrity": {
+        "faces": 88326,
+        "bratio": 0.002,
+        "ncomp": 1,
+        "largest_frac": 1
+      },
+      "transform": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0,
+          0,
+          1
+        ],
+        "status": "manual",
+        "note": "Upright native pose and front opening approved from eight-direction paired original/serving inspection. Provider geometry, textures, materials and captured supports remain unchanged."
+      },
+      "appearance": {
+        "preserveSourceMaterials": true,
+        "originalRenderedDirectly": true,
+        "nativeFaces": 88326,
+        "previewFaces": 88326,
+        "topologySimplification": false,
+        "reconstruction": false,
+        "cropping": false,
+        "recoloring": false
+      },
+      "frames": [
+        {
+          "mode": "source-native",
+          "key": "FRONT",
+          "bytes": 511654,
+          "sha256": "1399f8ae39b429ebca72ec8cfb9dd20f3796bfb90d3b7ceecb330307f59ada8e"
+        },
+        {
+          "mode": "source-native",
+          "key": "RIGHT",
+          "bytes": 467399,
+          "sha256": "216abec051ce82e0373595ad28580a5a1ac054c619a0d42d326c56da2ffdb89f"
+        },
+        {
+          "mode": "source-native",
+          "key": "REVERSE",
+          "bytes": 444284,
+          "sha256": "145c68a67ab6f4b8df3c36eea846f69f71b69df3a511847efb13d5cfc7369f56"
+        },
+        {
+          "mode": "source-native",
+          "key": "LEFT",
+          "bytes": 413218,
+          "sha256": "893d0fa487f7f300f2822481d5ba2c59b384cc630f076606e385812de5d8176f"
+        },
+        {
+          "mode": "source-native",
+          "key": "ABOVE",
+          "bytes": 410681,
+          "sha256": "952e268d39f79ca6599d6147d2244209fd499b9c13ce43a7cbe1edf405edff2a"
+        },
+        {
+          "mode": "source-native",
+          "key": "UNDERSIDE",
+          "bytes": 412258,
+          "sha256": "79b50b58f8c20955f19a588ce15b872609594a0df487e0191aa26074430d81a2"
+        },
+        {
+          "mode": "source-native",
+          "key": "FRONT-THREE-QUARTER",
+          "bytes": 417345,
+          "sha256": "4dafa0a3a73746105c20f6fa09fe3f4bf4ed8ea72b6ee18236029aa995039be7"
+        },
+        {
+          "mode": "source-native",
+          "key": "BACK-THREE-QUARTER",
+          "bytes": 366754,
+          "sha256": "5d1bb0e89f4db3be136876c809254ad5782f03f5db598cc7baa2d629860c41c1"
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "bytes": 487254,
+          "sha256": "77aaf74d893f0361773dc63b5f2e4adeabdf313f05b1de556299062588e4b24f"
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "bytes": 454918,
+          "sha256": "0c1c538a7ba149b22986e271d89347c9fe4b3fa82f53183f6613ff4df5b4fb1e"
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "bytes": 427110,
+          "sha256": "35a8312d679732f5695c6403099dd6112e4247a07874b0b58754d1ff0de835bc"
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "bytes": 395218,
+          "sha256": "a2291d4aebc7e3013643e3fb897128c2380dfffaf153875de2369d983923e8d3"
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "bytes": 398120,
+          "sha256": "bb739fe73f7ecb351564fb2277e795028946d624556c21723006b9a876bfb108"
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "bytes": 392368,
+          "sha256": "7396722742ab184942b0021064730e6e3a9c37ee92cd46f3e9060ccbacba4cbf"
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "bytes": 407416,
+          "sha256": "0766a8394d14eb53832ae9459083dca3b080d39784fbf509787b9d18c220383a"
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "bytes": 357757,
+          "sha256": "3412b767972fc088a5a260059c2e64f524c1e0d18b44374e5d38696a9bddeced"
+        }
+      ],
+      "rootActualFramesReviewed": 16,
+      "independentVisualDecision": "Figure, raised leg and spiral shell/staircase remain coherent in front, side, rear and overhead views. The compact fragmented-looking upper figure matches the documented composition. Local rough/open support underside areas do not remove the figure or broad rear surfaces.",
+      "captureScope": "A fragmented female figure ascends above a rounded support. Dalí reverses the downward movement of Marcel Duchamp’s Nude Descending a Staircase in this sculptural homage to his friend. The captured example’s cast date, edition, material and physical collection are unconfirmed; the documented monumental version is a separate reference. The fragmented figure and shell-shaped support are retained. A localized open/rough underside of the support remains visible; no missing surface was reconstructed.",
+      "finalThumbnail": {
+        "bytes": 39116,
+        "sha256": "e6c5aec7c7d68d00ca6f79ff6c5a5636c4825ffa3bde39543196250f6054e5db",
+        "actualImageReviewedByRoot": true
+      },
+      "poster": {
+        "bytes": 52582,
+        "sha256": "fc004e4d8258cb5a0d422f865602ac98442cc74d4585a104aa8fa30b2701294e"
+      }
+    },
+    {
+      "slug": "modern/dali-icarus-476432",
+      "title": "Icarus (captured version unconfirmed)",
+      "date": "c. 1976 composition; cast date unconfirmed",
+      "primarySource": "https://www.coleccionclot.com/%C3%ADcaro",
+      "providerSource": "https://sketchfab.com/3d-models/476432c71e5549aa801ac06bd150b951",
+      "source": {
+        "uid": "476432c71e5549aa801ac06bd150b951",
+        "bytes": 3554624,
+        "sha256": "8c9553c6c126a259959173c83373c60a0a3d2cc9b58bd6cb24ddda773afe53c4"
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/modern/dali-icarus-476432/preview-acd975efa28e.glb",
+        "bytes": 478164,
+        "sourceBytes": 3554624,
+        "sourceFormat": "glb",
+        "faces": 95382,
+        "sourceFaces": 95382,
+        "sha256": "acd975efa28eb153f293611f55825712142da1bd88591dd066e40e797fbe2295"
+      },
+      "measuredIntegrity": {
+        "faces": 95382,
+        "bratio": 0.002,
+        "ncomp": 2,
+        "largest_frac": 1
+      },
+      "transform": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0,
+          0,
+          1
+        ],
+        "status": "manual",
+        "note": "Upright native pose and front opening approved from eight-direction paired original/serving inspection. Provider geometry, textures, materials and captured supports remain unchanged."
+      },
+      "appearance": {
+        "preserveSourceMaterials": true,
+        "originalRenderedDirectly": true,
+        "nativeFaces": 95382,
+        "previewFaces": 95382,
+        "topologySimplification": false,
+        "reconstruction": false,
+        "cropping": false,
+        "recoloring": false
+      },
+      "frames": [
+        {
+          "mode": "source-native",
+          "key": "FRONT",
+          "bytes": 630882,
+          "sha256": "c8f307dabbacee7c57fd8a69e26458ebd66aedf67898e72b78e071526d1178dd"
+        },
+        {
+          "mode": "source-native",
+          "key": "RIGHT",
+          "bytes": 454040,
+          "sha256": "6f748ea564b9183eff5732886f56763d6e011f418bd3146e8b3f43062f96949d"
+        },
+        {
+          "mode": "source-native",
+          "key": "REVERSE",
+          "bytes": 585534,
+          "sha256": "13c40df3ce3431f9c923d03c02f352cfafbeed2720a07153a63b0482348d5226"
+        },
+        {
+          "mode": "source-native",
+          "key": "LEFT",
+          "bytes": 545081,
+          "sha256": "7db657b53c8a4cdf316bd7d2e536440cd73352a1ef0371222b11be6ff6338c25"
+        },
+        {
+          "mode": "source-native",
+          "key": "ABOVE",
+          "bytes": 385891,
+          "sha256": "3330cbfbdce481189fa02ef2ace16dfc50353d0707e0af34c203583f24f40982"
+        },
+        {
+          "mode": "source-native",
+          "key": "UNDERSIDE",
+          "bytes": 329878,
+          "sha256": "fe5355207f91a016cbda1634210adc9509bc6e903d2e9d29ee8082ec2c7c7193"
+        },
+        {
+          "mode": "source-native",
+          "key": "FRONT-THREE-QUARTER",
+          "bytes": 439760,
+          "sha256": "046c986baf16d080a53f331a111432ad8bc032903269c7b3bd4d9777cf2d128b"
+        },
+        {
+          "mode": "source-native",
+          "key": "BACK-THREE-QUARTER",
+          "bytes": 451458,
+          "sha256": "21aad1120fd3484c06b9c78f1eafcad01eac923b12f3051ca7b95e3083e45002"
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "bytes": 614774,
+          "sha256": "5210e53747c3ee9178ccd87cdec8d9c8572034cddc6a4a4ad9f4a6563d0a42ea"
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "bytes": 446288,
+          "sha256": "e255da924f6b35de2f2a2850668cbc6e0290e320a7415459c23f1241c70ed5cc"
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "bytes": 570974,
+          "sha256": "f6bbca427e66e0aaf618216ca1604f17698fcc0046b206d17e90a85412d15494"
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "bytes": 530178,
+          "sha256": "9380de9da3f24389ab9d634e4ead31df6723fa8d2f60da84f268f06e278adf96"
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "bytes": 380218,
+          "sha256": "a4f9f858f6c9d0d89a3496ba78176ec8388193bb10ba852d5cda767971658448"
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "bytes": 319646,
+          "sha256": "1eea57e3bf3ade9828cdb1fe410f1b83eedd28b842c674f0a8944c3543399f28"
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "bytes": 432468,
+          "sha256": "6e0ba7c2195ef8cb6198c1c1dc29ce3efc6276d2a65bcd14f1d437597d74b0bc"
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "bytes": 442211,
+          "sha256": "c5ed6c35e1a8e05ea23bbf9e7e387750aca04c34cfb53a1534e67100d5187bf8"
+        }
+      ],
+      "rootActualFramesReviewed": 16,
+      "independentVisualDecision": "Figure, wings and irregular support remain coherent around all sides; native and serving silhouettes and source appearance agree. Small support-underside capture limits are localized.",
+      "captureScope": "Dalí’s interpretation of Icarus explores the Greek myth of flight, youthful ambition and the limits of human aspiration. The irregular figure belongs to the group of wax-model compositions associated with the Clot collection. The captured example’s cast date, edition, material and physical collection are unconfirmed; the documented monumental version is a separate reference. The captured figure, wings and irregular support are retained. The support underside includes localized incomplete or rough areas; no surface was reconstructed.",
+      "finalThumbnail": {
+        "bytes": 59866,
+        "sha256": "7ce6027396b3f86d9736cd1d51242718814f490f7f517dfb5a8913331b493939",
+        "actualImageReviewedByRoot": true
+      },
+      "poster": {
+        "bytes": 80198,
+        "sha256": "3d62ac7807830a2c7449a569e6e749d3f4ca6d01797cfe8b6672ae01ed476736"
+      }
+    },
+    {
+      "slug": "modern/dali-cosmic-elephant-15f04b",
+      "title": "Cosmic Elephant (captured version unconfirmed)",
+      "date": "1974 composition; cast date unconfirmed",
+      "primarySource": "https://www.coleccionclot.com/esculturas/elefante-c%C3%B3smico",
+      "providerSource": "https://sketchfab.com/3d-models/15f04b0ca0b6469189381c403651a1c5",
+      "source": {
+        "uid": "15f04b0ca0b6469189381c403651a1c5",
+        "bytes": 2881764,
+        "sha256": "fa5cbd413d547a8f6ba07f9934f499d8cdb3e8bdbd5db69161759d6e41d8898d"
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/modern/dali-cosmic-elephant-15f04b/preview-6cad42a705ff.glb",
+        "bytes": 362560,
+        "sourceBytes": 2881764,
+        "sourceFormat": "glb",
+        "faces": 75176,
+        "sourceFaces": 75176,
+        "sha256": "6cad42a705ffb009c950e5ee491804cee350c9b93c64de47f9484ca8532fbc99"
+      },
+      "measuredIntegrity": {
+        "faces": 75176,
+        "bratio": 0.004,
+        "ncomp": 1,
+        "largest_frac": 1
+      },
+      "transform": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0,
+          0,
+          1
+        ],
+        "status": "manual",
+        "note": "Upright native pose and front opening approved from eight-direction paired original/serving inspection. Provider geometry, textures, materials and captured supports remain unchanged."
+      },
+      "appearance": {
+        "preserveSourceMaterials": true,
+        "originalRenderedDirectly": true,
+        "nativeFaces": 75176,
+        "previewFaces": 75176,
+        "topologySimplification": false,
+        "reconstruction": false,
+        "cropping": false,
+        "recoloring": false
+      },
+      "frames": [
+        {
+          "mode": "source-native",
+          "key": "FRONT",
+          "bytes": 272404,
+          "sha256": "5b6aa92a9cf42104d72868ad7e5808413ac1132405a890621dc4a397c03e6fa1"
+        },
+        {
+          "mode": "source-native",
+          "key": "RIGHT",
+          "bytes": 271589,
+          "sha256": "642e7a4f04575e2e2dd629f48a2e2602ea199546bf244aca5274180e3ec35a54"
+        },
+        {
+          "mode": "source-native",
+          "key": "REVERSE",
+          "bytes": 245271,
+          "sha256": "53b7ee196ac82ff7790ee7234df38add2cf1e07efd44841fa69b78e52a76ed8c"
+        },
+        {
+          "mode": "source-native",
+          "key": "LEFT",
+          "bytes": 275652,
+          "sha256": "329c60f17959ced34c230617058a4058746ab8fc9747bb9ba21cb5ec52f86bb8"
+        },
+        {
+          "mode": "source-native",
+          "key": "ABOVE",
+          "bytes": 394846,
+          "sha256": "93cabbf70ddd49d363ab642b8ac23c69c782d52989d129eee46b4580dca16f09"
+        },
+        {
+          "mode": "source-native",
+          "key": "UNDERSIDE",
+          "bytes": 368591,
+          "sha256": "074869e122e990fc4e55a7d1c7ab9797963ef74c1155f41ee9d4fc16d0402cca"
+        },
+        {
+          "mode": "source-native",
+          "key": "FRONT-THREE-QUARTER",
+          "bytes": 268523,
+          "sha256": "c31dd5426d900bee26dce9765e53dcd86bd3aef8b04bfd358b514cb9564111fc"
+        },
+        {
+          "mode": "source-native",
+          "key": "BACK-THREE-QUARTER",
+          "bytes": 254146,
+          "sha256": "69af4036b091753bb0f12595411e57d2f220ea0aaad8e6eecc2f1c4ab1a06ae0"
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "bytes": 271539,
+          "sha256": "28dac592255bd3f30a277a3446d5efe0f09d17fba707635fd05b6d5c2e11a4dc"
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "bytes": 270353,
+          "sha256": "34ae16e68f78155abe1047679ccb413fdf10d364d1ee24912b45163f040c2379"
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "bytes": 243946,
+          "sha256": "553327b6010a4bbbfb86b74e77f3af9fe163a4e1f5109634656905f5d44d0f77"
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "bytes": 274497,
+          "sha256": "2d81cee6fc7fff7422ca0192bceb417cf7778f337939a650e4fe46c9d7423789"
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "bytes": 381820,
+          "sha256": "699ab488562c0898aeb2479458bc6671e71670479b203e079bfe238a31c4d799"
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "bytes": 342812,
+          "sha256": "ff8e78005ca337f6699f039b0e1f070c5c65cc403a2f53ca795b16db8d17b2c9"
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "bytes": 266503,
+          "sha256": "956f57778efba3a7c6e0ca82b9ec5f610772d9739bff091bce82ee001076087d"
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "bytes": 252649,
+          "sha256": "0594f4cceac9c6b61105b3bf8b40c0c9206561982859675fb74b8d26640d4bbf"
+        }
+      ],
+      "rootActualFramesReviewed": 16,
+      "independentVisualDecision": "Body, head/trunk, extended legs and feet remain coherent across both broad sides, end views and overhead. The source rectangular captured support is retained; no missing main figure parts observed.",
+      "captureScope": "The elephant’s heavy body balances on elongated, uneven legs, joining weight with an impression of instability. This is the Clot Cosmic Elephant composition, distinct from Dalí’s better-known elephant carrying an obelisk. The captured example’s cast date, edition, material and physical collection are unconfirmed; the documented monumental version is a separate reference. The complete captured animal and rectangular display-support patch are retained. The flat support underside is part of this capture and is not evidence of the sculpture’s original base.",
+      "finalThumbnail": {
+        "bytes": 27240,
+        "sha256": "cf026bf3c74c177202a26646038447df1e819ac076b73a9e40ae20660e0be5a8",
+        "actualImageReviewedByRoot": true
+      },
+      "poster": {
+        "bytes": 36712,
+        "sha256": "60f77feed645f68d709f71c3548f12ceeb781cc975e180e0e044713b2f9002bf"
+      }
+    },
+    {
+      "slug": "modern/dali-gala-at-the-window-064c6f",
+      "title": "Gala at the Window (captured version unconfirmed)",
+      "date": "1974 composition; cast date unconfirmed",
+      "primarySource": "https://www.coleccionclot.com/esculturas/gala-asomada-a-la-ventana",
+      "providerSource": "https://sketchfab.com/3d-models/064c6ffcbb1f4bc188be1377194172e6",
+      "source": {
+        "uid": "064c6ffcbb1f4bc188be1377194172e6",
+        "bytes": 3039344,
+        "sha256": "ff60c0edba7ffe9d8e9af0de7a13ceb611eb8a91b7611cbe0ab0037610f2e76d"
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/modern/dali-gala-at-the-window-064c6f/preview-ebd6ccdb1957.glb",
+        "bytes": 415556,
+        "sourceBytes": 3039344,
+        "sourceFormat": "glb",
+        "faces": 77692,
+        "sourceFaces": 77692,
+        "sha256": "ebd6ccdb1957dfddf4f2e4467be396b554af29b728549563f3b6184c9b2dc16c"
+      },
+      "measuredIntegrity": {
+        "faces": 77692,
+        "bratio": 0.004,
+        "ncomp": 1,
+        "largest_frac": 1
+      },
+      "transform": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0,
+          0,
+          1
+        ],
+        "status": "manual",
+        "note": "Upright native pose and front opening approved from eight-direction paired original/serving inspection. Provider geometry, textures, materials and captured supports remain unchanged."
+      },
+      "appearance": {
+        "preserveSourceMaterials": true,
+        "originalRenderedDirectly": true,
+        "nativeFaces": 77692,
+        "previewFaces": 77692,
+        "topologySimplification": false,
+        "reconstruction": false,
+        "cropping": false,
+        "recoloring": false
+      },
+      "frames": [
+        {
+          "mode": "source-native",
+          "key": "FRONT",
+          "bytes": 652699,
+          "sha256": "4a53d347b1129581cea9308365dabd9421cf150da27621eea311e98df6c6c245"
+        },
+        {
+          "mode": "source-native",
+          "key": "RIGHT",
+          "bytes": 644275,
+          "sha256": "1213c4560a66b2f69f5117b64508c733cdd1aba534e918697a8648e9910d9c8b"
+        },
+        {
+          "mode": "source-native",
+          "key": "REVERSE",
+          "bytes": 421850,
+          "sha256": "1a6f6f82b8bc84542be943edb78262ce4c6f2db29af4178a8ed627ee043b5afa"
+        },
+        {
+          "mode": "source-native",
+          "key": "LEFT",
+          "bytes": 587195,
+          "sha256": "fed1ab351abf6ac8818d0929f3a263aec4057fd4f24b7ea9b24b4e74779f6245"
+        },
+        {
+          "mode": "source-native",
+          "key": "ABOVE",
+          "bytes": 364170,
+          "sha256": "90e2df32932b1367bc04541049d560ff27f983ade5280064d7e60144665d14cc"
+        },
+        {
+          "mode": "source-native",
+          "key": "UNDERSIDE",
+          "bytes": 465121,
+          "sha256": "4b09688680b1baf6f75ec6f55defe5819d2016bf957298cd0cd4edac5186cc78"
+        },
+        {
+          "mode": "source-native",
+          "key": "FRONT-THREE-QUARTER",
+          "bytes": 567920,
+          "sha256": "133d54732761f1da17be554962e9ca800f5937908f0b530b283f2a09fb0665af"
+        },
+        {
+          "mode": "source-native",
+          "key": "BACK-THREE-QUARTER",
+          "bytes": 427741,
+          "sha256": "7020192f349ab611029ff1d2f02a96fd8a45d9d781637d4f72a0d5eb11a57b77"
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "bytes": 632933,
+          "sha256": "a8a5fd61029f0159e57fe04b98c54258cebef817cfb787e46e588fe174b976c3"
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "bytes": 617281,
+          "sha256": "78e9b66d38def64d5e00f1bce13a331705ec961ce92c77e9a3ff2f5117a54a71"
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "bytes": 396226,
+          "sha256": "a3869bae1e288c8638854a12b6e520f80342e12ed5efc56a965c096539041023"
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "bytes": 563731,
+          "sha256": "66911f9ec44a09461c352510d24addcdd7bbabfa00c3d691a2df9ee54bc799ab"
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "bytes": 353369,
+          "sha256": "b3451a4bef7796c013006c882b5086eb16a0196140040def07d63df31316caf1"
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "bytes": 447531,
+          "sha256": "03f1936c8debd0addf96f1565bc6d6d755888f01888f96f963a80f7a5258c47b"
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "bytes": 552061,
+          "sha256": "9436fedf560c72d4bec1d0c09c1e1a5ba271f48d522e557531e962c4d7555f05"
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "bytes": 409324,
+          "sha256": "ecddf2267f297f892671aeba88c77a11e6fd4119cdf5152b4a2cfdb7dec7a337"
+        }
+      ],
+      "rootActualFramesReviewed": 16,
+      "independentVisualDecision": "Front/back figure and the enclosing A/window structure are present, with continuous side depth and open spaces. Native and serving retain the same coherent form and source texture.",
+      "captureScope": "Gala appears within a large letter A that also forms a window. The composition was part of Dalí’s unrealized plan to model the letters of her name and recalls the window motif in his earlier painting of Anna Maria. The captured example’s cast date, edition, material and physical collection are unconfirmed; the documented monumental version is a separate reference. The captured figure, window frame and base are retained, including local irregularities at the base underside. No surface was reconstructed.",
+      "finalThumbnail": {
+        "bytes": 66428,
+        "sha256": "0aec3deeab8ea828e53ef329ee33d9e1b3b56043dacd3ff55b7cc754f5ea7a38",
+        "actualImageReviewedByRoot": true
+      },
+      "poster": {
+        "bytes": 88970,
+        "sha256": "2e91dcb24cc3f5736c7cef358a349acb446f3902b54e77f42de18805766371c0"
+      }
+    },
+    {
+      "slug": "modern/dali-la-crotalos-54327e",
+      "title": "La Crótalos (captured version unconfirmed)",
+      "date": "1974 composition; cast date unconfirmed",
+      "primarySource": "https://www.coleccionclot.com/esculturas/la-cr%C3%B3talos",
+      "providerSource": "https://sketchfab.com/3d-models/54327e27d339400c9edd3eebd90bc73f",
+      "source": {
+        "uid": "54327e27d339400c9edd3eebd90bc73f",
+        "bytes": 3125520,
+        "sha256": "800509c6c09a03174471722a5751291f48286901751c4886e0012d1c7a7ea041"
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/modern/dali-la-crotalos-54327e/preview-fa52baecf54f.glb",
+        "bytes": 409408,
+        "sourceBytes": 3125520,
+        "sourceFormat": "glb",
+        "faces": 81765,
+        "sourceFaces": 81765,
+        "sha256": "fa52baecf54fc2a17e028f5f90ee8553def36e17cf4f4743f30c56de1ce1ffa8"
+      },
+      "measuredIntegrity": {
+        "faces": 81765,
+        "bratio": 0.004,
+        "ncomp": 1,
+        "largest_frac": 1
+      },
+      "transform": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0,
+          0,
+          1
+        ],
+        "status": "manual",
+        "note": "Upright native pose and front opening approved from eight-direction paired original/serving inspection. Provider geometry, textures, materials and captured supports remain unchanged."
+      },
+      "appearance": {
+        "preserveSourceMaterials": true,
+        "originalRenderedDirectly": true,
+        "nativeFaces": 81765,
+        "previewFaces": 81765,
+        "topologySimplification": false,
+        "reconstruction": false,
+        "cropping": false,
+        "recoloring": false
+      },
+      "frames": [
+        {
+          "mode": "source-native",
+          "key": "FRONT",
+          "bytes": 573759,
+          "sha256": "707cb92e77d19f50c6ecdb879018823e24d02cd17092daba9426f9f99a06df8d"
+        },
+        {
+          "mode": "source-native",
+          "key": "RIGHT",
+          "bytes": 436877,
+          "sha256": "c1e4070038855b746b26f14053b312cabbbbf473c8253ea04ae765555bd79b0f"
+        },
+        {
+          "mode": "source-native",
+          "key": "REVERSE",
+          "bytes": 516665,
+          "sha256": "892f26a99d5b1736ca2f1db85ab710e547dfd747fe116473b0d86849b30da28d"
+        },
+        {
+          "mode": "source-native",
+          "key": "LEFT",
+          "bytes": 439766,
+          "sha256": "ed5b7bb52b24700b3d1b257c0aa0a752ed4eb94a03300f157eb161715d2129b6"
+        },
+        {
+          "mode": "source-native",
+          "key": "ABOVE",
+          "bytes": 437226,
+          "sha256": "78573c83f841d2c95516c9d0d27d489ad6a34d655c901d88d96430358f59fab0"
+        },
+        {
+          "mode": "source-native",
+          "key": "UNDERSIDE",
+          "bytes": 419274,
+          "sha256": "4db50044e13bcd2242b96be20fc5f5aba7290c2763102c5e5fbf39b482c87be8"
+        },
+        {
+          "mode": "source-native",
+          "key": "FRONT-THREE-QUARTER",
+          "bytes": 473047,
+          "sha256": "d08a806702cc7ba9b824b4d5747b39074e4ab1a97426507203e1662cc2482bfa"
+        },
+        {
+          "mode": "source-native",
+          "key": "BACK-THREE-QUARTER",
+          "bytes": 476582,
+          "sha256": "8e4e3ee9e1a22df376ee54e415cfcd57207ed9741fdfa2f5f5b5368c93d84bce"
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "bytes": 564957,
+          "sha256": "54ddaf706305b0970c5b0fe614efc3d6e35fe94d1037b4979db2411f28ab3d83"
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "bytes": 431417,
+          "sha256": "14e137d1d3c890e662f14134489f775d69a9e7147b83c4ece846e7aa699c3a73"
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "bytes": 505866,
+          "sha256": "dbdbd29a80832311df8fdb35147bc141568c16bb96bfc31455649277ea10b541"
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "bytes": 431978,
+          "sha256": "f53aa1d27f132c07d186367ebf1293654fc212014c9abd78b7e56e2857fea809"
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "bytes": 430179,
+          "sha256": "b1733d697d99a702388e843454604bbfad62f5321616a46a470b77c45349e778"
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "bytes": 380519,
+          "sha256": "55983219cae4ce9e9928e984388b6d67d13e95fa9ed34ca28b5019de6595a87b"
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "bytes": 463772,
+          "sha256": "850985935cf5d0e1c540f554e437a6d8994a4b8f4ff46ff704bfdb9083f8b3e6"
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "bytes": 467124,
+          "sha256": "f24da72669a73c812bf7022213caea71730ba513438f9c3e292cf001a6ccc888"
+        }
+      ],
+      "rootActualFramesReviewed": 16,
+      "independentVisualDecision": "Raised hands/arms, twisting figure, skirt and legs remain coherent across the eight directions and match the identified composition. The source rectangular support is retained; no broad missing rear surface observed.",
+      "captureScope": "A flamenco dancer becomes a twisting arrangement of moving limbs and drapery. The title refers to a dancer known as La Crótalos and reflects Dalí’s longstanding interest in flamenco performance. The captured example’s cast date, edition, material and physical collection are unconfirmed; the documented monumental version is a separate reference. The captured dancer, raised hands and rectangular display-support patch are retained. The support underside does not document the sculpture’s original mounting.",
+      "finalThumbnail": {
+        "bytes": 51928,
+        "sha256": "0f5dd8ec679aa0ec5d1dbc1df78d9719b1c60eaec2cb9a39a41d668b93a009f9",
+        "actualImageReviewedByRoot": true
+      },
+      "poster": {
+        "bytes": 69626,
+        "sha256": "570d7de8d8ae1c189dd0a1b1c2544e081e144ff0272de73e9fc1791cdb7b2616"
+      }
+    },
+    {
+      "slug": "modern/dali-man-on-a-dolphin-082dca",
+      "title": "Man on a Dolphin (captured version unconfirmed)",
+      "date": "1976 composition; cast date unconfirmed",
+      "primarySource": "https://www.coleccionclot.com/esculturas/hombre-sobre-delf%C3%ADn-poseid%C3%B3n",
+      "providerSource": "https://sketchfab.com/3d-models/082dcacf07e14c7bafec540bc777a20d",
+      "source": {
+        "uid": "082dcacf07e14c7bafec540bc777a20d",
+        "bytes": 3097784,
+        "sha256": "108b92098d8241f5ab356879ecc6197113f1374ac48bd82c8fb6205d19e3ea05"
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/modern/dali-man-on-a-dolphin-082dca/preview-2655ccfbaa94.glb",
+        "bytes": 408576,
+        "sourceBytes": 3097784,
+        "sourceFormat": "glb",
+        "faces": 81074,
+        "sourceFaces": 81074,
+        "sha256": "2655ccfbaa944c1a4ad7bfb4d4971953af600908251a0b3c49ed0f698806d473"
+      },
+      "measuredIntegrity": {
+        "faces": 81074,
+        "bratio": 0.001,
+        "ncomp": 1,
+        "largest_frac": 1
+      },
+      "transform": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0,
+          0,
+          1
+        ],
+        "status": "manual",
+        "note": "Upright native pose and front opening approved from eight-direction paired original/serving inspection. Provider geometry, textures, materials and captured supports remain unchanged."
+      },
+      "appearance": {
+        "preserveSourceMaterials": true,
+        "originalRenderedDirectly": true,
+        "nativeFaces": 81074,
+        "previewFaces": 81074,
+        "topologySimplification": false,
+        "reconstruction": false,
+        "cropping": false,
+        "recoloring": false
+      },
+      "frames": [
+        {
+          "mode": "source-native",
+          "key": "FRONT",
+          "bytes": 525181,
+          "sha256": "b493ee4b7a505e8cc02b93c8c328bd80c0d694aa43756d212d96af20220af173"
+        },
+        {
+          "mode": "source-native",
+          "key": "RIGHT",
+          "bytes": 351051,
+          "sha256": "70027fcc6d488403db8bb88615002b9ba63ba7c7fa329b9868076245ed6a72c4"
+        },
+        {
+          "mode": "source-native",
+          "key": "REVERSE",
+          "bytes": 382401,
+          "sha256": "25e9caf8b3925d18a6a1633e3077544b053460d4b656b11cc60e5b4650252fc5"
+        },
+        {
+          "mode": "source-native",
+          "key": "LEFT",
+          "bytes": 334001,
+          "sha256": "1c2bab0d007368fdd4d1be0d9bdc979078c68973adb59ec5aafca4104add71a7"
+        },
+        {
+          "mode": "source-native",
+          "key": "ABOVE",
+          "bytes": 265036,
+          "sha256": "69a316775095c7a12238083fc7393a01fb3ca48cd9adf58dd8bc563220af998c"
+        },
+        {
+          "mode": "source-native",
+          "key": "UNDERSIDE",
+          "bytes": 223977,
+          "sha256": "b6ccbef6c14525f82e5ae12811a9204c75207bf3e29194002842fa00eca2c160"
+        },
+        {
+          "mode": "source-native",
+          "key": "FRONT-THREE-QUARTER",
+          "bytes": 473697,
+          "sha256": "7237ee99aefd13b2c2d8820848caabcde829792417090a79516bc0111b7ac196"
+        },
+        {
+          "mode": "source-native",
+          "key": "BACK-THREE-QUARTER",
+          "bytes": 389796,
+          "sha256": "e8893b6d130c8e5f906571432b78fd477c80d8d168d3a51250cd1b230b03cf7c"
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "bytes": 514541,
+          "sha256": "751ae8703af2546f330ad6dbf1985728dcb3aaeec521a25e607aa62db37b0453"
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "bytes": 343195,
+          "sha256": "32b9d5af40f5beb8bc9b5542b06f3142ad297ad0fa6c803ee969a8adda8bfe47"
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "bytes": 367274,
+          "sha256": "9339b35ce39539196c8f7d8a6566a54c126bd101aa1de2c11f51bef4bd36230c"
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "bytes": 326961,
+          "sha256": "ab60587f44077a9ccd0bdbb2a6fe061720d08444ce736d08a417a1b55b482361"
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "bytes": 259781,
+          "sha256": "49a6f05faa66d0d3a8fe2ff0901bfaa86cf7367905f2ae53f28354e8bda1b00b"
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "bytes": 216602,
+          "sha256": "6a62981abf3fc9a7bb72d46b79e99127fadd92e1e53ef39d5359e04d668377c4"
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "bytes": 463141,
+          "sha256": "bca9ef10143201cebb085509ce14fde25130249132aeb64dae5bc0becc4d0310"
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "bytes": 380946,
+          "sha256": "ff905942fedd389e0ea6ea5ca529c10486fedc6aea09b45cc2095667e52b7c9a"
+        }
+      ],
+      "rootActualFramesReviewed": 16,
+      "independentVisualDecision": "Human figure, arm/drapery, dolphin head/body/tail and their connecting forms are coherent in front/back/profile/overhead. No missing major limbs, tail or broad rear cap observed.",
+      "captureScope": "A human figure balances on a dolphin, expressing the force of water and the sea. Also titled Poseidon, the composition reduces the sea god’s traditional dolphin-drawn chariot to a single animal. The captured example’s cast date, edition, material and physical collection are unconfirmed; the documented monumental version is a separate reference. The captured rider, dolphin, tail and drapery are retained. Local underside/mounting areas are not a calibrated record of the original installation.",
+      "finalThumbnail": {
+        "bytes": 54824,
+        "sha256": "215251ac1bf4e98f6c656a261dd2331c8cb223007ba1ca4b409051d92b05c8d9",
+        "actualImageReviewedByRoot": true
+      },
+      "poster": {
+        "bytes": 73494,
+        "sha256": "5f1f97231806500c46ed6dcb4fb8e869599444db27c680fdacfb34953dfdea5e"
+      }
+    },
+    {
+      "slug": "modern/dali-winged-triton-22109a",
+      "title": "Winged Triton (captured version unconfirmed)",
+      "date": "1975 composition; cast date unconfirmed",
+      "primarySource": "https://www.coleccionclot.com/esculturas/trit%C3%B3n-alado",
+      "providerSource": "https://sketchfab.com/3d-models/22109a5bd1d749a79dab3b878f543f9a",
+      "source": {
+        "uid": "22109a5bd1d749a79dab3b878f543f9a",
+        "bytes": 2327292,
+        "sha256": "c78864dacab42b8ff86e90bf70c5727eadf751f3d6d5ea5f6af1162cc0906751"
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/modern/dali-winged-triton-22109a/preview-4a6826ad87f9.glb",
+        "bytes": 317772,
+        "sourceBytes": 2327292,
+        "sourceFormat": "glb",
+        "faces": 55004,
+        "sourceFaces": 55004,
+        "sha256": "4a6826ad87f9f408350440206faf185aa164ee3043af9a380d68b545dc153435"
+      },
+      "measuredIntegrity": {
+        "faces": 55004,
+        "bratio": 0.005,
+        "ncomp": 1,
+        "largest_frac": 1
+      },
+      "transform": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0,
+          0,
+          1
+        ],
+        "status": "manual",
+        "note": "Upright native pose and front opening approved from eight-direction paired original/serving inspection. Provider geometry, textures, materials and captured supports remain unchanged."
+      },
+      "appearance": {
+        "preserveSourceMaterials": true,
+        "originalRenderedDirectly": true,
+        "nativeFaces": 55004,
+        "previewFaces": 55004,
+        "topologySimplification": false,
+        "reconstruction": false,
+        "cropping": false,
+        "recoloring": false
+      },
+      "frames": [
+        {
+          "mode": "source-native",
+          "key": "FRONT",
+          "bytes": 509194,
+          "sha256": "c35b088b1e061e7548300a73c643a6eab2ba1a8710874942b420c3015f75e505"
+        },
+        {
+          "mode": "source-native",
+          "key": "RIGHT",
+          "bytes": 386187,
+          "sha256": "96f2b71d5b07d932355a1ffeae6d83efdfe83b88f6c4b4e09cfc53d36faeffdb"
+        },
+        {
+          "mode": "source-native",
+          "key": "REVERSE",
+          "bytes": 383412,
+          "sha256": "c97059878c49057a7cc570887223f2b79f140f2b7111cc0b2d0775cfa96a45fe"
+        },
+        {
+          "mode": "source-native",
+          "key": "LEFT",
+          "bytes": 378756,
+          "sha256": "000d76cb3cacfe32195cdf52af3c6f3aa6fe0ec77bf90bfa5c56e4f7de8309af"
+        },
+        {
+          "mode": "source-native",
+          "key": "ABOVE",
+          "bytes": 353727,
+          "sha256": "5ef7224d441a98332c0718ea56d378684417d57b364a3c3c8105162607be24bc"
+        },
+        {
+          "mode": "source-native",
+          "key": "UNDERSIDE",
+          "bytes": 286429,
+          "sha256": "d4f60de7acecb74fb024ea517c54c11e951e79281865072abd8f71ad207037f0"
+        },
+        {
+          "mode": "source-native",
+          "key": "FRONT-THREE-QUARTER",
+          "bytes": 421503,
+          "sha256": "5a65c4925f63775ab3b1822f1282d8b0128584c8648b7ba57a9b38f931d9a353"
+        },
+        {
+          "mode": "source-native",
+          "key": "BACK-THREE-QUARTER",
+          "bytes": 357638,
+          "sha256": "50f62981102d4006cfe344f80b8c8406d788bbebd91d551bb441939eae938b74"
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "bytes": 490367,
+          "sha256": "bba9e0d73d3f5dd4be525ba3f6b178d27db4412dc009ca40c4a78f6d39045839"
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "bytes": 372871,
+          "sha256": "11d4032563282c72472dd7bf9e7127d98ecf0a35cb502205a2ef401b7649fac1"
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "bytes": 365539,
+          "sha256": "d165e0cdbe43795b6c4bb1b78a614d1f548834888cda517db9055ffae432f1b9"
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "bytes": 364417,
+          "sha256": "45f5c1f2a06a9bf423a3ce1de5642750323684a1f2a87ed49bccfbe190fea0ef"
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "bytes": 345200,
+          "sha256": "5a519d95312c102177bc5c8486ae0625cbf9adcb70bca7d9e8f81f8ec962a721"
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "bytes": 276743,
+          "sha256": "eb7b612514843854fe4c8dc0da157fd166661455e03c00779a202c582e77937e"
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "bytes": 408176,
+          "sha256": "4bc8e1db2c9b9252d7db69eef4334806377e8f6abd1ee2be28b327d69387d861"
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "bytes": 345694,
+          "sha256": "6e2e80afa7bf59034aa544656313a07a5f10b16944c66a45691bfe8924a32434"
+        }
+      ],
+      "rootActualFramesReviewed": 16,
+      "independentVisualDecision": "Figure, wings/arms and curving tail/support remain coherent around all sides. Full-resolution native reverse and above retain rounded head/torso depth and wing-edge structure; dark rear lighting alone is not treated as a defect. Local underside support limits do not remove the main figure.",
+      "captureScope": "Dalí gives wings to Triton, the sea deity traditionally associated with a conch shell. The hybrid figure moves between aquatic and aerial identities, reworking Mediterranean mythology through surrealism. The captured example’s cast date, edition, material and physical collection are unconfirmed; the documented monumental version is a separate reference. The captured figure, wings, tail and irregular support are retained. Local underside/mounting surfaces remain uncalibrated; no geometry was reconstructed.",
+      "finalThumbnail": {
+        "bytes": 44320,
+        "sha256": "f13d3cb19b1a21bf3d4cc9611a1b769e13bfe99d11569eb977f068f10c578e49",
+        "actualImageReviewedByRoot": true
+      },
+      "poster": {
+        "bytes": 59484,
+        "sha256": "2e22ae823cd45e4c008f7bc702a4a589405c177a17564e5ee04adb9915bc199c"
+      }
+    }
+  ],
+  "holds": [
+    {
+      "slug": "modern/dali-christ-of-saint-john-of-the-cross-6c859c",
+      "uid": "6c859c7bdfd4460bad00511e477527de",
+      "reason": "Native reverse, above and side views show a broad smooth olive closure spanning the shoulder/back/arm region, with a sharp transition from detailed front surfaces. The serving preview repeats it. A complete captured back is not established.",
+      "sourceSha256": "e7ff6936e846865f2b2dea0c83e1ccb58fa2910b7270a4c2ed038a5c94ec0682"
+    },
+    {
+      "slug": "modern/dali-head-of-a-laughing-horse-9bdaa1",
+      "uid": "9bdaa1a745f1427daf6ac36ba361fe3f",
+      "reason": "Full-resolution native reverse and above views reveal the opposite cheek and neck as a broad smoothed closure with blurred tan patches at the crown, sharply unlike the detailed front. This supersedes the initially lenient contact-sheet acceptance. A hollow neck rim alone was not the issue.",
+      "sourceSha256": "18a334509824f175e63bc1def22fbbfa1881b03590d52d9e566d6bed815492c9"
+    },
+    {
+      "slug": "modern/dali-the-housekeeper-d6a344",
+      "uid": "d6a3446ed79b4ac2a929fd1c70107348",
+      "reason": "A large flat dark sheet projects behind the head and shoulders; side/reverse views show a flattened rear, and lower views show stray curled or detached base flaps. These defects are already present in the native source.",
+      "sourceSha256": "4a2e47fe866df9cbc65769a237ca699cad14b84860fe622e782db7910a97e72b"
+    },
+    {
+      "slug": "modern/dali-the-soul-of-don-quixote-816b0a",
+      "uid": "816b0ac4605c4970b9b0151e5e2be27f",
+      "reason": "Full-resolution native reverse/above views show most of the cloak and torso rear as a broad smooth dark closure with smeared tan texture islands and abrupt transitions from the crisp front surface. The head rear and base flap add uncertainty. Insufficient evidence of a complete capture; no repair recommended.",
+      "sourceSha256": "c62c66083ad763bf0538c946e88837d3e9d63a3feb1e80c97178264838bb2b01"
+    },
+    {
+      "slug": "modern/dali-dulcinea-0dfe7c",
+      "uid": "0dfe7cfb343649d8bcd6297f51e7285b",
+      "reason": "Above and reverse views expose a broad smooth dark back/closure across the upper body and long torso, with thin front-shell depth and an incompletely represented rear/interior. Native and preview repeat the limitation; this is not resolved by an upright opening.",
+      "sourceSha256": "1124131d15f72442a5fddb6cd22b44d9a897cdb454e61b5cda9d36182f8970fc"
+    }
+  ],
+  "metadata": {
+    "exactCastsEditionsMaterialsLocationsUnconfirmed": true,
+    "primaryCompositionDatesUsed": true,
+    "manufactureOriginUnknownWing": "unfiled",
+    "exactSizeArEnabled": false,
+    "scanLicense": "CC BY4.0",
+    "underlyingArtworkRightsSeparate": true
+  },
+  "archiveEvidence": "docs/ingest/salvador-dali-20261023-archive.json",
+  "exhibitionAppends": [
+    "modern/dali-cosmic-elephant-15f04b",
+    "modern/dali-man-on-a-dolphin-082dca"
+  ],
+  "featuredMembershipChanged": false
+}
