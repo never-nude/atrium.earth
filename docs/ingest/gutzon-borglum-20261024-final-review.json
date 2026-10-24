@@ -271,7 +271,12 @@
       "catalogRecord": {
         "index": 2381,
         "ingestBatch": "gutzon-borglum-20261024",
-        "ingestedAt": "2026-10-24T07:55:57.534Z"
+        "ingestedAt": "2026-10-24T07:55:57.534Z",
+        "metadataRecordSha256": "3b30a91802a901e163dc3dd876a2b25aa73785957af7d5a804f3b70b4f004975",
+        "metadataRecordSerialization": "UTF-8 JSON.stringify of the exact catalog record in stored property order",
+        "scanSource": "Institutional digitization of the University of Kentucky bronze Lincoln bust, including its plaque-bearing display plinth. The model records a flat rear with mounting details and an open underside, retained as captured. The capture method and plinth material are unconfirmed. Atrium reduced the geometry for web delivery while retaining the recorded colors and material appearance.",
+        "note": "Borglum’s portrait concentrates on Lincoln’s head, with rough surrounding forms emphasizing the modeled face. The institutional scan records a bronze example in the University of Kentucky Libraries’ Special Collections Research Center. A university exhibition photograph shows the same head and identifies it as a loan from that collection. The bronze’s casting date, foundry, dimensions and manufacture location are unconfirmed; dates and measurements of the Capitol marble or other bronze examples are not transferred to this object. The captured display plinth is not identified as part of the sculpture. Its dimensions and material are unconfirmed.",
+        "derivedSearchSha256": "750dc0ea96ef7832cf7bc649be669e0864e8060a377c49be058f3bd62b1be23e"
       }
     }
   ],
@@ -568,5 +573,29 @@
     "text": "The furrowed brow, deep-set eyes and rough surrounding forms give Lincoln’s familiar face a grave presence. His likeness carries presidential authority through the head alone, inviting comparison with the portraits of rulers elsewhere in the exhibition. This bronze belongs to the University of Kentucky Libraries; its casting date and foundry remain unconfirmed."
   },
   "catalogRows": 2381,
-  "sourceArchiveCoversAcceptedAndHeldWorks": true
+  "sourceArchiveCoversAcceptedAndHeldWorks": true,
+  "canonicalCatalogBinding": {
+    "path": "src/data/catalog.json",
+    "bytes": 5230304,
+    "sha256": "53c9802d0af35ce92c51ce33b5442af54a322730a764b66210ff4562450b3fcb",
+    "rows": 2381,
+    "metadataRefreshedAt": "2026-10-24T08:21:52.441Z"
+  },
+  "editorialMetadataRefresh": {
+    "updatedAt": "2026-10-24T08:21:52.441Z",
+    "scope": "Capture-description wording and its derived search text only, so the displayed institutional capture label preserves complete human-readable sentences.",
+    "previousReviewReportSha256": "58065c29289dad20661ea7aff616afa11ef686e1a9208c1d2680b237be20df21",
+    "independentAudit": {
+      "status": "pass",
+      "bytes": 5295,
+      "sha256": "debe3314d9c56fc1bb294fb83318cef98a95ec5cbc9fb2399273498507e2a213"
+    },
+    "sourceAssetsUnchanged": true,
+    "servingAssetsUnchanged": true,
+    "poseUnchanged": true,
+    "materialsUnchanged": true,
+    "visualReviewEvidenceUnchanged": true,
+    "archiveEvidenceUnchanged": true,
+    "deploymentClaim": false
+  }
 }

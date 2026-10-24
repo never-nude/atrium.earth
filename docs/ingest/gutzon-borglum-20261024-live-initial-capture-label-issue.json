@@ -1,0 +1,101 @@
+{
+  "schema": "atrium-live-artist-release-verification/1",
+  "batch": "gutzon-borglum-20261024",
+  "releaseCommit": "99481d2c8520c5ffc9d67283b97990f7bea9d398",
+  "deployment": {
+    "runId": 40077190575,
+    "url": "https://github.com/never-nude/atrium.earth/actions/runs/40077190575",
+    "workflowName": "Deploy to GitHub Pages",
+    "status": "completed",
+    "conclusion": "success",
+    "headSha": "99481d2c8520c5ffc9d67283b97990f7bea9d398"
+  },
+  "checkedAt": "2026-10-24T08:17:39.079Z",
+  "status": "pass",
+  "expectedCount": 1,
+  "newest": {
+    "url": "https://atrium.earth/newest/",
+    "status": 200,
+    "bytes": 53936,
+    "sha256": "ea0ffe96823360c86edab0ecf60b5fddcb34cf7ac457437a27012968a0d1aefa",
+    "mime": "text/html; charset=utf-8",
+    "allBatchWorksPresent": true,
+    "slugs": [
+      "americas-oceania/borglum-abraham-lincoln-kentucky"
+    ]
+  },
+  "works": [
+    {
+      "slug": "americas-oceania/borglum-abraham-lincoln-kentucky",
+      "title": "Abraham Lincoln (University of Kentucky bronze bust)",
+      "page": {
+        "url": "https://atrium.earth/works/americas-oceania/borglum-abraham-lincoln-kentucky/",
+        "status": 200,
+        "bytes": 33830,
+        "sha256": "5913c4f418135903af2a4f9e82201dc0345f6762ae6b985cfff0bee269595a92",
+        "mime": "text/html; charset=utf-8",
+        "titlePresent": true,
+        "modelBinding": true,
+        "thumbnailBinding": true
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/americas-oceania/borglum-abraham-lincoln-kentucky/preview-1eead8f8e4d2.glb",
+        "status": 200,
+        "bytes": 1033388,
+        "sha256": "1eead8f8e4d2fbc9d4dc31e9571bfacb4289ba59d7e7af71f8b1cb276ae13043",
+        "mime": "model/gltf-binary",
+        "cors": "https://atrium.earth",
+        "originChecked": "https://atrium.earth",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/americas-oceania/borglum-abraham-lincoln-kentucky/thumb.webp",
+        "status": 200,
+        "bytes": 51784,
+        "sha256": "3ed970ba8620e14674ee456de551345702a7e35faf928412d9f012fdd5aec5b3",
+        "mime": "image/webp",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "poster": {
+        "url": "https://atrium.earth/previews/posters/americas-oceania/borglum-abraham-lincoln-kentucky/poster.svg",
+        "status": 200,
+        "bytes": 69452,
+        "sha256": "7c411b8d34c054e28041692e962575169d5a992f4cd45b889fdd1b02d655789b",
+        "mime": "image/svg+xml",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "newestPresent": true,
+      "sourceMaterialsPreserved": true,
+      "physicalDimensions": {
+        "status": "unknown",
+        "basis": "object",
+        "dimensions": "",
+        "sourceUrl": "https://uknow.uky.edu/arts-culture/uk-art-museum-exhibition-has-presidential-look",
+        "calibrationReady": false,
+        "noUnverifiedDimensionExtrapolation": true
+      },
+      "renderedUnknownSizeUi": {
+        "status": "unknown",
+        "chosenMaxExtentMeters": 1,
+        "renderedUnknown": true
+      },
+      "exactSizeArEnabled": false
+    }
+  ],
+  "scope": "Complete public model/thumbnail/poster hashes and bytes, exact release Pages success, work-page model/title/thumbnail bindings and all selected batch links on Newest. Native/capture and browser behavior are reviewed separately. No private archive IDs, account data, credentials or local paths.",
+  "completedAt": "2026-10-24T08:17:40.467Z",
+  "exhibition": {
+    "url": "https://atrium.earth/exhibitions/power-and-presence/",
+    "status": 200,
+    "bytes": 147629,
+    "sha256": "7b00763413fe2d71a568b65ee08c78b12be4260781d7188c9937a352d5643685",
+    "workPresent": true,
+    "captionPresent": true,
+    "coversUnchanged": true
+  },
+  "scopeQualification": "Initial release: all model/thumbnail/poster hashes, Newest, exhibition and unknown-size checks passed. Actual browser inspection found most capture prose suppressed by the existing display sanitizer; final corrected label deployment and live verification are required before completion.",
+  "completionStatus": "initial-assets-pass-capture-label-correction-pending"
+}
