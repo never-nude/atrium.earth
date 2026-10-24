@@ -1,0 +1,97 @@
+{
+  "schema": "atrium-artist-acquisition/1",
+  "batch": "miro-20261023",
+  "state": "reviewed-pending-build-and-publication",
+  "baseline_commit": "bd959ab1",
+  "baseline_count": 2361,
+  "selected_count": 1,
+  "selected": [
+    {
+      "slug": "modern/joan-miro-femme-bouteille-67452c",
+      "title": "Femme bouteille",
+      "artist": "Joan Miró",
+      "source_uid": "67452cd8945e483ea9df048a30d51886",
+      "source_title": "Miró Dona",
+      "publisher": "the dragon 3d",
+      "source_url": "https://sketchfab.com/3d-models/67452cd8945e483ea9df048a30d51886",
+      "source_record_url": "https://sketchfab.com/3d-models/67452cd8945e483ea9df048a30d51886",
+      "composition_context_url": "https://www.santacruzdetenerife.es/web/noticias-y-agenda/cronista-oficial/cronicas/detalle-cronica/bic-xxxx-femme-bouteille",
+      "identity": "Composition-level Femme bouteille identification; exact cast, location, edition, material, date and physical dimensions remain unconfirmed. No Tenerife-specific identity or measurements are borrowed.",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "license_scope": "The published 3D capture; underlying artwork rights remain separate and no independent artwork clearance is claimed.",
+      "source_sha256": "fcae2da296246c5c6568126b7dc9bba6bb2b9c5381dd018409c815c5e992eb10",
+      "source_bytes": 2061132,
+      "preview_sha256": "961442a0f807dfb2e1a7003fe46e2d54a7aeda41efb1a350429e89e8076a6b05",
+      "preview_bytes": 428868,
+      "raw_source_faces": 36731,
+      "raw_preview_faces": 36731,
+      "measured_integrity": {
+        "source": {
+          "faces": 36731,
+          "bratio": 0.015,
+          "ncomp": 1,
+          "largest_frac": 1
+        },
+        "preview": {
+          "faces": 36727,
+          "bratio": 0.015,
+          "ncomp": 1,
+          "largest_frac": 1
+        },
+        "status": "pass"
+      },
+      "processing": "Draco geometry and WebP maps at maximum2048pixels. No simplification, crop, pose transform, hole repair, reconstruction or recoloring. Native materials and authored texture appearance retained. Degenerate-cleaned measured topology is separate from raw primitive counts.",
+      "capture_limits": [
+        "Sculpture underside unrecorded; retained ground context has incomplete edges.",
+        "Photographic lighting is baked into the texture. Exact physical size remains uncalibrated."
+      ],
+      "wing": "unfiled",
+      "spatial_eligible": false
+    }
+  ],
+  "acquisition_run": 40050934465,
+  "acquisition_commit": "f18c225c4ad54abb780fc218d6761c23cf8c31a4",
+  "archive": {
+    "schema": "atrium-public-safe-source-archive-summary/1",
+    "batch": "miro-20261023",
+    "count": 1,
+    "originalZIPbytes": 2069816,
+    "unchangedProviderGLBbytes": 2061132,
+    "provenanceBytes": 1244299,
+    "restoreMapBytes": 4633,
+    "totalAuthenticatedReadbacks": 3,
+    "totalAuthenticatedReadbackBytes": 3318748,
+    "fullSHA256AndExactBytesVerified": true,
+    "privateSharing": true,
+    "retainedOriginals": true,
+    "cleanup": false,
+    "sourceQualification": "Local ZIP_STORED preservation container holds the unchanged provider GLB, fresh public detail, sanitized acquisition proof and member manifest. Exact cast, date, location and physical size remain unconfirmed; serving derivatives are separate."
+  },
+  "visual_state": "one-source-and-preview-sixteen-actual-frames-reviewed",
+  "exhibition_review": "Existing exhibition themes reviewed; no additional body placement forced. Existing covers and captions preserved.",
+  "featured_changes": false,
+  "cleanup": false,
+  "exclusions": [
+    {
+      "title": "Femme Bouteille, cemeier model82f556",
+      "reason": "Same composition, untextured alternate; not counted as a second new work."
+    },
+    {
+      "title": "Render (Solar Bird), c4440d",
+      "reason": "Actual thumbnail shows a photograph on a slab, not a sculpture scan."
+    },
+    {
+      "title": "Solar Bird, Scan the World",
+      "reason": "Noncommercial license; not acquired."
+    },
+    {
+      "title": "Five existing Miró works",
+      "reason": "Already present in Atrium; not counted as additions."
+    },
+    {
+      "title": "Polycam search",
+      "reason": "No qualifying new artwork capture established within the bounded search."
+    }
+  ]
+}

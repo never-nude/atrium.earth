@@ -1,0 +1,163 @@
+{
+  "schema": "atrium-assistant-visual-review/1",
+  "batch": "miro-20261023",
+  "status": "pass",
+  "reviewer": "Codex assistant visual inspection of all actual native/production frames and final thumbnail",
+  "counts": {
+    "works": 1,
+    "comparisonFrames": 16,
+    "contacts": 1,
+    "finalThumbnails": 1
+  },
+  "sourceReference": "Unchanged provider-delivered GLB, not the normalized working copy.",
+  "scopeReportSha256": "0baac1769577c4d18bacc171c7d8f3b05232812e5c16347e67a69c205ba0de67",
+  "reviewLedgerSha256": "5fc3f7218c0cefb59c2f44345297367bb92759d310c8881164646124b08fd664",
+  "works": [
+    {
+      "slug": "modern/joan-miro-femme-bouteille-67452c",
+      "sourceUid": "67452cd8945e483ea9df048a30d51886",
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/modern/joan-miro-femme-bouteille-67452c/preview-961442a0f807.glb",
+        "sha256": "961442a0f807dfb2e1a7003fe46e2d54a7aeda41efb1a350429e89e8076a6b05",
+        "bytes": 428868
+      },
+      "thumbnail": {
+        "sha256": "782ca9928bb0be23ef785c4b0aec8cfca739a2149104f258a1aa67db5b9dfd31",
+        "bytes": 33846,
+        "reviewed": true
+      },
+      "poster": {
+        "sha256": "a44c09b4ed5609e76f1ccb2964702d100f83d7ac95cac96ee6634c098491f634",
+        "bytes": 2107
+      },
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0,
+          0,
+          1
+        ],
+        "status": "manual",
+        "note": "Y-up zero rotation confirmed by actual eight-view source/production comparison; frontal opening keeps the complete arm silhouette and oval face visible."
+      },
+      "actualViews": [
+        {
+          "mode": "native-source",
+          "key": "FRONT",
+          "sha256": "91e12dffe7e64114823c466b604beab811d00c28a3b6224d5a279b6be9712c56",
+          "bytes": 353896
+        },
+        {
+          "mode": "native-source",
+          "key": "RIGHT",
+          "sha256": "ce464400be045bfb464838fc6f503053fda8fbb44ee15a329a3c6a8e42f51a69",
+          "bytes": 376921
+        },
+        {
+          "mode": "native-source",
+          "key": "REVERSE",
+          "sha256": "8b125310f1ed5d503e9cbacb59a27d491b882d4ab613b840613c0d28ed7bb00a",
+          "bytes": 335000
+        },
+        {
+          "mode": "native-source",
+          "key": "LEFT",
+          "sha256": "08daa76fc42cb9f387319c05cec26626a26d6b2a0f3025aa5d830cfdad3dfd98",
+          "bytes": 350346
+        },
+        {
+          "mode": "native-source",
+          "key": "ABOVE",
+          "sha256": "d4c6f6c1fd83dcfcef7f00d85325cb083366ed16ec700076c62fe5060c45dc7d",
+          "bytes": 690867
+        },
+        {
+          "mode": "native-source",
+          "key": "UNDERSIDE",
+          "sha256": "917390ec51e1f1ac9511c16cf6cbb794773acc356100a1fb9d85b52211b6e039",
+          "bytes": 885878
+        },
+        {
+          "mode": "native-source",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "ddb1fad93a7a30e74edd5c3bafa9dc560b17fef6257e4da97dbf4ff8bb4b3462",
+          "bytes": 379838
+        },
+        {
+          "mode": "native-source",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "55e6b6202ba6e7bda88fb514acee941481e7be0ac5e184d86f1816868a213cc3",
+          "bytes": 369122
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "sha256": "0ca6413c6e42fa457243710a4403079e7dc2088aeec0064d76aeeea46538b8ca",
+          "bytes": 340166
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "sha256": "ac107888a454625249687414b72fc6545da3739167ad65009452138997e66098",
+          "bytes": 366041
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "sha256": "277a467fed7cd0ca3d40b9bf68ee71de0683d6788efd43f114ab6880c18b34a8",
+          "bytes": 328196
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "sha256": "867dbb54d344151e1439bcba6d7c5981ae1522883e9352d35cb9e9056be77f2a",
+          "bytes": 337906
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "sha256": "1cfe1509ceeea1d7dc424246058810fa4271eec9cb63b74163a221eaeb73154d",
+          "bytes": 657930
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "sha256": "6c446fc026e887941ac9048eb3989d6d8b779d668c0af79dc642d5bb3b62479e",
+          "bytes": 829205
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "ab4d2a574452722090207206834bfeaa27985fd590380e9c58634e43e924a1c8",
+          "bytes": 367010
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "85e211bada920c909bcccb29aeb44fc7ddc4274459af744527453011a7e15e2f",
+          "bytes": 357650
+        }
+      ],
+      "contact": {
+        "sha256": "0105e57d4b1ee4d2686cd73edd544c8939c414a8534c3b7626145db4b210d7d4",
+        "bytes": 191746
+      },
+      "captureNote": "Accepted as an exterior physical-object capture with both arms intact and matching native source materials. Preserve the captured ground patch and disclose exact cast/location uncertainty; no repair or invented material treatment.",
+      "decision": {
+        "pose": "pass",
+        "nativeAppearance": "pass",
+        "captureScope": "pass",
+        "scopeNote": "Accepted as an exterior physical-object capture with both arms intact and matching native source materials. Preserve the captured ground patch and disclose exact cast/location uncertainty; no repair or invented material treatment.",
+        "underside": "unrecorded",
+        "undersideNote": "The below-ground camera sees the thin ground/context surface and internal/backface projection; it does not document the hidden underside of the sculpture on its support."
+      },
+      "spatialEligible": false
+    }
+  ]
+}
