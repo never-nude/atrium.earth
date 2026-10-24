@@ -1,0 +1,45 @@
+{
+  "schema": "atrium-independent-artist-data-audit/1",
+  "batch": "louise-bourgeois-20261023",
+  "checkedAt": "2026-10-24T00:54:07.315766+00:00",
+  "scope": "Independent read-only semantic comparison and artifact/metadata review; not a second test execution.",
+  "status": "pass",
+  "blockingFindings": [],
+  "baselineCommit": "2087bd4955f2396ee80870c2e69de925011100f3",
+  "catalog": {
+    "oldRecordsPreserved": 2360,
+    "newRecords": 1,
+    "public": 2343,
+    "hidden": 18,
+    "newPublicLouiseBourgeoisWorks": 1,
+    "exactUidDuplicates": 0,
+    "existingHiddenSpiderPreserved": true
+  },
+  "oldSettingsPreserved": [
+    "appearance-overrides",
+    "orientations",
+    "physical-dimensions",
+    "previews",
+    "spatial-eligibility"
+  ],
+  "newWorkChecks": [
+    "Distinct exact provider UID and Amoeba composition",
+    "Native and serving meshes each57593faces",
+    "Preserve source materials enabled",
+    "Unconfirmed cast date/edition/accession/manufacture qualified",
+    "Capture location distinguished from object manufacture",
+    "CC BY scan license separated from underlying artwork rights",
+    "Uncaptured rear and wall context explicit",
+    "Physical scale unknown and exact-size AR disabled",
+    "16 paired frames and final thumbnail review recorded",
+    "Permanent private source/provenance/restore verification recorded"
+  ],
+  "editorial": {
+    "featuredWorks": 250,
+    "runtimeHomepageEligibleWorks": 192,
+    "featuredSelectionUnchanged": true,
+    "coversUnchanged": true,
+    "surfaceExhibitionBodyWorksAdded": 1,
+    "surfaceExhibitionCaptionsAdded": 1
+  }
+}
