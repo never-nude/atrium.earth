@@ -161,6 +161,8 @@ replacing a model, verify that the new file depicts the same object or update it
 title, holding collection, dimensions, credit, and explanatory note accordingly.
 Recalibrate physical dimensions and AR eligibility against the final derivative.
 
+The owner clarified on October 23 that “find more works” means find, fetch and deploy through the existing verification and private-backup workflow. For artist batches, finish and verify the live release before proceeding to the next artist. This does not relax source identity, licensing, capture quality or release checks.
+
 ## Newest Additions batches
 
 Both `npm run ingest` and `npm run ingest:assemble` automatically give every
