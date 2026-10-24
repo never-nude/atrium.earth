@@ -1,0 +1,53 @@
+{
+  "schema": "atrium-live-artist-release-verification/1",
+  "batch": "louise-bourgeois-20261023",
+  "releaseCommit": "586a62fad17f2487a82954000163cfcfa7a4a5f9",
+  "deploymentRun": 40047263139,
+  "checkedAt": "2026-10-24T00:57:11.726Z",
+  "status": "pass",
+  "works": [
+    {
+      "slug": "modern/bourgeois-amoeba-dia-075df1",
+      "page": {
+        "url": "https://atrium.earth/works/modern/bourgeois-amoeba-dia-075df1/",
+        "status": 200,
+        "modelBinding": true
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/modern/bourgeois-amoeba-dia-075df1/preview-ee13366227d0.glb",
+        "status": 200,
+        "bytes": 220008,
+        "sha256": "ee13366227d0b40b68fca1de66f10d678e98b2226a85b59efef87a2673d53e80",
+        "mime": "model/gltf-binary",
+        "cors": "https://atrium.earth"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/modern/bourgeois-amoeba-dia-075df1/thumb.webp",
+        "status": 200,
+        "bytes": 75812,
+        "sha256": "41ff255a5cc85409da5b982c9e550a5cc7bd11f2986137b03bdea7a6c4a4a061",
+        "mime": "image/webp",
+        "cors": "*"
+      },
+      "poster": {
+        "url": "https://atrium.earth/previews/posters/modern/bourgeois-amoeba-dia-075df1/poster.svg",
+        "status": 200,
+        "bytes": 101422,
+        "sha256": "bd322d5952302338e6a766da1ed500cdebc2e3128c2ea9f6e575a89936cf9c4b",
+        "mime": "image/svg+xml",
+        "cors": "*"
+      }
+    }
+  ],
+  "scope": "Complete public asset hashes/bytes and page bindings; browser behavior checked separately.",
+  "newest": {
+    "url": "https://atrium.earth/newest/",
+    "status": 200,
+    "workPresent": true
+  },
+  "exhibition": {
+    "url": "https://atrium.earth/exhibitions/the-work-of-the-surface/",
+    "status": 200,
+    "workPresent": true
+  }
+}

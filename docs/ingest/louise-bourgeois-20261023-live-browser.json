@@ -1,0 +1,25 @@
+{
+  "schema": "atrium-live-browser-observation/1",
+  "batch": "louise-bourgeois-20261023",
+  "checkedAt": "2026-10-24T00:59:01.568496+00:00",
+  "releaseCommit": "586a62fad17f2487a82954000163cfcfa7a4a5f9",
+  "url": "https://atrium.earth/works/modern/bourgeois-amoeba-dia-075df1/",
+  "status": "pass",
+  "method": "Actual public site opened in the in-app browser, using the real CDN and no request interception or local mirrors. Root observed the live rendered sculpture, disabled automatic turn, reset, dragged the model and saw the changed view, then reset to the front.",
+  "observations": {
+    "titleAndArtistCorrect": true,
+    "actualThreeDimensionalModelVisible": true,
+    "orbitDragChangesView": true,
+    "resetReturnsToFront": true,
+    "sourceWallContextPreserved": true,
+    "dimensionsUnknownAndCastDateQualifierVisible": true,
+    "sourceRightsAndMuseumLinksVisible": true,
+    "surfaceExhibitionLinkVisible": true
+  },
+  "screenshot": {
+    "fileName": "atrium-bourgeois-live.png",
+    "bytes": 61085,
+    "sha256": "bf24540b541c9cd7479568400626b2e159361d7a33ddecce631ad07180808acd"
+  },
+  "limits": "Desktop visual/interaction observation only. No physical-device AR or narrow-width test is claimed. Complete asset SHA/bytes and production-origin CORS are recorded separately in the live verification report."
+}
