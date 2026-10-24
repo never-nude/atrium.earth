@@ -1,0 +1,2388 @@
+{
+  "schema": "atrium-artist-roster-coverage/1",
+  "audit_date": "2026-10-23",
+  "purpose": "Collection coverage audit and acquisition triage for the user-supplied 48-artist roster; this is not a fame ranking.",
+  "snapshot": {
+    "branch_context": "main",
+    "commit": "2087bd4955f2396ee80870c2e69de925011100f3",
+    "catalog_path": "src/data/catalog.json",
+    "catalog_blob": "e6f8d1e57918c6e35a35857fa1b5bfa8523a8c9f",
+    "catalog_record_count": 2360,
+    "public_record_count": 2342,
+    "hidden_record_count": 18
+  },
+  "method": {
+    "public_rule": "A catalog record is public when !work.hidden, matching src/lib/catalog.ts at the snapshot commit.",
+    "artist_matching": "Unicode accent-insensitive artist-credit matching with explicit aliases and full names where surname collisions exist. Titles, search text and notes do not independently establish an artist match.",
+    "count_unit": "Catalog records, including records after artists, casts, replicas, attributed works and interventions where the artist credit explicitly names the requested artist. This audit does not claim a deduplicated composition count or surviving-original count.",
+    "exclusions": [
+      "Michelangelo and Auguste Rodin are excluded at user direction.",
+      "Unrelated surname matches are excluded, including Alexander Stirling Calder, Charles Carpeaux, Jaume/Pere Serra, and Sampson/Ismael/Josh Smith."
+    ],
+    "existing_records_changed": false
+  },
+  "priority": {
+    "rule": "Fewest public catalog records first; original roster order breaks ties. Hidden records do not provide public coverage.",
+    "first_zero_public_artist": "Louise Bourgeois",
+    "zero_public_tie_order": [
+      {
+        "roster_order": 9,
+        "artist": "Louise Bourgeois",
+        "hidden_record_count": 1
+      },
+      {
+        "roster_order": 11,
+        "artist": "Anish Kapoor",
+        "hidden_record_count": 0
+      },
+      {
+        "roster_order": 15,
+        "artist": "Marcel Duchamp",
+        "hidden_record_count": 0
+      },
+      {
+        "roster_order": 18,
+        "artist": "Benvenuto Cellini",
+        "hidden_record_count": 0
+      },
+      {
+        "roster_order": 19,
+        "artist": "Lorenzo Ghiberti",
+        "hidden_record_count": 0
+      },
+      {
+        "roster_order": 21,
+        "artist": "Camille Claudel",
+        "hidden_record_count": 0
+      },
+      {
+        "roster_order": 23,
+        "artist": "Richard Serra",
+        "hidden_record_count": 0
+      },
+      {
+        "roster_order": 26,
+        "artist": "Salvador Dalí",
+        "hidden_record_count": 0
+      },
+      {
+        "roster_order": 29,
+        "artist": "Claes Oldenburg",
+        "hidden_record_count": 0
+      },
+      {
+        "roster_order": 33,
+        "artist": "Damien Hirst",
+        "hidden_record_count": 0
+      },
+      {
+        "roster_order": 34,
+        "artist": "Donald Judd",
+        "hidden_record_count": 0
+      },
+      {
+        "roster_order": 35,
+        "artist": "David Smith",
+        "hidden_record_count": 0
+      },
+      {
+        "roster_order": 40,
+        "artist": "Augusta Savage",
+        "hidden_record_count": 0
+      },
+      {
+        "roster_order": 42,
+        "artist": "Frederic Remington",
+        "hidden_record_count": 0
+      },
+      {
+        "roster_order": 48,
+        "artist": "Rachel Whiteread",
+        "hidden_record_count": 0
+      }
+    ],
+    "full_coverage_priority_order": [
+      {
+        "priority": 1,
+        "roster_order": 9,
+        "artist": "Louise Bourgeois",
+        "public_record_count": 0,
+        "hidden_record_count": 1
+      },
+      {
+        "priority": 2,
+        "roster_order": 11,
+        "artist": "Anish Kapoor",
+        "public_record_count": 0,
+        "hidden_record_count": 0
+      },
+      {
+        "priority": 3,
+        "roster_order": 15,
+        "artist": "Marcel Duchamp",
+        "public_record_count": 0,
+        "hidden_record_count": 0
+      },
+      {
+        "priority": 4,
+        "roster_order": 18,
+        "artist": "Benvenuto Cellini",
+        "public_record_count": 0,
+        "hidden_record_count": 0
+      },
+      {
+        "priority": 5,
+        "roster_order": 19,
+        "artist": "Lorenzo Ghiberti",
+        "public_record_count": 0,
+        "hidden_record_count": 0
+      },
+      {
+        "priority": 6,
+        "roster_order": 21,
+        "artist": "Camille Claudel",
+        "public_record_count": 0,
+        "hidden_record_count": 0
+      },
+      {
+        "priority": 7,
+        "roster_order": 23,
+        "artist": "Richard Serra",
+        "public_record_count": 0,
+        "hidden_record_count": 0
+      },
+      {
+        "priority": 8,
+        "roster_order": 26,
+        "artist": "Salvador Dalí",
+        "public_record_count": 0,
+        "hidden_record_count": 0
+      },
+      {
+        "priority": 9,
+        "roster_order": 29,
+        "artist": "Claes Oldenburg",
+        "public_record_count": 0,
+        "hidden_record_count": 0
+      },
+      {
+        "priority": 10,
+        "roster_order": 33,
+        "artist": "Damien Hirst",
+        "public_record_count": 0,
+        "hidden_record_count": 0
+      },
+      {
+        "priority": 11,
+        "roster_order": 34,
+        "artist": "Donald Judd",
+        "public_record_count": 0,
+        "hidden_record_count": 0
+      },
+      {
+        "priority": 12,
+        "roster_order": 35,
+        "artist": "David Smith",
+        "public_record_count": 0,
+        "hidden_record_count": 0
+      },
+      {
+        "priority": 13,
+        "roster_order": 40,
+        "artist": "Augusta Savage",
+        "public_record_count": 0,
+        "hidden_record_count": 0
+      },
+      {
+        "priority": 14,
+        "roster_order": 42,
+        "artist": "Frederic Remington",
+        "public_record_count": 0,
+        "hidden_record_count": 0
+      },
+      {
+        "priority": 15,
+        "roster_order": 48,
+        "artist": "Rachel Whiteread",
+        "public_record_count": 0,
+        "hidden_record_count": 0
+      },
+      {
+        "priority": 16,
+        "roster_order": 5,
+        "artist": "Constantin Brâncuși",
+        "public_record_count": 1,
+        "hidden_record_count": 0
+      },
+      {
+        "priority": 17,
+        "roster_order": 6,
+        "artist": "Alberto Giacometti",
+        "public_record_count": 1,
+        "hidden_record_count": 0
+      },
+      {
+        "priority": 18,
+        "roster_order": 24,
+        "artist": "Ai Weiwei",
+        "public_record_count": 1,
+        "hidden_record_count": 0
+      },
+      {
+        "priority": 19,
+        "roster_order": 25,
+        "artist": "Yayoi Kusama",
+        "public_record_count": 1,
+        "hidden_record_count": 0
+      },
+      {
+        "priority": 20,
+        "roster_order": 27,
+        "artist": "Umberto Boccioni",
+        "public_record_count": 1,
+        "hidden_record_count": 0
+      },
+      {
+        "priority": 21,
+        "roster_order": 30,
+        "artist": "Antony Gormley",
+        "public_record_count": 1,
+        "hidden_record_count": 0
+      },
+      {
+        "priority": 22,
+        "roster_order": 32,
+        "artist": "Fernando Botero",
+        "public_record_count": 1,
+        "hidden_record_count": 0
+      },
+      {
+        "priority": 23,
+        "roster_order": 36,
+        "artist": "Myron",
+        "public_record_count": 1,
+        "hidden_record_count": 0
+      },
+      {
+        "priority": 24,
+        "roster_order": 41,
+        "artist": "Gutzon Borglum",
+        "public_record_count": 1,
+        "hidden_record_count": 0
+      },
+      {
+        "priority": 25,
+        "roster_order": 7,
+        "artist": "Alexander Calder",
+        "public_record_count": 2,
+        "hidden_record_count": 0
+      },
+      {
+        "priority": 26,
+        "roster_order": 13,
+        "artist": "Frédéric Auguste Bartholdi",
+        "public_record_count": 2,
+        "hidden_record_count": 0
+      },
+      {
+        "priority": 27,
+        "roster_order": 14,
+        "artist": "Edgar Degas",
+        "public_record_count": 2,
+        "hidden_record_count": 0
+      },
+      {
+        "priority": 28,
+        "roster_order": 16,
+        "artist": "Phidias",
+        "public_record_count": 2,
+        "hidden_record_count": 0
+      },
+      {
+        "priority": 29,
+        "roster_order": 17,
+        "artist": "Praxiteles",
+        "public_record_count": 2,
+        "hidden_record_count": 0
+      },
+      {
+        "priority": 30,
+        "roster_order": 22,
+        "artist": "Isamu Noguchi",
+        "public_record_count": 2,
+        "hidden_record_count": 0
+      },
+      {
+        "priority": 31,
+        "roster_order": 37,
+        "artist": "Polykleitos",
+        "public_record_count": 2,
+        "hidden_record_count": 0
+      },
+      {
+        "priority": 32,
+        "roster_order": 46,
+        "artist": "Antoine Bourdelle",
+        "public_record_count": 2,
+        "hidden_record_count": 0
+      },
+      {
+        "priority": 33,
+        "roster_order": 47,
+        "artist": "Eduardo Chillida",
+        "public_record_count": 2,
+        "hidden_record_count": 0
+      },
+      {
+        "priority": 34,
+        "roster_order": 8,
+        "artist": "Jeff Koons",
+        "public_record_count": 3,
+        "hidden_record_count": 0
+      },
+      {
+        "priority": 35,
+        "roster_order": 20,
+        "artist": "Giambologna",
+        "public_record_count": 3,
+        "hidden_record_count": 0
+      },
+      {
+        "priority": 36,
+        "roster_order": 38,
+        "artist": "Lysippos",
+        "public_record_count": 3,
+        "hidden_record_count": 0
+      },
+      {
+        "priority": 37,
+        "roster_order": 43,
+        "artist": "Gustav Vigeland",
+        "public_record_count": 3,
+        "hidden_record_count": 0
+      },
+      {
+        "priority": 38,
+        "roster_order": 10,
+        "artist": "Barbara Hepworth",
+        "public_record_count": 4,
+        "hidden_record_count": 0
+      },
+      {
+        "priority": 39,
+        "roster_order": 28,
+        "artist": "Jean Arp",
+        "public_record_count": 5,
+        "hidden_record_count": 0
+      },
+      {
+        "priority": 40,
+        "roster_order": 45,
+        "artist": "Jean-Baptiste Carpeaux",
+        "public_record_count": 5,
+        "hidden_record_count": 0
+      },
+      {
+        "priority": 41,
+        "roster_order": 1,
+        "artist": "Donatello",
+        "public_record_count": 7,
+        "hidden_record_count": 0
+      },
+      {
+        "priority": 42,
+        "roster_order": 3,
+        "artist": "Pablo Picasso",
+        "public_record_count": 7,
+        "hidden_record_count": 0
+      },
+      {
+        "priority": 43,
+        "roster_order": 4,
+        "artist": "Henry Moore",
+        "public_record_count": 7,
+        "hidden_record_count": 0
+      },
+      {
+        "priority": 44,
+        "roster_order": 2,
+        "artist": "Gian Lorenzo Bernini",
+        "public_record_count": 8,
+        "hidden_record_count": 0
+      },
+      {
+        "priority": 45,
+        "roster_order": 31,
+        "artist": "Niki de Saint Phalle",
+        "public_record_count": 8,
+        "hidden_record_count": 0
+      },
+      {
+        "priority": 46,
+        "roster_order": 44,
+        "artist": "Aristide Maillol",
+        "public_record_count": 9,
+        "hidden_record_count": 0
+      },
+      {
+        "priority": 47,
+        "roster_order": 12,
+        "artist": "Antonio Canova",
+        "public_record_count": 10,
+        "hidden_record_count": 0
+      },
+      {
+        "priority": 48,
+        "roster_order": 39,
+        "artist": "Bertel Thorvaldsen",
+        "public_record_count": 11,
+        "hidden_record_count": 1
+      }
+    ]
+  },
+  "artists": [
+    {
+      "roster_order": 1,
+      "requested_name": "Donatello",
+      "normalized_artist_match_terms": [
+        "donatello"
+      ],
+      "public_record_count": 7,
+      "hidden_record_count": 0,
+      "total_matching_record_count": 7,
+      "public_slugs": [
+        "donatello/david",
+        "donatello/john-the-baptist-as-a-boy",
+        "donatello/saint-george",
+        "donatello/il-zucchone-prophet-smk-cast",
+        "donatello/saint-john-baptist-siena-smk-cast",
+        "donatello/cavalcanti-annunciation-santa-croce",
+        "donatello/marzocco-lion-vam-lelli-cast"
+      ],
+      "hidden_slugs": [],
+      "coverage_caveats": [
+        "Coverage includes plaster casts and works explicitly credited after Donatello; not seven surviving Renaissance originals.",
+        "Il Zucchone is a head-and-shoulders cast from a full-length composition. Marzocco records Giuseppe Lelli’s c.1895 painted plaster cast."
+      ],
+      "matching_records": [
+        {
+          "slug": "donatello/david",
+          "title": "David",
+          "artist_credit": "Donatello",
+          "public": true,
+          "material_as_catalogued": "Bronze",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "donatello/john-the-baptist-as-a-boy",
+          "title": "John The Baptist As A Boy",
+          "artist_credit": "Donatello",
+          "public": true,
+          "material_as_catalogued": "Marble",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "donatello/saint-george",
+          "title": "Saint George",
+          "artist_credit": "Donatello",
+          "public": true,
+          "material_as_catalogued": "Plaster",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "donatello/il-zucchone-prophet-smk-cast",
+          "title": "Il Zucchone (Prophet, perhaps Habakkuk)",
+          "artist_credit": "Donatello; SMK plaster cast",
+          "public": true,
+          "material_as_catalogued": "Plaster",
+          "coverage_caveats": [
+            "Artist credit identifies a plaster cast."
+          ]
+        },
+        {
+          "slug": "donatello/saint-john-baptist-siena-smk-cast",
+          "title": "Saint John the Baptist, Siena composition (SMK cast)",
+          "artist_credit": "After Donatello",
+          "public": true,
+          "material_as_catalogued": "Plaster cast",
+          "coverage_caveats": [
+            "Artist credit identifies an after/copy relationship."
+          ]
+        },
+        {
+          "slug": "donatello/cavalcanti-annunciation-santa-croce",
+          "title": "Cavalcanti Annunciation",
+          "artist_credit": "Donatello",
+          "public": true,
+          "material_as_catalogued": "Pietra serena with gold highlights; upper putti in terracotta and stucco",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "donatello/marzocco-lion-vam-lelli-cast",
+          "title": "Marzocco Lion (V&A plaster cast)",
+          "artist_credit": "Giuseppe Lelli, after Donatello",
+          "public": true,
+          "material_as_catalogued": "Painted plaster",
+          "coverage_caveats": [
+            "Artist credit identifies an after/copy relationship."
+          ]
+        }
+      ]
+    },
+    {
+      "roster_order": 2,
+      "requested_name": "Gian Lorenzo Bernini",
+      "normalized_artist_match_terms": [
+        "bernini"
+      ],
+      "public_record_count": 8,
+      "hidden_record_count": 0,
+      "total_matching_record_count": 8,
+      "public_slugs": [
+        "baroque/costanza-bonarelli-smk-cast",
+        "roman/sleeping-hermaphroditus-louvre-ma-231",
+        "baroque/camilla-barbadori-bernini-smk",
+        "greek/resting-goat-torlonia-threedscans",
+        "europe/damned-soul-bernini",
+        "baroque/chigi-triton-bernini-rijksmuseum",
+        "baroque/habakkuk-angel-bernini-chigi-chapel",
+        "baroque/louis-xiv-as-marcus-curtius-louvre-lead-replica-a0cc0e"
+      ],
+      "hidden_slugs": [],
+      "coverage_caveats": [
+        "Eight associated records include Sleeping Hermaphroditus (Roman figure with Bernini mattress), Resting Goat (Roman figure with head/neck intervention attributed to Bernini), and a 1988 lead replica after Bernini and François Girardon.",
+        "Costanza Bonarelli is represented by an SMK cast. The Damned Soul scan’s physical version and medium remain unverified. Do not count all eight as independent originals entirely by Bernini."
+      ],
+      "matching_records": [
+        {
+          "slug": "baroque/costanza-bonarelli-smk-cast",
+          "title": "Costanza Bonarelli",
+          "artist_credit": "Gian Lorenzo Bernini",
+          "public": true,
+          "material_as_catalogued": "Plaster",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "roman/sleeping-hermaphroditus-louvre-ma-231",
+          "title": "Sleeping Hermaphroditus",
+          "artist_credit": "Unknown Roman sculptor; mattress by Gian Lorenzo Bernini",
+          "public": true,
+          "material_as_catalogued": "Marble",
+          "coverage_caveats": [
+            "Ancient Roman figure; Bernini made the mattress."
+          ]
+        },
+        {
+          "slug": "baroque/camilla-barbadori-bernini-smk",
+          "title": "Bust of Camilla Barbadori",
+          "artist_credit": "Gian Lorenzo Bernini",
+          "public": true,
+          "material_as_catalogued": "Marble",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "greek/resting-goat-torlonia-threedscans",
+          "title": "Statue of Resting Goat",
+          "artist_credit": "Unknown Roman sculptor; head attributed to Gian Lorenzo Bernini",
+          "public": true,
+          "material_as_catalogued": "White marble",
+          "coverage_caveats": [
+            "Ancient Roman figure; head/neck intervention attributed to Bernini.",
+            "Artist credit contains an attribution or maker qualification."
+          ]
+        },
+        {
+          "slug": "europe/damned-soul-bernini",
+          "title": "Damned Soul (after Bernini)",
+          "artist_credit": "Gian Lorenzo Bernini",
+          "public": true,
+          "material_as_catalogued": "Scan medium unverified; original in marble",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "baroque/chigi-triton-bernini-rijksmuseum",
+          "title": "Triton (Chigi study model)",
+          "artist_credit": "Gian Lorenzo Bernini",
+          "public": true,
+          "material_as_catalogued": "Terracotta",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "baroque/habakkuk-angel-bernini-chigi-chapel",
+          "title": "Habakkuk and the Angel (Chigi Chapel installation)",
+          "artist_credit": "Gian Lorenzo Bernini",
+          "public": true,
+          "material_as_catalogued": "White marble; surrounding stone niche and wall",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "baroque/louis-xiv-as-marcus-curtius-louvre-lead-replica-a0cc0e",
+          "title": "Louis XIV as Marcus Curtius (1988 Louvre Lead Replica)",
+          "artist_credit": "Unknown replica maker, after Gian Lorenzo Bernini and François Girardon",
+          "public": true,
+          "material_as_catalogued": "Lead",
+          "coverage_caveats": [
+            "1988 lead replica after Bernini and Girardon; replica maker unconfirmed.",
+            "Artist credit identifies an after/copy relationship."
+          ]
+        }
+      ]
+    },
+    {
+      "roster_order": 3,
+      "requested_name": "Pablo Picasso",
+      "normalized_artist_match_terms": [
+        "pablo picasso"
+      ],
+      "public_record_count": 7,
+      "hidden_record_count": 0,
+      "total_matching_record_count": 7,
+      "public_slugs": [
+        "modern/bust-woman-1931-picasso-arken",
+        "modern/she-goat-picasso-moma-611-1959",
+        "modern/picasso-tete-femme-antibes-bd6f4a",
+        "modern/picasso-bust-woman-antibes-a3e75f",
+        "modern/picasso-canard-pique-fleurs-56336f",
+        "modern/picasso-tripode-ar125-69838b",
+        "modern/picasso-gros-oiseau-visage-noir-ac29a6"
+      ],
+      "hidden_slugs": [],
+      "coverage_caveats": [
+        "Five recent capture records preserve unconfirmed sculptural version, material and/or edition details; attribution is publisher-supported where stated by the catalog.",
+        "Two works share the generic title Bust of a Woman; record count does not establish distinct compositions."
+      ],
+      "matching_records": [
+        {
+          "slug": "modern/bust-woman-1931-picasso-arken",
+          "title": "Bust of a Woman",
+          "artist_credit": "Pablo Picasso",
+          "public": true,
+          "material_as_catalogued": "Cement",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "modern/she-goat-picasso-moma-611-1959",
+          "title": "She-Goat",
+          "artist_credit": "Pablo Picasso",
+          "public": true,
+          "material_as_catalogued": "Bronze",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "modern/picasso-tete-femme-antibes-bd6f4a",
+          "title": "Tête de femme",
+          "artist_credit": "Pablo Picasso",
+          "public": true,
+          "material_as_catalogued": "Material unconfirmed",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "modern/picasso-bust-woman-antibes-a3e75f",
+          "title": "Bust of a Woman",
+          "artist_credit": "Pablo Picasso",
+          "public": true,
+          "material_as_catalogued": "Material unconfirmed",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "modern/picasso-canard-pique-fleurs-56336f",
+          "title": "Canard pique-fleurs",
+          "artist_credit": "Pablo Picasso",
+          "public": true,
+          "material_as_catalogued": "Ceramic (exact body and glaze unconfirmed)",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "modern/picasso-tripode-ar125-69838b",
+          "title": "Tripode (A.R.125)",
+          "artist_credit": "Pablo Picasso",
+          "public": true,
+          "material_as_catalogued": "Ceramic (exact body and glaze unconfirmed)",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "modern/picasso-gros-oiseau-visage-noir-ac29a6",
+          "title": "Gros oiseau visage noir",
+          "artist_credit": "Pablo Picasso",
+          "public": true,
+          "material_as_catalogued": "Ceramic (exact body and glaze unconfirmed)",
+          "coverage_caveats": []
+        }
+      ]
+    },
+    {
+      "roster_order": 4,
+      "requested_name": "Henry Moore",
+      "normalized_artist_match_terms": [
+        "henry moore"
+      ],
+      "public_record_count": 7,
+      "hidden_record_count": 0,
+      "total_matching_record_count": 7,
+      "public_slugs": [
+        "europe/henry-moore-reclining-figure-tate",
+        "europe/henry-moore-reclining-mother-child-noma",
+        "europe/henry-moore-draped-reclining-woman-ago",
+        "europe/henry-moore-warrior-shield-arnhem",
+        "europe/henry-moore-atom-piece-ago",
+        "modern/working-model-locking-piece-moore-duisburg",
+        "modern/reclining-figure-moore-lh452-elmwood"
+      ],
+      "hidden_slugs": [],
+      "coverage_caveats": [],
+      "matching_records": [
+        {
+          "slug": "europe/henry-moore-reclining-figure-tate",
+          "title": "Reclining Figure",
+          "artist_credit": "Henry Moore",
+          "public": true,
+          "material_as_catalogued": "Plaster and string",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "europe/henry-moore-reclining-mother-child-noma",
+          "title": "Reclining Mother and Child",
+          "artist_credit": "Henry Moore",
+          "public": true,
+          "material_as_catalogued": "Bronze",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "europe/henry-moore-draped-reclining-woman-ago",
+          "title": "Draped Reclining Woman",
+          "artist_credit": "Henry Moore",
+          "public": true,
+          "material_as_catalogued": "Original plaster",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "europe/henry-moore-warrior-shield-arnhem",
+          "title": "Warrior with Shield",
+          "artist_credit": "Henry Moore",
+          "public": true,
+          "material_as_catalogued": "Bronze",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "europe/henry-moore-atom-piece-ago",
+          "title": "Atom Piece (Working Model for Nuclear Energy)",
+          "artist_credit": "Henry Moore",
+          "public": true,
+          "material_as_catalogued": "Original plaster",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "modern/working-model-locking-piece-moore-duisburg",
+          "title": "Working Model for Locking Piece",
+          "artist_credit": "Henry Moore",
+          "public": true,
+          "material_as_catalogued": "Bronze",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "modern/reclining-figure-moore-lh452-elmwood",
+          "title": "Reclining Figure",
+          "artist_credit": "Henry Moore",
+          "public": true,
+          "material_as_catalogued": "Elmwood",
+          "coverage_caveats": []
+        }
+      ]
+    },
+    {
+      "roster_order": 5,
+      "requested_name": "Constantin Brâncuși",
+      "normalized_artist_match_terms": [
+        "brancusi"
+      ],
+      "public_record_count": 1,
+      "hidden_record_count": 0,
+      "total_matching_record_count": 1,
+      "public_slugs": [
+        "europe/constantin-brancusi-bird-in-space"
+      ],
+      "hidden_slugs": [],
+      "coverage_caveats": [],
+      "matching_records": [
+        {
+          "slug": "europe/constantin-brancusi-bird-in-space",
+          "title": "Bird in Space",
+          "artist_credit": "Constantin Brâncuși",
+          "public": true,
+          "material_as_catalogued": "Virtual material study after Brâncuși’s sculpture",
+          "coverage_caveats": []
+        }
+      ]
+    },
+    {
+      "roster_order": 6,
+      "requested_name": "Alberto Giacometti",
+      "normalized_artist_match_terms": [
+        "alberto giacometti"
+      ],
+      "public_record_count": 1,
+      "hidden_record_count": 0,
+      "total_matching_record_count": 1,
+      "public_slugs": [
+        "modern/woman-walking-giacometti-venice-pg133"
+      ],
+      "hidden_slugs": [],
+      "coverage_caveats": [],
+      "matching_records": [
+        {
+          "slug": "modern/woman-walking-giacometti-venice-pg133",
+          "title": "Woman Walking",
+          "artist_credit": "Alberto Giacometti",
+          "public": true,
+          "material_as_catalogued": "Bronze",
+          "coverage_caveats": []
+        }
+      ]
+    },
+    {
+      "roster_order": 7,
+      "requested_name": "Alexander Calder",
+      "normalized_artist_match_terms": [
+        "alexander calder"
+      ],
+      "public_record_count": 2,
+      "hidden_record_count": 0,
+      "total_matching_record_count": 2,
+      "public_slugs": [
+        "americas/alexander-calder-peau-rouge-indiana",
+        "modern/spider-calder-reconstruction"
+      ],
+      "hidden_slugs": [],
+      "coverage_caveats": [
+        "One of the two public records is explicitly Spider (Digital Reconstruction), not a physical-object capture. Alexander Stirling Calder’s Naiad with Tragic Mask is excluded as a different artist."
+      ],
+      "matching_records": [
+        {
+          "slug": "americas/alexander-calder-peau-rouge-indiana",
+          "title": "Peau Rouge Indiana",
+          "artist_credit": "Alexander Calder",
+          "public": true,
+          "material_as_catalogued": "Steel, bolts and paint",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "modern/spider-calder-reconstruction",
+          "title": "Spider (Digital Reconstruction)",
+          "artist_credit": "Alexander Calder",
+          "public": true,
+          "material_as_catalogued": "Painted sheet aluminum, steel rod and steel wire",
+          "coverage_caveats": [
+            "Digital reconstruction; not physical-object capture."
+          ]
+        }
+      ]
+    },
+    {
+      "roster_order": 8,
+      "requested_name": "Jeff Koons",
+      "normalized_artist_match_terms": [
+        "jeff koons"
+      ],
+      "public_record_count": 3,
+      "hidden_record_count": 0,
+      "total_matching_record_count": 3,
+      "public_slugs": [
+        "americas-oceania/jeff-koons-ushering-in-banality",
+        "americas-oceania/jeff-koons-play-doh",
+        "modern/pink-panther-koons-moma-187-1996"
+      ],
+      "hidden_slugs": [],
+      "coverage_caveats": [],
+      "matching_records": [
+        {
+          "slug": "americas-oceania/jeff-koons-ushering-in-banality",
+          "title": "Ushering in Banality",
+          "artist_credit": "Jeff Koons",
+          "public": true,
+          "material_as_catalogued": "Polychromed limewood",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "americas-oceania/jeff-koons-play-doh",
+          "title": "Play-Doh",
+          "artist_credit": "Jeff Koons",
+          "public": true,
+          "material_as_catalogued": "Polychromed aluminum",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "modern/pink-panther-koons-moma-187-1996",
+          "title": "Pink Panther",
+          "artist_credit": "Jeff Koons",
+          "public": true,
+          "material_as_catalogued": "Porcelain on formica base",
+          "coverage_caveats": []
+        }
+      ]
+    },
+    {
+      "roster_order": 9,
+      "requested_name": "Louise Bourgeois",
+      "normalized_artist_match_terms": [
+        "louise bourgeois"
+      ],
+      "public_record_count": 0,
+      "hidden_record_count": 1,
+      "total_matching_record_count": 1,
+      "public_slugs": [],
+      "hidden_slugs": [
+        "modern/louise-bourgeois-crouching-spider"
+      ],
+      "coverage_caveats": [
+        "Only matching record is hidden Crouching Spider. Its scan is held because room geometry dominates and all eight complete legs are not established. Do not re-add this source or count it as public coverage."
+      ],
+      "matching_records": [
+        {
+          "slug": "modern/louise-bourgeois-crouching-spider",
+          "title": "Crouching Spider",
+          "artist_credit": "Louise Bourgeois",
+          "public": false,
+          "material_as_catalogued": "Bronze with black and polished patina; stainless steel",
+          "coverage_caveats": [
+            "Hidden visual-quality hold; not public coverage."
+          ]
+        }
+      ]
+    },
+    {
+      "roster_order": 10,
+      "requested_name": "Barbara Hepworth",
+      "normalized_artist_match_terms": [
+        "barbara hepworth"
+      ],
+      "public_record_count": 4,
+      "hidden_record_count": 0,
+      "total_matching_record_count": 4,
+      "public_slugs": [
+        "modern/hepworth-ancestor-i",
+        "europe/barbara-hepworth-figure-for-landscape",
+        "europe/hepworth-two-forms-divided-circle",
+        "modern/barbara-hepworth-epidauros-ii"
+      ],
+      "hidden_slugs": [],
+      "coverage_caveats": [],
+      "matching_records": [
+        {
+          "slug": "modern/hepworth-ancestor-i",
+          "title": "Ancestor I",
+          "artist_credit": "Barbara Hepworth",
+          "public": true,
+          "material_as_catalogued": "Bronze",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "europe/barbara-hepworth-figure-for-landscape",
+          "title": "Figure for Landscape",
+          "artist_credit": "Barbara Hepworth",
+          "public": true,
+          "material_as_catalogued": "Bronze",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "europe/hepworth-two-forms-divided-circle",
+          "title": "Two Forms (Divided Circle) (Reconstruction)",
+          "artist_credit": "Barbara Hepworth",
+          "public": true,
+          "material_as_catalogued": "Bronze (original); digital reconstruction",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "modern/barbara-hepworth-epidauros-ii",
+          "title": "Epidauros II",
+          "artist_credit": "Barbara Hepworth",
+          "public": true,
+          "material_as_catalogued": "Bronze",
+          "coverage_caveats": []
+        }
+      ]
+    },
+    {
+      "roster_order": 11,
+      "requested_name": "Anish Kapoor",
+      "normalized_artist_match_terms": [
+        "anish kapoor"
+      ],
+      "public_record_count": 0,
+      "hidden_record_count": 0,
+      "total_matching_record_count": 0,
+      "public_slugs": [],
+      "hidden_slugs": [],
+      "coverage_caveats": [],
+      "matching_records": []
+    },
+    {
+      "roster_order": 12,
+      "requested_name": "Antonio Canova",
+      "normalized_artist_match_terms": [
+        "antonio canova"
+      ],
+      "public_record_count": 10,
+      "hidden_record_count": 0,
+      "total_matching_record_count": 10,
+      "public_slugs": [
+        "perseus-with-head-of-medusa",
+        "neoclassical/psyche-revived-by-cupids-kiss-canova-louvre",
+        "neoclassical/venus-italica-canova-smk-kas-793",
+        "neoclassical/bust-of-napoleon-bonaparte-canova-mnk-vmm",
+        "neoclassical/three-graces-glyptotek",
+        "europe/naiad-canova-nga",
+        "europe/pauline-bonaparte-canova-borghese",
+        "europe/bust-paris-canova-glyptotek",
+        "modern/canova-terpsichore-lyran-cleveland-1968-212",
+        "roman/aphrodite-syracuse-nama-3524"
+      ],
+      "hidden_slugs": [],
+      "coverage_caveats": [
+        "Includes Venus Italica plaster cast, Three Graces workshop copy, an uncertain workshop-replica Napoleon bust, a source mesh remix, and a Roman Aphrodite restored by Canova. These are not ten original sculptures wholly carved by Canova."
+      ],
+      "matching_records": [
+        {
+          "slug": "perseus-with-head-of-medusa",
+          "title": "Perseus With Head Of Medusa",
+          "artist_credit": "Antonio Canova",
+          "public": true,
+          "material_as_catalogued": "Marble",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "neoclassical/psyche-revived-by-cupids-kiss-canova-louvre",
+          "title": "Psyche Revived by Cupid's Kiss",
+          "artist_credit": "Antonio Canova; source mesh remix by 3DLadnik after Scan The World",
+          "public": true,
+          "material_as_catalogued": "Marble and metal",
+          "coverage_caveats": [
+            "Artist credit identifies an after/copy relationship."
+          ]
+        },
+        {
+          "slug": "neoclassical/venus-italica-canova-smk-kas-793",
+          "title": "Venus Italica",
+          "artist_credit": "Unknown cast maker, after Antonio Canova",
+          "public": true,
+          "material_as_catalogued": "Plaster",
+          "coverage_caveats": [
+            "Artist credit identifies an after/copy relationship."
+          ]
+        },
+        {
+          "slug": "neoclassical/bust-of-napoleon-bonaparte-canova-mnk-vmm",
+          "title": "Bust of Napoleon Bonaparte",
+          "artist_credit": "Antonio Canova (1757–1822)",
+          "public": true,
+          "material_as_catalogued": "Marble",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "neoclassical/three-graces-glyptotek",
+          "title": "The Three Graces",
+          "artist_credit": "After Antonio Canova",
+          "public": true,
+          "material_as_catalogued": "Marble",
+          "coverage_caveats": [
+            "Artist credit identifies an after/copy relationship."
+          ]
+        },
+        {
+          "slug": "europe/naiad-canova-nga",
+          "title": "Naiad",
+          "artist_credit": "Antonio Canova",
+          "public": true,
+          "material_as_catalogued": "Marble",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "europe/pauline-bonaparte-canova-borghese",
+          "title": "Paolina Borghese Bonaparte as Venus Victorious",
+          "artist_credit": "Antonio Canova",
+          "public": true,
+          "material_as_catalogued": "Carrara marble",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "europe/bust-paris-canova-glyptotek",
+          "title": "Bust of Paris",
+          "artist_credit": "Antonio Canova",
+          "public": true,
+          "material_as_catalogued": "Marble",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "modern/canova-terpsichore-lyran-cleveland-1968-212",
+          "title": "Terpsichore Lyran (Muse of Lyric Poetry)",
+          "artist_credit": "Antonio Canova",
+          "public": true,
+          "material_as_catalogued": "Marble",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "roman/aphrodite-syracuse-nama-3524",
+          "title": "Aphrodite of the Syracuse Type",
+          "artist_credit": "Unknown Roman sculptor; restored by Antonio Canova",
+          "public": true,
+          "material_as_catalogued": "Marble",
+          "coverage_caveats": []
+        }
+      ]
+    },
+    {
+      "roster_order": 13,
+      "requested_name": "Frédéric Auguste Bartholdi",
+      "normalized_artist_match_terms": [
+        "bartholdi"
+      ],
+      "public_record_count": 2,
+      "hidden_record_count": 0,
+      "total_matching_record_count": 2,
+      "public_slugs": [
+        "modern/statue-liberty-bartholdi-luxembourg-replica",
+        "modern/lion-belfort-bartholdi-lille-sc-130"
+      ],
+      "hidden_slugs": [],
+      "coverage_caveats": [
+        "Liberty is a later Luxembourg Garden replica, not the New York monument; Lion of Belfort is the small plaster model in Lille, not the monumental stone lion."
+      ],
+      "matching_records": [
+        {
+          "slug": "modern/statue-liberty-bartholdi-luxembourg-replica",
+          "title": "Liberty Enlightening the World (Luxembourg Garden replica)",
+          "artist_credit": "Frédéric Auguste Bartholdi; later faithful replica",
+          "public": true,
+          "material_as_catalogued": "Bronze",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "modern/lion-belfort-bartholdi-lille-sc-130",
+          "title": "Lion of Belfort (plaster model)",
+          "artist_credit": "Frédéric Auguste Bartholdi",
+          "public": true,
+          "material_as_catalogued": "Plaster with gray wash and traces of red",
+          "coverage_caveats": []
+        }
+      ]
+    },
+    {
+      "roster_order": 14,
+      "requested_name": "Edgar Degas",
+      "normalized_artist_match_terms": [
+        "edgar degas"
+      ],
+      "public_record_count": 2,
+      "hidden_record_count": 0,
+      "total_matching_record_count": 2,
+      "public_slugs": [
+        "europe/the-tub-degas-artic",
+        "modern/little-dancer-degas-nga-wax-original"
+      ],
+      "hidden_slugs": [],
+      "coverage_caveats": [
+        "Little Dancer is explicitly the unique original wax. The bronze Tub is a separate version/material; cast and edition status must be retained from source metadata."
+      ],
+      "matching_records": [
+        {
+          "slug": "europe/the-tub-degas-artic",
+          "title": "The Tub",
+          "artist_credit": "Edgar Degas",
+          "public": true,
+          "material_as_catalogued": "Bronze",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "modern/little-dancer-degas-nga-wax-original",
+          "title": "Little Dancer Aged Fourteen (original wax)",
+          "artist_credit": "Edgar Degas",
+          "public": true,
+          "material_as_catalogued": "Pigmented beeswax and clay with metal armature, hair, textiles and wooden base",
+          "coverage_caveats": []
+        }
+      ]
+    },
+    {
+      "roster_order": 15,
+      "requested_name": "Marcel Duchamp",
+      "normalized_artist_match_terms": [
+        "marcel duchamp"
+      ],
+      "public_record_count": 0,
+      "hidden_record_count": 0,
+      "total_matching_record_count": 0,
+      "public_slugs": [],
+      "hidden_slugs": [],
+      "coverage_caveats": [],
+      "matching_records": []
+    },
+    {
+      "roster_order": 16,
+      "requested_name": "Phidias",
+      "normalized_artist_match_terms": [
+        "phidias",
+        "pheidias"
+      ],
+      "public_record_count": 2,
+      "hidden_record_count": 0,
+      "total_matching_record_count": 2,
+      "public_slugs": [
+        "athena-lemnia",
+        "greek/mattei-amazon-smk-kas232"
+      ],
+      "hidden_slugs": [],
+      "coverage_caveats": [
+        "Athena Lemnia is represented through Furtwängler’s reconstruction; Mattei Amazon is a Malpieri plaster cast of a restored Roman sculpture after a debated type associated with Phidias. No surviving original by Phidias is established by this count."
+      ],
+      "matching_records": [
+        {
+          "slug": "athena-lemnia",
+          "title": "Athena Lemnia",
+          "artist_credit": "Phidias",
+          "public": true,
+          "material_as_catalogued": "Marble",
+          "coverage_caveats": [
+            "Modern reconstruction of an ancient type, represented through cast provenance."
+          ]
+        },
+        {
+          "slug": "greek/mattei-amazon-smk-kas232",
+          "title": "Mattei Amazon — SMK Plaster Cast",
+          "artist_credit": "Malpieri workshop, after the Mattei Amazon type attributed to Phidias",
+          "public": true,
+          "material_as_catalogued": "Plaster",
+          "coverage_caveats": [
+            "Plaster cast of restored Roman copy; Greek type attribution debated.",
+            "Artist credit identifies an after/copy relationship.",
+            "Artist credit contains an attribution or maker qualification."
+          ]
+        }
+      ]
+    },
+    {
+      "roster_order": 17,
+      "requested_name": "Praxiteles",
+      "normalized_artist_match_terms": [
+        "praxiteles"
+      ],
+      "public_record_count": 2,
+      "hidden_record_count": 0,
+      "total_matching_record_count": 2,
+      "public_slugs": [
+        "roman/venus-of-arles-louvre-ma-439",
+        "greek/apollo-sauroktonos-cleveland"
+      ],
+      "hidden_slugs": [],
+      "coverage_caveats": [
+        "Venus of Arles is a Roman work related to Praxiteles’s Aphrodite of Thespiae; Cleveland Apollo is attributed to Praxiteles or a follower. Neither attribution should be made certain from the coverage total."
+      ],
+      "matching_records": [
+        {
+          "slug": "roman/venus-of-arles-louvre-ma-439",
+          "title": "Venus of Arles",
+          "artist_credit": "Unknown Roman sculptor (after Praxiteles)",
+          "public": true,
+          "material_as_catalogued": "Hymettian marble",
+          "coverage_caveats": [
+            "Artist credit identifies an after/copy relationship."
+          ]
+        },
+        {
+          "slug": "greek/apollo-sauroktonos-cleveland",
+          "title": "The Cleveland Apollo: Apollo Sauroktonos (Lizard-Slayer) or Apollo the Python-Slayer",
+          "artist_credit": "Attributed to Praxiteles (Greek, Athenian, c. 400–330 BCE), or Follower",
+          "public": true,
+          "material_as_catalogued": "Bronze, copper, and stone inlay",
+          "coverage_caveats": [
+            "Attributed to Praxiteles or follower; retain museum uncertainty.",
+            "Artist credit contains an attribution or maker qualification."
+          ]
+        }
+      ]
+    },
+    {
+      "roster_order": 18,
+      "requested_name": "Benvenuto Cellini",
+      "normalized_artist_match_terms": [
+        "benvenuto cellini"
+      ],
+      "public_record_count": 0,
+      "hidden_record_count": 0,
+      "total_matching_record_count": 0,
+      "public_slugs": [],
+      "hidden_slugs": [],
+      "coverage_caveats": [],
+      "matching_records": []
+    },
+    {
+      "roster_order": 19,
+      "requested_name": "Lorenzo Ghiberti",
+      "normalized_artist_match_terms": [
+        "lorenzo ghiberti"
+      ],
+      "public_record_count": 0,
+      "hidden_record_count": 0,
+      "total_matching_record_count": 0,
+      "public_slugs": [],
+      "hidden_slugs": [],
+      "coverage_caveats": [],
+      "matching_records": []
+    },
+    {
+      "roster_order": 20,
+      "requested_name": "Giambologna",
+      "normalized_artist_match_terms": [
+        "giambologna"
+      ],
+      "public_record_count": 3,
+      "hidden_record_count": 0,
+      "total_matching_record_count": 3,
+      "public_slugs": [
+        "europe/samson-philistine-giambologna",
+        "renaissance/venus-cupid-giambologna-follower-nga",
+        "europe/fata-morgana-cleveland-2025-18-1d8371"
+      ],
+      "hidden_slugs": [],
+      "coverage_caveats": [
+        "Venus and Cupid is credited to an Italian follower of Giambologna, not the master. The other two public records name Giambologna."
+      ],
+      "matching_records": [
+        {
+          "slug": "europe/samson-philistine-giambologna",
+          "title": "Samson Slaying a Philistine",
+          "artist_credit": "Giambologna",
+          "public": true,
+          "material_as_catalogued": "Marble",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "renaissance/venus-cupid-giambologna-follower-nga",
+          "title": "Venus and Cupid",
+          "artist_credit": "Italian sculptor, follower of Giambologna",
+          "public": true,
+          "material_as_catalogued": "Bronze",
+          "coverage_caveats": [
+            "Artist credit contains an attribution or maker qualification."
+          ]
+        },
+        {
+          "slug": "europe/fata-morgana-cleveland-2025-18-1d8371",
+          "title": "Fata Morgana",
+          "artist_credit": "Giambologna",
+          "public": true,
+          "material_as_catalogued": "Marble",
+          "coverage_caveats": []
+        }
+      ]
+    },
+    {
+      "roster_order": 21,
+      "requested_name": "Camille Claudel",
+      "normalized_artist_match_terms": [
+        "camille claudel"
+      ],
+      "public_record_count": 0,
+      "hidden_record_count": 0,
+      "total_matching_record_count": 0,
+      "public_slugs": [],
+      "hidden_slugs": [],
+      "coverage_caveats": [],
+      "matching_records": []
+    },
+    {
+      "roster_order": 22,
+      "requested_name": "Isamu Noguchi",
+      "normalized_artist_match_terms": [
+        "isamu noguchi"
+      ],
+      "public_record_count": 2,
+      "hidden_record_count": 0,
+      "total_matching_record_count": 2,
+      "public_slugs": [
+        "americas-oceania/isamu-noguchi-illusion-of-the-fifth-stone",
+        "americas-oceania/isamu-noguchi-woman"
+      ],
+      "hidden_slugs": [],
+      "coverage_caveats": [],
+      "matching_records": [
+        {
+          "slug": "americas-oceania/isamu-noguchi-illusion-of-the-fifth-stone",
+          "title": "Illusion of the Fifth Stone",
+          "artist_credit": "Isamu Noguchi",
+          "public": true,
+          "material_as_catalogued": "Aji granite",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "americas-oceania/isamu-noguchi-woman",
+          "title": "Woman",
+          "artist_credit": "Isamu Noguchi",
+          "public": true,
+          "material_as_catalogued": "Basalt on granite base",
+          "coverage_caveats": []
+        }
+      ]
+    },
+    {
+      "roster_order": 23,
+      "requested_name": "Richard Serra",
+      "normalized_artist_match_terms": [
+        "richard serra"
+      ],
+      "public_record_count": 0,
+      "hidden_record_count": 0,
+      "total_matching_record_count": 0,
+      "public_slugs": [],
+      "hidden_slugs": [],
+      "coverage_caveats": [
+        "Jaume Serra and Pere Serra’s Saint Martin and the Beggar is excluded as unrelated artists."
+      ],
+      "matching_records": []
+    },
+    {
+      "roster_order": 24,
+      "requested_name": "Ai Weiwei",
+      "normalized_artist_match_terms": [
+        "ai weiwei"
+      ],
+      "public_record_count": 1,
+      "hidden_record_count": 0,
+      "total_matching_record_count": 1,
+      "public_slugs": [
+        "unfiled/ai-weiwei-dog-circle-of-animals-zodiac-heads-lacma-6f86e5"
+      ],
+      "hidden_slugs": [],
+      "coverage_caveats": [],
+      "matching_records": [
+        {
+          "slug": "unfiled/ai-weiwei-dog-circle-of-animals-zodiac-heads-lacma-6f86e5",
+          "title": "Dog, from Circle of Animals/Zodiac Heads",
+          "artist_credit": "Ai Weiwei",
+          "public": true,
+          "material_as_catalogued": "Bronze",
+          "coverage_caveats": []
+        }
+      ]
+    },
+    {
+      "roster_order": 25,
+      "requested_name": "Yayoi Kusama",
+      "normalized_artist_match_terms": [
+        "yayoi kusama"
+      ],
+      "public_record_count": 1,
+      "hidden_record_count": 0,
+      "total_matching_record_count": 1,
+      "public_slugs": [
+        "makers/yayoi-kusama-toko-chan-digital-reconstruction"
+      ],
+      "hidden_slugs": [],
+      "coverage_caveats": [],
+      "matching_records": [
+        {
+          "slug": "makers/yayoi-kusama-toko-chan-digital-reconstruction",
+          "title": "Toko-chan (Digital Reconstruction)",
+          "artist_credit": "Yayoi Kusama",
+          "public": true,
+          "material_as_catalogued": "Original: fiberglass-reinforced plastic and paint",
+          "coverage_caveats": []
+        }
+      ]
+    },
+    {
+      "roster_order": 26,
+      "requested_name": "Salvador Dalí",
+      "normalized_artist_match_terms": [
+        "salvador dali"
+      ],
+      "public_record_count": 0,
+      "hidden_record_count": 0,
+      "total_matching_record_count": 0,
+      "public_slugs": [],
+      "hidden_slugs": [],
+      "coverage_caveats": [],
+      "matching_records": []
+    },
+    {
+      "roster_order": 27,
+      "requested_name": "Umberto Boccioni",
+      "normalized_artist_match_terms": [
+        "umberto boccioni"
+      ],
+      "public_record_count": 1,
+      "hidden_record_count": 0,
+      "total_matching_record_count": 1,
+      "public_slugs": [
+        "development-of-a-bottle-in-space"
+      ],
+      "hidden_slugs": [],
+      "coverage_caveats": [],
+      "matching_records": [
+        {
+          "slug": "development-of-a-bottle-in-space",
+          "title": "Development Of A Bottle In Space",
+          "artist_credit": "Umberto Boccioni",
+          "public": true,
+          "material_as_catalogued": "Bronze",
+          "coverage_caveats": []
+        }
+      ]
+    },
+    {
+      "roster_order": 28,
+      "requested_name": "Jean Arp",
+      "normalized_artist_match_terms": [
+        "arp"
+      ],
+      "public_record_count": 5,
+      "hidden_record_count": 0,
+      "total_matching_record_count": 5,
+      "public_slugs": [
+        "europe/arp-evocation-human-lunar-spectral",
+        "europe/jean-hans-arp-small-leaning-figure-called-egyptian-woman",
+        "modern/hans-jean-arp-form-heard-and-seen",
+        "modern/hans-jean-arp-heart-of-a-monument",
+        "modern/hans-jean-arp-ugledrm-owl-dream"
+      ],
+      "hidden_slugs": [],
+      "coverage_caveats": [
+        "All five matching credits are Hans (Jean) Arp or Jean (Hans) Arp; parenthesized aliases refer to the same artist."
+      ],
+      "matching_records": [
+        {
+          "slug": "europe/arp-evocation-human-lunar-spectral",
+          "title": "Evocation of a Form: Human, Lunar, Spectral",
+          "artist_credit": "Hans (Jean) Arp",
+          "public": true,
+          "material_as_catalogued": "Bronze",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "europe/jean-hans-arp-small-leaning-figure-called-egyptian-woman",
+          "title": "Small Leaning Figure, called “Egyptian Woman”",
+          "artist_credit": "Jean (Hans) Arp",
+          "public": true,
+          "material_as_catalogued": "Cast plaster",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "modern/hans-jean-arp-form-heard-and-seen",
+          "title": "Form Heard and Seen",
+          "artist_credit": "Hans (Jean) Arp",
+          "public": true,
+          "material_as_catalogued": "Plaster",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "modern/hans-jean-arp-heart-of-a-monument",
+          "title": "Heart of a Monument",
+          "artist_credit": "Hans (Jean) Arp",
+          "public": true,
+          "material_as_catalogued": "Plaster",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "modern/hans-jean-arp-ugledrm-owl-dream",
+          "title": "Ugledrøm (Owl Dream)",
+          "artist_credit": "Hans (Jean) Arp",
+          "public": true,
+          "material_as_catalogued": "",
+          "coverage_caveats": []
+        }
+      ]
+    },
+    {
+      "roster_order": 29,
+      "requested_name": "Claes Oldenburg",
+      "normalized_artist_match_terms": [
+        "claes oldenburg"
+      ],
+      "public_record_count": 0,
+      "hidden_record_count": 0,
+      "total_matching_record_count": 0,
+      "public_slugs": [],
+      "hidden_slugs": [],
+      "coverage_caveats": [],
+      "matching_records": []
+    },
+    {
+      "roster_order": 30,
+      "requested_name": "Antony Gormley",
+      "normalized_artist_match_terms": [
+        "antony gormley"
+      ],
+      "public_record_count": 1,
+      "hidden_record_count": 0,
+      "total_matching_record_count": 1,
+      "public_slugs": [
+        "modern/antony-gormley-another-place-one-figure-at-crosby-beach"
+      ],
+      "hidden_slugs": [],
+      "coverage_caveats": [],
+      "matching_records": [
+        {
+          "slug": "modern/antony-gormley-another-place-one-figure-at-crosby-beach",
+          "title": "Another Place (One Figure at Crosby Beach)",
+          "artist_credit": "Antony Gormley",
+          "public": true,
+          "material_as_catalogued": "Cast iron",
+          "coverage_caveats": []
+        }
+      ]
+    },
+    {
+      "roster_order": 31,
+      "requested_name": "Niki de Saint Phalle",
+      "normalized_artist_match_terms": [
+        "niki de saint phalle"
+      ],
+      "public_record_count": 8,
+      "hidden_record_count": 0,
+      "total_matching_record_count": 8,
+      "public_slugs": [
+        "modern/saint-phalle-firebird-stravinsky",
+        "modern/saint-phalle-nikigator",
+        "modern/saint-phalle-les-baigneuses",
+        "makers/niki-de-saint-phalle-the-mermaid-la-sirene",
+        "makers/niki-de-saint-phalle-the-snake-le-serpent",
+        "makers/niki-de-saint-phalle-the-heart-le-cur",
+        "makers/niki-de-saint-phalle-the-nightingale-le-rossignol",
+        "modern/niki-de-saint-phalle-tir-shooting-altar"
+      ],
+      "hidden_slugs": [],
+      "coverage_caveats": [],
+      "matching_records": [
+        {
+          "slug": "modern/saint-phalle-firebird-stravinsky",
+          "title": "The Firebird (Stravinsky Fountain)",
+          "artist_credit": "Niki de Saint Phalle",
+          "public": true,
+          "material_as_catalogued": "Painted resin and metal",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "modern/saint-phalle-nikigator",
+          "title": "Nikigator",
+          "artist_credit": "Niki de Saint Phalle",
+          "public": true,
+          "material_as_catalogued": "Mosaic of stones, glass and ceramics over a metal armature and resin",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "modern/saint-phalle-les-baigneuses",
+          "title": "Les Baigneuses",
+          "artist_credit": "Niki de Saint Phalle",
+          "public": true,
+          "material_as_catalogued": "Painted polyester resin",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "makers/niki-de-saint-phalle-the-mermaid-la-sirene",
+          "title": "The Mermaid (La Sirène)",
+          "artist_credit": "Niki de Saint Phalle",
+          "public": true,
+          "material_as_catalogued": "Painted resin",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "makers/niki-de-saint-phalle-the-snake-le-serpent",
+          "title": "The Snake (Le Serpent)",
+          "artist_credit": "Niki de Saint Phalle",
+          "public": true,
+          "material_as_catalogued": "Painted resin",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "makers/niki-de-saint-phalle-the-heart-le-cur",
+          "title": "The Heart (Le Cœur)",
+          "artist_credit": "Niki de Saint Phalle",
+          "public": true,
+          "material_as_catalogued": "Painted resin",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "makers/niki-de-saint-phalle-the-nightingale-le-rossignol",
+          "title": "The Nightingale (Le Rossignol)",
+          "artist_credit": "Niki de Saint Phalle",
+          "public": true,
+          "material_as_catalogued": "Painted resin",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "modern/niki-de-saint-phalle-tir-shooting-altar",
+          "title": "Tir (Shooting Altar)",
+          "artist_credit": "Niki de Saint Phalle",
+          "public": true,
+          "material_as_catalogued": "Assemblage with plaster and paint",
+          "coverage_caveats": []
+        }
+      ]
+    },
+    {
+      "roster_order": 32,
+      "requested_name": "Fernando Botero",
+      "normalized_artist_match_terms": [
+        "fernando botero"
+      ],
+      "public_record_count": 1,
+      "hidden_record_count": 0,
+      "total_matching_record_count": 1,
+      "public_slugs": [
+        "makers/fernando-botero-la-maternidad"
+      ],
+      "hidden_slugs": [],
+      "coverage_caveats": [],
+      "matching_records": [
+        {
+          "slug": "makers/fernando-botero-la-maternidad",
+          "title": "La Maternidad",
+          "artist_credit": "Fernando Botero",
+          "public": true,
+          "material_as_catalogued": "Bronze",
+          "coverage_caveats": []
+        }
+      ]
+    },
+    {
+      "roster_order": 33,
+      "requested_name": "Damien Hirst",
+      "normalized_artist_match_terms": [
+        "damien hirst"
+      ],
+      "public_record_count": 0,
+      "hidden_record_count": 0,
+      "total_matching_record_count": 0,
+      "public_slugs": [],
+      "hidden_slugs": [],
+      "coverage_caveats": [],
+      "matching_records": []
+    },
+    {
+      "roster_order": 34,
+      "requested_name": "Donald Judd",
+      "normalized_artist_match_terms": [
+        "donald judd"
+      ],
+      "public_record_count": 0,
+      "hidden_record_count": 0,
+      "total_matching_record_count": 0,
+      "public_slugs": [],
+      "hidden_slugs": [],
+      "coverage_caveats": [],
+      "matching_records": []
+    },
+    {
+      "roster_order": 35,
+      "requested_name": "David Smith",
+      "normalized_artist_match_terms": [
+        "david smith"
+      ],
+      "public_record_count": 0,
+      "hidden_record_count": 0,
+      "total_matching_record_count": 0,
+      "public_slugs": [],
+      "hidden_slugs": [],
+      "coverage_caveats": [
+        "Sampson Smith, Ismael Smith i Marí and Josh Smith records are excluded as unrelated artists."
+      ],
+      "matching_records": []
+    },
+    {
+      "roster_order": 36,
+      "requested_name": "Myron",
+      "normalized_artist_match_terms": [
+        "myron"
+      ],
+      "public_record_count": 1,
+      "hidden_record_count": 0,
+      "total_matching_record_count": 1,
+      "public_slugs": [
+        "discobolus"
+      ],
+      "hidden_slugs": [],
+      "coverage_caveats": [
+        "Discobolus is the SMK KAS1549 plaster cast after a Roman copy with a modern incorrectly positioned head; Myron’s Greek bronze is lost. The date 1909 is an acquisition terminus, not a production date."
+      ],
+      "matching_records": [
+        {
+          "slug": "discobolus",
+          "title": "Discobolus, Roman Copy with Modern Head (SMK Plaster Cast, KAS1549)",
+          "artist_credit": "Unknown cast maker; after Myron",
+          "public": true,
+          "material_as_catalogued": "Plaster",
+          "coverage_caveats": [
+            "Artist credit identifies an after/copy relationship."
+          ]
+        }
+      ]
+    },
+    {
+      "roster_order": 37,
+      "requested_name": "Polykleitos",
+      "normalized_artist_match_terms": [
+        "polykleitos",
+        "polyclitus"
+      ],
+      "public_record_count": 2,
+      "hidden_record_count": 0,
+      "total_matching_record_count": 2,
+      "public_slugs": [
+        "roman/herakles-torso-glyptotek",
+        "roman/doryphoros-minneapolis"
+      ],
+      "hidden_slugs": [],
+      "coverage_caveats": [
+        "Both records are Roman marbles after types associated with Polykleitos; no surviving Greek original is asserted."
+      ],
+      "matching_records": [
+        {
+          "slug": "roman/herakles-torso-glyptotek",
+          "title": "Herakles",
+          "artist_credit": "Unknown Roman sculptor, after Polykleitos",
+          "public": true,
+          "material_as_catalogued": "Marble",
+          "coverage_caveats": [
+            "Artist credit identifies an after/copy relationship."
+          ]
+        },
+        {
+          "slug": "roman/doryphoros-minneapolis",
+          "title": "The Doryphoros (after Polykleitos)",
+          "artist_credit": "Unknown Roman sculptor, after Polykleitos",
+          "public": true,
+          "material_as_catalogued": "Pentelic marble",
+          "coverage_caveats": [
+            "Artist credit identifies an after/copy relationship."
+          ]
+        }
+      ]
+    },
+    {
+      "roster_order": 38,
+      "requested_name": "Lysippos",
+      "normalized_artist_match_terms": [
+        "lysippos",
+        "lysippus"
+      ],
+      "public_record_count": 3,
+      "hidden_record_count": 0,
+      "total_matching_record_count": 3,
+      "public_slugs": [
+        "roman/hermes-tying-sandal-glyptotek",
+        "greek/agias-delphi-smk-kas1289",
+        "greek/eros-stringing-bow-smk-kas1294"
+      ],
+      "hidden_slugs": [],
+      "coverage_caveats": [
+        "All three are after/probably-after/attributed-type records; two are SMK plaster casts, and Hermes is a restored Roman marble. Do not convert these associations into certain original authorship."
+      ],
+      "matching_records": [
+        {
+          "slug": "roman/hermes-tying-sandal-glyptotek",
+          "title": "Hermes Tying His Sandal",
+          "artist_credit": "Unknown Roman sculptor, after Lysippos; restored by Bartolomeo Cavaceppi",
+          "public": true,
+          "material_as_catalogued": "Marble",
+          "coverage_caveats": [
+            "Artist credit identifies an after/copy relationship."
+          ]
+        },
+        {
+          "slug": "greek/agias-delphi-smk-kas1289",
+          "title": "Agias of Delphi — SMK Plaster Cast",
+          "artist_credit": "Unknown Greek sculptor, probably after Lysippos; cast maker unknown",
+          "public": true,
+          "material_as_catalogued": "Plaster",
+          "coverage_caveats": [
+            "Artist credit identifies an after/copy relationship.",
+            "Artist credit contains an attribution or maker qualification."
+          ]
+        },
+        {
+          "slug": "greek/eros-stringing-bow-smk-kas1294",
+          "title": "Eros Stringing His Bow — SMK Plaster Cast",
+          "artist_credit": "Silvio Dolce, after the Eros type attributed to Lysippos",
+          "public": true,
+          "material_as_catalogued": "Plaster",
+          "coverage_caveats": [
+            "Artist credit identifies an after/copy relationship.",
+            "Artist credit contains an attribution or maker qualification."
+          ]
+        }
+      ]
+    },
+    {
+      "roster_order": 39,
+      "requested_name": "Bertel Thorvaldsen",
+      "normalized_artist_match_terms": [
+        "bertel thorvaldsen"
+      ],
+      "public_record_count": 11,
+      "hidden_record_count": 1,
+      "total_matching_record_count": 12,
+      "public_slugs": [
+        "neoclassical/hebe-thorvaldsen-smk-cast",
+        "neoclassical/cupid-playing-the-lyre-thorvaldsen-smk",
+        "neoclassical/venus-with-the-apple-thorvaldsen-smk",
+        "neoclassical/mercury-about-to-kill-argos-mnk-vmm",
+        "neoclassical/psyche-thorvaldsen-a26",
+        "europe/jason-golden-fleece-thorvaldsen",
+        "europe/maria-barjatinskaja-thorvaldsen-plaster",
+        "europe/goddess-hope-thorvaldsen-plaster",
+        "europe/lion-monument-lucerne-thorvaldsen-ahorn",
+        "neoclassical/bertel-thorvaldsen-the-three-graces-listening-to-cupids-song",
+        "neoclassical/lord-byron-porcelain-copy-after-thorvaldsen-a5c17f"
+      ],
+      "hidden_slugs": [
+        "neoclassical/cupid-and-psyche-thorvaldsen-copenhagen"
+      ],
+      "coverage_caveats": [
+        "Coverage includes original plaster models, historic plaster copies, the Lion Monument designed by Thorvaldsen and carved by Lukas Ahorn, and a possibly Jensen porcelain copy after Thorvaldsen.",
+        "Cupid and Psyche by Georg Christian Freund after Thorvaldsen is hidden and excluded from public count."
+      ],
+      "matching_records": [
+        {
+          "slug": "neoclassical/hebe-thorvaldsen-smk-cast",
+          "title": "Hebe",
+          "artist_credit": "Bertel Thorvaldsen",
+          "public": true,
+          "material_as_catalogued": "Marble",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "neoclassical/cupid-playing-the-lyre-thorvaldsen-smk",
+          "title": "Cupid Playing the Lyre",
+          "artist_credit": "Bertel Thorvaldsen",
+          "public": true,
+          "material_as_catalogued": "Marble",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "neoclassical/venus-with-the-apple-thorvaldsen-smk",
+          "title": "Venus with the Apple",
+          "artist_credit": "Bertel Thorvaldsen",
+          "public": true,
+          "material_as_catalogued": "Marble",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "neoclassical/mercury-about-to-kill-argos-mnk-vmm",
+          "title": "Mercury about to kill Argos",
+          "artist_credit": "Bertel Thorvaldsen (1770–1844)",
+          "public": true,
+          "material_as_catalogued": "Marble",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "neoclassical/psyche-thorvaldsen-a26",
+          "title": "Psyche with the Jar",
+          "artist_credit": "Bertel Thorvaldsen (1770–1844)",
+          "public": true,
+          "material_as_catalogued": "Plaster",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "neoclassical/cupid-and-psyche-thorvaldsen-copenhagen",
+          "title": "Cupid and Psyche",
+          "artist_credit": "Georg Christian Freund, after Bertel Thorvaldsen",
+          "public": false,
+          "material_as_catalogued": "Marble",
+          "coverage_caveats": [
+            "Hidden; carved by Georg Christian Freund after Thorvaldsen.",
+            "Artist credit identifies an after/copy relationship."
+          ]
+        },
+        {
+          "slug": "europe/jason-golden-fleece-thorvaldsen",
+          "title": "Jason with the Golden Fleece",
+          "artist_credit": "Bertel Thorvaldsen",
+          "public": true,
+          "material_as_catalogued": "Marble",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "europe/maria-barjatinskaja-thorvaldsen-plaster",
+          "title": "Princess Maria Fjodorovna Barjatinskaja",
+          "artist_credit": "Bertel Thorvaldsen",
+          "public": true,
+          "material_as_catalogued": "Plaster, original model",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "europe/goddess-hope-thorvaldsen-plaster",
+          "title": "Goddess of Hope",
+          "artist_credit": "Bertel Thorvaldsen",
+          "public": true,
+          "material_as_catalogued": "Plaster, original model",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "europe/lion-monument-lucerne-thorvaldsen-ahorn",
+          "title": "Lion Monument, Lucerne",
+          "artist_credit": "Bertel Thorvaldsen; carved by Lukas Ahorn",
+          "public": true,
+          "material_as_catalogued": "Sandstone cliff",
+          "coverage_caveats": [
+            "Designed by Thorvaldsen; carved by Lukas Ahorn."
+          ]
+        },
+        {
+          "slug": "neoclassical/bertel-thorvaldsen-the-three-graces-listening-to-cupids-song",
+          "title": "The Three Graces Listening to Cupid’s Song",
+          "artist_credit": "Bertel Thorvaldsen",
+          "public": true,
+          "material_as_catalogued": "Marble",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "neoclassical/lord-byron-porcelain-copy-after-thorvaldsen-a5c17f",
+          "title": "Lord Byron (Porcelain Copy after Thorvaldsen)",
+          "artist_credit": "Possibly David Ivanovitch Jensen, after Bertel Thorvaldsen",
+          "public": true,
+          "material_as_catalogued": "unglazed bisque porcelain",
+          "coverage_caveats": [
+            "Artist credit identifies an after/copy relationship.",
+            "Artist credit contains an attribution or maker qualification."
+          ]
+        }
+      ]
+    },
+    {
+      "roster_order": 40,
+      "requested_name": "Augusta Savage",
+      "normalized_artist_match_terms": [
+        "augusta savage"
+      ],
+      "public_record_count": 0,
+      "hidden_record_count": 0,
+      "total_matching_record_count": 0,
+      "public_slugs": [],
+      "hidden_slugs": [],
+      "coverage_caveats": [],
+      "matching_records": []
+    },
+    {
+      "roster_order": 41,
+      "requested_name": "Gutzon Borglum",
+      "normalized_artist_match_terms": [
+        "gutzon borglum"
+      ],
+      "public_record_count": 1,
+      "hidden_record_count": 0,
+      "total_matching_record_count": 1,
+      "public_slugs": [
+        "americas-oceania/gutzon-borglum-thomas-paine-monument"
+      ],
+      "hidden_slugs": [],
+      "coverage_caveats": [],
+      "matching_records": [
+        {
+          "slug": "americas-oceania/gutzon-borglum-thomas-paine-monument",
+          "title": "Thomas Paine Monument",
+          "artist_credit": "Gutzon Borglum",
+          "public": true,
+          "material_as_catalogued": "Gilded bronze on stone pedestal",
+          "coverage_caveats": []
+        }
+      ]
+    },
+    {
+      "roster_order": 42,
+      "requested_name": "Frederic Remington",
+      "normalized_artist_match_terms": [
+        "frederic remington"
+      ],
+      "public_record_count": 0,
+      "hidden_record_count": 0,
+      "total_matching_record_count": 0,
+      "public_slugs": [],
+      "hidden_slugs": [],
+      "coverage_caveats": [],
+      "matching_records": []
+    },
+    {
+      "roster_order": 43,
+      "requested_name": "Gustav Vigeland",
+      "normalized_artist_match_terms": [
+        "gustav vigeland"
+      ],
+      "public_record_count": 3,
+      "hidden_record_count": 0,
+      "total_matching_record_count": 3,
+      "public_slugs": [
+        "modern/dance-vigeland",
+        "modern/man-and-woman-vigeland",
+        "modern/man-holding-woman-vigeland"
+      ],
+      "hidden_slugs": [],
+      "coverage_caveats": [],
+      "matching_records": [
+        {
+          "slug": "modern/dance-vigeland",
+          "title": "Dance",
+          "artist_credit": "Gustav Vigeland",
+          "public": true,
+          "material_as_catalogued": "Bronze",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "modern/man-and-woman-vigeland",
+          "title": "Man and Woman",
+          "artist_credit": "Gustav Vigeland",
+          "public": true,
+          "material_as_catalogued": "Bronze",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "modern/man-holding-woman-vigeland",
+          "title": "Man Holding Woman in His Lap",
+          "artist_credit": "Gustav Vigeland",
+          "public": true,
+          "material_as_catalogued": "Granite",
+          "coverage_caveats": []
+        }
+      ]
+    },
+    {
+      "roster_order": 44,
+      "requested_name": "Aristide Maillol",
+      "normalized_artist_match_terms": [
+        "aristide maillol"
+      ],
+      "public_record_count": 9,
+      "hidden_record_count": 0,
+      "total_matching_record_count": 9,
+      "public_slugs": [
+        "modern/three-nymphs-maillol-carrousel",
+        "modern/action-in-chains-maillol-carrousel",
+        "modern/small-phryne-maillol-mount-holyoke",
+        "modern/monument-cezanne-maillol-carrousel",
+        "europe/night-maillol-met",
+        "europe/ile-de-france-maillol-harvard",
+        "modern/mountain-maillol-tuileries",
+        "modern/river-maillol-middelheim",
+        "europe/baigneuse-drapee-maillol-serralves"
+      ],
+      "hidden_slugs": [],
+      "coverage_caveats": [],
+      "matching_records": [
+        {
+          "slug": "modern/three-nymphs-maillol-carrousel",
+          "title": "Three Nymphs (The Three Graces)",
+          "artist_credit": "Aristide Maillol (1861–1944)",
+          "public": true,
+          "material_as_catalogued": "Lead",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "modern/action-in-chains-maillol-carrousel",
+          "title": "Action in Chains",
+          "artist_credit": "Aristide Maillol (1861–1944)",
+          "public": true,
+          "material_as_catalogued": "Bronze",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "modern/small-phryne-maillol-mount-holyoke",
+          "title": "Small Phryne with Drapery",
+          "artist_credit": "Aristide Maillol (1861–1944)",
+          "public": true,
+          "material_as_catalogued": "Cast bronze",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "modern/monument-cezanne-maillol-carrousel",
+          "title": "Monument to Cézanne",
+          "artist_credit": "Aristide Maillol (1861–1944)",
+          "public": true,
+          "material_as_catalogued": "Lead",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "europe/night-maillol-met",
+          "title": "Night",
+          "artist_credit": "Aristide Maillol",
+          "public": true,
+          "material_as_catalogued": "Bronze",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "europe/ile-de-france-maillol-harvard",
+          "title": "Île-de-France",
+          "artist_credit": "Aristide Maillol",
+          "public": true,
+          "material_as_catalogued": "Bronze",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "modern/mountain-maillol-tuileries",
+          "title": "The Mountain (La Montagne)",
+          "artist_credit": "Aristide Maillol",
+          "public": true,
+          "material_as_catalogued": "Lead",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "modern/river-maillol-middelheim",
+          "title": "The River (La Rivière)",
+          "artist_credit": "Aristide Maillol",
+          "public": true,
+          "material_as_catalogued": "Lead",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "europe/baigneuse-drapee-maillol-serralves",
+          "title": "The Draped Bather (The Seine)",
+          "artist_credit": "Aristide Maillol",
+          "public": true,
+          "material_as_catalogued": "Bronze, dark green patina",
+          "coverage_caveats": []
+        }
+      ]
+    },
+    {
+      "roster_order": 45,
+      "requested_name": "Jean-Baptiste Carpeaux",
+      "normalized_artist_match_terms": [
+        "jean-baptiste carpeaux"
+      ],
+      "public_record_count": 5,
+      "hidden_record_count": 0,
+      "total_matching_record_count": 5,
+      "public_slugs": [
+        "ugolino-and-his-sons",
+        "europe/eve-tempted-carpeaux-mia",
+        "europe/three-graces-carpeaux-mia",
+        "europe/countess-armand-carpeaux",
+        "europe/why-born-enslaved-carpeaux-glyptotek"
+      ],
+      "hidden_slugs": [],
+      "coverage_caveats": [
+        "Charles Carpeaux’s cast after a Khmer relief is excluded as a different maker and tradition."
+      ],
+      "matching_records": [
+        {
+          "slug": "ugolino-and-his-sons",
+          "title": "Ugolino And His Sons",
+          "artist_credit": "Jean-Baptiste Carpeaux",
+          "public": true,
+          "material_as_catalogued": "Saint-Beat marble",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "europe/eve-tempted-carpeaux-mia",
+          "title": "Eve Tempted",
+          "artist_credit": "Jean-Baptiste Carpeaux",
+          "public": true,
+          "material_as_catalogued": "Bronze",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "europe/three-graces-carpeaux-mia",
+          "title": "Les Trois Grâces (The Three Graces)",
+          "artist_credit": "Jean-Baptiste Carpeaux",
+          "public": true,
+          "material_as_catalogued": "Plaster model",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "europe/countess-armand-carpeaux",
+          "title": "Countess Armand",
+          "artist_credit": "Jean-Baptiste Carpeaux",
+          "public": true,
+          "material_as_catalogued": "Plaster",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "europe/why-born-enslaved-carpeaux-glyptotek",
+          "title": "Why Born Enslaved!",
+          "artist_credit": "Jean-Baptiste Carpeaux",
+          "public": true,
+          "material_as_catalogued": "Marble",
+          "coverage_caveats": []
+        }
+      ]
+    },
+    {
+      "roster_order": 46,
+      "requested_name": "Antoine Bourdelle",
+      "normalized_artist_match_terms": [
+        "antoine bourdelle"
+      ],
+      "public_record_count": 2,
+      "hidden_record_count": 0,
+      "total_matching_record_count": 2,
+      "public_slugs": [
+        "modern/herakles-archer-plaster-bourdelle-musee-bourdelle",
+        "modern/horse-alvear-monument-bourdelle"
+      ],
+      "hidden_slugs": [],
+      "coverage_caveats": [],
+      "matching_records": [
+        {
+          "slug": "modern/herakles-archer-plaster-bourdelle-musee-bourdelle",
+          "title": "Héraklès archer (Hercules the Archer), second version, full-scale model",
+          "artist_credit": "Antoine Bourdelle",
+          "public": true,
+          "material_as_catalogued": "Plaster",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "modern/horse-alvear-monument-bourdelle",
+          "title": "Horse for the Monument to General Alvear",
+          "artist_credit": "Antoine Bourdelle",
+          "public": true,
+          "material_as_catalogued": "Bronze",
+          "coverage_caveats": []
+        }
+      ]
+    },
+    {
+      "roster_order": 47,
+      "requested_name": "Eduardo Chillida",
+      "normalized_artist_match_terms": [
+        "eduardo chillida"
+      ],
+      "public_record_count": 2,
+      "hidden_record_count": 0,
+      "total_matching_record_count": 2,
+      "public_slugs": [
+        "europe/eduardo-chillida-estela-de-gernika-ii",
+        "europe/eduardo-chillida-how-profound-is-the-air"
+      ],
+      "hidden_slugs": [],
+      "coverage_caveats": [],
+      "matching_records": [
+        {
+          "slug": "europe/eduardo-chillida-estela-de-gernika-ii",
+          "title": "Estela de Gernika II",
+          "artist_credit": "Eduardo Chillida",
+          "public": true,
+          "material_as_catalogued": "Steel",
+          "coverage_caveats": []
+        },
+        {
+          "slug": "europe/eduardo-chillida-how-profound-is-the-air",
+          "title": "How Profound Is the Air",
+          "artist_credit": "Eduardo Chillida",
+          "public": true,
+          "material_as_catalogued": "Alabaster",
+          "coverage_caveats": []
+        }
+      ]
+    },
+    {
+      "roster_order": 48,
+      "requested_name": "Rachel Whiteread",
+      "normalized_artist_match_terms": [
+        "rachel whiteread"
+      ],
+      "public_record_count": 0,
+      "hidden_record_count": 0,
+      "total_matching_record_count": 0,
+      "public_slugs": [],
+      "hidden_slugs": [],
+      "coverage_caveats": [],
+      "matching_records": []
+    }
+  ]
+}
