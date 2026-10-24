@@ -1,0 +1,163 @@
+{
+  "schema": "atrium-scoped-font-size-guard-audit/1",
+  "batch": "bertel-thorvaldsen-20261024",
+  "checkedAt": "2026-10-24T02:52:38.768Z",
+  "status": "pass",
+  "baselineRelease": "caca5af083cd0c3e4279f7ef6090ad86b8a89548",
+  "problem": "The text parser treated a77.8cm component relief height as an approximate height for the whole baptismal font.",
+  "change": {
+    "file": "src/lib/approximate-dimensions.mjs",
+    "scope": "One exact-slug entry in the existing unmatched-dimensions guard",
+    "baselineSha256": "678ccb2314f699c5af7fc5c60d1fa3913c0d05a89d46d9447b590905695c6eb2",
+    "correctedSha256": "91d156a8e43dae0981c81c2231a23be82d6dff8ce1373758cc242e4cfe1b1445",
+    "otherRuntimeSourceChanges": 0
+  },
+  "comparison": {
+    "publicWorks": 2362,
+    "unchangedPublicWorks": 2361,
+    "changedSlugs": [
+      "neoclassical/baptismal-font-thorvaldsen-a555-plaster"
+    ],
+    "beforeCounts": {
+      "verified": 311,
+      "approximate": 1240,
+      "unknown": 811,
+      "unavailable": 0
+    },
+    "afterCounts": {
+      "verified": 311,
+      "approximate": 1239,
+      "unknown": 812,
+      "unavailable": 0
+    },
+    "comparisonMethod": "Baseline approximate module imported from the exact released Git blob using a private in-memory Data URL; both versions received identical real public catalogue/physical/eligibility/default inputs and production spatial-access functions."
+  },
+  "font": {
+    "slug": "neoclassical/baptismal-font-thorvaldsen-a555-plaster",
+    "componentMeasurementsRetained": true,
+    "previous": {
+      "status": "approximate",
+      "reference": {
+        "axis": "y",
+        "meters": 0.778,
+        "estimated": true
+      },
+      "sourceMethod": "work-description"
+    },
+    "corrected": {
+      "status": "unknown",
+      "verified": false,
+      "sizeLabel": "Default: 1 m on longest side",
+      "note": "Measurements of the individual relief panels do not establish the overall size of the assembled baptismal font. Starts at a chosen display size of 1 m on its longest side. You can resize the work.",
+      "defaultMaxExtentMeters": 1,
+      "hasPhysicalReference": false
+    },
+    "exactSizeArEnabled": false
+  },
+  "nineOtherThorvaldsenReliefs": [
+    {
+      "slug": "neoclassical/childhood-spring-thorvaldsen-a638",
+      "status": "approximate",
+      "reference": {
+        "axis": "longest",
+        "meters": 0.6900000000000001,
+        "estimated": true
+      },
+      "unchanged": true
+    },
+    {
+      "slug": "neoclassical/briseis-achilles-thorvaldsen-freund-a489",
+      "status": "approximate",
+      "reference": {
+        "axis": "y",
+        "meters": 1.1400000000000001,
+        "estimated": true
+      },
+      "unchanged": true
+    },
+    {
+      "slug": "neoclassical/pan-satyr-thorvaldsen-a352",
+      "status": "approximate",
+      "reference": {
+        "axis": "y",
+        "meters": 0.465,
+        "estimated": true
+      },
+      "unchanged": true
+    },
+    {
+      "slug": "neoclassical/youth-summer-thorvaldsen-a639",
+      "status": "approximate",
+      "reference": {
+        "axis": "longest",
+        "meters": 0.6900000000000001,
+        "estimated": true
+      },
+      "unchanged": true
+    },
+    {
+      "slug": "neoclassical/manhood-autumn-thorvaldsen-a640",
+      "status": "approximate",
+      "reference": {
+        "axis": "longest",
+        "meters": 0.6900000000000001,
+        "estimated": true
+      },
+      "unchanged": true
+    },
+    {
+      "slug": "neoclassical/priam-achilles-thorvaldsen-freund-a775",
+      "status": "approximate",
+      "reference": {
+        "axis": "y",
+        "meters": 0.96,
+        "estimated": true
+      },
+      "unchanged": true
+    },
+    {
+      "slug": "neoclassical/ages-love-thorvaldsen-a426",
+      "status": "approximate",
+      "reference": {
+        "axis": "y",
+        "meters": 0.52,
+        "estimated": true
+      },
+      "unchanged": true
+    },
+    {
+      "slug": "neoclassical/hector-andromache-thorvaldsen-bissen-a776",
+      "status": "approximate",
+      "reference": {
+        "axis": "y",
+        "meters": 0.935,
+        "estimated": true
+      },
+      "unchanged": true
+    },
+    {
+      "slug": "neoclassical/alexander-persepolis-thorvaldsen-bergslien-a514",
+      "status": "approximate",
+      "reference": {
+        "axis": "y",
+        "meters": 0.9500000000000001,
+        "estimated": true
+      },
+      "unchanged": true
+    }
+  ],
+  "conservation": {
+    "trackedCatalogueSettingsAndAssetFilesBytePreserved": 4755,
+    "previouslyDeliveredModelThumbnailPosterFilesBytePreserved": 30,
+    "allCatalogAndAssetBytesUnchanged": true,
+    "componentMeasurementsAndNotesUnchanged": true,
+    "legacyGlobalSpatialAccessTestUnchanged": true
+  },
+  "regression": {
+    "file": "scripts/test-thorvaldsen-font-size.mjs",
+    "sha256": "e3142d084180e2c2c4794f1caf4d4bd5b07d6e0b2e417a1d4b904be731aab6b3",
+    "status": "pass",
+    "output": "Thorvaldsen sizing: component measurements retained; whole font unknown with chosen 1 m display size; nine relief estimates preserved."
+  },
+  "scope": "Independent local code/data/asset review and all-public-work behavior comparison. The corrected release must still be built, redeployed and verified on the actual website; earlier full asset readbacks do not establish that the corrected AR sizing has deployed."
+}

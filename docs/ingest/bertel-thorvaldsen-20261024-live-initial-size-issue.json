@@ -1,0 +1,589 @@
+{
+  "schema": "atrium-live-artist-release-verification/1",
+  "batch": "bertel-thorvaldsen-20261024",
+  "releaseCommit": "caca5af083cd0c3e4279f7ef6090ad86b8a89548",
+  "deployment": {
+    "runId": 40055615237,
+    "url": "https://github.com/never-nude/atrium.earth/actions/runs/40055615237",
+    "workflowName": "Deploy to GitHub Pages",
+    "status": "completed",
+    "conclusion": "success",
+    "headSha": "caca5af083cd0c3e4279f7ef6090ad86b8a89548"
+  },
+  "checkedAt": "2026-10-24T02:49:44.787Z",
+  "status": "pass",
+  "expectedCount": 10,
+  "newest": {
+    "url": "https://atrium.earth/newest/",
+    "status": 200,
+    "bytes": 53705,
+    "sha256": "5b71004085022c926b8e5e1414b81f812cc9d37731bd7cb48584f7dfa0402947",
+    "mime": "text/html; charset=utf-8",
+    "allBatchWorksPresent": true,
+    "slugs": [
+      "neoclassical/childhood-spring-thorvaldsen-a638",
+      "neoclassical/briseis-achilles-thorvaldsen-freund-a489",
+      "neoclassical/pan-satyr-thorvaldsen-a352",
+      "neoclassical/youth-summer-thorvaldsen-a639",
+      "neoclassical/manhood-autumn-thorvaldsen-a640",
+      "neoclassical/priam-achilles-thorvaldsen-freund-a775",
+      "neoclassical/ages-love-thorvaldsen-a426",
+      "neoclassical/hector-andromache-thorvaldsen-bissen-a776",
+      "neoclassical/alexander-persepolis-thorvaldsen-bergslien-a514",
+      "neoclassical/baptismal-font-thorvaldsen-a555-plaster"
+    ]
+  },
+  "works": [
+    {
+      "slug": "neoclassical/childhood-spring-thorvaldsen-a638",
+      "title": "Childhood or Spring",
+      "page": {
+        "url": "https://atrium.earth/works/neoclassical/childhood-spring-thorvaldsen-a638/",
+        "status": 200,
+        "bytes": 33171,
+        "sha256": "32710d1f6b6c790938a3d58998e1cc06bd3f0c52b8f8ebafc71968f352622d5f",
+        "mime": "text/html; charset=utf-8",
+        "titlePresent": true,
+        "modelBinding": true,
+        "thumbnailBinding": true
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/neoclassical/childhood-spring-thorvaldsen-a638/preview-902240dcb793.glb",
+        "status": 200,
+        "bytes": 1312244,
+        "sha256": "902240dcb793e80e28518581318d88156f4c77c17acde752b0f6eb4d097a9dbb",
+        "mime": "model/gltf-binary",
+        "cors": "https://atrium.earth",
+        "originChecked": "https://atrium.earth",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/neoclassical/childhood-spring-thorvaldsen-a638/thumb.webp",
+        "status": 200,
+        "bytes": 58690,
+        "sha256": "a8a5a904ea8651b00ce1934fa631f06581f67d77c1b10102d7c3bcdeb169dac8",
+        "mime": "image/webp",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "poster": {
+        "url": "https://atrium.earth/previews/posters/neoclassical/childhood-spring-thorvaldsen-a638/poster.svg",
+        "status": 200,
+        "bytes": 78594,
+        "sha256": "99642924c656868b1cc4b8f61b27c31cba2c0e2ad8f3d37da30f43f81bd99183",
+        "mime": "image/svg+xml",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "newestPresent": true,
+      "sourceMaterialsPreserved": true,
+      "physicalDimensions": {
+        "status": "documented",
+        "basis": "object",
+        "dimensions": "Diameter 69 cm",
+        "sourceUrl": "https://kataloget.thorvaldsensmuseum.dk/en/A638",
+        "calibrationReady": false
+      },
+      "exactSizeArEnabled": false
+    },
+    {
+      "slug": "neoclassical/briseis-achilles-thorvaldsen-freund-a489",
+      "title": "Briseis Is Led Away from Achilles by Agamemnon\u2019s Heralds (posthumous marble)",
+      "page": {
+        "url": "https://atrium.earth/works/neoclassical/briseis-achilles-thorvaldsen-freund-a489/",
+        "status": 200,
+        "bytes": 35770,
+        "sha256": "2c4717645f20d1fb02c14d22ee1d0f06e7389918beed223afc61d37b0f596d7f",
+        "mime": "text/html; charset=utf-8",
+        "titlePresent": true,
+        "modelBinding": true,
+        "thumbnailBinding": true
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/neoclassical/briseis-achilles-thorvaldsen-freund-a489/preview-69f7da53ee5f.glb",
+        "status": 200,
+        "bytes": 1457400,
+        "sha256": "69f7da53ee5f4535645cebb7d7949376175ce45074c2d34b51cc9dc45ddd5743",
+        "mime": "model/gltf-binary",
+        "cors": "https://atrium.earth",
+        "originChecked": "https://atrium.earth",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/neoclassical/briseis-achilles-thorvaldsen-freund-a489/thumb.webp",
+        "status": 200,
+        "bytes": 41998,
+        "sha256": "8b96e3fa81c53627a4c6adacc958c519a555ef56210b2bfb8a446b0e45c23094",
+        "mime": "image/webp",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "poster": {
+        "url": "https://atrium.earth/previews/posters/neoclassical/briseis-achilles-thorvaldsen-freund-a489/poster.svg",
+        "status": 200,
+        "bytes": 56456,
+        "sha256": "01d41ec2f4e3ac6c5a65fefac11516ca243c52542e108b5fb08b8198f6a3dd14",
+        "mime": "image/svg+xml",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "newestPresent": true,
+      "sourceMaterialsPreserved": true,
+      "physicalDimensions": {
+        "status": "documented",
+        "basis": "object",
+        "dimensions": "H114\u00d7W239cm",
+        "sourceUrl": "https://kataloget.thorvaldsensmuseum.dk/en/A489",
+        "calibrationReady": false
+      },
+      "exactSizeArEnabled": false
+    },
+    {
+      "slug": "neoclassical/pan-satyr-thorvaldsen-a352",
+      "title": "Pan and a Satyr",
+      "page": {
+        "url": "https://atrium.earth/works/neoclassical/pan-satyr-thorvaldsen-a352/",
+        "status": 200,
+        "bytes": 32258,
+        "sha256": "6639de776f8b577954c29cf9abce3a62655ba54549307d0c5281f32f317b6d29",
+        "mime": "text/html; charset=utf-8",
+        "titlePresent": true,
+        "modelBinding": true,
+        "thumbnailBinding": true
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/neoclassical/pan-satyr-thorvaldsen-a352/preview-3959eab71866.glb",
+        "status": 200,
+        "bytes": 878672,
+        "sha256": "3959eab7186634d0ee0666dd97a3bb234fb4a0154bd95a20aa83ca3491c17d7d",
+        "mime": "model/gltf-binary",
+        "cors": "https://atrium.earth",
+        "originChecked": "https://atrium.earth",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/neoclassical/pan-satyr-thorvaldsen-a352/thumb.webp",
+        "status": 200,
+        "bytes": 24220,
+        "sha256": "24027c3a96889bdaa9a7c67399e2d2c789401b4e84106853a354ac30eb0bb773",
+        "mime": "image/webp",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "poster": {
+        "url": "https://atrium.earth/previews/posters/neoclassical/pan-satyr-thorvaldsen-a352/poster.svg",
+        "status": 200,
+        "bytes": 32626,
+        "sha256": "12f31b0bc3d2248bbf5ecdb1e9a6141afe1227553e24eb308e4a354d41542f23",
+        "mime": "image/svg+xml",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "newestPresent": true,
+      "sourceMaterialsPreserved": true,
+      "physicalDimensions": {
+        "status": "documented",
+        "basis": "object",
+        "dimensions": "H46.5\u00d7W78.3cm",
+        "sourceUrl": "https://kataloget.thorvaldsensmuseum.dk/en/A352",
+        "calibrationReady": false
+      },
+      "exactSizeArEnabled": false
+    },
+    {
+      "slug": "neoclassical/youth-summer-thorvaldsen-a639",
+      "title": "Youth or Summer",
+      "page": {
+        "url": "https://atrium.earth/works/neoclassical/youth-summer-thorvaldsen-a639/",
+        "status": 200,
+        "bytes": 33069,
+        "sha256": "bcddaea57d3489b60341f60d8b6fc4715daa5b7e88c3dfdd4656e53ea163288e",
+        "mime": "text/html; charset=utf-8",
+        "titlePresent": true,
+        "modelBinding": true,
+        "thumbnailBinding": true
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/neoclassical/youth-summer-thorvaldsen-a639/preview-1c8cf11f9190.glb",
+        "status": 200,
+        "bytes": 1304252,
+        "sha256": "1c8cf11f9190754d842dec3f680325453be168cf4ab58b21469d3c164f004b28",
+        "mime": "model/gltf-binary",
+        "cors": "https://atrium.earth",
+        "originChecked": "https://atrium.earth",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/neoclassical/youth-summer-thorvaldsen-a639/thumb.webp",
+        "status": 200,
+        "bytes": 64336,
+        "sha256": "2a8af972c0cc783ddecd57e64c2441a516e98988a5b70a18130da604cf75e9de",
+        "mime": "image/webp",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "poster": {
+        "url": "https://atrium.earth/previews/posters/neoclassical/youth-summer-thorvaldsen-a639/poster.svg",
+        "status": 200,
+        "bytes": 86114,
+        "sha256": "6ae7e4bb74b292488956f1a4769e0133ea1c80f3c3dc8ce60e6e048d0fbdfc8d",
+        "mime": "image/svg+xml",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "newestPresent": true,
+      "sourceMaterialsPreserved": true,
+      "physicalDimensions": {
+        "status": "documented",
+        "basis": "object",
+        "dimensions": "Diameter 69 cm",
+        "sourceUrl": "https://kataloget.thorvaldsensmuseum.dk/en/A639",
+        "calibrationReady": false
+      },
+      "exactSizeArEnabled": false
+    },
+    {
+      "slug": "neoclassical/manhood-autumn-thorvaldsen-a640",
+      "title": "Manhood or Autumn",
+      "page": {
+        "url": "https://atrium.earth/works/neoclassical/manhood-autumn-thorvaldsen-a640/",
+        "status": 200,
+        "bytes": 33129,
+        "sha256": "c67956d5c3e220ade75882b6dce741ba7d2813b424161e84e395de8e2e69e4ab",
+        "mime": "text/html; charset=utf-8",
+        "titlePresent": true,
+        "modelBinding": true,
+        "thumbnailBinding": true
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/neoclassical/manhood-autumn-thorvaldsen-a640/preview-a9221e8cd774.glb",
+        "status": 200,
+        "bytes": 1400976,
+        "sha256": "a9221e8cd774a2ddaf8c81385756300f56739e8d715f806792bd514c67f21962",
+        "mime": "model/gltf-binary",
+        "cors": "https://atrium.earth",
+        "originChecked": "https://atrium.earth",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/neoclassical/manhood-autumn-thorvaldsen-a640/thumb.webp",
+        "status": 200,
+        "bytes": 56300,
+        "sha256": "97f7f2afa5b164fb33d114644a42115b822a71931f4148ea9de81e8088e0e303",
+        "mime": "image/webp",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "poster": {
+        "url": "https://atrium.earth/previews/posters/neoclassical/manhood-autumn-thorvaldsen-a640/poster.svg",
+        "status": 200,
+        "bytes": 75402,
+        "sha256": "8b11724d4cae10dcd29d4b61551ce7f7001f457d63cdc54527c25a51150b9c6e",
+        "mime": "image/svg+xml",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "newestPresent": true,
+      "sourceMaterialsPreserved": true,
+      "physicalDimensions": {
+        "status": "documented",
+        "basis": "object",
+        "dimensions": "Diameter 69 cm",
+        "sourceUrl": "https://kataloget.thorvaldsensmuseum.dk/en/A640",
+        "calibrationReady": false
+      },
+      "exactSizeArEnabled": false
+    },
+    {
+      "slug": "neoclassical/priam-achilles-thorvaldsen-freund-a775",
+      "title": "Priam Pleads with Achilles for Hector\u2019s Body (posthumous marble)",
+      "page": {
+        "url": "https://atrium.earth/works/neoclassical/priam-achilles-thorvaldsen-freund-a775/",
+        "status": 200,
+        "bytes": 35344,
+        "sha256": "12b96a3da98ce63ce38a3b01cf55fb3297aee3c1227d46c48227dd93b0a189ca",
+        "mime": "text/html; charset=utf-8",
+        "titlePresent": true,
+        "modelBinding": true,
+        "thumbnailBinding": true
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/neoclassical/priam-achilles-thorvaldsen-freund-a775/preview-c5918ea167e1.glb",
+        "status": 200,
+        "bytes": 1287676,
+        "sha256": "c5918ea167e12349fbe2b4f97cd2253f16b660459712cfd5c20da6fd46d22334",
+        "mime": "model/gltf-binary",
+        "cors": "https://atrium.earth",
+        "originChecked": "https://atrium.earth",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/neoclassical/priam-achilles-thorvaldsen-freund-a775/thumb.webp",
+        "status": 200,
+        "bytes": 33758,
+        "sha256": "6b8ccf4b25507acfe4de897c0c803af4f987a23f8e3df48a3d6210f90d296808",
+        "mime": "image/webp",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "poster": {
+        "url": "https://atrium.earth/previews/posters/neoclassical/priam-achilles-thorvaldsen-freund-a775/poster.svg",
+        "status": 200,
+        "bytes": 45444,
+        "sha256": "19b891947046e0c8e14173b8b1ff875261a47fd5be0ca9c61a667ce27316d101",
+        "mime": "image/svg+xml",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "newestPresent": true,
+      "sourceMaterialsPreserved": true,
+      "physicalDimensions": {
+        "status": "documented",
+        "basis": "object",
+        "dimensions": "H96\u00d7W198.5cm",
+        "sourceUrl": "https://kataloget.thorvaldsensmuseum.dk/en/A775",
+        "calibrationReady": false
+      },
+      "exactSizeArEnabled": false
+    },
+    {
+      "slug": "neoclassical/ages-love-thorvaldsen-a426",
+      "title": "The Ages of Love",
+      "page": {
+        "url": "https://atrium.earth/works/neoclassical/ages-love-thorvaldsen-a426/",
+        "status": 200,
+        "bytes": 32323,
+        "sha256": "28f20a0acf0a9ff76f35bb53860740de2721157e5fb1c7f8d783d9d2b11dd2f9",
+        "mime": "text/html; charset=utf-8",
+        "titlePresent": true,
+        "modelBinding": true,
+        "thumbnailBinding": true
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/neoclassical/ages-love-thorvaldsen-a426/preview-a71a4b18e50b.glb",
+        "status": 200,
+        "bytes": 1399264,
+        "sha256": "a71a4b18e50bdfc5d5ad401088d443d3d7df7f152c5ddcbd81a006d0ba6c4de2",
+        "mime": "model/gltf-binary",
+        "cors": "https://atrium.earth",
+        "originChecked": "https://atrium.earth",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/neoclassical/ages-love-thorvaldsen-a426/thumb.webp",
+        "status": 200,
+        "bytes": 36696,
+        "sha256": "78243156c02be958b875d4cadf45c434f5c2e902ae53d4ad7aa5ce520b80fc8e",
+        "mime": "image/webp",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "poster": {
+        "url": "https://atrium.earth/previews/posters/neoclassical/ages-love-thorvaldsen-a426/poster.svg",
+        "status": 200,
+        "bytes": 49260,
+        "sha256": "58d392747eeb4728b8eea40ad80fa170aede11d675975196419cb1f6cbad4e87",
+        "mime": "image/svg+xml",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "newestPresent": true,
+      "sourceMaterialsPreserved": true,
+      "physicalDimensions": {
+        "status": "documented",
+        "basis": "object",
+        "dimensions": "H52\u00d7W148cm",
+        "sourceUrl": "https://kataloget.thorvaldsensmuseum.dk/en/A426",
+        "calibrationReady": false
+      },
+      "exactSizeArEnabled": false
+    },
+    {
+      "slug": "neoclassical/hector-andromache-thorvaldsen-bissen-a776",
+      "title": "Hector Taking Leave of Andromache and Astyanax (posthumous marble)",
+      "page": {
+        "url": "https://atrium.earth/works/neoclassical/hector-andromache-thorvaldsen-bissen-a776/",
+        "status": 200,
+        "bytes": 35321,
+        "sha256": "d348e0442bacdda09769b9d3162c9e9d927d9baed8ed047b4e149adde9a153a1",
+        "mime": "text/html; charset=utf-8",
+        "titlePresent": true,
+        "modelBinding": true,
+        "thumbnailBinding": true
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/neoclassical/hector-andromache-thorvaldsen-bissen-a776/preview-a60f8ff5caa0.glb",
+        "status": 200,
+        "bytes": 1269588,
+        "sha256": "a60f8ff5caa07bfefa01bed45e7d960ea525d479493edbfe43df37b1ffec401e",
+        "mime": "model/gltf-binary",
+        "cors": "https://atrium.earth",
+        "originChecked": "https://atrium.earth",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/neoclassical/hector-andromache-thorvaldsen-bissen-a776/thumb.webp",
+        "status": 200,
+        "bytes": 34684,
+        "sha256": "ee396574e69e59aed6ae64d764f5fc419b087b79a01d3f902832763807861060",
+        "mime": "image/webp",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "poster": {
+        "url": "https://atrium.earth/previews/posters/neoclassical/hector-andromache-thorvaldsen-bissen-a776/poster.svg",
+        "status": 200,
+        "bytes": 46680,
+        "sha256": "f3eec8edb8483f1c518b3d9f6ec074243e23f8823a3848ae8593b3391efb5292",
+        "mime": "image/svg+xml",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "newestPresent": true,
+      "sourceMaterialsPreserved": true,
+      "physicalDimensions": {
+        "status": "documented",
+        "basis": "object",
+        "dimensions": "H93.5\u00d7W184.2cm",
+        "sourceUrl": "https://kataloget.thorvaldsensmuseum.dk/en/A776",
+        "calibrationReady": false
+      },
+      "exactSizeArEnabled": false
+    },
+    {
+      "slug": "neoclassical/alexander-persepolis-thorvaldsen-bergslien-a514",
+      "title": "Alexander the Great Provoked by Tha\u00efs to Set Fire to Persepolis (posthumous marble)",
+      "page": {
+        "url": "https://atrium.earth/works/neoclassical/alexander-persepolis-thorvaldsen-bergslien-a514/",
+        "status": 200,
+        "bytes": 35262,
+        "sha256": "56790df1c27deea1a8b087d338c23a3ecc84be70651645a3f5d760b5fd76c068",
+        "mime": "text/html; charset=utf-8",
+        "titlePresent": true,
+        "modelBinding": true,
+        "thumbnailBinding": true
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/neoclassical/alexander-persepolis-thorvaldsen-bergslien-a514/preview-b024b6bb5178.glb",
+        "status": 200,
+        "bytes": 1412452,
+        "sha256": "b024b6bb51788b1a988bc0d996af0ed48e2e837cf0644162146a05d01235c29f",
+        "mime": "model/gltf-binary",
+        "cors": "https://atrium.earth",
+        "originChecked": "https://atrium.earth",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/neoclassical/alexander-persepolis-thorvaldsen-bergslien-a514/thumb.webp",
+        "status": 200,
+        "bytes": 45892,
+        "sha256": "feb1397ae74aace911ecbaed62367f13e58a9392212928c65ec0c7f20a6fe0a4",
+        "mime": "image/webp",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "poster": {
+        "url": "https://atrium.earth/previews/posters/neoclassical/alexander-persepolis-thorvaldsen-bergslien-a514/poster.svg",
+        "status": 200,
+        "bytes": 61660,
+        "sha256": "d6bec641e0cd23aa9d04d6836234d4f7ed628ec46f634971bc1d8fa41f4a3584",
+        "mime": "image/svg+xml",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "newestPresent": true,
+      "sourceMaterialsPreserved": true,
+      "physicalDimensions": {
+        "status": "documented",
+        "basis": "object",
+        "dimensions": "H95\u00d7W198cm",
+        "sourceUrl": "https://kataloget.thorvaldsensmuseum.dk/en/A514",
+        "calibrationReady": false
+      },
+      "exactSizeArEnabled": false
+    },
+    {
+      "slug": "neoclassical/baptismal-font-thorvaldsen-a555-plaster",
+      "title": "Baptismal Font (original plaster models)",
+      "page": {
+        "url": "https://atrium.earth/works/neoclassical/baptismal-font-thorvaldsen-a555-plaster/",
+        "status": 200,
+        "bytes": 34956,
+        "sha256": "1ffd0b3bdde0e3dd4f34a76a8302016308f2e4741dced0ef50a7b01292986d58",
+        "mime": "text/html; charset=utf-8",
+        "titlePresent": true,
+        "modelBinding": true,
+        "thumbnailBinding": true
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/neoclassical/baptismal-font-thorvaldsen-a555-plaster/preview-f9471729a6e0.glb",
+        "status": 200,
+        "bytes": 1532428,
+        "sha256": "f9471729a6e0b26974e7c0487842c04f561c48bd9ff5e9c0b99f7e2a6b613621",
+        "mime": "model/gltf-binary",
+        "cors": "https://atrium.earth",
+        "originChecked": "https://atrium.earth",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/neoclassical/baptismal-font-thorvaldsen-a555-plaster/thumb.webp",
+        "status": 200,
+        "bytes": 43158,
+        "sha256": "94f2dfd10b4044d4c62e2ef686fdcbded5f8efe7f7f695a787885b028e410287",
+        "mime": "image/webp",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "poster": {
+        "url": "https://atrium.earth/previews/posters/neoclassical/baptismal-font-thorvaldsen-a555-plaster/poster.svg",
+        "status": 200,
+        "bytes": 57924,
+        "sha256": "79aecdbc54bcacb111cbc8cf5ae62f0b64a7d90ada98383ade9752aeae494535",
+        "mime": "image/svg+xml",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "newestPresent": true,
+      "sourceMaterialsPreserved": true,
+      "physicalDimensions": {
+        "status": "unknown",
+        "basis": "object",
+        "dimensions": "",
+        "sourceUrl": "https://kataloget.thorvaldsensmuseum.dk/en/A555,1",
+        "calibrationReady": false,
+        "noPanelDimensionExtrapolation": true
+      },
+      "exactSizeArEnabled": false
+    }
+  ],
+  "scope": "Complete public model/thumbnail/poster hashes and bytes, exact release Pages success, work-page model/title/thumbnail bindings and all selected batch links on Newest. Native/capture and browser behavior are reviewed separately. No private archive IDs, account data, credentials or local paths.",
+  "completedAt": "2026-10-24T02:49:52.984Z",
+  "exhibition": {
+    "url": "https://atrium.earth/exhibitions/the-price-of-victory/",
+    "status": 200,
+    "bytes": 113497,
+    "sha256": "63a1537af0551005760bb9e07715cafe8bb16470ed820c2ae1f8bb94e558d120",
+    "allThreeBodyCaptionsPresent": true,
+    "slugs": [
+      "neoclassical/briseis-achilles-thorvaldsen-freund-a489",
+      "neoclassical/priam-achilles-thorvaldsen-freund-a775",
+      "neoclassical/hector-andromache-thorvaldsen-bissen-a776"
+    ]
+  },
+  "knownLiveUiIssue": {
+    "observed": "The font display incorrectly used a relief panel height of 77.8 cm as an approximate whole-assembly height.",
+    "cause": "Description-based dimension fallback parsed qualified component measurements.",
+    "scope": "Initial asset/page readbacks passed; this does not approve the displayed font scale.",
+    "requiredCorrection": "Keep component metadata and select dimensions unknown with an adjustable chosen display size for the complete font."
+  }
+}

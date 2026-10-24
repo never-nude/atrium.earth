@@ -90,6 +90,7 @@ const unmatched = {
   'asia/carved-calligraphy-brush-mia': 'The listed length includes bristles absent from this model.',
   'asia/horse-ornament-pushkar-tarnow': 'The listed strap length cannot determine the size of its looped display.',
   'americas/cuban-rattles-varldskulturmuseerna': 'Individual rattle lengths do not establish the size of this two-object arrangement.',
+  'neoclassical/baptismal-font-thorvaldsen-a555-plaster': 'Measurements of the individual relief panels do not establish the overall size of the assembled baptismal font.',
   'renaissance/armor-man-horse-vols-colonna-cleveland': 'Measurements of individual armor pieces do not establish the size of the entire horse and rider.',
   'africa/tombstone-ali-ibn-saad-hamburg': 'The scan and museum measurement cite conflicting inventory numbers.',
 };
