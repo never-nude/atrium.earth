@@ -1,0 +1,62 @@
+{
+  "schema": "atrium-artist-private-archive-verification/1",
+  "batch": "gutzon-borglum-20261024",
+  "status": "complete-full-content-readback-verified",
+  "checkedAt": "2026-10-24T08:12:08.701Z",
+  "representation": "Unchanged preserved distribution GLBs; uploader native authoring files are not asserted.",
+  "originals": {
+    "count": 2,
+    "totalBytes": 54422716,
+    "representation": "Unchanged preserved distribution GLBs; uploader native authoring files are not asserted.",
+    "files": [
+      {
+        "slug": "americas-oceania/borglum-abraham-lincoln-kentucky",
+        "bytes": 45070664,
+        "sha256": "f3675ea2f47918809de3d4e506176b5a3c5194dbb4a25b792d4d56179f547194",
+        "published": true
+      },
+      {
+        "slug": "americas-oceania/borglum-aviator-uva",
+        "bytes": 9352052,
+        "sha256": "1ba909cb53fdd48b0ab9832974b4cc01d6ff298755776f0cc4647db1f5ab4e30",
+        "published": false
+      }
+    ]
+  },
+  "permanentPrivateArchive": {
+    "sources": 2,
+    "authenticatedFullContentReadbacks": 3,
+    "authenticatedUniqueReadbackBytes": 56024682,
+    "portableMap": {
+      "bytes": 8035,
+      "sha256": "1292f44a2c100c7934dc5a01a75ffb9f3523f4a3c6bacd587038c775a9f2191a",
+      "completeCloudReadbackAuthenticated": true,
+      "sourceMappings": 2
+    },
+    "objects": [
+      {
+        "role": "source-archive",
+        "package": 1,
+        "bytes": 54423208,
+        "sha256": "14ade401d51f51d54fa3f13809346f212468fd0f242c87ddab56f6fca726cf57",
+        "completeCloudReadbackAuthenticated": true,
+        "localZipMembersHashed": 2
+      },
+      {
+        "role": "provenance",
+        "package": null,
+        "bytes": 1593439,
+        "sha256": "6c3780a1d84eaa35cb84c02c0470a9ad9b6cd5e9f5bc84eec13fb658c3a3dfcd",
+        "completeCloudReadbackAuthenticated": true,
+        "localZipMembersHashed": 39
+      }
+    ],
+    "allOriginalZipMembersVerified": true,
+    "allAcquiredSourcesIncluded": true,
+    "localDeletionAuthorized": false
+  },
+  "provenanceScope": "Complete unchanged selected historical UID license records, fresh institutional provider evidence, primary records and recovery instructions. Full historical annotation shards remain locally retained and recoverable from immutable URL/hash bindings; unrelated metadata records are not included in the provenance ZIP.",
+  "localOriginalsRetained": true,
+  "localDeletionAuthorized": false,
+  "publicEvidenceOmitsPrivateObjectIdentities": true
+}

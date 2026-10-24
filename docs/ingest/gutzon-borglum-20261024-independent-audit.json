@@ -1,0 +1,145 @@
+{
+  "schema": "atrium-independent-artist-data-audit/1",
+  "batch": "gutzon-borglum-20261024",
+  "checkedAt": "2026-10-24T08:12:08.701Z",
+  "status": "pass",
+  "baselineRelease": "056e4bba965b427096b9b480ebeec3270e148fdc",
+  "acquisition": {
+    "runId": 40076008957,
+    "checkoutHead": "51b6b6c1ff074bf3ab6d0e81aae4382d4b83d4c8"
+  },
+  "accepted": 1,
+  "held": 1,
+  "heldSlugs": [
+    "americas-oceania/borglum-aviator-uva"
+  ],
+  "previousCatalogRows": 2380,
+  "currentCatalogRows": 2381,
+  "oldCatalogSemanticsAndOrderPreserved": true,
+  "oldSettingsPreserved": true,
+  "onlyCatalogCountersRecomputed": true,
+  "exhibitionAdditions": [
+    {
+      "exhibition": "power-and-presence",
+      "slug": "americas-oceania/borglum-abraham-lincoln-kentucky",
+      "text": "The furrowed brow, deep-set eyes and rough surrounding forms give Lincoln’s familiar face a grave presence. His likeness carries presidential authority through the head alone, inviting comparison with the portraits of rulers elsewhere in the exhibition. This bronze belongs to the University of Kentucky Libraries; its casting date and foundry remain unconfirmed.",
+      "priorCaptionsPreserved": 26,
+      "priorWorkSlugsPreserved": 26,
+      "coverAndOtherContentPreserved": true
+    }
+  ],
+  "dimensionPolicy": {
+    "documentedExactObjects": 0,
+    "unknownExactObjects": 1,
+    "physicalCalibrations": 0,
+    "exactSizeArEnabled": false
+  },
+  "unchangedProviderOriginals": {
+    "count": 2,
+    "totalBytes": 54422716,
+    "representation": "Unchanged preserved distribution GLBs; uploader native authoring files are not asserted.",
+    "files": [
+      {
+        "slug": "americas-oceania/borglum-abraham-lincoln-kentucky",
+        "bytes": 45070664,
+        "sha256": "f3675ea2f47918809de3d4e506176b5a3c5194dbb4a25b792d4d56179f547194",
+        "published": true
+      },
+      {
+        "slug": "americas-oceania/borglum-aviator-uva",
+        "bytes": 9352052,
+        "sha256": "1ba909cb53fdd48b0ab9832974b4cc01d6ff298755776f0cc4647db1f5ab4e30",
+        "published": false
+      }
+    ]
+  },
+  "visualEvidence": {
+    "distinctSources": 2,
+    "mainReviewFrames": 32,
+    "lightingOnlyDiagnosticFrames": 16,
+    "diagnosticDeliveredAsFinalAppearance": false,
+    "totalHashedFrames": 48,
+    "completeFrameAndContactHashesVerified": true,
+    "legacyMaterialReferenceClearlyLabeled": true,
+    "observedBrowserAborts": 4
+  },
+  "permanentPrivateArchive": {
+    "sources": 2,
+    "authenticatedFullContentReadbacks": 3,
+    "authenticatedUniqueReadbackBytes": 56024682,
+    "portableMap": {
+      "bytes": 8035,
+      "sha256": "1292f44a2c100c7934dc5a01a75ffb9f3523f4a3c6bacd587038c775a9f2191a",
+      "completeCloudReadbackAuthenticated": true,
+      "sourceMappings": 2
+    },
+    "objects": [
+      {
+        "role": "source-archive",
+        "package": 1,
+        "bytes": 54423208,
+        "sha256": "14ade401d51f51d54fa3f13809346f212468fd0f242c87ddab56f6fca726cf57",
+        "completeCloudReadbackAuthenticated": true,
+        "localZipMembersHashed": 2
+      },
+      {
+        "role": "provenance",
+        "package": null,
+        "bytes": 1593439,
+        "sha256": "6c3780a1d84eaa35cb84c02c0470a9ad9b6cd5e9f5bc84eec13fb658c3a3dfcd",
+        "completeCloudReadbackAuthenticated": true,
+        "localZipMembersHashed": 39
+      }
+    ],
+    "allOriginalZipMembersVerified": true,
+    "allAcquiredSourcesIncluded": true,
+    "localDeletionAuthorized": false
+  },
+  "works": [
+    {
+      "slug": "americas-oceania/borglum-abraham-lincoln-kentucky",
+      "title": "Abraham Lincoln (University of Kentucky bronze bust)",
+      "artist": "Gutzon Borglum",
+      "scanAuthor": "University of Kentucky Libraries (UofK_digital_lab)",
+      "wing": "unfiled",
+      "measuredIntegrity": {
+        "faces": 1279726,
+        "bratio": 0.001,
+        "ncomp": 1,
+        "largest_frac": 1
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/americas-oceania/borglum-abraham-lincoln-kentucky/preview-1eead8f8e4d2.glb",
+        "bytes": 1033388,
+        "sha256": "1eead8f8e4d2fbc9d4dc31e9571bfacb4289ba59d7e7af71f8b1cb276ae13043",
+        "faces": 399999,
+        "sourceFaces": 1279726
+      },
+      "physicalDimensions": {
+        "status": "unknown",
+        "basis": "object",
+        "dimensions": "",
+        "calibrationReady": false
+      },
+      "spatialUiExpectation": {
+        "status": "unknown",
+        "chosenMaxExtentMeters": 1
+      },
+      "sourceMaterialsPreserved": true,
+      "exactSizeArEnabled": false,
+      "assets": [
+        {
+          "file": "public/previews/renders/americas-oceania/borglum-abraham-lincoln-kentucky/thumb.webp",
+          "bytes": 51784,
+          "sha256": "3ed970ba8620e14674ee456de551345702a7e35faf928412d9f012fdd5aec5b3"
+        },
+        {
+          "file": "public/previews/posters/americas-oceania/borglum-abraham-lincoln-kentucky/poster.svg",
+          "bytes": 69452,
+          "sha256": "7c411b8d34c054e28041692e962575169d5a992f4cd45b889fdd1b02d655789b"
+        }
+      ]
+    }
+  ],
+  "scope": "Independent local data, asset, source, saved review-image and authenticated archive receipt audit. Human identity/capture decisions, final opening-view inspection, build, deployment and live delivery remain separate."
+}

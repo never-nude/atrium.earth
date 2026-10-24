@@ -1,0 +1,572 @@
+{
+  "schema": "atrium-final-artist-review/1",
+  "batch": "gutzon-borglum-20261024",
+  "status": "approved-for-publication",
+  "reviewedAt": "2026-10-24T08:12:38.169Z",
+  "artist": "Gutzon Borglum",
+  "acquisition": {
+    "runId": 40076008957,
+    "head": "51b6b6c1ff074bf3ab6d0e81aae4382d4b83d4c8",
+    "status": "success",
+    "sourcesFetched": 2
+  },
+  "acceptedWorks": 1,
+  "heldWorks": 1,
+  "reviewScope": "Both selected preserved Objaverse distribution GLBs rendered directly in eight-direction paired original-source/serving reviews, producing 32 main frame panels. A separate 16-panel lighting-only Aviator diagnostic retained the same source/preview assets and pose. Independent review and root review accept only the Kentucky Lincoln bust and hold The Aviator for essential head/helmet detail loss already present upstream. Root inspected the final Lincoln opening thumbnail; source and preview hashes, final assets, canonical metadata, approved pose and permanent archive verification are bound below. This report approves the reviewed batch and does not assert deployment.",
+  "renderer": {
+    "nativeOriginalsRendered": 2,
+    "materialNormalizedSourceReferences": 0,
+    "pairedDirections": 8,
+    "mainReviewFrames": 32,
+    "separateLightingDiagnosticFrames": 16,
+    "totalFrames": 48,
+    "diagnosticAppearanceDelivered": false,
+    "pageErrors": 0,
+    "observedBrowserAborts": [
+      {
+        "scope": "main",
+        "slug": "americas-oceania/borglum-abraham-lincoln-kentucky",
+        "mode": "source-native",
+        "asset": "native-0.glb",
+        "error": "net::ERR_ABORTED",
+        "qualification": "Observed browser request abort despite a complete server response and successfully decoded/rendered model. This event is retained; complete server writes do not prove complete browser receipt for unused preloads."
+      },
+      {
+        "scope": "main",
+        "slug": "americas-oceania/borglum-aviator-uva",
+        "mode": "preview-production",
+        "asset": "draco_wasm_wrapper.js",
+        "error": "net::ERR_ABORTED",
+        "qualification": "Observed browser request abort despite a complete server response and successfully decoded/rendered model. This event is retained; complete server writes do not prove complete browser receipt for unused preloads."
+      },
+      {
+        "scope": "main",
+        "slug": "americas-oceania/borglum-aviator-uva",
+        "mode": "preview-production",
+        "asset": "draco_decoder.wasm",
+        "error": "net::ERR_ABORTED",
+        "qualification": "Observed browser request abort despite a complete server response and successfully decoded/rendered model. This event is retained; complete server writes do not prove complete browser receipt for unused preloads."
+      },
+      {
+        "scope": "separate-lighting-diagnostic",
+        "slug": "americas-oceania/borglum-aviator-uva",
+        "mode": "source-native",
+        "asset": "native-0.glb",
+        "error": "net::ERR_ABORTED",
+        "qualification": "Observed browser request abort despite a complete server response and successfully decoded/rendered model. This event is retained; complete server writes do not prove complete browser receipt for unused preloads."
+      }
+    ],
+    "qualification": "All requested paired frames decoded and rendered. Observed aborts are retained as harness limitations; completed server writes do not establish browser receipt for unused preloads. The separate diagnostic changed render lighting only and did not repair geometry, invent detail, change source materials or approve a delivered Aviator appearance.",
+    "reports": [
+      {
+        "scope": "main",
+        "bytes": 137144,
+        "sha256": "1c1d371c8cee5ee48f32021f118538894e969038561517f732c7a5182badd2ff"
+      },
+      {
+        "scope": "separate-lighting-diagnostic",
+        "bytes": 53330,
+        "sha256": "3546435020713f57e07d66711f4680c60c1e4f31012a618e886b07503593b561"
+      }
+    ]
+  },
+  "independentReviewEvidence": {
+    "bytes": 74901,
+    "sha256": "2a91d51b8e9505b25aa4292edf9e68e0bd5c0d67c955e757b12e5ac579b95aa8"
+  },
+  "works": [
+    {
+      "slug": "americas-oceania/borglum-abraham-lincoln-kentucky",
+      "title": "Abraham Lincoln (University of Kentucky bronze bust)",
+      "artist": "Gutzon Borglum",
+      "date": "Cast date unconfirmed",
+      "material": "Bronze; captured pedestal material unconfirmed",
+      "currentLocation": "University of Kentucky Libraries, Special Collections Research Center, Lexington, Kentucky",
+      "primarySource": "https://uknow.uky.edu/arts-culture/uk-art-museum-exhibition-has-presidential-look",
+      "providerSource": "https://sketchfab.com/3d-models/d83cb5a179e84baeaa5e1fea9e5ddaff",
+      "preservedSource": "https://huggingface.co/datasets/allenai/objaverse/resolve/556637099bf4fa79ea7b239d0d9c328b8a2e9ac8/glbs/000-006/d83cb5a179e84baeaa5e1fea9e5ddaff.glb",
+      "source": {
+        "uid": "d83cb5a179e84baeaa5e1fea9e5ddaff",
+        "bytes": 45070664,
+        "sha256": "f3675ea2f47918809de3d4e506176b5a3c5194dbb4a25b792d4d56179f547194",
+        "representation": "Unchanged selected preserved Objaverse distribution GLB; uploader-native authoring file is not asserted."
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/americas-oceania/borglum-abraham-lincoln-kentucky/preview-1eead8f8e4d2.glb",
+        "bytes": 1033388,
+        "sourceBytes": 45070664,
+        "sourceFormat": "glb",
+        "faces": 399999,
+        "sourceFaces": 1279726,
+        "sha256": "1eead8f8e4d2fbc9d4dc31e9571bfacb4289ba59d7e7af71f8b1cb276ae13043"
+      },
+      "measuredIntegrity": {
+        "faces": 1279726,
+        "bratio": 0.001,
+        "ncomp": 1,
+        "largest_frac": 1
+      },
+      "appearance": {
+        "preserveSourceMaterials": true,
+        "preserveAuthoredVertexColors": true,
+        "sourceTextureImages": 0,
+        "sourceTextures": 0,
+        "sourceMaterialExtensions": [
+          "KHR_materials_unlit"
+        ],
+        "originalRenderedDirectly": true,
+        "nativeFaces": 1279726,
+        "previewFaces": 399999,
+        "topologySimplification": true,
+        "reconstruction": false,
+        "cropping": false,
+        "recoloring": false,
+        "qualification": "Zero texture images does not mean uncolored: the preserved source contains authored vertex colors and KHR_materials_unlit. Source and preview preserve these. Do not invent bronze patina, replace the unlit material or infer physical color accuracy from this rendered illumination.",
+        "sourceAndServingColorAndUnlitDefinitionsVerified": true
+      },
+      "physicalDimensions": {
+        "status": "unknown",
+        "dimensions": "",
+        "measures": [],
+        "sourceUrl": "https://uknow.uky.edu/arts-culture/uk-art-museum-exhibition-has-presidential-look",
+        "castDate": "unconfirmed",
+        "edition": "unconfirmed",
+        "foundry": "unconfirmed",
+        "manufactureOrigin": "unconfirmed",
+        "physicalCalibrationPerformed": false,
+        "exactSizeArEligible": false
+      },
+      "frames": [
+        {
+          "mode": "source-native",
+          "key": "FRONT",
+          "bytes": 745011,
+          "sha256": "1cdd1cbcb2c06a04af16b66bdf1b0978b067a6d7f34fa21e0452e3335c0035c8"
+        },
+        {
+          "mode": "source-native",
+          "key": "RIGHT",
+          "bytes": 511250,
+          "sha256": "812cacd9c23d3b2815ee23a0559e2678cfce742b4df2e784fb2c864c48ee6b4d"
+        },
+        {
+          "mode": "source-native",
+          "key": "REVERSE",
+          "bytes": 642886,
+          "sha256": "b243edb3b1a406f977d63954ba6404450c9e4f9f650b60e61a3f42b17bc409af"
+        },
+        {
+          "mode": "source-native",
+          "key": "LEFT",
+          "bytes": 519711,
+          "sha256": "deb9a47ff1ba7d2d3f21051111c44c907ec841e97eb47b7b28f7fc2af01f9357"
+        },
+        {
+          "mode": "source-native",
+          "key": "ABOVE",
+          "bytes": 380828,
+          "sha256": "fc0fafedf7ae94b448310bd51468b38b37ff009149eb881459aee96239455a9b"
+        },
+        {
+          "mode": "source-native",
+          "key": "UNDERSIDE",
+          "bytes": 521337,
+          "sha256": "11f4a6c7c3951a6923450774b0a770fdaad8581759be94780ae23583aa7b7b59"
+        },
+        {
+          "mode": "source-native",
+          "key": "FRONT-THREE-QUARTER",
+          "bytes": 589286,
+          "sha256": "fbec204b8a216e68ada5174de14d0cc37435ceda5c60a129d9d2edb461f6127e"
+        },
+        {
+          "mode": "source-native",
+          "key": "BACK-THREE-QUARTER",
+          "bytes": 554068,
+          "sha256": "fe61c7137bfa026b273fec606625e9222dc19d069e77fbe66cef2062dbe64eba"
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "bytes": 706355,
+          "sha256": "b1782d0fc32b5d92cbe2613eae543eb2e9fc1fc8973e4ebb7f34a6371872fbed"
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "bytes": 469749,
+          "sha256": "d9f06e0d36b42794f129fa7c75ffd0f53a5b1e5265ec1788d26de7175e495a4b"
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "bytes": 508572,
+          "sha256": "994ae13107efbb84e13bb626cca48a6708cb8b9aaaf39cd257f3918e00ac9658"
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "bytes": 470125,
+          "sha256": "8d545b310c5985a37ecb57a4a2c6ea2bcacf5cac724149b338fbe55ee1f600b0"
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "bytes": 350708,
+          "sha256": "e456d3c02ec5d011be7d65bf04ebb8fe977460cd958b6b323633b926d7533fda"
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "bytes": 455677,
+          "sha256": "cef1e31c1d00cfe893d6ec42bbd3afc8aaafcb7cc61d6572897b497ff7cb6a69"
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "bytes": 557503,
+          "sha256": "d400041b9d98bdc8106151abfd2ef38aafe9c7438133bdb1dc14cf348aa346b1"
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "bytes": 480046,
+          "sha256": "afd0101aad162e26a483d5298d3a5fac638feb07c500afb06c734a4b77a2adaf"
+        }
+      ],
+      "independentActualFramesReviewed": 16,
+      "independentVisualDecision": "The complete modeled frontal likeness, both visible ear contours, projecting nose, lips, chin, hair/crown and rough surrounding forms are retained. The 1,279,726-face preserved source and 399,999-face preview agree in visible composition and essential detail. The exact University photograph confirms the head identity.",
+      "captureScope": [
+        "Flat rear with three mounting tabs and hollow/mounting underside retained; do not describe or reconstruct a complete in-round rear skull or a documented closed bottom.",
+        "Small irregular display-plinth capture edges are retained.",
+        "The exact cast date, edition, foundry and overall captured-object dimensions remain unconfirmed."
+      ],
+      "reverseQualification": "Flat reverse is visibly textured and carries three mounting tabs with distinct fastener centers at the lower edge. Top/profile/underside views support a cast/mounting configuration rather than an unsupported inference that a rounded cranium has simply been lost. This is an interpretation of observed source detail; a primary photograph of the physical reverse was not located.",
+      "transform": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0,
+          0,
+          1
+        ],
+        "status": "manual",
+        "note": "Source-native upright front verified through eight-direction source and serving review; captured flat rear, mounting details and hollow underside retained."
+      },
+      "finalThumbnail": {
+        "bytes": 51784,
+        "sha256": "3ed970ba8620e14674ee456de551345702a7e35faf928412d9f012fdd5aec5b3",
+        "actualImageReviewedByRoot": true
+      },
+      "poster": {
+        "bytes": 69452,
+        "sha256": "7c411b8d34c054e28041692e962575169d5a992f4cd45b889fdd1b02d655789b"
+      },
+      "rootActualFramesReviewed": 16,
+      "catalogRecord": {
+        "index": 2381,
+        "ingestBatch": "gutzon-borglum-20261024",
+        "ingestedAt": "2026-10-24T07:55:57.534Z"
+      }
+    }
+  ],
+  "holds": [
+    {
+      "slug": "americas-oceania/borglum-aviator-uva",
+      "uid": "6a3068daaaa14833b964a09d4ebe817e",
+      "reason": "Essential modeled head detail is inadequate in the selected upstream mesh. Full-resolution source/preview FRONT and RIGHT views under lower lighting still show an essentially smooth oval head without readable facial or flight-helmet features, while the exact DHR statue photograph clearly retains them. Fine wing/body/hand detail is also heavily smoothed. The overall composition is recognizable, but this does not provide a sufficiently faithful representation of its essential sculptural detail.",
+      "sourceSha256": "1ba909cb53fdd48b0ab9832974b4cc01d6ff298755776f0cc4647db1f5ab4e30"
+    }
+  ],
+  "heldWorkEvidence": {
+    "slug": "americas-oceania/borglum-aviator-uva",
+    "source": {
+      "bytes": 9352052,
+      "sha256": "1ba909cb53fdd48b0ab9832974b4cc01d6ff298755776f0cc4647db1f5ab4e30"
+    },
+    "preview": {
+      "bytes": 630712,
+      "sha256": "0f6623c235d31b02097bec3f9861aaaad234b4d4b6c2248f35648741354994f4"
+    },
+    "sourceFaces": 372970,
+    "previewFaces": 372970,
+    "previewTopologySimplification": false,
+    "mainFrames": [
+      {
+        "mode": "source-native",
+        "key": "FRONT",
+        "bytes": 241966,
+        "sha256": "555f376a742e610df22f2331b9012bf74eb721196e731d8995ae6959a616f507"
+      },
+      {
+        "mode": "source-native",
+        "key": "RIGHT",
+        "bytes": 208563,
+        "sha256": "1a97cf6fec7801bfbec0735bd7f92d915d69e4046e2bbb5e6760322ba90e6300"
+      },
+      {
+        "mode": "source-native",
+        "key": "REVERSE",
+        "bytes": 257907,
+        "sha256": "b18f0fa9081885589c0b71f306f59b24158f44f349bef85c7671d8c905e8eb47"
+      },
+      {
+        "mode": "source-native",
+        "key": "LEFT",
+        "bytes": 252611,
+        "sha256": "a8b7ac4a337c53487538581194c050b25ec07cf22e069ab7685916a54358e0b2"
+      },
+      {
+        "mode": "source-native",
+        "key": "ABOVE",
+        "bytes": 189239,
+        "sha256": "552bfc1d377cc63198d13c7bb58d68caa8d66789bddcc9a7c6743c4c5039ee59"
+      },
+      {
+        "mode": "source-native",
+        "key": "UNDERSIDE",
+        "bytes": 123836,
+        "sha256": "1f3bb9233be53a1766a7b1f4869de1cf5f65cbb2cd849ef2afcbf179a871a18f"
+      },
+      {
+        "mode": "source-native",
+        "key": "FRONT-THREE-QUARTER",
+        "bytes": 219069,
+        "sha256": "2d6e025a482f8f694598cd0b0c921ccebe7584760f7bcd61bfd4f445dbdf5ded"
+      },
+      {
+        "mode": "source-native",
+        "key": "BACK-THREE-QUARTER",
+        "bytes": 249520,
+        "sha256": "1e7fdf62d8bba06f987a3c1ca874a71a647bd47182a7268d96c105893117f308"
+      },
+      {
+        "mode": "preview-production",
+        "key": "FRONT",
+        "bytes": 242513,
+        "sha256": "0c227171c920cd645163d0a2d4423e477560ef7e9920317e9b74ddc1a0dbf29b"
+      },
+      {
+        "mode": "preview-production",
+        "key": "RIGHT",
+        "bytes": 208042,
+        "sha256": "0d50198125cd22c43db4d7ac8be9b099f4d6a13986e1c16260d895dc7a1da8ba"
+      },
+      {
+        "mode": "preview-production",
+        "key": "REVERSE",
+        "bytes": 257859,
+        "sha256": "cb64a3ad5fb8bfc190ad490d99a37818976604637d4ffb189bf81f92b6b6ed07"
+      },
+      {
+        "mode": "preview-production",
+        "key": "LEFT",
+        "bytes": 253118,
+        "sha256": "942ddf661a92ad09e5f4790654c79528e0f9d4a722de54b361ba84513fc8745c"
+      },
+      {
+        "mode": "preview-production",
+        "key": "ABOVE",
+        "bytes": 189275,
+        "sha256": "9f073e211296a2ee6e72e1b0dace472ec02ffa5a81b1859faf84d54627e15263"
+      },
+      {
+        "mode": "preview-production",
+        "key": "UNDERSIDE",
+        "bytes": 124383,
+        "sha256": "ef97723be4bc70cf1f3434c4c67054502746e68a462c70e312826a0395e0849c"
+      },
+      {
+        "mode": "preview-production",
+        "key": "FRONT-THREE-QUARTER",
+        "bytes": 219133,
+        "sha256": "78d1b275e4b33c5e16a8c52c39d5a206aec81d556dfc38157e098167eb55f86a"
+      },
+      {
+        "mode": "preview-production",
+        "key": "BACK-THREE-QUARTER",
+        "bytes": 249236,
+        "sha256": "51f87e758e66b675d93fcfc5bec769374e2f05405ad40bb69d3119c92b46c76c"
+      }
+    ],
+    "separateLightingDiagnosticFrames": [
+      {
+        "mode": "source-native",
+        "key": "FRONT",
+        "bytes": 270654,
+        "sha256": "cf6ccbd249ab8114bcc9d689d4f80cbd563d9db6ec0808ceb6093f9cda951b61"
+      },
+      {
+        "mode": "source-native",
+        "key": "RIGHT",
+        "bytes": 225129,
+        "sha256": "27e1600b000b4572a28ca6ea4ee56a3f3d2a83f2f5ea57b1ba772b6ce0e480a2"
+      },
+      {
+        "mode": "source-native",
+        "key": "REVERSE",
+        "bytes": 274044,
+        "sha256": "058165969db9b444bc7175f23b81afded7fd50a11da5f9b9a845a122021b52b3"
+      },
+      {
+        "mode": "source-native",
+        "key": "LEFT",
+        "bytes": 265021,
+        "sha256": "0142151db58c370e013884fb3ace34417f35e480e8229f5a9876e9b550b8e7a2"
+      },
+      {
+        "mode": "source-native",
+        "key": "ABOVE",
+        "bytes": 211487,
+        "sha256": "5a7585e3d731c8cf9b4efa4b850070a35dfc1f5ec62f2dc12d19a0706d393c1f"
+      },
+      {
+        "mode": "source-native",
+        "key": "UNDERSIDE",
+        "bytes": 124725,
+        "sha256": "d3cd76be1d823de5e0dea170e501f1aeb9008217445601ebdda40711c140105e"
+      },
+      {
+        "mode": "source-native",
+        "key": "FRONT-THREE-QUARTER",
+        "bytes": 236402,
+        "sha256": "93304a7c029a11d99485ed56a5f5278797adace449d7d0743d30b4f98a46dc49"
+      },
+      {
+        "mode": "source-native",
+        "key": "BACK-THREE-QUARTER",
+        "bytes": 265508,
+        "sha256": "543805aafd11ba26c0d2b888352cbd8f6bce38f7fdb89d6a6e4272d8cf392717"
+      },
+      {
+        "mode": "preview-production",
+        "key": "FRONT",
+        "bytes": 271459,
+        "sha256": "cfeee2a4211efa40f721eaa2af8d7bec8cf6f5945aa50b5c02ef6b8b9bdc4247"
+      },
+      {
+        "mode": "preview-production",
+        "key": "RIGHT",
+        "bytes": 224602,
+        "sha256": "028c38c9bd4b72273c149edecc0b8b3ef98663b1d7e966c170ddc0a6afdff919"
+      },
+      {
+        "mode": "preview-production",
+        "key": "REVERSE",
+        "bytes": 273813,
+        "sha256": "a246d335cef52025469ed26be4db3227e289e3e23626196b4d75745481964d24"
+      },
+      {
+        "mode": "preview-production",
+        "key": "LEFT",
+        "bytes": 265740,
+        "sha256": "f37ccaedff3bc22f2e55434c65948f5c82614060edd6de6358fb082521faea5a"
+      },
+      {
+        "mode": "preview-production",
+        "key": "ABOVE",
+        "bytes": 211843,
+        "sha256": "a2bbabdb1648e464d97af2f5a98a32da6104e05132989c5534cb9f1456a5fe65"
+      },
+      {
+        "mode": "preview-production",
+        "key": "UNDERSIDE",
+        "bytes": 125563,
+        "sha256": "a031b5389fbf4ec57709957862e9fc78514b512f9916568e247fa5ed4450a807"
+      },
+      {
+        "mode": "preview-production",
+        "key": "FRONT-THREE-QUARTER",
+        "bytes": 236539,
+        "sha256": "2986d97546769cddd35675c7f5b731d53ab738d06faa1e2bbd772d982fb3ab2a"
+      },
+      {
+        "mode": "preview-production",
+        "key": "BACK-THREE-QUARTER",
+        "bytes": 264985,
+        "sha256": "ec18aa85929399d0830aae2198ae00038bfefa4eb26f0d6ac3d819af9b35f4bf"
+      }
+    ],
+    "upstreamProcessing": "UVA describes FARO Scene point-cloud meshing and Geomagic editing to create a watertight public-access mesh before publication. This source processing is disclosed; the selected incoming distribution GLB is retained unchanged.",
+    "detailLossNotAttributedToAtriumReduction": true,
+    "noFurtherRepairOrDiagnosticRequested": true
+  },
+  "metadata": {
+    "exactUniversityExamplesIdentified": true,
+    "primarySourcesCompared": true,
+    "unknownWholeObjectDimensions": 1,
+    "castDateUnconfirmed": true,
+    "editionUnconfirmed": true,
+    "foundryUnconfirmed": true,
+    "manufactureOriginUnknownWing": "unfiled",
+    "physicalCalibrationPerformed": false,
+    "exactSizeArEnabled": false,
+    "scanLicense": "CC BY 4.0",
+    "sourceImages": 0,
+    "authoredVertexColorsPreserved": true,
+    "authoredUnlitMaterialPreserved": true,
+    "previewsWithTopologySimplification": 1,
+    "noAtriumRepairOrReconstructionPerformed": true,
+    "underlyingArtworkAndReferencePhotoRightsSeparate": true,
+    "historicalLicenseScope": "Complete selected raw license-evidence records are archived with original whole-shard SHA256/bytes/immutable URLs and recovery instructions. The complete unrelated metadata shards are retained locally and excluded from the provenance ZIP."
+  },
+  "archiveEvidence": {
+    "schema": "atrium-sanitized-source-archive-evidence/1",
+    "status": "complete",
+    "providerOriginals": 2,
+    "originalBytes": 54422716,
+    "sources": 2,
+    "authenticatedFullContentReadbacks": 3,
+    "authenticatedUniqueReadbackBytes": 56024682,
+    "portableMap": {
+      "bytes": 8035,
+      "sha256": "1292f44a2c100c7934dc5a01a75ffb9f3523f4a3c6bacd587038c775a9f2191a",
+      "completeCloudReadbackAuthenticated": true,
+      "sourceMappings": 2
+    },
+    "objects": [
+      {
+        "role": "source-archive",
+        "package": 1,
+        "bytes": 54423208,
+        "sha256": "14ade401d51f51d54fa3f13809346f212468fd0f242c87ddab56f6fca726cf57",
+        "completeCloudReadbackAuthenticated": true,
+        "localZipMembersHashed": 2
+      },
+      {
+        "role": "provenance",
+        "package": null,
+        "bytes": 1593439,
+        "sha256": "6c3780a1d84eaa35cb84c02c0470a9ad9b6cd5e9f5bc84eec13fb658c3a3dfcd",
+        "completeCloudReadbackAuthenticated": true,
+        "localZipMembersHashed": 39
+      }
+    ],
+    "allOriginalZipMembersVerified": true,
+    "allAcquiredSourcesIncluded": true,
+    "localDeletionAuthorized": false,
+    "unchangedSelectedDistributionOriginals": true,
+    "selectedLicenseEvidenceRecordsArchived": 2,
+    "wholeUnrelatedMetadataShardsArchived": false,
+    "wholeUnrelatedMetadataShardsRetainedLocally": true,
+    "originalsRetainedLocally": true,
+    "privateRecoveryIdentifiersOmitted": true
+  },
+  "featuredMembershipChanged": false,
+  "exhibition": "power-and-presence",
+  "exhibitionAppends": [
+    "americas-oceania/borglum-abraham-lincoln-kentucky"
+  ],
+  "priorExhibitionContentCoverAndOrderingPreserved": true,
+  "exhibitionCaption": {
+    "slug": "americas-oceania/borglum-abraham-lincoln-kentucky",
+    "text": "The furrowed brow, deep-set eyes and rough surrounding forms give Lincoln’s familiar face a grave presence. His likeness carries presidential authority through the head alone, inviting comparison with the portraits of rulers elsewhere in the exhibition. This bronze belongs to the University of Kentucky Libraries; its casting date and foundry remain unconfirmed."
+  },
+  "catalogRows": 2381,
+  "sourceArchiveCoversAcceptedAndHeldWorks": true
+}
