@@ -1,0 +1,49 @@
+{
+  "schema": "atrium-live-release-verification/1",
+  "batch": "miro-20261023",
+  "releaseCommit": "61c9a8720001a9de899433f680e19a2ff80f3f8f",
+  "deploymentRun": "40052249022",
+  "checkedAt": "2026-10-24T02:02:21.265Z",
+  "status": "pass",
+  "liveWorks": 1,
+  "works": [
+    {
+      "slug": "modern/joan-miro-femme-bouteille-67452c",
+      "status": "pass",
+      "page": {
+        "url": "https://atrium.earth/works/modern/joan-miro-femme-bouteille-67452c/",
+        "status": 200,
+        "exactModelURLPresent": true,
+        "sha256": "c593df042ddb5ab3d1ef672fdca1888c2f936992f892bc93de2c320d7c3a4f97",
+        "bytes": 32463
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/modern/joan-miro-femme-bouteille-67452c/preview-961442a0f807.glb",
+        "bytes": 428868,
+        "sha256": "961442a0f807dfb2e1a7003fe46e2d54a7aeda41efb1a350429e89e8076a6b05",
+        "contentType": "model/gltf-binary",
+        "corsAllowOrigin": "https://atrium.earth"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/modern/joan-miro-femme-bouteille-67452c/thumb.webp",
+        "bytes": 33846,
+        "sha256": "782ca9928bb0be23ef785c4b0aec8cfca739a2149104f258a1aa67db5b9dfd31",
+        "contentType": "image/webp"
+      },
+      "poster": {
+        "url": "https://atrium.earth/previews/posters/modern/joan-miro-femme-bouteille-67452c/poster.svg",
+        "bytes": 2107,
+        "sha256": "a44c09b4ed5609e76f1ccb2964702d100f83d7ac95cac96ee6634c098491f634",
+        "contentType": "image/svg+xml"
+      }
+    }
+  ],
+  "newest": {
+    "status": "pass",
+    "count": 40,
+    "exactOrderedSelectionMatchesBuild": true,
+    "containsEveryNewWork": true
+  },
+  "exhibitions": [],
+  "sourceCleanupPerformed": false
+}

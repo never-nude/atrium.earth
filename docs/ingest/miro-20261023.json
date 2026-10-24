@@ -1,7 +1,7 @@
 {
   "schema": "atrium-artist-acquisition/1",
   "batch": "miro-20261023",
-  "state": "reviewed-ready-for-publication",
+  "state": "live-verified",
   "baseline_commit": "bd959ab1",
   "baseline_count": 2361,
   "selected_count": 1,
@@ -114,5 +114,13 @@
     "independent_reconciliation_sha256": "0a53143d8c56597131d18eb33bc5e215c8072cc22ff45ee85975034ce3a74d49",
     "preserved_featured": 250,
     "preserved_homepage_eligible": 192
+  },
+  "release_commit": "61c9a8720001a9de899433f680e19a2ff80f3f8f",
+  "deployment_run": 40052249022,
+  "live_verification": {
+    "status": "pass",
+    "assets": "docs/ingest/miro-20261023-live.json",
+    "browser": "docs/ingest/miro-20261023-live-browser.json",
+    "checked_at": "2026-10-24T02:04:10.672Z"
   }
 }
