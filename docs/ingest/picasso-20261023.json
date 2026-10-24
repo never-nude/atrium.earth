@@ -1,7 +1,7 @@
 {
   "schema": "atrium-artist-acquisition/1",
   "batch": "picasso-20261023",
-  "state": "ready-for-publication",
+  "state": "deployed-and-live-verified",
   "baseline_commit": "522ae65db92a859d25e9d2bc28a548e8e8f98a67",
   "baseline_count": 2355,
   "selected_count": 5,
@@ -370,5 +370,8 @@
     "native_production_visual_review": "five works, eighty actual frames, all pass",
     "final_thumbnails": "five actual rendered thumbnails, all reviewed",
     "r2_delivery": "five complete hash/byte/MIME/CORS readbacks pass"
-  }
+  },
+  "release_commit": "2087bd4955f2396ee80870c2e69de925011100f3",
+  "deployment_run": 40045255592,
+  "live_verification": "All five pages/models/thumbnails/posters, exact Newest40 selection, three exhibition placements and real desktop/mobile browser checks pass."
 }
