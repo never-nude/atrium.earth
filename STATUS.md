@@ -1104,3 +1104,9 @@ Import retry checkpoint: acquisition39735160183 downloaded all40 originals but s
 
 - Dalí release verified live: a9c1070e344e56c29843a37903b4c944f337c527, Pagesrun40051267819 succeeded. All8pagesbindtheexactimmutablemodels;24fullpublicmodel/thumbnail/posterhash-byte readbacks pass, withmodelMIME/productionCORS. All8areonNewest and2exhibitionbodyplacementsarelive. Representativeactualdesktopbrowserinspection confirmsrenderedSaintJohn,cross,orbit/resetandmetadataqualifiers; scopeisonebrowserwork,notmobile/physicalAR. Evidence: -live.json and -live-browser.json.
 - Dalí batchcomplete:8publicadditions,5sourcequalityholds,all13originalsretainedandpermanentlyprivatelyarchived. Onlyafterthisverifiedrelease, discoveryhasstartedfornextviableartistbelowDalíintheownerroster. Nootherartistfetchedorpublishedyet.
+
+### 2026-10-24 — next artist after completed Dalí batch
+
+- Only after Dalí was deployed and live verified, bounded searches screened roster27–38. None established10distinctneweligiblecompositions (notanexhaustiveabsenceclaim). Thorvaldsen at39isnextviable, with12distinctnewcompositions/scannedmuseumversions.
+- Branch codex/next-after-dali-20261024 startsfrom0aac77af. Immutable AllenAI Objaverse snapshotGLB URLs have fullSHA256/exactbytepins; original matchingUID annotationsexplicitlyrecordGeoffreyMarchal CC BY grants. CurrentSketchfablicensesdifferforsomeworksandarequalified; the preservedhistoricalfiles/evidencearetheselectedsources. Exactmuseumobjects, posthumouscarvers, datesanddimensionsareidentified. SixversionswithunconfirmedmanufactureoriginsareUnfiled ratherthaninheritCopenhagen. NoThovaldsenpayloadornewcatalogentryispublishedyet.
+- Next: acquire12pinnedoriginals, measureintegrityandreviewactualnative/servingappearance/capture; archivealloriginals/evidenceprivatelywithfullreadbacks;publishacceptedsetandverifylive.
