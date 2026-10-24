@@ -1,0 +1,54 @@
+name: Upload reviewed preview files to R2
+
+on:
+  workflow_dispatch:
+    inputs:
+      manifest:
+        description: 'Reviewed preview manifest under docs/ingest/'
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /scripts/
+            /docs/ingest/
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Download and verify reviewed serving files
+        env:
+          MANIFEST: ${{ inputs.manifest }}
+        run: node scripts/stage-reviewed-previews.mjs
+      - name: Upload immutable models and verify complete public readbacks
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: >-
+          node scripts/upload-previews-r2.mjs
+          --input=.atrium-ingest/reviewed-preview-upload/slugs.txt
+          --previews=.atrium-ingest/reviewed-preview-upload/previews.json
+          --previews-dir=.atrium-ingest/reviewed-preview-upload/models
+          --report=.atrium-ingest/reviewed-preview-upload/report.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: reviewed-preview-upload-${{ github.run_id }}
+          path: |
+            .atrium-ingest/reviewed-preview-upload/previews.json
+            .atrium-ingest/reviewed-preview-upload/report.json
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
