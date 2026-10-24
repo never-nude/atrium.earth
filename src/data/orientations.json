@@ -27848,7 +27848,7 @@
     ],
     "yaw": 0,
     "viewDirection": [
-      0.0,
+      0,
       0.12186934,
       0.99254615
     ],
@@ -27864,7 +27864,7 @@
     ],
     "yaw": 0,
     "viewDirection": [
-      0.0,
+      0,
       0.12186934,
       0.99254615
     ],
@@ -27880,7 +27880,7 @@
     ],
     "yaw": 0,
     "viewDirection": [
-      0.0,
+      0,
       0.12186934,
       0.99254615
     ],
@@ -27898,7 +27898,7 @@
     "viewDirection": [
       0.99254615,
       0.12186934,
-      0.0
+      0
     ],
     "status": "manual",
     "note": "Opening proposal from source inspection; actual production comparison recorded in the batch review."
@@ -27914,7 +27914,7 @@
     "viewDirection": [
       0.99254615,
       0.12186934,
-      0.0
+      0
     ],
     "status": "manual",
     "note": "Opening proposal from source inspection; actual production comparison recorded in the batch review."
@@ -27930,7 +27930,7 @@
     "viewDirection": [
       -0.99254615,
       0.12186934,
-      -0.0
+      0
     ],
     "status": "manual",
     "note": "Opening proposal from source inspection; actual production comparison recorded in the batch review."
@@ -28366,5 +28366,21 @@
     ],
     "status": "manual",
     "note": "Upright opening selected from actual eight-view native/production comparison. Source Y-up geometry remains unchanged."
+  },
+  "modern/bourgeois-amoeba-dia-075df1": {
+    "upAxis": "y",
+    "modelRotation": [
+      0,
+      0,
+      0
+    ],
+    "yaw": -90,
+    "viewDirection": [
+      0,
+      0,
+      1
+    ],
+    "status": "manual",
+    "note": "Upright relief front selected from actual eight-direction native/production inspection. Yaw turns the captured +X face toward the opening camera; original mesh and brick-wall context remain unchanged."
   }
 }
