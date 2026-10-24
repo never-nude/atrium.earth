@@ -32,7 +32,9 @@ try {
   const metadata=await api(`https://api.sketchfab.com/v3/models/${model.uid}/download`),delivery=metadata.glb;
   if (!delivery || !Number.isSafeInteger(delivery.size) || delivery.size<=0 || delivery.size>500_000_000) throw Error('No bounded authenticated GLB delivery');
   const url=new URL(delivery.url);
-  if (url.protocol!=='https:' || !['media.sketchfab.com','archives.sketchfab.com'].includes(url.hostname)) throw Error(`Unexpected provider delivery host: ${url.hostname}`);
+  // The authenticated API currently returns this exact provider-owned S3 bucket
+  // as well as Sketchfab's media hosts. Never forward the API credential to it.
+  if (url.protocol!=='https:' || !['media.sketchfab.com','archives.sketchfab.com','sketchfab-prod-media.s3.amazonaws.com'].includes(url.hostname)) throw Error(`Unexpected provider delivery host: ${url.hostname}`);
   const response=await fetch(url,{signal:AbortSignal.timeout(180000)});
   if (!response.ok) throw Error(`Source delivery HTTP ${response.status}`);
   const parts=[];let bytes=0;
