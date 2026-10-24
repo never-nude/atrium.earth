@@ -1,0 +1,758 @@
+{
+  "schema": "atrium-assistant-visual-review/1",
+  "batch": "picasso-20261023",
+  "status": "pass",
+  "reviewer": "Codex assistant visual inspection of actual rendered source/production contact sheets and final thumbnails",
+  "counts": {
+    "works": 5,
+    "comparisonFrames": 80,
+    "contacts": 5,
+    "finalThumbnails": 5
+  },
+  "sourceReference": "Full-resolution container repacks of unchanged native glTF packages. The compatibility references are byte-identical to the repacks; no material compatibility conversion was needed.",
+  "scopeReportSha256": "60c1b856b784475d11720dde01ac1244a6414dfa8a498e9dffe276e0d7a0384f",
+  "reviewLedgerSha256": "0825827074adc768d5c478e2b74514b8fd3398b0b82e495172a00bf64f8748fb",
+  "thumbnailContact": {
+    "sha256": "25600af0e25bd23387c421b5241a6e873fddb1fc3b03c4b7f13f1a0fc255b556",
+    "bytes": 32686,
+    "reviewed": true
+  },
+  "warnings": "Native and production model decoding produced positive equal geometry counts, texture maps and all sixteen exact frame files per work. Chromium ERR_ABORTED request-lifecycle signals were retained in the rendering evidence; no failed/missing model frame was accepted. Successful native frames were reused unchanged, avoiding redundant rendering.",
+  "works": [
+    {
+      "slug": "modern/picasso-tete-femme-antibes-bd6f4a",
+      "sourceUid": "bd6f4a9e-7388-4a5f-b96e-5a9af1125e85",
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/modern/picasso-tete-femme-antibes-bd6f4a/preview-6effac42eba9.glb",
+        "sha256": "6effac42eba9c2779f9299d1764479e9ff2c95797a7bf9ff07d793c273e927e6",
+        "bytes": 518232
+      },
+      "thumbnail": {
+        "sha256": "ff85bc6f0ba5c7b5809ace3f7fb1c7d34eba29685bac6c1a494fcac687c49a92",
+        "bytes": 41646,
+        "reviewed": true
+      },
+      "poster": {
+        "sha256": "bed64ff0e5a0447a50df91dc3870d572f4468e572d76a1d1c1880ffaac6dd7c7",
+        "bytes": 2106
+      },
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          1,
+          0.35,
+          1
+        ],
+        "status": "manual",
+        "note": "Upright opening selected from actual eight-view native/production comparison. Source Y-up geometry remains unchanged."
+      },
+      "actualViews": [
+        {
+          "mode": "native-compatibility",
+          "key": "FRONT",
+          "sha256": "21a0d5030abeb9e980a126b97fe5caa3af81f55bbe360bd227dd613df4ed2218",
+          "bytes": 563031
+        },
+        {
+          "mode": "native-compatibility",
+          "key": "RIGHT",
+          "sha256": "b88c5c6c24f5b8f0c1ab982424a8f4d9d58d31bed5bbf6eaea20b3f06904bbf6",
+          "bytes": 544625
+        },
+        {
+          "mode": "native-compatibility",
+          "key": "REVERSE",
+          "sha256": "be50d14b0503f91e3218e812538adb26556874511ee508351c8a4ff97a089308",
+          "bytes": 555041
+        },
+        {
+          "mode": "native-compatibility",
+          "key": "LEFT",
+          "sha256": "853a8c8ee07658f034b1cd7455e2944dc5c145c42eedf80580d200860a7bff4d",
+          "bytes": 522195
+        },
+        {
+          "mode": "native-compatibility",
+          "key": "ABOVE",
+          "sha256": "e7e9d2ab45f7a1f8840bba9e4537e89e9d4854acb9e3ce8d1590624cf8a64288",
+          "bytes": 445165
+        },
+        {
+          "mode": "native-compatibility",
+          "key": "UNDERSIDE",
+          "sha256": "470435fbfe31c519972186ac5af7bb3cab39234c61073b0681167aca5d3876d9",
+          "bytes": 207629
+        },
+        {
+          "mode": "native-compatibility",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "2a73e8f0693c32ebc71b4861dbbf820c45e131a17a729f136e2fe73b83a9baee",
+          "bytes": 501467
+        },
+        {
+          "mode": "native-compatibility",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "33e1200695bcd0e9344f14d697f68a320b4870a4b000d6c49c51092b86477b4f",
+          "bytes": 485392
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "sha256": "11dc7069ca589214885fc69d4071ebeecaad74c43af31fe9f1cb97afe71a0031",
+          "bytes": 528923
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "sha256": "590160082fff3fe3b982f376f29d898a0221eacb90d9f73ae58d3aa374e2ae99",
+          "bytes": 524658
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "sha256": "41f7e731a269c115ff471da72aa5e2b1b237fb51ef2dc15e1f5a3ce766565798",
+          "bytes": 526473
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "sha256": "92154d158a02244417aa7953b1f7660b80c0f45f9146038efa7201419551adef",
+          "bytes": 500714
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "sha256": "52501a331e01efc11bc77045056c8aabd482e4a7163ca3807a56ce653a118f02",
+          "bytes": 417616
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "sha256": "3348df2d77eccf07e5bd93605ad6fcff5c6ec30ec3618006539db861fc207b79",
+          "bytes": 204820
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "cb9ab9b7c4306f50b8d56f108a61fb0fad739772614b88f83d829ca308964713",
+          "bytes": 488745
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "c9ed3597db9ef40074642a569a92f44bdf7c82460106d0005d79bf46e7f33ee5",
+          "bytes": 470566
+        }
+      ],
+      "contact": {
+        "sha256": "5a23d41b3516448446da9b8b779480d232cd9abaffd116daa25fddc0b17c9e40",
+        "bytes": 185250
+      },
+      "geometryReviewNote": "The head, elongated neck and stepped integral base are present in all exterior views. Rough rear-neck texture and incomplete display-plinth/floor context match the source; the preview introduces no visible loss.",
+      "captureNote": "All eight paired camera directions were actually viewed. The artwork exteriors are readable and agree with the source reference. The sculpture’s underside is unrecorded; captured display plinth and floor fragments are retained.",
+      "decision": {
+        "pose": "pass",
+        "nativeAppearance": "pass",
+        "captureScope": "pass",
+        "scopeNote": "All eight paired camera directions were actually viewed. The artwork exteriors are readable and agree with the source reference. The sculpture’s underside is unrecorded; captured display plinth and floor fragments are retained.",
+        "underside": "unrecorded",
+        "undersideNote": "The below views expose an open capture; no physical bottom surface is recorded or reconstructed."
+      },
+      "spatialEligible": false
+    },
+    {
+      "slug": "modern/picasso-bust-woman-antibes-a3e75f",
+      "sourceUid": "a3e75f29-bcf9-4849-9ad8-eae6c0960150",
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/modern/picasso-bust-woman-antibes-a3e75f/preview-99c8f75211a2.glb",
+        "sha256": "99c8f75211a29729cd16caf843cafdf3e752af69e0c2cd127b5f05316feca67d",
+        "bytes": 451084
+      },
+      "thumbnail": {
+        "sha256": "863debd733ebc3df08860084397b564ce2ad6cc9161d19fa46bc72c6e5c6ea37",
+        "bytes": 32060,
+        "reviewed": true
+      },
+      "poster": {
+        "sha256": "26875f2139b725846c14677f185a2ad051babcfe9d05cc1c7b613b83f5ba171f",
+        "bytes": 2107
+      },
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          1,
+          0.35,
+          1
+        ],
+        "status": "manual",
+        "note": "Upright opening selected from actual eight-view native/production comparison. Source Y-up geometry remains unchanged."
+      },
+      "actualViews": [
+        {
+          "mode": "native-compatibility",
+          "key": "FRONT",
+          "sha256": "e73293ac74171f5747e12e2039ff07d2b5af61d9c03be5508a2618338e0092e8",
+          "bytes": 424470
+        },
+        {
+          "mode": "native-compatibility",
+          "key": "RIGHT",
+          "sha256": "be2a9f1e29a58fd92e88596fd3e95962e017ca624a419b47ecf64b65cfa6bd48",
+          "bytes": 531353
+        },
+        {
+          "mode": "native-compatibility",
+          "key": "REVERSE",
+          "sha256": "ddab92d50c11fe39d19f8a8933526a78bfae2946aabca7560cb3e0b4d9725d30",
+          "bytes": 410830
+        },
+        {
+          "mode": "native-compatibility",
+          "key": "LEFT",
+          "sha256": "c1cbbc69829ed7886c0e0ddc89c37df5e35112ea490cffbb73d61f8f04899c9e",
+          "bytes": 472252
+        },
+        {
+          "mode": "native-compatibility",
+          "key": "ABOVE",
+          "sha256": "c19d6c89de9ff6606adc05305219cee8c11073e6771acb2d532804531499856d",
+          "bytes": 393679
+        },
+        {
+          "mode": "native-compatibility",
+          "key": "UNDERSIDE",
+          "sha256": "4cc4e50072ce578995d46f9f6bc327d70c9c5fe17079b1bba2be3c163b9ab6bc",
+          "bytes": 213491
+        },
+        {
+          "mode": "native-compatibility",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "17f94b4f4af542c526773965ef7b940b70289b415d31ee11dc4a64a776071bc7",
+          "bytes": 403672
+        },
+        {
+          "mode": "native-compatibility",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "e7136c5d5deba4a9ec274ba456ea182a64d54b290379069fd75b126b2e9b4cd0",
+          "bytes": 374687
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "sha256": "0e7bb4149ba52299914f43616117672fb20171dcfaf41cd9b25f6ff00a697a93",
+          "bytes": 416433
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "sha256": "58c32fa68e269151c6af1fbdfd1bd855529642b051faeac679191006bc75bd71",
+          "bytes": 516506
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "sha256": "ff4ce1976765db10b8fbab56824607f61918789e8675cb5bf88596562e22073a",
+          "bytes": 401555
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "sha256": "f830cf5d58bdbf0d33925f7688af8f2240a4bfdc1526de011b646ca620b70c08",
+          "bytes": 458716
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "sha256": "f171b7c4337a93310f346c9a4810260cb292b19d5ca79ac78cbde88225e5bea8",
+          "bytes": 375880
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "sha256": "b54f9db67ee9af88484d5d44bb1ba240726701995d6b1af7d5aaf5a782d63f97",
+          "bytes": 212066
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "9b83a6268c738f6f532502b004c6bfa0f84e003809920df22f2f3a5ed4edae45",
+          "bytes": 399139
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "eca0b259ca332c129042eb31ed20e41b08f99528fa24dab8a3e81f9b8824181e",
+          "bytes": 368961
+        }
+      ],
+      "contact": {
+        "sha256": "45c225133b7c34e44d6507d3eb03bb50c2a56557a505694064b561cf822de22f",
+        "bytes": 158030
+      },
+      "geometryReviewNote": "Both eyes, projecting nose, cheek masses, back of head, narrow neck and circular base are retained. Native and preview agree on the rough lower-neck surface and thin display-support fragment.",
+      "captureNote": "All eight paired camera directions were actually viewed. The artwork exteriors are readable and agree with the source reference. The base underside is unrecorded; part of the museum display surface remains in the capture.",
+      "decision": {
+        "pose": "pass",
+        "nativeAppearance": "pass",
+        "captureScope": "pass",
+        "scopeNote": "All eight paired camera directions were actually viewed. The artwork exteriors are readable and agree with the source reference. The base underside is unrecorded; part of the museum display surface remains in the capture.",
+        "underside": "unrecorded",
+        "undersideNote": "The below views expose an open capture; no physical bottom surface is recorded or reconstructed."
+      },
+      "spatialEligible": false
+    },
+    {
+      "slug": "modern/picasso-canard-pique-fleurs-56336f",
+      "sourceUid": "56336f71-b5ce-4276-b29b-cf729b2e22f4",
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/modern/picasso-canard-pique-fleurs-56336f/preview-1a4c28f0b0ec.glb",
+        "sha256": "1a4c28f0b0ecd9f4a8c6e6f2b6cc265355e2583db6a1d04cc9396ad6ffd1a6f7",
+        "bytes": 357712
+      },
+      "thumbnail": {
+        "sha256": "10cdbfbac3afd66be6c2e6fa8c9a2da944262d9b016c50f3b0dcfe2811984df5",
+        "bytes": 33172,
+        "reviewed": true
+      },
+      "poster": {
+        "sha256": "43def1f145aba6e539a14f03248289478b974f83328ef61bc7ea0e2b7edf1c38",
+        "bytes": 2116
+      },
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          1,
+          0.35,
+          1
+        ],
+        "status": "manual",
+        "note": "Upright opening selected from actual eight-view native/production comparison. Source Y-up geometry remains unchanged."
+      },
+      "actualViews": [
+        {
+          "mode": "native-compatibility",
+          "key": "FRONT",
+          "sha256": "0dd7f0259c1f81cb3f66cfeae7297ded52df73d207a16d5ecc79447a3f11f1b0",
+          "bytes": 381704
+        },
+        {
+          "mode": "native-compatibility",
+          "key": "RIGHT",
+          "sha256": "d07d08c5b20dae295e5726b310a9479bd9faf21767bf22439e261a6f2a6cff9a",
+          "bytes": 377491
+        },
+        {
+          "mode": "native-compatibility",
+          "key": "REVERSE",
+          "sha256": "d554679b67dafec99bd35e7561e2c98d59926fa0c5076b41d4b13dab9d8f6dea",
+          "bytes": 370138
+        },
+        {
+          "mode": "native-compatibility",
+          "key": "LEFT",
+          "sha256": "06e6deecbf1c78758669f340fddcd3e8ac4678a0974d1774471517dda006e2a0",
+          "bytes": 469393
+        },
+        {
+          "mode": "native-compatibility",
+          "key": "ABOVE",
+          "sha256": "24f31819750ae25bb4eb277e569e006888354a27d36341af3dad7ec22a7dace0",
+          "bytes": 429757
+        },
+        {
+          "mode": "native-compatibility",
+          "key": "UNDERSIDE",
+          "sha256": "ca0fc2b7034de71c72e33ef9ad7092f733b4987e70f43f30a3a7279428c50d8f",
+          "bytes": 202805
+        },
+        {
+          "mode": "native-compatibility",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "648bc2f459b9d9cbd492dc984edfada6958e6605e0e37713f83f89ac23857622",
+          "bytes": 343450
+        },
+        {
+          "mode": "native-compatibility",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "904fef6a0cdcae981d1c3612b6b07d826245a3bdf322dbf973f1e7bd80c41c1e",
+          "bytes": 382179
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "sha256": "4fedc4781776731507dba3c9257cc5e28706755e6b9b67197b92f339195bfa89",
+          "bytes": 378669
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "sha256": "b3038c7d79b3f8ae9dde7f8af9b086c42c1f819819864a12612e22f05c1bd407",
+          "bytes": 368679
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "sha256": "7ab247a6befb0a2bdb1975eff6e1382acbbb991bdded08c422c46ed42b4e644c",
+          "bytes": 363287
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "sha256": "fd84713350b09294d8ad72267f38458dcc126484c0078e0b0b2e48a058b0a30f",
+          "bytes": 457014
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "sha256": "b7785db2f84e0574f6f12beed4ab68a3ee2c4b14c390d88b13a01e8c7116bbb8",
+          "bytes": 395120
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "sha256": "bde7b7b6dd716a24b5f176a6d267ae2128b2c43c514fd92df6ba053b77849c75",
+          "bytes": 197290
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "bff6bdfd8cec6172f7ceaacd1b0fafa508cf0db8522ebb4255779af3142b0f6c",
+          "bytes": 341005
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "23bc3062d6c014c961ac0cc115aa46eb14b5412992966cf7b22aed811a59a08b",
+          "bytes": 373457
+        }
+      ],
+      "contact": {
+        "sha256": "c38b2d6f31b057f186231eeb00d700af4bdd58d379adef01b22c84a4dd94a0ed",
+        "bytes": 164988
+      },
+      "geometryReviewNote": "The complete outer bird vessel, projecting neck, loop handle, decorated body and foot remain visible in paired front, rear, side and top views. Production preserves all visible source decoration and silhouette.",
+      "captureNote": "All eight paired camera directions were actually viewed. The artwork exteriors are readable and agree with the source reference. The vessel interior and underside are unrecorded; captured display surface is retained.",
+      "decision": {
+        "pose": "pass",
+        "nativeAppearance": "pass",
+        "captureScope": "pass",
+        "scopeNote": "All eight paired camera directions were actually viewed. The artwork exteriors are readable and agree with the source reference. The vessel interior and underside are unrecorded; captured display surface is retained.",
+        "underside": "unrecorded",
+        "undersideNote": "The below views expose an open capture; no physical bottom surface is recorded or reconstructed."
+      },
+      "spatialEligible": false
+    },
+    {
+      "slug": "modern/picasso-tripode-ar125-69838b",
+      "sourceUid": "69838b27-2095-4825-8768-4603e311c95a",
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/modern/picasso-tripode-ar125-69838b/preview-0defe9bb7d88.glb",
+        "sha256": "0defe9bb7d88dfe6e8961c7ceeffb1777b612a79205c1dccd40ca87d0481baa5",
+        "bytes": 415784
+      },
+      "thumbnail": {
+        "sha256": "3653ea06d77972f6d6a4e5d6fa81472b7b84290287aa94f0c540d5797e06c25d",
+        "bytes": 40102,
+        "reviewed": true
+      },
+      "poster": {
+        "sha256": "b3e0b132c535c1f4a4932838a0787380a377e64aec4677f9ca5829026c979b0e",
+        "bytes": 2111
+      },
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0,
+          0,
+          1
+        ],
+        "status": "manual",
+        "note": "Upright opening selected from actual eight-view native/production comparison. Source Y-up geometry remains unchanged."
+      },
+      "actualViews": [
+        {
+          "mode": "native-compatibility",
+          "key": "FRONT",
+          "sha256": "3b1d5d3eab9c6c7a7ce8dcac7634c93538bc9df18a8f7ccf619ca26b846a2555",
+          "bytes": 442982
+        },
+        {
+          "mode": "native-compatibility",
+          "key": "RIGHT",
+          "sha256": "c3df5b36df5e6bd0f695ca4d8e1a06a842372c70bff03a68347dca873feed8f4",
+          "bytes": 354578
+        },
+        {
+          "mode": "native-compatibility",
+          "key": "REVERSE",
+          "sha256": "7177d98fc3f8fce920f861cbc108eda7b9360e73e4732d7744671435106ec39e",
+          "bytes": 524827
+        },
+        {
+          "mode": "native-compatibility",
+          "key": "LEFT",
+          "sha256": "c23458d7bb9f9a928fd5157d220a9b7c9c5c48e2a6bde6f6cd1f958478b464c5",
+          "bytes": 386291
+        },
+        {
+          "mode": "native-compatibility",
+          "key": "ABOVE",
+          "sha256": "179ef0f774fe78100c75a9edccd37e73002a2fe4f08b81356f347b0e37f777d1",
+          "bytes": 556278
+        },
+        {
+          "mode": "native-compatibility",
+          "key": "UNDERSIDE",
+          "sha256": "5bc3358c66bbe9833caeea39399f3438a1228f8a920cfb419515a48829a46b34",
+          "bytes": 208496
+        },
+        {
+          "mode": "native-compatibility",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "71d5922c1568e51b74f50f08295b6e9f196b3e2ca33f54b05e2e09dc4cb9f823",
+          "bytes": 357140
+        },
+        {
+          "mode": "native-compatibility",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "a96f8baf64262caaaadeb8c083b8519b185bd968e6a7f222d78f1c129334297c",
+          "bytes": 397119
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "sha256": "d8489b972f94c741e83447702f53b704bee8d194830e34653f3fbd6af1e0445d",
+          "bytes": 436074
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "sha256": "a52cb38f4d73c30dd9ce583a7c03033fc7b14d51e39951cfbcaf35caf665e36d",
+          "bytes": 351790
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "sha256": "c5fcca24a228b5e042cb21e953e12fe458a7ea70e9e69604a4e437ae4916aca8",
+          "bytes": 507874
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "sha256": "f9a75dbf46ef7e5d43f96e76d94f09e8cae49d526be1a03cdb902d32ba32e1eb",
+          "bytes": 381760
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "sha256": "3e629743a02bbc76890e7be1921cc9a0386031cd18e897320a777fd4228e881d",
+          "bytes": 483560
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "sha256": "dca9d93d8e4a3714b85d9902fc61861a12411d83f64dc83e555e733da77a9a36",
+          "bytes": 206678
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "44bd65a6ebc91de16f772162bc5fa3fad77b122f67416972bd539ca4f90fca90",
+          "bytes": 355234
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "b68577d74cdb58f5dea83c79abcc5e19014201566b43f3ea59d48b4ff4483a48",
+          "bytes": 388713
+        }
+      ],
+      "contact": {
+        "sha256": "9562bd5e7f56b5052803600d37799bd9b5eb83456a6e7cbf13bc335e331c00d3",
+        "bytes": 161734
+      },
+      "geometryReviewNote": "The tall neck, loop handle, oval decorated body and three lower supports survive the full exterior comparison. Native and production views agree, including the display label/floor plane and inaccessible lower surfaces.",
+      "captureNote": "All eight paired camera directions were actually viewed. The artwork exteriors are readable and agree with the source reference. The deep vessel interior and underside are unrecorded; the captured display-base context is retained.",
+      "decision": {
+        "pose": "pass",
+        "nativeAppearance": "pass",
+        "captureScope": "pass",
+        "scopeNote": "All eight paired camera directions were actually viewed. The artwork exteriors are readable and agree with the source reference. The deep vessel interior and underside are unrecorded; the captured display-base context is retained.",
+        "underside": "unrecorded",
+        "undersideNote": "The below views expose an open capture; no physical bottom surface is recorded or reconstructed."
+      },
+      "spatialEligible": false
+    },
+    {
+      "slug": "modern/picasso-gros-oiseau-visage-noir-ac29a6",
+      "sourceUid": "ac29a66f-e64b-4ac6-b1b1-335054e9c1f5",
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/modern/picasso-gros-oiseau-visage-noir-ac29a6/preview-74e3e27f8f6b.glb",
+        "sha256": "74e3e27f8f6b00caf0722b065ac919607121e491bdbab21b973bf705ad79ae15",
+        "bytes": 465784
+      },
+      "thumbnail": {
+        "sha256": "45eadc2e5f8861cdfbc5b9e6a2638c8a59281cbd8219308a2992643a3f8896ff",
+        "bytes": 58368,
+        "reviewed": true
+      },
+      "poster": {
+        "sha256": "9d62ca75a67cdb3da43e57ee750d03219bc0e89f8cb51dbf6926982f2628cd47",
+        "bytes": 2124
+      },
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0,
+          0,
+          1
+        ],
+        "status": "manual",
+        "note": "Upright opening selected from actual eight-view native/production comparison. Source Y-up geometry remains unchanged."
+      },
+      "actualViews": [
+        {
+          "mode": "native-compatibility",
+          "key": "FRONT",
+          "sha256": "b17311aed73be17d86908b8121434552a53906e4d0e5f351ab73fafec561bcd8",
+          "bytes": 706734
+        },
+        {
+          "mode": "native-compatibility",
+          "key": "RIGHT",
+          "sha256": "69ea2bab29bc98f5fdeb845024c5430a558f64686bac1c032aec2bace02d03c2",
+          "bytes": 628067
+        },
+        {
+          "mode": "native-compatibility",
+          "key": "REVERSE",
+          "sha256": "c5e73bdfd330f5db75c382485beb1f8d6572250f2b0f64e1eedd3821acffe5f8",
+          "bytes": 630640
+        },
+        {
+          "mode": "native-compatibility",
+          "key": "LEFT",
+          "sha256": "18fe6d533d10c16ca3332bc62d64bcc2c5f80398ebd3523b56551e49801a4852",
+          "bytes": 690229
+        },
+        {
+          "mode": "native-compatibility",
+          "key": "ABOVE",
+          "sha256": "a2675f585232fbe717e9436e8541c4c461cb22e7f2bd306e26a1d38ffcb6e95e",
+          "bytes": 637318
+        },
+        {
+          "mode": "native-compatibility",
+          "key": "UNDERSIDE",
+          "sha256": "84a38861b24df3680ab28b0eccdebe960c59fd7f064c75817b51f99f71d61ae5",
+          "bytes": 419332
+        },
+        {
+          "mode": "native-compatibility",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "c8e7d6aac5b8c98b93cd6f31450ebe75b478242c368f46dd61f92732d115c167",
+          "bytes": 549685
+        },
+        {
+          "mode": "native-compatibility",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "19cbe45bda907c1dd00c1d20e317d7ea3bbf95f64a0062fd1e5244e1afc505ba",
+          "bytes": 544606
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "sha256": "aea395e289dfb64f401a83aeee2403e72ee315ba7eea0baa47dce077d3fe55ae",
+          "bytes": 654983
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "sha256": "d717ebf1fe94ca9ca708c717690679fee769b0a2447bc189e808ba915eec3189",
+          "bytes": 596645
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "sha256": "a5b2e732665d558d08c5b5437ec9fdb068f40c51fcdb37ac67d9f91524ba07e5",
+          "bytes": 594423
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "sha256": "d2d410da7622bd7d504c4c494e3b129eb7ff2c5058ba1b3c7c287355d44479df",
+          "bytes": 641153
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "sha256": "4edb8ff58b48b7c61e1624e12e46e4a994a9e9bc54e2fa85021224051cbffb47",
+          "bytes": 574729
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "sha256": "834ff70598cedd45f48be6b13f0ea1ac192a52055cc479aa7b33dcaec4935d59",
+          "bytes": 395111
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "7fbf879fe077de46d80e73beeee4be39aceba6e7a6bdb3422107683a2772d514",
+          "bytes": 511919
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "4b6c59755c2dd2d21c22a23795c727027a88b6a1ab1ef74fc72f65287c170c91",
+          "bytes": 506063
+        }
+      ],
+      "contact": {
+        "sha256": "0b712899c275c995873bca40c143bb5626b9c95061faeb0cddc1a865226ca22b",
+        "bytes": 261226
+      },
+      "geometryReviewNote": "The large bird vessel retains its upper face, curving handles/wings, swollen painted body and spreading foot. The full exterior and authored black, white and red surface agree between native and preview in every paired view.",
+      "captureNote": "All eight paired camera directions were actually viewed. The artwork exteriors are readable and agree with the source reference. The vessel interior and underside are unrecorded; the captured display surface is retained.",
+      "decision": {
+        "pose": "pass",
+        "nativeAppearance": "pass",
+        "captureScope": "pass",
+        "scopeNote": "All eight paired camera directions were actually viewed. The artwork exteriors are readable and agree with the source reference. The vessel interior and underside are unrecorded; the captured display surface is retained.",
+        "underside": "unrecorded",
+        "undersideNote": "The below views expose an open capture; no physical bottom surface is recorded or reconstructed."
+      },
+      "spatialEligible": false
+    }
+  ]
+}
