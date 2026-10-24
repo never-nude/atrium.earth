@@ -1,0 +1,135 @@
+{
+  "schema": "atrium-public-safe-live-browser/1",
+  "batch": "miro-20261023",
+  "releaseCommit": "61c9a8720001a9de899433f680e19a2ff80f3f8f",
+  "deploymentRun": "40052249022",
+  "startedAt": "2026-10-24T02:02:26.486Z",
+  "status": "pass",
+  "browser": "InstalledChrome/headlessSwiftShader",
+  "realWebsiteAndCDN": true,
+  "requestInterception": false,
+  "localMirrors": false,
+  "finalReviewBinding": {
+    "sha256": "2d2d1e9277aeedf30fcf71a9ce6199a32e7f825d765f3f60e851575c17cf0a15",
+    "bytes": 6024
+  },
+  "work": {
+    "slug": "modern/joan-miro-femme-bouteille-67452c",
+    "sourceUid": "67452cd8945e483ea9df048a30d51886",
+    "url": "https://atrium.earth/works/modern/joan-miro-femme-bouteille-67452c/",
+    "expectedPreview": {
+      "url": "https://models.atrium.earth/models/previews/modern/joan-miro-femme-bouteille-67452c/preview-961442a0f807.glb",
+      "sha256": "961442a0f807dfb2e1a7003fe46e2d54a7aeda41efb1a350429e89e8076a6b05",
+      "bytes": 428868
+    },
+    "layouts": [
+      {
+        "width": 1365,
+        "status": "pass",
+        "freshContext": true,
+        "pageJsErrors": [],
+        "consoleErrors": [],
+        "lifecycleWarnings": [],
+        "httpStatus": 200,
+        "viewerReadySignal": "data-stage.is-live + visibleviewer-canvas",
+        "canvas": {
+          "width": 1365,
+          "height": 898,
+          "cssWidth": 1365,
+          "cssHeight": 898
+        },
+        "cdn": {
+          "status": 200,
+          "url": "https://models.atrium.earth/models/previews/modern/joan-miro-femme-bouteille-67452c/preview-961442a0f807.glb",
+          "bytes": 428868,
+          "sha256": "961442a0f807dfb2e1a7003fe46e2d54a7aeda41efb1a350429e89e8076a6b05",
+          "cors": "https://atrium.earth"
+        },
+        "layout": {
+          "viewport": 1365,
+          "documentWidth": 1365,
+          "bodyWidth": 1365,
+          "pass": true
+        },
+        "drag": {
+          "pass": true,
+          "settlingChangedPixelRatios": [
+            0,
+            0
+          ],
+          "idleChangedPixelRatio": 0,
+          "dragChangedPixelRatio": 0.17651521633724082,
+          "beforeSha256": "37065d45752535b94ee0e4ef3ed79f82a62aeb9f32e20d7bf559eb31745c54a1",
+          "afterSha256": "5e5af13ce51aa64c561537c3b74f4d4f661917b78e97f7e143a3213d0c36a61e",
+          "unchangedGuard": "dragChange>max(0.002,idleNoise*4)",
+          "method": "Actualmouseorbit aftertwoquietcanvaspairs;reducedmotion disablesautospin;nocamera-stateinjection"
+        }
+      },
+      {
+        "width": 390,
+        "status": "pass",
+        "freshContext": true,
+        "pageJsErrors": [],
+        "consoleErrors": [],
+        "lifecycleWarnings": [],
+        "httpStatus": 200,
+        "viewerReadySignal": "data-stage.is-live + visibleviewer-canvas",
+        "canvas": {
+          "width": 390,
+          "height": 456,
+          "cssWidth": 390,
+          "cssHeight": 456
+        },
+        "cdn": {
+          "status": 200,
+          "url": "https://models.atrium.earth/models/previews/modern/joan-miro-femme-bouteille-67452c/preview-961442a0f807.glb",
+          "bytes": 428868,
+          "sha256": "961442a0f807dfb2e1a7003fe46e2d54a7aeda41efb1a350429e89e8076a6b05",
+          "cors": "https://atrium.earth"
+        },
+        "layout": {
+          "viewport": 390,
+          "documentWidth": 390,
+          "bodyWidth": 390,
+          "pass": true
+        },
+        "drag": {
+          "pass": true,
+          "settlingChangedPixelRatios": [
+            0,
+            0
+          ],
+          "idleChangedPixelRatio": 0,
+          "dragChangedPixelRatio": 0.1508097165991903,
+          "beforeSha256": "dcf9b93ee0f77e73d211e253085bc3b2eb804aab60240a1a081fb98201c03360",
+          "afterSha256": "8dc35574671bcc6c664d280ec18b43a9ba6b220227ad9db0bf24140f3843dcda",
+          "unchangedGuard": "dragChange>max(0.002,idleNoise*4)",
+          "method": "Actualmouseorbit aftertwoquietcanvaspairs;reducedmotion disablesautospin;nocamera-stateinjection"
+        }
+      }
+    ]
+  },
+  "newest": {
+    "url": "https://atrium.earth/newest/",
+    "status": "pass",
+    "pageJsErrors": [],
+    "httpStatus": 200,
+    "cardCount": 40,
+    "containsSelectedWork": true,
+    "uniqueCardDestinations": 40,
+    "desktop": {
+      "viewport": 1365,
+      "documentWidth": 1365,
+      "bodyWidth": 1365,
+      "pass": true
+    },
+    "narrow": {
+      "viewport": 390,
+      "documentWidth": 390,
+      "bodyWidth": 390,
+      "pass": true
+    }
+  },
+  "checkedAt": "2026-10-24T02:04:10.672Z",
+  "scope": "Functional desktop and narrow viewport checks; no physical mobile device or AR test. Separate assistant visual review is recorded in the final-review report."
+}

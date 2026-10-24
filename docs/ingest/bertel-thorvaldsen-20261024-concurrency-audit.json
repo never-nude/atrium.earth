@@ -1,0 +1,166 @@
+{
+  "schema": "atrium-concurrent-artist-release-union-audit/1",
+  "batch": "bertel-thorvaldsen-20261024",
+  "checkedAt": "2026-10-24T02:46:16.469Z",
+  "status": "pass",
+  "commits": {
+    "commonAncestor": "0aac77afbc59ddf20f882aeb5cc2d610c1c1295d",
+    "reviewedThorvaldsen": "fa604367d066581ffdc765ec335a84d7644d2474",
+    "previousPublicMain": "f486941269d81c3f3d9fe41c0697512384757bae",
+    "merged": "working-tree"
+  },
+  "counts": {
+    "commonCatalog": 2369,
+    "ourCatalog": 2379,
+    "previousPublicCatalog": 2370,
+    "mergedCatalog": 2380,
+    "thorvaldsenAdded": 10,
+    "miroPreserved": 1
+  },
+  "catalog": {
+    "allRowSemanticsPreservedExceptCounters": true,
+    "bothBranchOrdersPreserved": true,
+    "uniqueSlugs": 2380
+  },
+  "maps": [
+    {
+      "file": "src/data/previews.json",
+      "entries": 2380,
+      "exactUnion": true,
+      "miroEntryPreserved": true
+    },
+    {
+      "file": "src/data/orientations.json",
+      "entries": 2047,
+      "exactUnion": true,
+      "miroEntryPreserved": true
+    },
+    {
+      "file": "src/data/appearance-overrides.json",
+      "entries": 1009,
+      "exactUnion": true,
+      "miroEntryPreserved": true
+    },
+    {
+      "file": "src/data/physical-dimensions.json",
+      "entries": 2148,
+      "exactUnion": true,
+      "miroEntryPreserved": true
+    },
+    {
+      "file": "src/data/spatial-eligibility.json",
+      "entries": 2083,
+      "exactUnion": true,
+      "miroEntryPreserved": true
+    }
+  ],
+  "renders": {
+    "exactMembershipUnion": true,
+    "bothBranchOrdersPreserved": true,
+    "entries": 2380
+  },
+  "exhibition": {
+    "slug": "the-price-of-victory",
+    "exactBodyAppends": [
+      {
+        "slug": "neoclassical/briseis-achilles-thorvaldsen-freund-a489",
+        "text": "Modeled 1803; this marble executed in 1865 by Georg Christian Freund after Thorvaldsen. Agamemnon’s heralds lead Briseis away from Achilles. The hero’s anger fills the Iliad, but Briseis’s captivity makes the conflict possible: military success allows commanders to treat a person as a prize. Compare this scene with Bissen’s Wrathful Achilles, shifting attention from the hero’s wounded pride to the woman whose freedom neither commander recognizes."
+      },
+      {
+        "slug": "neoclassical/priam-achilles-thorvaldsen-freund-a775",
+        "text": "Modeled 1815; marble executed in 1868–1870 by Georg Christian Freund after Thorvaldsen. Priam kneels before the man who killed his son, asking for the return of Hector’s body. The victorious Achilles must decide how to answer the defeated father. War’s aftermath becomes a plea to bury the dead; humility and mercy interrupt the language of heroic glory."
+      },
+      {
+        "slug": "neoclassical/hector-andromache-thorvaldsen-bissen-a776",
+        "text": "Modeled 1837; marble executed in 1867–1870 by H. W. Bissen after Thorvaldsen. Hector takes leave of Andromache and their son Astyanax before returning to battle. The family’s gestures hold a private farewell inside the public demands of war. Set beside Priam’s plea, the scene lets us see the future grief already present in the hero’s duty to fight."
+      }
+    ],
+    "allOldContentCoversAndOrderPreserved": true
+  },
+  "concurrentMiro": {
+    "slug": "modern/joan-miro-femme-bouteille-67452c",
+    "catalogSemanticSha256": "0bcc3b7da9d6c65005d9dcc46b74a4b2cccbf82c668089cfb618738f7926b1b8",
+    "allMapValuesPreserved": true,
+    "bytePreservedFiles": [
+      {
+        "file": ".github/workflows/fetch-reviewed-sources.yml",
+        "bytes": 1474,
+        "sha256": "1d7d4731ec2d6bb4730e28eb180ed4a16e0c6212b8e786a488768a9da2a94867",
+        "bytePreserved": true
+      },
+      {
+        "file": "docs/ingest/miro-20261023-final-review.json",
+        "bytes": 6024,
+        "sha256": "2d2d1e9277aeedf30fcf71a9ce6199a32e7f825d765f3f60e851575c17cf0a15",
+        "bytePreserved": true
+      },
+      {
+        "file": "docs/ingest/miro-20261023-live-browser.json",
+        "bytes": 4678,
+        "sha256": "277e9cb290c9d4ad9ebbfe9be3957b1b1614b192c605ac244f96913d46c2fe1e",
+        "bytePreserved": true
+      },
+      {
+        "file": "docs/ingest/miro-20261023-live.json",
+        "bytes": 1769,
+        "sha256": "773b480e5c9ef71f563f183b66ba89d725b8122716f30cf550c1a0ddc7f39cb4",
+        "bytePreserved": true
+      },
+      {
+        "file": "docs/ingest/miro-20261023-models.json",
+        "bytes": 650,
+        "sha256": "b447b33b57af6830772c4e3a0cbb74a6c9ac0f6bda4d806990d2418fd6c6f669",
+        "bytePreserved": true
+      },
+      {
+        "file": "docs/ingest/miro-20261023-preview-upload.json",
+        "bytes": 429,
+        "sha256": "ecacd8e5c05c657360a3b764ec95af172e77c6d5d6172143ece198bfe5dcc0e2",
+        "bytePreserved": true
+      },
+      {
+        "file": "docs/ingest/miro-20261023-source-request.json",
+        "bytes": 733,
+        "sha256": "75a290ed98b574f5dcad3dce764d164c835713c9698445c0e77d074a1742ad2f",
+        "bytePreserved": true
+      },
+      {
+        "file": "docs/ingest/miro-20261023.json",
+        "bytes": 5303,
+        "sha256": "fbaaa0d96e11bad4aea2d43915c58f5c723af07064fcf62edac07c5cb0e07dff",
+        "bytePreserved": true
+      },
+      {
+        "file": "public/previews/posters/modern/joan-miro-femme-bouteille-67452c/poster.svg",
+        "bytes": 2107,
+        "sha256": "a44c09b4ed5609e76f1ccb2964702d100f83d7ac95cac96ee6634c098491f634",
+        "bytePreserved": true
+      },
+      {
+        "file": "public/previews/renders/modern/joan-miro-femme-bouteille-67452c/thumb.webp",
+        "bytes": 33846,
+        "sha256": "782ca9928bb0be23ef785c4b0aec8cfca739a2149104f258a1aa67db5b9dfd31",
+        "bytePreserved": true
+      },
+      {
+        "file": "scripts/fetch-reviewed-sources.mjs",
+        "bytes": 4870,
+        "sha256": "27151cb2bac7ec6c52b2101c949e38fcb8a0355d7426a43929027e9c8c6d3329",
+        "bytePreserved": true
+      }
+    ]
+  },
+  "trackedFileUnion": {
+    "rawFilesByteAndModePreserved": 5618,
+    "extraFiles": 0,
+    "unresolvedConflicts": 0,
+    "untrackedDeliverables": 0,
+    "workingTreeMatchesMerge": true
+  },
+  "statusDocument": {
+    "bothBranchTextsAndOrderPreserved": true,
+    "extraNonblankLines": 0,
+    "whitespaceSeparatorsMayDiffer": true
+  },
+  "scope": "Read-only exact three-way Git-tree/data union check before release. Existing source/native/archive audit remains separate; deployment and live delivery require their own checks."
+}
