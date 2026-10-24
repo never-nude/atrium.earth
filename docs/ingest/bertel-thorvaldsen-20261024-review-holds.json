@@ -1,0 +1,29 @@
+{
+  "schema": "atrium-artist-visual-holds/1",
+  "batch": "bertel-thorvaldsen-20261024",
+  "reviewedAt": "2026-10-24T02:43:02.030Z",
+  "holds": [
+    {
+      "slug": "neoclassical/caroline-amalie-thorvaldsen-a164",
+      "uid": "3212b77097fe45dc8a92e402ca4a2231",
+      "reason": "The rear and top of the head contain a large irregular opening, while a long jagged missing strip runs down the back/drapery with exposed interior and stray colored surfaces. The frontal likeness matches A164, but a coherent complete captured head/back is not established. This is a freestanding figure, so the gap is not the expected unrecorded mounting back of a wall relief.",
+      "sourceSha256": "ffa65fa7b2912fd58e8edee99c729bd8a1b1812c48ac404a571dc054fd100fef"
+    },
+    {
+      "slug": "neoclassical/dancing-girl-thorvaldsen-a179",
+      "uid": "85c07e953d23422b8cfd955446e55d62",
+      "reason": "Full-resolution overhead source image shows most of the crown/top of the head as an open crater with a jagged rim below the hairline and visible hollow interior. The frontal body/dress/basket are coherent and match A179, but the missing cranial surface is not justified by documentation of the physical plaster.",
+      "sourceSha256": "e88df12349e44e4fc7cb637a82c838a5afb5a36dfb2692685aaea451bb00a084"
+    },
+    {
+      "slug": "neoclassical/ganymede-eagle-thorvaldsen-a44",
+      "uid": "f106f11a17bf425787f1880a474719fa",
+      "reason": "Overhead and side views expose a wide opening through the rear/top of the cap/head, with uncaptured gaps around the body/support interior and irregular extended base flaps. The eagle and frontal group match A44, but the missing head surface prevents acceptance as a complete freestanding capture.",
+      "sourceSha256": "721d64e51597a3fb19cabd4062f7c1ef164682641e9f7ae3e8756d5bb2d9df11"
+    }
+  ],
+  "noRepairOrReconstructionPerformed": true,
+  "allOriginalsPermanentlyBackedUp": true,
+  "archiveEvidence": "docs/ingest/bertel-thorvaldsen-20261024-archive.json",
+  "sourceReferenceQualification": "Caroline Amalie was inspected through an explicitly labeled material-normalized reference because its original GLB uses a deprecated specular/glossiness material workflow. Unchanged decoded geometry, raw node transforms and node/mesh mappings were verified. This reference is not described as an unmodified original render. The original distribution GLB is retained and archived unchanged."
+}

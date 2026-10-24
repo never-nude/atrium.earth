@@ -1,0 +1,2315 @@
+{
+  "schema": "atrium-final-artist-review/1",
+  "batch": "bertel-thorvaldsen-20261024",
+  "status": "approved-for-publication",
+  "reviewedAt": "2026-10-24T02:43:02.030Z",
+  "artist": "Bertel Thorvaldsen",
+  "acquisition": {
+    "runs": [
+      {
+        "runId": 40052158724,
+        "head": "c009df8c975a7c2d1c3e47762bc11543a4727871",
+        "status": "success",
+        "sourcesFetched": 12
+      },
+      {
+        "runId": 40053819195,
+        "head": "cd0c31606fe20a6582d7c165a4fdf3fb3efde6f4",
+        "status": "success",
+        "sourcesFetched": 1
+      }
+    ],
+    "status": "success",
+    "sourcesFetched": 13,
+    "initialSources": 12,
+    "supplementarySources": 1
+  },
+  "acceptedWorks": 10,
+  "heldWorks": 3,
+  "initialAcceptedWorks": 9,
+  "supplementaryAcceptedWorks": 1,
+  "reviewScope": "Root inspected all thirteen eight-direction paired source/serving contact sheets (208 main frame panels), detailed full-resolution views where needed, the separate sixteen-panel font rear-lit diagnostic and all ten final opening thumbnails. Independent visual review agreed on nine initial wall reliefs, one supplementary four-sided font counted once, and three freestanding captures held. Twelve originals rendered directly; Caroline Amalie used an explicitly labeled material-normalized reference with verified unchanged decoded geometry and raw node transforms. Selected original Objaverse distribution GLBs are retained unchanged; uploader-native authoring files are not asserted.",
+  "renderer": {
+    "directlyRenderedOriginals": 12,
+    "materialNormalizedSourceReferences": 1,
+    "sourceReferenceQualification": "Caroline Amalie was inspected through an explicitly labeled material-normalized reference because its original GLB uses a deprecated specular/glossiness material workflow. Unchanged decoded geometry, raw node transforms and node/mesh mappings were verified. This reference is not described as an unmodified original render. The original distribution GLB is retained and archived unchanged.",
+    "pairedDirections": 8,
+    "mainReviewFrames": 208,
+    "separateDiagnosticFrames": 16,
+    "totalFrames": 224,
+    "diagnosticPoseDelivered": false,
+    "pageErrors": 0,
+    "observedBrowserAborts": [
+      {
+        "scope": "main",
+        "slug": "neoclassical/caroline-amalie-thorvaldsen-a164",
+        "mode": "material-normalized-source-reference",
+        "asset": "native-0.glb",
+        "error": "net::ERR_ABORTED",
+        "qualification": "Observed browser request abort despite a complete server response and successfully decoded/rendered model. This event is retained; complete server writes do not prove complete browser receipt for unused preloads."
+      },
+      {
+        "scope": "main",
+        "slug": "neoclassical/caroline-amalie-thorvaldsen-a164",
+        "mode": "preview-production",
+        "asset": "draco_decoder.wasm",
+        "error": "net::ERR_ABORTED",
+        "qualification": "Observed browser request abort despite a complete server response and successfully decoded/rendered model. This event is retained; complete server writes do not prove complete browser receipt for unused preloads."
+      },
+      {
+        "scope": "main",
+        "slug": "neoclassical/childhood-spring-thorvaldsen-a638",
+        "mode": "source-native",
+        "asset": "native-1.glb",
+        "error": "net::ERR_ABORTED",
+        "qualification": "Observed browser request abort despite a complete server response and successfully decoded/rendered model. This event is retained; complete server writes do not prove complete browser receipt for unused preloads."
+      },
+      {
+        "scope": "main",
+        "slug": "neoclassical/childhood-spring-thorvaldsen-a638",
+        "mode": "preview-production",
+        "asset": "preview-1.glb",
+        "error": "net::ERR_ABORTED",
+        "qualification": "Observed browser request abort despite a complete server response and successfully decoded/rendered model. This event is retained; complete server writes do not prove complete browser receipt for unused preloads."
+      },
+      {
+        "scope": "main",
+        "slug": "neoclassical/dancing-girl-thorvaldsen-a179",
+        "mode": "source-native",
+        "asset": "native-2.glb",
+        "error": "net::ERR_ABORTED",
+        "qualification": "Observed browser request abort despite a complete server response and successfully decoded/rendered model. This event is retained; complete server writes do not prove complete browser receipt for unused preloads."
+      },
+      {
+        "scope": "main",
+        "slug": "neoclassical/ganymede-eagle-thorvaldsen-a44",
+        "mode": "source-native",
+        "asset": "native-3.glb",
+        "error": "net::ERR_ABORTED",
+        "qualification": "Observed browser request abort despite a complete server response and successfully decoded/rendered model. This event is retained; complete server writes do not prove complete browser receipt for unused preloads."
+      },
+      {
+        "scope": "main",
+        "slug": "neoclassical/ganymede-eagle-thorvaldsen-a44",
+        "mode": "preview-production",
+        "asset": "preview-3.glb",
+        "error": "net::ERR_ABORTED",
+        "qualification": "Observed browser request abort despite a complete server response and successfully decoded/rendered model. This event is retained; complete server writes do not prove complete browser receipt for unused preloads."
+      },
+      {
+        "scope": "main",
+        "slug": "neoclassical/ganymede-eagle-thorvaldsen-a44",
+        "mode": "preview-production",
+        "asset": "draco_decoder.wasm",
+        "error": "net::ERR_ABORTED",
+        "qualification": "Observed browser request abort despite a complete server response and successfully decoded/rendered model. This event is retained; complete server writes do not prove complete browser receipt for unused preloads."
+      },
+      {
+        "scope": "main",
+        "slug": "neoclassical/ganymede-eagle-thorvaldsen-a44",
+        "mode": "preview-production",
+        "asset": "draco_wasm_wrapper.js",
+        "error": "net::ERR_ABORTED",
+        "qualification": "Observed browser request abort despite a complete server response and successfully decoded/rendered model. This event is retained; complete server writes do not prove complete browser receipt for unused preloads."
+      },
+      {
+        "scope": "main",
+        "slug": "neoclassical/briseis-achilles-thorvaldsen-freund-a489",
+        "mode": "source-native",
+        "asset": "native-4.glb",
+        "error": "net::ERR_ABORTED",
+        "qualification": "Observed browser request abort despite a complete server response and successfully decoded/rendered model. This event is retained; complete server writes do not prove complete browser receipt for unused preloads."
+      },
+      {
+        "scope": "main",
+        "slug": "neoclassical/pan-satyr-thorvaldsen-a352",
+        "mode": "source-native",
+        "asset": "native-5.glb",
+        "error": "net::ERR_ABORTED",
+        "qualification": "Observed browser request abort despite a complete server response and successfully decoded/rendered model. This event is retained; complete server writes do not prove complete browser receipt for unused preloads."
+      },
+      {
+        "scope": "main",
+        "slug": "neoclassical/pan-satyr-thorvaldsen-a352",
+        "mode": "preview-production",
+        "asset": "draco_wasm_wrapper.js",
+        "error": "net::ERR_ABORTED",
+        "qualification": "Observed browser request abort despite a complete server response and successfully decoded/rendered model. This event is retained; complete server writes do not prove complete browser receipt for unused preloads."
+      },
+      {
+        "scope": "main",
+        "slug": "neoclassical/youth-summer-thorvaldsen-a639",
+        "mode": "preview-production",
+        "asset": "preview-0.glb",
+        "error": "net::ERR_ABORTED",
+        "qualification": "Observed browser request abort despite a complete server response and successfully decoded/rendered model. This event is retained; complete server writes do not prove complete browser receipt for unused preloads."
+      },
+      {
+        "scope": "main",
+        "slug": "neoclassical/youth-summer-thorvaldsen-a639",
+        "mode": "preview-production",
+        "asset": "draco_decoder.wasm",
+        "error": "net::ERR_ABORTED",
+        "qualification": "Observed browser request abort despite a complete server response and successfully decoded/rendered model. This event is retained; complete server writes do not prove complete browser receipt for unused preloads."
+      },
+      {
+        "scope": "main",
+        "slug": "neoclassical/manhood-autumn-thorvaldsen-a640",
+        "mode": "source-native",
+        "asset": "native-1.glb",
+        "error": "net::ERR_ABORTED",
+        "qualification": "Observed browser request abort despite a complete server response and successfully decoded/rendered model. This event is retained; complete server writes do not prove complete browser receipt for unused preloads."
+      },
+      {
+        "scope": "main",
+        "slug": "neoclassical/priam-achilles-thorvaldsen-freund-a775",
+        "mode": "source-native",
+        "asset": "native-2.glb",
+        "error": "net::ERR_ABORTED",
+        "qualification": "Observed browser request abort despite a complete server response and successfully decoded/rendered model. This event is retained; complete server writes do not prove complete browser receipt for unused preloads."
+      },
+      {
+        "scope": "main",
+        "slug": "neoclassical/priam-achilles-thorvaldsen-freund-a775",
+        "mode": "preview-production",
+        "asset": "preview-2.glb",
+        "error": "net::ERR_ABORTED",
+        "qualification": "Observed browser request abort despite a complete server response and successfully decoded/rendered model. This event is retained; complete server writes do not prove complete browser receipt for unused preloads."
+      },
+      {
+        "scope": "main",
+        "slug": "neoclassical/ages-love-thorvaldsen-a426",
+        "mode": "source-native",
+        "asset": "native-3.glb",
+        "error": "net::ERR_ABORTED",
+        "qualification": "Observed browser request abort despite a complete server response and successfully decoded/rendered model. This event is retained; complete server writes do not prove complete browser receipt for unused preloads."
+      },
+      {
+        "scope": "main",
+        "slug": "neoclassical/hector-andromache-thorvaldsen-bissen-a776",
+        "mode": "source-native",
+        "asset": "native-4.glb",
+        "error": "net::ERR_ABORTED",
+        "qualification": "Observed browser request abort despite a complete server response and successfully decoded/rendered model. This event is retained; complete server writes do not prove complete browser receipt for unused preloads."
+      },
+      {
+        "scope": "main",
+        "slug": "neoclassical/alexander-persepolis-thorvaldsen-bergslien-a514",
+        "mode": "source-native",
+        "asset": "native-5.glb",
+        "error": "net::ERR_ABORTED",
+        "qualification": "Observed browser request abort despite a complete server response and successfully decoded/rendered model. This event is retained; complete server writes do not prove complete browser receipt for unused preloads."
+      },
+      {
+        "scope": "main",
+        "slug": "neoclassical/alexander-persepolis-thorvaldsen-bergslien-a514",
+        "mode": "preview-production",
+        "asset": "draco_decoder.wasm",
+        "error": "net::ERR_ABORTED",
+        "qualification": "Observed browser request abort despite a complete server response and successfully decoded/rendered model. This event is retained; complete server writes do not prove complete browser receipt for unused preloads."
+      },
+      {
+        "scope": "main",
+        "slug": "neoclassical/baptismal-font-thorvaldsen-a555-plaster",
+        "mode": "source-native",
+        "asset": "native-0.glb",
+        "error": "net::ERR_ABORTED",
+        "qualification": "Observed browser request abort despite a complete server response and successfully decoded/rendered model. This event is retained; complete server writes do not prove complete browser receipt for unused preloads."
+      },
+      {
+        "scope": "separate-font-diagnostic",
+        "slug": "neoclassical/baptismal-font-thorvaldsen-a555-plaster",
+        "mode": "source-native",
+        "asset": "native-0.glb",
+        "error": "net::ERR_ABORTED",
+        "qualification": "Observed browser request abort despite a complete server response and successfully decoded/rendered model. This event is retained; complete server writes do not prove complete browser receipt for unused preloads."
+      }
+    ],
+    "qualification": "All requested paired frames decoded and rendered. Observed request aborts are retained as harness limitations and are not represented as proof of browser receipt. Source and preview full-file hashes are separately verified. The separate yaw180 font diagnostic illuminated its dark reverse face; the delivered opening remains upright yaw0.",
+    "reports": [
+      {
+        "scope": "main",
+        "shard": 0,
+        "bytes": 471653,
+        "sha256": "c8851d36df20f265ece37b5a4cba04511abaaf7b8524ad03c4cd998cf455a82e"
+      },
+      {
+        "scope": "main",
+        "shard": 1,
+        "bytes": 469645,
+        "sha256": "61485ecb44bc299dfaa352e58d0e9b5622c3572706e207145bfbc27e1d27481b"
+      },
+      {
+        "scope": "main",
+        "shard": 2,
+        "bytes": 57760,
+        "sha256": "163b3df5295bf2006869b88183e273d2f856c7ad2ef465e7d85048472f27b010"
+      },
+      {
+        "scope": "separate-font-diagnostic",
+        "bytes": 57905,
+        "sha256": "306c128b4561fdd9baabbfa67b407fc001a3eb58cf1687610fe3658ee35a4c3e"
+      }
+    ]
+  },
+  "works": [
+    {
+      "slug": "neoclassical/childhood-spring-thorvaldsen-a638",
+      "title": "Childhood or Spring",
+      "artist": "Bertel Thorvaldsen, with Johann Scholl",
+      "date": "Presumably 1838–1841 (marble), after 1836 model",
+      "material": "Marble",
+      "currentLocation": "Thorvaldsens Museum, Copenhagen",
+      "accession": "A638",
+      "primarySource": "https://kataloget.thorvaldsensmuseum.dk/en/A638",
+      "providerSource": "https://sketchfab.com/3d-models/8564405c5cca48fa904f700d0fd72610",
+      "preservedSource": "https://huggingface.co/datasets/allenai/objaverse/resolve/556637099bf4fa79ea7b239d0d9c328b8a2e9ac8/glbs/000-077/8564405c5cca48fa904f700d0fd72610.glb",
+      "source": {
+        "uid": "8564405c5cca48fa904f700d0fd72610",
+        "bytes": 12653128,
+        "sha256": "14a73c4468f6e78fb7ef7e5bdf4c278203f8707f0dbf1895764ec791d5da8870",
+        "representation": "Unchanged selected preserved Objaverse distribution GLB; uploader-native authoring files are not asserted."
+      },
+      "license": {
+        "name": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/",
+        "evidenceUrl": "https://huggingface.co/datasets/allenai/objaverse/resolve/556637099bf4fa79ea7b239d0d9c328b8a2e9ac8/metadata/000-077.json.gz",
+        "snapshotUid": "8564405c5cca48fa904f700d0fd72610",
+        "snapshotRecordSha256": "ab70b1fa4d00ee7c9ccadf20b686f646e9b67a048d44ea792ad602880ff3a64c",
+        "snapshotField": "annotations[8564405c5cca48fa904f700d0fd72610].license = by",
+        "attribution": "3D scan by Geoffrey Marchal (geoffreymarchal), originally published on Sketchfab; preserved in AllenAI Objaverse 1.0 and Zenodo under CC BY 4.0. Physical object: Bertel Thorvaldsen, with Johann Scholl; Thorvaldsens Museum, A638.",
+        "basis": "Exact UID historical Objaverse annotation records license=by; use of this preserved historical asset does not rely on the current Sketchfab listing or on a Zenodo label alone."
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/neoclassical/childhood-spring-thorvaldsen-a638/preview-902240dcb793.glb",
+        "bytes": 1312244,
+        "sourceBytes": 12653128,
+        "sourceFormat": "glb",
+        "faces": 399999,
+        "sourceFaces": 400693,
+        "sha256": "902240dcb793e80e28518581318d88156f4c77c17acde752b0f6eb4d097a9dbb"
+      },
+      "measuredIntegrity": {
+        "faces": 400693,
+        "bratio": 0.002,
+        "ncomp": 1,
+        "largest_frac": 1
+      },
+      "transform": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0,
+          0,
+          1
+        ],
+        "status": "manual",
+        "note": "Upright native front approved from eight-direction paired preserved-source/serving inspection and the exact museum photograph. Concealed mounting back is unrecorded; complete relief face and captured context retained."
+      },
+      "appearance": {
+        "preserveSourceMaterials": true,
+        "originalRenderedDirectly": true,
+        "nativeFaces": 400693,
+        "previewFaces": 399999,
+        "topologySimplification": true,
+        "reconstruction": false,
+        "cropping": false,
+        "recoloring": false
+      },
+      "physicalDimensions": {
+        "status": "documented",
+        "dimensions": "Diameter 69 cm",
+        "sourceUrl": "https://kataloget.thorvaldsensmuseum.dk/en/A638",
+        "calibrationPerformed": false,
+        "exactSizeArEligible": false
+      },
+      "frames": [
+        {
+          "mode": "source-native",
+          "key": "FRONT",
+          "bytes": 742452,
+          "sha256": "f3d6f3f5e0781af5b5c0e8f97b645869d202bf5b7ede159cb3389fd8e3ede52f"
+        },
+        {
+          "mode": "source-native",
+          "key": "RIGHT",
+          "bytes": 161482,
+          "sha256": "2ac446b1fc979e89b67a6cb0091ba9de55976f6b005e43e2190ad3d52d242978"
+        },
+        {
+          "mode": "source-native",
+          "key": "REVERSE",
+          "bytes": 583634,
+          "sha256": "d754bb3b9b468679036188a24f87725d0c4ca019980b98f007ce1c2bd8a78c50"
+        },
+        {
+          "mode": "source-native",
+          "key": "LEFT",
+          "bytes": 169885,
+          "sha256": "4ee46cabc0c024f54585883fcdb6050ea6d2977bfcf673f15995e657d34d5c5f"
+        },
+        {
+          "mode": "source-native",
+          "key": "ABOVE",
+          "bytes": 137127,
+          "sha256": "0988045d6653fa6d751129a0a5e3617b17ca012df10439d4cfb31787519cf87b"
+        },
+        {
+          "mode": "source-native",
+          "key": "UNDERSIDE",
+          "bytes": 130076,
+          "sha256": "2ea22138f6ba9bc5b51dbd60efcb6f1a2f3b8a380a653a3debd0e8e3f8932bfd"
+        },
+        {
+          "mode": "source-native",
+          "key": "FRONT-THREE-QUARTER",
+          "bytes": 537712,
+          "sha256": "a7fce406fb59f448452627de25d6ff947d80991dbcae7501bf1c77e6c0dc7bdd"
+        },
+        {
+          "mode": "source-native",
+          "key": "BACK-THREE-QUARTER",
+          "bytes": 419560,
+          "sha256": "7ee6f1465fc6f06a0df4ba221149e613d57d5b8bc93c22a3dffd5ac2fda31e3e"
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "bytes": 726161,
+          "sha256": "8c8fa3287ce21933123bb83755d1bbda8f01a2ea02b0ff912c3cf78aec80d09c"
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "bytes": 158977,
+          "sha256": "1b3b25cb1d6f518beec0598575ad29a780e91509f6798ecef1bb69b53230e2aa"
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "bytes": 563264,
+          "sha256": "ce6c53a7ef06e8ea01ffb9b7e65dbdd8abb281b43a95f7b57fda1c7de3c606d6"
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "bytes": 168576,
+          "sha256": "afb48cba482cb63cb145cb8766ed646fef146e4d473625e894d86193786b7a35"
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "bytes": 137016,
+          "sha256": "68084c788805851194a74a41ba0221d3a463cccef5b5f9017d8bca1fd8700c87"
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "bytes": 128543,
+          "sha256": "ad1fe35aebf963bce19feb8d87e2463823afc94c2055a4f8596b16bf459066b9"
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "bytes": 529364,
+          "sha256": "a870c3a09ae458e065aa07ea8feca70d733e7a9649b0f429181acea6676ba698"
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "bytes": 408482,
+          "sha256": "934831089b696e2be3bf4cdeb0aee1f9d42aab47afb4a0870193c6cbd0a368b6"
+        }
+      ],
+      "rootActualFramesReviewed": 16,
+      "independentVisualDecision": "Complete circular composition, all three figures, faces/hands, flower details and sculpted rim match the museum reference. Minor mounting-wall margin and bottom protrusion are outside the principal sculpted face.",
+      "captureScope": "Wall-mounted relief digitized from the accessible front. The flat mounting back, slab thickness and some concealed edge surfaces are unrecorded. A mirrored/double-sided view of the front from behind is not evidence of a captured physical reverse. Thin surrounding mounting-wall margins are retained. The sculpted front is complete.",
+      "finalThumbnail": {
+        "bytes": 58690,
+        "sha256": "a8a5a904ea8651b00ce1934fa631f06581f67d77c1b10102d7c3bcdeb169dac8",
+        "actualImageReviewedByRoot": true
+      },
+      "poster": {
+        "bytes": 78594,
+        "sha256": "99642924c656868b1cc4b8f61b27c31cba2c0e2ad8f3d37da30f43f81bd99183"
+      }
+    },
+    {
+      "slug": "neoclassical/briseis-achilles-thorvaldsen-freund-a489",
+      "title": "Briseis Is Led Away from Achilles by Agamemnon’s Heralds (posthumous marble)",
+      "artist": "Georg Christian Freund, after Bertel Thorvaldsen",
+      "date": "1865 (marble), after 1803 model",
+      "material": "Marble",
+      "currentLocation": "Thorvaldsens Museum, Copenhagen",
+      "accession": "A489",
+      "primarySource": "https://kataloget.thorvaldsensmuseum.dk/en/A489",
+      "providerSource": "https://sketchfab.com/3d-models/0b82ae7b151044de8404f93ea9a4557c",
+      "preservedSource": "https://huggingface.co/datasets/allenai/objaverse/resolve/556637099bf4fa79ea7b239d0d9c328b8a2e9ac8/glbs/000-027/0b82ae7b151044de8404f93ea9a4557c.glb",
+      "source": {
+        "uid": "0b82ae7b151044de8404f93ea9a4557c",
+        "bytes": 13220764,
+        "sha256": "314d47d59828d15e60c6c8d2393231b48588244e11ed67e45fabdd8ff0287176",
+        "representation": "Unchanged selected preserved Objaverse distribution GLB; uploader-native authoring files are not asserted."
+      },
+      "license": {
+        "name": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/",
+        "evidenceUrl": "https://huggingface.co/datasets/allenai/objaverse/resolve/556637099bf4fa79ea7b239d0d9c328b8a2e9ac8/metadata/000-027.json.gz",
+        "snapshotUid": "0b82ae7b151044de8404f93ea9a4557c",
+        "snapshotRecordSha256": "725ac07b8156ba07fa814ae954e7dfbf30e8a19bdf77ae34ffb4a759c42f0023",
+        "snapshotField": "annotations[0b82ae7b151044de8404f93ea9a4557c].license = by",
+        "attribution": "3D scan by Geoffrey Marchal (geoffreymarchal), originally published on Sketchfab; preserved in AllenAI Objaverse 1.0 and Zenodo under CC BY 4.0. Physical object: Georg Christian Freund, after Bertel Thorvaldsen; Thorvaldsens Museum, A489.",
+        "basis": "Exact UID historical Objaverse annotation records license=by; use of this preserved historical asset does not rely on the current Sketchfab listing or on a Zenodo label alone."
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/neoclassical/briseis-achilles-thorvaldsen-freund-a489/preview-69f7da53ee5f.glb",
+        "bytes": 1457400,
+        "sourceBytes": 13220764,
+        "sourceFormat": "glb",
+        "faces": 399999,
+        "sourceFaces": 408376,
+        "sha256": "69f7da53ee5f4535645cebb7d7949376175ce45074c2d34b51cc9dc45ddd5743"
+      },
+      "measuredIntegrity": {
+        "faces": 408376,
+        "bratio": 0.003,
+        "ncomp": 2,
+        "largest_frac": 1
+      },
+      "transform": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0,
+          0,
+          1
+        ],
+        "status": "manual",
+        "note": "Upright native front approved from eight-direction paired preserved-source/serving inspection and the exact museum photograph. Concealed mounting back is unrecorded; complete relief face and captured context retained."
+      },
+      "appearance": {
+        "preserveSourceMaterials": true,
+        "originalRenderedDirectly": true,
+        "nativeFaces": 408376,
+        "previewFaces": 399999,
+        "topologySimplification": true,
+        "reconstruction": false,
+        "cropping": false,
+        "recoloring": false
+      },
+      "physicalDimensions": {
+        "status": "documented",
+        "dimensions": "H114×W239cm",
+        "sourceUrl": "https://kataloget.thorvaldsensmuseum.dk/en/A489",
+        "calibrationPerformed": false,
+        "exactSizeArEligible": false
+      },
+      "frames": [
+        {
+          "mode": "source-native",
+          "key": "FRONT",
+          "bytes": 531396,
+          "sha256": "d7015e1e5ba4c7a8654aacd66ed8721316295000c507a97eccf35306f4b0b9b9"
+        },
+        {
+          "mode": "source-native",
+          "key": "RIGHT",
+          "bytes": 206688,
+          "sha256": "f21fb41e47852db7568b7bbbc11021ea0e308c71b550e302f0ebb0bed343ab66"
+        },
+        {
+          "mode": "source-native",
+          "key": "REVERSE",
+          "bytes": 441748,
+          "sha256": "b40b7aed3ab2a38c430dd99ad9333005bf4ee9bf76a15f85440a6e3c57e6a183"
+        },
+        {
+          "mode": "source-native",
+          "key": "LEFT",
+          "bytes": 209362,
+          "sha256": "550dd92ce0334b5da1d9f88ccbd1ee49c2c9b7195181fc15e75b15f369a29873"
+        },
+        {
+          "mode": "source-native",
+          "key": "ABOVE",
+          "bytes": 132146,
+          "sha256": "d40f169e9575cb266988d8bbd8d948dfca060a07619879cf6d0084e7fbcab99e"
+        },
+        {
+          "mode": "source-native",
+          "key": "UNDERSIDE",
+          "bytes": 132471,
+          "sha256": "89da8a74368e931f0a19d8a68f547509555766e64ef8b4cd2a45697098caa2d4"
+        },
+        {
+          "mode": "source-native",
+          "key": "FRONT-THREE-QUARTER",
+          "bytes": 508404,
+          "sha256": "24ec00ce93e87a412b39869e630a62b35e3ae8a2466bdf5b45bc3c10480372d3"
+        },
+        {
+          "mode": "source-native",
+          "key": "BACK-THREE-QUARTER",
+          "bytes": 412046,
+          "sha256": "636d01b06365705dab46e9ef2dc1b95072f1d0476182567b55c8d0f9264ef5bc"
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "bytes": 535990,
+          "sha256": "16a1e362064be99a96de687bc88879084d517ec12cad944a1cb75cda7e6e0f96"
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "bytes": 206912,
+          "sha256": "a4b57cad3641c456a07fed15024d174fd16d4d0b827140cea25f7f576b48d708"
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "bytes": 444005,
+          "sha256": "41e98c1e4f421e55fd8e634686c5e9bca19b5b5ad97fb948f89784d52d278da4"
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "bytes": 208232,
+          "sha256": "6babe207c5bc55bb74ac29cfe02d32270f86fc02ec8e5f0f6fea245df75da3b7"
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "bytes": 132491,
+          "sha256": "6058e82e398a428ce10f7cfafe7b42cba883d4648156a2e7e4e3df14f1645c87"
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "bytes": 131401,
+          "sha256": "02eab7c523b41ccb6ff6dce82ef1cd21eabc5f06cf1608d12be20946379a1da9"
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "bytes": 512140,
+          "sha256": "33b4d5e2c889a97f12835e88b7ff96fe7a949030721f696f78c6b852dff723cb"
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "bytes": 413900,
+          "sha256": "d64d54a7c8966dc57229c4df03ecd43706fe7219c2a928c8f1e0041103b8be33"
+        }
+      ],
+      "rootActualFramesReviewed": 16,
+      "independentVisualDecision": "All narrative figures, faces, hands, drapery and the complete rectangular sculpted border are present and match the museum photograph of A489. No broad missing sculpted front surface observed.",
+      "captureScope": "Wall-mounted relief digitized from the accessible front. The flat mounting back, slab thickness and some concealed edge surfaces are unrecorded. A mirrored/double-sided view of the front from behind is not evidence of a captured physical reverse. Thin surrounding mounting-wall margins are retained. The sculpted front is complete.",
+      "finalThumbnail": {
+        "bytes": 41998,
+        "sha256": "8b96e3fa81c53627a4c6adacc958c519a555ef56210b2bfb8a446b0e45c23094",
+        "actualImageReviewedByRoot": true
+      },
+      "poster": {
+        "bytes": 56456,
+        "sha256": "01d41ec2f4e3ac6c5a65fefac11516ca243c52542e108b5fb08b8198f6a3dd14"
+      }
+    },
+    {
+      "slug": "neoclassical/pan-satyr-thorvaldsen-a352",
+      "title": "Pan and a Satyr",
+      "artist": "Bertel Thorvaldsen",
+      "date": "Presumably 1832–1833",
+      "material": "Marble",
+      "currentLocation": "Thorvaldsens Museum, Copenhagen",
+      "accession": "A352",
+      "primarySource": "https://kataloget.thorvaldsensmuseum.dk/en/A352",
+      "providerSource": "https://sketchfab.com/3d-models/b5e7351d4615441196bb5121eab214de",
+      "preservedSource": "https://huggingface.co/datasets/allenai/objaverse/resolve/556637099bf4fa79ea7b239d0d9c328b8a2e9ac8/glbs/000-003/b5e7351d4615441196bb5121eab214de.glb",
+      "source": {
+        "uid": "b5e7351d4615441196bb5121eab214de",
+        "bytes": 12087840,
+        "sha256": "a41900b954abbffb77a150aaf1fca071b27052c32528e0bab8fc31b3b29c28c5",
+        "representation": "Unchanged selected preserved Objaverse distribution GLB; uploader-native authoring files are not asserted."
+      },
+      "license": {
+        "name": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/",
+        "evidenceUrl": "https://huggingface.co/datasets/allenai/objaverse/resolve/556637099bf4fa79ea7b239d0d9c328b8a2e9ac8/metadata/000-003.json.gz",
+        "snapshotUid": "b5e7351d4615441196bb5121eab214de",
+        "snapshotRecordSha256": "a81c8aea7da13ffb156cfe2bea5d3b24f6c71454b1aa0f10c14e439978f91a4e",
+        "snapshotField": "annotations[b5e7351d4615441196bb5121eab214de].license = by",
+        "attribution": "3D scan by Geoffrey Marchal (geoffreymarchal), originally published on Sketchfab; preserved in AllenAI Objaverse 1.0 and Zenodo under CC BY 4.0. Physical object: Bertel Thorvaldsen; Thorvaldsens Museum, A352.",
+        "basis": "Exact UID historical Objaverse annotation records license=by; use of this preserved historical asset does not rely on the current Sketchfab listing or on a Zenodo label alone."
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/neoclassical/pan-satyr-thorvaldsen-a352/preview-3959eab71866.glb",
+        "bytes": 878672,
+        "sourceBytes": 12087840,
+        "sourceFormat": "glb",
+        "faces": 394546,
+        "sourceFaces": 394546,
+        "sha256": "3959eab7186634d0ee0666dd97a3bb234fb4a0154bd95a20aa83ca3491c17d7d"
+      },
+      "measuredIntegrity": {
+        "faces": 394546,
+        "bratio": 0.002,
+        "ncomp": 1,
+        "largest_frac": 1
+      },
+      "transform": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0,
+          0,
+          1
+        ],
+        "status": "manual",
+        "note": "Upright native front approved from eight-direction paired preserved-source/serving inspection and the exact museum photograph. Concealed mounting back is unrecorded; complete relief face and captured context retained."
+      },
+      "appearance": {
+        "preserveSourceMaterials": true,
+        "originalRenderedDirectly": true,
+        "nativeFaces": 394546,
+        "previewFaces": 394546,
+        "topologySimplification": false,
+        "reconstruction": false,
+        "cropping": false,
+        "recoloring": false
+      },
+      "physicalDimensions": {
+        "status": "documented",
+        "dimensions": "H46.5×W78.3cm",
+        "sourceUrl": "https://kataloget.thorvaldsensmuseum.dk/en/A352",
+        "calibrationPerformed": false,
+        "exactSizeArEligible": false
+      },
+      "frames": [
+        {
+          "mode": "source-native",
+          "key": "FRONT",
+          "bytes": 423442,
+          "sha256": "598db7ebcb726e906d14fcb5317364e22b6a295c92c84fa084c7492e7ce8f072"
+        },
+        {
+          "mode": "source-native",
+          "key": "RIGHT",
+          "bytes": 194927,
+          "sha256": "6b7c4ded868f5676c36492838f58820b900005344b0194801613ab92b6397e94"
+        },
+        {
+          "mode": "source-native",
+          "key": "REVERSE",
+          "bytes": 411516,
+          "sha256": "7f6eee5c78be189e3a4a31bba9da3b1dd034de4295dd0eb66c2068d800404977"
+        },
+        {
+          "mode": "source-native",
+          "key": "LEFT",
+          "bytes": 226505,
+          "sha256": "213e4816c721f247257abbc76c69daa2856654823c7adbb3917564137b882bfa"
+        },
+        {
+          "mode": "source-native",
+          "key": "ABOVE",
+          "bytes": 124690,
+          "sha256": "5fab4536d42f2c3cd0a9dfc033ac5c09ea9c813cc3cef09fccbcb3d94bb97c01"
+        },
+        {
+          "mode": "source-native",
+          "key": "UNDERSIDE",
+          "bytes": 142781,
+          "sha256": "8d5b547637fda67847d391894cceb96e2e545059070debbe542081a90a66ad9d"
+        },
+        {
+          "mode": "source-native",
+          "key": "FRONT-THREE-QUARTER",
+          "bytes": 422188,
+          "sha256": "f9c286b8551da5514da3bf12b00428cb0f5de0447da09a51be694c5d5566b86e"
+        },
+        {
+          "mode": "source-native",
+          "key": "BACK-THREE-QUARTER",
+          "bytes": 403057,
+          "sha256": "9a3085cc94ec09356b51b2cb1897706c747863d64eb98bd01db7482ac9966c57"
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "bytes": 425483,
+          "sha256": "b8e8b9eef733d677e76440655ded3a68eb00bfc2da1f630351465212c76eaf63"
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "bytes": 193865,
+          "sha256": "e4ab3501d0eb70c69d4447e8d7542a4a31014991c895abbc415fc2485a20cdbb"
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "bytes": 414661,
+          "sha256": "d93853dfbf1dff78d1bd145ea575426926852cd235b3bb67b6ddab9e332cea5b"
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "bytes": 222389,
+          "sha256": "71551d5decb4c320d16c805c82a4871ad5e5b4a547275aacbf5629ef04c8dde8"
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "bytes": 125494,
+          "sha256": "bc9c2c4ea3653779e52a6f0e9fac4b3de405722c99bee2ac9e00a8075d0bcedd"
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "bytes": 143110,
+          "sha256": "6bae28de27a168e31b2c02da90ad5b3113d380b2d00c72c12fae69dceb5e05e4"
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "bytes": 422629,
+          "sha256": "dfe8df7ad71dd663bf4348c2dd507cdab2f041f0d2fccb827f9e4e2dc6714c89"
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "bytes": 401960,
+          "sha256": "ba3703ac9107cee768eea7a963fe60a0cdac0aa080c6c7410b5aa79159c23784"
+        }
+      ],
+      "rootActualFramesReviewed": 16,
+      "independentVisualDecision": "Pan, the young satyr, their faces/limbs and reed pipe, with the complete relief field and border, match A352. The source and serving sculpted fronts are coherent.",
+      "captureScope": "Wall-mounted relief digitized from the accessible front. The flat mounting back, slab thickness and some concealed edge surfaces are unrecorded. A mirrored/double-sided view of the front from behind is not evidence of a captured physical reverse. Thin surrounding mounting-wall margins are retained. The sculpted front is complete.",
+      "finalThumbnail": {
+        "bytes": 24220,
+        "sha256": "24027c3a96889bdaa9a7c67399e2d2c789401b4e84106853a354ac30eb0bb773",
+        "actualImageReviewedByRoot": true
+      },
+      "poster": {
+        "bytes": 32626,
+        "sha256": "12f31b0bc3d2248bbf5ecdb1e9a6141afe1227553e24eb308e4a354d41542f23"
+      }
+    },
+    {
+      "slug": "neoclassical/youth-summer-thorvaldsen-a639",
+      "title": "Youth or Summer",
+      "artist": "Bertel Thorvaldsen, with Johann Scholl",
+      "date": "Presumably 1838–1841 (marble), after 1836 model",
+      "material": "Marble",
+      "currentLocation": "Thorvaldsens Museum, Copenhagen",
+      "accession": "A639",
+      "primarySource": "https://kataloget.thorvaldsensmuseum.dk/en/A639",
+      "providerSource": "https://sketchfab.com/3d-models/f11ae8e936234cad9f93d6ef16b0b039",
+      "preservedSource": "https://huggingface.co/datasets/allenai/objaverse/resolve/556637099bf4fa79ea7b239d0d9c328b8a2e9ac8/glbs/000-136/f11ae8e936234cad9f93d6ef16b0b039.glb",
+      "source": {
+        "uid": "f11ae8e936234cad9f93d6ef16b0b039",
+        "bytes": 12319424,
+        "sha256": "ab142ff4f60d090cd50568a382341a8177619234ad2ec1a79b1ba863f754b5d6",
+        "representation": "Unchanged selected preserved Objaverse distribution GLB; uploader-native authoring files are not asserted."
+      },
+      "license": {
+        "name": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/",
+        "evidenceUrl": "https://huggingface.co/datasets/allenai/objaverse/resolve/556637099bf4fa79ea7b239d0d9c328b8a2e9ac8/metadata/000-136.json.gz",
+        "snapshotUid": "f11ae8e936234cad9f93d6ef16b0b039",
+        "snapshotRecordSha256": "3d1d0d0a9cd4db3ec97186011f55c990d9167de0b50d8212dbfc09bbcf4408a3",
+        "snapshotField": "annotations[f11ae8e936234cad9f93d6ef16b0b039].license = by",
+        "attribution": "3D scan by Geoffrey Marchal (geoffreymarchal), originally published on Sketchfab; preserved in AllenAI Objaverse 1.0 and Zenodo under CC BY 4.0. Physical object: Bertel Thorvaldsen, with Johann Scholl; Thorvaldsens Museum, A639.",
+        "basis": "Exact UID historical Objaverse annotation records license=by; use of this preserved historical asset does not rely on the current Sketchfab listing or on a Zenodo label alone."
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/neoclassical/youth-summer-thorvaldsen-a639/preview-1c8cf11f9190.glb",
+        "bytes": 1304252,
+        "sourceBytes": 12319424,
+        "sourceFormat": "glb",
+        "faces": 397670,
+        "sourceFaces": 397670,
+        "sha256": "1c8cf11f9190754d842dec3f680325453be168cf4ab58b21469d3c164f004b28"
+      },
+      "measuredIntegrity": {
+        "faces": 397670,
+        "bratio": 0.002,
+        "ncomp": 1,
+        "largest_frac": 1
+      },
+      "transform": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0,
+          0,
+          1
+        ],
+        "status": "manual",
+        "note": "Upright native front approved from eight-direction paired preserved-source/serving inspection and the exact museum photograph. Concealed mounting back is unrecorded; complete relief face and captured context retained."
+      },
+      "appearance": {
+        "preserveSourceMaterials": true,
+        "originalRenderedDirectly": true,
+        "nativeFaces": 397670,
+        "previewFaces": 397670,
+        "topologySimplification": false,
+        "reconstruction": false,
+        "cropping": false,
+        "recoloring": false
+      },
+      "physicalDimensions": {
+        "status": "documented",
+        "dimensions": "Diameter 69 cm",
+        "sourceUrl": "https://kataloget.thorvaldsensmuseum.dk/en/A639",
+        "calibrationPerformed": false,
+        "exactSizeArEligible": false
+      },
+      "frames": [
+        {
+          "mode": "source-native",
+          "key": "FRONT",
+          "bytes": 789694,
+          "sha256": "e814de5e1315e6e9b9c4ea21761d6b628ef8e567af57a33920e7917eaa34e6b9"
+        },
+        {
+          "mode": "source-native",
+          "key": "RIGHT",
+          "bytes": 183045,
+          "sha256": "89fc45bf9607438258bed85e43ec144c399fde47f2d8c5a6d1c1ea378e2d82c4"
+        },
+        {
+          "mode": "source-native",
+          "key": "REVERSE",
+          "bytes": 634257,
+          "sha256": "13f735b32e4f74b7c54bb86b80fe200b1c259a8e34c40ce05915f2e41b3e3853"
+        },
+        {
+          "mode": "source-native",
+          "key": "LEFT",
+          "bytes": 169097,
+          "sha256": "225c6f28f6e04ce6e4e98544a679b22bff930f4fa09dc6e4c3c8290b99ce35e3"
+        },
+        {
+          "mode": "source-native",
+          "key": "ABOVE",
+          "bytes": 116609,
+          "sha256": "405b229a4d65aa581934e842bff0d1dc74bcc6d775fb475a593978b42651ae26"
+        },
+        {
+          "mode": "source-native",
+          "key": "UNDERSIDE",
+          "bytes": 119668,
+          "sha256": "97f48213bb6b40f3d68e0c9c670190373d0a0a9466838561701e3b84c8013ccb"
+        },
+        {
+          "mode": "source-native",
+          "key": "FRONT-THREE-QUARTER",
+          "bytes": 611663,
+          "sha256": "15ed446d058c673672c7858747decff7da94707c82e9481da87232ba97c0adb7"
+        },
+        {
+          "mode": "source-native",
+          "key": "BACK-THREE-QUARTER",
+          "bytes": 511872,
+          "sha256": "2221064651772169b9958e082df1afb1f0eb78a3963996dc89df8f770fcafddd"
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "bytes": 778744,
+          "sha256": "d2c1b596e72b1e4fc9ec055ea64a491a0333ae399f75c2272333881838129f26"
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "bytes": 182806,
+          "sha256": "d988dc43c957cd539b62d5b8c21ab298c91f78dfbb72c63aac05f348ba2ef0c6"
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "bytes": 622854,
+          "sha256": "d08e5cb44873f06abc90c261b2a414dcddb50bb51f13c5bfaf4ce6a177b87988"
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "bytes": 168561,
+          "sha256": "7042bff721404adbac260af6aa6baa30497b4273756c8bcf1c970c5d7622da54"
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "bytes": 116634,
+          "sha256": "c3fb93fa879cfa067c1562e843c1be9f07acaea3c9ce934237fd1f27d378e2f1"
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "bytes": 118627,
+          "sha256": "5817d453fb5c0199bcfe15f46644c9ec4349c059f227ab9d86a470f2fc5fc551"
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "bytes": 605991,
+          "sha256": "3b7500c2b8325facf51d3b1c3d7800e208cac499ef391dc16f781787fff8287d"
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "bytes": 504143,
+          "sha256": "a45625aebfbb74b11b0a6a6f4b9e964a02ff31b04fe5edd97d7e6596d505f384"
+        }
+      ],
+      "rootActualFramesReviewed": 16,
+      "independentVisualDecision": "Complete circular scene and rim match A639; the couple, child, faces/hands and grain details are present. No missing principal sculpted face area observed.",
+      "captureScope": "Wall-mounted relief digitized from the accessible front. The flat mounting back, slab thickness and some concealed edge surfaces are unrecorded. A mirrored/double-sided view of the front from behind is not evidence of a captured physical reverse. Thin surrounding mounting-wall margins are retained. The sculpted front is complete.",
+      "finalThumbnail": {
+        "bytes": 64336,
+        "sha256": "2a8af972c0cc783ddecd57e64c2441a516e98988a5b70a18130da604cf75e9de",
+        "actualImageReviewedByRoot": true
+      },
+      "poster": {
+        "bytes": 86114,
+        "sha256": "6ae7e4bb74b292488956f1a4769e0133ea1c80f3c3dc8ce60e6e048d0fbdfc8d"
+      }
+    },
+    {
+      "slug": "neoclassical/manhood-autumn-thorvaldsen-a640",
+      "title": "Manhood or Autumn",
+      "artist": "Bertel Thorvaldsen, with Johann Scholl",
+      "date": "Presumably 1838–1841 (marble), after 1836 model",
+      "material": "Marble",
+      "currentLocation": "Thorvaldsens Museum, Copenhagen",
+      "accession": "A640",
+      "primarySource": "https://kataloget.thorvaldsensmuseum.dk/en/A640",
+      "providerSource": "https://sketchfab.com/3d-models/a0975eb973d0410ba0174e928dc484af",
+      "preservedSource": "https://huggingface.co/datasets/allenai/objaverse/resolve/556637099bf4fa79ea7b239d0d9c328b8a2e9ac8/glbs/000-088/a0975eb973d0410ba0174e928dc484af.glb",
+      "source": {
+        "uid": "a0975eb973d0410ba0174e928dc484af",
+        "bytes": 12813960,
+        "sha256": "c2faf1843d4a39cab8a4d848d7ac8ccc0989432643799dcbc4dbc08d3a17b9c1",
+        "representation": "Unchanged selected preserved Objaverse distribution GLB; uploader-native authoring files are not asserted."
+      },
+      "license": {
+        "name": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/",
+        "evidenceUrl": "https://huggingface.co/datasets/allenai/objaverse/resolve/556637099bf4fa79ea7b239d0d9c328b8a2e9ac8/metadata/000-088.json.gz",
+        "snapshotUid": "a0975eb973d0410ba0174e928dc484af",
+        "snapshotRecordSha256": "ba9d9532e774f93e1b4edd5f942bc2e4cc4c20a0f27db2762eda60804d1f85ab",
+        "snapshotField": "annotations[a0975eb973d0410ba0174e928dc484af].license = by",
+        "attribution": "3D scan by Geoffrey Marchal (geoffreymarchal), originally published on Sketchfab; preserved in AllenAI Objaverse 1.0 and Zenodo under CC BY 4.0. Physical object: Bertel Thorvaldsen, with Johann Scholl; Thorvaldsens Museum, A640.",
+        "basis": "Exact UID historical Objaverse annotation records license=by; use of this preserved historical asset does not rely on the current Sketchfab listing or on a Zenodo label alone."
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/neoclassical/manhood-autumn-thorvaldsen-a640/preview-a9221e8cd774.glb",
+        "bytes": 1400976,
+        "sourceBytes": 12813960,
+        "sourceFormat": "glb",
+        "faces": 399999,
+        "sourceFaces": 402915,
+        "sha256": "a9221e8cd774a2ddaf8c81385756300f56739e8d715f806792bd514c67f21962"
+      },
+      "measuredIntegrity": {
+        "faces": 402915,
+        "bratio": 0.003,
+        "ncomp": 1,
+        "largest_frac": 1
+      },
+      "transform": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0,
+          0,
+          1
+        ],
+        "status": "manual",
+        "note": "Upright native front approved from eight-direction paired preserved-source/serving inspection and the exact museum photograph. Concealed mounting back is unrecorded; complete relief face and captured context retained."
+      },
+      "appearance": {
+        "preserveSourceMaterials": true,
+        "originalRenderedDirectly": true,
+        "nativeFaces": 402915,
+        "previewFaces": 399999,
+        "topologySimplification": true,
+        "reconstruction": false,
+        "cropping": false,
+        "recoloring": false
+      },
+      "physicalDimensions": {
+        "status": "documented",
+        "dimensions": "Diameter 69 cm",
+        "sourceUrl": "https://kataloget.thorvaldsensmuseum.dk/en/A640",
+        "calibrationPerformed": false,
+        "exactSizeArEligible": false
+      },
+      "frames": [
+        {
+          "mode": "source-native",
+          "key": "FRONT",
+          "bytes": 720479,
+          "sha256": "014766acde83964d4a0c539532b426dda7dda6ae88a2fa3da43d5a0c2dc04b4a"
+        },
+        {
+          "mode": "source-native",
+          "key": "RIGHT",
+          "bytes": 191146,
+          "sha256": "c5d46e589c3c37b9599660122b3c3e995b966d63930f39b7688978edfbc189f2"
+        },
+        {
+          "mode": "source-native",
+          "key": "REVERSE",
+          "bytes": 605490,
+          "sha256": "9d6420cdd1a3fa1084904796282404d11d547bffd7a8c795d03744612a70ad75"
+        },
+        {
+          "mode": "source-native",
+          "key": "LEFT",
+          "bytes": 198377,
+          "sha256": "b310ddbd3c805154e7c7d3d7e125930cce618097aa2d99165ea51f0d6487eb22"
+        },
+        {
+          "mode": "source-native",
+          "key": "ABOVE",
+          "bytes": 118084,
+          "sha256": "4348ddb498754eb4039183bb6c7b766fa14e7816e2022f39f90d28a1bb02a7a8"
+        },
+        {
+          "mode": "source-native",
+          "key": "UNDERSIDE",
+          "bytes": 121466,
+          "sha256": "1e25d0865051adbdcae2e422dd63579de812fa9252a3256bb7885c5fdfc572fe"
+        },
+        {
+          "mode": "source-native",
+          "key": "FRONT-THREE-QUARTER",
+          "bytes": 575510,
+          "sha256": "387aedea1cf253915574a83d2a0d9c8eff0050ee01747c8d0af2d2ce81481590"
+        },
+        {
+          "mode": "source-native",
+          "key": "BACK-THREE-QUARTER",
+          "bytes": 492991,
+          "sha256": "2124cd9083027d08eea2b573ba7a46986e239341627d4af42f0045434403cc4b"
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "bytes": 717427,
+          "sha256": "55d5e92bb6473859471ea255a8e30808cfb772cd7bd0d7b11435518ab7729821"
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "bytes": 190309,
+          "sha256": "1a828f47f5f673a1b01440cb407e462cd45346435b187bde674b81028a31b26f"
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "bytes": 594736,
+          "sha256": "fa60c3d72294d8b30c9020f97a83137ab85a0b4d44b47550164ad1b484597a03"
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "bytes": 196091,
+          "sha256": "50892daedb1354f043f320bcccc6cd0bbe35ead44f7a9a1de258f0ab7f8d3494"
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "bytes": 117704,
+          "sha256": "443d0004ac3c5b005010b2c5cd171a9bc338aaf5086bd6e36e9ed0561f5dee9e"
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "bytes": 120406,
+          "sha256": "5656b4f975be4c829062d6ce5b536460419d60edac86a19551e541368e9af16c"
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "bytes": 573440,
+          "sha256": "61bc2a3a165200f2b4cf8de9bde848e1e6ec1b41e01bc740743535c1f0a59be2"
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "bytes": 483088,
+          "sha256": "f88694636b15dfb4954a3ac4a2abbf85dc667cf72692ffbb04dda439d93c083d"
+        }
+      ],
+      "rootActualFramesReviewed": 16,
+      "independentVisualDecision": "Complete circular composition matches A640, including hunter, seated woman, child, dog, grapes and border. No missing principal face or figure surface observed.",
+      "captureScope": "Wall-mounted relief digitized from the accessible front. The flat mounting back, slab thickness and some concealed edge surfaces are unrecorded. A mirrored/double-sided view of the front from behind is not evidence of a captured physical reverse. Thin surrounding mounting-wall margins are retained. The sculpted front is complete.",
+      "finalThumbnail": {
+        "bytes": 56300,
+        "sha256": "97f7f2afa5b164fb33d114644a42115b822a71931f4148ea9de81e8088e0e303",
+        "actualImageReviewedByRoot": true
+      },
+      "poster": {
+        "bytes": 75402,
+        "sha256": "8b11724d4cae10dcd29d4b61551ce7f7001f457d63cdc54527c25a51150b9c6e"
+      }
+    },
+    {
+      "slug": "neoclassical/priam-achilles-thorvaldsen-freund-a775",
+      "title": "Priam Pleads with Achilles for Hector’s Body (posthumous marble)",
+      "artist": "Georg Christian Freund, after Bertel Thorvaldsen",
+      "date": "1868–1870 (marble), after 1815 model",
+      "material": "Marble",
+      "currentLocation": "Thorvaldsens Museum, Copenhagen",
+      "accession": "A775",
+      "primarySource": "https://kataloget.thorvaldsensmuseum.dk/en/A775",
+      "providerSource": "https://sketchfab.com/3d-models/170b0203a5fd4f7fa8f835218567ebed",
+      "preservedSource": "https://huggingface.co/datasets/allenai/objaverse/resolve/556637099bf4fa79ea7b239d0d9c328b8a2e9ac8/glbs/000-108/170b0203a5fd4f7fa8f835218567ebed.glb",
+      "source": {
+        "uid": "170b0203a5fd4f7fa8f835218567ebed",
+        "bytes": 12650832,
+        "sha256": "fdfcfa05b077eaa87df23aaf697c74e08ca8588d3d3b09811ab3456b223efeb2",
+        "representation": "Unchanged selected preserved Objaverse distribution GLB; uploader-native authoring files are not asserted."
+      },
+      "license": {
+        "name": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/",
+        "evidenceUrl": "https://huggingface.co/datasets/allenai/objaverse/resolve/556637099bf4fa79ea7b239d0d9c328b8a2e9ac8/metadata/000-108.json.gz",
+        "snapshotUid": "170b0203a5fd4f7fa8f835218567ebed",
+        "snapshotRecordSha256": "279c216902aa2d886c281455309931522668576c7ea55826e406e4832cc0e1d4",
+        "snapshotField": "annotations[170b0203a5fd4f7fa8f835218567ebed].license = by",
+        "attribution": "3D scan by Geoffrey Marchal (geoffreymarchal), originally published on Sketchfab; preserved in AllenAI Objaverse 1.0 and Zenodo under CC BY 4.0. Physical object: Georg Christian Freund, after Bertel Thorvaldsen; Thorvaldsens Museum, A775.",
+        "basis": "Exact UID historical Objaverse annotation records license=by; use of this preserved historical asset does not rely on the current Sketchfab listing or on a Zenodo label alone."
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/neoclassical/priam-achilles-thorvaldsen-freund-a775/preview-c5918ea167e1.glb",
+        "bytes": 1287676,
+        "sourceBytes": 12650832,
+        "sourceFormat": "glb",
+        "faces": 399999,
+        "sourceFaces": 406367,
+        "sha256": "c5918ea167e12349fbe2b4f97cd2253f16b660459712cfd5c20da6fd46d22334"
+      },
+      "measuredIntegrity": {
+        "faces": 406367,
+        "bratio": 0.004,
+        "ncomp": 1,
+        "largest_frac": 1
+      },
+      "transform": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0,
+          0,
+          1
+        ],
+        "status": "manual",
+        "note": "Upright native front approved from eight-direction paired preserved-source/serving inspection and the exact museum photograph. Concealed mounting back is unrecorded; complete relief face and captured context retained."
+      },
+      "appearance": {
+        "preserveSourceMaterials": true,
+        "originalRenderedDirectly": true,
+        "nativeFaces": 406367,
+        "previewFaces": 399999,
+        "topologySimplification": true,
+        "reconstruction": false,
+        "cropping": false,
+        "recoloring": false
+      },
+      "physicalDimensions": {
+        "status": "documented",
+        "dimensions": "H96×W198.5cm",
+        "sourceUrl": "https://kataloget.thorvaldsensmuseum.dk/en/A775",
+        "calibrationPerformed": false,
+        "exactSizeArEligible": false
+      },
+      "frames": [
+        {
+          "mode": "source-native",
+          "key": "FRONT",
+          "bytes": 498295,
+          "sha256": "045f8ab01edebee8d819a37bd3ea3b54e774a90a3bcb55b3e41f12a0700ac278"
+        },
+        {
+          "mode": "source-native",
+          "key": "RIGHT",
+          "bytes": 212185,
+          "sha256": "533b7c5ffd8fca1009f27c67015ac1338fab9c437ebe9cdfdcd3ce175f5df905"
+        },
+        {
+          "mode": "source-native",
+          "key": "REVERSE",
+          "bytes": 406717,
+          "sha256": "bff768d680dbe83061a3a557344daa7214b667e1d8ead229c632ef988c222d0d"
+        },
+        {
+          "mode": "source-native",
+          "key": "LEFT",
+          "bytes": 179155,
+          "sha256": "16e8dc819ca59a8108d69010fb8c2d68f7b9a6c902efc294e678938c6207dec7"
+        },
+        {
+          "mode": "source-native",
+          "key": "ABOVE",
+          "bytes": 124446,
+          "sha256": "d7d02bd157fcc0b712ee600f6213ac55628e8d2ed96299af09eb0d20162deedc"
+        },
+        {
+          "mode": "source-native",
+          "key": "UNDERSIDE",
+          "bytes": 126166,
+          "sha256": "eb8e7758d8959902b7a43a60fc4357acc3ebe43037c415fb773b352b4db61377"
+        },
+        {
+          "mode": "source-native",
+          "key": "FRONT-THREE-QUARTER",
+          "bytes": 496637,
+          "sha256": "d941beae9c700c7b167b1458667f75321f111c5dec2fa487a71f8f5410ace56b"
+        },
+        {
+          "mode": "source-native",
+          "key": "BACK-THREE-QUARTER",
+          "bytes": 396880,
+          "sha256": "e39cc1bdf963e83c962be4c4e5782e34a7ca84835d67613176caaa0a29d79253"
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "bytes": 501336,
+          "sha256": "bbdefee0248c1301ccd7d1a49b40bf3478f93849b87828fe3f54768a35f2c3a5"
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "bytes": 211998,
+          "sha256": "87dfa7dbd4f015d3d14c36255a0e1993a8ef9e0649dd037e57f73bfe00e73e5b"
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "bytes": 406947,
+          "sha256": "9323b8623b97265bff3e5ebaf0490274e50811e3754fd2dbd890eaac25a09f70"
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "bytes": 175408,
+          "sha256": "3261e3eb9e3a8b16179a291379de04a26d7774eda874fa722056f667d8586b6a"
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "bytes": 124712,
+          "sha256": "36bea25df554f49614456a2ebe9f4ef40c022f64328cf8340836833ad58f5035"
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "bytes": 125225,
+          "sha256": "5a189e519514556e470747dcb44f437df9d2442b5a085f7bcbc2b1f1050d4b5f"
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "bytes": 499521,
+          "sha256": "d7deb3f2a3f9eb66d20af90168f3bec13c10dcc1e41d8710127b0aea2c70e69b"
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "bytes": 395851,
+          "sha256": "4ea2192fb97969c3d8f6c72c2c9b524d0fa0ee44e0eb89e0f2a4a422e657f4f8"
+        }
+      ],
+      "rootActualFramesReviewed": 16,
+      "independentVisualDecision": "The full narrative and outer border match A775, including kneeling Priam, Achilles and attendants. Faces and gestures remain coherent in the captured front and oblique views.",
+      "captureScope": "Wall-mounted relief digitized from the accessible front. The flat mounting back, slab thickness and some concealed edge surfaces are unrecorded. A mirrored/double-sided view of the front from behind is not evidence of a captured physical reverse. Thin surrounding mounting-wall margins are retained. The sculpted front is complete.",
+      "finalThumbnail": {
+        "bytes": 33758,
+        "sha256": "6b8ccf4b25507acfe4de897c0c803af4f987a23f8e3df48a3d6210f90d296808",
+        "actualImageReviewedByRoot": true
+      },
+      "poster": {
+        "bytes": 45444,
+        "sha256": "19b891947046e0c8e14173b8b1ff875261a47fd5be0ca9c61a667ce27316d101"
+      }
+    },
+    {
+      "slug": "neoclassical/ages-love-thorvaldsen-a426",
+      "title": "The Ages of Love",
+      "artist": "Bertel Thorvaldsen",
+      "date": "No earlier than July 1824",
+      "material": "Marble",
+      "currentLocation": "Thorvaldsens Museum, Copenhagen",
+      "accession": "A426",
+      "primarySource": "https://kataloget.thorvaldsensmuseum.dk/en/A426",
+      "providerSource": "https://sketchfab.com/3d-models/5300fae7b344407fbf5ac8505d5323ac",
+      "preservedSource": "https://huggingface.co/datasets/allenai/objaverse/resolve/556637099bf4fa79ea7b239d0d9c328b8a2e9ac8/glbs/000-136/5300fae7b344407fbf5ac8505d5323ac.glb",
+      "source": {
+        "uid": "5300fae7b344407fbf5ac8505d5323ac",
+        "bytes": 16898212,
+        "sha256": "66f3f0ea771cab07e9dd80a156b86e6fad2140ad0d0674792f3942a050065752",
+        "representation": "Unchanged selected preserved Objaverse distribution GLB; uploader-native authoring files are not asserted."
+      },
+      "license": {
+        "name": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/",
+        "evidenceUrl": "https://huggingface.co/datasets/allenai/objaverse/resolve/556637099bf4fa79ea7b239d0d9c328b8a2e9ac8/metadata/000-136.json.gz",
+        "snapshotUid": "5300fae7b344407fbf5ac8505d5323ac",
+        "snapshotRecordSha256": "3d1d0d0a9cd4db3ec97186011f55c990d9167de0b50d8212dbfc09bbcf4408a3",
+        "snapshotField": "annotations[5300fae7b344407fbf5ac8505d5323ac].license = by",
+        "attribution": "3D scan by Geoffrey Marchal (geoffreymarchal), originally published on Sketchfab; preserved in AllenAI Objaverse 1.0 and Zenodo under CC BY 4.0. Physical object: Bertel Thorvaldsen; Thorvaldsens Museum, A426.",
+        "basis": "Exact UID historical Objaverse annotation records license=by; use of this preserved historical asset does not rely on the current Sketchfab listing or on a Zenodo label alone."
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/neoclassical/ages-love-thorvaldsen-a426/preview-a71a4b18e50b.glb",
+        "bytes": 1399264,
+        "sourceBytes": 16898212,
+        "sourceFormat": "glb",
+        "faces": 399998,
+        "sourceFaces": 537546,
+        "sha256": "a71a4b18e50bdfc5d5ad401088d443d3d7df7f152c5ddcbd81a006d0ba6c4de2"
+      },
+      "measuredIntegrity": {
+        "faces": 537546,
+        "bratio": 0.003,
+        "ncomp": 1,
+        "largest_frac": 1
+      },
+      "transform": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0,
+          0,
+          1
+        ],
+        "status": "manual",
+        "note": "Upright native front approved from eight-direction paired preserved-source/serving inspection and the exact museum photograph. Concealed mounting back is unrecorded; complete relief face and captured context retained."
+      },
+      "appearance": {
+        "preserveSourceMaterials": true,
+        "originalRenderedDirectly": true,
+        "nativeFaces": 537546,
+        "previewFaces": 399998,
+        "topologySimplification": true,
+        "reconstruction": false,
+        "cropping": false,
+        "recoloring": false
+      },
+      "physicalDimensions": {
+        "status": "documented",
+        "dimensions": "H52×W148cm",
+        "sourceUrl": "https://kataloget.thorvaldsensmuseum.dk/en/A426",
+        "calibrationPerformed": false,
+        "exactSizeArEligible": false
+      },
+      "frames": [
+        {
+          "mode": "source-native",
+          "key": "FRONT",
+          "bytes": 441430,
+          "sha256": "b8f0acdd7d2a4fbfb1df8379322d981df59e5a0aac365ed96be664375948f841"
+        },
+        {
+          "mode": "source-native",
+          "key": "RIGHT",
+          "bytes": 171376,
+          "sha256": "5c12abb7e9064e5e685356e8446a4dc5f4c80461c35db4649076de1fc85e92ea"
+        },
+        {
+          "mode": "source-native",
+          "key": "REVERSE",
+          "bytes": 361711,
+          "sha256": "2ade09d4ba9ee1a9661ee194953cebd5e462fe35f5ab537134c887d54f64a98a"
+        },
+        {
+          "mode": "source-native",
+          "key": "LEFT",
+          "bytes": 195684,
+          "sha256": "541c5e8047e9d14c10326c8dfe8cef668b3c4591fba872e4e4c3a021ebce2f55"
+        },
+        {
+          "mode": "source-native",
+          "key": "ABOVE",
+          "bytes": 105066,
+          "sha256": "bf4ab65b5dc1ebcbfd65e32ae313fd33310db106cc51d426f33eb5a94bfafccd"
+        },
+        {
+          "mode": "source-native",
+          "key": "UNDERSIDE",
+          "bytes": 113057,
+          "sha256": "750a1c073e26d7d2766e84be1b8a9e108bb755721eaddaa24a8002782ecf988e"
+        },
+        {
+          "mode": "source-native",
+          "key": "FRONT-THREE-QUARTER",
+          "bytes": 443753,
+          "sha256": "80c9a8398aa3c9e23ee4cb80ea0e17b703354ddd08311ebcc2b4b92f9fd05894"
+        },
+        {
+          "mode": "source-native",
+          "key": "BACK-THREE-QUARTER",
+          "bytes": 364956,
+          "sha256": "6ae3fcb143139f962e2820fadf712b0f1c2efbc71f47c121f77d41a1da5196c6"
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "bytes": 439962,
+          "sha256": "ccdbe1e9fb218bfd2417986df32915c3630e3c4804a07b72b4590eb31e54fe38"
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "bytes": 171299,
+          "sha256": "a322a2c56a81df0ad2a74b24752186689d5c4a326a993c974e382613231ab3fc"
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "bytes": 361752,
+          "sha256": "586be73731ab0470f23294af4a899b2c0396dfffefb1318b371c1c5c049d274f"
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "bytes": 195518,
+          "sha256": "8e1df0c1edf8007afc6d9cc843bdb621ae521964aaf98261690c14cc93989935"
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "bytes": 105107,
+          "sha256": "ece7d2a43ff9a90f9e2d2d537803025ec04c0c3707851a6e2a2c28c1e8826ee4"
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "bytes": 113091,
+          "sha256": "8c60bd677d4be7c43bd304ea050b077db306bffe09349d2dfd4f1fdd69e34d08"
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "bytes": 442513,
+          "sha256": "d106bf4d9c8ed779d76e2415330a2f908b54b73a3a73e49ce334c648e78962df"
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "bytes": 363985,
+          "sha256": "b0f0798e665695b230e67e95b0c28950e103132ca677f4e5e350e4b17850ca87"
+        }
+      ],
+      "rootActualFramesReviewed": 16,
+      "independentVisualDecision": "Complete wide relief and sculpted border match A426, including all represented ages, standing/seated figures and cupids. No missing principal narrative face surface observed.",
+      "captureScope": "Wall-mounted relief digitized from the accessible front. The flat mounting back, slab thickness and some concealed edge surfaces are unrecorded. A mirrored/double-sided view of the front from behind is not evidence of a captured physical reverse. Thin surrounding mounting-wall margins are retained. The sculpted front is complete.",
+      "finalThumbnail": {
+        "bytes": 36696,
+        "sha256": "78243156c02be958b875d4cadf45c434f5c2e902ae53d4ad7aa5ce520b80fc8e",
+        "actualImageReviewedByRoot": true
+      },
+      "poster": {
+        "bytes": 49260,
+        "sha256": "58d392747eeb4728b8eea40ad80fa170aede11d675975196419cb1f6cbad4e87"
+      }
+    },
+    {
+      "slug": "neoclassical/hector-andromache-thorvaldsen-bissen-a776",
+      "title": "Hector Taking Leave of Andromache and Astyanax (posthumous marble)",
+      "artist": "H.W. Bissen, after Bertel Thorvaldsen",
+      "date": "1867–1870 (marble), after 1837 model",
+      "material": "Marble",
+      "currentLocation": "Thorvaldsens Museum, Copenhagen",
+      "accession": "A776",
+      "primarySource": "https://kataloget.thorvaldsensmuseum.dk/en/A776",
+      "providerSource": "https://sketchfab.com/3d-models/ea50810882ee4062a68b82bb9592c003",
+      "preservedSource": "https://huggingface.co/datasets/allenai/objaverse/resolve/556637099bf4fa79ea7b239d0d9c328b8a2e9ac8/glbs/000-155/ea50810882ee4062a68b82bb9592c003.glb",
+      "source": {
+        "uid": "ea50810882ee4062a68b82bb9592c003",
+        "bytes": 12277720,
+        "sha256": "1ef5c6d1252f3bc9fc30b6bb6a802c5afb76717fdf40e9696e81bd6f30a1bc4a",
+        "representation": "Unchanged selected preserved Objaverse distribution GLB; uploader-native authoring files are not asserted."
+      },
+      "license": {
+        "name": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/",
+        "evidenceUrl": "https://huggingface.co/datasets/allenai/objaverse/resolve/556637099bf4fa79ea7b239d0d9c328b8a2e9ac8/metadata/000-155.json.gz",
+        "snapshotUid": "ea50810882ee4062a68b82bb9592c003",
+        "snapshotRecordSha256": "5daa36c171be86be9d8ea631d3196e165c3d35404402d1cc5c7e1f277627791f",
+        "snapshotField": "annotations[ea50810882ee4062a68b82bb9592c003].license = by",
+        "attribution": "3D scan by Geoffrey Marchal (geoffreymarchal), originally published on Sketchfab; preserved in AllenAI Objaverse 1.0 and Zenodo under CC BY 4.0. Physical object: H.W. Bissen, after Bertel Thorvaldsen; Thorvaldsens Museum, A776.",
+        "basis": "Exact UID historical Objaverse annotation records license=by; use of this preserved historical asset does not rely on the current Sketchfab listing or on a Zenodo label alone."
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/neoclassical/hector-andromache-thorvaldsen-bissen-a776/preview-a60f8ff5caa0.glb",
+        "bytes": 1269588,
+        "sourceBytes": 12277720,
+        "sourceFormat": "glb",
+        "faces": 396663,
+        "sourceFaces": 396663,
+        "sha256": "a60f8ff5caa07bfefa01bed45e7d960ea525d479493edbfe43df37b1ffec401e"
+      },
+      "measuredIntegrity": {
+        "faces": 396663,
+        "bratio": 0.004,
+        "ncomp": 1,
+        "largest_frac": 1
+      },
+      "transform": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0,
+          0,
+          1
+        ],
+        "status": "manual",
+        "note": "Upright native front approved from eight-direction paired preserved-source/serving inspection and the exact museum photograph. Concealed mounting back is unrecorded; complete relief face and captured context retained."
+      },
+      "appearance": {
+        "preserveSourceMaterials": true,
+        "originalRenderedDirectly": true,
+        "nativeFaces": 396663,
+        "previewFaces": 396663,
+        "topologySimplification": false,
+        "reconstruction": false,
+        "cropping": false,
+        "recoloring": false
+      },
+      "physicalDimensions": {
+        "status": "documented",
+        "dimensions": "H93.5×W184.2cm",
+        "sourceUrl": "https://kataloget.thorvaldsensmuseum.dk/en/A776",
+        "calibrationPerformed": false,
+        "exactSizeArEligible": false
+      },
+      "frames": [
+        {
+          "mode": "source-native",
+          "key": "FRONT",
+          "bytes": 505943,
+          "sha256": "16401ad642f57a26984197cac99f01541117956372e23c4f73dddd446d34bd85"
+        },
+        {
+          "mode": "source-native",
+          "key": "RIGHT",
+          "bytes": 200203,
+          "sha256": "a3289117dd8cf820d235c343639c83ef7ec348ffe4956c89ca0d245b57e95031"
+        },
+        {
+          "mode": "source-native",
+          "key": "REVERSE",
+          "bytes": 421558,
+          "sha256": "5b01e3c337196523d54ec177446905f1395640ce1d6268dda947ceeefcf4cfe8"
+        },
+        {
+          "mode": "source-native",
+          "key": "LEFT",
+          "bytes": 209704,
+          "sha256": "e7efaeace7b9d86d31e71189a05466f13fa8ac722334fb000b83271465e545ff"
+        },
+        {
+          "mode": "source-native",
+          "key": "ABOVE",
+          "bytes": 128130,
+          "sha256": "a331bad81efb1cce08d77d02464d632a11066cc35d4a7f91910ca3d66ed6b3a0"
+        },
+        {
+          "mode": "source-native",
+          "key": "UNDERSIDE",
+          "bytes": 121881,
+          "sha256": "facf9c6ba343946f2e7d5da0047a022c7228cc1f7d86ba8ad74f9651ba45e98b"
+        },
+        {
+          "mode": "source-native",
+          "key": "FRONT-THREE-QUARTER",
+          "bytes": 505047,
+          "sha256": "304460a1bfa3b7c4f970f7cce9393987b25aeda6ab6d6a17412c5b7166ceff99"
+        },
+        {
+          "mode": "source-native",
+          "key": "BACK-THREE-QUARTER",
+          "bytes": 404377,
+          "sha256": "113d5f9d045549224463c08f013ebb819014d9e7beebc7b222893cd863ce89d3"
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "bytes": 511779,
+          "sha256": "5d7f19e17b2d85735171dd241e2a836d36de4efda687be00fda18973e3365eef"
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "bytes": 201107,
+          "sha256": "4726f7c6ebba9d2fc02cc72d047e9ccf1b11c112e26bc2fbff8166996081da9f"
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "bytes": 423388,
+          "sha256": "e6c179fb96536a88639da835ba1a01c861b4d503bc2756a635655280eceadfe8"
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "bytes": 206621,
+          "sha256": "9481f2d2d96660b123d318eb20959853d8c03d6e6099000e7b6e89cb776fed4a"
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "bytes": 128253,
+          "sha256": "1cb66de480d4501bf3c7c3d2aa6770bc48cc26c0fda0f6e0f024c662cfffedd7"
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "bytes": 120724,
+          "sha256": "12e6fd0e607ce7b3224a165dbb4c8225f0029ee4694df1879ca14a5682345a47"
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "bytes": 510253,
+          "sha256": "21a08e642f71bd073bfd8e398e42bc80ca323a0cf68e41f24a5aaca99dd78ec3"
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "bytes": 406326,
+          "sha256": "f9ead2726d70acc2ab09cb657b7b0f92478ae38f37140a8989ff17ec1b7605a5"
+        }
+      ],
+      "rootActualFramesReviewed": 16,
+      "independentVisualDecision": "Hector, Andromache, Astyanax and surrounding figures/objects remain complete in the sculpted front, with the full border matching A776. Source and serving appearance agree.",
+      "captureScope": "Wall-mounted relief digitized from the accessible front. The flat mounting back, slab thickness and some concealed edge surfaces are unrecorded. A mirrored/double-sided view of the front from behind is not evidence of a captured physical reverse. Thin surrounding mounting-wall margins are retained. The sculpted front is complete.",
+      "finalThumbnail": {
+        "bytes": 34684,
+        "sha256": "ee396574e69e59aed6ae64d764f5fc419b087b79a01d3f902832763807861060",
+        "actualImageReviewedByRoot": true
+      },
+      "poster": {
+        "bytes": 46680,
+        "sha256": "f3eec8edb8483f1c518b3d9f6ec074243e23f8823a3848ae8593b3391efb5292"
+      }
+    },
+    {
+      "slug": "neoclassical/alexander-persepolis-thorvaldsen-bergslien-a514",
+      "title": "Alexander the Great Provoked by Thaïs to Set Fire to Persepolis (posthumous marble)",
+      "artist": "Brynjulf Larsen Bergslien, after Bertel Thorvaldsen",
+      "date": "1865 (marble), after 1832 model",
+      "material": "Marble",
+      "currentLocation": "Thorvaldsens Museum, Copenhagen",
+      "accession": "A514",
+      "primarySource": "https://kataloget.thorvaldsensmuseum.dk/en/A514",
+      "providerSource": "https://sketchfab.com/3d-models/0c0861a5735d48fda51d230caba07d25",
+      "preservedSource": "https://huggingface.co/datasets/allenai/objaverse/resolve/556637099bf4fa79ea7b239d0d9c328b8a2e9ac8/glbs/000-019/0c0861a5735d48fda51d230caba07d25.glb",
+      "source": {
+        "uid": "0c0861a5735d48fda51d230caba07d25",
+        "bytes": 12885216,
+        "sha256": "5be88e86ad32a1c315a68ae68a378b36f4895394c8026089881f40d05f27ee5c",
+        "representation": "Unchanged selected preserved Objaverse distribution GLB; uploader-native authoring files are not asserted."
+      },
+      "license": {
+        "name": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/",
+        "evidenceUrl": "https://huggingface.co/datasets/allenai/objaverse/resolve/556637099bf4fa79ea7b239d0d9c328b8a2e9ac8/metadata/000-019.json.gz",
+        "snapshotUid": "0c0861a5735d48fda51d230caba07d25",
+        "snapshotRecordSha256": "e810d299af9e54d05161106fa27aa1d86006174d3e09d3cd52ea453732a694ae",
+        "snapshotField": "annotations[0c0861a5735d48fda51d230caba07d25].license = by",
+        "attribution": "3D scan by Geoffrey Marchal (geoffreymarchal), originally published on Sketchfab; preserved in AllenAI Objaverse 1.0 and Zenodo under CC BY 4.0. Physical object: Brynjulf Larsen Bergslien, after Bertel Thorvaldsen; Thorvaldsens Museum, A514.",
+        "basis": "Exact UID historical Objaverse annotation records license=by; use of this preserved historical asset does not rely on the current Sketchfab listing or on a Zenodo label alone."
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/neoclassical/alexander-persepolis-thorvaldsen-bergslien-a514/preview-b024b6bb5178.glb",
+        "bytes": 1412452,
+        "sourceBytes": 12885216,
+        "sourceFormat": "glb",
+        "faces": 399999,
+        "sourceFaces": 400785,
+        "sha256": "b024b6bb51788b1a988bc0d996af0ed48e2e837cf0644162146a05d01235c29f"
+      },
+      "measuredIntegrity": {
+        "faces": 400785,
+        "bratio": 0.002,
+        "ncomp": 1,
+        "largest_frac": 1
+      },
+      "transform": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0,
+          0,
+          1
+        ],
+        "status": "manual",
+        "note": "Upright native front approved from eight-direction paired preserved-source/serving inspection and the exact museum photograph. Concealed mounting back is unrecorded; complete relief face and captured context retained."
+      },
+      "appearance": {
+        "preserveSourceMaterials": true,
+        "originalRenderedDirectly": true,
+        "nativeFaces": 400785,
+        "previewFaces": 399999,
+        "topologySimplification": true,
+        "reconstruction": false,
+        "cropping": false,
+        "recoloring": false
+      },
+      "physicalDimensions": {
+        "status": "documented",
+        "dimensions": "H95×W198cm",
+        "sourceUrl": "https://kataloget.thorvaldsensmuseum.dk/en/A514",
+        "calibrationPerformed": false,
+        "exactSizeArEligible": false
+      },
+      "frames": [
+        {
+          "mode": "source-native",
+          "key": "FRONT",
+          "bytes": 552780,
+          "sha256": "a459dd58b27602f9ca0e0f2eb79a24e58a3bc3ce146d0134e90daa55334fe1c2"
+        },
+        {
+          "mode": "source-native",
+          "key": "RIGHT",
+          "bytes": 203610,
+          "sha256": "d869febd4e69a5df1a2d62f06bfb2b92c100d054612b1e0c94b2f9a111448930"
+        },
+        {
+          "mode": "source-native",
+          "key": "REVERSE",
+          "bytes": 456334,
+          "sha256": "ea4ca551ddb3887495b2c9cf13edda018b9902eebbde8c0f1fd0a9cf76d3ec34"
+        },
+        {
+          "mode": "source-native",
+          "key": "LEFT",
+          "bytes": 236202,
+          "sha256": "dfd0af9a9cb181835dc5119b8045d8123b2669e3a952546e1aab959a4733df45"
+        },
+        {
+          "mode": "source-native",
+          "key": "ABOVE",
+          "bytes": 125587,
+          "sha256": "332e014e87d6da4d38c46a3426df52bf0d66573035b092f08a17ee7797497e0f"
+        },
+        {
+          "mode": "source-native",
+          "key": "UNDERSIDE",
+          "bytes": 123803,
+          "sha256": "d01358b6b45aca5346329112d3fb8a41d5893eef1641b8cb179ee8c4df2b11e5"
+        },
+        {
+          "mode": "source-native",
+          "key": "FRONT-THREE-QUARTER",
+          "bytes": 524917,
+          "sha256": "c2eeff16ca10fd7531289aab324c9223ada1cc493fd2f80244dce361c53a97cd"
+        },
+        {
+          "mode": "source-native",
+          "key": "BACK-THREE-QUARTER",
+          "bytes": 435445,
+          "sha256": "f8e07334aa9b9fe1e640ed00dc40758cb2cab9ffd368f9df4d63b931aa66271d"
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "bytes": 552742,
+          "sha256": "303aea2ebb511f32dfdde847509af2c02660b85466a207c4252f04058209bfb7"
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "bytes": 202349,
+          "sha256": "b4ee9e2fd7eab6bfca5aa52a2730c50bb32f9b69cb0de10515fa422015957f16"
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "bytes": 456677,
+          "sha256": "08f05918781f592c8f50f904ddacc34d25cc1b612732065f984d8c17b1b4f874"
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "bytes": 236303,
+          "sha256": "9aa300d7cc94d1e1d054175de99b9ae7499bac2d44706f3a9fdba7cffe281cab"
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "bytes": 126163,
+          "sha256": "ac273e8b96a7573da06dbbe8bafbdcf45f25267990cd310b2abf5a751f843b2e"
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "bytes": 123435,
+          "sha256": "91b304c0a9b083abb984b3f020564780484c1b96ac9470f2c68f44c057f60dfc"
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "bytes": 523995,
+          "sha256": "09798693381283e193754fee6c39d4d3f823728b77583008e624af3899322bce"
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "bytes": 434633,
+          "sha256": "846d46857d9257c04366e2c99c58d97ab6a40124b3e943faf641b77e60468c63"
+        }
+      ],
+      "rootActualFramesReviewed": 16,
+      "independentVisualDecision": "The entire Alexander/Thaïs/Persepolis narrative and rectangular border match A514. All principal figures and faces remain present and coherent across front and oblique views.",
+      "captureScope": "Wall-mounted relief digitized from the accessible front. The flat mounting back, slab thickness and some concealed edge surfaces are unrecorded. A mirrored/double-sided view of the front from behind is not evidence of a captured physical reverse. Thin surrounding mounting-wall margins are retained. The sculpted front is complete.",
+      "finalThumbnail": {
+        "bytes": 45892,
+        "sha256": "feb1397ae74aace911ecbaed62367f13e58a9392212928c65ec0c7f20a6fe0a4",
+        "actualImageReviewedByRoot": true
+      },
+      "poster": {
+        "bytes": 61660,
+        "sha256": "d6bec641e0cd23aa9d04d6836234d4f7ed628ec46f634971bc1d8fa41f4a3584"
+      }
+    },
+    {
+      "slug": "neoclassical/baptismal-font-thorvaldsen-a555-plaster",
+      "title": "Baptismal Font (original plaster models)",
+      "artist": "Bertel Thorvaldsen",
+      "date": "1804–1808 (plaster relief models)",
+      "material": "Plaster",
+      "currentLocation": "Thorvaldsens Museum, Copenhagen",
+      "accession": "A555,1; A555,2; A555,3; A555,4",
+      "primarySource": "https://kataloget.thorvaldsensmuseum.dk/en/A555,1",
+      "providerSource": "https://sketchfab.com/3d-models/61607fe880d14e84aa5715d78f165bd2",
+      "preservedSource": "https://huggingface.co/datasets/allenai/objaverse/resolve/556637099bf4fa79ea7b239d0d9c328b8a2e9ac8/glbs/000-020/61607fe880d14e84aa5715d78f165bd2.glb",
+      "source": {
+        "uid": "61607fe880d14e84aa5715d78f165bd2",
+        "bytes": 13440348,
+        "sha256": "e46704b5a52db82640fb923bcd1ca352a52c6024381ac00c461d2b0d5e477223",
+        "representation": "Unchanged selected preserved Objaverse distribution GLB; uploader-native authoring files are not asserted."
+      },
+      "license": {
+        "name": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/",
+        "evidenceUrl": "https://huggingface.co/datasets/allenai/objaverse/resolve/556637099bf4fa79ea7b239d0d9c328b8a2e9ac8/metadata/000-020.json.gz",
+        "snapshotUid": "61607fe880d14e84aa5715d78f165bd2",
+        "snapshotRecordSha256": "34f6af294984c84a204f02083d013c431e35ea57e5cca31acc81336f80c7f06d",
+        "snapshotField": "annotations[61607fe880d14e84aa5715d78f165bd2].license = by",
+        "attribution": "3D scan by Geoffrey Marchal (geoffreymarchal), originally published on Sketchfab; preserved in AllenAI Objaverse1.0 and Zenodo under CC BY4.0. Physical object: Bertel Thorvaldsen; Thorvaldsens Museum, A555,1–A555,4.",
+        "basis": "Exact UID historical Objaverse annotation records license=by; use of this preserved historical asset does not rely on the current Sketchfab listing or on a Zenodo label alone."
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/neoclassical/baptismal-font-thorvaldsen-a555-plaster/preview-f9471729a6e0.glb",
+        "bytes": 1532428,
+        "sourceBytes": 13440348,
+        "sourceFormat": "glb",
+        "faces": 399999,
+        "sourceFaces": 407934,
+        "sha256": "f9471729a6e0b26974e7c0487842c04f561c48bd9ff5e9c0b99f7e2a6b613621"
+      },
+      "measuredIntegrity": {
+        "faces": 407934,
+        "bratio": 0.001,
+        "ncomp": 1,
+        "largest_frac": 1
+      },
+      "transform": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0,
+          0,
+          1
+        ],
+        "status": "manual",
+        "note": "Native upright Baptism of Christ opening approved from eight-direction paired preserved-source/serving inspection and four exact museum relief photographs. All four sculpted faces are complete; dark Three Hovering Angels texture, unrecorded floor-contact underside and minor jagged base edge are retained. Rear-lit yaw180 was a separate diagnostic only."
+      },
+      "appearance": {
+        "preserveSourceMaterials": true,
+        "originalRenderedDirectly": true,
+        "nativeFaces": 407934,
+        "previewFaces": 399999,
+        "topologySimplification": true,
+        "reconstruction": false,
+        "cropping": false,
+        "recoloring": false
+      },
+      "physicalDimensions": {
+        "status": "unknown",
+        "dimensions": "",
+        "sourceUrl": "https://kataloget.thorvaldsensmuseum.dk/en/A555,1",
+        "calibrationPerformed": false,
+        "exactSizeArEligible": false
+      },
+      "frames": [
+        {
+          "mode": "source-native",
+          "key": "FRONT",
+          "bytes": 655878,
+          "sha256": "b6a5485d637762aca084011a97bac3e9fc938633b6383ec5b50710b28e7ea413"
+        },
+        {
+          "mode": "source-native",
+          "key": "RIGHT",
+          "bytes": 535179,
+          "sha256": "963e19a59bb87ed59efbbfdba505670a23bf1ce5dd7dcee2314d8b4162e60239"
+        },
+        {
+          "mode": "source-native",
+          "key": "REVERSE",
+          "bytes": 344008,
+          "sha256": "3b9768f9c3ac153f4c72aaa693ba06c6a7643e49e249c64ffa231d7eb7846907"
+        },
+        {
+          "mode": "source-native",
+          "key": "LEFT",
+          "bytes": 513378,
+          "sha256": "e52bbeda4d3b2e7f1cb7e1b69336cea840e2d3484310359ca2946f81137fc4a5"
+        },
+        {
+          "mode": "source-native",
+          "key": "ABOVE",
+          "bytes": 527100,
+          "sha256": "b41b88212503808d3c0d4eb1b4d460013792c39af9d41dcfbd2914216419ea16"
+        },
+        {
+          "mode": "source-native",
+          "key": "UNDERSIDE",
+          "bytes": 621254,
+          "sha256": "cca0198a49287461f04adb9ccd151dd3e863fdeed97bc12197e7ea5d0fdbe006"
+        },
+        {
+          "mode": "source-native",
+          "key": "FRONT-THREE-QUARTER",
+          "bytes": 630445,
+          "sha256": "41f868c6a8e7b5e9d5a7728153f74bb066b89cc0a4d8517352ab1a445ce88085"
+        },
+        {
+          "mode": "source-native",
+          "key": "BACK-THREE-QUARTER",
+          "bytes": 462388,
+          "sha256": "5e8cb9a6fd92bef65f4a8734fe978dff2ebb523b06ffac6d35ca37926168989c"
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "bytes": 633713,
+          "sha256": "522507aa30f3bc011cf5231611302c7f1782cb6faf044cb8887c360c9bcc9c9c"
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "bytes": 510352,
+          "sha256": "8d7071fcb4d4b9bb2f3645cb02dfdc3c913cea32f5fec8768c28a55459b28c05"
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "bytes": 318779,
+          "sha256": "06a4c175b6a59de6041766aa98af8a21f0d4ead58a62f0cc05667cdd4e6a4b56"
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "bytes": 479957,
+          "sha256": "052521d1396a605b22d7b0d659c44068f2c8cc381b440025b5778a1576d2a645"
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "bytes": 502121,
+          "sha256": "348f6d28c9d9ee880291774ea9f91bf211d4b77296a5970986481874fc79fb32"
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "bytes": 598100,
+          "sha256": "c861a76d9d649af019c216978da1e3a880f33e872ccdb822fafa862bc3b14e9c"
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "bytes": 607693,
+          "sha256": "3dfab50a36ef7990be4ed41d510e707ab46e12971e20a6164637c172d9693e56"
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "bytes": 433108,
+          "sha256": "e60b5ce0e60164906cd7ede75b5181227f4369389a05a77168411367586aac9f"
+        }
+      ],
+      "rootActualFramesReviewed": 16,
+      "independentVisualDecision": "All four sculpted outer faces are present and correspond to the four Thorvaldsens Museum A555 plaster-model relief compositions. Full-size native and production diagnostic views resolve the dark Three Hovering Angels face: three heads, joined arms, wings and legs are retained. No missing head or face capture was observed. The unrecorded floor-contact underside is an explicitly disclosed mounting limitation.",
+      "captureScope": [
+        "Uneven capture lighting and cool/dark source texture persist; the Three Hovering Angels face is substantially darker than the other faces, even when turned toward the production key light. No material recoloring was requested.",
+        "The mounting/floor-contact underside is unrecorded. The underside view exposes backfaces/interior texture rather than a documented closed bottom; do not present this as a measured or complete underside.",
+        "The bottom floor-contact perimeter is mildly jagged. This localized mounting edge does not remove any sculpted face, head or limb.",
+        "Top rim and circular floral collar are retained. This visual review does not establish an accurately measured working basin depth.",
+        "Assembly is counted once; its four component reliefs are not separate additions."
+      ],
+      "finalThumbnail": {
+        "bytes": 43158,
+        "sha256": "94f2dfd10b4044d4c62e2ef686fdcbded5f8efe7f7f695a787885b028e410287",
+        "actualImageReviewedByRoot": true
+      },
+      "poster": {
+        "bytes": 57924,
+        "sha256": "79aecdbc54bcacb111cbc8cf5ae62f0b64a7d90ada98383ade9752aeae494535"
+      },
+      "countAsWorks": 1,
+      "primaryComponents": [
+        {
+          "direction": "FRONT",
+          "accession": "A555,1",
+          "title": "The Baptism of Christ",
+          "record_url": "https://kataloget.thorvaldsensmuseum.dk/en/A555,1",
+          "observation": "Christ and John, raised baptismal cup and long cross are retained."
+        },
+        {
+          "direction": "RIGHT",
+          "accession": "A555,4",
+          "title": "Christ Blessing the Children",
+          "record_url": "https://kataloget.thorvaldsensmuseum.dk/en/A555,4",
+          "observation": "Seated Christ and the two children match the primary composition."
+        },
+        {
+          "direction": "REVERSE",
+          "accession": "A555,3",
+          "title": "Three Hovering Angels",
+          "record_url": "https://kataloget.thorvaldsensmuseum.dk/en/A555,3",
+          "observation": "Three joined winged children with all heads, wings and limbs retained; very dark source texture requires closer viewing."
+        },
+        {
+          "direction": "LEFT",
+          "accession": "A555,2",
+          "title": "Mary with Jesus and John",
+          "record_url": "https://kataloget.thorvaldsensmuseum.dk/en/A555,2",
+          "observation": "Seated Mary, infant Jesus and standing John with cross match the primary composition."
+        }
+      ],
+      "separateDiagnosticFrames": [
+        {
+          "mode": "source-native",
+          "key": "FRONT",
+          "bytes": 445575,
+          "sha256": "ed97ffb700ce6ee5d732a00280837367a23e0372475b4b86b2bb5b7c4ade1925"
+        },
+        {
+          "mode": "source-native",
+          "key": "RIGHT",
+          "bytes": 509101,
+          "sha256": "4990c997450e6c5326fa97fb237b745ecc78ea5abd08918842622666f13a5b9c"
+        },
+        {
+          "mode": "source-native",
+          "key": "REVERSE",
+          "bytes": 574001,
+          "sha256": "92151e7adf33c03b685a393bc87bbdfc18983570b18e49e7375f3396d06caf7f"
+        },
+        {
+          "mode": "source-native",
+          "key": "LEFT",
+          "bytes": 525711,
+          "sha256": "d09b38a7f0f85a94a2fd5d183e8afa5241e83b76297aff505311fc9162353bdc"
+        },
+        {
+          "mode": "source-native",
+          "key": "ABOVE",
+          "bytes": 530567,
+          "sha256": "974cf46ceac59a5a5f28ab8ba4607214a23bfaf2854d02814e072ffd62de2ae4"
+        },
+        {
+          "mode": "source-native",
+          "key": "UNDERSIDE",
+          "bytes": 621070,
+          "sha256": "459a3521c48e2952c802ec688f0b65df5919d9e0466bfa7fb07eb75f014904ee"
+        },
+        {
+          "mode": "source-native",
+          "key": "FRONT-THREE-QUARTER",
+          "bytes": 500335,
+          "sha256": "62bad0d5bd719247d87e4a8feeb306cdfe5eafea3aea1d9db1b48caaa6e7c9c1"
+        },
+        {
+          "mode": "source-native",
+          "key": "BACK-THREE-QUARTER",
+          "bytes": 588001,
+          "sha256": "05553158ccda7abf8506160725fa4e3b4dfd5d43b80c0653562c648299928711"
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "bytes": 417490,
+          "sha256": "53e021a668d0416ed0e41e5b2abb48b230e168deef7637a478822d2589667406"
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "bytes": 477092,
+          "sha256": "983ad85d6dd495437022070f5f76c45957d312038cf1ac2c5ca313a9b07971a7"
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "bytes": 542180,
+          "sha256": "bad94f165bc47b7364c9d95afd63892a706eebd3f9e31e5187fb7270f49395f5"
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "bytes": 498852,
+          "sha256": "ff1b7eb4a9db76b50d35cd801c6e9e7d38ae4a3e2db0e09d1fdec1bffdf9c8dc"
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "bytes": 505202,
+          "sha256": "2aabbb64eb51639427de2bf2b4a965c8ed4206216575e000c2df249f063c7887"
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "bytes": 600350,
+          "sha256": "eeebd8564d52eaab13b2aa71fedb74918b28cb28c64594bb723745376916bfe6"
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "bytes": 469689,
+          "sha256": "533ec60316d6979bfc94f3753692509d1459818a4f663502ddfe825fefdf5077"
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "bytes": 562123,
+          "sha256": "7d9527cd275e44c303934d93e7735dac6fecc6a3fe76c1555252e5490b8867a1"
+        }
+      ],
+      "diagnosticPoseQualification": "The rear-lit diagnostic uses yaw180 solely to move Three Hovering Angels to the +Z lit FRONT view. Source and preview asset hashes and appearance hash equal the neutral review. This diagnostic pose is not the final delivered opening recommendation."
+    }
+  ],
+  "holds": [
+    {
+      "slug": "neoclassical/caroline-amalie-thorvaldsen-a164",
+      "uid": "3212b77097fe45dc8a92e402ca4a2231",
+      "reason": "The rear and top of the head contain a large irregular opening, while a long jagged missing strip runs down the back/drapery with exposed interior and stray colored surfaces. The frontal likeness matches A164, but a coherent complete captured head/back is not established. This is a freestanding figure, so the gap is not the expected unrecorded mounting back of a wall relief.",
+      "sourceSha256": "ffa65fa7b2912fd58e8edee99c729bd8a1b1812c48ac404a571dc054fd100fef"
+    },
+    {
+      "slug": "neoclassical/dancing-girl-thorvaldsen-a179",
+      "uid": "85c07e953d23422b8cfd955446e55d62",
+      "reason": "Full-resolution overhead source image shows most of the crown/top of the head as an open crater with a jagged rim below the hairline and visible hollow interior. The frontal body/dress/basket are coherent and match A179, but the missing cranial surface is not justified by documentation of the physical plaster.",
+      "sourceSha256": "e88df12349e44e4fc7cb637a82c838a5afb5a36dfb2692685aaea451bb00a084"
+    },
+    {
+      "slug": "neoclassical/ganymede-eagle-thorvaldsen-a44",
+      "uid": "f106f11a17bf425787f1880a474719fa",
+      "reason": "Overhead and side views expose a wide opening through the rear/top of the cap/head, with uncaptured gaps around the body/support interior and irregular extended base flaps. The eagle and frontal group match A44, but the missing head surface prevents acceptance as a complete freestanding capture.",
+      "sourceSha256": "721d64e51597a3fb19cabd4062f7c1ef164682641e9f7ae3e8756d5bb2d9df11"
+    }
+  ],
+  "metadata": {
+    "exactMuseumObjectsIdentified": true,
+    "primaryMuseumSources": true,
+    "originalModelsDistinguishedFromPosthumousMarbles": true,
+    "posthumousCarversCredited": [
+      "Georg Christian Freund",
+      "H. W. Bissen",
+      "Brynjulf Larsen Bergslien"
+    ],
+    "documentedPhysicalObjectDimensions": 9,
+    "unknownOverallPhysicalDimensions": 1,
+    "fontComponentDimensionsNotExtrapolated": true,
+    "fontAssemblyCountedOnce": true,
+    "physicalCalibrationPerformed": false,
+    "exactSizeArEnabled": false,
+    "manufactureOriginUnknownWing": "unfiled",
+    "scanLicense": "CC BY 4.0",
+    "scanAuthor": "Geoffrey Marchal",
+    "historicalLicenseEvidenceBoundToExactUidAndSourceBytes": true,
+    "currentListingTermsNotUsedAsHistoricalLicenseEvidence": true,
+    "underlyingArtworkRightsSeparate": true,
+    "previewsWithTopologySimplification": 7,
+    "sourceOriginalsUnchanged": true,
+    "noRepairOrReconstructionPerformed": true
+  },
+  "archiveEvidence": "docs/ingest/bertel-thorvaldsen-20261024-archive.json",
+  "archiveSummary": {
+    "providerOriginals": 13,
+    "originalBytes": 169759588,
+    "fullReadbacks": 6,
+    "totalVerifiedBytes": 174311215,
+    "allOriginalsPermanentlyBackedUp": true,
+    "originalsRetainedLocally": true
+  },
+  "exhibition": "the-price-of-victory",
+  "exhibitionAppends": [
+    "neoclassical/briseis-achilles-thorvaldsen-freund-a489",
+    "neoclassical/priam-achilles-thorvaldsen-freund-a775",
+    "neoclassical/hector-andromache-thorvaldsen-bissen-a776"
+  ],
+  "priorExhibitionContentCoverAndOrderingPreserved": true,
+  "featuredMembershipChanged": false
+}
