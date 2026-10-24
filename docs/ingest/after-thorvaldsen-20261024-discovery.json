@@ -1,0 +1,156 @@
+{
+  "schema": "atrium-bounded-roster-discovery/1",
+  "checkedAt": "2026-10-24T06:57:01.969419+00:00",
+  "baseCommit": "056e4bba965b427096b9b480ebeec3270e148fdc",
+  "catalogBaseline": {
+    "catalog": 2380,
+    "public": 2362,
+    "hidden": 18,
+    "sha256": "5e89e5af2431b6a321231714ac2e8019391ea8c761012df8403c7d5b3a5058be"
+  },
+  "requestedCriterion": "First artist after Thorvaldsen in roster order with at least ten distinct new eligible downloadable sculpture compositions, followed by acquisition, review, permanent private source backup and live deployment. Alternate casts or scans do not count as different compositions.",
+  "scope": "Bounded current provider, institution, Zenodo and immutable historical-metadata discovery. A metadata lead is not an acquired or visually approved work. This establishes a shortfall in the searched sources, not proof that undiscovered sources cannot exist.",
+  "roster": [
+    {
+      "position": 40,
+      "artist": "Augusta Savage",
+      "existingCompositions": 0,
+      "confirmedCurrentMetadataLeads": 0,
+      "additionalProvisionalLeads": 0,
+      "tenWorkPoolEstablished": false,
+      "finding": "Institutional scans are view-only, with no established eligible downloadable source package."
+    },
+    {
+      "position": 41,
+      "artist": "Gutzon Borglum",
+      "existingCompositions": 1,
+      "confirmedCurrentMetadataLeads": 2,
+      "additionalProvisionalLeads": 0,
+      "tenWorkPoolEstablished": false,
+      "finding": "Two distinct full-composition candidates. Details, an incomplete studio model, an uncertain replica, existing Thomas Paine and repeated Mount Rushmore meshes do not create ten new works."
+    },
+    {
+      "position": 42,
+      "artist": "Frederic Remington",
+      "existingCompositions": 0,
+      "confirmedCurrentMetadataLeads": 1,
+      "additionalProvisionalLeads": 0,
+      "tenWorkPoolEstablished": false,
+      "finding": "One Bronco Buster candidate; alternate Bronco and Rattlesnake scans are restricted, and other institutional scans are view-only."
+    },
+    {
+      "position": 43,
+      "artist": "Gustav Vigeland",
+      "existingCompositions": 3,
+      "confirmedCurrentMetadataLeads": 0,
+      "additionalProvisionalLeads": 6,
+      "tenWorkPoolEstablished": false,
+      "finding": "At most six generous new composition leads before historical-license, exact-identity and capture approval. Repeated scans and existing compositions excluded; Scan the World mirrors checked are noncommercial."
+    },
+    {
+      "position": 44,
+      "artist": "Aristide Maillol",
+      "existingCompositions": 9,
+      "confirmedCurrentMetadataLeads": 1,
+      "additionalProvisionalLeads": 0,
+      "tenWorkPoolEstablished": false,
+      "finding": "One confirmed current permissive/downloadable new composition lead, L\u2019Air. Most other discovered scans repeat existing compositions or carry noncommercial terms."
+    },
+    {
+      "position": 45,
+      "artist": "Jean-Baptiste Carpeaux",
+      "existingCompositions": 5,
+      "confirmedCurrentMetadataLeads": 0,
+      "additionalProvisionalLeads": 6,
+      "tenWorkPoolEstablished": false,
+      "finding": "Six potential distinct new composition leads, including historical-source cases that still need exact license/hash verification. Opera/Glyptotek versions of The Dance count once; existing compositions and restricted new scans excluded."
+    },
+    {
+      "position": 46,
+      "artist": "Antoine Bourdelle",
+      "existingCompositions": 2,
+      "confirmedCurrentMetadataLeads": 1,
+      "additionalProvisionalLeads": 1,
+      "tenWorkPoolEstablished": false,
+      "finding": "Coquelin is the confirmed physical-capture metadata lead; Apollo is provisional. Historical checks add no new distinct composition beyond the current pool."
+    },
+    {
+      "position": 47,
+      "artist": "Eduardo Chillida",
+      "existingCompositions": 2,
+      "confirmedCurrentMetadataLeads": 1,
+      "additionalProvisionalLeads": 1,
+      "tenWorkPoolEstablished": false,
+      "finding": "Tolerance is the confirmed metadata lead; the Cimadevilla/Elogio capture is provisional. Existing compositions, an AI-generated model and a historically noncommercial iron scan excluded."
+    },
+    {
+      "position": 48,
+      "artist": "Rachel Whiteread",
+      "existingCompositions": 0,
+      "confirmedCurrentMetadataLeads": 0,
+      "additionalProvisionalLeads": 0,
+      "tenWorkPoolEstablished": false,
+      "finding": "Exact artist, House and memorial searches establish no eligible new source; fuzzy unrelated model hits excluded."
+    }
+  ],
+  "historicalBourdelleCheck": {
+    "providerResultsDeduplicated": 44,
+    "currentNoncommercialUidsCheckedInPinnedObjaversePaths": 10,
+    "thoseUidsAbsent": 10,
+    "zenodoNameRecordsInspected": 127,
+    "zenodoModelRecords": 82,
+    "zenodoNoncommercialModelRecords": 80,
+    "zenodoPermissiveModelRecords": 2,
+    "permissiveModelsRepeatExistingHercules": true,
+    "cachedHistoricalRecordsChecked": 100000,
+    "additionalDistinctCompositions": 0
+  },
+  "metadataEvidence": [
+    {
+      "rosterRange": "40\u201342",
+      "bytes": 52208,
+      "sha256": "f67807edf52d2fd27428222066331d0b5ef7c57b2f5669ed463d2701a02f1427"
+    },
+    {
+      "rosterRange": "43\u201345",
+      "bytes": 14575,
+      "sha256": "e41ab5b6de91b6c65e282f6155b4866b534671f24f8924f43235b3a8326bfee2"
+    },
+    {
+      "rosterRange": "46\u201348",
+      "bytes": 2028,
+      "sha256": "611d480d3e77302b369be78b201b5598859d3cc075e1f170aedf88eb0cb4e37d"
+    }
+  ],
+  "representativeEligibleMetadataLeads": [
+    {
+      "artist": "Gutzon Borglum",
+      "title": "Lincoln bust",
+      "url": "https://sketchfab.com/3d-models/d83cb5a179e84baeaa5e1fea9e5ddaff"
+    },
+    {
+      "artist": "Gutzon Borglum",
+      "title": "The Aviator",
+      "url": "https://sketchfab.com/3d-models/6a3068daaaa14833b964a09d4ebe817e"
+    },
+    {
+      "artist": "Frederic Remington",
+      "title": "The Bronco Buster",
+      "url": "https://sketchfab.com/3d-models/349565893b494b05ae18ac9509c079ac"
+    },
+    {
+      "artist": "Antoine Bourdelle",
+      "title": "Coquelin en Crispin",
+      "url": "https://sketchfab.com/3d-models/d2071f42303c46e0881cd5425852af78"
+    }
+  ],
+  "result": {
+    "selectedArtist": null,
+    "tenWorkBatchEstablished": false,
+    "modelPayloadsFetched": 0,
+    "catalogWorksAdded": 0,
+    "siteDeployments": 0,
+    "collectionAndAssetBytesChanged": false,
+    "nextStep": "Owner choice required between revisiting earlier roster artists while retaining ten-work minimum, or allowing a smaller batch from the remaining artists."
+  }
+}
