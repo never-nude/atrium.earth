@@ -1,0 +1,27 @@
+{
+  "schema": "atrium-independent-release-audit/1",
+  "batch": "picasso-20261023",
+  "status": "pass",
+  "baseline_commit": "522ae65db92a859d25e9d2bc28a548e8e8f98a67",
+  "release_commit": "2087bd4955f2396ee80870c2e69de925011100f3",
+  "assistant_audit_sha256": "72dd823d2de4432df19799b247a44be17424e42c5e596d50b04d2d83df3c78be",
+  "counts": {
+    "catalog": 2360,
+    "public": 2342,
+    "hidden": 18,
+    "new_works": 5
+  },
+  "checks": [
+    "All 2,355 existing catalog rows unchanged except aggregate total.",
+    "Existing previews, orientations, appearance, dimensions and eligibility values preserved.",
+    "Render membership adds exactly five reviewed works.",
+    "Featured 250, homepage 192 and all 430 protected editorial assets unchanged.",
+    "All five source package byte counts and geometry counts match acquisition evidence.",
+    "Final cameras match actual reviewed production views.",
+    "All five thumbnail and poster hashes/bytes match the final review.",
+    "All 80 actual comparison frame bindings match.",
+    "Unknown version, material, date, manufacture origin and physical size qualified; exact-size eligibility disabled.",
+    "Three appropriate exhibition body placements with captions; existing covers preserved."
+  ],
+  "findings": []
+}
