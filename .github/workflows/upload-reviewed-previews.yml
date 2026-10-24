@@ -1,6 +1,11 @@
 name: Upload reviewed preview files to R2
 
 on:
+  push:
+    branches: [codex/picasso-20261023]
+    paths:
+      - .github/workflows/upload-reviewed-previews.yml
+      - docs/ingest/picasso-20261023-preview-upload.json
   workflow_dispatch:
     inputs:
       manifest:
@@ -29,7 +34,7 @@ jobs:
           node-version: 22
       - name: Download and verify reviewed serving files
         env:
-          MANIFEST: ${{ inputs.manifest }}
+          MANIFEST: ${{ inputs.manifest || 'docs/ingest/picasso-20261023-preview-upload.json' }}
         run: node scripts/stage-reviewed-previews.mjs
       - name: Upload immutable models and verify complete public readbacks
         env:
