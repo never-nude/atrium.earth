@@ -1,0 +1,617 @@
+{
+  "schema": "atrium-assistant-visual-review/1",
+  "batch": "carpeaux-three-20261026",
+  "status": "pass",
+  "reviewer": "Codex assistant actual inspection of all three accepted native/serving contacts and final rendered thumbnails",
+  "counts": {
+    "works": 3,
+    "comparisonFrames": 48,
+    "contacts": 3,
+    "finalThumbnails": 3
+  },
+  "sourceReference": "Exact unchanged immutable Objaverse distribution GLBs. No uploader-native authoring package claim.",
+  "scopeReports": [
+    {
+      "sha256": "d7341255d5b4fd63ee2e48fe542cefd4497bfeb610f06483ebe015a36264de37",
+      "bytes": 130383
+    },
+    {
+      "sha256": "5453ecc24b19496062bad06d52e32b56a1b15e22c90a2d7746e4068acd177ccb",
+      "bytes": 64997
+    }
+  ],
+  "cameraQualification": "Eight paired review directions use the common Y-up world frame. Final opening cameras select the reviewed front direction; no geometry or pose change.",
+  "works": [
+    {
+      "slug": "europe/carpeaux-girl-conch-shell-glyptotek-4c315e",
+      "sourceUid": "4c315ef9045c4283947bf598bf996690",
+      "title": "Girl with a Conch Shell (Glyptotek example)",
+      "original": {
+        "url": "https://huggingface.co/datasets/allenai/objaverse/resolve/556637099bf4fa79ea7b239d0d9c328b8a2e9ac8/glbs/000-099/4c315ef9045c4283947bf598bf996690.glb",
+        "sha256": "f3fec2c501c45046d5705e090316fb5567fa8300165945d6ea6bfde4387de27b",
+        "bytes": 11892324,
+        "representation": "Unchanged selected immutable Objaverse distribution GLB; uploader-native authoring package is not asserted."
+      },
+      "sourceUrl": "https://sketchfab.com/3d-models/the-girl-with-the-conch-shell-4c315ef9045c4283947bf598bf996690",
+      "primaryRecord": "https://ny-carlsbergfondet.dk/en/node/26878",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "licenseScope": "The exact UID historical annotation records a CC BY grant for the unchanged GLB preserved in the immutable Objaverse snapshot. The current Sketchfab listing is CC BY-NC-SA 4.0; that current listing does not grant BY use of a newly downloaded current file. This record relies exclusively on the preserved historical file and grant, with its exact SHA-256 and byte pin.",
+      "scanAuthor": "Geoffrey Marchal (geoffreymarchal)",
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/europe/carpeaux-girl-conch-shell-glyptotek-4c315e/preview-f3fec2c501c4.glb",
+        "sha256": "f3fec2c501c45046d5705e090316fb5567fa8300165945d6ea6bfde4387de27b",
+        "bytes": 11892324
+      },
+      "rawSourceFaces": 336533,
+      "rawPreviewFaces": 336533,
+      "measuredTopology": {
+        "source": {
+          "loadedRawFaces": 336533,
+          "measured": {
+            "faces": 336533,
+            "bratio": 0.001,
+            "ncomp": 1,
+            "largest_frac": 1
+          },
+          "status": "pass"
+        },
+        "preview": {
+          "loadedRawFaces": 336533,
+          "measured": {
+            "faces": 336533,
+            "bratio": 0.001,
+            "ncomp": 1,
+            "largest_frac": 1
+          },
+          "status": "pass"
+        }
+      },
+      "materialAppearance": "Exact unchanged source materials, textures and colors; no synthetic patina or recoloring.",
+      "processing": {
+        "tool": "Unchanged original serving copy",
+        "geometryCompression": "none",
+        "textureCompression": "none",
+        "simplificationApplied": false,
+        "geometryAndTextureResolutionUnchanged": true,
+        "servingIdenticalToOriginal": true,
+        "materialWorkflowConversion": "none",
+        "sourceReferenceQualification": "Unchanged incoming GLB reference.",
+        "noManualRecoloringOrRepair": true
+      },
+      "visualDecision": "PASS after actual inspection of all eight paired directions. Figure, shell, raised arms, feet and base are recorded without major exterior gaps; rough unrecorded underside closure is disclosed. Serving is byte-identical to the selected original.",
+      "views": [
+        {
+          "mode": "native-source",
+          "key": "FRONT",
+          "sha256": "dac0cfd6ec6d2f0d61f2d2b5bd41ccdf6e9f2680c79529511f04b5a57a1b6f04",
+          "bytes": 501253
+        },
+        {
+          "mode": "native-source",
+          "key": "RIGHT",
+          "sha256": "8b2b2ae2a6c8a1f04491a90fdfaeec3315216a9d141cb240d1c6ea2a5cb53906",
+          "bytes": 486042
+        },
+        {
+          "mode": "native-source",
+          "key": "REVERSE",
+          "sha256": "6bf7ca10240193e5c8d01992fbac5f4705a4092dd635ab625f8b34fa232d551d",
+          "bytes": 549401
+        },
+        {
+          "mode": "native-source",
+          "key": "LEFT",
+          "sha256": "3e6072bfebbdd6b2d19a19e944a03f8ba8a98b1b2c874f5b1307c2282211c56e",
+          "bytes": 520640
+        },
+        {
+          "mode": "native-source",
+          "key": "ABOVE",
+          "sha256": "07260dc40daebf6466f28d4886caae70aece5455e0f9426823234d987373eddd",
+          "bytes": 424627
+        },
+        {
+          "mode": "native-source",
+          "key": "UNDERSIDE",
+          "sha256": "6211196b63cbf24d63722c8e5e36e8d58f2b6af1782cd291340de8fadc537106",
+          "bytes": 563194
+        },
+        {
+          "mode": "native-source",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "1cf865666fc0c89c9b42ae1db175abac86af3202e2b06003b889409352595d3b",
+          "bytes": 444056
+        },
+        {
+          "mode": "native-source",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "6ca32d6c0b69d4cee177fac855ddfd2bbb1ce9234ab2495a0bcca7346f9ce46f",
+          "bytes": 469812
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "sha256": "e88143f37455271615ff52fb2548f6a66c01b148ff2e320fac4e04e596d92780",
+          "bytes": 501256
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "sha256": "5bc0e43f65194d54ef7b8178706247972929cc0b0c1d177c99b88c8daf2369b3",
+          "bytes": 486042
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "sha256": "aa73360f6439a11ce15eda5396e2d34a89291da4969fdd945d18e2e197a8180a",
+          "bytes": 549402
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "sha256": "658ace1deca6001fcc7c85ee1bac711de7b1c5827c80e1ec5e375edfdfd16682",
+          "bytes": 520639
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "sha256": "0eb483509bdb8c54f38ed007d835627a7178b1e8fca2f45eafb155264b3495d6",
+          "bytes": 424628
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "sha256": "6211196b63cbf24d63722c8e5e36e8d58f2b6af1782cd291340de8fadc537106",
+          "bytes": 563194
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "33f54beb0f2365823166f5fcc2af11882f65cfecbe53894297923659c9096e86",
+          "bytes": 444056
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "6ca32d6c0b69d4cee177fac855ddfd2bbb1ce9234ab2495a0bcca7346f9ce46f",
+          "bytes": 469812
+        }
+      ],
+      "captureLabel": "Photogrammetry by Geoffrey Marchal using Autodesk Memento, at the Ny Carlsberg Glyptotek according to the photographer; the figure’s exterior is recorded from multiple sides; rough closure beneath the base does not document the physical underside.",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0,
+          0,
+          1
+        ],
+        "status": "manual",
+        "note": "Upright Y-up basis and complete recorded exterior reviewed in eight paired source/serving directions. Opening camera selects an already reviewed direction."
+      },
+      "contact": {
+        "sha256": "eb7ea375aba60902d5a850191f42bf9c244fafd1c8a7cee8cd94fb57218a01f6",
+        "bytes": 198744
+      },
+      "thumbnail": {
+        "sha256": "661a4e27fda8a0e3fb1c619578df2597bddbd325e3a87e44fbc41ba15e545794",
+        "bytes": 34910
+      },
+      "poster": {
+        "sha256": "898d11dc1515a11c716fbcf4ae712787c173ddf7c5d3a63b4cbb01dae9af61d2",
+        "bytes": 46934
+      },
+      "finalThumbnailActuallyReviewed": true
+    },
+    {
+      "slug": "europe/carpeaux-wounded-cupid-glyptotek-68a766",
+      "sourceUid": "68a7662c3e7d46af8220a1571f46b81f",
+      "title": "Wounded Cupid (Glyptotek example)",
+      "original": {
+        "url": "https://huggingface.co/datasets/allenai/objaverse/resolve/556637099bf4fa79ea7b239d0d9c328b8a2e9ac8/glbs/000-015/68a7662c3e7d46af8220a1571f46b81f.glb",
+        "sha256": "f4e6f2648dfd59ccb0984b4f79648bfc47be055309fbe0cfc393c0dc7ca7c6ff",
+        "bytes": 11852880,
+        "representation": "Unchanged selected immutable Objaverse distribution GLB; uploader-native authoring package is not asserted."
+      },
+      "sourceUrl": "https://sketchfab.com/3d-models/wounded-cupid-68a7662c3e7d46af8220a1571f46b81f",
+      "primaryRecord": "https://glyptoteket.dk/udstillinger/permanente-udstillinger/fransk-dansk-skulptur",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "licenseScope": "The exact UID historical annotation records a CC BY grant for the unchanged GLB preserved in the immutable Objaverse snapshot. The current Sketchfab listing is CC BY-NC-SA 4.0; that current listing does not grant BY use of a newly downloaded current file. This record relies exclusively on the preserved historical file and grant, with its exact SHA-256 and byte pin.",
+      "scanAuthor": "Geoffrey Marchal (geoffreymarchal)",
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/europe/carpeaux-wounded-cupid-glyptotek-68a766/preview-f4e6f2648dfd.glb",
+        "sha256": "f4e6f2648dfd59ccb0984b4f79648bfc47be055309fbe0cfc393c0dc7ca7c6ff",
+        "bytes": 11852880
+      },
+      "rawSourceFaces": 329098,
+      "rawPreviewFaces": 329098,
+      "measuredTopology": {
+        "source": {
+          "loadedRawFaces": 329098,
+          "measured": {
+            "faces": 329098,
+            "bratio": 0.002,
+            "ncomp": 1,
+            "largest_frac": 1
+          },
+          "status": "pass"
+        },
+        "preview": {
+          "loadedRawFaces": 329098,
+          "measured": {
+            "faces": 329098,
+            "bratio": 0.002,
+            "ncomp": 1,
+            "largest_frac": 1
+          },
+          "status": "pass"
+        }
+      },
+      "materialAppearance": "Exact unchanged source materials, textures and colors; no synthetic patina or recoloring.",
+      "processing": {
+        "tool": "Unchanged original serving copy",
+        "geometryCompression": "none",
+        "textureCompression": "none",
+        "simplificationApplied": false,
+        "geometryAndTextureResolutionUnchanged": true,
+        "servingIdenticalToOriginal": true,
+        "materialWorkflowConversion": "none",
+        "sourceReferenceQualification": "Unchanged incoming GLB reference.",
+        "noManualRecoloringOrRepair": true
+      },
+      "visualDecision": "PASS after actual inspection of all eight paired directions. Head, hands, wings, legs and base have no major exterior capture loss. Authored darker reverse lighting and rough underside closure are retained and qualified. Serving is byte-identical to the selected original.",
+      "views": [
+        {
+          "mode": "native-source",
+          "key": "FRONT",
+          "sha256": "7c5b5cefd3a42b2b41f29bbb895af51273eeccf1d5091ae81c4bb77d778257f5",
+          "bytes": 669065
+        },
+        {
+          "mode": "native-source",
+          "key": "RIGHT",
+          "sha256": "5ccf18658f995c970c7edae956532a29b41c0f5eef2f3b3bb342018771b50fab",
+          "bytes": 463540
+        },
+        {
+          "mode": "native-source",
+          "key": "REVERSE",
+          "sha256": "8e3b317d45afed3d37f7c939d25d5d1c730cd79369209eb988e635d95e0ed932",
+          "bytes": 567575
+        },
+        {
+          "mode": "native-source",
+          "key": "LEFT",
+          "sha256": "e9fb5c554ead997967d133de866e1ae778731152c9ed62da4b4288e836f0b4c4",
+          "bytes": 506870
+        },
+        {
+          "mode": "native-source",
+          "key": "ABOVE",
+          "sha256": "425f88111f6e853db39b2d28e91cadaff623805e67c63a3f655b1a98359aaa7e",
+          "bytes": 339909
+        },
+        {
+          "mode": "native-source",
+          "key": "UNDERSIDE",
+          "sha256": "4682933a1653ca23d33da6644f4c4cbc12596443a7138c8385f14e5a0186a41a",
+          "bytes": 444585
+        },
+        {
+          "mode": "native-source",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "9b936a1e31752923839d0b02b0b38d648e457a1b42eed02df2ea8cbcf14c5bc8",
+          "bytes": 477993
+        },
+        {
+          "mode": "native-source",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "7411b1ebb34dab7a32461af0c6a0782454013437a1e87da94ef402214e5089c6",
+          "bytes": 454717
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "sha256": "19dcd37f237411739f7ae5443a12ef8ec3525579b85d1d8383bf153b7d8abe32",
+          "bytes": 669061
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "sha256": "5ccf18658f995c970c7edae956532a29b41c0f5eef2f3b3bb342018771b50fab",
+          "bytes": 463540
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "sha256": "59f142e9d04dc8b890223bdb059933211d25013a9a3321a1bc5807ebc49b37ef",
+          "bytes": 567575
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "sha256": "6de416c3085338576fc30e756b46921d6ba687c00940b650ae6aac53a321a4bb",
+          "bytes": 506863
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "sha256": "9c346dbc148bdb6d3e5fdd702cb5ca377c2d592336e1459882e805c3b2580f2d",
+          "bytes": 339911
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "sha256": "8d56c2bbb25682ffecde23273b9044c4c02f264c1fb914b2af49c92adf3ec50f",
+          "bytes": 444581
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "9b936a1e31752923839d0b02b0b38d648e457a1b42eed02df2ea8cbcf14c5bc8",
+          "bytes": 477993
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "7b83bfefa31c9f6d529b2e16345d933cbe35034035aeb2dcbabc0ceaca18fb38",
+          "bytes": 454716
+        }
+      ],
+      "captureLabel": "Photogrammetry by Geoffrey Marchal using Autodesk Memento, at the Ny Carlsberg Glyptotek according to the photographer; the figure’s exterior is recorded from multiple sides; rough closure beneath the base does not document the physical underside.",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0,
+          0,
+          1
+        ],
+        "status": "manual",
+        "note": "Upright Y-up basis and complete recorded exterior reviewed in eight paired source/serving directions. Opening camera selects an already reviewed direction."
+      },
+      "contact": {
+        "sha256": "ce89f1b493aaae57150c2e2e75575d3f6dc28b69e19d3f276bd9a3efbb7bef71",
+        "bytes": 200412
+      },
+      "thumbnail": {
+        "sha256": "352c22b3f795c23808130fe7ce3faf91edaa9d2e80c9f9c2c6bc4cc93741e074",
+        "bytes": 55994
+      },
+      "poster": {
+        "sha256": "e39de95a78141f59e625066591e0c48c029c26a947664598f74ba3043d2ba247",
+        "bytes": 75026
+      },
+      "finalThumbnailActuallyReviewed": true
+    },
+    {
+      "slug": "europe/carpeaux-dance-garnier-copy-3eb310",
+      "sourceUid": "3eb3104e246c43f6ac6cb47e19f229f7",
+      "title": "The Dance (1964 Palais Garnier façade copy)",
+      "original": {
+        "url": "https://huggingface.co/datasets/allenai/objaverse/resolve/556637099bf4fa79ea7b239d0d9c328b8a2e9ac8/glbs/000-110/3eb3104e246c43f6ac6cb47e19f229f7.glb",
+        "sha256": "7bc70c41ae92f6e7f3e9b91b39eff02369ece9b53064be03fd86659cb1c86058",
+        "bytes": 39195164,
+        "representation": "Unchanged selected immutable Objaverse distribution GLB; uploader-native authoring package is not asserted."
+      },
+      "sourceUrl": "https://sketchfab.com/3d-models/la-danse-in-opera-house-of-paris-3eb3104e246c43f6ac6cb47e19f229f7",
+      "primaryRecord": "https://www.musee-orsay.fr/fr/ressources/parcours-lopera-de-charles-garnier-80",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "licenseScope": "The exact UID historical annotation records CC BY for the unchanged GLB in the immutable Objaverse snapshot. The compressed metadata SHA-256 and exact size are bound in the source selection, and current provider metadata also states CC BY 4.0. This is the selected distribution GLB, not an asserted uploader-native authoring package. Keep photographer credit and identify serving changes.",
+      "scanAuthor": "Hoang Hiep Vu (HoangHiepVu)",
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/europe/carpeaux-dance-garnier-copy-3eb310/preview-7bc70c41ae92.glb",
+        "sha256": "7bc70c41ae92f6e7f3e9b91b39eff02369ece9b53064be03fd86659cb1c86058",
+        "bytes": 39195164
+      },
+      "rawSourceFaces": 1050416,
+      "rawPreviewFaces": 1050416,
+      "measuredTopology": {
+        "source": {
+          "loadedRawFaces": 1050416,
+          "bounds": [
+            [
+              -39.28899002075195,
+              -25.296992301940918,
+              -9.005982398986818
+            ],
+            [
+              2.3656818866729736,
+              30.006457328796383,
+              34.94179058074952
+            ]
+          ],
+          "measured": {
+            "faces": 1050416,
+            "bratio": 0.001,
+            "ncomp": 1,
+            "largest_frac": 1
+          },
+          "status": "pass"
+        },
+        "preview": {
+          "loadedRawFaces": 1050416,
+          "bounds": [
+            [
+              -39.28899002075195,
+              -25.296992301940918,
+              -9.005982398986818
+            ],
+            [
+              2.3656818866729736,
+              30.006457328796383,
+              34.94179058074952
+            ]
+          ],
+          "measured": {
+            "faces": 1050416,
+            "bratio": 0.001,
+            "ncomp": 1,
+            "largest_frac": 1
+          },
+          "status": "pass"
+        }
+      },
+      "materialAppearance": "Exact unchanged source materials, textures and colors; no synthetic patina or recoloring.",
+      "processing": {
+        "tool": "Unchanged original serving copy",
+        "geometryCompression": "none",
+        "textureCompression": "none",
+        "simplificationApplied": false,
+        "geometryAndTextureResolutionUnchanged": true,
+        "servingIdenticalToOriginal": true,
+        "materialWorkflowConversion": "none",
+        "sourceReferenceQualification": "Unchanged immutable Objaverse distribution GLB; uploader-native authoring file not asserted.",
+        "noAutomaticPose": true,
+        "noManualRecoloringOrRepair": true
+      },
+      "visualDecision": "PASS as an architectural façade context after actual eight-direction inspection. The dancing figures, faces, extended arms and pedestal are recorded; the missing thumb is documented by the photographer as physical condition. Rough contextual building edges and unrecorded backs are disclosed. This is not an isolated 360-degree sculpture. Serving is byte-identical to the selected original. Unrecorded upper/rear surfaces, flat source closures behind the elevated group and doubled mirrored reverse textures remain explicit capture limits.",
+      "views": [
+        {
+          "mode": "native-source",
+          "key": "FRONT",
+          "sha256": "196ab2ee04f9f2d7d0b24a036222a26a09c1ef68f9132d1bc86e091126d98234",
+          "bytes": 627220
+        },
+        {
+          "mode": "native-source",
+          "key": "RIGHT",
+          "sha256": "dd74aeeb41c5dbdf375217d4afcca5412409eb86a8ffa59f02d06a4e82f867d8",
+          "bytes": 932719
+        },
+        {
+          "mode": "native-source",
+          "key": "REVERSE",
+          "sha256": "867b5f8c00a4bccf5b5ef6e65e70b094e34373019333cf882d7f30cd1f631d95",
+          "bytes": 710967
+        },
+        {
+          "mode": "native-source",
+          "key": "LEFT",
+          "sha256": "e1069e040e0a3a1987532261a835f423daa4c835d199d6dc1bf7976bc3b83649",
+          "bytes": 947764
+        },
+        {
+          "mode": "native-source",
+          "key": "ABOVE",
+          "sha256": "697111ad67e84f1bb38816b0f53360446f39af765c45c196d36e5a0034f39e31",
+          "bytes": 490491
+        },
+        {
+          "mode": "native-source",
+          "key": "UNDERSIDE",
+          "sha256": "d3d5e1f6764814e0f90335fbb1be8cb8748edbfc3de91d55fa0eea35d83048d9",
+          "bytes": 676117
+        },
+        {
+          "mode": "native-source",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "d24197a31b69e76bf4bca1554556cb79fb2893d84409a890a38f49d1302a1239",
+          "bytes": 633040
+        },
+        {
+          "mode": "native-source",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "b3a0f3b1098efbbe28f0efc7114f1a4a260a0a1d6c777b9b451268c9de03e607",
+          "bytes": 605059
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "sha256": "e7fc492ce289fb5351db98610ef1d971a177d83fdfc5771f4a31d4d1f49efa15",
+          "bytes": 627212
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "sha256": "46e8cc3d703089d296dd92d63164e38131b7f2927cc5f717b16d6574a74b527b",
+          "bytes": 932729
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "sha256": "7e3547662aca83b5d278b8c492a0f8b7d49aae806f2cef23fd4d5ea0c45d9fad",
+          "bytes": 710957
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "sha256": "e1db7c7e249516cbd3d1c9a4d7868793d85b6e18fc0c5566411632747e7388fc",
+          "bytes": 947746
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "sha256": "ac788361c3215494ad91338ac6f59159c2625a2d04647ad86caaf8599404f633",
+          "bytes": 490487
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "sha256": "96a0bce11b65c83130ce4d1c51b4dafefe92b90ee96cf1c0e0123ec7cd870a31",
+          "bytes": 676115
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "1819242d1a3fc650416af0a2877e44b6d74456e01eee162797d4e6d5db33a1d7",
+          "bytes": 633044
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "f322e9218cac68d56d8de1811c7da534373b122493799bec88c5f6096ef04c1d",
+          "bytes": 605045
+        }
+      ],
+      "captureLabel": "Photogrammetry by Hoang Hiep Vu from 65 photographs taken on 26 July 2015; the façade-mounted copy is recorded with adjacent architecture, pedestal and stairs; upper and rear surfaces behind the group are unrecorded, with flat scan closures; cut building and paving edges and mirrored reverse textures do not describe a complete freestanding object.",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          1,
+          0,
+          0
+        ],
+        "status": "manual",
+        "note": "Upright Y-up basis and complete recorded exterior reviewed in eight paired source/serving directions. Opening camera selects an already reviewed direction."
+      },
+      "contact": {
+        "sha256": "330c3dddfaf6d06ca34584b58ecfd8957c1028fd8d19369c4a9404d37bbd69e1",
+        "bytes": 273820
+      },
+      "thumbnail": {
+        "sha256": "56bfcd4779e3af14cf71bd02ee5628bf11229dbff6eb34f940755f763bb06ef1",
+        "bytes": 107272
+      },
+      "poster": {
+        "sha256": "12b407e9f38655d26fc3bbaf856d1de49c9a9e5ef2c51f89e3c185d2b9880499",
+        "bytes": 143420
+      },
+      "finalThumbnailActuallyReviewed": true
+    }
+  ],
+  "physicalDimensionsUnknown": true,
+  "exactSizeArEligible": false,
+  "featuredSelectionUnchanged": true,
+  "sourceCleanupPerformed": false,
+  "checkedAt": "2026-10-26T18:37:42.340Z"
+}
