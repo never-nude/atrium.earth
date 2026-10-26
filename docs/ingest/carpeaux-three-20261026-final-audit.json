@@ -1,0 +1,252 @@
+{
+  "schema": "atrium-independent-final-audit/1",
+  "batch": "carpeaux-three-20261026",
+  "baselineCommit": "1665a600c32542f47fd16b4759844cb2b4d53023",
+  "checkedAt": "2026-10-26T18:40:09.699307+00:00",
+  "status": "pass",
+  "catalogCounts": {
+    "before": 2391,
+    "added": 3,
+    "after": 2394
+  },
+  "checks": {
+    "explicitFinalAcceptance": true,
+    "exactThreeSelectedWorks": true,
+    "exact2391PlusThree": true,
+    "allOldRowsUnchangedExceptTotal": true,
+    "indicesAndTotals": true,
+    "heldFisherboyAndFountainAbsent": true,
+    "previewsAppendOnlyThree": true,
+    "appearance-overridesAppendOnlyThree": true,
+    "orientationsAppendOnlyThree": true,
+    "physical-dimensionsAppendOnlyThree": true,
+    "spatial-eligibilityAppendOnlyThree": true,
+    "rendersAppendOnlyThree": true,
+    "featured-worksUnchanged": true,
+    "material-appearancesUnchanged": true,
+    "display-recommendationsUnchanged": true,
+    "identity-correctionsUnchanged": true,
+    "spatial-display-defaultsUnchanged": true,
+    "oldAdditionSettingsUnchanged": true,
+    "onlyOptionalGirlDanceCuratedAppends": true,
+    "finalScopeReportsBound": true,
+    "allSelectedAssetsAndMetadata": true,
+    "noRuntimeSourceOrPriorAssetEdits": true
+  },
+  "works": [
+    {
+      "slug": "europe/carpeaux-girl-conch-shell-glyptotek-4c315e",
+      "sourceUid": "4c315ef9045c4283947bf598bf996690",
+      "original": {
+        "url": "https://huggingface.co/datasets/allenai/objaverse/resolve/556637099bf4fa79ea7b239d0d9c328b8a2e9ac8/glbs/000-099/4c315ef9045c4283947bf598bf996690.glb",
+        "sha256": "f3fec2c501c45046d5705e090316fb5567fa8300165945d6ea6bfde4387de27b",
+        "bytes": 11892324,
+        "representation": "Unchanged selected immutable Objaverse distribution GLB; uploader-native authoring package is not asserted."
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/europe/carpeaux-girl-conch-shell-glyptotek-4c315e/preview-f3fec2c501c4.glb",
+        "sha256": "f3fec2c501c45046d5705e090316fb5567fa8300165945d6ea6bfde4387de27b",
+        "bytes": 11892324
+      },
+      "rawSourceFaces": 336533,
+      "rawPreviewFaces": 336533,
+      "contact": {
+        "sha256": "eb7ea375aba60902d5a850191f42bf9c244fafd1c8a7cee8cd94fb57218a01f6",
+        "bytes": 198744
+      },
+      "thumbnail": {
+        "sha256": "661a4e27fda8a0e3fb1c619578df2597bddbd325e3a87e44fbc41ba15e545794",
+        "bytes": 34910
+      },
+      "poster": {
+        "sha256": "898d11dc1515a11c716fbcf4ae712787c173ddf7c5d3a63b4cbb01dae9af61d2",
+        "bytes": 46934
+      },
+      "localAssetChecks": {
+        "sourceFullHashAndBytes": true,
+        "sourceAndReferenceRenderBindings": true,
+        "servingFullHashAndBytes": true,
+        "rawCountsNotConflated": true,
+        "selfContained": true,
+        "appearanceRetained": true,
+        "all16FramesBound": true,
+        "finalReview16FramePinsBound": true,
+        "unchangedServingFile": true,
+        "finalThumbnailActuallyReviewed": true,
+        "contactBound": true,
+        "finalThumbnailBound": true,
+        "finalPosterBound": true,
+        "unknownScaleArDisabled": true,
+        "captureLabelBound": true,
+        "orientationBound": true,
+        "historicalGrantFullHashAndBytes": true,
+        "publicLicenseMatchesExactGrant": true,
+        "unfiledUnknownVersionAndUnderside": true
+      }
+    },
+    {
+      "slug": "europe/carpeaux-wounded-cupid-glyptotek-68a766",
+      "sourceUid": "68a7662c3e7d46af8220a1571f46b81f",
+      "original": {
+        "url": "https://huggingface.co/datasets/allenai/objaverse/resolve/556637099bf4fa79ea7b239d0d9c328b8a2e9ac8/glbs/000-015/68a7662c3e7d46af8220a1571f46b81f.glb",
+        "sha256": "f4e6f2648dfd59ccb0984b4f79648bfc47be055309fbe0cfc393c0dc7ca7c6ff",
+        "bytes": 11852880,
+        "representation": "Unchanged selected immutable Objaverse distribution GLB; uploader-native authoring package is not asserted."
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/europe/carpeaux-wounded-cupid-glyptotek-68a766/preview-f4e6f2648dfd.glb",
+        "sha256": "f4e6f2648dfd59ccb0984b4f79648bfc47be055309fbe0cfc393c0dc7ca7c6ff",
+        "bytes": 11852880
+      },
+      "rawSourceFaces": 329098,
+      "rawPreviewFaces": 329098,
+      "contact": {
+        "sha256": "ce89f1b493aaae57150c2e2e75575d3f6dc28b69e19d3f276bd9a3efbb7bef71",
+        "bytes": 200412
+      },
+      "thumbnail": {
+        "sha256": "352c22b3f795c23808130fe7ce3faf91edaa9d2e80c9f9c2c6bc4cc93741e074",
+        "bytes": 55994
+      },
+      "poster": {
+        "sha256": "e39de95a78141f59e625066591e0c48c029c26a947664598f74ba3043d2ba247",
+        "bytes": 75026
+      },
+      "localAssetChecks": {
+        "sourceFullHashAndBytes": true,
+        "sourceAndReferenceRenderBindings": true,
+        "servingFullHashAndBytes": true,
+        "rawCountsNotConflated": true,
+        "selfContained": true,
+        "appearanceRetained": true,
+        "all16FramesBound": true,
+        "finalReview16FramePinsBound": true,
+        "unchangedServingFile": true,
+        "finalThumbnailActuallyReviewed": true,
+        "contactBound": true,
+        "finalThumbnailBound": true,
+        "finalPosterBound": true,
+        "unknownScaleArDisabled": true,
+        "captureLabelBound": true,
+        "orientationBound": true,
+        "historicalGrantFullHashAndBytes": true,
+        "publicLicenseMatchesExactGrant": true,
+        "unfiledUnknownVersionAndUnderside": true
+      }
+    },
+    {
+      "slug": "europe/carpeaux-dance-garnier-copy-3eb310",
+      "sourceUid": "3eb3104e246c43f6ac6cb47e19f229f7",
+      "original": {
+        "url": "https://huggingface.co/datasets/allenai/objaverse/resolve/556637099bf4fa79ea7b239d0d9c328b8a2e9ac8/glbs/000-110/3eb3104e246c43f6ac6cb47e19f229f7.glb",
+        "sha256": "7bc70c41ae92f6e7f3e9b91b39eff02369ece9b53064be03fd86659cb1c86058",
+        "bytes": 39195164,
+        "representation": "Unchanged selected immutable Objaverse distribution GLB; uploader-native authoring package is not asserted."
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/europe/carpeaux-dance-garnier-copy-3eb310/preview-7bc70c41ae92.glb",
+        "sha256": "7bc70c41ae92f6e7f3e9b91b39eff02369ece9b53064be03fd86659cb1c86058",
+        "bytes": 39195164
+      },
+      "rawSourceFaces": 1050416,
+      "rawPreviewFaces": 1050416,
+      "contact": {
+        "sha256": "330c3dddfaf6d06ca34584b58ecfd8957c1028fd8d19369c4a9404d37bbd69e1",
+        "bytes": 273820
+      },
+      "thumbnail": {
+        "sha256": "56bfcd4779e3af14cf71bd02ee5628bf11229dbff6eb34f940755f763bb06ef1",
+        "bytes": 107272
+      },
+      "poster": {
+        "sha256": "12b407e9f38655d26fc3bbaf856d1de49c9a9e5ef2c51f89e3c185d2b9880499",
+        "bytes": 143420
+      },
+      "localAssetChecks": {
+        "sourceFullHashAndBytes": true,
+        "sourceAndReferenceRenderBindings": true,
+        "servingFullHashAndBytes": true,
+        "rawCountsNotConflated": true,
+        "selfContained": true,
+        "appearanceRetained": true,
+        "all16FramesBound": true,
+        "finalReview16FramePinsBound": true,
+        "unchangedServingFile": true,
+        "finalThumbnailActuallyReviewed": true,
+        "contactBound": true,
+        "finalThumbnailBound": true,
+        "finalPosterBound": true,
+        "unknownScaleArDisabled": true,
+        "captureLabelBound": true,
+        "orientationBound": true,
+        "historicalGrantFullHashAndBytes": true,
+        "publicLicenseMatchesExactGrant": true,
+        "danceCopyCreditAndOriginQualified": true
+      }
+    }
+  ],
+  "finalReview": {
+    "path": "docs/ingest/carpeaux-three-20261026-final-review.json",
+    "bytes": 24840,
+    "sha256": "518898e642ade6114708a31c5a190e81651b5e886c013d09672203e847d0798b"
+  },
+  "visualReportPins": [
+    {
+      "bytes": 130383,
+      "sha256": "d7341255d5b4fd63ee2e48fe542cefd4497bfeb610f06483ebe015a36264de37"
+    },
+    {
+      "bytes": 64997,
+      "sha256": "5453ecc24b19496062bad06d52e32b56a1b15e22c90a2d7746e4068acd177ccb"
+    }
+  ],
+  "curatedChanges": [
+    {
+      "path": "/wallTexts/bodies-in-motion/captions",
+      "appendOnly": true,
+      "added": [
+        {
+          "slug": "europe/carpeaux-girl-conch-shell-glyptotek-4c315e",
+          "text": "A raised arm, a twisting torso and a hand brought toward the ear turn listening into a full-body gesture. The shell draws the pose upward while the seated figure keeps its balance."
+        },
+        {
+          "slug": "europe/carpeaux-dance-garnier-copy-3eb310",
+          "text": "The ring of dancers carries movement around the central figure and into the façade. This is the 1964 replacement made in Paul Belmondo’s workshop, executed by Jean Juge after Carpeaux. Its architectural setting remains part of the capture, rather than an invented freestanding sculpture."
+        }
+      ]
+    },
+    {
+      "path": "/wallTexts/bodies-in-motion/workSlugs",
+      "appendOnly": true,
+      "added": [
+        "europe/carpeaux-girl-conch-shell-glyptotek-4c315e",
+        "europe/carpeaux-dance-garnier-copy-3eb310"
+      ]
+    }
+  ],
+  "independentActualImageInspection": {
+    "pairedContactSheets": 3,
+    "nativeAndServingFramesRepresented": 48,
+    "finalThumbnails": 3,
+    "findings": [
+      {
+        "slug": "europe/carpeaux-girl-conch-shell-glyptotek-4c315e",
+        "finding": "Exterior figure, shell, limbs and base remain legible; paired source and serving appearances match. Rough underside closure remains disclosed."
+      },
+      {
+        "slug": "europe/carpeaux-wounded-cupid-glyptotek-68a766",
+        "finding": "Figure, wings, crossed legs and base remain legible; paired source and serving appearances match, including the darker reverse. Rough underside closure remains disclosed."
+      },
+      {
+        "slug": "europe/carpeaux-dance-garnier-copy-3eb310",
+        "finding": "Accepted as a mounted façade context capture with architecture and stairs. Paired source and serving appearances match. Upper and rear gaps, flat closures and mirrored reverse textures remain explicit limitations; this is not a complete freestanding object."
+      }
+    ]
+  },
+  "identityAndScale": "All three works remain Unfiled because manufacture location is unestablished. Exact Glyptotek versions remain unconfirmed. The Dance is the 1964 façade replacement, credited to Paul Belmondo workshop / Jean Juge after Carpeaux. No borrowed dimensions or original accession. All physical scales remain unknown and exact-size AR is disabled.",
+  "heldExcluded": [
+    "Fisherboy 55d4a8e6df96478aa5ab50ac43213451",
+    "Observatoire fountain 2fd367e20a32409b9e85a812b09f152c"
+  ],
+  "scope": "Independent local integration, exact file and grant pin audit plus actual contact-sheet and final-thumbnail inspection. This report does not independently certify remote archive or live deployment state."
+}
