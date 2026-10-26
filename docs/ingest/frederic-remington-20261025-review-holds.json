@@ -1,0 +1,153 @@
+{
+  "schema": "atrium-artist-source-quality-hold/1",
+  "batch": "frederic-remington-20261025",
+  "checkedAt": "2026-10-26T02:14:56.321Z",
+  "artist": "Frederic Remington",
+  "accepted": 0,
+  "held": 1,
+  "sourcePayloadsFetched": 1,
+  "sourcePayloadBytes": 3118136,
+  "source": {
+    "uid": "349565893b494b05ae18ac9509c079ac",
+    "slug": "americas-oceania/remington-broncho-buster-cast-unconfirmed",
+    "title": "The Broncho Buster (unidentified cast or replica)",
+    "url": "https://huggingface.co/datasets/allenai/objaverse/resolve/556637099bf4fa79ea7b239d0d9c328b8a2e9ac8/glbs/000-068/349565893b494b05ae18ac9509c079ac.glb",
+    "landingPage": "https://sketchfab.com/3d-models/349565893b494b05ae18ac9509c079ac",
+    "bytes": 3118136,
+    "sha256": "d6deb508910924282c6321580a429d663f8c2f252664a3e60f1198665e338adb",
+    "representation": "Unchanged selected Objaverse distribution GLB; an unidentified cast or replica after Remington. Uploader-native authoring files and an authenticated current provider download representation are not asserted.",
+    "license": "CC BY-SA 4.0",
+    "attribution": "Composition: Frederic Remington, The Broncho Buster. Captured cast or replica and maker unconfirmed. 3D scan: colewharder; CC BY-SA4.0. Preserved Objaverse distribution GLB. Adaptations and generated renders must retain attribution and the share-alike license.",
+    "materials": 1,
+    "textures": 1,
+    "images": 1
+  },
+  "decision": "hold",
+  "reason": "The unchanged source fails essential capture quality. The rider’s face/head region is largely unreadable or absent, with collapsed dark surfaces below the hat instead of the modeled face. Large open/bridged regions around the horse’s hindquarter/leg junction and the rider’s saddle/waist distort the composition. Fine reins and the extended whip are not faithfully captured. These are visible in the native source, before any Atrium serving derivative.",
+  "observations": [
+    "The source retains the broad cowboy-on-rearing-horse silhouette and an oval base, but essential figural detail does not survive.",
+    "FRONT and FRONT-THREE-QUARTER show the rider head/face as a large dark, flattened or collapsed region. LEFT and REVERSE do not resolve a complete modeled face. The hat/head outline is heavily deformed.",
+    "Large openings and spanned surfaces are visible around the rider’s waist/saddle and horse hindquarter/leg junction. Curled strips replace some thin structural details, and the thin reins/whip visible in the primary composition reference are not retained faithfully.",
+    "The outstretched arm is present in the native RIGHT/LEFT views, correcting the weaker thumbnail-only impression that it might be absent. Its fine hand/whip detail remains inadequate.",
+    "The base has irregular capture edges and an unrecorded underside, but these peripheral limits are secondary to the missing or distorted figure detail.",
+    "Native mode renders the exact preserved distribution GLB directly, retaining its authored unlit textured material. No optimization, new material, source repair or serving derivative caused this hold."
+  ],
+  "identity": {
+    "representation": "Unidentified cast or replica after Remington’s Broncho Buster composition",
+    "physical_cast_or_replica_date": "unknown",
+    "physical_material": "unconfirmed",
+    "collection_and_current_location": "unconfirmed",
+    "dimensions": "unknown",
+    "manufacture_origin_and_foundry": "unknown",
+    "exact_cast_attribution": "not established",
+    "primary_reference_scope": "The Met photograph depicts another documented museum cast. It supports the composition comparison only; no cast-specific Met date, material, dimensions, foundry or provenance is assigned to the captured example."
+  },
+  "visualEvidence": {
+    "sourceOnly": true,
+    "productionDerivativeCompared": false,
+    "sourceFaces": 91282,
+    "frames": [
+      {
+        "view": "FRONT",
+        "bytes": 479012,
+        "sha256": "41a85a805ceef39887e8ad76e3a058fa061a1cf07af01ccd730bb802b9309d36"
+      },
+      {
+        "view": "RIGHT",
+        "bytes": 509963,
+        "sha256": "bfe42060a699257d3fd0ed81d7baff52bd471e61dd89ad11d7b971ccd6b6659f"
+      },
+      {
+        "view": "REVERSE",
+        "bytes": 435631,
+        "sha256": "4edb46304e4f7e336734d47e9bd43f056bd4fdc04d760109419504dc091f2c8a"
+      },
+      {
+        "view": "LEFT",
+        "bytes": 472849,
+        "sha256": "3cdcef256718e5116c216cc9305c7554e9ad14b52f6a34b2eb8a87bbbad94627"
+      },
+      {
+        "view": "ABOVE",
+        "bytes": 499874,
+        "sha256": "bb0663f28492e5b45afe01030eb6f90f7ce42eeccaae63456afdef2bed18dd91"
+      },
+      {
+        "view": "UNDERSIDE",
+        "bytes": 485092,
+        "sha256": "15bd767b4307dd271aac79e405435049441fdeef6040fc20cb8307a778d75d5f"
+      },
+      {
+        "view": "FRONT-THREE-QUARTER",
+        "bytes": 474235,
+        "sha256": "c0978468900994f40e4fcf6836daa4750be3df0a13f92e3c8c7d4eb3cb47e20d"
+      },
+      {
+        "view": "BACK-THREE-QUARTER",
+        "bytes": 441350,
+        "sha256": "70fed9c4b9f84eea8d99905c3ade05c316d6d8697efcc91c7d0b4e8f5178dd9c"
+      }
+    ],
+    "contact": {
+      "bytes": 114256,
+      "sha256": "97bac1e0e49710302e4e8e9a4c329418bb9ccff6020111c799013f4b30ef6802"
+    },
+    "independentReviewSha256": "6675ae0c3c3c41fd5746ad5d7947ae727c43c659e6a0ddad947e41e61bfe1450",
+    "actualSourceViewsInspected": {
+      "contact_sheet_panels": 8,
+      "full_resolution_source_views": [
+        "FRONT",
+        "REVERSE",
+        "LEFT",
+        "ABOVE",
+        "FRONT-THREE-QUARTER"
+      ],
+      "primary_composition_reference_actually_viewed": true,
+      "current_provider_image_actually_viewed": true
+    }
+  },
+  "permanentPrivateArchive": {
+    "sources": 1,
+    "authenticatedFullContentReadbacks": 3,
+    "authenticatedUniqueReadbackBytes": 7159001,
+    "portableMap": {
+      "bytes": 5290,
+      "sha256": "0a811f5797f78605c0a40300e0b3178154d17020f0a69adc6c3186660c603fc3",
+      "completeCloudReadbackAuthenticated": true,
+      "sourceMappings": 1
+    },
+    "objects": [
+      {
+        "role": "source-archive",
+        "package": 1,
+        "bytes": 3118424,
+        "sha256": "596f38b57d11bcc13817e8b93b5169584588aded7457abe929b5c77f4e0ea9b9",
+        "completeCloudReadbackAuthenticated": true,
+        "localZipMembersHashed": 1
+      },
+      {
+        "role": "provenance",
+        "package": null,
+        "bytes": 4035287,
+        "sha256": "4706716da6adbc5fca73e2de012d2ac65fd350066175c3eb2a639129e4851294",
+        "completeCloudReadbackAuthenticated": true,
+        "localZipMembersHashed": 36
+      }
+    ],
+    "allOriginalZipMembersVerified": true,
+    "allAcquiredSourcesIncluded": true,
+    "localDeletionAuthorized": false
+  },
+  "catalogRows": 2381,
+  "publicWorks": 2363,
+  "hiddenWorks": 18,
+  "oldCatalogAndSettingsUnchanged": true,
+  "catalogAdditions": 0,
+  "servingDerivatives": 0,
+  "ciAcquisitions": 0,
+  "deploymentPerformed": false,
+  "repairsPerformed": false,
+  "localOriginalRetained": true,
+  "localDeletionAuthorized": false,
+  "nextAction": "Continue to the next roster artist, Gustav Vigeland, seeking a viable artist batch; do not publish this capture."
+}
