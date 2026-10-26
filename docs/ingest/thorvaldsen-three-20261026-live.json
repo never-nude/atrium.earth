@@ -1,0 +1,127 @@
+{
+  "schema": "atrium-live-release-verification/1",
+  "batch": "thorvaldsen-three-20261026",
+  "status": "pass",
+  "releaseCommit": "74b08ed54654f02674f37af930532dbc530b3f30",
+  "deploymentRun": "40397405179",
+  "works": [
+    {
+      "slug": "neoclassical/thorvaldsen-cupid-earth-marble-relief-5dcf93",
+      "status": "pass",
+      "page": {
+        "url": "https://atrium.earth/works/neoclassical/thorvaldsen-cupid-earth-marble-relief-5dcf93/",
+        "sha256": "9420a374f037e4e09de81d06c50c11b6ef59215af81bb23a44d7b8e0733e643b",
+        "bytes": 35919,
+        "exactModelURL": true,
+        "completeCaptureLabel": true,
+        "unknownPhysicalSizeDefault": true
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/neoclassical/thorvaldsen-cupid-earth-marble-relief-5dcf93/preview-fbdbad445b54.glb",
+        "sha256": "fbdbad445b54aa7a96ff3fa7893bdc248bd90d9ecb59e35e03b030cf1c446c18",
+        "bytes": 12944956,
+        "contentType": "model/gltf-binary",
+        "cors": "https://atrium.earth"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/neoclassical/thorvaldsen-cupid-earth-marble-relief-5dcf93/thumb.webp",
+        "sha256": "0df23959570b95669b860252ca78ea619c2ec20fd36e3edf24ee6fb809713728",
+        "bytes": 55254,
+        "contentType": "image/webp"
+      },
+      "poster": {
+        "url": "https://atrium.earth/previews/posters/neoclassical/thorvaldsen-cupid-earth-marble-relief-5dcf93/poster.svg",
+        "sha256": "23cceac5b9f0e69241063786900d0968f3cf3cefce72d5b528c7d75c2144418a",
+        "bytes": 74074,
+        "contentType": "image/svg+xml"
+      }
+    },
+    {
+      "slug": "neoclassical/thorvaldsen-cupid-underworld-marble-relief-35ee39",
+      "status": "pass",
+      "page": {
+        "url": "https://atrium.earth/works/neoclassical/thorvaldsen-cupid-underworld-marble-relief-35ee39/",
+        "sha256": "227bc8f7b027980b2aa96038f620e0c018a5b15583c02dd766b73cb4a18c51f2",
+        "bytes": 35758,
+        "exactModelURL": true,
+        "completeCaptureLabel": true,
+        "unknownPhysicalSizeDefault": true
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/neoclassical/thorvaldsen-cupid-underworld-marble-relief-35ee39/preview-84594cea3259.glb",
+        "sha256": "84594cea325999868e4058d14de442753fdd8e0e0b89a7a010d4abffb8fd82c8",
+        "bytes": 12831988,
+        "contentType": "model/gltf-binary",
+        "cors": "https://atrium.earth"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/neoclassical/thorvaldsen-cupid-underworld-marble-relief-35ee39/thumb.webp",
+        "sha256": "fe96ad094b7fd4ba12ee7df81b64079364068c8663d06e428e07ac13c6b5a803",
+        "bytes": 51886,
+        "contentType": "image/webp"
+      },
+      "poster": {
+        "url": "https://atrium.earth/previews/posters/neoclassical/thorvaldsen-cupid-underworld-marble-relief-35ee39/poster.svg",
+        "sha256": "abdc1e75027e355c2af720b9358af1a2e80dbaf9aee55e8b7ff293c68abe3c3e",
+        "bytes": 69596,
+        "contentType": "image/svg+xml"
+      }
+    },
+    {
+      "slug": "neoclassical/thorvaldsen-cupid-heaven-marble-relief-1edac3",
+      "status": "pass",
+      "page": {
+        "url": "https://atrium.earth/works/neoclassical/thorvaldsen-cupid-heaven-marble-relief-1edac3/",
+        "sha256": "4453d6e34e8aeb2ff86133edb5baea3523006422db66dea1c1e324ac02b40c57",
+        "bytes": 35309,
+        "exactModelURL": true,
+        "completeCaptureLabel": true,
+        "unknownPhysicalSizeDefault": true
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/neoclassical/thorvaldsen-cupid-heaven-marble-relief-1edac3/preview-f4030a86aae1.glb",
+        "sha256": "f4030a86aae19f544423ece423de1bcdf99374c571f96b5d062432df68ee3914",
+        "bytes": 12938708,
+        "contentType": "model/gltf-binary",
+        "cors": "https://atrium.earth"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/neoclassical/thorvaldsen-cupid-heaven-marble-relief-1edac3/thumb.webp",
+        "sha256": "9e9983f23380a698dd7ffca4956f5f99675ce28a456e05a64b5bb9a0e41ab2ec",
+        "bytes": 56464,
+        "contentType": "image/webp"
+      },
+      "poster": {
+        "url": "https://atrium.earth/previews/posters/neoclassical/thorvaldsen-cupid-heaven-marble-relief-1edac3/poster.svg",
+        "sha256": "92c102579e31e3e4073aaa0281aeb2aa6fca9bb25e2f671737290636b7f60fc9",
+        "bytes": 75664,
+        "contentType": "image/svg+xml"
+      }
+    }
+  ],
+  "newest": {
+    "status": "pass",
+    "count": 40,
+    "exactOrderedSelectionMatchesBuild": true,
+    "containsEveryNewWork": true
+  },
+  "exhibitions": [
+    {
+      "slug": "power-and-presence",
+      "selectedWork": "neoclassical/thorvaldsen-cupid-earth-marble-relief-5dcf93",
+      "status": "pass"
+    },
+    {
+      "slug": "power-and-presence",
+      "selectedWork": "neoclassical/thorvaldsen-cupid-underworld-marble-relief-35ee39",
+      "status": "pass"
+    },
+    {
+      "slug": "power-and-presence",
+      "selectedWork": "neoclassical/thorvaldsen-cupid-heaven-marble-relief-1edac3",
+      "status": "pass"
+    }
+  ],
+  "sourceCleanupPerformed": false,
+  "checkedAt": "2026-10-26T20:41:22.241Z"
+}
