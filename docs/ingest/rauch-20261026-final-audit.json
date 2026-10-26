@@ -1,0 +1,316 @@
+{
+  "schema": "atrium-public-release-audit/1",
+  "batch": "rauch-20261026",
+  "baselineCommit": "e488bcce2f3110468b7e6abf207a5738aff0e31c",
+  "checkedAt": "2026-10-26T17:33:56.838782+00:00",
+  "status": "pass",
+  "scope": "Local final integration and complete local source/serving asset verification before publication. No new model processing or browser run. Deployment and live delivery checks are separate.",
+  "catalogBefore": 2386,
+  "catalogAfter": 2391,
+  "addedWorks": 5,
+  "checks": {
+    "exactlyFiveAdditions": true,
+    "existing2386RowsPreserved": true,
+    "indicesAndTotalsConsistent": true,
+    "heldWorksAbsent": true,
+    "previewsAppendOnlyFive": true,
+    "appearance-overridesAppendOnlyFive": true,
+    "orientationsAppendOnlyFive": true,
+    "physical-dimensionsAppendOnlyFive": true,
+    "spatial-eligibilityAppendOnlyFive": true,
+    "rendersAppendOnlyFive": true,
+    "featuredAndHomepageSelectionsUnchanged": true,
+    "onlyTwoCuratedBodyAdditions": true,
+    "coversPairingsThemesPreserved": true,
+    "visualReportBindingMatches": true,
+    "allFiveAssetAndMetadataChecks": true,
+    "fourUnfiledOnlyYorckEurope": true,
+    "thaerCopyAndReconstructionDisclosed": true,
+    "noRuntimeOrSourceHelperEdits": true
+  },
+  "curatedAppends": [
+    {
+      "path": "/wallTexts/power-and-presence/workSlugs",
+      "appendOnly": true,
+      "beforeCount": 27,
+      "afterCount": 28,
+      "added": [
+        "europe/rauch-frederick-the-great-equestrian-monument-b23caa"
+      ]
+    },
+    {
+      "path": "/wallTexts/power-and-presence/captions",
+      "appendOnly": true,
+      "beforeCount": 27,
+      "afterCount": 28,
+      "added": [
+        {
+          "slug": "europe/rauch-frederick-the-great-equestrian-monument-b23caa",
+          "text": "A mounted king crowns a pedestal crowded with historical figures and reliefs. Rauch’s monument turns authority into a vertical hierarchy: one ruler above many supporting people. The capture includes the sculpted pedestal, allowing the claim to power to be compared from every side."
+        }
+      ]
+    },
+    {
+      "path": "/additionalExhibitions/0/works",
+      "appendOnly": true,
+      "beforeCount": 19,
+      "afterCount": 20,
+      "added": [
+        {
+          "slug": "europe/rauch-general-von-buelow-monument-65dd2f",
+          "text": "1822. Rauch’s marble monument raises General von Bülow above an inscribed pedestal and reliefs. Uniform, sword and sweeping drapery turn military commemoration into an idealized public image. Compare this celebrated leader with the wounded and captive figures elsewhere: whose experience becomes the lasting face of a victory?"
+        }
+      ]
+    }
+  ],
+  "works": [
+    {
+      "slug": "europe/rauch-frederick-the-great-equestrian-monument-b23caa",
+      "sourceUid": "b23caaccb18340ccb723167f0ca463db",
+      "checks": {
+        "sourceFullHashBytesMatch": true,
+        "previewFullHashBytesMatch": true,
+        "rawFaceCountsMatch": true,
+        "materialObjectsEqual": true,
+        "unlitTexturesRetained": true,
+        "selfContained": true,
+        "thumbnailPinMatches": true,
+        "posterPinMatches": true,
+        "contactPinMatches": true,
+        "captureLabelMatches": true,
+        "unknownSizeAndArDisabled": true,
+        "licenseMatches": true,
+        "orientationMatches": true,
+        "sourceFrameBindingsMatch": true,
+        "all16FramePinsMatch": true
+      },
+      "original": {
+        "url": "https://huggingface.co/datasets/allenai/objaverse/resolve/556637099bf4fa79ea7b239d0d9c328b8a2e9ac8/glbs/000-136/b23caaccb18340ccb723167f0ca463db.glb",
+        "sha256": "459a67c5aa9efe616600ea07d2bc94019350362624ef643825ecf1f9378bc7c2",
+        "bytes": 153338444,
+        "representation": "Unchanged selected immutable Objaverse distribution GLB; uploader-native authoring package is not asserted."
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/europe/rauch-frederick-the-great-equestrian-monument-b23caa/preview-3a9ed1bcec53.glb",
+        "sha256": "3a9ed1bcec536849be4e3c95379b5c0e33a99fc06839e65fadaa6f50117528e6",
+        "bytes": 1588436
+      },
+      "rawSourceFaces": 4001000,
+      "rawPreviewFaces": 419314,
+      "thumbnail": {
+        "bytes": 55694,
+        "sha256": "2176c908e1d36f13ef5dfd4f1d7b5a1eac491f2d91f6bab9307f908c404a5067"
+      },
+      "poster": {
+        "bytes": 74644,
+        "sha256": "c30b206fbd6637ec82561e860b3e6c2a1efc778badb5ffdfab181351ec014ea5"
+      },
+      "captureLabel": "3D capture by VIMUNE of the equestrian statue and its sculpted pedestal. The surrounding enclosure is outside the capture. The recorded surface colors and textures are retained. The underside is a faceted scan closure rather than a documented physical bottom surface. The web version simplifies geometry and compresses textures."
+    },
+    {
+      "slug": "europe/rauch-general-von-buelow-monument-65dd2f",
+      "sourceUid": "65dd2f78ceaf4cebbb89e6c5c0c052a6",
+      "checks": {
+        "sourceFullHashBytesMatch": true,
+        "previewFullHashBytesMatch": true,
+        "rawFaceCountsMatch": true,
+        "materialObjectsEqual": true,
+        "unlitTexturesRetained": true,
+        "selfContained": true,
+        "thumbnailPinMatches": true,
+        "posterPinMatches": true,
+        "contactPinMatches": true,
+        "captureLabelMatches": true,
+        "unknownSizeAndArDisabled": true,
+        "licenseMatches": true,
+        "orientationMatches": true,
+        "sourceFrameBindingsMatch": true,
+        "all16FramePinsMatch": true
+      },
+      "original": {
+        "url": "https://huggingface.co/datasets/allenai/objaverse/resolve/556637099bf4fa79ea7b239d0d9c328b8a2e9ac8/glbs/000-138/65dd2f78ceaf4cebbb89e6c5c0c052a6.glb",
+        "sha256": "783f016d4041ac46cff6e134d30c7665a05a8936f63659d00c286be629a54859",
+        "bytes": 153227076,
+        "representation": "Unchanged selected immutable Objaverse distribution GLB; uploader-native authoring package is not asserted."
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/europe/rauch-general-von-buelow-monument-65dd2f/preview-8b517f06fadb.glb",
+        "sha256": "8b517f06fadb9b5417f33c2550e21f78e929b695f7ef18f41606550e423b4b50",
+        "bytes": 1576828
+      },
+      "rawSourceFaces": 4024788,
+      "rawPreviewFaces": 374994,
+      "thumbnail": {
+        "bytes": 40896,
+        "sha256": "89562d099a82500e1164c1ddbb71ba4ae0b3300a4a4601cb7b590916e0f16f4a"
+      },
+      "poster": {
+        "bytes": 54924,
+        "sha256": "3924b3bd14c1deca878004f227e05e8cd0b98ba1a315ddf2c0cd304969651ede"
+      },
+      "captureLabel": "3D capture by VIMUNE of the standing figure and its pedestal. The recorded surface colors and textures are retained. The ground-contact underside is a faceted scan closure rather than a documented physical bottom surface. The web version simplifies geometry and compresses textures."
+    },
+    {
+      "slug": "europe/rauch-scharnhorst-monument-398bf9",
+      "sourceUid": "398bf948f76544598f3231f5c8e4d881",
+      "checks": {
+        "sourceFullHashBytesMatch": true,
+        "previewFullHashBytesMatch": true,
+        "rawFaceCountsMatch": true,
+        "materialObjectsEqual": true,
+        "unlitTexturesRetained": true,
+        "selfContained": true,
+        "thumbnailPinMatches": true,
+        "posterPinMatches": true,
+        "contactPinMatches": true,
+        "captureLabelMatches": true,
+        "unknownSizeAndArDisabled": true,
+        "licenseMatches": true,
+        "orientationMatches": true,
+        "sourceFrameBindingsMatch": true,
+        "all16FramePinsMatch": true
+      },
+      "original": {
+        "url": "https://huggingface.co/datasets/allenai/objaverse/resolve/556637099bf4fa79ea7b239d0d9c328b8a2e9ac8/glbs/000-068/398bf948f76544598f3231f5c8e4d881.glb",
+        "sha256": "aaf2c45cf143351ea8c472a1e53dc12680e6a41d85ee5496f01e4980751ea696",
+        "bytes": 151713660,
+        "representation": "Unchanged selected immutable Objaverse distribution GLB; uploader-native authoring package is not asserted."
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/europe/rauch-scharnhorst-monument-398bf9/preview-10770cc7c2a9.glb",
+        "sha256": "10770cc7c2a99df205194b5aa306b75526415290933a80f14527cb71b14e4ed3",
+        "bytes": 1569928
+      },
+      "rawSourceFaces": 4024784,
+      "rawPreviewFaces": 374982,
+      "thumbnail": {
+        "bytes": 41280,
+        "sha256": "69c38c0917ba63677e4246acaf900471e1f764a69d0bfb5d6d8da8bea6f357b1"
+      },
+      "poster": {
+        "bytes": 55410,
+        "sha256": "1b60c9cb20380af105e7b906bbf7eb7c717b0a071494b8db9b6b8e3cec5975cd"
+      },
+      "captureLabel": "3D capture by VIMUNE of the standing figure and its pedestal. The recorded surface colors and textures are retained. The ground-contact underside is a faceted scan closure rather than a documented physical bottom surface. The web version simplifies geometry and compresses textures."
+    },
+    {
+      "slug": "europe/rauch-yorck-von-wartenburg-monument-e456b6",
+      "sourceUid": "e456b687c7414d52a932e735338e696d",
+      "checks": {
+        "sourceFullHashBytesMatch": true,
+        "previewFullHashBytesMatch": true,
+        "rawFaceCountsMatch": true,
+        "materialObjectsEqual": true,
+        "unlitTexturesRetained": true,
+        "selfContained": true,
+        "thumbnailPinMatches": true,
+        "posterPinMatches": true,
+        "contactPinMatches": true,
+        "captureLabelMatches": true,
+        "unknownSizeAndArDisabled": true,
+        "licenseMatches": true,
+        "orientationMatches": true,
+        "sourceFrameBindingsMatch": true,
+        "all16FramePinsMatch": true
+      },
+      "original": {
+        "url": "https://huggingface.co/datasets/allenai/objaverse/resolve/556637099bf4fa79ea7b239d0d9c328b8a2e9ac8/glbs/000-017/e456b687c7414d52a932e735338e696d.glb",
+        "sha256": "fd9d431fcdcfcc52e1c3a70d8436ce8f560955f129299537b198dfeea97d047e",
+        "bytes": 142276120,
+        "representation": "Unchanged selected immutable Objaverse distribution GLB; uploader-native authoring package is not asserted."
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/europe/rauch-yorck-von-wartenburg-monument-e456b6/preview-88d3fccf5949.glb",
+        "sha256": "88d3fccf59494248af3c818a7bcf4883b7b526b2e3b521958d96ed491a983b90",
+        "bytes": 1346972
+      },
+      "rawSourceFaces": 4000134,
+      "rawPreviewFaces": 374916,
+      "thumbnail": {
+        "bytes": 31608,
+        "sha256": "225e70527826ddaf4328834f1df6855292206ff901a554871e7bf9028c02f6e5"
+      },
+      "poster": {
+        "bytes": 42508,
+        "sha256": "16dd0b5a1e855a84b57d84307644a7a24be101739902577a4e34be7625eda988"
+      },
+      "captureLabel": "3D capture by VIMUNE of the bronze figure, pedestal and a square of surrounding paving. The recorded surface colors and textures are retained. The underside is a faceted scan closure rather than a documented physical bottom surface. The web version simplifies geometry and compresses textures."
+    },
+    {
+      "slug": "europe/rauch-albrecht-thaer-schinkelplatz-copy-cd4642",
+      "sourceUid": "cd4642d1a0c74a648acb16da4002b608",
+      "checks": {
+        "sourceFullHashBytesMatch": true,
+        "previewFullHashBytesMatch": true,
+        "rawFaceCountsMatch": true,
+        "materialObjectsEqual": true,
+        "unlitTexturesRetained": true,
+        "selfContained": true,
+        "thumbnailPinMatches": true,
+        "posterPinMatches": true,
+        "contactPinMatches": true,
+        "captureLabelMatches": true,
+        "unknownSizeAndArDisabled": true,
+        "licenseMatches": true,
+        "orientationMatches": true,
+        "sourceFrameBindingsMatch": true,
+        "all16FramePinsMatch": true
+      },
+      "original": {
+        "url": "https://huggingface.co/datasets/allenai/objaverse/resolve/556637099bf4fa79ea7b239d0d9c328b8a2e9ac8/glbs/000-085/cd4642d1a0c74a648acb16da4002b608.glb",
+        "sha256": "228e9bccff40ef182d75d93e584d4f2a7bbde9ac75778366e6540504a9145150",
+        "bytes": 149230280,
+        "representation": "Unchanged selected immutable Objaverse distribution GLB; uploader-native authoring package is not asserted."
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/europe/rauch-albrecht-thaer-schinkelplatz-copy-cd4642/preview-1e2d74fe1538.glb",
+        "sha256": "1e2d74fe1538a0d7a91b5206da63b4db43018ee000a2e530ad4bd0f81064cde9",
+        "bytes": 1369840
+      },
+      "rawSourceFaces": 4000306,
+      "rawPreviewFaces": 374970,
+      "thumbnail": {
+        "bytes": 26368,
+        "sha256": "72bb0de7b301fcf20480a3a0128bc9ac9d397fbd268c72254373bba0aa59f29e"
+      },
+      "poster": {
+        "bytes": 35602,
+        "sha256": "9eec6ba96270f114de1e8869b644fb83b69d02549d73f2ff72e0f8b5cdc8eac3"
+      },
+      "captureLabel": "3D capture by VIMUNE of the copied standing figure and reconstructed pedestal. The surrounding enclosure is outside the capture. The recorded surface colors and textures are retained. The underside is a faceted scan closure rather than a documented physical bottom surface. The web version simplifies geometry and compresses textures."
+    }
+  ],
+  "visualInspection": "Independent reviewer actually viewed all five paired eight-direction contact sheets, including source and serving underside closures. Exterior silhouette/material appearance is consistent; small details are softer in compressed derivatives. Capture labels disclose unrecorded faceted ground-contact underside closure; Frederick/Thaer enclosure is excluded and Yorck paving retained. Root final review records final thumbnail inspection.",
+  "faceCountQualification": "Raw GLB counts are independently read and remain separate from the degenerate-cleaned topology measurements in the final-review report. Repository simplification error remains 0.005. The private recipe requests 375000 triangles; 400000 is the configurable nominal repository target, not a hard acceptance cap.",
+  "heldWorks": [
+    "europe/rauch-bluecher-monument-73fdfe",
+    "europe/rauch-goethe-workshop-plaster-bust-d56417"
+  ],
+  "backupStatus": "Permanent private source verification is in progress separately. This audit does not assert completion or authorize source removal.",
+  "inputBindings": {
+    "finalReview": {
+      "bytes": 37987,
+      "sha256": "b3f5d37e604a9e01aaf2e950bb586b384a856b650c71090629b6992166331ef3"
+    },
+    "catalog": {
+      "bytes": 5266442,
+      "sha256": "e8e65b46cf69b0767531864ede0d5cecc9e3412b89a42e51d6a6b35e41e2efc6"
+    },
+    "v3Content": {
+      "bytes": 103898,
+      "sha256": "78363e1327060924ca14ada6fe94498334e64cdc38e58d9fa8ed2da1339150d3"
+    },
+    "featuredWorks": {
+      "bytes": 61688,
+      "sha256": "aa74f35ef39e6075f0ca52d1bd8f870c2c0d11ae6aceb7fdbb28ce216918aac5"
+    }
+  },
+  "featuredSelection": {
+    "featuredCount": 250,
+    "homepageApprovedCount": 193,
+    "homepageLoadingBudgetBytes": 15728640,
+    "homepageEligibleCount": 192,
+    "preserved": true,
+    "qualification": "Homepage selection applies the unchanged 15 MiB preview budget to the 193 approved entries, yielding 192 eligible works."
+  }
+}

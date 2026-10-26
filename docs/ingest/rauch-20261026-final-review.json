@@ -1,0 +1,981 @@
+{
+  "schema": "atrium-assistant-visual-review/1",
+  "batch": "rauch-20261026",
+  "status": "pass",
+  "reviewer": "Codex assistant actual inspection of all five native/serving contacts and five final rendered thumbnails",
+  "counts": {
+    "works": 5,
+    "comparisonFrames": 80,
+    "contacts": 5,
+    "finalThumbnails": 5
+  },
+  "sourceReference": "Unchanged immutable Objaverse distribution GLBs, verified against full LFS SHA256 and bytes. Native authoring packages are not asserted.",
+  "scopeReportSha256": "b249986a74983f20fb6788ae2ff3d259f19e2b4dae8eb90c7e5936c7d50f0d90",
+  "cameraQualification": "Eight comparison directions use the unchanged Y-up world frame. Frederick’s final thumbnail camera selects the already reviewed front three-quarter direction; no geometry or pose changed.",
+  "works": [
+    {
+      "slug": "europe/rauch-frederick-the-great-equestrian-monument-b23caa",
+      "sourceUid": "b23caaccb18340ccb723167f0ca463db",
+      "title": "Equestrian Monument to Frederick the Great",
+      "original": {
+        "url": "https://huggingface.co/datasets/allenai/objaverse/resolve/556637099bf4fa79ea7b239d0d9c328b8a2e9ac8/glbs/000-136/b23caaccb18340ccb723167f0ca463db.glb",
+        "sha256": "459a67c5aa9efe616600ea07d2bc94019350362624ef643825ecf1f9378bc7c2",
+        "bytes": 153338444,
+        "representation": "Unchanged selected immutable Objaverse distribution GLB; uploader-native authoring package is not asserted."
+      },
+      "sourceUrl": "https://sketchfab.com/3d-models/reiterstandbild-friedrich-der-groe-b23caaccb18340ccb723167f0ca463db",
+      "primaryRecord": "https://bildhauerei-in-berlin.de/bildwerk/reiterstandbild-friedrich-der-grosse-5108/",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "scanAuthor": "VIMUNE",
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/europe/rauch-frederick-the-great-equestrian-monument-b23caa/preview-3a9ed1bcec53.glb",
+        "sha256": "3a9ed1bcec536849be4e3c95379b5c0e33a99fc06839e65fadaa6f50117528e6",
+        "bytes": 1588436
+      },
+      "rawSourceFaces": 4001000,
+      "rawPreviewFaces": 419314,
+      "measuredTopology": {
+        "source": {
+          "loadedRawFaces": 4001000,
+          "measured": {
+            "faces": 4001000,
+            "bratio": 0,
+            "ncomp": 12,
+            "largest_frac": 0.999
+          },
+          "status": "pass"
+        },
+        "preview": {
+          "loadedRawFaces": 419314,
+          "measured": {
+            "faces": 419310,
+            "bratio": 0,
+            "ncomp": 11,
+            "largest_frac": 0.999
+          },
+          "status": "pass"
+        }
+      },
+      "materialAppearance": "Unlit textured source material retained; no manual recoloring or synthetic patina.",
+      "processing": {
+        "tool": "Repository glTF Transform CLI",
+        "version": "4.4.2",
+        "metalrough": true,
+        "geometryCompression": "Draco",
+        "textureCompression": "WebP",
+        "textureMaximum": 2048,
+        "simplificationApplied": true,
+        "simplificationRatio": 0.09372656835791052,
+        "simplificationError": 0.005,
+        "faceTargetQualification": "400k is a target; retain the existing 0.005 simplification error bound when topology prevents reaching it.",
+        "noManualRecoloringOrUvRebuild": true,
+        "noPoseCropRepairOrReconstruction": true
+      },
+      "visualDecision": "Accepted after actual eight-view native/serving comparison. Complete recorded exterior, with faceted unrecorded underside closure and softer small details in the serving version.",
+      "views": [
+        {
+          "mode": "native-source",
+          "key": "FRONT",
+          "sha256": "517822d9d6c297af8233b725a9db773abb9e0450b2e78b87b022529c6cc66f88",
+          "bytes": 497968
+        },
+        {
+          "mode": "native-source",
+          "key": "RIGHT",
+          "sha256": "5845c97c021d53261b09e1ed03ef6b387b3f3cfd23bf97d7af2d3e3634b69320",
+          "bytes": 649025
+        },
+        {
+          "mode": "native-source",
+          "key": "REVERSE",
+          "sha256": "a5e995b11913fb186bfbe669c7b13bca7c10381025dc7e40984dc17e36c49068",
+          "bytes": 474039
+        },
+        {
+          "mode": "native-source",
+          "key": "LEFT",
+          "sha256": "d9a1e2217f70080696a4e96fc46071a819e9b9547c60c15ec17faef1683d5fff",
+          "bytes": 658614
+        },
+        {
+          "mode": "native-source",
+          "key": "ABOVE",
+          "sha256": "914cab22ac991839c56275c5cd7ca47b01dcfdb553d2c3daa8e4b7a2e2913cc9",
+          "bytes": 445024
+        },
+        {
+          "mode": "native-source",
+          "key": "UNDERSIDE",
+          "sha256": "689f8df6ea33ef7c32a51b3847f2b7b90b4b982c1a8502a497ee3605e20a4904",
+          "bytes": 145850
+        },
+        {
+          "mode": "native-source",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "1254e91e3bc65ebc15e8dee9cc37b73eb7680c00154c888670206988258bfd0d",
+          "bytes": 590802
+        },
+        {
+          "mode": "native-source",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "89fceb315a4d57a7b2d3c76feeae4f15cbe9778dc94239f721dfeed7ddeef1cd",
+          "bytes": 585243
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "sha256": "817552f7e2eeed88d4c99b538e17ba508c0bf1876a0fef69c796b76ea542e3e2",
+          "bytes": 464530
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "sha256": "a91d2649f1a94e2b9c2e8ebd8fa38512660a052ff466f2bb5a9ec9791444ddbd",
+          "bytes": 596335
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "sha256": "10bff5d285864fbd6c8b09c245952fc5080638fbd61ca65e69f8851595aea2dc",
+          "bytes": 442817
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "sha256": "71d4adb731fc1ebf18b6fa636a4cf0075e76ed0bb7b1e32e826f1c0c7914c5ae",
+          "bytes": 605016
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "sha256": "6d4db30eecd114c7cd3f78acd444a565b9bd2e55f6cce0d9ef268ba18a82a735",
+          "bytes": 420686
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "sha256": "e6f102560292f1e3bcf8dc803d0cc95d5f64dd4b9d7e971a9a845c9ff71d780f",
+          "bytes": 134827
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "d6f9d7ec67500a0d30add60a856f27cb65d1c47ec74230266cf44e2d2233adb2",
+          "bytes": 553892
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "d780e80d3276ccf0b9df0b6f36874ac780a3b4c2c74e8515391e7821f21cf726",
+          "bytes": 549133
+        }
+      ],
+      "contact": {
+        "sha256": "73da34b6ed585f76cb1a4cbf6a42ea27ec215d8dabc617b58252bd9029acbf49",
+        "bytes": 204912
+      },
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          1,
+          0.35,
+          1
+        ],
+        "status": "manual",
+        "note": "Upright Y-up basis and complete exterior reviewed in eight paired source/serving directions. Opening camera uses the reviewed front three-quarter direction to show the horse and pedestal."
+      },
+      "captureLabel": "3D capture by VIMUNE of the equestrian statue and its sculpted pedestal. The surrounding enclosure is outside the capture. The recorded surface colors and textures are retained. The underside is a faceted scan closure rather than a documented physical bottom surface. The web version simplifies geometry and compresses textures.",
+      "exactSizeArEligible": false,
+      "thumbnail": {
+        "sha256": "2176c908e1d36f13ef5dfd4f1d7b5a1eac491f2d91f6bab9307f908c404a5067",
+        "bytes": 55694,
+        "reviewed": true
+      },
+      "poster": {
+        "sha256": "c30b206fbd6637ec82561e860b3e6c2a1efc778badb5ffdfab181351ec014ea5",
+        "bytes": 74644,
+        "reviewed": true
+      }
+    },
+    {
+      "slug": "europe/rauch-general-von-buelow-monument-65dd2f",
+      "sourceUid": "65dd2f78ceaf4cebbb89e6c5c0c052a6",
+      "title": "Monument to General Friedrich Wilhelm von Bülow",
+      "original": {
+        "url": "https://huggingface.co/datasets/allenai/objaverse/resolve/556637099bf4fa79ea7b239d0d9c328b8a2e9ac8/glbs/000-138/65dd2f78ceaf4cebbb89e6c5c0c052a6.glb",
+        "sha256": "783f016d4041ac46cff6e134d30c7665a05a8936f63659d00c286be629a54859",
+        "bytes": 153227076,
+        "representation": "Unchanged selected immutable Objaverse distribution GLB; uploader-native authoring package is not asserted."
+      },
+      "sourceUrl": "https://sketchfab.com/3d-models/general-friedrich-wilhelm-von-bulow-65dd2f78ceaf4cebbb89e6c5c0c052a6",
+      "primaryRecord": "https://bildhauerei-in-berlin.de/bildwerk/general-friedrich-wilhelm-von-buelow-8590/",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "scanAuthor": "VIMUNE",
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/europe/rauch-general-von-buelow-monument-65dd2f/preview-8b517f06fadb.glb",
+        "sha256": "8b517f06fadb9b5417f33c2550e21f78e929b695f7ef18f41606550e423b4b50",
+        "bytes": 1576828
+      },
+      "rawSourceFaces": 4024788,
+      "rawPreviewFaces": 374994,
+      "measuredTopology": {
+        "source": {
+          "loadedRawFaces": 4024788,
+          "measured": {
+            "faces": 4024788,
+            "bratio": 0,
+            "ncomp": 1,
+            "largest_frac": 1
+          },
+          "status": "pass"
+        },
+        "preview": {
+          "loadedRawFaces": 374994,
+          "measured": {
+            "faces": 374992,
+            "bratio": 0,
+            "ncomp": 1,
+            "largest_frac": 1
+          },
+          "status": "pass"
+        }
+      },
+      "materialAppearance": "Unlit textured source material retained; no manual recoloring or synthetic patina.",
+      "processing": {
+        "tool": "Repository glTF Transform CLI",
+        "version": "4.4.2",
+        "metalrough": true,
+        "geometryCompression": "Draco",
+        "textureCompression": "WebP",
+        "textureMaximum": 2048,
+        "simplificationApplied": true,
+        "simplificationRatio": 0.09317260933992051,
+        "simplificationError": 0.005,
+        "faceTargetQualification": "400k is a target; retain the existing 0.005 simplification error bound when topology prevents reaching it.",
+        "noManualRecoloringOrUvRebuild": true,
+        "noPoseCropRepairOrReconstruction": true
+      },
+      "visualDecision": "Accepted after actual eight-view native/serving comparison. Complete recorded exterior, with faceted unrecorded underside closure and softer small details in the serving version.",
+      "views": [
+        {
+          "mode": "native-source",
+          "key": "FRONT",
+          "sha256": "762f595f493e412b01ca87a32bf8db208f150b0bf1c8e012e80d7a7c4704b1cd",
+          "bytes": 535530
+        },
+        {
+          "mode": "native-source",
+          "key": "RIGHT",
+          "sha256": "9673048cc5edd394d53ec2e67e3cc61e2388f9365215515ab3fb3baa3be9a27e",
+          "bytes": 478061
+        },
+        {
+          "mode": "native-source",
+          "key": "REVERSE",
+          "sha256": "93fa85056a43e581cd8e9b0b375493137fb20cc4dfc921cc09bbc12aefadce51",
+          "bytes": 501497
+        },
+        {
+          "mode": "native-source",
+          "key": "LEFT",
+          "sha256": "1898b3223390710867e9554f5e711f08298f35a36f57f5afbe235678c6592311",
+          "bytes": 476446
+        },
+        {
+          "mode": "native-source",
+          "key": "ABOVE",
+          "sha256": "4affc7c326880883f6d93e792d998937b6e6136beb1b5ec1e011d3f760be235e",
+          "bytes": 398448
+        },
+        {
+          "mode": "native-source",
+          "key": "UNDERSIDE",
+          "sha256": "580eca850940c2185f7cccb987d662b46205c9797658f4df210ed8aad5237866",
+          "bytes": 183434
+        },
+        {
+          "mode": "native-source",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "07199d36a55f181406db20c72afed8687cdac6068d05751a72455b0bdc7f3797",
+          "bytes": 516630
+        },
+        {
+          "mode": "native-source",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "d65dac3ec8872379c5b92537a163d1513a9fd927a1bd6854d87d89bb58842466",
+          "bytes": 508254
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "sha256": "b0a33757972a19d94fb9691bbd57cece85f302bc7b59c00f1105a2832027dd0a",
+          "bytes": 512274
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "sha256": "153849b91accb1de84043bfb34efc846c05ac3583650599b79f6a7695e515f8a",
+          "bytes": 453557
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "sha256": "1a0d00211157aae22e5bb4410ca487df98997b2fb0c438da67cace7e002f47fd",
+          "bytes": 472128
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "sha256": "70706b7bd7426e0766a222d9b1463a9ab9dce58aaa0bb58d8837c4972f04dac8",
+          "bytes": 454483
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "sha256": "03d48e280c69a76f7a229d90c54fd7bba66c7aca3560872ebacde0f9ba50b289",
+          "bytes": 379416
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "sha256": "7ee05ac45f5fb8a168e94b9e52af20cbf6de53b81d9e0281eb3d61ec7d8b6020",
+          "bytes": 171371
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "38c49d4aae5defc188457f6922616e33bba0e9ffadab68f8e5008dcedb0ad6b4",
+          "bytes": 497032
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "7089678447379d29b76f7fcfb6af12c68c395335faf1d42e1f2964031cbda254",
+          "bytes": 488208
+        }
+      ],
+      "contact": {
+        "sha256": "6c478600d820ba77b9ecdb07ff63ba742f9008a018b4e4e15657bcc8147a4894",
+        "bytes": 161882
+      },
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0,
+          0,
+          1
+        ],
+        "status": "manual",
+        "note": "Upright Y-up basis and complete exterior reviewed in eight paired source/serving directions. Opening camera retains the reviewed front view."
+      },
+      "captureLabel": "3D capture by VIMUNE of the standing figure and its pedestal. The recorded surface colors and textures are retained. The ground-contact underside is a faceted scan closure rather than a documented physical bottom surface. The web version simplifies geometry and compresses textures.",
+      "exactSizeArEligible": false,
+      "thumbnail": {
+        "sha256": "89562d099a82500e1164c1ddbb71ba4ae0b3300a4a4601cb7b590916e0f16f4a",
+        "bytes": 40896,
+        "reviewed": true
+      },
+      "poster": {
+        "sha256": "3924b3bd14c1deca878004f227e05e8cd0b98ba1a315ddf2c0cd304969651ede",
+        "bytes": 54924,
+        "reviewed": true
+      }
+    },
+    {
+      "slug": "europe/rauch-scharnhorst-monument-398bf9",
+      "sourceUid": "398bf948f76544598f3231f5c8e4d881",
+      "title": "Monument to Gerhard von Scharnhorst",
+      "original": {
+        "url": "https://huggingface.co/datasets/allenai/objaverse/resolve/556637099bf4fa79ea7b239d0d9c328b8a2e9ac8/glbs/000-068/398bf948f76544598f3231f5c8e4d881.glb",
+        "sha256": "aaf2c45cf143351ea8c472a1e53dc12680e6a41d85ee5496f01e4980751ea696",
+        "bytes": 151713660,
+        "representation": "Unchanged selected immutable Objaverse distribution GLB; uploader-native authoring package is not asserted."
+      },
+      "sourceUrl": "https://sketchfab.com/3d-models/gerhard-von-scharnhorst-memorial-398bf948f76544598f3231f5c8e4d881",
+      "primaryRecord": "https://bildhauerei-in-berlin.de/bildwerk/denkmal-gerhard-von-scharnhorst-9500/",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "scanAuthor": "VIMUNE",
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/europe/rauch-scharnhorst-monument-398bf9/preview-10770cc7c2a9.glb",
+        "sha256": "10770cc7c2a99df205194b5aa306b75526415290933a80f14527cb71b14e4ed3",
+        "bytes": 1569928
+      },
+      "rawSourceFaces": 4024784,
+      "rawPreviewFaces": 374982,
+      "measuredTopology": {
+        "source": {
+          "loadedRawFaces": 4024784,
+          "measured": {
+            "faces": 4024784,
+            "bratio": 0,
+            "ncomp": 1,
+            "largest_frac": 1
+          },
+          "status": "pass"
+        },
+        "preview": {
+          "loadedRawFaces": 374982,
+          "measured": {
+            "faces": 374982,
+            "bratio": 0,
+            "ncomp": 1,
+            "largest_frac": 1
+          },
+          "status": "pass"
+        }
+      },
+      "materialAppearance": "Unlit textured source material retained; no manual recoloring or synthetic patina.",
+      "processing": {
+        "tool": "Repository glTF Transform CLI",
+        "version": "4.4.2",
+        "metalrough": true,
+        "geometryCompression": "Draco",
+        "textureCompression": "WebP",
+        "textureMaximum": 2048,
+        "simplificationApplied": true,
+        "simplificationRatio": 0.09317270193878728,
+        "simplificationError": 0.005,
+        "faceTargetQualification": "400k is a target; retain the existing 0.005 simplification error bound when topology prevents reaching it.",
+        "noManualRecoloringOrUvRebuild": true,
+        "noPoseCropRepairOrReconstruction": true
+      },
+      "visualDecision": "Accepted after actual eight-view native/serving comparison. Complete recorded exterior, with faceted unrecorded underside closure and softer small details in the serving version.",
+      "views": [
+        {
+          "mode": "native-source",
+          "key": "FRONT",
+          "sha256": "5ef3629d186dd07d8f0f5997d64d8cac2fa63bd0ea52185be4e29babad3e1035",
+          "bytes": 516166
+        },
+        {
+          "mode": "native-source",
+          "key": "RIGHT",
+          "sha256": "2f1bde5eab24bfd0af68af3c7933fa7192bdbd2400b32652a843d92411826cef",
+          "bytes": 487608
+        },
+        {
+          "mode": "native-source",
+          "key": "REVERSE",
+          "sha256": "209cac8ca77090382dc8094015d4dd1433724bcda81dfa21bb9b633fc40473b6",
+          "bytes": 523036
+        },
+        {
+          "mode": "native-source",
+          "key": "LEFT",
+          "sha256": "5eab44f5e6d26941f54cbacf132e30a22eccc187d1299466bd5104003f4d017b",
+          "bytes": 496240
+        },
+        {
+          "mode": "native-source",
+          "key": "ABOVE",
+          "sha256": "684b6de11089ccfcbb5dd055413092ef5186ebed7860d34d269c3dcd47f8762d",
+          "bytes": 409062
+        },
+        {
+          "mode": "native-source",
+          "key": "UNDERSIDE",
+          "sha256": "d2c471aa79f935a61c87670d71c07d030bfc2e422070d4b991409fc183ab7c8c",
+          "bytes": 170290
+        },
+        {
+          "mode": "native-source",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "f3b26508556472f2a6b847f5ce084651c355743ac9e339bc7e4069806d451845",
+          "bytes": 544216
+        },
+        {
+          "mode": "native-source",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "ea7be9f3e828a942716b42f0d3a653a20901a53c0cc317f5e9b7f4b3ab69a428",
+          "bytes": 550376
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "sha256": "3c4b3f0fcf543d3d952e71699eac6c20cd677f0572eb2a1c14aec90b8663104e",
+          "bytes": 499516
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "sha256": "10b6bbb2a1618d5dfe1aaba13b3623a46e65adc8ebf06d6673a968e1c73b8a51",
+          "bytes": 467400
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "sha256": "bb2289f968706cc199dd34c2a18264882857f854e47ad6a993d7f8e6925bb289",
+          "bytes": 500953
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "sha256": "a756397ef89ed796f913c61c9ef323c3eb0dd3f35555679536d0d7bfe8072fea",
+          "bytes": 476583
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "sha256": "75c070e05f51aea667b47ca00e3b3bd94fcac635f0c2f5b28ce7cec1d3bf959c",
+          "bytes": 394003
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "sha256": "18a6909565929e2c09cbd3fa749606b5c010e85c24b07d81f5083f90c0543c41",
+          "bytes": 148636
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "38a24ddd3bd22b20d51082b82ab97a03bca26a7b7173ec43af9e06be1d93ce01",
+          "bytes": 528890
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "46c81c0c188378f5724369656c42ead043a2517d832a149d8a9f8d75b76a9d2b",
+          "bytes": 535080
+        }
+      ],
+      "contact": {
+        "sha256": "e1aa361d205302d409744614a6ba1c0981665db013c9aa779b3eb668db4cc261",
+        "bytes": 175986
+      },
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0,
+          0,
+          1
+        ],
+        "status": "manual",
+        "note": "Upright Y-up basis and complete exterior reviewed in eight paired source/serving directions. Opening camera retains the reviewed front view."
+      },
+      "captureLabel": "3D capture by VIMUNE of the standing figure and its pedestal. The recorded surface colors and textures are retained. The ground-contact underside is a faceted scan closure rather than a documented physical bottom surface. The web version simplifies geometry and compresses textures.",
+      "exactSizeArEligible": false,
+      "thumbnail": {
+        "sha256": "69c38c0917ba63677e4246acaf900471e1f764a69d0bfb5d6d8da8bea6f357b1",
+        "bytes": 41280,
+        "reviewed": true
+      },
+      "poster": {
+        "sha256": "1b60c9cb20380af105e7b906bbf7eb7c717b0a071494b8db9b6b8e3cec5975cd",
+        "bytes": 55410,
+        "reviewed": true
+      }
+    },
+    {
+      "slug": "europe/rauch-yorck-von-wartenburg-monument-e456b6",
+      "sourceUid": "e456b687c7414d52a932e735338e696d",
+      "title": "Monument to Yorck von Wartenburg",
+      "original": {
+        "url": "https://huggingface.co/datasets/allenai/objaverse/resolve/556637099bf4fa79ea7b239d0d9c328b8a2e9ac8/glbs/000-017/e456b687c7414d52a932e735338e696d.glb",
+        "sha256": "fd9d431fcdcfcc52e1c3a70d8436ce8f560955f129299537b198dfeea97d047e",
+        "bytes": 142276120,
+        "representation": "Unchanged selected immutable Objaverse distribution GLB; uploader-native authoring package is not asserted."
+      },
+      "sourceUrl": "https://sketchfab.com/3d-models/york-von-wartenburg-memorial-e456b687c7414d52a932e735338e696d",
+      "primaryRecord": "https://bildhauerei-in-berlin.de/bildwerk/denkmal-fuer-general-hans-david-ludwig-graf-york-von-wartenburg-5107/",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "scanAuthor": "VIMUNE",
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/europe/rauch-yorck-von-wartenburg-monument-e456b6/preview-88d3fccf5949.glb",
+        "sha256": "88d3fccf59494248af3c818a7bcf4883b7b526b2e3b521958d96ed491a983b90",
+        "bytes": 1346972
+      },
+      "rawSourceFaces": 4000134,
+      "rawPreviewFaces": 374916,
+      "measuredTopology": {
+        "source": {
+          "loadedRawFaces": 4000134,
+          "measured": {
+            "faces": 4000134,
+            "bratio": 0,
+            "ncomp": 2,
+            "largest_frac": 1
+          },
+          "status": "pass"
+        },
+        "preview": {
+          "loadedRawFaces": 374916,
+          "measured": {
+            "faces": 374906,
+            "bratio": 0,
+            "ncomp": 2,
+            "largest_frac": 1
+          },
+          "status": "pass"
+        }
+      },
+      "materialAppearance": "Unlit textured source material retained; no manual recoloring or synthetic patina.",
+      "processing": {
+        "tool": "Repository glTF Transform CLI",
+        "version": "4.4.2",
+        "metalrough": true,
+        "geometryCompression": "Draco",
+        "textureCompression": "WebP",
+        "textureMaximum": 2048,
+        "simplificationApplied": true,
+        "simplificationRatio": 0.09374685948020742,
+        "simplificationError": 0.005,
+        "faceTargetQualification": "400k is a target; retain the existing 0.005 simplification error bound when topology prevents reaching it.",
+        "noManualRecoloringOrUvRebuild": true,
+        "noPoseCropRepairOrReconstruction": true
+      },
+      "visualDecision": "Accepted after actual eight-view native/serving comparison. Complete recorded exterior, with faceted unrecorded underside closure and softer small details in the serving version.",
+      "views": [
+        {
+          "mode": "native-source",
+          "key": "FRONT",
+          "sha256": "948a2b4d5d63203e3fc0aaeccf9cbf020a84b390dcb3549236da1dc8b823209e",
+          "bytes": 434306
+        },
+        {
+          "mode": "native-source",
+          "key": "RIGHT",
+          "sha256": "dcae7b8a4ae975ec212ec80071762f263ff1ddf8f1900350e74ad2753155c493",
+          "bytes": 419497
+        },
+        {
+          "mode": "native-source",
+          "key": "REVERSE",
+          "sha256": "06cf8367d16fbf9557b349947eb186ccd366785f177d0ecc4b6188e25079500a",
+          "bytes": 455056
+        },
+        {
+          "mode": "native-source",
+          "key": "LEFT",
+          "sha256": "4bd02e0683a474d77a193882f96de0e5a2ff3f8bec4637a50cf95ea35d4a474e",
+          "bytes": 451322
+        },
+        {
+          "mode": "native-source",
+          "key": "ABOVE",
+          "sha256": "93928755e931003876fe338b0e2a7b155c1394b08f9ee07817220c59af8b6bf6",
+          "bytes": 465413
+        },
+        {
+          "mode": "native-source",
+          "key": "UNDERSIDE",
+          "sha256": "dae05c5d747c11127125736211c46a21ab02ca50c7a5994f064cef460ae7439c",
+          "bytes": 132669
+        },
+        {
+          "mode": "native-source",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "a99aa86f9770f2e47f9a551f5049eff2a950550d3bcab45462bbc118868871e1",
+          "bytes": 469584
+        },
+        {
+          "mode": "native-source",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "2277e1a3140221d0f5f3ca5b009879a74d946beecd23731037e61340cbb590f9",
+          "bytes": 506107
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "sha256": "e1ac38ea46631097e1d17a35be81cbc303b9b5969e3dc31bb43ac688c6840ed6",
+          "bytes": 417751
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "sha256": "58582ab38b8a5e58eca8d806b3f7dd0cabbe171db77091d2db52d6c06c5fc4e7",
+          "bytes": 401181
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "sha256": "60d8860d995c06a7f0006c5fa6a6f108533cf4db8168bc6f18336895041740ad",
+          "bytes": 437505
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "sha256": "775babfbe08fce635bcf8ffbbd5875131d5e406bea191bd39958dcfb3a36c6bb",
+          "bytes": 428929
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "sha256": "9b463adb22e5ae562b23e4fc4d77aba9e22124dbf50667c89ad5d68f4471b46a",
+          "bytes": 452977
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "sha256": "69f484764755807806bc3a9498c73d8de69457c8375e0049373b6f268c7ba2bf",
+          "bytes": 134153
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "112159d0e41c22448bd23fc9df1935b8bb320c7e6abf2a9fbb66fd9aa1af7458",
+          "bytes": 453369
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "fb3af31c63e49e599f1046188c1ee166e09c7f09167a65b31e424d4c90b51798",
+          "bytes": 486359
+        }
+      ],
+      "contact": {
+        "sha256": "e561e4f9ce6d49eb19d3bd1ae1b90819cf66e40235d1a8c43e88380cde41912f",
+        "bytes": 149580
+      },
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0,
+          0,
+          1
+        ],
+        "status": "manual",
+        "note": "Upright Y-up basis and complete exterior reviewed in eight paired source/serving directions. Opening camera retains the reviewed front view."
+      },
+      "captureLabel": "3D capture by VIMUNE of the bronze figure, pedestal and a square of surrounding paving. The recorded surface colors and textures are retained. The underside is a faceted scan closure rather than a documented physical bottom surface. The web version simplifies geometry and compresses textures.",
+      "exactSizeArEligible": false,
+      "thumbnail": {
+        "sha256": "225e70527826ddaf4328834f1df6855292206ff901a554871e7bf9028c02f6e5",
+        "bytes": 31608,
+        "reviewed": true
+      },
+      "poster": {
+        "sha256": "16dd0b5a1e855a84b57d84307644a7a24be101739902577a4e34be7625eda988",
+        "bytes": 42508,
+        "reviewed": true
+      }
+    },
+    {
+      "slug": "europe/rauch-albrecht-thaer-schinkelplatz-copy-cd4642",
+      "sourceUid": "cd4642d1a0c74a648acb16da4002b608",
+      "title": "Albrecht Thaer Monument (Schinkelplatz copy and reconstructed ensemble)",
+      "original": {
+        "url": "https://huggingface.co/datasets/allenai/objaverse/resolve/556637099bf4fa79ea7b239d0d9c328b8a2e9ac8/glbs/000-085/cd4642d1a0c74a648acb16da4002b608.glb",
+        "sha256": "228e9bccff40ef182d75d93e584d4f2a7bbde9ac75778366e6540504a9145150",
+        "bytes": 149230280,
+        "representation": "Unchanged selected immutable Objaverse distribution GLB; uploader-native authoring package is not asserted."
+      },
+      "sourceUrl": "https://sketchfab.com/3d-models/albrecht-thaer-memorial-cd4642d1a0c74a648acb16da4002b608",
+      "primaryRecord": "https://bildhauerei-in-berlin.de/bildwerk/albrecht-thaer-5375/",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "scanAuthor": "VIMUNE",
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/europe/rauch-albrecht-thaer-schinkelplatz-copy-cd4642/preview-1e2d74fe1538.glb",
+        "sha256": "1e2d74fe1538a0d7a91b5206da63b4db43018ee000a2e530ad4bd0f81064cde9",
+        "bytes": 1369840
+      },
+      "rawSourceFaces": 4000306,
+      "rawPreviewFaces": 374970,
+      "measuredTopology": {
+        "source": {
+          "loadedRawFaces": 4000306,
+          "measured": {
+            "faces": 4000306,
+            "bratio": 0,
+            "ncomp": 2,
+            "largest_frac": 1
+          },
+          "status": "pass"
+        },
+        "preview": {
+          "loadedRawFaces": 374970,
+          "measured": {
+            "faces": 374897,
+            "bratio": 0,
+            "ncomp": 2,
+            "largest_frac": 1
+          },
+          "status": "pass"
+        }
+      },
+      "materialAppearance": "Unlit textured source material retained; no manual recoloring or synthetic patina.",
+      "processing": {
+        "tool": "Repository glTF Transform CLI",
+        "version": "4.4.2",
+        "metalrough": false,
+        "geometryCompression": "Draco",
+        "textureCompression": "WebP",
+        "textureMaximum": 2048,
+        "simplificationApplied": true,
+        "simplificationRatio": 0.09374282867360646,
+        "simplificationError": 0.005,
+        "faceTargetQualification": "400k is a target; retain the existing 0.005 simplification error bound when topology prevents reaching it.",
+        "noManualRecoloringOrUvRebuild": true,
+        "noPoseCropRepairOrReconstruction": true
+      },
+      "visualDecision": "Accepted after actual eight-view native/serving comparison. Complete recorded exterior, with faceted unrecorded underside closure and softer small details in the serving version.",
+      "views": [
+        {
+          "mode": "native-source",
+          "key": "FRONT",
+          "sha256": "2b5140270ec03d6de25349c1c23d79d61d90b3326fe3c568394d273c52c8cb14",
+          "bytes": 406140
+        },
+        {
+          "mode": "native-source",
+          "key": "RIGHT",
+          "sha256": "dc7e3df8998748d777ce1c812902ccbaa4c8d06264d68b53b3209054d9682348",
+          "bytes": 387310
+        },
+        {
+          "mode": "native-source",
+          "key": "REVERSE",
+          "sha256": "7537a3d39da6aadb458b448775830e7b98e10c02a866b2af864ffaee57abf4e5",
+          "bytes": 416795
+        },
+        {
+          "mode": "native-source",
+          "key": "LEFT",
+          "sha256": "c1bc80e2d4e8b0c217908fc09fcba39d1ddb47c926c55b07f3fbdd3246770e44",
+          "bytes": 416117
+        },
+        {
+          "mode": "native-source",
+          "key": "ABOVE",
+          "sha256": "2ae8487b9c12190ea69895512419f18f972880a9b8c127855553b4b2eabf6aa2",
+          "bytes": 367592
+        },
+        {
+          "mode": "native-source",
+          "key": "UNDERSIDE",
+          "sha256": "27e0da8782d4ba11abf59e6239e6ad4ea17743ba8a0a6fda59539071d923012d",
+          "bytes": 117428
+        },
+        {
+          "mode": "native-source",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "81b284104836522d19947a3344205c6929c0786e9ec926a43b090b178a4494ce",
+          "bytes": 464723
+        },
+        {
+          "mode": "native-source",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "8c73a0f1e3cecf4442366c46e4f3535a13b3056fccc23bf2c5bb50751f9ff550",
+          "bytes": 491467
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "sha256": "81f83b29e0fbe5ec8644543c58c0c3a908c124bd0aa8e43296f8aecca1e7dcb1",
+          "bytes": 382752
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "sha256": "e79fe8546a7730cade21149d15af8c6350af41e77f919e8f6b2adaedf05dc32b",
+          "bytes": 367245
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "sha256": "f88a805ef7894ecf72423e9ca4580d79fa79bf0f0fce76a9d2f758987b183030",
+          "bytes": 394470
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "sha256": "a5a86368f00591a19e11c0893d17292cf9c0b933e4d7a1133f46b9ebf9c5d0b6",
+          "bytes": 395003
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "sha256": "2269dee46b90aee7cb762af6b908873e5a4a90876a77aa02bed2e9577c6455df",
+          "bytes": 346056
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "sha256": "5bff603b1b0b30c239ee4338594192c305fc1fd952b7a30d29ad4d3bc856756b",
+          "bytes": 119950
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "79da2961394a06fac5fa0d36692c797a7fb8b546495a1bca2fb5915388b31fdc",
+          "bytes": 443370
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "63b08bdfccf54cdd28cfa446d6a0bdf5cd56ee970e763daebf4ba282382cc7a1",
+          "bytes": 469069
+        }
+      ],
+      "contact": {
+        "sha256": "faf7e7ada2be748ae8bbed4d901e28ce4dd590a82835e51a2e13fd514fe0be57",
+        "bytes": 133340
+      },
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0,
+          0,
+          1
+        ],
+        "status": "manual",
+        "note": "Upright Y-up basis and complete exterior reviewed in eight paired source/serving directions. Opening camera retains the reviewed front view."
+      },
+      "captureLabel": "3D capture by VIMUNE of the copied standing figure and reconstructed pedestal. The surrounding enclosure is outside the capture. The recorded surface colors and textures are retained. The underside is a faceted scan closure rather than a documented physical bottom surface. The web version simplifies geometry and compresses textures.",
+      "exactSizeArEligible": false,
+      "thumbnail": {
+        "sha256": "72bb0de7b301fcf20480a3a0128bc9ac9d397fbd268c72254373bba0aa59f29e",
+        "bytes": 26368,
+        "reviewed": true
+      },
+      "poster": {
+        "sha256": "9eec6ba96270f114de1e8869b644fb83b69d02549d73f2ff72e0f8b5cdc8eac3",
+        "bytes": 35602,
+        "reviewed": true
+      }
+    }
+  ],
+  "paused": {
+    "works": [
+      "europe/rauch-bluecher-monument-73fdfe",
+      "europe/rauch-goethe-workshop-plaster-bust-d56417"
+    ],
+    "reason": "Owner requested release of ready works and a pause for storage housekeeping. Blücher needs final processing/review; Goethe also has a possible composition overlap with an older photosculpture."
+  },
+  "backupStatus": "Permanent private source coverage verification remains in progress; originals are retained locally. No removal authorized.",
+  "checkedAt": "2026-10-26T17:29:00.229410+00:00"
+}
