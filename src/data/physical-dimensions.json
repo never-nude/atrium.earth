@@ -33210,7 +33210,7 @@
       "measurementRegion": {
         "method": "position-welded connected triangles",
         "description": "The sculpture is separate from the modern pedestal. Connected components ranks 0, 1 and 3 contain the marble group; rank 2 is the rectangular pedestal. Their union runs from normalized Y -0.1190040436654394 to 0.5. Use the confirmed 197.5 cm height of the marble group, retaining the pedestal at the same uniform scale.",
-        "weldToleranceNormalizedUnits": 0.000001,
+        "weldToleranceNormalizedUnits": 1e-06,
         "ranksByDescendingTriangleCount": [
           0,
           1,
@@ -69243,7 +69243,7 @@
       "measurementRegion": {
         "method": "position-welded connected triangles",
         "description": "Connected component rank 0 is the rigid monitor body; all display/button components remain within its lateral body endpoints. Hanging cable components extend farther left and below and are excluded from the reference. Use the museum body-only width 58.4 cm for the rank-0 X span, retaining all cables at that scale.",
-        "weldToleranceNormalizedUnits": 0.000001,
+        "weldToleranceNormalizedUnits": 1e-06,
         "ranksByDescendingTriangleCount": [
           0
         ],
@@ -76965,7 +76965,7 @@
       "measurementRegion": {
         "method": "position-welded connected triangles",
         "description": "Connected component rank 0 is the complete sculpture, including its lowest foot/curved lower edge; rank 1 is the added green platform. All other sculpture fragments and the apple are within rank-0 height. Use the scan creator’s explicitly approximate 57 cm sculpture height, excluding the green platform from the reference while retaining it in the scene.",
-        "weldToleranceNormalizedUnits": 0.000001,
+        "weldToleranceNormalizedUnits": 1e-06,
         "ranksByDescendingTriangleCount": [
           0
         ],
@@ -112494,6 +112494,39 @@
     "basis": "unknown",
     "dimensions": "",
     "sourceUrl": "https://www.musee-orsay.fr/fr/ressources/parcours-lopera-de-charles-garnier-80",
+    "checked": "2026-10-26",
+    "note": "No physical dimensions are adopted for the exact captured assembly. Model scale is not calibrated.",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [],
+    "calibrationReady": false
+  },
+  "neoclassical/thorvaldsen-cupid-earth-marble-relief-5dcf93": {
+    "status": "unknown",
+    "basis": "unknown",
+    "dimensions": "",
+    "sourceUrl": "https://kataloget.thorvaldsensmuseum.dk/en/A378",
+    "checked": "2026-10-26",
+    "note": "No physical dimensions are adopted for the exact captured assembly. Model scale is not calibrated.",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [],
+    "calibrationReady": false
+  },
+  "neoclassical/thorvaldsen-cupid-underworld-marble-relief-35ee39": {
+    "status": "unknown",
+    "basis": "unknown",
+    "dimensions": "",
+    "sourceUrl": "https://kataloget.thorvaldsensmuseum.dk/en/A380",
+    "checked": "2026-10-26",
+    "note": "No physical dimensions are adopted for the exact captured assembly. Model scale is not calibrated.",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [],
+    "calibrationReady": false
+  },
+  "neoclassical/thorvaldsen-cupid-heaven-marble-relief-1edac3": {
+    "status": "unknown",
+    "basis": "unknown",
+    "dimensions": "",
+    "sourceUrl": "https://kataloget.thorvaldsensmuseum.dk/en/A377",
     "checked": "2026-10-26",
     "note": "No physical dimensions are adopted for the exact captured assembly. Model scale is not calibrated.",
     "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",

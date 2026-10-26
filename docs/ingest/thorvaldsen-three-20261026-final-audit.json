@@ -1,0 +1,393 @@
+{
+  "schema": "atrium-independent-final-audit/1",
+  "batch": "thorvaldsen-three-20261026",
+  "baselineCommit": "ee445b2752345c70e7b4bd2e911455319d4f4427",
+  "checkedAt": "2026-10-26T20:35:09.378925+00:00",
+  "status": "pass",
+  "catalogCounts": {
+    "before": 2394,
+    "added": 3,
+    "after": 2397
+  },
+  "checks": {
+    "allDecodedGeometryAndTransformsPass": true,
+    "explicitFinalAcceptance": true,
+    "exactThreeSelectedWorks": true,
+    "exact2394PlusThree": true,
+    "allOldRowsUnchangedExceptTotal": true,
+    "indicesAndTotals": true,
+    "allHeldBerniniAndInitialThorvaldsenAbsent": true,
+    "previewsAppendOnlyThree": true,
+    "appearance-overridesAppendOnlyThree": true,
+    "orientationsAppendOnlyThree": true,
+    "physical-dimensionsAppendOnlyThree": true,
+    "spatial-eligibilityAppendOnlyThree": true,
+    "rendersAppendOnlyThree": true,
+    "featured-worksUnchanged": true,
+    "material-appearancesUnchanged": true,
+    "display-recommendationsUnchanged": true,
+    "identity-correctionsUnchanged": true,
+    "spatial-display-defaultsUnchanged": true,
+    "oldAdditionSettingsUnchanged": true,
+    "curationOnlyAppendSelectedWorks": true,
+    "finalScopeReportsBound": true,
+    "allSelectedAssetsAndMetadata": true,
+    "approvedIngestPreflightLessonUnchanged": true,
+    "noRuntimeSourceOrPriorAssetEdits": true,
+    "priorCarpeauxAndBerniniEvidenceDocumentsPreserved": true,
+    "exactlyThreePowerAndPresenceWorkAndCaptionAppends": true
+  },
+  "works": [
+    {
+      "slug": "neoclassical/thorvaldsen-cupid-earth-marble-relief-5dcf93",
+      "sourceUid": "5dcf9328308b4463a7364e4d03fb6074",
+      "title": "Cupid on the Earth (posthumous marble relief, A378)",
+      "original": {
+        "url": "https://huggingface.co/datasets/allenai/objaverse/resolve/556637099bf4fa79ea7b239d0d9c328b8a2e9ac8/glbs/000-043/5dcf9328308b4463a7364e4d03fb6074.glb",
+        "sha256": "bbbe22c88ca0cbd5f3eaeb21c28bee7e4ee9d96c0f2bf568955494c3660f6010",
+        "bytes": 12946004,
+        "representation": "Unchanged immutable Objaverse distribution GLB; uploader-native authoring package not asserted."
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/neoclassical/thorvaldsen-cupid-earth-marble-relief-5dcf93/preview-fbdbad445b54.glb",
+        "sha256": "fbdbad445b54aa7a96ff3fa7893bdc248bd90d9ecb59e35e03b030cf1c446c18",
+        "bytes": 12944956
+      },
+      "historicalGrant": {
+        "url": "https://huggingface.co/datasets/allenai/objaverse/resolve/556637099bf4fa79ea7b239d0d9c328b8a2e9ac8/metadata/000-043.json.gz",
+        "sha256": "752b681222db8fc4e8f8fc9d12c99bcfe776f87a7cca2d893a2513a53181f20c",
+        "bytes": 3617407,
+        "uidLicense": "by",
+        "currentProviderLicense": "CC BY-NC-SA 4.0",
+        "qualification": "Authority is the unchanged historical distribution and exact historical grant. The current provider listing is separate."
+      },
+      "rawSourceFaces": 403925,
+      "rawPreviewFaces": 403925,
+      "geometryFingerprintSha256": "72bc480162b99773ecac68571701fe6e34183e0fafbd87b68c89ec551489e7e2",
+      "accessorCount": 20,
+      "geometryChecks": {
+        "allDecodedGeometryFingerprintsEqual": true,
+        "allAccessorArraysAndMultiplicityEqual": true,
+        "rawNodeTransformsAndSceneMappingExact": true,
+        "sameTextureCountAndResolution": true,
+        "conversionProofMatchesComputedFingerprint": true,
+        "conversionIsSharedCompatibilityOnly": true
+      },
+      "materialWorkflowConversion": {
+        "tool": "@gltf-transform/functions metalRough",
+        "version": "4.4.2",
+        "label": "material-normalized-source-reference",
+        "materialWorkflowConversion": "KHR_materials_pbrSpecularGlossiness to supported metal/rough + specular/ior",
+        "geometrySimplification": false,
+        "textureCompression": false,
+        "sourceCompressionDecodedOnly": true,
+        "sourceRawNodeTransformsPreservedExactly": true,
+        "nodeMeshChildSceneMappingVerified": true,
+        "binaryChunksPreservedDuringTransformJsonRepack": true,
+        "accessorRegistryComparedAsFullSignatureMultiset": true,
+        "geometryFingerprintSha256": "72bc480162b99773ecac68571701fe6e34183e0fafbd87b68c89ec551489e7e2",
+        "geometryFingerprintVerifiedBeforeAfterAndReread": true,
+        "limitation": "Material workflow conversion may rewrite specular/gloss texture channels. It is a labeled reference, not the unmodified provider file, and requires human appearance comparison."
+      },
+      "contact": {
+        "sha256": "76b54cb6be3b8ab0cb3207de580feadb2ef1a7df5d997da927dedfc1d041af11",
+        "bytes": 154398
+      },
+      "thumbnail": {
+        "sha256": "0df23959570b95669b860252ca78ea619c2ec20fd36e3edf24ee6fb809713728",
+        "bytes": 55254
+      },
+      "poster": {
+        "sha256": "23cceac5b9f0e69241063786900d0968f3cf3cefce72d5b528c7d75c2144418a",
+        "bytes": 74074
+      },
+      "captureLabel": "Photogrammetry by Geoffrey Marchal using Autodesk Memento, later ReMake; the sculpted relief face is recorded with its surrounding frame; rough outer scan edges and mirrored reverse textures do not document the thickness or physical back of the marble panel.",
+      "localAssetChecks": {
+        "sourceFullHashAndBytes": true,
+        "sourceAndReferenceRenderBindings": true,
+        "servingFullHashAndBytes": true,
+        "rawCountsNotConflated": true,
+        "selfContained": true,
+        "appearanceRetained": true,
+        "all16FramesBound": true,
+        "finalReview16FramePinsBound": true,
+        "sourceCopyOrExplicitMaterialReferenceOnly": true,
+        "allDecodedAccessorsAndRawTransformsVerified": true,
+        "finalThumbnailActuallyReviewed": true,
+        "contactBound": true,
+        "finalThumbnailBound": true,
+        "finalPosterBound": true,
+        "unknownScaleArDisabled": true,
+        "captureLabelBound": true,
+        "orientationBound": true,
+        "historicalGrantFullHashAndBytes": true,
+        "publicLicenseMatchesExactGrant": true,
+        "currentLicenseSeparatedFromHistorical": true,
+        "originEvidenceQualified": true,
+        "exactMarbleReliefVersionQualified": true,
+        "recordedFaceAndSupportReverseQualified": true,
+        "earthAssistantCreditPreserved": true,
+        "earthPosthumousVersionVisible": true
+      }
+    },
+    {
+      "slug": "neoclassical/thorvaldsen-cupid-underworld-marble-relief-35ee39",
+      "sourceUid": "35ee394585fa4c16be258a85e3fa5814",
+      "title": "Cupid in the Underworld (posthumous marble relief, A380)",
+      "original": {
+        "url": "https://huggingface.co/datasets/allenai/objaverse/resolve/556637099bf4fa79ea7b239d0d9c328b8a2e9ac8/glbs/000-039/35ee394585fa4c16be258a85e3fa5814.glb",
+        "sha256": "84594cea325999868e4058d14de442753fdd8e0e0b89a7a010d4abffb8fd82c8",
+        "bytes": 12831988,
+        "representation": "Unchanged immutable Objaverse distribution GLB; uploader-native authoring package not asserted."
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/neoclassical/thorvaldsen-cupid-underworld-marble-relief-35ee39/preview-84594cea3259.glb",
+        "sha256": "84594cea325999868e4058d14de442753fdd8e0e0b89a7a010d4abffb8fd82c8",
+        "bytes": 12831988
+      },
+      "historicalGrant": {
+        "url": "https://huggingface.co/datasets/allenai/objaverse/resolve/556637099bf4fa79ea7b239d0d9c328b8a2e9ac8/metadata/000-039.json.gz",
+        "sha256": "48fba0bb67d790c900dceab75cd29437427b45a9febd51a1f2611a1e5b5f2fbd",
+        "bytes": 3618383,
+        "uidLicense": "by",
+        "currentProviderLicense": "CC BY-NC-SA 4.0",
+        "qualification": "Authority is the unchanged historical distribution and exact historical grant. The current provider listing is separate."
+      },
+      "rawSourceFaces": 403651,
+      "rawPreviewFaces": 403651,
+      "geometryFingerprintSha256": "de8df3015371adae5ede85324e38dab299f3201a732ab313656f37c94d6b2cc3",
+      "accessorCount": 16,
+      "geometryChecks": {
+        "allDecodedGeometryFingerprintsEqual": true,
+        "allAccessorArraysAndMultiplicityEqual": true,
+        "rawNodeTransformsAndSceneMappingExact": true,
+        "sameTextureCountAndResolution": true,
+        "unchangedOriginalAndServing": true
+      },
+      "materialWorkflowConversion": "none",
+      "contact": {
+        "sha256": "09f4bc419be1a57b4267e575f3e3260c2075a8ff0d2ffa210784f9dffa7f4e2b",
+        "bytes": 139276
+      },
+      "thumbnail": {
+        "sha256": "fe96ad094b7fd4ba12ee7df81b64079364068c8663d06e428e07ac13c6b5a803",
+        "bytes": 51886
+      },
+      "poster": {
+        "sha256": "abdc1e75027e355c2af720b9358af1a2e80dbaf9aee55e8b7ff293c68abe3c3e",
+        "bytes": 69596
+      },
+      "captureLabel": "Photogrammetry by Geoffrey Marchal using Autodesk Memento, later ReMake; the sculpted relief face is recorded with its surrounding frame; rough outer scan edges and mirrored reverse textures do not document the thickness or physical back of the marble panel.",
+      "localAssetChecks": {
+        "sourceFullHashAndBytes": true,
+        "sourceAndReferenceRenderBindings": true,
+        "servingFullHashAndBytes": true,
+        "rawCountsNotConflated": true,
+        "selfContained": true,
+        "appearanceRetained": true,
+        "all16FramesBound": true,
+        "finalReview16FramePinsBound": true,
+        "sourceCopyOrExplicitMaterialReferenceOnly": true,
+        "allDecodedAccessorsAndRawTransformsVerified": true,
+        "finalThumbnailActuallyReviewed": true,
+        "contactBound": true,
+        "finalThumbnailBound": true,
+        "finalPosterBound": true,
+        "unknownScaleArDisabled": true,
+        "captureLabelBound": true,
+        "orientationBound": true,
+        "historicalGrantFullHashAndBytes": true,
+        "publicLicenseMatchesExactGrant": true,
+        "currentLicenseSeparatedFromHistorical": true,
+        "originEvidenceQualified": true,
+        "exactMarbleReliefVersionQualified": true,
+        "recordedFaceAndSupportReverseQualified": true,
+        "underworldUnknownAssistantPreserved": true,
+        "underworldPosthumousVersionVisible": true
+      }
+    },
+    {
+      "slug": "neoclassical/thorvaldsen-cupid-heaven-marble-relief-1edac3",
+      "sourceUid": "1edac37043164491859a62a7f76117f8",
+      "title": "Cupid in the Sky (marble relief, A377)",
+      "original": {
+        "url": "https://huggingface.co/datasets/allenai/objaverse/resolve/556637099bf4fa79ea7b239d0d9c328b8a2e9ac8/glbs/000-050/1edac37043164491859a62a7f76117f8.glb",
+        "sha256": "f4030a86aae19f544423ece423de1bcdf99374c571f96b5d062432df68ee3914",
+        "bytes": 12938708,
+        "representation": "Unchanged immutable Objaverse distribution GLB; uploader-native authoring package not asserted."
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/neoclassical/thorvaldsen-cupid-heaven-marble-relief-1edac3/preview-f4030a86aae1.glb",
+        "sha256": "f4030a86aae19f544423ece423de1bcdf99374c571f96b5d062432df68ee3914",
+        "bytes": 12938708
+      },
+      "historicalGrant": {
+        "url": "https://huggingface.co/datasets/allenai/objaverse/resolve/556637099bf4fa79ea7b239d0d9c328b8a2e9ac8/metadata/000-050.json.gz",
+        "sha256": "9193d6c7739deb10e332f3e9d97f8b1357d604f65b0c450a2642304622f6594d",
+        "bytes": 3594213,
+        "uidLicense": "by",
+        "currentProviderLicense": "CC BY-NC-SA 4.0",
+        "qualification": "Authority is the unchanged historical distribution and exact historical grant. The current provider listing is separate."
+      },
+      "rawSourceFaces": 406270,
+      "rawPreviewFaces": 406270,
+      "geometryFingerprintSha256": "52a8c0dd3f3ca8f2062c32ca20e8cc887b1ba2332dfe3c8199a02db0b91f8738",
+      "accessorCount": 16,
+      "geometryChecks": {
+        "allDecodedGeometryFingerprintsEqual": true,
+        "allAccessorArraysAndMultiplicityEqual": true,
+        "rawNodeTransformsAndSceneMappingExact": true,
+        "sameTextureCountAndResolution": true,
+        "unchangedOriginalAndServing": true
+      },
+      "materialWorkflowConversion": "none",
+      "contact": {
+        "sha256": "3bbb3f3e1d4e76bad52fffec978c62f68eee0977c1f23eb705d0c6d992504ffb",
+        "bytes": 152914
+      },
+      "thumbnail": {
+        "sha256": "9e9983f23380a698dd7ffca4956f5f99675ce28a456e05a64b5bb9a0e41ab2ec",
+        "bytes": 56464
+      },
+      "poster": {
+        "sha256": "92c102579e31e3e4073aaa0281aeb2aa6fca9bb25e2f671737290636b7f60fc9",
+        "bytes": 75664
+      },
+      "captureLabel": "Photogrammetry by Geoffrey Marchal using Autodesk Memento, later ReMake; the sculpted relief face is recorded with its surrounding frame; rough outer scan edges and mirrored reverse textures do not document the thickness or physical back of the marble panel.",
+      "localAssetChecks": {
+        "sourceFullHashAndBytes": true,
+        "sourceAndReferenceRenderBindings": true,
+        "servingFullHashAndBytes": true,
+        "rawCountsNotConflated": true,
+        "selfContained": true,
+        "appearanceRetained": true,
+        "all16FramesBound": true,
+        "finalReview16FramePinsBound": true,
+        "sourceCopyOrExplicitMaterialReferenceOnly": true,
+        "allDecodedAccessorsAndRawTransformsVerified": true,
+        "finalThumbnailActuallyReviewed": true,
+        "contactBound": true,
+        "finalThumbnailBound": true,
+        "finalPosterBound": true,
+        "unknownScaleArDisabled": true,
+        "captureLabelBound": true,
+        "orientationBound": true,
+        "historicalGrantFullHashAndBytes": true,
+        "publicLicenseMatchesExactGrant": true,
+        "currentLicenseSeparatedFromHistorical": true,
+        "originEvidenceQualified": true,
+        "exactMarbleReliefVersionQualified": true,
+        "recordedFaceAndSupportReverseQualified": true
+      }
+    }
+  ],
+  "finalReview": {
+    "path": "docs/ingest/thorvaldsen-three-20261026-final-review.json",
+    "bytes": 26331,
+    "sha256": "85f7e6a2109e9ffb6a2daace4e487adeaa1257f9d2bcdbfcec11f40e4c9ac05d"
+  },
+  "visualReportPins": [
+    {
+      "bytes": 118091,
+      "sha256": "9798ee4bf6c0584b53b3172582d2f5442231e7199339c1c0989b10850ff2ba1a"
+    }
+  ],
+  "preservedEvidenceDocuments": [
+    {
+      "path": "docs/ingest/carpeaux-three-20261026-archive.json",
+      "bytes": 2177,
+      "sha256": "f6d7443d1ba0a5c2d9d65ce9d1fa1d46ee32b54f7c0371313924eb3ceeb28cc8"
+    },
+    {
+      "path": "docs/ingest/carpeaux-three-20261026-final-audit.json",
+      "bytes": 10919,
+      "sha256": "ac2c2c54825543dc60f38ad3447447df08f2b10854db4cffba764e9e9a59e406"
+    },
+    {
+      "path": "docs/ingest/carpeaux-three-20261026-final-review.json",
+      "bytes": 24840,
+      "sha256": "518898e642ade6114708a31c5a190e81651b5e886c013d09672203e847d0798b"
+    },
+    {
+      "path": "docs/ingest/carpeaux-three-20261026-live-browser.json",
+      "bytes": 9348,
+      "sha256": "2361f9f45edfe6916d2edc2b8f4d1a864c5e38866ca1089cf27fb45c51d535fc"
+    },
+    {
+      "path": "docs/ingest/carpeaux-three-20261026-live.json",
+      "bytes": 4866,
+      "sha256": "15d48b5cef05a8dfdca270db606c27ef6b40c52ab1f78711193f5d74e2ed6800"
+    },
+    {
+      "path": "docs/ingest/carpeaux-three-20261026-preview-upload.json",
+      "bytes": 1177,
+      "sha256": "de8c807b37cd3810599039f8596a8f34c1562ee60781dd741f5b0d7a5da53e20"
+    },
+    {
+      "path": "docs/ingest/carpeaux-three-20261026-review-holds.json",
+      "bytes": 9072,
+      "sha256": "287b570e427e89032eb02a1208e82b87026cd7729bea6cbc27e019786af64b4e"
+    },
+    {
+      "path": "docs/ingest/bernini-three-20261026-archive.json",
+      "bytes": 2282,
+      "sha256": "7de0151599006ce4b22808cf69ed2291878c81fc6f13882be08c0b77cbedda24"
+    },
+    {
+      "path": "docs/ingest/bernini-three-20261026-review-holds.json",
+      "bytes": 2669,
+      "sha256": "72fbdd588afd4f05b4d6c06fb01fe4be1a8aa39683e30d05c8b394aba28209e5"
+    },
+    {
+      "path": "docs/ingest/bernini-three-20261026-source-request.json",
+      "bytes": 1950,
+      "sha256": "63c03ba57b424128c632be7e4424cb2949439b5a48712a0b7c1a1fd7eb02f947"
+    }
+  ],
+  "curatedChanges": [
+    {
+      "path": "/wallTexts/power-and-presence/workSlugs",
+      "appendOnly": true,
+      "added": [
+        "neoclassical/thorvaldsen-cupid-earth-marble-relief-5dcf93",
+        "neoclassical/thorvaldsen-cupid-underworld-marble-relief-35ee39",
+        "neoclassical/thorvaldsen-cupid-heaven-marble-relief-1edac3"
+      ]
+    },
+    {
+      "path": "/wallTexts/power-and-presence/captions",
+      "appendOnly": true,
+      "added": [
+        {
+          "slug": "neoclassical/thorvaldsen-cupid-earth-marble-relief-5dcf93",
+          "text": "A small Cupid rests his hand on a lion and carries Hercules’s club. The contrast in scale gives the allegory its force: love claims power over physical strength. This posthumous marble follows Thorvaldsen’s 1828 composition, with Georg Christian Freund credited as assistant."
+        },
+        {
+          "slug": "neoclassical/thorvaldsen-cupid-underworld-marble-relief-35ee39",
+          "text": "Cupid holds the underworld’s staff beside Cerberus, its multi-headed guardian. Borrowed emblems turn the child into a ruler of the realm of the dead. This posthumous marble follows Thorvaldsen’s 1828 composition; the execution assistant remains unidentified."
+        },
+        {
+          "slug": "neoclassical/thorvaldsen-cupid-heaven-marble-relief-1edac3",
+          "text": "Riding the eagle and raising a thunderbolt, Cupid takes up Jupiter’s emblems. The familiar signs of divine authority are placed in a child’s hands, extending the sequence’s claim that love rules every realm."
+        }
+      ]
+    }
+  ],
+  "independentActualImageInspection": {
+    "pairedContactSheets": 3,
+    "nativeAndServingFramesRepresented": 48,
+    "finalThumbnails": 3,
+    "finding": "All three sculpted fronts, faces, attributes and framed visible extents are legible and recorded. Paired reference and serving views agree. Rough scan perimeters and mirrored reverse textures are retained and explicitly qualified as not documenting physical panel thickness or back. These are relief face captures, not independently complete all-around marble slabs. Final thumbnails show the complete recorded fronts."
+  },
+  "versionAndOrigin": "Earth A378 and Underworld A380 are visibly labelled posthumous marble reliefs after the 1828 compositions, with unknown execution dates. Earth retains Georg Christian Freund assistant credit and primary Copenhagen creation place. Underworld retains an unidentified assistant and unknown origin. Sky A377 retains its no-earlier-than-1828 dating and unrecorded marble execution maker. No lifetime autograph execution is asserted for the posthumous versions.",
+  "scale": "Complete capture assembly dimensions remain unknown; no physical calibration or exact-size AR is enabled.",
+  "sourcePreservation": "Earth uses only the shared, explicitly labelled specular/glossiness compatibility conversion. Independent rereads confirm all decoded accessor arrays, semantic geometry fingerprints and raw node/scene mappings unchanged. Underworld and Sky serving files are byte-identical to their selected originals. All unchanged acquired originals remain separately pinned.",
+  "heldExcluded": [
+    "Initial Dancing Girl A179 /85c07e953d23422b8cfd955446e55d62",
+    "Initial Cupid Triumphant A22 /2248f6e533644a579b2d70baf76a34c3",
+    "Initial Ganymede A44 /f106f11a17bf425787f1880a474719fa",
+    "All Bernini batch candidates"
+  ],
+  "documentationChange": "The reviewed INGEST.md addition documents quick native front/above/reverse screening while retaining complete final comparison requirements. Its exact file pin was checked; no runtime source or site settings changed.",
+  "scope": "Independent local catalog, rights/file-pin, geometry, integration and actual contact-sheet/final-thumbnail audit. Remote archives, CDN delivery and deployment are separate evidence and are not independently certified here."
+}
