@@ -1,0 +1,131 @@
+{
+  "schema": "atrium-public-capture-review-hold/1",
+  "batch": "miro-20261025",
+  "state": "closed-no-public-additions",
+  "source": "https://sketchfab.com/3d-models/15d811658e544c228f5b437d9e3619d4",
+  "title": "Solar Bird",
+  "sourceBytes": 11765052,
+  "sourceSha256": "b789673f7720d95533b3587ced61f87a4f9c938ab14ced964c5de0cf257dcfcc",
+  "reviewedActualFrames": 16,
+  "reviewer": "Codex assistant visual inspection",
+  "reason": "The exterior silhouette is largely recorded, but actual above views expose garbled and missing surface detail across the raised crescent ridge and a flat texture patch on the rear body. Crescent tips are rough. Preserve as a source-quality hold rather than repair or publish it.",
+  "views": [
+    {
+      "mode": "native-source",
+      "key": "FRONT",
+      "bytes": 486086,
+      "sha256": "ba362336c4f0e900b86bb4e453fd40aa498eee73232234a95c2fd8715cf009aa"
+    },
+    {
+      "mode": "native-source",
+      "key": "RIGHT",
+      "bytes": 431512,
+      "sha256": "4b4799ea30a48cadad310bc757a15dfbe8d37bf04e342355178f8210868333eb"
+    },
+    {
+      "mode": "native-source",
+      "key": "REVERSE",
+      "bytes": 492188,
+      "sha256": "b22b268697ed761ae95af40ef5b342aac869b4939f6e30619d0ac497cfb3e4a5"
+    },
+    {
+      "mode": "native-source",
+      "key": "LEFT",
+      "bytes": 420863,
+      "sha256": "5e238d855c05d5ecf6e5f287dcc0934a7702db22efad022ef6b440bac715ae8c"
+    },
+    {
+      "mode": "native-source",
+      "key": "ABOVE",
+      "bytes": 528092,
+      "sha256": "92fb0db738cf0025f3dc0bf40492782ed9a12a83f203726fdc4ab22f8fce5df6"
+    },
+    {
+      "mode": "native-source",
+      "key": "UNDERSIDE",
+      "bytes": 273090,
+      "sha256": "10df53b5709c1fb3122e600e0876a41d9799ff5ce5eac596d89385e42c7f27e5"
+    },
+    {
+      "mode": "native-source",
+      "key": "FRONT-THREE-QUARTER",
+      "bytes": 417668,
+      "sha256": "2a6ed69375ccc281bf406620c16b33ce5986d04ee0dde3a752eab5afff96526f"
+    },
+    {
+      "mode": "native-source",
+      "key": "BACK-THREE-QUARTER",
+      "bytes": 412014,
+      "sha256": "5513ab4b6ac2cd17936cb7fc9bc3b405c5a1d4757aaa25e25cc581067c5732e3"
+    },
+    {
+      "mode": "preview-production",
+      "key": "FRONT",
+      "bytes": 446681,
+      "sha256": "9c2600552e91617e361deff4651f41e7d52d53e94ebdfe16683c0de91159ec2d"
+    },
+    {
+      "mode": "preview-production",
+      "key": "RIGHT",
+      "bytes": 399868,
+      "sha256": "0df5ff88732e35bdab009187345e1cb58baef4ea6b559e594d31c33560681a7d"
+    },
+    {
+      "mode": "preview-production",
+      "key": "REVERSE",
+      "bytes": 447563,
+      "sha256": "56da38cde23c007ab4183de7ea70a33c2220fd810d17dff6357e9dcbda0628ca"
+    },
+    {
+      "mode": "preview-production",
+      "key": "LEFT",
+      "bytes": 383258,
+      "sha256": "8609f17ba285dd36e7dcfa3bc6fa69238461a04d54a52ce38906459408944b1c"
+    },
+    {
+      "mode": "preview-production",
+      "key": "ABOVE",
+      "bytes": 468509,
+      "sha256": "3031639afe68aa40d9a4b24f38424c70212d54849d8765dec32d919d71a602ee"
+    },
+    {
+      "mode": "preview-production",
+      "key": "UNDERSIDE",
+      "bytes": 264624,
+      "sha256": "ff6de636a5c24344ddb52d378a52147832f531bcce30a66dab19cd239456c119"
+    },
+    {
+      "mode": "preview-production",
+      "key": "FRONT-THREE-QUARTER",
+      "bytes": 391243,
+      "sha256": "6646fe7ba9c0fef106df56b5d349c6e608979d5c46149904082079f40e7bf524"
+    },
+    {
+      "mode": "preview-production",
+      "key": "BACK-THREE-QUARTER",
+      "bytes": 379867,
+      "sha256": "ffd2b5d7a7b8ca0c862428e9de669bfca56a4d0e27cb67e4fe25e11ada0f0ea3"
+    }
+  ],
+  "archive": {
+    "schema": "atrium-public-safe-source-archive-summary/1",
+    "batch": "miro-more-20261025",
+    "count": 1,
+    "originalZIPbytes": 11773696,
+    "unchangedProviderGLBbytes": 11765052,
+    "provenanceBytes": 220044,
+    "restoreMapBytes": 5835,
+    "totalAuthenticatedReadbacks": 3,
+    "totalAuthenticatedReadbackBytes": 11999575,
+    "fullSHA256AndExactBytesVerified": true,
+    "privateSharing": true,
+    "retainedOriginals": true,
+    "cleanup": false,
+    "publicAdditions": 0,
+    "publicationStatus": "held-for-source-capture-quality",
+    "sourceQualification": "Locally assembled ZIP_STORED container preserves the unchanged provider GLB, full fresh detail, sanitized authenticated acquisition proof and member manifest. Exact captured version, material, date, location and physical size remain unconfirmed. Archival preservation does not imply visual acceptance."
+  },
+  "publicAdditions": 0,
+  "repairApplied": false,
+  "cleanupPerformed": false
+}
