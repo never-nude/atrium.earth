@@ -1,0 +1,634 @@
+{
+  "schema": "atrium-live-artist-release-verification/1",
+  "batch": "gustav-vigeland-20261025",
+  "releaseCommit": "7aab5f04be7e0446e2ee0f2b1fab30355ac5a714",
+  "deployment": {
+    "runId": 40261963293,
+    "url": "https://github.com/never-nude/atrium.earth/actions/runs/40261963293",
+    "workflowName": "Deploy to GitHub Pages",
+    "status": "completed",
+    "conclusion": "success",
+    "headSha": "7aab5f04be7e0446e2ee0f2b1fab30355ac5a714"
+  },
+  "checkedAt": "2026-10-26T04:18:24.925Z",
+  "status": "pass",
+  "expectedCount": 4,
+  "newest": {
+    "url": "https://atrium.earth/newest/",
+    "status": 200,
+    "bytes": 54397,
+    "sha256": "00d4791bfda62f9affc1a3fe6e8f73be26d3bd5f228ab5c3433fdd5ce5331314",
+    "mime": "text/html; charset=utf-8",
+    "allBatchWorksPresent": true,
+    "slugs": [
+      "modern/mother-and-child-vigeland-national-gallery-cast-unconfirmed",
+      "modern/two-girls-back-to-back-vigeland-granite",
+      "modern/foetus-vigeland-park-cast-unconfirmed",
+      "modern/monolith-vigeland-granite"
+    ]
+  },
+  "works": [
+    {
+      "slug": "modern/mother-and-child-vigeland-national-gallery-cast-unconfirmed",
+      "title": "Mother and Child (Nasjonalmuseet bronze)",
+      "page": {
+        "url": "https://atrium.earth/works/modern/mother-and-child-vigeland-national-gallery-cast-unconfirmed/",
+        "status": 200,
+        "bytes": 33450,
+        "sha256": "4fb75d0d0e4fb0ede25282806f902917672bca11f52bde4d9dda6d7512a64b04",
+        "mime": "text/html; charset=utf-8",
+        "titlePresent": true,
+        "modelBinding": true,
+        "thumbnailBinding": true
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/modern/mother-and-child-vigeland-national-gallery-cast-unconfirmed/preview-5f7d057e8071.glb",
+        "status": 200,
+        "bytes": 601760,
+        "sha256": "5f7d057e80716f3180aa33f2d971ff9f03784288f355abab278a79ae674dabf8",
+        "mime": "model/gltf-binary",
+        "cors": "https://atrium.earth",
+        "originChecked": "https://atrium.earth",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/modern/mother-and-child-vigeland-national-gallery-cast-unconfirmed/thumb.webp",
+        "status": 200,
+        "bytes": 39296,
+        "sha256": "70d05a77006e88d20138de787277e04fa8c8d96fe333f37a3fe869131fbd2f88",
+        "mime": "image/webp",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "poster": {
+        "url": "https://atrium.earth/previews/posters/modern/mother-and-child-vigeland-national-gallery-cast-unconfirmed/poster.svg",
+        "status": 200,
+        "bytes": 52776,
+        "sha256": "e185dcaf3aa3122b4b6e047318759fc59bc56cb47aec8c46cc01816686724ff3",
+        "mime": "image/svg+xml",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "newestPresent": true,
+      "sourceMaterialsPreserved": true,
+      "physicalDimensions": {
+        "status": "documented",
+        "basis": "object",
+        "dimensions": "H 137.5 cm",
+        "sourceUrl": "https://www.nasjonalmuseet.no/en/collection/object/NG.S.01145",
+        "calibrationReady": false
+      },
+      "visitorScanSource": {
+        "text": "Photogrammetric capture by johngreenstone (Epic_Tree_Store) of the Nasjonalmuseet bronze group, including its irregular integral base. The existing surface and close arrangement of the two figures are recorded. The base’s floor-contact underside is not independently documented. Atrium compressed the model for web delivery while retaining its geometry and recorded appearance.",
+        "visibleCharacters": 377,
+        "retainedFraction": 1,
+        "present": true
+      },
+      "renderedUnknownSizeUi": null,
+      "exactSizeArEnabled": false
+    },
+    {
+      "slug": "modern/two-girls-back-to-back-vigeland-granite",
+      "title": "Two Girls Back to Back (granite; exact object unconfirmed)",
+      "page": {
+        "url": "https://atrium.earth/works/modern/two-girls-back-to-back-vigeland-granite/",
+        "status": 200,
+        "bytes": 33375,
+        "sha256": "ecd08c18fbc1998d09e6b9a07a945fb13206a40294cdece417893e6d420ed0da",
+        "mime": "text/html; charset=utf-8",
+        "titlePresent": true,
+        "modelBinding": true,
+        "thumbnailBinding": true
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/modern/two-girls-back-to-back-vigeland-granite/preview-8c2b2ed6ef2e.glb",
+        "status": 200,
+        "bytes": 1102952,
+        "sha256": "8c2b2ed6ef2e4c51a65b1050645dfb9550c840e144bff7bdc038b3534995db8e",
+        "mime": "model/gltf-binary",
+        "cors": "https://atrium.earth",
+        "originChecked": "https://atrium.earth",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/modern/two-girls-back-to-back-vigeland-granite/thumb.webp",
+        "status": 200,
+        "bytes": 72972,
+        "sha256": "a2759d73edeaccc52c48162a73b9b7e0b62e318f086256278bd80fd688c20bd0",
+        "mime": "image/webp",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "poster": {
+        "url": "https://atrium.earth/previews/posters/modern/two-girls-back-to-back-vigeland-granite/poster.svg",
+        "status": 200,
+        "bytes": 97712,
+        "sha256": "40448f2f375a1fa3349e4280610227440714058fd97512a6c9fbd8918f158072",
+        "mime": "image/svg+xml",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "newestPresent": true,
+      "sourceMaterialsPreserved": true,
+      "physicalDimensions": {
+        "status": "unknown",
+        "basis": "object",
+        "dimensions": "",
+        "sourceUrl": "https://sketchfab.com/3d-models/51749275659d40198c491f951a27b4f9",
+        "calibrationReady": false,
+        "noUnverifiedDimensionExtrapolation": true
+      },
+      "visitorScanSource": {
+        "text": "3D scan by Tore Lysebo (published as 3D-skanning) records the two-figure granite composition and its rectangular base. The exact collection or park location has not been established. The base’s floor-contact underside is not independently documented. Atrium compressed the model for web delivery while retaining its geometry and recorded appearance.",
+        "visibleCharacters": 349,
+        "retainedFraction": 1,
+        "present": true
+      },
+      "renderedUnknownSizeUi": {
+        "status": "unknown",
+        "chosenMaxExtentMeters": 1,
+        "renderedUnknown": true
+      },
+      "exactSizeArEnabled": false
+    },
+    {
+      "slug": "modern/foetus-vigeland-park-cast-unconfirmed",
+      "title": "The Foetus (Vigeland Park; cast date unconfirmed)",
+      "page": {
+        "url": "https://atrium.earth/works/modern/foetus-vigeland-park-cast-unconfirmed/",
+        "status": 200,
+        "bytes": 33274,
+        "sha256": "e1502190efcb30ca36f839813533155066060369c4aa670d2dfb902a67fa0b89",
+        "mime": "text/html; charset=utf-8",
+        "titlePresent": true,
+        "modelBinding": true,
+        "thumbnailBinding": true
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/modern/foetus-vigeland-park-cast-unconfirmed/preview-842319bbb356.glb",
+        "status": 200,
+        "bytes": 328540,
+        "sha256": "842319bbb3568182a06d79ecc61081b975669eecbf024914d82205fbc276ce0e",
+        "mime": "model/gltf-binary",
+        "cors": "https://atrium.earth",
+        "originChecked": "https://atrium.earth",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/modern/foetus-vigeland-park-cast-unconfirmed/thumb.webp",
+        "status": 200,
+        "bytes": 36084,
+        "sha256": "2ed40e63c86d3c1b843492b5b24931cd6cab6bffef91119f0442f9ed249989f2",
+        "mime": "image/webp",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "poster": {
+        "url": "https://atrium.earth/previews/posters/modern/foetus-vigeland-park-cast-unconfirmed/poster.svg",
+        "status": 200,
+        "bytes": 48510,
+        "sha256": "a82ce6cf19c33c7ab95af24fd2180a7b9085df0244bb6ac8e0c30fba28c90ad4",
+        "mime": "image/svg+xml",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "newestPresent": true,
+      "sourceMaterialsPreserved": true,
+      "physicalDimensions": {
+        "status": "unknown",
+        "basis": "object",
+        "dimensions": "",
+        "sourceUrl": "https://vigeland.museum.no/en/exhibitions/elise-storsveen",
+        "calibrationReady": false,
+        "noUnverifiedDimensionExtrapolation": true
+      },
+      "visitorScanSource": {
+        "text": "3D scan by Tore Lysebo (3D-skanning) of the bronze Foetus at the Children’s Circle in Vigeland Park. The curled figure and its block-shaped support are both included in the capture. The base’s floor-contact underside is not independently documented. Atrium compressed the model for web delivery while retaining its geometry and recorded appearance.",
+        "visibleCharacters": 348,
+        "retainedFraction": 1,
+        "present": true
+      },
+      "renderedUnknownSizeUi": {
+        "status": "unknown",
+        "chosenMaxExtentMeters": 1,
+        "renderedUnknown": true
+      },
+      "exactSizeArEnabled": false
+    },
+    {
+      "slug": "modern/monolith-vigeland-granite",
+      "title": "The Monolith (granite column and pedestal)",
+      "page": {
+        "url": "https://atrium.earth/works/modern/monolith-vigeland-granite/",
+        "status": 200,
+        "bytes": 33935,
+        "sha256": "3a1481705886b9217f63a30fa0f0d5e7e98c5552378828eb39e18d8429aa6296",
+        "mime": "text/html; charset=utf-8",
+        "titlePresent": true,
+        "modelBinding": true,
+        "thumbnailBinding": true
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/modern/monolith-vigeland-granite/preview-453f9b6b21f7.glb",
+        "status": 200,
+        "bytes": 1771316,
+        "sha256": "453f9b6b21f75f7eebf3a716f090358ecbf8c2eadd05d285992232edb3ccdd98",
+        "mime": "model/gltf-binary",
+        "cors": "https://atrium.earth",
+        "originChecked": "https://atrium.earth",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/modern/monolith-vigeland-granite/thumb.webp",
+        "status": 200,
+        "bytes": 32084,
+        "sha256": "8fa3220adc5bd2f2513d3accfdb6b77ef8c17e6ed47ddca4b80270df94f35cb2",
+        "mime": "image/webp",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "poster": {
+        "url": "https://atrium.earth/previews/posters/modern/monolith-vigeland-granite/poster.svg",
+        "status": 200,
+        "bytes": 43164,
+        "sha256": "48f5cce7b05aefb371412afbd3ecb3479aecf1cb36789b10a91567c8b52825a5",
+        "mime": "image/svg+xml",
+        "method": "full-download-sha256",
+        "complete": true
+      },
+      "newestPresent": true,
+      "sourceMaterialsPreserved": true,
+      "physicalDimensions": {
+        "status": "unknown",
+        "basis": "object",
+        "dimensions": "",
+        "sourceUrl": "https://vigeland.museum.no/en/vigelandpark/monolith",
+        "calibrationReady": false,
+        "noUnverifiedDimensionExtrapolation": true
+      },
+      "visitorScanSource": {
+        "text": "Photogrammetric capture by Ørjan Sandland (orjansandland) records the granite column and its pedestal at Vigeland Park. The model isolates the monument from the surrounding terrace and separate figure groups. The pedestal’s floor-contact underside is open and unrecorded. Atrium simplified the geometry for web delivery while retaining the recorded appearance. Small surface details are softer and the pedestal appears more faceted in this web version.",
+        "visibleCharacters": 452,
+        "retainedFraction": 1,
+        "present": true
+      },
+      "renderedUnknownSizeUi": {
+        "status": "unknown",
+        "chosenMaxExtentMeters": 1,
+        "renderedUnknown": true
+      },
+      "exactSizeArEnabled": false
+    }
+  ],
+  "scope": "Complete public model/thumbnail/poster hashes and bytes, exact release Pages success, work-page model/title/thumbnail bindings and all selected batch links on Newest. Native/capture and browser behavior are reviewed separately. No private archive IDs, account data, credentials or local paths.",
+  "completedAt": "2026-10-26T04:18:27.832Z",
+  "supplementalLiveTextChecks": {
+    "checkedAt": "2026-10-26T04:18:26.135312+00:00",
+    "mode": "deployed-http",
+    "catalogCountAtExpectation": 2386,
+    "pass": true,
+    "pagesChecked": 14,
+    "results": [
+      {
+        "kind": "work",
+        "slug": "modern/mother-and-child-vigeland-national-gallery-cast-unconfirmed",
+        "target": "https://atrium.earth/works/modern/mother-and-child-vigeland-national-gallery-cast-unconfirmed/",
+        "status": 200,
+        "bytes": 33817,
+        "sha256": "c0c7d40590c8dd080a15fdb60fbe3f1eab2cc3042f577ff9c87ba047e9647b59",
+        "checks": {
+          "title": true,
+          "completeCaptureText": true,
+          "completeCredit": true,
+          "captureAuthor": true,
+          "licenseLinked": true,
+          "namedCollaborators": true,
+          "unverifiedPhysicalScale": true,
+          "uncalibratedNotice": true,
+          "documentaryHeight": true,
+          "approximateOnly": true
+        },
+        "pass": true
+      },
+      {
+        "kind": "work",
+        "slug": "modern/mother-and-child-vigeland-national-gallery-cast-unconfirmed",
+        "target": "https://atrium.earth/v3/works/modern/mother-and-child-vigeland-national-gallery-cast-unconfirmed/",
+        "redirectVerified": true,
+        "redirectTo": "/works/modern/mother-and-child-vigeland-national-gallery-cast-unconfirmed",
+        "redirectFile": {
+          "target": "https://atrium.earth/v3/works/modern/mother-and-child-vigeland-national-gallery-cast-unconfirmed/",
+          "status": 200,
+          "bytes": 1063,
+          "sha256": "1684a2ce3bfa3681c944b3a018cabde3b7baefadf182ed3ef3d7efc82f8c271e"
+        },
+        "canonicalResponse": {
+          "target": "https://atrium.earth/works/modern/mother-and-child-vigeland-national-gallery-cast-unconfirmed/",
+          "status": 200,
+          "bytes": 33817,
+          "sha256": "c0c7d40590c8dd080a15fdb60fbe3f1eab2cc3042f577ff9c87ba047e9647b59"
+        },
+        "checks": {
+          "title": true,
+          "completeCaptureText": true,
+          "completeCredit": true,
+          "captureAuthor": true,
+          "licenseLinked": true,
+          "namedCollaborators": true,
+          "unverifiedPhysicalScale": true,
+          "uncalibratedNotice": true,
+          "documentaryHeight": true,
+          "approximateOnly": true
+        },
+        "pass": true
+      },
+      {
+        "kind": "work",
+        "slug": "modern/two-girls-back-to-back-vigeland-granite",
+        "target": "https://atrium.earth/works/modern/two-girls-back-to-back-vigeland-granite/",
+        "status": 200,
+        "bytes": 33742,
+        "sha256": "a3489e62acd2c86b2759ee3dfd147ebd983f9737202b16100bba2d4c261f76b6",
+        "checks": {
+          "title": true,
+          "completeCaptureText": true,
+          "completeCredit": true,
+          "captureAuthor": true,
+          "licenseLinked": true,
+          "namedCollaborators": true,
+          "unverifiedPhysicalScale": true,
+          "uncalibratedNotice": true,
+          "unknownStatus": true,
+          "defaultOneMeter": true,
+          "readableUnknown": true
+        },
+        "pass": true
+      },
+      {
+        "kind": "work",
+        "slug": "modern/two-girls-back-to-back-vigeland-granite",
+        "target": "https://atrium.earth/v3/works/modern/two-girls-back-to-back-vigeland-granite/",
+        "redirectVerified": true,
+        "redirectTo": "/works/modern/two-girls-back-to-back-vigeland-granite",
+        "redirectFile": {
+          "target": "https://atrium.earth/v3/works/modern/two-girls-back-to-back-vigeland-granite/",
+          "status": 200,
+          "bytes": 943,
+          "sha256": "b0c726cbcbe93bb23f1fab426c992b6026be1b692f6d4a4b999e35244b57c568"
+        },
+        "canonicalResponse": {
+          "target": "https://atrium.earth/works/modern/two-girls-back-to-back-vigeland-granite/",
+          "status": 200,
+          "bytes": 33742,
+          "sha256": "a3489e62acd2c86b2759ee3dfd147ebd983f9737202b16100bba2d4c261f76b6"
+        },
+        "checks": {
+          "title": true,
+          "completeCaptureText": true,
+          "completeCredit": true,
+          "captureAuthor": true,
+          "licenseLinked": true,
+          "namedCollaborators": true,
+          "unverifiedPhysicalScale": true,
+          "uncalibratedNotice": true,
+          "unknownStatus": true,
+          "defaultOneMeter": true,
+          "readableUnknown": true
+        },
+        "pass": true
+      },
+      {
+        "kind": "work",
+        "slug": "modern/foetus-vigeland-park-cast-unconfirmed",
+        "target": "https://atrium.earth/works/modern/foetus-vigeland-park-cast-unconfirmed/",
+        "status": 200,
+        "bytes": 33641,
+        "sha256": "0d506ef21b5d029d2722efd50a4ed57afda3936fd593a9a8d3479693e7425fa5",
+        "checks": {
+          "title": true,
+          "completeCaptureText": true,
+          "completeCredit": true,
+          "captureAuthor": true,
+          "licenseLinked": true,
+          "namedCollaborators": true,
+          "unverifiedPhysicalScale": true,
+          "uncalibratedNotice": true,
+          "unknownStatus": true,
+          "defaultOneMeter": true,
+          "readableUnknown": true
+        },
+        "pass": true
+      },
+      {
+        "kind": "work",
+        "slug": "modern/foetus-vigeland-park-cast-unconfirmed",
+        "target": "https://atrium.earth/v3/works/modern/foetus-vigeland-park-cast-unconfirmed/",
+        "redirectVerified": true,
+        "redirectTo": "/works/modern/foetus-vigeland-park-cast-unconfirmed",
+        "redirectFile": {
+          "target": "https://atrium.earth/v3/works/modern/foetus-vigeland-park-cast-unconfirmed/",
+          "status": 200,
+          "bytes": 931,
+          "sha256": "2208ddb3bbde5875d0c6a0947cbf96e6c638ae113433fe4860480fef20a6646c"
+        },
+        "canonicalResponse": {
+          "target": "https://atrium.earth/works/modern/foetus-vigeland-park-cast-unconfirmed/",
+          "status": 200,
+          "bytes": 33641,
+          "sha256": "0d506ef21b5d029d2722efd50a4ed57afda3936fd593a9a8d3479693e7425fa5"
+        },
+        "checks": {
+          "title": true,
+          "completeCaptureText": true,
+          "completeCredit": true,
+          "captureAuthor": true,
+          "licenseLinked": true,
+          "namedCollaborators": true,
+          "unverifiedPhysicalScale": true,
+          "uncalibratedNotice": true,
+          "unknownStatus": true,
+          "defaultOneMeter": true,
+          "readableUnknown": true
+        },
+        "pass": true
+      },
+      {
+        "kind": "work",
+        "slug": "modern/monolith-vigeland-granite",
+        "target": "https://atrium.earth/works/modern/monolith-vigeland-granite/",
+        "status": 200,
+        "bytes": 34302,
+        "sha256": "de4c4877a2f27755ec17bba520ea814f00a9f53ddf575bee32e70a67587f70b1",
+        "checks": {
+          "title": true,
+          "completeCaptureText": true,
+          "completeCredit": true,
+          "captureAuthor": true,
+          "licenseLinked": true,
+          "namedCollaborators": true,
+          "unverifiedPhysicalScale": true,
+          "uncalibratedNotice": true,
+          "unknownStatus": true,
+          "defaultOneMeter": true,
+          "readableUnknown": true
+        },
+        "pass": true
+      },
+      {
+        "kind": "work",
+        "slug": "modern/monolith-vigeland-granite",
+        "target": "https://atrium.earth/v3/works/modern/monolith-vigeland-granite/",
+        "redirectVerified": true,
+        "redirectTo": "/works/modern/monolith-vigeland-granite",
+        "redirectFile": {
+          "target": "https://atrium.earth/v3/works/modern/monolith-vigeland-granite/",
+          "status": 200,
+          "bytes": 859,
+          "sha256": "b331f3efb39a36b800c871c8286d875e8a91cfa9221ef7513c81a4c54e5aae8f"
+        },
+        "canonicalResponse": {
+          "target": "https://atrium.earth/works/modern/monolith-vigeland-granite/",
+          "status": 200,
+          "bytes": 34302,
+          "sha256": "de4c4877a2f27755ec17bba520ea814f00a9f53ddf575bee32e70a67587f70b1"
+        },
+        "checks": {
+          "title": true,
+          "completeCaptureText": true,
+          "completeCredit": true,
+          "captureAuthor": true,
+          "licenseLinked": true,
+          "namedCollaborators": true,
+          "unverifiedPhysicalScale": true,
+          "uncalibratedNotice": true,
+          "unknownStatus": true,
+          "defaultOneMeter": true,
+          "readableUnknown": true
+        },
+        "pass": true
+      },
+      {
+        "kind": "exhibition",
+        "exhibition": "the-work-of-the-surface",
+        "target": "https://atrium.earth/exhibitions/the-work-of-the-surface/",
+        "status": 200,
+        "bytes": 265060,
+        "sha256": "5e439c2db6e3b90d14f98e275fdd6321d1e2c33e42151c567552fca852d706a0",
+        "checks": {
+          "exactApprovedCaptionOnce": true,
+          "workLinkPresent": true
+        },
+        "pass": true
+      },
+      {
+        "kind": "exhibition",
+        "exhibition": "the-work-of-the-surface",
+        "target": "https://atrium.earth/v3/exhibitions/the-work-of-the-surface/",
+        "redirectVerified": true,
+        "redirectTo": "/exhibitions/the-work-of-the-surface",
+        "redirectFile": {
+          "target": "https://atrium.earth/v3/exhibitions/the-work-of-the-surface/",
+          "status": 200,
+          "bytes": 841,
+          "sha256": "12a86fccf16642b972ddd43f9f8e87a84854886e88ded017e9f42fef65052de6"
+        },
+        "canonicalResponse": {
+          "target": "https://atrium.earth/exhibitions/the-work-of-the-surface/",
+          "status": 200,
+          "bytes": 265060,
+          "sha256": "5e439c2db6e3b90d14f98e275fdd6321d1e2c33e42151c567552fca852d706a0"
+        },
+        "checks": {
+          "exactApprovedCaptionOnce": true,
+          "workLinkPresent": true
+        },
+        "pass": true
+      },
+      {
+        "kind": "exhibition",
+        "exhibition": "bodies-in-motion",
+        "target": "https://atrium.earth/exhibitions/bodies-in-motion/",
+        "status": 200,
+        "bytes": 221631,
+        "sha256": "52153b5e95ef3d75bb7f2e9e41315dc4d23dcf947b536574d9a829ee62af305e",
+        "checks": {
+          "exactApprovedCaptionOnce": true,
+          "workLinkPresent": true
+        },
+        "pass": true
+      },
+      {
+        "kind": "exhibition",
+        "exhibition": "bodies-in-motion",
+        "target": "https://atrium.earth/v3/exhibitions/bodies-in-motion/",
+        "redirectVerified": true,
+        "redirectTo": "/exhibitions/bodies-in-motion",
+        "redirectFile": {
+          "target": "https://atrium.earth/v3/exhibitions/bodies-in-motion/",
+          "status": 200,
+          "bytes": 799,
+          "sha256": "31137b9f2192e451f1f9d56d3fdcb9e6313bf15de3c96d64b2916002104fda79"
+        },
+        "canonicalResponse": {
+          "target": "https://atrium.earth/exhibitions/bodies-in-motion/",
+          "status": 200,
+          "bytes": 221631,
+          "sha256": "52153b5e95ef3d75bb7f2e9e41315dc4d23dcf947b536574d9a829ee62af305e"
+        },
+        "checks": {
+          "exactApprovedCaptionOnce": true,
+          "workLinkPresent": true
+        },
+        "pass": true
+      },
+      {
+        "kind": "concurrentBourdelle",
+        "slug": "modern/coquelin-as-crispin-bourdelle-museum-cast-d2071f",
+        "target": "https://atrium.earth/works/modern/coquelin-as-crispin-bourdelle-museum-cast-d2071f/",
+        "status": 200,
+        "bytes": 33711,
+        "sha256": "4c732db7c9f580c21e8268cd90f682dfeec7dc65edb597d9a38e8c036bbbaf72",
+        "checks": {
+          "title": true,
+          "completeCaptureText": true,
+          "credit": true,
+          "linkedLicense": true
+        },
+        "pass": true
+      },
+      {
+        "kind": "concurrentBourdelle",
+        "slug": "modern/coquelin-as-crispin-bourdelle-museum-cast-d2071f",
+        "target": "https://atrium.earth/v3/works/modern/coquelin-as-crispin-bourdelle-museum-cast-d2071f/",
+        "redirectVerified": true,
+        "redirectTo": "/works/modern/coquelin-as-crispin-bourdelle-museum-cast-d2071f",
+        "redirectFile": {
+          "target": "https://atrium.earth/v3/works/modern/coquelin-as-crispin-bourdelle-museum-cast-d2071f/",
+          "status": 200,
+          "bytes": 997,
+          "sha256": "c4e35a125621abc6656badfd96b29c5c7c734145d8648b1f323b6500d1f307ac"
+        },
+        "canonicalResponse": {
+          "target": "https://atrium.earth/works/modern/coquelin-as-crispin-bourdelle-museum-cast-d2071f/",
+          "status": 200,
+          "bytes": 33711,
+          "sha256": "4c732db7c9f580c21e8268cd90f682dfeec7dc65edb597d9a38e8c036bbbaf72"
+        },
+        "checks": {
+          "title": true,
+          "completeCaptureText": true,
+          "credit": true,
+          "linkedLicense": true
+        },
+        "pass": true
+      }
+    ],
+    "limitations": [
+      "HTTP HTML and emitted data attributes only; no browser layout or model interaction."
+    ]
+  }
+}
