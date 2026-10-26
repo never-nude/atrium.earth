@@ -1,0 +1,609 @@
+{
+  "schema": "atrium-assistant-visual-review/1",
+  "batch": "thorvaldsen-three-20261026",
+  "status": "pass",
+  "reviewer": "Codex assistant actual inspection of all three accepted native/serving contacts and final rendered thumbnails",
+  "counts": {
+    "works": 3,
+    "comparisonFrames": 48,
+    "contacts": 3,
+    "finalThumbnails": 3
+  },
+  "sourceReference": "Three exact immutable Objaverse distribution GLBs under historical UID-specific BY grants. Current Standard/noncommercial provider listings are distinct. Any material-compatible reference is explicitly distinguished from the retained unchanged source. No uploader-native authoring package claim.",
+  "scopeReports": [
+    {
+      "sha256": "9798ee4bf6c0584b53b3172582d2f5442231e7199339c1c0989b10850ff2ba1a",
+      "bytes": 118091
+    }
+  ],
+  "cameraQualification": "Eight paired review directions use the common Y-up world frame. Final opening cameras select the reviewed front direction; no geometry or pose change.",
+  "works": [
+    {
+      "slug": "neoclassical/thorvaldsen-cupid-earth-marble-relief-5dcf93",
+      "sourceUid": "5dcf9328308b4463a7364e4d03fb6074",
+      "title": "Cupid on the Earth (posthumous marble relief, A378)",
+      "original": {
+        "url": "https://huggingface.co/datasets/allenai/objaverse/resolve/556637099bf4fa79ea7b239d0d9c328b8a2e9ac8/glbs/000-043/5dcf9328308b4463a7364e4d03fb6074.glb",
+        "sha256": "bbbe22c88ca0cbd5f3eaeb21c28bee7e4ee9d96c0f2bf568955494c3660f6010",
+        "bytes": 12946004,
+        "representation": "Unchanged immutable Objaverse distribution GLB; uploader-native authoring package not asserted."
+      },
+      "sourceUrl": "https://sketchfab.com/3d-models/5dcf9328308b4463a7364e4d03fb6074",
+      "primaryRecord": "https://kataloget.thorvaldsensmuseum.dk/en/A378",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "licenseScope": "The exact UID historical annotation grants CC BY for the unchanged GLB in the immutable Objaverse snapshot. The full compressed metadata and selected GLB match that immutable revision’s remote LFS SHA-256 and byte pointers. The current Sketchfab listing is CC BY-NC-SA 4.0 and is not the authority for this historical file. Only the exact unchanged historical distribution and grant are used; an uploader-native authoring package is not asserted.",
+      "scanAuthor": "Geoffrey Marchal (geoffreymarchal)",
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/neoclassical/thorvaldsen-cupid-earth-marble-relief-5dcf93/preview-fbdbad445b54.glb",
+        "sha256": "fbdbad445b54aa7a96ff3fa7893bdc248bd90d9ecb59e35e03b030cf1c446c18",
+        "bytes": 12944956
+      },
+      "rawSourceFaces": 403925,
+      "rawPreviewFaces": 403925,
+      "measuredTopology": {
+        "source": {
+          "loadedRawFaces": 403925,
+          "measured": {
+            "faces": 403925,
+            "bratio": 0.002,
+            "ncomp": 1,
+            "largest_frac": 1
+          },
+          "status": "pass"
+        },
+        "preview": {
+          "loadedRawFaces": 403925,
+          "measured": {
+            "faces": 403925,
+            "bratio": 0.002,
+            "ncomp": 1,
+            "largest_frac": 1
+          },
+          "status": "pass"
+        }
+      },
+      "materialAppearance": "Full source geometry and texture resolution retained; material-workflow compatibility conversion only, without manual recoloring.",
+      "processing": {
+        "tool": "Material workflow compatibility conversion, then unchanged serving copy",
+        "geometryCompression": "none added; incoming compression retained only when source-compatible",
+        "textureCompression": "none added",
+        "simplificationApplied": false,
+        "geometryAndTextureResolutionUnchanged": true,
+        "servingIdenticalToOriginal": false,
+        "materialWorkflowConversion": {
+          "tool": "@gltf-transform/functions metalRough",
+          "version": "4.4.2",
+          "label": "material-normalized-source-reference",
+          "materialWorkflowConversion": "KHR_materials_pbrSpecularGlossiness to supported metal/rough + specular/ior",
+          "geometrySimplification": false,
+          "textureCompression": false,
+          "sourceCompressionDecodedOnly": true,
+          "sourceRawNodeTransformsPreservedExactly": true,
+          "nodeMeshChildSceneMappingVerified": true,
+          "binaryChunksPreservedDuringTransformJsonRepack": true,
+          "accessorRegistryComparedAsFullSignatureMultiset": true,
+          "geometryFingerprintSha256": "72bc480162b99773ecac68571701fe6e34183e0fafbd87b68c89ec551489e7e2",
+          "geometryFingerprintVerifiedBeforeAfterAndReread": true,
+          "limitation": "Material workflow conversion may rewrite specular/gloss texture channels. It is a labeled reference, not the unmodified provider file, and requires human appearance comparison."
+        },
+        "sourceReferenceQualification": "Separately labeled full-resolution material-normalized reference; unchanged incoming GLB preserved. Conversion can rewrite texture channels, requiring actual visual review.",
+        "noAutomaticPose": true,
+        "noCropping": true,
+        "noManualRecoloringOrRepair": true
+      },
+      "visualDecision": "PASS after actual inspection of all eight paired directions and the full frontal preflight image. The sculpted Cupid head, face, wings, limbs, animal and attributes are recorded within the full panel composition. Rough frame edges and an unrecorded physical support back remain explicit; reverse textures mirror the face and do not describe a freestanding object. Reference and serving use a qualified material-workflow compatibility conversion; unchanged original retained separately.",
+      "views": [
+        {
+          "mode": "native-source",
+          "key": "FRONT",
+          "sha256": "6ef1a04d1d994966697e524d839ea8bdba33f14bb4525b02fcc5a54fc83cde5c",
+          "bytes": 680077
+        },
+        {
+          "mode": "native-source",
+          "key": "RIGHT",
+          "sha256": "7bfa36c035a84f95ff0c46a5e6706ee81eb3221a7b2818982297ce392a4f0e41",
+          "bytes": 253518
+        },
+        {
+          "mode": "native-source",
+          "key": "REVERSE",
+          "sha256": "fbda352e0200845dc25c053d3cb9a602b3b0235b5222301e1629f99e850be6d5",
+          "bytes": 629728
+        },
+        {
+          "mode": "native-source",
+          "key": "LEFT",
+          "sha256": "09f2f4d32230e592dbeb1a10bc67acfc3c766741ee6cd3fb58c134467a906607",
+          "bytes": 261997
+        },
+        {
+          "mode": "native-source",
+          "key": "ABOVE",
+          "sha256": "af62e81ff73dd453352b0a2f037f094dd6358b0928bb79acaa90c5c9b40e96df",
+          "bytes": 133259
+        },
+        {
+          "mode": "native-source",
+          "key": "UNDERSIDE",
+          "sha256": "2f1f7a4f683b2848200dae1c6f3847d6369431c51e05b156e43c3e82a9b44e31",
+          "bytes": 144341
+        },
+        {
+          "mode": "native-source",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "de25513055465fb0c2929fd1bda6104698e709a4218d7a26c21d0578ef470c37",
+          "bytes": 629329
+        },
+        {
+          "mode": "native-source",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "d009b48b22fd09033cfa482adfae27ffe637a9ac3275aa0b0ed89ab121641994",
+          "bytes": 576075
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "sha256": "6ef1a04d1d994966697e524d839ea8bdba33f14bb4525b02fcc5a54fc83cde5c",
+          "bytes": 680077
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "sha256": "7bfa36c035a84f95ff0c46a5e6706ee81eb3221a7b2818982297ce392a4f0e41",
+          "bytes": 253518
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "sha256": "fbda352e0200845dc25c053d3cb9a602b3b0235b5222301e1629f99e850be6d5",
+          "bytes": 629728
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "sha256": "09f2f4d32230e592dbeb1a10bc67acfc3c766741ee6cd3fb58c134467a906607",
+          "bytes": 261997
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "sha256": "af62e81ff73dd453352b0a2f037f094dd6358b0928bb79acaa90c5c9b40e96df",
+          "bytes": 133259
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "sha256": "2f1f7a4f683b2848200dae1c6f3847d6369431c51e05b156e43c3e82a9b44e31",
+          "bytes": 144341
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "de25513055465fb0c2929fd1bda6104698e709a4218d7a26c21d0578ef470c37",
+          "bytes": 629329
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "d009b48b22fd09033cfa482adfae27ffe637a9ac3275aa0b0ed89ab121641994",
+          "bytes": 576075
+        }
+      ],
+      "captureLabel": "Photogrammetry by Geoffrey Marchal using Autodesk Memento, later ReMake; the sculpted relief face is recorded with its surrounding frame; rough outer scan edges and mirrored reverse textures do not document the thickness or physical back of the marble panel.",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0,
+          0,
+          1
+        ],
+        "status": "manual",
+        "note": "Upright Y-up basis and complete recorded exterior reviewed in eight paired source/serving directions. Opening camera selects an already reviewed direction."
+      },
+      "contact": {
+        "sha256": "76b54cb6be3b8ab0cb3207de580feadb2ef1a7df5d997da927dedfc1d041af11",
+        "bytes": 154398
+      },
+      "thumbnail": {
+        "sha256": "0df23959570b95669b860252ca78ea619c2ec20fd36e3edf24ee6fb809713728",
+        "bytes": 55254
+      },
+      "poster": {
+        "sha256": "23cceac5b9f0e69241063786900d0968f3cf3cefce72d5b528c7d75c2144418a",
+        "bytes": 74074
+      },
+      "finalThumbnailActuallyReviewed": true
+    },
+    {
+      "slug": "neoclassical/thorvaldsen-cupid-underworld-marble-relief-35ee39",
+      "sourceUid": "35ee394585fa4c16be258a85e3fa5814",
+      "title": "Cupid in the Underworld (posthumous marble relief, A380)",
+      "original": {
+        "url": "https://huggingface.co/datasets/allenai/objaverse/resolve/556637099bf4fa79ea7b239d0d9c328b8a2e9ac8/glbs/000-039/35ee394585fa4c16be258a85e3fa5814.glb",
+        "sha256": "84594cea325999868e4058d14de442753fdd8e0e0b89a7a010d4abffb8fd82c8",
+        "bytes": 12831988,
+        "representation": "Unchanged immutable Objaverse distribution GLB; uploader-native authoring package not asserted."
+      },
+      "sourceUrl": "https://sketchfab.com/3d-models/35ee394585fa4c16be258a85e3fa5814",
+      "primaryRecord": "https://kataloget.thorvaldsensmuseum.dk/en/A380",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "licenseScope": "The exact UID historical annotation grants CC BY for the unchanged GLB in the immutable Objaverse snapshot. The full compressed metadata and selected GLB match that immutable revision’s remote LFS SHA-256 and byte pointers. The current Sketchfab listing is CC BY-NC-SA 4.0 and is not the authority for this historical file. Only the exact unchanged historical distribution and grant are used; an uploader-native authoring package is not asserted.",
+      "scanAuthor": "Geoffrey Marchal (geoffreymarchal)",
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/neoclassical/thorvaldsen-cupid-underworld-marble-relief-35ee39/preview-84594cea3259.glb",
+        "sha256": "84594cea325999868e4058d14de442753fdd8e0e0b89a7a010d4abffb8fd82c8",
+        "bytes": 12831988
+      },
+      "rawSourceFaces": 403651,
+      "rawPreviewFaces": 403651,
+      "measuredTopology": {
+        "source": {
+          "loadedRawFaces": 403651,
+          "measured": {
+            "faces": 403651,
+            "bratio": 0.002,
+            "ncomp": 1,
+            "largest_frac": 1
+          },
+          "status": "pass"
+        },
+        "preview": {
+          "loadedRawFaces": 403651,
+          "measured": {
+            "faces": 403651,
+            "bratio": 0.002,
+            "ncomp": 1,
+            "largest_frac": 1
+          },
+          "status": "pass"
+        }
+      },
+      "materialAppearance": "Exact unchanged source materials, textures and colors.",
+      "processing": {
+        "tool": "Unchanged original serving copy",
+        "geometryCompression": "none added; incoming compression retained only when source-compatible",
+        "textureCompression": "none added",
+        "simplificationApplied": false,
+        "geometryAndTextureResolutionUnchanged": true,
+        "servingIdenticalToOriginal": true,
+        "materialWorkflowConversion": "none",
+        "sourceReferenceQualification": "Unchanged incoming GLB reference. Source is the acquired distribution GLB; uploader-native authoring package not asserted.",
+        "noAutomaticPose": true,
+        "noCropping": true,
+        "noManualRecoloringOrRepair": true
+      },
+      "visualDecision": "PASS after actual inspection of all eight paired directions and the full frontal preflight image. The sculpted Cupid head, face, wings, limbs, animal and attributes are recorded within the full panel composition. Rough frame edges and an unrecorded physical support back remain explicit; reverse textures mirror the face and do not describe a freestanding object. Serving is byte-identical to the historical original.",
+      "views": [
+        {
+          "mode": "native-source",
+          "key": "FRONT",
+          "sha256": "4f0723de5a38e80d183e3915b738dc445bacdc0eabf32034ded65ea3a9cda7ec",
+          "bytes": 659609
+        },
+        {
+          "mode": "native-source",
+          "key": "RIGHT",
+          "sha256": "88897259b22e229e2a2d864dacf459ccf6dd040f6fe3f5f98ca39a1ea7b5d4ae",
+          "bytes": 247475
+        },
+        {
+          "mode": "native-source",
+          "key": "REVERSE",
+          "sha256": "dfb9af54a4022041a67e327481ba956fee50e39a65206cba3d2d9eadd33ff36a",
+          "bytes": 600098
+        },
+        {
+          "mode": "native-source",
+          "key": "LEFT",
+          "sha256": "0a825d40afdcf01bf03d8b8b3224555152aed5d88db2e45dadd5d8d1916bd747",
+          "bytes": 235647
+        },
+        {
+          "mode": "native-source",
+          "key": "ABOVE",
+          "sha256": "000ec26deaa8b0040c069daa56290823151f71690b432aa693e595b969f68820",
+          "bytes": 135679
+        },
+        {
+          "mode": "native-source",
+          "key": "UNDERSIDE",
+          "sha256": "be780ef0451b2090e89f18818122526b167cdf5f5c12c586266e9a13397e8a4a",
+          "bytes": 140669
+        },
+        {
+          "mode": "native-source",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "287997e009a94e69def92ba7b15d511f3d821760a07c1eef268080e4a07cf92c",
+          "bytes": 614959
+        },
+        {
+          "mode": "native-source",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "f2c8d6acdc6191a70375667bcc548308c0fa05f305a9f162aa81740bd9f5a215",
+          "bytes": 561064
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "sha256": "4f0723de5a38e80d183e3915b738dc445bacdc0eabf32034ded65ea3a9cda7ec",
+          "bytes": 659609
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "sha256": "88897259b22e229e2a2d864dacf459ccf6dd040f6fe3f5f98ca39a1ea7b5d4ae",
+          "bytes": 247475
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "sha256": "dfb9af54a4022041a67e327481ba956fee50e39a65206cba3d2d9eadd33ff36a",
+          "bytes": 600098
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "sha256": "0a825d40afdcf01bf03d8b8b3224555152aed5d88db2e45dadd5d8d1916bd747",
+          "bytes": 235647
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "sha256": "000ec26deaa8b0040c069daa56290823151f71690b432aa693e595b969f68820",
+          "bytes": 135679
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "sha256": "be780ef0451b2090e89f18818122526b167cdf5f5c12c586266e9a13397e8a4a",
+          "bytes": 140669
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "287997e009a94e69def92ba7b15d511f3d821760a07c1eef268080e4a07cf92c",
+          "bytes": 614959
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "f2c8d6acdc6191a70375667bcc548308c0fa05f305a9f162aa81740bd9f5a215",
+          "bytes": 561064
+        }
+      ],
+      "captureLabel": "Photogrammetry by Geoffrey Marchal using Autodesk Memento, later ReMake; the sculpted relief face is recorded with its surrounding frame; rough outer scan edges and mirrored reverse textures do not document the thickness or physical back of the marble panel.",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0,
+          0,
+          1
+        ],
+        "status": "manual",
+        "note": "Upright Y-up basis and complete recorded exterior reviewed in eight paired source/serving directions. Opening camera selects an already reviewed direction."
+      },
+      "contact": {
+        "sha256": "09f4bc419be1a57b4267e575f3e3260c2075a8ff0d2ffa210784f9dffa7f4e2b",
+        "bytes": 139276
+      },
+      "thumbnail": {
+        "sha256": "fe96ad094b7fd4ba12ee7df81b64079364068c8663d06e428e07ac13c6b5a803",
+        "bytes": 51886
+      },
+      "poster": {
+        "sha256": "abdc1e75027e355c2af720b9358af1a2e80dbaf9aee55e8b7ff293c68abe3c3e",
+        "bytes": 69596
+      },
+      "finalThumbnailActuallyReviewed": true
+    },
+    {
+      "slug": "neoclassical/thorvaldsen-cupid-heaven-marble-relief-1edac3",
+      "sourceUid": "1edac37043164491859a62a7f76117f8",
+      "title": "Cupid in the Sky (marble relief, A377)",
+      "original": {
+        "url": "https://huggingface.co/datasets/allenai/objaverse/resolve/556637099bf4fa79ea7b239d0d9c328b8a2e9ac8/glbs/000-050/1edac37043164491859a62a7f76117f8.glb",
+        "sha256": "f4030a86aae19f544423ece423de1bcdf99374c571f96b5d062432df68ee3914",
+        "bytes": 12938708,
+        "representation": "Unchanged immutable Objaverse distribution GLB; uploader-native authoring package not asserted."
+      },
+      "sourceUrl": "https://sketchfab.com/3d-models/1edac37043164491859a62a7f76117f8",
+      "primaryRecord": "https://kataloget.thorvaldsensmuseum.dk/en/A377",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "licenseScope": "The exact UID historical annotation grants CC BY for the unchanged GLB in the immutable Objaverse snapshot. The full compressed metadata and selected GLB match that immutable revision’s remote LFS SHA-256 and byte pointers. The current Sketchfab listing is CC BY-NC-SA 4.0 and is not the authority for this historical file. Only the exact unchanged historical distribution and grant are used; an uploader-native authoring package is not asserted.",
+      "scanAuthor": "Geoffrey Marchal (geoffreymarchal)",
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/neoclassical/thorvaldsen-cupid-heaven-marble-relief-1edac3/preview-f4030a86aae1.glb",
+        "sha256": "f4030a86aae19f544423ece423de1bcdf99374c571f96b5d062432df68ee3914",
+        "bytes": 12938708
+      },
+      "rawSourceFaces": 406270,
+      "rawPreviewFaces": 406270,
+      "measuredTopology": {
+        "source": {
+          "loadedRawFaces": 406270,
+          "measured": {
+            "faces": 406270,
+            "bratio": 0.002,
+            "ncomp": 1,
+            "largest_frac": 1
+          },
+          "status": "pass"
+        },
+        "preview": {
+          "loadedRawFaces": 406270,
+          "measured": {
+            "faces": 406270,
+            "bratio": 0.002,
+            "ncomp": 1,
+            "largest_frac": 1
+          },
+          "status": "pass"
+        }
+      },
+      "materialAppearance": "Exact unchanged source materials, textures and colors.",
+      "processing": {
+        "tool": "Unchanged original serving copy",
+        "geometryCompression": "none added; incoming compression retained only when source-compatible",
+        "textureCompression": "none added",
+        "simplificationApplied": false,
+        "geometryAndTextureResolutionUnchanged": true,
+        "servingIdenticalToOriginal": true,
+        "materialWorkflowConversion": "none",
+        "sourceReferenceQualification": "Unchanged incoming GLB reference. Source is the acquired distribution GLB; uploader-native authoring package not asserted.",
+        "noAutomaticPose": true,
+        "noCropping": true,
+        "noManualRecoloringOrRepair": true
+      },
+      "visualDecision": "PASS after actual inspection of all eight paired directions and the full frontal preflight image. The sculpted Cupid head, face, wings, limbs, animal and attributes are recorded within the full panel composition. Rough frame edges and an unrecorded physical support back remain explicit; reverse textures mirror the face and do not describe a freestanding object. Serving is byte-identical to the historical original.",
+      "views": [
+        {
+          "mode": "native-source",
+          "key": "FRONT",
+          "sha256": "534120d7ab30487a02759950dd2dadf06c0ae5b20803618ebddd4b51dee55184",
+          "bytes": 670466
+        },
+        {
+          "mode": "native-source",
+          "key": "RIGHT",
+          "sha256": "70a2384ab1fc513e09203ff70d0262e808ec59856f6ca4925e45369004a8b550",
+          "bytes": 298537
+        },
+        {
+          "mode": "native-source",
+          "key": "REVERSE",
+          "sha256": "12e704f3f5bafe713c0b79fc58b6e35d9f06a808e648aab77d83b096a086d5c0",
+          "bytes": 609607
+        },
+        {
+          "mode": "native-source",
+          "key": "LEFT",
+          "sha256": "f5ee5abf1760a1eae2cc15093e77f397072eba98f2acf3ea262ff4abf56698ab",
+          "bytes": 267858
+        },
+        {
+          "mode": "native-source",
+          "key": "ABOVE",
+          "sha256": "8771e29f3fa8eac6f6babcb032ac6bb5cebbad1f8a77f92ce6a4ea7201c6508a",
+          "bytes": 147980
+        },
+        {
+          "mode": "native-source",
+          "key": "UNDERSIDE",
+          "sha256": "58ffc877605bd71b3a42e05dfc0455ec4cb427fc139c4bea387939bc78754b4b",
+          "bytes": 144725
+        },
+        {
+          "mode": "native-source",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "4d11ea8f3a191a6d35c8c6ef99fb3b2c495020c689fd57a3bbe47c963f5acf9c",
+          "bytes": 624502
+        },
+        {
+          "mode": "native-source",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "5c8636c24cb3cd2a907056fbabfd0ff3ef3bd807cadc2f6c465f01294b1cdb17",
+          "bytes": 588189
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "sha256": "534120d7ab30487a02759950dd2dadf06c0ae5b20803618ebddd4b51dee55184",
+          "bytes": 670466
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "sha256": "70a2384ab1fc513e09203ff70d0262e808ec59856f6ca4925e45369004a8b550",
+          "bytes": 298537
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "sha256": "12e704f3f5bafe713c0b79fc58b6e35d9f06a808e648aab77d83b096a086d5c0",
+          "bytes": 609607
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "sha256": "f5ee5abf1760a1eae2cc15093e77f397072eba98f2acf3ea262ff4abf56698ab",
+          "bytes": 267858
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "sha256": "8771e29f3fa8eac6f6babcb032ac6bb5cebbad1f8a77f92ce6a4ea7201c6508a",
+          "bytes": 147980
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "sha256": "58ffc877605bd71b3a42e05dfc0455ec4cb427fc139c4bea387939bc78754b4b",
+          "bytes": 144725
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "4d11ea8f3a191a6d35c8c6ef99fb3b2c495020c689fd57a3bbe47c963f5acf9c",
+          "bytes": 624502
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "5c8636c24cb3cd2a907056fbabfd0ff3ef3bd807cadc2f6c465f01294b1cdb17",
+          "bytes": 588189
+        }
+      ],
+      "captureLabel": "Photogrammetry by Geoffrey Marchal using Autodesk Memento, later ReMake; the sculpted relief face is recorded with its surrounding frame; rough outer scan edges and mirrored reverse textures do not document the thickness or physical back of the marble panel.",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0,
+          0,
+          1
+        ],
+        "status": "manual",
+        "note": "Upright Y-up basis and complete recorded exterior reviewed in eight paired source/serving directions. Opening camera selects an already reviewed direction."
+      },
+      "contact": {
+        "sha256": "3bbb3f3e1d4e76bad52fffec978c62f68eee0977c1f23eb705d0c6d992504ffb",
+        "bytes": 152914
+      },
+      "thumbnail": {
+        "sha256": "9e9983f23380a698dd7ffca4956f5f99675ce28a456e05a64b5bb9a0e41ab2ec",
+        "bytes": 56464
+      },
+      "poster": {
+        "sha256": "92c102579e31e3e4073aaa0281aeb2aa6fca9bb25e2f671737290636b7f60fc9",
+        "bytes": 75664
+      },
+      "finalThumbnailActuallyReviewed": true
+    }
+  ],
+  "physicalDimensionsUnknown": true,
+  "exactSizeArEligible": false,
+  "featuredSelectionUnchanged": true,
+  "sourceCleanupPerformed": false,
+  "checkedAt": "2026-10-26T19:50:08.018Z"
+}

@@ -165,6 +165,8 @@ Keep `scan_source` as visitor-facing capture and limitation prose. Its display s
 
 The owner clarified on October 23 that “find more works” means find, fetch and deploy through the existing verification and private-backup workflow. For artist batches, finish and verify the live release before proceeding to the next artist. This does not relax source identity, licensing, capture quality or release checks.
 
+For new source candidates, inspect a quick native front/above/reverse preflight before spending a full serving-review cycle on them. Tall museum photogrammetry can have excellent fronts but missing crowns or rear head surfaces. Reject major capture loss promptly; do not repair or relabel a missing part as an authentic fragment. A relief or mounted installation may have an unrecorded support back, but its sculpted face and visible extent must be sound and its limited capture scope explicit. Accepted sources still require the full eight-direction source/serving comparison and final thumbnail/live checks.
+
 ## Newest Additions batches
 
 Both `npm run ingest` and `npm run ingest:assemble` automatically give every
