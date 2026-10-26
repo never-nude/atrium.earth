@@ -1,0 +1,87 @@
+{
+  "schema": "atrium-artist-private-archive-verification/1",
+  "batch": "gustav-vigeland-20261025",
+  "status": "complete-full-content-readback-verified",
+  "checkedAt": "2026-10-26T02:45:46.415Z",
+  "unchangedProviderOriginals": {
+    "count": 4,
+    "totalBytes": 121441324,
+    "representation": "Unchanged preserved distribution GLBs; uploader native authoring files are not asserted.",
+    "files": [
+      {
+        "slug": "modern/mother-and-child-vigeland-national-gallery-cast-unconfirmed",
+        "bytes": 27264012,
+        "sha256": "baec70af120d2b2c235d8fec50c1e5226dca01ac4120f099c732095659953d7a",
+        "sourcePinMethod": "pre-acquisition-frozen-lead",
+        "published": true
+      },
+      {
+        "slug": "modern/two-girls-back-to-back-vigeland-granite",
+        "bytes": 10125160,
+        "sha256": "2f0c927366554f786a7d0607c91d3f376a4e73ff5c3504a972553251fe3397d3",
+        "sourcePinMethod": "pre-acquisition-frozen-lead",
+        "published": true
+      },
+      {
+        "slug": "modern/foetus-vigeland-park-cast-unconfirmed",
+        "bytes": 3023052,
+        "sha256": "ddb1fa087d4c8063fd88dfb4dee5284d7ae189602832045adf8b51ed0c5e6e9f",
+        "sourcePinMethod": "pre-acquisition-frozen-lead",
+        "published": true
+      },
+      {
+        "slug": "modern/monolith-vigeland-granite",
+        "bytes": 81029100,
+        "sha256": "2a61eb036c79230c7a0f1b4d164c757d2f7c5f7e6261b4043887d1db252dff4f",
+        "sourcePinMethod": "pre-acquisition-frozen-lead",
+        "published": true
+      }
+    ]
+  },
+  "permanentPrivateArchive": {
+    "sources": 4,
+    "authenticatedFullContentReadbacks": 4,
+    "authenticatedUniqueReadbackBytes": 172669944,
+    "portableMap": {
+      "bytes": 15733,
+      "sha256": "eeb00e5517bde7a67a2cc6ae6e9e57394951a7e6d2f12ed31578b2374045d93c",
+      "completeCloudReadbackAuthenticated": true,
+      "sourceMappings": 4
+    },
+    "objects": [
+      {
+        "role": "source-archive",
+        "package": 1,
+        "bytes": 40413008,
+        "sha256": "3209890978199a632c1cf9fb64bbd80b7631b3f4ba4e2263d560bb40b67f6de7",
+        "completeCloudReadbackAuthenticated": true,
+        "localZipMembersHashed": 3
+      },
+      {
+        "role": "source-archive",
+        "package": 2,
+        "bytes": 81029336,
+        "sha256": "f9ac8d12e57485b1cdd5f90ce15d684b039f1a72c57ee911bff66651099c4453",
+        "completeCloudReadbackAuthenticated": true,
+        "localZipMembersHashed": 1
+      },
+      {
+        "role": "provenance",
+        "package": null,
+        "bytes": 51211867,
+        "sha256": "0fa715aa8fb308ab4074e75dcf7d50a18f5edd3d18c1d6976dc062bfcb75be17",
+        "completeCloudReadbackAuthenticated": true,
+        "localZipMembersHashed": 169
+      }
+    ],
+    "allOriginalZipMembersVerified": true,
+    "allAcquiredSourcesIncluded": true,
+    "localDeletionAuthorized": false
+  },
+  "selectedHistoricalLicenseEvidenceArchived": true,
+  "fullMetadataShardsRetainedLocally": true,
+  "wholeShardRecoveryBindingsArchived": true,
+  "localOriginalsRetained": true,
+  "localDeletionAuthorized": false,
+  "scope": "Four selected unchanged distribution GLBs and selected provenance/review records are permanently owner-private. Uploader-native authoring files are not asserted; unrelated full metadata shards are not redistributed."
+}

@@ -1,0 +1,359 @@
+{
+  "schema": "atrium-independent-artist-data-audit/1",
+  "batch": "gustav-vigeland-20261025",
+  "checkedAt": "2026-10-26T02:45:46.415Z",
+  "status": "pass",
+  "baselineRelease": "eed406aebb2a390528fae41364285a295bede344",
+  "acquisition": {
+    "runId": 40259060911,
+    "checkoutHead": "40c7c64f52e625195c22c40cdeb97bbc7dfb7b53"
+  },
+  "accepted": 4,
+  "held": 0,
+  "heldSlugs": [],
+  "previousCatalogRows": 2381,
+  "currentCatalogRows": 2385,
+  "oldCatalogSemanticsAndOrderPreserved": true,
+  "oldSettingsPreserved": true,
+  "onlyCatalogCountersRecomputed": true,
+  "exhibitionAdditions": [
+    {
+      "exhibition": "the-work-of-the-surface",
+      "slug": "modern/monolith-vigeland-granite",
+      "text": "Intertwined bodies cover the column, with heads, backs and limbs emerging at different depths. Move around it to follow one figure into the next. Vigeland modeled the composition in 1924–1925; Ivar Broe, Nils Jønsson and Karl Kjær carved the granite from 1929 to 1942. This model records the column and its pedestal.",
+      "priorCaptionsPreserved": 48,
+      "priorWorkSlugsPreserved": 48,
+      "coverAndOtherContentPreserved": true
+    },
+    {
+      "exhibition": "bodies-in-motion",
+      "slug": "modern/two-girls-back-to-back-vigeland-granite",
+      "text": "Two crouching figures rest back to back and clasp their raised hands. Their bent legs spread the weight while the linked arms make another connection overhead. Turn the group to compare the faces and the spaces enclosed by their limbs. The provider identifies the granite sculpture as Vigeland’s Two Girls Back to Back; its exact date and site remain unconfirmed.",
+      "priorCaptionsPreserved": 41,
+      "priorWorkSlugsPreserved": 41,
+      "coverAndOtherContentPreserved": true
+    }
+  ],
+  "editorialArtistNormalizations": [
+    {
+      "slug": "modern/mother-and-child-vigeland-national-gallery-cast-unconfirmed",
+      "frozenSourceArtist": "Gustav Vigeland; bronze casting by Ernst Poleszynski",
+      "canonicalCatalogArtist": "Gustav Vigeland",
+      "purpose": "Join the existing Gustav Vigeland maker facet while retaining collaborator credits.",
+      "attributionPreservedVerbatim": true,
+      "collaboratorRole": "bronze casting by",
+      "collaborators": [
+        "Ernst Poleszynski"
+      ]
+    },
+    {
+      "slug": "modern/monolith-vigeland-granite",
+      "frozenSourceArtist": "Gustav Vigeland; stone carving by Ivar Broe, Nils Jønsson and Karl Kjær",
+      "canonicalCatalogArtist": "Gustav Vigeland",
+      "purpose": "Join the existing Gustav Vigeland maker facet while retaining collaborator credits.",
+      "attributionPreservedVerbatim": true,
+      "collaboratorRole": "stone carving by",
+      "collaborators": [
+        "Ivar Broe",
+        "Nils Jønsson",
+        "Karl Kjær"
+      ]
+    }
+  ],
+  "priorHoldEvidence": {
+    "file": "docs/ingest/frederic-remington-20261025-review-holds.json",
+    "baselineCommit": "3a55aa9f136b43125b54945b7b2159fb881ebbe0",
+    "bytes": 7204,
+    "sha256": "13b6dd12d8df6a17951216d44bc5753716d521ca4d157bcd7d76ec213e6d02f3",
+    "bytePreserved": true
+  },
+  "dimensionPolicy": {
+    "documentedExactObjects": 1,
+    "unknownExactObjects": 3,
+    "physicalCalibrations": 0,
+    "exactSizeArEnabled": false
+  },
+  "unchangedProviderOriginals": {
+    "count": 4,
+    "totalBytes": 121441324,
+    "representation": "Unchanged preserved distribution GLBs; uploader native authoring files are not asserted.",
+    "files": [
+      {
+        "slug": "modern/mother-and-child-vigeland-national-gallery-cast-unconfirmed",
+        "bytes": 27264012,
+        "sha256": "baec70af120d2b2c235d8fec50c1e5226dca01ac4120f099c732095659953d7a",
+        "sourcePinMethod": "pre-acquisition-frozen-lead",
+        "published": true
+      },
+      {
+        "slug": "modern/two-girls-back-to-back-vigeland-granite",
+        "bytes": 10125160,
+        "sha256": "2f0c927366554f786a7d0607c91d3f376a4e73ff5c3504a972553251fe3397d3",
+        "sourcePinMethod": "pre-acquisition-frozen-lead",
+        "published": true
+      },
+      {
+        "slug": "modern/foetus-vigeland-park-cast-unconfirmed",
+        "bytes": 3023052,
+        "sha256": "ddb1fa087d4c8063fd88dfb4dee5284d7ae189602832045adf8b51ed0c5e6e9f",
+        "sourcePinMethod": "pre-acquisition-frozen-lead",
+        "published": true
+      },
+      {
+        "slug": "modern/monolith-vigeland-granite",
+        "bytes": 81029100,
+        "sha256": "2a61eb036c79230c7a0f1b4d164c757d2f7c5f7e6261b4043887d1db252dff4f",
+        "sourcePinMethod": "pre-acquisition-frozen-lead",
+        "published": true
+      }
+    ]
+  },
+  "visualEvidence": {
+    "distinctSources": 4,
+    "mainReviewFrames": 64,
+    "separateDiagnosticFrames": 0,
+    "diagnosticDeliveredAsFinalAppearance": false,
+    "totalHashedFrames": 64,
+    "completeFrameAndContactHashesVerified": true,
+    "legacyMaterialReferenceClearlyLabeled": true,
+    "observedBrowserAborts": 5
+  },
+  "permanentPrivateArchive": {
+    "sources": 4,
+    "authenticatedFullContentReadbacks": 4,
+    "authenticatedUniqueReadbackBytes": 172669944,
+    "portableMap": {
+      "bytes": 15733,
+      "sha256": "eeb00e5517bde7a67a2cc6ae6e9e57394951a7e6d2f12ed31578b2374045d93c",
+      "completeCloudReadbackAuthenticated": true,
+      "sourceMappings": 4
+    },
+    "objects": [
+      {
+        "role": "source-archive",
+        "package": 1,
+        "bytes": 40413008,
+        "sha256": "3209890978199a632c1cf9fb64bbd80b7631b3f4ba4e2263d560bb40b67f6de7",
+        "completeCloudReadbackAuthenticated": true,
+        "localZipMembersHashed": 3
+      },
+      {
+        "role": "source-archive",
+        "package": 2,
+        "bytes": 81029336,
+        "sha256": "f9ac8d12e57485b1cdd5f90ce15d684b039f1a72c57ee911bff66651099c4453",
+        "completeCloudReadbackAuthenticated": true,
+        "localZipMembersHashed": 1
+      },
+      {
+        "role": "provenance",
+        "package": null,
+        "bytes": 51211867,
+        "sha256": "0fa715aa8fb308ab4074e75dcf7d50a18f5edd3d18c1d6976dc062bfcb75be17",
+        "completeCloudReadbackAuthenticated": true,
+        "localZipMembersHashed": 169
+      }
+    ],
+    "allOriginalZipMembersVerified": true,
+    "allAcquiredSourcesIncluded": true,
+    "localDeletionAuthorized": false
+  },
+  "works": [
+    {
+      "slug": "modern/mother-and-child-vigeland-national-gallery-cast-unconfirmed",
+      "title": "Mother and Child (Nasjonalmuseet bronze)",
+      "artist": "Gustav Vigeland",
+      "scanAuthor": "Epic_Tree_Store (johngreenstone)",
+      "wing": "unfiled",
+      "measuredIntegrity": {
+        "faces": 248136,
+        "bratio": 0,
+        "ncomp": 1,
+        "largest_frac": 1
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/modern/mother-and-child-vigeland-national-gallery-cast-unconfirmed/preview-5f7d057e8071.glb",
+        "bytes": 601760,
+        "sha256": "5f7d057e80716f3180aa33f2d971ff9f03784288f355abab278a79ae674dabf8",
+        "faces": 248136,
+        "sourceFaces": 248136
+      },
+      "physicalDimensions": {
+        "status": "documented",
+        "basis": "object",
+        "dimensions": "H 137.5 cm",
+        "calibrationReady": false
+      },
+      "spatialUiExpectation": {
+        "status": "approximate"
+      },
+      "visitorScanSource": {
+        "text": "Photogrammetric capture by johngreenstone (Epic_Tree_Store) of the Nasjonalmuseet bronze group, including its irregular integral base. The existing surface and close arrangement of the two figures are recorded. The base’s floor-contact underside is not independently documented. Atrium compressed the model for web delivery while retaining its geometry and recorded appearance.",
+        "visibleCharacters": 377,
+        "retainedFraction": 1
+      },
+      "sourceMaterialsPreserved": true,
+      "exactSizeArEnabled": false,
+      "assets": [
+        {
+          "file": "public/previews/renders/modern/mother-and-child-vigeland-national-gallery-cast-unconfirmed/thumb.webp",
+          "bytes": 39296,
+          "sha256": "70d05a77006e88d20138de787277e04fa8c8d96fe333f37a3fe869131fbd2f88"
+        },
+        {
+          "file": "public/previews/posters/modern/mother-and-child-vigeland-national-gallery-cast-unconfirmed/poster.svg",
+          "bytes": 52776,
+          "sha256": "e185dcaf3aa3122b4b6e047318759fc59bc56cb47aec8c46cc01816686724ff3"
+        }
+      ]
+    },
+    {
+      "slug": "modern/two-girls-back-to-back-vigeland-granite",
+      "title": "Two Girls Back to Back (granite; exact object unconfirmed)",
+      "artist": "Gustav Vigeland",
+      "scanAuthor": "Tore Lysebo (3D-skanning)",
+      "wing": "unfiled",
+      "measuredIntegrity": {
+        "faces": 225162,
+        "bratio": 0,
+        "ncomp": 1,
+        "largest_frac": 1
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/modern/two-girls-back-to-back-vigeland-granite/preview-8c2b2ed6ef2e.glb",
+        "bytes": 1102952,
+        "sha256": "8c2b2ed6ef2e4c51a65b1050645dfb9550c840e144bff7bdc038b3534995db8e",
+        "faces": 225162,
+        "sourceFaces": 225162
+      },
+      "physicalDimensions": {
+        "status": "unknown",
+        "basis": "object",
+        "dimensions": "",
+        "calibrationReady": false
+      },
+      "spatialUiExpectation": {
+        "status": "unknown",
+        "chosenMaxExtentMeters": 1
+      },
+      "visitorScanSource": {
+        "text": "3D scan by Tore Lysebo (published as 3D-skanning) records the two-figure granite composition and its rectangular base. The exact collection or park location has not been established. The base’s floor-contact underside is not independently documented. Atrium compressed the model for web delivery while retaining its geometry and recorded appearance.",
+        "visibleCharacters": 349,
+        "retainedFraction": 1
+      },
+      "sourceMaterialsPreserved": true,
+      "exactSizeArEnabled": false,
+      "assets": [
+        {
+          "file": "public/previews/renders/modern/two-girls-back-to-back-vigeland-granite/thumb.webp",
+          "bytes": 72972,
+          "sha256": "a2759d73edeaccc52c48162a73b9b7e0b62e318f086256278bd80fd688c20bd0"
+        },
+        {
+          "file": "public/previews/posters/modern/two-girls-back-to-back-vigeland-granite/poster.svg",
+          "bytes": 97712,
+          "sha256": "40448f2f375a1fa3349e4280610227440714058fd97512a6c9fbd8918f158072"
+        }
+      ]
+    },
+    {
+      "slug": "modern/foetus-vigeland-park-cast-unconfirmed",
+      "title": "The Foetus (Vigeland Park; cast date unconfirmed)",
+      "artist": "Gustav Vigeland",
+      "scanAuthor": "Tore Lysebo (3D-skanning)",
+      "wing": "unfiled",
+      "measuredIntegrity": {
+        "faces": 17400,
+        "bratio": 0,
+        "ncomp": 1,
+        "largest_frac": 1
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/modern/foetus-vigeland-park-cast-unconfirmed/preview-842319bbb356.glb",
+        "bytes": 328540,
+        "sha256": "842319bbb3568182a06d79ecc61081b975669eecbf024914d82205fbc276ce0e",
+        "faces": 17400,
+        "sourceFaces": 17400
+      },
+      "physicalDimensions": {
+        "status": "unknown",
+        "basis": "object",
+        "dimensions": "",
+        "calibrationReady": false
+      },
+      "spatialUiExpectation": {
+        "status": "unknown",
+        "chosenMaxExtentMeters": 1
+      },
+      "visitorScanSource": {
+        "text": "3D scan by Tore Lysebo (3D-skanning) of the bronze Foetus at the Children’s Circle in Vigeland Park. The curled figure and its block-shaped support are both included in the capture. The base’s floor-contact underside is not independently documented. Atrium compressed the model for web delivery while retaining its geometry and recorded appearance.",
+        "visibleCharacters": 348,
+        "retainedFraction": 1
+      },
+      "sourceMaterialsPreserved": true,
+      "exactSizeArEnabled": false,
+      "assets": [
+        {
+          "file": "public/previews/renders/modern/foetus-vigeland-park-cast-unconfirmed/thumb.webp",
+          "bytes": 36084,
+          "sha256": "2ed40e63c86d3c1b843492b5b24931cd6cab6bffef91119f0442f9ed249989f2"
+        },
+        {
+          "file": "public/previews/posters/modern/foetus-vigeland-park-cast-unconfirmed/poster.svg",
+          "bytes": 48510,
+          "sha256": "a82ce6cf19c33c7ab95af24fd2180a7b9085df0244bb6ac8e0c30fba28c90ad4"
+        }
+      ]
+    },
+    {
+      "slug": "modern/monolith-vigeland-granite",
+      "title": "The Monolith (granite column and pedestal)",
+      "artist": "Gustav Vigeland",
+      "scanAuthor": "Ørjan Sandland (orjansandland)",
+      "wing": "europe",
+      "measuredIntegrity": {
+        "faces": 2107911,
+        "bratio": 0,
+        "ncomp": 1,
+        "largest_frac": 1
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/modern/monolith-vigeland-granite/preview-453f9b6b21f7.glb",
+        "bytes": 1771316,
+        "sha256": "453f9b6b21f75f7eebf3a716f090358ecbf8c2eadd05d285992232edb3ccdd98",
+        "faces": 399887,
+        "sourceFaces": 2107911
+      },
+      "physicalDimensions": {
+        "status": "unknown",
+        "basis": "object",
+        "dimensions": "",
+        "calibrationReady": false
+      },
+      "spatialUiExpectation": {
+        "status": "unknown",
+        "chosenMaxExtentMeters": 1
+      },
+      "visitorScanSource": {
+        "text": "Photogrammetric capture by Ørjan Sandland (orjansandland) records the granite column and its pedestal at Vigeland Park. The model isolates the monument from the surrounding terrace and separate figure groups. The pedestal’s floor-contact underside is open and unrecorded. Atrium simplified the geometry for web delivery while retaining the recorded appearance. Small surface details are softer and the pedestal appears more faceted in this web version.",
+        "visibleCharacters": 452,
+        "retainedFraction": 1
+      },
+      "sourceMaterialsPreserved": true,
+      "exactSizeArEnabled": false,
+      "assets": [
+        {
+          "file": "public/previews/renders/modern/monolith-vigeland-granite/thumb.webp",
+          "bytes": 32084,
+          "sha256": "8fa3220adc5bd2f2513d3accfdb6b77ef8c17e6ed47ddca4b80270df94f35cb2"
+        },
+        {
+          "file": "public/previews/posters/modern/monolith-vigeland-granite/poster.svg",
+          "bytes": 43164,
+          "sha256": "48f5cce7b05aefb371412afbd3ecb3479aecf1cb36789b10a91567c8b52825a5"
+        }
+      ]
+    }
+  ],
+  "scope": "Independent local data, asset, source, saved review-image and authenticated archive receipt audit. Human identity/capture decisions, final opening-view inspection, build, deployment and live delivery remain separate."
+}

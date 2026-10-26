@@ -1,0 +1,1425 @@
+{
+  "schema": "atrium-final-artist-review/1",
+  "batch": "gustav-vigeland-20261025",
+  "status": "approved-for-publication",
+  "reviewedAt": "2026-10-26T02:43:19.698Z",
+  "artist": "Gustav Vigeland",
+  "acquisition": {
+    "runId": 40259060911,
+    "head": "40c7c64f52e625195c22c40cdeb97bbc7dfb7b53",
+    "status": "success",
+    "url": "https://github.com/never-nude/atrium.earth/actions/runs/40259060911",
+    "sourcesFetched": 4,
+    "frozenPublicLeads": {
+      "path": "docs/ingest/gustav-vigeland-20261025-leads.json",
+      "bytes": 40759,
+      "sha256": "3caf525ae8973305634b04745997e853358204ddbf2e9ea22021c20dce4d13f0"
+    }
+  },
+  "acceptedWorks": 4,
+  "heldWorks": 0,
+  "reviewScope": "Four unchanged preserved Objaverse distribution GLBs received an early eight-direction source-only quality review (32 frames). Final eight-direction source-versus-serving reviews rendered 64 panels. Independent actual review covered all 64 panels and 19 full-resolution images, plus all 32 early panels and 13 early full-resolution frames. Root accepted all four and actually viewed the regenerated opening thumbnails and posters. This report does not assert deployment. Permanent private backup of every acquired original, final provenance and portable recovery map has been independently authenticated against signed complete-content readbacks, with every original ZIP member rehashed.",
+  "renderer": {
+    "nativeOriginalsRendered": 4,
+    "materialNormalizedSourceReferences": 0,
+    "pairedDirections": 8,
+    "earlySourceOnlyFrames": 32,
+    "finalPairedFrames": 64,
+    "totalFrames": 96,
+    "pageErrors": 0,
+    "observedBrowserAborts": [
+      {
+        "scope": "early-source-only",
+        "slug": "modern/monolith-vigeland-granite",
+        "mode": "source-native",
+        "asset": "native-3.glb",
+        "error": "net::ERR_ABORTED"
+      },
+      {
+        "scope": "final-paired",
+        "slug": "modern/mother-and-child-vigeland-national-gallery-cast-unconfirmed",
+        "mode": "source-native",
+        "asset": "native-0.glb",
+        "error": "net::ERR_ABORTED"
+      },
+      {
+        "scope": "final-paired",
+        "slug": "modern/mother-and-child-vigeland-national-gallery-cast-unconfirmed",
+        "mode": "preview-production",
+        "asset": "draco_decoder.wasm",
+        "error": "net::ERR_ABORTED"
+      },
+      {
+        "scope": "final-paired",
+        "slug": "modern/two-girls-back-to-back-vigeland-granite",
+        "mode": "source-native",
+        "asset": "native-1.glb",
+        "error": "net::ERR_ABORTED"
+      },
+      {
+        "scope": "final-paired",
+        "slug": "modern/foetus-vigeland-park-cast-unconfirmed",
+        "mode": "source-native",
+        "asset": "native-2.glb",
+        "error": "net::ERR_ABORTED"
+      },
+      {
+        "scope": "final-paired",
+        "slug": "modern/monolith-vigeland-granite",
+        "mode": "source-native",
+        "asset": "native-3.glb",
+        "error": "net::ERR_ABORTED"
+      }
+    ],
+    "qualification": "All requested frames decoded and rendered. Observed browser aborts are retained as harness limitations; completed server writes do not prove complete browser receipt for unused preloads. No lighting diagnostic, geometry repair or appearance replacement was performed. The six failed-request events are the same six listed browser aborts, not twelve independent failures.",
+    "reports": [
+      {
+        "scope": "early-source-only",
+        "bytes": 180830,
+        "sha256": "6c5bff62add6b66b9095296ca2ef07ae9a2cd8566b32d47399d53d68d8dc584e"
+      },
+      {
+        "scope": "final-paired",
+        "bytes": 323119,
+        "sha256": "93e3a46c066850d6ccfd1e34fb340e7c4179ec33c59ca20cf4c9307a3b5dd4b6"
+      }
+    ],
+    "rendererBindings": {
+      "productionHtmlSha256": "5d379f48cf6e6d7db598a39e24d15667ecd0650017d1393183458cbac9b89bf2",
+      "thumbnailScriptSha256": "04aeca916a0d411321ba758860f6ce39094cb2c7bb013625e1ba7dacba2bb89d",
+      "reviewHtmlSha256": "ce5f05639d5b9b0d1181de8b28f9be309d49eb04fe0edfda14a6e8bfb6c14b6e",
+      "reviewAdapterSha256": "7f284532b9b48beba9a88569fb5cb320397c07340c6433d0a079cc54d2556991",
+      "transformUtilsSha256": "afc875f080e2f1c7042ff6e2b5e41e298bfaf609d788774f48c8071950d3d2e0",
+      "helperSha256": "2250c86199d582175fa9f4f32a4211cf9ee0175d434b46d1b1d4118da48c4266"
+    },
+    "failedRequestCount": 6,
+    "nonAbortFailedRequests": []
+  },
+  "independentReviewEvidence": {
+    "bytes": 91086,
+    "sha256": "f2a6ebf1e5fc26bda49231482ff0d03c4c3b6cf30db61954569884a062d45ecd",
+    "accepted": 4,
+    "held": 0
+  },
+  "earlyIndependentReviewEvidence": {
+    "bytes": 20211,
+    "sha256": "10af37374456809d781abcbe5edb8603c2d30cf1f316d25b0705bf4f90d9bbbb"
+  },
+  "works": [
+    {
+      "slug": "modern/mother-and-child-vigeland-national-gallery-cast-unconfirmed",
+      "title": "Mother and Child (Nasjonalmuseet bronze)",
+      "artist": "Gustav Vigeland",
+      "date": "Modelled 1907; cast 1908",
+      "material": "Bronze",
+      "currentLocation": "Nasjonalmuseet, Oslo",
+      "primarySource": "https://www.nasjonalmuseet.no/en/collection/object/NG.S.01145",
+      "providerSource": "https://sketchfab.com/3d-models/9b07da4b08b049e1a90db036edfc0497",
+      "preservedSource": "https://huggingface.co/datasets/allenai/objaverse/resolve/556637099bf4fa79ea7b239d0d9c328b8a2e9ac8/glbs/000-147/9b07da4b08b049e1a90db036edfc0497.glb",
+      "source": {
+        "uid": "9b07da4b08b049e1a90db036edfc0497",
+        "bytes": 27264012,
+        "sha256": "baec70af120d2b2c235d8fec50c1e5226dca01ac4120f099c732095659953d7a",
+        "representation": "Unchanged selected preserved Objaverse 1.0 distribution GLB; uploader-native authoring files are not asserted."
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/modern/mother-and-child-vigeland-national-gallery-cast-unconfirmed/preview-5f7d057e8071.glb",
+        "bytes": 601760,
+        "sourceBytes": 27264012,
+        "sourceFormat": "glb",
+        "faces": 248136,
+        "sourceFaces": 248136,
+        "sha256": "5f7d057e80716f3180aa33f2d971ff9f03784288f355abab278a79ae674dabf8"
+      },
+      "measuredIntegrity": {
+        "faces": 248136,
+        "bratio": 0,
+        "ncomp": 1,
+        "largest_frac": 1
+      },
+      "appearance": {
+        "preserveSourceMaterials": true,
+        "sourceTextureImages": 1,
+        "sourceTextures": 1,
+        "sourceMaterialExtensions": [
+          "KHR_materials_unlit"
+        ],
+        "originalRenderedDirectly": true,
+        "nativeFaces": 248136,
+        "previewFaces": 248136,
+        "topologySimplification": false,
+        "reconstruction": false,
+        "cropping": false,
+        "recoloring": false,
+        "materialDefinitionsRetained": true,
+        "authoredVertexColorsRetained": false,
+        "runtimeMaterialTypes": [
+          "MeshBasicMaterial"
+        ],
+        "runtimeTextureMapChannels": [
+          "map"
+        ],
+        "qualification": "Source texture/material channels remain in the serving model, with image compression. Do not infer physical color accuracy from baked illumination or rendering."
+      },
+      "physicalDimensions": {
+        "status": "documented",
+        "basis": "object",
+        "dimensions": "H 137.5 cm",
+        "sourceUrl": "https://www.nasjonalmuseet.no/en/collection/object/NG.S.01145",
+        "note": "Dimensions are documented by primary evidence for this exact captured physical object. The source GLB and serving derivative have not been physically calibrated; no scale calibration is claimed.",
+        "spatialNote": "Object dimensions are documented. Display size remains adjustable until the final model is physically calibrated.",
+        "measures": [
+          {
+            "axis": "height",
+            "value": 137.5,
+            "unit": "cm",
+            "scope": "object"
+          }
+        ],
+        "calibrationReady": false,
+        "checked": "2026-10-26",
+        "physicalCalibrationPerformed": false,
+        "exactSizeArEligible": false,
+        "spatialEligibility": {
+          "enabled": false,
+          "policyVersion": 1,
+          "reason": "review"
+        }
+      },
+      "frames": [
+        {
+          "mode": "source-native",
+          "key": "FRONT",
+          "bytes": 471781,
+          "sha256": "fecbad0d01663f2f7b02c1dbf389fbc9dfde1a7abf30f28a471f83a7154c973c"
+        },
+        {
+          "mode": "source-native",
+          "key": "RIGHT",
+          "bytes": 433507,
+          "sha256": "b0a90bca1062f20038b2202661242ceca688ee9770d5527f02699b90b5ed5fb3"
+        },
+        {
+          "mode": "source-native",
+          "key": "REVERSE",
+          "bytes": 415596,
+          "sha256": "63c02e632ed4c6f432d1f749845cc768fd1071c3f44528bd6943e2570415d69f"
+        },
+        {
+          "mode": "source-native",
+          "key": "LEFT",
+          "bytes": 568301,
+          "sha256": "c0826e607e476e44a7e5ebc54995a4969077afde8a9a1621dc5ba6db97a3c554"
+        },
+        {
+          "mode": "source-native",
+          "key": "ABOVE",
+          "bytes": 496551,
+          "sha256": "6ce08f0f1c2c83bc7905e37e0166d37b1cddcb4625987c99c4e2d14b23997663"
+        },
+        {
+          "mode": "source-native",
+          "key": "UNDERSIDE",
+          "bytes": 79237,
+          "sha256": "02d86112b6442179e7c69b107702fcbd44460476493a30aa2fc05b908b78e21c"
+        },
+        {
+          "mode": "source-native",
+          "key": "FRONT-THREE-QUARTER",
+          "bytes": 426812,
+          "sha256": "18477185653d4a59596a438194c568b297a51205a019d035fb64cf4d977cde7c"
+        },
+        {
+          "mode": "source-native",
+          "key": "BACK-THREE-QUARTER",
+          "bytes": 479930,
+          "sha256": "971aa1ae552b19b0a592aff3a208fc8585988e35eac8de04d1452cb84858a931"
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "bytes": 428012,
+          "sha256": "dcd8a3e99f2945d55e9e38a208794cd5ae1c240f352920ab84c60cad91342a14"
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "bytes": 383966,
+          "sha256": "edc3ca6791b90a84bf3524a0b699b9ba6b6a24173a5f6f8ec363b35088e4b07b"
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "bytes": 368940,
+          "sha256": "0a426af5d20e6d2a9b849c866610cc8e8f38132361cb2e2e11b1d57f335ffd75"
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "bytes": 520839,
+          "sha256": "1da45e0c888646eac99b726995ef5c990beb6c9a57d1c1923d4a93b48e351857"
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "bytes": 450481,
+          "sha256": "d6813ccfadc04b1276ae939d55268ce9ce56af88f9a37c336ec079fce2fa4f84"
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "bytes": 75033,
+          "sha256": "d76811db3bd39547d0d66879c237102b1314592c166dbe9f327a0d42521bf5a4"
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "bytes": 385576,
+          "sha256": "fbe76ad38d8fe234ff0d22e9d89eb349b3f0d07495d7bd83e51e861a5ef66b05"
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "bytes": 443882,
+          "sha256": "765d87a9389f39090032c94869d4b0bc00e3e9eecc1365b05682c1c2431922c7"
+        }
+      ],
+      "earlySourceOnlyFrames": [
+        {
+          "mode": "source-native",
+          "key": "FRONT",
+          "bytes": 471781,
+          "sha256": "fecbad0d01663f2f7b02c1dbf389fbc9dfde1a7abf30f28a471f83a7154c973c"
+        },
+        {
+          "mode": "source-native",
+          "key": "RIGHT",
+          "bytes": 433507,
+          "sha256": "b0a90bca1062f20038b2202661242ceca688ee9770d5527f02699b90b5ed5fb3"
+        },
+        {
+          "mode": "source-native",
+          "key": "REVERSE",
+          "bytes": 415596,
+          "sha256": "63c02e632ed4c6f432d1f749845cc768fd1071c3f44528bd6943e2570415d69f"
+        },
+        {
+          "mode": "source-native",
+          "key": "LEFT",
+          "bytes": 568301,
+          "sha256": "c0826e607e476e44a7e5ebc54995a4969077afde8a9a1621dc5ba6db97a3c554"
+        },
+        {
+          "mode": "source-native",
+          "key": "ABOVE",
+          "bytes": 496551,
+          "sha256": "6ce08f0f1c2c83bc7905e37e0166d37b1cddcb4625987c99c4e2d14b23997663"
+        },
+        {
+          "mode": "source-native",
+          "key": "UNDERSIDE",
+          "bytes": 79237,
+          "sha256": "02d86112b6442179e7c69b107702fcbd44460476493a30aa2fc05b908b78e21c"
+        },
+        {
+          "mode": "source-native",
+          "key": "FRONT-THREE-QUARTER",
+          "bytes": 426812,
+          "sha256": "18477185653d4a59596a438194c568b297a51205a019d035fb64cf4d977cde7c"
+        },
+        {
+          "mode": "source-native",
+          "key": "BACK-THREE-QUARTER",
+          "bytes": 479930,
+          "sha256": "971aa1ae552b19b0a592aff3a208fc8585988e35eac8de04d1452cb84858a931"
+        }
+      ],
+      "finalContact": {
+        "bytes": 143636,
+        "sha256": "15afd3df3dd0853638bb69813a74983b982bfc013b09ffe16445739f8787c4c7",
+        "panels": 16
+      },
+      "earlySourceOnlyContact": {
+        "bytes": 75434,
+        "sha256": "d0138182e0075d70bed3b88d1831a29851f8b65e53043c590a831ac12b035641",
+        "panels": 8
+      },
+      "independentActualPanelsReviewed": 16,
+      "independentActualFullResolutionFramesReviewed": 3,
+      "independentVisualDecision": [
+        "Source and serving images retain both figures, child head/profile/ear, mother hair and face pressed toward child, holding hands and arms, knees, feet and irregular integral bronze base. No lost head, face, limb or major capture void observed.",
+        "Serving image has slight texture softness from image compression; important contours and contact points remain legible. Dark baked bronze shading belongs to source appearance and has not been recolored.",
+        "Base underside is a dark non-documentary closure; no true floor-contact underside recording is asserted."
+      ],
+      "transform": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          -1,
+          0,
+          0
+        ],
+        "status": "manual",
+        "note": "Source-native left-side opening verified to show the mother and child facing one another; source and serving appearance and capture scope reviewed from eight directions."
+      },
+      "transformRecordSha256": "402da551edf56cdfb047efcf1734e1d6d231d9c6f0a8f58547d2699b8eea0474",
+      "appearanceOverride": {
+        "preserveSourceMaterials": true
+      },
+      "appearanceOverrideRecordSha256": "23d208ed270f4f912f5e6ff48372adb356a2b9bc3369dfe03eae2bee0bffb1f5",
+      "finalThumbnail": {
+        "path": "public/previews/renders/modern/mother-and-child-vigeland-national-gallery-cast-unconfirmed/thumb.webp",
+        "bytes": 39296,
+        "sha256": "70d05a77006e88d20138de787277e04fa8c8d96fe333f37a3fe869131fbd2f88",
+        "actualImageReviewedByRoot": true
+      },
+      "poster": {
+        "path": "public/previews/posters/modern/mother-and-child-vigeland-national-gallery-cast-unconfirmed/poster.svg",
+        "bytes": 52776,
+        "sha256": "e185dcaf3aa3122b4b6e047318759fc59bc56cb47aec8c46cc01816686724ff3",
+        "actualImageReviewedByRoot": true
+      },
+      "catalogRecord": {
+        "index": 2382,
+        "ingestBatch": "gustav-vigeland-20261025",
+        "ingestedAt": "2026-10-26T02:26:54.528Z",
+        "metadataRecordSha256": "9de6a27b972adc4def6c99d4e150c5c3778dacbd10dcdea27d9e3c99d50c0408",
+        "metadataRecordSerialization": "UTF-8 JSON.stringify of the exact catalog record in stored property order",
+        "scanAuthor": "Epic_Tree_Store (johngreenstone)",
+        "visibleAttribution": "3D capture by Epic_Tree_Store (johngreenstone), published on Sketchfab under CC BY 4.0 and distributed in AllenAI Objaverse. Physical object: Gustav Vigeland; bronze casting by Ernst Poleszynski, 1908. Nasjonalmuseet, NG.S.01145.",
+        "scanSource": "Photogrammetric capture by johngreenstone (Epic_Tree_Store) of the Nasjonalmuseet bronze group, including its irregular integral base. The existing surface and close arrangement of the two figures are recorded. The base’s floor-contact underside is not independently documented. Atrium compressed the model for web delivery while retaining its geometry and recorded appearance.",
+        "note": "A kneeling woman holds a standing child close to her face, while elongated limbs and roughly modeled surfaces give the embrace a tense intimacy. Nasjonalmuseet identifies this bronze as NG.S.01145, modelled in 1907 and cast in 1908, with Ernst Poleszynski credited for the bronze casting. The museum records an object height of 137.5 cm. The casting place and edition remain unconfirmed; the documentary object measurement does not establish a verified physical scale for the model.",
+        "derivedSearchSha256": "75ff7aab49432d957c6487acd9d99f0f0e50507aef8a4b9dfa389e6f565d6588"
+      }
+    },
+    {
+      "slug": "modern/two-girls-back-to-back-vigeland-granite",
+      "title": "Two Girls Back to Back (granite; exact object unconfirmed)",
+      "artist": "Gustav Vigeland",
+      "date": "Date unconfirmed",
+      "material": "Granite",
+      "currentLocation": "Exact collection or site unconfirmed",
+      "primarySource": "https://sketchfab.com/3d-models/51749275659d40198c491f951a27b4f9",
+      "providerSource": "https://sketchfab.com/3d-models/51749275659d40198c491f951a27b4f9",
+      "preservedSource": "https://huggingface.co/datasets/allenai/objaverse/resolve/556637099bf4fa79ea7b239d0d9c328b8a2e9ac8/glbs/000-049/51749275659d40198c491f951a27b4f9.glb",
+      "source": {
+        "uid": "51749275659d40198c491f951a27b4f9",
+        "bytes": 10125160,
+        "sha256": "2f0c927366554f786a7d0607c91d3f376a4e73ff5c3504a972553251fe3397d3",
+        "representation": "Unchanged selected preserved Objaverse 1.0 distribution GLB; uploader-native authoring files are not asserted."
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/modern/two-girls-back-to-back-vigeland-granite/preview-8c2b2ed6ef2e.glb",
+        "bytes": 1102952,
+        "sourceBytes": 10125160,
+        "sourceFormat": "glb",
+        "faces": 225162,
+        "sourceFaces": 225162,
+        "sha256": "8c2b2ed6ef2e4c51a65b1050645dfb9550c840e144bff7bdc038b3534995db8e"
+      },
+      "measuredIntegrity": {
+        "faces": 225162,
+        "bratio": 0,
+        "ncomp": 1,
+        "largest_frac": 1
+      },
+      "appearance": {
+        "preserveSourceMaterials": true,
+        "sourceTextureImages": 2,
+        "sourceTextures": 2,
+        "sourceMaterialExtensions": [],
+        "originalRenderedDirectly": true,
+        "nativeFaces": 225162,
+        "previewFaces": 225162,
+        "topologySimplification": false,
+        "reconstruction": false,
+        "cropping": false,
+        "recoloring": false,
+        "materialDefinitionsRetained": true,
+        "authoredVertexColorsRetained": false,
+        "runtimeMaterialTypes": [
+          "MeshStandardMaterial"
+        ],
+        "runtimeTextureMapChannels": [
+          "map",
+          "normalMap"
+        ],
+        "qualification": "Source texture/material channels remain in the serving model, with image compression. Do not infer physical color accuracy from baked illumination or rendering."
+      },
+      "physicalDimensions": {
+        "status": "unknown",
+        "basis": "object",
+        "dimensions": "",
+        "sourceUrl": "https://sketchfab.com/3d-models/51749275659d40198c491f951a27b4f9",
+        "note": "Dimensions of this exact captured physical object are unconfirmed. Measurements of a different cast, component, nearby monument or inferred size are not extrapolated to this object. The source GLB and serving derivative have not been physically calibrated.",
+        "spatialNote": "Object dimensions are unconfirmed. Display size is adjustable.",
+        "measures": [],
+        "calibrationReady": false,
+        "checked": "2026-10-26",
+        "physicalCalibrationPerformed": false,
+        "exactSizeArEligible": false,
+        "spatialEligibility": {
+          "enabled": false,
+          "policyVersion": 1,
+          "reason": "review"
+        }
+      },
+      "frames": [
+        {
+          "mode": "source-native",
+          "key": "FRONT",
+          "bytes": 875316,
+          "sha256": "fcd8cc8f0b4474efd34bd65eb8e84398ff76e02cad46838581fa8a2bca78a395"
+        },
+        {
+          "mode": "source-native",
+          "key": "RIGHT",
+          "bytes": 654707,
+          "sha256": "6ef0aec7514b325be128d638cd96173127e5c33b3d9d4ec0a9bee1c7571e959b"
+        },
+        {
+          "mode": "source-native",
+          "key": "REVERSE",
+          "bytes": 860797,
+          "sha256": "542d9531dd4391a7ece314a93c81fb0448752e9445ed9cf59248e77d4a052caf"
+        },
+        {
+          "mode": "source-native",
+          "key": "LEFT",
+          "bytes": 665603,
+          "sha256": "4fbb617a3ba6b8d54aa60db8529deebf15a2917bb93d876ee8ca305595f255a0"
+        },
+        {
+          "mode": "source-native",
+          "key": "ABOVE",
+          "bytes": 403857,
+          "sha256": "2566e21c4ca428b7740858d715aae47724471e5e470a5937d541e3cd22d6de81"
+        },
+        {
+          "mode": "source-native",
+          "key": "UNDERSIDE",
+          "bytes": 305574,
+          "sha256": "420770ba387a94f12b8019b1ebf189c58eec8d71da20089a7624253c12081a45"
+        },
+        {
+          "mode": "source-native",
+          "key": "FRONT-THREE-QUARTER",
+          "bytes": 691974,
+          "sha256": "afbad39c2fa248f550f024a6434d551585483f63711cd0c63b9d153ac6407852"
+        },
+        {
+          "mode": "source-native",
+          "key": "BACK-THREE-QUARTER",
+          "bytes": 690914,
+          "sha256": "b8ae3d4e36e63462d33a0a3097b83687c3d3b1363442b9b7e641d0b5f2c5c46f"
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "bytes": 802516,
+          "sha256": "65a2f19d47fc71bf4788cfbfab4c62920cbdd8a1ebf25d9544ebe3812b6e5747"
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "bytes": 606589,
+          "sha256": "2837a197687349ac329d45e532ceae79aabb7a6498aeb4d6561c9829a58e4572"
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "bytes": 780459,
+          "sha256": "089fc8f658e21b59077a52cc4caea594fa32bd993fa5c43885f2ed8774e3c491"
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "bytes": 610851,
+          "sha256": "2cabba9d6a04da1d29319eec37ecb25230a9c2682c7df2641241695fd82756ea"
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "bytes": 369160,
+          "sha256": "968dc743d81300486c047d2f61d29ffc3c43ee01e601cbe91fdd7c48a8dc37bd"
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "bytes": 249680,
+          "sha256": "4b7e19148d0ec6ed1a016f8fef84a4027d4ecea10dd0d29ea60b980510ed1407"
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "bytes": 641354,
+          "sha256": "c8aa2c41e931fdec68c370e71b8440dabed32deb19c1271f161d8a7460ff5988"
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "bytes": 632607,
+          "sha256": "96c845dda10761f4f1694ab5704a0e81df0b2abfff8846718d378f9be6fb635c"
+        }
+      ],
+      "earlySourceOnlyFrames": [
+        {
+          "mode": "source-native",
+          "key": "FRONT",
+          "bytes": 875316,
+          "sha256": "fcd8cc8f0b4474efd34bd65eb8e84398ff76e02cad46838581fa8a2bca78a395"
+        },
+        {
+          "mode": "source-native",
+          "key": "RIGHT",
+          "bytes": 654707,
+          "sha256": "6ef0aec7514b325be128d638cd96173127e5c33b3d9d4ec0a9bee1c7571e959b"
+        },
+        {
+          "mode": "source-native",
+          "key": "REVERSE",
+          "bytes": 860797,
+          "sha256": "542d9531dd4391a7ece314a93c81fb0448752e9445ed9cf59248e77d4a052caf"
+        },
+        {
+          "mode": "source-native",
+          "key": "LEFT",
+          "bytes": 665603,
+          "sha256": "4fbb617a3ba6b8d54aa60db8529deebf15a2917bb93d876ee8ca305595f255a0"
+        },
+        {
+          "mode": "source-native",
+          "key": "ABOVE",
+          "bytes": 403857,
+          "sha256": "2566e21c4ca428b7740858d715aae47724471e5e470a5937d541e3cd22d6de81"
+        },
+        {
+          "mode": "source-native",
+          "key": "UNDERSIDE",
+          "bytes": 305574,
+          "sha256": "420770ba387a94f12b8019b1ebf189c58eec8d71da20089a7624253c12081a45"
+        },
+        {
+          "mode": "source-native",
+          "key": "FRONT-THREE-QUARTER",
+          "bytes": 691974,
+          "sha256": "afbad39c2fa248f550f024a6434d551585483f63711cd0c63b9d153ac6407852"
+        },
+        {
+          "mode": "source-native",
+          "key": "BACK-THREE-QUARTER",
+          "bytes": 690914,
+          "sha256": "b8ae3d4e36e63462d33a0a3097b83687c3d3b1363442b9b7e641d0b5f2c5c46f"
+        }
+      ],
+      "finalContact": {
+        "bytes": 237328,
+        "sha256": "dfac76b747594075b9a7782fd0249d4b60d3747bf5026c6804a65e5ea508d595",
+        "panels": 16
+      },
+      "earlySourceOnlyContact": {
+        "bytes": 118120,
+        "sha256": "3472883dc2f3091e0aae09731ea94c7c285a563d7f255173ed0875a87fb4fc58",
+        "panels": 8
+      },
+      "independentActualPanelsReviewed": 16,
+      "independentActualFullResolutionFramesReviewed": 4,
+      "independentVisualDecision": [
+        "Both faces, all raised arms and clasped hands, crouching legs and feet are complete in source and serving images. Granite grain and shallow facial detail are slightly softer in serving textures, while composition and anatomy remain legible.",
+        "The underside of the rectangular base is a broad faceted, non-documentary closure in both versions. Do not present it as a recorded stone underside.",
+        "Exact museum/park object, date, carving place and stone carver remain unconfirmed; acceptance is for qualified provider-attributed composition, not stronger metadata."
+      ],
+      "transform": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0,
+          0,
+          1
+        ],
+        "status": "manual",
+        "note": "Source-native upright front verified through eight-direction source and serving comparison; captured base and underside limitations retained."
+      },
+      "transformRecordSha256": "6b560ddbf21ab05eda8360ba86f2337a94fb3386acada7526e4ae6b79807d3f6",
+      "appearanceOverride": {
+        "preserveSourceMaterials": true
+      },
+      "appearanceOverrideRecordSha256": "23d208ed270f4f912f5e6ff48372adb356a2b9bc3369dfe03eae2bee0bffb1f5",
+      "finalThumbnail": {
+        "path": "public/previews/renders/modern/two-girls-back-to-back-vigeland-granite/thumb.webp",
+        "bytes": 72972,
+        "sha256": "a2759d73edeaccc52c48162a73b9b7e0b62e318f086256278bd80fd688c20bd0",
+        "actualImageReviewedByRoot": true
+      },
+      "poster": {
+        "path": "public/previews/posters/modern/two-girls-back-to-back-vigeland-granite/poster.svg",
+        "bytes": 97712,
+        "sha256": "40448f2f375a1fa3349e4280610227440714058fd97512a6c9fbd8918f158072",
+        "actualImageReviewedByRoot": true
+      },
+      "catalogRecord": {
+        "index": 2383,
+        "ingestBatch": "gustav-vigeland-20261025",
+        "ingestedAt": "2026-10-26T02:26:54.528Z",
+        "metadataRecordSha256": "99e7642e98d10d172c2b35fb236b09ccbc2f3033eefb554fb71610325500433c",
+        "metadataRecordSerialization": "UTF-8 JSON.stringify of the exact catalog record in stored property order",
+        "scanAuthor": "Tore Lysebo (3D-skanning)",
+        "visibleAttribution": "3D capture by Tore Lysebo (3D-skanning), published on Sketchfab under CC BY 4.0 and distributed unchanged in AllenAI Objaverse. Physical sculpture attributed to Gustav Vigeland.",
+        "scanSource": "3D scan by Tore Lysebo (published as 3D-skanning) records the two-figure granite composition and its rectangular base. The exact collection or park location has not been established. The base’s floor-contact underside is not independently documented. Atrium compressed the model for web delivery while retaining its geometry and recorded appearance.",
+        "note": "Two kneeling figures press their backs together and clasp their raised arms above their heads. Broad, simplified forms unite the bodies with a rectangular base. The capture publisher identifies the work as a granite sculpture by Gustav Vigeland titled To piker rygg mot rygg. Its exact museum or park object, model and carving dates, stone carver, dimensions and manufacture location remain unconfirmed.",
+        "derivedSearchSha256": "d908e6e4c8c3c234a55a14684535099af34cd876e44455fa6f44bf9268406f92"
+      }
+    },
+    {
+      "slug": "modern/foetus-vigeland-park-cast-unconfirmed",
+      "title": "The Foetus (Vigeland Park; cast date unconfirmed)",
+      "artist": "Gustav Vigeland",
+      "date": "Model dated 1923; cast date unconfirmed",
+      "material": "Bronze",
+      "currentLocation": "Vigeland Park, Oslo, Norway",
+      "primarySource": "https://vigeland.museum.no/en/exhibitions/elise-storsveen",
+      "providerSource": "https://sketchfab.com/3d-models/c305a5c46eb34fa8ba5f0226a031cef7",
+      "preservedSource": "https://huggingface.co/datasets/allenai/objaverse/resolve/556637099bf4fa79ea7b239d0d9c328b8a2e9ac8/glbs/000-063/c305a5c46eb34fa8ba5f0226a031cef7.glb",
+      "source": {
+        "uid": "c305a5c46eb34fa8ba5f0226a031cef7",
+        "bytes": 3023052,
+        "sha256": "ddb1fa087d4c8063fd88dfb4dee5284d7ae189602832045adf8b51ed0c5e6e9f",
+        "representation": "Unchanged selected preserved Objaverse 1.0 distribution GLB; uploader-native authoring files are not asserted."
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/modern/foetus-vigeland-park-cast-unconfirmed/preview-842319bbb356.glb",
+        "bytes": 328540,
+        "sourceBytes": 3023052,
+        "sourceFormat": "glb",
+        "faces": 17400,
+        "sourceFaces": 17400,
+        "sha256": "842319bbb3568182a06d79ecc61081b975669eecbf024914d82205fbc276ce0e"
+      },
+      "measuredIntegrity": {
+        "faces": 17400,
+        "bratio": 0,
+        "ncomp": 1,
+        "largest_frac": 1
+      },
+      "appearance": {
+        "preserveSourceMaterials": true,
+        "sourceTextureImages": 3,
+        "sourceTextures": 3,
+        "sourceMaterialExtensions": [],
+        "originalRenderedDirectly": true,
+        "nativeFaces": 17400,
+        "previewFaces": 17400,
+        "topologySimplification": false,
+        "reconstruction": false,
+        "cropping": false,
+        "recoloring": false,
+        "materialDefinitionsRetained": true,
+        "authoredVertexColorsRetained": false,
+        "runtimeMaterialTypes": [
+          "MeshStandardMaterial"
+        ],
+        "runtimeTextureMapChannels": [
+          "map",
+          "normalMap",
+          "aoMap",
+          "metalnessMap",
+          "roughnessMap"
+        ],
+        "qualification": "Source texture/material channels remain in the serving model, with image compression. Do not infer physical color accuracy from baked illumination or rendering."
+      },
+      "physicalDimensions": {
+        "status": "unknown",
+        "basis": "object",
+        "dimensions": "",
+        "sourceUrl": "https://vigeland.museum.no/en/exhibitions/elise-storsveen",
+        "note": "Dimensions of this exact captured physical object are unconfirmed. Measurements of a different cast, component, nearby monument or inferred size are not extrapolated to this object. The source GLB and serving derivative have not been physically calibrated.",
+        "spatialNote": "Object dimensions are unconfirmed. Display size is adjustable.",
+        "measures": [],
+        "calibrationReady": false,
+        "checked": "2026-10-26",
+        "physicalCalibrationPerformed": false,
+        "exactSizeArEligible": false,
+        "spatialEligibility": {
+          "enabled": false,
+          "policyVersion": 1,
+          "reason": "review"
+        }
+      },
+      "frames": [
+        {
+          "mode": "source-native",
+          "key": "FRONT",
+          "bytes": 574110,
+          "sha256": "310777c565d67151422ec279afb1430082001f0e651a60708f8aaa616d9ffbfd"
+        },
+        {
+          "mode": "source-native",
+          "key": "RIGHT",
+          "bytes": 644736,
+          "sha256": "eeac34a38a215de11355be99915b4b17c6d55d7470f10dafc54b390e1b274aa5"
+        },
+        {
+          "mode": "source-native",
+          "key": "REVERSE",
+          "bytes": 587088,
+          "sha256": "76f4173b0cd4c1f0c6133c8d0aa24e0a051c2cc2137dd67ef140133663a7d04d"
+        },
+        {
+          "mode": "source-native",
+          "key": "LEFT",
+          "bytes": 657625,
+          "sha256": "70fafc0c4b4edad77e601fa219700c639198bdea11936c3c3a736bddd88c1892"
+        },
+        {
+          "mode": "source-native",
+          "key": "ABOVE",
+          "bytes": 542912,
+          "sha256": "8eb8475a97344f5defa401a6982c574c1f357aab5b24ad2db59d1f4cfe07578a"
+        },
+        {
+          "mode": "source-native",
+          "key": "UNDERSIDE",
+          "bytes": 687404,
+          "sha256": "c02c066fcd6b741509d771b73f94f434a447cb9082c61e455a687010e15f1061"
+        },
+        {
+          "mode": "source-native",
+          "key": "FRONT-THREE-QUARTER",
+          "bytes": 605347,
+          "sha256": "2f4e8f35eccfec01c3551828906a936df6599a76007753b5a162ab126e7f1c7f"
+        },
+        {
+          "mode": "source-native",
+          "key": "BACK-THREE-QUARTER",
+          "bytes": 613383,
+          "sha256": "5fd75b9f7ae38254f42d7491e9ffaabdfb1abbd9329732e1f62e0f9d68e4112a"
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "bytes": 503577,
+          "sha256": "1fd73e5d64e014908a6a78ba2e95d33a3b5fe8a1523a60ec87ac8b9c4e54afaa"
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "bytes": 561016,
+          "sha256": "60d53d7348b173a23c75235a202883e4751dec98a4f41ad138ff424214df8246"
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "bytes": 509650,
+          "sha256": "bf6ac15a298e45a0eaba4a9bfcd3b1b7b102e3fdc401d060b3037e6acbd4233e"
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "bytes": 579680,
+          "sha256": "03ff3e32d6fda870852800990e8b19e91d29752091fe09dbeb077261f0b35f7f"
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "bytes": 468647,
+          "sha256": "0c1c27af37bf5ef829b476de2e24eaa624e669facc2fdc0ad09dfc2d1df28402"
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "bytes": 610451,
+          "sha256": "b59238a150185fe70ef9bf0f2e4eebad8ccbb7cf2b2f103589c79cb0702b233e"
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "bytes": 543024,
+          "sha256": "3f3c671bbdd6a6e7ccde0290219d3ff26eefe4b11ea01f507ad3e54bfd8462ad"
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "bytes": 544415,
+          "sha256": "62c2830d1ca1ac755ed64038786959592a36a1a6cc3a612772d6bc81577ec7f3"
+        }
+      ],
+      "earlySourceOnlyFrames": [
+        {
+          "mode": "source-native",
+          "key": "FRONT",
+          "bytes": 574110,
+          "sha256": "310777c565d67151422ec279afb1430082001f0e651a60708f8aaa616d9ffbfd"
+        },
+        {
+          "mode": "source-native",
+          "key": "RIGHT",
+          "bytes": 644736,
+          "sha256": "eeac34a38a215de11355be99915b4b17c6d55d7470f10dafc54b390e1b274aa5"
+        },
+        {
+          "mode": "source-native",
+          "key": "REVERSE",
+          "bytes": 587088,
+          "sha256": "76f4173b0cd4c1f0c6133c8d0aa24e0a051c2cc2137dd67ef140133663a7d04d"
+        },
+        {
+          "mode": "source-native",
+          "key": "LEFT",
+          "bytes": 657625,
+          "sha256": "70fafc0c4b4edad77e601fa219700c639198bdea11936c3c3a736bddd88c1892"
+        },
+        {
+          "mode": "source-native",
+          "key": "ABOVE",
+          "bytes": 542912,
+          "sha256": "8eb8475a97344f5defa401a6982c574c1f357aab5b24ad2db59d1f4cfe07578a"
+        },
+        {
+          "mode": "source-native",
+          "key": "UNDERSIDE",
+          "bytes": 687404,
+          "sha256": "c02c066fcd6b741509d771b73f94f434a447cb9082c61e455a687010e15f1061"
+        },
+        {
+          "mode": "source-native",
+          "key": "FRONT-THREE-QUARTER",
+          "bytes": 605347,
+          "sha256": "2f4e8f35eccfec01c3551828906a936df6599a76007753b5a162ab126e7f1c7f"
+        },
+        {
+          "mode": "source-native",
+          "key": "BACK-THREE-QUARTER",
+          "bytes": 613383,
+          "sha256": "5fd75b9f7ae38254f42d7491e9ffaabdfb1abbd9329732e1f62e0f9d68e4112a"
+        }
+      ],
+      "finalContact": {
+        "bytes": 205506,
+        "sha256": "0087a4b505952f69c855841b812767d08aec2e7251260a12f3a13645cb2c7f73",
+        "panels": 16
+      },
+      "earlySourceOnlyContact": {
+        "bytes": 108138,
+        "sha256": "647b2a39df00ac8ef7d5025285b22b7098074981f814cba970cf319c4047a2ec",
+        "panels": 8
+      },
+      "independentActualPanelsReviewed": 16,
+      "independentActualFullResolutionFramesReviewed": 4,
+      "independentVisualDecision": [
+        "Source and serving preserve the inverted head/closed eyes/nose/mouth/ear, curling limbs, hands and feet. The deliberately compact pose is intelligible around all sides despite 17,400 faces.",
+        "Localized source faceting and texture softness remain; serving does not introduce a missing face or limb. Block-shaped support has softened corners and a plain non-documentary underside.",
+        "Model date1923 is separate from this bronze cast date, which remains unconfirmed."
+      ],
+      "transform": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0,
+          0,
+          1
+        ],
+        "status": "manual",
+        "note": "Source-native upright front verified through eight-direction source and serving comparison; captured base and underside limitations retained."
+      },
+      "transformRecordSha256": "6b560ddbf21ab05eda8360ba86f2337a94fb3386acada7526e4ae6b79807d3f6",
+      "appearanceOverride": {
+        "preserveSourceMaterials": true
+      },
+      "appearanceOverrideRecordSha256": "23d208ed270f4f912f5e6ff48372adb356a2b9bc3369dfe03eae2bee0bffb1f5",
+      "finalThumbnail": {
+        "path": "public/previews/renders/modern/foetus-vigeland-park-cast-unconfirmed/thumb.webp",
+        "bytes": 36084,
+        "sha256": "2ed40e63c86d3c1b843492b5b24931cd6cab6bffef91119f0442f9ed249989f2",
+        "actualImageReviewedByRoot": true
+      },
+      "poster": {
+        "path": "public/previews/posters/modern/foetus-vigeland-park-cast-unconfirmed/poster.svg",
+        "bytes": 48510,
+        "sha256": "a82ce6cf19c33c7ab95af24fd2180a7b9085df0244bb6ac8e0c30fba28c90ad4",
+        "actualImageReviewedByRoot": true
+      },
+      "catalogRecord": {
+        "index": 2384,
+        "ingestBatch": "gustav-vigeland-20261025",
+        "ingestedAt": "2026-10-26T02:26:54.528Z",
+        "metadataRecordSha256": "d470c080f8860bf6224c87d65ab77e7655066adace0a3639b9a1045779f5a61c",
+        "metadataRecordSerialization": "UTF-8 JSON.stringify of the exact catalog record in stored property order",
+        "scanAuthor": "Tore Lysebo (3D-skanning)",
+        "visibleAttribution": "3D capture by Tore Lysebo (3D-skanning), published on Sketchfab under CC BY 4.0 and distributed unchanged in AllenAI Objaverse. Physical sculpture attributed to Gustav Vigeland.",
+        "scanSource": "3D scan by Tore Lysebo (3D-skanning) of the bronze Foetus at the Children’s Circle in Vigeland Park. The curled figure and its block-shaped support are both included in the capture. The base’s floor-contact underside is not independently documented. Atrium compressed the model for web delivery while retaining its geometry and recorded appearance.",
+        "note": "The figure curls head-down, with folded limbs held close to its body. The Foetus stands at the center of the Children’s Circle in Vigeland Park and represents the beginning of the park’s sequence of human life. Vigelandmuseet dates the bronze composition to 1923. The exact cast date, foundry and manufacture place remain unconfirmed. This capture includes a block-shaped support; measurements of the figure alone do not establish the complete captured-object size.",
+        "derivedSearchSha256": "ab41794dbc6505b0a28eea41563ae0ac44cee6fe0610b4a797dd969efacba0f5"
+      }
+    },
+    {
+      "slug": "modern/monolith-vigeland-granite",
+      "title": "The Monolith (granite column and pedestal)",
+      "artist": "Gustav Vigeland",
+      "date": "Modelled 1924–1925; carved 1929–1942",
+      "material": "Granite",
+      "currentLocation": "Vigeland Park, Oslo, Norway",
+      "primarySource": "https://vigeland.museum.no/en/vigelandpark/monolith",
+      "providerSource": "https://sketchfab.com/3d-models/643d629de64440b6b35d1b3cd2d21003",
+      "preservedSource": "https://huggingface.co/datasets/allenai/objaverse/resolve/556637099bf4fa79ea7b239d0d9c328b8a2e9ac8/glbs/000-073/643d629de64440b6b35d1b3cd2d21003.glb",
+      "source": {
+        "uid": "643d629de64440b6b35d1b3cd2d21003",
+        "bytes": 81029100,
+        "sha256": "2a61eb036c79230c7a0f1b4d164c757d2f7c5f7e6261b4043887d1db252dff4f",
+        "representation": "Unchanged selected preserved Objaverse 1.0 distribution GLB; uploader-native authoring files are not asserted."
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/modern/monolith-vigeland-granite/preview-453f9b6b21f7.glb",
+        "bytes": 1771316,
+        "sourceBytes": 81029100,
+        "sourceFormat": "glb",
+        "faces": 399887,
+        "sourceFaces": 2107911,
+        "sha256": "453f9b6b21f75f7eebf3a716f090358ecbf8c2eadd05d285992232edb3ccdd98"
+      },
+      "measuredIntegrity": {
+        "faces": 2107911,
+        "bratio": 0,
+        "ncomp": 1,
+        "largest_frac": 1
+      },
+      "appearance": {
+        "preserveSourceMaterials": true,
+        "sourceTextureImages": 0,
+        "sourceTextures": 0,
+        "sourceMaterialExtensions": [],
+        "originalRenderedDirectly": true,
+        "nativeFaces": 2107911,
+        "previewFaces": 399887,
+        "topologySimplification": true,
+        "reconstruction": false,
+        "cropping": false,
+        "recoloring": false,
+        "materialDefinitionsRetained": true,
+        "authoredVertexColorsRetained": true,
+        "runtimeMaterialTypes": [
+          "MeshStandardMaterial"
+        ],
+        "runtimeTextureMapChannels": [],
+        "qualification": "No texture images are present. Source and serving retain authored COLOR_0 vertex colors and the neutral PBR material; simplification changes vertex samples, so color arrays are not claimed identical. Physical color accuracy is not established by rendered illumination."
+      },
+      "physicalDimensions": {
+        "status": "unknown",
+        "basis": "object",
+        "dimensions": "",
+        "sourceUrl": "https://vigeland.museum.no/en/vigelandpark/monolith",
+        "note": "Dimensions of this exact captured physical object are unconfirmed. Measurements of a different cast, component, nearby monument or inferred size are not extrapolated to this object. The source GLB and serving derivative have not been physically calibrated.",
+        "spatialNote": "Object dimensions are unconfirmed. Display size is adjustable.",
+        "measures": [],
+        "calibrationReady": false,
+        "checked": "2026-10-26",
+        "physicalCalibrationPerformed": false,
+        "exactSizeArEligible": false,
+        "spatialEligibility": {
+          "enabled": false,
+          "policyVersion": 1,
+          "reason": "review"
+        }
+      },
+      "frames": [
+        {
+          "mode": "source-native",
+          "key": "FRONT",
+          "bytes": 407916,
+          "sha256": "758a82b06a328766d58c19ac688d12391feafb164e9c8518acf7be2a423bcc54"
+        },
+        {
+          "mode": "source-native",
+          "key": "RIGHT",
+          "bytes": 420536,
+          "sha256": "19dcf7fcaf67a8056ce282899269f7cf59a3f85d6754413d2d4affb57dc22a1f"
+        },
+        {
+          "mode": "source-native",
+          "key": "REVERSE",
+          "bytes": 386089,
+          "sha256": "21f2f8d5fbad1459cd6fa3d41e78cd38d2cfd0f74a70a50d389f3e3f8a4b85a4"
+        },
+        {
+          "mode": "source-native",
+          "key": "LEFT",
+          "bytes": 400736,
+          "sha256": "e50d554d12d58dba78b5b79af801f6e85b980db013223d82cf638e156af8d29b"
+        },
+        {
+          "mode": "source-native",
+          "key": "ABOVE",
+          "bytes": 280797,
+          "sha256": "7474ede7b519d9b0adfc2586d02411249044e3a2569693669c0d507bc8503854"
+        },
+        {
+          "mode": "source-native",
+          "key": "UNDERSIDE",
+          "bytes": 774808,
+          "sha256": "13d9258d5d89e0666053f936a1aa57c82b94a31386e0f7a159b00a9b02d69a24"
+        },
+        {
+          "mode": "source-native",
+          "key": "FRONT-THREE-QUARTER",
+          "bytes": 414769,
+          "sha256": "e61b245250c9d208ea33bb51cce64385a112ac376f8411edde31e43661c4dd75"
+        },
+        {
+          "mode": "source-native",
+          "key": "BACK-THREE-QUARTER",
+          "bytes": 375593,
+          "sha256": "74098f521c48db984ad4aebff2432a576c6a1eb8e285c219984fe8c1595d0f6f"
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "bytes": 392073,
+          "sha256": "69ecd46d3376fbf8f509d3e50d8f2d0df6a8e39010b03bdb789a009ca682b3d3"
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "bytes": 401824,
+          "sha256": "c7011b17b581bda31c499d6f3c004f321b3582595d46c0fc7ab4cf9818dda0ac"
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "bytes": 377179,
+          "sha256": "026342ed94b0c895f885a81689d7c743ed0db51f02744c559ed17026793b74d1"
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "bytes": 384653,
+          "sha256": "f86225f4e862884d670d5fe395b4748509a7cf449308972c2d4e9db63e5ccc7e"
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "bytes": 266959,
+          "sha256": "87b2c8339315feb559fd816b131e703066d69d28b9103d9d102ec6ae2dc5e4ca"
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "bytes": 672731,
+          "sha256": "ec104aa09c63177df8660fb75f738fe48d5e4ee81a0864880ccd6f7c11c2a2c0"
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "bytes": 396976,
+          "sha256": "eeae6b24dc570aa7c85e27f5626e68f2ac20905e423731f4d8f38d192fab8dc8"
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "bytes": 365337,
+          "sha256": "2b5405a084b83bb9ee10cb19053a900af809bc405c4e10f8d8fbfa1294130b0c"
+        }
+      ],
+      "earlySourceOnlyFrames": [
+        {
+          "mode": "source-native",
+          "key": "FRONT",
+          "bytes": 408737,
+          "sha256": "4069a27a93fe07ed417f4cd0e40bf94aa2e55c3d8e57a0161fc128b7c7af44ef"
+        },
+        {
+          "mode": "source-native",
+          "key": "RIGHT",
+          "bytes": 420762,
+          "sha256": "24ca312cff0197e00fe5d71fc44ddf9b9bd970568b3258c71f9fdeef0e360c5c"
+        },
+        {
+          "mode": "source-native",
+          "key": "REVERSE",
+          "bytes": 387876,
+          "sha256": "6e8e9549c39daa4f97d0bce9f071690dfe6d28e30358807b6572a9e4c7d46a06"
+        },
+        {
+          "mode": "source-native",
+          "key": "LEFT",
+          "bytes": 402414,
+          "sha256": "da6ec9c3b1d45ea5486b3f72ade4b427a7b609677b0c1aa773f8413251327ac3"
+        },
+        {
+          "mode": "source-native",
+          "key": "ABOVE",
+          "bytes": 281961,
+          "sha256": "274f5736308a5fa2567e4635d6e535f4e1150dc566920aaf52c2d088cb28419f"
+        },
+        {
+          "mode": "source-native",
+          "key": "UNDERSIDE",
+          "bytes": 774467,
+          "sha256": "7cca29c4bcab06c4f0a843ac20cbc1ca887628983463ba83898fc87b6896fbf1"
+        },
+        {
+          "mode": "source-native",
+          "key": "FRONT-THREE-QUARTER",
+          "bytes": 415543,
+          "sha256": "3248fe5db386bdfc2bf775e90f7c7d59bfbf249220a47968ac5d44d541e06a21"
+        },
+        {
+          "mode": "source-native",
+          "key": "BACK-THREE-QUARTER",
+          "bytes": 377033,
+          "sha256": "48dd8f46b3d3d4f94f982fe98945cf2a59d7065e9ace74a92e42830e6bbe19d8"
+        }
+      ],
+      "finalContact": {
+        "bytes": 156778,
+        "sha256": "3b7ddce2eda3747f659b7ed38c4fd220276e6424636c3e975fe3b4faba36fbdd",
+        "panels": 16
+      },
+      "earlySourceOnlyContact": {
+        "bytes": 80140,
+        "sha256": "f8887aeb7586b1095012f076ef24c7e89ad133f496339195f80543b87140bffb",
+        "panels": 8
+      },
+      "independentActualPanelsReviewed": 16,
+      "independentActualFullResolutionFramesReviewed": 8,
+      "independentVisualDecision": [
+        "Source and serving show a continuous column and pedestal around all sides, with intertwined bodies, topmost heads and limbs present. No missing major sector or top observed.",
+        "Reduction from2,107,911 to399,887 faces adds visible facet/waviness to the relatively plain pedestal and softens small surface details. Intertwined body contours, limbs, larger faces, separations and total silhouette remain comparable in the actual paired images. Accepted as a useful composition model; not surface-exact documentation.",
+        "The source has zero images/textures but has COLOR_0 vertex attributes and source vertex color appearance. Serving retains COLOR_0 and vertexColors=true with the same neutral PBR settings. Color samples change through simplification/quantization; no claim of bit-identical color arrays.",
+        "Pedestal bottom is open/unrecorded in both versions, exposing interior reverse surfaces. This view is a scanning limitation and must not be described as the stone interior. Source side-dependent illumination/color remains apparent."
+      ],
+      "transform": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0,
+          0,
+          1
+        ],
+        "status": "manual",
+        "note": "Source-native upright front verified through eight-direction source and serving comparison; captured base and underside limitations retained."
+      },
+      "transformRecordSha256": "6b560ddbf21ab05eda8360ba86f2337a94fb3386acada7526e4ae6b79807d3f6",
+      "appearanceOverride": {
+        "preserveSourceMaterials": true
+      },
+      "appearanceOverrideRecordSha256": "23d208ed270f4f912f5e6ff48372adb356a2b9bc3369dfe03eae2bee0bffb1f5",
+      "finalThumbnail": {
+        "path": "public/previews/renders/modern/monolith-vigeland-granite/thumb.webp",
+        "bytes": 32084,
+        "sha256": "8fa3220adc5bd2f2513d3accfdb6b77ef8c17e6ed47ddca4b80270df94f35cb2",
+        "actualImageReviewedByRoot": true
+      },
+      "poster": {
+        "path": "public/previews/posters/modern/monolith-vigeland-granite/poster.svg",
+        "bytes": 43164,
+        "sha256": "48f5cce7b05aefb371412afbd3ecb3479aecf1cb36789b10a91567c8b52825a5",
+        "actualImageReviewedByRoot": true
+      },
+      "catalogRecord": {
+        "index": 2385,
+        "ingestBatch": "gustav-vigeland-20261025",
+        "ingestedAt": "2026-10-26T02:26:54.528Z",
+        "metadataRecordSha256": "c7bc151d479c931b0e15482cbfb209559dd5a1ea5bb341afc94b592ab77bda96",
+        "metadataRecordSerialization": "UTF-8 JSON.stringify of the exact catalog record in stored property order",
+        "scanAuthor": "Ørjan Sandland (orjansandland)",
+        "visibleAttribution": "3D capture by Ørjan Sandland (orjansandland), published on Sketchfab under CC BY 4.0 and distributed unchanged in AllenAI Objaverse. Physical sculpture attributed to Gustav Vigeland; stone carving by Ivar Broe, Nils Jønsson and Karl Kjær.",
+        "scanSource": "Photogrammetric capture by Ørjan Sandland (orjansandland) records the granite column and its pedestal at Vigeland Park. The model isolates the monument from the surrounding terrace and separate figure groups. The pedestal’s floor-contact underside is open and unrecorded. Atrium simplified the geometry for web delivery while retaining the recorded appearance. Small surface details are softer and the pedestal appears more faceted in this web version.",
+        "note": "Intertwined human figures climb and support one another in a densely carved granite column. Vigeland modelled the work in 1924–1925; the stone was carved at the park from 1929 to 1942. The museum’s park chronology credits Ivar Broe, Nils Jønsson and Karl Kjær as the stone carvers. This capture includes the column and its pedestal, while the surrounding plateau and its separate granite groups are outside its scope. The complete captured column-and-pedestal dimensions are unconfirmed; published column measurements are not treated as a physical calibration of this assembly.",
+        "derivedSearchSha256": "4250b91d6eaaa7d0852284b884b85c7be2b539c10f64245fabaa7339bcd50774"
+      }
+    }
+  ],
+  "holds": [],
+  "metadata": {
+    "exactMuseumMotherIdentified": true,
+    "motherAccession": "NG.S.01145",
+    "motherModelDate": 1907,
+    "motherCastDate": 1908,
+    "motherFounder": "Ernst Poleszynski",
+    "motherDocumentaryHeightCm": 137.5,
+    "motherCastingPlaceUnconfirmed": true,
+    "twoGirlsExactObjectDateSiteCarverUnconfirmed": true,
+    "foetusModelDate": 1923,
+    "foetusCastDateUnconfirmed": true,
+    "monolithModelDates": "1924–1925",
+    "monolithCarvingDates": "1929–1942",
+    "monolithStoneCarvers": [
+      "Ivar Broe",
+      "Nils Jønsson",
+      "Karl Kjær"
+    ],
+    "unknownWholeObjectDimensions": 3,
+    "physicalCalibrationPerformed": false,
+    "exactSizeArEnabled": false,
+    "scanLicense": "CC BY 4.0",
+    "previewsWithTopologySimplification": 1,
+    "noAtriumRepairOrReconstructionPerformed": true,
+    "underlyingArtworkAndReferencePhotoRightsSeparate": true,
+    "historicalLicenseScope": "Selected complete UID license records, immutable whole-shard hashes/bytes/URLs and recovery instructions accompany the source provenance. No unrelated metadata records are published."
+  },
+  "canonicalMakerRefinements": [
+    {
+      "slug": "modern/mother-and-child-vigeland-national-gallery-cast-unconfirmed",
+      "field": "artist",
+      "before": "Gustav Vigeland; bronze casting by Ernst Poleszynski",
+      "after": "Gustav Vigeland",
+      "reason": "Keep the sculptor in the existing canonical maker facet; explicit casting and stone-carving credits remain in the visible attribution field.",
+      "attributionRetained": "3D capture by Epic_Tree_Store (johngreenstone), published on Sketchfab under CC BY 4.0 and distributed in AllenAI Objaverse. Physical object: Gustav Vigeland; bronze casting by Ernst Poleszynski, 1908. Nasjonalmuseet, NG.S.01145."
+    },
+    {
+      "slug": "modern/monolith-vigeland-granite",
+      "field": "artist",
+      "before": "Gustav Vigeland; stone carving by Ivar Broe, Nils Jønsson and Karl Kjær",
+      "after": "Gustav Vigeland",
+      "reason": "Keep the sculptor in the existing canonical maker facet; explicit casting and stone-carving credits remain in the visible attribution field.",
+      "attributionRetained": "3D capture by Ørjan Sandland (orjansandland), published on Sketchfab under CC BY 4.0 and distributed unchanged in AllenAI Objaverse. Physical sculpture attributed to Gustav Vigeland; stone carving by Ivar Broe, Nils Jønsson and Karl Kjær."
+    }
+  ],
+  "canonicalMakerRefinementLedger": {
+    "bytes": 1405,
+    "sha256": "f8b177d5c41f17004a15db7c005de3d3461e140c9a39a696fbde8a737fa8f82c"
+  },
+  "frozenAcquisitionLeadsUnchanged": true,
+  "archiveEvidence": {
+    "schema": "atrium-sanitized-source-archive-evidence/1",
+    "status": "complete",
+    "providerOriginals": 4,
+    "originalBytes": 121441324,
+    "sources": 4,
+    "authenticatedFullContentReadbacks": 4,
+    "authenticatedUniqueReadbackBytes": 172669944,
+    "portableMap": {
+      "bytes": 15733,
+      "sha256": "eeb00e5517bde7a67a2cc6ae6e9e57394951a7e6d2f12ed31578b2374045d93c",
+      "completeCloudReadbackAuthenticated": true,
+      "sourceMappings": 4
+    },
+    "objects": [
+      {
+        "role": "source-archive",
+        "package": 1,
+        "bytes": 40413008,
+        "sha256": "3209890978199a632c1cf9fb64bbd80b7631b3f4ba4e2263d560bb40b67f6de7",
+        "completeCloudReadbackAuthenticated": true,
+        "localZipMembersHashed": 3
+      },
+      {
+        "role": "source-archive",
+        "package": 2,
+        "bytes": 81029336,
+        "sha256": "f9ac8d12e57485b1cdd5f90ce15d684b039f1a72c57ee911bff66651099c4453",
+        "completeCloudReadbackAuthenticated": true,
+        "localZipMembersHashed": 1
+      },
+      {
+        "role": "provenance",
+        "package": null,
+        "bytes": 51211867,
+        "sha256": "0fa715aa8fb308ab4074e75dcf7d50a18f5edd3d18c1d6976dc062bfcb75be17",
+        "completeCloudReadbackAuthenticated": true,
+        "localZipMembersHashed": 169
+      }
+    ],
+    "allOriginalZipMembersVerified": true,
+    "allAcquiredSourcesIncluded": true,
+    "localDeletionAuthorized": false,
+    "unchangedSelectedDistributionOriginals": true,
+    "originalsRetainedLocally": true,
+    "privateRecoveryIdentifiersOmitted": true,
+    "independentReceiptAndZipAudit": {
+      "bytes": 1214,
+      "sha256": "38179b413c4d2ea319b214d2e5c9e3e99eea6a41b3edf1556b5c7875902fabe7",
+      "status": "pass"
+    }
+  },
+  "featuredMembershipChanged": false,
+  "exhibitionAppends": [
+    {
+      "exhibition": "the-work-of-the-surface",
+      "caption": {
+        "slug": "modern/monolith-vigeland-granite",
+        "text": "Intertwined bodies cover the column, with heads, backs and limbs emerging at different depths. Move around it to follow one figure into the next. Vigeland modeled the composition in 1924–1925; Ivar Broe, Nils Jønsson and Karl Kjær carved the granite from 1929 to 1942. This model records the column and its pedestal."
+      },
+      "captionRecordSha256": "0e731fc4abb891a42bed2ca67eb36cc029c4687ce468839b445dace1ab6a271f"
+    },
+    {
+      "exhibition": "bodies-in-motion",
+      "caption": {
+        "slug": "modern/two-girls-back-to-back-vigeland-granite",
+        "text": "Two crouching figures rest back to back and clasp their raised hands. Their bent legs spread the weight while the linked arms make another connection overhead. Turn the group to compare the faces and the spaces enclosed by their limbs. The provider identifies the granite sculpture as Vigeland’s Two Girls Back to Back; its exact date and site remain unconfirmed."
+      },
+      "captionRecordSha256": "799a3da4ce2d6bb8dd1fd0287abd3ef07242a6242ae57f1283a02075f634caeb"
+    }
+  ],
+  "priorExhibitionContentCoverAndOrderingPreserved": true,
+  "catalogRows": 2385,
+  "canonicalCatalogBinding": {
+    "path": "src/data/catalog.json",
+    "bytes": 5248140,
+    "sha256": "6458c50ae8af564dfa4a25dada6acf385078317a2ca76d8e7f7b3382ca86346f",
+    "rows": 2385
+  },
+  "finalDataBindings": [
+    {
+      "path": "src/data/catalog.json",
+      "bytes": 5248140,
+      "sha256": "6458c50ae8af564dfa4a25dada6acf385078317a2ca76d8e7f7b3382ca86346f"
+    },
+    {
+      "path": "src/data/previews.json",
+      "bytes": 683650,
+      "sha256": "6f5d26b2bda53814a12c53299983f92f478be979aa0c36058c13fb18cc8c4d79"
+    },
+    {
+      "path": "src/data/orientations.json",
+      "bytes": 628812,
+      "sha256": "4d0104283735b1c6182469224c5f9a93642fd75dfe5542ea61c40c2dddf78659"
+    },
+    {
+      "path": "src/data/physical-dimensions.json",
+      "bytes": 5431182,
+      "sha256": "68d7ea70c72dde1d67bb7120b0f5b68d31a9da78a9c1da3fb0b75a04924627ba"
+    },
+    {
+      "path": "src/data/spatial-eligibility.json",
+      "bytes": 416617,
+      "sha256": "68c3711e6f3548517aa35c0ff1fb17d721eab627a0d31bb21a8307949b2fc02b"
+    },
+    {
+      "path": "src/data/appearance-overrides.json",
+      "bytes": 155048,
+      "sha256": "8af2b1c1e6e0e39be3ea3aa5f095b5aa56ae9fa3b722eabde3365183ed331033"
+    },
+    {
+      "path": "src/data/material-appearances.json",
+      "bytes": 7827,
+      "sha256": "0e71beeb295e7cb00cbf04fab4901b0c5a901e70fd26a4a108d4e8ab9d2e7963"
+    },
+    {
+      "path": "src/data/v3-content.json",
+      "bytes": 102585,
+      "sha256": "d281a9e7f69a944c69b86c2dc4aec8da1a664cedb1b2d9b7910e6c70f2200002"
+    }
+  ],
+  "sourceArchiveCoversAllAcquiredWorks": true,
+  "allOriginalsPermanentlyBackedUp": true
+}
