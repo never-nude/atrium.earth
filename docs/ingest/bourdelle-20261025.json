@@ -1,7 +1,7 @@
 {
   "schema": "atrium-artist-acquisition/1",
   "batch": "bourdelle-20261025",
-  "state": "ready-for-publication",
+  "state": "live-verified",
   "baseline_commit": "3a55aa9f136b43125b54945b7b2159fb881ebbe0",
   "baseline_count": 2381,
   "selected_count": 1,
@@ -99,6 +99,18 @@
     "public_count": 2364,
     "hidden_count": 18,
     "featured_works": 250,
-    "homepage_eligible": 192
+    "homepage_eligible": 192,
+    "live_assets": "pass",
+    "desktop_and_fresh_narrow_browser": "pass"
+  },
+  "release_commit": "061c566f7ceac90ef2b2bb86d4cee72d122a61c3",
+  "deployment_run": 40260613627,
+  "live_verification": {
+    "assets": "docs/ingest/bourdelle-20261025-live.json",
+    "browser": "docs/ingest/bourdelle-20261025-live-browser.json",
+    "checked_at": "2026-10-26T02:48:03.065Z",
+    "actualBrowserBackend": "Metal",
+    "physicalDeviceArTestClaimed": false,
+    "priorIssuesRetained": "docs/ingest/bourdelle-20261025-live-initial-browser-issue.json"
   }
 }

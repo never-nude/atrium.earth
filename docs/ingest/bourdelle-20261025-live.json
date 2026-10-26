@@ -1,0 +1,60 @@
+{
+  "schema": "atrium-live-release-verification/1",
+  "batch": "bourdelle-20261025",
+  "releaseCommit": "061c566f7ceac90ef2b2bb86d4cee72d122a61c3",
+  "deploymentRun": "40260613627",
+  "checkedAt": "2026-10-26T02:47:50.266Z",
+  "status": "pass",
+  "liveWorks": 1,
+  "works": [
+    {
+      "slug": "modern/coquelin-as-crispin-bourdelle-museum-cast-d2071f",
+      "status": "pass",
+      "page": {
+        "url": "https://atrium.earth/works/modern/coquelin-as-crispin-bourdelle-museum-cast-d2071f/",
+        "status": 200,
+        "exactModelURLPresent": true,
+        "sha256": "0cab1d02d4f95bbb461e14c5ca9cd0dd20f0a75efa31ffd347c22e1a5a894679",
+        "bytes": 33344,
+        "completeCaptureDescriptionVisible": true,
+        "creditAndLinkedLicenseVerified": true,
+        "unknownSizeDefaultDisplayVerified": true
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/modern/coquelin-as-crispin-bourdelle-museum-cast-d2071f/preview-df06849e1902.glb",
+        "bytes": 1130384,
+        "sha256": "df06849e1902ed2bd55f280eda38bdc388ea2eb07d541b6bdc155c50cddd8ef8",
+        "contentType": "model/gltf-binary",
+        "corsAllowOrigin": "https://atrium.earth"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/modern/coquelin-as-crispin-bourdelle-museum-cast-d2071f/thumb.webp",
+        "bytes": 64946,
+        "sha256": "d7a78ab734dbff8c8fb917474a0e57ee1c856de8cf642d4891a2a5ffff6121d1",
+        "contentType": "image/webp"
+      },
+      "poster": {
+        "url": "https://atrium.earth/previews/posters/modern/coquelin-as-crispin-bourdelle-museum-cast-d2071f/poster.svg",
+        "bytes": 87002,
+        "sha256": "22da5ecb89789b1b81b0638d6e8622b0483dc71f23237e6a1cae805d7101770e",
+        "contentType": "image/svg+xml"
+      }
+    }
+  ],
+  "newest": {
+    "status": "pass",
+    "count": 40,
+    "exactOrderedSelectionMatchesBuild": true,
+    "containsEveryNewWork": true
+  },
+  "exhibitions": [
+    {
+      "slug": "the-work-of-the-surface",
+      "status": "pass",
+      "selected": [
+        "modern/coquelin-as-crispin-bourdelle-museum-cast-d2071f"
+      ]
+    }
+  ],
+  "sourceCleanupPerformed": false
+}

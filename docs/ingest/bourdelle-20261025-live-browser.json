@@ -1,0 +1,135 @@
+{
+  "schema": "atrium-public-safe-live-browser/1",
+  "batch": "bourdelle-20261025",
+  "releaseCommit": "061c566f7ceac90ef2b2bb86d4cee72d122a61c3",
+  "deploymentRun": "40260613627",
+  "startedAt": "2026-10-26T02:47:48.277Z",
+  "status": "pass",
+  "browser": "InstalledChrome/headlessMetal",
+  "realWebsiteAndCDN": true,
+  "requestInterception": false,
+  "localMirrors": false,
+  "finalReviewBinding": {
+    "sha256": "494abca99dc48f389bd48982228ed9fbd73c317ba451fa62203a4764ecdeb93b",
+    "bytes": 6260
+  },
+  "work": {
+    "slug": "modern/coquelin-as-crispin-bourdelle-museum-cast-d2071f",
+    "sourceUid": "d2071f42303c46e0881cd5425852af78",
+    "url": "https://atrium.earth/works/modern/coquelin-as-crispin-bourdelle-museum-cast-d2071f/",
+    "expectedPreview": {
+      "url": "https://models.atrium.earth/models/previews/modern/coquelin-as-crispin-bourdelle-museum-cast-d2071f/preview-df06849e1902.glb",
+      "sha256": "df06849e1902ed2bd55f280eda38bdc388ea2eb07d541b6bdc155c50cddd8ef8",
+      "bytes": 1130384
+    },
+    "layouts": [
+      {
+        "width": 1365,
+        "status": "pass",
+        "freshContext": true,
+        "pageJsErrors": [],
+        "consoleErrors": [],
+        "lifecycleWarnings": [],
+        "httpStatus": 200,
+        "viewerReadySignal": "data-stage.is-live + visibleviewer-canvas",
+        "canvas": {
+          "width": 1365,
+          "height": 898,
+          "cssWidth": 1365,
+          "cssHeight": 898
+        },
+        "cdn": {
+          "status": 200,
+          "url": "https://models.atrium.earth/models/previews/modern/coquelin-as-crispin-bourdelle-museum-cast-d2071f/preview-df06849e1902.glb",
+          "bytes": 1130384,
+          "sha256": "df06849e1902ed2bd55f280eda38bdc388ea2eb07d541b6bdc155c50cddd8ef8",
+          "cors": "https://atrium.earth"
+        },
+        "layout": {
+          "viewport": 1365,
+          "documentWidth": 1365,
+          "bodyWidth": 1365,
+          "pass": true
+        },
+        "drag": {
+          "pass": true,
+          "settlingChangedPixelRatios": [
+            0,
+            0
+          ],
+          "idleChangedPixelRatio": 0,
+          "dragChangedPixelRatio": 0.24957156303096237,
+          "beforeSha256": "68c91b6bb79be056335c023e61e742f6a576d5e26e2d8ec353082b01347e474a",
+          "afterSha256": "00d56b0ef86e27d1e47fef964fbd2cbe4d4281e9fd6d42f853e66f0138d95dfb",
+          "unchangedGuard": "dragChange>max(0.002,idleNoise*4)",
+          "method": "Actualmouseorbit aftertwoquietcanvaspairs;reducedmotion disablesautospin;nocamera-stateinjection"
+        }
+      },
+      {
+        "width": 390,
+        "status": "pass",
+        "freshContext": true,
+        "pageJsErrors": [],
+        "consoleErrors": [],
+        "lifecycleWarnings": [],
+        "httpStatus": 200,
+        "viewerReadySignal": "data-stage.is-live + visibleviewer-canvas",
+        "canvas": {
+          "width": 390,
+          "height": 456,
+          "cssWidth": 390,
+          "cssHeight": 456
+        },
+        "cdn": {
+          "status": 200,
+          "url": "https://models.atrium.earth/models/previews/modern/coquelin-as-crispin-bourdelle-museum-cast-d2071f/preview-df06849e1902.glb",
+          "bytes": 1130384,
+          "sha256": "df06849e1902ed2bd55f280eda38bdc388ea2eb07d541b6bdc155c50cddd8ef8",
+          "cors": "https://atrium.earth"
+        },
+        "layout": {
+          "viewport": 390,
+          "documentWidth": 390,
+          "bodyWidth": 390,
+          "pass": true
+        },
+        "drag": {
+          "pass": true,
+          "settlingChangedPixelRatios": [
+            0,
+            0
+          ],
+          "idleChangedPixelRatio": 0,
+          "dragChangedPixelRatio": 0.34480994152046784,
+          "beforeSha256": "ad74719df61487a4c024248111ad7d0e03cb26fa25450c49964f8fc5c1601520",
+          "afterSha256": "37312f130516ac455e03ffb2def1e23809cf41466ed211653e179d8b0c63d292",
+          "unchangedGuard": "dragChange>max(0.002,idleNoise*4)",
+          "method": "Actualmouseorbit aftertwoquietcanvaspairs;reducedmotion disablesautospin;nocamera-stateinjection"
+        }
+      }
+    ]
+  },
+  "newest": {
+    "url": "https://atrium.earth/newest/",
+    "status": "pass",
+    "pageJsErrors": [],
+    "httpStatus": 200,
+    "cardCount": 40,
+    "containsSelectedWork": true,
+    "uniqueCardDestinations": 40,
+    "desktop": {
+      "viewport": 1365,
+      "documentWidth": 1365,
+      "bodyWidth": 1365,
+      "pass": true
+    },
+    "narrow": {
+      "viewport": 390,
+      "documentWidth": 390,
+      "bodyWidth": 390,
+      "pass": true
+    }
+  },
+  "checkedAt": "2026-10-26T02:48:03.065Z",
+  "scope": "Functional desktop and narrow viewport checks; no physical mobile device or AR test. Separate assistant visual review is recorded in the final-review report."
+}
