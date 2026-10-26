@@ -161,6 +161,8 @@ replacing a model, verify that the new file depicts the same object or update it
 title, holding collection, dimensions, credit, and explanatory note accordingly.
 Recalibrate physical dimensions and AR eligibility against the final derivative.
 
+Keep `scan_source` as visitor-facing capture and limitation prose. Its display sanitizer filters clauses containing internal archive or preservation terminology, so keep backup bookkeeping in ingest reports. Verify that the complete capture description appears in the compiled work HTML before publication. Keep attribution readable and use the dedicated `license_url` link rather than repeating a long bare license URL in the credit. Check new object records at a 390 px viewport for overflow.
+
 The owner clarified on October 23 that “find more works” means find, fetch and deploy through the existing verification and private-backup workflow. For artist batches, finish and verify the live release before proceeding to the next artist. This does not relax source identity, licensing, capture quality or release checks.
 
 ## Newest Additions batches

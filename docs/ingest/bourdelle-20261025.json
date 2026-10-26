@@ -1,0 +1,116 @@
+{
+  "schema": "atrium-artist-acquisition/1",
+  "batch": "bourdelle-20261025",
+  "state": "live-verified",
+  "baseline_commit": "3a55aa9f136b43125b54945b7b2159fb881ebbe0",
+  "baseline_count": 2381,
+  "selected_count": 1,
+  "selected": [
+    {
+      "slug": "modern/coquelin-as-crispin-bourdelle-museum-cast-d2071f",
+      "title": "Coquelin the Elder as Crispin (Musée Bourdelle Cast)",
+      "artist": "Antoine Bourdelle",
+      "source_uid": "d2071f42303c46e0881cd5425852af78",
+      "source_url": "https://sketchfab.com/3d-models/d2071f42303c46e0881cd5425852af78",
+      "source_sha256": "3a6cd729037a73dc378908eb001e4a32104105dc9cd6d972ee6ae0fe1251c542",
+      "source_bytes": 24494320,
+      "preview_sha256": "df06849e1902ed2bd55f280eda38bdc388ea2eb07d541b6bdc155c50cddd8ef8",
+      "preview_bytes": 1130384,
+      "license": "CC BY4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "identity": "Bronze cast reported by the scanner at Musée Bourdelle. Composition modeled1893. Exact cast date, foundry, edition, manufacture and dimensions unconfirmed. No measurements or accession of another cast adopted.",
+      "raw_source_faces": 628714,
+      "raw_preview_faces": 400000,
+      "measured_topology": {
+        "source": {
+          "loadedRawFaces": 628714,
+          "measured": {
+            "faces": 628648,
+            "bratio": 0.001,
+            "ncomp": 9,
+            "largest_frac": 1
+          },
+          "status": "pass"
+        },
+        "preview": {
+          "loadedRawFaces": 400000,
+          "measured": {
+            "faces": 399976,
+            "bratio": 0.001,
+            "ncomp": 3,
+            "largest_frac": 1
+          },
+          "status": "pass"
+        }
+      },
+      "source_capture_limits": "Hollow rear and mounting support are retained. Dark interior surfaces and small cap/collar facets have limited source detail. No flawless or watertight capture claim.",
+      "wing": "unfiled",
+      "spatial_eligible": false
+    }
+  ],
+  "original_acquisition": {
+    "run": 39807357662,
+    "commit": "557a34b3322e77eeba9c26a81e4ec0400bae1c66",
+    "qualification": "Existing unchanged provider source reused and fully hashed. Permanent private archive verification is recorded separately."
+  },
+  "previous_hold_resolution": "The October22 count-only hold compared raw628714 against degenerate-cleaned628648. The renewed review records both measures explicitly and checks unchanged source/preview integrity and sixteen actual views. No source geometry repair or inferred replacement was performed.",
+  "exhibition_body_additions": [
+    {
+      "exhibition": "the-work-of-the-surface",
+      "slug": "modern/coquelin-as-crispin-bourdelle-museum-cast-d2071f",
+      "text": "Raised folds in Crispin’s collar crowd around the smoother face. Bourdelle uses changes in the modeled surface to distinguish costume, skin and cap. The photographed green-brown patina follows those contours."
+    }
+  ],
+  "featured_changes": false,
+  "cleanup": false,
+  "archive": {
+    "schema": "atrium-public-safe-source-archive-reuse-summary/1",
+    "batch": "bourdelle-20261025",
+    "count": 1,
+    "originalSourceBytes": 24494320,
+    "existingHistoricalProvenanceBytes": 747871,
+    "existingHistoricalRestoreMapBytes": 37567,
+    "freshAuthenticatedReadbacks": 3,
+    "totalFreshAuthenticatedReadbackBytes": 25279758,
+    "fullSHA256AndExactBytesVerified": true,
+    "existingOriginalReused": true,
+    "existingProvenanceAndRestoreMapReused": true,
+    "privateSharing": true,
+    "retainedOriginals": true,
+    "oldArchiveAndReceiptsPreserved": true,
+    "newSourceAcquisitions": 0,
+    "newSourceUploads": 0,
+    "newDocumentUploads": 0,
+    "cleanup": false,
+    "sourceQualification": "Unchanged original provider GLB and exact identity/license/recovery bindings reused from the previous permanent private archive. Source preservation does not imply current visual acceptance."
+  },
+  "validation": {
+    "additions": "pass",
+    "featured": "pass",
+    "wings": "pass",
+    "asset_completeness": "pass",
+    "whitespace": "pass",
+    "production_build": "pass",
+    "built_pages": 6498,
+    "independent_visual": "pass",
+    "independent_integration": "pass",
+    "integration_audit_sha256": "71517d1702c7fa32678e56da2f989e1c152b36a473be9160be6edb8d306cc83a",
+    "catalog_count": 2382,
+    "public_count": 2364,
+    "hidden_count": 18,
+    "featured_works": 250,
+    "homepage_eligible": 192,
+    "live_assets": "pass",
+    "desktop_and_fresh_narrow_browser": "pass"
+  },
+  "release_commit": "061c566f7ceac90ef2b2bb86d4cee72d122a61c3",
+  "deployment_run": 40260613627,
+  "live_verification": {
+    "assets": "docs/ingest/bourdelle-20261025-live.json",
+    "browser": "docs/ingest/bourdelle-20261025-live-browser.json",
+    "checked_at": "2026-10-26T02:48:03.065Z",
+    "actualBrowserBackend": "Metal",
+    "physicalDeviceArTestClaimed": false,
+    "priorIssuesRetained": "docs/ingest/bourdelle-20261025-live-initial-browser-issue.json"
+  }
+}

@@ -1,0 +1,187 @@
+{
+  "schema": "atrium-assistant-visual-review/1",
+  "batch": "bourdelle-20261025",
+  "status": "pass",
+  "reviewer": "Codex assistant inspection of actual source/production frames and final rendered thumbnail",
+  "counts": {
+    "works": 1,
+    "comparisonFrames": 16,
+    "contacts": 1,
+    "finalThumbnails": 1
+  },
+  "sourceReference": "Unchanged provider GLB, separately preserved from the serving derivative.",
+  "scopeReportSha256": "db8a8f50e729f7d827c964fbe6f47b938b1a851c4aa74c8b732d95633c85cdbd",
+  "works": [
+    {
+      "slug": "modern/coquelin-as-crispin-bourdelle-museum-cast-d2071f",
+      "sourceUid": "d2071f42303c46e0881cd5425852af78",
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/modern/coquelin-as-crispin-bourdelle-museum-cast-d2071f/preview-df06849e1902.glb",
+        "sha256": "df06849e1902ed2bd55f280eda38bdc388ea2eb07d541b6bdc155c50cddd8ef8",
+        "bytes": 1130384
+      },
+      "thumbnail": {
+        "sha256": "d7a78ab734dbff8c8fb917474a0e57ee1c856de8cf642d4891a2a5ffff6121d1",
+        "bytes": 64946,
+        "reviewed": true
+      },
+      "poster": {
+        "sha256": "22da5ecb89789b1b81b0638d6e8622b0483dc71f23237e6a1cae805d7101770e",
+        "bytes": 87002
+      },
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0,
+          0,
+          1
+        ],
+        "status": "manual",
+        "note": "Y-up and zero model rotation confirmed in actual eight-view native/production review. Front opening retains the complete face, cap and ruffled costume."
+      },
+      "actualViews": [
+        {
+          "mode": "native-source",
+          "key": "FRONT",
+          "sha256": "6c2b4bc73dbab0527a13f2b9af77bdf3c3343ce3a20b7a10470cfd74a795fb27",
+          "bytes": 767223
+        },
+        {
+          "mode": "native-source",
+          "key": "RIGHT",
+          "sha256": "51c768f966e9ce93bc141c343e08c428a496ea6f800922226939b9730796faa8",
+          "bytes": 478373
+        },
+        {
+          "mode": "native-source",
+          "key": "REVERSE",
+          "sha256": "15e40d772bcfd65032a96b39fbca53e6254c0d34ac809fc3860034db9ad45344",
+          "bytes": 448424
+        },
+        {
+          "mode": "native-source",
+          "key": "LEFT",
+          "sha256": "8065ea2f286a1ada4ab3ca93559d430ef98b5f800d31c275b46d01ba75d644e3",
+          "bytes": 600009
+        },
+        {
+          "mode": "native-source",
+          "key": "ABOVE",
+          "sha256": "fc16b00f54e6e96fd903328346740f6722023d9764d85a6bbda99c1eb22a55b6",
+          "bytes": 441758
+        },
+        {
+          "mode": "native-source",
+          "key": "UNDERSIDE",
+          "sha256": "69a431b9b8d6844c47cd2bdee11b5b0a243faae2078ba426e54552f05619d236",
+          "bytes": 330964
+        },
+        {
+          "mode": "native-source",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "899e04502f84f9ed55d05c8674b32d5e62949adf4da70b8bd001ebf1ca7da77d",
+          "bytes": 538065
+        },
+        {
+          "mode": "native-source",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "8c11ab7c1e22184aa2b9a90489f7a79776a939f2f57b787a11a72b44a078136c",
+          "bytes": 399236
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "sha256": "0ffce9be0c5cd06f2229197de7f7520389586addec1624853d4e351fc5112850",
+          "bytes": 735847
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "sha256": "40f458d33b2be3341830caaeb394d88d901190e5aebef94eb843242b861c4740",
+          "bytes": 462072
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "sha256": "a34f39860c2d391fdfabf9fcc460ac67fd9666e24d96431b8b50f027902cbc52",
+          "bytes": 437699
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "sha256": "ee3932db53d13a084be2d63233dd1a6505ced5341963a550bc550cfbb027b2cd",
+          "bytes": 576271
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "sha256": "57de9ff4f2617c9775f26355c0c9ac39dc52b16b80cdc5b63b1759109a08562d",
+          "bytes": 426402
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "sha256": "1c3643a89062185c45e79560472160b3e8c5e145a2d88716177c9492b169db73",
+          "bytes": 327130
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "9df9775607df8a3e832a9360167096ebeff220c3b8cabbc67438e07aacd714f9",
+          "bytes": 537239
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "b4c450a82c9f7e367b79f9488a68f0712e8ff5def89f61418dfb2b9d1a86eaa9",
+          "bytes": 397816
+        }
+      ],
+      "contact": {
+        "sha256": "74c2ccaeb877e8ef6a23f06e91032a27c7c3ebd0aa67d0fb2c2847db43416608",
+        "bytes": 204166
+      },
+      "decision": {
+        "exterior": "pass",
+        "nativeAppearance": "pass",
+        "opening": "pass",
+        "captureLimits": "Hollow rear and mounting support are retained. Dark interior surfaces and small cap/collar facets have limited source detail. No flawless or watertight capture claim.",
+        "repairApplied": false
+      },
+      "spatialEligible": false
+    }
+  ],
+  "rawPrimitiveFaces": {
+    "source": 628714,
+    "preview": 400000
+  },
+  "measuredTopology": {
+    "source": {
+      "loadedRawFaces": 628714,
+      "measured": {
+        "faces": 628648,
+        "bratio": 0.001,
+        "ncomp": 9,
+        "largest_frac": 1
+      },
+      "status": "pass"
+    },
+    "preview": {
+      "loadedRawFaces": 400000,
+      "measured": {
+        "faces": 399976,
+        "bratio": 0.001,
+        "ncomp": 3,
+        "largest_frac": 1
+      },
+      "status": "pass"
+    }
+  },
+  "faceCountQualification": "Raw indexed primitive counts are distinct from the repository integrity tool’s degenerate-cleaned measurements. Both are reported separately, and both source and preview pass the unchanged integrity thresholds. No mesh repair or metadata substitution is used."
+}

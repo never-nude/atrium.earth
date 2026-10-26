@@ -1,0 +1,255 @@
+{
+  "schema": "atrium-concurrent-artist-release-union-audit/1",
+  "batch": "gustav-vigeland-20261025",
+  "checkedAt": "2026-10-26T03:00:38.665Z",
+  "status": "pass",
+  "commits": {
+    "commonAncestor": "3a55aa9f136b43125b54945b7b2159fb881ebbe0",
+    "reviewedVigeland": "83def199a5211388696ba89b583befb9336b2e88",
+    "previousPublicMain": "1b74ca8631dcd51e3cf052ecab125daf937ad44f",
+    "merged": "working-tree"
+  },
+  "counts": {
+    "commonCatalog": 2381,
+    "reviewedVigelandCatalog": 2385,
+    "previousPublicCatalog": 2382,
+    "mergedCatalog": 2386,
+    "publicWorks": 2368,
+    "hiddenWorks": 18,
+    "vigelandAdded": 4,
+    "canonicalVigelandWorks": 7,
+    "bourdellePreserved": 1
+  },
+  "catalog": {
+    "allRowSemanticsPreservedExceptCounters": true,
+    "bothBranchOrdersPreserved": true,
+    "uniqueSlugs": 2386
+  },
+  "maps": [
+    {
+      "file": "src/data/previews.json",
+      "entries": 2386,
+      "exactUnion": true,
+      "incomingEntryPreserved": true
+    },
+    {
+      "file": "src/data/orientations.json",
+      "entries": 2053,
+      "exactUnion": true,
+      "incomingEntryPreserved": true
+    },
+    {
+      "file": "src/data/appearance-overrides.json",
+      "entries": 1015,
+      "exactUnion": true,
+      "incomingEntryPreserved": true
+    },
+    {
+      "file": "src/data/physical-dimensions.json",
+      "entries": 2154,
+      "exactUnion": true,
+      "incomingEntryPreserved": true
+    },
+    {
+      "file": "src/data/spatial-eligibility.json",
+      "entries": 2089,
+      "exactUnion": true,
+      "incomingEntryPreserved": true
+    }
+  ],
+  "renders": {
+    "exactMembershipUnion": true,
+    "bothBranchOrdersPreserved": true,
+    "entries": 2386
+  },
+  "exhibitions": {
+    "exactReviewedVigelandAppends": [
+      {
+        "exhibition": "the-work-of-the-surface",
+        "slug": "modern/monolith-vigeland-granite",
+        "text": "Intertwined bodies cover the column, with heads, backs and limbs emerging at different depths. Move around it to follow one figure into the next. Vigeland modeled the composition in 1924–1925; Ivar Broe, Nils Jønsson and Karl Kjær carved the granite from 1929 to 1942. This model records the column and its pedestal.",
+        "priorCaptionsPreserved": 48,
+        "priorWorkSlugsPreserved": 48,
+        "coverAndOtherContentPreserved": true
+      },
+      {
+        "exhibition": "bodies-in-motion",
+        "slug": "modern/two-girls-back-to-back-vigeland-granite",
+        "text": "Two crouching figures rest back to back and clasp their raised hands. Their bent legs spread the weight while the linked arms make another connection overhead. Turn the group to compare the faces and the spaces enclosed by their limbs. The provider identifies the granite sculpture as Vigeland’s Two Girls Back to Back; its exact date and site remain unconfirmed.",
+        "priorCaptionsPreserved": 41,
+        "priorWorkSlugsPreserved": 41,
+        "coverAndOtherContentPreserved": true
+      }
+    ],
+    "exactIncomingAndOwnCaptionUnion": true,
+    "incomingAppendOrderPreserved": true,
+    "allOldContentCoversAndOrderPreserved": true
+  },
+  "incomingRelease": {
+    "slug": "modern/coquelin-as-crispin-bourdelle-museum-cast-d2071f",
+    "allCatalogSemanticsAndMapValuesPreserved": true,
+    "bytePreservedNonDataFiles": [
+      {
+        "file": "INGEST.md",
+        "bytes": 17016,
+        "sha256": "fe594d8d42b742eb1d28abe8735f6a9879d6aaa7b9676c84ad2227b90e96910c",
+        "bytePreserved": true
+      },
+      {
+        "file": "docs/ingest/bourdelle-20261025-archive.json",
+        "bytes": 875,
+        "sha256": "391118ca31ba63b4a0a09d744aee2aed53a9ae7c3e3fdc781f82f22964232715",
+        "bytePreserved": true
+      },
+      {
+        "file": "docs/ingest/bourdelle-20261025-final-review.json",
+        "bytes": 6260,
+        "sha256": "494abca99dc48f389bd48982228ed9fbd73c317ba451fa62203a4764ecdeb93b",
+        "bytePreserved": true
+      },
+      {
+        "file": "docs/ingest/bourdelle-20261025-initial-capture-label-issue.json",
+        "bytes": 1319,
+        "sha256": "b93c9e99da2fd4cb4f2f962f5bfd94f8b2a51ccc7a32d974384c195c0a556ab6",
+        "bytePreserved": true
+      },
+      {
+        "file": "docs/ingest/bourdelle-20261025-live-browser.json",
+        "bytes": 4761,
+        "sha256": "8d739dde372fae521219916183e95924f9fa983db0ef2eca53e305ed985181c0",
+        "bytePreserved": true
+      },
+      {
+        "file": "docs/ingest/bourdelle-20261025-live-initial-browser-issue.json",
+        "bytes": 9322,
+        "sha256": "b093bcc2ee7bebd08e8a936ca5816c14f6b20cb1a586dc4558c5284a31c0a336",
+        "bytePreserved": true
+      },
+      {
+        "file": "docs/ingest/bourdelle-20261025-live.json",
+        "bytes": 2180,
+        "sha256": "f3b85d64fb42c38cd065d94366988c04a503a6cd4a36adac915e06193265de06",
+        "bytePreserved": true
+      },
+      {
+        "file": "docs/ingest/bourdelle-20261025-models.json",
+        "bytes": 688,
+        "sha256": "7d10f0ed15818decbeda89ff7a1334488a29091a84bf6bbd59f690be262f17e3",
+        "bytePreserved": true
+      },
+      {
+        "file": "docs/ingest/bourdelle-20261025-preview-upload.json",
+        "bytes": 450,
+        "sha256": "0577601f936a768d1eb5d327eb2a00a31b7f341e576eea469c73ee3d7f491588",
+        "bytePreserved": true
+      },
+      {
+        "file": "docs/ingest/bourdelle-20261025.json",
+        "bytes": 5009,
+        "sha256": "056b3979449bed238494a2833ced0ed69e6bd5050aa2c426410dbde8faa7ca2c",
+        "bytePreserved": true
+      },
+      {
+        "file": "docs/ingest/miro-20261025-review-holds.json",
+        "bytes": 4567,
+        "sha256": "346d8bdb0e2dde5d785c0b0872d7124b6d764831f782a14fd1ae1cb8aca020bc",
+        "bytePreserved": true
+      },
+      {
+        "file": "docs/ingest/miro-20261025-source-request.json",
+        "bytes": 942,
+        "sha256": "fb1a85db01e292bc1774ffecf5983c8533002f74a459d32b07a90103f062ac6d",
+        "bytePreserved": true
+      },
+      {
+        "file": "public/previews/posters/modern/coquelin-as-crispin-bourdelle-museum-cast-d2071f/poster.svg",
+        "bytes": 87002,
+        "sha256": "22da5ecb89789b1b81b0638d6e8622b0483dc71f23237e6a1cae805d7101770e",
+        "bytePreserved": true
+      },
+      {
+        "file": "public/previews/renders/modern/coquelin-as-crispin-bourdelle-museum-cast-d2071f/thumb.webp",
+        "bytes": 64946,
+        "sha256": "d7a78ab734dbff8c8fb917474a0e57ee1c856de8cf642d4891a2a5ffff6121d1",
+        "bytePreserved": true
+      }
+    ]
+  },
+  "archivedCheckpoint": {
+    "catalogRows": 2385,
+    "currentCatalogRows": 2386,
+    "rearchiveRequired": false,
+    "records": [
+      {
+        "slug": "modern/mother-and-child-vigeland-national-gallery-cast-unconfirmed",
+        "archivedIndex": 2382,
+        "mergedIndex": 2383,
+        "archivedTotal": 2385,
+        "mergedTotal": 2386,
+        "semanticsExcludingCountersSha256": "26de6f6acd13e0c1d2d07b2ef3d6702901d9b961bd747ef4f865bec8f17b1c19",
+        "onlyCountersMayDiffer": true
+      },
+      {
+        "slug": "modern/two-girls-back-to-back-vigeland-granite",
+        "archivedIndex": 2383,
+        "mergedIndex": 2384,
+        "archivedTotal": 2385,
+        "mergedTotal": 2386,
+        "semanticsExcludingCountersSha256": "b7a572d8bdb1575c3edd09b4d2141f2104c0e552e02901397480121fdde3268a",
+        "onlyCountersMayDiffer": true
+      },
+      {
+        "slug": "modern/foetus-vigeland-park-cast-unconfirmed",
+        "archivedIndex": 2384,
+        "mergedIndex": 2385,
+        "archivedTotal": 2385,
+        "mergedTotal": 2386,
+        "semanticsExcludingCountersSha256": "ca650efc90ef25a7034125c4f4e9fa77fb4a68e29da0e90b65a424ebfc65d3c7",
+        "onlyCountersMayDiffer": true
+      },
+      {
+        "slug": "modern/monolith-vigeland-granite",
+        "archivedIndex": 2385,
+        "mergedIndex": 2386,
+        "archivedTotal": 2385,
+        "mergedTotal": 2386,
+        "semanticsExcludingCountersSha256": "04ba4666f2893239f8ca4b575ba6a63cbc92604b342cee9147e8ebf5caca48d1",
+        "onlyCountersMayDiffer": true
+      }
+    ],
+    "allFourMapAssetAndCaptionExcerptsPreserved": true,
+    "authenticatedFullReadbacks": 4
+  },
+  "priorRemingtonHold": {
+    "file": "docs/ingest/frederic-remington-20261025-review-holds.json",
+    "bytes": 7204,
+    "sha256": "13b6dd12d8df6a17951216d44bc5753716d521ca4d157bcd7d76ec213e6d02f3",
+    "bytePreserved": true
+  },
+  "reviewQualification": {
+    "currentCatalogAndSelectedRowHashesMatch": true,
+    "selectedRowChangesOnly": [
+      "index",
+      "total"
+    ],
+    "allExistingSourceVisualAssetPoseDescriptiveFieldsPreserved": true,
+    "immutableArchiveCheckpointRows": 2385,
+    "nonCatalogFullFileBindingsQualifiedAsPremergeSnapshots": true
+  },
+  "trackedFileUnion": {
+    "rawFilesByteAndModePreserved": 5662,
+    "extraFiles": 0,
+    "unresolvedConflicts": 0,
+    "untrackedDeliverables": 0,
+    "workingTreeMatchesMerge": true
+  },
+  "statusDocument": {
+    "bothBranchHistoriesAndOrderPreserved": true,
+    "onlyAdditionalEndAppends": true,
+    "additionalEndAppends": [
+      "- Concurrent main1b74ca86 is reconciled before release: Bourdelle Coquelin, all Miró/Bourdelle evidence, every incoming record/setting and both incoming exhibition placement and Vigeland appends are preserved. Final combined counts2,386catalog /2,368public /18hidden. Only counters change in the four archived Vigeland record excerpts. Merged audit, checks/build and live verification remain required.",
+      "- Combined-tree additions, featured, wings, asset completeness and whitespace checks pass; production build succeeds with6,508pages. All four new object records pass actual390px browser layout checks: document/body390px and record350px, complete readable credits and dedicated CC BY4.0 links. Temporary viewport is reset. Final concurrency audit/report binding and publication/live checks remain pending."
+    ]
+  },
+  "scope": "Read-only exact two-branch Git-tree/data reconciliation. Existing native/source/archive acceptance remains unchanged. Deployment and live delivery require separate verification."
+}
