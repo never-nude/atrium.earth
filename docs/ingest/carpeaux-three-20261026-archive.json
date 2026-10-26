@@ -1,0 +1,42 @@
+{
+  "schema": "atrium-public-safe-source-archive-summary/1",
+  "batch": "carpeaux-three-20261026",
+  "status": "all-five-originals-and-recovery-documents-verified",
+  "sourceCount": 5,
+  "releaseSelectedCount": 3,
+  "qualityHeldCount": 2,
+  "heldWorks": [
+    "Fisherboy (wooden version)",
+    "Fontaine de l’Observatoire (complete monument assembly)"
+  ],
+  "originalGLBbytes": 94756252,
+  "provenanceBundles": 3,
+  "provenanceBytes": 51645316,
+  "portableRestoreMaps": 3,
+  "restoreMapBytes": 33378,
+  "recoveryClosureDocuments": 3,
+  "recoveryClosureBytes": 294646,
+  "authenticatedFullContentReadbacks": 14,
+  "fullSHA256AndByteVerification": true,
+  "signedReadbackReceiptsVerified": true,
+  "privateSharing": true,
+  "independentSourceAndMapAudits": {
+    "count": 3,
+    "status": "pass",
+    "sha256": [
+      "c2cc4826bdad55c92120710075150542e85baae1732b9ee52db7d572e40589b6",
+      "88dbb65d694009f0d33d605e5252f8686e577e9ee286467fc599bf500a7ef9a2",
+      "11a3496896958b7a21a49893850fe125ad2fbfaadc2a5c003a2baa3b767c9c25"
+    ]
+  },
+  "independentRecoveryClosureAudit": "pass",
+  "closureQualification": "All three closure documents have complete authenticated SHA256/byte readbacks and signed receipts, and an independent 127-check closure audit passed. The Dance closure additionally preserves current release decisions and final review/audit reports. Historic operator snapshots remain labeled.",
+  "sourceRepresentation": "Unchanged immutable Objaverse-distributed GLBs; uploader-native authoring packages are not asserted.",
+  "evidenceQualification": "Complete saved current/historical provider bodies, compressed historical license shards, retrieval receipts and available primary bodies are preserved. First three historical BY grants remain distinct from current NC-SA listings. Unavailable primary responses and qualified Dance replacement-copy identity remain explicit.",
+  "retainedOriginals": true,
+  "originalsRemoved": 0,
+  "cleanup": false,
+  "previousArchiveContextsUnchanged": true,
+  "checkedAt": "2026-10-26T18:48:49.280667+00:00",
+  "independentRecoveryClosureAuditSha256": "d4d372eb3403fe34cc54a76eb1ba7753e4aa33d73f4422ab43022b46643a37b0"
+}
