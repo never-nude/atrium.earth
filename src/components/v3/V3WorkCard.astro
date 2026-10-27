@@ -3,6 +3,7 @@ import type { Work } from '../../lib/catalog';
 import { publicDataset } from '../../lib/catalog';
 import { v3WorkRoute } from '../../lib/v3';
 import { withBase } from '../../lib/urls';
+import previews from '../../data/previews.json';
 
 type Props = { work: Work; eager?: boolean; stop?: number; spatial?: boolean };
 const { work, eager = false, stop, spatial = false } = Astro.props;
@@ -10,6 +11,8 @@ const data = publicDataset(work);
 const detail = [work.maker || work.culture, work.displayDate].filter(Boolean).join(' · ');
 const alt = `${work.title}${detail ? ` — ${detail}` : ''}`;
 const spatialAccess = work.spatialAccess?.enabled ? work.spatialAccess : null;
+const preview = (previews as Record<string, { bytes?: number }>)[work.slug];
+const previewBytes = typeof preview?.bytes === 'number' && Number.isFinite(preview.bytes) && preview.bytes > 0 ? preview.bytes : undefined;
 ---
 
 <article
@@ -22,7 +25,12 @@ const spatialAccess = work.spatialAccess?.enabled ? work.spatialAccess : null;
   data-place={data.place}
   data-material={data.material}
   data-maker={data.maker}
+  data-maker-label={work.maker || 'Maker not yet recorded'}
   data-size={spatialAccess?.status}
+  data-studio-preview-bytes={previewBytes}
+  data-studio-peek-available={String(work.hasPreview)}
+  data-studio-index={work.index}
+  data-studio-ingested={work.ingested || undefined}
 >
   <a href={withBase(v3WorkRoute(work))}>
     <div class="v3-card__image v3-float" style={`view-transition-name: w-${work.id};`}>

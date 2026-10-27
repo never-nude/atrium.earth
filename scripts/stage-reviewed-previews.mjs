@@ -13,7 +13,7 @@ const root = '.atrium-ingest/reviewed-preview-upload';
 await fs.mkdir(root, {recursive: true});
 const seen = new Set();
 for (const model of input.models) {
-  if (!/^[a-z0-9-]+\/[a-z0-9-]+$/.test(model.slug || '') || seen.has(model.slug)
+  if (!/^[a-z0-9][a-z0-9-]*(?:\/[a-z0-9][a-z0-9-]*)*$/.test(model.slug || '') || seen.has(model.slug)
       || !release.test(model.url || '') || !/^[a-f0-9]{64}$/.test(model.sha256 || '')
       || !Number.isSafeInteger(model.bytes) || model.bytes <= 0 || model.bytes > 100_000_000) throw Error('Invalid model binding');
   seen.add(model.slug);

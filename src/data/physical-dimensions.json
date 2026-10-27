@@ -5641,63 +5641,20 @@
     "dimensions": "Measured cast: H 232 cm",
     "status": "documented",
     "basis": "object",
-    "note": "The displayed scale uses the measured SMK cast, including the reviewed cast state and supports. This is the best available matching physical reference; it is not an assertion that the cast is full-size or that its dimensions equal the original.",
-    "checked": "2026-09-13",
-    "spatialNote": "Shown at the measured cast size. The original’s size or surviving state differs or remains unverified.",
+    "note": "These are SMK’s documented gross measurements of plaster cast KAS353. They do not describe the ancient prototype. The new GLB has not yet been physically calibrated; its display size is adjustable.",
+    "checked": "2026-10-26",
+    "spatialNote": "Documented cast measurements; this model version still needs a physical-size check.",
     "researchStatus": "verified",
     "identifiedObject": {
-      "title": "Apollo del Belvedere",
-      "institution": "Musei Vaticani, Museo Pio Clementino, Cortile Ottagono (Gabinetto dell'Apollo)",
-      "accession": "MV.1015.0.0 (inv. 1015)",
-      "version_or_date": "Roman marble copy, Hadrianic–Antonine period, after a bronze original attributed to Leochares c. 330 BCE",
-      "record_url": "https://catalogo.museivaticani.va/index.php/Detail/objects/MV.1015.0.0",
+      "title": "Apollo Belvedere (SMK Plaster Cast, KAS353)",
+      "institution": "SMK — Royal Cast Collection, Copenhagen",
+      "accession": "KAS353",
+      "record_url": "https://api.smk.dk/api/v1/art?object_number=KAS353&lang=en",
       "identity_confidence": "high",
-      "match_explanation": "SMK KAS353 is a plaster cast titled 'Apollon Belvedere' (mould: Paris, Louvre no. 65) whose SMK label places the original in the Cortile del Belvedere, Vatican; the Vatican online catalogue entry MV.1015.0.0 is that marble. KAS353 identifies the cast, not the original."
+      "match_explanation": "The museum record links this published model to the named plaster cast accession; ancient prototype research remains separately recorded."
     },
-    "geometryReviewNote": "The complete historical Apollo, restored arms, tree support and low oval cast foot match the SMK photograph. Use 232 cm gross cast height; original 224 cm does not establish the same cast-foot extent. Horizontal source/model differences remain documented.",
+    "geometryReviewNote": "The replacement GLB requires a new model-specific object and support boundary review before verified physical scaling.",
     "measures": [
-      {
-        "axis": "height",
-        "value": 224,
-        "unit": "cm",
-        "meters": 2.24,
-        "scope": "Entire statue as catalogued by the Vatican Museums (axis order as published: cm 224 x 118 x 77)",
-        "qualifier": "exact",
-        "source_ids": [
-          "S1"
-        ],
-        "sourceUrls": [
-          "https://catalogo.museivaticani.va/index.php/Detail/objects/MV.1015.0.0"
-        ]
-      },
-      {
-        "axis": "width",
-        "value": 118,
-        "unit": "cm",
-        "meters": 1.18,
-        "scope": "Entire statue as catalogued",
-        "qualifier": "exact",
-        "source_ids": [
-          "S1"
-        ],
-        "sourceUrls": [
-          "https://catalogo.museivaticani.va/index.php/Detail/objects/MV.1015.0.0"
-        ]
-      },
-      {
-        "axis": "depth",
-        "value": 77,
-        "unit": "cm",
-        "meters": 0.77,
-        "scope": "Entire statue as catalogued",
-        "qualifier": "exact",
-        "source_ids": [
-          "S1"
-        ],
-        "sourceUrls": [
-          "https://catalogo.museivaticani.va/index.php/Detail/objects/MV.1015.0.0"
-        ]
-      },
       {
         "axis": "height",
         "value": 232,
@@ -5750,20 +5707,51 @@
         "sourceUrls": [
           "https://api.smk.dk/api/v1/art?object_number=KAS353"
         ]
+      },
+      {
+        "axis": "height",
+        "value": 224,
+        "unit": "cm",
+        "meters": 2.24,
+        "scope": "Entire statue as catalogued by the Vatican Museums (axis order as published: cm 224 x 118 x 77)",
+        "qualifier": "exact",
+        "source_ids": [
+          "S1"
+        ],
+        "sourceUrls": [
+          "https://catalogo.museivaticani.va/index.php/Detail/objects/MV.1015.0.0"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 118,
+        "unit": "cm",
+        "meters": 1.18,
+        "scope": "Entire statue as catalogued",
+        "qualifier": "exact",
+        "source_ids": [
+          "S1"
+        ],
+        "sourceUrls": [
+          "https://catalogo.museivaticani.va/index.php/Detail/objects/MV.1015.0.0"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 77,
+        "unit": "cm",
+        "meters": 0.77,
+        "scope": "Entire statue as catalogued",
+        "qualifier": "exact",
+        "source_ids": [
+          "S1"
+        ],
+        "sourceUrls": [
+          "https://catalogo.museivaticani.va/index.php/Detail/objects/MV.1015.0.0"
+        ]
       }
     ],
     "sourceUrl": "https://api.smk.dk/api/v1/art?object_number=KAS353",
-    "spatial": {
-      "axis": "y",
-      "meters": 2.32,
-      "measurementIndex": 6,
-      "previewUrl": "https://models.atrium.earth/models/previews/apollo-belvedere/preview.glb",
-      "orientation": null,
-      "assetSha256": "01f077302be33758276b7b3c3b2472470e32dee5c78ffd04e4464ded46f25ac9",
-      "reviewed": "2026-09-13",
-      "geometryReview": "Fresh current GLB decoded with current Viewer transforms, posed visible-vertex bounds and individual three-angle render inspection; official accession photographs reviewed for SMK. Evidence: scale_geometry-review.json and scale_geometry-audit/audit.json.",
-      "note": "The complete historical Apollo, restored arms, tree support and low oval cast foot match the SMK photograph. Use 232 cm gross cast height; original 224 cm does not establish the same cast-foot extent. Horizontal source/model differences remain documented. Uniform scale preserves the mesh proportions; this verifies the selected extent, not agreement of every published axis."
-    },
     "originalDimensions": "H 224 cm × W 118 cm × D 77 cm (original marble, Vatican inv. 1015)",
     "originalSizeResearch": {
       "status": "documented",
@@ -5781,8 +5769,8 @@
       "sourceUrl": "https://catalogo.museivaticani.va/index.php/Detail/objects/MV.1015.0.0",
       "geometryReviewNote": "The cast retains a sculptural/plinth support whose relationship to the original’s documented measurement is not yet established. Resolve source scope and the object/base boundary before applying whole-mesh height."
     },
-    "geometryStatus": "calibrated",
-    "calibrationReady": true
+    "geometryStatus": "needs-review",
+    "calibrationReady": false
   },
   "apollo-lykeios": {
     "dimensions": "Measured cast: H 231.5 cm",
@@ -5946,69 +5934,58 @@
     "calibrationReady": true
   },
   "artemision-bronze": {
-    "dimensions": "H 2.09 m; arm span 2.10 m (original bronze, X 15161; Greek Ministry of Culture)",
+    "dimensions": "SMK plaster cast: H 201 cm × W 214 cm × D 43 cm",
     "status": "documented",
-    "basis": "original",
-    "note": "The original bronze in Athens is documented at 2.09 m high with an arm span of 2.10 m. The scanned plaster cast should retain its proportions when calibrated to the original.",
-    "checked": "2026-09-13",
-    "spatialNote": "Shown at the documented height, with the model’s proportions preserved. Some dimensions of this scan differ from the published measurements.",
-    "researchStatus": "verified",
+    "basis": "object",
+    "sourceUrl": "https://api.smk.dk/api/v1/art?object_number=KAS2100&lang=en",
+    "note": "These are SMK’s documented gross measurements of plaster cast KAS2100. They do not describe the ancient prototype. The new GLB has not yet been physically calibrated; its display size is adjustable.",
+    "checked": "2026-10-26",
     "identifiedObject": {
-      "title": "Bronze statue of Zeus or Poseidon from Cape Artemision",
-      "institution": "National Archaeological Museum, Athens",
-      "accession": "X 15161",
-      "version_or_date": "c. 460-450 BCE, bronze original (not a copy)",
-      "record_url": "https://olympicgames.culture.gov.gr/en/mithologia/zevs/agalma.html",
+      "title": "Zeus or Poseidon from the Artemision (SMK Plaster Cast, KAS2100)",
+      "institution": "SMK — Royal Cast Collection, Copenhagen",
+      "accession": "KAS2100",
+      "record_url": "https://api.smk.dk/api/v1/art?object_number=KAS2100&lang=en",
       "identity_confidence": "high",
-      "match_explanation": "SMK KAS2100 ('Poseidon eller Zeus fra Artemision') is a plaster cast; its linked original record ORIG2542 names the bronze in the National Archaeological Museum, found at Cape Artemision 1926/1928. The NAM collection page lists the statue as 'no X15161, Room 15'. KAS2100 identifies the cast only."
+      "match_explanation": "The current museum record links the exact published GLB or publisher model UID to this plaster cast accession."
     },
-    "geometryReviewNote": "The unmounted bronze figure is complete from sole to crown and matches the original pose. Apply original 209 cm height uniformly. The approximately 223 cm modeled arm span versus source 210 cm is retained as a horizontal discrepancy, not corrected by stretching.",
     "measures": [
       {
         "axis": "height",
-        "value": 2.09,
-        "unit": "m",
-        "meters": 2.09,
-        "scope": "Original bronze statue as catalogued; base/support inclusion not explicitly stated.",
+        "value": 201,
+        "unit": "cm",
+        "meters": 2.01,
+        "scope": "SMK plaster cast KAS2100, gross documented measurement",
         "qualifier": "exact",
-        "source_ids": [
-          "P2A",
-          "P2B"
-        ],
         "sourceUrls": [
-          "https://olympicgames.culture.gov.gr/en/mithologia/zevs/agalma.html",
-          "https://odysseus.culture.gr/h/4/eh430.jsp?obj_id=4507"
+          "https://api.smk.dk/api/v1/art?object_number=KAS2100&lang=en"
         ]
       },
       {
         "axis": "width",
-        "value": 2.1,
-        "unit": "m",
-        "meters": 2.1,
-        "scope": "Span of outstretched arms of original bronze; not generic total bounding-box width.",
+        "value": 214,
+        "unit": "cm",
+        "meters": 2.14,
+        "scope": "SMK plaster cast KAS2100, gross documented measurement",
         "qualifier": "exact",
-        "source_ids": [
-          "P2A"
-        ],
         "sourceUrls": [
-          "https://olympicgames.culture.gov.gr/en/mithologia/zevs/agalma.html"
+          "https://api.smk.dk/api/v1/art?object_number=KAS2100&lang=en"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 43,
+        "unit": "cm",
+        "meters": 0.43,
+        "scope": "SMK plaster cast KAS2100, gross documented measurement",
+        "qualifier": "exact",
+        "sourceUrls": [
+          "https://api.smk.dk/api/v1/art?object_number=KAS2100&lang=en"
         ]
       }
     ],
-    "sourceUrl": "https://olympicgames.culture.gov.gr/en/mithologia/zevs/agalma.html",
-    "spatial": {
-      "axis": "y",
-      "meters": 2.09,
-      "measurementIndex": 0,
-      "previewUrl": "https://models.atrium.earth/models/previews/artemision-bronze/preview.glb",
-      "orientation": null,
-      "assetSha256": "d2a7be2b426c1c0a9d4642d89ce4b196e7406da1218a5a428f1b4f21f8313500",
-      "reviewed": "2026-09-13",
-      "geometryReview": "Fresh current GLB decoded with current Viewer transforms, posed visible-vertex bounds and individual three-angle render inspection; official accession photographs reviewed for SMK. Evidence: scale_geometry-review.json and scale_geometry-audit/audit.json.",
-      "note": "The unmounted bronze figure is complete from sole to crown and matches the original pose. Apply original 209 cm height uniformly. The approximately 223 cm modeled arm span versus source 210 cm is retained as a horizontal discrepancy, not corrected by stretching. Uniform scale preserves the mesh proportions; this verifies the selected extent, not agreement of every published axis."
-    },
-    "geometryStatus": "calibrated",
-    "calibrationReady": true
+    "geometryStatus": "needs-review",
+    "calibrationReady": false,
+    "spatialNote": "Documented cast measurements; this model version still needs a physical-size check."
   },
   "asia/abbasid-gold-dinar-al-muktafi": {
     "dimensions": "Diameter21mm (original coin, VK5738:5)",
@@ -14171,49 +14148,20 @@
     "dimensions": "Measured cast: H 205 cm",
     "status": "documented",
     "basis": "object",
-    "note": "The displayed scale uses the measured SMK cast, including the reviewed cast state and supports. This is the best available matching physical reference; it is not an assertion that the cast is full-size or that its dimensions equal the original.",
-    "checked": "2026-09-13",
-    "spatialNote": "Shown at the measured cast size. The original’s size or surviving state differs or remains unverified.",
+    "note": "These are SMK’s documented gross measurements of plaster cast KAS1800. They do not describe the ancient prototype. The new GLB has not yet been physically calibrated; its display size is adjustable.",
+    "checked": "2026-10-26",
+    "spatialNote": "Documented cast measurements; this model version still needs a physical-size check.",
     "researchStatus": "verified",
     "identifiedObject": {
-      "title": "Statue of a Kore with its base, the 'Antenor Kore'",
-      "institution": "Acropolis Museum, Athens",
-      "accession": "Acr. 681",
-      "version_or_date": "Parian and Pentelic marble, c. 530-520 BCE (museum: 525-500 BCE); found 1886 in the Korai pit NW of the Erechtheion (legs/left hand 1882-83)",
-      "record_url": "https://www.theacropolismuseum.gr/en/statue-kore-its-base-antenor-kore",
+      "title": "Kore in Chiton and Epiblema (SMK Plaster Cast, KAS1800)",
+      "institution": "SMK — Royal Cast Collection, Copenhagen",
+      "accession": "KAS1800",
+      "record_url": "https://api.smk.dk/api/v1/art?object_number=KAS1800&lang=en",
       "identity_confidence": "high",
-      "match_explanation": "SMK KAS1800 is a 205 cm plaster cast; SMK original record ORIG1399 gives an archaic marble kore in the Acropolis Museum found 1886 west of the Erechtheion, c. 530 BCE (Richter Korai no. 111; Payne & Young pl. 42-43). Findspot, date and especially size (the Acropolis Museum gives 2.05 m for Acr. 681, the largest kore) match the Antenor Kore; the smaller Acr. 594 (found 1887, H c. 1.2 m) does not."
+      "match_explanation": "The museum record links this published model to the named plaster cast accession; ancient prototype research remains separately recorded."
     },
-    "geometryReviewNote": "The Kore cast includes restored lower supports and the same stepped rectangular base shown by SMK. Use 205 cm gross cast height rather than assuming the ancient fragment-only height includes these modern supports.",
+    "geometryReviewNote": "The replacement GLB requires a new model-specific object and support boundary review before verified physical scaling.",
     "measures": [
-      {
-        "axis": "height",
-        "value": 2.05,
-        "unit": "m",
-        "meters": 2.05,
-        "scope": "Statue as given by the Acropolis Museum ('Height: 2.05 m'); base inclusion not stated",
-        "qualifier": "exact",
-        "source_ids": [
-          "S1"
-        ],
-        "sourceUrls": [
-          "https://www.theacropolismuseum.gr/en/statue-kore-its-base-antenor-kore"
-        ]
-      },
-      {
-        "axis": "height",
-        "value": 215,
-        "unit": "cm",
-        "meters": 2.15,
-        "scope": "Statue with base, per Wikidata (secondary)",
-        "qualifier": "approximate",
-        "source_ids": [
-          "S2"
-        ],
-        "sourceUrls": [
-          "https://www.wikidata.org/wiki/Q571971"
-        ]
-      },
       {
         "axis": "height",
         "value": 205,
@@ -14266,20 +14214,37 @@
         "sourceUrls": [
           "https://api.smk.dk/api/v1/art?object_number=KAS1800"
         ]
+      },
+      {
+        "axis": "height",
+        "value": 2.05,
+        "unit": "m",
+        "meters": 2.05,
+        "scope": "Statue as given by the Acropolis Museum ('Height: 2.05 m'); base inclusion not stated",
+        "qualifier": "exact",
+        "source_ids": [
+          "S1"
+        ],
+        "sourceUrls": [
+          "https://www.theacropolismuseum.gr/en/statue-kore-its-base-antenor-kore"
+        ]
+      },
+      {
+        "axis": "height",
+        "value": 215,
+        "unit": "cm",
+        "meters": 2.15,
+        "scope": "Statue with base, per Wikidata (secondary)",
+        "qualifier": "approximate",
+        "source_ids": [
+          "S2"
+        ],
+        "sourceUrls": [
+          "https://www.wikidata.org/wiki/Q571971"
+        ]
       }
     ],
     "sourceUrl": "https://api.smk.dk/api/v1/art?object_number=KAS1800",
-    "spatial": {
-      "axis": "y",
-      "meters": 2.05,
-      "measurementIndex": 5,
-      "previewUrl": "https://models.atrium.earth/models/previews/greek/kore-chiton-epiblema-smk-cast/preview.glb",
-      "orientation": null,
-      "assetSha256": "c8041f4cd63d008861f620df8ad1e3bbb11fca58e96ab9d699adafb6a7a3f886",
-      "reviewed": "2026-09-13",
-      "geometryReview": "Fresh current GLB decoded with current Viewer transforms, posed visible-vertex bounds and individual three-angle render inspection; official accession photographs reviewed for SMK. Evidence: scale_geometry-review.json and scale_geometry-audit/audit.json.",
-      "note": "The Kore cast includes restored lower supports and the same stepped rectangular base shown by SMK. Use 205 cm gross cast height rather than assuming the ancient fragment-only height includes these modern supports. Uniform scale preserves the mesh proportions; this verifies the selected extent, not agreement of every published axis."
-    },
     "originalDimensions": "H 2.05 m (Acropolis Museum, Acr. 681)",
     "originalSizeResearch": {
       "status": "documented",
@@ -14297,8 +14262,8 @@
       "sourceUrl": "https://www.theacropolismuseum.gr/en/statue-kore-its-base-antenor-kore",
       "geometryReviewNote": "An added support, slab, mounting stem, socle, pedestal or ground is visibly included. The sourced artwork-only dimension must not be assigned to the complete mesh; isolate the sculpture extent while preserving all geometry."
     },
-    "geometryStatus": "calibrated",
-    "calibrationReady": true
+    "geometryStatus": "needs-review",
+    "calibrationReady": false
   },
   "greek/lying-warrior-patroklos-aphaia-smk-cast": {
     "dimensions": "Measured cast: H 60.5 cm",
@@ -33245,7 +33210,7 @@
       "measurementRegion": {
         "method": "position-welded connected triangles",
         "description": "The sculpture is separate from the modern pedestal. Connected components ranks 0, 1 and 3 contain the marble group; rank 2 is the rectangular pedestal. Their union runs from normalized Y -0.1190040436654394 to 0.5. Use the confirmed 197.5 cm height of the marble group, retaining the pedestal at the same uniform scale.",
-        "weldToleranceNormalizedUnits": 0.000001,
+        "weldToleranceNormalizedUnits": 1e-06,
         "ranksByDescendingTriangleCount": [
           0,
           1,
@@ -69278,7 +69243,7 @@
       "measurementRegion": {
         "method": "position-welded connected triangles",
         "description": "Connected component rank 0 is the rigid monitor body; all display/button components remain within its lateral body endpoints. Hanging cable components extend farther left and below and are excluded from the reference. Use the museum body-only width 58.4 cm for the rank-0 X span, retaining all cables at that scale.",
-        "weldToleranceNormalizedUnits": 0.000001,
+        "weldToleranceNormalizedUnits": 1e-06,
         "ranksByDescendingTriangleCount": [
           0
         ],
@@ -70822,49 +70787,58 @@
     "calibrationReady": true
   },
   "doryphoros": {
-    "dimensions": "Height 212 cm (original)",
+    "dimensions": "SMK plaster cast: H 213 cm × W 75.5 cm × D 77 cm",
     "status": "documented",
-    "basis": "original",
-    "note": "Published dimensions of the original artwork; the displayed model is a reproduction cast.",
-    "checked": "2026-09-13",
-    "spatialNote": "Shown at the documented height, with the model’s proportions preserved.",
-    "researchStatus": "verified",
+    "basis": "object",
+    "sourceUrl": "https://api.smk.dk/api/v1/art?object_number=KAS11&lang=en",
+    "note": "These are SMK’s documented gross measurements of plaster cast KAS11. They do not describe the ancient prototype. The new GLB has not yet been physically calibrated; its display size is adjustable.",
+    "checked": "2026-10-26",
     "identifiedObject": {
-      "title": "Doryphoros",
-      "institution": "Museo Archeologico Nazionale di Napoli; original research published by Suor Orsola Benincasa University Press",
-      "accession": "MANN 6011",
-      "record_url": "https://universitypress.unisob.na.it/materiali/L000083.pdf",
+      "title": "Doryphoros (SMK Plaster Cast, KAS11)",
+      "institution": "SMK — Royal Cast Collection, Copenhagen",
+      "accession": "KAS11",
+      "record_url": "https://api.smk.dk/api/v1/art?object_number=KAS11&lang=en",
       "identity_confidence": "high",
-      "match_explanation": "Original identity cross-referenced from SMK original relationships and museum or primary scholarly catalogue."
+      "match_explanation": "The current museum record links the exact published GLB or publisher model UID to this plaster cast accession."
     },
-    "geometryReviewNote": "The complete Naples Doryphoros, tree support and integral rectangular plinth match the source pose. Original 212 cm explicitly includes its plinth; no extra stand or cropped body is included.",
     "measures": [
       {
         "axis": "height",
-        "value": 212,
+        "value": 213,
         "unit": "cm",
-        "meters": 2.12,
-        "scope": "Original Naples marble statue including its plinth; explicitly qualified in the Doryphoros of Messene research discussion.",
+        "meters": 2.13,
+        "scope": "SMK plaster cast KAS11, gross documented measurement",
         "qualifier": "exact",
         "sourceUrls": [
-          "https://universitypress.unisob.na.it/materiali/L000083.pdf"
+          "https://api.smk.dk/api/v1/art?object_number=KAS11&lang=en"
+        ]
+      },
+      {
+        "axis": "width",
+        "value": 75.5,
+        "unit": "cm",
+        "meters": 0.755,
+        "scope": "SMK plaster cast KAS11, gross documented measurement",
+        "qualifier": "exact",
+        "sourceUrls": [
+          "https://api.smk.dk/api/v1/art?object_number=KAS11&lang=en"
+        ]
+      },
+      {
+        "axis": "depth",
+        "value": 77,
+        "unit": "cm",
+        "meters": 0.77,
+        "scope": "SMK plaster cast KAS11, gross documented measurement",
+        "qualifier": "exact",
+        "sourceUrls": [
+          "https://api.smk.dk/api/v1/art?object_number=KAS11&lang=en"
         ]
       }
     ],
-    "sourceUrl": "https://universitypress.unisob.na.it/materiali/L000083.pdf",
-    "spatial": {
-      "axis": "y",
-      "meters": 2.12,
-      "measurementIndex": 0,
-      "previewUrl": "https://models.atrium.earth/models/previews/doryphoros/preview.glb",
-      "orientation": null,
-      "assetSha256": "80e254f84c14b31d245110c931ae3589128ec716e55f6c1deddbd9e9dbfede99",
-      "reviewed": "2026-09-13",
-      "geometryReview": "Fresh current GLB decoded with current Viewer transforms, posed visible-vertex bounds and individual three-angle render inspection; official accession photographs reviewed for SMK. Evidence: scale_geometry-review.json and scale_geometry-audit/audit.json.",
-      "note": "The complete Naples Doryphoros, tree support and integral rectangular plinth match the source pose. Original 212 cm explicitly includes its plinth; no extra stand or cropped body is included. Uniform scale preserves the mesh proportions; this verifies the selected extent, not agreement of every published axis."
-    },
-    "geometryStatus": "calibrated",
-    "calibrationReady": true
+    "geometryStatus": "needs-review",
+    "calibrationReady": false,
+    "spatialNote": "Documented cast measurements; this model version still needs a physical-size check."
   },
   "medici-faun": {
     "dimensions": "Height 143 cm (original)",
@@ -76991,7 +76965,7 @@
       "measurementRegion": {
         "method": "position-welded connected triangles",
         "description": "Connected component rank 0 is the complete sculpture, including its lowest foot/curved lower edge; rank 1 is the added green platform. All other sculpture fragments and the apple are within rank-0 height. Use the scan creator’s explicitly approximate 57 cm sculpture height, excluding the green platform from the reference while retaining it in the scene.",
-        "weldToleranceNormalizedUnits": 0.000001,
+        "weldToleranceNormalizedUnits": 1e-06,
         "ranksByDescendingTriangleCount": [
           0
         ],

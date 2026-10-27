@@ -51,24 +51,19 @@ const heroAlt = [
         materialAppearance={heroAppearance}
         autoRotate={true}
         turntableDegreesPerSecond={4}
-        respectReducedMotion={false}
+        respectReducedMotion={true}
         rotationControl="simple"
       />
     </div>
 
     <div class="v3-hero__veil" aria-hidden="true"></div>
     <div class="v3-hero__copy">
-      <p class="v3-kicker">Digital sculpture museum · {collectionCount} works</p>
-      <h1 id="v3-home-title" class="v3-display">{featuredWork.title}</h1>
-      <p class="v3-hero__lede v3-hero__lede--live">Turn the work to look closer. Discover sculpture in your own space with AR, or step around it in VR.</p>
-      <noscript>
-        {/* No JavaScript: the still image is the presentation. Same invitation, nothing that needs a script. */}
-        <style is:inline>.v3-hero__lede--live { display: none; }</style>
-        <p class="v3-hero__lede">Look closer at the work. Scroll for the newest additions, the wings, and the full collection.</p>
-      </noscript>
+      <p class="v3-kicker">The sculpture collection</p>
+      <h1 id="v3-home-title" class="v3-display">A closer look<br />at sculpture.</h1>
+      <p class="v3-hero__lede">Across centuries and continents. Find a work, turn it in your hands, and make a collection of your own.</p>
       <div class="v3-actions">
-        <a class="v3-button v3-button--light" href={withBase('/ar-vr/')}>Explore AR / VR <span aria-hidden="true">↗</span></a>
-        <a class="v3-button v3-button--ghost" href={withBase('/collection/')}>Browse all {collectionCount} works</a>
+        <a class="v3-button v3-button--light" href={withBase('/collection/')}>Explore the collection <span aria-hidden="true">↗</span></a>
+        <a class="v3-button v3-button--ghost" href={withBase('/newest/')}>See what’s new <span aria-hidden="true">→</span></a>
       </div>
     </div>
 

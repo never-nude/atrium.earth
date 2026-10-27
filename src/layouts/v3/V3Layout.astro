@@ -1,5 +1,6 @@
 ---
 import V3Header from '../../components/v3/V3Header.astro';
+import StudioPeek from '../../components/v3/StudioPeek.astro';
 import GoogleAnalytics from '../../components/GoogleAnalytics.astro';
 import { collectionCount } from '../../lib/v3';
 import { absoluteUrl, withBase, withoutBase } from '../../lib/urls';
@@ -7,6 +8,7 @@ import '../../styles/v3/v3.css';
 import '../../styles/v3/v3-bright.css'; // brighter-vitrine layer — delete this line to undo
 import '../../styles/v3/spatial-discovery.css';
 import '../../styles/v3/additions.css';
+import '../../styles/v3/studio.css';
 
 type Props = {
   title?: string;
@@ -38,6 +40,7 @@ const pageTitle = title === 'Atrium.Earth' ? 'Atrium.Earth — Digital Sculpture
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <StudioPeek />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
     <meta name="theme-color" content="#0e1626" />
@@ -76,6 +79,9 @@ const pageTitle = title === 'Atrium.Earth' ? 'Atrium.Earth — Digital Sculpture
         </nav>
       </footer>
     )}
+    <script>
+      import '../../scripts/studio-collection.js';
+    </script>
     <script>
       // Works surface as the visitor reaches them.
       const revealed = document.querySelectorAll('.v3-reveal');

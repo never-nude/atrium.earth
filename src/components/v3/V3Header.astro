@@ -4,17 +4,16 @@ import { withBase } from '../../lib/urls';
 type Props = { currentPath: string };
 const { currentPath } = Astro.props;
 const nav = [
-  ['Home', '/'],
-  ['Newest additions', '/newest/'],
-  ['AR / VR', '/ar-vr/'],
+  ['Collection', '/collection/'],
+  ['Newest', '/newest/'],
   ['Wings', '/wings/'],
-  ['Explore', '/collection/'],
   ['Exhibitions', '/exhibitions/'],
+  ['AR / VR', '/ar-vr/'],
 ];
-const current = (href: string) => currentPath === href || (href !== '/' && currentPath.startsWith(href));
+const current = (href: string) => currentPath === href || currentPath.startsWith(href);
 ---
 
-<header class="v3-header" data-v3-header>
+<header class="v3-header studio-header" data-v3-header>
   <a class="v3-brand" href={withBase('/')} aria-label="Atrium home">
     <span>Atrium</span><sup>Earth</sup>
   </a>
@@ -25,23 +24,22 @@ const current = (href: string) => currentPath === href || (href !== '/' && curre
     ))}
   </nav>
 
+  <div class="studio-header__actions">
+    <button type="button" class="studio-search-trigger" data-studio-search aria-label="Search the collection">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg>
+      <span>Search</span><kbd>⌘ K</kbd>
+    </button>
+    <a class="studio-saved" href={withBase('/collection/?saved=1')} aria-label="Saved works">Saved <span data-studio-saved-count>0</span></a>
+  </div>
+
   <details class="v3-menu">
     <summary aria-label="Open menu"><span>Menu</span><i aria-hidden="true"></i></summary>
     <nav aria-label="Mobile primary">
       {nav.map(([label, href]) => (
         <a href={withBase(href)} aria-current={current(href) ? 'page' : undefined}>{label}</a>
       ))}
+      <a href={withBase('/collection/?saved=1')}>Saved works</a>
+      <button type="button" data-studio-search>Search the collection</button>
     </nav>
   </details>
 </header>
-
-<script>
-  const header = document.querySelector('[data-v3-header]');
-  let lastY = 0;
-  window.addEventListener('scroll', () => {
-    const y = window.scrollY;
-    header?.classList.toggle('is-compact', y > 36);
-    header?.classList.toggle('is-hidden', y > lastY && y > 180);
-    lastY = y;
-  }, { passive: true });
-</script>

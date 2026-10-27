@@ -435,7 +435,7 @@
   "artemision-bronze": {
     "enabled": false,
     "policyVersion": 1,
-    "reason": "mismatch"
+    "reason": "geometry"
   },
   "asia/bowl-arabic-inscription": {
     "enabled": true,
@@ -678,14 +678,9 @@
     "reason": "mismatch"
   },
   "doryphoros": {
-    "enabled": true,
+    "enabled": false,
     "policyVersion": 1,
-    "kind": "original",
-    "recordFingerprint": "605a46171e7ec753635389a010f770a8c095ba7c1070d5d4a6db1cd01a03aba3",
-    "modelUrl": "https://models.atrium.earth/models/previews/doryphoros/preview.glb",
-    "assetSha256": "80e254f84c14b31d245110c931ae3589128ec716e55f6c1deddbd9e9dbfede99",
-    "orientationFingerprint": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
-    "bindingFingerprint": "02a0cd4a776a0a10bd60b3dea6075385cd3269bed53b43435eb8625248124e8f"
+    "reason": "geometry"
   },
   "doryphoros-torso": {
     "enabled": true,
