@@ -1,0 +1,595 @@
+{
+  "schema": "atrium-assistant-visual-review/1",
+  "batch": "ghiberti-three-20261026",
+  "status": "pass",
+  "reviewer": "Codex assistant actual inspection of all three accepted native/serving contacts and final rendered thumbnails",
+  "counts": {
+    "works": 3,
+    "comparisonFrames": 48,
+    "contacts": 3,
+    "finalThumbnails": 3
+  },
+  "sourceReference": "Three current authenticated Sketchfab distribution GLBs under exact-UID CC BY4.0 grants by chabychab. Every serving GLB is byte-identical to the acquired file, with all geometry, images, textures and materials unchanged. These are relief-front captures of 1990 and2016 exterior bronze copies after Lorenzo Ghiberti. No uploader-native authoring package or raw scan master claim.",
+  "runtimeQualification": "All48 paired frames and3contacts completed with positive runtime geometry/source materials, no page errors and24 image-identical source/serving frame pairs. Six local ERR_ABORTED request-lifecycle warnings were narrowly classified after positive ready evidence. Browser shutdown then exceeded15seconds and returned a nonzero process status; no missing-frame or render-stage failure is omitted.",
+  "scopeReports": [
+    {
+      "sha256": "36d24be73965a34086920019218fecbb84ddfcb594396a25d9fb95fef03aa86f",
+      "bytes": 119707
+    }
+  ],
+  "cameraQualification": "Eight paired review directions use the common Y-up world frame. Final opening cameras select the reviewed front direction; no geometry or pose change.",
+  "works": [
+    {
+      "slug": "europe/ghiberti-solomon-sheba-paradise-replica-68b644",
+      "sourceUid": "68b644101e5c43d49e27d989d2b78da8",
+      "title": "Meeting of Solomon and the Queen of Sheba (1990 exterior bronze copy)",
+      "original": {
+        "url": "https://sketchfab.com/3d-models/68b644101e5c43d49e27d989d2b78da8",
+        "sha256": "fd3193ba06e0354f8b8eddbda67d7f575fb119fdad9d066af073cd691f911e21",
+        "bytes": 3237148,
+        "representation": "Unchanged authenticated Sketchfab distribution GLB, verified against the source-only acquisition receipt; uploader-native authoring package not asserted."
+      },
+      "sourceUrl": "https://sketchfab.com/3d-models/68b644101e5c43d49e27d989d2b78da8",
+      "primaryRecord": "https://catalogo.duomo.firenze.it/operedarte/2941",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "licenseScope": "The current exact-UID Sketchfab record grants CC BY 4.0 for the uploader’s downloadable capture. The complete authenticated distribution GLB is bound to its measured SHA-256 and byte count by the source-only acquisition receipt. This is a current provider grant; no historical Objaverse grant or uploader-native authoring package is asserted.",
+      "scanAuthor": "chabychab",
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/europe/ghiberti-solomon-sheba-paradise-replica-68b644/preview-fd3193ba06e0.glb",
+        "sha256": "fd3193ba06e0354f8b8eddbda67d7f575fb119fdad9d066af073cd691f911e21",
+        "bytes": 3237148
+      },
+      "rawSourceFaces": 27968,
+      "rawPreviewFaces": 27968,
+      "measuredTopology": {
+        "source": {
+          "loadedRawFaces": 27968,
+          "measured": {
+            "faces": 27968,
+            "bratio": 0.025,
+            "ncomp": 1,
+            "largest_frac": 1
+          },
+          "status": "pass"
+        },
+        "preview": {
+          "loadedRawFaces": 27968,
+          "measured": {
+            "faces": 27968,
+            "bratio": 0.025,
+            "ncomp": 1,
+            "largest_frac": 1
+          },
+          "status": "pass"
+        }
+      },
+      "materialAppearance": "Exact unchanged source materials, textures and colors.",
+      "processing": {
+        "tool": "Unchanged original serving copy",
+        "geometryCompression": "none added; incoming compression retained only when source-compatible",
+        "textureCompression": "none added",
+        "simplificationApplied": false,
+        "geometryAndTextureResolutionUnchanged": true,
+        "servingIdenticalToOriginal": true,
+        "materialWorkflowConversion": "none",
+        "sourceReferenceQualification": "Unchanged incoming GLB reference. Source is the acquired distribution GLB; uploader-native authoring or scan-master package not asserted.",
+        "noAutomaticPose": true,
+        "noCropping": true,
+        "noManualRecoloringOrRepair": true
+      },
+      "visualDecision": "Complete coherent sculpted front, including figures, faces, limbs, attributes and narrative architecture/landscape; exact native/serving appearance. Open single-sided sheet with unrecorded physical backing/reverse and cut surroundings. Scope is a relief/front detail from a modern exterior bronze copy.",
+      "views": [
+        {
+          "mode": "native-source",
+          "key": "FRONT",
+          "sha256": "d526041bef62ad3e3f805d72be2a0e6f50609db5d44f0bdc6f11339b5aec4342",
+          "bytes": 1000501
+        },
+        {
+          "mode": "native-source",
+          "key": "RIGHT",
+          "sha256": "f19c1ba47607747247cd3c4476ffa75085de66717ecc0517861524193fc434bc",
+          "bytes": 254856
+        },
+        {
+          "mode": "native-source",
+          "key": "REVERSE",
+          "sha256": "176baab6beb7a6382cf15b9828ce5c1191038a1f332f4344cbbafbd9abb69b7a",
+          "bytes": 93220
+        },
+        {
+          "mode": "native-source",
+          "key": "LEFT",
+          "sha256": "6c10030166ec30cd94d8ce20b1c85f437ad515d0028e2e83a057334937f1fdfa",
+          "bytes": 261391
+        },
+        {
+          "mode": "native-source",
+          "key": "ABOVE",
+          "sha256": "65f761d87605e47061bdd690e7ab46702c3559eaff013ff0f780b096966b206c",
+          "bytes": 189183
+        },
+        {
+          "mode": "native-source",
+          "key": "UNDERSIDE",
+          "sha256": "9be2aaef8c9e1ba559dc0b9eda267b3994ffbc6728aca07dc8a7f8452a58e8fd",
+          "bytes": 149619
+        },
+        {
+          "mode": "native-source",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "ae1d5ec9d2bcdde19bf8f4130ea92bbb41c68d0b6e2f8ce2e636cbbd7e248b30",
+          "bytes": 861055
+        },
+        {
+          "mode": "native-source",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "e06e4327c60c63a12477540fefe7e2a20541f5129a6553061e4b193d59ba7245",
+          "bytes": 131144
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "sha256": "d526041bef62ad3e3f805d72be2a0e6f50609db5d44f0bdc6f11339b5aec4342",
+          "bytes": 1000501
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "sha256": "f19c1ba47607747247cd3c4476ffa75085de66717ecc0517861524193fc434bc",
+          "bytes": 254856
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "sha256": "176baab6beb7a6382cf15b9828ce5c1191038a1f332f4344cbbafbd9abb69b7a",
+          "bytes": 93220
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "sha256": "6c10030166ec30cd94d8ce20b1c85f437ad515d0028e2e83a057334937f1fdfa",
+          "bytes": 261391
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "sha256": "65f761d87605e47061bdd690e7ab46702c3559eaff013ff0f780b096966b206c",
+          "bytes": 189183
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "sha256": "9be2aaef8c9e1ba559dc0b9eda267b3994ffbc6728aca07dc8a7f8452a58e8fd",
+          "bytes": 149619
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "ae1d5ec9d2bcdde19bf8f4130ea92bbb41c68d0b6e2f8ce2e636cbbd7e248b30",
+          "bytes": 861055
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "e06e4327c60c63a12477540fefe7e2a20541f5129a6553061e4b193d59ba7245",
+          "bytes": 131144
+        }
+      ],
+      "captureLabel": "iPhone 13 capture by chabychab at the Florence Baptistery. This is the sculpted front of a 1990 Frilli Gallery exterior bronze copy after Ghiberti. The narrative relief face is recorded; the complete door is outside this capture. The surface is single-sided: the physical backing, reverse and panel thickness are not recorded, and only thin slivers or no surface appear from behind.",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0,
+          0,
+          1
+        ],
+        "status": "manual",
+        "note": "Upright Y-up basis and recorded sculpted front reviewed in eight paired source/serving directions. Opening camera selects an already reviewed direction."
+      },
+      "contact": {
+        "sha256": "4e741b9633656945021aa918fea11cca19a7d37f6766f4229eff6fb894996f9d",
+        "bytes": 170728
+      },
+      "thumbnail": {
+        "sha256": "002bbdbea327b580dd5ece427763614efcd0a73b89c075d70d9fd5f7cb10fb5c",
+        "bytes": 99934
+      },
+      "poster": {
+        "sha256": "e01d2a1d991faf96477ec75db66a1a8aed862f84668641bad98b3509c7727f63",
+        "bytes": 133686
+      },
+      "finalThumbnailActuallyReviewed": true
+    },
+    {
+      "slug": "europe/ghiberti-christ-doctors-north-door-replica-6d64ab",
+      "sourceUid": "6d64abe14f594ac9a047e50f3c88be09",
+      "title": "Christ among the Doctors in the Temple (2016 exterior bronze copy)",
+      "original": {
+        "url": "https://sketchfab.com/3d-models/6d64abe14f594ac9a047e50f3c88be09",
+        "sha256": "0a9d39adfa8e9753c3d07ecc5245899da28943557f8f544888627ed659b8865c",
+        "bytes": 27947588,
+        "representation": "Unchanged authenticated Sketchfab distribution GLB, verified against the source-only acquisition receipt; uploader-native authoring package not asserted."
+      },
+      "sourceUrl": "https://sketchfab.com/3d-models/6d64abe14f594ac9a047e50f3c88be09",
+      "primaryRecord": "https://catalogo.duomo.firenze.it/operedarte/4361",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "licenseScope": "The current exact-UID Sketchfab record grants CC BY 4.0 for the uploader’s downloadable capture. The complete authenticated distribution GLB is bound to its measured SHA-256 and byte count by the source-only acquisition receipt. This is a current provider grant; no historical Objaverse grant or uploader-native authoring package is asserted.",
+      "scanAuthor": "chabychab",
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/europe/ghiberti-christ-doctors-north-door-replica-6d64ab/preview-0a9d39adfa8e.glb",
+        "sha256": "0a9d39adfa8e9753c3d07ecc5245899da28943557f8f544888627ed659b8865c",
+        "bytes": 27947588
+      },
+      "rawSourceFaces": 253749,
+      "rawPreviewFaces": 253749,
+      "measuredTopology": {
+        "source": {
+          "loadedRawFaces": 253749,
+          "measured": {
+            "faces": 253749,
+            "bratio": 0.005,
+            "ncomp": 1,
+            "largest_frac": 1
+          },
+          "status": "pass"
+        },
+        "preview": {
+          "loadedRawFaces": 253749,
+          "measured": {
+            "faces": 253749,
+            "bratio": 0.005,
+            "ncomp": 1,
+            "largest_frac": 1
+          },
+          "status": "pass"
+        }
+      },
+      "materialAppearance": "Exact unchanged source materials, textures and colors.",
+      "processing": {
+        "tool": "Unchanged original serving copy",
+        "geometryCompression": "none added; incoming compression retained only when source-compatible",
+        "textureCompression": "none added",
+        "simplificationApplied": false,
+        "geometryAndTextureResolutionUnchanged": true,
+        "servingIdenticalToOriginal": true,
+        "materialWorkflowConversion": "none",
+        "sourceReferenceQualification": "Unchanged incoming GLB reference. Source is the acquired distribution GLB; uploader-native authoring or scan-master package not asserted.",
+        "noAutomaticPose": true,
+        "noCropping": true,
+        "noManualRecoloringOrRepair": true
+      },
+      "visualDecision": "Complete coherent sculpted front, including figures, faces, limbs, attributes and narrative architecture/landscape; exact native/serving appearance. Open single-sided sheet with unrecorded physical backing/reverse and cut surroundings. Scope is a relief/front detail from a modern exterior bronze copy.",
+      "views": [
+        {
+          "mode": "native-source",
+          "key": "FRONT",
+          "sha256": "994a8352bb70d6de70706d47641c216c5a37a4c15448197bfce77c84360e628b",
+          "bytes": 1151545
+        },
+        {
+          "mode": "native-source",
+          "key": "RIGHT",
+          "sha256": "e3f8a9b8899bf04c91b5f767d551accbafd5ca3306fb9bfa4dd23f10f4587796",
+          "bytes": 283647
+        },
+        {
+          "mode": "native-source",
+          "key": "REVERSE",
+          "sha256": "9d3db88c71dfe2eb6ca6a73d05192b1381fa309b3b0837caa0bb818e42a751e3",
+          "bytes": 138707
+        },
+        {
+          "mode": "native-source",
+          "key": "LEFT",
+          "sha256": "5688450e89ce361b5b3009ff19a366f7368170ec94dd2bd679aa26bcc9f2d4d5",
+          "bytes": 285260
+        },
+        {
+          "mode": "native-source",
+          "key": "ABOVE",
+          "sha256": "a04160c5a958e3ecb08af0ad1fbe32d32461ba601c12cf82ee47e5e3beffb9b0",
+          "bytes": 175569
+        },
+        {
+          "mode": "native-source",
+          "key": "UNDERSIDE",
+          "sha256": "e3ba2f3d997e488ccf5459fe57cff0b2a175b3514101387a120b1fe4cf8610d2",
+          "bytes": 166051
+        },
+        {
+          "mode": "native-source",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "f4d8e86b52d67f33e7fdc9637e1048d4b98db174022b94583629012166f8f7bb",
+          "bytes": 824267
+        },
+        {
+          "mode": "native-source",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "72d277f0ff9e7a734cad5adc78dfbd056ca2e188a98baa7c2a083503da73166a",
+          "bytes": 240712
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "sha256": "994a8352bb70d6de70706d47641c216c5a37a4c15448197bfce77c84360e628b",
+          "bytes": 1151545
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "sha256": "e3f8a9b8899bf04c91b5f767d551accbafd5ca3306fb9bfa4dd23f10f4587796",
+          "bytes": 283647
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "sha256": "9d3db88c71dfe2eb6ca6a73d05192b1381fa309b3b0837caa0bb818e42a751e3",
+          "bytes": 138707
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "sha256": "5688450e89ce361b5b3009ff19a366f7368170ec94dd2bd679aa26bcc9f2d4d5",
+          "bytes": 285260
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "sha256": "a04160c5a958e3ecb08af0ad1fbe32d32461ba601c12cf82ee47e5e3beffb9b0",
+          "bytes": 175569
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "sha256": "e3ba2f3d997e488ccf5459fe57cff0b2a175b3514101387a120b1fe4cf8610d2",
+          "bytes": 166051
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "f4d8e86b52d67f33e7fdc9637e1048d4b98db174022b94583629012166f8f7bb",
+          "bytes": 824267
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "72d277f0ff9e7a734cad5adc78dfbd056ca2e188a98baa7c2a083503da73166a",
+          "bytes": 240712
+        }
+      ],
+      "captureLabel": "iPhone 13 capture by chabychab at the Florence Baptistery. This is the sculpted front of a 2016 Frilli Gallery exterior bronze copy after Ghiberti. The narrative relief face is recorded; the complete door is outside this capture. The surface is single-sided: the physical backing, reverse and panel thickness are not recorded, and only thin slivers or no surface appear from behind.",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0,
+          0,
+          1
+        ],
+        "status": "manual",
+        "note": "Upright Y-up basis and recorded sculpted front reviewed in eight paired source/serving directions. Opening camera selects an already reviewed direction."
+      },
+      "contact": {
+        "sha256": "d0d35ed8fceb970aa601178815e1b5377ca844b5ad0f47876fc235540233be18",
+        "bytes": 185160
+      },
+      "thumbnail": {
+        "sha256": "67e44f4fea468468b24f84c5e76c77accbee9f6bd67178a2ddb45c73be50a515",
+        "bytes": 112898
+      },
+      "poster": {
+        "sha256": "1a498eaa779adcd9889dde3fd08e745fd1f6e00f404da169fcefbe4ca187a727",
+        "bytes": 150964
+      },
+      "finalThumbnailActuallyReviewed": true
+    },
+    {
+      "slug": "europe/ghiberti-saul-david-paradise-replica-da26f1",
+      "sourceUid": "da26f1fab68e42538c4b0b432133f74d",
+      "title": "Stories of Saul and David (1990 exterior bronze copy)",
+      "original": {
+        "url": "https://sketchfab.com/3d-models/da26f1fab68e42538c4b0b432133f74d",
+        "sha256": "5b96988af8c03e473868062189f017cbff3c34abc4f71681b206d0efd1ecec42",
+        "bytes": 2832512,
+        "representation": "Unchanged authenticated Sketchfab distribution GLB, verified against the source-only acquisition receipt; uploader-native authoring package not asserted."
+      },
+      "sourceUrl": "https://sketchfab.com/3d-models/da26f1fab68e42538c4b0b432133f74d",
+      "primaryRecord": "https://catalogo.duomo.firenze.it/operedarte/2854",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "licenseScope": "The current exact-UID Sketchfab record grants CC BY 4.0 for the uploader’s downloadable capture. The complete authenticated distribution GLB is bound to its measured SHA-256 and byte count by the source-only acquisition receipt. This is a current provider grant; no historical Objaverse grant or uploader-native authoring package is asserted.",
+      "scanAuthor": "chabychab",
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/europe/ghiberti-saul-david-paradise-replica-da26f1/preview-5b96988af8c0.glb",
+        "sha256": "5b96988af8c03e473868062189f017cbff3c34abc4f71681b206d0efd1ecec42",
+        "bytes": 2832512
+      },
+      "rawSourceFaces": 23574,
+      "rawPreviewFaces": 23574,
+      "measuredTopology": {
+        "source": {
+          "loadedRawFaces": 23574,
+          "measured": {
+            "faces": 23574,
+            "bratio": 0.03,
+            "ncomp": 1,
+            "largest_frac": 1
+          },
+          "status": "pass"
+        },
+        "preview": {
+          "loadedRawFaces": 23574,
+          "measured": {
+            "faces": 23574,
+            "bratio": 0.03,
+            "ncomp": 1,
+            "largest_frac": 1
+          },
+          "status": "pass"
+        }
+      },
+      "materialAppearance": "Exact unchanged source materials, textures and colors.",
+      "processing": {
+        "tool": "Unchanged original serving copy",
+        "geometryCompression": "none added; incoming compression retained only when source-compatible",
+        "textureCompression": "none added",
+        "simplificationApplied": false,
+        "geometryAndTextureResolutionUnchanged": true,
+        "servingIdenticalToOriginal": true,
+        "materialWorkflowConversion": "none",
+        "sourceReferenceQualification": "Unchanged incoming GLB reference. Source is the acquired distribution GLB; uploader-native authoring or scan-master package not asserted.",
+        "noAutomaticPose": true,
+        "noCropping": true,
+        "noManualRecoloringOrRepair": true
+      },
+      "visualDecision": "Complete coherent sculpted front, including figures, faces, limbs, attributes and narrative architecture/landscape; exact native/serving appearance. Open single-sided sheet with unrecorded physical backing/reverse and cut surroundings. Scope is a relief/front detail from a modern exterior bronze copy.",
+      "views": [
+        {
+          "mode": "native-source",
+          "key": "FRONT",
+          "sha256": "06bd16e678ba7eef68faf4462a788528e3c4280ff58901e22666a9d804f27e0b",
+          "bytes": 1039012
+        },
+        {
+          "mode": "native-source",
+          "key": "RIGHT",
+          "sha256": "9dd92510b904990d4b3e00bad724d56ba7541ddf65bd8e9dc572bbcf625cc93a",
+          "bytes": 241452
+        },
+        {
+          "mode": "native-source",
+          "key": "REVERSE",
+          "sha256": "f9a38b0a25072175573cd56a332ef6c62fede39c1acad811b1ab60450d7e3f9f",
+          "bytes": 92822
+        },
+        {
+          "mode": "native-source",
+          "key": "LEFT",
+          "sha256": "11ab6af65f73d228700ecf32f9190ca5d0c42a7ea872d1e73a70c38ea27a76e3",
+          "bytes": 252794
+        },
+        {
+          "mode": "native-source",
+          "key": "ABOVE",
+          "sha256": "4c19c6bc6e00548050e5f51320eec8841c65b77d4eb7c441cf63beb68313f84e",
+          "bytes": 146130
+        },
+        {
+          "mode": "native-source",
+          "key": "UNDERSIDE",
+          "sha256": "288c12ddba50a9b518e1148009aea02e4da89867d0f5b3594660cbe9dacc2fee",
+          "bytes": 142108
+        },
+        {
+          "mode": "native-source",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "fc2b3ca6a21de1105fe896829dcf174ae69c576d30709a1daffd947392747e3c",
+          "bytes": 887528
+        },
+        {
+          "mode": "native-source",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "061c25576eb0da66b6e2e8a5fd959cd546e3a63fc3f740cf481b1e2eee42e402",
+          "bytes": 120673
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "sha256": "06bd16e678ba7eef68faf4462a788528e3c4280ff58901e22666a9d804f27e0b",
+          "bytes": 1039012
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "sha256": "9dd92510b904990d4b3e00bad724d56ba7541ddf65bd8e9dc572bbcf625cc93a",
+          "bytes": 241452
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "sha256": "f9a38b0a25072175573cd56a332ef6c62fede39c1acad811b1ab60450d7e3f9f",
+          "bytes": 92822
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "sha256": "11ab6af65f73d228700ecf32f9190ca5d0c42a7ea872d1e73a70c38ea27a76e3",
+          "bytes": 252794
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "sha256": "4c19c6bc6e00548050e5f51320eec8841c65b77d4eb7c441cf63beb68313f84e",
+          "bytes": 146130
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "sha256": "288c12ddba50a9b518e1148009aea02e4da89867d0f5b3594660cbe9dacc2fee",
+          "bytes": 142108
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "fc2b3ca6a21de1105fe896829dcf174ae69c576d30709a1daffd947392747e3c",
+          "bytes": 887528
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "061c25576eb0da66b6e2e8a5fd959cd546e3a63fc3f740cf481b1e2eee42e402",
+          "bytes": 120673
+        }
+      ],
+      "captureLabel": "iPhone 13 capture by chabychab at the Florence Baptistery. This is the sculpted front of a 1990 Frilli Gallery exterior bronze copy after Ghiberti. The narrative relief face is recorded; the complete door is outside this capture. The surface is single-sided: the physical backing, reverse and panel thickness are not recorded, and only thin slivers or no surface appear from behind.",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0,
+          0,
+          1
+        ],
+        "status": "manual",
+        "note": "Upright Y-up basis and recorded sculpted front reviewed in eight paired source/serving directions. Opening camera selects an already reviewed direction."
+      },
+      "contact": {
+        "sha256": "254c75bd580a9e6a86f1792f3f9006d96af0d0f594280902d2705ed31ccacb86",
+        "bytes": 170720
+      },
+      "thumbnail": {
+        "sha256": "c8a63ab91cda3f49534ca7c956519639fdf1861f78ad1aa763b6a855c455674f",
+        "bytes": 106622
+      },
+      "poster": {
+        "sha256": "74339595fad3f70450195a48da95988f6d2e94dfe633782a2fce1590f9d5630b",
+        "bytes": 142570
+      },
+      "finalThumbnailActuallyReviewed": true
+    }
+  ],
+  "physicalDimensionsUnknown": true,
+  "exactSizeArEligible": false,
+  "featuredSelectionUnchanged": true,
+  "sourceCleanupPerformed": false,
+  "checkedAt": "2026-10-27T02:51:03.646Z"
+}

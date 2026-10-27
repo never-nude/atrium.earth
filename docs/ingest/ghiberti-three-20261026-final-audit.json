@@ -1,0 +1,416 @@
+{
+  "schema": "atrium-independent-final-audit/1",
+  "batch": "ghiberti-three-20261026",
+  "baselineCommit": "68aaf3cc99269f61e8a83a90cb9651ac9ca9f683",
+  "checkedAt": "2026-10-27T02:58:45.482934+00:00",
+  "status": "pass",
+  "catalogCounts": {
+    "before": 2397,
+    "added": 3,
+    "after": 2400,
+    "publicAfter": 2382,
+    "hiddenAfter": 18
+  },
+  "checks": {
+    "exactApprovedThree": true,
+    "explicitFinalAcceptance": true,
+    "exactFrozenSelectionAndReceipt": true,
+    "exact2397PlusThree": true,
+    "all2397OldRowsUnchangedExceptTotal": true,
+    "catalogIndicesTotalsAndPublicHidden": true,
+    "threeNewDistinctCompositions": true,
+    "previewsAppendOnlyThree": true,
+    "appearance-overridesAppendOnlyThree": true,
+    "orientationsAppendOnlyThree": true,
+    "physical-dimensionsAppendOnlyThree": true,
+    "spatial-eligibilityAppendOnlyThree": true,
+    "rendersAppendOnlyThree": true,
+    "additionsUnchanged": true,
+    "featured-worksUnchanged": true,
+    "material-appearancesUnchanged": true,
+    "display-recommendationsUnchanged": true,
+    "identity-correctionsUnchanged": true,
+    "spatial-display-defaultsUnchanged": true,
+    "featured250Homepage193AndBudgetPool192Unchanged": true,
+    "curationExactlyThreeBodyAppendsNoCoversOrOtherChanges": true,
+    "ingestOnlyAuthorizedSmallGroupParagraph": true,
+    "finalScopeReportFullBinding": true,
+    "pairedRendererBindingsCurrent": true,
+    "pairedInputAndStagedDataBindings": true,
+    "preflightRendererBindingsCurrent": true,
+    "preflightInputAndStagedDataBindings": true,
+    "allSelectedMetadataAndEvidencePass": true,
+    "sixWarningsAndNonzeroTeardownDisclosed": true,
+    "ninePreflightAnd48PairedFramesComplete": true,
+    "noRuntimeSourcePriorAssetsOrOtherDataEdits": true,
+    "allPriorPublicReportsPreserved": true
+  },
+  "works": [
+    {
+      "slug": "europe/ghiberti-solomon-sheba-paradise-replica-68b644",
+      "sourceUid": "68b644101e5c43d49e27d989d2b78da8",
+      "title": "Meeting of Solomon and the Queen of Sheba (1990 exterior bronze copy)",
+      "checks": {
+        "fullOriginalReferenceServingBytesIdentical": true,
+        "catalogAndPublicServingPinsMatch": true,
+        "sourceCurrentGrant": true,
+        "currentGrantNoHistoricalAssumption": true,
+        "actualAuthorCredit": true,
+        "allGeometryAppearanceUnchanged": true,
+        "rawFaceCountsConsistent": true,
+        "unchangedMeasuredIntegrityGates": true,
+        "all16FullFramesHashBytesBound": true,
+        "finalReview16FramePinsBound": true,
+        "all3NativePreflightFramesHashBytesBound": true,
+        "all8SourceServingFramePairsImageIdentical": true,
+        "actualRuntimeSourceServingGeometryAndAppearanceMatch": true,
+        "localLifecycleWarningsNarrowlyQualified": true,
+        "contactHashBytesBound": true,
+        "finalThumbAndPosterHashBytesBound": true,
+        "captureLabelBoundAndSanitizerSafe": true,
+        "singleSidedReliefLimitsVisible": true,
+        "unknownSizeAndArDisabled": true,
+        "modernCopyTitleDateExecutionCredit": true,
+        "primaryExactSceneAndOriginalDataNotBorrowed": true,
+        "manufactureOriginEuropeQualified": true,
+        "uprightYUpPositiveZOpeningCamera": true
+      },
+      "original": {
+        "url": "https://sketchfab.com/3d-models/68b644101e5c43d49e27d989d2b78da8",
+        "sha256": "fd3193ba06e0354f8b8eddbda67d7f575fb119fdad9d066af073cd691f911e21",
+        "bytes": 3237148,
+        "representation": "Unchanged authenticated Sketchfab distribution GLB, verified against the source-only acquisition receipt; uploader-native authoring package not asserted."
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/europe/ghiberti-solomon-sheba-paradise-replica-68b644/preview-fd3193ba06e0.glb",
+        "sha256": "fd3193ba06e0354f8b8eddbda67d7f575fb119fdad9d066af073cd691f911e21",
+        "bytes": 3237148
+      },
+      "currentGrant": {
+        "url": "https://sketchfab.com/3d-models/68b644101e5c43d49e27d989d2b78da8",
+        "metadataUrl": "https://api.sketchfab.com/v3/models/68b644101e5c43d49e27d989d2b78da8",
+        "license": "CC BY 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "publisher": "chabychab",
+        "qualification": "Current exact-UID grant for the authenticated downloaded distribution. No historical grant assumption.",
+        "metadataSnapshot": {
+          "uid": "68b644101e5c43d49e27d989d2b78da8",
+          "bytes": 5290,
+          "sha256": "5eb13255adc36b434d0abcfd7303a9e75cb16ae467c61e2fbd6ad3c1be4f91db"
+        }
+      },
+      "rawSourceFaces": 27968,
+      "rawServingFaces": 27968,
+      "fidelityProof": {
+        "completeOriginalReferenceAndServingBytesIdentical": true,
+        "qualification": "Independent complete SHA-256 and exact byte-count comparison. Identical complete GLBs retain every geometry accessor, transform, scene mapping, embedded image, texture and material byte.",
+        "processingRecordedChecks": {
+          "allDecodedGeometryFingerprintsEqual": true,
+          "allAccessorArraysAndMultiplicityEqual": true,
+          "rawNodeTransformsAndSceneMappingExact": true,
+          "sameTextureCountAndResolution": true,
+          "completeOriginalReferenceAndServingBytesIdentical": true,
+          "allImageContentIdentical": true
+        }
+      },
+      "nativePreflightFramesVerified": 3,
+      "fullPairedFramesVerified": 16,
+      "imageIdenticalDirectionPairs": 8,
+      "contact": {
+        "sha256": "4e741b9633656945021aa918fea11cca19a7d37f6766f4229eff6fb894996f9d",
+        "bytes": 170728
+      },
+      "thumbnail": {
+        "sha256": "002bbdbea327b580dd5ece427763614efcd0a73b89c075d70d9fd5f7cb10fb5c",
+        "bytes": 99934
+      },
+      "poster": {
+        "sha256": "e01d2a1d991faf96477ec75db66a1a8aed862f84668641bad98b3509c7727f63",
+        "bytes": 133686
+      },
+      "actualIndependentInspection": {
+        "allEightDirectionContactViewed": true,
+        "finalThumbnailViewed": true,
+        "decision": "PASS for recorded sculpted front only; source and serving appearance match. Physical backing, reverse and panel thickness are unrecorded. Thin slivers or no surfaces from behind are accurately disclosed."
+      },
+      "captureLabel": "iPhone 13 capture by chabychab at the Florence Baptistery. This is the sculpted front of a 1990 Frilli Gallery exterior bronze copy after Ghiberti. The narrative relief face is recorded; the complete door is outside this capture. The surface is single-sided: the physical backing, reverse and panel thickness are not recorded, and only thin slivers or no surface appear from behind.",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0,
+          0,
+          1
+        ],
+        "status": "manual",
+        "note": "Upright Y-up basis and recorded sculpted front reviewed in eight paired source/serving directions. Opening camera selects an already reviewed direction."
+      },
+      "localLifecycleWarnings": 2
+    },
+    {
+      "slug": "europe/ghiberti-christ-doctors-north-door-replica-6d64ab",
+      "sourceUid": "6d64abe14f594ac9a047e50f3c88be09",
+      "title": "Christ among the Doctors in the Temple (2016 exterior bronze copy)",
+      "checks": {
+        "fullOriginalReferenceServingBytesIdentical": true,
+        "catalogAndPublicServingPinsMatch": true,
+        "sourceCurrentGrant": true,
+        "currentGrantNoHistoricalAssumption": true,
+        "actualAuthorCredit": true,
+        "allGeometryAppearanceUnchanged": true,
+        "rawFaceCountsConsistent": true,
+        "unchangedMeasuredIntegrityGates": true,
+        "all16FullFramesHashBytesBound": true,
+        "finalReview16FramePinsBound": true,
+        "all3NativePreflightFramesHashBytesBound": true,
+        "all8SourceServingFramePairsImageIdentical": true,
+        "actualRuntimeSourceServingGeometryAndAppearanceMatch": true,
+        "localLifecycleWarningsNarrowlyQualified": true,
+        "contactHashBytesBound": true,
+        "finalThumbAndPosterHashBytesBound": true,
+        "captureLabelBoundAndSanitizerSafe": true,
+        "singleSidedReliefLimitsVisible": true,
+        "unknownSizeAndArDisabled": true,
+        "modernCopyTitleDateExecutionCredit": true,
+        "primaryExactSceneAndOriginalDataNotBorrowed": true,
+        "manufactureOriginEuropeQualified": true,
+        "uprightYUpPositiveZOpeningCamera": true
+      },
+      "original": {
+        "url": "https://sketchfab.com/3d-models/6d64abe14f594ac9a047e50f3c88be09",
+        "sha256": "0a9d39adfa8e9753c3d07ecc5245899da28943557f8f544888627ed659b8865c",
+        "bytes": 27947588,
+        "representation": "Unchanged authenticated Sketchfab distribution GLB, verified against the source-only acquisition receipt; uploader-native authoring package not asserted."
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/europe/ghiberti-christ-doctors-north-door-replica-6d64ab/preview-0a9d39adfa8e.glb",
+        "sha256": "0a9d39adfa8e9753c3d07ecc5245899da28943557f8f544888627ed659b8865c",
+        "bytes": 27947588
+      },
+      "currentGrant": {
+        "url": "https://sketchfab.com/3d-models/6d64abe14f594ac9a047e50f3c88be09",
+        "metadataUrl": "https://api.sketchfab.com/v3/models/6d64abe14f594ac9a047e50f3c88be09",
+        "license": "CC BY 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "publisher": "chabychab",
+        "qualification": "Current exact-UID grant for the authenticated downloaded distribution. No historical grant assumption.",
+        "metadataSnapshot": {
+          "uid": "6d64abe14f594ac9a047e50f3c88be09",
+          "bytes": 5148,
+          "sha256": "f303ad7daf0fc9facbed2638cb5ade7af22b9214dccf31d248ba035ff408d6db"
+        }
+      },
+      "rawSourceFaces": 253749,
+      "rawServingFaces": 253749,
+      "fidelityProof": {
+        "completeOriginalReferenceAndServingBytesIdentical": true,
+        "qualification": "Independent complete SHA-256 and exact byte-count comparison. Identical complete GLBs retain every geometry accessor, transform, scene mapping, embedded image, texture and material byte.",
+        "processingRecordedChecks": {
+          "allDecodedGeometryFingerprintsEqual": true,
+          "allAccessorArraysAndMultiplicityEqual": true,
+          "rawNodeTransformsAndSceneMappingExact": true,
+          "sameTextureCountAndResolution": true,
+          "completeOriginalReferenceAndServingBytesIdentical": true,
+          "allImageContentIdentical": true
+        }
+      },
+      "nativePreflightFramesVerified": 3,
+      "fullPairedFramesVerified": 16,
+      "imageIdenticalDirectionPairs": 8,
+      "contact": {
+        "sha256": "d0d35ed8fceb970aa601178815e1b5377ca844b5ad0f47876fc235540233be18",
+        "bytes": 185160
+      },
+      "thumbnail": {
+        "sha256": "67e44f4fea468468b24f84c5e76c77accbee9f6bd67178a2ddb45c73be50a515",
+        "bytes": 112898
+      },
+      "poster": {
+        "sha256": "1a498eaa779adcd9889dde3fd08e745fd1f6e00f404da169fcefbe4ca187a727",
+        "bytes": 150964
+      },
+      "actualIndependentInspection": {
+        "allEightDirectionContactViewed": true,
+        "finalThumbnailViewed": true,
+        "decision": "PASS for recorded sculpted front only; source and serving appearance match. Physical backing, reverse and panel thickness are unrecorded. Thin slivers or no surfaces from behind are accurately disclosed."
+      },
+      "captureLabel": "iPhone 13 capture by chabychab at the Florence Baptistery. This is the sculpted front of a 2016 Frilli Gallery exterior bronze copy after Ghiberti. The narrative relief face is recorded; the complete door is outside this capture. The surface is single-sided: the physical backing, reverse and panel thickness are not recorded, and only thin slivers or no surface appear from behind.",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0,
+          0,
+          1
+        ],
+        "status": "manual",
+        "note": "Upright Y-up basis and recorded sculpted front reviewed in eight paired source/serving directions. Opening camera selects an already reviewed direction."
+      },
+      "localLifecycleWarnings": 2
+    },
+    {
+      "slug": "europe/ghiberti-saul-david-paradise-replica-da26f1",
+      "sourceUid": "da26f1fab68e42538c4b0b432133f74d",
+      "title": "Stories of Saul and David (1990 exterior bronze copy)",
+      "checks": {
+        "fullOriginalReferenceServingBytesIdentical": true,
+        "catalogAndPublicServingPinsMatch": true,
+        "sourceCurrentGrant": true,
+        "currentGrantNoHistoricalAssumption": true,
+        "actualAuthorCredit": true,
+        "allGeometryAppearanceUnchanged": true,
+        "rawFaceCountsConsistent": true,
+        "unchangedMeasuredIntegrityGates": true,
+        "all16FullFramesHashBytesBound": true,
+        "finalReview16FramePinsBound": true,
+        "all3NativePreflightFramesHashBytesBound": true,
+        "all8SourceServingFramePairsImageIdentical": true,
+        "actualRuntimeSourceServingGeometryAndAppearanceMatch": true,
+        "localLifecycleWarningsNarrowlyQualified": true,
+        "contactHashBytesBound": true,
+        "finalThumbAndPosterHashBytesBound": true,
+        "captureLabelBoundAndSanitizerSafe": true,
+        "singleSidedReliefLimitsVisible": true,
+        "unknownSizeAndArDisabled": true,
+        "modernCopyTitleDateExecutionCredit": true,
+        "primaryExactSceneAndOriginalDataNotBorrowed": true,
+        "manufactureOriginEuropeQualified": true,
+        "uprightYUpPositiveZOpeningCamera": true
+      },
+      "original": {
+        "url": "https://sketchfab.com/3d-models/da26f1fab68e42538c4b0b432133f74d",
+        "sha256": "5b96988af8c03e473868062189f017cbff3c34abc4f71681b206d0efd1ecec42",
+        "bytes": 2832512,
+        "representation": "Unchanged authenticated Sketchfab distribution GLB, verified against the source-only acquisition receipt; uploader-native authoring package not asserted."
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/europe/ghiberti-saul-david-paradise-replica-da26f1/preview-5b96988af8c0.glb",
+        "sha256": "5b96988af8c03e473868062189f017cbff3c34abc4f71681b206d0efd1ecec42",
+        "bytes": 2832512
+      },
+      "currentGrant": {
+        "url": "https://sketchfab.com/3d-models/da26f1fab68e42538c4b0b432133f74d",
+        "metadataUrl": "https://api.sketchfab.com/v3/models/da26f1fab68e42538c4b0b432133f74d",
+        "license": "CC BY 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "publisher": "chabychab",
+        "qualification": "Current exact-UID grant for the authenticated downloaded distribution. No historical grant assumption.",
+        "metadataSnapshot": {
+          "uid": "da26f1fab68e42538c4b0b432133f74d",
+          "bytes": 6092,
+          "sha256": "efb08cd0bec3c98bc0acc329519e68f95c265e98550d0c1df27dd8e04ab3fa4b"
+        }
+      },
+      "rawSourceFaces": 23574,
+      "rawServingFaces": 23574,
+      "fidelityProof": {
+        "completeOriginalReferenceAndServingBytesIdentical": true,
+        "qualification": "Independent complete SHA-256 and exact byte-count comparison. Identical complete GLBs retain every geometry accessor, transform, scene mapping, embedded image, texture and material byte.",
+        "processingRecordedChecks": {
+          "allDecodedGeometryFingerprintsEqual": true,
+          "allAccessorArraysAndMultiplicityEqual": true,
+          "rawNodeTransformsAndSceneMappingExact": true,
+          "sameTextureCountAndResolution": true,
+          "completeOriginalReferenceAndServingBytesIdentical": true,
+          "allImageContentIdentical": true
+        }
+      },
+      "nativePreflightFramesVerified": 3,
+      "fullPairedFramesVerified": 16,
+      "imageIdenticalDirectionPairs": 8,
+      "contact": {
+        "sha256": "254c75bd580a9e6a86f1792f3f9006d96af0d0f594280902d2705ed31ccacb86",
+        "bytes": 170720
+      },
+      "thumbnail": {
+        "sha256": "c8a63ab91cda3f49534ca7c956519639fdf1861f78ad1aa763b6a855c455674f",
+        "bytes": 106622
+      },
+      "poster": {
+        "sha256": "74339595fad3f70450195a48da95988f6d2e94dfe633782a2fce1590f9d5630b",
+        "bytes": 142570
+      },
+      "actualIndependentInspection": {
+        "allEightDirectionContactViewed": true,
+        "finalThumbnailViewed": true,
+        "decision": "PASS for recorded sculpted front only; source and serving appearance match. Physical backing, reverse and panel thickness are unrecorded. Thin slivers or no surfaces from behind are accurately disclosed."
+      },
+      "captureLabel": "iPhone 13 capture by chabychab at the Florence Baptistery. This is the sculpted front of a 1990 Frilli Gallery exterior bronze copy after Ghiberti. The narrative relief face is recorded; the complete door is outside this capture. The surface is single-sided: the physical backing, reverse and panel thickness are not recorded, and only thin slivers or no surface appear from behind.",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0,
+          0,
+          1
+        ],
+        "status": "manual",
+        "note": "Upright Y-up basis and recorded sculpted front reviewed in eight paired source/serving directions. Opening camera selects an already reviewed direction."
+      },
+      "localLifecycleWarnings": 2
+    }
+  ],
+  "visualCounts": {
+    "nativePreflightFramesVerified": 9,
+    "fullPairedFramesVerified": 48,
+    "imageIdenticalDirectionPairs": 24,
+    "contactsActuallyViewed": 3,
+    "finalThumbnailsActuallyViewed": 3,
+    "finalPostersVerified": 3
+  },
+  "runtimeQualification": "All48 paired frames and3contacts completed with positive source geometry/materials, no page errors and24 image-identical native/serving pairs. Six narrowly classified local model/Draco ERR_ABORTED lifecycle warnings remain in the evidence. Browser teardown exceeded15seconds after completed rendering and returned a nonzero process status; the audit does not claim a clean renderer process exit.",
+  "featuredAndHome": {
+    "featuredWorksUnchanged": 250,
+    "homepageApprovalFlagsUnchanged": 193,
+    "homepageModelsUnderExisting15MiBBudgetUnchanged": 192,
+    "productionSelectorTest": "node scripts/test-featured-selection.mjs passed. An initial audit check confused approval flags with the loading-budget pool; the corrected check verifies both counts against baseline without data or budget changes."
+  },
+  "curation": {
+    "bodyAppendsOnly": 3,
+    "placements": [
+      {
+        "exhibition": "the-work-of-the-surface",
+        "sourceUid": "68b644101e5c43d49e27d989d2b78da8"
+      },
+      {
+        "exhibition": "power-and-presence",
+        "sourceUid": "6d64abe14f594ac9a047e50f3c88be09"
+      },
+      {
+        "exhibition": "the-price-of-victory",
+        "sourceUid": "da26f1fab68e42538c4b0b432133f74d"
+      }
+    ],
+    "priorCaptionsCoversFeaturedAndHomepagePreserved": true
+  },
+  "primaryIdentityQualification": "The captured objects are1990 Gates of Paradise and2016 North Door exterior bronze copies by Frilli Gallery after Ghiberti. Exact original-composition catalogue records2941,4361,2854 establish scene identity and original chronology. Original accession numbers and measurements are not transferred to the modern captures. Dimensions and physical GLB scale remain unknown; exact-size AR is disabled.",
+  "finalReview": {
+    "file": "docs/ingest/ghiberti-three-20261026-final-review.json",
+    "bytes": 25177,
+    "sha256": "c29b94bea9a7a5a6d6ed8f6ab88c9074fed94a40547b59327e10ac8b3c9c39cb"
+  },
+  "pairedReport": {
+    "bytes": 119707,
+    "sha256": "36d24be73965a34086920019218fecbb84ddfcb594396a25d9fb95fef03aa86f"
+  },
+  "preflightReport": {
+    "bytes": 54711,
+    "sha256": "b1ddcc0dae9cc048fb241a853317dc5cdb44b4f935445d5e62bf15cbcd3d6308"
+  },
+  "scope": "Independent local integration, exact source/current-license and full source/serving/review-asset pins, plus actual image inspection. Private archive/cloud proof, R2 upload, build completion and live deployment are separate checks owned by the release and archive operators. No runtime, source, settings or prior asset was changed by this audit."
+}
