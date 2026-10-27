@@ -154,7 +154,8 @@ function initializeExplorer(explorer) {
     const title = card.querySelector('h3')?.textContent?.trim() || '';
     const makerLabel = card.dataset.makerLabel || card.querySelector('.v3-card__copy p')?.textContent?.split('·')[0]?.trim() || '';
     const rawYear = card.dataset.year?.trim();
-    return { card, index, title, makerLabel, maker: card.dataset.maker || '', year: rawYear && Number.isFinite(Number(rawYear)) ? Number(rawYear) : null,
+    const rawIndex = Number(card.dataset.studioIndex);
+    return { card, index, catalogIndex: Number.isFinite(rawIndex) && rawIndex > 0 ? rawIndex : index, ingested: card.dataset.studioIngested || '', title, makerLabel, maker: card.dataset.maker || '', year: rawYear && Number.isFinite(Number(rawYear)) ? Number(rawYear) : null,
       search: normalize(`${card.dataset.search || ''} ${title} ${makerLabel}`), pathname: workPath(card.querySelector('a[href]')?.href || ''),
       facets: Object.fromEntries(FILTER_KEYS.map(key => [key, card.dataset[key] || ''])) };
   });
@@ -254,7 +255,7 @@ function initializeExplorer(explorer) {
     if (sort !== currentSort) {
       if (activePeek) closePeek();
       if (!sorted.has(sort)) sorted.set(sort, [...records].sort((a, b) => {
-        if (sort === 'newest') return b.index - a.index;
+        if (sort === 'newest') return a.ingested !== b.ingested ? b.ingested.localeCompare(a.ingested) : b.catalogIndex - a.catalogIndex;
         if (sort === 'date') return (a.year ?? Infinity) - (b.year ?? Infinity) || a.index - b.index;
         return collator.compare(sort === 'maker' ? a.makerLabel : a.title, sort === 'maker' ? b.makerLabel : b.title) || a.index - b.index;
       }));

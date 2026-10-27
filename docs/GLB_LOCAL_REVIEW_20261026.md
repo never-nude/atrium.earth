@@ -1,6 +1,6 @@
 # Local GLB quality review — 26 October 2026
 
-Six existing works have higher-detail serving candidates staged locally. **These upgrades have not been uploaded to production or deployed.** The integration owner has reviewed all six actual local whole-figure renders in 1000 × 1250 screenshots. Fresh 720 × 900 WebP thumbnails and SVG posters have been generated. Native app checks loaded all six models at a 390 px mobile viewport without overflow, with readable 350 px records and source paths. Desktop David and Laocoön load, orbit and reset checks also passed. These scoped local checks precede the final rebuild.
+Six existing works have higher-detail serving candidates staged locally. **This document began as the approved local review; current publication status is recorded below.** The integration owner has reviewed all six actual local whole-figure renders in 1000 × 1250 screenshots. Fresh 720 × 900 WebP thumbnails and SVG posters have been generated. Native app checks loaded all six models at a 390 px mobile viewport without overflow, with readable 350 px records and source paths. Desktop David and Laocoön load, orbit and reset checks also passed. These scoped local checks precede the final rebuild.
 
 Previous triangle counts were measured from the delivered GLBs. New counts match the selected files and their geometry proofs.
 
@@ -28,3 +28,7 @@ Additions, featured-selection and asset checks pass. The global dimensions test 
 Source records: [Apollo / SMK](https://api.smk.dk/api/v1/art?object_number=KAS353&lang=en), [Doryphoros / SMK](https://api.smk.dk/api/v1/art?object_number=KAS11&lang=en), [Artemision / SMK](https://api.smk.dk/api/v1/art?object_number=KAS2100&lang=en), [Kore / SMK](https://api.smk.dk/api/v1/art?object_number=KAS1800&lang=en), [David / Commons](https://commons.wikimedia.org/wiki/File:David_(Michelangelo).stl), [Laocoön / Commons](https://commons.wikimedia.org/wiki/File:Ubekendt,_Laokoon_og_hans_to_s%C3%B8nner_dr%C3%A6bes_af_slanger,_,_KAS385,_Statens_Museum_for_Kunst,_3D_model.stl).
 
 Reuse terms: [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/), [Public Domain Mark 1.0](https://creativecommons.org/publicdomain/mark/1.0/), [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
+
+## Publication preparation
+
+The owner approved the local result and authorized the native Studio UI plus all six model upgrades after the other artist upload round finished. That round is complete, and its final Carpeaux/Thorvaldsen records, assets, settings and verification notes are reconciled through main `68aaf3cc`. All six immutable model URLs have fresh complete SHA-256/byte, GLB MIME and production-origin CORS verification in `docs/ingest/studio-glb-six-20261026-r2.json`. The updated collection sort also matches the native newest 50 works. Site publication and final live checks remain pending at this checkpoint.

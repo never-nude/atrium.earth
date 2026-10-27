@@ -29,6 +29,8 @@ const previewBytes = typeof preview?.bytes === 'number' && Number.isFinite(previ
   data-size={spatialAccess?.status}
   data-studio-preview-bytes={previewBytes}
   data-studio-peek-available={String(work.hasPreview)}
+  data-studio-index={work.index}
+  data-studio-ingested={work.ingested || undefined}
 >
   <a href={withBase(v3WorkRoute(work))}>
     <div class="v3-card__image v3-float" style={`view-transition-name: w-${work.id};`}>
