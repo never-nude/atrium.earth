@@ -1,0 +1,869 @@
+{
+  "schema": "atrium-live-browser-verification/1",
+  "batch": "blay-large-20261027",
+  "status": "pass",
+  "releaseCommit": "b0b9a41de12939690c1720a47ba4e4a6a887ceef",
+  "deploymentRun": "40617118015",
+  "browser": "Installed Chrome / Metal",
+  "realWebsiteAndCDN": true,
+  "inspectorResourceRecordingBuffer": 128000000,
+  "requestInterception": false,
+  "localMirrors": false,
+  "expectedWorks": 6,
+  "works": [
+    {
+      "slug": "modern/blay-eclosio-marble-garrotxa-883ac0",
+      "layouts": [
+        {
+          "width": 1365,
+          "freshContext": true,
+          "status": "pass",
+          "preview": {
+            "url": "https://models.atrium.earth/models/previews/modern/blay-eclosio-marble-garrotxa-883ac0/preview-b15a0e2630ff.glb",
+            "bytes": 2836264,
+            "sha256": "b15a0e2630ff633bc2892fe367702157c26f981c22ba7afd0a45c3d050868a11",
+            "contentType": "model/gltf-binary",
+            "cors": "https://atrium.earth"
+          },
+          "layout": {
+            "viewport": 1365,
+            "documentWidth": 1365,
+            "bodyWidth": 1365,
+            "pass": true
+          },
+          "pageErrors": [],
+          "turnPaused": true,
+          "captureLabelComplete": true,
+          "opening": {
+            "capturedBeforeAnyDrag": true,
+            "resetUsed": false,
+            "actualVisualApproval": "pass",
+            "canvas": {
+              "bytes": 281644,
+              "sha256": "7df6cee5f528c81b7f5fababde2b8be8b14b938a4978c595365b5ef725d1bdb7"
+            },
+            "page": {
+              "bytes": 381852,
+              "sha256": "3eb8c85c9aaf65d13b15a4c8773ffc87c612dd18c7a0e7964a5389ca06368625"
+            },
+            "actualVisualApprovalMethod": "Root inspected all twelve opening canvases in desktop and narrow contact sheets; two representative full-page openings were also inspected."
+          },
+          "quiet": {
+            "elapsedMs": 2221,
+            "changedPixelRatios": [
+              0,
+              0
+            ]
+          },
+          "orbit": {
+            "pass": true,
+            "idleChangedPixelRatios": [
+              0,
+              0
+            ],
+            "quietElapsedMs": 2221,
+            "dragChangedPixelRatio": 0.15644388398486758,
+            "guard": "drag > max(0.002, idleNoise*4)",
+            "beforeSha256": "7df6cee5f528c81b7f5fababde2b8be8b14b938a4978c595365b5ef725d1bdb7",
+            "afterSha256": "bfb6324ec95cef1e7dfb1a7f89d3711c9e0d8b8bab61029a72bfdc6604c816e9"
+          },
+          "displaySize": {
+            "assertionsPassed": true,
+            "status": "approximate",
+            "verifiedPhysicalReference": false,
+            "axis": "longest",
+            "approximateMetres": 0.88
+          }
+        },
+        {
+          "width": 390,
+          "freshContext": true,
+          "status": "pass",
+          "preview": {
+            "url": "https://models.atrium.earth/models/previews/modern/blay-eclosio-marble-garrotxa-883ac0/preview-b15a0e2630ff.glb",
+            "bytes": 2836264,
+            "sha256": "b15a0e2630ff633bc2892fe367702157c26f981c22ba7afd0a45c3d050868a11",
+            "contentType": "model/gltf-binary",
+            "cors": "https://atrium.earth"
+          },
+          "layout": {
+            "viewport": 390,
+            "documentWidth": 390,
+            "bodyWidth": 390,
+            "pass": true
+          },
+          "pageErrors": [],
+          "turnPaused": true,
+          "captureLabelComplete": true,
+          "opening": {
+            "capturedBeforeAnyDrag": true,
+            "resetUsed": false,
+            "actualVisualApproval": "pass",
+            "canvas": {
+              "bytes": 145413,
+              "sha256": "55ee56e236e9850f19930a454fadc4b60879486a69adfe0641273fa15d939e17"
+            },
+            "page": {
+              "bytes": 206585,
+              "sha256": "821f9eb01be68884c71fffdb6aee25104e8bb48a09981dbf05a17815e367dab1"
+            },
+            "actualVisualApprovalMethod": "Root inspected all twelve opening canvases in desktop and narrow contact sheets; two representative full-page openings were also inspected."
+          },
+          "quiet": {
+            "elapsedMs": 1553,
+            "changedPixelRatios": [
+              0,
+              0
+            ]
+          },
+          "orbit": {
+            "pass": true,
+            "idleChangedPixelRatios": [
+              0,
+              0
+            ],
+            "quietElapsedMs": 1553,
+            "dragChangedPixelRatio": 0.37108813737515334,
+            "guard": "drag > max(0.002, idleNoise*4)",
+            "beforeSha256": "55ee56e236e9850f19930a454fadc4b60879486a69adfe0641273fa15d939e17",
+            "afterSha256": "22559699b75f79504b16aaaebac40418c3a48f2ba7ac09de5f1a93d094dd6538"
+          },
+          "displaySize": {
+            "assertionsPassed": true,
+            "status": "approximate",
+            "verifiedPhysicalReference": false,
+            "axis": "longest",
+            "approximateMetres": 0.88
+          }
+        }
+      ],
+      "status": "pass"
+    },
+    {
+      "slug": "modern/blay-first-cold-marble-mnac-78c00e",
+      "layouts": [
+        {
+          "width": 1365,
+          "freshContext": true,
+          "status": "pass",
+          "preview": {
+            "url": "https://models.atrium.earth/models/previews/modern/blay-first-cold-marble-mnac-78c00e/preview-ff5ce4a30953.glb",
+            "bytes": 35523864,
+            "sha256": "ff5ce4a30953da0795280ec04b0ba44d1229ca22e868d9a9635eea99d459fc8c",
+            "contentType": "model/gltf-binary",
+            "cors": "https://atrium.earth"
+          },
+          "layout": {
+            "viewport": 1365,
+            "documentWidth": 1365,
+            "bodyWidth": 1365,
+            "pass": true
+          },
+          "pageErrors": [],
+          "turnPaused": true,
+          "captureLabelComplete": true,
+          "opening": {
+            "capturedBeforeAnyDrag": true,
+            "resetUsed": false,
+            "actualVisualApproval": "pass",
+            "canvas": {
+              "bytes": 230888,
+              "sha256": "36e200fcff204cf030230972dccfc55869f6a84495705c8183dfef2b6a3dd4cf"
+            },
+            "page": {
+              "bytes": 319199,
+              "sha256": "3cd2216e771094c16ec18d2cb1df1a2b66dc813a6d956f560429c621b56ca1a6"
+            },
+            "actualVisualApprovalMethod": "Root inspected all twelve opening canvases in desktop and narrow contact sheets; two representative full-page openings were also inspected."
+          },
+          "quiet": {
+            "elapsedMs": 3024,
+            "changedPixelRatios": [
+              0,
+              0
+            ]
+          },
+          "orbit": {
+            "pass": true,
+            "idleChangedPixelRatios": [
+              0,
+              0
+            ],
+            "quietElapsedMs": 3024,
+            "dragChangedPixelRatio": 0.10632798895093977,
+            "guard": "drag > max(0.002, idleNoise*4)",
+            "beforeSha256": "36e200fcff204cf030230972dccfc55869f6a84495705c8183dfef2b6a3dd4cf",
+            "afterSha256": "90b9d51ba0c6e8a96558b49fc98fd1773e892268e60e0c9fba1ac21c143cf484"
+          },
+          "displaySize": {
+            "assertionsPassed": true,
+            "status": "approximate",
+            "verifiedPhysicalReference": false,
+            "axis": "longest",
+            "approximateMetres": 1.367
+          }
+        },
+        {
+          "width": 390,
+          "freshContext": true,
+          "status": "pass",
+          "preview": {
+            "url": "https://models.atrium.earth/models/previews/modern/blay-first-cold-marble-mnac-78c00e/preview-ff5ce4a30953.glb",
+            "bytes": 35523864,
+            "sha256": "ff5ce4a30953da0795280ec04b0ba44d1229ca22e868d9a9635eea99d459fc8c",
+            "contentType": "model/gltf-binary",
+            "cors": "https://atrium.earth"
+          },
+          "layout": {
+            "viewport": 390,
+            "documentWidth": 390,
+            "bodyWidth": 390,
+            "pass": true
+          },
+          "pageErrors": [],
+          "turnPaused": true,
+          "captureLabelComplete": true,
+          "opening": {
+            "capturedBeforeAnyDrag": true,
+            "resetUsed": false,
+            "actualVisualApproval": "pass",
+            "canvas": {
+              "bytes": 125795,
+              "sha256": "0b04eaa8529e045a993730ea8abe4caa3f003f34ba8124d549520614bb5e224e"
+            },
+            "page": {
+              "bytes": 179640,
+              "sha256": "6be75ea569474b028e08aafd303f93f40eb8f86994a3ff863cfbc9c561c20d12"
+            },
+            "actualVisualApprovalMethod": "Root inspected all twelve opening canvases in desktop and narrow contact sheets; two representative full-page openings were also inspected."
+          },
+          "quiet": {
+            "elapsedMs": 1260,
+            "changedPixelRatios": [
+              0,
+              0
+            ]
+          },
+          "orbit": {
+            "pass": true,
+            "idleChangedPixelRatios": [
+              0,
+              0
+            ],
+            "quietElapsedMs": 1260,
+            "dragChangedPixelRatio": 0.23619531569417673,
+            "guard": "drag > max(0.002, idleNoise*4)",
+            "beforeSha256": "0b04eaa8529e045a993730ea8abe4caa3f003f34ba8124d549520614bb5e224e",
+            "afterSha256": "acd752fabfed7d735709bb61424c745d8fda3b737470f6e81d20ca4c67922118"
+          },
+          "displaySize": {
+            "assertionsPassed": true,
+            "status": "approximate",
+            "verifiedPhysicalReference": false,
+            "axis": "longest",
+            "approximateMetres": 1.367
+          }
+        }
+      ],
+      "status": "pass"
+    },
+    {
+      "slug": "modern/blay-against-invader-girona-12f1ac",
+      "layouts": [
+        {
+          "width": 1365,
+          "freshContext": true,
+          "status": "pass",
+          "preview": {
+            "url": "https://models.atrium.earth/models/previews/modern/blay-against-invader-girona-12f1ac/preview-d98399926750.glb",
+            "bytes": 16093640,
+            "sha256": "d983999267505735fd2b1c9b7acd3bef2d3b91343ac4828a763129f1487a308f",
+            "contentType": "model/gltf-binary",
+            "cors": "https://atrium.earth"
+          },
+          "layout": {
+            "viewport": 1365,
+            "documentWidth": 1365,
+            "bodyWidth": 1365,
+            "pass": true
+          },
+          "pageErrors": [],
+          "turnPaused": true,
+          "captureLabelComplete": true,
+          "opening": {
+            "capturedBeforeAnyDrag": true,
+            "resetUsed": false,
+            "actualVisualApproval": "pass",
+            "canvas": {
+              "bytes": 166320,
+              "sha256": "008d71f013c45155eb265e15d45304c7a6e8337793b238982da8adb24a944843"
+            },
+            "page": {
+              "bytes": 260454,
+              "sha256": "b38873803e681c47d3481351da9077520931d01204e32092d7b602dce285e7d1"
+            },
+            "actualVisualApprovalMethod": "Root inspected all twelve opening canvases in desktop and narrow contact sheets; two representative full-page openings were also inspected."
+          },
+          "quiet": {
+            "elapsedMs": 1392,
+            "changedPixelRatios": [
+              0,
+              0
+            ]
+          },
+          "orbit": {
+            "pass": true,
+            "idleChangedPixelRatios": [
+              0,
+              0
+            ],
+            "quietElapsedMs": 1392,
+            "dragChangedPixelRatio": 0.08012370143517684,
+            "guard": "drag > max(0.002, idleNoise*4)",
+            "beforeSha256": "008d71f013c45155eb265e15d45304c7a6e8337793b238982da8adb24a944843",
+            "afterSha256": "7b4cb9afd1e323b8794f7e390c705eb55d3e6b7dae6794b8b8398dbabc5737c0"
+          },
+          "displaySize": {
+            "assertionsPassed": true,
+            "status": "approximate",
+            "verifiedPhysicalReference": false,
+            "axis": "longest",
+            "approximateMetres": 1.65
+          }
+        },
+        {
+          "width": 390,
+          "freshContext": true,
+          "status": "pass",
+          "preview": {
+            "url": "https://models.atrium.earth/models/previews/modern/blay-against-invader-girona-12f1ac/preview-d98399926750.glb",
+            "bytes": 16093640,
+            "sha256": "d983999267505735fd2b1c9b7acd3bef2d3b91343ac4828a763129f1487a308f",
+            "contentType": "model/gltf-binary",
+            "cors": "https://atrium.earth"
+          },
+          "layout": {
+            "viewport": 390,
+            "documentWidth": 390,
+            "bodyWidth": 390,
+            "pass": true
+          },
+          "pageErrors": [],
+          "turnPaused": true,
+          "captureLabelComplete": true,
+          "opening": {
+            "capturedBeforeAnyDrag": true,
+            "resetUsed": false,
+            "actualVisualApproval": "pass",
+            "canvas": {
+              "bytes": 100061,
+              "sha256": "c1c5e25604fadc1d8210726574a4097f9d088985aca3bc94c32542ed37102ab8"
+            },
+            "page": {
+              "bytes": 155311,
+              "sha256": "3c382e66edc026b902d6a3d8133741b12ceed44241783764ca918a223dfaaf25"
+            },
+            "actualVisualApprovalMethod": "Root inspected all twelve opening canvases in desktop and narrow contact sheets; two representative full-page openings were also inspected."
+          },
+          "quiet": {
+            "elapsedMs": 1355,
+            "changedPixelRatios": [
+              0,
+              0
+            ]
+          },
+          "orbit": {
+            "pass": true,
+            "idleChangedPixelRatios": [
+              0,
+              0
+            ],
+            "quietElapsedMs": 1355,
+            "dragChangedPixelRatio": 0.19462648209800829,
+            "guard": "drag > max(0.002, idleNoise*4)",
+            "beforeSha256": "c1c5e25604fadc1d8210726574a4097f9d088985aca3bc94c32542ed37102ab8",
+            "afterSha256": "4133032f233816d0eb15cc4a787cf34d89911cc3f2c473dd9929366c3b042a15"
+          },
+          "displaySize": {
+            "assertionsPassed": true,
+            "status": "approximate",
+            "verifiedPhysicalReference": false,
+            "axis": "longest",
+            "approximateMetres": 1.65
+          }
+        }
+      ],
+      "status": "pass"
+    },
+    {
+      "slug": "modern/blay-head-olot-giant-4f5f90",
+      "layouts": [
+        {
+          "width": 1365,
+          "freshContext": true,
+          "status": "pass",
+          "preview": {
+            "url": "https://models.atrium.earth/models/previews/modern/blay-head-olot-giant-4f5f90/preview-af80bc79ef11.glb",
+            "bytes": 4627352,
+            "sha256": "af80bc79ef11add3a55064fe36a7a260dfc8d3d73cf7590011779a57e9249d07",
+            "contentType": "model/gltf-binary",
+            "cors": "https://atrium.earth"
+          },
+          "layout": {
+            "viewport": 1365,
+            "documentWidth": 1365,
+            "bodyWidth": 1365,
+            "pass": true
+          },
+          "pageErrors": [],
+          "turnPaused": true,
+          "captureLabelComplete": true,
+          "opening": {
+            "capturedBeforeAnyDrag": true,
+            "resetUsed": false,
+            "actualVisualApproval": "pass",
+            "canvas": {
+              "bytes": 255328,
+              "sha256": "d4a7b1054a69aa9dc73e1ac76a32046edd9a7dd8dfe811556e02e67712e9f1d0"
+            },
+            "page": {
+              "bytes": 353729,
+              "sha256": "88aa5ff07d6d8a98f3f1961cd066c4469bb97328f2d7157f21b1f3d56b0d2eea"
+            },
+            "actualVisualApprovalMethod": "Root inspected all twelve opening canvases in desktop and narrow contact sheets; two representative full-page openings were also inspected."
+          },
+          "quiet": {
+            "elapsedMs": 1812,
+            "changedPixelRatios": [
+              0,
+              0
+            ]
+          },
+          "orbit": {
+            "pass": true,
+            "idleChangedPixelRatios": [
+              0,
+              0
+            ],
+            "quietElapsedMs": 1812,
+            "dragChangedPixelRatio": 0.13012189995796553,
+            "guard": "drag > max(0.002, idleNoise*4)",
+            "beforeSha256": "d4a7b1054a69aa9dc73e1ac76a32046edd9a7dd8dfe811556e02e67712e9f1d0",
+            "afterSha256": "f03a5aaf664baa41f5d640f12926150f863ad420716f683ed69c2376f7668306"
+          },
+          "displaySize": {
+            "assertionsPassed": true,
+            "status": "approximate",
+            "verifiedPhysicalReference": false,
+            "axis": "longest",
+            "approximateMetres": 1.25
+          }
+        },
+        {
+          "width": 390,
+          "freshContext": true,
+          "status": "pass",
+          "preview": {
+            "url": "https://models.atrium.earth/models/previews/modern/blay-head-olot-giant-4f5f90/preview-af80bc79ef11.glb",
+            "bytes": 4627352,
+            "sha256": "af80bc79ef11add3a55064fe36a7a260dfc8d3d73cf7590011779a57e9249d07",
+            "contentType": "model/gltf-binary",
+            "cors": "https://atrium.earth"
+          },
+          "layout": {
+            "viewport": 390,
+            "documentWidth": 390,
+            "bodyWidth": 390,
+            "pass": true
+          },
+          "pageErrors": [],
+          "turnPaused": true,
+          "captureLabelComplete": true,
+          "opening": {
+            "capturedBeforeAnyDrag": true,
+            "resetUsed": false,
+            "actualVisualApproval": "pass",
+            "canvas": {
+              "bytes": 125826,
+              "sha256": "952a798e66bbe71cc0f59ea5445a42336e7ba00ea82b4395b192d43683acf537"
+            },
+            "page": {
+              "bytes": 187187,
+              "sha256": "960393ecf6229435e9977e67d856402068b9a1b4d2dd91ae579cbacbcc3d2fb7"
+            },
+            "actualVisualApprovalMethod": "Root inspected all twelve opening canvases in desktop and narrow contact sheets; two representative full-page openings were also inspected."
+          },
+          "quiet": {
+            "elapsedMs": 1429,
+            "changedPixelRatios": [
+              0,
+              0
+            ]
+          },
+          "orbit": {
+            "pass": true,
+            "idleChangedPixelRatios": [
+              0,
+              0
+            ],
+            "quietElapsedMs": 1429,
+            "dragChangedPixelRatio": 0.31387185327959816,
+            "guard": "drag > max(0.002, idleNoise*4)",
+            "beforeSha256": "952a798e66bbe71cc0f59ea5445a42336e7ba00ea82b4395b192d43683acf537",
+            "afterSha256": "553e403b0fe495382fcfc6c1f6c84f82e22a22282200988760d03527442c66bb"
+          },
+          "displaySize": {
+            "assertionsPassed": true,
+            "status": "approximate",
+            "verifiedPhysicalReference": false,
+            "axis": "longest",
+            "approximateMetres": 1.25
+          }
+        }
+      ],
+      "status": "pass"
+    },
+    {
+      "slug": "modern/blay-chasing-illusion-mnac-50804f",
+      "layouts": [
+        {
+          "width": 1365,
+          "freshContext": true,
+          "status": "pass",
+          "preview": {
+            "url": "https://models.atrium.earth/models/previews/modern/blay-chasing-illusion-mnac-50804f/preview-c41d9afd19c7.glb",
+            "bytes": 59685396,
+            "sha256": "c41d9afd19c7247bf52b20bb9a6b43e2dfe2455caa50f5f3cd2a798da1483000",
+            "contentType": "model/gltf-binary",
+            "cors": "https://atrium.earth"
+          },
+          "layout": {
+            "viewport": 1365,
+            "documentWidth": 1365,
+            "bodyWidth": 1365,
+            "pass": true
+          },
+          "pageErrors": [],
+          "turnPaused": true,
+          "captureLabelComplete": true,
+          "opening": {
+            "capturedBeforeAnyDrag": true,
+            "resetUsed": false,
+            "actualVisualApproval": "pass",
+            "canvas": {
+              "bytes": 249486,
+              "sha256": "57cc48e36b4b1f3abba534982654053e60c887d1cb71d25b321bdc45810c6fe4"
+            },
+            "page": {
+              "bytes": 331925,
+              "sha256": "a178fb816c1a315bec963ee04e9018a0d60325f2e23c287e46014fb8a5fdb9e0"
+            },
+            "actualVisualApprovalMethod": "Root inspected all twelve opening canvases in desktop and narrow contact sheets; two representative full-page openings were also inspected."
+          },
+          "quiet": {
+            "elapsedMs": 1672,
+            "changedPixelRatios": [
+              0,
+              0
+            ]
+          },
+          "orbit": {
+            "pass": true,
+            "idleChangedPixelRatios": [
+              0,
+              0
+            ],
+            "quietElapsedMs": 1672,
+            "dragChangedPixelRatio": 0.14333513481054463,
+            "guard": "drag > max(0.002, idleNoise*4)",
+            "beforeSha256": "57cc48e36b4b1f3abba534982654053e60c887d1cb71d25b321bdc45810c6fe4",
+            "afterSha256": "e3b629b8d7c947fe9d8923eb6796c5b55b125dbd430d55e5b8118241aff6b900"
+          },
+          "displaySize": {
+            "assertionsPassed": true,
+            "status": "approximate",
+            "verifiedPhysicalReference": false,
+            "axis": "longest",
+            "approximateMetres": 0.76
+          }
+        },
+        {
+          "width": 390,
+          "freshContext": true,
+          "status": "pass",
+          "preview": {
+            "url": "https://models.atrium.earth/models/previews/modern/blay-chasing-illusion-mnac-50804f/preview-c41d9afd19c7.glb",
+            "bytes": 59685396,
+            "sha256": "c41d9afd19c7247bf52b20bb9a6b43e2dfe2455caa50f5f3cd2a798da1483000",
+            "contentType": "model/gltf-binary",
+            "cors": "https://atrium.earth"
+          },
+          "layout": {
+            "viewport": 390,
+            "documentWidth": 390,
+            "bodyWidth": 390,
+            "pass": true
+          },
+          "pageErrors": [],
+          "turnPaused": true,
+          "captureLabelComplete": true,
+          "opening": {
+            "capturedBeforeAnyDrag": true,
+            "resetUsed": false,
+            "actualVisualApproval": "pass",
+            "canvas": {
+              "bytes": 135177,
+              "sha256": "0f4569203e5dac170ebcea5ea949b60be4c6ac77866f02d328027a1abd9f49b9"
+            },
+            "page": {
+              "bytes": 183767,
+              "sha256": "8472c9342c06db484b342d3f2824ed48120a392149460d2692acdcddbb9bc690"
+            },
+            "actualVisualApprovalMethod": "Root inspected all twelve opening canvases in desktop and narrow contact sheets; two representative full-page openings were also inspected."
+          },
+          "quiet": {
+            "elapsedMs": 1293,
+            "changedPixelRatios": [
+              0,
+              0
+            ]
+          },
+          "orbit": {
+            "pass": true,
+            "idleChangedPixelRatios": [
+              0,
+              0
+            ],
+            "quietElapsedMs": 1293,
+            "dragChangedPixelRatio": 0.3332048361661118,
+            "guard": "drag > max(0.002, idleNoise*4)",
+            "beforeSha256": "0f4569203e5dac170ebcea5ea949b60be4c6ac77866f02d328027a1abd9f49b9",
+            "afterSha256": "54451fb0f6d7342c51113cd40b459fb3d57ba090c08a7cae43747cbf2a91828e"
+          },
+          "displaySize": {
+            "assertionsPassed": true,
+            "status": "approximate",
+            "verifiedPhysicalReference": false,
+            "axis": "longest",
+            "approximateMetres": 0.76
+          }
+        }
+      ],
+      "status": "pass"
+    },
+    {
+      "slug": "modern/blay-first-cold-clay-maquette-6a6890",
+      "layouts": [
+        {
+          "width": 1365,
+          "freshContext": true,
+          "status": "pass",
+          "preview": {
+            "url": "https://models.atrium.earth/models/previews/modern/blay-first-cold-clay-maquette-6a6890/preview-edf280aaea5d.glb",
+            "bytes": 8197304,
+            "sha256": "edf280aaea5d16b9ef558516911ff927979f1a40f80240475528ba808a49ae93",
+            "contentType": "model/gltf-binary",
+            "cors": "https://atrium.earth"
+          },
+          "layout": {
+            "viewport": 1365,
+            "documentWidth": 1365,
+            "bodyWidth": 1365,
+            "pass": true
+          },
+          "pageErrors": [],
+          "turnPaused": true,
+          "captureLabelComplete": true,
+          "opening": {
+            "capturedBeforeAnyDrag": true,
+            "resetUsed": false,
+            "actualVisualApproval": "pass",
+            "canvas": {
+              "bytes": 274214,
+              "sha256": "e36b62ce0cf14aba40799448d34481d7771d822f244b887034ad3a80d689a39a"
+            },
+            "page": {
+              "bytes": 375739,
+              "sha256": "5ff9f29cf3304cc4c615af09d426aa18e470c228c81a0aea70a1fbfa25402ceb"
+            },
+            "actualVisualApprovalMethod": "Root inspected all twelve opening canvases in desktop and narrow contact sheets; two representative full-page openings were also inspected."
+          },
+          "quiet": {
+            "elapsedMs": 1621,
+            "changedPixelRatios": [
+              0,
+              0
+            ]
+          },
+          "orbit": {
+            "pass": true,
+            "idleChangedPixelRatios": [
+              0,
+              0
+            ],
+            "quietElapsedMs": 1621,
+            "dragChangedPixelRatio": 0.1174034708460938,
+            "guard": "drag > max(0.002, idleNoise*4)",
+            "beforeSha256": "e36b62ce0cf14aba40799448d34481d7771d822f244b887034ad3a80d689a39a",
+            "afterSha256": "ea4505905da3136942461ecf8e202adaa30321069388575754cfef0536842ca8"
+          },
+          "displaySize": {
+            "assertionsPassed": true,
+            "status": "unknown",
+            "verifiedPhysicalReference": false,
+            "adjustableDefaultMaxExtentMetres": 1
+          }
+        },
+        {
+          "width": 390,
+          "freshContext": true,
+          "status": "pass",
+          "preview": {
+            "url": "https://models.atrium.earth/models/previews/modern/blay-first-cold-clay-maquette-6a6890/preview-edf280aaea5d.glb",
+            "bytes": 8197304,
+            "sha256": "edf280aaea5d16b9ef558516911ff927979f1a40f80240475528ba808a49ae93",
+            "contentType": "model/gltf-binary",
+            "cors": "https://atrium.earth"
+          },
+          "layout": {
+            "viewport": 390,
+            "documentWidth": 390,
+            "bodyWidth": 390,
+            "pass": true
+          },
+          "pageErrors": [],
+          "turnPaused": true,
+          "captureLabelComplete": true,
+          "opening": {
+            "capturedBeforeAnyDrag": true,
+            "resetUsed": false,
+            "actualVisualApproval": "pass",
+            "canvas": {
+              "bytes": 143674,
+              "sha256": "5fa5cd42dd52f14e5f60cc0b759e31d655bd13abc1ef590f60f4bba863588846"
+            },
+            "page": {
+              "bytes": 204230,
+              "sha256": "a9730c683f052ccbf6ddd65f277dbd41e377877dcf5a01fcf6207198ac8d6229"
+            },
+            "actualVisualApprovalMethod": "Root inspected all twelve opening canvases in desktop and narrow contact sheets; two representative full-page openings were also inspected."
+          },
+          "quiet": {
+            "elapsedMs": 1469,
+            "changedPixelRatios": [
+              0,
+              0
+            ]
+          },
+          "orbit": {
+            "pass": true,
+            "idleChangedPixelRatios": [
+              0,
+              0
+            ],
+            "quietElapsedMs": 1469,
+            "dragChangedPixelRatio": 0.2635068045090824,
+            "guard": "drag > max(0.002, idleNoise*4)",
+            "beforeSha256": "5fa5cd42dd52f14e5f60cc0b759e31d655bd13abc1ef590f60f4bba863588846",
+            "afterSha256": "3c287e8af2eead30b03d4d225733510f3f767283023e800edd5b98c4afed366d"
+          },
+          "displaySize": {
+            "assertionsPassed": true,
+            "status": "unknown",
+            "verifiedPhysicalReference": false,
+            "adjustableDefaultMaxExtentMetres": 1
+          }
+        }
+      ],
+      "status": "pass"
+    }
+  ],
+  "exhibitions": [
+    {
+      "exhibition": "the-price-of-victory",
+      "slug": "modern/blay-against-invader-girona-12f1ac",
+      "status": "pass",
+      "desktop": {
+        "viewport": 1365,
+        "documentWidth": 1365,
+        "bodyWidth": 1365,
+        "pass": true
+      },
+      "narrow": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "bodyWidth": 390,
+        "pass": true
+      }
+    },
+    {
+      "exhibition": "the-work-of-the-surface",
+      "slug": "modern/blay-chasing-illusion-mnac-50804f",
+      "status": "pass",
+      "desktop": {
+        "viewport": 1365,
+        "documentWidth": 1365,
+        "bodyWidth": 1365,
+        "pass": true
+      },
+      "narrow": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "bodyWidth": 390,
+        "pass": true
+      }
+    },
+    {
+      "exhibition": "power-and-presence",
+      "slug": "modern/blay-head-olot-giant-4f5f90",
+      "status": "pass",
+      "desktop": {
+        "viewport": 1365,
+        "documentWidth": 1365,
+        "bodyWidth": 1365,
+        "pass": true
+      },
+      "narrow": {
+        "viewport": 390,
+        "documentWidth": 390,
+        "bodyWidth": 390,
+        "pass": true
+      }
+    }
+  ],
+  "newest": {
+    "status": "pass",
+    "count": 40,
+    "orderedSelectionMatchesBuild": true,
+    "entireAcceptedBatch": true,
+    "desktop": {
+      "viewport": 1365,
+      "documentWidth": 1365,
+      "bodyWidth": 1365,
+      "pass": true
+    },
+    "narrow": {
+      "viewport": 390,
+      "documentWidth": 390,
+      "bodyWidth": 390,
+      "pass": true
+    }
+  },
+  "browserCleanup": {
+    "status": "complete",
+    "method": "Close owned browser server before connected client"
+  },
+  "checkedAt": "2026-10-28T01:53:50.355Z",
+  "scope": "Actual real website/CDN desktop and narrow viewport loading; complete browser model bodies; quiet paused Turn and actual drag orbit. Root separately inspected all twelve opening canvases and two representative full-page openings. No physical-device AR test or exact physical scale claimed.",
+  "projection": {
+    "preparedAt": "2026-10-28T01:56:35.693302+00:00",
+    "originalReport": {
+      "bytes": 28815,
+      "sha256": "689e722eb4cb25e4e6b0bc0559511d210a1308cd30b8afd3f6a854b108a456c0"
+    },
+    "originalReportPreservedUnchanged": true,
+    "reportingCorrection": "Replaced stale defaultOneMetreDisplayNotPhysicalCalibration receipt labels with the five approximate museum-based longest-side estimates and the one unknown-size adjustable default already validated by the actual page assertions. No runtime, asset or validation-gate change.",
+    "privateScreenshotFilenamesOmitted": true,
+    "separateActualVisualApprovalAddedAt": "2026-10-28T01:56:35.693302+00:00"
+  }
+}
