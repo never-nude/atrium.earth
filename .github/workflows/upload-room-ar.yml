@@ -1,0 +1,75 @@
+name: Upload reviewed room AR packages to R2
+
+on:
+  workflow_dispatch:
+    inputs:
+      asset_id:
+        description: 'Pinned draft-release tar asset ID in this repository'
+        required: true
+        type: string
+      asset_sha256:
+        description: 'Complete SHA-256 of the reviewed USTAR archive'
+        required: true
+        type: string
+      asset_bytes:
+        description: 'Exact byte count of the reviewed USTAR archive'
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: reviewed-room-ar-upload
+  cancel-in-progress: false
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          filter: blob:none
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /scripts/
+            /public/spatial-museum/collection-manifest.json
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Validate room package and upload safeguards
+        run: node scripts/test-room-ar-r2.mjs
+      - name: Stage only the pinned reviewed six-room archive
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ASSET_ID: ${{ inputs.asset_id }}
+          ASSET_SHA256: ${{ inputs.asset_sha256 }}
+          ASSET_BYTES: ${{ inputs.asset_bytes }}
+        run: node scripts/stage-room-ar-release.mjs
+      - name: Validate all six local USDZ files without network writes
+        run: >-
+          node scripts/upload-room-ar-r2.mjs
+          --manifest=.atrium-ingest/room-ar-upload/manifest.json
+          --dry-run
+      - name: Upload immutable room packages and verify complete public responses
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: >-
+          node scripts/upload-room-ar-r2.mjs
+          --manifest=.atrium-ingest/room-ar-upload/manifest.json
+          --allow-upload
+          --report=.atrium-ingest/room-ar-upload/public-receipt.json
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: reviewed-room-ar-receipt-${{ github.run_id }}
+          path: .atrium-ingest/room-ar-upload/public-receipt.json
+          include-hidden-files: true
+          if-no-files-found: warn
+          retention-days: 30
