@@ -1,0 +1,245 @@
+{
+  "schema": "atrium-spatial-museum-live-verification/1",
+  "status": "pass",
+  "releaseCommit": "4f2c0936d67e36f390ca42a11b41c820795a2fd6",
+  "deploymentRun": "40611288955",
+  "checkedAt": "2026-10-28T01:09:19.682174+00:00",
+  "method": "Complete curl response bodies compared against local distribution after deployment success. Export/home/newest were exact byte matches; preserved object pages differed only in generated slider IDs.",
+  "rooms": 5,
+  "works": 30,
+  "exportFiles": 13,
+  "exportBytes": 2240531,
+  "files": [
+    {
+      "path": "RUNTIME-LICENSES.txt",
+      "url": "https://atrium.earth/spatial-museum/RUNTIME-LICENSES.txt",
+      "httpStatus": 200,
+      "bytes": 6518,
+      "sha256": "7ed6d819666e3521371980e29f736e560f06bffa24a9995b5d5f3bea3c92a35f",
+      "liveMatchesLocal": true
+    },
+    {
+      "path": "assets/gallery-engine-BNGRiQWn.js",
+      "url": "https://atrium.earth/spatial-museum/assets/gallery-engine-BNGRiQWn.js",
+      "httpStatus": 200,
+      "bytes": 816901,
+      "sha256": "a19d9e08da9040c50dd73e529578b7f8c3dd473a7c422ce172219913f74c731e",
+      "liveMatchesLocal": true
+    },
+    {
+      "path": "assets/index-CvZ2cumH.js",
+      "url": "https://atrium.earth/spatial-museum/assets/index-CvZ2cumH.js",
+      "httpStatus": 200,
+      "bytes": 309186,
+      "sha256": "e1e821d8c4c278e8ffa76bf776d874be1f7a5e5121563ce31b5b7661cd063364",
+      "liveMatchesLocal": true
+    },
+    {
+      "path": "assets/index-gDIcOOFk.css",
+      "url": "https://atrium.earth/spatial-museum/assets/index-gDIcOOFk.css",
+      "httpStatus": 200,
+      "bytes": 26458,
+      "sha256": "d6512edbaba81e32e0cc615793c5bdbba07b8698c13c0fe0c3cca52dd9aeb4cc",
+      "liveMatchesLocal": true
+    },
+    {
+      "path": "collection-manifest.json",
+      "url": "https://atrium.earth/spatial-museum/collection-manifest.json",
+      "httpStatus": 200,
+      "bytes": 2374,
+      "sha256": "332f91653610a37c80ca7cca3973825d455e601753be8252791bbad6241de0fa",
+      "liveMatchesLocal": true
+    },
+    {
+      "path": "index.html",
+      "url": "https://atrium.earth/spatial-museum/index.html",
+      "httpStatus": 200,
+      "bytes": 755,
+      "sha256": "be9c6b23e61e7df0daabdc0a372ad722b8468bbdf11f754340902846c2d74be2",
+      "liveMatchesLocal": true
+    },
+    {
+      "path": "vendor/draco/LICENSE.apache-2.0.txt",
+      "url": "https://atrium.earth/spatial-museum/vendor/draco/LICENSE.apache-2.0.txt",
+      "httpStatus": 200,
+      "bytes": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "liveMatchesLocal": true
+    },
+    {
+      "path": "vendor/draco/LICENSE.three.txt",
+      "url": "https://atrium.earth/spatial-museum/vendor/draco/LICENSE.three.txt",
+      "httpStatus": 200,
+      "bytes": 1081,
+      "sha256": "bfe119ea4fd413f5f7ca3fcd63adb0c4a073ed39daa2fe7d3e6b769e21272601",
+      "liveMatchesLocal": true
+    },
+    {
+      "path": "vendor/draco/NOTICE.txt",
+      "url": "https://atrium.earth/spatial-museum/vendor/draco/NOTICE.txt",
+      "httpStatus": 200,
+      "bytes": 491,
+      "sha256": "b47587620eb96a5b85e366494eac4208cc14316f240e507afa279f3ba5d643ce",
+      "liveMatchesLocal": true
+    },
+    {
+      "path": "vendor/draco/README.md",
+      "url": "https://atrium.earth/spatial-museum/vendor/draco/README.md",
+      "httpStatus": 200,
+      "bytes": 1489,
+      "sha256": "8b9d277bf5743f4ce8d85d63c16690071b53f81796e877d4d395af943bde02a0",
+      "liveMatchesLocal": true
+    },
+    {
+      "path": "vendor/draco/draco_decoder.js",
+      "url": "https://atrium.earth/spatial-museum/vendor/draco/draco_decoder.js",
+      "httpStatus": 200,
+      "bytes": 719410,
+      "sha256": "30e4d486fa020737af10e3c56197693e5b904bdc05b8bfa5d7b06751dec6da04",
+      "liveMatchesLocal": true
+    },
+    {
+      "path": "vendor/draco/draco_decoder.wasm",
+      "url": "https://atrium.earth/spatial-museum/vendor/draco/draco_decoder.wasm",
+      "httpStatus": 200,
+      "bytes": 285747,
+      "sha256": "c55a594e8ffd18426d36b27fea9618af3df5e173640a3e56d46f09d76f0574f2",
+      "liveMatchesLocal": true
+    },
+    {
+      "path": "vendor/draco/draco_wasm_wrapper.js",
+      "url": "https://atrium.earth/spatial-museum/vendor/draco/draco_wasm_wrapper.js",
+      "httpStatus": 200,
+      "bytes": 58763,
+      "sha256": "e8049906ef3f8f75d3456c22a3f31bfdfe5b5b5bd09ccdec613b9e9a49d554d8",
+      "liveMatchesLocal": true
+    }
+  ],
+  "pages": [
+    {
+      "page": "home",
+      "url": "https://atrium.earth/",
+      "httpStatus": 200,
+      "bytes": 54626,
+      "sha256": "b11d1c5e3dc3612dbeb442f7f550575a52717d511425035b91ba72e9501db062",
+      "liveMatchesLocal": true
+    },
+    {
+      "page": "newest",
+      "url": "https://atrium.earth/newest/",
+      "httpStatus": 200,
+      "bytes": 69791,
+      "sha256": "77505513ce1473f047ce865ca16ecb89c1bcb000adb68c32c2be72ea1be0397d",
+      "liveMatchesLocal": true
+    }
+  ],
+  "homepageRooms": [
+    {
+      "id": "ancient-egypt",
+      "title": "Faces of Ancient Egypt",
+      "href": "/spatial-museum/?room=ancient-egypt",
+      "liveOccurrences": 1
+    },
+    {
+      "id": "compassion",
+      "title": "Compassion and Contemplation",
+      "href": "/spatial-museum/?room=compassion",
+      "liveOccurrences": 1
+    },
+    {
+      "id": "divine-gestures",
+      "title": "Divine Gestures",
+      "href": "/spatial-museum/?room=divine-gestures",
+      "liveOccurrences": 1
+    },
+    {
+      "id": "painted-devotion",
+      "title": "Painted Devotion",
+      "href": "/spatial-museum/?room=painted-devotion",
+      "liveOccurrences": 1
+    },
+    {
+      "id": "human-gesture",
+      "title": "The Human Gesture",
+      "href": "/spatial-museum/?room=human-gesture",
+      "liveOccurrences": 1
+    }
+  ],
+  "newest": {
+    "cards": 40,
+    "uniqueCards": 40,
+    "exactOrderMatchesLocal": true,
+    "preservedGhiberti": [
+      {
+        "slug": "europe/ghiberti-solomon-sheba-paradise-replica-68b644",
+        "url": "https://atrium.earth/works/europe/ghiberti-solomon-sheba-paradise-replica-68b644/",
+        "httpStatus": 200,
+        "bytes": 39373,
+        "sha256": "10a78eefb66fab285c0cb9fb71425bd20fe14edfe57cb5a2aaa6f1ef80e915cd",
+        "localBytes": 39373,
+        "localSha256": "6087d08dad33e26a1c87c204829f0fde3ee60c9866aa0a8892113f1355279004",
+        "normalizedSha256": "846200fbb6672c3f02ecd8124ee82771f4e48bfccc1d95cec9e1e3aabca46c81",
+        "normalizedMatchesLocal": true,
+        "normalization": "Only the two generated texture slider for/id suffixes; all remaining bytes identical.",
+        "exactPriorModelUrl": true,
+        "preservedNewestPosition": 3
+      },
+      {
+        "slug": "europe/ghiberti-christ-doctors-north-door-replica-6d64ab",
+        "url": "https://atrium.earth/works/europe/ghiberti-christ-doctors-north-door-replica-6d64ab/",
+        "httpStatus": 200,
+        "bytes": 39341,
+        "sha256": "a09a22ec410e7a96e58f13d5859afc2099f821a2d8699948576d1d54e16c040a",
+        "localBytes": 39341,
+        "localSha256": "f581dd38bfa5d7a5cb6142cd12efeb10d81a4a44ae69d373343a5084fb464c1c",
+        "normalizedSha256": "00b9df287fc485b65e51ff522eb2cb77f95ea2e7c11523e66d1c9b2f75bb2f70",
+        "normalizedMatchesLocal": true,
+        "normalization": "Only the two generated texture slider for/id suffixes; all remaining bytes identical.",
+        "exactPriorModelUrl": true,
+        "preservedNewestPosition": 2
+      },
+      {
+        "slug": "europe/ghiberti-saul-david-paradise-replica-da26f1",
+        "url": "https://atrium.earth/works/europe/ghiberti-saul-david-paradise-replica-da26f1/",
+        "httpStatus": 200,
+        "bytes": 39177,
+        "sha256": "8723ce093c3eb8c896b33bfbf8996ac93609925f68b7c223e5fccbc9f67357f5",
+        "localBytes": 39177,
+        "localSha256": "2d0a40ebb7bb1118faf94d10436925a451794fcba5e15d9fc02c34061d407fe4",
+        "normalizedSha256": "3c0a86760162da39d957b546d680fd27350f830442a7624be94b9bb4ed64f089",
+        "normalizedMatchesLocal": true,
+        "normalization": "Only the two generated texture slider for/id suffixes; all remaining bytes identical.",
+        "exactPriorModelUrl": true,
+        "preservedNewestPosition": 1
+      }
+    ]
+  },
+  "physicalARVRTested": false,
+  "browserChecks": "Performed separately; not included in this HTTP report.",
+  "modelCorsChecks": "Performed separately; not included in this HTTP report.",
+  "sourceCleanupPerformed": false,
+  "browserVerification": {
+    "surface": "Codex in-app browser",
+    "publicUrl": "https://atrium.earth/spatial-museum/",
+    "homepageEntranceFollowed": true,
+    "allFiveRoomsRendered": true,
+    "worksPerRoom": 6,
+    "totalWorks": 30,
+    "browserErrorsOrWarnings": 0,
+    "mobileWidth": 390,
+    "mobileRoomMapAndArtworkDetails": "pass",
+    "verifiedDetailExample": {
+      "slug": "egyptian/head-of-amenhotep-iii-cleveland",
+      "heightMetres": 0.391,
+      "status": "exact",
+      "source": "https://www.clevelandart.org/art/1952.513"
+    },
+    "physicalArVrHardwareTested": false,
+    "screenshotsRetainedLocally": true
+  },
+  "privatePreviewPublication": {
+    "sourceCommit": "a6f9adb3c4fabf1df2fda584a2034a703f4e9f80",
+    "status": "succeeded",
+    "audienceUnchanged": true
+  }
+}
