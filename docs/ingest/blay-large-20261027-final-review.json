@@ -1,0 +1,1755 @@
+{
+  "schema": "atrium-assistant-visual-review/1",
+  "batch": "blay-large-20261027",
+  "status": "pass",
+  "reviewer": "Codex root actual inspection of six native preflight contacts, all six full paired contacts and all six final thumbnails",
+  "counts": {
+    "acquiredSources": 7,
+    "works": 6,
+    "held": 1,
+    "comparisonFrames": 96,
+    "contacts": 6,
+    "finalThumbnails": 6
+  },
+  "sourceReference": "Six current authenticated Sketchfab distribution GLBs under exact-UID CC BY 4.0 grants. Five serving files are unchanged originals. The MNAC First Cold requires a separately pinned full-resolution material-workflow compatibility reference: the source images and all geometry/accessor/raw transforms are retained, derived material channels are explicitly recorded. The unchanged legacy original remains separately preserved. No uploader-native authoring or raw scan-master claim.",
+  "runtimeQualification": "All96 frames and6contacts completed, with48 image-identical pairs, no page errors, and12 narrowly classified local model/decoder ERR_ABORTED lifecycle warnings. The15s browser-close deadline was exceeded only after all render/data/source checks and server cleanup; this remains an explicit qualified cleanup warning.",
+  "scopeReports": [
+    {
+      "sha256": "e2d731574f99f74c5bf7b79b2f7dcf0d81bf716b6d2c6ec9405e429489922010",
+      "bytes": 270042
+    }
+  ],
+  "cameraQualification": "Y-up identity source pose. Opening cameras and real thumbnails select existing reviewed FRONT or LEFT directions; no geometry, material recoloring, repair or crop is introduced.",
+  "works": [
+    {
+      "slug": "modern/blay-eclosio-marble-garrotxa-883ac0",
+      "sourceUid": "883ac0e194904133a3231ab6d309366c",
+      "title": "Eclosió (marble, Museu de la Garrotxa)",
+      "original": {
+        "url": "https://sketchfab.com/3d-models/eclosio-museu-de-la-garrotxa-883ac0e194904133a3231ab6d309366c",
+        "sha256": "b15a0e2630ff633bc2892fe367702157c26f981c22ba7afd0a45c3d050868a11",
+        "bytes": 2836264,
+        "representation": "Authenticated Sketchfab distribution GLB; uploader-native authoring package not asserted."
+      },
+      "sourceUrl": "https://sketchfab.com/3d-models/eclosio-museu-de-la-garrotxa-883ac0e194904133a3231ab6d309366c",
+      "primaryRecord": "https://museus.olot.cat/coleccio/eclosio/",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "licenseScope": "Current exact-UID provider CC BY 4.0 grant for this downloadable capture. Source-only retrieval binds the distribution GLB to its measured SHA-256 and byte count.",
+      "scanAuthor": "Giravolt",
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/modern/blay-eclosio-marble-garrotxa-883ac0/preview-b15a0e2630ff.glb",
+        "sha256": "b15a0e2630ff633bc2892fe367702157c26f981c22ba7afd0a45c3d050868a11",
+        "bytes": 2836264
+      },
+      "rawSourceFaces": 78465,
+      "rawPreviewFaces": 78465,
+      "measuredTopology": {
+        "source": {
+          "loadedRawFaces": 78465,
+          "measured": {
+            "faces": 78465,
+            "bratio": 0.009,
+            "ncomp": 1,
+            "largest_frac": 1
+          },
+          "status": "pass"
+        },
+        "preview": {
+          "loadedRawFaces": 78465,
+          "measured": {
+            "faces": 78465,
+            "bratio": 0.009,
+            "ncomp": 1,
+            "largest_frac": 1
+          },
+          "status": "pass"
+        }
+      },
+      "materialAppearance": "Exact unchanged provider GLB materials and textures.",
+      "processing": {
+        "tool": "Unchanged original serving copy",
+        "geometryCompression": "none added; incoming compression retained only when source-compatible",
+        "textureCompression": "none added",
+        "simplificationApplied": false,
+        "geometryAndTextureResolutionUnchanged": true,
+        "servingIdenticalToOriginal": true,
+        "materialWorkflowConversion": "none",
+        "sourceReferenceQualification": "Unchanged incoming GLB reference. Source is the acquired distribution GLB; uploader-native authoring or scan-master package not asserted.",
+        "noAutomaticPose": true,
+        "noCropping": true,
+        "noManualRecoloringOrRepair": true
+      },
+      "geometryAndAppearanceFidelity": {
+        "status": "pass",
+        "checks": {
+          "allDecodedGeometryFingerprintsEqual": true,
+          "allAccessorArraysAndMultiplicityEqual": true,
+          "rawNodeTransformsAndSceneMappingExact": true,
+          "sameTextureCountAndResolution": true,
+          "completeOriginalReferenceAndServingBytesIdentical": true,
+          "allImageContentIdentical": true
+        },
+        "geometryFingerprintSha256": "90b16a5a619ea38f7c73eb379f0f64fc9b8578f65bd9065cc9e7c490dad51350",
+        "accessorCount": 4,
+        "textureEvidence": {
+          "original": [
+            {
+              "mimeType": "image/jpeg",
+              "size": [
+                1024,
+                1024
+              ],
+              "bytes": 511850,
+              "sha256": "2a9058e0c6ac37c0ea12398d9caabb3bcd43749c0623a941ff5c3f426b73a788"
+            }
+          ],
+          "reference": [
+            {
+              "mimeType": "image/jpeg",
+              "size": [
+                1024,
+                1024
+              ],
+              "bytes": 511850,
+              "sha256": "2a9058e0c6ac37c0ea12398d9caabb3bcd43749c0623a941ff5c3f426b73a788"
+            }
+          ],
+          "serving": [
+            {
+              "mimeType": "image/jpeg",
+              "size": [
+                1024,
+                1024
+              ],
+              "bytes": 511850,
+              "sha256": "2a9058e0c6ac37c0ea12398d9caabb3bcd43749c0623a941ff5c3f426b73a788"
+            }
+          ]
+        },
+        "qualification": "Geometry/material fidelity proof only; actual capture completeness and appearance require human native and paired views."
+      },
+      "visualDecision": "The carved figures, support and reverse are recorded; the physical underside of the base is outside the capture. Root actually inspected all eight source-reference/serving direction pairs; no major visible-surface capture loss and identical comparison frames.",
+      "views": [
+        {
+          "mode": "native-source",
+          "key": "FRONT",
+          "sha256": "9d45dfb4f5f1bcc11f32ea61d9556616c8b1d83638752c377351500e58818773",
+          "bytes": 668765
+        },
+        {
+          "mode": "native-source",
+          "key": "RIGHT",
+          "sha256": "d06788ee579f6ab04784e138c072aa08025f053e5d02e28770dcf2cfc90e9aec",
+          "bytes": 603405
+        },
+        {
+          "mode": "native-source",
+          "key": "REVERSE",
+          "sha256": "9929cde442e68c493f696aaa5f9b7d9e92be813ff98ec80b885a30ae3b3499f4",
+          "bytes": 647450
+        },
+        {
+          "mode": "native-source",
+          "key": "LEFT",
+          "sha256": "f448f45e36b345b18afe3d7710018a6686180b25f5854c12330bbf341a7129ec",
+          "bytes": 577751
+        },
+        {
+          "mode": "native-source",
+          "key": "ABOVE",
+          "sha256": "d324832e62a11c77f07cf3bc07332cfa04b4792d19522e8f04486cc6236ea9f7",
+          "bytes": 450147
+        },
+        {
+          "mode": "native-source",
+          "key": "UNDERSIDE",
+          "sha256": "b09a80289f0fcbb74cfa3c9fa0523d44d844d36b336bb050bd424709a9991d44",
+          "bytes": 623163
+        },
+        {
+          "mode": "native-source",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "ff51d79d789650d72b568f983d7500b4263d2216a36f9a0771e57d3020a9ba44",
+          "bytes": 579778
+        },
+        {
+          "mode": "native-source",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "45e1061925fed59726ba4df0db8cad7ba77aeeff83b2169f3413e21709afa075",
+          "bytes": 541768
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "sha256": "9d45dfb4f5f1bcc11f32ea61d9556616c8b1d83638752c377351500e58818773",
+          "bytes": 668765
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "sha256": "d06788ee579f6ab04784e138c072aa08025f053e5d02e28770dcf2cfc90e9aec",
+          "bytes": 603405
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "sha256": "9929cde442e68c493f696aaa5f9b7d9e92be813ff98ec80b885a30ae3b3499f4",
+          "bytes": 647450
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "sha256": "f448f45e36b345b18afe3d7710018a6686180b25f5854c12330bbf341a7129ec",
+          "bytes": 577751
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "sha256": "d324832e62a11c77f07cf3bc07332cfa04b4792d19522e8f04486cc6236ea9f7",
+          "bytes": 450147
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "sha256": "b09a80289f0fcbb74cfa3c9fa0523d44d844d36b336bb050bd424709a9991d44",
+          "bytes": 623163
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "ff51d79d789650d72b568f983d7500b4263d2216a36f9a0771e57d3020a9ba44",
+          "bytes": 579778
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "45e1061925fed59726ba4df0db8cad7ba77aeeff83b2169f3413e21709afa075",
+          "bytes": 541768
+        }
+      ],
+      "captureLabel": "3D capture of the Museu de la Garrotxa marble by Giravolt. Photography by Aleix Barberà; processing by Néstor Marqués. The capture depicts this museum sculpture, with its pale stone surface and carved base. The carved figures, support and reverse are recorded; the physical underside of the base is outside the capture.",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0,
+          0,
+          1
+        ],
+        "status": "manual",
+        "note": "Upright Y-up identity pose; opening camera selects an actually reviewed direction from the eight paired views."
+      },
+      "contact": {
+        "sha256": "238323ab74d43b97fed9f0838e8b37f5cc0c5c2e7f0102a9fe412cc0167ab73f",
+        "bytes": 203486
+      },
+      "thumbnail": {
+        "sha256": "86375c375e11b257dc578738bd746a1f0c853b902986e15fdefe86b25d382644",
+        "bytes": 37814
+      },
+      "poster": {
+        "sha256": "2ac6ac977d294f16f111e4c64471668e01158a5c32683c6f958dc76805f0e3a1",
+        "bytes": 50577
+      },
+      "thumbnailSource": {
+        "key": "FRONT",
+        "sha256": "9d45dfb4f5f1bcc11f32ea61d9556616c8b1d83638752c377351500e58818773"
+      },
+      "finalThumbnailActuallyReviewed": true
+    },
+    {
+      "slug": "modern/blay-first-cold-marble-mnac-78c00e",
+      "sourceUid": "78c00e75f77a497f8dda5391d042a300",
+      "title": "The First Cold (MNAC marble)",
+      "original": {
+        "url": "https://sketchfab.com/3d-models/els-primers-freds-mnac-78c00e75f77a497f8dda5391d042a300",
+        "sha256": "6927f11fbf118381cbfb668b3ac4885efa37796a75c94bc884bfcccf721d3946",
+        "bytes": 35167192,
+        "representation": "Authenticated Sketchfab distribution GLB; uploader-native authoring package not asserted."
+      },
+      "sourceUrl": "https://sketchfab.com/3d-models/els-primers-freds-mnac-78c00e75f77a497f8dda5391d042a300",
+      "primaryRecord": "https://www.museunacional.cat/ca/colleccio/els-primers-freds/miquel-blay/010002-000",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "licenseScope": "Current exact-UID provider CC BY 4.0 grant for this downloadable capture. Source-only retrieval binds the distribution GLB to its measured SHA-256 and byte count.",
+      "scanAuthor": "Giravolt",
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/modern/blay-first-cold-marble-mnac-78c00e/preview-ff5ce4a30953.glb",
+        "sha256": "ff5ce4a30953da0795280ec04b0ba44d1229ca22e868d9a9635eea99d459fc8c",
+        "bytes": 35523864
+      },
+      "rawSourceFaces": 999999,
+      "rawPreviewFaces": 999999,
+      "measuredTopology": {
+        "source": {
+          "loadedRawFaces": 999999,
+          "measured": {
+            "faces": 999999,
+            "bratio": 0.001,
+            "ncomp": 5,
+            "largest_frac": 1
+          },
+          "status": "pass"
+        },
+        "preview": {
+          "loadedRawFaces": 999999,
+          "measured": {
+            "faces": 999999,
+            "bratio": 0.001,
+            "ncomp": 5,
+            "largest_frac": 1
+          },
+          "status": "pass"
+        }
+      },
+      "materialAppearance": "Shared material-workflow compatibility conversion; original images retained, derived channels enumerated, full geometry and source texture resolution retained.",
+      "processing": {
+        "tool": "Material workflow compatibility conversion, then unchanged serving copy",
+        "geometryCompression": "none added; incoming compression retained only when source-compatible",
+        "textureCompression": "none added",
+        "simplificationApplied": false,
+        "geometryAndTextureResolutionUnchanged": true,
+        "servingIdenticalToOriginal": false,
+        "materialWorkflowConversion": {
+          "tool": "@gltf-transform/functions metalRough",
+          "version": "4.4.2",
+          "label": "material-normalized-source-reference",
+          "materialWorkflowConversion": "KHR_materials_pbrSpecularGlossiness to supported metal/rough + specular/ior",
+          "geometrySimplification": false,
+          "textureCompression": false,
+          "sourceCompressionDecodedOnly": true,
+          "sourceRawNodeTransformsPreservedExactly": true,
+          "nodeMeshChildSceneMappingVerified": true,
+          "binaryChunksPreservedDuringTransformJsonRepack": true,
+          "accessorRegistryComparedAsFullSignatureMultiset": true,
+          "geometryFingerprintSha256": "47a1a060bb5e7a2f76758d6320d744fbd3580dd21e000a8574a88c1edfdf7a12",
+          "geometryFingerprintVerifiedBeforeAfterAndReread": true,
+          "limitation": "Material workflow conversion may rewrite specular/gloss texture channels. It is a labeled reference, not the unmodified provider file, and requires human appearance comparison."
+        },
+        "sourceReferenceQualification": "Separately labeled full-resolution material-normalized reference; unchanged incoming GLB preserved. Conversion can rewrite texture channels, requiring actual visual review.",
+        "noAutomaticPose": true,
+        "noCropping": true,
+        "noManualRecoloringOrRepair": true
+      },
+      "geometryAndAppearanceFidelity": {
+        "status": "pass",
+        "checks": {
+          "allDecodedGeometryFingerprintsEqual": true,
+          "allAccessorArraysAndMultiplicityEqual": true,
+          "rawNodeTransformsAndSceneMappingExact": true,
+          "conversionProofMatchesComputedFingerprint": true,
+          "conversionIsSharedCompatibilityOnly": true,
+          "fullResolutionMaterialSlotMappingAndRetainedImageBytes": true,
+          "sourceReferenceAndServingBytesAndImagesIdentical": true
+        },
+        "geometryFingerprintSha256": "47a1a060bb5e7a2f76758d6320d744fbd3580dd21e000a8574a88c1edfdf7a12",
+        "accessorCount": 44,
+        "textureEvidence": {
+          "original": [
+            {
+              "mimeType": "image/png",
+              "size": [
+                1024,
+                1024
+              ],
+              "bytes": 558335,
+              "sha256": "77e5491364e3a60584da6e64e0d6bf542db3049c4ec957ccc1c7c9d1779d929e"
+            },
+            {
+              "mimeType": "image/png",
+              "size": [
+                1024,
+                1024
+              ],
+              "bytes": 468909,
+              "sha256": "bb86022d29813b8a7314d41b3f450de913b4de4012e833d6cb88733a1edae246"
+            }
+          ],
+          "reference": [
+            {
+              "mimeType": "image/png",
+              "size": [
+                1024,
+                1024
+              ],
+              "bytes": 558335,
+              "sha256": "77e5491364e3a60584da6e64e0d6bf542db3049c4ec957ccc1c7c9d1779d929e"
+            },
+            {
+              "mimeType": "image/png",
+              "size": [
+                1024,
+                1024
+              ],
+              "bytes": 458285,
+              "sha256": "16c653e05dbbef8a6f79b46a36d2e0678f0a56d3ebae531c36fe826d68b02cdb"
+            },
+            {
+              "mimeType": "image/png",
+              "size": [
+                1024,
+                1024
+              ],
+              "bytes": 369216,
+              "sha256": "7651371aff4cc2ef01ce14f93cb00fa26e76dc06e707f7b07d345546581e0074"
+            }
+          ],
+          "serving": [
+            {
+              "mimeType": "image/png",
+              "size": [
+                1024,
+                1024
+              ],
+              "bytes": 558335,
+              "sha256": "77e5491364e3a60584da6e64e0d6bf542db3049c4ec957ccc1c7c9d1779d929e"
+            },
+            {
+              "mimeType": "image/png",
+              "size": [
+                1024,
+                1024
+              ],
+              "bytes": 458285,
+              "sha256": "16c653e05dbbef8a6f79b46a36d2e0678f0a56d3ebae531c36fe826d68b02cdb"
+            },
+            {
+              "mimeType": "image/png",
+              "size": [
+                1024,
+                1024
+              ],
+              "bytes": 369216,
+              "sha256": "7651371aff4cc2ef01ce14f93cb00fa26e76dc06e707f7b07d345546581e0074"
+            }
+          ]
+        },
+        "materialSlotEvidence": {
+          "status": "pass",
+          "auditCorrection": {
+            "priorCheck": "sameTextureCountAndResolution",
+            "priorGenericCountEquality": false,
+            "originalImageCount": 2,
+            "convertedImageCount": 3,
+            "rationale": "The unchanged shared SG material conversion may split source material channels into additional maps. Exact per-material slot mapping, full resolution, UV/sampler fidelity, retained-map content and reference/serving byte equality replace only generic count equality for this explicitly authorized conversion."
+          },
+          "mappings": [
+            {
+              "materialIndex": 0,
+              "materialName": "Freds_low2_Material_u1_v1",
+              "relationship": "SG diffuse → baseColor",
+              "source": {
+                "index": 0,
+                "mimeType": "image/png",
+                "bytes": 558335,
+                "sha256": "77e5491364e3a60584da6e64e0d6bf542db3049c4ec957ccc1c7c9d1779d929e",
+                "size": [
+                  1024,
+                  1024
+                ]
+              },
+              "reference": {
+                "index": 0,
+                "mimeType": "image/png",
+                "bytes": 558335,
+                "sha256": "77e5491364e3a60584da6e64e0d6bf542db3049c4ec957ccc1c7c9d1779d929e",
+                "size": [
+                  1024,
+                  1024
+                ]
+              },
+              "content": "unchanged-source-image",
+              "fullResolutionPreserved": true,
+              "exactImageBytesRequired": false
+            },
+            {
+              "materialIndex": 0,
+              "materialName": "Freds_low2_Material_u1_v1",
+              "relationship": "SG specularGlossiness → metallicRoughness",
+              "source": {
+                "index": 1,
+                "mimeType": "image/png",
+                "bytes": 468909,
+                "sha256": "bb86022d29813b8a7314d41b3f450de913b4de4012e833d6cb88733a1edae246",
+                "size": [
+                  1024,
+                  1024
+                ]
+              },
+              "reference": {
+                "index": 2,
+                "mimeType": "image/png",
+                "bytes": 369216,
+                "sha256": "7651371aff4cc2ef01ce14f93cb00fa26e76dc06e707f7b07d345546581e0074",
+                "size": [
+                  1024,
+                  1024
+                ]
+              },
+              "content": "derived-channel-map-by-shared-metalRough",
+              "fullResolutionPreserved": true,
+              "exactImageBytesRequired": false
+            },
+            {
+              "materialIndex": 0,
+              "materialName": "Freds_low2_Material_u1_v1",
+              "relationship": "SG specularGlossiness → specular",
+              "source": {
+                "index": 1,
+                "mimeType": "image/png",
+                "bytes": 468909,
+                "sha256": "bb86022d29813b8a7314d41b3f450de913b4de4012e833d6cb88733a1edae246",
+                "size": [
+                  1024,
+                  1024
+                ]
+              },
+              "reference": {
+                "index": 1,
+                "mimeType": "image/png",
+                "bytes": 458285,
+                "sha256": "16c653e05dbbef8a6f79b46a36d2e0678f0a56d3ebae531c36fe826d68b02cdb",
+                "size": [
+                  1024,
+                  1024
+                ]
+              },
+              "content": "derived-channel-map-by-shared-metalRough",
+              "fullResolutionPreserved": true,
+              "exactImageBytesRequired": false
+            },
+            {
+              "materialIndex": 0,
+              "materialName": "Freds_low2_Material_u1_v1",
+              "relationship": "SG specularGlossiness → specularColor",
+              "source": {
+                "index": 1,
+                "mimeType": "image/png",
+                "bytes": 468909,
+                "sha256": "bb86022d29813b8a7314d41b3f450de913b4de4012e833d6cb88733a1edae246",
+                "size": [
+                  1024,
+                  1024
+                ]
+              },
+              "reference": {
+                "index": 1,
+                "mimeType": "image/png",
+                "bytes": 458285,
+                "sha256": "16c653e05dbbef8a6f79b46a36d2e0678f0a56d3ebae531c36fe826d68b02cdb",
+                "size": [
+                  1024,
+                  1024
+                ]
+              },
+              "content": "derived-channel-map-by-shared-metalRough",
+              "fullResolutionPreserved": true,
+              "exactImageBytesRequired": false
+            },
+            {
+              "materialIndex": 0,
+              "materialName": "Freds_low2_Material_u1_v1",
+              "relationship": "retained emissiveTexture",
+              "source": {
+                "index": 0,
+                "mimeType": "image/png",
+                "bytes": 558335,
+                "sha256": "77e5491364e3a60584da6e64e0d6bf542db3049c4ec957ccc1c7c9d1779d929e",
+                "size": [
+                  1024,
+                  1024
+                ]
+              },
+              "reference": {
+                "index": 0,
+                "mimeType": "image/png",
+                "bytes": 558335,
+                "sha256": "77e5491364e3a60584da6e64e0d6bf542db3049c4ec957ccc1c7c9d1779d929e",
+                "size": [
+                  1024,
+                  1024
+                ]
+              },
+              "content": "unchanged-source-image",
+              "fullResolutionPreserved": true,
+              "exactImageBytesRequired": true
+            }
+          ],
+          "derivedImages": [
+            {
+              "index": 1,
+              "mimeType": "image/png",
+              "bytes": 458285,
+              "sha256": "16c653e05dbbef8a6f79b46a36d2e0678f0a56d3ebae531c36fe826d68b02cdb",
+              "size": [
+                1024,
+                1024
+              ]
+            },
+            {
+              "index": 2,
+              "mimeType": "image/png",
+              "bytes": 369216,
+              "sha256": "7651371aff4cc2ef01ce14f93cb00fa26e76dc06e707f7b07d345546581e0074",
+              "size": [
+                1024,
+                1024
+              ]
+            }
+          ],
+          "ior": {
+            "source": "SG specularFactor",
+            "reference": [
+              {
+                "ior": 1000
+              }
+            ],
+            "qualification": "IOR is a scalar material property, not an additional image map."
+          },
+          "sourceReferenceAndServingBytesAndImagesIdentical": true
+        },
+        "qualification": "Geometry/material fidelity proof only; actual capture completeness and appearance require human native and paired views."
+      },
+      "visualDecision": "The seated figures, support and reverse are recorded; the physical underside is outside the capture. Root actually inspected all eight source-reference/serving direction pairs; no major visible-surface capture loss and identical comparison frames.",
+      "views": [
+        {
+          "mode": "native-source",
+          "key": "FRONT",
+          "sha256": "d18fd40fbd64f5b1992ffc6f01f23c7819fed03943bcfa659ff91d6cbe7f7f71",
+          "bytes": 530035
+        },
+        {
+          "mode": "native-source",
+          "key": "RIGHT",
+          "sha256": "478f27193ea37eee494362079aaa13e89e93984796f2faf82429f08109ff98b6",
+          "bytes": 488839
+        },
+        {
+          "mode": "native-source",
+          "key": "REVERSE",
+          "sha256": "174cb8f421b934a81544a70fadbe786d18df10f4aeee79e14184632932edba05",
+          "bytes": 476792
+        },
+        {
+          "mode": "native-source",
+          "key": "LEFT",
+          "sha256": "b10a87b8bdb36725c870ef8357f89000e113e0ac1c2039f51c2b8da6229134d6",
+          "bytes": 515450
+        },
+        {
+          "mode": "native-source",
+          "key": "ABOVE",
+          "sha256": "c516927a144404d366c42cb5738b825678e5afe92af63f3f28a075fd8b667b5e",
+          "bytes": 342836
+        },
+        {
+          "mode": "native-source",
+          "key": "UNDERSIDE",
+          "sha256": "31bed369d3128c9c7309f75ed430abecf106a851e48419a0594a29e19d7f1979",
+          "bytes": 608866
+        },
+        {
+          "mode": "native-source",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "69f0e8ea24bc3ec6731ad924aea57b6b2f0f556726d0fadb8f9e2f618e915d5f",
+          "bytes": 398756
+        },
+        {
+          "mode": "native-source",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "f536725077a43b3b86eac73cb19b3427931fe5d99b8c591e18246fd06cd6c223",
+          "bytes": 395439
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "sha256": "d18fd40fbd64f5b1992ffc6f01f23c7819fed03943bcfa659ff91d6cbe7f7f71",
+          "bytes": 530035
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "sha256": "478f27193ea37eee494362079aaa13e89e93984796f2faf82429f08109ff98b6",
+          "bytes": 488839
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "sha256": "174cb8f421b934a81544a70fadbe786d18df10f4aeee79e14184632932edba05",
+          "bytes": 476792
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "sha256": "b10a87b8bdb36725c870ef8357f89000e113e0ac1c2039f51c2b8da6229134d6",
+          "bytes": 515450
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "sha256": "c516927a144404d366c42cb5738b825678e5afe92af63f3f28a075fd8b667b5e",
+          "bytes": 342836
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "sha256": "31bed369d3128c9c7309f75ed430abecf106a851e48419a0594a29e19d7f1979",
+          "bytes": 608866
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "69f0e8ea24bc3ec6731ad924aea57b6b2f0f556726d0fadb8f9e2f618e915d5f",
+          "bytes": 398756
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "f536725077a43b3b86eac73cb19b3427931fe5d99b8c591e18246fd06cd6c223",
+          "bytes": 395439
+        }
+      ],
+      "captureLabel": "3D capture of the MNAC marble group, published by Giravolt. Model by Jaime Salguero. The seated figures and pale carved surface belong to this marble version; this is not the clay maquette held in Girona. The seated figures, support and reverse are recorded; the physical underside is outside the capture.",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          -1,
+          0,
+          0
+        ],
+        "status": "manual",
+        "note": "Upright Y-up identity pose; opening camera selects an actually reviewed direction from the eight paired views."
+      },
+      "contact": {
+        "sha256": "124bd65bb918f5f27f66b60f5485d326bc578685cf9fe9c94df70b1f1e6450a7",
+        "bytes": 172226
+      },
+      "thumbnail": {
+        "sha256": "3f77b3d446e137895a8b65917c7a5634aac5be333578b38f1b38d6502e111113",
+        "bytes": 26430
+      },
+      "poster": {
+        "sha256": "ff9cbcccff935cdfc0aa577c7457fa9736fb56bfd3de24798c60cb6a2b83f98c",
+        "bytes": 35397
+      },
+      "thumbnailSource": {
+        "key": "LEFT",
+        "sha256": "b10a87b8bdb36725c870ef8357f89000e113e0ac1c2039f51c2b8da6229134d6"
+      },
+      "finalThumbnailActuallyReviewed": true
+    },
+    {
+      "slug": "modern/blay-against-invader-girona-12f1ac",
+      "sourceUid": "12f1acc21eac456b907de14616cc188f",
+      "title": "Against the Invader",
+      "original": {
+        "url": "https://sketchfab.com/3d-models/contra-linvasor-mda-12f1acc21eac456b907de14616cc188f",
+        "sha256": "d983999267505735fd2b1c9b7acd3bef2d3b91343ac4828a763129f1487a308f",
+        "bytes": 16093640,
+        "representation": "Authenticated Sketchfab distribution GLB; uploader-native authoring package not asserted."
+      },
+      "sourceUrl": "https://sketchfab.com/3d-models/contra-linvasor-mda-12f1acc21eac456b907de14616cc188f",
+      "primaryRecord": "https://museuart.cat/en/heritageobject/026550-contra-linvasor/",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "licenseScope": "Current exact-UID provider CC BY 4.0 grant for this downloadable capture. Source-only retrieval binds the distribution GLB to its measured SHA-256 and byte count.",
+      "scanAuthor": "Giravolt",
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/modern/blay-against-invader-girona-12f1ac/preview-d98399926750.glb",
+        "sha256": "d983999267505735fd2b1c9b7acd3bef2d3b91343ac4828a763129f1487a308f",
+        "bytes": 16093640
+      },
+      "rawSourceFaces": 501086,
+      "rawPreviewFaces": 501086,
+      "measuredTopology": {
+        "source": {
+          "loadedRawFaces": 501086,
+          "measured": {
+            "faces": 501086,
+            "bratio": 0,
+            "ncomp": 7,
+            "largest_frac": 0.999
+          },
+          "status": "pass"
+        },
+        "preview": {
+          "loadedRawFaces": 501086,
+          "measured": {
+            "faces": 501086,
+            "bratio": 0,
+            "ncomp": 7,
+            "largest_frac": 0.999
+          },
+          "status": "pass"
+        }
+      },
+      "materialAppearance": "Exact unchanged provider GLB materials and textures.",
+      "processing": {
+        "tool": "Unchanged original serving copy",
+        "geometryCompression": "none added; incoming compression retained only when source-compatible",
+        "textureCompression": "none added",
+        "simplificationApplied": false,
+        "geometryAndTextureResolutionUnchanged": true,
+        "servingIdenticalToOriginal": true,
+        "materialWorkflowConversion": "none",
+        "sourceReferenceQualification": "Unchanged incoming GLB reference. Source is the acquired distribution GLB; uploader-native authoring or scan-master package not asserted.",
+        "noAutomaticPose": true,
+        "noCropping": true,
+        "noManualRecoloringOrRepair": true
+      },
+      "geometryAndAppearanceFidelity": {
+        "status": "pass",
+        "checks": {
+          "allDecodedGeometryFingerprintsEqual": true,
+          "allAccessorArraysAndMultiplicityEqual": true,
+          "rawNodeTransformsAndSceneMappingExact": true,
+          "sameTextureCountAndResolution": true,
+          "completeOriginalReferenceAndServingBytesIdentical": true,
+          "allImageContentIdentical": true
+        },
+        "geometryFingerprintSha256": "6713fe5062180849688553bdf213cd94cd5e08b4537af98145e226c87611537c",
+        "accessorCount": 20,
+        "textureEvidence": {
+          "original": [
+            {
+              "mimeType": "image/jpeg",
+              "size": [
+                1024,
+                1024
+              ],
+              "bytes": 344728,
+              "sha256": "2bf7b31968a58c7dfd15b104da850996e1e352e4350a028861fe89cc5a86992d"
+            }
+          ],
+          "reference": [
+            {
+              "mimeType": "image/jpeg",
+              "size": [
+                1024,
+                1024
+              ],
+              "bytes": 344728,
+              "sha256": "2bf7b31968a58c7dfd15b104da850996e1e352e4350a028861fe89cc5a86992d"
+            }
+          ],
+          "serving": [
+            {
+              "mimeType": "image/jpeg",
+              "size": [
+                1024,
+                1024
+              ],
+              "bytes": 344728,
+              "sha256": "2bf7b31968a58c7dfd15b104da850996e1e352e4350a028861fe89cc5a86992d"
+            }
+          ]
+        },
+        "qualification": "Geometry/material fidelity proof only; actual capture completeness and appearance require human native and paired views."
+      },
+      "visualDecision": "The standing figure and its support are recorded. The long spear is also absent from the museum’s own photograph; no shaft has been added. Root actually inspected all eight source-reference/serving direction pairs; no major visible-surface capture loss and identical comparison frames.",
+      "views": [
+        {
+          "mode": "native-source",
+          "key": "FRONT",
+          "sha256": "cdc71a69e4de1fc3834ceca635b0f254b53615833ec5128962c9a66259849a59",
+          "bytes": 381389
+        },
+        {
+          "mode": "native-source",
+          "key": "RIGHT",
+          "sha256": "a31271210ee5cba8a46be0e52afc45eb2a97bf5dacb7c2954ef45659abda209a",
+          "bytes": 323822
+        },
+        {
+          "mode": "native-source",
+          "key": "REVERSE",
+          "sha256": "3b3cdf0143f5c1cfef2dfaa62588dfe8ee74b7ae88738059091da05020503950",
+          "bytes": 381774
+        },
+        {
+          "mode": "native-source",
+          "key": "LEFT",
+          "sha256": "4962dc4bfb7338f2dcaea187ce28af72a5dc24501f588f038b0d340b5659bfbd",
+          "bytes": 370689
+        },
+        {
+          "mode": "native-source",
+          "key": "ABOVE",
+          "sha256": "d513a463396fd9d164be4b8c36d0c4f6c8c05c5d74995e8053c3280043ee6df3",
+          "bytes": 281409
+        },
+        {
+          "mode": "native-source",
+          "key": "UNDERSIDE",
+          "sha256": "0af1007a8b57dab30cb23c9838b9ef7300f8978799f92d065760d4075496779f",
+          "bytes": 74421
+        },
+        {
+          "mode": "native-source",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "b166b67df25121e9e6a7aad5388f3552791931ffd48e28a52c9a5dd265a1f9db",
+          "bytes": 337757
+        },
+        {
+          "mode": "native-source",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "a146101b589a3e3b1ff49c7b9717832289cec67261eed4bd654b474a417b85a3",
+          "bytes": 357301
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "sha256": "cdc71a69e4de1fc3834ceca635b0f254b53615833ec5128962c9a66259849a59",
+          "bytes": 381389
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "sha256": "a31271210ee5cba8a46be0e52afc45eb2a97bf5dacb7c2954ef45659abda209a",
+          "bytes": 323822
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "sha256": "3b3cdf0143f5c1cfef2dfaa62588dfe8ee74b7ae88738059091da05020503950",
+          "bytes": 381774
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "sha256": "4962dc4bfb7338f2dcaea187ce28af72a5dc24501f588f038b0d340b5659bfbd",
+          "bytes": 370689
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "sha256": "d513a463396fd9d164be4b8c36d0c4f6c8c05c5d74995e8053c3280043ee6df3",
+          "bytes": 281409
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "sha256": "0af1007a8b57dab30cb23c9838b9ef7300f8978799f92d065760d4075496779f",
+          "bytes": 74421
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "b166b67df25121e9e6a7aad5388f3552791931ffd48e28a52c9a5dd265a1f9db",
+          "bytes": 337757
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "a146101b589a3e3b1ff49c7b9717832289cec67261eed4bd654b474a417b85a3",
+          "bytes": 357301
+        }
+      ],
+      "captureLabel": "3D capture of the Museu d’Art de Girona plaster by Giravolt; model by Jaime Salguero. The standing figure and its support are recorded. The long spear is also absent from the museum’s own photograph; no shaft has been added.",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          -1,
+          0,
+          0
+        ],
+        "status": "manual",
+        "note": "Upright Y-up identity pose; opening camera selects an actually reviewed direction from the eight paired views."
+      },
+      "contact": {
+        "sha256": "9fd0f977fc7c69d3e189a766b1a5884325adf07b6f74a668a521a859b0ad41ed",
+        "bytes": 113350
+      },
+      "thumbnail": {
+        "sha256": "4cb7072e71f680e3265a9d7da30a2e873db9e54c1d5b863d11c8fa6133da38db",
+        "bytes": 17260
+      },
+      "poster": {
+        "sha256": "cdffa9c36d91445da2938f03e45f47b80f6e9d8a4ca35132632dffd454884210",
+        "bytes": 23173
+      },
+      "thumbnailSource": {
+        "key": "LEFT",
+        "sha256": "4962dc4bfb7338f2dcaea187ce28af72a5dc24501f588f038b0d340b5659bfbd"
+      },
+      "finalThumbnailActuallyReviewed": true
+    },
+    {
+      "slug": "modern/blay-head-olot-giant-4f5f90",
+      "sourceUid": "4f5f901519e448289fbcaaed7f19729e",
+      "title": "Head of the Olot Giant",
+      "original": {
+        "url": "https://sketchfab.com/3d-models/cap-del-gegant-dolot-museu-de-la-garrotxa-4f5f901519e448289fbcaaed7f19729e",
+        "sha256": "af80bc79ef11add3a55064fe36a7a260dfc8d3d73cf7590011779a57e9249d07",
+        "bytes": 4627352,
+        "representation": "Authenticated Sketchfab distribution GLB; uploader-native authoring package not asserted."
+      },
+      "sourceUrl": "https://sketchfab.com/3d-models/cap-del-gegant-dolot-museu-de-la-garrotxa-4f5f901519e448289fbcaaed7f19729e",
+      "primaryRecord": "https://museus.olot.cat/coleccio/cap-i-carcassa-del-gegant-dolot",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "licenseScope": "Current exact-UID provider CC BY 4.0 grant for this downloadable capture. Source-only retrieval binds the distribution GLB to its measured SHA-256 and byte count.",
+      "scanAuthor": "Giravolt",
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/modern/blay-head-olot-giant-4f5f90/preview-af80bc79ef11.glb",
+        "sha256": "af80bc79ef11add3a55064fe36a7a260dfc8d3d73cf7590011779a57e9249d07",
+        "bytes": 4627352
+      },
+      "rawSourceFaces": 80000,
+      "rawPreviewFaces": 80000,
+      "measuredTopology": {
+        "source": {
+          "loadedRawFaces": 80000,
+          "measured": {
+            "faces": 80000,
+            "bratio": 0.023,
+            "ncomp": 3,
+            "largest_frac": 1
+          },
+          "status": "pass"
+        },
+        "preview": {
+          "loadedRawFaces": 80000,
+          "measured": {
+            "faces": 80000,
+            "bratio": 0.023,
+            "ncomp": 3,
+            "largest_frac": 1
+          },
+          "status": "pass"
+        }
+      },
+      "materialAppearance": "Exact unchanged provider GLB materials and textures.",
+      "processing": {
+        "tool": "Unchanged original serving copy",
+        "geometryCompression": "none added; incoming compression retained only when source-compatible",
+        "textureCompression": "none added",
+        "simplificationApplied": false,
+        "geometryAndTextureResolutionUnchanged": true,
+        "servingIdenticalToOriginal": true,
+        "materialWorkflowConversion": "none",
+        "sourceReferenceQualification": "Unchanged incoming GLB reference. Source is the acquired distribution GLB; uploader-native authoring or scan-master package not asserted.",
+        "noAutomaticPose": true,
+        "noCropping": true,
+        "noManualRecoloringOrRepair": true
+      },
+      "geometryAndAppearanceFidelity": {
+        "status": "pass",
+        "checks": {
+          "allDecodedGeometryFingerprintsEqual": true,
+          "allAccessorArraysAndMultiplicityEqual": true,
+          "rawNodeTransformsAndSceneMappingExact": true,
+          "sameTextureCountAndResolution": true,
+          "completeOriginalReferenceAndServingBytesIdentical": true,
+          "allImageContentIdentical": true
+        },
+        "geometryFingerprintSha256": "a238782fac70ea2124d85918bcd16c0b668b2120e6590599cb960dd1c8837838",
+        "accessorCount": 5,
+        "textureEvidence": {
+          "original": [
+            {
+              "mimeType": "image/jpeg",
+              "size": [
+                1024,
+                1024
+              ],
+              "bytes": 630324,
+              "sha256": "fff4227b5f86305f9a49d1d197da9ced3510dbe010d0446a0d5846b93e0265b5"
+            },
+            {
+              "mimeType": "image/jpeg",
+              "size": [
+                1024,
+                1024
+              ],
+              "bytes": 876610,
+              "sha256": "18697cb03d9b48027468586d08663ef49663e56bf9e62c073008e46d701030bb"
+            }
+          ],
+          "reference": [
+            {
+              "mimeType": "image/jpeg",
+              "size": [
+                1024,
+                1024
+              ],
+              "bytes": 630324,
+              "sha256": "fff4227b5f86305f9a49d1d197da9ced3510dbe010d0446a0d5846b93e0265b5"
+            },
+            {
+              "mimeType": "image/jpeg",
+              "size": [
+                1024,
+                1024
+              ],
+              "bytes": 876610,
+              "sha256": "18697cb03d9b48027468586d08663ef49663e56bf9e62c073008e46d701030bb"
+            }
+          ],
+          "serving": [
+            {
+              "mimeType": "image/jpeg",
+              "size": [
+                1024,
+                1024
+              ],
+              "bytes": 630324,
+              "sha256": "fff4227b5f86305f9a49d1d197da9ced3510dbe010d0446a0d5846b93e0265b5"
+            },
+            {
+              "mimeType": "image/jpeg",
+              "size": [
+                1024,
+                1024
+              ],
+              "bytes": 876610,
+              "sha256": "18697cb03d9b48027468586d08663ef49663e56bf9e62c073008e46d701030bb"
+            }
+          ]
+        },
+        "qualification": "Geometry/material fidelity proof only; actual capture completeness and appearance require human native and paired views."
+      },
+      "visualDecision": "The painted head and shoulder shell are recorded, including the helmet and reverse; the full costumed giant and its separate body structure are outside the capture. Root actually inspected all eight source-reference/serving direction pairs; no major visible-surface capture loss and identical comparison frames.",
+      "views": [
+        {
+          "mode": "native-source",
+          "key": "FRONT",
+          "sha256": "aee62c364fdcbaedcf80ff5ff82ac756a08b8a4063d403bb37f8b38c1aa426ab",
+          "bytes": 545598
+        },
+        {
+          "mode": "native-source",
+          "key": "RIGHT",
+          "sha256": "6056c5388e3853c112faf10ecb20d65bf9d8c2fa70f353f38411a0e2b9f79901",
+          "bytes": 641164
+        },
+        {
+          "mode": "native-source",
+          "key": "REVERSE",
+          "sha256": "3c39479ffdaab0a585986cb3bdb6ab42385fc0f76f17f1856c7e7f6a0e0403ea",
+          "bytes": 544392
+        },
+        {
+          "mode": "native-source",
+          "key": "LEFT",
+          "sha256": "aef4ae7006be28e48b146ed99e0f2a4a36f0d071e521ad69176e7886bb320b6e",
+          "bytes": 603917
+        },
+        {
+          "mode": "native-source",
+          "key": "ABOVE",
+          "sha256": "f4142330558175de770d1b877feb4cefbc5707838082d3ed73b9378c6a089cb8",
+          "bytes": 358971
+        },
+        {
+          "mode": "native-source",
+          "key": "UNDERSIDE",
+          "sha256": "f90baaac92c7bbf9e6e4a3b53fecf7d8b426356187ec9897f7fc7927ca6bbdb5",
+          "bytes": 406020
+        },
+        {
+          "mode": "native-source",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "c1400835e0d8ed3f740cdd0ed6330b5824b18de0a80f7e9c4bb7ee6c4b897ec8",
+          "bytes": 529517
+        },
+        {
+          "mode": "native-source",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "1331db0ea002e275b234932c3fe5730f890485a8f1ee9c6d9164d15ec8dfa37f",
+          "bytes": 504716
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "sha256": "aee62c364fdcbaedcf80ff5ff82ac756a08b8a4063d403bb37f8b38c1aa426ab",
+          "bytes": 545598
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "sha256": "6056c5388e3853c112faf10ecb20d65bf9d8c2fa70f353f38411a0e2b9f79901",
+          "bytes": 641164
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "sha256": "3c39479ffdaab0a585986cb3bdb6ab42385fc0f76f17f1856c7e7f6a0e0403ea",
+          "bytes": 544392
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "sha256": "aef4ae7006be28e48b146ed99e0f2a4a36f0d071e521ad69176e7886bb320b6e",
+          "bytes": 603917
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "sha256": "f4142330558175de770d1b877feb4cefbc5707838082d3ed73b9378c6a089cb8",
+          "bytes": 358971
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "sha256": "f90baaac92c7bbf9e6e4a3b53fecf7d8b426356187ec9897f7fc7927ca6bbdb5",
+          "bytes": 406020
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "c1400835e0d8ed3f740cdd0ed6330b5824b18de0a80f7e9c4bb7ee6c4b897ec8",
+          "bytes": 529517
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "1331db0ea002e275b234932c3fe5730f890485a8f1ee9c6d9164d15ec8dfa37f",
+          "bytes": 504716
+        }
+      ],
+      "captureLabel": "3D capture of the painted head and shoulder shell at the Museu dels Sants, published by Giravolt. Photography by Aleix Barberà; processing by Néstor Marqués. The painted head and shoulder shell are recorded, including the helmet and reverse; the full costumed giant and its separate body structure are outside the capture.",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0,
+          0,
+          1
+        ],
+        "status": "manual",
+        "note": "Upright Y-up identity pose; opening camera selects an actually reviewed direction from the eight paired views."
+      },
+      "contact": {
+        "sha256": "1a1c798313ac1fa6a207651214c16f3b19a04fa4a341c1fd60058a4beef842f8",
+        "bytes": 192236
+      },
+      "thumbnail": {
+        "sha256": "c1c7fe422060dd42d69d2c5ad3a40976b3aa04f78d9711d4f29b585307719ddc",
+        "bytes": 32582
+      },
+      "poster": {
+        "sha256": "31bf3fa02068362e9514338aed3fa387dc04878e0411d1f0438389a6254fef0b",
+        "bytes": 43601
+      },
+      "thumbnailSource": {
+        "key": "FRONT",
+        "sha256": "aee62c364fdcbaedcf80ff5ff82ac756a08b8a4063d403bb37f8b38c1aa426ab"
+      },
+      "finalThumbnailActuallyReviewed": true
+    },
+    {
+      "slug": "modern/blay-chasing-illusion-mnac-50804f",
+      "sourceUid": "50804fbddd7a4fa3bd32c1bbbeb75be0",
+      "title": "Chasing Illusion",
+      "original": {
+        "url": "https://sketchfab.com/3d-models/chasing-illusion-miquel-blay-1902-50804fbddd7a4fa3bd32c1bbbeb75be0",
+        "sha256": "c41d9afd19c7247bf52b20bb9a6b43e2dfe2455caa50f5f3cd2a798da1483000",
+        "bytes": 59685396,
+        "representation": "Authenticated Sketchfab distribution GLB; uploader-native authoring package not asserted."
+      },
+      "sourceUrl": "https://sketchfab.com/3d-models/chasing-illusion-miquel-blay-1902-50804fbddd7a4fa3bd32c1bbbeb75be0",
+      "primaryRecord": "https://www.museunacional.cat/es/colleccio/persiguiendo-la-ilusion/miquel-blay/153429-000",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "licenseScope": "Current exact-UID provider CC BY 4.0 grant for this downloadable capture. Source-only retrieval binds the distribution GLB to its measured SHA-256 and byte count.",
+      "scanAuthor": "the dragon 3d",
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/modern/blay-chasing-illusion-mnac-50804f/preview-c41d9afd19c7.glb",
+        "sha256": "c41d9afd19c7247bf52b20bb9a6b43e2dfe2455caa50f5f3cd2a798da1483000",
+        "bytes": 59685396
+      },
+      "rawSourceFaces": 1499529,
+      "rawPreviewFaces": 1499529,
+      "measuredTopology": {
+        "source": {
+          "loadedRawFaces": 1499529,
+          "measured": {
+            "faces": 1499529,
+            "bratio": 0.001,
+            "ncomp": 2,
+            "largest_frac": 1
+          },
+          "status": "pass"
+        },
+        "preview": {
+          "loadedRawFaces": 1499529,
+          "measured": {
+            "faces": 1499529,
+            "bratio": 0.001,
+            "ncomp": 2,
+            "largest_frac": 1
+          },
+          "status": "pass"
+        }
+      },
+      "materialAppearance": "Exact unchanged provider GLB materials and textures.",
+      "processing": {
+        "tool": "Unchanged original serving copy",
+        "geometryCompression": "none added; incoming compression retained only when source-compatible",
+        "textureCompression": "none added",
+        "simplificationApplied": false,
+        "geometryAndTextureResolutionUnchanged": true,
+        "servingIdenticalToOriginal": true,
+        "materialWorkflowConversion": "none",
+        "sourceReferenceQualification": "Unchanged incoming GLB reference. Source is the acquired distribution GLB; uploader-native authoring or scan-master package not asserted.",
+        "noAutomaticPose": true,
+        "noCropping": true,
+        "noManualRecoloringOrRepair": true
+      },
+      "geometryAndAppearanceFidelity": {
+        "status": "pass",
+        "checks": {
+          "allDecodedGeometryFingerprintsEqual": true,
+          "allAccessorArraysAndMultiplicityEqual": true,
+          "rawNodeTransformsAndSceneMappingExact": true,
+          "sameTextureCountAndResolution": true,
+          "completeOriginalReferenceAndServingBytesIdentical": true,
+          "allImageContentIdentical": true
+        },
+        "geometryFingerprintSha256": "a40a872686afd76aa9a954f18faa78a8987eb93bd90ad70747fa3a2e547267fa",
+        "accessorCount": 80,
+        "textureEvidence": {
+          "original": [
+            {
+              "mimeType": "image/jpeg",
+              "size": [
+                1024,
+                1024
+              ],
+              "bytes": 904672,
+              "sha256": "72c2390b38c93c6c1123e0ca89fc96d2a1c511466f91aa1f930c2ba4d6ddec01"
+            }
+          ],
+          "reference": [
+            {
+              "mimeType": "image/jpeg",
+              "size": [
+                1024,
+                1024
+              ],
+              "bytes": 904672,
+              "sha256": "72c2390b38c93c6c1123e0ca89fc96d2a1c511466f91aa1f930c2ba4d6ddec01"
+            }
+          ],
+          "serving": [
+            {
+              "mimeType": "image/jpeg",
+              "size": [
+                1024,
+                1024
+              ],
+              "bytes": 904672,
+              "sha256": "72c2390b38c93c6c1123e0ca89fc96d2a1c511466f91aa1f930c2ba4d6ddec01"
+            }
+          ]
+        },
+        "qualification": "Geometry/material fidelity proof only; actual capture completeness and appearance require human native and paired views."
+      },
+      "visualDecision": "Both figures and their support are recorded. A narrow scan fringe at the base remains; the physical underside is outside the capture. Root actually inspected all eight source-reference/serving direction pairs; no major visible-surface capture loss and identical comparison frames.",
+      "views": [
+        {
+          "mode": "native-source",
+          "key": "FRONT",
+          "sha256": "95bb8c34277603bd4e6b189efd62fbb4aedceae3450ffa047e2b4241b9179d82",
+          "bytes": 595164
+        },
+        {
+          "mode": "native-source",
+          "key": "RIGHT",
+          "sha256": "00d4efa20dbe9f2208b5edae3cab89349f5617f4b19b7537938f18e653a0ea07",
+          "bytes": 642837
+        },
+        {
+          "mode": "native-source",
+          "key": "REVERSE",
+          "sha256": "9013ad90e3c0d7796500c17844f2730a97f29dded678fe3ddb2a7e18757be034",
+          "bytes": 639514
+        },
+        {
+          "mode": "native-source",
+          "key": "LEFT",
+          "sha256": "cb9fea37fa959dd1bb84a5bfb742061fbac8994b00425337aa4918cd9ba9ebc3",
+          "bytes": 613106
+        },
+        {
+          "mode": "native-source",
+          "key": "ABOVE",
+          "sha256": "02e811fb8d45a158a8f5097f055fd9ffe72a31c64cd9b2122580c50897976164",
+          "bytes": 479083
+        },
+        {
+          "mode": "native-source",
+          "key": "UNDERSIDE",
+          "sha256": "b4b113caa0f3a9f3232cdb1cefd858936234560f0bd428da3f2d7c2ed2649f3d",
+          "bytes": 554638
+        },
+        {
+          "mode": "native-source",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "cb8ea78d03e90a9aeebd1dbe0de4fb5d512b488351913d784c667bd8ae169579",
+          "bytes": 483753
+        },
+        {
+          "mode": "native-source",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "d80c5cd2fc3a3c4eb379fa87c35ef49b80159692fb2b8d5ca4550468469a955e",
+          "bytes": 536507
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "sha256": "95bb8c34277603bd4e6b189efd62fbb4aedceae3450ffa047e2b4241b9179d82",
+          "bytes": 595164
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "sha256": "00d4efa20dbe9f2208b5edae3cab89349f5617f4b19b7537938f18e653a0ea07",
+          "bytes": 642837
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "sha256": "9013ad90e3c0d7796500c17844f2730a97f29dded678fe3ddb2a7e18757be034",
+          "bytes": 639514
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "sha256": "cb9fea37fa959dd1bb84a5bfb742061fbac8994b00425337aa4918cd9ba9ebc3",
+          "bytes": 613106
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "sha256": "02e811fb8d45a158a8f5097f055fd9ffe72a31c64cd9b2122580c50897976164",
+          "bytes": 479083
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "sha256": "b4b113caa0f3a9f3232cdb1cefd858936234560f0bd428da3f2d7c2ed2649f3d",
+          "bytes": 554638
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "cb8ea78d03e90a9aeebd1dbe0de4fb5d512b488351913d784c667bd8ae169579",
+          "bytes": 483753
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "d80c5cd2fc3a3c4eb379fa87c35ef49b80159692fb2b8d5ca4550468469a955e",
+          "bytes": 536507
+        }
+      ],
+      "captureLabel": "3D capture by the dragon 3d of the MNAC marble-and-bronze group. The dark figure and pale stone figure are different physical materials. The female ideal’s unfinished, dissolving form belongs to the sculpture. Both figures and their support are recorded. A narrow scan fringe at the base remains; the physical underside is outside the capture.",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0,
+          0,
+          1
+        ],
+        "status": "manual",
+        "note": "Upright Y-up identity pose; opening camera selects an actually reviewed direction from the eight paired views."
+      },
+      "contact": {
+        "sha256": "90f45dc6c677279ac77d9075eda755d839247ef8300422adbe0ee7b256875c41",
+        "bytes": 230672
+      },
+      "thumbnail": {
+        "sha256": "cc0574296b951dd89de0c4da47e7d0891a4a44ae8e074f7e190f8b5bafb60b53",
+        "bytes": 41970
+      },
+      "poster": {
+        "sha256": "36989dbacd8395ebed334aa35823876a3c6d3be631ba464970552b0afdac5820",
+        "bytes": 56117
+      },
+      "thumbnailSource": {
+        "key": "FRONT",
+        "sha256": "95bb8c34277603bd4e6b189efd62fbb4aedceae3450ffa047e2b4241b9179d82"
+      },
+      "finalThumbnailActuallyReviewed": true
+    },
+    {
+      "slug": "modern/blay-first-cold-clay-maquette-6a6890",
+      "sourceUid": "6a6890348f404c2d9eb06623de4df43e",
+      "title": "The First Cold (clothed clay maquette)",
+      "original": {
+        "url": "https://sketchfab.com/3d-models/esbos-dels-primers-freds-mda-6a6890348f404c2d9eb06623de4df43e",
+        "sha256": "edf280aaea5d16b9ef558516911ff927979f1a40f80240475528ba808a49ae93",
+        "bytes": 8197304,
+        "representation": "Authenticated Sketchfab distribution GLB; uploader-native authoring package not asserted."
+      },
+      "sourceUrl": "https://sketchfab.com/3d-models/esbos-dels-primers-freds-mda-6a6890348f404c2d9eb06623de4df43e",
+      "primaryRecord": "https://museuart.cat/projectes/museu-al-territori/",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "licenseScope": "Current exact-UID provider CC BY 4.0 grant for this downloadable capture. Source-only retrieval binds the distribution GLB to its measured SHA-256 and byte count.",
+      "scanAuthor": "Giravolt",
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/modern/blay-first-cold-clay-maquette-6a6890/preview-edf280aaea5d.glb",
+        "sha256": "edf280aaea5d16b9ef558516911ff927979f1a40f80240475528ba808a49ae93",
+        "bytes": 8197304
+      },
+      "rawSourceFaces": 209377,
+      "rawPreviewFaces": 209377,
+      "measuredTopology": {
+        "source": {
+          "loadedRawFaces": 209377,
+          "measured": {
+            "faces": 209377,
+            "bratio": 0,
+            "ncomp": 2,
+            "largest_frac": 1
+          },
+          "status": "pass"
+        },
+        "preview": {
+          "loadedRawFaces": 209377,
+          "measured": {
+            "faces": 209377,
+            "bratio": 0,
+            "ncomp": 2,
+            "largest_frac": 1
+          },
+          "status": "pass"
+        }
+      },
+      "materialAppearance": "Exact unchanged provider GLB materials and textures.",
+      "processing": {
+        "tool": "Unchanged original serving copy",
+        "geometryCompression": "none added; incoming compression retained only when source-compatible",
+        "textureCompression": "none added",
+        "simplificationApplied": false,
+        "geometryAndTextureResolutionUnchanged": true,
+        "servingIdenticalToOriginal": true,
+        "materialWorkflowConversion": "none",
+        "sourceReferenceQualification": "Unchanged incoming GLB reference. Source is the acquired distribution GLB; uploader-native authoring or scan-master package not asserted.",
+        "noAutomaticPose": true,
+        "noCropping": true,
+        "noManualRecoloringOrRepair": true
+      },
+      "geometryAndAppearanceFidelity": {
+        "status": "pass",
+        "checks": {
+          "allDecodedGeometryFingerprintsEqual": true,
+          "allAccessorArraysAndMultiplicityEqual": true,
+          "rawNodeTransformsAndSceneMappingExact": true,
+          "sameTextureCountAndResolution": true,
+          "completeOriginalReferenceAndServingBytesIdentical": true,
+          "allImageContentIdentical": true
+        },
+        "geometryFingerprintSha256": "595109ebedff3ff86f76bd98b02ac2368fba58502787e6d439f90117a3190194",
+        "accessorCount": 12,
+        "textureEvidence": {
+          "original": [
+            {
+              "mimeType": "image/jpeg",
+              "size": [
+                1024,
+                1024
+              ],
+              "bytes": 732294,
+              "sha256": "fe49a3885d8d6b040a4a346910aaec3cb509a865a44c9f03131babbfbb57717f"
+            }
+          ],
+          "reference": [
+            {
+              "mimeType": "image/jpeg",
+              "size": [
+                1024,
+                1024
+              ],
+              "bytes": 732294,
+              "sha256": "fe49a3885d8d6b040a4a346910aaec3cb509a865a44c9f03131babbfbb57717f"
+            }
+          ],
+          "serving": [
+            {
+              "mimeType": "image/jpeg",
+              "size": [
+                1024,
+                1024
+              ],
+              "bytes": 732294,
+              "sha256": "fe49a3885d8d6b040a4a346910aaec3cb509a865a44c9f03131babbfbb57717f"
+            }
+          ]
+        },
+        "qualification": "Geometry/material fidelity proof only; actual capture completeness and appearance require human native and paired views."
+      },
+      "visualDecision": "The figures and their rough clay support are recorded, including the reverse; the physical underside is outside the capture. Root actually inspected all eight source-reference/serving direction pairs; no major visible-surface capture loss and identical comparison frames.",
+      "views": [
+        {
+          "mode": "native-source",
+          "key": "FRONT",
+          "sha256": "4cf97daf3ad8d0ada84613e81c2de5ce2fb39d70df67c24de5538ee15541115b",
+          "bytes": 662363
+        },
+        {
+          "mode": "native-source",
+          "key": "RIGHT",
+          "sha256": "43a237516d5a93b46c62971523b49379e0774ba26d3126efe42b949bf851d8b7",
+          "bytes": 683221
+        },
+        {
+          "mode": "native-source",
+          "key": "REVERSE",
+          "sha256": "502d5ad30bd4217fd14fc2b607300890a976789e24d4654bb808c8bcc447e5e2",
+          "bytes": 582338
+        },
+        {
+          "mode": "native-source",
+          "key": "LEFT",
+          "sha256": "435ddb42e289408cc716cec3cc9d59370ab2cdf8c52566d81ead4332a963f157",
+          "bytes": 684670
+        },
+        {
+          "mode": "native-source",
+          "key": "ABOVE",
+          "sha256": "e76f0a410d1f3c591da1320de1ff7b71bfcbe4381fc961566c64da3b98697500",
+          "bytes": 510359
+        },
+        {
+          "mode": "native-source",
+          "key": "UNDERSIDE",
+          "sha256": "5a47080b2c5c5d591a95e8b068bc0010c51c221ae7f003016bbc59d5e46145f7",
+          "bytes": 650457
+        },
+        {
+          "mode": "native-source",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "cdce4123b7ddcee27184d7a0e631ca82cd93616b0eb0ddf65a75d677286f1e93",
+          "bytes": 575557
+        },
+        {
+          "mode": "native-source",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "b4399bf4073c7a9c25721b5f1d9240b36c1feca60c65a1d50886735ad56f27de",
+          "bytes": 528248
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "sha256": "4cf97daf3ad8d0ada84613e81c2de5ce2fb39d70df67c24de5538ee15541115b",
+          "bytes": 662363
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "sha256": "43a237516d5a93b46c62971523b49379e0774ba26d3126efe42b949bf851d8b7",
+          "bytes": 683221
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "sha256": "502d5ad30bd4217fd14fc2b607300890a976789e24d4654bb808c8bcc447e5e2",
+          "bytes": 582338
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "sha256": "435ddb42e289408cc716cec3cc9d59370ab2cdf8c52566d81ead4332a963f157",
+          "bytes": 684670
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "sha256": "e76f0a410d1f3c591da1320de1ff7b71bfcbe4381fc961566c64da3b98697500",
+          "bytes": 510359
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "sha256": "5a47080b2c5c5d591a95e8b068bc0010c51c221ae7f003016bbc59d5e46145f7",
+          "bytes": 650457
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "cdce4123b7ddcee27184d7a0e631ca82cd93616b0eb0ddf65a75d677286f1e93",
+          "bytes": 575557
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "b4399bf4073c7a9c25721b5f1d9240b36c1feca60c65a1d50886735ad56f27de",
+          "bytes": 528248
+        }
+      ],
+      "captureLabel": "3D capture of the clothed maquette held by the Museu d’Art de Girona, published by Giravolt; model by Laia Tubio. The museum’s current model description identifies clay. This is a preparatory object, not the finished MNAC marble or the bronze version in Olot. The figures and their rough clay support are recorded, including the reverse; the physical underside is outside the capture.",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          -1,
+          0,
+          0
+        ],
+        "status": "manual",
+        "note": "Upright Y-up identity pose; opening camera selects an actually reviewed direction from the eight paired views."
+      },
+      "contact": {
+        "sha256": "9c02b6a20fe70a59e9312c85dd2560bf9fee2dec15a4d0428ccac3fc4ae50517",
+        "bytes": 243640
+      },
+      "thumbnail": {
+        "sha256": "27a972f6c6012961c81b1f699db0eb112972239f41769535ef952a59d9586831",
+        "bytes": 43520
+      },
+      "poster": {
+        "sha256": "9ee694c4a5b0c33fe8fb90ca5f8a240f9f908613bd1675cd3ceae22bd2fe69ed",
+        "bytes": 58185
+      },
+      "thumbnailSource": {
+        "key": "LEFT",
+        "sha256": "435ddb42e289408cc716cec3cc9d59370ab2cdf8c52566d81ead4332a963f157"
+      },
+      "finalThumbnailActuallyReviewed": true
+    }
+  ],
+  "documentaryDimensionsKnownForFiveWorks": true,
+  "modelPhysicalScaleUnverified": true,
+  "exactSizeArEligible": false,
+  "featuredSelectionUnchanged": true,
+  "sourceCleanupPerformed": false,
+  "checkedAt": "2026-10-28T01:20:02.837Z"
+}
