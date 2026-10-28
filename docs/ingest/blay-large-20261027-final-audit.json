@@ -1,0 +1,465 @@
+{
+  "schema": "atrium-independent-integration-audit/1",
+  "batch": "blay-large-20261027",
+  "status": "pass",
+  "comparisonBase": "d1b9b1cad148a03cc3c395f6f53a5a220ed96cd8",
+  "originalAcquisitionComparisonBase": "b623a494d22174b302545757253a3d2ad10e542f",
+  "stagingCommit": "4987c360c7081a72f4e7178d5463246bfae4d553",
+  "auditedCheckoutHead": "9a258be8d0cbc5533a9865fb4e1f7746503430d6",
+  "scope": "Independent local integration, full-content integrity and file-bound decoded geometry/material proof audit. Existing proofs are verified against their exact bound file bodies; geometry is not recomputed. No new browser, network, live delivery or physical-device AR checks.",
+  "checks": {
+    "incomingApprovedUi": {
+      "status": "pass",
+      "incomingCommit": "d1b9b1cad148a03cc3c395f6f53a5a220ed96cd8",
+      "incomingChangedPaths": 18,
+      "exactPreservedFilesExceptReconciledStatus": 17,
+      "spatialMuseumExportFiles": 13,
+      "allCatalogMapsAndRenderHooksUnchangedFromOriginalBase": true,
+      "files": [
+        {
+          "file": "docs/spatial-museum-20261027-live.json",
+          "bytes": 9195,
+          "sha256": "72232ed5d9205d89a6f2d1e4989a891e5234e2f6be6ee27e585390558510be3b"
+        },
+        {
+          "file": "public/spatial-museum/RUNTIME-LICENSES.txt",
+          "bytes": 6518,
+          "sha256": "7ed6d819666e3521371980e29f736e560f06bffa24a9995b5d5f3bea3c92a35f"
+        },
+        {
+          "file": "public/spatial-museum/assets/gallery-engine-BNGRiQWn.js",
+          "bytes": 816901,
+          "sha256": "a19d9e08da9040c50dd73e529578b7f8c3dd473a7c422ce172219913f74c731e"
+        },
+        {
+          "file": "public/spatial-museum/assets/index-CvZ2cumH.js",
+          "bytes": 309186,
+          "sha256": "e1e821d8c4c278e8ffa76bf776d874be1f7a5e5121563ce31b5b7661cd063364"
+        },
+        {
+          "file": "public/spatial-museum/assets/index-gDIcOOFk.css",
+          "bytes": 26458,
+          "sha256": "d6512edbaba81e32e0cc615793c5bdbba07b8698c13c0fe0c3cca52dd9aeb4cc"
+        },
+        {
+          "file": "public/spatial-museum/collection-manifest.json",
+          "bytes": 2374,
+          "sha256": "332f91653610a37c80ca7cca3973825d455e601753be8252791bbad6241de0fa"
+        },
+        {
+          "file": "public/spatial-museum/index.html",
+          "bytes": 755,
+          "sha256": "be9c6b23e61e7df0daabdc0a372ad722b8468bbdf11f754340902846c2d74be2"
+        },
+        {
+          "file": "public/spatial-museum/vendor/draco/LICENSE.apache-2.0.txt",
+          "bytes": 11358,
+          "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+        },
+        {
+          "file": "public/spatial-museum/vendor/draco/LICENSE.three.txt",
+          "bytes": 1081,
+          "sha256": "bfe119ea4fd413f5f7ca3fcd63adb0c4a073ed39daa2fe7d3e6b769e21272601"
+        },
+        {
+          "file": "public/spatial-museum/vendor/draco/NOTICE.txt",
+          "bytes": 491,
+          "sha256": "b47587620eb96a5b85e366494eac4208cc14316f240e507afa279f3ba5d643ce"
+        },
+        {
+          "file": "public/spatial-museum/vendor/draco/README.md",
+          "bytes": 1489,
+          "sha256": "8b9d277bf5743f4ce8d85d63c16690071b53f81796e877d4d395af943bde02a0"
+        },
+        {
+          "file": "public/spatial-museum/vendor/draco/draco_decoder.js",
+          "bytes": 719410,
+          "sha256": "30e4d486fa020737af10e3c56197693e5b904bdc05b8bfa5d7b06751dec6da04"
+        },
+        {
+          "file": "public/spatial-museum/vendor/draco/draco_decoder.wasm",
+          "bytes": 285747,
+          "sha256": "c55a594e8ffd18426d36b27fea9618af3df5e173640a3e56d46f09d76f0574f2"
+        },
+        {
+          "file": "public/spatial-museum/vendor/draco/draco_wasm_wrapper.js",
+          "bytes": 58763,
+          "sha256": "e8049906ef3f8f75d3456c22a3f31bfdfe5b5b5bd09ccdec613b9e9a49d554d8"
+        },
+        {
+          "file": "src/components/v3/V3Header.astro",
+          "bytes": 1807,
+          "sha256": "95b6200ad64f941a186518bf74083466cffa9c05b510eeefc329b74f75ef5cef"
+        },
+        {
+          "file": "src/pages/index.astro",
+          "bytes": 10541,
+          "sha256": "cf2efc89ac30555561857f041366ac52c0f726a735c9f5a9de9c38961e8185c0"
+        },
+        {
+          "file": "src/styles/v3/studio.css",
+          "bytes": 42239,
+          "sha256": "7923a1f70d4d4f9549e62e2d32e60a96899a98ae966441e1a2d207f64fdbb403"
+        }
+      ]
+    },
+    "catalog": {
+      "status": "pass",
+      "total": 2406,
+      "public": 2388,
+      "hidden": 18,
+      "priorRowsPreservedExceptTotal": 2400,
+      "newRows": 6
+    },
+    "priorMapsAndRenders": {
+      "status": "pass",
+      "allPriorValuesAndOrderPreserved": true,
+      "additionsPerChangedMap": 6
+    },
+    "curation": {
+      "status": "pass",
+      "exactCaptionAppends": 3,
+      "necessaryMembershipAppends": 2,
+      "priorBodiesCoversMetadataAndOrderPreserved": true,
+      "placements": [
+        {
+          "exhibition": "the-price-of-victory",
+          "slug": "modern/blay-against-invader-girona-12f1ac"
+        },
+        {
+          "exhibition": "the-work-of-the-surface",
+          "slug": "modern/blay-chasing-illusion-mnac-50804f"
+        },
+        {
+          "exhibition": "power-and-presence",
+          "slug": "modern/blay-head-olot-giant-4f5f90"
+        }
+      ]
+    },
+    "featuredAndHomepage": {
+      "status": "pass",
+      "featured": 250,
+      "runtimeEligibleHomepage": 192,
+      "exactPriorSelectionsValuesAndRuntimeSettingsPreserved": true,
+      "importsNotAutomaticallyFeatured": true
+    },
+    "reviewEvidence": {
+      "status": "pass",
+      "framesReadBack": 96,
+      "contactsReadBack": 6,
+      "imageIdenticalPairs": 48,
+      "thumbnailsAndPostersReadBack": 12,
+      "rootActualVisualApprovalRecordedForEveryAcceptedWork": true,
+      "priorLocalLifecycleWarningsRetained": 12,
+      "priorBrowserShutdownWarningRetained": true,
+      "priorSgCountFailurePreservedAndExplicitlyQualified": true
+    },
+    "heldSource": {
+      "status": "excluded",
+      "sourceUid": "8fe5023517b74eddb564130cbf2e4869",
+      "reason": "Major reverse capture loss; excluded without repair"
+    },
+    "changedPaths": {
+      "status": "pass",
+      "protectedBaseExceptions": [
+        "existing source-request manifests",
+        "root-owned reconciled status history"
+      ],
+      "eightDataFilesOnly": true,
+      "acceptedAssetsOnly": true,
+      "oldAssetsCoversUiCodeAndOtherTrackedSettingsPreserved": true
+    }
+  },
+  "works": [
+    {
+      "slug": "modern/blay-eclosio-marble-garrotxa-883ac0",
+      "sourceUid": "883ac0e194904133a3231ab6d309366c",
+      "status": "pass",
+      "original": {
+        "bytes": 2836264,
+        "sha256": "b15a0e2630ff633bc2892fe367702157c26f981c22ba7afd0a45c3d050868a11"
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/modern/blay-eclosio-marble-garrotxa-883ac0/preview-b15a0e2630ff.glb",
+        "sha256": "b15a0e2630ff633bc2892fe367702157c26f981c22ba7afd0a45c3d050868a11",
+        "bytes": 2836264
+      },
+      "rawFaces": 78465,
+      "decodedGeometryFingerprintSha256": "90b16a5a619ea38f7c73eb379f0f64fc9b8578f65bd9065cc9e7c490dad51350",
+      "pairedFrames": 16,
+      "imageIdenticalPairs": 8,
+      "fullResolutionMaterialSlotAudit": "byte-identical-source",
+      "thumbnail": {
+        "sha256": "86375c375e11b257dc578738bd746a1f0c853b902986e15fdefe86b25d382644",
+        "bytes": 37814
+      },
+      "poster": {
+        "sha256": "2ac6ac977d294f16f111e4c64471668e01158a5c32683c6f958dc76805f0e3a1",
+        "bytes": 50577
+      },
+      "openingDirection": "FRONT"
+    },
+    {
+      "slug": "modern/blay-first-cold-marble-mnac-78c00e",
+      "sourceUid": "78c00e75f77a497f8dda5391d042a300",
+      "status": "pass",
+      "original": {
+        "bytes": 35167192,
+        "sha256": "6927f11fbf118381cbfb668b3ac4885efa37796a75c94bc884bfcccf721d3946"
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/modern/blay-first-cold-marble-mnac-78c00e/preview-ff5ce4a30953.glb",
+        "sha256": "ff5ce4a30953da0795280ec04b0ba44d1229ca22e868d9a9635eea99d459fc8c",
+        "bytes": 35523864
+      },
+      "rawFaces": 999999,
+      "decodedGeometryFingerprintSha256": "47a1a060bb5e7a2f76758d6320d744fbd3580dd21e000a8574a88c1edfdf7a12",
+      "pairedFrames": 16,
+      "imageIdenticalPairs": 8,
+      "fullResolutionMaterialSlotAudit": "explicit-two-to-three-map-conversion",
+      "thumbnail": {
+        "sha256": "3f77b3d446e137895a8b65917c7a5634aac5be333578b38f1b38d6502e111113",
+        "bytes": 26430
+      },
+      "poster": {
+        "sha256": "ff9cbcccff935cdfc0aa577c7457fa9736fb56bfd3de24798c60cb6a2b83f98c",
+        "bytes": 35397
+      },
+      "openingDirection": "LEFT"
+    },
+    {
+      "slug": "modern/blay-against-invader-girona-12f1ac",
+      "sourceUid": "12f1acc21eac456b907de14616cc188f",
+      "status": "pass",
+      "original": {
+        "bytes": 16093640,
+        "sha256": "d983999267505735fd2b1c9b7acd3bef2d3b91343ac4828a763129f1487a308f"
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/modern/blay-against-invader-girona-12f1ac/preview-d98399926750.glb",
+        "sha256": "d983999267505735fd2b1c9b7acd3bef2d3b91343ac4828a763129f1487a308f",
+        "bytes": 16093640
+      },
+      "rawFaces": 501086,
+      "decodedGeometryFingerprintSha256": "6713fe5062180849688553bdf213cd94cd5e08b4537af98145e226c87611537c",
+      "pairedFrames": 16,
+      "imageIdenticalPairs": 8,
+      "fullResolutionMaterialSlotAudit": "byte-identical-source",
+      "thumbnail": {
+        "sha256": "4cb7072e71f680e3265a9d7da30a2e873db9e54c1d5b863d11c8fa6133da38db",
+        "bytes": 17260
+      },
+      "poster": {
+        "sha256": "cdffa9c36d91445da2938f03e45f47b80f6e9d8a4ca35132632dffd454884210",
+        "bytes": 23173
+      },
+      "openingDirection": "LEFT"
+    },
+    {
+      "slug": "modern/blay-head-olot-giant-4f5f90",
+      "sourceUid": "4f5f901519e448289fbcaaed7f19729e",
+      "status": "pass",
+      "original": {
+        "bytes": 4627352,
+        "sha256": "af80bc79ef11add3a55064fe36a7a260dfc8d3d73cf7590011779a57e9249d07"
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/modern/blay-head-olot-giant-4f5f90/preview-af80bc79ef11.glb",
+        "sha256": "af80bc79ef11add3a55064fe36a7a260dfc8d3d73cf7590011779a57e9249d07",
+        "bytes": 4627352
+      },
+      "rawFaces": 80000,
+      "decodedGeometryFingerprintSha256": "a238782fac70ea2124d85918bcd16c0b668b2120e6590599cb960dd1c8837838",
+      "pairedFrames": 16,
+      "imageIdenticalPairs": 8,
+      "fullResolutionMaterialSlotAudit": "byte-identical-source",
+      "thumbnail": {
+        "sha256": "c1c7fe422060dd42d69d2c5ad3a40976b3aa04f78d9711d4f29b585307719ddc",
+        "bytes": 32582
+      },
+      "poster": {
+        "sha256": "31bf3fa02068362e9514338aed3fa387dc04878e0411d1f0438389a6254fef0b",
+        "bytes": 43601
+      },
+      "openingDirection": "FRONT"
+    },
+    {
+      "slug": "modern/blay-chasing-illusion-mnac-50804f",
+      "sourceUid": "50804fbddd7a4fa3bd32c1bbbeb75be0",
+      "status": "pass",
+      "original": {
+        "bytes": 59685396,
+        "sha256": "c41d9afd19c7247bf52b20bb9a6b43e2dfe2455caa50f5f3cd2a798da1483000"
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/modern/blay-chasing-illusion-mnac-50804f/preview-c41d9afd19c7.glb",
+        "sha256": "c41d9afd19c7247bf52b20bb9a6b43e2dfe2455caa50f5f3cd2a798da1483000",
+        "bytes": 59685396
+      },
+      "rawFaces": 1499529,
+      "decodedGeometryFingerprintSha256": "a40a872686afd76aa9a954f18faa78a8987eb93bd90ad70747fa3a2e547267fa",
+      "pairedFrames": 16,
+      "imageIdenticalPairs": 8,
+      "fullResolutionMaterialSlotAudit": "byte-identical-source",
+      "thumbnail": {
+        "sha256": "cc0574296b951dd89de0c4da47e7d0891a4a44ae8e074f7e190f8b5bafb60b53",
+        "bytes": 41970
+      },
+      "poster": {
+        "sha256": "36989dbacd8395ebed334aa35823876a3c6d3be631ba464970552b0afdac5820",
+        "bytes": 56117
+      },
+      "openingDirection": "FRONT"
+    },
+    {
+      "slug": "modern/blay-first-cold-clay-maquette-6a6890",
+      "sourceUid": "6a6890348f404c2d9eb06623de4df43e",
+      "status": "pass",
+      "original": {
+        "bytes": 8197304,
+        "sha256": "edf280aaea5d16b9ef558516911ff927979f1a40f80240475528ba808a49ae93"
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/modern/blay-first-cold-clay-maquette-6a6890/preview-edf280aaea5d.glb",
+        "sha256": "edf280aaea5d16b9ef558516911ff927979f1a40f80240475528ba808a49ae93",
+        "bytes": 8197304
+      },
+      "rawFaces": 209377,
+      "decodedGeometryFingerprintSha256": "595109ebedff3ff86f76bd98b02ac2368fba58502787e6d439f90117a3190194",
+      "pairedFrames": 16,
+      "imageIdenticalPairs": 8,
+      "fullResolutionMaterialSlotAudit": "byte-identical-source",
+      "thumbnail": {
+        "sha256": "27a972f6c6012961c81b1f699db0eb112972239f41769535ef952a59d9586831",
+        "bytes": 43520
+      },
+      "poster": {
+        "sha256": "9ee694c4a5b0c33fe8fb90ca5f8a240f9f908613bd1675cd3ceae22bd2fe69ed",
+        "bytes": 58185
+      },
+      "openingDirection": "LEFT"
+    }
+  ],
+  "snapshot": {
+    "finalVisualReview": {
+      "bytes": 67811,
+      "sha256": "5e79d0a7c88df85e7e67f97f9fc7c61e56edd037825b8eee8e7ba950d2b43ee4"
+    },
+    "dataFiles": {
+      "src/data/catalog.json": {
+        "bytes": 5356264,
+        "sha256": "2dce23c7b3ea02fa352cddbcea91877b5198ea8a2cb800a9f17375f6054cbde4"
+      },
+      "src/data/previews.json": {
+        "bytes": 690420,
+        "sha256": "ebe54630ab933005b82c6e24ed568b24328f3f3b3e2b60d067528cfa7e69c4e3"
+      },
+      "src/data/orientations.json": {
+        "bytes": 638281,
+        "sha256": "1d9b15df6d3aa9288577b58cd553e02b6d03ffcda2412ef992a397c5fec6b843"
+      },
+      "src/data/appearance-overrides.json": {
+        "bytes": 158101,
+        "sha256": "c1ec3ee6c50db164b8dff3c65ce1fe3da14194472c30114dd2071c4f80c9f326"
+      },
+      "src/data/physical-dimensions.json": {
+        "bytes": 5436580,
+        "sha256": "d3125b6ca11ff53313b1a4ecb5d0dd08b0c9cb421bd22ad8e58d06cec7b383a6"
+      },
+      "src/data/spatial-eligibility.json": {
+        "bytes": 418900,
+        "sha256": "ae5b8c6f69e6094520752739bffb32d217777f5d1d27f1aeb1db1e89fd41a647"
+      },
+      "src/data/renders.json": {
+        "bytes": 109570,
+        "sha256": "0c34baf433d44f038a7bd19bc7a8116569a79596d39611b81d1eb8dcd274e4f0"
+      },
+      "src/data/v3-content.json": {
+        "bytes": 108619,
+        "sha256": "62f33465592d43a9a942be5b23201d4c664d9285fe76bbf6f97496c0076afc70"
+      }
+    }
+  },
+  "notClaimed": [
+    "New live website or CDN verification",
+    "New browser/runtime checks",
+    "Physical-device AR or model physical-scale calibration",
+    "Deployment success",
+    "Source cleanup"
+  ],
+  "checkedAt": "2026-10-28T01:27:11.828Z",
+  "subsequentRootConcurrencyAudit": {
+    "status": "pass",
+    "reviewer": "Codex root exact Git-blob concurrency comparison",
+    "incomingCommit": "2cb810e0e87624065597f793d94b9e8deae269cb",
+    "mergedCheckpoint": "c1b094379045b4ba3833058179ab25dc5ddf6741",
+    "protectedIncomingTrackedFileCount": 5748,
+    "allProtectedIncomingBlobsExact": true,
+    "all13LatestSpatialExportBlobsExact": true,
+    "latestSpatialFiles": [
+      {
+        "file": "public/spatial-museum/RUNTIME-LICENSES.txt",
+        "gitBlobSha": "8b2929a8cae4295c75081b85e36388c5d69e699a"
+      },
+      {
+        "file": "public/spatial-museum/assets/gallery-engine-CzJMFmzA.js",
+        "gitBlobSha": "c65e340d02e707a33f1f9844468fb6d21e9bcb2f"
+      },
+      {
+        "file": "public/spatial-museum/assets/index-Auka6zZw.css",
+        "gitBlobSha": "67f4da97ec8a68b8477c6633c1a997a34135348b"
+      },
+      {
+        "file": "public/spatial-museum/assets/index-CvHDOvN6.js",
+        "gitBlobSha": "72dc88a2dffae5e051c12d7ef3c9e287242d0ecd"
+      },
+      {
+        "file": "public/spatial-museum/collection-manifest.json",
+        "gitBlobSha": "dab48c1d971f016a9d82fb558412414e9b68eb12"
+      },
+      {
+        "file": "public/spatial-museum/index.html",
+        "gitBlobSha": "c9631b38d2a02fbd79df96f542a0a49ee4034958"
+      },
+      {
+        "file": "public/spatial-museum/vendor/draco/LICENSE.apache-2.0.txt",
+        "gitBlobSha": "d645695673349e3947e8e5ae42332d0ac3164cd7"
+      },
+      {
+        "file": "public/spatial-museum/vendor/draco/LICENSE.three.txt",
+        "gitBlobSha": "cf781430404b0ae0ba7d8dea3457a3515dd7c9b9"
+      },
+      {
+        "file": "public/spatial-museum/vendor/draco/NOTICE.txt",
+        "gitBlobSha": "e880ef7e07ebb38dbe6f6b15e37bb2a36becc0a9"
+      },
+      {
+        "file": "public/spatial-museum/vendor/draco/README.md",
+        "gitBlobSha": "4d891646db2fad57251a676e3abaafee4eba0512"
+      },
+      {
+        "file": "public/spatial-museum/vendor/draco/draco_decoder.js",
+        "gitBlobSha": "6629469b21328fc180e8385e324acaf85ce0d93d"
+      },
+      {
+        "file": "public/spatial-museum/vendor/draco/draco_decoder.wasm",
+        "gitBlobSha": "e5a5e06eb51fb061a94a9682cc7e338038fae25c"
+      },
+      {
+        "file": "public/spatial-museum/vendor/draco/draco_wasm_wrapper.js",
+        "gitBlobSha": "bb5b1224121134740fe6832a1aa8605bb128d2fd"
+      }
+    ],
+    "collectionAndRenderHooksUnchangedSincePriorIncoming": true,
+    "qualification": "The earlier independent audit remains a historical checkpoint. This later root audit preserves the subsequently published Classical World room/architecture and README, including intentional export asset replacements. All six Blay source/model/data/image bindings and previously validated object-render hooks are unchanged."
+  },
+  "documentationOnlyReconciliation": {
+    "incomingCommit": "ecdc872b200f7a331e6d5887066efd10aa03bdd9",
+    "changedIncomingFiles": [
+      "STATUS.md",
+      "docs/spatial-museum-six-rooms-20261027-live.json"
+    ],
+    "allRuntimeSourceAndPublicAssetsUnchanged": true,
+    "bothStatusHistoriesAndIncomingLiveReportPreserved": true
+  }
+}
