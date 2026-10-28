@@ -55,6 +55,7 @@ preserve originals and provenance; Cloudflare continues serving optimized previe
 
 - `/`
 - `/museum/`
+- `/spatial-museum/`
 - `/timeline/`
 - `/geography/`
 - `/materials/`
