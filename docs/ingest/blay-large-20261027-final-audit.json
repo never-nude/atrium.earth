@@ -387,5 +387,70 @@
     "Deployment success",
     "Source cleanup"
   ],
-  "checkedAt": "2026-10-28T01:27:11.828Z"
+  "checkedAt": "2026-10-28T01:27:11.828Z",
+  "subsequentRootConcurrencyAudit": {
+    "status": "pass",
+    "reviewer": "Codex root exact Git-blob concurrency comparison",
+    "incomingCommit": "2cb810e0e87624065597f793d94b9e8deae269cb",
+    "mergedCheckpoint": "c1b094379045b4ba3833058179ab25dc5ddf6741",
+    "protectedIncomingTrackedFileCount": 5748,
+    "allProtectedIncomingBlobsExact": true,
+    "all13LatestSpatialExportBlobsExact": true,
+    "latestSpatialFiles": [
+      {
+        "file": "public/spatial-museum/RUNTIME-LICENSES.txt",
+        "gitBlobSha": "8b2929a8cae4295c75081b85e36388c5d69e699a"
+      },
+      {
+        "file": "public/spatial-museum/assets/gallery-engine-CzJMFmzA.js",
+        "gitBlobSha": "c65e340d02e707a33f1f9844468fb6d21e9bcb2f"
+      },
+      {
+        "file": "public/spatial-museum/assets/index-Auka6zZw.css",
+        "gitBlobSha": "67f4da97ec8a68b8477c6633c1a997a34135348b"
+      },
+      {
+        "file": "public/spatial-museum/assets/index-CvHDOvN6.js",
+        "gitBlobSha": "72dc88a2dffae5e051c12d7ef3c9e287242d0ecd"
+      },
+      {
+        "file": "public/spatial-museum/collection-manifest.json",
+        "gitBlobSha": "dab48c1d971f016a9d82fb558412414e9b68eb12"
+      },
+      {
+        "file": "public/spatial-museum/index.html",
+        "gitBlobSha": "c9631b38d2a02fbd79df96f542a0a49ee4034958"
+      },
+      {
+        "file": "public/spatial-museum/vendor/draco/LICENSE.apache-2.0.txt",
+        "gitBlobSha": "d645695673349e3947e8e5ae42332d0ac3164cd7"
+      },
+      {
+        "file": "public/spatial-museum/vendor/draco/LICENSE.three.txt",
+        "gitBlobSha": "cf781430404b0ae0ba7d8dea3457a3515dd7c9b9"
+      },
+      {
+        "file": "public/spatial-museum/vendor/draco/NOTICE.txt",
+        "gitBlobSha": "e880ef7e07ebb38dbe6f6b15e37bb2a36becc0a9"
+      },
+      {
+        "file": "public/spatial-museum/vendor/draco/README.md",
+        "gitBlobSha": "4d891646db2fad57251a676e3abaafee4eba0512"
+      },
+      {
+        "file": "public/spatial-museum/vendor/draco/draco_decoder.js",
+        "gitBlobSha": "6629469b21328fc180e8385e324acaf85ce0d93d"
+      },
+      {
+        "file": "public/spatial-museum/vendor/draco/draco_decoder.wasm",
+        "gitBlobSha": "e5a5e06eb51fb061a94a9682cc7e338038fae25c"
+      },
+      {
+        "file": "public/spatial-museum/vendor/draco/draco_wasm_wrapper.js",
+        "gitBlobSha": "bb5b1224121134740fe6832a1aa8605bb128d2fd"
+      }
+    ],
+    "collectionAndRenderHooksUnchangedSincePriorIncoming": true,
+    "qualification": "The earlier independent audit remains a historical checkpoint. This later root audit preserves the subsequently published Classical World room/architecture and README, including intentional export asset replacements. All six Blay source/model/data/image bindings and previously validated object-render hooks are unchanged."
+  }
 }
