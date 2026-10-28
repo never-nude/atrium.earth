@@ -6,8 +6,8 @@ export const arVrVerifiedCount = arVrWorks.filter(work => work.spatialAccess.ver
 export const arVrApproximateCount = arVrWorks.filter(work => work.spatialAccess.status === 'approximate').length;
 export const arVrUnknownCount = arVrWorks.filter(work => work.spatialAccess.status === 'unknown').length;
 
-// Cards distinguish verified, estimated and unknown dimensions; thumbnails are not to scale.
-const candidates = ['michelangelo/david', 'modern/dubuffet-la-chiffonniere', 'europe/venus-of-willendorf-nhmw-44-686'];
+// Show unknown (red), approximate (yellow), then verified (green) dimensions; thumbnails are not to scale.
+const candidates = ['laocoon', 'modern/dubuffet-la-chiffonniere', 'asia/gilt-bronze-pensive-bodhisattva-e989b9'];
 export const arVrFeatured = candidates.map(slug => workBySlug(slug))
   .filter((work): work is Work => Boolean(work?.spatialAccess.enabled && isFeaturedWork(work)));
 for (const work of featuredWorks) {
