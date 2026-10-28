@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       asset_id:
-        description: 'Pinned draft-release tar asset ID in this repository'
+        description: 'Pinned reviewed release tar asset ID in this repository'
         required: true
         type: string
       asset_sha256:

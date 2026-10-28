@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Download a pinned draft-release asset from this repository, verify the entire
+// Download a pinned reviewed release asset from this repository, verify the entire
 // reviewed tar, then stage only its six room derivatives. Never logs its URL/token.
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
