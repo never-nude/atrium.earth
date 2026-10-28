@@ -5,8 +5,8 @@ import { v3WorkRoute } from '../../lib/v3';
 import { withBase } from '../../lib/urls';
 import previews from '../../data/previews.json';
 
-type Props = { work: Work; eager?: boolean; stop?: number; spatial?: boolean };
-const { work, eager = false, stop, spatial = false } = Astro.props;
+type Props = { work: Work; eager?: boolean; stop?: number; spatial?: boolean; displayTitle?: string };
+const { work, eager = false, stop, spatial = false, displayTitle = work.title } = Astro.props;
 const data = publicDataset(work);
 const detail = [work.maker || work.culture, work.displayDate].filter(Boolean).join(' · ');
 const alt = `${work.title}${detail ? ` — ${detail}` : ''}`;
@@ -45,7 +45,7 @@ const previewBytes = typeof preview?.bytes === 'number' && Number.isFinite(previ
       {typeof stop === 'number' && <span class="v3-card__stop" aria-hidden="true">{String(stop).padStart(2, '0')}</span>}
     </div>
     <div class="v3-card__copy">
-      <h3>{work.title}</h3>
+      <h3>{displayTitle}</h3>
       {detail && <p>{detail}</p>}
       {spatialAccess && (
         <div class="v3-card__spatial-reference" data-dimension-status={spatialAccess.status}>

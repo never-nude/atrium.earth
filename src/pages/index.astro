@@ -131,7 +131,7 @@ const heroAlt = [
       <p class="v3-spatial-feature__note"><strong class="v3-dimension-status" data-dimension-status="verified">Verified dimensions</strong> use reviewed measurements. <strong class="v3-dimension-status" data-dimension-status="approximate">Approximate dimensions</strong> use the best available estimate. <strong class="v3-dimension-status" data-dimension-status="unknown">Dimensions unknown</strong> use an adjustable display size.</p>
     </div>
     <div class="v3-spatial-feature__works">
-      {arVrFeatured.map((work) => <V3WorkCard work={work} spatial={true} />)}
+      {arVrFeatured.map((work) => <V3WorkCard work={work} displayTitle={work.slug === 'laocoon' ? 'Laocoön and His Sons' : undefined} spatial={true} />)}
     </div>
   </section>
 
