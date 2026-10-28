@@ -294,7 +294,7 @@ body .v3-explorer:has(.v3-collection-switch) .v3-filter-row select, body .v3-exp
 .v3-footer nav { gap: 20px; }
 .v3-footer nav a { font-size: 11px; letter-spacing: 0; text-transform: none; }
 
-/* A quiet entrance below the hero leads directly to the five spatial rooms. */
+/* A quiet entrance below the hero leads directly to the six spatial rooms. */
 .studio-museum-entry {
   display: grid; grid-template-columns: minmax(0, 1fr) auto;
   align-items: center; gap: 26px 40px; padding-top: 38px; padding-bottom: 34px;
@@ -306,7 +306,7 @@ body .v3-explorer:has(.v3-collection-switch) .v3-filter-row select, body .v3-exp
 .studio-museum-entry__copy > p:last-child { max-width: 61ch; margin: 0; color: var(--v3-muted); font-size: 14px; line-height: 1.7; }
 .studio-museum-entry__enter { justify-self: start; }
 .studio-museum-entry__rooms { grid-column: 1 / -1; min-width: 0; }
-.studio-museum-entry__rooms ol { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px 24px; margin: 0; padding: 0; list-style: none; }
+.studio-museum-entry__rooms ol { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px 24px; margin: 0; padding: 0; list-style: none; }
 .studio-museum-entry__rooms li { min-width: 0; border-top: 1px solid var(--v3-line); }
 .studio-museum-entry__rooms a { display: flex; align-items: baseline; gap: 9px; min-height: 44px; padding: 14px 0 4px; color: var(--v3-ink); font-size: 12px; line-height: 1.5; text-decoration: none; }
 .studio-museum-entry__rooms a:hover { color: var(--v3-signal); }
