@@ -8,13 +8,14 @@ import os from 'node:os';
 import path from 'node:path';
 import { promisify } from 'node:util';
 import { sha256Hex, signRequest } from './r2-sigv4.mjs';
-import { validateUsdz } from './upload-room-ar-r2.mjs';
+import { validateUsdz, validateRoomManifest, MAX_ROOM_COUNT, MAX_ROOM_BYTES, MAX_PACKAGE_BYTES } from './upload-room-ar-r2.mjs';
 import { validateRoomArchive } from './stage-room-ar-release.mjs';
 
 const exec = promisify(execFile);
 const script = path.join(import.meta.dirname, 'upload-room-ar-r2.mjs');
-const collection = JSON.parse(await readFile(new URL('../public/spatial-museum/collection-manifest.json', import.meta.url), 'utf8'));
-const ids = collection.rooms.map((room) => room.id);
+// Keep the original six-room release as an explicit compatibility fixture. New
+// release selections are reviewed independently of the currently public index.
+const ids = ['ancient-egypt', 'compassion', 'divine-gestures', 'painted-devotion', 'human-gesture', 'greco-roman'];
 function crc32(body) {
   let crc = 0xffffffff;
   for (const byte of body) {
@@ -109,13 +110,40 @@ function packageTar(files) {
   return Buffer.concat([...blocks, Buffer.alloc(1024)]);
 }
 const stagedRooms = ids.map((roomId) => ({ roomId, localPath: `${roomId}.usdz`, bytes: usd.length, sha256: sha256Hex(usd) }));
+const manifestFor = roomIds => ({ schema: 'atrium-room-ar-upload/1', rooms: roomIds.map(roomId => ({ roomId, localPath: `${roomId}.usdz`, bytes: usd.length, sha256: sha256Hex(usd) })) });
+const sevenIds = [...ids, 'new-reviewed-room'];
+for (const roomIds of [[ids[0]], ids.slice(0, 3), ids, sevenIds, Array.from({ length: MAX_ROOM_COUNT }, (_, index) => `reviewed-${index}`)]) {
+  assert.equal(validateRoomManifest(manifestFor(roomIds)).rooms.length, roomIds.length);
+}
+for (const invalid of [
+  manifestFor([]), manifestFor(Array.from({ length: MAX_ROOM_COUNT + 1 }, (_, index) => `reviewed-${index}`)),
+  manifestFor([ids[0], ids[0]]), manifestFor(['../escape']), manifestFor(['Uppercase']), manifestFor(['a'.repeat(64)]),
+  { ...manifestFor([ids[0]]), schema: 'wrong' },
+]) assert.throws(() => validateRoomManifest(invalid));
+for (const changed of [
+  { localPath: '../ancient-egypt.usdz' }, { localPath: '/ancient-egypt.usdz' }, { localPath: 'different.usdz' },
+  { bytes: MAX_ROOM_BYTES + 1 }, { bytes: 0 }, { bytes: 1.5 }, { sha256: 'x'.repeat(64) },
+]) assert.throws(() => validateRoomManifest({ schema: 'atrium-room-ar-upload/1', rooms: [{ ...stagedRooms[0], ...changed }] }));
+assert.throws(() => validateRoomManifest({ schema: 'atrium-room-ar-upload/1', rooms: stagedRooms.slice(0, 5).map(room => ({ ...room, bytes: MAX_ROOM_BYTES })) }), /bounded upload/);
+assert.equal(MAX_ROOM_BYTES * 4, MAX_PACKAGE_BYTES);
+assert.throws(() => validateRoomManifest(manifestFor(sevenIds), ids), /pinned expected selection/);
 const tarFiles = [{ name: 'manifest.json', body: Buffer.from(JSON.stringify({ schema: 'atrium-room-ar-upload/1', rooms: stagedRooms })) }, ...stagedRooms.map((room) => ({ name: room.localPath, body: usd }))];
 const tar = packageTar(tarFiles);
-const checkTar = (body, expected = { bytes: body.length, sha256: sha256Hex(body) }) => validateRoomArchive(body, expected, ids);
+const checkTar = (body, expected = { bytes: body.length, sha256: sha256Hex(body) }, expectedIds) => validateRoomArchive(body, expected, expectedIds);
 assert.deepEqual(checkTar(tar).manifest.rooms, stagedRooms);
+for (const roomIds of [[ids[0]], ids.slice(0, 3), sevenIds]) {
+  const manifest = manifestFor(roomIds);
+  const selectedFiles = [{ name: 'manifest.json', body: Buffer.from(JSON.stringify(manifest)) }, ...manifest.rooms.map(room => ({ name: room.localPath, body: usd }))];
+  const selectedTar = packageTar(selectedFiles);
+  assert.deepEqual(checkTar(selectedTar).manifest, manifest, `${roomIds.length} selected rooms can be staged before public-index changes`);
+  assert.deepEqual(checkTar(selectedTar, undefined, roomIds).manifest, manifest);
+  assert.throws(() => checkTar(selectedTar, undefined, [...roomIds, 'extra-expected']), /pinned expected selection/);
+  assert.throws(() => checkTar(packageTar(selectedFiles.slice(0, -1))), /exactly/);
+  assert.throws(() => checkTar(packageTar([...selectedFiles, { name: 'unselected-room.usdz', body: usd }])), /extra or missing/);
+}
 assert.throws(() => checkTar(tar, { bytes: tar.length, sha256: '0'.repeat(64) }), /archive complete SHA-256/);
 assert.throws(() => checkTar(tar, { bytes: tar.length + 1, sha256: sha256Hex(tar) }), /archive complete SHA-256/);
-assert.throws(() => checkTar(packageTar([...tarFiles, { name: 'unexpected.txt', body: Buffer.from('extra') }])), /extra members/);
+assert.throws(() => checkTar(packageTar([...tarFiles, { name: 'unexpected.txt', body: Buffer.from('extra') }])), /flat regular/);
 assert.throws(() => checkTar(packageTar(tarFiles.map((file, index) => index === 1 ? { ...file, name: `../${file.name}` } : file))), /flat regular/);
 assert.throws(() => checkTar(packageTar(tarFiles.map((file, index) => index === 1 ? { ...file, type: '2' } : file))), /flat regular/);
 assert.throws(() => checkTar(packageTar(tarFiles.map((file, index) => index === 1 ? { ...file, prefix: 'private/path' } : file))), /flat regular/);
@@ -129,7 +157,7 @@ const badTarHeader = Buffer.from(tar);
 badTarHeader[100] ^= 1;
 assert.throws(() => checkTar(badTarHeader), /checksum/);
 assert.throws(() => checkTar(tar.subarray(0, tar.length - 512)), /end markers/);
-console.log('Room tar staging: exact seven USTAR files, whole/member hashes, checksums, traversal/prefix/symlink/duplicate/extra-file rejection and confined manifest paths pass.');
+console.log('Room tar staging: bounded one/three/six/seven-room selections, exact selected USTAR members, whole/member hashes, checksums, traversal/prefix/symlink/duplicate/extra-file rejection and confined manifest paths pass.');
 
 const tmp = await mkdtemp(path.join(os.tmpdir(), 'atrium-room-ar-'));
 const objects = new Map();
@@ -201,10 +229,21 @@ try {
   assert.equal((await invoke(baseArgs)).code, 1, 'mode must be explicit');
   assert.equal((await invoke([...baseArgs, '--dry-run', '--allow-upload'])).code, 1);
   assert.equal((await invoke([...baseArgs, '--dry-run', '--skip-verify'])).code, 1);
-  await writeFile(manifest, JSON.stringify({ schema: 'atrium-room-ar-upload/1', rooms: rooms.slice(1) }));
-  assert.equal((await invoke([...baseArgs, '--allow-upload'])).code, 1, 'exact six-room set is required');
+  for (const selectedIds of [[ids[0]], ids.slice(0, 3), sevenIds]) {
+    const selected = manifestFor(selectedIds);
+    for (const room of selected.rooms) await writeFile(path.join(tmp, room.localPath), usd);
+    await writeFile(manifest, JSON.stringify(selected));
+    assert.equal((await invoke([...baseArgs, '--dry-run'], dryEnv)).code, 0, `${selectedIds.length}-room selected batch passes full dry-run without public-index membership`);
+    assert.equal(JSON.parse(await readFile(report, 'utf8')).rooms.length, selectedIds.length);
+  }
+  await writeFile(manifest, JSON.stringify({ schema: 'atrium-room-ar-upload/1', rooms: [] }));
+  assert.equal((await invoke([...baseArgs, '--allow-upload'])).code, 1, 'empty set is forbidden');
+  await writeFile(manifest, JSON.stringify(manifestFor(Array.from({ length: MAX_ROOM_COUNT + 1 }, (_, index) => `too-many-${index}`))));
+  assert.equal((await invoke([...baseArgs, '--allow-upload'])).code, 1, 'unbounded room set is forbidden');
   await writeFile(manifest, JSON.stringify({ schema: 'atrium-room-ar-upload/1', rooms: [rooms[0], ...rooms.slice(0, 5)] }));
   assert.equal((await invoke([...baseArgs, '--allow-upload'])).code, 1, 'duplicate room fails');
+  await writeFile(manifest, JSON.stringify({ schema: 'atrium-room-ar-upload/1', rooms: [{ ...rooms[0], roomId: '../escape' }] }));
+  assert.equal((await invoke([...baseArgs, '--allow-upload'])).code, 1, 'unsafe room ID fails');
   await writeFile(manifest, JSON.stringify({ schema: 'atrium-room-ar-upload/1', rooms }));
   await writeFile(path.join(tmp, rooms.at(-1).localPath), Buffer.alloc(usd.length));
   const preflight = await invoke([...baseArgs, '--allow-upload']);
@@ -222,6 +261,18 @@ try {
   assert.ok(!JSON.stringify(uploaded).includes(tmp) && !JSON.stringify(uploaded).includes(creds.secretAccessKey));
   assert.equal((await invoke([...baseArgs, '--allow-upload'])).code, 0);
   assert.ok(JSON.parse(await readFile(report, 'utf8')).rooms.every((room) => room.status === 'existing-verified'), 'conditional PUT only reuses exact verified objects');
+  // A pending seventh room can be hosted before the website references it.
+  // The pinned selection, not a runtime catalog fetch, governs the upload.
+  const pending = manifestFor(['new-reviewed-room']);
+  await writeFile(manifest, JSON.stringify(pending));
+  assert.equal((await invoke([...baseArgs, '--allow-upload'])).code, 0);
+  assert.equal(JSON.parse(await readFile(report, 'utf8')).rooms.length, 1);
+  const seven = manifestFor(sevenIds);
+  await writeFile(manifest, JSON.stringify(seven));
+  assert.equal((await invoke([...baseArgs, '--allow-upload'])).code, 0);
+  assert.equal(JSON.parse(await readFile(report, 'utf8')).rooms.length, 7);
+  assert.ok(JSON.parse(await readFile(report, 'utf8')).rooms.every(room => room.status === 'existing-verified'));
+  await writeFile(manifest, JSON.stringify({ schema: 'atrium-room-ar-upload/1', rooms }));
   badCors = true;
   assert.equal((await invoke([...baseArgs, '--allow-upload'])).code, 1, 'wrong production CORS fails');
   assert.match(JSON.parse(await readFile(report, 'utf8')).rooms[0].reason, /CORS/);
@@ -232,9 +283,9 @@ try {
   badBody = true;
   assert.equal((await invoke([...baseArgs, '--allow-upload'])).code, 1, 'same-length wrong public body fails');
   assert.match(JSON.parse(await readFile(report, 'utf8')).rooms[0].reason, /SHA-256/);
-  assert.ok(objects.size === 6 && [...objects.values()].every((body) => body.equals(usd)), 'existing immutable objects are never overwritten');
+  assert.ok(objects.size === 7 && [...objects.values()].every((body) => body.equals(usd)), 'existing immutable objects are never overwritten');
   assert.deepEqual(JSON.parse(await readFile(manifest, 'utf8')), { schema: 'atrium-room-ar-upload/1', rooms }, 'input manifest is unchanged');
-  console.log('Room uploader: explicit modes, exact-six/preflight gates, source hashes, private-path-free receipts, signed serial conditional uploads, full public hashes/MIME/production CORS and immutable reruns pass.');
+  console.log('Room uploader: explicit modes, bounded one/three/six/seven-room selections and all-source preflight, source hashes, private-path-free receipts, signed serial conditional uploads, full public hashes/MIME/production CORS and immutable reruns pass.');
 } finally {
   server.close();
   await rm(tmp, { recursive: true, force: true });

@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Publish only a reviewed six-room USDZ package. Never edits catalog/model maps.
+// Publish only an explicitly reviewed, bounded room selection. Never edits catalog/model maps.
 // Input: {schema:'atrium-room-ar-upload/1', rooms:[{roomId,localPath,bytes,sha256}]}.
 // localPath resolves beside the input manifest; it never appears in receipts.
 // Validate only: --manifest=<file> --dry-run [--report=<file>]
@@ -10,11 +10,12 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { sha256Hex, signRequest } from './r2-sigv4.mjs';
 
-const ROOT = fileURLToPath(new URL('../', import.meta.url));
 const MIME = 'model/vnd.usdz+zip';
 const ORIGIN = 'https://atrium.earth';
-const MAX_ROOM_BYTES = 512 * 1024 * 1024;
-const MAX_PACKAGE_BYTES = 2 * 1024 * 1024 * 1024;
+export const MAX_ROOM_COUNT = 32;
+export const MAX_ROOM_BYTES = 512 * 1024 * 1024;
+export const MAX_PACKAGE_BYTES = 2 * 1024 * 1024 * 1024;
+export const validRoomId = value => typeof value === 'string' && value.length <= 63 && /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(value);
 const CRC_TABLE = Array.from({ length: 256 }, (_, index) => {
   let crc = index;
   for (let bit = 0; bit < 8; bit += 1) crc = (crc >>> 1) ^ ((crc & 1) ? 0xedb88320 : 0);
@@ -29,6 +30,31 @@ function crc32(bytes) {
 
 function check(condition, message) {
   if (!condition) throw new Error(message);
+}
+
+// The reviewed release manifest pins the selected set, including rooms awaiting
+// their first publication. It is not inferred from whichever collection happens
+// to be public while the immutable assets are staged.
+export function validateRoomManifest(input, expectedRoomIds) {
+  check(input?.schema === 'atrium-room-ar-upload/1' && Array.isArray(input.rooms)
+    && input.rooms.length >= 1 && input.rooms.length <= MAX_ROOM_COUNT, `Upload manifest must contain 1–${MAX_ROOM_COUNT} reviewed rooms`);
+  const seen = new Set();
+  let totalBytes = 0;
+  const rooms = input.rooms.map(room => {
+    check(room && validRoomId(room.roomId) && !seen.has(room.roomId)
+      && room.localPath === `${room.roomId}.usdz`
+      && Number.isSafeInteger(room.bytes) && room.bytes > 0 && room.bytes <= MAX_ROOM_BYTES
+      && typeof room.sha256 === 'string' && /^[a-f0-9]{64}$/.test(room.sha256), 'Reviewed room binding is invalid, repeated or has an unsafe localPath');
+    seen.add(room.roomId); totalBytes += room.bytes;
+    return { roomId: room.roomId, localPath: room.localPath, bytes: room.bytes, sha256: room.sha256 };
+  });
+  check(totalBytes <= MAX_PACKAGE_BYTES, 'Reviewed room package exceeds the bounded upload limit');
+  if (expectedRoomIds !== undefined) {
+    check(Array.isArray(expectedRoomIds) && expectedRoomIds.length >= 1 && expectedRoomIds.length <= MAX_ROOM_COUNT
+      && new Set(expectedRoomIds).size === expectedRoomIds.length && expectedRoomIds.every(validRoomId), 'Expected room selection is invalid');
+    check(expectedRoomIds.length === rooms.length && expectedRoomIds.every(id => seen.has(id)), 'Reviewed room selection differs from the pinned expected selection');
+  }
+  return { schema: 'atrium-room-ar-upload/1', rooms };
 }
 
 // USDZ is an uncompressed ZIP with every member's data aligned to 64 bytes.
@@ -194,29 +220,13 @@ function safeBase(value, label, allowLoopback = false) {
 export async function main(argv = process.argv.slice(2)) {
   const args = parseArguments(argv);
   const manifestPath = path.resolve(args.manifest);
-  const collectionPath = path.join(ROOT, 'public/spatial-museum/collection-manifest.json');
-  const collection = await readJson(collectionPath, 'Public collection manifest');
-  const ids = collection.rooms?.map((room) => room.id);
-  check(collection.schema === 'atrium-public-spatial-museum/1' && Array.isArray(ids) && ids.length === 6
-    && new Set(ids).size === 6 && ids.every((id) => /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(id)), 'Public collection must identify exactly six reviewed rooms');
-  const input = await readJson(manifestPath, 'Upload manifest');
-  check(input.schema === 'atrium-room-ar-upload/1' && Array.isArray(input.rooms) && input.rooms.length === ids.length, 'Upload manifest must contain exactly six rooms');
-  const seen = new Set();
-  let totalBytes = 0;
-  const entries = input.rooms.map((room) => {
-    check(room && ids.includes(room.roomId) && !seen.has(room.roomId) && typeof room.localPath === 'string' && room.localPath.length > 0
-      && Number.isSafeInteger(room.bytes) && room.bytes > 0 && room.bytes <= MAX_ROOM_BYTES
-      && typeof room.sha256 === 'string' && /^[a-f0-9]{64}$/.test(room.sha256), 'Upload manifest room binding is invalid or repeated');
-    seen.add(room.roomId);
-    totalBytes += room.bytes;
-    return { roomId: room.roomId, localPath: path.resolve(path.dirname(manifestPath), room.localPath), bytes: room.bytes, sha256: room.sha256 };
-  });
-  check(totalBytes <= MAX_PACKAGE_BYTES, 'Reviewed room package exceeds the bounded upload limit');
+  const input = validateRoomManifest(await readJson(manifestPath, 'Upload manifest'));
+  const entries = input.rooms.map(room => ({ ...room, localPath: path.join(path.dirname(manifestPath), room.localPath) }));
   const reportPath = args.report ? path.resolve(args.report) : null;
-  check(!reportPath || ![manifestPath, collectionPath, ...entries.map((entry) => entry.localPath)].includes(reportPath), 'Receipt cannot overwrite an input file');
+  check(!reportPath || ![manifestPath, ...entries.map((entry) => entry.localPath)].includes(reportPath), 'Receipt cannot overwrite an input file');
   const publicBase = safeBase(process.env.R2_PUBLIC_BASE || 'https://models.atrium.earth', 'Public base', true);
   const report = { schema: 'atrium-room-ar-receipt/1', generatedAt: new Date().toISOString(), mode: args['dry-run'] ? 'dry-run' : 'upload', complete: false, publicBase, productionOrigin: ORIGIN, rooms: [] };
-  // Complete all six input checks before writing even the first object.
+  // Complete every selected input check before writing even the first object.
   for (const entry of entries) {
     const { members, firstMember } = await readPinned(entry);
     const key = `models/rooms/${entry.roomId}/room-${entry.sha256.slice(0, 12)}.usdz`;

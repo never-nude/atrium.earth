@@ -36,20 +36,19 @@ jobs:
           sparse-checkout-cone-mode: false
           sparse-checkout: |
             /scripts/
-            /public/spatial-museum/collection-manifest.json
       - uses: actions/setup-node@v4
         with:
           node-version: 22
       - name: Validate room package and upload safeguards
         run: node scripts/test-room-ar-r2.mjs
-      - name: Stage only the pinned reviewed six-room archive
+      - name: Stage only the pinned reviewed room selection
         env:
           GH_TOKEN: ${{ github.token }}
           ASSET_ID: ${{ inputs.asset_id }}
           ASSET_SHA256: ${{ inputs.asset_sha256 }}
           ASSET_BYTES: ${{ inputs.asset_bytes }}
         run: node scripts/stage-room-ar-release.mjs
-      - name: Validate all six local USDZ files without network writes
+      - name: Validate every selected USDZ file without network writes
         run: >-
           node scripts/upload-room-ar-r2.mjs
           --manifest=.atrium-ingest/room-ar-upload/manifest.json
