@@ -1,0 +1,43 @@
+name: Fetch reviewed source batch without catalogue changes
+
+on:
+  workflow_dispatch:
+    inputs:
+      manifest:
+        description: 'Reviewed batch source request under docs/ingest/'
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          filter: blob:none
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /scripts/
+            /docs/ingest/
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Fetch unchanged sources through the bounded three-model helper
+        env:
+          MANIFEST: ${{ inputs.manifest }}
+          SKETCHFAB_TOKEN: ${{ secrets.SKETCHFAB_TOKEN }}
+        run: node scripts/fetch-reviewed-source-batch.mjs
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: reviewed-source-originals-${{ github.run_id }}
+          path: .atrium-ingest/reviewed-source-originals/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90
