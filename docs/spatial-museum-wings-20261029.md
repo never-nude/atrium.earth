@@ -1,6 +1,6 @@
 # Museum wings and focused rooms — 29 October 2026
 
-**Prepared for public frontend publication.** The museum contains eight rooms, 47 unique compositions and four active wings. Both added native-AR scenes are accepted and uploaded with complete public verification. The final native framework and main-site production builds pass. Public frontend publication and final live verification remain pending.
+**Published and verified.** [Atrium’s spatial museum](https://atrium.earth/spatial-museum/) now contains eight rooms, 47 unique compositions and four active wings, including the new Polish Devotion and Rodin galleries. Both added native-AR scenes are accepted, uploaded and bound to the published arrangements. The homepage hierarchy and every wing/room entrance are live.
 
 ## A museum that can grow room by room
 
@@ -52,7 +52,7 @@ The R2 release workflow now accepts an explicitly reviewed selection of **1–32
 - Native framework and main Astro production builds pass. All 17 generated public museum files are copied byte-identically. The compiled homepage has seven content sections, eight museum-room links, four wing links and the 47-work museum roster.
 - The matching owner-private source preview is successfully deployed from source commit `df3418f450db28e1aff72a9476ad2cf87576c280`; its audience is unchanged. Public frontend deployment remains a separate release step.
 
-The core catalog, source/preview model maps, existing appearance and scale records, ordered 40-work Newest selection, centered homepage hero and three AR example cards are preserved. The homepage places Newest and collection wings before the spatial-museum entrance, then AR examples, comparisons, exhibitions and the timeline. Its museum counts and links come from the manifest. Existing six-model GLB upgrades remain unchanged. A final source audit confirms the hero, three AR example bindings and protected catalog/library data are unchanged, and the original six rooms retain their exact rosters and native assets.
+The core catalog, source/preview model maps, existing appearance and scale records, ordered 40-work Newest selection, centered homepage hero and three AR example cards are preserved. The homepage places Newest and collection wings before the spatial-museum entrance, then AR examples, comparisons, exhibitions and random selection. Its museum counts and links come from the manifest. Existing six-model GLB upgrades remain unchanged. A final source audit confirms the hero, three AR example bindings and protected catalog/library data are unchanged, and the original six rooms retain their exact rosters and native assets.
 
 ## Michelangelo eligibility
 
@@ -60,6 +60,10 @@ The current 24 Michelangelo records all serve GLBs, while their recorded source 
 
 There are currently **zero Michelangelo candidates meeting this expansion's textured native-GLB eligibility policy**. No Michelangelo room is included in this release. The earlier six-upgrade provenance and limitations remain documented in [Local GLB quality review](GLB_LOCAL_REVIEW_20261026.md).
 
-## Remaining release checks
+## Live verification
 
-Publish the reviewed main-site frontend and record final live page, hierarchy, room-link and asset checks. Native acceptance, immutable delivery, all eight current bindings, both production builds and the owner-private source deployment are complete. This document does not yet confirm public frontend deployment.
+[Pages deployment40988987161](https://github.com/never-nude/atrium.earth/actions/runs/40988987161) succeeds for release `6c6fc3a32cff0dc16321d159942da4f5af850da8`. All17 static museum files match their complete live bodies, with the existing Cloudflare HTML beacon normalized. All8 native endpoints retain exact bytes, USDZ MIME and production-origin CORS; the two added payloads have full public SHA readbacks in the R2 receipt. Fresh complete GETs of all11 newly installed serving GLBs match their reviewed bytes/hashes and applicable CORS.
+
+Actual browser checks confirm the live homepage hierarchy, all8room/4wing entrances, the modern-figure wing filter and navigation to the two new rooms. Both rooms finish loading their5/6 sculptures and expose the correct immutable Apple AR URL with disabled content scaling and canonical room link. Rodin’s native action retains its required single-image anchor. The live browser reports no warnings or errors. Local actual390px homepage layout has no horizontal overflow.
+
+Safe receipts: [live pages and endpoints](spatial-museum-wings-20261029-live.json), [serving GLBs](spatial-museum-wings-20261029-models.json), and [native upload](spatial-museum-wings-20261029-r2.json). Native Apple format, material and scale checks pass; physical iPhone placement/appearance/performance and headset acceptance remain untested. No further expansion is included in this release.
