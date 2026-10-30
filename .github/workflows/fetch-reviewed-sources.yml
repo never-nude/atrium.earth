@@ -20,7 +20,7 @@ permissions:
 jobs:
   fetch:
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
         with:
@@ -38,7 +38,18 @@ jobs:
         env:
           MANIFEST: ${{ inputs.manifest || 'docs/ingest/miro-20261023-source-request.json' }}
           SKETCHFAB_TOKEN: ${{ secrets.SKETCHFAB_TOKEN }}
-        run: node scripts/fetch-reviewed-sources.mjs
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import {spawnSync} from 'node:child_process';
+          const manifest = process.env.MANIFEST;
+          if (!/^docs\/ingest\/[a-z0-9-]+-source-request\.json$/.test(manifest || '')) throw new Error('Invalid reviewed manifest path');
+          const request = JSON.parse(fs.readFileSync(manifest, 'utf8'));
+          const script = Array.isArray(request.models) && request.models.length > 3
+            ? 'scripts/fetch-reviewed-source-batch.mjs' : 'scripts/fetch-reviewed-sources.mjs';
+          const result = spawnSync(process.execPath, [script], {stdio: 'inherit', env: process.env});
+          process.exit(result.status ?? 1);
+          NODE
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
