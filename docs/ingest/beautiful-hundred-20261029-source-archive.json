@@ -1,0 +1,72 @@
+{
+  "schema": "atrium-source-archive-public-summary/1",
+  "batch": "beautiful-hundred-20261029",
+  "status": "complete",
+  "sourceCount": 150,
+  "frozenOriginalGroupCount": 137,
+  "supplementalGroupCount": 13,
+  "totalOriginalBytes": 1447841256,
+  "sourceBundleCount": 18,
+  "maximumSourceBundleBytes": 94371840,
+  "sourceBundleBytes": 1451909120,
+  "portableRecoveryMaps": [
+    {
+      "sourceCount": 137,
+      "bytes": 801298,
+      "sha256": "e2db2ab3e9b4ceecd27097afa59f3f2cfecb2134d7c091c30333be0fe6d98ed6"
+    },
+    {
+      "sourceCount": 13,
+      "bytes": 76957,
+      "sha256": "9a4d55445dc2ece3830c0c1305f055c1324acded61bd09413a7450e693472768"
+    }
+  ],
+  "portableRecoveryUnion": {
+    "sourceCount": 150,
+    "bytes": 116957,
+    "sha256": "f0db99df8d5686e0a52239c7b12137883b7f388310462396809e4e43ac619cc4"
+  },
+  "detachedControls": [
+    {
+      "sourceCount": 137,
+      "bytes": 2795520,
+      "sha256": "e553fe8eff8f5226436e61f537ba0b90a0ac5c78b6e2b821addb68b47d6af9a7"
+    },
+    {
+      "sourceCount": 13,
+      "bytes": 573440,
+      "sha256": "1d67ea9dce9c371eb66de037e79fd9c45e4be77194c907229f3c2f4b8f4f72d7"
+    }
+  ],
+  "detachedCompletionCheckpoints": [
+    {
+      "sourceCount": 137,
+      "bytes": 146319,
+      "sha256": "a446e0a2610b13110244bbb9a1a1437f11669b544f34ec15d953548ccf558c2d"
+    },
+    {
+      "sourceCount": 150,
+      "bytes": 44222,
+      "sha256": "19403d4e4d9aa12785a2808bd2674c68ae799f025f970f9840a925651fd3510f"
+    }
+  ],
+  "wholeCloudReadbacksAuthenticated": 25,
+  "independentSourceMapAuditGroups": [
+    137,
+    13
+  ],
+  "independentlyReadControlMemberCounts": [
+    87,
+    37
+  ],
+  "privateOwnerOnlyCloudMetadataChecked": true,
+  "restoreHelper": "Portable offline restoration helper and structural schema archived; eleven synthetic recovery and tamper tests passed. Both actual source maps validated. No actual originals restored or removed.",
+  "sourceRepresentation": "Unchanged self-contained authenticated provider distribution GLBs, including embedded materials and textures; uploader-native raw scan or authoring masters not asserted.",
+  "includesUnsupportedOrHeldAcquisitions": true,
+  "all150LocalOriginalsRetained": true,
+  "originalsRemoved": 0,
+  "temporarySourceTarsClearedAfterVerifiedMemberAndCloudReadback": 18,
+  "cleanupAuthority": false,
+  "scope": "Acquired-original backup coverage only; public acceptance and deployment counts are separate. The frozen137 plan/map/control remain unchanged.",
+  "checkedAt": "2026-10-30T08:45:57.085966+00:00"
+}
