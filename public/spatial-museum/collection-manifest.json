@@ -1,9 +1,59 @@
 {
   "schema": "atrium-public-spatial-museum/1",
+  "wings": [
+    {
+      "id": "ancient-world",
+      "title": "Ancient worlds",
+      "subtitle": "Egypt, Greece & Rome",
+      "description": "Images of people, gods and public life across the ancient Mediterranean. Each room brings its objects into a closer historical conversation.",
+      "accent": "#a36d48",
+      "roomIds": [
+        "ancient-egypt",
+        "greco-roman"
+      ]
+    },
+    {
+      "id": "asian-traditions",
+      "title": "Sacred images of Asia",
+      "subtitle": "Presence, gesture & belief",
+      "description": "Sculptures shaped by distinct Buddhist and Hindu traditions. Materials, gestures and divine attributes offer routes into their particular histories.",
+      "accent": "#597668",
+      "roomIds": [
+        "compassion",
+        "divine-gestures"
+      ]
+    },
+    {
+      "id": "european-devotion",
+      "title": "European devotion",
+      "subtitle": "Figures, faith & encounter",
+      "description": "Carved, painted and gilded figures made for worship and contemplation. Follow the human gestures within sacred subjects.",
+      "accent": "#8b6254",
+      "roomIds": [
+        "painted-devotion",
+        "polish-devotion"
+      ]
+    },
+    {
+      "id": "modern-figure",
+      "title": "The modern figure",
+      "subtitle": "Body, movement & expression",
+      "description": "Artists explore what the human figure can convey through touch, balance and movement, from the nineteenth century into the twentieth.",
+      "accent": "#6d7080",
+      "roomIds": [
+        "human-gesture",
+        "rodin-marble"
+      ]
+    }
+  ],
   "rooms": [
     {
       "id": "ancient-egypt",
+      "wingId": "ancient-world",
+      "kind": "thematic",
       "title": "Faces of Ancient Egypt",
+      "subtitle": "People, power and the afterlife",
+      "description": "Royal heads introduce people and power; a scribe and a tiny funerary figure connect earthly work with the afterlife. Thoth and the Apis bull bring divine presence into the room.",
       "count": 6,
       "slugs": [
         "egyptian/head-of-amenhotep-iii-cleveland",
@@ -13,6 +63,14 @@
         "egyptian/thoth-ibis-headed-mia",
         "egyptian/apis-bull-cleveland"
       ],
+      "compositionIds": [
+        "composition:egyptian/head-of-amenhotep-iii-cleveland",
+        "composition:egyptian/amarna-princess-head-e14715-louvre",
+        "composition:egyptian/seated-scribe-e3023-louvre",
+        "composition:egyptian/green-painted-ushebti-smvk",
+        "composition:egyptian/thoth-ibis-headed-mia",
+        "composition:egyptian/apis-bull-cleveland"
+      ],
       "appleAR": {
         "url": "https://models.atrium.earth/models/rooms/ancient-egypt/room-0defb2adcccb.usdz",
         "bytes": 61225334,
@@ -21,7 +79,11 @@
     },
     {
       "id": "compassion",
+      "wingId": "asian-traditions",
+      "kind": "thematic",
       "title": "Compassion and Contemplation",
+      "subtitle": "Stillness, attention and compassion",
+      "description": "Three forms of Guanyin join a sun bodhisattva, a pensive figure and Amoghasiddhi Buddha. Painted wood, weathered surfaces and gilded bronze give each gesture of stillness its own character.",
       "count": 6,
       "slugs": [
         "asia/seated-guanyin-wood-mia",
@@ -31,6 +93,14 @@
         "asia/amoghasiddhi-buddha-mia",
         "global/water-moon-guanyin-f3316610"
       ],
+      "compositionIds": [
+        "composition:asia/seated-guanyin-wood-mia",
+        "composition:asia/eleven-headed-guanyin-cleveland",
+        "composition:asia/sun-bodhisattva-nikko-bosatsu-cleveland-1961-48-d1f485",
+        "composition:asia/gilt-bronze-pensive-bodhisattva-e989b9",
+        "composition:asia/amoghasiddhi-buddha-mia",
+        "composition:global/water-moon-guanyin-f3316610"
+      ],
       "appleAR": {
         "url": "https://models.atrium.earth/models/rooms/compassion/room-cfbc31adc7ae.usdz",
         "bytes": 42007876,
@@ -39,7 +109,11 @@
     },
     {
       "id": "divine-gestures",
+      "wingId": "asian-traditions",
+      "kind": "thematic",
       "title": "Divine Gestures",
+      "subtitle": "Movement, music and protection",
+      "description": "Shiva dances and makes music; Ganesha, Hayagriva and a naga-enthroned Buddha embody different forms of divine power and protection. A walking Buddha anchors the room with a poised forward step.",
       "count": 6,
       "slugs": [
         "asia/shiva-nataraja-after-conservation-mia",
@@ -49,6 +123,14 @@
         "asia/hayagriva-mia",
         "asia/walking-shakyamuni-buddha-mia"
       ],
+      "compositionIds": [
+        "composition:asia/shiva-nataraja-after-conservation-mia",
+        "composition:asia/shiva-as-lord-of-music-ec12fc",
+        "composition:asia/ganesha-cleveland-1970-62-83f15d",
+        "composition:asia/naga-enthroned-buddha-mia",
+        "composition:asia/hayagriva-mia",
+        "composition:asia/walking-shakyamuni-buddha-mia"
+      ],
       "appleAR": {
         "url": "https://models.atrium.earth/models/rooms/divine-gestures/room-397b1a04cc4f.usdz",
         "bytes": 41860104,
@@ -57,7 +139,11 @@
     },
     {
       "id": "painted-devotion",
+      "wingId": "european-devotion",
+      "kind": "thematic",
       "title": "Painted Devotion",
+      "subtitle": "Color, faith and carved form",
+      "description": "Saints and sacred figures make belief tangible through paint, gilding, wood and limestone. Two Madonna groups lead toward scenes of grief and tenderness, with Saint Veronica as the room’s focal figure.",
       "count": 6,
       "slugs": [
         "baroque/saint-benedict-of-palermo-montes-de-oca-mia",
@@ -67,6 +153,14 @@
         "europe/christ-and-saint-john-the-evangelist-cleveland-1928-753",
         "baroque/saint-veronica-tyniec"
       ],
+      "compositionIds": [
+        "composition:baroque/saint-benedict-of-palermo-montes-de-oca-mia",
+        "composition:europe/vesperbild-pieta-cleveland-1938-294",
+        "composition:europe/madonna-child-jan-klus-tatra",
+        "composition:europe/enthroned-virgin-with-the-writing-christ-child-cleveland-1970-13",
+        "composition:europe/christ-and-saint-john-the-evangelist-cleveland-1928-753",
+        "composition:baroque/saint-veronica-tyniec"
+      ],
       "appleAR": {
         "url": "https://models.atrium.earth/models/rooms/painted-devotion/room-571d50f8bd06.usdz",
         "bytes": 56442572,
@@ -75,7 +169,11 @@
     },
     {
       "id": "human-gesture",
+      "wingId": "modern-figure",
+      "kind": "thematic",
       "title": "The Human Gesture",
+      "subtitle": "Embrace, movement and emotion",
+      "description": "Burke and Vigeland turn an embrace into sculpture; Eberle and de Juana explore bodily motion. Carpeaux and Szymanowski give inward feeling a visible pose, connecting intimacy, hesitation and poetic intensity.",
       "count": 6,
       "slugs": [
         "americas/untitled-woman-and-child-selma-burke-smithsonian",
@@ -85,6 +183,14 @@
         "europe/eve-tempted-carpeaux-mia",
         "modern/de-juana-meteor"
       ],
+      "compositionIds": [
+        "composition:americas/untitled-woman-and-child-selma-burke-smithsonian",
+        "composition:modern/mother-and-child-vigeland-national-gallery-cast-unconfirmed",
+        "composition:americas/girl-skating-eberle-smithsonian",
+        "composition:modern/szymanowski-mickiewicz-after-improvisation-8",
+        "composition:europe/eve-tempted-carpeaux-mia",
+        "composition:modern/de-juana-meteor"
+      ],
       "appleAR": {
         "url": "https://models.atrium.earth/models/rooms/human-gesture/room-40a40612d9a9.usdz",
         "bytes": 83636735,
@@ -93,7 +199,11 @@
     },
     {
       "id": "greco-roman",
+      "wingId": "ancient-world",
+      "kind": "thematic",
       "title": "The Classical World",
+      "subtitle": "Gods, heroes and human likeness",
+      "description": "A Greek bronze Apollo and painted Boeotian figure meet Roman Aphrodite, Hermes and Mercury. A relief of two women gladiators connects divine ideals with lived identity and spectacle. Ancient fragments and Roman versions of Greek types retain their distinct histories.",
       "count": 6,
       "slugs": [
         "greek/apollo-sauroktonos-cleveland",
@@ -103,13 +213,81 @@
         "greek/boeotian-female-figure-smvk",
         "roman/amazon-achillia-female-gladiators-relief-0835c6"
       ],
+      "compositionIds": [
+        "composition:greek/apollo-sauroktonos-cleveland",
+        "composition:roman/crouching-aphrodite-met",
+        "composition:roman/hermes-herm-head-fitzwilliam",
+        "composition:roman/mercurius-arvernus-allard-pierson",
+        "composition:greek/boeotian-female-figure-smvk",
+        "composition:roman/amazon-achillia-female-gladiators-relief-0835c6"
+      ],
       "appleAR": {
         "url": "https://models.atrium.earth/models/rooms/greco-roman/room-b86b8ea1119d.usdz",
         "bytes": 41935569,
         "sha256": "b86b8ea1119d68bc69630d5564ff5ecd91729dd253b293d0a75cfc3c7364c44f"
       }
+    },
+    {
+      "id": "polish-devotion",
+      "wingId": "european-devotion",
+      "kind": "thematic",
+      "title": "Devotion in Lesser Poland",
+      "subtitle": "Church, procession and home",
+      "description": "Sacred images took part in public ritual and private devotion. A wheeled Palm Sunday group, cathedral saints and small household carvings show how sculpture shaped religious life in and around Kraków, from the later Middle Ages to the nineteenth century. Stone weathering, worn paint and original supports remain part of each object’s story.",
+      "count": 6,
+      "slugs": [
+        "europe/palm-sunday-donkey-krakow",
+        "europe/christ-gethsemane-krakow",
+        "europe/christ-resurrected-myslenice",
+        "europe/saint-stanislaus-wawel",
+        "europe/saint-anthony-abbot-wawel",
+        "europe/shrine-pieta-chocholow-tatra"
+      ],
+      "compositionIds": [
+        "composition:europe/palm-sunday-donkey-krakow",
+        "composition:europe/christ-gethsemane-krakow",
+        "composition:europe/christ-resurrected-myslenice",
+        "composition:europe/saint-stanislaus-wawel",
+        "composition:europe/saint-anthony-abbot-wawel",
+        "composition:europe/shrine-pieta-chocholow-tatra"
+      ],
+      "appleAR": {
+        "url": "https://models.atrium.earth/models/rooms/polish-devotion/room-865336590801.usdz",
+        "bytes": 40728637,
+        "sha256": "8653365908013eaecba8443363ed69f8b71daa3936ceaf7a35e9602024d23b8d"
+      }
+    },
+    {
+      "id": "rodin-marble",
+      "wingId": "modern-figure",
+      "kind": "artist",
+      "artistId": "auguste-rodin",
+      "artist": "Auguste Rodin",
+      "title": "Rodin: The Figure in Marble",
+      "subtitle": "Gesture, intimacy and creation",
+      "description": "Five distinct marbles trace Rodin’s expressive use of the body: a private encounter, an inward-folding Eve, a kneeling Sphinx, a morning stretch and human figures emerging in a creator’s hand. Smooth flesh meets roughly worked stone. Each scan records a specific museum version at its documented approximate size.",
+      "count": 5,
+      "slugs": [
+        "rodin/the-eternal-idol-harvard",
+        "modern/eve-rodin-reduced-marble",
+        "rodin/the-sphinx-nga",
+        "rodin/morning-nga",
+        "rodin/hand-of-god-met"
+      ],
+      "compositionIds": [
+        "composition:rodin/eternal-idol",
+        "composition:rodin/eve",
+        "composition:rodin/sphinx",
+        "composition:rodin/morning",
+        "composition:rodin/hand-of-god"
+      ],
+      "appleAR": {
+        "url": "https://models.atrium.earth/models/rooms/rodin-marble/room-fc6cf37b5a25.usdz",
+        "bytes": 40664458,
+        "sha256": "fc6cf37b5a258ccc08157560035a9abd29aab7f1ae8a7349789ea2c3488aa513"
+      }
     }
   ],
-  "works": 36,
+  "works": 47,
   "scalePolicy": "Only documented exact or approximate physical heights; original proportions and material colors preserved."
 }
