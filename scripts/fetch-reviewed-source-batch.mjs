@@ -5,6 +5,7 @@ import path from 'node:path';
 import {createHash} from 'node:crypto';
 import {spawnSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
+import {setTimeout as delay} from 'node:timers/promises';
 
 export const DEFAULT_BUDGET = 1_500_000_000;
 export const MAX_BUDGET = 2_000_000_000;
@@ -84,6 +85,9 @@ async function main() {
     if (!process.env.SKETCHFAB_TOKEN) throw Error('Sketchfab credential required');
     let anyTripletFailure = false;
     for (let n = 0; n < triplets.length; n++) {
+      // Pace the unchanged helper's six authenticated metadata requests per
+      // triplet below the observed provider burst limit; do not hammer 429s.
+      if (n > 0) await delay(16_000);
       const models = triplets[n], number = n + 1;
       if (report.sourceBytes >= budget) {
         report.holds.push(...triplets.slice(n).flat().map(model => ({uid: model.uid, slug: model.slug, reason: 'batch-byte-budget-reached'})));
