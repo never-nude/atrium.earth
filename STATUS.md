@@ -1451,3 +1451,8 @@ Import retry checkpoint: acquisition39735160183 downloaded all40 originals but s
 
 - Source-only runs40990531977 and40991095895 preserve65 complete authenticated originals; all full hashes/bytes and current publisher grants are verified. Ten legacy material representations are held for compatibility, with originals retained. Corrected native preflight covers55 supported files; actual visual review is in progress. The first cropped preflight is invalidated and preserved; final captures use the complete production canvas.
 - Paced source-only run40991863400 succeeds for the remaining57 requested originals; local intake and native review follow. Fifteen additional catalog-new Cleveland reserves are approved for source retrieval to allow prompt rejection of weak captures without padding the final hundred. All137 are prospective: no new catalog work is on main or live. Full serving review, permanent private backup/recovery verification and publication remain pending.
+
+### 2026-10-30 — Exact latest-import membership
+
+- Owner requests Newest to accommodate exactly each import. Removed the40-work floor: Newest now contains only all public, non-excluded members of the latest logical batch, including earlier chunks when that batch is continued. The homepage uses up to four of those same works. Imports remain unnamed in the public interface.
+- Addition tests pass for small and large imports, complete240-work logical batches, continuations, exclusions, timestamp fallback, uniqueness and tie-breaking. This change is on the acquisition branch and awaits the combined publication.

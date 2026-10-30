@@ -209,10 +209,10 @@ publish output only when every requested artifact was produced.
 
 The Newest Additions page displays the most recently imported public works across
 batches, ordered by each work's `ingested_at` timestamp, with `ingested` as the
-date fallback. Rule (owner, revised 2026-10-05): the page shows at least the newest
-40 public works and always includes every public work in the latest batch, even when
-that makes the page longer than 40. The homepage previews the first four of those
-same pieces.
+date fallback. Rule (owner, revised 2026-10-30): the page shows exactly every public
+work in the latest logical import, without a minimum or maximum count and without
+filling a smaller import with older works. The homepage previews up to the first
+four of those same pieces.
 Neither page displays import titles, themes, or summaries. Older works leave this
 rolling selection as new works arrive but remain in the catalog. Continuing a
 batch keeps the original timestamps but returns the entire continued batch to the

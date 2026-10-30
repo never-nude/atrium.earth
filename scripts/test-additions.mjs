@@ -32,7 +32,7 @@ console.log('Addition grouping: same-day imports, public membership, legacy hist
 
 // A later continuation leads Newest even though its archive batch keeps its original date.
 const continuedRecords = [...records, { slug: 'e', ingest_batch: 'morning', ingested_at: '2026-09-20T10:00:00.000Z' }];
-assert.deepEqual(buildNewestWorks(continuedRecords, visible).map(work => work.slug), ['e', 'b', 'a', 'd', 'c']);
+assert.deepEqual(buildNewestWorks(continuedRecords, visible).map(work => work.slug), ['e', 'a']);
 
 // Compare actual instants; invalid timestamps fall back to a valid ingestion day.
 const dated = [
@@ -42,9 +42,10 @@ const dated = [
   { slug: 'd', ingested_at: '2030-01-01Tinvalid', ingested: '2026-09-18' },
   { slug: 'e', ingested: '2026-02-30' },
 ];
-assert.deepEqual(buildNewestWorks(dated, visible).map(work => work.slug), ['c', 'b', 'a', 'd', 'e']);
+assert.deepEqual(buildNewestWorks(dated, visible).map(work => work.slug), ['c']);
+assert.deepEqual(buildNewestWorks([{ slug: 'e' }], visible), []);
 
-// Public, unique works fill all 40 positions, with catalog index breaking equal-date ties.
+// Catalog index breaks equal-date ties between imports; older imports stay out.
 const many = Array.from({ length: 50 }, (_, i) => ({
   slug: `work-${i + 1}`, index: i + 1, ingested: '2026-09-20', ingest_batch: `batch-${i + 1}`,
 })).reverse();
@@ -55,10 +56,10 @@ many.push(
   { ...many[0] },
 );
 assert.deepEqual(buildNewestWorks(many, manyPublic).map(work => work.slug),
-  Array.from({ length: 40 }, (_, i) => `work-${50 - i}`));
+  ['work-50']);
 assert.deepEqual(buildNewestWorks([], visible), []);
 
-// The newest rail has a 40-work floor and keeps every public member of the latest batch.
+// Both small and large imports show exactly their public membership.
 const batchOf = (name, count, day, offset = 0) => Array.from({ length: count }, (_, i) => ({
   slug: `${name}-${i + 1}`, index: offset + i + 1, ingest_batch: name, ingested_at: `${day}T12:00:00.000Z`,
 }));
@@ -69,14 +70,14 @@ assert.deepEqual(buildNewestWorks(bigLatest, bigPublic).map(work => work.slug),
 const smallLatest = [...batchOf('huge', 40, '2026-09-30'), ...batchOf('small', 3, '2026-10-02', 40)];
 const smallPublic = smallLatest.map(({ slug }) => ({ slug }));
 const smallNewest = buildNewestWorks(smallLatest, smallPublic).map(work => work.slug);
-assert.equal(smallNewest.length, 40);
-assert.deepEqual(smallNewest.slice(0, 4), ['small-3', 'small-2', 'small-1', 'huge-40']);
-// Hidden or excluded members are skipped, and the page still fills all 40 positions.
+assert.equal(smallNewest.length, 3);
+assert.deepEqual(smallNewest, ['small-3', 'small-2', 'small-1']);
+// Hidden or excluded members are skipped without filling from older imports.
 const hiddenMembers = batchOf('big', 50, '2026-10-02').map((record, i) => (i < 10 ? { ...record, exclude_from_additions: true } : record));
 assert.equal(buildNewestWorks([...batchOf('older', 30, '2026-09-30', 100), ...hiddenMembers],
   [...batchOf('older', 30, '2026-09-30', 100), ...hiddenMembers].map(({ slug }) => ({ slug }))).length, 40);
 
-// A continuation promotes its whole latest batch, including earlier members beyond the floor.
+// A continuation promotes its whole latest batch without intervening imports.
 const continuedBatch = [
   ...batchOf('continued', 45, '2026-09-01'),
   ...batchOf('intervening', 40, '2026-09-30', 45),
@@ -84,9 +85,10 @@ const continuedBatch = [
 ];
 const continuedPublic = continuedBatch.map(({ slug }) => ({ slug }));
 const continuedNewest = buildNewestWorks(continuedBatch, continuedPublic).map((work) => work.slug);
-assert.equal(continuedNewest.length, 85);
+assert.equal(continuedNewest.length, 46);
 assert(continuedNewest.includes('continued-1'));
 assert(continuedNewest.includes('continued-new'));
+assert(!continuedNewest.some(slug => slug.startsWith('intervening-')));
 
 // Four sequential write chunks can form one 240-work logical batch without
 // truncating Newest or splitting the internal batch record.
@@ -101,4 +103,4 @@ assert.equal(buildNewestWorks(largeLogicalBatch, largeLogicalPublic).length, 240
 const groupedLargeLogical = buildAdditionBatches(largeLogicalBatch, largeLogicalPublic);
 assert.equal(groupedLargeLogical.length, 1);
 assert.equal(groupedLargeLogical[0].works.length, 240);
-console.log('Newest works: cross-batch continuations, timestamps, date fallback, catalog tie-breaks, exclusions, uniqueness, 40-work floor and complete 240-work logical batches passed.');
+console.log('Newest works: exact latest-import membership, continuations, timestamps, date fallback, tie-breaks, exclusions, uniqueness and complete 240-work logical batches passed.');
