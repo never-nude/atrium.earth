@@ -1,0 +1,56 @@
+{
+  "schema": "atrium-source-offload-public-receipt/1",
+  "batch": "beautiful-hundred-20261101",
+  "status": "complete",
+  "releaseCommit": "f8279f937cc9f2be7186d64fb56fadbf0f108e87",
+  "deploymentRun": "41349363236",
+  "completedAt": "2026-11-01T21:36:56.178Z",
+  "verifiedAt": "2026-11-01T21:38:15.041Z",
+  "removed": {
+    "files": 100,
+    "bytes": 2229274948,
+    "role": "unchanged self-contained provider distribution GLB originals",
+    "method": "exact whitelist; fresh signed full backup and live model proofs; fresh inventory and dependency audit; unchanged-file checks; same-filesystem checked quarantine and unlink"
+  },
+  "retained": {
+    "files": 39,
+    "bytes": 830086544,
+    "reason": "35 held sources and four unused reserves, outside the removal whitelist",
+    "completeHashesRechecked": true
+  },
+  "privateBackupCoverage": {
+    "acquiredOriginals": 139,
+    "bytes": 3059361492,
+    "storage": "permanent owner-private Google Drive",
+    "fullContentVerified": true,
+    "scope": "This acquisition only; no whole-collection backup claim."
+  },
+  "recoveryManifest": {
+    "sha256": "4671d8ecf5df13ffaa7514059448f0ff3cb441f748436a39fdac9319dca89233",
+    "bytes": 2959960,
+    "fullContentVerified": true
+  },
+  "postOffloadRecoveryCheckpoint": {
+    "sha256": "ab107188210f79b5eb55322c1b7488f5b7d42629c273a314b6ca2bdb47b7c1d6",
+    "bytes": 36874240,
+    "members": 181,
+    "fullContentVerified": true,
+    "privateSharingVerified": true,
+    "includesRemovalJournal": true,
+    "sourceBinaryFilesIncluded": 0,
+    "signingKeyIncluded": false
+  },
+  "validation": {
+    "freshSignedLiveModelProofs": 100,
+    "all100LivePagesAnd300AssetBodiesPassed": true,
+    "exactNewestCount": 100,
+    "approvedBrowserModels": 3,
+    "actualInspectedImages": 5,
+    "cleanupBlockedFiles": 0,
+    "quarantineRetainedFiles": 0,
+    "postOffloadCatalogAssets": "pass:2606 records",
+    "siteBuildDependenciesPreserved": true,
+    "physicalDeviceARTested": false
+  },
+  "scope": "Only the100 accepted source files in this logical import were removed. No tracked serving asset, thumbnail, poster, source metadata, unused candidate, or older collection original was removed."
+}
