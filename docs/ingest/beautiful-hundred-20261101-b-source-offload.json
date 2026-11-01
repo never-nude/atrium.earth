@@ -1,0 +1,53 @@
+{
+  "schema": "atrium-source-offload-summary/1",
+  "batch": "beautiful-hundred-20261101-b",
+  "status": "pass",
+  "checkedAt": "2026-11-01T23:00:14.256Z",
+  "releaseCommit": "f07d3ada57dc592e4edd29f75f8520b0cfc16fc2",
+  "deploymentRun": "41359110684",
+  "publicWorksAdded": 100,
+  "newestWorks": 100,
+  "fullLiveModelSha256AndBytesVerified": 100,
+  "permanentPrivateOriginalBackups": {
+    "distinctOriginals": 148,
+    "bytes": 1927943820,
+    "fullContentAndOwnerPrivateSharingVerified": true
+  },
+  "removed": {
+    "canonicalOriginalFiles": 100,
+    "canonicalOriginalBytes": 1139816864,
+    "redundantTransportFiles": 28,
+    "redundantTransportBytes": 323936832,
+    "totalFiles": 128,
+    "totalBytes": 1463753696
+  },
+  "retained": {
+    "canonicalOriginalFiles": 48,
+    "canonicalOriginalBytes": 788126956,
+    "redundantTransportFiles": 14,
+    "redundantTransportBytes": 99059480,
+    "fullHashesRechecked": true
+  },
+  "sourceRecoveryMap": {
+    "sha256": "25ecb129ce6a950a52be5f9b6b642fa8dafafaa59fbc095509e20efe00d4849c",
+    "bytes": 3054812,
+    "completeReadbackVerified": true
+  },
+  "postOffloadCheckpoint": {
+    "sha256": "bf5a61082b35b2b760841091d8a99424a6ebe54f171f2192ad09f9e1e9d43d8e",
+    "bytes": 36259840,
+    "members": 210,
+    "completeReadbackVerified": true,
+    "ownerPrivateSharingVerified": true,
+    "signingKeyIncluded": false,
+    "includesRemovalJournalAndRecoveryMappings": true,
+    "includesInitialFailedAndSuccessfulLiveChecks": true,
+    "includesBrowserShutdownFollowupAndFiveReviewedImages": true
+  },
+  "allRemovedPathsAbsent": true,
+  "quarantineFiles": 0,
+  "publicImagesUnchanged": 200,
+  "additionalDeletionByArchiveStep": false,
+  "physicalDeviceARTested": false,
+  "scope": "This acquisition only. Older collection backup and cleanup coverage are not asserted."
+}
