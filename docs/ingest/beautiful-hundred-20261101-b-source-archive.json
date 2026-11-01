@@ -1,0 +1,42 @@
+{
+  "schema": "atrium-source-archive-summary/1",
+  "batch": "beautiful-hundred-20261101-b",
+  "status": "pass",
+  "checkedAt": "2026-11-01T22:49:01.143Z",
+  "sourceCount": 148,
+  "sourceBytes": 1927943820,
+  "acceptedCount": 100,
+  "acceptedSourceBytes": 1139816864,
+  "heldCount": 43,
+  "unusedReserveCount": 5,
+  "retainedUnpublishedSourceBytes": 788126956,
+  "permanentPrivateOriginalsVerified": true,
+  "fullSourceSha256AndBytesVerified": true,
+  "ownerPrivateSharingVerified": true,
+  "portableRecoveryMap": {
+    "sha256": "25ecb129ce6a950a52be5f9b6b642fa8dafafaa59fbc095509e20efe00d4849c",
+    "bytes": 3054812,
+    "completeReadbackVerified": true,
+    "matchesFinalSelectedMetadata": true
+  },
+  "privateControlCheckpoint": {
+    "sha256": "a082a9bdc205c866619cbcc9d1a3c70ad4551e79235b41f72a45faf71f8a550a",
+    "bytes": 7659520,
+    "members": 214,
+    "completeReadbackVerified": true,
+    "containsPrivateRecoveryAndVerificationRecords": true,
+    "signingKeyIncluded": false
+  },
+  "redundantTransportCopies": {
+    "count": 42,
+    "bytes": 422996312,
+    "mappedToVerifiedOriginals": true,
+    "selectedCount": 28,
+    "selectedBytes": 323936832,
+    "retainedCount": 14,
+    "retainedBytes": 99059480
+  },
+  "sourceRepresentation": "Authenticated unchanged Sketchfab distribution GLB; uploader-native authoring files are not asserted.",
+  "originalsRemoved": 0,
+  "scope": "This acquisition only; not a claim of whole-collection backup coverage."
+}
