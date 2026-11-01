@@ -47,13 +47,6 @@ const previewBytes = typeof preview?.bytes === 'number' && Number.isFinite(previ
     <div class="v3-card__copy">
       <h3>{displayTitle}</h3>
       {detail && <p>{detail}</p>}
-      {spatialAccess && (
-        <div class="v3-card__spatial-reference" data-dimension-status={spatialAccess.status}>
-          <span>{!spatial && 'AR / VR · '}{spatialAccess.label}</span>
-          <span>{spatialAccess.sizeLabel}</span>
-          {!spatialAccess.verified && <span class="v3-card__spatial-note">{spatialAccess.status === 'approximate' ? 'Estimated from listed dimensions; actual size may vary.' : 'Chosen display size; actual dimensions unknown.'}</span>}
-        </div>
-      )}
     </div>
   </a>
   {spatial && spatialAccess && (

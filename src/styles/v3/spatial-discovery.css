@@ -112,17 +112,6 @@ body:has(.v3-collection-switch) .v3-header {
 
 .v3-card > a, .v3-card__image, .v3-card__copy { min-width: 0; }
 .v3-card__copy { overflow-wrap: anywhere; }
-.v3-card__spatial-reference {
-  display: grid;
-  gap: 3px;
-  margin-top: 12px;
-  font-size: .72rem;
-  line-height: 1.5;
-  letter-spacing: .015em;
-}
-.v3-card__spatial-reference > span { color: var(--dimension-color); }
-.v3-card__spatial-reference > span:first-child { font-weight: 600; }
-.v3-card__spatial-reference .v3-card__spatial-note { color: var(--v3-muted); font-size: .75rem; }
 .v3-card > .v3-card__spatial-link {
   display: inline-flex;
   align-items: center;
@@ -179,6 +168,5 @@ body:has(.v3-collection-switch) .v3-header {
     gap: 16px;
   }
   .v3-spatial-feature__works .v3-card > .v3-card__spatial-link { margin-left: calc((100% - 16px) * .4 + 16px); }
-  .v3-card__spatial-reference { font-size: .7rem; }
   .v3-collection-switch { gap: 24px; }
 }
