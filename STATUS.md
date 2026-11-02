@@ -1539,3 +1539,5 @@ Import retry checkpoint: acquisition39735160183 downloaded all40 originals but s
 
 - Owner requests another100 works through the same publication, permanent private backup and verified local-source offload workflow. This chat owns `codex/beautiful-hundred-20261101-c`, starting from synchronized main `6ffa1add`. Logical import: `beautiful-hundred-20261101-c`; starting catalog2,706 /2,688public /18hidden.
 - Discovery will favor strong, catalog-new fine art and anthropological objects across cultures, periods and materials, with quick rejection of weak or incompatible captures. Existing featured250/home192, quieter cards and all17 Spatial museum exports remain protected. Newest will show the full accepted import. About8.9GiB is free; source acquisition and review remain bounded. No source in this new batch has yet been acquired or published.
+
+- Owner refinement: prioritize Irish, Ukrainian and West African art where suitable scans exist, otherwise use curatorial judgment. Six Irish-related source candidates are queued for authenticated download and visual review; larger museum and regional discovery groups continue. Inclusion is not yet approved.
