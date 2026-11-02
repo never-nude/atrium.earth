@@ -1,0 +1,889 @@
+{
+  "schema": "atrium-live-delivery-summary/1",
+  "batch": "anatomy-hundred-20261101",
+  "status": "pass",
+  "checkedAt": "2026-11-02T07:33:49.385Z",
+  "releaseCommit": "8299218794501520136e926edd09dba9d9d84985",
+  "deployment": {
+    "provider": "GitHub Pages",
+    "run": "41406720745",
+    "url": "https://github.com/never-nude/atrium.earth/actions/runs/41406720745",
+    "status": "success"
+  },
+  "publishedNewCompositions": 28,
+  "requestedTarget": 100,
+  "target100Met": false,
+  "catalog": {
+    "total": 2834,
+    "public": 2816,
+    "hidden": 18
+  },
+  "delivery": {
+    "workPages": 28,
+    "fullModelBodies": 28,
+    "fullModelBytes": 465769700,
+    "fullThumbnailBodies": 28,
+    "fullPosterBodies": 28,
+    "fullImageBytes": 2149386,
+    "completeSha256AndExactByteCountsVerified": true,
+    "modelMimeVerified": true,
+    "productionOriginCorsVerified": true,
+    "completeCaptureLabelsVerified": true,
+    "uncalibratedScaleLabelsVerified": true,
+    "signedPrivateModelProofsAuthenticated": 28
+  },
+  "newest": {
+    "status": "pass",
+    "count": 28,
+    "exactLatestImport": true,
+    "olderImportsExcluded": true
+  },
+  "preservation": {
+    "priorCatalogRowsUnchangedExceptTotal": 2806,
+    "priorMapSetsPreserved": 13,
+    "protectedFilePinsPreserved": 126,
+    "spatialMuseumExportsUnchanged": 17,
+    "sourceModelsAltered": false
+  },
+  "permanentSourceBackup": {
+    "file": "docs/ingest/anatomy-hundred-20261101-source-archive.json",
+    "sha256": "4573b8104087224e0976ce918d66b6137fdbd8dbe9d7d4528c2b4a279382637d",
+    "sourceCount": 46,
+    "sourceBytes": 881648348,
+    "permanentPrivateOriginalsVerified": true,
+    "localOriginalsRetained": true,
+    "sourceOffloadPerformed": false,
+    "scope": "All46 originals fetched for this acquisition, including held works; this does not establish whole-collection backup coverage."
+  },
+  "verificationArtifacts": {
+    "completedLiveReadbacks": {
+      "bytes": 34751,
+      "sha256": "1197938b8e2ba44e8bf6a4d1a609c3739a84adc091655c5bd8213ac423a26f81"
+    },
+    "independentLiveAudit": {
+      "bytes": 759,
+      "sha256": "ce197818e1cb850c1622a06590726ab495060bdb29b2746c7e0d104e6992eefd"
+    },
+    "independentPostDeployPreservationAudit": {
+      "bytes": 3291,
+      "sha256": "e6552b84680d2eee8eb49622dd9807315968aa6cf9012a1bfd70679ef640d4f7"
+    }
+  },
+  "works": [
+    {
+      "slug": "etruscan/baubo-dolphin-relief-mkg-2001-36",
+      "status": "pass",
+      "page": {
+        "bytes": 36354,
+        "sha256": "7ed8f711e4397c3e8388738621af5374df8eb86d122ced0172037b224ddf2923",
+        "completeCaptureLabel": true,
+        "uncalibratedDisplay": true
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/etruscan/baubo-dolphin-relief-mkg-2001-36/preview-da2da47a5226.glb",
+        "bytes": 13739880,
+        "sha256": "da2da47a52266ddfe743f514e01fdbffae708c019a1a7d0f6e9524901853beaa",
+        "contentType": "model/gltf-binary",
+        "cors": "https://atrium.earth"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/etruscan/baubo-dolphin-relief-mkg-2001-36/thumb.webp",
+        "bytes": 55262,
+        "sha256": "1ead83cc2f36e16bfc426ffdc9a006cc3dd5034ed01ad130be6747784eb01f85",
+        "contentType": "image/webp"
+      },
+      "poster": {
+        "url": "https://atrium.earth/previews/posters/etruscan/baubo-dolphin-relief-mkg-2001-36/poster.svg",
+        "bytes": 73841,
+        "sha256": "5665fb37cbf8496915675e760952af54580eb5a9a6cc548018e1546b44cf23b9",
+        "contentType": "image/svg+xml"
+      }
+    },
+    {
+      "slug": "roman/phallic-amulet-mnat-544",
+      "status": "pass",
+      "page": {
+        "bytes": 35274,
+        "sha256": "c93111ca9b07c8a1ad4bbe56dc92e973807726591a95e0fe86b74fddbff9f0a0",
+        "completeCaptureLabel": true,
+        "uncalibratedDisplay": true
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/roman/phallic-amulet-mnat-544/preview-6cf91ed1cb98.glb",
+        "bytes": 33750948,
+        "sha256": "6cf91ed1cb9853c4371156e3784dacf7a913013c9063358e81230e43eb4b273f",
+        "contentType": "model/gltf-binary",
+        "cors": "https://atrium.earth"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/roman/phallic-amulet-mnat-544/thumb.webp",
+        "bytes": 41818,
+        "sha256": "c1d5dc8ac05be165a47f53a2ade75719c4bb72a774a139bc86369a52b832aa5d",
+        "contentType": "image/webp"
+      },
+      "poster": {
+        "url": "https://atrium.earth/previews/posters/roman/phallic-amulet-mnat-544/poster.svg",
+        "bytes": 55917,
+        "sha256": "e671a0b6fbea529472e787c935f186fe94a343489b2b4fea5c78015b24875068",
+        "contentType": "image/svg+xml"
+      }
+    },
+    {
+      "slug": "roman/phallic-amulet-mnat-ra-1011",
+      "status": "pass",
+      "page": {
+        "bytes": 35324,
+        "sha256": "d5c1a7e0cef59d8f64520830a07a77ec32086d3deb4d2755522d2aebcbc0cfa6",
+        "completeCaptureLabel": true,
+        "uncalibratedDisplay": true
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/roman/phallic-amulet-mnat-ra-1011/preview-993e94dc05aa.glb",
+        "bytes": 10561056,
+        "sha256": "993e94dc05aa72d4426f4226ae5b899fd2cf3928ce59eabd904e03f579513402",
+        "contentType": "model/gltf-binary",
+        "cors": "https://atrium.earth"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/roman/phallic-amulet-mnat-ra-1011/thumb.webp",
+        "bytes": 28594,
+        "sha256": "dee087db46ff889e46ce423eb60f6134143d86fe08d43dbc43ad9c7862120a24",
+        "contentType": "image/webp"
+      },
+      "poster": {
+        "url": "https://atrium.earth/previews/posters/roman/phallic-amulet-mnat-ra-1011/poster.svg",
+        "bytes": 38285,
+        "sha256": "554a51cd46ee3c400fc916952b04b40cfa51f426c890fa0d57673e412199376b",
+        "contentType": "image/svg+xml"
+      }
+    },
+    {
+      "slug": "roman/phallic-amulet-mnat-cm-88-27",
+      "status": "pass",
+      "page": {
+        "bytes": 35389,
+        "sha256": "23075074faddff2e4745a85c6c95327d535ba0e3ce7e085d398e745e489c0062",
+        "completeCaptureLabel": true,
+        "uncalibratedDisplay": true
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/roman/phallic-amulet-mnat-cm-88-27/preview-8d8eea6caf7c.glb",
+        "bytes": 18402704,
+        "sha256": "8d8eea6caf7c9fdc48d5b39c187fd5dd1d49f12c6924bb557f60693f23f2794a",
+        "contentType": "model/gltf-binary",
+        "cors": "https://atrium.earth"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/roman/phallic-amulet-mnat-cm-88-27/thumb.webp",
+        "bytes": 17756,
+        "sha256": "5eef34525c9656d01266c692500ff9bc32e7c282e7bbab66b57edb45afe5763c",
+        "contentType": "image/webp"
+      },
+      "poster": {
+        "url": "https://atrium.earth/previews/posters/roman/phallic-amulet-mnat-cm-88-27/poster.svg",
+        "bytes": 23833,
+        "sha256": "6d621e8d114e83a70b95c93897b80ca8972061e35852e02c463859ce62ad7417",
+        "contentType": "image/svg+xml"
+      }
+    },
+    {
+      "slug": "roman/phallic-ashlar-mnat-45233",
+      "status": "pass",
+      "page": {
+        "bytes": 35440,
+        "sha256": "a42d4efffcfc0e4387cb1caee7b765a134925eeae82174fd241245ebaf63cae9",
+        "completeCaptureLabel": true,
+        "uncalibratedDisplay": true
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/roman/phallic-ashlar-mnat-45233/preview-e12b7405d710.glb",
+        "bytes": 30927724,
+        "sha256": "e12b7405d710c6132e6e969b5aca8284dfda31c909548b72e66e942517a2f8d9",
+        "contentType": "model/gltf-binary",
+        "cors": "https://atrium.earth"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/roman/phallic-ashlar-mnat-45233/thumb.webp",
+        "bytes": 79768,
+        "sha256": "c046e27e6e1f0d1fe658519d40c043d0732cac8fa7f77329d85aef598e11aa36",
+        "contentType": "image/webp"
+      },
+      "poster": {
+        "url": "https://atrium.earth/previews/posters/roman/phallic-ashlar-mnat-45233/poster.svg",
+        "bytes": 106517,
+        "sha256": "c38977d98b82b3c972329693a0aa95542202ba8ffe1b08d93b2c4ca6880d6049",
+        "contentType": "image/svg+xml"
+      }
+    },
+    {
+      "slug": "europe/phallic-animal-stavanger-s13554",
+      "status": "pass",
+      "page": {
+        "bytes": 34804,
+        "sha256": "31bc8dab00f5912ae2637784b5b9e325037b670646ee1ecbff6bb1ec32392d3c",
+        "completeCaptureLabel": true,
+        "uncalibratedDisplay": true
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/europe/phallic-animal-stavanger-s13554/preview-4effb3c4a3ef.glb",
+        "bytes": 15274008,
+        "sha256": "4effb3c4a3ef02e35bc92ef17779fef6b4eef237bbeaeac59199efd375cb3391",
+        "contentType": "model/gltf-binary",
+        "cors": "https://atrium.earth"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/europe/phallic-animal-stavanger-s13554/thumb.webp",
+        "bytes": 23906,
+        "sha256": "d61bb554f1766dac655c5af630a4e6d8320a06ba169b65fa44f319c9566421ee",
+        "contentType": "image/webp"
+      },
+      "poster": {
+        "url": "https://atrium.earth/previews/posters/europe/phallic-animal-stavanger-s13554/poster.svg",
+        "bytes": 32033,
+        "sha256": "6b546131d149e88ca815ffb5eb9cbee9508f835c626e68d0e8ef99185e21ade9",
+        "contentType": "image/svg+xml"
+      }
+    },
+    {
+      "slug": "roman/double-phallic-amulet-cosa-c22-069",
+      "status": "pass",
+      "page": {
+        "bytes": 34938,
+        "sha256": "108de4d92c1f19b822c97bc4b3c658683ff4642f70049ec819011367615be7ee",
+        "completeCaptureLabel": true,
+        "uncalibratedDisplay": true
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/roman/double-phallic-amulet-cosa-c22-069/preview-f5effd4e988c.glb",
+        "bytes": 6633232,
+        "sha256": "f5effd4e988cd6ef4add9a2e030a7513f1425dd8e3a67c7323ea4e0d9540c82b",
+        "contentType": "model/gltf-binary",
+        "cors": "https://atrium.earth"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/roman/double-phallic-amulet-cosa-c22-069/thumb.webp",
+        "bytes": 23436,
+        "sha256": "ab99637a4db19579cc6fbae092ee5788bc242f8a130f698fbd8145fb3f8e568e",
+        "contentType": "image/webp"
+      },
+      "poster": {
+        "url": "https://atrium.earth/previews/posters/roman/double-phallic-amulet-cosa-c22-069/poster.svg",
+        "bytes": 31405,
+        "sha256": "a60c328657b1cc3effe18d5308e950a94dd69bd84e5cbbfd18e3c5927ef1a411",
+        "contentType": "image/svg+xml"
+      }
+    },
+    {
+      "slug": "roman/isis-aphrodite-kelsey-6488",
+      "status": "pass",
+      "page": {
+        "bytes": 34824,
+        "sha256": "25930efad2593555e0a0e8c36be0b3d478425da14f2ab4da88cd37bed9ba5201",
+        "completeCaptureLabel": true,
+        "uncalibratedDisplay": true
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/roman/isis-aphrodite-kelsey-6488/preview-ebadf896bfc8.glb",
+        "bytes": 2221880,
+        "sha256": "ebadf896bfc8e2d48c7c8e564a14a3d184831e350a65975e98d774c743a23ade",
+        "contentType": "model/gltf-binary",
+        "cors": "https://atrium.earth"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/roman/isis-aphrodite-kelsey-6488/thumb.webp",
+        "bytes": 48556,
+        "sha256": "459474b4a2b563b9a6580c9a76aba0b06f23d0e5772d0a6944c4c92f4794388a",
+        "contentType": "image/webp"
+      },
+      "poster": {
+        "url": "https://atrium.earth/previews/posters/roman/isis-aphrodite-kelsey-6488/poster.svg",
+        "bytes": 64901,
+        "sha256": "bee37d51d2de3ba7718d2743c72095385e421ffd3523c4cbd82bd0c6d454f3b1",
+        "contentType": "image/svg+xml"
+      }
+    },
+    {
+      "slug": "roman/phallic-architectural-fragment-maam-25442",
+      "status": "pass",
+      "page": {
+        "bytes": 35709,
+        "sha256": "2548c654fed83072f6d833d1171ae613f1e919bb605aa19fb1f5d9f621bd2844",
+        "completeCaptureLabel": true,
+        "uncalibratedDisplay": true
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/roman/phallic-architectural-fragment-maam-25442/preview-13e8e15bbe92.glb",
+        "bytes": 10664112,
+        "sha256": "13e8e15bbe921f2cf83dd9a4371148666ca1170b0946a6ceeaa017e37a4f7f12",
+        "contentType": "model/gltf-binary",
+        "cors": "https://atrium.earth"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/roman/phallic-architectural-fragment-maam-25442/thumb.webp",
+        "bytes": 38744,
+        "sha256": "c3ea1fb2d5c08cc70460d52e04d25c59ccae59557d7a8e361c98f6bb328e617a",
+        "contentType": "image/webp"
+      },
+      "poster": {
+        "url": "https://atrium.earth/previews/posters/roman/phallic-architectural-fragment-maam-25442/poster.svg",
+        "bytes": 51817,
+        "sha256": "4889429d536b65484deab02ce8605102b712109b9eb1663ef85b3ea8934cff87",
+        "contentType": "image/svg+xml"
+      }
+    },
+    {
+      "slug": "roman/cosa-sculpted-stone-amulet-c19-050",
+      "status": "pass",
+      "page": {
+        "bytes": 35406,
+        "sha256": "6fe3b3bb6589889b3f89272913c0461297d648b8a05047ef6a2589c2e6578845",
+        "completeCaptureLabel": true,
+        "uncalibratedDisplay": true
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/roman/cosa-sculpted-stone-amulet-c19-050/preview-73b48c7f25fa.glb",
+        "bytes": 2139524,
+        "sha256": "73b48c7f25facc0774ba87ee0cc8feb1e1c08ce531479fb762ad104ae13fb635",
+        "contentType": "model/gltf-binary",
+        "cors": "https://atrium.earth"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/roman/cosa-sculpted-stone-amulet-c19-050/thumb.webp",
+        "bytes": 17498,
+        "sha256": "d5c6733c96b22aded67f9cb836e6ffe3a6a5e5aec3e885baba17b85fe54a153f",
+        "contentType": "image/webp"
+      },
+      "poster": {
+        "url": "https://atrium.earth/previews/posters/roman/cosa-sculpted-stone-amulet-c19-050/poster.svg",
+        "bytes": 23489,
+        "sha256": "ea4a40eeb1a55723d4a779289ccc0382cbb39b3de72ade9763333152f00632ed",
+        "contentType": "image/svg+xml"
+      }
+    },
+    {
+      "slug": "europe/caherelly-east-sheela-hunt-hcm033",
+      "status": "pass",
+      "page": {
+        "bytes": 36005,
+        "sha256": "9b6deba2796ebf7d542de83be56c3410188f31d978449a348ce8b4f33e360781",
+        "completeCaptureLabel": true,
+        "uncalibratedDisplay": true
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/europe/caherelly-east-sheela-hunt-hcm033/preview-942476256801.glb",
+        "bytes": 24852756,
+        "sha256": "9424762568014be0b36b449d9733401d9477e96e5eba22f139dd38c312cce18e",
+        "contentType": "model/gltf-binary",
+        "cors": "https://atrium.earth"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/europe/caherelly-east-sheela-hunt-hcm033/thumb.webp",
+        "bytes": 31252,
+        "sha256": "2d2736c9679f68ab3eb6118a14670842202f0ca4a34c5aab11cab394a92319ee",
+        "contentType": "image/webp"
+      },
+      "poster": {
+        "url": "https://atrium.earth/previews/posters/europe/caherelly-east-sheela-hunt-hcm033/poster.svg",
+        "bytes": 41829,
+        "sha256": "291cc6bf0c90a57a40c49574f738c3e050eeee57bfd0b67892a7346ca00f7029",
+        "contentType": "image/svg+xml"
+      }
+    },
+    {
+      "slug": "europe/gumelnita-anthropomorphic-figurine-38646",
+      "status": "pass",
+      "page": {
+        "bytes": 35828,
+        "sha256": "490b91e0292e99846b18822bc0b8bc8acd8a55ef9f2b9c0395322f4fcfa6e3f0",
+        "completeCaptureLabel": true,
+        "uncalibratedDisplay": true
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/europe/gumelnita-anthropomorphic-figurine-38646/preview-a65b9b06224d.glb",
+        "bytes": 7901604,
+        "sha256": "a65b9b06224d398732c591133422da0a1663e0ddfdfd93f19933eccc4075663b",
+        "contentType": "model/gltf-binary",
+        "cors": "https://atrium.earth"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/europe/gumelnita-anthropomorphic-figurine-38646/thumb.webp",
+        "bytes": 33570,
+        "sha256": "5012b42948d4ce03e1de294cf7094e5c1a98e5cd08acc1aa0d7d3c2e278f0b9f",
+        "contentType": "image/webp"
+      },
+      "poster": {
+        "url": "https://atrium.earth/previews/posters/europe/gumelnita-anthropomorphic-figurine-38646/poster.svg",
+        "bytes": 44917,
+        "sha256": "944bff284f01d90b2fabae3cd7e972df73cb5de3a6a934a50f0b868a83c7c7b2",
+        "contentType": "image/svg+xml"
+      }
+    },
+    {
+      "slug": "europe/gumelnita-ithyphallic-figurine-38647",
+      "status": "pass",
+      "page": {
+        "bytes": 35880,
+        "sha256": "6ca4054c6f1c10a690b92a256d5ad700a7833e31a36872687addd8fdf4ed83ff",
+        "completeCaptureLabel": true,
+        "uncalibratedDisplay": true
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/europe/gumelnita-ithyphallic-figurine-38647/preview-a834c8496d22.glb",
+        "bytes": 8153172,
+        "sha256": "a834c8496d22d34daa57a476c720aeab732137f84859dd7850b28bfe8bf1a3bb",
+        "contentType": "model/gltf-binary",
+        "cors": "https://atrium.earth"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/europe/gumelnita-ithyphallic-figurine-38647/thumb.webp",
+        "bytes": 30658,
+        "sha256": "342c9bdce0767edaa8873acc8b95a6220481b585ecdaf2c6184d2aa9466df0a7",
+        "contentType": "image/webp"
+      },
+      "poster": {
+        "url": "https://atrium.earth/previews/posters/europe/gumelnita-ithyphallic-figurine-38647/poster.svg",
+        "bytes": 41037,
+        "sha256": "e33043c9ca71c516a8bea6fae0b7163ca8aaab3b092e99915cd73deff6119533",
+        "contentType": "image/svg+xml"
+      }
+    },
+    {
+      "slug": "asia/vietnamese-male-fertility-figure-usf",
+      "status": "pass",
+      "page": {
+        "bytes": 35504,
+        "sha256": "88a3bed321d1c4bf6169b62630c4d905520f9b5558f45365b0725371210b6ef5",
+        "completeCaptureLabel": true,
+        "uncalibratedDisplay": true
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/asia/vietnamese-male-fertility-figure-usf/preview-42ca8c05a71f.glb",
+        "bytes": 15144336,
+        "sha256": "42ca8c05a71fa79e70ff89495dc012da5fb8e86e69935d2be8f9d57ad4cc6f96",
+        "contentType": "model/gltf-binary",
+        "cors": "https://atrium.earth"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/asia/vietnamese-male-fertility-figure-usf/thumb.webp",
+        "bytes": 12802,
+        "sha256": "3fc9e610c7932066adde1141608d2edb0bf4f15dc686d34043ebe35369ad8069",
+        "contentType": "image/webp"
+      },
+      "poster": {
+        "url": "https://atrium.earth/previews/posters/asia/vietnamese-male-fertility-figure-usf/poster.svg",
+        "bytes": 17229,
+        "sha256": "08590542219f067036a7d256e456b03575fce75c68153f1f45e6ea28aac23a5a",
+        "contentType": "image/svg+xml"
+      }
+    },
+    {
+      "slug": "europe/statue-male-figure-hunt-jb001",
+      "status": "pass",
+      "page": {
+        "bytes": 34479,
+        "sha256": "770030f13f19e72a9faf122d64fb22c252741d4212fb2bd270f748fb3c6a1549",
+        "completeCaptureLabel": true,
+        "uncalibratedDisplay": true
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/europe/statue-male-figure-hunt-jb001/preview-ac931f8aec83.glb",
+        "bytes": 2442780,
+        "sha256": "ac931f8aec837594c46d0ea766b774d7ed5e0616f1900dc4af115f5f615beaa7",
+        "contentType": "model/gltf-binary",
+        "cors": "https://atrium.earth"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/europe/statue-male-figure-hunt-jb001/thumb.webp",
+        "bytes": 24208,
+        "sha256": "8181d335458dbebb463583ff25beff9c1319f3d112cc6e776c759544ef996e2d",
+        "contentType": "image/webp"
+      },
+      "poster": {
+        "url": "https://atrium.earth/previews/posters/europe/statue-male-figure-hunt-jb001/poster.svg",
+        "bytes": 32437,
+        "sha256": "470373b1918e235facb32cd618f0fb4fcc7008e7c9c7c5a9ece69c175dc57c57",
+        "contentType": "image/svg+xml"
+      }
+    },
+    {
+      "slug": "egyptian/macrophallic-amulet-tambourine-museu-nacional",
+      "status": "pass",
+      "page": {
+        "bytes": 35120,
+        "sha256": "ee2ddbc713dc2349c4b6f7ad72b926e01692b52a3132e9efad2bf9e99f0d68f2",
+        "completeCaptureLabel": true,
+        "uncalibratedDisplay": true
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/egyptian/macrophallic-amulet-tambourine-museu-nacional/preview-82f480cf8931.glb",
+        "bytes": 10143608,
+        "sha256": "82f480cf89310a8a892909a2889d053d470c702b3d0046540a1fae57ecb44000",
+        "contentType": "model/gltf-binary",
+        "cors": "https://atrium.earth"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/egyptian/macrophallic-amulet-tambourine-museu-nacional/thumb.webp",
+        "bytes": 21850,
+        "sha256": "b6bb7937b304195e9985c402b0d1babda44f75a8c10cfcb1700a4100177d244c",
+        "contentType": "image/webp"
+      },
+      "poster": {
+        "url": "https://atrium.earth/previews/posters/egyptian/macrophallic-amulet-tambourine-museu-nacional/poster.svg",
+        "bytes": 29293,
+        "sha256": "f3a26da43640272f7c5db28481e11bfc55e499564984464af984cc39ab64bc06",
+        "contentType": "image/svg+xml"
+      }
+    },
+    {
+      "slug": "medieval/jerpoint-reclining-exhibitionist-column-base",
+      "status": "pass",
+      "page": {
+        "bytes": 35815,
+        "sha256": "f28b2dab5d9893602913fe89096c561101f75f5bb41b021017ab977019454a91",
+        "completeCaptureLabel": true,
+        "uncalibratedDisplay": true
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/medieval/jerpoint-reclining-exhibitionist-column-base/preview-2eb1f5068e40.glb",
+        "bytes": 7838460,
+        "sha256": "2eb1f5068e40ade116a5ac2261d2d49bf665a43ac582b1d2fbe2f957b7948d09",
+        "contentType": "model/gltf-binary",
+        "cors": "https://atrium.earth"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/medieval/jerpoint-reclining-exhibitionist-column-base/thumb.webp",
+        "bytes": 41060,
+        "sha256": "b2e6d33a3d9c092fa9d405d9a8b65a25b895a0301e527611dddc1840d8a7901c",
+        "contentType": "image/webp"
+      },
+      "poster": {
+        "url": "https://atrium.earth/previews/posters/medieval/jerpoint-reclining-exhibitionist-column-base/poster.svg",
+        "bytes": 54905,
+        "sha256": "b257934d7076392e01586428550d70b3a3f8646ad760643a50de491f4f413dd3",
+        "contentType": "image/svg+xml"
+      }
+    },
+    {
+      "slug": "roman/erotic-satyr-lamp-badalona-3816",
+      "status": "pass",
+      "page": {
+        "bytes": 34697,
+        "sha256": "5afa18d2acab0907c3b5619a4e9c13a00ad08a66c19192ea0a3444d47a76c69f",
+        "completeCaptureLabel": true,
+        "uncalibratedDisplay": true
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/roman/erotic-satyr-lamp-badalona-3816/preview-ad65f6dccea9.glb",
+        "bytes": 2978856,
+        "sha256": "ad65f6dccea9a8ac9551ce7bd39d1d876f982866758bf888c42841ed505f49a7",
+        "contentType": "model/gltf-binary",
+        "cors": "https://atrium.earth"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/roman/erotic-satyr-lamp-badalona-3816/thumb.webp",
+        "bytes": 49542,
+        "sha256": "d61f39d588d68899912db155242e8cd1124b1132735f7fed86a1b956a9a90b79",
+        "contentType": "image/webp"
+      },
+      "poster": {
+        "url": "https://atrium.earth/previews/posters/roman/erotic-satyr-lamp-badalona-3816/poster.svg",
+        "bytes": 66213,
+        "sha256": "84709d0f26a0ec1a87ee212ea5c2c49a0903dfa481ac69666856cdcf710b6f43",
+        "contentType": "image/svg+xml"
+      }
+    },
+    {
+      "slug": "medieval/erotic-bellows-badge-huis-hilde-5456-01",
+      "status": "pass",
+      "page": {
+        "bytes": 35391,
+        "sha256": "d86b69f0fc89dd921a5da8110af76fd15ef57fd146fe93d20b7d88ff0621da13",
+        "completeCaptureLabel": true,
+        "uncalibratedDisplay": true
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/medieval/erotic-bellows-badge-huis-hilde-5456-01/preview-7b12892bb9f8.glb",
+        "bytes": 7628628,
+        "sha256": "7b12892bb9f854e0846d44518db2a95637124a2ccf7487d476bc8ac367c81bb5",
+        "contentType": "model/gltf-binary",
+        "cors": "https://atrium.earth"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/medieval/erotic-bellows-badge-huis-hilde-5456-01/thumb.webp",
+        "bytes": 15810,
+        "sha256": "c4116690d4d43b79f274c13b23bea70f673c5d4c12958ed9d885859db1fb92bd",
+        "contentType": "image/webp"
+      },
+      "poster": {
+        "url": "https://atrium.earth/previews/posters/medieval/erotic-bellows-badge-huis-hilde-5456-01/poster.svg",
+        "bytes": 21237,
+        "sha256": "a13c932b5f0dd396a114b99703fb4f678b643cac2b5e60aa77d86af5ee33509c",
+        "contentType": "image/svg+xml"
+      }
+    },
+    {
+      "slug": "greek/folded-arm-torso-hunt-mg002",
+      "status": "pass",
+      "page": {
+        "bytes": 35433,
+        "sha256": "5552e0cc1304478e17ba146bf1376c8f8c7a1979158c499b57fc5a1865002e09",
+        "completeCaptureLabel": true,
+        "uncalibratedDisplay": true
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/greek/folded-arm-torso-hunt-mg002/preview-0c7523453998.glb",
+        "bytes": 8146080,
+        "sha256": "0c752345399848b99d6a1a01aab3b520b49deabf3b6805af3dd8bbd37b144c1c",
+        "contentType": "model/gltf-binary",
+        "cors": "https://atrium.earth"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/greek/folded-arm-torso-hunt-mg002/thumb.webp",
+        "bytes": 30662,
+        "sha256": "9d3f1be8673a77b65b81670a0bbdf07103a0b5887213b830f7b13a79c088cc41",
+        "contentType": "image/webp"
+      },
+      "poster": {
+        "url": "https://atrium.earth/previews/posters/greek/folded-arm-torso-hunt-mg002/poster.svg",
+        "bytes": 41041,
+        "sha256": "ddfffbc31a5e23c8d5cf6ca34c98a2854b61edce4004f951a94fbd75021efdce",
+        "contentType": "image/svg+xml"
+      }
+    },
+    {
+      "slug": "egyptian/offering-bearer-hargm7673",
+      "status": "pass",
+      "page": {
+        "bytes": 34808,
+        "sha256": "c00b03d1568fc5085eab8cfc805e2701164156cfde13ac8d5fe99cecbdf13e2b",
+        "completeCaptureLabel": true,
+        "uncalibratedDisplay": true
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/egyptian/offering-bearer-hargm7673/preview-6c7e68e9d369.glb",
+        "bytes": 19406276,
+        "sha256": "6c7e68e9d369d2bfef0d648f107de70ce1875dfd47608d476410d21da4cd9a75",
+        "contentType": "model/gltf-binary",
+        "cors": "https://atrium.earth"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/egyptian/offering-bearer-hargm7673/thumb.webp",
+        "bytes": 21974,
+        "sha256": "28a65d0c94814126f1603d7440b4a0f70480ce1c972e4c6ef56710e0089cda15",
+        "contentType": "image/webp"
+      },
+      "poster": {
+        "url": "https://atrium.earth/previews/posters/egyptian/offering-bearer-hargm7673/poster.svg",
+        "bytes": 29457,
+        "sha256": "c5e70ca66c54492f0e657b5dbc39a8619ac5b5154a7d7801bfa1405442fd2cba",
+        "contentType": "image/svg+xml"
+      }
+    },
+    {
+      "slug": "europe/venus-vidra-anthropomorphic-vessel-15464",
+      "status": "pass",
+      "page": {
+        "bytes": 36000,
+        "sha256": "9deb6b017c367c654f5850502e549e82b341f9f509b77564d4f26633270bb971",
+        "completeCaptureLabel": true,
+        "uncalibratedDisplay": true
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/europe/venus-vidra-anthropomorphic-vessel-15464/preview-8be4328e72e8.glb",
+        "bytes": 49887468,
+        "sha256": "8be4328e72e877661ccbccf28ea6c0585c28c6f8cc2716cfd6ee30c51e918137",
+        "contentType": "model/gltf-binary",
+        "cors": "https://atrium.earth"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/europe/venus-vidra-anthropomorphic-vessel-15464/thumb.webp",
+        "bytes": 55350,
+        "sha256": "e691407d7ac46d5baec94735e12d1a1b797880ff89f9e79c30c9103e753df546",
+        "contentType": "image/webp"
+      },
+      "poster": {
+        "url": "https://atrium.earth/previews/posters/europe/venus-vidra-anthropomorphic-vessel-15464/poster.svg",
+        "bytes": 73957,
+        "sha256": "20339bf4ad8e2d84e05a0306a2d99c4849398ee6a270728b226a722a7a9265db",
+        "contentType": "image/svg+xml"
+      }
+    },
+    {
+      "slug": "europe/gumelnita-male-figurine-238",
+      "status": "pass",
+      "page": {
+        "bytes": 35603,
+        "sha256": "aeec16a980d458d241735282f3a00d56f94c5069fe8e81811816f44fa4bd5356",
+        "completeCaptureLabel": true,
+        "uncalibratedDisplay": true
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/europe/gumelnita-male-figurine-238/preview-abcb0aca8144.glb",
+        "bytes": 10217476,
+        "sha256": "abcb0aca814496b099ec44118881fb9a45f2ce097942dc86f8e1186dda1b3765",
+        "contentType": "model/gltf-binary",
+        "cors": "https://atrium.earth"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/europe/gumelnita-male-figurine-238/thumb.webp",
+        "bytes": 30980,
+        "sha256": "f10a4b97509aa3580f148e0624b02f7c2194dcf982d2699e2b282435f049841d",
+        "contentType": "image/webp"
+      },
+      "poster": {
+        "url": "https://atrium.earth/previews/posters/europe/gumelnita-male-figurine-238/poster.svg",
+        "bytes": 41465,
+        "sha256": "7935cd708adf131e33a40c0a38d48edbe1ed3dda41d8fb7316484f6b956b12b4",
+        "contentType": "image/svg+xml"
+      }
+    },
+    {
+      "slug": "europe/gumelnita-female-figurine-38",
+      "status": "pass",
+      "page": {
+        "bytes": 35426,
+        "sha256": "3f0f7b8c9f22b00ea131911ecbea95219fd46c990a6db27dd7ef8f9b9fa5e0b6",
+        "completeCaptureLabel": true,
+        "uncalibratedDisplay": true
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/europe/gumelnita-female-figurine-38/preview-70e64c574152.glb",
+        "bytes": 10447536,
+        "sha256": "70e64c5741521ff53d20f21838f555d9fb116146414a649506578804ea9579f5",
+        "contentType": "model/gltf-binary",
+        "cors": "https://atrium.earth"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/europe/gumelnita-female-figurine-38/thumb.webp",
+        "bytes": 25990,
+        "sha256": "4597e7ffd3447d82010a623022459e99034508889caf1a3e689b9125a344323d",
+        "contentType": "image/webp"
+      },
+      "poster": {
+        "url": "https://atrium.earth/previews/posters/europe/gumelnita-female-figurine-38/poster.svg",
+        "bytes": 34813,
+        "sha256": "eb460fb6e5bf15b6b674d382732a8ab22e149c03510c7f6553199e4d2e243ed6",
+        "contentType": "image/svg+xml"
+      }
+    },
+    {
+      "slug": "europe/goddess-sultana-replica",
+      "status": "pass",
+      "page": {
+        "bytes": 35934,
+        "sha256": "b32bc9e18a4d9afdf307657275e549f70d283840b42590624d1ce1800c4ad2d2",
+        "completeCaptureLabel": true,
+        "uncalibratedDisplay": true
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/europe/goddess-sultana-replica/preview-8e661ab10549.glb",
+        "bytes": 46624548,
+        "sha256": "8e661ab105495a5f6f17ed6226ef8dfe49d389da43f2457f15ed9349f1b24896",
+        "contentType": "model/gltf-binary",
+        "cors": "https://atrium.earth"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/europe/goddess-sultana-replica/thumb.webp",
+        "bytes": 35884,
+        "sha256": "ff16e00dbc07f8307d41355a8a0cd2b8a4fe2e9561aeb33b7dbb9a1e8008ddfd",
+        "contentType": "image/webp"
+      },
+      "poster": {
+        "url": "https://atrium.earth/previews/posters/europe/goddess-sultana-replica/poster.svg",
+        "bytes": 48005,
+        "sha256": "8b5664b7f4d3497e224e70f8f5493113f100b9f95a441ad7b9da7c87e1db5fd0",
+        "contentType": "image/svg+xml"
+      }
+    },
+    {
+      "slug": "greek/skyphos-phallic-spout-reproduction-massey",
+      "status": "pass",
+      "page": {
+        "bytes": 34890,
+        "sha256": "953626d5a2b5b6fa651acccee9638a272ef6f38a981bedde1f7d1b240bc341e6",
+        "completeCaptureLabel": true,
+        "uncalibratedDisplay": true
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/greek/skyphos-phallic-spout-reproduction-massey/preview-0f64eb349ca7.glb",
+        "bytes": 30864176,
+        "sha256": "0f64eb349ca733405ef4f0ddda56c5b81d2affb282696fa082136ea5ce79c3d7",
+        "contentType": "model/gltf-binary",
+        "cors": "https://atrium.earth"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/greek/skyphos-phallic-spout-reproduction-massey/thumb.webp",
+        "bytes": 23142,
+        "sha256": "b937621d5d5b1e2539c3eeac91ea36aa5b127ccbd0857bb8068ffaac4413208b",
+        "contentType": "image/webp"
+      },
+      "poster": {
+        "url": "https://atrium.earth/previews/posters/greek/skyphos-phallic-spout-reproduction-massey/poster.svg",
+        "bytes": 31013,
+        "sha256": "b3c3a198a0500633eecca0e3557a4cff56b55300549e7191343749ced37cf36a",
+        "contentType": "image/svg+xml"
+      }
+    },
+    {
+      "slug": "europe/venus-zauan-inp",
+      "status": "pass",
+      "page": {
+        "bytes": 35179,
+        "sha256": "ee17b356d0d94363229ecf045d800bea08e22b306e5eee3944976879a4109bb3",
+        "completeCaptureLabel": true,
+        "uncalibratedDisplay": true
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/europe/venus-zauan-inp/preview-0834b8e46b2c.glb",
+        "bytes": 45732984,
+        "sha256": "0834b8e46b2c8f097510847f100ca68d8b607d1c3a2275cb572e34d31142e0e3",
+        "contentType": "model/gltf-binary",
+        "cors": "https://atrium.earth"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/europe/venus-zauan-inp/thumb.webp",
+        "bytes": 24508,
+        "sha256": "331fb8d4da38c25aafac03d0ad4a51261df992542f4be6fba0ce9d2e0ebc0d86",
+        "contentType": "image/webp"
+      },
+      "poster": {
+        "url": "https://atrium.earth/previews/posters/europe/venus-zauan-inp/poster.svg",
+        "bytes": 32837,
+        "sha256": "fc82f5a2711cdc07896190b6551e40c720ee39c28db7b6f5910a239d3af05318",
+        "contentType": "image/svg+xml"
+      }
+    },
+    {
+      "slug": "europe/hamangia-bone-figurine-callatis-2308",
+      "status": "pass",
+      "page": {
+        "bytes": 35946,
+        "sha256": "4bdb657a55c7ee0b8901df4b039a8738e26a83cf2a27a8bbbab061d5a041ccf3",
+        "completeCaptureLabel": true,
+        "uncalibratedDisplay": true
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/europe/hamangia-bone-figurine-callatis-2308/preview-aa2360e5c58d.glb",
+        "bytes": 13043888,
+        "sha256": "aa2360e5c58d47d379ae0da60f4cabd7226008480bec16bf833385a3ab311907",
+        "contentType": "model/gltf-binary",
+        "cors": "https://atrium.earth"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/europe/hamangia-bone-figurine-callatis-2308/thumb.webp",
+        "bytes": 34682,
+        "sha256": "9d313479b2cb41a836c4fc5506c0444772d75fea98047384d02f06347cc96a56",
+        "contentType": "image/webp"
+      },
+      "poster": {
+        "url": "https://atrium.earth/previews/posters/europe/hamangia-bone-figurine-callatis-2308/poster.svg",
+        "bytes": 46401,
+        "sha256": "336f5e651e22ba465498a8f81679f6d9b29ff8840cd71e103874c87f8c0673d0",
+        "contentType": "image/svg+xml"
+      }
+    }
+  ],
+  "productionBrowserAcceptance": "Separate report required",
+  "physicalDeviceARVerified": false,
+  "scope": "Successful deployment and all28 fresh live work-page bindings plus84 complete asset-body SHA/byte readbacks. Independent auditor authenticated all28 signed model receipts and matched final release records without repeating downloads. Exact Newest membership and prior-catalog/museum preservation pass. Browser interaction has a separate acceptance report; no physical-device AR claim. The requested100-work target remains unfulfilled."
+}
