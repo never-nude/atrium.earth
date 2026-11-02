@@ -1,0 +1,55 @@
+{
+  "schema": "atrium-source-offload-summary/1",
+  "batch": "beautiful-hundred-20261101-c",
+  "status": "pass",
+  "checkedAt": "2026-11-02T01:31:43.815Z",
+  "releaseCommit": "6f6e216c2ba53cccde4ea3d6931dfa1b1030f6f0",
+  "deploymentRun": "41372175537",
+  "permanentPrivateOriginalsVerified": {
+    "count": 136,
+    "bytes": 3183599632,
+    "fullSha256AndBytesReadBack": true
+  },
+  "canonicalSourceOffload": {
+    "count": 100,
+    "bytes": 1925383464,
+    "allRemovedPathsAbsent": true,
+    "quarantinedFiles": 0,
+    "retainedUnpublishedCount": 36,
+    "retainedUnpublishedBytes": 1258216168,
+    "allRetainedFullHashesVerified": true
+  },
+  "separateRedundantCopyCleanup": {
+    "currentBatchTemporaryZips": {
+      "count": 8,
+      "bytes": 2016006753
+    },
+    "priorBatchTemporaryZips": {
+      "count": 4,
+      "bytes": 467860860
+    },
+    "generatedBuildCopies": {
+      "count": 207,
+      "bytes": 351450656
+    },
+    "scope": "Temporary packaging and generated build copies only; these are separate from the100 canonical source originals and are not additional artwork acquisitions."
+  },
+  "liveVerification": {
+    "works": 100,
+    "publicAssetBodies": 300,
+    "browserModels": 3,
+    "newestLayouts": 2,
+    "actuallyReviewedImages": 5,
+    "all200PublishedImageBodiesLocallyUnchanged": true,
+    "physicalDeviceARTested": false
+  },
+  "finalPrivateRecoveryCheckpoint": {
+    "sha256": "32ff4c116cb22faa082cff783cacdeafdb3ce7dd16172e2c7e05a427c3670144",
+    "bytes": 68894720,
+    "members": 262,
+    "completePrivateReadbackVerified": true,
+    "includesRecoveryMapSourceReceiptsRemovalJournalsAndLiveEvidence": true,
+    "signingKeyIncluded": false
+  },
+  "scope": "This acquisition and the explicitly separated redundant-copy cleanup only; no claim of whole-collection backup coverage."
+}
