@@ -1,0 +1,94 @@
+{
+  "schema": "atrium-independent-integration-checks/1",
+  "batch": "idealized-nudes-hundred-20261102",
+  "checkedAt": "2026-11-02T20:57:20.255001+00:00",
+  "status": "pass",
+  "accepted": 5,
+  "target": 100,
+  "targetMet": false,
+  "catalog": 2850,
+  "public": 2832,
+  "hidden": 18,
+  "checks": [
+    {
+      "name": "protected-source-ui-and-spatial-files",
+      "status": "pass",
+      "baselineTotalPins": 126,
+      "appendableDataFiles": 7,
+      "otherFilesByteIdentical": 119,
+      "spatialExportsByteIdentical": 17
+    },
+    {
+      "name": "editorial-membership-preserved",
+      "status": "pass",
+      "featured": 250,
+      "homepageApproved": 193,
+      "homepageBudgetEligible": 192
+    },
+    {
+      "name": "exact-approved-new-membership-public-whitelist-and-source-serving-bindings",
+      "status": "pass",
+      "count": 5,
+      "providerOriginalBytes": 118161381,
+      "sourceServingBytes": 155935468,
+      "unchangedProviderGlbCount": 2,
+      "qualifiedStlConversionCount": 3,
+      "completeCaptureProseRetained": true
+    },
+    {
+      "name": "catalog-preservation-index-total-and-single-logical-import",
+      "status": "pass",
+      "unchangedOldRecords": 2845,
+      "accepted": 5,
+      "catalog": 2850,
+      "public": 2832,
+      "hidden": 18
+    },
+    {
+      "name": "seven-data-maps-append-only-and-exact-new-bindings",
+      "status": "pass",
+      "maps": 7,
+      "priorValuesUnchanged": true,
+      "newSpatialRoomEligibility": false,
+      "physicalScaleCalibrated": false
+    },
+    {
+      "name": "exact-shipped-thumbnail-poster-and-cdn-bindings",
+      "status": "pass",
+      "models": 5,
+      "images": 10
+    },
+    {
+      "name": "public-safe-permanent-source-archive-coverage",
+      "status": "pass",
+      "acquiredSourceCount": 10,
+      "sourceBytes": 221768201,
+      "archiveMembers": 129,
+      "authenticatedCompletedContentReceipts": 19,
+      "exactPartProofPins": 4,
+      "acceptedCovered": 5
+    }
+  ],
+  "independentIntegrationAudit": {
+    "bytes": 9480,
+    "sha256": "822d85a331005a03cce88f893730ba7153f03b186634bb26d8e26b7ac131851f"
+  },
+  "independentMetadataAudit": {
+    "bytes": 3907,
+    "sha256": "729e108c656927c129fe89c07c20d736af529f36264bf455273b6939846c49a4"
+  },
+  "qualifiedSourceHandling": "Unchanged provider GLBs for two physical ancient statuettes. Three museum STL scans use exact triangle/facet-normal GLB conversions with explicitly qualified neutral opaque display; ZIP originals, STL meshes and converted references are separately bound.",
+  "physicalScaleCalibrated": false,
+  "newSpatialMuseumEligibility": false,
+  "sourceOriginalsRemoved": 0,
+  "protectedSpatialMuseumExports": 17,
+  "validation": [
+    "additions",
+    "featured selection",
+    "wing routing",
+    "catalog assets",
+    "review artifact paths",
+    "git diff whitespace",
+    "production build: 7795 pages"
+  ]
+}

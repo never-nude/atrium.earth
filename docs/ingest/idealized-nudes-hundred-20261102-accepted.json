@@ -1,0 +1,981 @@
+{
+  "batch": "idealized-nudes-hundred-20261102",
+  "checkedAt": "2026-11-02T20:56:08.982Z",
+  "accepted": 5,
+  "target": 100,
+  "targetMet": false,
+  "catalog": 2850,
+  "public": 2832,
+  "hidden": 18,
+  "scope": "5 catalog-new reviewed art and archaeological captures focused exclusively on prominently modeled sensual, idealized adult nude figures with realistic anatomy. This is a partial release toward the requested 100; no quota padding. Provider GLBs retain unchanged distribution bytes. STL sources use explicitly qualified conversions preserving triangle positions and normals; the raw package, mesh and converted reference are recorded separately. Physical size remains uncalibrated; no physical-device AR acceptance is claimed.",
+  "sourceArchiveProof": {
+    "file": "docs/ingest/idealized-nudes-hundred-20261102-source-archive.json",
+    "bytes": 14738,
+    "sha256": "6b9f8ef7659423dbb93139582d978953cbdb5e734e77ac407f7937575397a046"
+  },
+  "curatedExhibitionAppends": 0,
+  "spatialMuseumChanges": 0,
+  "works": [
+    {
+      "slug": "greek/callatis-nude-woman-lotus-140",
+      "sourceUid": "d6d777073bf24369a011b4b60a7f43ef",
+      "title": "Nude Woman Semi-Seated on a Lotus Leaf (Callatis 140)",
+      "sourceUrl": "https://sketchfab.com/3d-models/d6d777073bf24369a011b4b60a7f43ef",
+      "primaryRecord": "https://sketchfab.com/3d-models/d6d777073bf24369a011b4b60a7f43ef",
+      "license": "CC BY 4.0",
+      "licenseUrl": "http://creativecommons.org/licenses/by/4.0/",
+      "licenseScope": "Current exact-model CC BY 4.0 grant published by Global Digital Heritage for its documented recording of this ancient museum object.",
+      "scanAuthor": "Global Digital Heritage, in collaboration with Institutul Național al Patrimoniului and Muzeul de Arheologie Callatis",
+      "attribution": "Photogrammetry: Global Digital Heritage, with Institutul Național al Patrimoniului and Muzeul de Arheologie Callatis. CC BY 4.0.",
+      "original": {
+        "url": "https://sketchfab.com/3d-models/d6d777073bf24369a011b4b60a7f43ef",
+        "sha256": "f3dfd42bbc293c4534d9a8cdec2484b04aaaf56cff8f517e1670f1f8eb713bbb",
+        "bytes": 9966812,
+        "representation": "Authenticated unchanged Sketchfab distribution GLB; uploader-native authoring package not asserted."
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/greek/callatis-nude-woman-lotus-140/preview-f3dfd42bbc29.glb",
+        "sha256": "f3dfd42bbc293c4534d9a8cdec2484b04aaaf56cff8f517e1670f1f8eb713bbb",
+        "bytes": 9966812
+      },
+      "rawSourceFaces": 199996,
+      "rawPreviewFaces": 199996,
+      "measuredTopology": {
+        "source": {
+          "loadedRawFaces": 199996,
+          "measured": {
+            "faces": 199996,
+            "bratio": 0,
+            "ncomp": 1,
+            "largest_frac": 1
+          },
+          "status": "pass"
+        },
+        "preview": {
+          "loadedRawFaces": 199996,
+          "measured": {
+            "faces": 199996,
+            "bratio": 0,
+            "ncomp": 1,
+            "largest_frac": 1
+          },
+          "status": "pass"
+        }
+      },
+      "materialAppearance": "Exact unchanged provider GLB geometry, materials and textures of the documented physical sculpture.",
+      "visualDecision": "The surviving female head, braided hair, veil, nude torso, side edges, flat reverse and lower fragment extent remain coherent in every direction. The reverse inventory inscription is visible. The full-resolution underside pair was actually opened; the surviving lower edge and shallow underside are modeled in both modes. Cream and tan coloration, pale surface patches and all fragment boundaries agree in each pair. All eight source/serving pairs visually agree in complete surviving silhouette, geometry, supplied appearance, framing and position.",
+      "captureLabel": "RealityScan photogrammetry by Global Digital Heritage from 245 images, in collaboration with Institutul Național al Patrimoniului and Muzeul de Arheologie Callatis. The surviving front, side edges, reverse and lower fragment extent are shown. Cream and tan coloration, pale patches and the reverse inventory inscription are retained. Missing feet and lower arms are documented object losses; no limbs are reconstructed. Physical scale is unverified.",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0,
+          0,
+          1
+        ],
+        "status": "manual",
+        "note": "Pose and opening camera verified in actual native and eight paired source/serving views."
+      },
+      "views": [
+        {
+          "mode": "native-source",
+          "key": "FRONT",
+          "sha256": "bb33730d195be006e5a9bf06c09114f679c27cd703c818979c9663ba88e383ad",
+          "bytes": 676352
+        },
+        {
+          "mode": "native-source",
+          "key": "RIGHT",
+          "sha256": "671559bb9a03bc3b0518ff85c9009080508b9879cbd9d1f87e425e4b61fe0531",
+          "bytes": 437205
+        },
+        {
+          "mode": "native-source",
+          "key": "REVERSE",
+          "sha256": "bb1c7029458f23dbed3b788f9d9277c9c3260ede559e1d43785dcdf9067768ed",
+          "bytes": 713185
+        },
+        {
+          "mode": "native-source",
+          "key": "LEFT",
+          "sha256": "3a1818964a5428a5d7723cc509026dcb17fda765871e1a44cd34e86101ae312c",
+          "bytes": 424822
+        },
+        {
+          "mode": "native-source",
+          "key": "ABOVE",
+          "sha256": "80097a1ef6753a1988e9c3aac9f741cc64f173ca944e8cdfbdfbcbd65432cc6f",
+          "bytes": 277976
+        },
+        {
+          "mode": "native-source",
+          "key": "UNDERSIDE",
+          "sha256": "5ee9795bd751636dea59acf063a0e60d928830596186d20234fab151a009c615",
+          "bytes": 332126
+        },
+        {
+          "mode": "native-source",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "3ad2aa2f80eb03a784e9f4f5b64aaa65d9a672c4138a83f288e4a0f9cd1be4a1",
+          "bytes": 481074
+        },
+        {
+          "mode": "native-source",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "982df60b7aafb121d7d053634350674b6f35842d51e41fb2661c97c575c26ee6",
+          "bytes": 479019
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "sha256": "bb33730d195be006e5a9bf06c09114f679c27cd703c818979c9663ba88e383ad",
+          "bytes": 676352
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "sha256": "671559bb9a03bc3b0518ff85c9009080508b9879cbd9d1f87e425e4b61fe0531",
+          "bytes": 437205
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "sha256": "bb1c7029458f23dbed3b788f9d9277c9c3260ede559e1d43785dcdf9067768ed",
+          "bytes": 713185
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "sha256": "3a1818964a5428a5d7723cc509026dcb17fda765871e1a44cd34e86101ae312c",
+          "bytes": 424822
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "sha256": "80097a1ef6753a1988e9c3aac9f741cc64f173ca944e8cdfbdfbcbd65432cc6f",
+          "bytes": 277976
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "sha256": "5ee9795bd751636dea59acf063a0e60d928830596186d20234fab151a009c615",
+          "bytes": 332126
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "3ad2aa2f80eb03a784e9f4f5b64aaa65d9a672c4138a83f288e4a0f9cd1be4a1",
+          "bytes": 481074
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "982df60b7aafb121d7d053634350674b6f35842d51e41fb2661c97c575c26ee6",
+          "bytes": 479019
+        }
+      ],
+      "contact": {
+        "sha256": "1ae83afe6f68fc804f777011181ce3c31d723e22b4ecbeb51f50b691a597b000",
+        "bytes": 182048
+      },
+      "thumbnail": {
+        "sha256": "b30ffa84eb9bb43078e5771b9705da6b917eb8dea8d3449ef85135f71da72ee8",
+        "bytes": 40928
+      },
+      "poster": {
+        "sha256": "f1039f68c3e5fc3ea2c648fb99d25757c04bfd72bdc244cad83ea1c516c061a2",
+        "bytes": 54729
+      },
+      "thumbnailSource": {
+        "sha256": "bb33730d195be006e5a9bf06c09114f679c27cd703c818979c9663ba88e383ad",
+        "bytes": 676352
+      },
+      "finalThumbnailActuallyReviewed": true,
+      "physicalScaleVerified": false
+    },
+    {
+      "slug": "greek/callatis-aphrodite-statuette-3181",
+      "sourceUid": "8d5363395f69444a8b63b0bbdd22bb54",
+      "title": "Statuette of Aphrodite (Callatis 3181)",
+      "sourceUrl": "https://sketchfab.com/3d-models/8d5363395f69444a8b63b0bbdd22bb54",
+      "primaryRecord": "https://sketchfab.com/3d-models/8d5363395f69444a8b63b0bbdd22bb54",
+      "license": "CC BY 4.0",
+      "licenseUrl": "http://creativecommons.org/licenses/by/4.0/",
+      "licenseScope": "Current exact-model CC BY 4.0 grant published by Global Digital Heritage for its documented recording of this ancient museum object.",
+      "scanAuthor": "Global Digital Heritage, in collaboration with Institutul Național al Patrimoniului and Muzeul de Arheologie Callatis",
+      "attribution": "Photogrammetry: Global Digital Heritage, with Institutul Național al Patrimoniului and Muzeul de Arheologie Callatis. CC BY 4.0.",
+      "original": {
+        "url": "https://sketchfab.com/3d-models/8d5363395f69444a8b63b0bbdd22bb54",
+        "sha256": "7702798baaa9638f8c719f25cfe83544d5a7997b657d5adb403551da07f717ef",
+        "bytes": 8596096,
+        "representation": "Authenticated unchanged Sketchfab distribution GLB; uploader-native authoring package not asserted."
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/greek/callatis-aphrodite-statuette-3181/preview-7702798baaa9.glb",
+        "sha256": "7702798baaa9638f8c719f25cfe83544d5a7997b657d5adb403551da07f717ef",
+        "bytes": 8596096
+      },
+      "rawSourceFaces": 184588,
+      "rawPreviewFaces": 184588,
+      "measuredTopology": {
+        "source": {
+          "loadedRawFaces": 184588,
+          "measured": {
+            "faces": 184588,
+            "bratio": 0,
+            "ncomp": 1,
+            "largest_frac": 1
+          },
+          "status": "pass"
+        },
+        "preview": {
+          "loadedRawFaces": 184588,
+          "measured": {
+            "faces": 184588,
+            "bratio": 0,
+            "ncomp": 1,
+            "largest_frac": 1
+          },
+          "status": "pass"
+        }
+      },
+      "materialAppearance": "Exact unchanged provider GLB geometry, materials and textures of the documented physical sculpture.",
+      "visualDecision": "The standing adult female torso, hips, legs, feet, surviving shoulder and arm ends, upper break, oval rear opening and its rim and interior are represented consistently in all eight directions. Full-resolution LEFT rear and ABOVE pairs were actually opened. Yellow and tan coloration, pale patches, join-like lines and inventory markings agree in both modes. RIGHT (+X) is the anatomical front; the fixed-grid FRONT (+Z) view is side-on. All eight source/serving pairs visually agree in complete surviving silhouette, geometry, supplied appearance, framing and position.",
+      "captureLabel": "RealityScan photogrammetry by Global Digital Heritage from 343 images, in collaboration with Institutul Național al Patrimoniului and Muzeul de Arheologie Callatis. The surviving torso, limbs, upper break and oval rear opening are shown. Yellow and tan coloration, pale patches, join-like lines and inventory markings are retained. No missing head or arm portions are reconstructed. Dimensions and physical scale are unverified.",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          1,
+          0,
+          0
+        ],
+        "status": "manual",
+        "note": "Pose and opening camera verified in actual native and eight paired source/serving views."
+      },
+      "views": [
+        {
+          "mode": "native-source",
+          "key": "FRONT",
+          "sha256": "ca31b3f17a853109909022bdb25833ec1fbe2e1ac37a698fc79de125ac89b0db",
+          "bytes": 332294
+        },
+        {
+          "mode": "native-source",
+          "key": "RIGHT",
+          "sha256": "2b9b5bc5df67917f2b7df5ab47c7d6b961a1ed449e8ada5fa9143754ac2c2273",
+          "bytes": 405137
+        },
+        {
+          "mode": "native-source",
+          "key": "REVERSE",
+          "sha256": "50b3bb1be6175f2fc5e8b4a2f2a9834d22bf9a8827c0a84c11cd18ee2962fc7b",
+          "bytes": 343875
+        },
+        {
+          "mode": "native-source",
+          "key": "LEFT",
+          "sha256": "a09e09891f75186314e3b9e6280e1ee2fa85995d3f8ccdab1a79ff712ae4cdc7",
+          "bytes": 438060
+        },
+        {
+          "mode": "native-source",
+          "key": "ABOVE",
+          "sha256": "b0bf8fdd19e2a048e4afb123d571dec5e98b88b7a2bab188dbd06a449cd03b38",
+          "bytes": 373293
+        },
+        {
+          "mode": "native-source",
+          "key": "UNDERSIDE",
+          "sha256": "be1a750fa12e6ca311d2b3b5ba5898653930a1bf8df07c953a05a6866e0dd493",
+          "bytes": 341414
+        },
+        {
+          "mode": "native-source",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "a080272316526453c13fc0530e9569e92806c34e07a3be7c2134f1a47f549288",
+          "bytes": 373816
+        },
+        {
+          "mode": "native-source",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "91bc05674ceac6d1584fe7f8d60e6924bb51e8a6b6175fb7854947064b01859b",
+          "bytes": 387215
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "sha256": "ca31b3f17a853109909022bdb25833ec1fbe2e1ac37a698fc79de125ac89b0db",
+          "bytes": 332294
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "sha256": "2b9b5bc5df67917f2b7df5ab47c7d6b961a1ed449e8ada5fa9143754ac2c2273",
+          "bytes": 405137
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "sha256": "50b3bb1be6175f2fc5e8b4a2f2a9834d22bf9a8827c0a84c11cd18ee2962fc7b",
+          "bytes": 343875
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "sha256": "a09e09891f75186314e3b9e6280e1ee2fa85995d3f8ccdab1a79ff712ae4cdc7",
+          "bytes": 438060
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "sha256": "b0bf8fdd19e2a048e4afb123d571dec5e98b88b7a2bab188dbd06a449cd03b38",
+          "bytes": 373293
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "sha256": "be1a750fa12e6ca311d2b3b5ba5898653930a1bf8df07c953a05a6866e0dd493",
+          "bytes": 341414
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "a080272316526453c13fc0530e9569e92806c34e07a3be7c2134f1a47f549288",
+          "bytes": 373816
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "91bc05674ceac6d1584fe7f8d60e6924bb51e8a6b6175fb7854947064b01859b",
+          "bytes": 387215
+        }
+      ],
+      "contact": {
+        "sha256": "0f292524a4cf86fc81bedd22229e801f0954ccdb3f2cf28758e4b4c21ff7cb1f",
+        "bytes": 121514
+      },
+      "thumbnail": {
+        "sha256": "941f3a8f10e9862a6695878e2751aa9f98a2877c78d5c9f826ad039ac87c6457",
+        "bytes": 19474
+      },
+      "poster": {
+        "sha256": "645538d41092cbc3154427f1c0a9dd9471fd551084c44ce6b015358be2efa0c9",
+        "bytes": 26125
+      },
+      "thumbnailSource": {
+        "sha256": "2b9b5bc5df67917f2b7df5ab47c7d6b961a1ed449e8ada5fa9143754ac2c2273",
+        "bytes": 405137
+      },
+      "finalThumbnailActuallyReviewed": true,
+      "physicalScaleVerified": false
+    },
+    {
+      "slug": "neoclassical/nymph-preparing-bath-gibson-usher-threedscans",
+      "sourceUid": "threedscans-lincoln-nymph",
+      "title": "Nymph Preparing for the Bath",
+      "sourceUrl": "https://threedscans.com/lincoln/nymph/",
+      "primaryRecord": "https://threedscans.com/lincoln/nymph/",
+      "license": "Unrestricted project permission; historical sculpture in the public domain",
+      "licenseUrl": "https://221a.ca/contributor/oliver-laric/",
+      "licenseScope": "The project contributor page states that the Lincoln Collection and Usher Gallery digital models may be downloaded and used free from copyright restriction. The museum gallery guide independently describes Three D Scans museum models as available without copyright restrictions. This is a plain project permission statement, not a formal CC0 instrument.",
+      "scanAuthor": "Lincoln 3D Scans / Oliver Laric project",
+      "attribution": "John Gibson, Nymph Preparing for the Bath, 19th century. Marble, The Usher Gallery, Lincoln. 3D scan: Lincoln 3D Scans / Oliver Laric project, 2013. Reused under the project’s unrestricted download-and-use permission.",
+      "original": {
+        "url": "https://threedscans.com/wp-content/uploads/2016/02/Nymph_Preparing_For_The_Bath.stl.zip",
+        "sha256": "de2b001abe1574669f0988a64458b7ae303fdc4a44bba8660ab8213158638bd8",
+        "bytes": 20270943,
+        "representation": "Publisher-original ZIP containing the binary STL. Serving is a separately verified STL-to-GLB conversion with source triangle positions and facet normals exactly retained and a qualified neutral opaque display material; it is not a provider-original GLB."
+      },
+      "sourceMesh": {
+        "sha256": "a4a4fd73f7f0c62a173d0e5d0dc0628f01f6f11aa3b382ec589f23f978964938",
+        "bytes": 26672284,
+        "format": "stl",
+        "packageMember": "Nymph_Preparing_For_The_Bath.stl"
+      },
+      "convertedReference": {
+        "sha256": "d3aa4d9be308b35c7247d614958a9bf2e9f771ddfa8128c9de1a7e09f8a607c8",
+        "bytes": 27697956,
+        "format": "glb"
+      },
+      "conversion": {
+        "positionsAndFacetNormalsExact": true,
+        "repairOrReconstruction": false,
+        "physicalColorAndFinishNotAsserted": true,
+        "displayTreatment": "Qualified neutral opaque display material for an untextured STL."
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/neoclassical/nymph-preparing-bath-gibson-usher-threedscans/preview-d3aa4d9be308.glb",
+        "sha256": "d3aa4d9be308b35c7247d614958a9bf2e9f771ddfa8128c9de1a7e09f8a607c8",
+        "bytes": 27697956
+      },
+      "rawSourceFaces": 533444,
+      "rawPreviewFaces": 533444,
+      "measuredTopology": {
+        "source": {
+          "loadedRawFaces": 533444,
+          "measured": {
+            "faces": 533444,
+            "bratio": 0,
+            "ncomp": 2,
+            "largest_frac": 1
+          },
+          "status": "pass"
+        },
+        "preview": {
+          "loadedRawFaces": 533444,
+          "measured": {
+            "faces": 533444,
+            "bratio": 0,
+            "ncomp": 2,
+            "largest_frac": 1
+          },
+          "status": "pass"
+        }
+      },
+      "materialAppearance": "Untextured STL converted to GLB with exact triangle positions and facet normals, plus a qualified neutral opaque display material. Physical color and finish are not asserted.",
+      "visualDecision": "The seated adult figure, head and crown, both arms and hands, legs and feet, drapery, vessel, rocky seat and circular base form a coherent complete silhouette through all eight directions. The full-resolution ABOVE pair confirms continuous crown, upper back, shoulders and lap surfaces. The flat circular underside belongs to the supplied base. Source and serving agree in all eight pairs. The actually opened full-resolution front-three-quarter production frame gives a clear face and torso view while retaining the entire sculpture and base.",
+      "captureLabel": "3D scan of John Gibson’s Nymph Preparing for the Bath at the Usher Gallery in Lincoln, made in 2013 with a Creaform Go!SCAN 3D scanner. The seated figure, hair, hands, feet, drapery, vessel, seat and circular base are represented. Untextured STL scan converted to GLB with a neutral opaque display material; physical color and finish are not asserted. Published object dimensions are documentary references; the digital scale is uncalibrated.",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          180,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          1,
+          0.35,
+          1
+        ],
+        "status": "manual",
+        "note": "Pose and opening camera verified in actual native and eight paired source/serving views."
+      },
+      "views": [
+        {
+          "mode": "native-source",
+          "key": "FRONT",
+          "sha256": "57c835eb1b8d069c8ca6168646b441aa1b9e49e0397a530808f9c99dddf2b85d",
+          "bytes": 397113
+        },
+        {
+          "mode": "native-source",
+          "key": "RIGHT",
+          "sha256": "becb6a9b21bfd608513759457ffdbe239801cafe70cd4b77223352671a7c4e83",
+          "bytes": 396586
+        },
+        {
+          "mode": "native-source",
+          "key": "REVERSE",
+          "sha256": "072e9fe83ecebdfc21afd1581a8f12e1dfcd99843e8c035a37779c87f5e3971c",
+          "bytes": 348156
+        },
+        {
+          "mode": "native-source",
+          "key": "LEFT",
+          "sha256": "5d7d2ee3b8c268e3764f2697dd05bce726d23e6b6a9f306eba067ce8ff251368",
+          "bytes": 380877
+        },
+        {
+          "mode": "native-source",
+          "key": "ABOVE",
+          "sha256": "28c585301f05409f2cd2fce50b9e129c8f282e7074718e77bc0419b32439464a",
+          "bytes": 255179
+        },
+        {
+          "mode": "native-source",
+          "key": "UNDERSIDE",
+          "sha256": "105581d4bc44d729c3e9ca8e5b2877c794ff43149685c2ed3a28b1549dab41dd",
+          "bytes": 67408
+        },
+        {
+          "mode": "native-source",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "355c136309790350b7bac3f0432d3604e1246f83d983a967581f722bb3d9773f",
+          "bytes": 350763
+        },
+        {
+          "mode": "native-source",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "4fc56540bea9e9c74ced26bc858f0b04757ca488ba7e3b76fb355ae268cdd92b",
+          "bytes": 313350
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "sha256": "57c835eb1b8d069c8ca6168646b441aa1b9e49e0397a530808f9c99dddf2b85d",
+          "bytes": 397113
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "sha256": "becb6a9b21bfd608513759457ffdbe239801cafe70cd4b77223352671a7c4e83",
+          "bytes": 396586
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "sha256": "072e9fe83ecebdfc21afd1581a8f12e1dfcd99843e8c035a37779c87f5e3971c",
+          "bytes": 348156
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "sha256": "5d7d2ee3b8c268e3764f2697dd05bce726d23e6b6a9f306eba067ce8ff251368",
+          "bytes": 380877
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "sha256": "28c585301f05409f2cd2fce50b9e129c8f282e7074718e77bc0419b32439464a",
+          "bytes": 255179
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "sha256": "105581d4bc44d729c3e9ca8e5b2877c794ff43149685c2ed3a28b1549dab41dd",
+          "bytes": 67408
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "355c136309790350b7bac3f0432d3604e1246f83d983a967581f722bb3d9773f",
+          "bytes": 350763
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "4fc56540bea9e9c74ced26bc858f0b04757ca488ba7e3b76fb355ae268cdd92b",
+          "bytes": 313350
+        }
+      ],
+      "contact": {
+        "sha256": "0fc24508b33a403361389e8f0a5f5e8863a99b4c80b907cc80b05d1dcbab3e48",
+        "bytes": 118292
+      },
+      "thumbnail": {
+        "sha256": "d96ff458a08b991e9494472c32859f47ce45ba74d9dd8fe2c0a8591c390d4c3a",
+        "bytes": 17740
+      },
+      "poster": {
+        "sha256": "c5c32d11381904e28ef60f315e28dc336594c6c98624b35b31751a19179b3645",
+        "bytes": 23813
+      },
+      "thumbnailSource": {
+        "sha256": "355c136309790350b7bac3f0432d3604e1246f83d983a967581f722bb3d9773f",
+        "bytes": 350763
+      },
+      "finalThumbnailActuallyReviewed": true,
+      "physicalScaleVerified": false
+    },
+    {
+      "slug": "neoclassical/mercury-nollekens-usher-threedscans",
+      "sourceUid": "threedscans-lincoln-mercury",
+      "title": "Mercury",
+      "sourceUrl": "https://threedscans.com/lincoln/mercury/",
+      "primaryRecord": "https://threedscans.com/lincoln/mercury/",
+      "license": "Unrestricted project permission; historical sculpture in the public domain",
+      "licenseUrl": "https://221a.ca/contributor/oliver-laric/",
+      "licenseScope": "The project contributor page states that the Lincoln Collection and Usher Gallery digital models may be downloaded and used free from copyright restriction. The museum gallery guide independently describes Three D Scans museum models as available without copyright restrictions. This is a plain project permission statement, not a formal CC0 instrument.",
+      "scanAuthor": "Lincoln 3D Scans / Oliver Laric project",
+      "attribution": "Joseph Nollekens, Mercury, 18th century. Marble, The Usher Gallery, Lincoln. 3D scan: Lincoln 3D Scans / Oliver Laric project, 2013. Reused under the project’s unrestricted download-and-use permission.",
+      "original": {
+        "url": "https://threedscans.com/wp-content/uploads/2016/02/Mercury.stl.zip",
+        "sha256": "6be5c6303ca0059dfd682f538768ad3144eb1d56abd0b1567a64455ed0292b97",
+        "bytes": 55539958,
+        "representation": "Publisher-original ZIP containing the binary STL. Serving is a separately verified STL-to-GLB conversion with source triangle positions and facet normals exactly retained and a qualified neutral opaque display material; it is not a provider-original GLB."
+      },
+      "sourceMesh": {
+        "sha256": "b0132740af877aec65fafa983cd847537117980bc8f5d720cfb0a70d8490edbc",
+        "bytes": 73496884,
+        "format": "stl",
+        "packageMember": "Mercury.stl"
+      },
+      "convertedReference": {
+        "sha256": "a1b865aec9490e977f8e21413507648dde77a2f75cfdbea11108d267f7e2a136",
+        "bytes": 77408260,
+        "format": "glb"
+      },
+      "conversion": {
+        "positionsAndFacetNormalsExact": true,
+        "repairOrReconstruction": false,
+        "physicalColorAndFinishNotAsserted": true,
+        "displayTreatment": "Qualified neutral opaque display material for an untextured STL."
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/neoclassical/mercury-nollekens-usher-threedscans/preview-a1b865aec949.glb",
+        "sha256": "a1b865aec9490e977f8e21413507648dde77a2f75cfdbea11108d267f7e2a136",
+        "bytes": 77408260
+      },
+      "rawSourceFaces": 1469936,
+      "rawPreviewFaces": 1469936,
+      "measuredTopology": {
+        "source": {
+          "loadedRawFaces": 1469936,
+          "measured": {
+            "faces": 1469928,
+            "bratio": 0,
+            "ncomp": 1,
+            "largest_frac": 1
+          },
+          "status": "pass"
+        },
+        "preview": {
+          "loadedRawFaces": 1469936,
+          "measured": {
+            "faces": 1469928,
+            "bratio": 0,
+            "ncomp": 1,
+            "largest_frac": 1
+          },
+          "status": "pass"
+        }
+      },
+      "materialAppearance": "Untextured STL converted to GLB with exact triangle positions and facet normals, plus a qualified neutral opaque display material. Physical color and finish are not asserted.",
+      "visualDecision": "The entire seated adult Mercury, winged helmet, face, both arms and hands, legs and feet, drapery, rocky support and rectangular base are present consistently through all eight pairs. Full-resolution ABOVE confirms the helmet crown and wings, shoulders and raised hand. Full-resolution REVERSE confirms the anatomical front, modeled face, fingers, feet and support. The front is shaded more deeply by the production lighting than the back, consistently in both modes. The smooth flat rectangular underside is part of the supplied plinth. REVERSE (-Z) is the anatomical front.",
+      "captureLabel": "3D scan of Joseph Nollekens’s Mercury at the Usher Gallery in Lincoln, made in 2013 with a Creaform Go!SCAN 3D scanner. The seated figure, winged helmet, hands, feet, drapery, rocky support and rectangular base are represented. Untextured STL scan converted to GLB with a neutral opaque display material; physical color and finish are not asserted. Published object dimensions are documentary references; the digital scale is uncalibrated.",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0,
+          0,
+          -1
+        ],
+        "status": "manual",
+        "note": "Pose and opening camera verified in actual native and eight paired source/serving views."
+      },
+      "views": [
+        {
+          "mode": "native-source",
+          "key": "FRONT",
+          "sha256": "70a9a1c9ea8b21d22b145b05d7fad6192433b331ba61a6c2eec96d2138aa10df",
+          "bytes": 495875
+        },
+        {
+          "mode": "native-source",
+          "key": "RIGHT",
+          "sha256": "db957a10e7c658b789325092cddcd5b7e31dabea5ae32ba97191d9b8dac481a2",
+          "bytes": 379491
+        },
+        {
+          "mode": "native-source",
+          "key": "REVERSE",
+          "sha256": "7bbc18e5446b4260c1283df044a648798222b6925c911147cb3cd50c1b376aba",
+          "bytes": 452525
+        },
+        {
+          "mode": "native-source",
+          "key": "LEFT",
+          "sha256": "9b00889a82e4cd3f75c7730250b921acf661ded287f8d0d7b5a243c37b35066b",
+          "bytes": 355029
+        },
+        {
+          "mode": "native-source",
+          "key": "ABOVE",
+          "sha256": "919a12186e2f4c10959b669ebf276d57299d8d3dd25d57df736c26ddce41b4e5",
+          "bytes": 237432
+        },
+        {
+          "mode": "native-source",
+          "key": "UNDERSIDE",
+          "sha256": "1ebf29ac63d09ad33876d8aff5cb11100cfa9034c1d44a00e922014f360e58a3",
+          "bytes": 76514
+        },
+        {
+          "mode": "native-source",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "08620811de93c9357fa2277c326212e5ef2af33a1ff023fffee7cbc3fe68e043",
+          "bytes": 386314
+        },
+        {
+          "mode": "native-source",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "cf4d8b2b2f01360c9093777b36e8bb8dcc80010c40bed81ebec5399b0161647e",
+          "bytes": 360344
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "sha256": "70a9a1c9ea8b21d22b145b05d7fad6192433b331ba61a6c2eec96d2138aa10df",
+          "bytes": 495875
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "sha256": "db957a10e7c658b789325092cddcd5b7e31dabea5ae32ba97191d9b8dac481a2",
+          "bytes": 379491
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "sha256": "7bbc18e5446b4260c1283df044a648798222b6925c911147cb3cd50c1b376aba",
+          "bytes": 452525
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "sha256": "9b00889a82e4cd3f75c7730250b921acf661ded287f8d0d7b5a243c37b35066b",
+          "bytes": 355029
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "sha256": "919a12186e2f4c10959b669ebf276d57299d8d3dd25d57df736c26ddce41b4e5",
+          "bytes": 237432
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "sha256": "1ebf29ac63d09ad33876d8aff5cb11100cfa9034c1d44a00e922014f360e58a3",
+          "bytes": 76514
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "08620811de93c9357fa2277c326212e5ef2af33a1ff023fffee7cbc3fe68e043",
+          "bytes": 386314
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "cf4d8b2b2f01360c9093777b36e8bb8dcc80010c40bed81ebec5399b0161647e",
+          "bytes": 360344
+        }
+      ],
+      "contact": {
+        "sha256": "7a84a9a240c0b01bb0c43b8dc8b954030277eea38ca8ff2cf95c17af20ac158a",
+        "bytes": 123350
+      },
+      "thumbnail": {
+        "sha256": "f1404dec6f625788d8688aa0f8694f315183cbde1aa0f67d672b253a5ec06603",
+        "bytes": 21782
+      },
+      "poster": {
+        "sha256": "f7722efec09b560cdd735a1ba924993957634d3d8e8d40c81faa44953752b871",
+        "bytes": 29201
+      },
+      "thumbnailSource": {
+        "sha256": "7bbc18e5446b4260c1283df044a648798222b6925c911147cb3cd50c1b376aba",
+        "bytes": 452525
+      },
+      "finalThumbnailActuallyReviewed": true,
+      "physicalScaleVerified": false
+    },
+    {
+      "slug": "neoclassical/mars-john-bacon-usher-threedscans",
+      "sourceUid": "threedscans-lincoln-mars",
+      "title": "Mars",
+      "sourceUrl": "https://threedscans.com/lincoln/mars/",
+      "primaryRecord": "https://threedscans.com/lincoln/mars/",
+      "license": "Unrestricted project permission; historical sculpture in the public domain",
+      "licenseUrl": "https://221a.ca/contributor/oliver-laric/",
+      "licenseScope": "The project contributor page states that the Lincoln Collection and Usher Gallery digital models may be downloaded and used free from copyright restriction. The museum gallery guide independently describes Three D Scans museum models as available without copyright restrictions. This is a plain project permission statement, not a formal CC0 instrument.",
+      "scanAuthor": "Lincoln 3D Scans / Oliver Laric project",
+      "attribution": "John Bacon, Mars, 18th century. Marble, The Usher Gallery, Lincoln. 3D scan: Lincoln 3D Scans / Oliver Laric project, 2013. Reused under the project’s unrestricted download-and-use permission.",
+      "original": {
+        "url": "https://threedscans.com/wp-content/uploads/2016/02/Mars.stl.zip",
+        "sha256": "8a60e2a46afe19953bfbfa3f6c773556dee6088f0cd94510682eb5e032b22799",
+        "bytes": 23787572,
+        "representation": "Publisher-original ZIP containing the binary STL. Serving is a separately verified STL-to-GLB conversion with source triangle positions and facet normals exactly retained and a qualified neutral opaque display material; it is not a provider-original GLB."
+      },
+      "sourceMesh": {
+        "sha256": "22cad0ec31a2daf1d95dce0c018956a8a72bef5481c27be42c663d2ae499a805",
+        "bytes": 31007184,
+        "format": "stl",
+        "packageMember": "Mars.stl"
+      },
+      "convertedReference": {
+        "sha256": "345c3dbe8f8cb896d1f59702f8b0a315d8fdfeb70254222fa5ad484fa2cb6a40",
+        "bytes": 32266344,
+        "format": "glb"
+      },
+      "conversion": {
+        "positionsAndFacetNormalsExact": true,
+        "repairOrReconstruction": false,
+        "physicalColorAndFinishNotAsserted": true,
+        "displayTreatment": "Qualified neutral opaque display material for an untextured STL."
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/neoclassical/mars-john-bacon-usher-threedscans/preview-345c3dbe8f8c.glb",
+        "sha256": "345c3dbe8f8cb896d1f59702f8b0a315d8fdfeb70254222fa5ad484fa2cb6a40",
+        "bytes": 32266344
+      },
+      "rawSourceFaces": 620142,
+      "rawPreviewFaces": 620142,
+      "measuredTopology": {
+        "source": {
+          "loadedRawFaces": 620142,
+          "measured": {
+            "faces": 620140,
+            "bratio": 0,
+            "ncomp": 1,
+            "largest_frac": 1
+          },
+          "status": "pass"
+        },
+        "preview": {
+          "loadedRawFaces": 620142,
+          "measured": {
+            "faces": 620140,
+            "bratio": 0,
+            "ncomp": 1,
+            "largest_frac": 1
+          },
+          "status": "pass"
+        }
+      },
+      "materialAppearance": "Untextured STL converted to GLB with exact triangle positions and facet normals, plus a qualified neutral opaque display material. Physical color and finish are not asserted.",
+      "visualDecision": "The standing adult male figure, helmet and crest, face, torso, both arms and hands, legs and feet, sword, tree support and square base remain coherent across all eight source/serving pairs. The full-resolution ABOVE pair resolves the crown, crest and hand gripping the sword without a major unrecorded opening. The flat square underside belongs to the supplied plinth. FRONT (+Z), after the explicit 180-degree X rotation, is the anatomical front; the earlier -Z suggestion was the back. Source and serving match in silhouette, supplied gray display material, extent and position.",
+      "captureLabel": "3D scan of John Bacon’s Mars at the Usher Gallery in Lincoln, made in 2013 with a Creaform Go!SCAN 3D scanner. The standing figure, helmet and crest, hands, feet, sword, tree support and square base are represented. Untextured STL scan converted to GLB with a neutral opaque display material; physical color and finish are not asserted. Published object dimensions are documentary references; the digital scale is uncalibrated.",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          180,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0,
+          0,
+          1
+        ],
+        "status": "manual",
+        "note": "Pose and opening camera verified in actual native and eight paired source/serving views."
+      },
+      "views": [
+        {
+          "mode": "native-source",
+          "key": "FRONT",
+          "sha256": "7bd739fc27cfa946f15062d34f1aee5e6f3fa3c2f70499b2dcf18a609e972797",
+          "bytes": 330354
+        },
+        {
+          "mode": "native-source",
+          "key": "RIGHT",
+          "sha256": "edb49679daf5c1f498a812d13bd75a97e168eb0022f14d233e7e223584ec83d3",
+          "bytes": 289419
+        },
+        {
+          "mode": "native-source",
+          "key": "REVERSE",
+          "sha256": "97af5bb8002c6ff3a84b4b467456eafe025294edfc30d6542d17ab20a6571545",
+          "bytes": 312175
+        },
+        {
+          "mode": "native-source",
+          "key": "LEFT",
+          "sha256": "5c321bd82899aa11e429f57f71aab3a0ca890af565d51b5075b904fe1ef787f2",
+          "bytes": 282996
+        },
+        {
+          "mode": "native-source",
+          "key": "ABOVE",
+          "sha256": "dd008f73493a5e63a9b876fc7b58109837a49dc8bde7571427713de42c01a4b8",
+          "bytes": 204119
+        },
+        {
+          "mode": "native-source",
+          "key": "UNDERSIDE",
+          "sha256": "4691687346d2e6bf0bd6d0cefbebfeda5b474dc5c53d222a53300e25c4a36a07",
+          "bytes": 73169
+        },
+        {
+          "mode": "native-source",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "8ff538c80073f3fa70a2ecc8b1e8b6fef7ca925113ca33772d5b533b91817068",
+          "bytes": 300055
+        },
+        {
+          "mode": "native-source",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "9acb02712cdfab2392b3eb55622c9b072e83284f4dafea530444aedd23061b37",
+          "bytes": 280165
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "sha256": "7bd739fc27cfa946f15062d34f1aee5e6f3fa3c2f70499b2dcf18a609e972797",
+          "bytes": 330354
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "sha256": "edb49679daf5c1f498a812d13bd75a97e168eb0022f14d233e7e223584ec83d3",
+          "bytes": 289419
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "sha256": "97af5bb8002c6ff3a84b4b467456eafe025294edfc30d6542d17ab20a6571545",
+          "bytes": 312175
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "sha256": "5c321bd82899aa11e429f57f71aab3a0ca890af565d51b5075b904fe1ef787f2",
+          "bytes": 282996
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "sha256": "dd008f73493a5e63a9b876fc7b58109837a49dc8bde7571427713de42c01a4b8",
+          "bytes": 204119
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "sha256": "4691687346d2e6bf0bd6d0cefbebfeda5b474dc5c53d222a53300e25c4a36a07",
+          "bytes": 73169
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "8ff538c80073f3fa70a2ecc8b1e8b6fef7ca925113ca33772d5b533b91817068",
+          "bytes": 300055
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "9acb02712cdfab2392b3eb55622c9b072e83284f4dafea530444aedd23061b37",
+          "bytes": 280165
+        }
+      ],
+      "contact": {
+        "sha256": "0af89b39333fe034e446f56e010e9cbd58d857881df7fccabc52da00955add44",
+        "bytes": 98558
+      },
+      "thumbnail": {
+        "sha256": "0bf22d31ca056dc2f32b0ae453823850d375b6499b0a96b55b6ca6278bde3bf3",
+        "bytes": 16854
+      },
+      "poster": {
+        "sha256": "069dd103ee85642a02b8d8e3daca1e635cc6ae66e28a4f544ad10f91f6c580ba",
+        "bytes": 22629
+      },
+      "thumbnailSource": {
+        "sha256": "7bd739fc27cfa946f15062d34f1aee5e6f3fa3c2f70499b2dcf18a609e972797",
+        "bytes": 330354
+      },
+      "finalThumbnailActuallyReviewed": true,
+      "physicalScaleVerified": false
+    }
+  ]
+}
