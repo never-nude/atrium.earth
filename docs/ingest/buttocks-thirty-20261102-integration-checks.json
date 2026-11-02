@@ -1,0 +1,110 @@
+{
+  "schema": "atrium-independent-integration-checks/1",
+  "batch": "buttocks-thirty-20261102",
+  "checkedAt": "2026-11-02T14:12:11.710Z",
+  "status": "pass",
+  "accepted": 11,
+  "target": 30,
+  "targetMet": false,
+  "catalog": {
+    "before": 2834,
+    "after": 2845,
+    "public": 2827,
+    "hidden": 18
+  },
+  "preservation": {
+    "oldCatalogRowsUnchangedExceptTotal": 2834,
+    "appendOnlyCatalogAndDataMaps": 7,
+    "totalFrozenBaselineFilePins": 126,
+    "otherSourceUiAndDataFilesByteIdentical": 119,
+    "spatialMuseumExportsByteIdentical": 17,
+    "curatedExhibitionContentUnchanged": true,
+    "featuredSelection": 250,
+    "homepageApprovedSelection": 193,
+    "homepageModelBudgetEligibleSelection": 192
+  },
+  "sourceServing": {
+    "models": 11,
+    "totalBytes": 386847724,
+    "unchangedAuthenticatedProviderGlbBytes": true,
+    "allSourceAndServingFullHashesAndExactBytesVerified": true,
+    "pairedFrameAndDecisionPinsVerified": true,
+    "actualFinalThumbnailBindingsVerified": true,
+    "shippedImageBodiesVerified": 22
+  },
+  "metadata": {
+    "reviewedRecords": 11,
+    "status": "pass",
+    "sourceIdentityCopyAndReconstructionScopeExplicit": true,
+    "uncertainDatesAttributionsMaterialsAndHoldingsRetained": true,
+    "completeCaptureProseSurvivesDisplaySanitizer": true,
+    "publicFieldWhitelistPass": true,
+    "privatePathsAndStorageIdentitiesExcluded": true,
+    "unfiledProductionOriginReasons": 8,
+    "canonicalAmericanWingRecords": 3,
+    "modelPhysicalScaleUnverified": 11,
+    "newSpatialRoomEligibilityGranted": 0
+  },
+  "sourceBackup": {
+    "acquiredSources": 13,
+    "sourceBytes": 402357240,
+    "verifiedArchiveMembers": 208,
+    "completedAuthenticatedContentReceipts": 23,
+    "exactPerPartProofs": 5,
+    "acceptedSourcesCovered": 11,
+    "sourceOriginalsRemoved": 0
+  },
+  "evidence": {
+    "independentFinalGuard": {
+      "bytes": 7677,
+      "sha256": "971e71924dc55b39e184d0692013e14bd42049944c51b7f27dfa247eabd1e0bc"
+    },
+    "metadataAudits": [
+      {
+        "scope": "Parts1–2, five records",
+        "initialAudit": {
+          "bytes": 10097,
+          "sha256": "c6768b832a6eadf0bd103cd2c62cd7c86221a10dcad516b2db1021ad6ebe1e6f"
+        },
+        "correctionRecheck": {
+          "bytes": 1670,
+          "sha256": "322ee59380b7e069ae65199c216545bf9d60f62df5a45a9f6296d9532d491fbe"
+        },
+        "status": "pass"
+      },
+      {
+        "scope": "Part3, four records",
+        "audit": {
+          "bytes": 7149,
+          "sha256": "37f4b4238ab3e1c53ea4f77e9c059c452a717a85071e33e36c1ee9108e2b3510"
+        },
+        "status": "pass"
+      },
+      {
+        "scope": "Part4, one record",
+        "audit": {
+          "bytes": 2245,
+          "sha256": "0b7c1adf645df251106ff4cd8294ba6d2d09164ffd9fd4bd2bc49617c0d261a8"
+        },
+        "status": "pass"
+      },
+      {
+        "scope": "Part5, one record",
+        "initialAudit": {
+          "bytes": 2982,
+          "sha256": "a787497ce517e86dd58ce861ba66a5f69c1422aecc148aaa26b7b56bbe2d24f0"
+        },
+        "correctionRecheck": {
+          "bytes": 1346,
+          "sha256": "50acb5b57da2f02365e19753eb462543c9b14aeb27765e5b843bb7df7e2b9259"
+        },
+        "status": "pass"
+      }
+    ],
+    "finalRoutingAndMetadataRebinding": {
+      "bytes": 8165,
+      "sha256": "e4323ca160bcfecf4469b02a003578ef2cfd234aa776f992122f587cccbcbf87"
+    }
+  },
+  "scope": "Integration and metadata verification only. This eleven-work partial batch does not complete the requested thirty. Production build, compiled-page checks, deployment and normal-browser live verification are separate stages. No physical-device AR acceptance or whole-collection backup claim."
+}
