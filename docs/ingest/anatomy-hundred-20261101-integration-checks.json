@@ -1,0 +1,165 @@
+{
+  "schema": "atrium-independent-integration-checks/1",
+  "batch": "anatomy-hundred-20261101",
+  "status": "pass",
+  "checkedAt": "2026-11-02T07:24:49.714109+00:00",
+  "baselineCommit": "88fa906ba025fb6fa61029fdf57d1428369db57f",
+  "baselineCatalog": {
+    "total": 2806,
+    "public": 2788,
+    "hidden": 18
+  },
+  "integratedCatalog": {
+    "total": 2834,
+    "public": 2816,
+    "hidden": 18
+  },
+  "acceptedNewCompositions": 28,
+  "requestedTarget": 100,
+  "targetMet": false,
+  "checks": [
+    {
+      "name": "Exact accepted composition membership/order/batch",
+      "status": "pass",
+      "detail": {
+        "baseline": 2806,
+        "new": 28,
+        "total": 2834,
+        "target": 100,
+        "targetMet": false
+      }
+    },
+    {
+      "name": "All prior catalog rows exact except total",
+      "status": "pass",
+      "detail": 2806
+    },
+    {
+      "name": "Prior maps/exhibitions remain exact with bounded new keys",
+      "status": "pass",
+      "detail": 13
+    },
+    {
+      "name": "Source/UI/settings/quiet cards and17 museum exports unchanged",
+      "status": "pass",
+      "detail": {
+        "protectedPins": 126,
+        "unchangedSpatialExports": 17
+      }
+    },
+    {
+      "name": "Approved documentary identities/unverified scale/public fields",
+      "status": "pass",
+      "detail": 28
+    },
+    {
+      "name": "New immutable previews/materials/maps/rendered assets",
+      "status": "pass",
+      "detail": 28
+    },
+    {
+      "name": "All3 bounded immutable R2 receipt sets match accepted source pins",
+      "status": "pass",
+      "detail": {
+        "count": 28,
+        "fullReceiptMatchedServingBytes": 465769700,
+        "groups": 3,
+        "scope": "Previously completed uploader full-readback receipts independently matched; fresh live download follows deployment."
+      }
+    },
+    {
+      "name": "Newest contains exactly this logical import",
+      "status": "pass",
+      "detail": {
+        "count": 28,
+        "exactApprovedMembership": true,
+        "olderFiller": false
+      }
+    }
+  ],
+  "catalog": {
+    "file": "src/data/catalog.json",
+    "bytes": 6822674,
+    "sha256": "09a5a090a33c78946cd9f323431abb469576da865c0b22f493296b90cc74ef21"
+  },
+  "frozenBaseline": {
+    "bytes": 2784775,
+    "sha256": "241c909fb08ec32dbe53af83ecc9a54ecc2f03db81052ba8ddd7f439b7da826b"
+  },
+  "acceptedMetadataPins": [
+    {
+      "part": 1,
+      "bytes": 55006,
+      "sha256": "2cee0dafc27b8b638d23014f2a9643ea7cfc283e3c9cd03bc3f7ec4c3b679683"
+    },
+    {
+      "part": 2,
+      "bytes": 36911,
+      "sha256": "fe0e391d52804a20e82e3d8c8d9a2f84d0baeb69928d0ea2b16924e6b5d451eb"
+    },
+    {
+      "part": 3,
+      "bytes": 3512,
+      "sha256": "e8bc63863476d0b943365044c13be77562b56f890ced14c52b11983fb7032bdd"
+    },
+    {
+      "part": 4,
+      "bytes": 7682,
+      "sha256": "66de38484a2c93f243765975d0882219897d4b117ca7f9d34602f33318ee665d"
+    }
+  ],
+  "permanentSourceArchive": {
+    "file": "docs/ingest/anatomy-hundred-20261101-source-archive.json",
+    "bytes": 6324,
+    "sha256": "4573b8104087224e0976ce918d66b6137fdbd8dbe9d7d4528c2b4a279382637d",
+    "sourceCount": 46,
+    "sourceBytes": 881648348,
+    "localOriginalsIndependentlyRehashed": 46,
+    "freshCloudReadbackPerformedByThisAuditor": false
+  },
+  "newWorks": [
+    "etruscan/baubo-dolphin-relief-mkg-2001-36",
+    "roman/phallic-amulet-mnat-544",
+    "roman/phallic-amulet-mnat-ra-1011",
+    "roman/phallic-amulet-mnat-cm-88-27",
+    "roman/phallic-ashlar-mnat-45233",
+    "europe/phallic-animal-stavanger-s13554",
+    "roman/double-phallic-amulet-cosa-c22-069",
+    "roman/isis-aphrodite-kelsey-6488",
+    "roman/phallic-architectural-fragment-maam-25442",
+    "roman/cosa-sculpted-stone-amulet-c19-050",
+    "europe/caherelly-east-sheela-hunt-hcm033",
+    "europe/gumelnita-anthropomorphic-figurine-38646",
+    "europe/gumelnita-ithyphallic-figurine-38647",
+    "asia/vietnamese-male-fertility-figure-usf",
+    "europe/statue-male-figure-hunt-jb001",
+    "egyptian/macrophallic-amulet-tambourine-museu-nacional",
+    "medieval/jerpoint-reclining-exhibitionist-column-base",
+    "roman/erotic-satyr-lamp-badalona-3816",
+    "medieval/erotic-bellows-badge-huis-hilde-5456-01",
+    "greek/folded-arm-torso-hunt-mg002",
+    "egyptian/offering-bearer-hargm7673",
+    "europe/venus-vidra-anthropomorphic-vessel-15464",
+    "europe/gumelnita-male-figurine-238",
+    "europe/gumelnita-female-figurine-38",
+    "europe/goddess-sultana-replica",
+    "greek/skyphos-phallic-spout-reproduction-massey",
+    "europe/venus-zauan-inp",
+    "europe/hamangia-bone-figurine-callatis-2308"
+  ],
+  "sourceModelsAltered": false,
+  "productionDeploymentVerified": false,
+  "scope": "Independent integration and preservation checks before deployment. Previous uploader full-content receipts matched to all28 source/serving pins; local originals rehashed against completed permanent-private backup checkpoints. Deployment, current live asset delivery and browser acceptance require separate verification. The100-work target remains unfulfilled.",
+  "localProductionHTML": {
+    "status": "pass",
+    "count": 28,
+    "completeCaptureLabels": true,
+    "immutablePreviewBindings": true,
+    "uncalibratedSpatialLabels": true,
+    "verificationArtifact": {
+      "bytes": 10382,
+      "sha256": "d11426641484f69423a29b6dbd5f192ce8346700297e3d854927548f4313b37e"
+    },
+    "scope": "Compiled production-build HTML checked through the local preview server; separate production deployment/live acceptance required."
+  }
+}
