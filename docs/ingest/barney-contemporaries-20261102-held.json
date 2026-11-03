@@ -2,7 +2,7 @@
   "batch": "barney-contemporaries-20261102",
   "held": 3,
   "checkedAt": "2026-11-03T03:36:15.178389+00:00",
-  "scope": "Fetched and privately archived; not published. No mesh repair or topology threshold relaxation.",
+  "scope": "Historical initial quality holds. All three sources were subsequently published with explicit source-specific owner exceptions; original defects and failed numeric measurements remain recorded.",
   "works": [
     {
       "title": "Him",
@@ -37,5 +37,17 @@
         "bytes": 4268344
       }
     }
-  ]
+  ],
+  "historical": true,
+  "currentHeld": 0,
+  "currentDisposition": {
+    "status": "published-with-owner-approved-quality-exceptions",
+    "authority": "barney-contemporaries-20261102-owner-exceptions.json",
+    "liveProofs": [
+      "barney-contemporaries-20261102-part2-live.json",
+      "barney-contemporaries-20261102-part3-live.json",
+      "barney-contemporaries-20261102-part5-live.json"
+    ],
+    "checkedAt": "2026-11-03T05:25:11.206Z"
+  }
 }

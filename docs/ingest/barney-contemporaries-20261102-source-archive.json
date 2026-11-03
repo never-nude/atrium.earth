@@ -1,8 +1,11 @@
 {
-  "schema": "atrium-source-offload-summary/1",
+  "schema": "atrium-source-offload-summary/2",
   "batch": "barney-contemporaries-20261102",
   "status": "pass",
-  "checkedAt": "2026-11-03T03:47:59.827Z",
+  "checkedAt": "2026-11-03T05:24:17.797Z",
+  "publishedWorks": 5,
+  "currentHeldSources": 0,
+  "historicalHoldRecordsPreserved": true,
   "permanentPrivateSourceBackup": {
     "count": 5,
     "bytes": 76186248,
@@ -10,21 +13,27 @@
     "ownerPrivateSharingVerified": true
   },
   "publishedAndOffloadedCanonicalOriginals": {
-    "count": 2,
-    "bytes": 35609784,
+    "count": 5,
+    "bytes": 76186248,
+    "firstTwoSources": {
+      "count": 2,
+      "bytes": 35609784
+    },
+    "subsequentOwnerExceptionSources": {
+      "count": 3,
+      "bytes": 40576464
+    },
     "allRemovedPathsAbsent": true,
-    "quarantinedFiles": 0
-  },
-  "retainedHeldOriginals": {
-    "count": 3,
-    "bytes": 40576464,
-    "fullHashesRechecked": true
+    "quarantinedFiles": 0,
+    "retainedCanonicalOriginals": 0
   },
   "retainedMixedTransport": {
     "bytes": 56527948,
     "fullHashRechecked": true,
-    "reason": "The mixed temporary transport remains local because it also contains the three held sources; it includes redundant copies of accepted sources too."
+    "containsRedundantCopiesOfAllFivePublishedSources": true,
+    "reason": "Temporary mixed transport remains local; its removal requires separate verification and an exact cleanup plan."
   },
+  "qualityScope": "Three works published under the explicit source-specific owner quality exception. Original failed quality measurements, prior hold history, capture disclosures and fresh actual paired reviews remain archived; no general quality-rule change or source repair is asserted.",
   "releases": [
     {
       "slug": "modern/mike-kelley-more-love-hours-10ed86",
@@ -32,28 +41,43 @@
       "deploymentRun": "41573138728"
     },
     {
+      "slug": "modern/maurizio-cattelan-him-3c2564",
+      "releaseCommit": "94208e7c5a93cb38b54ae0088fa77457f5fd817c",
+      "deploymentRun": "41581797290"
+    },
+    {
+      "slug": "modern/maurizio-cattelan-la-nona-ora-69e93d",
+      "releaseCommit": "bcf3273873fb1a47961c9864209a98eaa4137d92",
+      "deploymentRun": "41582564852"
+    },
+    {
       "slug": "modern/alison-lapper-paralympics-concept-model-600447",
       "releaseCommit": "29c3e87d4ad1e29e7d70f32dbbfe1dccaeca14e8",
       "deploymentRun": "41573829069"
+    },
+    {
+      "slug": "modern/thomas-schutte-head-e38363",
+      "releaseCommit": "0f5d1503abfb28bcdf73744ee6e239efb4001dfa",
+      "deploymentRun": "41583129432"
     }
   ],
   "liveVerification": {
-    "works": 2,
-    "publicAssetBodies": 6,
-    "publicImagesUnchanged": 4,
-    "browserModels": 2,
+    "works": 5,
+    "publicAssetBodies": 15,
+    "publicImagesUnchanged": 10,
+    "browserModels": 5,
     "newestLayoutsPerRelease": 2,
-    "actuallyReviewedImages": 6,
+    "actuallyReviewedImages": 15,
     "physicalDeviceARTested": false
   },
   "finalPrivateRecoveryCheckpoint": {
-    "sha256": "41ab96d2925033dc3ec2af3b3aebc25fdc9d1b79b8bd9a3548b77d3033dd9db2",
-    "bytes": 7343857,
+    "sha256": "38ae07911eb02e21db727479d8ab606cfa61bbc26e64ec47d17744d93b3a75bb",
+    "bytes": 11268937,
     "format": "tar+gzip",
-    "members": 124,
+    "members": 214,
     "completePrivateReadbackVerified": true,
-    "includesBothRemovalJournalsAndHeldSourceEvidence": true,
+    "includesAllRemovalJournalsAndOwnerExceptionEvidence": true,
     "signingKeyIncluded": false
   },
-  "scope": "Only these five acquired sources, two accepted single-work releases, and their bounded canonical-file offload. No whole-collection backup claim."
+  "scope": "Only these five acquired sources and their bounded canonical-file offload; no whole-collection backup claim."
 }
