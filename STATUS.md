@@ -1710,3 +1710,9 @@ Import retry checkpoint: acquisition39735160183 downloaded all40 originals but s
 
 
 - Reconciled the concurrent two-work SMK release453f3bd8 before publishing Him. Both incoming additions and all prior records/maps are preserved; combined catalog now2,858 /2,840 public /18 hidden, with exactly3 works in this contemporary Newest batch.
+
+### Him verified live; La Nona Ora prepared
+
+- Him is live in release94208e7c / successful Pages41581797290. Full model/image bodies, page and exhibition labels, actual mobile viewer/orbit and cumulative Newest3 pass; root inspected the opening and both responsive Newest images. Public part2 live proof is recorded.
+- Added La Nona Ora under the exact owner-approved exception, with261 components retained and explicit carpet/fragment/unknown-version disclosures. All16 actual views and identical source bytes support the qualified render comparison; failed numeric pixel results remain recorded. Eight integration guards pass, preserving prior records/maps/UI/exports. Catalog2,859 /2,841 public /18 hidden; Newest4.
+- The Mac became heavily loaded during the local build. Root stopped only its owned Astro build process and moved full-build validation to the normal GitHub Pages workflow, which must succeed before deployment. Live full-body/browser checks follow separately. No local-build completion is asserted for this release.
