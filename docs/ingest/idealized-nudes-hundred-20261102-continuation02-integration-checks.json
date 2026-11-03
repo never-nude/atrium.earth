@@ -1,0 +1,62 @@
+{
+  "schema": "atrium-independent-continuation02-integration-audit/1",
+  "batch": "idealized-nudes-hundred-20261102",
+  "continuation": "continuation02",
+  "status": "pass",
+  "checkedAt": "2026-11-03T04:57:39.396Z",
+  "baselineCommit": "769e696a0e4c675a71653518373210c0cb68c6c7",
+  "baselineCatalog": 2855,
+  "catalog": 2857,
+  "public": 2839,
+  "hidden": 18,
+  "acceptedNewWorks": 2,
+  "logicalBatchWorks": 10,
+  "target": 100,
+  "targetMet": false,
+  "priorCatalogRowsPreservedExceptTotal": 2855,
+  "dataMapsAppendOnly": 7,
+  "nonmutableBaselineFilesByteIdentical": 119,
+  "additionalBaselineFilesByteIdentical": 48,
+  "priorPrivateEvidencePinsUnchanged": 45,
+  "spatialMuseumExportsByteIdentical": 17,
+  "allPriorEightAndConcurrentKelleyQuinnRowsPreserved": true,
+  "preapplyR2SignedSnapshotAuthenticated": true,
+  "preapplyR2SignedSnapshotReceiptCount": 2,
+  "preapplyR2SnapshotSeparatedFromMutablePostdeployLedger": true,
+  "receiptKeyUnchanged": true,
+  "publicRecordAndArchivePrivacyChecksPassed": true,
+  "sourceArchiveProof": {
+    "file": "docs/ingest/idealized-nudes-hundred-20261102-continuation02-source-archive.json",
+    "bytes": 4791,
+    "sha256": "9c5864121dacb6eb62ea5811edaf7f3c297424390c8a65ed04b8e28cf8df7c2a"
+  },
+  "works": [
+    {
+      "slug": "roman/standing-hermaphrodite-smk-plaster-cast-kas797",
+      "sourceUid": "smk-kas797",
+      "title": "Standing Hermaphrodite (SMK plaster cast, KAS797)",
+      "fullSourceBound": true,
+      "officialSmallViewingSourceBound": true,
+      "qualifiedGlbBound": true,
+      "realThumbnailAndPosterExact": true,
+      "scaleCalibrated": false,
+      "newSpatialRoomEligibility": false
+    },
+    {
+      "slug": "greek/aphaia-east-xi-wounded-warrior-smk-cast-kas541-1",
+      "sourceUid": "smk-kas541-1",
+      "title": "Wounded Warrior, Aphaia East Pediment XI (SMK plaster cast, KAS541/1)",
+      "fullSourceBound": true,
+      "officialSmallViewingSourceBound": true,
+      "qualifiedGlbBound": true,
+      "realThumbnailAndPosterExact": true,
+      "scaleCalibrated": false,
+      "newSpatialRoomEligibility": false
+    }
+  ],
+  "validationLimits": {
+    "physicalDeviceArAccepted": false,
+    "deploymentAcceptanceFromThisAudit": false,
+    "globalDimensionsAndSpatialBacklog": "Optional whole-collection checks remain failing on pre-existing entries; root reproduced the same baseline failures (214 missing dimension entries and 279 missing spatial decisions). Neither new work enables physical-scale or room eligibility."
+  }
+}
