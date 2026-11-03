@@ -1,9 +1,9 @@
 {
   "batch": "barney-contemporaries-20261102",
-  "checkedAt": "2026-11-03T03:34:15.744Z",
-  "accepted": 1,
-  "catalog": 2854,
-  "public": 2836,
+  "checkedAt": "2026-11-03T03:40:54.615Z",
+  "accepted": 2,
+  "catalog": 2855,
+  "public": 2837,
   "hidden": 18,
   "scope": "Sequential publication of individually reviewed contemporary artwork captures. Serving GLBs retain unchanged authenticated distribution bytes. Physical size remains uncalibrated; no physical-device AR acceptance is claimed.",
   "works": [
@@ -185,6 +185,188 @@
       "thumbnailSource": {
         "sha256": "d2cc386d07e0d29b979072494af807503eed4b1f07f46257a463ab5204226224",
         "bytes": 981194
+      },
+      "finalThumbnailActuallyReviewed": true,
+      "physicalScaleVerified": false
+    },
+    {
+      "slug": "modern/alison-lapper-paralympics-concept-model-600447",
+      "sourceUid": "60044790d1f84e48978b2646301841a6",
+      "title": "Alison Lapper: London 2012 Concept Model",
+      "sourceUrl": "https://sketchfab.com/3d-models/60044790d1f84e48978b2646301841a6",
+      "primaryRecord": "https://www.paralympicheritage.org.uk/costumes",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "licenseScope": "The publisher licenses this 3D model under CC BY 4.0. This does not establish public-domain status or a separate permission for the underlying artwork.",
+      "scanAuthor": "Kim-lin, National Paralympic Heritage Trust",
+      "attribution": "Unknown model maker, after Marc Quinn. Collection: National Paralympic Heritage Trust. 3D capture by Kim-lin / NPHT, licensed CC BY 4.0.",
+      "original": {
+        "url": "https://sketchfab.com/3d-models/60044790d1f84e48978b2646301841a6",
+        "sha256": "7ba241c72c1947fd15a271208e960987af6d01737f4465a7256aab055139a255",
+        "bytes": 31680352,
+        "representation": "Authenticated unchanged Sketchfab distribution GLB; uploader-native authoring package not asserted."
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/modern/alison-lapper-paralympics-concept-model-600447/preview-7ba241c72c19.glb",
+        "sha256": "7ba241c72c1947fd15a271208e960987af6d01737f4465a7256aab055139a255",
+        "bytes": 31680352
+      },
+      "rawSourceFaces": 955602,
+      "rawPreviewFaces": 955602,
+      "measuredTopology": {
+        "source": {
+          "loadedRawFaces": 955602,
+          "measured": {
+            "faces": 955602,
+            "bratio": 0,
+            "ncomp": 2,
+            "largest_frac": 1
+          },
+          "status": "pass"
+        },
+        "preview": {
+          "loadedRawFaces": 955602,
+          "measured": {
+            "faces": 955602,
+            "bratio": 0,
+            "ncomp": 2,
+            "largest_frac": 1
+          },
+          "status": "pass"
+        }
+      },
+      "materialAppearance": "Exact unchanged provider GLB geometry, materials and textures.",
+      "visualDecision": "All16 paired frames actually inspected. Source and serving agree in the complete head, face, torso, pregnant abdomen, seated lower body, pale plaster texture and plain flat underside. The back is independently modeled and coherent. A few tiny peripheral specks are present in both modes; fine facial detail remains subdued rather than being enhanced. BACK-THREE-QUARTER is the strongest front-facing oblique view; its label is a camera-key convention, not the physical back. This is the small concept model, not either monumental version.",
+      "captureLabel": "Plaster concept model in the National Paralympic Heritage Trust collection, scanned by Kim-lin. This is the small model associated with London 2012, rather than the marble sculpture or the giant inflatable used at the ceremony. Small plaster concept model with softly recorded detail, a plain flat underside and a few tiny scanning specks.",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          -1,
+          0.35,
+          -1
+        ],
+        "status": "manual",
+        "note": "Pose and opening camera verified in actual native and eight paired source/serving views."
+      },
+      "views": [
+        {
+          "mode": "native-source",
+          "key": "FRONT",
+          "sha256": "c1a0d5b3a5c0e4f08ade9b0359aa373029e6be7bf39314191caf82d4deb947a2",
+          "bytes": 465561
+        },
+        {
+          "mode": "native-source",
+          "key": "RIGHT",
+          "sha256": "90702bb538acff032b0cdbe64ca80369859f30bcdb75b25f77ab26e850cf59a6",
+          "bytes": 420308
+        },
+        {
+          "mode": "native-source",
+          "key": "REVERSE",
+          "sha256": "6581743cf82ae6b98f86dcc961a302540400af1dadd26bf0fc16c0f7483a026c",
+          "bytes": 462286
+        },
+        {
+          "mode": "native-source",
+          "key": "LEFT",
+          "sha256": "09045ba579f1b8047b512d2a9dae9cf30d1525dd055cf9c8276dc29cff680dcc",
+          "bytes": 400017
+        },
+        {
+          "mode": "native-source",
+          "key": "ABOVE",
+          "sha256": "7fa1a9270cb09092938ecd28a90f97e083342a1ed978d3134cc87f301de01f13",
+          "bytes": 365487
+        },
+        {
+          "mode": "native-source",
+          "key": "UNDERSIDE",
+          "sha256": "6a46285abc3b17bd0f73172138e4634edf722dbde2fb980e865604a31ba35ba9",
+          "bytes": 210164
+        },
+        {
+          "mode": "native-source",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "9b07d819a30a7539e9ee346eb2446943f307601a8b59718f42b20e39f7910a09",
+          "bytes": 340094
+        },
+        {
+          "mode": "native-source",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "be389fe2688fe20069ca2b5685126dac8d9afb69444b53cd765985abf2996319",
+          "bytes": 361443
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "sha256": "c1a0d5b3a5c0e4f08ade9b0359aa373029e6be7bf39314191caf82d4deb947a2",
+          "bytes": 465561
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "sha256": "90702bb538acff032b0cdbe64ca80369859f30bcdb75b25f77ab26e850cf59a6",
+          "bytes": 420308
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "sha256": "6581743cf82ae6b98f86dcc961a302540400af1dadd26bf0fc16c0f7483a026c",
+          "bytes": 462286
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "sha256": "09045ba579f1b8047b512d2a9dae9cf30d1525dd055cf9c8276dc29cff680dcc",
+          "bytes": 400017
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "sha256": "7fa1a9270cb09092938ecd28a90f97e083342a1ed978d3134cc87f301de01f13",
+          "bytes": 365487
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "sha256": "6a46285abc3b17bd0f73172138e4634edf722dbde2fb980e865604a31ba35ba9",
+          "bytes": 210164
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "9b07d819a30a7539e9ee346eb2446943f307601a8b59718f42b20e39f7910a09",
+          "bytes": 340094
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "be389fe2688fe20069ca2b5685126dac8d9afb69444b53cd765985abf2996319",
+          "bytes": 361443
+        }
+      ],
+      "contact": {
+        "sha256": "61652f8f686e731f6c8973ce821bf8a0e9295c567a4b967c3d289537c972fe4e",
+        "bytes": 125758
+      },
+      "thumbnail": {
+        "sha256": "11453f7e2f11854baa6e73bab8796838f3cc16af834c6310ddaf72fd8e9bf003",
+        "bytes": 19940
+      },
+      "poster": {
+        "sha256": "faeb8615683a2ecfc9b48fd88ce71586ac66ce609d3108d09b0aefb113141656",
+        "bytes": 26745
+      },
+      "thumbnailSource": {
+        "sha256": "be389fe2688fe20069ca2b5685126dac8d9afb69444b53cd765985abf2996319",
+        "bytes": 361443
       },
       "finalThumbnailActuallyReviewed": true,
       "physicalScaleVerified": false
