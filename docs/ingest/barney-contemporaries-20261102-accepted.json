@@ -1,9 +1,9 @@
 {
   "batch": "barney-contemporaries-20261102",
-  "checkedAt": "2026-11-03T05:08:47.219Z",
-  "accepted": 4,
-  "catalog": 2859,
-  "public": 2841,
+  "checkedAt": "2026-11-03T05:16:58.904Z",
+  "accepted": 5,
+  "catalog": 2860,
+  "public": 2842,
   "hidden": 18,
   "scope": "Sequential publication of individually reviewed contemporary artwork captures. Serving GLBs retain unchanged authenticated distribution bytes. Physical size remains uncalibrated; no physical-device AR acceptance is claimed.",
   "works": [
@@ -761,6 +761,194 @@
       "thumbnailSource": {
         "sha256": "cb668807a94a0b0c322181515b061d847a32d392aa24317a58b2112e97f9602f",
         "bytes": 753602
+      },
+      "finalThumbnailActuallyReviewed": true,
+      "physicalScaleVerified": false
+    },
+    {
+      "slug": "modern/thomas-schutte-head-e38363",
+      "sourceUid": "e383630c2901400a956163ffa49c3768",
+      "title": "Head",
+      "sourceUrl": "https://sketchfab.com/3d-models/e383630c2901400a956163ffa49c3768",
+      "primaryRecord": "https://sammlung.kunstpalast.de/en/objects/212443/kopf",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "licenseScope": "The publisher licenses this 3D model under CC BY 4.0. This does not establish public-domain status or a separate permission for the underlying artwork.",
+      "scanAuthor": "stettin",
+      "attribution": "Thomas Schütte, Head, 1994. Collection: Kunstpalast, Düsseldorf. 3D model by stettin, licensed CC BY 4.0.",
+      "original": {
+        "url": "https://sketchfab.com/3d-models/e383630c2901400a956163ffa49c3768",
+        "sha256": "22a2ffa570e6287d716fbcfe9e1779afa07cb4ae269a3dbd49b1f6591c5a884e",
+        "bytes": 4268344,
+        "representation": "Authenticated unchanged Sketchfab distribution GLB; uploader-native authoring package not asserted."
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/modern/thomas-schutte-head-e38363/preview-22a2ffa570e6.glb",
+        "sha256": "22a2ffa570e6287d716fbcfe9e1779afa07cb4ae269a3dbd49b1f6591c5a884e",
+        "bytes": 4268344
+      },
+      "rawSourceFaces": 49999,
+      "rawPreviewFaces": 49999,
+      "measuredTopology": {
+        "source": {
+          "loadedRawFaces": 49999,
+          "measured": {
+            "faces": 49999,
+            "bratio": 0.004,
+            "ncomp": 1,
+            "largest_frac": 1
+          },
+          "status": "pass"
+        },
+        "preview": {
+          "loadedRawFaces": 49999,
+          "measured": {
+            "faces": 49999,
+            "bratio": 0.004,
+            "ncomp": 1,
+            "largest_frac": 1
+          },
+          "status": "pass"
+        }
+      },
+      "ownerQualityException": {
+        "sourceUid": "e383630c2901400a956163ffa49c3768",
+        "sourceSha256": "22a2ffa570e6287d716fbcfe9e1779afa07cb4ae269a3dbd49b1f6591c5a884e",
+        "authoritySha256": "035dd36b5bf5f97223eb0a40e05f4fa1ef27463c4f28bb8e665529fdcc9ed899",
+        "reason": "Actual native ABOVE view exposes a large unverified crown opening; included support has missing sides and hanging fragments. Intentional open construction is not established by source evidence. Held for capture completeness without repair."
+      },
+      "materialAppearance": "Exact unchanged provider GLB geometry, materials and textures.",
+      "visualDecision": "All16 source/serving frames actually inspected. Glazed facial features, ear, neck and streaked surfaces agree in every pair. ABOVE and UNDERSIDE clearly reveal the large unrecorded opening through the head; the display support has missing sides, long hanging strips and incomplete lower surfaces. These capture defects remain unaltered and are not asserted to be intentional physical-object features. Numeric topology happens to pass with one component, but the prior visual completeness hold remains recorded and this acceptance uses only the exact owner quality exception. REVERSE supplies the strongest frontal face while retaining the included support.",
+      "captureLabel": "3D model by stettin, recorded at Kunstpalast in Düsseldorf. The museum identifies the ceramic Head as a work of 1994; the capture includes its display support. Incomplete scan: a large crown opening and missing display-support surfaces remain visible. These gaps are not verified features of the physical sculpture.",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0,
+          0,
+          -1
+        ],
+        "status": "manual",
+        "note": "Pose and opening camera verified in actual native and eight paired source/serving views."
+      },
+      "views": [
+        {
+          "mode": "native-source",
+          "key": "FRONT",
+          "sha256": "0abd04d3546cbed26e65f00ac4e05087b403301733b6d7066b906343511b9f54",
+          "bytes": 557708
+        },
+        {
+          "mode": "native-source",
+          "key": "RIGHT",
+          "sha256": "d5930a7b5c2c55f4172cf1c4c29cd32d127981e43ed2b2ea20c0fe8360a9fe8a",
+          "bytes": 703498
+        },
+        {
+          "mode": "native-source",
+          "key": "REVERSE",
+          "sha256": "73651ac33c1874f92c712f1cf5e6c88b4033da59f2d02c587966ef0904c2d528",
+          "bytes": 579623
+        },
+        {
+          "mode": "native-source",
+          "key": "LEFT",
+          "sha256": "40d1eaa3ad4485a7c3607dfef793d5abcf2df5261c9b7c0bdf27427ff6e8d259",
+          "bytes": 606837
+        },
+        {
+          "mode": "native-source",
+          "key": "ABOVE",
+          "sha256": "daff0b828c8f8d58b5653f46940478970717332dfe3a480a0ec4d6bd13874f60",
+          "bytes": 523062
+        },
+        {
+          "mode": "native-source",
+          "key": "UNDERSIDE",
+          "sha256": "a0e3d552b849e8059459f654d55e2481ff0fd574a55eddeada4c7b2b2062a99b",
+          "bytes": 356284
+        },
+        {
+          "mode": "native-source",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "35056c3c195147318c595ccb92f4a49d4611f1ad06f24131a8fb1182795aff3f",
+          "bytes": 553361
+        },
+        {
+          "mode": "native-source",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "d63814c3ac373f46216eb4265329674808f5e44f6c868a37b44da8197ce84140",
+          "bytes": 535784
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "sha256": "0abd04d3546cbed26e65f00ac4e05087b403301733b6d7066b906343511b9f54",
+          "bytes": 557708
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "sha256": "d5930a7b5c2c55f4172cf1c4c29cd32d127981e43ed2b2ea20c0fe8360a9fe8a",
+          "bytes": 703498
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "sha256": "73651ac33c1874f92c712f1cf5e6c88b4033da59f2d02c587966ef0904c2d528",
+          "bytes": 579623
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "sha256": "40d1eaa3ad4485a7c3607dfef793d5abcf2df5261c9b7c0bdf27427ff6e8d259",
+          "bytes": 606837
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "sha256": "daff0b828c8f8d58b5653f46940478970717332dfe3a480a0ec4d6bd13874f60",
+          "bytes": 523062
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "sha256": "a0e3d552b849e8059459f654d55e2481ff0fd574a55eddeada4c7b2b2062a99b",
+          "bytes": 356284
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "35056c3c195147318c595ccb92f4a49d4611f1ad06f24131a8fb1182795aff3f",
+          "bytes": 553361
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "d63814c3ac373f46216eb4265329674808f5e44f6c868a37b44da8197ce84140",
+          "bytes": 535784
+        }
+      ],
+      "contact": {
+        "sha256": "1112dd63d5a51864c4f1ecd4cdf766811a90f32c243caf99a2345f6db75133f2",
+        "bytes": 249536
+      },
+      "thumbnail": {
+        "sha256": "1c2310bcdcf757d8f05e81ffdb0ca7f785fea3fe48c9bd9dcece369ae8f564e9",
+        "bytes": 48252
+      },
+      "poster": {
+        "sha256": "99b46b9992a710808e40684a9e69c6f30ee02ce4120c422ee4f592d0599e582b",
+        "bytes": 64493
+      },
+      "thumbnailSource": {
+        "sha256": "73651ac33c1874f92c712f1cf5e6c88b4033da59f2d02c587966ef0904c2d528",
+        "bytes": 579623
       },
       "finalThumbnailActuallyReviewed": true,
       "physicalScaleVerified": false
