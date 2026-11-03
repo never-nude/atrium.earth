@@ -1,9 +1,9 @@
 {
   "batch": "barney-contemporaries-20261102",
-  "checkedAt": "2026-11-03T03:40:54.615Z",
-  "accepted": 2,
-  "catalog": 2855,
-  "public": 2837,
+  "checkedAt": "2026-11-03T05:00:59.195Z",
+  "accepted": 3,
+  "catalog": 2856,
+  "public": 2838,
   "hidden": 18,
   "scope": "Sequential publication of individually reviewed contemporary artwork captures. Serving GLBs retain unchanged authenticated distribution bytes. Physical size remains uncalibrated; no physical-device AR acceptance is claimed.",
   "works": [
@@ -367,6 +367,203 @@
       "thumbnailSource": {
         "sha256": "be389fe2688fe20069ca2b5685126dac8d9afb69444b53cd765985abf2996319",
         "bytes": 361443
+      },
+      "finalThumbnailActuallyReviewed": true,
+      "physicalScaleVerified": false
+    },
+    {
+      "slug": "modern/maurizio-cattelan-him-3c2564",
+      "sourceUid": "3c2564dfe8d84ac5adcb60c2cbb1aa10",
+      "title": "Him (captured version unconfirmed)",
+      "sourceUrl": "https://sketchfab.com/3d-models/3c2564dfe8d84ac5adcb60c2cbb1aa10",
+      "primaryRecord": "https://sketchfab.com/3d-models/him-2001-from-maurizio-cattelan-3c2564dfe8d84ac5adcb60c2cbb1aa10",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "licenseScope": "The publisher licenses this 3D model under CC BY 4.0. This does not establish public-domain status or a separate permission for the underlying artwork.",
+      "scanAuthor": "isramtz",
+      "attribution": "Composition by Maurizio Cattelan, 2001; captured version unconfirmed. 3D model by isramtz, licensed CC BY 4.0.",
+      "original": {
+        "url": "https://sketchfab.com/3d-models/3c2564dfe8d84ac5adcb60c2cbb1aa10",
+        "sha256": "fde95af834ae6e4b0752e1a06ce865a02015d9bddea46675466faef9822d256d",
+        "bytes": 16760720,
+        "representation": "Authenticated unchanged Sketchfab distribution GLB; uploader-native authoring package not asserted."
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/modern/maurizio-cattelan-him-3c2564/preview-fde95af834ae.glb",
+        "sha256": "fde95af834ae6e4b0752e1a06ce865a02015d9bddea46675466faef9822d256d",
+        "bytes": 16760720
+      },
+      "rawSourceFaces": 241954,
+      "rawPreviewFaces": 241954,
+      "measuredTopology": {
+        "source": {
+          "loadedRawFaces": 241954,
+          "measured": {
+            "faces": 241954,
+            "bratio": 0.002,
+            "ncomp": 189,
+            "largest_frac": 0.992
+          },
+          "status": "hold"
+        },
+        "preview": {
+          "loadedRawFaces": 241954,
+          "measured": {
+            "faces": 241954,
+            "bratio": 0.002,
+            "ncomp": 189,
+            "largest_frac": 0.992
+          },
+          "status": "hold"
+        }
+      },
+      "ownerQualityException": {
+        "sourceUid": "3c2564dfe8d84ac5adcb60c2cbb1aa10",
+        "sourceSha256": "fde95af834ae6e4b0752e1a06ce865a02015d9bddea46675466faef9822d256d",
+        "authoritySha256": "035dd36b5bf5f97223eb0a40e05f4fa1ef27463c4f28bb8e665529fdcc9ed899",
+        "reason": "Topology gate: 189 disconnected components exceeds the existing limit of 50 (largest component fraction 0.992; boundary ratio 0.002). Native visual review was favorable, but the source remains held; no paired or publication approval."
+      },
+      "imageComparisonQualification": {
+        "status": "qualified-not-pixel-exact",
+        "method": "actual-16-frame-review-plus-identical-source-serving-bytes",
+        "numericThresholdsUnchanged": true,
+        "originalFailedNumericComparisonRetained": true,
+        "sourceSha256": "fde95af834ae6e4b0752e1a06ce865a02015d9bddea46675466faef9822d256d",
+        "sourceBytes": 16760720,
+        "qualification": "Original pixel differences exceed the historical rounding bounds. All16 contact frames were actually inspected without a visible source/serving discrepancy, and geometry/material/runtime fingerprints plus complete source/serving GLB bytes match. Root authorized this documented runtime-comparison qualification; no numeric pass is asserted."
+      },
+      "materialAppearance": "Exact unchanged provider GLB geometry, materials and textures.",
+      "visualDecision": "Actually inspected all16 source/serving frames. Head, facial profile, clasped hands, coat, kneeling legs and shoes agree in each direction; the floor patch and irregular perimeter also match. The underside shows the unrecorded underside of the thin floor capture and low body surfaces, not a newly supplied solid base. The recorded189 disconnected components remain an unchanged topology hold; this decision authorizes the exact source only under the explicit owner exception. FRONT gives the clearest face and kneeling composition. No repair, recoloring or fragmentation removal occurred.",
+      "captureLabel": "3D capture published by isramtz and identified as Him by Maurizio Cattelan. The scan contains many small disconnected fragments. A rough-edged tiled-floor patch is included, and its underside is unrecorded. The exact physical version and capture location are unconfirmed.",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0,
+          0,
+          1
+        ],
+        "status": "manual",
+        "note": "Pose and opening camera verified in actual native and eight paired source/serving views."
+      },
+      "views": [
+        {
+          "mode": "native-source",
+          "key": "FRONT",
+          "sha256": "0f8e391527229e23b50c1dfacf326f09f52c06f91e27eea6fcb789d0fc6ee768",
+          "bytes": 315926
+        },
+        {
+          "mode": "native-source",
+          "key": "RIGHT",
+          "sha256": "c8f77dcb9fa7c8d3b32448d216976697a2b1384b827b3a4481fba39b4b07c886",
+          "bytes": 266863
+        },
+        {
+          "mode": "native-source",
+          "key": "REVERSE",
+          "sha256": "d10d7de1f02440a1904f26196738931733ed029766c157a916aa8211ec01cf5c",
+          "bytes": 276258
+        },
+        {
+          "mode": "native-source",
+          "key": "LEFT",
+          "sha256": "bef980899cc329e7a293bf327e6cbcb4ef87d2009dad2fe0b4610b531caf427a",
+          "bytes": 296403
+        },
+        {
+          "mode": "native-source",
+          "key": "ABOVE",
+          "sha256": "6bee50cf9f376d03b6efb88b5b5331bfd75d2e1b495b1b1f70302e11d589f098",
+          "bytes": 675873
+        },
+        {
+          "mode": "native-source",
+          "key": "UNDERSIDE",
+          "sha256": "61e6a725709b6858c64c932bba68061149cf6f8cd7498ca991144f0a9af0afb4",
+          "bytes": 872581
+        },
+        {
+          "mode": "native-source",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "e5e8e0b8321ed793d7afcd59bcc717c27287ea54567dab6ca5b193e2b22746e3",
+          "bytes": 312122
+        },
+        {
+          "mode": "native-source",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "c81651d03d57c6e63c8b8491d0836f3607a14f8d16ee9bfe919b6a154d55adc7",
+          "bytes": 318299
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "sha256": "6ff1426ea3146bbc83477ce4ec64ef799550ecc9554fba97f3e4dc707463e360",
+          "bytes": 315894
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "sha256": "a14da8ffe597c1df97127763fe0e33775e768f042a5e076cbb803fc29457260c",
+          "bytes": 266842
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "sha256": "64255f83503da050dce23df3179d45715b8b0f5da7d6f3a9782dfb65366b8f4c",
+          "bytes": 276265
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "sha256": "66ad48375e80da140fdb5f5e9ddae124a602eeb06ce14fae975d4cf6a2f01105",
+          "bytes": 296414
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "sha256": "6c959e988bd2ad51d3bef1724f8c01512d6eab781d369cf53b8e8b8375054f00",
+          "bytes": 675872
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "sha256": "981dd08f9029bedc3b1755a432645ce1ea691d10a7ab9cc42cf736ef58a275c6",
+          "bytes": 872502
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "e5e8e0b8321ed793d7afcd59bcc717c27287ea54567dab6ca5b193e2b22746e3",
+          "bytes": 312122
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "3bf0fe6e178a369622d308d85495c0b24a14821952adedbdae4781ce94a73c8a",
+          "bytes": 318296
+        }
+      ],
+      "contact": {
+        "sha256": "1718978e78c3d2baf2906c5fffbb615f53cd12e7e84caf757b42f2699285a707",
+        "bytes": 173218
+      },
+      "thumbnail": {
+        "sha256": "5265bc743443c34555eafc115225de641ef15a402a6bf191bc7d342f087b159d",
+        "bytes": 21920
+      },
+      "poster": {
+        "sha256": "367ab0d218cc1fb8599a6f94afb2d6474f18a746ca679a202d2c7f1c1da575c5",
+        "bytes": 29385
+      },
+      "thumbnailSource": {
+        "sha256": "6ff1426ea3146bbc83477ce4ec64ef799550ecc9554fba97f3e4dc707463e360",
+        "bytes": 315894
       },
       "finalThumbnailActuallyReviewed": true,
       "physicalScaleVerified": false
