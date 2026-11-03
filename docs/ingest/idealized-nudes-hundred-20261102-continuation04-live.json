@@ -1,0 +1,83 @@
+{
+  "batch": "idealized-nudes-hundred-20261102",
+  "status": "pass",
+  "releaseCommit": "79df8b627d6a0217aaa59cbedd133c2a27d61227",
+  "deploymentRun": "41598718324",
+  "works": [
+    {
+      "slug": "greek/psyche-capua-torso-smk-cast-kas100",
+      "status": "pass",
+      "page": {
+        "bytes": 38293,
+        "sha256": "5ae096fbccf50bf050515f9fceb7339e507cbc8e74a891618644c0264de26387",
+        "completeCaptureLabel": true,
+        "uncalibratedDisplay": true
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/greek/psyche-capua-torso-smk-cast-kas100/preview-127417f08e5b.glb",
+        "bytes": 18802308,
+        "sha256": "127417f08e5bccfd24398bce631b6b72b8448040b5ad327f47575d89cfe09f51",
+        "contentType": "model/gltf-binary",
+        "cors": "https://atrium.earth"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/greek/psyche-capua-torso-smk-cast-kas100/thumb.webp",
+        "bytes": 21404,
+        "sha256": "d6b6b81d4419bf6f73a3f3fff10d289a51fb7f51bbb1aab6bb0fef0149fa184d",
+        "contentType": "image/webp"
+      },
+      "poster": {
+        "url": "https://atrium.earth/previews/posters/greek/psyche-capua-torso-smk-cast-kas100/poster.svg",
+        "bytes": 28697,
+        "sha256": "a3af7b74b571f24645ff40abbfb14355382c891b7275add075c46eae081c9cb2",
+        "contentType": "image/svg+xml"
+      }
+    },
+    {
+      "slug": "greek/apollo-pergamon-torso-smk-cast-kas425",
+      "status": "pass",
+      "page": {
+        "bytes": 37927,
+        "sha256": "5de6194932baac07a24a132c87d9ffa07484f332e1a3ea9cbf06a6c233d3c8c8",
+        "completeCaptureLabel": true,
+        "uncalibratedDisplay": true
+      },
+      "model": {
+        "url": "https://models.atrium.earth/models/previews/greek/apollo-pergamon-torso-smk-cast-kas425/preview-49e2454febda.glb",
+        "bytes": 18557104,
+        "sha256": "49e2454febda649ba7b9647fa88e79550af35212dd80b0ac9ee7b99d203d305a",
+        "contentType": "model/gltf-binary",
+        "cors": "https://atrium.earth"
+      },
+      "thumbnail": {
+        "url": "https://atrium.earth/previews/renders/greek/apollo-pergamon-torso-smk-cast-kas425/thumb.webp",
+        "bytes": 28036,
+        "sha256": "1cf21c9c429b5bde7e9d5871d91d8ba01c394deca3b7e1be5d081cdf7f13680b",
+        "contentType": "image/webp"
+      },
+      "poster": {
+        "url": "https://atrium.earth/previews/posters/greek/apollo-pergamon-torso-smk-cast-kas425/poster.svg",
+        "bytes": 37541,
+        "sha256": "5b0833e6defb4cd4ef4e48c1d15184cae793b77054815bde748799bee36d40d6",
+        "contentType": "image/svg+xml"
+      }
+    }
+  ],
+  "exhibitions": [],
+  "newest": {
+    "status": "pass",
+    "count": 14,
+    "newlyAddedWorks": 2,
+    "previousSameBatchWorks": 12,
+    "exactLatestImport": true,
+    "olderImportsExcluded": true
+  },
+  "modelDeliveryProofs": {
+    "status": "pass",
+    "count": 2,
+    "method": "full-get-sha256",
+    "signedPrivateLedger": true
+  },
+  "checkedAt": "2026-11-03T07:51:03.009Z",
+  "scope": "All accepted live page/capture bindings and full model/thumbnail/poster SHA/bytes; GLB MIME and website-origin CORS; exact latest-batch Newest membership. No physical-device AR claim."
+}
