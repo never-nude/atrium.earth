@@ -1,0 +1,112 @@
+{
+  "schema": "atrium-reviewed-smk-source-acquisition/1",
+  "batch": "idealized-nudes-hundred-20261102",
+  "part": "part5-ready3",
+  "checkedAt": "2026-11-02T23:43:58.976694+00:00",
+  "status": "complete-provider-sources-native-and-publication-review-pending",
+  "logicalWorks": 3,
+  "sourceFiles": 6,
+  "fullSourceBytes": 305834052,
+  "officialSmallSourceBytes": 60003952,
+  "models": [
+    {
+      "uid": "smk-kas895",
+      "source_id": "smk:KAS895",
+      "provider_object_key": "KAS895",
+      "slug": "europe/muse-andre-chenier-puech-smk-plaster-cast-kas895",
+      "title": "The Muse of Andr\u00e9 Ch\u00e9nier (SMK plaster cast, KAS895)",
+      "source_url": "https://open.smk.dk/artwork/image/KAS895",
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "formal_cc0_not_asserted": true,
+      "files": [
+        {
+          "role": "provider-full-resolution-stl",
+          "source_file_id": "smk:KAS895:full-stl",
+          "url": "https://api.smk.dk/api/v1/download-3d/5h73q1447_42-smk-andre-chenier-muse-inv-895.stl",
+          "bytes": 106393484,
+          "sha256": "23ec6c8e4bbaaa76eea9bcf6b1f8898ad4bb6b0a36f94c7eb98e3e25d22b814c",
+          "originalFileName": "5h73q1447_42-smk-andre-chenier-muse-inv-895.stl",
+          "binaryTriangleCount": 2127868
+        },
+        {
+          "role": "provider-official-small-stl",
+          "source_file_id": "smk:KAS895:small-stl",
+          "url": "https://api.smk.dk/api/v1/download-3d/5425kg27k_KAS895_small.stl",
+          "bytes": 20001984,
+          "sha256": "c7195972f63bdd95431fe2da86f596538cd13b0e2fab1f67d8397b7e95285b0e",
+          "originalFileName": "5425kg27k_KAS895_small.stl",
+          "binaryTriangleCount": 400038
+        }
+      ]
+    },
+    {
+      "uid": "smk-kas1048",
+      "source_id": "smk:KAS1048",
+      "provider_object_key": "KAS1048",
+      "slug": "roman/valentini-torso-smk-plaster-cast-kas1048",
+      "title": "Valentini Torso (SMK plaster cast, KAS1048)",
+      "source_url": "https://open.smk.dk/artwork/image/KAS1048",
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "formal_cc0_not_asserted": true,
+      "files": [
+        {
+          "role": "provider-full-resolution-stl",
+          "source_file_id": "smk:KAS1048:full-stl",
+          "url": "https://api.smk.dk/api/v1/download-3d/g445cj94b_106-kas1048.stl",
+          "bytes": 100000084,
+          "sha256": "5a384dbc1d3d8d0a69d2eacf700fa6110cb7667570dd83e75de2355a31cbd3df",
+          "originalFileName": "g445cj94b_106-kas1048.stl",
+          "binaryTriangleCount": 2000000
+        },
+        {
+          "role": "provider-official-small-stl",
+          "source_file_id": "smk:KAS1048:small-stl",
+          "url": "https://api.smk.dk/api/v1/download-3d/9k41zk01n_KAS1048_small.stl",
+          "bytes": 20000084,
+          "sha256": "7d6e1591bb5e53701d8786d02e9b640bae0e0b3bdf254c73d28f30d7f5e75066",
+          "originalFileName": "9k41zk01n_KAS1048_small.stl",
+          "binaryTriangleCount": 400000
+        }
+      ]
+    },
+    {
+      "uid": "smk-kms5025",
+      "source_id": "smk:KMS5025",
+      "provider_object_key": "KMS5025",
+      "slug": "europe/slave-girl-jerichau-smk-earthenware-kms5025",
+      "title": "The Slave Girl (SMK earthenware version, KMS5025)",
+      "source_url": "https://open.smk.dk/artwork/image/KMS5025",
+      "license": "Public Domain",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "formal_cc0_not_asserted": true,
+      "files": [
+        {
+          "role": "provider-full-resolution-stl",
+          "source_file_id": "smk:KMS5025:full-stl",
+          "url": "https://api.smk.dk/api/v1/download-3d/z029p922r_smk-19-slave-girl-kms5025.stl",
+          "bytes": 99440484,
+          "sha256": "3b8bf24f97da050101572d6b656476d9fa4985f07bcdf245a3f4df4709a40db3",
+          "originalFileName": "z029p922r_smk-19-slave-girl-kms5025.stl",
+          "binaryTriangleCount": 1988808
+        },
+        {
+          "role": "provider-official-small-stl",
+          "source_file_id": "smk:KMS5025:small-stl",
+          "url": "https://api.smk.dk/api/v1/download-3d/nc580r997_KMS5025_small.stl",
+          "bytes": 20001884,
+          "sha256": "b576da0e2f8cd8538f718b26f5e79ecca4cf2cb8a59acf9691dc4884420b147e",
+          "originalFileName": "nc580r997_KMS5025_small.stl",
+          "binaryTriangleCount": 400036
+        }
+      ]
+    }
+  ],
+  "sharingPolicyUrls": [
+    "https://blog.smk.dk/scanning-smk-one-sculpture-at-a-time",
+    "https://blog.smk.dk/how-to-do-things-with-data-creative-re-use-of-smks-digitized-collection"
+  ],
+  "sourceHandling": "Full-resolution STL sources are preserved separately. The museum\u2019s official optimized Small STL supplies the viewing conversion. Full-source geometry is not asserted equal to Small. Any neutral display treatment and unverified scale must remain explicit.",
+  "held": "Dionysos with an Animal Skin, KAS196, remains unadmitted because its Full source transfer is incomplete. Its complete official Small and partial Full attempts are retained separately."
+}
