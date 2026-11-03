@@ -1,0 +1,49 @@
+{
+  "schema": "atrium-independent-optimized-only-integration-checks/1",
+  "batch": "idealized-nudes-hundred-20261102",
+  "continuation": "03",
+  "status": "pass",
+  "checkedAt": "2026-11-03T05:50:48.611Z",
+  "catalog": {
+    "before": 2860,
+    "after": 2862,
+    "public": 2844,
+    "hidden": 18,
+    "oldRowsUnchangedExceptTotal": true,
+    "newExactWorks": 2,
+    "logicalBatchWorks": 12,
+    "target": 100,
+    "targetMet": false
+  },
+  "preservation": {
+    "normalNonmutableFilePins": 119,
+    "appendOnlyDataMaps": 7,
+    "additionalFilePins": 74,
+    "priorPrivateEvidencePins": 89,
+    "pipelinePins": 14,
+    "spatialExportReferencesInUnchangedProtectedMuseumManifest": 17
+  },
+  "newMetadata": {
+    "selectedOfficialSmallFiles": 2,
+    "availableSourceBytes": 40004268,
+    "fullMasterSha256": null,
+    "fullMasterOriginalsVerified": false,
+    "originalPackageComplete": false,
+    "bothProviderRolesPermanentlyArchived": false,
+    "cleanupEligible": false,
+    "sourcePackageAliasesAbsent": true,
+    "documentaryDionysos190cmNotPhysicalModelCalibration": true,
+    "bothRoomEligibilityDisabled": true,
+    "publicPrivacyPass": true
+  },
+  "immutablePreapplyModelReceiptsAuthenticated": 2,
+  "sourceArchiveProof": {
+    "file": "docs/ingest/idealized-nudes-hundred-20261102-continuation03-source-archive.json",
+    "bytes": 4968,
+    "sha256": "093ddc573e9552dafafd004b8226f0852418d76924fd95c631cfac55d73e790d"
+  },
+  "thumbnailAndEmbeddedPosterBindingsVerified": 2,
+  "newestExact12": true,
+  "publicPrivacyPass": true,
+  "scope": "Local integration/source-role/preservation only. Build, production deployment/browser checks and physical-device AR acceptance remain separate."
+}

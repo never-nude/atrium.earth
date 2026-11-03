@@ -1,0 +1,125 @@
+{
+  "schema": "atrium-public-optimized-only-source-backup-summary/1",
+  "verifiedAt": "2026-11-03T05:34:53.036763+00:00",
+  "batch": "idealized-nudes-hundred-20261102",
+  "continuation": "03",
+  "sourceCase": "official-small-only-master-incomplete",
+  "coverageStatus": "provider-optimized-only",
+  "sourceCount": 2,
+  "sourceFileCount": 2,
+  "availableSourceBytes": 40004268,
+  "providerSuppliedViewingSourceBytes": 40004268,
+  "completeFullMasterCount": 0,
+  "completeFullMasterBytes": 0,
+  "missingFullMasterFiles": 2,
+  "fullMasterSha256": null,
+  "fullMasterOriginalsVerified": false,
+  "originalPackageComplete": false,
+  "bothProviderRolesPermanentlyArchived": false,
+  "fullVersusSmallGeometryEqualityClaimed": false,
+  "cleanupEligible": false,
+  "qualifiedGlbPayloadBackedUpInThisBundle": false,
+  "sourceRepresentation": "Two unchanged first-party official optimized Small STL representations only; two separate Full masters remain incomplete. Full body hashes and geometry are unknown. Small-to-GLB code/proofs are preserved; GLB payloads and all incomplete Full payloads are excluded. KAS196 has20 legacy version-bound range records without raw response headers; KAS541/3 has20 committed/pending range chains.",
+  "selectedRepresentationPackageVerified": true,
+  "permanentPrivateAvailableSourcesVerified": true,
+  "officialSmallSha256AndExactBytesVerified": true,
+  "sourceRoleProofs": [
+    {
+      "uid": "smk-kas196",
+      "officialSmall": {
+        "bytes": 20000884,
+        "sha256": "df4e79fbb5203c254dc89e1d61dfe1d2eaba780872793011a75c6e8056830909",
+        "assetRole": "derivative-other",
+        "representationRole": "provider-official-small-stl"
+      },
+      "full": null,
+      "fullMasterStatus": "incomplete-transfer"
+    },
+    {
+      "uid": "smk-kas541-3",
+      "officialSmall": {
+        "bytes": 20003384,
+        "sha256": "219adb6ece29f15ffcf7d6ed855e10cc868ec824b415a09c40919cd6db47f31c",
+        "assetRole": "derivative-other",
+        "representationRole": "provider-official-small-stl"
+      },
+      "full": null,
+      "fullMasterStatus": "incomplete-transfer"
+    }
+  ],
+  "missingOriginals": [
+    {
+      "uid": "smk-kas196",
+      "representationRole": "provider-full-resolution-stl",
+      "status": "incomplete-transfer",
+      "fullMasterSha256": null,
+      "fullMasterGeometryReviewed": false,
+      "originalPackageComplete": false,
+      "bothProviderRolesPermanentlyArchived": false,
+      "cleanupEligible": false
+    },
+    {
+      "uid": "smk-kas541-3",
+      "representationRole": "provider-full-resolution-stl",
+      "status": "incomplete-transfer",
+      "fullMasterSha256": null,
+      "fullMasterGeometryReviewed": false,
+      "originalPackageComplete": false,
+      "bothProviderRolesPermanentlyArchived": false,
+      "cleanupEligible": false
+    }
+  ],
+  "ownerOnlyFolderAndObjectPermissionsVerified": true,
+  "exactFolderMembershipVerified": true,
+  "allPortableRecoveryMapsCompleteReadbackVerified": true,
+  "allVerificationProofsCompleteReadbackVerified": true,
+  "allSourceArchiveMembersCompleteContentVerified": true,
+  "allSignedCompleteContentReceiptsAuthenticated": true,
+  "archiveMembersVerified": 185,
+  "bundle": {
+    "bytes": 33824346,
+    "sha256": "3d61a1c33315cc1a84f0f497398a7d01899419e790dd45904c6121c1c2d113c6",
+    "orderedCloudParts": 1,
+    "maximumPartBytes": 94371840
+  },
+  "permanentCloudObjects": 3,
+  "permanentCloudObjectRoles": {
+    "availableSourceBundleParts": 1,
+    "portableRecoveryMap": 1,
+    "verificationProof": 1
+  },
+  "verification": {
+    "individualPartCompleteReadbacks": 1,
+    "wholeBundleConcatenatedCompleteReadback": true,
+    "additionalWholeCloudTarStreamAndEveryMemberReadback": true,
+    "allCloudMembersFullSha256AndExactBytesVerified": true,
+    "providerOfficialSmallStlsFullyHashed": 2,
+    "providerOriginalFullStlsFullyHashed": 0,
+    "recoveryMapCompleteReadback": true,
+    "verificationProofCompleteReadback": true,
+    "allChecksUseFullSHA256AndExactBytes": true,
+    "authenticatedSignedReceiptCount": 4
+  },
+  "historicalTransportQualification": {
+    "legacyRangeRecordsWithoutRawResponseHeaders": 20,
+    "pendingCommittedRangeChains": 20,
+    "selectedSmallRangeSlicesRehashed": 40,
+    "oldDualRoleBatchCompletionClaimed": false
+  },
+  "recoveryMap": {
+    "bytes": 170591,
+    "sha256": "7edbb5cb2ab40ef4f2bd0cbfd7f4dfc28afedfb84b57e3a2cccfdafb237449d2"
+  },
+  "verificationProof": {
+    "bytes": 132506,
+    "sha256": "d55b6dfc8cd616b28bd479577f271183323cad89923c5a11ba2f0d9f6694f7f2"
+  },
+  "localRemoval": {
+    "availableSourceFilesRemoved": 0,
+    "partialFullFilesRemoved": 0,
+    "sourceArchiveRemoved": false,
+    "stagedPartsRemoved": false
+  },
+  "scope": "Available official optimized Small representations only. Separate Full masters remain incomplete; no Full hash, Full geometry/equality, original-package completeness, calibrated scale, public admission, deployment or cleanup claim.",
+  "status": "pass"
+}

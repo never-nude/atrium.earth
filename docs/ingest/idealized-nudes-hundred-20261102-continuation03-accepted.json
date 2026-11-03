@@ -1,0 +1,452 @@
+{
+  "batch": "idealized-nudes-hundred-20261102",
+  "continuation": "continuation03",
+  "sourceCase": "official-small-only-master-incomplete",
+  "checkedAt": "2026-11-03T05:48:59.690Z",
+  "acceptedNewWorks": 2,
+  "previousLogicalBatchWorks": 10,
+  "logicalBatchWorks": 12,
+  "target": 100,
+  "targetMet": false,
+  "catalog": 2862,
+  "public": 2844,
+  "hidden": 18,
+  "sourceArchiveProof": {
+    "file": "docs/ingest/idealized-nudes-hundred-20261102-continuation03-source-archive.json",
+    "bytes": 4968,
+    "sha256": "093ddc573e9552dafafd004b8226f0852418d76924fd95c631cfac55d73e790d"
+  },
+  "sourceRolePolicy": "Only two complete official optimized Small sources are preserved as derivative-other. Separate Full masters remain incomplete/unreviewed, with null hashes. No original-package or both-role completion or cleanup is asserted.",
+  "selectedRepresentationPackageVerified": true,
+  "fullMasterSha256": null,
+  "fullMasterOriginalsVerified": false,
+  "originalPackageComplete": false,
+  "bothProviderRolesPermanentlyArchived": false,
+  "cleanupEligible": false,
+  "curatedExhibitionAppends": 0,
+  "spatialMuseumChanges": 0,
+  "works": [
+    {
+      "slug": "roman/dionysos-animal-skin-smk-plaster-cast-kas196",
+      "sourceUid": "smk-kas196",
+      "title": "Dionysos with an Animal Skin (SMK plaster cast, KAS196)",
+      "sourceUrl": "https://open.smk.dk/artwork/image/KAS196",
+      "primaryRecord": "https://open.smk.dk/artwork/image/KAS196",
+      "license": "Public Domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "licenseScope": "The exact first-party SMK object record is marked public domain under Public Domain Mark 1.0; the current visible free-use panel includes the exact official Small and Full links under the museum’s any-use statement. This is not a formal CC0 instrument. Permission does not establish source completeness.",
+      "scanAuthor": "SMK, in collaboration with Scan the World; individual capture author unrecorded",
+      "attribution": "Unknown individual cast maker, after an unknown Roman sculptor. Dionysos with an Animal Skin (SMK plaster cast, KAS196). Collection and 3D source: SMK – National Gallery of Denmark, in collaboration with Scan the World. Public Domain Mark 1.0.",
+      "sourceCase": "official-small-only-master-incomplete",
+      "coverageStatus": "provider-optimized-only",
+      "availableSource": {
+        "url": "https://api.smk.dk/api/v1/download-3d/gh93h408g_KAS196_small.stl",
+        "sha256": "df4e79fbb5203c254dc89e1d61dfe1d2eaba780872793011a75c6e8056830909",
+        "bytes": 20000884,
+        "format": "stl",
+        "faces": 400016,
+        "assetRole": "derivative-other",
+        "representationRole": "provider-official-small-stl"
+      },
+      "missingFullMaster": {
+        "url": "https://api.smk.dk/api/v1/download-3d/2227mv247_smk111-kas196.stl",
+        "declaredBytes": 177873684,
+        "status": "incomplete-transfer",
+        "sha256": null,
+        "geometryReviewed": false
+      },
+      "fullMasterSha256": null,
+      "fullMasterOriginalsVerified": false,
+      "originalPackageComplete": false,
+      "bothProviderRolesPermanentlyArchived": false,
+      "cleanupEligible": false,
+      "convertedReference": {
+        "sha256": "38b9547829d3d76c2dc0577f0d66cf6af2468fde5fd9f25c8701d35a75bd5a59",
+        "bytes": 18862496,
+        "format": "glb"
+      },
+      "conversion": {
+        "officialSmallIsInput": true,
+        "fullSourceComparedToSmallOrGlb": false,
+        "positionsFacetNormalsOrderAndBoundsExactForSmall": true,
+        "repairOrReconstruction": false,
+        "physicalColorAndFinishNotAsserted": true
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/roman/dionysos-animal-skin-smk-plaster-cast-kas196/preview-38b9547829d3.glb",
+        "sha256": "38b9547829d3d76c2dc0577f0d66cf6af2468fde5fd9f25c8701d35a75bd5a59",
+        "bytes": 18862496
+      },
+      "rawSourceFaces": 400016,
+      "rawPreviewFaces": 400016,
+      "measuredTopology": {
+        "source": {
+          "loadedRawFaces": 400016,
+          "measured": {
+            "faces": 400016,
+            "bratio": 0,
+            "ncomp": 1,
+            "largest_frac": 1
+          },
+          "status": "pass"
+        },
+        "preview": {
+          "loadedRawFaces": 400016,
+          "measured": {
+            "faces": 400016,
+            "bratio": 0,
+            "ncomp": 1,
+            "largest_frac": 1
+          },
+          "status": "pass"
+        }
+      },
+      "materialAppearance": "Qualified neutral display of the exact official optimized Small conversion. Separate Full master has not been obtained or reviewed; photographic color/finish and calibrated scale are not asserted.",
+      "visualDecision": "All eight paired directions and full-resolution FRONT reference/serving frames were actually opened. Adult face, hair, animal skin, torso, lowered left hand, legs/feet, rear, support and round base remain coherent. The historical right-forearm end agrees with the museum reference. No major new capture loss or repair is observed. FRONT +Z is the canonical front. Every converted-reference/serving pair agrees in geometry, qualified display, silhouette, framing and position.",
+      "captureLabel": "Viewing model converted from SMK’s official optimized Small STL, with its triangle positions, facet normals, order and bounds unchanged. The separate Full-resolution master has not been obtained or reviewed. This untextured GLB uses a qualified neutral opaque display material; physical color and finish remain unverified. Published cast dimensions are documentary references; digital scale remains uncalibrated.",
+      "orientation": {
+        "upAxis": "z",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0,
+          0,
+          1
+        ],
+        "status": "manual",
+        "note": "Pose and opening camera chosen from actually inspected Small-derived native and eight paired directions. Source geometry exact; qualified neutral display; Full master not obtained/reviewed; physical scale unverified."
+      },
+      "views": [
+        {
+          "mode": "native-source",
+          "key": "FRONT",
+          "sha256": "c165ad44fae0aa4ce9c6c55e1a3e7a617b03e629e5f58c9e9eb62c5439c4ff5e",
+          "bytes": 378585
+        },
+        {
+          "mode": "native-source",
+          "key": "RIGHT",
+          "sha256": "feaf8811506221f68d2f66a30f4a1bb5e597b18933cc713932cd597bb53a9c35",
+          "bytes": 328589
+        },
+        {
+          "mode": "native-source",
+          "key": "REVERSE",
+          "sha256": "04a91e54b0cff3c72627dee2b1752f0e5998b0963125e5a7e8969bc6d0da0bab",
+          "bytes": 346625
+        },
+        {
+          "mode": "native-source",
+          "key": "LEFT",
+          "sha256": "073fe0d33e46faf92f6992a21d5fceb2f9a428f0f7371e0c09f31ca9a1444109",
+          "bytes": 325620
+        },
+        {
+          "mode": "native-source",
+          "key": "ABOVE",
+          "sha256": "7bd4eb737382f21728c4390bf66a061c1cb53b51fc600396cff6fcdebb8a6daf",
+          "bytes": 276654
+        },
+        {
+          "mode": "native-source",
+          "key": "UNDERSIDE",
+          "sha256": "bbbea78035a5de37c2e266432fb6801c919ca92d0edb01f80e70c978af4efacb",
+          "bytes": 109828
+        },
+        {
+          "mode": "native-source",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "96cd0aae07388a7a3db5cfc4a91d12ab801405ef850417f5fdbdb8c0a8254bab",
+          "bytes": 352763
+        },
+        {
+          "mode": "native-source",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "d017350124819cc3a48a5aa3f8200d3eb29e222297025fc5332c18b762fda2d3",
+          "bytes": 332826
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "sha256": "c165ad44fae0aa4ce9c6c55e1a3e7a617b03e629e5f58c9e9eb62c5439c4ff5e",
+          "bytes": 378585
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "sha256": "feaf8811506221f68d2f66a30f4a1bb5e597b18933cc713932cd597bb53a9c35",
+          "bytes": 328589
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "sha256": "04a91e54b0cff3c72627dee2b1752f0e5998b0963125e5a7e8969bc6d0da0bab",
+          "bytes": 346625
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "sha256": "073fe0d33e46faf92f6992a21d5fceb2f9a428f0f7371e0c09f31ca9a1444109",
+          "bytes": 325620
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "sha256": "7bd4eb737382f21728c4390bf66a061c1cb53b51fc600396cff6fcdebb8a6daf",
+          "bytes": 276654
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "sha256": "bbbea78035a5de37c2e266432fb6801c919ca92d0edb01f80e70c978af4efacb",
+          "bytes": 109828
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "96cd0aae07388a7a3db5cfc4a91d12ab801405ef850417f5fdbdb8c0a8254bab",
+          "bytes": 352763
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "d017350124819cc3a48a5aa3f8200d3eb29e222297025fc5332c18b762fda2d3",
+          "bytes": 332826
+        }
+      ],
+      "contact": {
+        "sha256": "bc7978d2599953977ab4689453b9bea222bbf148a983f70c60f67a16ffa86026",
+        "bytes": 104946
+      },
+      "thumbnail": {
+        "sha256": "d7ed0b3d8951f01d001d08acc2e79009c30640f1d3ea83dfca0cf9eb4a4dd7e4",
+        "bytes": 18334
+      },
+      "poster": {
+        "sha256": "61f594bf2060221d5467f3c08a6411ebd981b800d0a4879d28a22ab0bcfaf3cb",
+        "bytes": 24605
+      },
+      "thumbnailSource": {
+        "sha256": "c165ad44fae0aa4ce9c6c55e1a3e7a617b03e629e5f58c9e9eb62c5439c4ff5e",
+        "bytes": 378585
+      },
+      "finalThumbnailActuallyReviewed": true,
+      "physicalScaleVerified": false
+    },
+    {
+      "slug": "greek/aphaia-east-iii-wounded-warrior-smk-cast-kas541-3",
+      "sourceUid": "smk-kas541-3",
+      "title": "Wounded Warrior, Aphaia East Pediment III (SMK plaster cast, KAS541/3)",
+      "sourceUrl": "https://open.smk.dk/artwork/image/KAS541/3",
+      "primaryRecord": "https://open.smk.dk/artwork/image/KAS541/3",
+      "license": "Public Domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "licenseScope": "The exact first-party SMK object record is marked public domain under Public Domain Mark 1.0; the current visible free-use panel includes the exact official Small and Full links under the museum’s any-use statement. This is not a formal CC0 instrument. Permission does not establish source completeness.",
+      "scanAuthor": "SMK, in collaboration with Scan the World; individual capture author unrecorded",
+      "attribution": "Unknown individual cast maker, after an unknown Greek sculptor. Wounded Warrior, Aphaia East Pediment III (SMK plaster cast, KAS541/3). Collection and 3D source: SMK – National Gallery of Denmark, in collaboration with Scan the World. Public Domain Mark 1.0.",
+      "sourceCase": "official-small-only-master-incomplete",
+      "coverageStatus": "provider-optimized-only",
+      "availableSource": {
+        "url": "https://api.smk.dk/api/v1/download-3d/rn3015890_KAS541-3_small.stl",
+        "sha256": "219adb6ece29f15ffcf7d6ed855e10cc868ec824b415a09c40919cd6db47f31c",
+        "bytes": 20003384,
+        "format": "stl",
+        "faces": 400066,
+        "assetRole": "derivative-other",
+        "representationRole": "provider-official-small-stl"
+      },
+      "missingFullMaster": {
+        "url": "https://api.smk.dk/api/v1/download-3d/vq27zt11s_smk-kas541-3-aphaia-lying-wounded-warrior.stl",
+        "declaredBytes": 100000084,
+        "status": "incomplete-transfer",
+        "sha256": null,
+        "geometryReviewed": false
+      },
+      "fullMasterSha256": null,
+      "fullMasterOriginalsVerified": false,
+      "originalPackageComplete": false,
+      "bothProviderRolesPermanentlyArchived": false,
+      "cleanupEligible": false,
+      "convertedReference": {
+        "sha256": "4f4b678c67fb67c57b8d6be35cfa6ba258ba83fbfc973d3d9c14050a133e7169",
+        "bytes": 15979600,
+        "format": "glb"
+      },
+      "conversion": {
+        "officialSmallIsInput": true,
+        "fullSourceComparedToSmallOrGlb": false,
+        "positionsFacetNormalsOrderAndBoundsExactForSmall": true,
+        "repairOrReconstruction": false,
+        "physicalColorAndFinishNotAsserted": true
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/greek/aphaia-east-iii-wounded-warrior-smk-cast-kas541-3/preview-4f4b678c67fb.glb",
+        "sha256": "4f4b678c67fb67c57b8d6be35cfa6ba258ba83fbfc973d3d9c14050a133e7169",
+        "bytes": 15979600
+      },
+      "rawSourceFaces": 400066,
+      "rawPreviewFaces": 400066,
+      "measuredTopology": {
+        "source": {
+          "loadedRawFaces": 400066,
+          "measured": {
+            "faces": 400066,
+            "bratio": 0,
+            "ncomp": 1,
+            "largest_frac": 1
+          },
+          "status": "pass"
+        },
+        "preview": {
+          "loadedRawFaces": 400066,
+          "measured": {
+            "faces": 400066,
+            "bratio": 0,
+            "ncomp": 1,
+            "largest_frac": 1
+          },
+          "status": "pass"
+        }
+      },
+      "materialAppearance": "Qualified neutral display of the exact official optimized Small conversion. Separate Full master has not been obtained or reviewed; photographic color/finish and calibrated scale are not asserted.",
+      "visualDecision": "All eight paired directions and full-resolution LEFT reference/serving frames were actually opened. Adult warrior face, helmet, raised hand and sword, torso, legs/feet, shield and plinth remain coherent, including the above view. Minor retained surface and edge roughness has no invented cause. No major new capture loss or repair is observed. LEFT −X is the anatomical front, opposite the eastXI cast. Every converted-reference/serving pair agrees in geometry, qualified display, silhouette, framing and position.",
+      "captureLabel": "Viewing model converted from SMK’s official optimized Small STL, with its triangle positions, facet normals, order and bounds unchanged. The separate Full-resolution master has not been obtained or reviewed. This untextured GLB uses a qualified neutral opaque display material; physical color and finish remain unverified. Physical dimensions are unrecorded; digital scale remains uncalibrated.",
+      "orientation": {
+        "upAxis": "z",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          -1,
+          0,
+          0
+        ],
+        "status": "manual",
+        "note": "Pose and opening camera chosen from actually inspected Small-derived native and eight paired directions. Source geometry exact; qualified neutral display; Full master not obtained/reviewed; physical scale unverified."
+      },
+      "views": [
+        {
+          "mode": "native-source",
+          "key": "FRONT",
+          "sha256": "34318f0f4e1d2c7a5291b03a48146a1362b9987133d7a758f0b33d76279b4dd1",
+          "bytes": 326195
+        },
+        {
+          "mode": "native-source",
+          "key": "RIGHT",
+          "sha256": "e52bcb69b4f2a23d1fd76d1d9cca7785b0264f1f7fd098ee769ffe806239e21c",
+          "bytes": 289325
+        },
+        {
+          "mode": "native-source",
+          "key": "REVERSE",
+          "sha256": "f429a36290ef1c28fa5ffdb36972ed3be9e6e55901123a9816e8db91d906ccca",
+          "bytes": 306675
+        },
+        {
+          "mode": "native-source",
+          "key": "LEFT",
+          "sha256": "9275ae06b7f77bd5afd09fd5d3da9e96cc76c6e21bcca02994b72eb3e3aee33b",
+          "bytes": 278626
+        },
+        {
+          "mode": "native-source",
+          "key": "ABOVE",
+          "sha256": "9caddd58341f25bac959c577f290f90d34cb4ebaf77e6e89392665f384a6955e",
+          "bytes": 341918
+        },
+        {
+          "mode": "native-source",
+          "key": "UNDERSIDE",
+          "sha256": "0cae3ee2e551459cf48d5eb29feb3eb1eda9e76a75f657629753dd97921630e2",
+          "bytes": 214404
+        },
+        {
+          "mode": "native-source",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "7646d6aff330629fb91b0306adfa4816028719b0a96257e9dc2845a36f01f012",
+          "bytes": 266798
+        },
+        {
+          "mode": "native-source",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "d226ea090f565865c7fba863767df130856249b6c657aaf85db389953805f913",
+          "bytes": 272335
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "sha256": "34318f0f4e1d2c7a5291b03a48146a1362b9987133d7a758f0b33d76279b4dd1",
+          "bytes": 326195
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "sha256": "e52bcb69b4f2a23d1fd76d1d9cca7785b0264f1f7fd098ee769ffe806239e21c",
+          "bytes": 289325
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "sha256": "f429a36290ef1c28fa5ffdb36972ed3be9e6e55901123a9816e8db91d906ccca",
+          "bytes": 306675
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "sha256": "9275ae06b7f77bd5afd09fd5d3da9e96cc76c6e21bcca02994b72eb3e3aee33b",
+          "bytes": 278626
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "sha256": "9caddd58341f25bac959c577f290f90d34cb4ebaf77e6e89392665f384a6955e",
+          "bytes": 341918
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "sha256": "0cae3ee2e551459cf48d5eb29feb3eb1eda9e76a75f657629753dd97921630e2",
+          "bytes": 214404
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "7646d6aff330629fb91b0306adfa4816028719b0a96257e9dc2845a36f01f012",
+          "bytes": 266798
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "d226ea090f565865c7fba863767df130856249b6c657aaf85db389953805f913",
+          "bytes": 272335
+        }
+      ],
+      "contact": {
+        "sha256": "d2d64f091b978ec2c9dbdd10dd4b9e77583cc003dfcc93526836c2acbf47b8fc",
+        "bytes": 100522
+      },
+      "thumbnail": {
+        "sha256": "8392ff7608d7d3168a5ddadd0fed319ffa0b192af343ea96ed86a3727d3be6af",
+        "bytes": 15192
+      },
+      "poster": {
+        "sha256": "882de30c145b00b3fb433587bf186e133aa8ba64073c807128c165ebddb7abe6",
+        "bytes": 20413
+      },
+      "thumbnailSource": {
+        "sha256": "9275ae06b7f77bd5afd09fd5d3da9e96cc76c6e21bcca02994b72eb3e3aee33b",
+        "bytes": 278626
+      },
+      "finalThumbnailActuallyReviewed": true,
+      "physicalScaleVerified": false
+    }
+  ]
+}
