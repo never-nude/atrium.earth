@@ -1,0 +1,635 @@
+{
+  "batch": "idealized-nudes-hundred-20261102",
+  "continuation": "continuation01",
+  "checkedAt": "2026-11-03T03:20:46.238Z",
+  "acceptedNewWorks": 3,
+  "previousLogicalBatchWorks": 5,
+  "logicalBatchWorks": 8,
+  "target": 100,
+  "targetMet": false,
+  "catalog": 2853,
+  "public": 2835,
+  "hidden": 18,
+  "sourceArchiveProof": {
+    "file": "docs/ingest/idealized-nudes-hundred-20261102-continuation01-source-archive.json",
+    "bytes": 6098,
+    "sha256": "672980b32dfbb045abd802751b75edf3c30be37126d369db28ea30350d19c099"
+  },
+  "curatedExhibitionAppends": 0,
+  "spatialMuseumChanges": 0,
+  "sourceRolePolicy": "Full provider STL and official Small STL are separately preserved. Only official Small supplies the exact qualified GLB geometry; equality to Full is not claimed.",
+  "works": [
+    {
+      "slug": "europe/muse-andre-chenier-puech-smk-plaster-cast-kas895",
+      "sourceUid": "smk-kas895",
+      "title": "The Muse of André Chénier (SMK plaster cast, KAS895)",
+      "sourceUrl": "https://open.smk.dk/artwork/image/KAS895",
+      "primaryRecord": "https://open.smk.dk/artwork/image/KAS895",
+      "license": "Public Domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "licenseScope": "SMK marks this exact museum object with Public Domain Mark 1.0. Its current object page places both official STL downloads in the free-use material section under its any-use statement. The museum also explicitly describes its sculpture scans as a public-domain resource. A separate formal CC0 instrument for these files is not asserted.",
+      "scanAuthor": "SMK, in collaboration with Scan the World; individual capture author unrecorded",
+      "attribution": "After Denys Puech; cast maker unrecorded. The Muse of André Chénier (SMK plaster cast, KAS895). Collection and 3D source: SMK – National Gallery of Denmark, in collaboration with Scan the World. Public Domain Mark 1.0.",
+      "original": {
+        "url": "https://api.smk.dk/api/v1/download-3d/5h73q1447_42-smk-andre-chenier-muse-inv-895.stl",
+        "sha256": "23ec6c8e4bbaaa76eea9bcf6b1f8898ad4bb6b0a36f94c7eb98e3e25d22b814c",
+        "bytes": 106393484,
+        "format": "stl",
+        "faces": 2127868,
+        "representation": "SMK supplies two separate provider STL distributions: the higher-resolution Full file and the official optimized Small file. The viewing GLB is derived from Small, with a separately qualified neutral display. Full and Small geometry equality and a provider-original GLB are not asserted."
+      },
+      "providerViewingSource": {
+        "url": "https://api.smk.dk/api/v1/download-3d/5425kg27k_KAS895_small.stl",
+        "sha256": "c7195972f63bdd95431fe2da86f596538cd13b0e2fab1f67d8397b7e95285b0e",
+        "bytes": 20001984,
+        "format": "stl",
+        "faces": 400038
+      },
+      "convertedReference": {
+        "sha256": "e4202ae4d63027e4f57438e3a97ff233dd05538a85bf3880992746e21d9b2cbb",
+        "bytes": 18562284,
+        "format": "glb"
+      },
+      "conversion": {
+        "officialSmallIsInput": true,
+        "fullSourceComparedToSmallOrGlb": false,
+        "positionsFacetNormalsOrderAndBoundsExactForSmall": true,
+        "repairOrReconstruction": false,
+        "physicalColorAndFinishNotAsserted": true
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/europe/muse-andre-chenier-puech-smk-plaster-cast-kas895/preview-e4202ae4d630.glb",
+        "sha256": "e4202ae4d63027e4f57438e3a97ff233dd05538a85bf3880992746e21d9b2cbb",
+        "bytes": 18562284
+      },
+      "rawFullSourceFaces": 2127868,
+      "rawSourceFaces": 400038,
+      "rawPreviewFaces": 400038,
+      "measuredTopology": {
+        "source": {
+          "loadedRawFaces": 400038,
+          "measured": {
+            "faces": 400038,
+            "bratio": 0,
+            "ncomp": 1,
+            "largest_frac": 1
+          },
+          "status": "pass"
+        },
+        "preview": {
+          "loadedRawFaces": 400038,
+          "measured": {
+            "faces": 400038,
+            "bratio": 0,
+            "ncomp": 1,
+            "largest_frac": 1
+          },
+          "status": "pass"
+        }
+      },
+      "materialAppearance": "Qualified neutral display of a faithful official Small STL conversion. Full source geometry and photographic color/finish are not claimed.",
+      "visualDecision": "All eight paired directions preserve the adult muse, both faces, the poet head, fingers and hands, intertwined hair, shoulders, breasts, bent legs, feet, drapery and decorated circular base. The full-resolution ABOVE pair confirms coherent crowns, heads and fingers. Full-resolution LEFT (-X) exposes both faces and the intimate grouping most clearly and is selected for the opening camera; the root-approved +Z anatomical-front direction remains documented in native evidence. No major new accidental capture loss was observed. Each reference/serving pair agrees in complete represented silhouette, geometry, qualified display material, framing and position.",
+      "captureLabel": "Official SMK 3D recording supplied in separate Full and optimized Small STL files. The viewing GLB is an untextured conversion of the official Small STL with a qualified neutral opaque display material. The Full source is separate from this optimized viewing version. Physical color and finish are not asserted. Published museum dimensions are documentary references; physical scale remains uncalibrated.",
+      "orientation": {
+        "upAxis": "z",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          -1,
+          0,
+          0
+        ],
+        "status": "manual",
+        "note": "Source-axis pose and opening camera selected from actual native and eight paired source-reference/serving views. Small source geometry is exact; opaque neutral display is qualified. Physical scale remains unverified."
+      },
+      "views": [
+        {
+          "mode": "native-source",
+          "key": "FRONT",
+          "sha256": "af0a7ba464e6381e0d89e5dff069ed1d1ebf1d28178e0cb1443c6729085b1b3f",
+          "bytes": 472077
+        },
+        {
+          "mode": "native-source",
+          "key": "RIGHT",
+          "sha256": "0e2773e3e46551d0afc9ed706ba7f022fe1907450fe693cc4221ff6703ca05d5",
+          "bytes": 463439
+        },
+        {
+          "mode": "native-source",
+          "key": "REVERSE",
+          "sha256": "9c5910f28cb01ec10e9e6c8f386a1a4e6d44fb5c8ee6caa98b719755d37fbdf2",
+          "bytes": 430646
+        },
+        {
+          "mode": "native-source",
+          "key": "LEFT",
+          "sha256": "eb63ec0fb6fd2e7824b43ce885b5c31fde9093cdfebc210fed633816b3e02b32",
+          "bytes": 478650
+        },
+        {
+          "mode": "native-source",
+          "key": "ABOVE",
+          "sha256": "cb7431db37208aa753e831df3b3bfd80e2c998468e69677bdf391ca4a2e14750",
+          "bytes": 334303
+        },
+        {
+          "mode": "native-source",
+          "key": "UNDERSIDE",
+          "sha256": "fbb193aa4a437a5ef6e92a28ddf0447fb95ad1b204dc8853086037c18628b62a",
+          "bytes": 72620
+        },
+        {
+          "mode": "native-source",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "738d948efe83990ac241bd50e2ada42f4e7198dd55b19c2168a6dd212a2e9bfe",
+          "bytes": 381490
+        },
+        {
+          "mode": "native-source",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "5289a56f5b3851a799505ceb3b59a524e4a63ed9981ca798c99e71c617bd0a58",
+          "bytes": 376244
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "sha256": "af0a7ba464e6381e0d89e5dff069ed1d1ebf1d28178e0cb1443c6729085b1b3f",
+          "bytes": 472077
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "sha256": "0e2773e3e46551d0afc9ed706ba7f022fe1907450fe693cc4221ff6703ca05d5",
+          "bytes": 463439
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "sha256": "9c5910f28cb01ec10e9e6c8f386a1a4e6d44fb5c8ee6caa98b719755d37fbdf2",
+          "bytes": 430646
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "sha256": "eb63ec0fb6fd2e7824b43ce885b5c31fde9093cdfebc210fed633816b3e02b32",
+          "bytes": 478650
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "sha256": "cb7431db37208aa753e831df3b3bfd80e2c998468e69677bdf391ca4a2e14750",
+          "bytes": 334303
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "sha256": "fbb193aa4a437a5ef6e92a28ddf0447fb95ad1b204dc8853086037c18628b62a",
+          "bytes": 72620
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "738d948efe83990ac241bd50e2ada42f4e7198dd55b19c2168a6dd212a2e9bfe",
+          "bytes": 381490
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "5289a56f5b3851a799505ceb3b59a524e4a63ed9981ca798c99e71c617bd0a58",
+          "bytes": 376244
+        }
+      ],
+      "contact": {
+        "sha256": "57bbdd86330e324dfdabb02d2a800ebe85936907e0cc4e5659eac6735b28c0bd",
+        "bytes": 140148
+      },
+      "thumbnail": {
+        "sha256": "ed59d2b149e190e2ac18dc856654ddf1cccfbe9960c7b04fb776ff18a136ca36",
+        "bytes": 24428
+      },
+      "poster": {
+        "sha256": "6540ebdf89975f2440d7c54023ca7270889676d729cd0216effd6adc69a0fc14",
+        "bytes": 32729
+      },
+      "thumbnailSource": {
+        "sha256": "eb63ec0fb6fd2e7824b43ce885b5c31fde9093cdfebc210fed633816b3e02b32",
+        "bytes": 478650
+      },
+      "finalThumbnailActuallyReviewed": true,
+      "physicalScaleVerified": false
+    },
+    {
+      "slug": "roman/valentini-torso-smk-plaster-cast-kas1048",
+      "sourceUid": "smk-kas1048",
+      "title": "Valentini Torso (SMK plaster cast, KAS1048)",
+      "sourceUrl": "https://open.smk.dk/artwork/image/KAS1048",
+      "primaryRecord": "https://open.smk.dk/artwork/image/KAS1048",
+      "license": "Public Domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "licenseScope": "SMK marks this exact museum object with Public Domain Mark 1.0. Its current object page places both official STL downloads in the free-use material section under its any-use statement. The museum also explicitly describes its sculpture scans as a public-domain resource. A separate formal CC0 instrument for these files is not asserted.",
+      "scanAuthor": "SMK, in collaboration with Scan the World; individual capture author unrecorded",
+      "attribution": "Unknown cast maker, after an unknown Roman sculptor. Valentini Torso (SMK plaster cast, KAS1048). Collection and 3D source: SMK – National Gallery of Denmark, in collaboration with Scan the World. Public Domain Mark 1.0.",
+      "original": {
+        "url": "https://api.smk.dk/api/v1/download-3d/g445cj94b_106-kas1048.stl",
+        "sha256": "5a384dbc1d3d8d0a69d2eacf700fa6110cb7667570dd83e75de2355a31cbd3df",
+        "bytes": 100000084,
+        "format": "stl",
+        "faces": 2000000,
+        "representation": "SMK supplies two separate provider STL distributions: the higher-resolution Full file and the official optimized Small file. The viewing GLB is derived from Small, with a separately qualified neutral display. Full and Small geometry equality and a provider-original GLB are not asserted."
+      },
+      "providerViewingSource": {
+        "url": "https://api.smk.dk/api/v1/download-3d/9k41zk01n_KAS1048_small.stl",
+        "sha256": "7d6e1591bb5e53701d8786d02e9b640bae0e0b3bdf254c73d28f30d7f5e75066",
+        "bytes": 20000084,
+        "format": "stl",
+        "faces": 400000
+      },
+      "convertedReference": {
+        "sha256": "245c0ffe90443b897c1906c25a01975b3f0b3ff878d75dbe08b7f462dfda29fa",
+        "bytes": 18789648,
+        "format": "glb"
+      },
+      "conversion": {
+        "officialSmallIsInput": true,
+        "fullSourceComparedToSmallOrGlb": false,
+        "positionsFacetNormalsOrderAndBoundsExactForSmall": true,
+        "repairOrReconstruction": false,
+        "physicalColorAndFinishNotAsserted": true
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/roman/valentini-torso-smk-plaster-cast-kas1048/preview-245c0ffe9044.glb",
+        "sha256": "245c0ffe90443b897c1906c25a01975b3f0b3ff878d75dbe08b7f462dfda29fa",
+        "bytes": 18789648
+      },
+      "rawFullSourceFaces": 2000000,
+      "rawSourceFaces": 400000,
+      "rawPreviewFaces": 400000,
+      "measuredTopology": {
+        "source": {
+          "loadedRawFaces": 400000,
+          "measured": {
+            "faces": 400000,
+            "bratio": 0,
+            "ncomp": 1,
+            "largest_frac": 1
+          },
+          "status": "pass"
+        },
+        "preview": {
+          "loadedRawFaces": 400000,
+          "measured": {
+            "faces": 400000,
+            "bratio": 0,
+            "ncomp": 1,
+            "largest_frac": 1
+          },
+          "status": "pass"
+        }
+      },
+      "materialAppearance": "Qualified neutral display of a faithful official Small STL conversion. Full source geometry and photographic color/finish are not claimed.",
+      "visualDecision": "All eight paired directions preserve the surviving cast fragment, flat neck end, shoulder/arm ends, chest, abdomen, genitals, back, buttocks, leg stumps and rectangular base. RIGHT (+X) is the anatomical front; fixed-grid FRONT (+Z) is side-on. Full-resolution RIGHT and ABOVE pairs were actually opened and agree, including the flat neck end and retained base-edge irregularity. No major new accidental capture loss was observed. Each reference/serving pair agrees in complete represented silhouette, geometry, qualified display material, framing and position.",
+      "captureLabel": "Official SMK 3D recording supplied in separate Full and optimized Small STL files. The viewing GLB is an untextured conversion of the official Small STL with a qualified neutral opaque display material. The Full source is separate from this optimized viewing version. Physical color and finish are not asserted. Physical dimensions are unrecorded; digital scale remains uncalibrated.",
+      "orientation": {
+        "upAxis": "z",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          1,
+          0,
+          0
+        ],
+        "status": "manual",
+        "note": "Source-axis pose and opening camera selected from actual native and eight paired source-reference/serving views. Small source geometry is exact; opaque neutral display is qualified. Physical scale remains unverified."
+      },
+      "views": [
+        {
+          "mode": "native-source",
+          "key": "FRONT",
+          "sha256": "b504e6ca27857eedd113f2a5d41153f17ee528ebeabe9ffa3120c71fdafef893",
+          "bytes": 368638
+        },
+        {
+          "mode": "native-source",
+          "key": "RIGHT",
+          "sha256": "3a7bf8d601235c35340f5d0d27dfe89945ba8b82d94e5722914c7484ac19e79a",
+          "bytes": 435164
+        },
+        {
+          "mode": "native-source",
+          "key": "REVERSE",
+          "sha256": "74b809be608940441fc3f7dbb6ddb593e7172aab73ffe9758fe118072c03d043",
+          "bytes": 350800
+        },
+        {
+          "mode": "native-source",
+          "key": "LEFT",
+          "sha256": "f12e9c9429fc2bbe579cc1e60b50b3e67ba32fce4484e18bd9bbd9bd19a8a33a",
+          "bytes": 414215
+        },
+        {
+          "mode": "native-source",
+          "key": "ABOVE",
+          "sha256": "64a214253b3542a7d2a0a7a3997daf6941da18de5f22b5f252a38eb2139d9216",
+          "bytes": 346863
+        },
+        {
+          "mode": "native-source",
+          "key": "UNDERSIDE",
+          "sha256": "34337b1811fec85628492a6eccf8addc566d813722bb429ef8191b7b84302e3b",
+          "bytes": 67847
+        },
+        {
+          "mode": "native-source",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "0a6396ebe4ed6635a943b966584a832319cc5ecfa1deb6c64e3f96b88939a9c0",
+          "bytes": 374020
+        },
+        {
+          "mode": "native-source",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "6e2daa4f58fa236cd1e63543754b918b9558108c20423bdb10bd3ba957215ada",
+          "bytes": 333774
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "sha256": "b504e6ca27857eedd113f2a5d41153f17ee528ebeabe9ffa3120c71fdafef893",
+          "bytes": 368638
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "sha256": "3a7bf8d601235c35340f5d0d27dfe89945ba8b82d94e5722914c7484ac19e79a",
+          "bytes": 435164
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "sha256": "74b809be608940441fc3f7dbb6ddb593e7172aab73ffe9758fe118072c03d043",
+          "bytes": 350800
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "sha256": "f12e9c9429fc2bbe579cc1e60b50b3e67ba32fce4484e18bd9bbd9bd19a8a33a",
+          "bytes": 414215
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "sha256": "64a214253b3542a7d2a0a7a3997daf6941da18de5f22b5f252a38eb2139d9216",
+          "bytes": 346863
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "sha256": "34337b1811fec85628492a6eccf8addc566d813722bb429ef8191b7b84302e3b",
+          "bytes": 67847
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "0a6396ebe4ed6635a943b966584a832319cc5ecfa1deb6c64e3f96b88939a9c0",
+          "bytes": 374020
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "6e2daa4f58fa236cd1e63543754b918b9558108c20423bdb10bd3ba957215ada",
+          "bytes": 333774
+        }
+      ],
+      "contact": {
+        "sha256": "5af759fd1009e5ffad1763a34733113979fab76cde7538cd60ff4d22fba9ddd5",
+        "bytes": 89544
+      },
+      "thumbnail": {
+        "sha256": "6941a6402a0a93131f5d796e79ea85a7f32111dc9496bc040b44877acfb35b29",
+        "bytes": 17406
+      },
+      "poster": {
+        "sha256": "f4ebed253e3d6f44068ed4f949a1f134a7063fd7d189de6af1850a28392e2a50",
+        "bytes": 23365
+      },
+      "thumbnailSource": {
+        "sha256": "3a7bf8d601235c35340f5d0d27dfe89945ba8b82d94e5722914c7484ac19e79a",
+        "bytes": 435164
+      },
+      "finalThumbnailActuallyReviewed": true,
+      "physicalScaleVerified": false
+    },
+    {
+      "slug": "europe/slave-girl-jerichau-smk-earthenware-kms5025",
+      "sourceUid": "smk-kms5025",
+      "title": "The Slave Girl (SMK earthenware version, KMS5025)",
+      "sourceUrl": "https://open.smk.dk/artwork/image/KMS5025",
+      "primaryRecord": "https://open.smk.dk/artwork/image/KMS5025",
+      "license": "Public Domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "licenseScope": "SMK marks this exact museum object with Public Domain Mark 1.0. Its current object page places both official STL downloads in the free-use material section under its any-use statement. The museum also explicitly describes its sculpture scans as a public-domain resource. A separate formal CC0 instrument for these files is not asserted.",
+      "scanAuthor": "SMK, in collaboration with Scan the World; individual capture author unrecorded",
+      "attribution": "Jens Adolf Jerichau. The Slave Girl (SMK earthenware version, KMS5025). Collection and 3D source: SMK – National Gallery of Denmark, in collaboration with Scan the World. Public Domain Mark 1.0.",
+      "original": {
+        "url": "https://api.smk.dk/api/v1/download-3d/z029p922r_smk-19-slave-girl-kms5025.stl",
+        "sha256": "3b8bf24f97da050101572d6b656476d9fa4985f07bcdf245a3f4df4709a40db3",
+        "bytes": 99440484,
+        "format": "stl",
+        "faces": 1988808,
+        "representation": "SMK supplies two separate provider STL distributions: the higher-resolution Full file and the official optimized Small file. The viewing GLB is derived from Small, with a separately qualified neutral display. Full and Small geometry equality and a provider-original GLB are not asserted."
+      },
+      "providerViewingSource": {
+        "url": "https://api.smk.dk/api/v1/download-3d/nc580r997_KMS5025_small.stl",
+        "sha256": "b576da0e2f8cd8538f718b26f5e79ecca4cf2cb8a59acf9691dc4884420b147e",
+        "bytes": 20001884,
+        "format": "stl",
+        "faces": 400036
+      },
+      "convertedReference": {
+        "sha256": "3511a57dd37de0976bae728c79ad28c74615fcf6e176ed9af812e8b9db1e8834",
+        "bytes": 18559972,
+        "format": "glb"
+      },
+      "conversion": {
+        "officialSmallIsInput": true,
+        "fullSourceComparedToSmallOrGlb": false,
+        "positionsFacetNormalsOrderAndBoundsExactForSmall": true,
+        "repairOrReconstruction": false,
+        "physicalColorAndFinishNotAsserted": true
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/europe/slave-girl-jerichau-smk-earthenware-kms5025/preview-3511a57dd37d.glb",
+        "sha256": "3511a57dd37de0976bae728c79ad28c74615fcf6e176ed9af812e8b9db1e8834",
+        "bytes": 18559972
+      },
+      "rawFullSourceFaces": 1988808,
+      "rawSourceFaces": 400036,
+      "rawPreviewFaces": 400036,
+      "measuredTopology": {
+        "source": {
+          "loadedRawFaces": 400036,
+          "measured": {
+            "faces": 400036,
+            "bratio": 0,
+            "ncomp": 1,
+            "largest_frac": 1
+          },
+          "status": "pass"
+        },
+        "preview": {
+          "loadedRawFaces": 400036,
+          "measured": {
+            "faces": 400036,
+            "bratio": 0,
+            "ncomp": 1,
+            "largest_frac": 1
+          },
+          "status": "pass"
+        }
+      },
+      "materialAppearance": "Qualified neutral display of a faithful official Small STL conversion. Full source geometry and photographic color/finish are not claimed.",
+      "visualDecision": "All eight paired directions preserve the mature adult figure, bowed face, crown and hair, shoulders, torso, wrists, fingers, chain links, drapery, feet and rectangular base. Full-resolution FRONT and ABOVE source/production pairs were actually opened; the face, hair, wrists and chain remain coherent and visually agree. No major new accidental capture loss was observed. FRONT (+Z) retains the clear canonical frontal view. Each reference/serving pair agrees in complete represented silhouette, geometry, qualified display material, framing and position.",
+      "captureLabel": "Official SMK 3D recording supplied in separate Full and optimized Small STL files. The viewing GLB is an untextured conversion of the official Small STL with a qualified neutral opaque display material. The Full source is separate from this optimized viewing version. Physical color and finish are not asserted. Published museum dimensions are documentary references; physical scale remains uncalibrated.",
+      "orientation": {
+        "upAxis": "z",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0,
+          0,
+          1
+        ],
+        "status": "manual",
+        "note": "Source-axis pose and opening camera selected from actual native and eight paired source-reference/serving views. Small source geometry is exact; opaque neutral display is qualified. Physical scale remains unverified."
+      },
+      "views": [
+        {
+          "mode": "native-source",
+          "key": "FRONT",
+          "sha256": "abdf67ca9533fcc53a2a317bbc54784fa90037042771f6fe6199646703e13228",
+          "bytes": 349435
+        },
+        {
+          "mode": "native-source",
+          "key": "RIGHT",
+          "sha256": "9dfd3c06159c2ae7295cddff39816ea980df08f2ffb8142b785f9d85a10cd334",
+          "bytes": 322981
+        },
+        {
+          "mode": "native-source",
+          "key": "REVERSE",
+          "sha256": "5aa937bb5169b92bf6b3ecb354e106ffc2e748e65b0d501d8c9d001d5bd19d72",
+          "bytes": 314361
+        },
+        {
+          "mode": "native-source",
+          "key": "LEFT",
+          "sha256": "d85bc71ed93d72f9ae4031b0a7e941a5f4a0892036da428d14798069d27a29bd",
+          "bytes": 326129
+        },
+        {
+          "mode": "native-source",
+          "key": "ABOVE",
+          "sha256": "0151bea093197c7386c42395b62d31df1767ad20774711a2e0807d9387377a21",
+          "bytes": 256539
+        },
+        {
+          "mode": "native-source",
+          "key": "UNDERSIDE",
+          "sha256": "3345e2cf78ac9716699f48bed0ff6e845598127fd11c9e5cda4962d018f3d795",
+          "bytes": 88449
+        },
+        {
+          "mode": "native-source",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "1780ca7978b03090003da6e890414b9c4a835a8a1bc62620951ad9608eef2b19",
+          "bytes": 329888
+        },
+        {
+          "mode": "native-source",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "f7b044e299f26dbb91554c477d2fe12654e1ed034d8285fd90c402b5a9c1a4d6",
+          "bytes": 313740
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "sha256": "abdf67ca9533fcc53a2a317bbc54784fa90037042771f6fe6199646703e13228",
+          "bytes": 349435
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "sha256": "9dfd3c06159c2ae7295cddff39816ea980df08f2ffb8142b785f9d85a10cd334",
+          "bytes": 322981
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "sha256": "5aa937bb5169b92bf6b3ecb354e106ffc2e748e65b0d501d8c9d001d5bd19d72",
+          "bytes": 314361
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "sha256": "d85bc71ed93d72f9ae4031b0a7e941a5f4a0892036da428d14798069d27a29bd",
+          "bytes": 326129
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "sha256": "0151bea093197c7386c42395b62d31df1767ad20774711a2e0807d9387377a21",
+          "bytes": 256539
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "sha256": "3345e2cf78ac9716699f48bed0ff6e845598127fd11c9e5cda4962d018f3d795",
+          "bytes": 88449
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "1780ca7978b03090003da6e890414b9c4a835a8a1bc62620951ad9608eef2b19",
+          "bytes": 329888
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "f7b044e299f26dbb91554c477d2fe12654e1ed034d8285fd90c402b5a9c1a4d6",
+          "bytes": 313740
+        }
+      ],
+      "contact": {
+        "sha256": "f09e249f7284e06c950e4a3cc08efb614a2fe020c11e23ba65e38b1e64991ea9",
+        "bytes": 95544
+      },
+      "thumbnail": {
+        "sha256": "3f54269205682064bd94ecd735171110417261cea227d2c3cd4012919e84f857",
+        "bytes": 15304
+      },
+      "poster": {
+        "sha256": "22fac70121c085812c0e2af1686d1210c09e908b16cd75590894ddd1073aa460",
+        "bytes": 20565
+      },
+      "thumbnailSource": {
+        "sha256": "abdf67ca9533fcc53a2a317bbc54784fa90037042771f6fe6199646703e13228",
+        "bytes": 349435
+      },
+      "finalThumbnailActuallyReviewed": true,
+      "physicalScaleVerified": false
+    }
+  ]
+}
