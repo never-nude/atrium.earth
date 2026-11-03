@@ -1711,6 +1711,12 @@ Import retry checkpoint: acquisition39735160183 downloaded all40 originals but s
 
 - Reconciled the concurrent two-work SMK release453f3bd8 before publishing Him. Both incoming additions and all prior records/maps are preserved; combined catalog now2,858 /2,840 public /18 hidden, with exactly3 works in this contemporary Newest batch.
 
+### Him verified live; La Nona Ora prepared
+
+- Him is live in release94208e7c / successful Pages41581797290. Full model/image bodies, page and exhibition labels, actual mobile viewer/orbit and cumulative Newest3 pass; root inspected the opening and both responsive Newest images. Public part2 live proof is recorded.
+- Added La Nona Ora under the exact owner-approved exception, with261 components retained and explicit carpet/fragment/unknown-version disclosures. All16 actual views and identical source bytes support the qualified render comparison; failed numeric pixel results remain recorded. Eight integration guards pass, preserving prior records/maps/UI/exports. Catalog2,859 /2,841 public /18 hidden; Newest4.
+- The Mac became heavily loaded during the local build. Root stopped only its owned Astro build process and moved full-build validation to the normal GitHub Pages workflow, which must succeed before deployment. Live full-body/browser checks follow separately. No local-build completion is asserted for this release.
+
 ### 2026-11-03 — two further SMK casts verified live
 
 - Release453f3bd8a308ffda5ae23d8b0e56b88a8e27da60 is live through successful [Pages41581190830](https://github.com/never-nude/atrium.earth/actions/runs/41581190830). Both new work pages and all six complete model/thumbnail/poster bodies pass exact SHA-256/byte checks; GLB MIME and production-origin CORS pass. Newest contains exactly the ten works in this logical round. The requested hundred remains unmet by ninety.
@@ -1719,3 +1725,5 @@ Import retry checkpoint: acquisition39735160183 downloaded all40 originals but s
 - Public live, browser and independent audit proofs are alongside this continuation’s accepted selection, source archive and integration reports. This completion documentation uses [skip ci]. KAS196 and KAS541/3 remain unadmitted while their distinct official-Small-only source case, missing separate Full downloads and native quality are reviewed; neither incomplete master is treated as a complete original.
 
 - Concurrent completion reconciliation: preserved the other chat’s Cattelan Him addition and its authorized capture-limit exception, alongside the two SMK casts and their completed live proofs. Combined catalog is2,858 /2,840 public /18 hidden. The ten-work Newest proof refers to the checked SMK deployment before the newer contemporary import. No collection record was removed or reverted; this merge is documentation-only and uses [skip ci].
+
+- Further concurrent reconciliation preserves the other chat’s La Nona Ora release and earlier Him update. Combined catalog is2,859 /2,841 public /18 hidden; the SMK ten-work live proof remains tied to its checked deployment. All earlier records remain intact. [skip ci]

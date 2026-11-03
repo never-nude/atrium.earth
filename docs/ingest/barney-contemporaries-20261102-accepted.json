@@ -1,9 +1,9 @@
 {
   "batch": "barney-contemporaries-20261102",
-  "checkedAt": "2026-11-03T05:03:39.993Z",
-  "accepted": 3,
-  "catalog": 2858,
-  "public": 2840,
+  "checkedAt": "2026-11-03T05:08:47.219Z",
+  "accepted": 4,
+  "catalog": 2859,
+  "public": 2841,
   "hidden": 18,
   "scope": "Sequential publication of individually reviewed contemporary artwork captures. Serving GLBs retain unchanged authenticated distribution bytes. Physical size remains uncalibrated; no physical-device AR acceptance is claimed.",
   "works": [
@@ -564,6 +564,203 @@
       "thumbnailSource": {
         "sha256": "6ff1426ea3146bbc83477ce4ec64ef799550ecc9554fba97f3e4dc707463e360",
         "bytes": 315894
+      },
+      "finalThumbnailActuallyReviewed": true,
+      "physicalScaleVerified": false
+    },
+    {
+      "slug": "modern/maurizio-cattelan-la-nona-ora-69e93d",
+      "sourceUid": "69e93d2c357d4c81b6a4116cd6885597",
+      "title": "La Nona Ora (captured version unconfirmed)",
+      "sourceUrl": "https://sketchfab.com/3d-models/69e93d2c357d4c81b6a4116cd6885597",
+      "primaryRecord": "https://sketchfab.com/3d-models/la-nona-hora-1999-from-maurizio-cattelan-69e93d2c357d4c81b6a4116cd6885597",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "licenseScope": "The publisher licenses this 3D model under CC BY 4.0. This does not establish public-domain status or a separate permission for the underlying artwork.",
+      "scanAuthor": "isramtz",
+      "attribution": "Composition by Maurizio Cattelan, 1999; captured version unconfirmed. 3D model by isramtz, licensed CC BY 4.0.",
+      "original": {
+        "url": "https://sketchfab.com/3d-models/69e93d2c357d4c81b6a4116cd6885597",
+        "sha256": "c8955d021d8383d70007d9fcdb534ef69d5b0ed1037838cd571625ebc89209e6",
+        "bytes": 19547400,
+        "representation": "Authenticated unchanged Sketchfab distribution GLB; uploader-native authoring package not asserted."
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/modern/maurizio-cattelan-la-nona-ora-69e93d/preview-c8955d021d83.glb",
+        "sha256": "c8955d021d8383d70007d9fcdb534ef69d5b0ed1037838cd571625ebc89209e6",
+        "bytes": 19547400
+      },
+      "rawSourceFaces": 343375,
+      "rawPreviewFaces": 343375,
+      "measuredTopology": {
+        "source": {
+          "loadedRawFaces": 343375,
+          "measured": {
+            "faces": 343375,
+            "bratio": 0.001,
+            "ncomp": 261,
+            "largest_frac": 0.99
+          },
+          "status": "hold"
+        },
+        "preview": {
+          "loadedRawFaces": 343375,
+          "measured": {
+            "faces": 343375,
+            "bratio": 0.001,
+            "ncomp": 261,
+            "largest_frac": 0.99
+          },
+          "status": "hold"
+        }
+      },
+      "ownerQualityException": {
+        "sourceUid": "69e93d2c357d4c81b6a4116cd6885597",
+        "sourceSha256": "c8955d021d8383d70007d9fcdb534ef69d5b0ed1037838cd571625ebc89209e6",
+        "authoritySha256": "035dd36b5bf5f97223eb0a40e05f4fa1ef27463c4f28bb8e665529fdcc9ed899",
+        "reason": "Topology gate: 261 disconnected components exceeds the existing limit of 50 (largest component fraction 0.99; boundary ratio 0.001). Native visual review was favorable, but the source remains held; no paired or publication approval."
+      },
+      "imageComparisonQualification": {
+        "status": "qualified-not-pixel-exact",
+        "method": "actual-16-frame-review-plus-identical-source-serving-bytes",
+        "numericThresholdsUnchanged": true,
+        "originalFailedNumericComparisonRetained": true,
+        "sourceSha256": "c8955d021d8383d70007d9fcdb534ef69d5b0ed1037838cd571625ebc89209e6",
+        "sourceBytes": 19547400,
+        "qualification": "All16 contact frames were actually inspected without a visible source/serving discrepancy. Source/serving geometry, material/runtime fingerprints and complete GLB bytes are identical. Original per-pixel differences and any failed historical bounds remain recorded; this is the root-authorized documented runtime-comparison qualification, not pixel-exact approval."
+      },
+      "materialAppearance": "Exact unchanged provider GLB geometry, materials and textures.",
+      "visualDecision": "All16 paired frames actually viewed. The clerical figure, raised hands, white robes, dark meteorite, staff and red carpet agree in source and serving from all eight directions. The finite carpet has irregular edges, and its underside repeats the scene rather than supplying an independently captured physical support. The numeric261-component topology hold remains intact; this exact-source acceptance is under the explicit owner quality exception. ABOVE best shows the full figure/meteorite arrangement and is selected for the thumbnail. No missing surfaces, loose fragments or materials were repaired.",
+      "captureLabel": "3D capture published by isramtz and identified as La Nona Ora by Maurizio Cattelan. Figure and meteorite on a rough-edged carpet patch. Many small detached scan fragments remain, and the carpet underside is unrecorded. The exact physical version and capture location are unconfirmed.",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0,
+          1,
+          0
+        ],
+        "status": "manual",
+        "note": "Pose and opening camera verified in actual native and eight paired source/serving views."
+      },
+      "views": [
+        {
+          "mode": "native-source",
+          "key": "FRONT",
+          "sha256": "2defed68bde9501498c7672c8943cc905573bce02bbd2d5f1c77756fccae9135",
+          "bytes": 285817
+        },
+        {
+          "mode": "native-source",
+          "key": "RIGHT",
+          "sha256": "b48d4e921c66dae5c74ddbf588b74827e7152996e4aa40f21f18822024fab56f",
+          "bytes": 235608
+        },
+        {
+          "mode": "native-source",
+          "key": "REVERSE",
+          "sha256": "2880e309bfc70fe606e4d00419921d9efef01dbf4895c914147c71748043db2b",
+          "bytes": 262954
+        },
+        {
+          "mode": "native-source",
+          "key": "LEFT",
+          "sha256": "0759e5da142dc4d885f53abb48520a7b0191cdb6baa35752d58cc74c383fb6c0",
+          "bytes": 250154
+        },
+        {
+          "mode": "native-source",
+          "key": "ABOVE",
+          "sha256": "58a28dc6afcb5054cfd53ea297bb8aa05caeb82322093d5ad7acb2077e6ff07e",
+          "bytes": 753572
+        },
+        {
+          "mode": "native-source",
+          "key": "UNDERSIDE",
+          "sha256": "869838795844708db390e1708191a4455f0abe68b03c6347bdd9d5a350304fa8",
+          "bytes": 451117
+        },
+        {
+          "mode": "native-source",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "bb716bf0d57fa783fa05c8b963dda7ad4a3e728e2c885c56b6a7be4713a846e6",
+          "bytes": 263445
+        },
+        {
+          "mode": "native-source",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "8b3cae8be187ae1100237bd907191bf62b8e1501abb175634795c727338bc2a1",
+          "bytes": 265913
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT",
+          "sha256": "a5dc98b683f17d9589458378a7b0dd18cf57753302cc7382d4f9fcaf32295c3b",
+          "bytes": 285894
+        },
+        {
+          "mode": "preview-production",
+          "key": "RIGHT",
+          "sha256": "fd0e6d83b3565c419778a851ab8c9c63c91e2fd2a7fdd088051eef9627b8d22c",
+          "bytes": 235612
+        },
+        {
+          "mode": "preview-production",
+          "key": "REVERSE",
+          "sha256": "7f84b3a284a2b42ca26eb9b0424efb29ca6e06b428439b9d379f159cf37a004f",
+          "bytes": 262958
+        },
+        {
+          "mode": "preview-production",
+          "key": "LEFT",
+          "sha256": "0e21ec0c8f943a6c0f87799e049e4cb55161aa72ec4ad574636244194b1d7c46",
+          "bytes": 250145
+        },
+        {
+          "mode": "preview-production",
+          "key": "ABOVE",
+          "sha256": "cb668807a94a0b0c322181515b061d847a32d392aa24317a58b2112e97f9602f",
+          "bytes": 753602
+        },
+        {
+          "mode": "preview-production",
+          "key": "UNDERSIDE",
+          "sha256": "48c9dceea76a40f9c51c994542777250e4370dd8090d57c8c5c381d6861f1b91",
+          "bytes": 451039
+        },
+        {
+          "mode": "preview-production",
+          "key": "FRONT-THREE-QUARTER",
+          "sha256": "6b414574644a3b6973429b36d1834b2c562737236b78b9b538c937070e9f7ad8",
+          "bytes": 263722
+        },
+        {
+          "mode": "preview-production",
+          "key": "BACK-THREE-QUARTER",
+          "sha256": "9c0a5089d0d1f8cf5019a96dc514f3cc6d968d7b14caaebcd60155d70d192f5d",
+          "bytes": 265909
+        }
+      ],
+      "contact": {
+        "sha256": "9f5172a0fbf3177fb26641df6131965145cb5876b55177eee6b99023a463079b",
+        "bytes": 141414
+      },
+      "thumbnail": {
+        "sha256": "ca9f1b16b82bac85e1ddbc0be422c215e8e857b701ac4798802c652d26450d4e",
+        "bytes": 59072
+      },
+      "poster": {
+        "sha256": "55c9072c17ab8d904afa670943d63c8dd2038277533081532c206a54d755443a",
+        "bytes": 78921
+      },
+      "thumbnailSource": {
+        "sha256": "cb668807a94a0b0c322181515b061d847a32d392aa24317a58b2112e97f9602f",
+        "bytes": 753602
       },
       "finalThumbnailActuallyReviewed": true,
       "physicalScaleVerified": false
