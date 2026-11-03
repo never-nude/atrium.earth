@@ -1,0 +1,75 @@
+{
+  "schema": "atrium-public-continuation04-independent-integration-check/1",
+  "batch": "idealized-nudes-hundred-20261102",
+  "continuation": "04",
+  "status": "pass",
+  "checkedAt": "2026-11-03T07:46:53.665868+00:00",
+  "catalog": {
+    "before": 2862,
+    "after": 2864,
+    "public": 2846,
+    "hidden": 18,
+    "oldRowsUnchangedExceptTotal": true,
+    "newExactWorks": 2,
+    "logicalBatchWorks": 14,
+    "target": 100,
+    "targetMet": false
+  },
+  "preservation": {
+    "normalPins": 126,
+    "normalNonmutablePins": 119,
+    "appendOnlyDataMaps": 7,
+    "additionalPins": 85,
+    "priorPrivateEvidencePins": 140,
+    "pipelinePins": 25,
+    "spatialExports": 17,
+    "statusUnchangedBeforeReleaseAppend": true,
+    "allCurrentBatchBarneyResearchSchutteImagesAndV3Preserved": true
+  },
+  "sourceCoverage": {
+    "sourceCase": "official-small-only-master-not-requested",
+    "sourceFiles": 2,
+    "availableSourceBytes": 40004068,
+    "sourceNewWholeHttp200": true,
+    "fullMasterBodiesRequested": 0,
+    "fullMasterStatus": "master-not-requested",
+    "completeFullMasterFiles": 0,
+    "unrequestedFullMasterFiles": 2,
+    "fullMasterSha256": null,
+    "fullMasterOriginalsVerified": false,
+    "originalPackageComplete": false,
+    "bothProviderRolesPermanentlyArchived": false,
+    "cleanupEligible": false,
+    "facetAttributeWords": [
+      0,
+      48623
+    ],
+    "facetWordStreamsReconstructedBitExact": true,
+    "bothDocumentaryDimensionsUncalibrated": true,
+    "roomEligibilityDisabled": true,
+    "sourcePackageAliasesAbsent": true,
+    "archiveMembers": 88,
+    "authenticatedArchiveReceipts": 4,
+    "publicPrivacyPass": true
+  },
+  "immutablePreapplyDeliveryReceiptsAuthenticated": 2,
+  "preexistingGaps": {
+    "physical-dimensions": {
+      "baselineMissing": 214,
+      "currentMissing": 214,
+      "sameMissingSlugs": true,
+      "missingSlugSetSha256": "d2276129298de47b27749e2846823b9a3cf7a54aabaa3d0e0a6befc1c1367923"
+    },
+    "spatial-eligibility": {
+      "baselineMissing": 279,
+      "currentMissing": 279,
+      "sameMissingSlugs": true,
+      "missingSlugSetSha256": "5196affa69fbc33e9b5598e063ba9f49e53a6a54544b65155b7e0d31c9ad16d6"
+    }
+  },
+  "scope": "Local postapply integration and preservation only; production deployment and actual browser screenshot acceptance remain separate.",
+  "privateAudit": {
+    "bytes": 4521,
+    "sha256": "3dd9c2d24d6dde5839bebafb4641db72c623c734e588718d75a163d7d5b569b8"
+  }
+}

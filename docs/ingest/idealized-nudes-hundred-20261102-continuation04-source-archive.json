@@ -1,0 +1,141 @@
+{
+  "schema": "atrium-public-official-small-new-acquisition-backup-summary/1",
+  "verifiedAt": "2026-11-03T07:06:45.159924+00:00",
+  "batch": "idealized-nudes-hundred-20261102",
+  "continuation": "04",
+  "sourceCase": "official-small-only-master-not-requested",
+  "coverageStatus": "provider-optimized-only",
+  "sourceCount": 2,
+  "sourceFileCount": 2,
+  "availableSourceBytes": 40004068,
+  "providerSuppliedViewingSourceBytes": 40004068,
+  "completeFullMasterCount": 0,
+  "completeFullMasterBytes": 0,
+  "unrequestedFullMasterFiles": 2,
+  "fullMastersRequested": 0,
+  "fullMasterBodiesRequested": 0,
+  "fullMasterRequestCountScope": "Full body GETs only; documentary metadata/HEAD discovery is separate.",
+  "fullMasterStatus": "master-not-requested",
+  "fullMasterObtained": false,
+  "masterObtained": false,
+  "fullMasterSha256": null,
+  "fullMasterOriginalsVerified": false,
+  "originalPackageComplete": false,
+  "bothProviderRolesPermanentlyArchived": false,
+  "fullVersusSmallGeometryEqualityClaimed": false,
+  "cleanupEligible": false,
+  "qualifiedGlbPayloadBackedUpInThisBundle": false,
+  "sourceRepresentation": "Two newly acquired unchanged official optimized Small STL representations only. The two separate Full masters were not selected or requested; their hashes and geometry remain unknown. New complete HTTP200 acquisition headers, rights and source authority are retained. Exact Small conversion code/proofs are preserved; GLB payloads are excluded. No original-master/package/both-role completion or cleanup claim.",
+  "selectedRepresentationPackageVerified": true,
+  "permanentPrivateAvailableSourcesVerified": true,
+  "officialSmallSha256AndExactBytesVerified": true,
+  "sourceRoleProofs": [
+    {
+      "uid": "smk-kas100",
+      "officialSmall": {
+        "bytes": 20000984,
+        "sha256": "c6e9be6ba1789a1a1856ef90dd649231fe069a693efdc7e9e55670eb49481063",
+        "assetRole": "derivative-other",
+        "representationRole": "provider-official-small-stl"
+      },
+      "full": null,
+      "fullMasterStatus": "master-not-requested",
+      "fullMasterRequested": false
+    },
+    {
+      "uid": "smk-kas425",
+      "officialSmall": {
+        "bytes": 20003084,
+        "sha256": "6c613c40697fb178d37b462905a0413e4c6e61598951a742859e96c79f69be5f",
+        "assetRole": "derivative-other",
+        "representationRole": "provider-official-small-stl"
+      },
+      "full": null,
+      "fullMasterStatus": "master-not-requested",
+      "fullMasterRequested": false
+    }
+  ],
+  "unrequestedFullMasters": [
+    {
+      "uid": "smk-kas100",
+      "url": "https://api.smk.dk/api/v1/download-3d/nc580r93k_106-kas100.stl",
+      "declaredBytes": 103551484,
+      "declaredBytesScope": "First-party metadata/HEAD only; no complete Full body.",
+      "sha256": null,
+      "status": "master-not-requested",
+      "requested": false,
+      "completeBodyObtained": false,
+      "geometryReviewed": false,
+      "originalPackageComplete": false,
+      "bothProviderRolesPermanentlyArchived": false,
+      "cleanupEligible": false
+    },
+    {
+      "uid": "smk-kas425",
+      "url": "https://api.smk.dk/api/v1/download-3d/x346d873m_smk40-kas425.stl",
+      "declaredBytes": 100001384,
+      "declaredBytesScope": "First-party metadata/HEAD only; no complete Full body.",
+      "sha256": null,
+      "status": "master-not-requested",
+      "requested": false,
+      "completeBodyObtained": false,
+      "geometryReviewed": false,
+      "originalPackageComplete": false,
+      "bothProviderRolesPermanentlyArchived": false,
+      "cleanupEligible": false
+    }
+  ],
+  "ownerOnlyFolderAndObjectPermissionsVerified": true,
+  "exactFolderMembershipVerified": true,
+  "allPortableRecoveryMapsCompleteReadbackVerified": true,
+  "allVerificationProofsCompleteReadbackVerified": true,
+  "allSourceArchiveMembersCompleteContentVerified": true,
+  "allSignedCompleteContentReceiptsAuthenticated": true,
+  "archiveMembersVerified": 88,
+  "bundle": {
+    "bytes": 36068340,
+    "sha256": "b4a352b84e083dba59390486c3b4c0e794ffd628c61d65beda31985f6ffc6c00",
+    "orderedCloudParts": 1,
+    "maximumPartBytes": 94371840
+  },
+  "permanentCloudObjects": 3,
+  "permanentCloudObjectRoles": {
+    "availableSourceBundleParts": 1,
+    "portableRecoveryMap": 1,
+    "verificationProof": 1
+  },
+  "verification": {
+    "individualPartCompleteReadbacks": 1,
+    "wholeBundleConcatenatedCompleteReadback": true,
+    "additionalWholeCloudTarStreamAndEveryMemberReadback": true,
+    "allCloudMembersFullSha256AndExactBytesVerified": true,
+    "providerOfficialSmallStlsFullyHashed": 2,
+    "providerOriginalFullStlsFullyHashed": 0,
+    "recoveryMapCompleteReadback": true,
+    "verificationProofCompleteReadback": true,
+    "allChecksUseFullSHA256AndExactBytes": true,
+    "authenticatedSignedReceiptCount": 4
+  },
+  "acquisitionTransportQualification": {
+    "newAcquisition": true,
+    "method": "whole-HTTP-200",
+    "completeOfficialSmallBodies": 2,
+    "fullMasterBodiesRequested": 0,
+    "legacyReuseOrRangeHistoryClaimed": false
+  },
+  "recoveryMap": {
+    "bytes": 62984,
+    "sha256": "eae88f4117f18aa8393f5ca2543033fff2dbc5d7f7e5d35cbd744e24b0c7729c"
+  },
+  "verificationProof": {
+    "bytes": 50031,
+    "sha256": "cac30dbf093b4b5918d2ee26fc25fc3fa5f67212bf0b49dc1f46e998489831f4"
+  },
+  "localRemoval": {
+    "availableSourceFilesRemoved": 0,
+    "sourceArchiveRemoved": false,
+    "stagedPartsRemoved": false
+  },
+  "scope": "Available official optimized Small representations only. Separate Full masters remain unrequested; no Full hash, Full geometry/equality, original-package completeness, calibrated scale, public admission, deployment or cleanup claim.",
+  "status": "pass"
+}
