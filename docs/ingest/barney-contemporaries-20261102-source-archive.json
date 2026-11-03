@@ -1,0 +1,59 @@
+{
+  "schema": "atrium-source-offload-summary/1",
+  "batch": "barney-contemporaries-20261102",
+  "status": "pass",
+  "checkedAt": "2026-11-03T03:47:59.827Z",
+  "permanentPrivateSourceBackup": {
+    "count": 5,
+    "bytes": 76186248,
+    "fullSha256AndBytesReadBack": true,
+    "ownerPrivateSharingVerified": true
+  },
+  "publishedAndOffloadedCanonicalOriginals": {
+    "count": 2,
+    "bytes": 35609784,
+    "allRemovedPathsAbsent": true,
+    "quarantinedFiles": 0
+  },
+  "retainedHeldOriginals": {
+    "count": 3,
+    "bytes": 40576464,
+    "fullHashesRechecked": true
+  },
+  "retainedMixedTransport": {
+    "bytes": 56527948,
+    "fullHashRechecked": true,
+    "reason": "The mixed temporary transport remains local because it also contains the three held sources; it includes redundant copies of accepted sources too."
+  },
+  "releases": [
+    {
+      "slug": "modern/mike-kelley-more-love-hours-10ed86",
+      "releaseCommit": "9e5897d89e8ec40c306fdbe7f7b3f903dc4574a2",
+      "deploymentRun": "41573138728"
+    },
+    {
+      "slug": "modern/alison-lapper-paralympics-concept-model-600447",
+      "releaseCommit": "29c3e87d4ad1e29e7d70f32dbbfe1dccaeca14e8",
+      "deploymentRun": "41573829069"
+    }
+  ],
+  "liveVerification": {
+    "works": 2,
+    "publicAssetBodies": 6,
+    "publicImagesUnchanged": 4,
+    "browserModels": 2,
+    "newestLayoutsPerRelease": 2,
+    "actuallyReviewedImages": 6,
+    "physicalDeviceARTested": false
+  },
+  "finalPrivateRecoveryCheckpoint": {
+    "sha256": "41ab96d2925033dc3ec2af3b3aebc25fdc9d1b79b8bd9a3548b77d3033dd9db2",
+    "bytes": 7343857,
+    "format": "tar+gzip",
+    "members": 124,
+    "completePrivateReadbackVerified": true,
+    "includesBothRemovalJournalsAndHeldSourceEvidence": true,
+    "signingKeyIncluded": false
+  },
+  "scope": "Only these five acquired sources, two accepted single-work releases, and their bounded canonical-file offload. No whole-collection backup claim."
+}
