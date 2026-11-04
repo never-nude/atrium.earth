@@ -1,0 +1,57 @@
+{
+  "schema": "atrium-private-source-archive-proof/1",
+  "batch": "nudes-hundred-20261103",
+  "status": "verified",
+  "verified_at": "2026-11-04T01:00:41.806Z",
+  "selected_work_count": 100,
+  "acquired_source_package_count": 101,
+  "held_surplus_source_count": 1,
+  "control_package_count": 1,
+  "verified_package_count": 102,
+  "owner_private_remote_object_count": 110,
+  "archive_zip_bytes": 3141629570,
+  "source_zip_bytes": 3112317069,
+  "source_package_file_entries": 837,
+  "control_package_file_entries": 1629,
+  "all_package_file_entries_hashchecked": 2466,
+  "unique_restore_file_paths": 2324,
+  "signed_complete_download_receipts_verified": 102,
+  "all_package_members_rehashed_unchanged": true,
+  "all_remote_objects_owner_private": true,
+  "verification_method": "Fresh complete remote-download SHA256 and exact byte verification for ordered parts and reconstructed complete ZIPs, with authenticated per-package receipts and independent source/control/file/remote-binding audit.",
+  "source_breakdown": {
+    "polycam": 30,
+    "sketchfab": 49,
+    "smk": 22
+  },
+  "selected_breakdown": {
+    "polycam": 30,
+    "sketchfab": 48,
+    "smk": 22
+  },
+  "smk_representation_scope": "21 official Small STL sources plus the sole offered KAS19/6 STL. No additional higher-resolution Full/master file was obtained or is claimed. Exact selected representations are retained per source.",
+  "other_source_scope": "Available unchanged Polycam native glTF/geometry/referenced images and Sketchfab distribution ZIPs retained with provenance. Container-derived GLBs preserve their documented lineage; no unpublished authoring-master claim.",
+  "local_original_sources_retained": true,
+  "original_source_files_removed": 0,
+  "generated_transport_parts_retired_after_signed_readback_and_source_rehash": 110,
+  "control": {
+    "sha256": "40aae9a22c77ce3062b2a471ff128062dcbcd4ae9db18f2fdb821499af33318a",
+    "bytes": 29312501,
+    "ordered_part_count": 1,
+    "includes": "Frozen acquisition/selection/deduplication/readback metadata, offline gallery/thumbnails/server, portable private remote recovery map, source package manifests, signed source receipts, privacy checkpoints, exact cache-retirement journals and verification trust strategy.",
+    "excludes": "Owner-only local signing key, ephemeral download URLs, active logs and post-completion proof summaries."
+  },
+  "portable_recovery": {
+    "schema": "atrium-portable-private-remote-recovery/1",
+    "source_packages": 101,
+    "selected_sources": 100,
+    "held_surplus_sources": 1,
+    "sha256": "830305d57f6efb4747097c96c2808bf63fbc6a44475c039f459fad7319e69c7a",
+    "bytes": 600223,
+    "complete": true
+  },
+  "signing_key_fingerprint_sha256": "931fd542b83bc68f19acaf5eb93142c5e791fbe2c87d81a1fa213fed3f530c5b",
+  "trust_strategy": "Signing key remains owner-only locally; its non-secret fingerprint is archived. Restoration verifies ordered part/full ZIP/file SHA256 and bytes against the portable mapping and public control-ZIP hash anchor without needing the signing key. If the local key is lost, future cleanup requires fresh complete readbacks under a new owner-only key.",
+  "private_remote_ids_and_credentials_omitted": true,
+  "publication_status": "Acquisition staged locally; this archive proof does not assert publication of the100 new works."
+}

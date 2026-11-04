@@ -1,0 +1,703 @@
+{
+  "schema": "atrium-staged-acquisition-source-audit/1",
+  "batch": "nudes-hundred-20261103",
+  "checked_at": "2026-11-04T00:46:06.018557+00:00",
+  "baseline_commit": "7172db7447e0c514fa71f83f80a4a5bec8b03ae4",
+  "baseline_catalog_count": 2864,
+  "state": "sources-acquired-staged-not-admitted",
+  "catalog_additions": 0,
+  "selected_sources": 100,
+  "completed_sources": 100,
+  "source_formats": {
+    "stl": 22,
+    "glb": 78
+  },
+  "lane_counts": {
+    "smk": 22,
+    "polycam": 30,
+    "sketchfab": 48
+  },
+  "native_model_bytes": 2145166426,
+  "full_local_content_sha256_readbacks": 100,
+  "source_model_containers_structurally_valid": true,
+  "model_file_hashes_unique": true,
+  "exact_baseline_provider_accession_matches": 0,
+  "exact_baseline_source_pin_hash_matches": 0,
+  "within_selected_provider_id_duplicates": 0,
+  "within_selected_native_model_hash_duplicates": 0,
+  "confirmed_same_physical_object_duplicates": 0,
+  "physical_dedupe_scope": "Exact provider/accession/native-hash checks against2864existing catalog entries and across all100 selected sources, plus combined provider-image, institution/cast and venue review. Distinct physical casts and replicas remain distinct even when a sculptural composition is shared.",
+  "digital_source_license_checks": {
+    "smk": "22 live institutional public-domain records; official STL download metadata and completed byte-identical payloads.",
+    "polycam": "30 public savable physical-sculpture captures; official Polycam savable-content CC BY4.0 policy rechecked at audit date.",
+    "polycam_policy_url": "https://learn.poly.cam/hc/en-us/articles/27646853145748-Usage-Rights-and-Ownership",
+    "sketchfab": "48 currently downloadable CC0/CCBY/CCBYSA entries; current provider license matched preserved mirror-package license. Original mirrored ZIPs and recovered native model content retained.",
+    "underlying_artwork_rights_separate": true,
+    "independent_underlying_artwork_clearance_claimed": false
+  },
+  "source_representation_scope": {
+    "smk": "22 official native STL files retained unchanged:21explicit Small optimized representations and one only-offered STL (KAS19/6,50,002,184bytes). Higher-resolution master packages were not additionally requested; master hashes remain null and original_package_complete is false. This is preservation of the available acquired representation, not an unpublished full-master acquisition claim.",
+    "polycam": "Original publicly served glTF,geometry,image/material files retained byte-identically; self-contained source GLBs are lossless container packaging. No authoring/capture-photo package completeness claim.",
+    "sketchfab": "Original available archive ZIP retained unchanged and distribution model buffers/images preserved. No claim of obtaining unpublished authoring files."
+  },
+  "excluded_surplus": {
+    "source_id": "0143c96765f44bbdad63875958a3b04a",
+    "status": "held-surplus-not-counted",
+    "reason": "Physical sculpture capture lineage insufficiently explicit; immutable acquired source retained. Replaced in selected100 by institutional OldCentaur32ac80c233434e5e933e78585bc51ff7."
+  },
+  "manual_physical_object_comparisons": [
+    {
+      "case": "SMK historical casts",
+      "result": "22 distinct institutional accession objects absent from current catalog. Different originals or casts elsewhere do not make these same physical objects. Same-source SMK Michelangelo casts already held were excluded."
+    },
+    {
+      "case": "Maillol Night",
+      "result": "Selected publisher dates its capture subject1939. Frozen provider geoData placemark locates the capture at4400ForbesAvenue,Pittsburgh, matching primary Smithsonian Carnegie Museum bronze record321088. This is distinct from held Met bronze50.100,ca1902. No artwork-composition uniqueness claim; exact edition/foundry scholarship remains provisional.",
+      "primary_comparison_url": "https://www.si.edu/object/night-sculpture%3Asiris_ari_321088"
+    },
+    {
+      "case": "Maillol Île-de-France",
+      "result": "Selected Roubaix LaPiscine stone sculpture differs from held Harvard bronze."
+    },
+    {
+      "case": "Bourdelle Hercules the Archer",
+      "result": "Selected Toulouse bronze and Met bronze are distinct physical casts and differ from held MuséeBourdelle full-scale plaster."
+    },
+    {
+      "case": "Vallmitjana",
+      "result": "Selected woman-and-lion terracotta differs visibly from held Tradition elderly woman/crow/books."
+    },
+    {
+      "case": "Ancient Aphrodite/Apollo and Venus replicas",
+      "result": "Institution-specific marble sculptures, SMK casts, Kraków Rz123 plaster, modern decorative replicas and different acquired physical objects are kept distinct; their shared sculptural type is not treated as an exact-object duplicate."
+    },
+    {
+      "case": "Altes Museum athlete torsos",
+      "result": "Two selected provider photographs show different torso shapes and surviving anatomy; no exact-object repetition observed."
+    },
+    {
+      "case": "Old Centaur Wawel1769",
+      "result": "Institutional cast accession differs from held YoungCentaur ZKWawel1770 and other physical centaur sculptures; OldCentaur and YoungCentaur have distinct anatomy and compositions."
+    }
+  ],
+  "review_status": {
+    "provider_metadata_and_subject_images": "reviewed",
+    "local_file_bytes_hashes_and_model_containers": "verified",
+    "detailed_cast_date_material_scholarship": "deferred-with-provider-attribution-and-known-unknowns",
+    "full_native_and_serving_visual_approval": "not-completed-or-claimed",
+    "pose_framing_capture_defect_fixes": "deferred",
+    "site_admission": "not-performed",
+    "preview_upload_or_new_site_deployment": "not-performed"
+  },
+  "tracked_repository_preservation": {
+    "catalog_unchanged": true,
+    "catalog_count": 2864,
+    "all_tracked_data_app_ui_unchanged": true,
+    "allowed_tracked_changes": "STATUS.md and new ingest documentation only",
+    "unexpected_tracked_changes": []
+  },
+  "findings": [],
+  "archive_verification": "Separate permanent private archive verification in progress; not claimed complete by this source audit.",
+  "source_pins": [
+    {
+      "lane": "smk",
+      "source_id": "KAS193",
+      "sha256": "73b95ef90afdaec97a3a3dbeda49935bd2de9752a557e6eae61432ebd40bb48e",
+      "bytes": 20000684
+    },
+    {
+      "lane": "smk",
+      "source_id": "DEP459",
+      "sha256": "7cda59adb82fbc0d47fd26fd0062a0660e85d31e4d1586fdb8aacea171c75859",
+      "bytes": 20002184
+    },
+    {
+      "lane": "smk",
+      "source_id": "KMS5781",
+      "sha256": "2157cb9846c9da9a813f9a508665b6cb55e458575a80f557dec5a52c1dee6dc4",
+      "bytes": 20000684
+    },
+    {
+      "lane": "smk",
+      "source_id": "KAS2129",
+      "sha256": "09a018472c8f523aedcb73a62f586f40e5bc29880125a5b8c84aab8987e4cb9b",
+      "bytes": 20001634
+    },
+    {
+      "lane": "smk",
+      "source_id": "KAS1689",
+      "sha256": "a0eabe4ff140e34acfe5f49cabe0264077642c38c922f3df9f56f1779aef0c8c",
+      "bytes": 19999884
+    },
+    {
+      "lane": "smk",
+      "source_id": "KAS1333",
+      "sha256": "eb3ad18936857563aceac135a54c7ed304ab18a28a8de47d7765125a6dbf4cf2",
+      "bytes": 20000784
+    },
+    {
+      "lane": "smk",
+      "source_id": "KAS1339",
+      "sha256": "01b04dcf374b2c1a625795a3ba9e011d8c2b4f861f442aad3433584858732bab",
+      "bytes": 19999884
+    },
+    {
+      "lane": "smk",
+      "source_id": "KAS1175",
+      "sha256": "dd741d872c2dc659e5cef4328a3b282b01c75de4b572e45d1d361cda92669cf2",
+      "bytes": 19999984
+    },
+    {
+      "lane": "smk",
+      "source_id": "KAS1074",
+      "sha256": "9d77c95156a1668120fec93483b0b8bf949912b08825b6df5c45db4e4094d54f",
+      "bytes": 20000484
+    },
+    {
+      "lane": "smk",
+      "source_id": "KAS768",
+      "sha256": "c7766579f79e21411a3dd25e28f237564fe53e2e547791a7ecb785f8baee551a",
+      "bytes": 19999884
+    },
+    {
+      "lane": "smk",
+      "source_id": "KAS770",
+      "sha256": "d8a3537a6bbc06bb6b6cd442e993ab282caea54950fb7ac81de2759b355c66b7",
+      "bytes": 19999984
+    },
+    {
+      "lane": "smk",
+      "source_id": "KAS823",
+      "sha256": "6f918300ff20b1d2b8cd98953b533ef5d65ff2d536d17728fdaec837c596f3d4",
+      "bytes": 20001084
+    },
+    {
+      "lane": "smk",
+      "source_id": "KAS535",
+      "sha256": "f7500e9f940d2a48196c5ac25bb2b3c4d797cd9f99c9194818c8cacd206c6821",
+      "bytes": 20001684
+    },
+    {
+      "lane": "smk",
+      "source_id": "KAS541/4",
+      "sha256": "973ef0502a983533caa17ddda05d02357a561f10625a0e0f910bd7aa596e797c",
+      "bytes": 20001584
+    },
+    {
+      "lane": "smk",
+      "source_id": "KAS472",
+      "sha256": "a766946a3736e68a6c2ff01d36f68ee017b0c4fe8d58204795ef1aea39250286",
+      "bytes": 20005084
+    },
+    {
+      "lane": "smk",
+      "source_id": "KAS245",
+      "sha256": "ef043c717e9b7bb0359ca47e1da79cc787f680accdf2dcbd160acc6e44a67ba9",
+      "bytes": 19999984
+    },
+    {
+      "lane": "smk",
+      "source_id": "KAS106",
+      "sha256": "ccd75de16ebfe2ede1007bc287d21645c8eb0922678a2380183064957107fe90",
+      "bytes": 19999884
+    },
+    {
+      "lane": "smk",
+      "source_id": "KAS19/6",
+      "sha256": "02e6343f354f14bdef512e99791cfc58df2448e0661c9cf3fda3af0cf540d3d1",
+      "bytes": 50002184
+    },
+    {
+      "lane": "smk",
+      "source_id": "KAS19/3",
+      "sha256": "4a9bac37a98d0395d4945aed518e8910246870d3f9b024d81bc51042363f4b00",
+      "bytes": 20005084
+    },
+    {
+      "lane": "smk",
+      "source_id": "KMS6017",
+      "sha256": "e4bd23d5c2d34116626d9ed7a7ff84e472d5f93198c4ae1ffc95d3fde3761c66",
+      "bytes": 20001584
+    },
+    {
+      "lane": "smk",
+      "source_id": "KMS5254",
+      "sha256": "f8cf78e91435897157dd9bf68de2c19b92a09e1f7ed2522af447df7a0f2c97e0",
+      "bytes": 20000684
+    },
+    {
+      "lane": "smk",
+      "source_id": "KMS5779",
+      "sha256": "ff499a34c748af549ea98995285b4b1f7510d48fb44208ee3216feb77b3a4660",
+      "bytes": 19999884
+    },
+    {
+      "lane": "polycam",
+      "source_id": "F7D011FD-A957-4FEB-8E72-AC67E7E61AF9",
+      "sha256": "becfc88b8f582e8ab6132cd20e19b14ecf17c666060b43259f5168f354fa5f74",
+      "bytes": 5212104
+    },
+    {
+      "lane": "polycam",
+      "source_id": "D1A9941F-7C72-4D10-8AFE-18197561F373",
+      "sha256": "d5e7c9d1c3379c0d5e02f8c63cc68cd7404ba09bda0b533589b5d6d4beb74028",
+      "bytes": 9887908
+    },
+    {
+      "lane": "polycam",
+      "source_id": "54850F08-65D0-42F7-94FA-3A37B9023681",
+      "sha256": "444eb3810c8261fcda9bc0c2210f7a1bdc1fb7ce94ce2596b22a069b1e9f6a4c",
+      "bytes": 3963372
+    },
+    {
+      "lane": "polycam",
+      "source_id": "B4F6ED5A-2754-4FA1-B86B-3B43F3DD94B0",
+      "sha256": "6aff74c6c6a5677831e9f51fd1c80cf6a9ded14736c684e94586084c42b3184e",
+      "bytes": 3525268
+    },
+    {
+      "lane": "polycam",
+      "source_id": "28f3c101-4e22-4cba-9fea-5e6ca6f3b6d7",
+      "sha256": "326145bd3a16c13e7c93cbcaf6f09713b827987663fbe9365a8b7b899bc60030",
+      "bytes": 15592400
+    },
+    {
+      "lane": "polycam",
+      "source_id": "1a698b79-5790-4051-a6fd-4d3bd7db1960",
+      "sha256": "9e9c8cbf6e46e7bc35c36aca80a20b64ac7007433f9a30e1784147f0eb8f4bb3",
+      "bytes": 25628164
+    },
+    {
+      "lane": "polycam",
+      "source_id": "1222cbac-b755-4077-acd3-e571b86dc037",
+      "sha256": "73a99c5b9a797481ce10532c600f2c8f2456e0787a61ee1842e2fb0f92c5811c",
+      "bytes": 26557880
+    },
+    {
+      "lane": "polycam",
+      "source_id": "087B0EE4-40DC-4E3E-B6A6-AA822931FFAC",
+      "sha256": "9ab20991b5f4d4e9f399fc6fbbcdca0136b063a952e72d96bdf4f286eec16a22",
+      "bytes": 20998444
+    },
+    {
+      "lane": "polycam",
+      "source_id": "82CC75E9-894E-4D4A-8BA9-45081C7CCF8F",
+      "sha256": "540e0cccbcec9db19ec67594d8bf7a89c9fe9f0c1b9d3473fd10e18c02585ce6",
+      "bytes": 17603072
+    },
+    {
+      "lane": "polycam",
+      "source_id": "0d2554da-c03c-4640-a491-495cc5a1979e",
+      "sha256": "561012c3f757778aa89ffb312eaa89c1406273191d8ea6be47102793d20dbe3b",
+      "bytes": 28843244
+    },
+    {
+      "lane": "polycam",
+      "source_id": "04509f67-1f42-4993-932a-5edf64594caa",
+      "sha256": "fe2e033b2a7c6baf806d67e44737005658c0770cb5893b5f694b2aaf5fc79c6f",
+      "bytes": 5249628
+    },
+    {
+      "lane": "polycam",
+      "source_id": "D6AB27B4-96BD-4B30-87DB-8D89E2169219",
+      "sha256": "09342fa7b0a35253da4a551ac3ce5957f82d7f168007cb820ad07c53bcfd6da7",
+      "bytes": 4944792
+    },
+    {
+      "lane": "polycam",
+      "source_id": "d606ca5d-bff6-431a-8b65-7961d70c827f",
+      "sha256": "16a8e617ea785d5a0b7d27b3d618e3264c9cbc91497b9e9374eb87d653a2e284",
+      "bytes": 10886092
+    },
+    {
+      "lane": "polycam",
+      "source_id": "7DBA3B7A-151B-4C52-813E-411152E177BB",
+      "sha256": "fcca33c0fac7eadb225ac4b45f5fbfa1b867766b3834dd044af2796d0248ea31",
+      "bytes": 5383032
+    },
+    {
+      "lane": "polycam",
+      "source_id": "99E62E27-D8F6-4F45-93D2-E9DC6980040B",
+      "sha256": "eb6bac1e36764e4f2ad3e2b5d7dff50a6cd468fe8db7130d97d098db29f9dc27",
+      "bytes": 5825824
+    },
+    {
+      "lane": "polycam",
+      "source_id": "0273D28E-D642-4F7D-8978-8855ADC5962B",
+      "sha256": "1074dacda4fad88b55d2eab3ff8d6cfdf53b68aa0f36cfd275bb9984d75e8c7d",
+      "bytes": 5361856
+    },
+    {
+      "lane": "polycam",
+      "source_id": "5DF84468-2A0E-4FCC-B72F-A35984E4B8F1",
+      "sha256": "d60bf6a9efa9920131466931a3175bd871aa0ac19882b386ba1af1a9b6f5e200",
+      "bytes": 3792584
+    },
+    {
+      "lane": "polycam",
+      "source_id": "50587662-1E0D-494E-A788-D9786034F8A2",
+      "sha256": "8ff1e1834f326765b16f8b29bd972071b3e39f70d294bdb839dcf3c5e2adb40a",
+      "bytes": 7650852
+    },
+    {
+      "lane": "polycam",
+      "source_id": "F3CC0FFA-592F-4641-AABD-DD7623A23018",
+      "sha256": "b4c3ce31823ffb1fd8f9ca7486cf49e02e69fafcb2f8de85f35fb9eb8db7d779",
+      "bytes": 6324272
+    },
+    {
+      "lane": "polycam",
+      "source_id": "4E66295D-DD8B-4541-8115-9F920F0FF30A",
+      "sha256": "d1d98becec63e10d4f6eed16982a37696a522281e0f7a2a2cfc7240596a75df7",
+      "bytes": 18471092
+    },
+    {
+      "lane": "polycam",
+      "source_id": "43533F1E-7AAF-4FED-AC0B-C75CD419D2D2",
+      "sha256": "7e69cc974aebe204aeadd3f5ba749072f1a2fb28f65955099a66316a53fbef57",
+      "bytes": 59928296
+    },
+    {
+      "lane": "polycam",
+      "source_id": "D7F39F78-F1B3-4C98-B0B1-75137E610893",
+      "sha256": "52241200d06b15c6fa5a5c27c38c01301dc1f4df5f74e62d57805e3e2002f48d",
+      "bytes": 6378276
+    },
+    {
+      "lane": "polycam",
+      "source_id": "BD52D1F8-CBF9-4090-A00F-A9913D18AB94",
+      "sha256": "67d9acc516d5f0f98b3ec696800e1b032267c21be365d6a6c3eddcdb9152a034",
+      "bytes": 7064576
+    },
+    {
+      "lane": "polycam",
+      "source_id": "ad68999d-1f91-4e1f-a76d-553326ca9835",
+      "sha256": "0c7eafcc86266ec066c0897894e0a9483315834c4a38b7e50b192834092168a0",
+      "bytes": 5081356
+    },
+    {
+      "lane": "polycam",
+      "source_id": "A283D639-6640-4C11-B9DE-9B4B3C4011D8",
+      "sha256": "ce2502100603dc3d8924458a176e8f79899bd976f991b2d2902b927a2cdff368",
+      "bytes": 3953824
+    },
+    {
+      "lane": "polycam",
+      "source_id": "8530B746-4108-45EC-8FC3-709B87B631D4",
+      "sha256": "157f876d3ce6ed08d03546ce0054aa9b7b471d3c5f4b575c139768fbed47b49e",
+      "bytes": 1611588
+    },
+    {
+      "lane": "polycam",
+      "source_id": "A33E5BD1-1660-44D7-A9EA-ECCFE4F18E33",
+      "sha256": "c88d8651caf0fc5653bf8a465e31ac5cff9e4b7af4afb8675c3e01d27ac8dfe3",
+      "bytes": 45760468
+    },
+    {
+      "lane": "polycam",
+      "source_id": "83E250BC-FD3A-40A0-AA08-3384F4B5EB07",
+      "sha256": "29a07ed4656307c15d2465ba579384c19f64904348e0f28414bf84b6560e399b",
+      "bytes": 14404236
+    },
+    {
+      "lane": "polycam",
+      "source_id": "305c645f-41b4-4a20-baca-68e1f68fe695",
+      "sha256": "b887cebd1e10879b6b60322cb9071b85ece130ad26f12a0f21981c44f9b22c7f",
+      "bytes": 60085684
+    },
+    {
+      "lane": "polycam",
+      "source_id": "76c5e244-3db3-43c2-9a39-09e52af3263e",
+      "sha256": "acf40491ff34caa42326140020b6d01b80fb80b03d2225d990f45ccc3fb5d47c",
+      "bytes": 15338064
+    },
+    {
+      "lane": "sketchfab",
+      "source_id": "f7252dee93be445c98e3ef68028fd4cb",
+      "sha256": "8d3b858940acbfa7f1c67bc32364a3fde68db7afad45570db3b5d661f2a22bb9",
+      "bytes": 2186276
+    },
+    {
+      "lane": "sketchfab",
+      "source_id": "23029b5c4f85422db679b0ad10454c66",
+      "sha256": "ef28ca432c1e415db46b2de7abc687ad6ec27641e2c7234d26124c7df70099d4",
+      "bytes": 1899596
+    },
+    {
+      "lane": "sketchfab",
+      "source_id": "e0bdcc43d6f440f09dc1e07cd72c2562",
+      "sha256": "1beb4fac965def6f1a685316c162134e3922e9a6de6c59e46f1cb29471d819c5",
+      "bytes": 2026728
+    },
+    {
+      "lane": "sketchfab",
+      "source_id": "0661c46bf3ce41189b27b1d28703cf1f",
+      "sha256": "9de5e6466333fc4773c2614256da59ff5c440ef5bcdd2fdf65fff7ab4e9dc256",
+      "bytes": 3185980
+    },
+    {
+      "lane": "sketchfab",
+      "source_id": "9beaae3da1dd4237b3b4f7770b70be69",
+      "sha256": "4ed71f82e960798bd11c7cf868cd1d3094d8115474a13cad556f59a677bcccc5",
+      "bytes": 4193716
+    },
+    {
+      "lane": "sketchfab",
+      "source_id": "8d05ae85be0942faa1e9e5b078b94fe6",
+      "sha256": "7b8d6feb7352d2b72a7d572cdb75717833d6629e77655ecfb915a2023a097f6a",
+      "bytes": 4559316
+    },
+    {
+      "lane": "sketchfab",
+      "source_id": "e2238483a4b54771951f373d74a2e5aa",
+      "sha256": "f56b9bd13188090934d61dc04a06fa0361be2230ed771b1157b9db75953fe9f6",
+      "bytes": 5639164
+    },
+    {
+      "lane": "sketchfab",
+      "source_id": "67dfa61a912c459ca8e8da5c35285fc6",
+      "sha256": "9ed57586581f86a93bd2e0ce2d86767193ead467798c363c7f3f47a1783246cf",
+      "bytes": 7472972
+    },
+    {
+      "lane": "sketchfab",
+      "source_id": "b7d5f024ab564da6b705a264c69b0bb7",
+      "sha256": "59649d0443dbad9df9f48fe4c18277ae0cf949472a6f1626809bb57fc405d25a",
+      "bytes": 8078248
+    },
+    {
+      "lane": "sketchfab",
+      "source_id": "88df3d741dc3416083ea019b13cd55f7",
+      "sha256": "dd8c14938b9e5b0d4baf880e048f72275b21f4ff6fca1062d21a4e67bed36f01",
+      "bytes": 8488800
+    },
+    {
+      "lane": "sketchfab",
+      "source_id": "06b0843fd1de43b4a6436c280dac3f00",
+      "sha256": "874b4216ea9e7d370387ef5cead6d9c3056866db39f59d5fdf7af988c33481c3",
+      "bytes": 8157140
+    },
+    {
+      "lane": "sketchfab",
+      "source_id": "f0d1a94d10ac4a4999428ae23e01ab5f",
+      "sha256": "6a0dfea4f8b344c02810167263a536ae83fe7bed708b2ad0dbf644ce52a29c39",
+      "bytes": 8915320
+    },
+    {
+      "lane": "sketchfab",
+      "source_id": "7cd1b4747baf4acd970c7d3dc8a5710c",
+      "sha256": "e5cf5d18e778363d7ce2b24cde910cbe9bb4296da99dc26731d59cdd111157b4",
+      "bytes": 10187096
+    },
+    {
+      "lane": "sketchfab",
+      "source_id": "d772d6bd8c064dc18165dafae48b72fd",
+      "sha256": "577aafc831b85775a192b8dc4e6820f7f1ed50305d840defa19031cfd1279aeb",
+      "bytes": 9837764
+    },
+    {
+      "lane": "sketchfab",
+      "source_id": "8f4827cf36964a17b90bad11f48298ac",
+      "sha256": "751177a17e93d3930c3fbd0439b7a4b98089980fc60b2bbdeab44805892c95eb",
+      "bytes": 13260732
+    },
+    {
+      "lane": "sketchfab",
+      "source_id": "f78a61a14e4340aab3e5db6da5c797ce",
+      "sha256": "67e30e2853578ac328689b7a8683187662dbc313fa3909cdc97799bd293a9312",
+      "bytes": 12457288
+    },
+    {
+      "lane": "sketchfab",
+      "source_id": "1cbae3011622482ab7d51f1a4dc36d02",
+      "sha256": "51527a4ae7916a0da6f37be19d29ec8718378f4b6c693f9d4067b2cebcbc3a77",
+      "bytes": 12064984
+    },
+    {
+      "lane": "sketchfab",
+      "source_id": "74ac8054f3cd44e2be8fe7816566c534",
+      "sha256": "14d534a5415642bb3acda4f6c0e2683d39687befdc54dc86f21e656db58771df",
+      "bytes": 16833524
+    },
+    {
+      "lane": "sketchfab",
+      "source_id": "f3f7a02063294007a2f746cf40f1d227",
+      "sha256": "84cd09d5bf4c34433d2b2bedd1baad6a86a6334b038b4ffa55dcaaa214a370db",
+      "bytes": 15296272
+    },
+    {
+      "lane": "sketchfab",
+      "source_id": "91e1b44b78ab458d9fca8303cc5f805c",
+      "sha256": "42a23f47fd2e6267b2e50936282705f4fd6e4f9b13e31f3536a565b107dc8eb6",
+      "bytes": 13935304
+    },
+    {
+      "lane": "sketchfab",
+      "source_id": "0ad671c78cc443adb16be84f15da968e",
+      "sha256": "187450780694b0b9d816a6b5bfc77dafbb8b671da4c4d7ed8ae1d9cc11b0cea6",
+      "bytes": 14687892
+    },
+    {
+      "lane": "sketchfab",
+      "source_id": "815329d2eeb848fdbc6b081c486d4dbb",
+      "sha256": "3bad2d03aa1b599c744df4b2835c860b09670b3a7bf4c9db98717938e4d45010",
+      "bytes": 17148428
+    },
+    {
+      "lane": "sketchfab",
+      "source_id": "9a6520400fa941cbac8acb002b4dd3d2",
+      "sha256": "f984cd977c077302fa5b92c254a3956a8f62f7415e18dbe9ba66b5bd2b3dc4d7",
+      "bytes": 19689076
+    },
+    {
+      "lane": "sketchfab",
+      "source_id": "892ede61b2a6403d85ee659812948e0d",
+      "sha256": "2c0ba02cdbe2cfafb842ae5199c4a8860681ec005de59b264e6e05367b602356",
+      "bytes": 20585744
+    },
+    {
+      "lane": "sketchfab",
+      "source_id": "95edc94bff9d45329e824675f17bc52c",
+      "sha256": "06ae488f7d0c186daee2cbcda1edc6a6100f1e74ff68296e058473923275b8a0",
+      "bytes": 18961852
+    },
+    {
+      "lane": "sketchfab",
+      "source_id": "1cc9ec87a86749bfa8061ac14e33ae5f",
+      "sha256": "0d0ad53c664a7cf607c84020ebc60d8ff31f03e5f84e469c132d8594bec507fc",
+      "bytes": 19735584
+    },
+    {
+      "lane": "sketchfab",
+      "source_id": "bee5f43e762b4a5c9eabc76904af533b",
+      "sha256": "7edd65d4c8d1d32ef559ca570b8bf2113335adb3ea9dce0a2569deb4757352a1",
+      "bytes": 23382860
+    },
+    {
+      "lane": "sketchfab",
+      "source_id": "f33f1c8bcc394b59be5da96efc8df661",
+      "sha256": "85f8302a31f8ccab7b3f8206f92c47afcb5e34a1b89c9fb0737de79b3e8ec49d",
+      "bytes": 20723324
+    },
+    {
+      "lane": "sketchfab",
+      "source_id": "2f3fa0e1a80b4e8cb9854a00c217dc28",
+      "sha256": "53f7601715a9258d65f1ebf9d579c9689ab162b5db70bd5c0784327f0a3309e4",
+      "bytes": 22455112
+    },
+    {
+      "lane": "sketchfab",
+      "source_id": "89ac182d89724799b8f6a761b22da75e",
+      "sha256": "5b9134bc3e9d81903e16169eadf8c5a1caa955db99ec9d4bb4d53a8440443cb3",
+      "bytes": 23315324
+    },
+    {
+      "lane": "sketchfab",
+      "source_id": "961e5cd711a34d35bed737393a84b6a1",
+      "sha256": "79ab05076627ba5037df27857a2d1ecb0c71faea61d7e6d605787682fe3455e4",
+      "bytes": 27331320
+    },
+    {
+      "lane": "sketchfab",
+      "source_id": "2688555f8efe4c72889aa246d2054d5e",
+      "sha256": "2af13fe34d51616a7b36b1756ac2663431785487a3fb6215539d14f708b3c69d",
+      "bytes": 25769644
+    },
+    {
+      "lane": "sketchfab",
+      "source_id": "ed0be6c5e8be42868000c997f3ad71e0",
+      "sha256": "80327905043f07ed07e7e0b71bb4979f45b0cee3fbd1a05a5c39aa5d47b9da55",
+      "bytes": 36867564
+    },
+    {
+      "lane": "sketchfab",
+      "source_id": "c757573759ed49f8a0627c77998afa80",
+      "sha256": "120776733bcab05c201c4df59644c83a14828c5f971d83c9141d21774b8ba96d",
+      "bytes": 31264208
+    },
+    {
+      "lane": "sketchfab",
+      "source_id": "231d9070fc2f421f8cec3197d214d70e",
+      "sha256": "901956b7793bc37f408b68c4e89978da43f506d7c860b5deece9ebcecd2f6728",
+      "bytes": 35590180
+    },
+    {
+      "lane": "sketchfab",
+      "source_id": "c8a57f14cef4473db938061be751cc21",
+      "sha256": "cb1dbc3293b23e4cba9aa67738a031aa42bbe9d6152935d6cf18f3cf216a4754",
+      "bytes": 46367168
+    },
+    {
+      "lane": "sketchfab",
+      "source_id": "6aca13f18ffd4fa5b8a5869508c97ec8",
+      "sha256": "d120429b820e29decb46453bff3b29dd260301cb7ebe96d415db1f9759f822b2",
+      "bytes": 52328412
+    },
+    {
+      "lane": "sketchfab",
+      "source_id": "f98704b144d14473898053ab58e7569c",
+      "sha256": "e60953549aa42b42d13cfd35f17439aa981214c8be46ddc0d59e85869a0512e9",
+      "bytes": 42721216
+    },
+    {
+      "lane": "sketchfab",
+      "source_id": "0e99e18287564cf08241a970b37ca65b",
+      "sha256": "fec1faa9349353c3ff8e616ebf562b83b5cf29471e1a9ec1f652e6aaca9c9ce7",
+      "bytes": 42152004
+    },
+    {
+      "lane": "sketchfab",
+      "source_id": "a8deca4fb31846258adedf95fcdbad03",
+      "sha256": "7be071e221392252299e3609847ddc80c5d41895b65dce98602828343d0401e8",
+      "bytes": 42408368
+    },
+    {
+      "lane": "sketchfab",
+      "source_id": "6c20106383354e759dc3e57e98799088",
+      "sha256": "139097e2ad5b93eb0e48c026a4d64d907cad9d1c66d4b260e68ff247b1a76d91",
+      "bytes": 55704196
+    },
+    {
+      "lane": "sketchfab",
+      "source_id": "ea3d897787cd499b93be869b064435fa",
+      "sha256": "9819437755ac0a1ddf2359bb0ade605e0ab16c1194b8560b402337b5329c0562",
+      "bytes": 46377480
+    },
+    {
+      "lane": "sketchfab",
+      "source_id": "2a766193240349baa77a987a35bd5342",
+      "sha256": "67db8c762c313b3a4c3d1e5ac2d156e9c8e0be22e1e3bef7ed9c32d98fdbb472",
+      "bytes": 49749928
+    },
+    {
+      "lane": "sketchfab",
+      "source_id": "4d257818de1b4c7fa859085e478a0c56",
+      "sha256": "d905c1d5eb81f9825e1a1aaaa0af001ac183908ac91cb55ebb9318bf883097a7",
+      "bytes": 57959476
+    },
+    {
+      "lane": "sketchfab",
+      "source_id": "db693358e0054ccf917bbe763455cd5e",
+      "sha256": "0cbdb975edc0543dd1bf3640c6fd8048ed50453de1b042626a26aae0bf9fa346",
+      "bytes": 56726272
+    },
+    {
+      "lane": "sketchfab",
+      "source_id": "c3931a2bb71242cd9d34fb17a81ddb4b",
+      "sha256": "c02deb96f73bcac7d3697d98db02afe5201d80df1f301ae4b09fbfe7527d0531",
+      "bytes": 61239176
+    },
+    {
+      "lane": "sketchfab",
+      "source_id": "74b484174af4455c93d2de91bab04771",
+      "sha256": "c28872bec0f1346c66a41d347dc75e83f875453fb4d9a9edfd0a117b0cdfcd65",
+      "bytes": 76158368
+    },
+    {
+      "lane": "sketchfab",
+      "source_id": "32ac80c233434e5e933e78585bc51ff7",
+      "sha256": "f55b5e566299da20553ca835e7223912e3036a0b54954b93c40e53f92dac010f",
+      "bytes": 67756984
+    }
+  ]
+}
