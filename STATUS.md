@@ -1858,8 +1858,36 @@ Local upload timed out, so the reviewed originals were transferred directly from
 - First-pair integration and independent preservation checks pass, including all 3,006 prior rows and map entries. Addition grouping, featured selection, wings, review artifacts, asset inventory and whitespace checks pass. Both current serving representations also have separately verified private recovery coverage. The local full build was deliberately stopped during slow static generation on the loaded Mac; it is not claimed as successful. The standard GitHub Pages workflow will run the complete production build before deployment, followed by exact live/browser verification.
 
 
+### 2026-11-06 — New adult figurative sculpture acquisition
+
+- Owner requests 25 further realistic, sensual adult nudes. This chat owns `codex/sensual-figurative-25-20261106`, based on completed main `c0dacac0` and 3,006 catalog records. Logical batch: `sensual-figurative-25-20261106`.
+- Discovery prioritizes coherent, documented adult sculpture with faithful source surfaces. Existing catalog objects and previous held acquisitions are excluded; source hits are not accepted works. Native, full paired, final thumbnail, source grant and exact-object review remain required.
+- First four authenticated sources are acquired; one exceeds the established serving-size gate and remains held. No new work is live or removed locally. Permanent private backups and exact Newest membership follow the established workflow. The previous 42-work batch and its completed offload remain unchanged.
+
+
+### 2026-11-06 — Two adult figurative works prepared
+
+- Requested25; nine complete sources acquired and permanently privately backed up,376,863,292 bytes. Two pass the final selection: Córdoba Crouching Aphrodite and Hajdu Reclining Woman. Seven remain held for serving size, appearance fidelity, topology or curatorial fit. No source was recolored, repaired or simplified to reach the target; the23-work shortfall remains explicit.
+- Logical batch `sensual-figurative-25-20261106` contains exactly these2 works. Native/paired/final-thumbnail review, source hashes/grants and R2 complete readback passed. Source materials remain unchanged and physical model scales remain uncalibrated. Each joins one appropriate existing exhibition.
+- Addition grouping, featured, review-artifact, wing and asset checks pass; production build and compiled checks pass both pages,4 images, exact2-work Newest and2 captions. Prior3,006 catalog records/maps are unchanged except total; featured/Spatial selections remain unchanged. A concurrent main publication adds2 other works; it must be integrated before this release is pushed.
+- Both selected originals total39,830,564 bytes. Verified private recovery/control backups distinguish the2 selected and7 held sources. Live deployment and exact local offload are still pending; no originals removed.
+
+
+Concurrent publication integrated: main `adf948603428fe313a5b5fcbd2678fe7f69fc6f4` and both of its new works are retained. Combined catalog3,010 /2,992 public /18 hidden; this logical import remains exactly2. Previous acquisition timestamps remain unchanged.
+
+
 ### 2026-11-06 — First two sculptures verified live
 
 - Release adf948603428fe313a5b5fcbd2678fe7f69fc6f4 is live through successful Pages run42198677906. The normal GitHub production build and deployment both passed. Both pages and all six complete model/thumbnail/poster readbacks match hashes and byte counts, with correct GLB MIME and production-origin CORS. Newest contains exactly the pair.
 - Normal production Chrome verifies both models at390px, full browser-loaded model hashes, actual orbit, complete source/credit text and responsive bounds. ROOT inspected both opening canvases, all four mobile source/credit captures and both390/1280Newest images, eight images total. Owned browser resources closed cleanly. Both available-source representations and both serving previews have verified private recovery coverage; no local source was removed.
 - The owner explicitly clarified that this chat must add thirty works beyond the other chat’s forty-two. This logical round currently has two verified live works and remains twenty-eight short. Four further source-ready SMK casts are approved for the next bounded fetch; Begas Pan Comforting Psyche and Cleveland’s Statuette of Herakles also have approved adult physical-reference candidates, pending authenticated download and native capture checks.
+
+
+### 2026-11-06 — Two figurative works live; exact local offload complete
+
+- Release `042afb5a110952c557457526a211f82a940447a8` is live through successful [Pages42209719567](https://github.com/never-nude/atrium.earth/actions/runs/42209719567). Both work pages and all6 complete model/thumbnail/poster bodies pass hashes/bytes and applicable MIME/CORS. Newest contains exactly this2-work logical import; both exhibition placements pass. The request for25 remains23 short. Seven other acquired candidates remain held, separately documented; no additional work is counted as published.
+- Production browser checks passed actual model rotation, complete capture labels and mobile/desktop layouts. Root inspected all6 work-page/canvas and Newest screenshots. Documentary dimensions remain approximate and models uncalibrated; no physical-device AR verification is claimed.
+- Concurrent Neptune and Adonis additions plus subsequent publication notes were preserved through checked merges. Combined catalog3,010 /2,992 public /18 hidden. Post-merge grouping, featured, wing, asset, build and compiled checks passed. Existing source materials, featured selection and Spatial eligibility remain unchanged. No experimental bronze exposure setting was deployed.
+- Permanent private full-content backups cover all9 acquired distribution GLBs,376,863,292 bytes, with source metadata and v2 portable recovery map. Exact cleanup removed only the2 published canonical originals,39,830,564 bytes. Root confirmed both paths absent, all7 held originals unchanged,337,032,728 bytes, all4 new public images unchanged and quarantine empty. Asset checks pass after removal; other batches remain outside this cleanup.
+
+- Final compact private checkpoint is fully read back and owner-only:26 members,1,033,501 bytes,SHA-256 `0c622062c4c936d956bbcb251c1558ec5deb956c3a199f350767397ed59dd6a5`. It retains the actual removal journal, root checks, live/browser evidence and portable recovery references, excluding keys and binary sources. Prior archive snapshots remain unchanged. Publication and cleanup of these2 works are complete; the requested25 remains23 short. Completion documentation uses[skip ci].
