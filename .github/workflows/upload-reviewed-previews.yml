@@ -56,6 +56,7 @@ jobs:
           --previews-dir=.atrium-ingest/reviewed-preview-upload/models
           --report=.atrium-ingest/reviewed-preview-upload/report.json
       - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
         with:
           name: reviewed-preview-upload-${{ github.run_id }}
           path: |

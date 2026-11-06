@@ -1800,3 +1800,11 @@ Import retry checkpoint: acquisition39735160183 downloaded all40 originals but s
 - Owner requests 50 realistic figurative nudes from any era. This chat owns `codex/realistic-nudes-50-20261106`, based on completed main `ab8185e6` and 2,964 catalog records. Logical batch: `realistic-nudes-50-20261106`.
 - Discovery covers museum and well-documented public-art captures, prioritizing coherent adult figures and exact artwork/cast identity. Existing catalog duplicates and single-photograph AI reconstructions are excluded. Sources are candidates only until authentic download, grant, native/paired visual checks and final thumbnails pass.
 - Use the same bounded deployment and permanent private backup workflow. Newest will contain the entire accepted logical import. Only newly published originals may be offloaded after complete recovery and live verification; the preceding batch's 41 held sources remain outside this task.
+
+### 2026-11-06 — Realistic nudes: first nineteen ready for release
+
+Owner requested 50 realistic nudes, then directed publishing the first 19 approved works before continuing. Logical import `realistic-nudes-50-20261106`, branch `codex/realistic-nudes-50-20261106`. These 19 have actual native and eight-direction paired reviews, final thumbnail inspection, unchanged source geometry/materials, and complete R2 readback verification (run42176077832). Newest shows exactly this published subset; future approved continuations belong to the same import. Artemis also joins The Other Kingdom.
+
+Catalog now 2,983 records / 2,965 public / 18 hidden. Prior catalog entries remain unchanged except total; existing featured and Spatial selections are retained. Addition, featured, review-artifact, wing and asset checks passed; production build and all19 compiled page/capture/model bindings passed. Physical model scales remain uncalibrated. Live deployment verification is still pending at this commit.
+
+Local upload timed out, so the reviewed originals were transferred directly from complete hash-verified acquisition artifacts to R2 using the existing manual workflow. Backup of the accepted originals is in progress; no originals have been removed. Other acquired candidates remain private, with quality holds retained. Continue acquisition review only after this first release is confirmed live.
