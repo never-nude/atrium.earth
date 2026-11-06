@@ -1,0 +1,49 @@
+name: Fetch reviewed public institution sources
+
+on:
+  workflow_dispatch:
+    inputs:
+      manifest:
+        description: Exact reviewed source request under docs/ingest/
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: reviewed-institution-source-fetch-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          filter: blob:none
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /scripts/
+            /docs/ingest/
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Fetch unchanged public source bytes
+        env:
+          MANIFEST: ${{ inputs.manifest }}
+        run: node scripts/fetch-reviewed-public-institution-sources.mjs
+      - uses: actions/upload-artifact@v4
+        if: ${{ always() && !cancelled() }}
+        with:
+          name: reviewed-public-institution-sources-${{ github.run_id }}
+          path: |
+            .atrium-ingest/reviewed-public-institution-sources/acquisition.json
+            .atrium-ingest/reviewed-public-institution-sources/*/source.stl
+            .atrium-ingest/reviewed-public-institution-sources/*/source.glb
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90
