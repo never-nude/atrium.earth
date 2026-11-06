@@ -1852,3 +1852,11 @@ Local upload timed out, so the reviewed originals were transferred directly from
 - Owner requests 25 further realistic, sensual adult nudes. This chat owns `codex/sensual-figurative-25-20261106`, based on completed main `c0dacac0` and 3,006 catalog records. Logical batch: `sensual-figurative-25-20261106`.
 - Discovery prioritizes coherent, documented adult sculpture with faithful source surfaces. Existing catalog objects and previous held acquisitions are excluded; source hits are not accepted works. Native, full paired, final thumbnail, source grant and exact-object review remain required.
 - First four authenticated sources are acquired; one exceeds the established serving-size gate and remains held. No new work is live or removed locally. Permanent private backups and exact Newest membership follow the established workflow. The previous 42-work batch and its completed offload remain unchanged.
+
+
+### 2026-11-06 — Two adult figurative works prepared
+
+- Requested25; nine complete sources acquired and permanently privately backed up,376,863,292 bytes. Two pass the final selection: Córdoba Crouching Aphrodite and Hajdu Reclining Woman. Seven remain held for serving size, appearance fidelity, topology or curatorial fit. No source was recolored, repaired or simplified to reach the target; the23-work shortfall remains explicit.
+- Logical batch `sensual-figurative-25-20261106` contains exactly these2 works. Native/paired/final-thumbnail review, source hashes/grants and R2 complete readback passed. Source materials remain unchanged and physical model scales remain uncalibrated. Each joins one appropriate existing exhibition.
+- Addition grouping, featured, review-artifact, wing and asset checks pass; production build and compiled checks pass both pages,4 images, exact2-work Newest and2 captions. Prior3,006 catalog records/maps are unchanged except total; featured/Spatial selections remain unchanged. A concurrent main publication adds2 other works; it must be integrated before this release is pushed.
+- Both selected originals total39,830,564 bytes. Verified private recovery/control backups distinguish the2 selected and7 held sources. Live deployment and exact local offload are still pending; no originals removed.
