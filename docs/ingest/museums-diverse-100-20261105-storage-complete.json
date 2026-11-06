@@ -1,0 +1,44 @@
+{
+  "schema": "atrium-source-offload-summary/1",
+  "batch": "museums-diverse-100-20261105",
+  "status": "pass",
+  "checkedAt": "2026-11-06T05:26:18.857Z",
+  "releaseCommit": "899bbd7218f2895817535971538a406264f65bb6",
+  "deploymentRun": "42167499299",
+  "permanentPrivateOriginalsVerified": {
+    "count": 141,
+    "bytes": 3597781064,
+    "fullSha256AndBytesReadBack": true
+  },
+  "canonicalSourceOffload": {
+    "count": 100,
+    "bytes": 1781145984,
+    "allRemovedPathsAbsent": true,
+    "quarantinedFiles": 0,
+    "retainedUnpublishedCount": 41,
+    "retainedUnpublishedBytes": 1816635080,
+    "allRetainedFullHashesVerified": true
+  },
+  "transportCopies": {
+    "sourceArtifactsStreamedWithoutLocalZip": true,
+    "localTransportZipsRemoved": 0
+  },
+  "liveVerification": {
+    "works": 100,
+    "publicAssetBodies": 300,
+    "browserModels": 3,
+    "newestLayouts": 2,
+    "actuallyReviewedImages": 8,
+    "all200PublishedImageBodiesLocallyUnchanged": true,
+    "physicalDeviceARTested": false
+  },
+  "finalPrivateRecoveryCheckpoint": {
+    "sha256": "83946caad55b64585cb1b9a54e965ba13e460b30acb7bf63b1e429e4aa290241",
+    "bytes": 45230080,
+    "members": 244,
+    "completePrivateReadbackVerified": true,
+    "includesRecoveryMapSourceReceiptsRemovalJournalsAndLiveEvidence": true,
+    "signingKeyIncluded": false
+  },
+  "scope": "Only this acquisition;41 unpublished source originals remain locally protected. No claim of whole-collection backup coverage."
+}
