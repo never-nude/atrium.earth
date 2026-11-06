@@ -1874,3 +1874,10 @@ Local upload timed out, so the reviewed originals were transferred directly from
 
 
 Concurrent publication integrated: main `adf948603428fe313a5b5fcbd2678fe7f69fc6f4` and both of its new works are retained. Combined catalog3,010 /2,992 public /18 hidden; this logical import remains exactly2. Previous acquisition timestamps remain unchanged.
+
+
+### 2026-11-06 — First two sculptures verified live
+
+- Release adf948603428fe313a5b5fcbd2678fe7f69fc6f4 is live through successful Pages run42198677906. The normal GitHub production build and deployment both passed. Both pages and all six complete model/thumbnail/poster readbacks match hashes and byte counts, with correct GLB MIME and production-origin CORS. Newest contains exactly the pair.
+- Normal production Chrome verifies both models at390px, full browser-loaded model hashes, actual orbit, complete source/credit text and responsive bounds. ROOT inspected both opening canvases, all four mobile source/credit captures and both390/1280Newest images, eight images total. Owned browser resources closed cleanly. Both available-source representations and both serving previews have verified private recovery coverage; no local source was removed.
+- The owner explicitly clarified that this chat must add thirty works beyond the other chat’s forty-two. This logical round currently has two verified live works and remains twenty-eight short. Four further source-ready SMK casts are approved for the next bounded fetch; Begas Pan Comforting Psyche and Cleveland’s Statuette of Herakles also have approved adult physical-reference candidates, pending authenticated download and native capture checks.
