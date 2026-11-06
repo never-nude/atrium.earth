@@ -1,10 +1,10 @@
 {
   "batch": "realistic-nudes-50-20261106",
   "requested": 50,
-  "published": 30,
-  "unfilled": 20,
-  "catalog": 2994,
-  "public": 2976,
+  "published": 42,
+  "unfilled": 8,
+  "catalog": 3006,
+  "public": 2988,
   "hidden": 18,
   "releases": [
     {
@@ -22,24 +22,32 @@
       "added": 11,
       "commit": "7df0a986f605c08b434fd2db1da7cda66b95def4",
       "pagesRun": 42179363494
+    },
+    {
+      "added": 12,
+      "commit": "0f2c74882c384a2f3c25686110f76d460fbfa257",
+      "pagesRun": 42189977636
     }
   ],
   "verification": {
-    "newestExactLogicalImport": 30,
+    "newestExactLogicalImport": 42,
     "firstReleaseFullAssets": 57,
     "continuationFullAssets": 33,
     "modelMIMEandCORS": true,
-    "actualBrowserViews": "Six sampled production models across mobile and desktop, plus both Newest layouts for each release. Real orbit and full downloaded model hashes verified.",
+    "actualBrowserViews": "Nine sampled production models across mobile and desktop, plus both Newest layouts for each release. Real orbit and full downloaded model hashes verified. Root actually inspected all24 opening/canvas/Newest images across the three releases.",
     "physicalDeviceARTested": false,
     "physicalModelScaleCalibrated": false,
-    "prior19ProofsReusedForContinuation": true
+    "prior19ProofsReusedForContinuation": true,
+    "secondContinuationFullAssets": 36,
+    "secondContinuationPriorImmutableProofsReused": 30,
+    "secondContinuationCuratedPlacements": 4
   },
   "sourceSelection": {
-    "authenticatedSketchfabDistributionGLBs": 47,
-    "accepted": 30,
-    "held": 17,
+    "authenticatedSketchfabDistributionGLBs": 68,
+    "accepted": 42,
+    "held": 26,
     "additionalHeldReducedSMKSTLs": 1,
     "noRepairToMeetQuota": true
   },
-  "checkedAt": "2026-11-06T07:18:35.130Z"
+  "checkedAt": "2026-11-06T08:49:18.967Z"
 }
