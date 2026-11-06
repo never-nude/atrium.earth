@@ -1845,3 +1845,10 @@ Local upload timed out, so the reviewed originals were transferred directly from
 - Permanent private full-content backups now cover69 complete originals:68 unchanged distribution GLBs and one official reduced SMK STL,2,036,590,424 bytes. Separate prior48 and new7/8/9 recovery records are retained and linked by a verified cumulative69 portable map. The incomplete separate Full STL is excluded from that claim.
 - Exact reviewed cleanup removed the12 newly published originals,298,922,752 bytes. Cumulative42 offloads total990,355,600 bytes. All removed paths are absent, quarantine contains zero files, all84 public images remain unchanged, and asset checks pass. All27 held originals retain full hashes,1,046,234,824 bytes.280 previous archive files are unchanged; older batches remain untouched.
 - Final443-member private checkpoint includes actual deletion journal, root post-check, live/browser evidence and portable recovery references. Full readback verified11,545,517 bytes, SHA-256 `4c0c42b7afe0ee57e4e18fd79c23e228b8fe2e81a598416a1a14f14f973f9145`. Public-safe live/storage reports are updated. No release or cleanup remains pending for these42 works; the requested50 remains eight short. Completion documentation uses[skip ci].
+
+
+### 2026-11-06 — New adult figurative sculpture acquisition
+
+- Owner requests 25 further realistic, sensual adult nudes. This chat owns `codex/sensual-figurative-25-20261106`, based on completed main `c0dacac0` and 3,006 catalog records. Logical batch: `sensual-figurative-25-20261106`.
+- Discovery prioritizes coherent, documented adult sculpture with faithful source surfaces. Existing catalog objects and previous held acquisitions are excluded; source hits are not accepted works. Native, full paired, final thumbnail, source grant and exact-object review remain required.
+- First four authenticated sources are acquired; one exceeds the established serving-size gate and remains held. No new work is live or removed locally. Permanent private backups and exact Newest membership follow the established workflow. The previous 42-work batch and its completed offload remain unchanged.
