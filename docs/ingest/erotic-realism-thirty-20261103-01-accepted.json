@@ -1,0 +1,121 @@
+{
+  "batch": "erotic-realism-thirty-20261103",
+  "checkedAt": "2026-11-06T09:34:56.054Z",
+  "status": "pass",
+  "acceptedNewWorks": 2,
+  "logicalBatchWorks": 2,
+  "target": 30,
+  "targetMet": false,
+  "baselineCatalog": 3006,
+  "catalog": 3008,
+  "public": 2990,
+  "hidden": 18,
+  "allPriorRowsAndMapEntriesPreserved": true,
+  "nativeThreeAndPairedEightActuallyReviewed": true,
+  "sourceServingPixelPairsExact": 16,
+  "permanentPrivateAvailableSourceArchiveVerified": true,
+  "originalPackageComplete": false,
+  "cleanupPerformed": false,
+  "calibratedPhysicalScale": false,
+  "spatialRoomChanges": 0,
+  "works": [
+    {
+      "slug": "europe/neptune-giambologna-nationalmuseum-nmsk351",
+      "sourceUid": "nationalmuseum-nmsk351-gac",
+      "title": "Neptune (Nationalmuseum bronze, NMSk 351)",
+      "sourceUrl": "https://artsandculture.google.com/asset/neptune/JgFeKbU7Cr84hg?hl=en",
+      "license": "CC0 1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "attribution": "Giambologna (Giovanni da Bologna), Neptune. Nationalmuseum, Stockholm, NMSk 351. 3D digitization by Scan the World in collaboration with Nationalmuseum. Viewing GLB published on Google Arts & Culture. CC0 1.0.",
+      "sourceCase": "provider-viewing-glb-original-not-obtained",
+      "availableSource": {
+        "url": "https://culturalinstitute-3d-serving.storage.googleapis.com/167368473/JgFeKbU7Cr84hg/1624895274633/gltf/model.glb",
+        "bytes": 68408400,
+        "sha256": "a41983e1784c5185e5efa3bc5987dd199d417cfd8bf3f54ee8269cf047ff9afe",
+        "assetRole": "derivative-other",
+        "representationRole": "provider-published-viewing-glb"
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/europe/neptune-giambologna-nationalmuseum-nmsk351/preview-a41983e1784c.glb",
+        "bytes": 68408400,
+        "sha256": "a41983e1784c5185e5efa3bc5987dd199d417cfd8bf3f54ee8269cf047ff9afe"
+      },
+      "thumbnail": {
+        "bytes": 24504,
+        "sha256": "ba6948eb28d280a0bc216c5a032ab0af86e64deebbe318ea780e2d40b2df463e"
+      },
+      "poster": {
+        "bytes": 33054,
+        "sha256": "864be9861f00ca0a51d59c1279e313062dc0898d80cc6a6ac78c541ef69a43d5"
+      },
+      "captureLabel": "This viewing model uses the untextured GLB published by Scan the World and Nationalmuseum on Google Arts & Culture, with its provider viewing material unchanged. The separately listed printable file was not obtained or reviewed. The museum’s published height is documentary and digital scale is uncalibrated.",
+      "orientation": {
+        "upAxis": "y",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0,
+          0,
+          1
+        ]
+      },
+      "rawSourceFaces": 1100000,
+      "rawPreviewFaces": 1100000,
+      "physicalScaleVerified": false,
+      "originalPackageComplete": false
+    },
+    {
+      "slug": "renaissance/reclining-dying-adonis-smk-cast-kas472",
+      "sourceUid": "smk-kas472",
+      "title": "Reclining Dying Adonis (SMK plaster cast, KAS472)",
+      "sourceUrl": "https://open.smk.dk/en/artwork/image/KAS472",
+      "license": "Public Domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "attribution": "Reclining Dying Adonis, unknown cast maker, after a Renaissance sculpture formerly attributed to Michelangelo Buonarroti. Royal Cast Collection, SMK – National Gallery of Denmark, KAS472. 3D source by SMK in collaboration with Scan the World. Public Domain Mark 1.0.",
+      "sourceCase": "official-small-only-master-not-requested",
+      "availableSource": {
+        "url": "https://api.smk.dk/api/v1/download-3d/2f75rd735_KAS472_small.stl",
+        "bytes": 20005084,
+        "sha256": "a766946a3736e68a6c2ff01d36f68ee017b0c4fe8d58204795ef1aea39250286",
+        "assetRole": "derivative-other",
+        "representationRole": "provider-official-small-stl"
+      },
+      "preview": {
+        "url": "https://models.atrium.earth/models/previews/renaissance/reclining-dying-adonis-smk-cast-kas472/preview-89ed26056d45.glb",
+        "bytes": 18923612,
+        "sha256": "89ed26056d4544daaf7dde6fe2697c38b74cf8dd4443d21ec1d103ab8fdf5553"
+      },
+      "thumbnail": {
+        "bytes": 15854,
+        "sha256": "705f7a7d1bcd2a8abe37f5ff1cbf26261e635b492e519903ac8158193ffe5a99"
+      },
+      "poster": {
+        "bytes": 21538,
+        "sha256": "90edc2cd8fcd7884913e4d80ddc13d6200b98d233c71c6dcd0ed99e58876cc04"
+      },
+      "captureLabel": "Viewing model converted from SMK’s official optimized Small STL, preserving triangle positions, facet normals, order and bounds. The separate Full-resolution file was not requested, obtained or reviewed. The untextured GLB uses a qualified neutral opaque material. Physical color, finish and digital scale remain unverified.",
+      "orientation": {
+        "upAxis": "z",
+        "modelRotation": [
+          0,
+          0,
+          0
+        ],
+        "yaw": 0,
+        "viewDirection": [
+          0,
+          0,
+          1
+        ]
+      },
+      "rawSourceFaces": 400100,
+      "rawPreviewFaces": 400100,
+      "physicalScaleVerified": false,
+      "originalPackageComplete": false
+    }
+  ]
+}
