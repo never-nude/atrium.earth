@@ -33210,7 +33210,7 @@
       "measurementRegion": {
         "method": "position-welded connected triangles",
         "description": "The sculpture is separate from the modern pedestal. Connected components ranks 0, 1 and 3 contain the marble group; rank 2 is the rectangular pedestal. Their union runs from normalized Y -0.1190040436654394 to 0.5. Use the confirmed 197.5 cm height of the marble group, retaining the pedestal at the same uniform scale.",
-        "weldToleranceNormalizedUnits": 1e-06,
+        "weldToleranceNormalizedUnits": 0.000001,
         "ranksByDescendingTriangleCount": [
           0,
           1,
@@ -69243,7 +69243,7 @@
       "measurementRegion": {
         "method": "position-welded connected triangles",
         "description": "Connected component rank 0 is the rigid monitor body; all display/button components remain within its lateral body endpoints. Hanging cable components extend farther left and below and are excluded from the reference. Use the museum body-only width 58.4 cm for the rank-0 X span, retaining all cables at that scale.",
-        "weldToleranceNormalizedUnits": 1e-06,
+        "weldToleranceNormalizedUnits": 0.000001,
         "ranksByDescendingTriangleCount": [
           0
         ],
@@ -76965,7 +76965,7 @@
       "measurementRegion": {
         "method": "position-welded connected triangles",
         "description": "Connected component rank 0 is the complete sculpture, including its lowest foot/curved lower edge; rank 1 is the added green platform. All other sculpture fragments and the apple are within rank-0 height. Use the scan creator’s explicitly approximate 57 cm sculpture height, excluding the green platform from the reference while retaining it in the scene.",
-        "weldToleranceNormalizedUnits": 1e-06,
+        "weldToleranceNormalizedUnits": 0.000001,
         "ranksByDescendingTriangleCount": [
           0
         ],
@@ -119272,6 +119272,72 @@
     "sourceUrl": "https://pedagogie.ac-strasbourg.fr/fileadmin/pedagogie/daac/Memoires__patrimoine__musees/musees_strasbourg/RV_Parcours_notices_cartes_lexique.pdf",
     "checked": "2026-11-06",
     "note": "Documentary museum measurements only; the model is not calibrated.",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [],
+    "calibrationReady": false
+  },
+  "greek/munich-king-smk-cast-kas535": {
+    "status": "unresolved",
+    "basis": "object",
+    "dimensions": "H 238 cm × W 114 cm × D 73 cm",
+    "sourceUrl": "https://open.smk.dk/en/artwork/image/KAS535",
+    "checked": "2026-11-06",
+    "note": "Documentary physical object dimensions do not establish calibration of the digital model.",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [],
+    "calibrationReady": false
+  },
+  "roman/quirinal-dioscurus-smk-reduced-cast-dep459": {
+    "status": "unresolved",
+    "basis": "object",
+    "dimensions": "H 119 cm × W 75 cm × D 45.5 cm",
+    "sourceUrl": "https://open.smk.dk/en/artwork/image/DEP459",
+    "checked": "2026-11-06",
+    "note": "Documentary physical object dimensions do not establish calibration of the digital model.",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [],
+    "calibrationReady": false
+  },
+  "greek/aphaia-west-ix-shield-warrior-smk-cast-kas2129": {
+    "status": "unresolved",
+    "basis": "object",
+    "dimensions": "H 132.5 cm",
+    "sourceUrl": "https://open.smk.dk/en/artwork/image/KAS2129",
+    "checked": "2026-11-06",
+    "note": "Documentary physical object dimensions do not establish calibration of the digital model.",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [],
+    "calibrationReady": false
+  },
+  "greek/aphaia-east-iv-running-warrior-smk-cast-kas541-4": {
+    "status": "unresolved",
+    "basis": "object",
+    "dimensions": "H 95 cm",
+    "sourceUrl": "https://open.smk.dk/en/artwork/image/KAS541%2F4",
+    "checked": "2026-11-06",
+    "note": "Documentary physical object dimensions do not establish calibration of the digital model.",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [],
+    "calibrationReady": false
+  },
+  "greek/herakles-statuette-cleveland-2000-6-81c56a": {
+    "status": "unresolved",
+    "basis": "object",
+    "dimensions": "Overall height: 21.5 cm (documented object measurement; model scale uncalibrated)",
+    "sourceUrl": "https://www.clevelandart.org/art/2000.6",
+    "checked": "2026-11-06",
+    "note": "Documentary physical object dimensions do not establish calibration of the digital model.",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [],
+    "calibrationReady": false
+  },
+  "americas/the-wall-winebaum-unh-2007-8": {
+    "status": "unresolved",
+    "basis": "object",
+    "dimensions": "14 x 4 1/2 x 17 in. (published order; measurement axes unlabelled)",
+    "sourceUrl": "https://sketchfab.com/3d-models/a8250e6cc0674648b3cca8d86a0cb5cb",
+    "checked": "2026-11-06",
+    "note": "Documentary physical object dimensions do not establish calibration of the digital model.",
     "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
     "measures": [],
     "calibrationReady": false
