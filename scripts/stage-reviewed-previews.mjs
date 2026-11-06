@@ -3,19 +3,16 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import {createHash} from 'node:crypto';
+import {validateReviewedPreviewManifest} from './reviewed-preview-manifest.mjs';
 
 const manifest = process.env.MANIFEST;
 if (!/^docs\/ingest\/[a-z0-9-]+-preview-upload\.json$/.test(manifest || '')) throw Error('Invalid manifest path');
 const input = JSON.parse(await fs.readFile(manifest, 'utf8'));
-if (input.schema !== 'atrium-reviewed-preview-upload/1' || !Array.isArray(input.models) || !input.models.length || input.models.length > 20) throw Error('Invalid bounded model manifest');
-const release = /^https:\/\/github\.com\/never-nude\/atrium\.earth\/releases\/download\/[a-z0-9-]+\/[a-z0-9-]+\.glb$/;
+const {models} = validateReviewedPreviewManifest(input);
 const root = '.atrium-ingest/reviewed-preview-upload';
 await fs.mkdir(root, {recursive: true});
 const seen = new Set();
-for (const model of input.models) {
-  if (!/^[a-z0-9][a-z0-9-]*(?:\/[a-z0-9][a-z0-9-]*)*$/.test(model.slug || '') || seen.has(model.slug)
-      || !release.test(model.url || '') || !/^[a-f0-9]{64}$/.test(model.sha256 || '')
-      || !Number.isSafeInteger(model.bytes) || model.bytes <= 0 || model.bytes > 100_000_000) throw Error('Invalid model binding');
+for (const model of models) {
   seen.add(model.slug);
   const response = await fetch(model.url, {signal: AbortSignal.timeout(120000)});
   if (!response.ok) throw Error(`Serving file download failed: ${response.status}`);
