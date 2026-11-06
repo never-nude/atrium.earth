@@ -15,6 +15,7 @@ on:
 
 permissions:
   contents: read
+  actions: read
 
 jobs:
   upload:
@@ -35,7 +36,13 @@ jobs:
       - name: Download and verify reviewed serving files
         env:
           MANIFEST: ${{ inputs.manifest || 'docs/ingest/picasso-20261023-preview-upload.json' }}
-        run: node scripts/stage-reviewed-previews.mjs
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [[ "$MANIFEST" == *-artifact-preview-upload.json ]]; then
+            node scripts/stage-reviewed-artifact-previews.mjs
+          else
+            node scripts/stage-reviewed-previews.mjs
+          fi
       - name: Upload immutable models and verify complete public readbacks
         env:
           R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
@@ -54,6 +61,7 @@ jobs:
           path: |
             .atrium-ingest/reviewed-preview-upload/previews.json
             .atrium-ingest/reviewed-preview-upload/report.json
+            .atrium-ingest/reviewed-preview-upload/source-proof.json
           include-hidden-files: true
           if-no-files-found: error
           retention-days: 30
