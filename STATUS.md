@@ -1847,6 +1847,17 @@ Local upload timed out, so the reviewed originals were transferred directly from
 - Final443-member private checkpoint includes actual deletion journal, root post-check, live/browser evidence and portable recovery references. Full readback verified11,545,517 bytes, SHA-256 `4c0c42b7afe0ee57e4e18fd79c23e228b8fe2e81a598416a1a14f14f973f9145`. Public-safe live/storage reports are updated. No release or cleanup remains pending for these42 works; the requested50 remains eight short. Completion documentation uses[skip ci].
 
 
+### 2026-11-06 — First pair prepared for the thirty-work figurative round
+
+- Resumed the requested thirty additional erotic/naturalistic physical sculptures. Fast-forwarded this branch to c0dacac0, preserving the other chats’ 142 additions and the complete 3,006-row catalog. Current deduplication confirms that Giambologna’s Nationalmuseum Neptune (NMSk 351) and SMK’s Reclining Dying Adonis cast (KAS472) remain new compositions. The Dancing Satyr candidate was excluded because another chat had already added it.
+- Added this reviewed pair under erotic-realism-thirty-20261103. Catalog now 3,008 / 2,990 public / 18 hidden. All prior rows remain unchanged except total, and all prior map entries, featured works and Spatial room selections remain intact. Newest contains exactly the two works in this new logical round. The thirty-work target remains twenty-eight short.
+- Neptune retains the complete provider-published viewing GLB and its untextured material. Adonis retains every position corner, facet normal, triangle order and bound from SMK’s official optimized Small STL, using an explicitly qualified neutral opaque display. The separate printable/Full originals were not obtained. Adonis retains the museum’s former Michelangelo attribution, without presenting that attribution as confirmed. Documentary dimensions remain uncalibrated, and neither addition enters a Spatial room.
+- ROOT inspected native three-view contacts, all 32 paired source/serving frames and all three final thumbnail/contact images. All sixteen paired images are pixel-exact. Permanent private source backup verifies both complete acquired representations, 88,413,484 bytes, with portable recovery records, full readbacks and owner-only sharing. Local files remain retained. R2 upload 42195816031 and complete signed public model readbacks verify both immutable serving GLBs, 87,332,012 bytes, MIME and production-origin CORS.
+- Build, integration checks and live verification follow this checkpoint. Four further SMK candidates have source-ready evidence but remain unfetched and unadmitted. No thirty-work completion or physical-device AR acceptance is claimed.
+
+- First-pair integration and independent preservation checks pass, including all 3,006 prior rows and map entries. Addition grouping, featured selection, wings, review artifacts, asset inventory and whitespace checks pass. Both current serving representations also have separately verified private recovery coverage. The local full build was deliberately stopped during slow static generation on the loaded Mac; it is not claimed as successful. The standard GitHub Pages workflow will run the complete production build before deployment, followed by exact live/browser verification.
+
+
 ### 2026-11-06 — New adult figurative sculpture acquisition
 
 - Owner requests 25 further realistic, sensual adult nudes. This chat owns `codex/sensual-figurative-25-20261106`, based on completed main `c0dacac0` and 3,006 catalog records. Logical batch: `sensual-figurative-25-20261106`.
@@ -1860,3 +1871,6 @@ Local upload timed out, so the reviewed originals were transferred directly from
 - Logical batch `sensual-figurative-25-20261106` contains exactly these2 works. Native/paired/final-thumbnail review, source hashes/grants and R2 complete readback passed. Source materials remain unchanged and physical model scales remain uncalibrated. Each joins one appropriate existing exhibition.
 - Addition grouping, featured, review-artifact, wing and asset checks pass; production build and compiled checks pass both pages,4 images, exact2-work Newest and2 captions. Prior3,006 catalog records/maps are unchanged except total; featured/Spatial selections remain unchanged. A concurrent main publication adds2 other works; it must be integrated before this release is pushed.
 - Both selected originals total39,830,564 bytes. Verified private recovery/control backups distinguish the2 selected and7 held sources. Live deployment and exact local offload are still pending; no originals removed.
+
+
+Concurrent publication integrated: main `adf948603428fe313a5b5fcbd2678fe7f69fc6f4` and both of its new works are retained. Combined catalog3,010 /2,992 public /18 hidden; this logical import remains exactly2. Previous acquisition timestamps remain unchanged.
