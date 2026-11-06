@@ -33210,7 +33210,7 @@
       "measurementRegion": {
         "method": "position-welded connected triangles",
         "description": "The sculpture is separate from the modern pedestal. Connected components ranks 0, 1 and 3 contain the marble group; rank 2 is the rectangular pedestal. Their union runs from normalized Y -0.1190040436654394 to 0.5. Use the confirmed 197.5 cm height of the marble group, retaining the pedestal at the same uniform scale.",
-        "weldToleranceNormalizedUnits": 0.000001,
+        "weldToleranceNormalizedUnits": 1e-06,
         "ranksByDescendingTriangleCount": [
           0,
           1,
@@ -69243,7 +69243,7 @@
       "measurementRegion": {
         "method": "position-welded connected triangles",
         "description": "Connected component rank 0 is the rigid monitor body; all display/button components remain within its lateral body endpoints. Hanging cable components extend farther left and below and are excluded from the reference. Use the museum body-only width 58.4 cm for the rank-0 X span, retaining all cables at that scale.",
-        "weldToleranceNormalizedUnits": 0.000001,
+        "weldToleranceNormalizedUnits": 1e-06,
         "ranksByDescendingTriangleCount": [
           0
         ],
@@ -76965,7 +76965,7 @@
       "measurementRegion": {
         "method": "position-welded connected triangles",
         "description": "Connected component rank 0 is the complete sculpture, including its lowest foot/curved lower edge; rank 1 is the added green platform. All other sculpture fragments and the apple are within rank-0 height. Use the scan creator’s explicitly approximate 57 cm sculpture height, excluding the green platform from the reference while retaining it in the scene.",
-        "weldToleranceNormalizedUnits": 0.000001,
+        "weldToleranceNormalizedUnits": 1e-06,
         "ranksByDescendingTriangleCount": [
           0
         ],
@@ -119338,6 +119338,237 @@
     "sourceUrl": "https://sketchfab.com/3d-models/a8250e6cc0674648b3cca8d86a0cb5cb",
     "checked": "2026-11-06",
     "note": "Documentary physical object dimensions do not establish calibration of the digital model.",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [],
+    "calibrationReady": false
+  },
+  "modern/la-vierge-folle-wouters-colonster": {
+    "status": "unresolved",
+    "basis": "object",
+    "dimensions": "H 195, L 135, l 120 cm (museum notation; model not calibrated)",
+    "sourceUrl": "https://www.museepla.uliege.be/oeuvres/la-vierge-folle/",
+    "checked": "2026-11-06",
+    "note": "Documentary physical object dimensions do not establish calibration of the digital model.",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [],
+    "calibrationReady": false
+  },
+  "modern/la-vigie-gadenne-gravelines": {
+    "status": "unresolved",
+    "basis": "object",
+    "dimensions": "Approx. 2 m high (3D publisher estimate; not independently confirmed)",
+    "sourceUrl": "https://www.ville-gravelines.fr/decouvrir-gravelines/la-ville-de-gravelines/nature/les-parcs-et-jardins",
+    "checked": "2026-11-06",
+    "note": "Documentary physical object dimensions do not establish calibration of the digital model.",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [],
+    "calibrationReady": false
+  },
+  "modern/femme-accroupie-orloff-pompidou-jp34s": {
+    "status": "unresolved",
+    "basis": "object",
+    "dimensions": "116 × 77 × 62 cm (museum record; model not calibrated)",
+    "sourceUrl": "https://www.centrepompidou.fr/fr/ressources/oeuvre/cLbdzr",
+    "checked": "2026-11-06",
+    "note": "Documentary physical object dimensions do not establish calibration of the digital model.",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [],
+    "calibrationReady": false
+  },
+  "modern/le-nanti-mady-andrien-sart-tilman": {
+    "status": "unresolved",
+    "basis": "object",
+    "dimensions": "H 130, L 100, l 93 cm (museum notation; model not calibrated)",
+    "sourceUrl": "https://www.museepla.uliege.be/oeuvres/le-nanti/",
+    "checked": "2026-11-06",
+    "note": "Documentary physical object dimensions do not establish calibration of the digital model.",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [],
+    "calibrationReady": false
+  },
+  "modern/la-purete-valsamis-parc-montsouris": {
+    "status": "unresolved",
+    "basis": "object",
+    "dimensions": "",
+    "sourceUrl": "https://www.paris.fr/lieux/parc-montsouris-1810",
+    "checked": "2026-11-06",
+    "note": "Documentary physical object dimensions do not establish calibration of the digital model.",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [],
+    "calibrationReady": false
+  },
+  "modern/spring-niobe-grard-sart-tilman-62116b": {
+    "status": "unresolved",
+    "basis": "object",
+    "dimensions": "Height 128 cm × width 106 cm × depth 79 cm",
+    "sourceUrl": "https://donum.uliege.be/handle/2268.1/4132",
+    "checked": "2026-11-06",
+    "note": "Documentary museum measurements only; the model is not calibrated.",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [],
+    "calibrationReady": false
+  },
+  "modern/la-caille-grard-mons-bronze-89949c": {
+    "status": "unresolved",
+    "basis": "object",
+    "dimensions": "",
+    "sourceUrl": "https://www.mons.be/fr/ma-commune/vie-politique/conseil-communal/ordres-du-jour-et-proces-verbaux/archives-proces-verbaux/fichiers-archives-1/fichiers-archives-2013/archives-2013/pv-17-juin-2013.pdf/@@download/file/pv-17-juin-2013.pdf",
+    "checked": "2026-11-06",
+    "note": "No physical measurements adopted for the exact captured object.",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [],
+    "calibrationReady": false
+  },
+  "modern/je-taime-andrien-liege-bronze-e17e74": {
+    "status": "unresolved",
+    "basis": "object",
+    "dimensions": "",
+    "sourceUrl": "https://www.todayinliege.be/nouvelle-sculpture-inauguree-au-pied-de-la-passerelle-du-parc-de-la-boverie/",
+    "checked": "2026-11-06",
+    "note": "No physical measurements adopted for the exact captured object.",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [],
+    "calibrationReady": false
+  },
+  "modern/le-secret-beclu-lyon-14383c": {
+    "status": "unresolved",
+    "basis": "object",
+    "dimensions": "",
+    "sourceUrl": "https://www.musee-orsay.fr/fr/collections/acquisitions/acquisitions-recentes/rene-beclu-masque-de-victor-hugo",
+    "checked": "2026-11-06",
+    "note": "No physical measurements adopted for the exact captured object.",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [],
+    "calibrationReady": false
+  },
+  "modern/age-of-bronze-rodin-mia-54-1-139deb": {
+    "status": "unresolved",
+    "basis": "object",
+    "dimensions": "180.34 cm × 71.12 cm × 50.8 cm (museum-listed order)",
+    "sourceUrl": "https://collections.artsmia.org/art/1239/the-age-of-bronze-auguste-rodin",
+    "checked": "2026-11-06",
+    "note": "Documentary museum measurements only; the model is not calibrated.",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [],
+    "calibrationReady": false
+  },
+  "modern/daphne-sellier-bayssan-e4aa9d": {
+    "status": "unresolved",
+    "basis": "object",
+    "dimensions": "",
+    "sourceUrl": "https://scene-de-bayssan.herault.fr/1818-daphne.htm",
+    "checked": "2026-11-06",
+    "note": "No physical measurements adopted for the exact captured object.",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [],
+    "calibrationReady": false
+  },
+  "modern/la-conversation-gadenne-gravelines-05f964": {
+    "status": "unresolved",
+    "basis": "object",
+    "dimensions": "",
+    "sourceUrl": "https://lycee-europe-dunkerque.fr/userfiles/downloads/CDI/prog/gravelines_bourbourg_exposition_cher_modele_dossier_de_presse.pdf",
+    "checked": "2026-11-06",
+    "note": "No physical measurements adopted for the exact captured object.",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [],
+    "calibrationReady": false
+  },
+  "modern/sitting-woman-babraj-brno-abbbda": {
+    "status": "unresolved",
+    "basis": "object",
+    "dimensions": "H 150 cm × W 50 cm × D 90 cm",
+    "sourceUrl": "https://sochyamesta.cz/zaznam/12090",
+    "checked": "2026-11-06",
+    "note": "Documentary museum measurements only; the model is not calibrated.",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [],
+    "calibrationReady": false
+  },
+  "modern/earth-song-axman-brno-42a983": {
+    "status": "unresolved",
+    "basis": "object",
+    "dimensions": "H 240 cm × W 140 cm × D 170 cm",
+    "sourceUrl": "https://encyklopedie.brna.cz/home-mmb/?acc=profil-objektu&load=867",
+    "checked": "2026-11-06",
+    "note": "Documentary museum measurements only; the model is not calibrated.",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [],
+    "calibrationReady": false
+  },
+  "europe/sleeping-ariadne-smk-berlin-cast-kas134": {
+    "status": "unresolved",
+    "basis": "object",
+    "dimensions": "H 111 cm × W 240 cm × D 96.5 cm",
+    "sourceUrl": "https://open.smk.dk/artwork/image/KAS134",
+    "checked": "2026-11-06",
+    "note": "Documentary physical object dimensions do not establish calibration of the digital model.",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [],
+    "calibrationReady": false
+  },
+  "europe/signe-tegner-memorial-original-plaster-kms5415": {
+    "status": "unresolved",
+    "basis": "object",
+    "dimensions": "H 265 cm × W 93 cm × D 75 cm",
+    "sourceUrl": "https://open.smk.dk/artwork/image/KMS5415",
+    "checked": "2026-11-06",
+    "note": "Documentary physical object dimensions do not establish calibration of the digital model.",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [],
+    "calibrationReady": false
+  },
+  "europe/amor-patriae-stanley-smk-kms6017": {
+    "status": "unresolved",
+    "basis": "object",
+    "dimensions": "H 112.5 cm × W 45.7 cm × D 39 cm",
+    "sourceUrl": "https://open.smk.dk/artwork/image/KMS6017",
+    "checked": "2026-11-06",
+    "note": "Documentary physical object dimensions do not establish calibration of the digital model.",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [],
+    "calibrationReady": false
+  },
+  "europe/terme-ruler-malpieri-smk-cast-kas823": {
+    "status": "unresolved",
+    "basis": "object",
+    "dimensions": "H 253 cm × W 87 cm × D 78 cm",
+    "sourceUrl": "https://open.smk.dk/artwork/image/KAS823",
+    "checked": "2026-11-06",
+    "note": "Documentary physical object dimensions do not establish calibration of the digital model.",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [],
+    "calibrationReady": false
+  },
+  "neoclassical/bacchus-gothe-nationalmuseum-nmsk374": {
+    "status": "unresolved",
+    "basis": "object",
+    "dimensions": "H 126 cm",
+    "sourceUrl": "https://collection.nationalmuseum.se/sv/collection/item/26763/",
+    "checked": "2026-11-06",
+    "note": "Documentary physical object dimensions do not establish calibration of the digital model.",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [],
+    "calibrationReady": false
+  },
+  "europe/discobolus-munich-smk-cast-kas1074": {
+    "status": "unresolved",
+    "basis": "object",
+    "dimensions": "H 168 cm × W 100 cm × D 50.5 cm",
+    "sourceUrl": "https://open.smk.dk/artwork/image/KAS1074",
+    "checked": "2026-11-06",
+    "note": "Documentary physical object dimensions do not establish calibration of the digital model.",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [],
+    "calibrationReady": false
+  },
+  "modern/asklepios-krakow-pharmacy-plaster-kgz8615": {
+    "status": "unresolved",
+    "basis": "object",
+    "dimensions": "H 70 cm × W 22 cm",
+    "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/1764",
+    "checked": "2026-11-06",
+    "note": "Documentary museum measurements only; the model is not calibrated.",
     "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
     "measures": [],
     "calibrationReady": false

@@ -266,3 +266,8 @@ comparisons, museum and AR highlights, homepage pairings and random discovery
 must stay within the reviewed collection; full catalog, exhibition body and
 newest-import listings remain independent. Run `npm run test:featured` after
 changing the selection or any editorial selector.
+
+
+### Reviewed native-model upload exception
+
+The release-preview staging tool keeps its default100 MB per-model limit. An explicitly reviewed manifest may set `max_model_bytes` up to250,000,000 and an explicit `max_total_bytes` up to2,000,000,000. Every model above100 MB must declare `nativeAndPairedReviewApproved: true` and `unfeatured: true`; the normal native, eight-direction, final-preview, archive and delivery gates still apply. Use an exact aggregate budget for the selected batch. Validate the complete request before any downloads. This exception preserves reviewed source detail; it does not grant homepage or physical-scale approval. Existing manifests retain their default limits.
