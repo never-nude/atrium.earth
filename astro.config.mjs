@@ -1,5 +1,6 @@
 import sitemap from '@astrojs/sitemap';
 import { defineConfig } from 'astro/config';
+import { previewAssets } from './scripts/lib/preview-assets.mjs';
 
 const base = process.env.BASE_PATH || '/';
 
@@ -28,6 +29,7 @@ export default defineConfig({
     host: true,
   },
   vite: {
+    plugins: [previewAssets()],
     build: {
       chunkSizeWarningLimit: 1100,
     },

@@ -72,7 +72,7 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
     </div>
 
     <div class="v3-object-actions">
-      <a class="v3-object-record-link" href="#object-record">Object record <span aria-hidden="true">↓</span></a>
+      <a class="v3-object-record-link" href="#object-record">Details &amp; sources <span aria-hidden="true">↓</span></a>
 
       <nav class="v3-object-nav" aria-label="Previous and next sculptures">
         <a href={withBase(v3WorkRoute(previous))} aria-label={`Previous work: ${previous.title}`}><span>←</span><i>{previous.title}</i></a>
@@ -128,7 +128,7 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
 
   <section class="v3-object-record" aria-labelledby="object-record-title">
     <div id="object-record" class="v3-object-record__intro" tabindex="-1">
-      <p class="v3-kicker">Object record</p>
+      <p class="v3-kicker">Details &amp; sources</p>
       <h2 id="object-record-title" class="v3-display">{work.title}</h2>
       <a class="v3-object-return" href="#sculpture">Back to sculpture <span aria-hidden="true">↑</span></a>
     </div>

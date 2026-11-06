@@ -53,7 +53,7 @@ const comparisons = exhibition.comparisons ?? [];
             <p class="comparison__meta">{[work.displayDate, exhibition.workNotes?.[work.slug]?.medium || work.medium].filter(Boolean).join(' · ')}</p>
             <p class="v3-wall">{exhibition.captions[work.slug]}</p>
             {exhibition.workNotes?.[work.slug]?.modelNote && <p class="comparison__model-note">{exhibition.workNotes[work.slug].modelNote}</p>}
-            <a class="v3-stop__open" href={withBase(v3WorkRoute(work))} aria-label={`View object record: ${work.title}`}>View object record <span aria-hidden="true">↗</span></a>
+            <a class="v3-stop__open" href={withBase(v3WorkRoute(work))} aria-label={`Details and sources: ${work.title}`}>Details &amp; sources <span aria-hidden="true">↗</span></a>
           </div>
         ))}
       </div>
@@ -101,8 +101,9 @@ const comparisons = exhibition.comparisons ?? [];
     .comparison__artist { font-size: .57rem; letter-spacing: .04em; }
     .comparison__viewer { height: clamp(235px, 76vw, 430px); }
     .comparison__viewer :global([data-tool-rotate]) { display: none; }
-    .comparison__viewer :global(.immersive-tools) { gap: 4px; width: 100%; justify-content: center; }
-    .comparison__viewer :global(.immersive-tools button) { padding-inline: 8px; min-width: 44px; font-size: .58rem; }
+    /* Reset view and Full screen share the existing 52px control gutter. */
+    .comparison__viewer :global(.viewer:not(:fullscreen) .immersive-tools) { top: calc(100% + 4px); bottom: auto; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px; width: 100%; }
+    .comparison__viewer :global(.immersive-tools button) { padding-inline: 2px; min-width: 0; font-size: .58rem; letter-spacing: .02em; }
     .comparison__notes { grid-template-columns: 1fr; gap: 36px; }
     .comparison__look { margin-top: 20px; }
   }

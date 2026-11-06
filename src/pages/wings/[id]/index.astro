@@ -6,6 +6,7 @@ import { wings, wingIds } from '../../../data/wings';
 import { logWingBuildReport, featuredWorkForWing, wingById, worksForWing, type WingRouteId } from '../../../lib/wings';
 import { v3WorkRoute } from '../../../lib/v3';
 import { withBase } from '../../../lib/urls';
+import { wingAccent } from '../../../data/wing-palettes';
 
 export function getStaticPaths() {
   logWingBuildReport();
@@ -33,6 +34,7 @@ const showRooms = Boolean(wing && rooms.length > 1);
   image={featured?.thumbnailImage}
 >
   {isUnfiled && <meta slot="head" name="robots" content="noindex, nofollow" />}
+  <div style={'--wing-accent:'+wingAccent(id)}>
 
   {featured ? (
     <section class="v3-wing-hero" aria-labelledby="wing-title" data-featured-work={featured.slug}>
@@ -106,4 +108,5 @@ const showRooms = Boolean(wing && rooms.length > 1);
       </div>
     )}
   </section>
+  </div>
 </V3Layout>

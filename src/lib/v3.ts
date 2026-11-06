@@ -1,5 +1,8 @@
 import v3Content from '../data/v3-content.json';
-import { featuredWorkIn, homepageHeroWorkForDate, isFeaturedWork, recentlyPrepared, workBySlug, works, type Work } from './catalog';
+import { homepageHeroWorkForDate, isFeaturedWork, recentlyPrepared, workBySlug, works, type Work } from './catalog';
+import previews from '../data/previews.json';
+import { isPreviewBudgetEligible, rotateContextWork } from './museum-programme.mjs';
+import { programmeDate } from './museum-date.mjs';
 import { exhibitions as baseExhibitions, featuredWork, neighborsFor, type V2Exhibition } from './v2';
 
 export type V3Exhibition = V2Exhibition & {
@@ -120,7 +123,8 @@ export const pairings: V3Pairing[] = pairingSeeds
   .filter((pair): pair is V3Pairing => Boolean(pair && isFeaturedWork(pair.a) && isFeaturedWork(pair.b)));
 
 export function exhibitionFeaturedWork(exhibition: V3Exhibition): Work {
-  const work = featuredWorkIn(exhibition.works);
+  const eligible = exhibition.works.filter((work) => isFeaturedWork(work) && isPreviewBudgetEligible(work, previews));
+  const work = rotateContextWork(eligible, programmeDate, `exhibition:${exhibition.slug}`);
   if (!work) throw new Error(`Exhibition ${exhibition.slug} needs a lead from the reviewed featured collection.`);
   return work;
 }

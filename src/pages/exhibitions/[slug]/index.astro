@@ -104,7 +104,7 @@ const stops = exhibition.works.map((work, index) => ({
           <h2>{stop.work.title}</h2>
           {stop.meta && <p class="v3-stop__meta">{stop.meta}</p>}
           {stop.text && <p class="v3-wall">{stop.text}</p>}
-          <a class="v3-stop__open" href={withBase(v3WorkRoute(stop.work))}>View object record <span>↗</span></a>
+          <a class="v3-stop__open" href={withBase(v3WorkRoute(stop.work))}>Details &amp; sources <span>↗</span></a>
         </div>
       </article>
     ))}

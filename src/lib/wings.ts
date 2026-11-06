@@ -1,5 +1,8 @@
 import { wings, type Wing, type WingId } from '../data/wings';
-import { featuredWorks, isFeaturedWork, workBySlug, works, type Work } from './catalog';
+import { featuredWorks, works, type Work } from './catalog';
+import previews from '../data/previews.json';
+import { isPreviewBudgetEligible, rotateContextWork } from './museum-programme.mjs';
+import { programmeDate } from './museum-date.mjs';
 
 export type WingRouteId = WingId | 'unfiled';
 
@@ -22,10 +25,10 @@ export function worksForWing(id: WingRouteId): Work[] {
 }
 
 export function featuredWorkForWing(wing: Wing): Work | undefined {
-  const preferred = wing.featured
-    .map((slug) => workBySlug(slug))
-    .find((work): work is Work => Boolean(work && isFeaturedWork(work) && work.wing === wing.id));
-  return preferred ?? featuredWorks.find((work) => work.wing === wing.id);
+  // A new weekly entrance from the reviewed collection; the chronological
+  // arrangement and membership of the wing itself stay consistent.
+  const eligible = featuredWorks.filter((work) => work.wing === wing.id && isPreviewBudgetEligible(work, previews));
+  return rotateContextWork(eligible, programmeDate, `wing:${wing.id}`) ?? undefined;
 }
 
 export const wingSummaries: WingSummary[] = wings.map((wing) => ({

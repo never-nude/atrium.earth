@@ -1,0 +1,52 @@
+{
+  "schema": "atrium-museum-programmes/1",
+  "anchorMonday": "2026-11-02",
+  "layouts": [
+    {
+      "key": "exhibition-first",
+      "sectionOrder": ["exhibitions", "wings", "galleries", "comparisons", "ar-vr"]
+    },
+    {
+      "key": "gallery-first",
+      "sectionOrder": ["galleries", "wings", "exhibitions", "ar-vr", "comparisons"]
+    },
+    {
+      "key": "comparison-first",
+      "sectionOrder": ["comparisons", "exhibitions", "wings", "galleries", "ar-vr"]
+    }
+  ],
+  "focuses": [
+    {
+      "exhibitionId": "the-work-of-the-surface",
+      "focusIntro": "Turn a work to follow its carved lines, painted areas and changes of depth."
+    },
+    {
+      "exhibitionId": "bodies-in-motion",
+      "focusIntro": "Compare how balance, a supporting limb and a turn of the body make movement visible."
+    },
+    {
+      "exhibitionId": "power-and-presence",
+      "focusIntro": "Look at how gesture, costume, inscriptions and materials make authority visible."
+    },
+    {
+      "exhibitionId": "sacred-forms",
+      "focusIntro": "Look closely at the materials and forms, then read how each work was used in its own tradition."
+    },
+    {
+      "exhibitionId": "what-survives",
+      "focusIntro": "Look for breaks, joins and later additions, and consider how they change the work you see."
+    },
+    {
+      "exhibitionId": "the-other-kingdom",
+      "focusIntro": "Follow the animal form around each work, from the main view to the back and underside."
+    },
+    {
+      "exhibitionId": "the-price-of-victory",
+      "focusIntro": "Compare figures of victory with captives and wounded bodies, and look at whose story each work tells."
+    },
+    {
+      "exhibitionId": "michelangelo-and-rodin",
+      "focusIntro": "Follow the hands, supporting limbs and spaces between the bodies in each paired encounter."
+    }
+  ]
+}

@@ -5,9 +5,9 @@ on:
     branches:
       - main
   schedule:
-    # Rebuild three times a week so the static homepage hero advances on
-    # Monday, Thursday, and Saturday mornings (09:17 UTC).
-    - cron: '17 9 * * 1,4,6'
+    # Refresh the daily artwork and weekly museum programme at 09:17 UTC.
+    # Static pages keep the same programme throughout each published day.
+    - cron: '17 9 * * *'
   workflow_dispatch:
 
 permissions:

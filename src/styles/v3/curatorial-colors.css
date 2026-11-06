@@ -1,0 +1,23 @@
+/* Color helps visitors recognize a wing or exhibition without coloring the art. */
+.v3-wing-card { border-inline-start: 2px solid var(--wing-accent, var(--v3-line)); }
+.v3-wing-card__number,
+.v3-wing-card__link { color: var(--wing-accent, var(--v3-signal)); }
+.v3-wing-card::after,
+.v3-wing-card__link i { color: var(--wing-accent, var(--v3-signal)); }
+.v3-wing-card::after { background: var(--wing-accent, var(--v3-signal)); }
+.v3-wing-card:hover .v3-wing-card__copy > strong { color: var(--wing-accent, var(--v3-ink)); }
+.v3-wing-hero { border-bottom: 1px solid var(--wing-accent, var(--v3-line)); }
+.v3-wing-hero__copy > .v3-kicker,
+.v3-wing-works__intro .v3-kicker,
+.v3-wing-room__head .v3-kicker { color: var(--wing-accent, var(--v3-muted)); }
+.v3-wing-hero .v3-button--light { background: var(--wing-accent, var(--v3-signal)); border-color: var(--wing-accent, var(--v3-signal)); color: #101827; }
+.v3-exrow { border-inline-start: 2px solid var(--ex-accent, var(--v3-line)); padding-inline-start: clamp(14px, 2vw, 28px); }
+.v3-exrow__no,
+.v3-exrow > b,
+.v3-exrow__kicker { color: var(--ex-accent, var(--v3-signal)); }
+.v3-exrow:hover h3 { color: var(--ex-accent, var(--v3-ink)); }
+.v3-exhero__copy > .v3-kicker,
+.v3-exhero__copy > a { color: var(--ex-accent, var(--v3-signal)); }
+.v3-exhero { border-bottom: 1px solid var(--ex-accent, var(--v3-line)); }
+.v3-weekly-focus { padding-inline-start: 16px; border-inline-start: 2px solid var(--ex-accent); }
+.v3-weekly-focus > span { display: block; margin-bottom: 6px; color: var(--ex-accent); }

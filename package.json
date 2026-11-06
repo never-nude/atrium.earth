@@ -8,6 +8,7 @@
     "build": "astro build && node ./scripts/write-redirects.mjs && node ./scripts/prune-remote-assets.mjs",
     "test:additions": "node ./scripts/test-additions.mjs",
     "test:featured": "node ./scripts/test-featured-selection.mjs",
+    "test:programme": "node ./scripts/test-museum-programme.mjs",
     "test:review-artifacts": "node ./scripts/test-review-artifacts.mjs",
     "test:wings": "node --experimental-strip-types ./scripts/test-wings.ts",
     "preview": "astro preview",

@@ -103,10 +103,10 @@ const transformJson = JSON.stringify(modelTransform);
       <div class="immersive-tools" data-immersive-tools hidden aria-label="3D viewing tools">
         <button type="button" data-zoom-in aria-label="Zoom in" title="Zoom in">+</button>
         <button type="button" data-zoom-out aria-label="Zoom out" title="Zoom out">−</button>
-        <button type="button" data-tool-wire aria-pressed="false" title="Show wireframe">Mesh</button>
-        <button type="button" data-tool-rotate aria-pressed={String(autoRotate)} title="Toggle rotation">Turn</button>
-        <button type="button" data-tool-reset title="Reset view">Reset</button>
-        <button type="button" data-tool-fullscreen aria-pressed="false" title="Enter full screen">Expand</button>
+        <button type="button" data-tool-wire aria-pressed="false" title="Show the 3D model’s triangle edges">Wireframe</button>
+        <button type="button" data-tool-rotate aria-pressed={String(autoRotate)} title="Start or pause automatic rotation">Auto-rotate</button>
+        <button type="button" data-tool-reset title="Reset the viewing angle and zoom">Reset view</button>
+        <button type="button" data-tool-fullscreen aria-pressed="false" title="Enter full screen">Full screen</button>
       </div>
     )}
 
@@ -151,7 +151,7 @@ const transformJson = JSON.stringify(modelTransform);
     </div>
   )}
 
-  {hasModel && <p class="stage-hint fine" data-hint hidden>Drag to orbit · <span class="stage-hint__pan">right-drag or two-finger drag to pan · </span>scroll or pinch to zoom · double-tap to reset</p>}
+  {hasModel && <p class="stage-hint fine" data-hint hidden>Drag to turn the view · <span class="stage-hint__pan">right-drag or two-finger drag to move the view · </span>{wheelZoom && 'scroll or pinch to zoom · '}double-click or double-tap to reset</p>}
 
   {spatialViewing && hasModel && <SpatialViewing title={title} poster={poster} museumLabel={museumLabel} reference={spatialReference} sizeNote={spatialNote} displaySupport={displaySupport} dimensionStatus={spatialDimensionStatus} requiresAssetCheck={Boolean(spatialAssetSha256)} referenceLabel={spatialLabel} sizeLabel={spatialSizeLabel} defaultMaxExtentMeters={spatialDefaultMaxExtentMeters} />}
   {!spatialViewing && spatialUnavailableNote && <a id="ar-vr" class="spatial-unavailable" data-spatial-unavailable href="#size-verification" title={spatialUnavailableNote}>AR / VR unavailable · Size unverified <span aria-hidden="true">↓</span></a>}
@@ -873,7 +873,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
             const expanded = document.fullscreenElement === root;
             fullscreen?.setAttribute('aria-pressed', String(expanded));
             if (fullscreen) {
-              fullscreen.textContent = expanded ? 'Close' : 'Expand';
+              fullscreen.textContent = expanded ? 'Exit full screen' : 'Full screen';
               fullscreen.title = expanded ? 'Exit full screen' : 'Enter full screen';
             }
           });
@@ -984,6 +984,8 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
 </script>
 
 <style>
+  .immersive-tools { max-width: 100%; flex-wrap: wrap; justify-content: center; }
+  .immersive-tools button { white-space: nowrap; }
   .spatial-unavailable { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; color: var(--v3-muted, #c9c6bd); font: 500 11px/1.5 var(--v3-sans, sans-serif); text-decoration: none; }
   .spatial-unavailable:hover { color: var(--v3-ink, #f7f5ef); text-decoration: underline; text-underline-offset: 4px; }
   .spatial-unavailable:focus-visible { outline: 2px solid var(--v3-signal, #eccf7a); outline-offset: 4px; }

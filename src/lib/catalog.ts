@@ -1,4 +1,3 @@
-import { existsSync } from 'node:fs';
 import rawCatalog from '../data/catalog.json';
 import rawPreviews from '../data/previews.json';
 import rawRenders from '../data/renders.json';
@@ -603,9 +602,6 @@ function normalize(raw: RawWork, fallbackIndex: number): Work {
   const sourceMuseum = clean(raw.source_institution);
   const museum = clean(raw.displayed_at) || clean(raw.current_location) || clean(raw.museum);
   const preview = previewMap[raw.slug];
-  const previewFilename = preview?.url?.split('/').at(-1) || '';
-  const localPreview = /^preview(?:-[a-f0-9]+)?\.glb$/.test(previewFilename)
-    ? `/models/previews/${raw.slug}/${previewFilename}` : '';
   const movement = movementFor(raw, era);
   const medium = clean(raw.material);
   const title = clean(correction?.title || raw.title) || titleCaseSlug(raw.slug);
@@ -675,8 +671,8 @@ function normalize(raw: RawWork, fallbackIndex: number): Work {
     posterImage: `/previews/posters/${raw.slug}/poster.svg`,
     thumbnailImage: renderSet.has(raw.slug) ? `/previews/renders/${raw.slug}/thumb.webp` : `/previews/posters/${raw.slug}/poster.svg`,
     // Match the configured version so a stale local mirror cannot hide a repair.
-    modelGlb: import.meta.env?.DEV && localPreview && existsSync(`public${localPreview}`)
-      ? localPreview
+    modelGlb: import.meta.env?.DEV && preview?.url
+      ? `/__atrium-model/${encodeURIComponent(raw.slug)}`
       : preview?.url || '',
     modelUpAxis: legacyTransformString(modelTransform),
     modelTransform,
