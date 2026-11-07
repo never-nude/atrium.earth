@@ -33210,7 +33210,7 @@
       "measurementRegion": {
         "method": "position-welded connected triangles",
         "description": "The sculpture is separate from the modern pedestal. Connected components ranks 0, 1 and 3 contain the marble group; rank 2 is the rectangular pedestal. Their union runs from normalized Y -0.1190040436654394 to 0.5. Use the confirmed 197.5 cm height of the marble group, retaining the pedestal at the same uniform scale.",
-        "weldToleranceNormalizedUnits": 1e-06,
+        "weldToleranceNormalizedUnits": 0.000001,
         "ranksByDescendingTriangleCount": [
           0,
           1,
@@ -69243,7 +69243,7 @@
       "measurementRegion": {
         "method": "position-welded connected triangles",
         "description": "Connected component rank 0 is the rigid monitor body; all display/button components remain within its lateral body endpoints. Hanging cable components extend farther left and below and are excluded from the reference. Use the museum body-only width 58.4 cm for the rank-0 X span, retaining all cables at that scale.",
-        "weldToleranceNormalizedUnits": 1e-06,
+        "weldToleranceNormalizedUnits": 0.000001,
         "ranksByDescendingTriangleCount": [
           0
         ],
@@ -76965,7 +76965,7 @@
       "measurementRegion": {
         "method": "position-welded connected triangles",
         "description": "Connected component rank 0 is the complete sculpture, including its lowest foot/curved lower edge; rank 1 is the added green platform. All other sculpture fragments and the apple are within rank-0 height. Use the scan creator’s explicitly approximate 57 cm sculpture height, excluding the green platform from the reference while retaining it in the scene.",
-        "weldToleranceNormalizedUnits": 1e-06,
+        "weldToleranceNormalizedUnits": 0.000001,
         "ranksByDescendingTriangleCount": [
           0
         ],
@@ -119569,6 +119569,50 @@
     "sourceUrl": "https://muzea.malopolska.pl/en/objects-list/1764",
     "checked": "2026-11-06",
     "note": "Documentary museum measurements only; the model is not calibrated.",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [],
+    "calibrationReady": false
+  },
+  "modern/mediterranea-marta-solsona-carcassonne": {
+    "status": "unresolved",
+    "basis": "object",
+    "dimensions": "",
+    "sourceUrl": "https://martasolsona.blogspot.com/2009/02/mediterrania_15.html",
+    "checked": "2026-11-06",
+    "note": "Documentary physical object dimensions do not establish calibration of the digital model.",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [],
+    "calibrationReady": false
+  },
+  "roman/silenus-narbo-via-narbonne-4508c5": {
+    "status": "unresolved",
+    "basis": "object",
+    "dimensions": "",
+    "sourceUrl": "https://narbovia.fr/accueil-2-2/les-parcours-permanents/parcours-permanent-du-musee/",
+    "checked": "2026-11-06",
+    "note": "Documentary physical object dimensions do not establish calibration of the digital model.",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [],
+    "calibrationReady": false
+  },
+  "modern/colosse-nu-assis-bugatti-gravelines": {
+    "status": "unresolved",
+    "basis": "object",
+    "dimensions": "Approximately 250 cm high, according to the model publisher; model not calibrated",
+    "sourceUrl": "https://www.ville-gravelines.fr/sites/default/files/atoms/files/grav-4e-fleur-2022-web_1.pdf",
+    "checked": "2026-11-07",
+    "note": "Documentary physical object dimensions do not establish calibration of the digital model.",
+    "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
+    "measures": [],
+    "calibrationReady": false
+  },
+  "modern/la-liberte-nemeth-gravelines": {
+    "status": "unresolved",
+    "basis": "object",
+    "dimensions": "Approximately 180 cm total height, according to the model publisher; model not calibrated",
+    "sourceUrl": "https://www.ville-gravelines.fr/sites/default/files/atoms/files/grav-4e-fleur-2022-web_1.pdf",
+    "checked": "2026-11-07",
+    "note": "Documentary physical object dimensions do not establish calibration of the digital model.",
     "spatialNote": "Physical size is not yet calibrated. Display size is adjustable.",
     "measures": [],
     "calibrationReady": false
