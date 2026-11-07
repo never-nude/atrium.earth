@@ -50,6 +50,7 @@ jobs:
           npm run test:world-time
           npm run test:world-state
           npm run test:spatial
+          npm run test:spatial-museum-bindings
 
       - name: Build
         run: npm run build

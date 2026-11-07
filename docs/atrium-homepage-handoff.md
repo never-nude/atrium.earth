@@ -256,3 +256,14 @@ the normal homepage with Map mode preserved and its globe toolbar hidden.
 The earlier locked-screen UI/exit qualifications are closed. Physical touch
 and physical-device AR are not established by this desktop review.
 No source or deployment change was needed.
+
+
+## Static gallery delivery regression found during Awwwards review
+
+The separately built gallery bundle retained two old Eternal Idol URLs after
+the20-model CDN transfer. The Rodin room exposed one failed work during live
+review. Both URLs now match the verified R2 preview, and the entry query is
+bound to the complete bundle digest. Model bytes and presentation are unchanged.
+`test:spatial-museum-bindings` now gates every production release against all47
+room works and94 compiled URL copies. Publication/live confirmation is in
+STATUS.md. Preserve this check when rebuilding the independent gallery runtime.
