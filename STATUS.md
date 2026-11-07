@@ -1958,4 +1958,21 @@ Concurrent publication integrated: main `adf948603428fe313a5b5fcbd2678fe7f69fc6f
 - Permanent private backup covers4 acquired sources406,079,116B: selected2 gain qualified preview mappings; Niobé/Conversation are source-only duplicates already published by the other chat and contribute zero. Qualified recovery sidecar/map/proof and3 full signed readbacks pass; no local source removal. R2 run42314292782 and2 fresh complete signed model readbacks pass SHA/bytes/MIME/CORS. Addition/featured/wing/review-path/asset/whitespace checks pass. Deployment and live verification follow. Colosse/Liberté are the final ready pair being backed up for a last continuation to17; remaining research is parked.
 
 
+## 2026-11-06 — Collection surface audit and bounded repairs
+
+- Owner/task: this Codex chat; branch `codex/collection-surface-audit-20261106`, based on `de3a9191`. User requested a collection-wide washout check, then requested conserving usage and deploying the confirmed work before stopping.
+- Scope: screened all 3,019 public thumbnails and separately reviewed 84 high-exposure settings. Targeted source/live trials support 22 exposure-only repairs and one crystal-bishop material-compatibility repair. This is not full 3D QA of every work.
+- Changes: 23 per-work exposure values, a new fingerprinted crystal viewing derivative retaining decoded geometry/source surface data, two factual capture labels, and scoped refreshed thumbnails/posters. Original crystal preview remains intact. All other catalog content, settings, visibility and global rendering behavior remain unchanged.
+- Evidence and deferred cases: [collection surface review](docs/ingest/collection-surface-review-20261106.md). Colorless-source cases and uncertain mismatches remain unchanged.
+- Delivery at preparation: not yet published; final asset review, build and live verification follow. Preserve concurrent changes from other chats when publishing. No new discovery is authorized by this stop point; pause this chat after the confirmed repairs are live.
+
+- Prepublication validation completed: 23 final thumbnails visually reviewed; all 23 posters embed their exact thumbnail bytes. Asset verification and syntax checks passed; production build completed with 8,356 pages. Built defaults and preview references match all 23 approved changes; both capture labels are present. Original crystal preview is byte-identical. The render and verification tools now support fingerprinted Pages-local models. Live delivery remains to be checked after publication.
+
+### Surface-review deployment confirmed; chat paused
+
+- Repair commit `bce2b737` and concurrent-acquisition merge `d9ca61a1` are published. [Pages run 42315754750](https://github.com/never-nude/atrium.earth/actions/runs/42315754750) succeeded. The concurrent two-work acquisition is retained; current catalog is 3,039 records.
+- Live HTTP verification passed for all 23 changed work pages (default exposure and correct preview binding) and complete hashes/bytes for all 69 delivered models/thumbnails/posters. Source/live exposure trials and crystal four-view inspection were done before publication; no full post-deployment interactive sweep is claimed.
+- Removed 17 disposable exact serving-preview mirrors (83,398,812 bytes) only after live full-hash verification, plus reproducible build output (1,118,296,624 bytes). Original sources, the original crystal preview, the repaired tracked crystal derivative and required public assets remain intact. Private evidence and cleanup receipt retained locally.
+- Owner requested wrapping up and conserving usage. This chat is paused: no further discovery, acquisition, rendering, or deferred repairs should resume without a new request.
+
 - Wind-down first pair verified live: releasef7760007 /Pages42315353605 passed full production build/deployment,2pages+4full images,2fresh signed model bodies304,189,588B with MIME/CORS,2actual390px browser models/fullSHA/orbit/fullsource+credit and exact15-work Newest390/1280. ROOT inspected8actualimages; owned process exits verified. This round is15live. The final ready Colosse/Liberté pair is permanently privately backed up and staged for the final continuation; no parked candidate is being developed further.

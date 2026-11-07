@@ -8,6 +8,7 @@ import orientations from '../src/data/orientations.json' with { type: 'json' };
 import catalog from '../src/data/catalog.json' with { type: 'json' };
 import materialAppearances from '../src/data/material-appearances.json' with { type: 'json' };
 import appearanceOverrides from '../src/data/appearance-overrides.json' with { type: 'json' };
+import previews from '../src/data/previews.json' with { type: 'json' };
 
 const root = resolve('.');
 const modelRoot = join(root, 'public/models/previews');
@@ -303,7 +304,10 @@ async function render(page, slug, index, total) {
   mkdirSync(outDir, { recursive: true });
   try { rmSync(png, { force: true }); } catch { /* see removeDir() note above */ }
 
-  const model = `/public/models/previews/${slug}/preview.glb`;
+  const configuredModel = previews[slug]?.url;
+  const model = typeof configuredModel === 'string' && configuredModel.startsWith(`/models/previews/${slug}/`)
+    ? `/public${configuredModel}`
+    : `/public/models/previews/${slug}/preview.glb`;
   const url = `http://127.0.0.1:${serverPort}/public/__render.html?model=${encodeURIComponent(model)}&up=${encodeURIComponent(legacyUp)}&transform=${encodeURIComponent(transformParam)}&appearance=${encodeURIComponent(appearance)}`;
   await page.send('Page.navigate', { url });
   await waitForRender(page, slug);
