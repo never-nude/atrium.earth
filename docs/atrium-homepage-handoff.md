@@ -88,3 +88,54 @@ asset package. The ordinary complete-checkout release gate remains required.
    unknown physical sizes. Do not claim physical-device AR verification.
 4. Capture review screenshots and investigate the two pending duplicate pairs
    using the evidence checklist. Keep publication pending the user's instruction.
+
+
+## Place/time globe continuation — 6 November
+
+The user approved a vivid dark-ground globe alongside the existing wings, with
+The Expanse opening/Shenzhen/cyberpunk atmosphere as references. They rejected
+the first schematic homepage wireframe. It has been replaced by an actual large
+interactive Earth using real bundled Natural Earth land, directional shading,
+illuminated coasts and colored origin points. The homepage wrapper is a section,
+with a separate CTA; drag gestures never navigate accidentally.
+
+Latest user direction: use controls similar to the sculpture viewers for globe
+zoom and rotation. Both views now have +/−, Auto-rotate, Reset view and Full screen.
+The renderer also implements arrow/Home/+/- keyboard navigation and touch pinch.
+Default explorer rendering rests when idle; invitation rotation is initially on,
+pauses on manual drag and honors reduced motion/offscreen/hidden states. The
+homepage renderer imports lazily near the viewport. Unsupported/denied fullscreen
+controls are hidden. Keep all controls outside artwork images.
+
+Preview `http://localhost:5182/#explore-the-world` and `/world/`. The full explorer
+adds country/region selection, a compressed early-time range, exact BCE/CE dates,
+real work results and uncertain-origin access. Existing wing assignments remain
+unchanged. Their copy now explains historical tradition and geography. This does
+not revive the discarded theme-dial HUD.
+
+Data:3018 public works;1858 placed/1160 unplaced at120 approximate anchors;
+1688 dated/1330 undated,5500BCE–2026CE. `docs/world-collection-data.md` defines
+origin/cast/date evidence rules. Public working captions retain short-title
+formatting; record details and full image identification remain available.
+
+Latest full source build:8354 pages/5215 redirects. `test:world-collection`,
+`test:world-time`, programme, work-title and wing checks pass. Existing additions
+also passed during the globe pass. A built-payload check verifies all3018 records,
+120 places, bundled land/sitemap and seven top-level homepage modules.
+
+Browser observations supersede the earlier no-screenshot checkpoint: native Safari
+showed clear comparison faces and Nefertiti activation tools; globe selection,
+period filters, map mode, slider drag, uncertain origins, reset, expanded-result
+focus and the revised dimensional homepage Earth/pause state were observed.
+An isolated temporary iframe harness reviewed the initial globe at320/390/800/1280
+CSS pixels;320 header overflow was fixed. Final toolbar wrapping, physical pinch
+and uninterrupted fullscreen framing remain release-review items. Some later
+native actions were interrupted by concurrent foreground/page changes; do not
+count those attempts as completed tests. Development component CSS had retained
+the old invitation styles; restarting the owned server fixed the rendered layout.
+
+The old schematic invitation screenshot is obsolete. Sibling outputs contain the
+button-fix proof and initial globe/responsive screenshots; the revised dimensional
+Earth was observed inline in the chat. Do not substitute old proof for the new
+homepage version. No deployment, push or main merge has occurred. Preserve and
+reconcile concurrent catalog work before any authorized release.

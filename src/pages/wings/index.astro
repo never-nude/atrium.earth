@@ -2,6 +2,7 @@
 import V3WingGrid from '../../components/v3/V3WingGrid.astro';
 import V3Layout from '../../layouts/v3/V3Layout.astro';
 import { wingSummaries } from '../../lib/wings';
+import { withBase } from '../../lib/urls';
 
 const leadImage = wingSummaries[0]?.featured?.thumbnailImage;
 ---
@@ -13,8 +14,9 @@ const leadImage = wingSummaries[0]?.featured?.thumbnailImage;
 >
   <header class="v3-page-hero">
     <p class="v3-kicker">Permanent collection / 06 wings</p>
-    <h1 class="v3-display">Explore art<br /><em>by region.</em></h1>
-    <p>Explore six geographic and historical wings. Works are arranged by period within each wing, while exhibitions bring works from different regions together.</p>
+    <h1 class="v3-display">Six ways into<br /><em>the collection.</em></h1>
+    <p>Wings bring together works by historical tradition and geography, rather than dividing the world into separate territories. Works are arranged by period within each wing.</p>
+    <p>To explore documented origins across time, <a href={withBase('/world/')}>turn the interactive globe ↗</a>.</p>
   </header>
 
   <section class="v3-wings" aria-label="Museum wings">

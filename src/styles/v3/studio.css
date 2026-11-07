@@ -72,6 +72,7 @@ a, button, input, select, summary { touch-action: manipulation; }
 .v3-menu summary::-webkit-details-marker { display: none; }
 .v3-menu nav { position: absolute; right: 0; display: grid; min-width: 210px; padding: 8px; top: calc(100% + 14px); border: 1px solid var(--v3-line-strong); border-radius: 12px; background: var(--studio-panel); box-shadow: 0 18px 56px rgba(0, 0, 0, .24); }
 .v3-menu nav a, .v3-menu nav button { display: block; width: 100%; padding: 12px; color: var(--v3-muted); border: 0; background: transparent; text-align: left; text-decoration: none; cursor: pointer; font-size: 14px; letter-spacing: 0; text-transform: none; }
+@media (max-width: 360px) { .studio-header .studio-saved { display: none; } }
 
 /* The home stage uses two real columns; copy never sits across the sculpture. */
 .v3-hero {
@@ -350,6 +351,10 @@ body .v3-explorer:has(.v3-collection-switch) .v3-filter-row select, body .v3-exp
   .v3-filter-row label { flex-basis: 130px; }
   .v3-explorer__tools { position: relative; top: auto; }
   body .v3-explorer:has(.v3-collection-switch) .v3-explorer__tools { top: auto; }
+}
+@media (max-width: 1100px) {
+  .v3-nav, .studio-nav { display: none; }
+  .v3-menu { display: block; }
 }
 @media (max-width: 900px) {
   .v3-nav, .studio-nav { display: none; }

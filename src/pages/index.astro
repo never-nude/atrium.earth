@@ -6,6 +6,7 @@ import { newestWorks } from '../lib/additions';
 import FeaturedExhibition from '../components/home/FeaturedExhibition.astro';
 import LookingTogether from '../components/home/LookingTogether.astro';
 import SpatialInvitation from '../components/home/SpatialInvitation.astro';
+import WorldInvitation from '../components/home/WorldInvitation.astro';
 import V3Layout from '../layouts/v3/V3Layout.astro';
 import { collectionCount, v3WorkRoute, v3ExhibitionRoute } from '../lib/v3';
 import { currentProgramme } from '../lib/programme';
@@ -91,11 +92,12 @@ const heroAlt = [
   <SpatialInvitation />
 
   <section class="v3-section v3-section--line home-wings" aria-labelledby="wings-home-title" data-home-section="wings">
+    <WorldInvitation />
     <div class="v3-section-head v3-section-head--split">
       <div><p class="v3-kicker">04 / Museum wings</p><h2 id="wings-home-title" class="v3-display">Follow your curiosity.</h2></div>
       <a href={withBase('/wings/')}>Explore all six wings <span aria-hidden="true">→</span></a>
     </div>
-    <p class="home-section-intro">Browse by region and period. Each wing opens a different part of the collection.</p>
+    <p class="home-section-intro">Wings bring together works by historical tradition and geography. Each offers a different route into the collection.</p>
     <V3WingGrid compact={true} />
   </section>
 
