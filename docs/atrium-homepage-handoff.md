@@ -139,3 +139,39 @@ button-fix proof and initial globe/responsive screenshots; the revised dimension
 Earth was observed inline in the chat. Do not substitute old proof for the new
 homepage version. No deployment, push or main merge has occurred. Preserve and
 reconcile concurrent catalog work before any authorized release.
+
+
+## Latest: compact actual explorer on homepage
+
+This supersedes the separate homepage Earth invitation described above. The user
+asked for an abridged version of the actual `/world/` experience. Both homepage
+and full page now directly render `src/components/WorldExplorer.astro`. Keep
+visuals, origin labels, marker colors, controls and date behavior shared.
+`WorldInvitation.astro` and `home-world.js` were removed; do not restore a separate
+homepage presentation without a new user direction.
+
+Compact mode has the same Globe/Map views, selectable places, zoom/rotation/reset/
+fullscreen controls, time range and collapsed exact dates. It shows two matching
+cards with a shown/total count. Both continuation links retain place, exact years
+and presentation mode. Full mode reads those validated URL fields and shows three
+initial cards, with its existing explicit expansion. Unique instance-prefixed IDs
+and conditional heading levels preserve the homepage hierarchy.
+
+`world-payload.ts` generates one versioned `/world/collection.json` resource for
+both routes; metadata and renderer are loaded near the compact viewport. No
+sculpture files were downloaded or copied. Final built HTML is61314bytes for the
+homepage and15164bytes for the world page. The shared JSON contains3018works and
+120places; local gzip measurement186014bytes. Base-path URLs remain supported.
+
+Validation: `test:world-state` (six cases), world time/collection, programme and
+work-title tests pass. Full source build8354pages/5215redirects passes. Built checks
+confirm a common metadata URL, unique IDs, correct variant selectors and seven
+unchanged top-level homepage modules. Native Safari verified homepage Egypt,
+3000–1000BCE and Map mode continuing into the full page with the same24matches.
+A320CSS-pixel iframe layout review passed; physical pinch/fullscreen and complete
+production-asset checks from the earlier gate remain separate. The temporary
+review server was stopped and Safari returned to the main homepage preview.
+
+Preview `http://localhost:5182/#explore-the-world`. This work is still local,
+unpushed and unpublished. Review the compact experience before any release, and
+preserve/reconcile concurrent catalog updates rather than replacing main.

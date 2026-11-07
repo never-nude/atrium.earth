@@ -11,6 +11,7 @@
     "test:programme": "node ./scripts/test-museum-programme.mjs",
     "test:work-titles": "node --experimental-strip-types ./scripts/test-work-titles.mjs",
     "test:world-time": "node ./scripts/test-world-time.mjs",
+    "test:world-state": "node --test ./scripts/world-state.test.mjs",
     "test:world-collection": "node ./scripts/test-world-collection.mjs",
     "test:review-artifacts": "node ./scripts/test-review-artifacts.mjs",
     "test:wings": "node --experimental-strip-types ./scripts/test-wings.ts",
