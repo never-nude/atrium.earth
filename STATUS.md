@@ -1951,6 +1951,13 @@ Concurrent publication integrated: main `adf948603428fe313a5b5fcbd2678fe7f69fc6f
 - Acquisition lane reserved for this round: official Small STLs KMS5254, KAS768 and KAS770 (only KMS5254 complete so far; two terminated transfers have an exact retry-only request), plus source-request manifests for seven newly matched physical works: Le Rhône et la Saône, NAMA1454 reclining Herakles, Summer/Léto, Vienna Flora, Stuttgart Rems, Monforte reclining Neptune/Triton and Brijuni Leda. Radiance and Dyrham Neptune were already requested in another chat and are excluded from our fetch queue. Requests are acquisition/review candidates only, not counted as published. All original-package and calibration qualifications remain; no local asset offload performed.
 
 
+### 2026-11-06 — Wind-down release: Mediterranea and Silenus prepared
+
+- Owner requested conserving usage, deploying the ready work and ending for the day. New acquisition/research/rendering lanes are stopped. Seven newly fetched sources and KMS5254 are parked with private checkpoints; no unfinished candidate is counted.
+- Mediterranea and Narbo Via Silenus add2 records:3,039 total /3,021 public /18 hidden; this logical round has15 local works,13 previously verified live. All3,037 prior rows/maps are preserved except total, including the concurrent sword correction. Actual native6/paired32/final3-image ROOT review passed; unchanged source/serving bodies304,189,588B, qualified date/location/material and ancient fragment/support details retained, both unfeatured/unscaled/outside Spatial.
+- Permanent private backup covers4 acquired sources406,079,116B: selected2 gain qualified preview mappings; Niobé/Conversation are source-only duplicates already published by the other chat and contribute zero. Qualified recovery sidecar/map/proof and3 full signed readbacks pass; no local source removal. R2 run42314292782 and2 fresh complete signed model readbacks pass SHA/bytes/MIME/CORS. Addition/featured/wing/review-path/asset/whitespace checks pass. Deployment and live verification follow. Colosse/Liberté are the final ready pair being backed up for a last continuation to17; remaining research is parked.
+
+
 ## 2026-11-06 — Collection surface audit and bounded repairs
 
 - Owner/task: this Codex chat; branch `codex/collection-surface-audit-20261106`, based on `de3a9191`. User requested a collection-wide washout check, then requested conserving usage and deploying the confirmed work before stopping.
