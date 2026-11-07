@@ -56,6 +56,9 @@ jobs:
         env:
           SITE: https://atrium.earth
 
+      - name: Verify Pages package size
+        run: node scripts/verify-pages-budget.mjs
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

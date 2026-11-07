@@ -30,6 +30,9 @@ jobs:
           sparse-checkout: |
             /scripts/
             /docs/ingest/
+            /src/data/previews.json
+            /src/data/physical-dimensions.json
+            /src/data/spatial-eligibility.json
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -38,7 +41,11 @@ jobs:
           MANIFEST: ${{ inputs.manifest || 'docs/ingest/picasso-20261023-preview-upload.json' }}
           GH_TOKEN: ${{ github.token }}
         run: |
-          if [[ "$MANIFEST" == *-artifact-preview-upload.json ]]; then
+          if [[ "$MANIFEST" == *-repo-preview-transfer.json ]]; then
+            node --test scripts/stage-repo-preview-transfer.test.mjs
+            node scripts/test-repo-preview-transfer.mjs
+            node scripts/stage-repo-preview-transfer.mjs
+          elif [[ "$MANIFEST" == *-artifact-preview-upload.json ]]; then
             node scripts/stage-reviewed-artifact-previews.mjs
           else
             node scripts/stage-reviewed-previews.mjs
@@ -55,6 +62,11 @@ jobs:
           --previews=.atrium-ingest/reviewed-preview-upload/previews.json
           --previews-dir=.atrium-ingest/reviewed-preview-upload/models
           --report=.atrium-ingest/reviewed-preview-upload/report.json
+      - name: Verify transferred model delivery and browser access
+        if: ${{ endsWith(inputs.manifest, '-repo-preview-transfer.json') }}
+        env:
+          MANIFEST: ${{ inputs.manifest }}
+        run: node scripts/verify-repo-preview-transfer.mjs
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
@@ -63,6 +75,7 @@ jobs:
             .atrium-ingest/reviewed-preview-upload/previews.json
             .atrium-ingest/reviewed-preview-upload/report.json
             .atrium-ingest/reviewed-preview-upload/source-proof.json
+            .atrium-ingest/reviewed-preview-upload/delivery-proof.json
           include-hidden-files: true
           if-no-files-found: error
           retention-days: 30
