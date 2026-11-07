@@ -244,3 +244,15 @@ UI observation/exit return and physical-device touch/AR remain unverified;
 local native observations and production HTTP/asset checks are distinguished
 in STATUS.md. No further source change or asset offload is pending for this
 release. Preserve all originals and the authenticated transfer proofs.
+
+
+## Native production check completed after unlock
+
+On2026-11-07 the owner unlocked the Mac and the pending Safari review completed.
+Both live comparison models loaded with textures and rotated independently.
+The compact live globe rendered and responded to zoom, drag and reset.
+Fullscreen Globe and Map rendered correctly; the Map exit action returned to
+the normal homepage with Map mode preserved and its globe toolbar hidden.
+The earlier locked-screen UI/exit qualifications are closed. Physical touch
+and physical-device AR are not established by this desktop review.
+No source or deployment change was needed.
