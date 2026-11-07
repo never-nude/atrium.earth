@@ -227,3 +227,20 @@ The post-build Pages package now has an explicit1,000,000,000-byte limit
 before upload. Full runner size and final production status are recorded in
 STATUS.md when complete. Keep the shared explorer, five geographic wings,
 new colorful comparison and all concurrent acquisitions/surface repairs.
+
+
+## Production completion
+
+Release `8e009f95d34dc74c8205d86d007b5173a672f1ef` is live via successful
+[Pages42358673304](https://github.com/never-nude/atrium.earth/actions/runs/42358673304).
+The complete package passed at966,375,043bytes; publication took36seconds.
+All release checks and15live museum routes pass. New comparison/fullGLBs and
+posters, sharedJSON/land,8script/style assets, all5wings/3legacy entrances,
+20CDN pagebindings/headers and the prior20fullhash receipts are verified.
+The normal daily09:17UTC refresh remains configured.
+
+The Mac locked during the earlier native preview exit transition. Final live
+UI observation/exit return and physical-device touch/AR remain unverified;
+local native observations and production HTTP/asset checks are distinguished
+in STATUS.md. No further source change or asset offload is pending for this
+release. Preserve all originals and the authenticated transfer proofs.
