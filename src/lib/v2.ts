@@ -74,7 +74,7 @@ const seeds: ExhibitionSeed[] = [
       'egyptian/false-door-irienakhet-mia',
       'asia/cosmic-buddha',
       'asia/bodhisattva-avalokiteshvara-gwaneum-smithsonian',
-      'asia/ganesha-mia',
+      'asia/ganesha-java-mia',
       'americas/zemi-cohoba-stand',
       'sub-saharan-africa/gelede-helmet-mask',
       'sub-saharan-africa/kongo-maternity-figure',

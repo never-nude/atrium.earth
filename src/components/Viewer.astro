@@ -836,6 +836,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
           const rotate = tools.querySelector('[data-tool-rotate]') as HTMLButtonElement | null;
           const reset = tools.querySelector('[data-tool-reset]') as HTMLButtonElement | null;
           const fullscreen = tools.querySelector('[data-tool-fullscreen]') as HTMLButtonElement | null;
+          if (fullscreen) fullscreen.hidden = typeof root.requestFullscreen !== 'function' || document.fullscreenEnabled === false;
           let wireOn = saved?.wireframe ?? false;
           wire?.setAttribute('aria-pressed', String(wireOn));
           let rotateOn = viewer.defaults.autoRotate;
@@ -866,8 +867,12 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
           });
           on(reset, 'click', () => viewer.reset());
           on(fullscreen, 'click', async () => {
-            if (document.fullscreenElement === root) await document.exitFullscreen();
-            else await root.requestFullscreen?.();
+            try {
+              if (document.fullscreenElement === root) await document.exitFullscreen();
+              else await root.requestFullscreen?.();
+            } catch {
+              if (fullscreen) fullscreen.hidden = true;
+            }
           });
           on(document, 'fullscreenchange', () => {
             const expanded = document.fullscreenElement === root;

@@ -3,6 +3,7 @@ import type { Work } from '../../lib/catalog';
 import { publicDataset } from '../../lib/catalog';
 import { v2WorkRoute } from '../../lib/v2';
 import { withBase } from '../../lib/urls';
+import { shortWorkTitle } from '../../lib/work-titles';
 
 type Props = { work: Work; eager?: boolean; featured?: boolean; sequence?: number };
 const { work, eager = false, featured = false, sequence } = Astro.props;
@@ -35,7 +36,7 @@ const alt = `${work.title}${detail ? ` — ${detail}` : ''}`;
       {typeof sequence === 'number' && <span class="v2-work-card__sequence">{String(sequence).padStart(2, '0')}</span>}
     </div>
     <div class="v2-work-card__copy">
-      <h3>{work.title}</h3>
+      <h3>{shortWorkTitle(work.title)}</h3>
       {detail && <p>{detail}</p>}
     </div>
   </a>

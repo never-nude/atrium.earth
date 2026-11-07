@@ -6,13 +6,14 @@ import { exhibitions, pairings, type V3Exhibition, type V3Pairing } from './v3';
 import { buildMuseumProgramme } from './museum-programme.mjs';
 import { programmeDate } from './museum-date.mjs';
 
-export type ProgrammeLayout = 'exhibition-first' | 'gallery-first' | 'comparison-first';
+export type ProgrammeLayout = 'exhibition-first';
 export type ProgrammeSection = 'wings' | 'galleries' | 'ar-vr' | 'comparisons' | 'exhibitions';
 export type MuseumRoom = typeof spatialManifest.rooms[number];
 export type MuseumProgramme = {
   focus: V3Exhibition;
   focusIntro: string;
   hero: Work;
+  heroPrompt: string;
   heroQueue: Work[];
   exhibitions: V3Exhibition[];
   pairings: V3Pairing[];

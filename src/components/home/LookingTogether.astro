@@ -1,0 +1,61 @@
+---
+import Viewer from '../Viewer.astro';
+import { currentProgramme } from '../../lib/programme';
+import type { V3Pairing } from '../../lib/v3';
+import { v3WorkRoute } from '../../lib/v3';
+import { withBase } from '../../lib/urls';
+import { shortWorkTitle } from '../../lib/work-titles';
+
+type Props = { pair?: V3Pairing };
+const { pair = currentProgramme.pairings[0] } = Astro.props;
+const works = pair ? [pair.a, pair.b] : [];
+---
+
+{pair && <section id="look-closely" class="looking-together" aria-labelledby="pairs-title" data-home-section="comparisons" data-comparison-works={works.map(work => work.slug).join('|')}>
+  <header class="looking-together__heading"><p class="v3-kicker">02 / Look closely</p><h2 id="pairs-title">{pair.title}</h2><p class="looking-together__reading">{pair.line}</p></header>
+  <div class="looking-together__works">
+    {works.map(work => <figure>
+      <div class="looking-together__stage">
+        <Viewer glb={withBase(work.modelGlb)} poster={withBase(work.thumbnailImage)} title={work.title} hud={false} immersive={true} autoStart={false} autoRotate={false} wheelZoom={false} posterLoading="lazy" upAxis={work.modelUpAxis} modelTransform={work.modelTransform} materialAppearance={work.materialAppearance} />
+      </div>
+      <figcaption><h3>{shortWorkTitle(work.title)}</h3><p>{[work.maker || work.culture, work.displayDate].filter(Boolean).join(' · ')}</p><a href={withBase(v3WorkRoute(work))}>Details &amp; sources <span aria-hidden="true">↗</span></a></figcaption>
+    </figure>)}
+  </div>
+  <p class="looking-together__note">Choose “Examine in 3D”, then drag to turn each sculpture. The works are framed independently and are not shown at a shared physical scale.</p>
+</section>}
+
+<style>
+  .looking-together { max-width: var(--v3-max); margin: auto; padding: 54px var(--v3-pad) 56px; border-top: 1px solid var(--v3-line); scroll-margin-top: 66px; }
+  .looking-together__heading { max-width: 78ch; margin-bottom: 27px; }
+  .looking-together__heading .v3-kicker { margin: 0 0 16px; }
+  .looking-together h2 { margin: 0 0 17px; font-size: clamp(29px, 3.2vw, 44px); font-weight: 500; line-height: 1.13; letter-spacing: -.035em; }
+  .looking-together__reading { max-width: 70ch; margin: 0; color: var(--v3-muted); font-size: 15px; line-height: 1.75; }
+  .looking-together__works { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px; }
+  .looking-together figure { min-width: 0; margin: 0; }
+  .looking-together__stage { height: clamp(370px, 38vw, 480px); padding: 0 12px; background: var(--v3-well); }
+  .looking-together__stage :global(.viewer:not(:fullscreen)) { width: 100%; height: 100%; min-height: 0; }
+  .looking-together__stage :global(.viewer:not(:fullscreen) .model-stage) { width: 100%; height: calc(100% - 52px); min-height: 0; overflow: visible; border: 0; background: transparent !important; }
+  .looking-together__stage :global(.model-stage [data-poster]) { min-height: 0; object-fit: contain; }
+  .looking-together__stage :global(.model-stage:not(.is-live) [data-poster]) { opacity: 1 !important; }
+  .looking-together__stage :global(.model-stage:not(.is-live) .viewer-canvas) { visibility: hidden; }
+  .looking-together__stage :global(.stage-tag), .looking-together__stage :global(.stage-corner), .looking-together__stage :global(.stage-hint) { display: none !important; }
+  .looking-together__stage :global(.viewer:not(:fullscreen) .immersive-tools:not([hidden])) { display: flex; position: absolute; inset: auto 0 -48px 0; justify-content: center; flex-wrap: wrap; gap: 5px; min-height: 44px; padding: 0; border: 0; border-radius: 0; background: transparent; transform: none; backdrop-filter: none; }
+  .looking-together__stage :global(.immersive-tools button) { min-height: 44px; padding: 9px 12px; color: var(--v3-muted); font-size: 11px; letter-spacing: 0; }
+  .looking-together__stage :global(.stage-loading) { inset: auto 15px 15px auto; transform: none; padding: 8px; background: #15243acc; border-radius: 5px; }
+  .looking-together__stage :global(.viewer:fullscreen) { width: 100vw; height: 100dvh; background: var(--v3-void); }
+  .looking-together__stage :global(.viewer:fullscreen .model-stage) { width: 100%; height: 100%; min-height: 0; overflow: hidden; }
+  .looking-together__stage :global(.viewer:fullscreen .immersive-tools:not([hidden])) { display: flex; width: auto; inset: auto 16px max(20px, env(safe-area-inset-bottom)) 16px; justify-content: center; flex-wrap: wrap; transform: none; }
+  .looking-together figcaption { padding: 20px 0 0; }
+  .looking-together h3 { margin: 0 0 7px; font-size: 19px; font-weight: 500; line-height: 1.35; letter-spacing: -.02em; }
+  .looking-together figcaption p { margin: 0 0 8px; color: var(--v3-muted); font-size: 11px; line-height: 1.6; }
+  .looking-together figcaption a { display: inline-flex; align-items: center; gap: 12px; min-height: 38px; color: var(--v3-signal); font-size: 11px; text-underline-offset: 4px; }
+  .looking-together__note { max-width: 85ch; margin: 23px 0 0; color: var(--v3-faint); font-size: 11px; line-height: 1.75; }
+  @media (max-width: 650px) {
+    .looking-together { padding-top: 38px; padding-bottom: 40px; }
+    .looking-together__works { grid-template-columns: 1fr; gap: 30px; }
+    .looking-together__stage { height: 400px; }
+    .looking-together__stage :global(.viewer:not(:fullscreen) .immersive-tools:not([hidden])) { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+    .looking-together__stage :global(.viewer:not(:fullscreen) .immersive-tools [data-tool-wire]), .looking-together__stage :global(.viewer:not(:fullscreen) .immersive-tools [data-tool-rotate]) { display: none; }
+    .looking-together__reading { font-size: 14px; }
+  }
+</style>

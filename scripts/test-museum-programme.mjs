@@ -4,7 +4,7 @@ import { spawnSync } from 'node:child_process';
 import { buildFeaturedSelection, HOMEPAGE_PREVIEW_LIMIT } from '../src/lib/featured-selection.mjs';
 import {
   buildMuseumProgramme, isPreviewBudgetEligible, parseProgrammeDate, programmeCalendar, rotateContextWork,
-  PROGRAMME_LAYOUTS, PROGRAMME_SECTIONS,
+  GENERAL_HERO_PROMPT, PROGRAMME_LAYOUTS, PROGRAMME_SECTIONS,
 } from '../src/lib/museum-programme.mjs';
 
 const read = path => JSON.parse(fs.readFileSync(new URL(path, import.meta.url), 'utf8'));
@@ -41,7 +41,7 @@ const day = value => new Date(value);
 const forDate = value => buildMuseumProgramme({ ...inputs, date: day(value) });
 const DAY = 86_400_000;
 const key = programme => ({
-  focus: programme.focus.slug, hero: programme.hero.slug, queue: programme.heroQueue.map(work => work.slug),
+  focus: programme.focus.slug, hero: programme.hero.slug, heroPrompt: programme.heroPrompt, queue: programme.heroQueue.map(work => work.slug),
   exhibitions: programme.exhibitions.map(exhibition => exhibition.slug),
   pairings: programme.pairings.map(pair => `${pair.a.slug}:${pair.b.slug}`),
   room: programme.room?.id, layout: programme.layout, sections: programme.sectionOrder,
@@ -53,6 +53,8 @@ assert.equal(programmes.schema, 'atrium-museum-programmes/1');
 assert.equal(programmes.focuses.length, 8);
 assert.deepEqual(new Set(programmes.focuses.map(focus => focus.exhibitionId)), new Set(exhibitions.map(exhibition => exhibition.slug)));
 assert.deepEqual(programmes.layouts, PROGRAMME_LAYOUTS);
+assert.equal(PROGRAMME_LAYOUTS.length, 1);
+assert.deepEqual(PROGRAMME_SECTIONS, ['exhibitions', 'comparisons', 'galleries', 'ar-vr', 'wings']);
 for (const focus of programmes.focuses) {
   assert.ok(focus.focusIntro.split(/\s+/u).length <= 30);
   assert.ok(!/[<>\n]/u.test(focus.focusIntro));
@@ -80,18 +82,20 @@ assert.notEqual(beforeMidnight.hero.slug, afterMidnight.hero.slug);
 assert.deepEqual(key(afterMidnight), key(forDate('2026-11-06T23:59:59.999Z')));
 assert.equal(forDate('2026-11-08T23:59:59.999Z').weekKey, '2026-11-02');
 assert.equal(forDate('2026-11-09T00:00:00.000Z').weekKey, '2026-11-09');
-assert.notEqual(forDate('2026-11-08T23:59:59.999Z').focus.slug, forDate('2026-11-09T00:00:00.000Z').focus.slug);
+assert.equal(forDate('2026-11-08T23:59:59.999Z').focus.slug, forDate('2026-11-09T00:00:00.000Z').focus.slug);
+assert.notDeepEqual(forDate('2026-11-02').heroQueue, forDate('2026-11-09').heroQueue, 'Daily heroes get a fresh weekly queue inside the same exhibition period.');
 assert.equal(forDate('2026-12-31T23:59:59Z').focus.slug, forDate('2027-01-01T00:00:00Z').focus.slug);
 
 const focusIds = new Set();
 const layoutKeys = new Set();
 const anchor = parseProgrammeDate(programmes.anchorMonday).getTime();
-for (let week = -8; week < 24; week += 1) {
+for (let week = 0; week < 32; week += 1) {
   const monday = new Date(anchor + week * 7 * DAY);
   const programme = buildMuseumProgramme({ ...inputs, date: monday });
   focusIds.add(programme.focus.slug);
+  assert.equal(programme.focus.slug, programmes.focuses[Math.floor(week / 4)].exhibitionId, 'Each existing exhibition owns four complete UTC weeks.');
   layoutKeys.add(programme.layout);
-  assert.deepEqual(new Set(programme.sectionOrder), new Set(PROGRAMME_SECTIONS));
+  assert.deepEqual(programme.sectionOrder, PROGRAMME_SECTIONS, 'Whole homepage sections never reshuffle.');
   assert.equal(programme.sectionOrder.length, 5);
   assert.equal(programme.exhibitions[0], programme.focus);
   assert.equal(programme.accent, programme.focus.accent, 'The canonical exhibition owns its accent.');
@@ -117,6 +121,7 @@ for (let week = -8; week < 24; week += 1) {
     assert.ok(approved.has(daily.hero.slug));
     assert.ok(previews[daily.hero.slug].bytes <= HOMEPAGE_PREVIEW_LIMIT);
     assert.ok(previews[daily.hero.slug].bytes > 0);
+    assert.equal(daily.heroPrompt, focus.has(daily.hero.slug) ? daily.focusIntro : GENERAL_HERO_PROMPT);
   }
   assert.equal(new Set(dailyHeroes).size, 7);
   assert.deepEqual(new Set(programme.pairings), new Set(pairings));
@@ -126,9 +131,15 @@ for (let week = -8; week < 24; week += 1) {
   assert.equal(overlap(programme.room.slugs, focus), Math.max(...rooms.map(room => overlap(room.slugs, focus))));
 }
 assert.equal(focusIds.size, 8);
-assert.equal(layoutKeys.size, 3);
-assert.equal(forDate('2026-11-02').focus.slug, forDate('2026-12-28').focus.slug, 'The focus returns after eight weeks.');
-assert.notDeepEqual(forDate('2026-11-02').heroQueue, forDate('2026-12-28').heroQueue, 'The returned focus gets a fresh weekly hero seed.');
+assert.equal(layoutKeys.size, 1);
+for (let offset = 0; offset < 28; offset += 1) {
+  assert.equal(buildMuseumProgramme({ ...inputs, date: new Date(anchor + offset * DAY) }).focus.slug, 'the-work-of-the-surface');
+}
+assert.equal(forDate('2026-11-29T23:59:59.999Z').focus.slug, 'the-work-of-the-surface');
+assert.equal(forDate('2026-11-30T00:00:00.000Z').focus.slug, 'bodies-in-motion');
+assert.equal(forDate('2026-11-01T23:59:59.999Z').focus.slug, 'michelangelo-and-rodin', 'The period before the anchor also spans four weeks.');
+assert.equal(forDate('2026-11-02').focus.slug, forDate('2027-06-14').focus.slug, 'The eight-exhibition cycle returns after 32 weeks.');
+assert.notDeepEqual(forDate('2026-11-02').heroQueue, forDate('2027-06-14').heroQueue, 'The returned focus gets a fresh weekly hero seed.');
 
 // A single contextual work never forces seven copies: the broader approved pool
 // fills the week, preferring geographic groups not already in the queue.
@@ -143,6 +154,12 @@ assert.deepEqual(single.pairings, []);
 assert.equal(single.room, null);
 assert.equal(single.focus, sampleFocus);
 assert.equal(single.focusIntro, sampleFocus.invitation);
+assert.equal(single.heroPrompt, sampleFocus.invitation);
+const broaderHero = buildMuseumProgramme({ date: '2026-11-03', exhibitions: [sampleFocus], homepageWorks: sample, previews: samplePreviews });
+assert.ok(!sampleFocus.works.includes(broaderHero.hero));
+assert.equal(broaderHero.heroPrompt, 'Turn the work to compare its front, sides and back.');
+const noReshuffle = buildMuseumProgramme({ date: '2026-11-09', programmes: { layouts: [{ key: 'exhibition-first', sectionOrder: [...PROGRAMME_SECTIONS].reverse() }] }, exhibitions: [sampleFocus], homepageWorks: sample, previews: samplePreviews });
+assert.deepEqual(noReshuffle.sectionOrder, PROGRAMME_SECTIONS, 'Configuration cannot opt a week back into section reshuffling.');
 const accentConfig = { focuses: [{ exhibitionId: 'single', accent: '#c0d0e0' }] };
 const canonicalAccent = buildMuseumProgramme({ date: '2026-11-02', programmes: accentConfig, exhibitions: [{ ...sampleFocus, accent: '#a0b0c0' }], homepageWorks: sample, previews: samplePreviews });
 assert.equal(canonicalAccent.accent, '#a0b0c0');
@@ -204,4 +221,4 @@ const invalidDateCheck = spawnSync(process.execPath, ['--input-type=module', '-e
 assert.notEqual(invalidDateCheck.status, 0);
 assert.match(invalidDateCheck.stderr, /Invalid programme date/u);
 
-console.log(`Museum programme passed: 8 focuses, 3 layouts, ${eligible.length} budgeted homepage-approved heroes; 32 UTC weeks and immutable inputs checked.`);
+console.log(`Museum programme passed: 8 four-week focuses, 1 fixed layout, ${eligible.length} budgeted homepage-approved heroes; 32 UTC weeks, 28-day boundaries and immutable inputs checked.`);

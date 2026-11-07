@@ -9,14 +9,16 @@ existing routes and editorial content.
 - **Daily:** a homepage sculpture from the explicitly homepage-approved reviewed
   collection, within the existing 15 MiB model budget. Each Monday–Sunday queue
   has seven different works when enough eligible works exist. Up to four relate
-  to the weekly exhibition; the rest open other parts of the collection.
-- **Weekly:** one of the eight existing exhibitions becomes the focus. It leads
-  the exhibition directory and homepage exhibition list. Approved comparison
-  pairs and an existing 3D room are spotlighted using actual membership overlap.
-- **Weekly:** the homepage follows one of three editorial sequences, opening its
-  middle sections with exhibitions, galleries or comparisons. Newest additions
-  stay immediately after the hero; random discovery stays last. Navigation stays
-  consistent and the reading order matches the visual order.
+  to the featured exhibition; the rest open other parts of the collection.
+- **Every four UTC weeks:** one of the eight existing exhibitions becomes the
+  focus. It leads the directory and gets a substantial homepage invitation, with
+  two other exhibition teasers and a link to the complete directory.
+- **Weekly:** approved comparison pairs and an existing 3D room are spotlighted
+  using actual membership overlap. A single pair is available to examine in 3D
+  on the homepage; both models load only when the visitor chooses them.
+- **Consistent arrangement:** daily sculpture, featured exhibition, comparison,
+  gallery and AR/VR invitations, six wings, recent additions and random discovery.
+  New selections refresh this sequence without moving its destinations around.
 - **Weekly:** reviewed lead works change on wing entrances and exhibition cards.
   Exhibition sequences and chronological wing listings retain their order.
 - **Continuously:** existing newest-addition views continue reflecting the catalog.
@@ -32,8 +34,8 @@ live AI curator generating new exhibitions or factual text. Selection stays
 inside existing review decisions. New imports never become homepage features
 automatically. Every existing exhibition remains available every week.
 
-`src/data/museum-programmes.json` contains the focus cycle, short viewing prompts
-and three permitted section sequences. Existing exhibition metadata owns titles,
+`src/data/museum-programmes.json` contains the focus cycle and short viewing prompts.
+Existing exhibition metadata owns titles,
 membership, attribution, wall texts and colors. Review these sources to adjust
 the programme; no model credentials or paid service is required.
 

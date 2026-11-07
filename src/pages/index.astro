@@ -1,14 +1,18 @@
 ---
 import Viewer from '../components/Viewer.astro';
 import V3WorkCard from '../components/v3/V3WorkCard.astro';
+import V3WingGrid from '../components/v3/V3WingGrid.astro';
 import { newestWorks } from '../lib/additions';
-import HomeProgrammeSection from '../components/home/HomeProgrammeSection.astro';
+import FeaturedExhibition from '../components/home/FeaturedExhibition.astro';
+import LookingTogether from '../components/home/LookingTogether.astro';
+import SpatialInvitation from '../components/home/SpatialInvitation.astro';
 import V3Layout from '../layouts/v3/V3Layout.astro';
-import { collectionCount, v3WorkRoute } from '../lib/v3';
+import { collectionCount, v3WorkRoute, v3ExhibitionRoute } from '../lib/v3';
 import { currentProgramme } from '../lib/programme';
 import { featuredWorks } from '../lib/catalog';
 import { withBase } from '../lib/urls';
 import { arVrCount } from '../lib/spatial-catalog';
+import { shortWorkTitle } from '../lib/work-titles';
 
 const randomRoutes = featuredWorks.map((work) => withBase(v3WorkRoute(work)));
 const { hero: featuredWork } = currentProgramme;
@@ -39,7 +43,7 @@ const heroAlt = [
   image={featuredWork.thumbnailImage}
 >
   <div class="home-programme" data-programme data-programme-week={currentProgramme.weekKey} data-programme-day={currentProgramme.dayKey} data-programme-layout={currentProgramme.layout} data-programme-hero={featuredWork.slug} style={`--home-programme-accent:${currentProgramme.accent}`}>
-  <section class="v3-hero home-programme-hero" aria-labelledby="v3-home-title" data-featured-work={featuredWork.slug}>
+  <section class="v3-hero home-programme-hero" aria-labelledby="v3-home-title" data-home-section="hero" data-featured-work={featuredWork.slug}>
     <div class="v3-hero__viewer">
       <Viewer
         glb={withBase(featuredWork.modelGlb)}
@@ -65,36 +69,49 @@ const heroAlt = [
       <p class="v3-kicker">The sculpture collection</p>
       <h1 id="v3-home-title" class="v3-display">A closer look<br />at sculpture.</h1>
       <p class="v3-hero__lede">Explore sculpture across centuries and continents. Rotate works in 3D, look closely, and save favourites to revisit.</p>
+      <p class="home-hero-prompt"><span>Look closely</span>{currentProgramme.heroPrompt}</p>
       <div class="v3-actions">
         <a class="v3-button v3-button--light" href={withBase('/collection/')}>Explore the collection <span aria-hidden="true">↗</span></a>
-        <a class="v3-button v3-button--ghost" href={withBase('/newest/')}>See what’s new <span aria-hidden="true">→</span></a>
+        <a class="v3-button v3-button--ghost" href={withBase(v3ExhibitionRoute(currentProgramme.focus))}>Begin exhibition <span aria-hidden="true">→</span></a>
       </div>
     </div>
 
     <div class="v3-hero__object">
       <span>Today’s featured work</span>
-      <strong>{featuredWork.title}</strong>
+      <strong>{shortWorkTitle(featuredWork.title)}</strong>
       <span>{[heroMaker, heroDate || 'Date unrecorded'].filter(Boolean).join(' · ')}</span>
       <a class="v3-hero__record-link" href={withBase(v3WorkRoute(featuredWork))}>View this work <span aria-hidden="true">↗</span></a>
     </div>
     <a class="v3-hero__continue" href="#v3-home-content">Explore more <span>↓</span></a>
   </section>
 
+  <div id="v3-home-content"></div>
+  <FeaturedExhibition />
+  <LookingTogether />
+  <SpatialInvitation />
+
+  <section class="v3-section v3-section--line home-wings" aria-labelledby="wings-home-title" data-home-section="wings">
+    <div class="v3-section-head v3-section-head--split">
+      <div><p class="v3-kicker">04 / Museum wings</p><h2 id="wings-home-title" class="v3-display">Follow your curiosity.</h2></div>
+      <a href={withBase('/wings/')}>Explore all six wings <span aria-hidden="true">→</span></a>
+    </div>
+    <p class="home-section-intro">Browse by region and period. Each wing opens a different part of the collection.</p>
+    <V3WingGrid compact={true} />
+  </section>
+
   {newestWorks.length > 0 && (
-    <section class="v3-section v3-section--line v3-additions-home" id="v3-home-content" aria-labelledby="new-title">
+    <section class="v3-section v3-section--line v3-additions-home home-newest" aria-labelledby="new-title" data-home-section="newest">
       <div class="v3-section-head v3-section-head--split">
-        <div><p class="v3-kicker">01 / Newest additions</p><h2 id="new-title" class="v3-display">Just arrived.</h2></div>
+        <div><p class="v3-kicker">05 / Recent additions</p><h2 id="new-title" class="v3-display">New to Atrium.</h2></div>
         <a href={withBase('/newest/')}>View newest additions <span aria-hidden="true">→</span></a>
       </div>
+      <p class="home-section-intro">Explore the latest additions to the 3D collection.</p>
       <div class="v3-grid">{newestWorks.slice(0, 4).map((work) => <V3WorkCard work={work} />)}</div>
     </section>
   )}
 
-  {newestWorks.length === 0 && <div id="v3-home-content"></div>}
-  {currentProgramme.sectionOrder.map((section, index) => <HomeProgrammeSection section={section} number={String(index + 2).padStart(2, '0')} />)}
-
-  <section class="v3-section v3-random" aria-labelledby="random-title">
-    <p class="v3-kicker">07 / Random selection</p>
+  <section class="v3-section v3-random home-random" aria-labelledby="random-title" data-home-section="discovery">
+    <p class="v3-kicker">06 / A different starting point</p>
     <h2 id="random-title">Choose a work at random.</h2>
     <p>A different starting point can change what you notice.</p>
     <a class="v3-random__button" href={randomRoutes[0]} data-random-work>Choose a work <span>↗</span></a>
@@ -114,4 +131,31 @@ const heroAlt = [
 
 <style>
   .home-programme-hero { border-top: 2px solid var(--home-programme-accent, var(--v3-signal)); }
+  .home-programme-hero { height: auto; min-height: 650px; }
+  .home-hero-prompt { max-width: 38ch; margin: 22px 0 0; padding-left: 14px; border-left: 2px solid var(--home-programme-accent); color: var(--v3-muted); font-size: 12px; line-height: 1.65; }
+  .home-hero-prompt > span { display: block; margin-bottom: 5px; color: var(--home-programme-accent); font-size: 9px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
+  .home-section-intro { max-width: 66ch; margin: -8px 0 30px; color: var(--v3-muted); font-size: 14px; line-height: 1.7; }
+  .home-wings :global(.v3-wing-card__image) { aspect-ratio: 3 / 2; }
+  .home-wings :global(.v3-wing-card__copy > strong) { font-size: clamp(23px, 2.25vw, 31px); }
+  .home-wings :global(.v3-wing-card__blurb) { font-size: 12px; }
+  .home-wings :global(.v3-wing-card__link) { margin-top: 20px; }
+  .home-random { min-height: 0; padding-block: 76px; }
+  @media (max-width: 700px) {
+    .home-programme-hero { min-height: 0; }
+    .home-hero-prompt { margin-top: 18px; font-size: 12px; }
+    .home-wings :global(.v3-wings-grid) { gap: 28px; }
+    .home-wings :global(.v3-wing-card) { grid-template-columns: 112px minmax(0, 1fr); grid-template-rows: 1fr; column-gap: 14px; padding-top: 14px; }
+    .home-wings :global(.v3-wing-card__image) { aspect-ratio: 4 / 5; align-self: start; }
+    .home-wings :global(.v3-wing-card__number) { top: 18px; left: 5px; font-size: 9px; }
+    .home-wings :global(.v3-wing-card__copy) { padding: 0 0 0 2px; }
+    .home-wings :global(.v3-wing-card__copy > strong) { margin-top: 8px; font-size: 22px; }
+    .home-wings :global(.v3-wing-card__blurb) { margin-top: 9px; font-size: 11px; }
+    .home-wings :global(.v3-wing-card__link) { margin-top: 12px; padding-top: 10px; font-size: 9px; }
+    .home-section-intro { font-size: 13px; }
+    .home-random { padding-block: 52px; }
+  }
+  @media (max-width: 360px) {
+    .home-wings :global(.v3-wing-card) { grid-template-columns: 88px minmax(0, 1fr); column-gap: 12px; }
+    .home-wings :global(.v3-wing-card__copy > strong) { font-size: 20px; }
+  }
 </style>

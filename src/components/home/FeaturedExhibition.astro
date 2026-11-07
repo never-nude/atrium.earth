@@ -1,0 +1,77 @@
+---
+import { currentProgramme, type MuseumProgramme } from '../../lib/programme';
+import { exhibitionFeaturedWork, v3ExhibitionRoute } from '../../lib/v3';
+import { withBase } from '../../lib/urls';
+import { shortWorkTitle } from '../../lib/work-titles';
+
+type Props = { programme?: MuseumProgramme };
+const { programme = currentProgramme } = Astro.props;
+const { focus, focusIntro } = programme;
+const lead = exhibitionFeaturedWork(focus);
+const others = programme.exhibitions.filter(exhibition => exhibition.slug !== focus.slug).slice(0, 2);
+---
+
+<section id="featured-exhibition" class="featured-exhibition" aria-labelledby="exhibitions-home-title" data-home-section="exhibitions" data-programme-focus={focus.slug} style={`--feature-accent:${focus.accent}`}>
+  <article class="featured-exhibition__main">
+    <div class="featured-exhibition__copy">
+      <p class="v3-kicker featured-exhibition__eyebrow">01 / Featured exhibition</p>
+      <h2 id="exhibitions-home-title">{focus.title}</h2>
+      <p class="featured-exhibition__intro">{focusIntro}</p>
+      <p class="featured-exhibition__summary">{focus.summary}</p>
+      <a class="v3-button v3-button--light" href={withBase(v3ExhibitionRoute(focus))}>Begin exhibition <span aria-hidden="true">→</span></a>
+    </div>
+    <a class="featured-exhibition__art" href={withBase(v3ExhibitionRoute(focus))} aria-label={`Begin ${focus.title}`}>
+      <img src={withBase(lead.thumbnailImage)} alt={lead.title} width="720" height="900" loading="lazy" decoding="async" />
+      <span>{shortWorkTitle(lead.title)}</span>
+    </a>
+  </article>
+
+  <div class="featured-exhibition__more">
+    <div class="featured-exhibition__more-heading"><p class="v3-kicker">Other ways of looking</p><a href={withBase('/exhibitions/')}>All exhibitions <span aria-hidden="true">↗</span></a></div>
+    <div class="featured-exhibition__teasers">
+      {others.map(exhibition => {
+        const work = exhibitionFeaturedWork(exhibition);
+        return <a class="featured-exhibition__teaser" href={withBase(v3ExhibitionRoute(exhibition))} style={`--teaser-accent:${exhibition.accent}`}>
+          <img src={withBase(work.thumbnailImage)} alt="" width="240" height="300" loading="lazy" decoding="async" />
+          <div><p class="v3-kicker">{exhibition.kicker}</p><h3>{exhibition.title}</h3><span>Explore exhibition <span aria-hidden="true">→</span></span></div>
+        </a>;
+      })}
+    </div>
+  </div>
+</section>
+
+<style>
+  .featured-exhibition { max-width: var(--v3-max); margin: auto; padding: 64px var(--v3-pad) 60px; scroll-margin-top: 66px; }
+  .featured-exhibition__main { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: clamp(28px, 5vw, 72px); align-items: center; }
+  .featured-exhibition__copy { padding: 12px 0; }
+  .featured-exhibition__eyebrow { display: flex; align-items: center; gap: 12px; margin: 0 0 21px; }
+  .featured-exhibition__eyebrow::before { content: ''; width: 25px; height: 2px; flex: none; background: var(--feature-accent, var(--v3-signal)); }
+  .featured-exhibition h2 { max-width: 17ch; margin: 0 0 23px; font-size: clamp(31px, 3.7vw, 54px); line-height: 1.1; font-weight: 500; letter-spacing: -.04em; text-wrap: balance; }
+  .featured-exhibition__intro { max-width: 47ch; margin: 0 0 16px; color: var(--v3-ink); font-size: 17px; line-height: 1.65; }
+  .featured-exhibition__summary { max-width: 58ch; margin: 0 0 28px; color: var(--v3-muted); font-size: 13px; line-height: 1.75; }
+  .featured-exhibition .v3-button--light { color: #101827; background: var(--feature-accent); border-color: var(--feature-accent); }
+  .featured-exhibition__art { display: flex; min-width: 0; flex-direction: column; align-items: center; justify-content: center; min-height: 400px; padding: 24px; background: var(--v3-well); text-decoration: none; }
+  .featured-exhibition__art img { display: block; width: 100%; height: 350px; object-fit: contain; }
+  .featured-exhibition__art > span { margin-top: 16px; max-width: 40ch; color: var(--v3-muted); font-size: 11px; line-height: 1.5; text-align: center; }
+  .featured-exhibition__more { margin-top: 44px; }
+  .featured-exhibition__more-heading { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 12px 24px; margin-bottom: 8px; }
+  .featured-exhibition__more-heading .v3-kicker { margin: 0; }
+  .featured-exhibition__more-heading > a { display: inline-flex; align-items: center; gap: 12px; min-height: 44px; color: var(--v3-signal); font-size: 12px; text-underline-offset: 4px; }
+  .featured-exhibition__teasers { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 30px; }
+  .featured-exhibition__teaser { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 24px; align-items: center; padding-top: 23px; border-top: 1px solid var(--teaser-accent, var(--v3-line)); text-decoration: none; }
+  .featured-exhibition__teaser img { display: block; width: 120px; height: 142px; object-fit: contain; background: var(--v3-well); }
+  .featured-exhibition__teaser .v3-kicker { margin: 0 0 8px; color: var(--teaser-accent); font-size: 9px; }
+  .featured-exhibition__teaser h3 { margin: 0 0 14px; color: var(--v3-ink); font-size: clamp(19px, 1.9vw, 26px); font-weight: 500; line-height: 1.25; letter-spacing: -.025em; }
+  .featured-exhibition__teaser div > span { color: var(--v3-signal); font-size: 11px; }
+  @media (max-width: 760px) {
+    .featured-exhibition { padding-top: 42px; padding-bottom: 42px; }
+    .featured-exhibition__main { gap: 25px; grid-template-columns: 1fr; }
+    .featured-exhibition h2 { max-width: 24ch; font-size: clamp(30px, 6vw, 42px); }
+    .featured-exhibition__intro { font-size: 16px; }
+    .featured-exhibition__art { min-height: 300px; padding: 20px; }
+    .featured-exhibition__art img { height: 280px; }
+    .featured-exhibition__teasers { grid-template-columns: 1fr; gap: 22px; }
+    .featured-exhibition__teaser { grid-template-columns: 95px minmax(0, 1fr); gap: 20px; }
+    .featured-exhibition__teaser img { width: 95px; height: 120px; }
+  }
+</style>

@@ -5,12 +5,12 @@ import { HOMEPAGE_PREVIEW_LIMIT } from './featured-selection.mjs';
 
 const DAY = 86_400_000;
 const MONDAY_EPOCH = Date.UTC(1970, 0, 5);
-export const PROGRAMME_SECTIONS = Object.freeze(['wings', 'galleries', 'ar-vr', 'comparisons', 'exhibitions']);
+export const PROGRAMME_FOCUS_WEEKS = 4;
+export const PROGRAMME_SECTIONS = Object.freeze(['exhibitions', 'comparisons', 'galleries', 'ar-vr', 'wings']);
 export const PROGRAMME_LAYOUTS = Object.freeze([
-  Object.freeze({ key: 'exhibition-first', sectionOrder: Object.freeze(['exhibitions', 'wings', 'galleries', 'comparisons', 'ar-vr']) }),
-  Object.freeze({ key: 'gallery-first', sectionOrder: Object.freeze(['galleries', 'wings', 'exhibitions', 'ar-vr', 'comparisons']) }),
-  Object.freeze({ key: 'comparison-first', sectionOrder: Object.freeze(['comparisons', 'exhibitions', 'wings', 'galleries', 'ar-vr']) }),
+  Object.freeze({ key: 'exhibition-first', sectionOrder: PROGRAMME_SECTIONS }),
 ]);
+export const GENERAL_HERO_PROMPT = 'Turn the work to compare its front, sides and back.';
 
 const positiveMod = (value, modulo) => ((value % modulo) + modulo) % modulo;
 const uniqueBy = (items, key) => [...new Map(items.map(item => [key(item), item])).values()];
@@ -113,20 +113,10 @@ function overlap(slugs, focusSlugs) {
   return new Set((slugs ?? []).filter(slug => focusSlugs.has(slug))).size;
 }
 
-function layoutFor(config, cycleWeek) {
-  const fallback = PROGRAMME_LAYOUTS[positiveMod(cycleWeek, PROGRAMME_LAYOUTS.length)];
-  const configured = config?.layouts?.find(layout => layout.key === fallback.key);
-  const order = configured?.sectionOrder;
-  if (!Array.isArray(order) || order.length !== PROGRAMME_SECTIONS.length
-    || new Set(order).size !== PROGRAMME_SECTIONS.length
-    || order.some(section => !PROGRAMME_SECTIONS.includes(section))) return fallback;
-  return { key: fallback.key, sectionOrder: [...order] };
-}
-
 /**
  * Assemble existing approved content for one date. No clock, network, model,
- * taxonomy inference or input mutation occurs here. Only presentation order and
- * the selected members change; source objects remain the original pool objects.
+ * taxonomy inference or input mutation occurs here. The homepage section order
+ * stays fixed; selected members and ordering inside sections can change.
  */
 export function buildMuseumProgramme({ date, programmes, exhibitions, homepageWorks, previews, pairings = [], rooms = [] }) {
   const calendar = programmeCalendar(date);
@@ -141,11 +131,14 @@ export function buildMuseumProgramme({ date, programmes, exhibitions, homepageWo
   if (!focuses.length) throw new Error('No configured programme focus matches an existing exhibition.');
   const anchor = programmeCalendar(programmes?.anchorMonday ?? '2026-11-02');
   const cycleWeek = calendar.weekIndex - anchor.weekIndex;
-  const focusConfig = focuses[positiveMod(cycleWeek, focuses.length)];
+  const focusPeriod = Math.floor(cycleWeek / PROGRAMME_FOCUS_WEEKS);
+  const focusConfig = focuses[positiveMod(focusPeriod, focuses.length)];
   const focus = bySlug.get(focusConfig.exhibitionId);
   const focusSlugs = new Set(focus.works.map(work => work.slug));
   const heroQueue = buildHeroQueue(homepageWorks, previews, focusSlugs, calendar.weekKey);
-  const layout = layoutFor(programmes, cycleWeek);
+  const hero = heroQueue[calendar.dayIndex % heroQueue.length];
+  const focusIntro = focusConfig.focusIntro || focus.invitation || '';
+  const layout = PROGRAMME_LAYOUTS[0];
   const orderedPairings = [...pairings].sort((a, b) => (
     overlap([b.a?.slug, b.b?.slug], focusSlugs) - overlap([a.a?.slug, a.b?.slug], focusSlugs)
     || stableHash(`${calendar.weekKey}:${a.a?.slug}:${a.b?.slug}:${a.title}`) - stableHash(`${calendar.weekKey}:${b.a?.slug}:${b.b?.slug}:${b.title}`)
@@ -158,8 +151,9 @@ export function buildMuseumProgramme({ date, programmes, exhibitions, homepageWo
   ));
   return {
     focus,
-    focusIntro: focusConfig.focusIntro || focus.invitation || '',
-    hero: heroQueue[calendar.dayIndex % heroQueue.length],
+    focusIntro,
+    hero,
+    heroPrompt: focusSlugs.has(hero.slug) && focusIntro ? focusIntro : GENERAL_HERO_PROMPT,
     heroQueue,
     exhibitions: [focus, ...availableExhibitions.filter(exhibition => exhibition.slug !== focus.slug)],
     pairings: orderedPairings,

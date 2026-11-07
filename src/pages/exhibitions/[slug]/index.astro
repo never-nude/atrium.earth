@@ -5,6 +5,7 @@ import ExhibitionComparisons from '../../../components/ExhibitionComparisons.ast
 import { exhibitions, exhibitionFeaturedWork, nextExhibition, type V3Exhibition, v3ExhibitionRoute, v3WorkRoute } from '../../../lib/v3';
 import { isFeaturedWork } from '../../../lib/catalog';
 import { withBase } from '../../../lib/urls';
+import { shortWorkTitle } from '../../../lib/work-titles';
 
 export function getStaticPaths() {
   return exhibitions.map((exhibition) => ({ params: { slug: exhibition.slug }, props: { exhibition } }));
@@ -33,7 +34,7 @@ const stops = exhibition.works.map((work, index) => ({
         {heroComparison.works.map((work) => (
           <figure class="v3-float v3-float--soft" data-featured-work={work.slug}>
             <img src={withBase(work.thumbnailImage)} alt={work.title} width="720" height="900" loading="eager" decoding="async" />
-            <figcaption>{exhibition.workNotes?.[work.slug]?.artist || work.maker} · {work.title}</figcaption>
+            <figcaption>{exhibition.workNotes?.[work.slug]?.artist || work.maker} · {shortWorkTitle(work.title)}</figcaption>
           </figure>
         ))}
       </div>

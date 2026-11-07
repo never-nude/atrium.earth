@@ -1,0 +1,56 @@
+---
+import { currentProgramme, type MuseumProgramme } from '../../lib/programme';
+import { workBySlug } from '../../lib/catalog';
+import { arVrFeatured } from '../../lib/spatial-catalog';
+import { v3WorkRoute } from '../../lib/v3';
+import { withBase } from '../../lib/urls';
+import spatialManifest from '../../../public/spatial-museum/collection-manifest.json';
+
+type Props = { programme?: MuseumProgramme };
+const { programme = currentProgramme } = Astro.props;
+const room = programme.room || spatialManifest.rooms[0];
+const roomWork = room?.slugs.map(slug => workBySlug(slug)).find(Boolean);
+const spatialWork = arVrFeatured.find(work => work.spatialAccess?.enabled);
+const roomUrl = room ? `/spatial-museum/?room=${room.id}` : '/spatial-museum/';
+const arUrl = spatialWork ? `${v3WorkRoute(spatialWork)}#ar-vr` : '/ar-vr/';
+---
+
+<section class="spatial-invitation" aria-labelledby="studio-museum-title" data-home-section="spatial" data-programme-room={room?.id}>
+  <p class="v3-kicker spatial-invitation__eyebrow">03 / Beyond the object view</p>
+  <div class="spatial-invitation__entries">
+    <article class="spatial-invitation__entry">
+      <div class="spatial-invitation__copy"><p class="v3-kicker">A room to explore</p><h2 id="studio-museum-title">Enter a 3D gallery.</h2><p>{room ? `${room.title} · ${room.count} works` : 'Explore themed rooms from the collection.'}</p><a href={withBase(roomUrl)}>Enter the gallery <span aria-hidden="true">→</span></a></div>
+      {roomWork && <a class="spatial-invitation__art" href={withBase(roomUrl)} aria-label={`Enter ${room.title}`}><img src={withBase(roomWork.thumbnailImage)} alt={roomWork.title} width="360" height="450" loading="lazy" decoding="async" /></a>}
+    </article>
+    <article class="spatial-invitation__entry">
+      <div class="spatial-invitation__copy"><p class="v3-kicker">AR / VR</p><h2 id="spatial-feature-title">Place a sculpture in your space.</h2><p>Use a compatible phone to view a work in your room, or a supported headset to explore it in VR.</p><a href={withBase(arUrl)}>Try AR / VR <span aria-hidden="true">↗</span></a></div>
+      {spatialWork && <a class="spatial-invitation__art" href={withBase(arUrl)} aria-label={`View ${spatialWork.title} in AR or VR`}><img src={withBase(spatialWork.thumbnailImage)} alt={spatialWork.title} width="360" height="450" loading="lazy" decoding="async" /></a>}
+    </article>
+  </div>
+  <div class="spatial-invitation__sizes"><p><strong>Verified dimensions</strong> use reviewed measurements. <strong>Approximate dimensions</strong> use estimates. <strong>Dimensions unknown</strong> open at an adjustable display size.</p><a href={withBase('/ar-vr/')}>Browse all AR / VR works <span aria-hidden="true">→</span></a></div>
+</section>
+
+<style>
+  .spatial-invitation { max-width: var(--v3-max); margin: auto; padding: 46px var(--v3-pad) 52px; border-top: 1px solid var(--v3-line); }
+  .spatial-invitation__eyebrow { margin: 0 0 24px; }
+  .spatial-invitation__entries { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 30px; }
+  .spatial-invitation__entry { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(100px, .75fr); gap: 17px; align-items: center; padding: 26px; border: 1px solid var(--v3-line); background: var(--v3-well); }
+  .spatial-invitation__copy .v3-kicker { margin: 0 0 14px; font-size: 10px; }
+  .spatial-invitation h2 { margin: 0 0 15px; font-size: clamp(23px, 2.4vw, 32px); line-height: 1.18; font-weight: 500; letter-spacing: -.035em; }
+  .spatial-invitation__copy > p:not(.v3-kicker) { margin: 0 0 12px; color: var(--v3-muted); font-size: 12px; line-height: 1.7; }
+  .spatial-invitation__copy > a { display: inline-flex; align-items: center; gap: 13px; min-height: 44px; color: var(--v3-signal); font-size: 12px; text-underline-offset: 4px; }
+  .spatial-invitation__art { min-width: 0; }
+  .spatial-invitation__art img { display: block; width: 100%; height: 210px; object-fit: contain; }
+  .spatial-invitation__sizes { display: flex; justify-content: space-between; align-items: start; gap: 15px 30px; margin-top: 21px; }
+  .spatial-invitation__sizes p { max-width: 83ch; margin: 0; color: var(--v3-faint); font-size: 10px; line-height: 1.8; }
+  .spatial-invitation__sizes strong { color: var(--v3-muted); font-weight: 500; }
+  .spatial-invitation__sizes > a { flex: none; display: inline-flex; align-items: center; gap: 12px; min-height: 36px; color: var(--v3-signal); font-size: 11px; text-underline-offset: 4px; }
+  @media (max-width: 1000px) { .spatial-invitation__entries { grid-template-columns: 1fr; gap: 20px; } .spatial-invitation__entry { grid-template-columns: minmax(0, 1fr) 180px; } .spatial-invitation__art img { height: 190px; } }
+  @media (max-width: 650px) {
+    .spatial-invitation { padding-top: 34px; padding-bottom: 38px; }
+    .spatial-invitation__entry { grid-template-columns: minmax(0, 1.45fr) minmax(78px, .65fr); gap: 12px; padding: 20px 17px; }
+    .spatial-invitation h2 { font-size: 24px; }
+    .spatial-invitation__art img { height: 170px; }
+    .spatial-invitation__sizes { flex-direction: column; gap: 8px; }
+  }
+</style>

@@ -2,6 +2,7 @@
 import type { Work } from '../lib/catalog';
 import { publicDataset } from '../lib/catalog';
 import { withBase } from '../lib/urls';
+import { shortWorkTitle } from '../lib/work-titles';
 
 type Props = {
   work: Work;
@@ -41,7 +42,7 @@ const alt = `${work.title}${maker ? ', ' + maker : ''}${material ? ', ' + materi
       <span class="work-card__date">{recordNo}</span>
     </div>
     <div class="work-card__body">
-      <h3>{work.title}</h3>
+      <h3>{shortWorkTitle(work.title)}</h3>
       {maker && <p class="work-card__maker">{maker}</p>}
       {material && (
         <ul class="meta-line" aria-label="Object summary">

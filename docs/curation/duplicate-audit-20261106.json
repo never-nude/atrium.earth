@@ -1,0 +1,196 @@
+{
+  "schema": "atrium-duplicate-audit/1",
+  "reviewedUTC": "2026-11-07T00:02:25.630099+00:00",
+  "baselineCommit": "51eacf83",
+  "delivery": "Local changes only; not published. Full build and generated redirect-page verification remain with the parent task.",
+  "scope": "Exactly the Ganesha, Benin leopard mask and Esquiline Venus pairs. No source/model/image payloads were downloaded. No assets or serving metadata were removed or rewritten.",
+  "counts": {
+    "sourceRecordsBefore": 3037,
+    "sourceRecordsAfter": 3037,
+    "publicWorksBefore": 3019,
+    "publicWorksAfter": 3018,
+    "hiddenWorksBefore": 18,
+    "hiddenWorksAfter": 19,
+    "featuredWorksBefore": 250,
+    "featuredWorksAfter": 250,
+    "sacredFormsMembersBefore": 33,
+    "sacredFormsMembersAfter": 33
+  },
+  "decisions": [
+    {
+      "pair": [
+        "asia/ganesha-mia",
+        "asia/ganesha-java-mia"
+      ],
+      "status": "consolidated-public-listing",
+      "canonicalSlug": "asia/ganesha-java-mia",
+      "retainedAlternateSlug": "asia/ganesha-mia",
+      "confidence": "confirmed same identified museum object; serving derivatives are different, not byte-identical models",
+      "identity": {
+        "museum": "Minneapolis Institute of Art",
+        "museumObjectId": "81675",
+        "accession": "2003.198",
+        "dimensions": "88.27 x 52.07 x 40.48 cm"
+      },
+      "identityEvidence": [
+        {
+          "path": "docs/physical-dimensions-2026-09-12/mia/duplicates.json",
+          "finding": "Both routes were already documented as scan/mirror entries for the same accession, not two physical objects."
+        },
+        {
+          "path": "src/data/identity-corrections.json#asia/ganesha-mia",
+          "finding": "Corrects the inherited 2002.31.1 accession to 2003.198. The historical raw record and correction remain unchanged."
+        },
+        {
+          "url": "https://collections.artsmia.org/art/81675",
+          "finding": "Both existing catalogue entries resolve to this exact museum object."
+        },
+        {
+          "path": "docs/physical-dimensions-2026-09-12/mia-geometry/review.json",
+          "finding": "Existing three-angle appraisals identify the same accession while recording independently reviewed geometry and different preview hashes."
+        }
+      ],
+      "canonicalSelectionBasis": {
+        "path": "src/data/featured-works.json",
+        "homepageApproved": true,
+        "previewUrl": "https://models.atrium.earth/models/previews/asia/ganesha-java-mia/preview-901ba1490962.glb",
+        "previewBytes": 796196,
+        "finding": "Preserve the existing reviewed homepage-approved GLB representation. No new comparative visual or geometry-quality claim is made."
+      },
+      "changes": [
+        "Add hidden:true only to the alternate raw catalogue record; preserve every other field, source URL, license, original accession text and model source path.",
+        "Replace the alternate slug with the canonical slug in Sacred Forms membership and its existing caption. Caption wording is unchanged and no duplicate canonical entry is introduced.",
+        "Replace the alternate slug in the v2 Sacred Forms seed.",
+        "Configure 301 redirects for /works/asia/ganesha-mia and /asia/ganesha-mia to /works/asia/ganesha-java-mia/.",
+        "Exclude both retired aliases from the integration sitemap; the custom /sitemap.xml already enumerates hidden-filtered public works."
+      ],
+      "spatialRoomDependencies": [],
+      "preservation": "The September audit recommended retaining both scan pages. That historical finding remains intact; this owner-authorized consolidation now uses one public listing while retaining both complete source records and all source/preview/dimension/orientation/display metadata. No scale or measurement binding is copied between models."
+    },
+    {
+      "pair": [
+        "sub-saharan-africa/benin-leopard-mask-hunt",
+        "africa/benin-leopard-mask-hunt"
+      ],
+      "status": "pending-identity-confirmation-no-change",
+      "recommendedCanonicalIfConfirmed": "sub-saharan-africa/benin-leopard-mask-hunt",
+      "finding": "Very likely the same Hunt Museum object/capture: same publisher, distinctive description, ivory/lead materials and 342720 source faces. The second archive entry still lacks a direct source UID or accession binding to JB 008. Matching description and face count alone are not used to withdraw a record.",
+      "qualityBasisIfConfirmed": "The recommended record already belongs to the reviewed featured-250 pool and retains object-specific dimension/source evidence. Its 250000-face serving derivative and the alternate 180000-face derivative remain untouched.",
+      "metadataChecks": [
+        {
+          "url": "https://api.sketchfab.com/v3/models/033a88e4a5c04a5aa856ed6c09eeca93",
+          "retrievedAt": "2026-11-06T23:55:11.928674+00:00",
+          "httpStatus": 200,
+          "publisher": "The Hunt Museum",
+          "title": "Benin Leopard Mask",
+          "accession": "JB 008",
+          "dimensions": "H18.5 x W10 x D4.4 cm",
+          "faceCount": 342720
+        },
+        {
+          "url": "https://zenodo.org/api/records/18949540",
+          "retrievedAt": "2026-11-06T23:55:11.006696+00:00",
+          "httpStatus": 403,
+          "finding": "No fresh archive source-identity metadata could be obtained from this endpoint."
+        },
+        {
+          "url": "https://api.datacite.org/dois/10.5281/zenodo.18949540",
+          "retrievedAt": "2026-11-06T23:56:21.008213+00:00",
+          "httpStatus": 200,
+          "publisher": "The Hunt Museum",
+          "title": "Benin Leopard Mask",
+          "finding": "Official DOI metadata repeats the matching object description and records CC BY 4.0, but supplies no source-model UID or JB008 accession."
+        }
+      ],
+      "existingEvidence": [
+        "docs/ingest/diversity-60-20260918.json",
+        "docs/ingest/featured-250-20261015-review.json"
+      ],
+      "dependencies": [
+        "The recommended record is featured-250 approved (not homepage-approved).",
+        "The alternate africa/... slug remains a Power & Presence member and caption.",
+        "Neither slug occurs in the eight spatial rooms."
+      ],
+      "nextEvidenceNeeded": "An archive metadata/source-package manifest binding the alternate capture to Sketchfab UID 033a88e4a5c04a5aa856ed6c09eeca93 or museum accession JB 008; alternatively a separately authorized rendered comparison with object-specific evidence."
+    },
+    {
+      "pair": [
+        "aphrodite-anadyomene",
+        "roman/esquiline-venus-smk-cast"
+      ],
+      "status": "pending-exact-cast-confirmation-no-change",
+      "recommendedCanonicalIfConfirmed": null,
+      "finding": "Both represent the Esquiline Venus, Capitoline inventory 1141, via plaster casts at the Royal Cast Collection in Copenhagen. The official legacy route identifies SMK KAS185; the independent Geoffrey Marchal capture does not publish its cast accession. A common prototype and museum are not treated as proof of the same physical cast.",
+      "metadataChecks": [
+        {
+          "url": "https://api.smk.dk/api/v1/art?object_number=KAS185&lang=en",
+          "retrievedAt": "2026-11-06T23:55:11.019320+00:00",
+          "httpStatus": 200,
+          "objectNumber": "KAS185",
+          "material": "plaster",
+          "technique": "Plaster cast",
+          "measurements": "H154 x W59 x D41.5 cm",
+          "finding": "The existing legacy STL byte count 20,005,084 matches the small STL listed in the official record. No binary file was requested."
+        },
+        {
+          "url": "https://api.sketchfab.com/v3/models/544e56c1b60447bdb8f8c174fcdb2e13",
+          "retrievedAt": "2026-11-06T23:55:12.010178+00:00",
+          "httpStatus": 200,
+          "publisher": "Geoffrey Marchal",
+          "title": "Venus",
+          "faceCount": 394803,
+          "finding": "Describes a Copenhagen plaster copy of the Esquiline Aphrodite, referencing the Roman original inventory 1141; no SMK cast accession is stated."
+        },
+        {
+          "url": "https://api.datacite.org/dois/10.5281/zenodo.10348289",
+          "retrievedAt": "2026-11-06T23:56:21.009693+00:00",
+          "httpStatus": 200,
+          "publisher": "geoffreymarchal",
+          "title": "Venus",
+          "finding": "Official DOI metadata repeats the same Copenhagen plaster-copy description; cast accession is still absent. The archive records CC BY 4.0 while the current Sketchfab API reports Standard; retain version-specific rights evidence without rewriting existing archival attribution."
+        }
+      ],
+      "dependencies": [
+        "Neither record belongs to featured-250.",
+        "The legacy aphrodite-anadyomene slug is an explicit wing-classification exception.",
+        "Both retain distinct dimension, orientation, preview and spatial-eligibility records; neither occurs in the eight spatial rooms."
+      ],
+      "additionalFinding": "The live SMK record describes the cast as plaster with its own 154 cm height. Existing legacy raw material/original-height handling is a separate identity/dimension issue; it is not silently changed during this duplicate consolidation.",
+      "nextEvidenceNeeded": "A source capture label, institutional cross-reference or separately authorized comparison confirming that the Marchal scan records cast KAS185; then a reviewed representative choice preserving both capture provenance histories."
+    }
+  ],
+  "validation": {
+    "passed": true,
+    "checks": [
+      "All 3,037 raw records compared with HEAD: only hidden:true was added to asia/ganesha-mia; every other record/field is unchanged.",
+      "Public catalogue count decreased by exactly one to 3,018.",
+      "Sacred Forms resolves all 33 members publicly, with one canonical Ganesha and unchanged caption text.",
+      "The v2 seed points to the canonical Ganesha.",
+      "Explicit old canonical and legacy redirects are configured with status 301.",
+      "Sitemap predicate excludes aliases with and without trailing slash, including a base path, and includes the kept route; existing retired-route exclusions still pass.",
+      "Featured review membership remains 250 and retains the canonical homepage-approved Ganesha.",
+      "Ten serving/source metadata files were byte-compared with HEAD and remain unchanged.",
+      "Whitespace validation passed."
+    ],
+    "unchangedProtectedFiles": [
+      "src/data/previews.json",
+      "src/data/physical-dimensions.json",
+      "src/data/spatial-eligibility.json",
+      "src/data/spatial-display-defaults.json",
+      "src/data/orientations.json",
+      "src/data/appearance-overrides.json",
+      "src/data/display-recommendations.json",
+      "src/data/renders.json",
+      "src/data/identity-corrections.json",
+      "src/data/featured-works.json"
+    ],
+    "notPerformed": [
+      "Full application build",
+      "Generated redirect-page/browser verification",
+      "Model or image payload downloads",
+      "Geometry/visual re-review",
+      "Asset deletion",
+      "Publication/deployment"
+    ]
+  }
+}
