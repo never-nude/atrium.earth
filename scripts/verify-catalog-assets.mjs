@@ -10,14 +10,19 @@ const problems = [];
 
 for (const work of catalog) {
   const slug = String(work.slug || '').replace(/^\/|\/$/g, '');
-  const previewPath = path.join(root, 'public/models/previews', slug, 'preview.glb');
+  const url = previews[slug]?.url;
+  const localPrefix = `/models/previews/${slug}/`;
+  const localConfigured = typeof url === 'string'
+    && url.startsWith(localPrefix)
+    && /^preview(?:-[a-f0-9]+)?\.glb$/.test(url.slice(localPrefix.length));
+  const previewPath = localConfigured
+    ? path.join(root, 'public', url)
+    : path.join(root, 'public/models/previews', slug, 'preview.glb');
   const thumbPath = path.join(root, 'public/previews/renders', slug, 'thumb.webp');
   const duplicate = seen.has(slug);
-  const url = previews[slug]?.url;
   const remoteConfigured = typeof url === 'string'
     && url.startsWith(`https://models.atrium.earth/models/previews/${slug}/`)
     && /^preview(?:-[a-f0-9]+)?\.glb$/.test(url.split('/').at(-1));
-  const localConfigured = url === `/models/previews/${slug}/preview.glb`;
   seen.add(slug);
 
   const row = {
