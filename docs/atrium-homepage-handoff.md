@@ -205,3 +205,25 @@ All relevant metadata/programme/world/wing/Spatial checks pass. Complete
 production assets must be checked by the ordinary full-checkout Pages workflow,
 not the sparse local artifact. Build/deployment/live confirmation follows in
 STATUS.md. No local source cleanup or asset offload is part of this release.
+
+
+## Hosting follow-up: bounded CDN transfer
+
+The first production source/asset/build gates passed, but two publication
+attempts of `1e87c177` hit GitHub Pages' ten-minute hosting limit. A timeout
+extension was inspected and discarded: the official action hard-caps it.
+
+To reduce the release, exactly20 existing Pages-local previews totaling
+153,125,124bytes were copied, unchanged, to the existing sculpture CDN.
+R2 run42358414500 passed source Git/SHA/byte checks and complete public
+readbacks with production CORS/MIME/GLB2 validation for every object.
+Only their20 preview URL fields changed. All original Git/model files remain;
+there was no local offload or new backup claim. Source/delivery proofs and
+the pinned transfer manifest are under `docs/ingest/pages-delivery-20261107-*`.
+Do not blindly rerun the historical staging manifest after migration: it
+intentionally requires the old committed URL bindings to prevent stale transfers.
+
+The post-build Pages package now has an explicit1,000,000,000-byte limit
+before upload. Full runner size and final production status are recorded in
+STATUS.md when complete. Keep the shared explorer, five geographic wings,
+new colorful comparison and all concurrent acquisitions/surface repairs.
