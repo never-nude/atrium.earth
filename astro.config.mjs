@@ -10,6 +10,7 @@ export function sitemapPageAllowed(page) {
   return !/\/newest\/[^/]+$/.test(pathname)
     && !/\/v[23](?:\/|$)/.test(pathname)
     && !pathname.includes('/wings/unfiled')
+    && !/\/wings\/(?:near-east|greece-rome|americas-oceania)$/.test(pathname)
     && !pathname.includes('/exhibitions/the-space-between')
     && !pathname.includes('/exhibitions/where-is-the-work')
     && !consolidatedWorkAliases.some(alias => pathname.endsWith(alias));

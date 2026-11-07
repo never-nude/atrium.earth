@@ -21,7 +21,9 @@ import type { WingId } from '../data/wings';
 type RawWork = {
   slug: string;
   hidden?: boolean;
-  wing?: WingId | null;
+  wing?: string | null;
+  wing_unfiled_reason?: string | null;
+  origin_country?: string | null;
   collection?: string | null;
   culture?: string | null;
   title: string;
@@ -591,10 +593,9 @@ function normalize(raw: RawWork, fallbackIndex: number): Work {
   const { start, end } = parseYearRange(raw);
   const era = eraFor(raw);
   const geography = geographyFor(raw);
-  const wing = assignWing({
-    slug: raw.slug,
-    data: { wing: raw.wing, region: collection, place: geography },
-  });
+  // Use corrected source fields rather than geographyFor's display fallbacks,
+  // which can contain title, period and collection-folder inferences.
+  const wing = assignWing(raw);
   const maker = makerFor(raw);
   const materials = materialsFor(raw);
   const materialProfile = materialProfileFor(raw.slug, materials);

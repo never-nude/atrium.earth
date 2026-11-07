@@ -1,3 +1,6 @@
+import { legacyWingRoutes } from '../data/wing-legacy-routes';
+import { withBase } from '../lib/urls';
+
 // Framed miniatures reuse one native viewer and never create collection tools or nested frames.
 const isStudioPeek = window.parent !== window && new URLSearchParams(location.search).get('studio-peek') === '1';
 if (!isStudioPeek && !document.documentElement.classList.contains('studio-peek')) {
@@ -215,9 +218,60 @@ function initializeExplorer(explorer) {
   let currentSort = '';
   let ordered = records;
   const sorted = new Map([['curator', records]]);
+  let legacyWingNotice = null;
+
+  function explainLegacyWings(params) {
+    legacyWingNotice?.remove();
+    legacyWingNotice = null;
+    const retiredIds = [...new Set(params.getAll('wing'))].filter(id => Object.hasOwn(legacyWingRoutes, id));
+    if (!retiredIds.length) return false;
+    // A historical entrance can span several continents. Clear the ambiguous
+    // filter rather than silently selecting one of its modern destinations.
+    params.delete('wing');
+    const suffix = params.toString();
+    history.replaceState(history.state, '', `${location.pathname}${suffix ? `?${suffix}` : ''}${location.hash}`);
+    const notice = document.createElement('aside');
+    notice.dataset.studioLegacyWing = '';
+    notice.setAttribute('aria-label', 'Updated wing navigation');
+    Object.assign(notice.style, { marginBlock: '0 20px', padding: '16px', border: '1px solid var(--v3-line, #c9c9c9)', lineHeight: '1.6', fontSize: '14px' });
+    const heading = document.createElement('strong');
+    heading.textContent = 'The wings have changed';
+    notice.append(heading);
+    for (const id of retiredIds) {
+      const explanation = document.createElement('p');
+      explanation.style.marginBlock = '8px';
+      explanation.textContent = legacyWingRoutes[id].line.replace('Choose a regional wing below', 'Choose a regional wing');
+      notice.append(explanation);
+    }
+    const cleared = document.createElement('p');
+    cleared.style.marginBlock = '8px';
+    cleared.textContent = `${retiredIds.length === 1 ? 'The retired wing filter has' : 'The retired wing filters have'} been cleared. Your other filters remain in place.`;
+    notice.append(cleared);
+    const links = document.createElement('nav');
+    links.setAttribute('aria-label', 'Related wing entrances');
+    Object.assign(links.style, { display: 'flex', flexWrap: 'wrap', gap: '8px 20px' });
+    const wingSelect = filters.find(select => select.dataset.v3Filter === 'wing');
+    for (const id of new Set(retiredIds.flatMap(id => legacyWingRoutes[id].destinations))) {
+      const link = document.createElement('a');
+      link.href = withBase(`/wings/${id}/`);
+      link.textContent = [...(wingSelect?.options || [])].find(option => option.value === id)?.textContent || id;
+      links.append(link);
+    }
+    for (const id of retiredIds) {
+      const link = document.createElement('a');
+      link.href = withBase(`/wings/${id}/`);
+      link.textContent = `About the former ${legacyWingRoutes[id].name} wing`;
+      links.append(link);
+    }
+    notice.append(links);
+    form.before(notice);
+    legacyWingNotice = notice;
+    return true;
+  }
 
   function readURL() {
     const params = new URLSearchParams(location.search);
+    const retiredWing = explainLegacyWings(params);
     search.value = params.get('q') || '';
     makerControl.select.value = params.get('maker') || '';
     for (const select of filters) select.value = params.get(select.dataset.v3Filter) || '';
@@ -226,6 +280,7 @@ function initializeExplorer(explorer) {
     savedOnly = params.get('saved') === '1';
     density = params.get('density') === 'compact' ? 'compact' : 'grid';
     limit = PAGE_SIZE;
+    return retiredWing;
   }
 
   function writeURL() {
@@ -311,8 +366,8 @@ function initializeExplorer(explorer) {
   explorer.querySelector('[data-v3-empty-reset]')?.addEventListener('click', () => { form.reset(); search.focus(); });
   window.addEventListener('popstate', () => { window.clearTimeout(timer); readURL(); render(false); });
   explorers.push({ refreshSaved() { if (savedOnly) render(false); } });
-  readURL();
-  render();
+  const retiredWing = readURL();
+  render(!retiredWing);
 }
 
 for (const explorer of document.querySelectorAll('[data-studio-explorer]')) initializeExplorer(explorer);

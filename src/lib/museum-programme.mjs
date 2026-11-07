@@ -113,6 +113,13 @@ function overlap(slugs, focusSlugs) {
   return new Set((slugs ?? []).filter(slug => focusSlugs.has(slug))).size;
 }
 
+// Comparison decisions follow the two objects, even if a title or order changes.
+function comparisonKey(slugs) {
+  if (!Array.isArray(slugs) || slugs.length !== 2 || slugs[0] === slugs[1]
+    || slugs.some(slug => typeof slug !== 'string' || !slug)) return null;
+  return JSON.stringify([...slugs].sort());
+}
+
 /**
  * Assemble existing approved content for one date. No clock, network, model,
  * taxonomy inference or input mutation occurs here. The homepage section order
@@ -139,8 +146,19 @@ export function buildMuseumProgramme({ date, programmes, exhibitions, homepageWo
   const hero = heroQueue[calendar.dayIndex % heroQueue.length];
   const focusIntro = focusConfig.focusIntro || focus.invitation || '';
   const layout = PROGRAMME_LAYOUTS[0];
-  const orderedPairings = [...pairings].sort((a, b) => (
-    overlap([b.a?.slug, b.b?.slug], focusSlugs) - overlap([a.a?.slug, a.b?.slug], focusSlugs)
+  const homepageSlugs = new Set((homepageWorks ?? [])
+    .filter(work => isPreviewBudgetEligible(work, previews)).map(work => work.slug));
+  const excludedComparisons = new Set((programmes?.comparisonExclusions ?? [])
+    .map(comparisonKey).filter(Boolean));
+  const spotlightComparison = comparisonKey(focusConfig.comparisonWorkSlugs);
+  const availablePairings = uniqueBy(pairings.filter(pair => {
+    const slugs = [pair.a?.slug, pair.b?.slug];
+    const key = comparisonKey(slugs);
+    return key && !excludedComparisons.has(key) && slugs.every(slug => homepageSlugs.has(slug));
+  }), pair => comparisonKey([pair.a.slug, pair.b.slug]));
+  const orderedPairings = availablePairings.sort((a, b) => (
+    Number(comparisonKey([b.a.slug, b.b.slug]) === spotlightComparison) - Number(comparisonKey([a.a.slug, a.b.slug]) === spotlightComparison)
+    || overlap([b.a?.slug, b.b?.slug], focusSlugs) - overlap([a.a?.slug, a.b?.slug], focusSlugs)
     || stableHash(`${calendar.weekKey}:${a.a?.slug}:${a.b?.slug}:${a.title}`) - stableHash(`${calendar.weekKey}:${b.a?.slug}:${b.b?.slug}:${b.title}`)
     || String(a.title).localeCompare(String(b.title))
   ));

@@ -9,17 +9,20 @@ const leadImage = wingSummaries[0]?.featured?.thumbnailImage;
 
 <V3Layout
   title="Wings"
-  description="Browse the permanent collection through six geographic and historical wings."
+  description="Browse sculpture through five geographic wings: Europe, Asia, Africa, the Americas and Oceania."
   image={leadImage}
 >
   <header class="v3-page-hero">
-    <p class="v3-kicker">Permanent collection / 06 wings</p>
-    <h1 class="v3-display">Six ways into<br /><em>the collection.</em></h1>
-    <p>Wings bring together works by historical tradition and geography, rather than dividing the world into separate territories. Works are arranged by period within each wing.</p>
+    <p class="v3-kicker">Permanent collection / {String(wingSummaries.length).padStart(2, '0')} wings</p>
+    <h1 class="v3-display">Art across<br /><em>five regions.</em></h1>
+    <p>Europe, Asia, Africa, the Americas and Oceania. Works with a known regional origin have one primary home, arranged by period inside each wing.</p>
     <p>To explore documented origins across time, <a href={withBase('/world/')}>turn the interactive globe ↗</a>.</p>
   </header>
 
   <section class="v3-wings" aria-label="Museum wings">
     <V3WingGrid />
+    <p class="wings-other-origins">Some works cross regions or have origins that remain unrecorded. <a href={withBase('/wings/unfiled/')}>Explore those works →</a></p>
   </section>
 </V3Layout>
+
+<style>.wings-other-origins { max-width:75ch; margin:38px 0 0; color:var(--v3-muted); font-size:13px; line-height:1.8; } .wings-other-origins a { color:var(--v3-signal); text-underline-offset:4px; }</style>

@@ -7,20 +7,22 @@ import { logWingBuildReport, featuredWorkForWing, wingById, worksForWing, type W
 import { v3WorkRoute } from '../../../lib/v3';
 import { withBase } from '../../../lib/urls';
 import { wingAccent } from '../../../data/wing-palettes';
+import { legacyWingRoutes, type LegacyWingId } from '../../../data/wing-legacy-routes';
 
 export function getStaticPaths() {
   logWingBuildReport();
-  return [...wingIds, 'unfiled'].map((id) => ({ params: { id } }));
+  return [...wingIds, 'unfiled', ...Object.keys(legacyWingRoutes)].map((id) => ({ params: { id } }));
 }
 
-const id = Astro.params.id as WingRouteId;
+const id = Astro.params.id!;
+const legacy = legacyWingRoutes[id as LegacyWingId];
 const wing = wingById(id);
 const wingIndex = wing ? wings.findIndex((candidate) => candidate.id === wing.id) : -1;
-const wingWorks = worksForWing(id);
+const wingWorks = legacy ? [] : worksForWing(id as WingRouteId);
 const featured = wing ? featuredWorkForWing(wing) : undefined;
 const isUnfiled = id === 'unfiled';
-const name = wing?.name ?? 'Unfiled';
-const blurb = wing?.blurb ?? 'Works whose source region and place do not yet match a museum wing.';
+const name = legacy?.name ?? wing?.name ?? 'Across regions & unrecorded origins';
+const blurb = legacy?.line ?? wing?.blurb ?? 'Works with origins spanning several regions, or without enough recorded regional evidence for a single wing.';
 const eraOrder = ['Ancient', 'Medieval', 'Renaissance', 'Early modern', 'Modern', 'Contemporary', 'Undated'];
 const rooms = eraOrder
   .map((era) => ({ era, works: wingWorks.filter((work) => work.era === era) }))
@@ -33,8 +35,17 @@ const showRooms = Boolean(wing && rooms.length > 1);
   description={blurb}
   image={featured?.thumbnailImage}
 >
-  {isUnfiled && <meta slot="head" name="robots" content="noindex, nofollow" />}
-  <div style={'--wing-accent:'+wingAccent(id)}>
+  {(isUnfiled || legacy) && <meta slot="head" name="robots" content="noindex, follow" />}
+  {legacy ? <header class="v3-page-hero legacy-wing-entrance">
+    <p class="v3-kicker">A new arrangement / The museum wings</p>
+    <h1 class="v3-display">{legacy.name}</h1>
+    <p>{legacy.line}</p>
+    <div class="v3-actions">{legacy.destinations.map(destination => {
+      const nextWing = wingById(destination);
+      return nextWing && <a class="v3-button v3-button--ghost" href={withBase(`/wings/${destination}/`)}>{nextWing.name} <span aria-hidden="true">→</span></a>;
+    })}</div>
+    <p><a href={withBase('/wings/')}>Explore all {wings.length} wings</a> · <a href={withBase('/world/')}>Explore the globe</a> · <a href={withBase('/collection/')}>Browse every work</a></p>
+  </header> : <div style={'--wing-accent:'+wingAccent(id)}>
 
   {featured ? (
     <section class="v3-wing-hero" aria-labelledby="wing-title" data-featured-work={featured.slug}>
@@ -68,9 +79,9 @@ const showRooms = Boolean(wing && rooms.length > 1);
     </section>
   ) : (
     <header class="v3-page-hero">
-      <p class="v3-kicker">Collection audit / {wingWorks.length} {wingWorks.length === 1 ? 'work' : 'works'}</p>
+      <p class="v3-kicker">The collection / {wingWorks.length} {wingWorks.length === 1 ? 'work' : 'works'}</p>
       <h1 class="v3-display">{name}</h1>
-      <p>{blurb} This page remains outside the public navigation and search indexes.</p>
+      <p>{blurb} Explore them here, or <a href={withBase('/collection/')}>browse the complete collection</a>.</p>
     </header>
   )}
 
@@ -78,7 +89,7 @@ const showRooms = Boolean(wing && rooms.length > 1);
     <div class="v3-wing-works__intro">
       <div>
         <p class="v3-kicker">The collection / chronological order</p>
-        <h2 id="wing-works-title" class="v3-display">{isUnfiled ? 'Waiting to be filed.' : `Inside ${name}.`}</h2>
+        <h2 id="wing-works-title" class="v3-display">{isUnfiled ? 'Beyond a single region.' : `Inside ${name}.`}</h2>
       </div>
       {!isUnfiled && <a href={withBase('/wings/')}>All wings →</a>}
     </div>
@@ -108,5 +119,7 @@ const showRooms = Boolean(wing && rooms.length > 1);
       </div>
     )}
   </section>
-  </div>
+  </div>}
 </V3Layout>
+
+<style>.legacy-wing-entrance .v3-actions { margin-block:28px; } .legacy-wing-entrance > p:last-child { font-size:13px; } .legacy-wing-entrance > p:last-child a { text-underline-offset:4px; }</style>

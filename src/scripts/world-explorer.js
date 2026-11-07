@@ -220,7 +220,8 @@ async function initialise(root, { compact, signal, register }) {
     state.mode = mode === 'map' ? 'map' : 'globe';
     for (const item of root.querySelectorAll('[data-world-mode]')) item.setAttribute('aria-pressed',String(item.dataset.worldMode === state.mode));
     root.querySelector('[data-world-map-hint]').textContent = state.mode === 'globe' ? 'Drag to turn · Select a glowing place' : 'Select a glowing place';
-    const controls = root.querySelector('[data-world-view-controls]');if(controls)controls.hidden = state.mode === 'map';
+    root.dataset.worldMode = state.mode;
+    root.dispatchEvent(new Event('world-mode-change'));
     updateContinue();
   }
   for (const button of root.querySelectorAll('[data-world-mode]')) {

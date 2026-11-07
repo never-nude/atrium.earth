@@ -1,7 +1,7 @@
 import { works } from './catalog';
 import rawCatalog from '../data/catalog.json';
 import corrections from '../data/identity-corrections.json';
-import placesData from '../data/world-places.json';
+import placesData from '../data/world-places.json' with { type: 'json' };
 import { buildWorldCollection } from './world-collection.mjs';
 
 export type WorldRegion = 'Europe' | 'Africa' | 'Asia' | 'Americas' | 'Oceania' | 'Transregional';

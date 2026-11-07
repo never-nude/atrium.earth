@@ -175,3 +175,33 @@ review server was stopped and Safari returned to the main homepage preview.
 Preview `http://localhost:5182/#explore-the-world`. This work is still local,
 unpushed and unpublished. Review the compact experience before any release, and
 preserve/reconcile concurrent catalog updates rather than replacing main.
+
+
+## Latest: authorized production release, five geographic wings
+
+The owner's explicit “deploy this all” supersedes this task's earlier local-only
+restriction. Concurrent acquisitions and surface repairs were merged in
+`2bbfd978`; preserve them. Current public collection has 3,022 works.
+
+The Firebird and Play-Doh replace the rejected Nefertiti/Augustus homepage
+comparison. Both remain within the existing reviewed homepage pool and budget.
+The rejected unordered object pair cannot return through another title or order.
+The current four-week focus spotlights “Colour Takes Shape”; other focuses retain
+their approved comparison rotation.
+
+Wings now use Europe, Asia, Africa, Americas and Oceania. See
+`wings-geography.md` for assignment evidence and counts. Legacy wing URLs explain
+the relevant new destinations. Unknown or cross-region origins remain accessible
+through `/wings/unfiled/` and the full collection. No sculpture source metadata,
+materials, geometry or individual work route changed in this regrouping.
+
+The compact actual explorer remains on the homepage. Fullscreen Map keeps its
+exit control; Globe restores its usual controls. Native Safari confirmed both
+new sculptures and independent orbit, plus fullscreen Globe and Map; the Mac
+locked during exit, so final return-to-page and post-release visual checks are
+not yet claimed. Physical-touch and physical-device AR are not claimed.
+
+All relevant metadata/programme/world/wing/Spatial checks pass. Complete
+production assets must be checked by the ordinary full-checkout Pages workflow,
+not the sparse local artifact. Build/deployment/live confirmation follows in
+STATUS.md. No local source cleanup or asset offload is part of this release.

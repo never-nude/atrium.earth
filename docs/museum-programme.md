@@ -14,10 +14,12 @@ existing routes and editorial content.
   focus. It leads the directory and gets a substantial homepage invitation, with
   two other exhibition teasers and a link to the complete directory.
 - **Weekly:** approved comparison pairs and an existing 3D room are spotlighted
-  using actual membership overlap. A single pair is available to examine in 3D
+  using actual membership overlap. A focus can name one reviewed comparison to
+  lead for its four-week run; the other pairs retain their weekly ordering.
+  A single pair is available to examine in 3D
   on the homepage; both models load only when the visitor chooses them.
 - **Consistent arrangement:** daily sculpture, featured exhibition, comparison,
-  gallery and AR/VR invitations, six wings, recent additions and random discovery.
+  gallery and AR/VR invitations, five geographic wings, recent additions and random discovery.
   New selections refresh this sequence without moving its destinations around.
 - **Weekly:** reviewed lead works change on wing entrances and exhibition cards.
   Exhibition sequences and chronological wing listings retain their order.
@@ -35,6 +37,15 @@ inside existing review decisions. New imports never become homepage features
 automatically. Every existing exhibition remains available every week.
 
 `src/data/museum-programmes.json` contains the focus cycle and short viewing prompts.
+Its `comparisonExclusions` lists unordered pairs of work slugs that must never
+return to the homepage, while preserving their existing catalogue comparison.
+The Nefertiti/Augustus pairing is excluded this way. A focus's optional
+`comparisonWorkSlugs` names its lead pair by the same object identity, rather
+than by an editable title. The Surface focus leads with **Colour Takes Shape**:
+Saint Phalle's Firebird and Koons's Play-Doh. Both are already homepage-approved;
+every homepage comparison requires two approved works with previews within the
+existing per-work 15 MiB budget. Missing or excluded spotlights fall back to the
+remaining eligible comparisons, never to an excluded pair.
 Existing exhibition metadata owns titles,
 membership, attribution, wall texts and colors. Review these sources to adjust
 the programme; no model credentials or paid service is required.

@@ -9,6 +9,7 @@ import {
 
 const read = path => JSON.parse(fs.readFileSync(new URL(path, import.meta.url), 'utf8'));
 const programmes = read('../src/data/museum-programmes.json');
+const programmesBefore = JSON.stringify(programmes);
 const content = read('../src/data/v3-content.json');
 const review = read('../src/data/featured-works.json');
 const reviewBefore = JSON.stringify(review);
@@ -35,6 +36,12 @@ const exhibitions = [
 }));
 const pairings = content.pairings.filter(pair => reviewed.some(work => work.slug === pair.a) && reviewed.some(work => work.slug === pair.b))
   .map(pair => ({ ...pair, a: bySlug.get(pair.a), b: bySlug.get(pair.b) }));
+const colourPair = pairings.find(pair => pair.a.slug === 'modern/saint-phalle-firebird-stravinsky'
+  && pair.b.slug === 'americas-oceania/jeff-koons-play-doh');
+const rejectedPair = pairings.find(pair => pair.a.slug === 'egyptian/portrait-of-nefertiti-smk-cast'
+  && pair.b.slug === 'roman/bust-of-augustus-oak-crown-msr');
+const homepagePairings = pairings.filter(pair => pair !== rejectedPair
+  && [pair.a, pair.b].every(work => eligible.includes(work)));
 const rooms = read('../public/spatial-museum/collection-manifest.json').rooms;
 const inputs = { programmes, exhibitions, homepageWorks, previews, pairings, rooms };
 const day = value => new Date(value);
@@ -62,6 +69,9 @@ for (const focus of programmes.focuses) {
 }
 assert.equal(reviewed.length, 250, 'The explicit featured membership remains unchanged.');
 assert.ok(eligible.length >= 7);
+assert.ok(colourPair, 'The vivid comparison resolves from the existing reviewed catalogue.');
+assert.ok(rejectedPair, 'Excluding a homepage pairing preserves its catalogue entry.');
+assert.ok(homepagePairings.includes(colourPair));
 
 for (const invalid of ['2026-02-29', '2026-02-30', '2026-13-01', '2026-00-01', '2026-11-6', '2026-11-06T00:00:00Z', '', ' 2026-11-06']) {
   assert.throws(() => parseProgrammeDate(invalid));
@@ -124,8 +134,14 @@ for (let week = 0; week < 32; week += 1) {
     assert.equal(daily.heroPrompt, focus.has(daily.hero.slug) ? daily.focusIntro : GENERAL_HERO_PROMPT);
   }
   assert.equal(new Set(dailyHeroes).size, 7);
-  assert.deepEqual(new Set(programme.pairings), new Set(pairings));
-  const pairScores = programme.pairings.map(pair => overlap([pair.a.slug, pair.b.slug], focus));
+  assert.deepEqual(new Set(programme.pairings), new Set(homepagePairings));
+  assert.ok(!programme.pairings.includes(rejectedPair), 'The rejected pair stays out through every focus and week.');
+  for (const pair of programme.pairings) {
+    assert.ok([pair.a, pair.b].every(work => approved.has(work.slug) && isPreviewBudgetEligible(work, previews)));
+  }
+  const spotlighted = programme.focus.slug === 'the-work-of-the-surface';
+  if (spotlighted) assert.equal(programme.pairings[0], colourPair);
+  const pairScores = programme.pairings.slice(spotlighted ? 1 : 0).map(pair => overlap([pair.a.slug, pair.b.slug], focus));
   assert.deepEqual(pairScores, [...pairScores].sort((a, b) => b - a));
   assert.ok(rooms.includes(programme.room));
   assert.equal(overlap(programme.room.slugs, focus), Math.max(...rooms.map(room => overlap(room.slugs, focus))));
@@ -133,7 +149,9 @@ for (let week = 0; week < 32; week += 1) {
 assert.equal(focusIds.size, 8);
 assert.equal(layoutKeys.size, 1);
 for (let offset = 0; offset < 28; offset += 1) {
-  assert.equal(buildMuseumProgramme({ ...inputs, date: new Date(anchor + offset * DAY) }).focus.slug, 'the-work-of-the-surface');
+  const programme = buildMuseumProgramme({ ...inputs, date: new Date(anchor + offset * DAY) });
+  assert.equal(programme.focus.slug, 'the-work-of-the-surface');
+  assert.equal(programme.pairings[0], colourPair, 'Colour Takes Shape leads throughout the current four-week focus.');
 }
 assert.equal(forDate('2026-11-29T23:59:59.999Z').focus.slug, 'the-work-of-the-surface');
 assert.equal(forDate('2026-11-30T00:00:00.000Z').focus.slug, 'bodies-in-motion');
@@ -155,6 +173,24 @@ assert.equal(single.room, null);
 assert.equal(single.focus, sampleFocus);
 assert.equal(single.focusIntro, sampleFocus.invitation);
 assert.equal(single.heroPrompt, sampleFocus.invitation);
+const contextualPair = { title: 'Contextual pair', a: sample[0], b: sample[1] };
+const chosenPair = { title: 'Editable spotlight title', a: sample[6], b: sample[7] };
+const reversedExcluded = { title: 'Renamed and reversed excluded pair', a: sample[9], b: sample[8] };
+const unapprovedPair = { title: 'Unapproved object', a: sample[0], b: { slug: 'outside-review', hasPreview: true } };
+const largePair = { title: 'Oversized object', a: sample[0], b: sample[2] };
+const comparisonConfig = {
+  focuses: [{ exhibitionId: 'single', comparisonWorkSlugs: [sample[7].slug, sample[6].slug] }],
+  comparisonExclusions: [[sample[8].slug, sample[9].slug]],
+};
+const comparisonInputs = {
+  date: '2026-11-02', programmes: comparisonConfig, exhibitions: [sampleFocus], homepageWorks: sample,
+  previews: { ...samplePreviews, 'outside-review': { bytes: 100 }, [sample[2].slug]: { bytes: HOMEPAGE_PREVIEW_LIMIT + 1 } },
+  pairings: [contextualPair, chosenPair, reversedExcluded, unapprovedPair, largePair],
+};
+assert.deepEqual(buildMuseumProgramme(comparisonInputs).pairings, [chosenPair, contextualPair], 'Spotlights and exclusions follow unordered object identities, never titles; approval and preview budgets remain mandatory.');
+assert.deepEqual(buildMuseumProgramme({ ...comparisonInputs, pairings: [contextualPair, reversedExcluded] }).pairings, [contextualPair], 'A missing spotlight safely falls back without admitting the excluded pair.');
+assert.deepEqual(buildMuseumProgramme({ ...comparisonInputs, programmes: { ...comparisonConfig, comparisonExclusions: [...comparisonConfig.comparisonExclusions, [sample[6].slug, sample[7].slug]] } }).pairings, [contextualPair], 'An explicit exclusion wins over an editorial spotlight.');
+assert.deepEqual(buildMuseumProgramme({ ...comparisonInputs, pairings: [reversedExcluded, unapprovedPair, largePair] }).pairings, [], 'An empty eligible comparison pool is not filled with excluded, unapproved or oversized works.');
 const broaderHero = buildMuseumProgramme({ date: '2026-11-03', exhibitions: [sampleFocus], homepageWorks: sample, previews: samplePreviews });
 assert.ok(!sampleFocus.works.includes(broaderHero.hero));
 assert.equal(broaderHero.heroPrompt, 'Turn the work to compare its front, sides and back.');
@@ -221,4 +257,5 @@ const invalidDateCheck = spawnSync(process.execPath, ['--input-type=module', '-e
 assert.notEqual(invalidDateCheck.status, 0);
 assert.match(invalidDateCheck.stderr, /Invalid programme date/u);
 
-console.log(`Museum programme passed: 8 four-week focuses, 1 fixed layout, ${eligible.length} budgeted homepage-approved heroes; 32 UTC weeks, 28-day boundaries and immutable inputs checked.`);
+assert.equal(JSON.stringify(programmes), programmesBefore, 'Programme comparison decisions remain immutable.');
+console.log(`Museum programme passed: 8 four-week focuses, 1 fixed layout, ${eligible.length} budgeted homepage-approved heroes; 32 UTC weeks, 28-day boundaries, comparison spotlights/exclusions and immutable inputs checked.`);

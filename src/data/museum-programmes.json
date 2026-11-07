@@ -1,6 +1,9 @@
 {
   "schema": "atrium-museum-programmes/1",
   "anchorMonday": "2026-11-02",
+  "comparisonExclusions": [
+    ["egyptian/portrait-of-nefertiti-smk-cast", "roman/bust-of-augustus-oak-crown-msr"]
+  ],
   "layouts": [
     {
       "key": "exhibition-first",
@@ -10,7 +13,8 @@
   "focuses": [
     {
       "exhibitionId": "the-work-of-the-surface",
-      "focusIntro": "Turn a work to follow its carved lines, painted areas and changes of depth."
+      "focusIntro": "Turn a work to follow its carved lines, painted areas and changes of depth.",
+      "comparisonWorkSlugs": ["modern/saint-phalle-firebird-stravinsky", "americas-oceania/jeff-koons-play-doh"]
     },
     {
       "exhibitionId": "bodies-in-motion",

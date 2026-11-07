@@ -14,6 +14,7 @@ import { featuredWorks } from '../lib/catalog';
 import { withBase } from '../lib/urls';
 import { arVrCount } from '../lib/spatial-catalog';
 import { shortWorkTitle } from '../lib/work-titles';
+import { wingSummaries } from '../lib/wings';
 
 const randomRoutes = featuredWorks.map((work) => withBase(v3WorkRoute(work)));
 const { hero: featuredWork } = currentProgramme;
@@ -95,9 +96,9 @@ const heroAlt = [
     <WorldExplorer compact={true} />
     <div class="v3-section-head v3-section-head--split">
       <div><p class="v3-kicker">04 / Museum wings</p><h2 id="wings-home-title" class="v3-display">Follow your curiosity.</h2></div>
-      <a href={withBase('/wings/')}>Explore all six wings <span aria-hidden="true">→</span></a>
+      <a href={withBase('/wings/')}>Explore all {wingSummaries.length} wings <span aria-hidden="true">→</span></a>
     </div>
-    <p class="home-section-intro">Wings bring together works by historical tradition and geography. Each offers a different route into the collection.</p>
+    <p class="home-section-intro">Explore by region, then by period. Each work has one primary home when its regional origin is known.</p>
     <V3WingGrid compact={true} />
   </section>
 

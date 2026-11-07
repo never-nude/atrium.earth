@@ -38,6 +38,19 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Verify collection and museum features
+        run: |
+          npm run verify:assets
+          npm run test:featured
+          npm run test:programme
+          npm run test:work-titles
+          npm run test:wings
+          npm run test:additions
+          npm run test:world-collection
+          npm run test:world-time
+          npm run test:world-state
+          npm run test:spatial
+
       - name: Build
         run: npm run build
         env:

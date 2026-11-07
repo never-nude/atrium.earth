@@ -1,12 +1,4 @@
-export const wingIds = [
-  'near-east',
-  'greece-rome',
-  'europe',
-  'asia',
-  'africa',
-  'americas-oceania',
-] as const;
-
+export const wingIds = ['europe', 'asia', 'africa', 'americas', 'oceania'] as const;
 export type WingId = (typeof wingIds)[number];
 
 export type Wing = {
@@ -14,241 +6,41 @@ export type Wing = {
   name: string;
   blurb: string;
   featured: string[];
-  match: {
-    region?: string[];
-    place?: string[];
-    slugs?: string[];
-  };
+  match: { region?: string[]; place?: string[]; slugs?: string[] };
 };
 
-// Root-level records predate the collection-folder convention. Keeping their
-// routing here makes the exception visible and lets every future foldered work
-// file itself automatically through `match.region`.
-const nearEastLegacySlugs = [
-  'aphrodite-holding-winged-eros',
-  'cleopatra-v-tryphaena',
-  'cypriot-limestone-priest',
-  'figure-of-a-man-with-an-oryx',
-  'head-of-a-female-or-goddess-wearing-a-necklace',
-  'head-of-a-male-or-female-figure',
-  'head-of-a-ruler',
-  'head-of-gudea',
-  'horus-protecting-nectanebo-ii',
-  'limestone-figure-of-a-woman',
-  'limestone-funerary-stele-cypriot-capital',
-  'limestone-head-of-a-bearded-man',
-  'limestone-statue-of-herakles',
-  'limestone-votive-relief-banquet-scenes',
-  'marble-anthropoid-sarcophagus-74-51-2452',
-  'marble-anthropoid-sarcophagus-74-51-2454',
-  'princess-from-amarna',
-  'silver-bowl-isis-medallion',
-  'sphinx',
-  'statue-of-ur-ningirsu',
-];
-
-const classicalLegacySlugs = [
-  'adolescent-torso',
-  'antinoos-farnese',
-  'aphrodite-anadyomene',
-  'apollo-belvedere',
-  'apollo-lykeios',
-  'aristippos-of-cyrene',
-  'artemision-bronze',
-  'athena-lemnia',
-  'athena-pallas-giustiniani',
-  'attis',
-  'augustus-of-prima-porta',
-  'barberini-faun',
-  'bearded-hercules-head',
-  'belvedere-torso',
-  'borghese-gladiator',
-  'bronze-figure-boy-eastern-dress',
-  'bronze-horse-head-herculaneum',
-  'bust-of-marcus-aurelius',
-  'capitoline-venus',
-  'capitoline-wolf',
-  'castor-and-pollux',
-  'crouching-venus',
-  'cybele-ra-34-i',
-  'cycladic-marble-female-figure',
-  'diadoumenos-bust',
-  'diana-ra-34-h',
-  'dionysos-farnese',
-  'discobolus',
-  'doryphoros',
-  'doryphoros-torso',
-  'dying-gaul',
-  'dying-niobid',
-  'eros-flying',
-  'final-neolithic-marble-female-figure',
-  'galeria-valeria-eutropia',
-  'ganymede',
-  'germanicus',
-  'head-from-farnese-hercules-type',
-  'head-of-maxence',
-  'herakles-lansdowne',
-  'hermes-antinoos-from-belvedere',
-  'hestia',
-  'juno-ludovisi',
-  'kneeling-youth',
-  'laocoon',
-  'lion',
-  'ludovisi-gaul',
-  'lying-lion',
-  'marble-capital-sphinx',
-  'marble-sarcophagus-lions-antelope',
-  'marble-stele-youth-and-little-girl',
-  'medici-faun',
-  'menippos',
-  'narcissus-and-echo-puteal',
-  'old-fisherman',
-  'penelope',
-  'porcellino',
-  'portrait-of-antinoos',
-  'portrait-of-homer',
-  'pudicity',
-  'strangford-shield',
-  'thalia',
-  'the-wrestlers',
-  'venus-de-milo',
-  'vulcan',
-  'young-bacchus-bronze',
-];
-
-const europeanLegacySlugs = [
-  'arch-keystone-470788',
-  'block-470953',
-  'corbel-25-120-599',
-  'corbel-25-120-601',
-  'corbel-25-120-602',
-  'development-of-a-bottle-in-space',
-  'diana-of-villa-bartholoni',
-  'entombment-of-christ',
-  'lintel-470947',
-  'pandora-james-pradier',
-  'perseus-with-head-of-medusa',
-  'pieta-with-donors',
-  'relief-agnus-dei-and-cherub',
-  'spandrel',
-  'spandrel-sections-of-an-arch',
-  'tomb-effigy-ermengol-ix',
-  'tomb-of-ermengol-x',
-  'ugolino-and-his-sons',
-  'voussoir-472190',
-];
-
-const americasOceaniaLegacySlugs = [
-  'ancestor-figure-sawos',
-  'mourning-victory-melvin-memorial',
-  'outside-row-standing-horse',
-];
-
-// Order is policy: Egypt and the Near East precedes the classical and European
-// rules; Greece & Rome precedes Europe. assignWing returns the first match.
+// Geographic collection scopes: periods, religions, makers and holding
+// institutions cannot establish a primary regional home.
 export const wings: Wing[] = [
   {
-    id: 'near-east',
-    name: 'Egypt & the Ancient Near East',
-    blurb: 'Ancient Egypt, Anatolia, Mesopotamia and the Levant, with Cypriot and Palmyrene sculpture.',
-    featured: [
-      'egyptian/portrait-of-nefertiti-smk-cast',
-      'assyrian/winged-genius-mia',
-    ],
-    match: {
-      region: ['egyptian', 'ancient-near-east', 'assyrian', 'palmyra'],
-      place: ['Ancient Near East', 'Ancient Near East and Egypt'],
-      slugs: nearEastLegacySlugs,
-    },
+    id: 'europe', name: 'Europe',
+    blurb: 'Works with a documented European origin or cultural scope, from antiquity to the present.',
+    featured: ['michelangelo/david', 'rodin/the-thinker'],
+    match: { region: ['europe'], place: ['Europe'] },
   },
   {
-    id: 'greece-rome',
-    name: 'Greece & Rome',
-    blurb: 'Aegean figurines, Archaic and Classical Greece, the Hellenistic world, and Rome through late antiquity. Originals and the casts made after them.',
-    featured: [
-      'laocoon',
-      'venus-de-milo',
-    ],
-    match: {
-      region: ['greek', 'roman'],
-      place: ['Mediterranean', 'Roman Italy', 'Smyrna, Roman Asia Minor'],
-      slugs: classicalLegacySlugs,
-    },
+    id: 'asia', name: 'Asia',
+    blurb: 'Works from East, South, Southeast, Central and West Asia, across periods and traditions.',
+    featured: ['asia/shiva-nataraja-after-conservation-mia', 'asia/cosmic-buddha'],
+    match: { region: ['asia'], place: ['Asia'] },
   },
   {
-    id: 'europe',
-    name: 'Europe',
-    blurb: 'European art from prehistoric figures through medieval carving, Renaissance and Baroque sculpture, modern monuments and contemporary works.',
-    featured: [
-      'michelangelo/david',
-      'modern/the-kiss-rodin-musee-rodin-s-1002',
-    ],
-    match: {
-      region: [
-        'europe',
-        'medieval',
-        'renaissance',
-        'michelangelo',
-        'donatello',
-        'verrocchio',
-        'baroque',
-        'neoclassical',
-        'modern',
-        'rodin',
-        'bouchardon',
-        'lorenzi',
-      ],
-      place: [
-        'Europe',
-        'France',
-        'Italy',
-        'Augsburg, Germany',
-        'Île-de-France, France',
-        'Lower Austria, Central Europe',
-        'Venice, Italy',
-      ],
-      slugs: europeanLegacySlugs,
-    },
+    id: 'africa', name: 'Africa',
+    blurb: 'Works from across Africa, including Egypt and North Africa, across periods and traditions.',
+    featured: ['egyptian/portrait-of-nefertiti-smk-cast', 'sub-saharan-africa/seated-figure-middle-niger'],
+    match: { region: ['africa', 'sub-saharan-africa', 'north-africa', 'egyptian'], place: ['Africa', 'Sub-Saharan Africa'] },
   },
   {
-    id: 'asia',
-    name: 'Asia',
-    blurb: 'Sculpture, vessels and sacred objects from East, South, Southeast and West Asia.',
-    featured: [
-      'asia/shiva-nataraja-after-conservation-mia',
-      'asia/cosmic-buddha',
-    ],
-    match: {
-      region: ['asia'],
-      place: ['Asia'],
-    },
+    id: 'americas', name: 'Americas',
+    blurb: 'Works from North, Central and South America and the Caribbean, across periods and traditions.',
+    featured: ['americas/zemi-cohoba-stand'],
+    match: { region: ['americas'], place: ['Americas', 'North America', 'South America'] },
   },
   {
-    id: 'africa',
-    name: 'Africa',
-    blurb: 'Masks, figures, vessels and architecture from North, West, Central, East and Southern Africa, from medieval traditions to contemporary sculpture.',
-    featured: [
-      'sub-saharan-africa/kongo-maternity-figure',
-      'sub-saharan-africa/seated-figure-middle-niger',
-    ],
-    match: {
-      region: ['sub-saharan-africa', 'africa', 'north-africa'],
-      place: ['Sub-Saharan Africa'],
-    },
-  },
-  {
-    id: 'americas-oceania',
-    name: 'The Americas & Oceania',
-    blurb: 'Indigenous art and everyday objects from the Americas and Pacific, alongside modern and contemporary sculpture.',
-    featured: [
-      'americas/maya-warrior-removable-headdress-cleveland-1963-93-887d18',
-      'americas/zemi-cohoba-stand',
-    ],
-    match: {
-      region: ['americas', 'oceania'],
-      place: ['Americas and Oceania'],
-      slugs: americasOceaniaLegacySlugs,
-    },
+    id: 'oceania', name: 'Oceania',
+    blurb: 'Works from Australia and the Pacific, including Melanesia, Micronesia and Polynesia.',
+    featured: ['oceania/moai-kava-kava-mnhn-chile'],
+    match: { region: ['oceania'], place: ['Oceania'] },
   },
 ];
 
