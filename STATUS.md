@@ -2133,3 +2133,8 @@ Concurrent publication integrated: main `adf948603428fe313a5b5fcbd2678fe7f69fc6f
 - Delivery: local changes only, shown to the owner as a diff; not committed, pushed or deployed. Other devices cannot fetch this draft yet. Next step: owner review of the diff before publication.
 
 - Publication authorized: the owner reviewed the draft and requested “commit and push.” Latest main remains `23b6cd2d`; the five-file reviewed changeset is unchanged and whitespace validation passes. This commit prepares publication; normal production checks, deployment and live About/footer verification follow.
+
+### About sourcing update verified live
+
+- Source commit `3a3f3a9a5c3044de6d805fc8d85d11c6078b29a3` is pushed to main and `codex/about-sourcing-20261107`. [Pages run 42431268016](https://github.com/never-nude/atrium.earth/actions/runs/42431268016) passed all production checks, the complete build and package-size gate. The initial hosting attempt returned a generic publishing error; retrying only the failed publishing job with the verified artifact succeeded in 31 seconds. No source changes were needed for the retry.
+- Native Chrome on the public About page confirmed the replacement institution paragraph, current V3 header and footer, all four collection statistics and the exact new source credit. The observed stacked layout and footer wrapped cleanly. This closes the draft's browser-review qualification; no physical-device or full-width desktop sweep is claimed. The requested change is live; no publication action remains.
