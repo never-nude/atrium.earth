@@ -27,8 +27,12 @@ function graphVersion(modules) {
 }
 
 function verifyRuntimeGraph(modules, entryHtml) {
-  const entry = [...entryHtml.matchAll(/<script\b[^>]*\bsrc="([^"]+)"/g)].map(match => match[1]);
+  // Classic scripts such as Analytics are separate from the gallery module graph.
+  const entry = [...entryHtml.matchAll(/<script\b([^>]*)>/g)]
+    .filter(([, attributes]) => /\btype="module"/.test(attributes))
+    .map(([, attributes]) => attributes.match(/\bsrc="([^"]+)"/)?.[1]);
   assert.equal(entry.length, 1, 'The static museum must have exactly one runtime entry');
+  assert.ok(entry[0], 'The museum runtime must have an external module source');
   const entryUrl = new URL(entry[0], 'https://atrium.earth');
   assert.equal(entryUrl.origin, 'https://atrium.earth', 'The museum runtime must be local');
   assert.match(entryUrl.pathname, /^\/spatial-museum\/assets\/[a-zA-Z0-9_-]+\.js$/, 'Unexpected runtime entry path');

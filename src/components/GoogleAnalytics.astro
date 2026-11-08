@@ -1,22 +1,5 @@
 ---
-const measurementId = 'G-P92RCKHPVG';
 const enabled = import.meta.env.PROD;
 ---
 
-{enabled && (
-  <>
-    <script is:inline define:vars={{ measurementId }}>
-      // Card miniatures reuse the sculpture page without recording extra visits.
-      if (new URLSearchParams(location.search).get('studio-peek') !== '1') {
-        const analytics = document.createElement('script');
-        analytics.async = true;
-        analytics.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
-        document.head.append(analytics);
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { window.dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', measurementId);
-      }
-    </script>
-  </>
-)}
+{enabled && <script is:inline defer src="/analytics.js"></script>}
