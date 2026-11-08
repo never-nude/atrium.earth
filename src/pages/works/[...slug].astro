@@ -14,6 +14,7 @@ export function getStaticPaths() {
 
 type Props = { work: Work };
 const { work } = Astro.props;
+const socialImage = `/previews/renders/${work.slug}/thumb.jpg`;
 const { previous, next } = neighborsFor(work);
 const related = work.relatedWorks.map((slug) => workBySlug(slug)).filter((candidate): candidate is Work => Boolean(candidate)).slice(0, 6);
 const rooms = exhibitions.filter((exhibition) => exhibition.works.some((candidate) => candidate.slug === work.slug));
@@ -36,7 +37,7 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
 <V3Layout
   title={work.title}
   description={`${work.title}${work.maker ? ` by ${work.maker}` : ''}. Explore the sculpture in 3D.`}
-  image={work.thumbnailImage}
+  image={socialImage}
   immersive={true}
 >
   <section id="sculpture" class="v3-object-stage" aria-labelledby="v3-object-title" tabindex="-1" style={`view-transition-name: w-${work.id};`}>
