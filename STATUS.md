@@ -2166,3 +2166,8 @@ Concurrent publication integrated: main `adf948603428fe313a5b5fcbd2678fe7f69fc6f
 - Owner/task: this Codex chat on `codex/jpeg-social-previews-20261107`, based on current main `42b10d61`. The owner requested JPEG Open Graph/Twitter work previews, then commit and push.
 - Changed the sole canonical work template to pass its explicit `thumb.jpg` path to V3Layout. That layout generates both absolute `og:image` and `twitter:image` URLs. In-page viewer posters and collection thumbnails retain their existing WebPs; other page types are unchanged.
 - Validation: all 3,022 public works have committed JPEG siblings; no public work uses a poster fallback. Three locally rendered work pages passed exact checks for both absolute JPEG social tags and retained in-page WebPs. Whitespace checks pass. The normal complete production build/deployment and live social-tag checks follow.
+
+### JPEG social previews verified live
+
+- Release `aa58c717a7c37b296ccc9f8d8a76ca5b2a69eca6` is pushed to main and the task branch, and live through successful [Pages run 42435975074](https://github.com/never-nude/atrium.earth/actions/runs/42435975074). Full production checks, JPEG generation, build and the unchanged package-size gate passed; publishing completed in 30 seconds.
+- Three public work pages expose the exact absolute JPEG URL in both Open Graph and Twitter image tags, and each linked image returns HTTP200/image/jpeg with a complete body. Requests using Twitterbot and Facebook crawler user-agent strings also passed for David's page and JPEG; these are endpoint checks, not a claim that an external platform's cached card has refreshed. The requested work is complete; no publication action remains.
