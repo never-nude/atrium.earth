@@ -1,7 +1,7 @@
 // The static gallery is built separately from Astro. Its embedded serving URLs
 // must stay aligned when a byte-identical preview moves to the model CDN.
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { readFileSync, readdirSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import path from 'node:path';
 
@@ -10,16 +10,47 @@ const museum = path.join(root, 'public/spatial-museum');
 const manifest = JSON.parse(readFileSync(path.join(museum, 'collection-manifest.json'), 'utf8'));
 const previews = JSON.parse(readFileSync(path.join(root, 'src/data/previews.json'), 'utf8'));
 const html = readFileSync(path.join(museum, 'index.html'), 'utf8');
-const entry = [...html.matchAll(/<script\b[^>]*\bsrc="([^"]+)"/g)].map(match => match[1]);
-assert.equal(entry.length, 1, 'The static museum must have exactly one runtime entry');
-const entryUrl = new URL(entry[0], 'https://atrium.earth');
-assert.equal(entryUrl.origin, 'https://atrium.earth', 'The museum runtime must be local');
-assert.match(entryUrl.pathname, /^\/spatial-museum\/assets\/[a-zA-Z0-9_-]+\.js$/, 'Unexpected runtime entry path');
-const runtimeBody = readFileSync(path.join(root, 'public', entryUrl.pathname));
-const runtime = runtimeBody.toString('utf8');
-if (entryUrl.searchParams.has('models')) {
-  assert.equal(entryUrl.searchParams.get('models'), createHash('sha256').update(runtimeBody).digest('hex').slice(0, 12), 'Museum model-binding cache version is stale');
+const sources = Object.fromEntries(readdirSync(path.join(museum, 'assets')).filter(file => file.endsWith('.js')).map(file => [file, readFileSync(path.join(museum, 'assets', file), 'utf8')]));
+
+function localModuleReferences(source) {
+  return [...source.matchAll(/(["'`])((?:\.\/|assets\/|\/spatial-museum\/assets\/)[a-zA-Z0-9_.-]+\.js)(\?[^"'`\s]*)?\1/g)];
 }
+
+function normalizedModule(source) {
+  return source.replace(/(["'`])((?:\.\/|assets\/|\/spatial-museum\/assets\/)[a-zA-Z0-9_.-]+\.js)\?gallery=[a-f0-9]{12}\1/g, '$1$2$1');
+}
+
+function graphVersion(modules) {
+  const hash = createHash('sha256');
+  for (const file of Object.keys(modules).sort()) hash.update(file).update('\0').update(normalizedModule(modules[file])).update('\0');
+  return hash.digest('hex').slice(0, 12);
+}
+
+function verifyRuntimeGraph(modules, entryHtml) {
+  const entry = [...entryHtml.matchAll(/<script\b[^>]*\bsrc="([^"]+)"/g)].map(match => match[1]);
+  assert.equal(entry.length, 1, 'The static museum must have exactly one runtime entry');
+  const entryUrl = new URL(entry[0], 'https://atrium.earth');
+  assert.equal(entryUrl.origin, 'https://atrium.earth', 'The museum runtime must be local');
+  assert.match(entryUrl.pathname, /^\/spatial-museum\/assets\/[a-zA-Z0-9_-]+\.js$/, 'Unexpected runtime entry path');
+  const version = graphVersion(modules);
+  assert.equal(entryUrl.search, `?gallery=${version}`, 'Museum entry graph digest is stale or mixed');
+  assert.ok(Object.hasOwn(modules, path.basename(entryUrl.pathname)), 'Museum entry module is missing');
+  const referenced = new Set([path.basename(entryUrl.pathname)]);
+  let references = 0;
+  for (const [file, source] of Object.entries(modules)) {
+    for (const [, , specifier, query = ''] of localModuleReferences(source)) {
+      const target = path.basename(specifier);
+      assert.ok(Object.hasOwn(modules, target), `Referenced local module is missing: ${file} → ${target}`);
+      assert.equal(query, `?gallery=${version}`, `Bare or mismatched gallery dependency: ${file} → ${specifier}${query}`);
+      referenced.add(target); references++;
+    }
+  }
+  assert.deepEqual([...referenced].sort(), Object.keys(modules).sort(), 'The complete local module graph must be referenced');
+  return { entryFile: path.basename(entryUrl.pathname), version, references };
+}
+
+const graph = verifyRuntimeGraph(sources, html);
+const runtime = sources[graph.entryFile];
 
 function embeddedWorks(source) {
   const records = [];
@@ -96,4 +127,18 @@ const staleComposition = runtime.replace(`"modelUrl":${firstUrl}`, '"modelUrl":"
 assert.notEqual(staleComposition, runtime, 'Stale compiled URL fixture was not applied');
 assert.throws(() => verifyEveryModelUrl(staleComposition, works, previews), /Compiled gallery model URL drift/);
 
-console.log(`Static museum bindings passed: all ${works.length} gallery works and ${urlCopies} compiled URL copies match current previews and room membership; URL/byte/cache drift regressions are rejected.`);
+// The runtime imports helpers from its own entry through Three and the gallery
+// engine. Versioning only HTML creates a second module/app instance via bare
+// dependency URLs, including a cached app with retired model bindings.
+const bareGraph = Object.fromEntries(Object.entries(sources).map(([file, source]) => [file, normalizedModule(source)]));
+assert.throws(() => verifyRuntimeGraph(bareGraph, html), /Bare or mismatched gallery dependency/);
+const owner = Object.keys(sources).find(file => localModuleReferences(sources[file]).length);
+const dependency = localModuleReferences(sources[owner])[0][0];
+const bareDependency = { ...sources, [owner]: sources[owner].replace(dependency, normalizedModule(dependency)) };
+assert.throws(() => verifyRuntimeGraph(bareDependency, html), /Bare or mismatched gallery dependency/);
+const mixedVersion = { ...sources, [owner]: sources[owner].replace(dependency, dependency.replace(graph.version, '0'.repeat(12))) };
+assert.throws(() => verifyRuntimeGraph(mixedVersion, html), /Bare or mismatched gallery dependency/);
+const changedGraph = { ...sources, [owner]: sources[owner] + '\n' };
+assert.throws(() => verifyRuntimeGraph(changedGraph, html), /entry graph digest is stale/);
+
+console.log(`Static museum bindings passed: all ${works.length} works / ${urlCopies} model URL copies; ${Object.keys(sources).length} modules / ${graph.references} dependency/preload references use graph ${graph.version}; model and module-cache drift regressions are rejected.`);

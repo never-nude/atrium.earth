@@ -267,3 +267,13 @@ bound to the complete bundle digest. Model bytes and presentation are unchanged.
 `test:spatial-museum-bindings` now gates every production release against all47
 room works and94 compiled URL copies. Publication/live confirmation is in
 STATUS.md. Preserve this check when rebuilding the independent gallery runtime.
+
+
+### Version the complete static gallery graph
+
+The compiled gallery has circular helper imports back to its main entry.
+A query on the HTML entry alone can instantiate a second, cached main module.
+Use the same graph-derived `gallery` version on all local imports/preload
+references and the HTML entry. The current six-module graph is f134795088c3;
+`test:spatial-museum-bindings` verifies all17 references and rejects stale or
+mixed graph versions. Publication/live confirmation follows in STATUS.md.
