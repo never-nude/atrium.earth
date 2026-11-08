@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build && node ./scripts/write-redirects.mjs && node ./scripts/prune-remote-assets.mjs",
+    "build": "npm run images:jpeg && astro build && node ./scripts/write-redirects.mjs && node ./scripts/prune-remote-assets.mjs",
     "test:additions": "node ./scripts/test-additions.mjs",
     "test:featured": "node ./scripts/test-featured-selection.mjs",
     "test:programme": "node ./scripts/test-museum-programme.mjs",
@@ -21,6 +21,7 @@
     "audit:orientation": "node ./scripts/audit-model-orientation.mjs",
     "images:posters": "node ./scripts/generate-posters.mjs",
     "images:renders": "node ./scripts/render-thumbnails.mjs",
+    "images:jpeg": "node ./scripts/generate-jpeg-thumbnails.mjs",
     "images:mark-renders": "node ./scripts/mark-rendered-slugs.mjs",
     "models:preview": ".venv/bin/python ./scripts/generate-previews.py",
     "models:upload-r2": "node ./scripts/upload-previews-r2.mjs",
@@ -52,7 +53,8 @@
     "@astrojs/sitemap": "^3.7.2",
     "@gltf-transform/cli": "4.4.2",
     "astro": "^6.1.10",
-    "playwright": "^1.61.1"
+    "playwright": "^1.61.1",
+    "sharp": "0.34.5"
   },
   "dependencies": {
     "@google/model-viewer": "^4.2.0",

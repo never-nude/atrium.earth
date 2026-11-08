@@ -41,6 +41,7 @@ Set `SOURCE_ATRIUM_DIR` to point somewhere else.
 - `src/data/catalog.json` is generated from the old catalog.
 - `public/previews/posters/**/poster.svg` contains generated lightweight poster previews.
 - `public/previews/renders/**/thumb.webp` contains rendered object thumbnails for grid cards.
+- Every `thumb.webp` has a same-size `thumb.jpg` sibling encoded at JPEG quality 82. `npm run images:jpeg` refreshes them, and the build runs this step before Astro copies public assets.
 - `public/models/previews/**/preview.glb` contains lightweight web previews.
 - `src/data/previews.json` maps catalog slugs to generated preview files.
 - `src/data/renders.json` lists works with rendered thumbnails.
