@@ -70,7 +70,11 @@ const pageTitle = title === 'Atrium.Earth' ? 'Atrium.Earth — Digital Sculpture
     <main id="main"><slot /></main>
     {!immersive && (
       <footer class="v3-footer">
-        <div><strong>Atrium.Earth</strong><span>Digital sculpture museum</span></div>
+        <div>
+          <strong>Atrium.Earth</strong>
+          <span>Digital sculpture museum</span>
+          <span class="v3-footer__credit">Records and scans via open-access museums and contributors — see each work for its source</span>
+        </div>
         <nav aria-label="Footer">
           <a href={withBase('/collection/')}>All {collectionCount} works</a>
           <a href={withBase('/newest/')}>Newest additions</a>
