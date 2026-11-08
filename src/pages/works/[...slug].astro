@@ -7,6 +7,8 @@ import { workBySlug, works, type Work } from '../../lib/catalog';
 import { exhibitions, neighborsFor, v3ExhibitionRoute, v3WorkRoute } from '../../lib/v3';
 import { withBase } from '../../lib/urls';
 import { museumLabelFor } from '../../lib/museum-label.mjs';
+import visitsData from '../../data/curated-visits.json';
+import { worldPayloadUrl } from '../../lib/world-payload';
 
 export function getStaticPaths() {
   return works.map((work) => ({ params: { slug: work.slug }, props: { work } }));
@@ -15,9 +17,18 @@ export function getStaticPaths() {
 type Props = { work: Work };
 const { work } = Astro.props;
 const socialImage = `/previews/renders/${work.slug}/thumb.jpg`;
+// These reviewed reliefs should open on their recorded face, rather than
+// automatically turn toward an unworked reverse. Visitors can still orbit.
+const startsStill = ['europe/venus-of-willendorf-nhmw-44-686','assyrian/ashurnasirpal-lion-hunt','michelangelo/battle-of-the-centaurs'].includes(work.slug);
 const { previous, next } = neighborsFor(work);
 const related = work.relatedWorks.map((slug) => workBySlug(slug)).filter((candidate): candidate is Work => Boolean(candidate)).slice(0, 6);
 const rooms = exhibitions.filter((exhibition) => exhibition.works.some((candidate) => candidate.slug === work.slug));
+const journeyData = {
+  slug:work.slug, base:withBase('/'), worldDataUrl:worldPayloadUrl,
+  exhibitions:rooms.map(room=>({slug:room.slug,title:room.title,works:room.works.map((item,index)=>({slug:item.slug,title:item.title,anchor:room.comparisons?.length ? `#pair-${room.comparisons.findIndex(pair=>pair.works.some(candidate=>candidate.slug===item.slug))+1}` : `#stop-${index+1}`}))})),
+  visits:Object.entries(visitsData.visits).filter(([,visit])=>visit.stops.some(stop=>stop.workSlug===work.slug))
+    .map(([exhibition,visit])=>({exhibition,id:visit.id,title:visit.title,stops:visit.stops.map(stop=>({workSlug:stop.workSlug,title:workBySlug(stop.workSlug)?.title || stop.title}))})),
+};
 const originalLocation = work.originalLocation && work.originalLocation.toLowerCase() !== work.museum.toLowerCase()
   ? work.originalLocation
   : '';
@@ -40,6 +51,11 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
   image={socialImage}
   immersive={true}
 >
+  <nav class="work-journey" data-work-journey aria-label="Your visit" hidden>
+    <p data-journey-label></p><a data-journey-return href={withBase('/exhibitions/')}>Return to exhibition →</a>
+  </nav>
+  <script type="application/json" data-work-journey-data set:html={JSON.stringify(journeyData).replace(/</g,'\\u003c')} />
+  <script>import '../../scripts/work-journey.js';</script>
   <section id="sculpture" class="v3-object-stage" aria-labelledby="v3-object-title" tabindex="-1" style={`view-transition-name: w-${work.id};`}>
     <Viewer
       glb={withBase(work.modelGlb)}
@@ -47,7 +63,7 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
       title={work.title}
       hud={false}
       immersive={true}
-      autoRotate={work.slug !== 'europe/venus-of-willendorf-nhmw-44-686'}
+      autoRotate={!startsStill}
       displayControls={true}
       spatialViewing={work.spatialAccess.enabled}
       museumLabel={museumLabelFor(work)}
@@ -76,8 +92,8 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
       <a class="v3-object-record-link" href="#object-record">Details &amp; sources <span aria-hidden="true">↓</span></a>
 
       <nav class="v3-object-nav" aria-label="Previous and next sculptures">
-        <a href={withBase(v3WorkRoute(previous))} aria-label={`Previous work: ${previous.title}`}><span>←</span><i>{previous.title}</i></a>
-        <a href={withBase(v3WorkRoute(next))} aria-label={`Next work: ${next.title}`}><i>{next.title}</i><span>→</span></a>
+        <a data-work-previous href={withBase(v3WorkRoute(previous))} aria-label={`Previous work: ${previous.title}`}><span>←</span><i>{previous.title}</i></a>
+        <a data-work-next href={withBase(v3WorkRoute(next))} aria-label={`Next work: ${next.title}`}><i>{next.title}</i><span>→</span></a>
       </nav>
     </div>
   </section>
@@ -176,5 +192,13 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
 </V3Layout>
 
 <style>
+  .work-journey { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px 24px; padding: 12px var(--v3-pad); border-bottom: 1px solid var(--v3-line); background: var(--v3-well); }
+  .work-journey[hidden], .v3-object-nav a[hidden] { display: none; }
+  .work-journey p { margin: 0; color: var(--v3-muted); font-size: 12px; }
+  .work-journey a { display: inline-flex; align-items: center; min-height: 44px; color: var(--v3-signal); font-size: 12px; text-underline-offset: 4px; }
   .v3-estimate-evidence { display: block; margin-top: 8px; font-size: 12px; line-height: 1.6; color: var(--v3-muted); }
+  @media (max-width: 700px) {
+    .v3-object-stage :global(.stage-hint) { display: none; }
+    .v3-object-stage :global(.immersive-tools button), .v3-object-stage :global(.immersive-light summary) { min-height: 44px; }
+  }
 </style>

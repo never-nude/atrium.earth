@@ -1,0 +1,19 @@
+---
+import V3CollectionPage from '../../../components/v3/V3CollectionPage.astro';
+import V3Layout from '../../../layouts/v3/V3Layout.astro';
+import { arVrWorks } from '../../../lib/spatial-catalog';
+import { COLLECTION_PAGE_SIZE } from '../../../lib/collection-window.mjs';
+
+export function getStaticPaths() {
+  return Array.from({ length: Math.max(0, Math.ceil(arVrWorks.length / COLLECTION_PAGE_SIZE) - 1) }, (_, index) => ({ params: { page: String(index + 2) }, props: { page: index + 2 } }));
+}
+const { page } = Astro.props;
+---
+<V3Layout title={`AR / VR — page ${page}`} description={`Browse compatible AR and VR works, page ${page}.`} canonical="/ar-vr/">
+  <header class="v3-page-hero v3-discovery-hero">
+    <p class="v3-kicker">AR / VR · All compatible models</p>
+    <h1 class="v3-display">Sculpture, <em>beyond the screen.</em></h1>
+    <p>Page {page}. Choose View in AR / VR beneath a work to see your device options. Dimension status is shown in each work’s options.</p>
+  </header>
+  <V3CollectionPage works={arVrWorks} spatial={true} page={page} />
+</V3Layout>

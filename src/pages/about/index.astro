@@ -1,6 +1,7 @@
 ---
 import V3Layout from '../../layouts/v3/V3Layout.astro';
 import { facets, works } from '../../lib/catalog';
+import { withBase } from '../../lib/urls';
 
 const stats = [
   ['Works', works.length],
@@ -24,6 +25,16 @@ const stats = [
 
       <h2>Where the records come from</h2>
       <p>The records and 3D scans come from more than thirty open-access museums, archives and scanning projects, including the Cleveland Museum of Art, SMK Open, The Metropolitan Museum of Art, the Smithsonian, the Louvre, the Musée Saint-Raymond, the Małopolska museums, the Minneapolis Institute of Art, Threedscans and contributors on Sketchfab and Zenodo. Every work links to its source and carries that source's licence. We show the objective facts we can confirm — maker, date, material, dimensions, where it's held — and leave the rest blank rather than guess.</p>
+
+      <h2>Find your way through</h2>
+      <p><a href={withBase('/wings/')}>Wings</a> arrange the collection by geographic origin. <a href={withBase('/exhibitions/')}>Exhibitions</a> bring works together around a question or theme. <a href={withBase('/spatial-museum/')}>3D galleries</a> are rooms you can move through. The <a href={withBase('/world/')}>world explorer</a> follows documented origins through time; it does not show where the works are held today.</p>
+
+      <h2>Read the object, then its record</h2>
+      <p>A scan shows one particular object. A cast, a later copy and the original sculpture can have different dates, materials and locations. Their records stay separate when those distinctions matter. A digital model can also omit a surface, support or colour; it is a way to look closely, rather than a substitute for the physical work.</p>
+      <p class="about-followup">AR and VR labels distinguish verified dimensions, approximate size and works whose size is unverified. Check each work’s details before treating a virtual placement as a physical measurement.</p>
+
+      <h2>An AI-authored way of looking</h2>
+      <p>Our first short guided visit gives six works a sequence, a looking prompt and a connection to the next stop. The edition is prepared in advance from existing captions and linked records. Automatic AI generation is currently off. <a href={withBase('/about/curation/')}>Read how the edition was made</a>.</p>
     </div>
     <aside class="about-stats" aria-labelledby="collection-title">
       <h2 id="collection-title">The collection</h2>
@@ -42,6 +53,8 @@ const stats = [
   .about-copy h2, .about-stats h2 { margin: 0 0 16px; font-size: 20px; font-weight: 500; letter-spacing: -.02em; }
   .about-copy h2:not(:first-child) { margin-top: 36px; }
   .about-copy p { margin: 0; color: var(--v3-muted); line-height: 1.8; }
+  .about-copy a { color: var(--v3-signal); text-underline-offset: 4px; }
+  .about-copy .about-followup { margin-top: 18px; }
   .about-stat-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
   .about-stat { display: grid; gap: 5px; padding-top: 16px; border-top: 1px solid var(--v3-line); }
   .about-stat strong { font-size: 28px; font-weight: 400; }

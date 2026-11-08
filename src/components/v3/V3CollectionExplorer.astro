@@ -3,15 +3,23 @@ import V3WorkCard from './V3WorkCard.astro';
 import type { Work } from '../../lib/catalog';
 import { facets } from '../../lib/catalog';
 import { wings } from '../../data/wings';
+import { collectionDataVersion } from '../../lib/collection-data';
 import { collectionCount } from '../../lib/v3';
 import { arVrCount } from '../../lib/spatial-catalog';
 import { withBase } from '../../lib/urls';
+import { COLLECTION_PAGE_SIZE, collectionPagePath } from '../../lib/collection-window.mjs';
 
-type Props = { works: Work[]; spatial?: boolean; collectionNavigation?: boolean };
-const { works, spatial = false, collectionNavigation = false } = Astro.props;
+type Props = { works: Work[]; spatial?: boolean; collectionNavigation?: boolean; page?: number };
+const { works, spatial = false, collectionNavigation = false, page = 1 } = Astro.props;
+const bounded = collectionNavigation;
+const entrance = spatial ? '/ar-vr/' : '/collection/';
+const offset = bounded ? (page - 1) * COLLECTION_PAGE_SIZE : 0;
+const visibleWorks = bounded ? works.slice(offset, offset + COLLECTION_PAGE_SIZE) : works;
+const pageCount = Math.ceil(works.length / COLLECTION_PAGE_SIZE);
+const explorerId = spatial ? 'ar-vr-explorer' : 'collection-explorer';
 ---
 
-<div class="v3-explorer" data-studio-explorer>
+<div class="v3-explorer" data-studio-explorer data-studio-index-url={bounded ? withBase(`/collection/data/index.json?v=${collectionDataVersion}`) : undefined} data-studio-revision={bounded ? collectionDataVersion : undefined} data-studio-chunk-root={bounded ? withBase('/collection/data/') : undefined} data-studio-entrance={bounded ? withBase(entrance) : undefined} data-studio-spatial={String(spatial)}>
   <form class="v3-explorer__tools" data-v3-filter-form aria-label={spatial ? 'Search and filter AR and VR works' : 'Search and filter works'}>
     {collectionNavigation && (
       <nav class="v3-collection-switch" aria-label="Collection view">
@@ -19,25 +27,34 @@ const { works, spatial = false, collectionNavigation = false } = Astro.props;
         <a href={withBase('/ar-vr/')} data-v3-collection-view aria-current={spatial ? 'page' : undefined}>AR / VR <span>{arVrCount}</span></a>
       </nav>
     )}
-    <label class="v3-search">
+    <label class="v3-search" for={`${explorerId}-search`}>
       <span class="v3-sr-only">Search the collection</span>
-      <input type="search" placeholder={`Search ${works.length} works, makers, places…`} autocomplete="off" data-v3-search />
+      <input id={`${explorerId}-search`} type="search" placeholder={`Search ${works.length} works, makers, places…`} autocomplete="off" data-v3-search disabled={bounded} />
     </label>
 
     <div class="v3-filter-row">
-      {collectionNavigation && <label><span>Dimensions</span><select data-v3-filter="size"><option value="">Any dimension status</option><option value="verified">Verified dimensions</option><option value="approximate">Approximate dimensions</option><option value="unknown">Dimensions unknown</option></select></label>}
-      <label><span>Wing</span><select data-v3-filter="wing"><option value="">All wings</option>{wings.map((wing) => <option value={wing.id}>{wing.name}</option>)}</select></label>
-      <label><span>Era</span><select data-v3-filter="era"><option value="">All eras</option>{facets.eras.map((item) => <option value={item.value}>{item.label}</option>)}</select></label>
-      <label><span>Place</span><select data-v3-filter="place"><option value="">Everywhere</option>{facets.geography.map((item) => <option value={item.value}>{item.label}</option>)}</select></label>
-      <label><span>Material</span><select data-v3-filter="material"><option value="">All materials</option>{facets.materials.map((item) => <option value={item.value}>{item.label}</option>)}</select></label>
-      <button type="reset" data-v3-reset>Clear</button>
-      <p aria-live="polite" data-v3-count>{works.length} works</p>
+      {collectionNavigation && <label for={`${explorerId}-size`}><span>Dimensions</span><select id={`${explorerId}-size`} data-v3-filter="size" disabled={bounded}><option value="">Any dimension status</option><option value="verified">Verified dimensions</option><option value="approximate">Approximate dimensions</option><option value="unknown">Dimensions unknown</option></select></label>}
+      <label for={`${explorerId}-wing`}><span>Wing</span><select id={`${explorerId}-wing`} data-v3-filter="wing" disabled={bounded}><option value="">All wings</option>{wings.map((wing) => <option value={wing.id}>{wing.name}</option>)}</select></label>
+      <label for={`${explorerId}-era`}><span>Era</span><select id={`${explorerId}-era`} data-v3-filter="era" disabled={bounded}><option value="">All eras</option>{facets.eras.map((item) => <option value={item.value}>{item.label}</option>)}</select></label>
+      <label for={`${explorerId}-place`}><span>Place</span><select id={`${explorerId}-place`} data-v3-filter="place" disabled={bounded}><option value="">Everywhere</option>{facets.geography.map((item) => <option value={item.value}>{item.label}</option>)}</select></label>
+      <label for={`${explorerId}-material`}><span>Material</span><select id={`${explorerId}-material`} data-v3-filter="material" disabled={bounded}><option value="">All materials</option>{facets.materials.map((item) => <option value={item.value}>{item.label}</option>)}</select></label>
+      <button type="reset" data-v3-reset disabled={bounded}>Clear</button>
+      <p aria-live="polite" data-v3-count>{bounded ? `Works ${offset + 1}–${offset + visibleWorks.length} of ${works.length.toLocaleString()}` : `${works.length} works`}</p>
     </div>
   </form>
 
+  <p class="v3-collection-load-status" role="status" data-studio-index-status hidden></p>
+  {bounded && <noscript><p>Browse the collection 60 works at a time using the page links below. Search and filters become available with JavaScript.</p></noscript>}
+
   <div class="v3-grid" data-v3-grid>
-    {works.map((work, index) => <V3WorkCard work={work} eager={index < 8} spatial={spatial} />)}
+    {visibleWorks.map((work, index) => <V3WorkCard work={work} eager={index < 8} spatial={spatial} />)}
   </div>
+
+  {bounded && pageCount > 1 && <nav class="v3-collection-pagination" data-studio-pagination aria-label="Collection pages">
+    {page > 1 && <a href={withBase(collectionPagePath(entrance, page - 1))} rel="prev">← Previous 60 works</a>}
+    <span>Page {page} of {pageCount}</span>
+    {page < pageCount && <a href={withBase(collectionPagePath(entrance, page + 1))} rel="next">Next {Math.min(COLLECTION_PAGE_SIZE, works.length - offset - visibleWorks.length)} works →</a>}
+  </nav>}
 
   <div class="v3-empty" data-v3-empty hidden>
     <strong>No matching works.</strong>
@@ -45,3 +62,11 @@ const { works, spatial = false, collectionNavigation = false } = Astro.props;
     <button type="button" data-v3-empty-reset>Clear filters</button>
   </div>
 </div>
+
+<style>
+  .v3-collection-pagination { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 16px 32px; margin-top: 32px; font-size: .8rem; }
+  .v3-collection-pagination a { display: inline-flex; align-items: center; min-height: 44px; color: var(--v3-signal); text-underline-offset: 5px; }
+  .v3-collection-pagination span, .v3-collection-load-status { color: var(--v3-muted); }
+  .v3-collection-load-status { max-width: 70ch; font-size: .85rem; line-height: 1.6; }
+  [data-studio-pagination][hidden] { display: none; }
+</style>

@@ -68,14 +68,14 @@ const heroAlt = [
 
     <div class="v3-hero__veil" aria-hidden="true"></div>
     <div class="v3-hero__copy">
-      <p class="v3-kicker">The sculpture collection</p>
+      <p class="v3-kicker">A museum you can move through</p>
       <h1 id="v3-home-title" class="v3-display">A closer look<br />at sculpture.</h1>
-      <p class="v3-hero__lede">Explore sculpture across centuries and continents. Rotate works in 3D, look closely, and save favourites to revisit.</p>
-      <p class="home-hero-prompt"><span>Look closely</span>{currentProgramme.heroPrompt}</p>
+      <p class="v3-hero__lede">Turn sculpture in 3D. Follow a short curated visit, or find your own way through {collectionCount.toLocaleString('en-US')} works.</p>
       <div class="v3-actions">
-        <a class="v3-button v3-button--light" href={withBase('/collection/')}>Explore the collection <span aria-hidden="true">↗</span></a>
-        <a class="v3-button v3-button--ghost" href={withBase(v3ExhibitionRoute(currentProgramme.focus))}>Begin exhibition <span aria-hidden="true">→</span></a>
+        <a class="v3-button v3-button--light" href={withBase('/exhibitions/the-work-of-the-surface/#curated-visit')}>A 5-minute visit <span aria-hidden="true">→</span></a>
+        <a class="v3-button v3-button--ghost" href={withBase('/collection/')}>Browse all works <span aria-hidden="true">↗</span></a>
       </div>
+      <p class="home-hero-prompt"><span>Look closely</span>{currentProgramme.heroPrompt}</p>
     </div>
 
     <div class="v3-hero__object">
@@ -134,7 +134,17 @@ const heroAlt = [
 
 <style>
   .home-programme-hero { border-top: 2px solid var(--home-programme-accent, var(--v3-signal)); }
-  .home-programme-hero { height: auto; min-height: 650px; }
+  .home-programme-hero { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); grid-template-rows: 1fr auto; height: auto; min-height: min(680px, calc(100svh - 74px)); padding: 32px var(--v3-pad); column-gap: 32px; }
+  .home-programme-hero > .v3-hero__viewer { position: relative; inset: auto; grid-column: 2; grid-row: 1; height: clamp(370px, 57svh, 610px); }
+  .home-programme-hero > .v3-hero__copy { position: relative; inset: auto; grid-column: 1; grid-row: 1 / 3; align-self: center; width: auto; max-width: 580px; margin: 0; padding: 20px 0; }
+  .home-programme-hero .v3-hero__copy h1 { margin: 18px 0; font-size: clamp(42px, 5.2vw, 78px); line-height: 1.06; }
+  .home-programme-hero > .v3-hero__object { position: relative; inset: auto; grid-column: 2; grid-row: 2; justify-self: center; display: grid; justify-items: center; gap: 4px; max-width: 54ch; margin: 8px 0 0; padding: 0; text-align: center; }
+  .home-programme-hero .v3-hero__object strong { display: block; font-size: 15px; }
+  .home-programme-hero .v3-hero__object > span:first-child { font-size: 9px; }
+  .home-programme-hero .v3-hero__object span + span::before { content: none; }
+  .home-programme-hero .v3-hero__record-link { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; color: var(--v3-signal); text-underline-offset: 4px; }
+  .home-programme-hero > .v3-hero__veil, .home-programme-hero > .v3-hero__continue { display: none; }
+  .home-programme-hero :global([data-rotation-control="simple"] .immersive-tools:not([hidden])) { top: 0; right: 0; }
   .home-hero-prompt { max-width: 38ch; margin: 22px 0 0; padding-left: 14px; border-left: 2px solid var(--home-programme-accent); color: var(--v3-muted); font-size: 12px; line-height: 1.65; }
   .home-hero-prompt > span { display: block; margin-bottom: 5px; color: var(--home-programme-accent); font-size: 9px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
   .home-section-intro { max-width: 66ch; margin: -8px 0 30px; color: var(--v3-muted); font-size: 14px; line-height: 1.7; }
@@ -143,8 +153,20 @@ const heroAlt = [
   .home-wings :global(.v3-wing-card__blurb) { font-size: 12px; }
   .home-wings :global(.v3-wing-card__link) { margin-top: 20px; }
   .home-random { min-height: 0; padding-block: 76px; }
+  @media (max-width: 800px) {
+    .home-programme-hero { display: flex; flex-direction: column; min-height: 0; padding: 26px 0 28px; }
+    .home-programme-hero > .v3-hero__copy { order: 0; align-self: stretch; max-width: none; width: auto; margin: 0; padding: 0 var(--v3-pad); }
+    .home-programme-hero .v3-hero__copy h1 { margin: 12px 0; font-size: clamp(37px, 9.6vw, 60px); }
+    .home-programme-hero .v3-hero__copy .v3-kicker { margin: 0; font-size: 9px; }
+    .home-programme-hero .v3-hero__lede { max-width: 48ch; font-size: 13px; line-height: 1.65; }
+    .home-programme-hero .v3-actions { flex-direction: row; align-items: stretch; margin-top: 18px; gap: 8px; }
+    .home-programme-hero .v3-button { flex: 1 1 140px; min-height: 46px; padding: 11px 13px; gap: 12px; font-size: 10px; }
+    .home-programme-hero > .v3-hero__viewer { order: 1; width: 100%; height: clamp(260px, 39svh, 400px); margin-top: 16px; }
+    .home-programme-hero > .v3-hero__object { order: 2; align-self: center; max-width: calc(100% - 40px); margin: 0; }
+    .home-programme-hero .home-hero-prompt { display: none; }
+    .home-programme-hero :global([data-rotation-control="simple"] .immersive-tools:not([hidden])) { top: 0; right: var(--v3-pad); }
+  }
   @media (max-width: 700px) {
-    .home-programme-hero { min-height: 0; }
     .home-hero-prompt { margin-top: 18px; font-size: 12px; }
     .home-wings :global(.v3-wings-grid) { gap: 28px; }
     .home-wings :global(.v3-wing-card) { grid-template-columns: 112px minmax(0, 1fr); grid-template-rows: 1fr; column-gap: 14px; padding-top: 14px; }

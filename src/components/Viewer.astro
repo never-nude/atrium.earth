@@ -73,7 +73,7 @@ const transformJson = JSON.stringify(modelTransform);
 ---
 
 <div class:list={['viewer', { 'viewer--immersive': immersive }]} data-viewer data-auto-start={String(autoStart)}>
-  <div class="model-stage" data-stage data-glb={hasModel ? glb : ''} data-spatial-asset-sha256={spatialViewing ? spatialAssetSha256 : undefined} data-up-axis={upAxis} data-model-transform={transformJson} data-material-appearance={appearanceJson} data-immersive={String(immersive)} data-auto-rotate={String(autoRotate)} data-auto-rotate-speed={autoRotateSpeed} data-turntable-degrees-per-second={turntableDegreesPerSecond} data-respect-reduced-motion={respectReducedMotion ? undefined : 'false'} data-rotation-control={rotationControl === 'simple' ? 'simple' : undefined} data-wheel-zoom={String(wheelZoom)} tabindex={hasModel ? '0' : undefined} aria-label={hasModel ? `Interactive 3D view of ${title}` : undefined}>
+  <div class="model-stage" data-stage data-glb={hasModel ? glb : ''} data-spatial-asset-sha256={spatialViewing ? spatialAssetSha256 : undefined} data-up-axis={upAxis} data-model-transform={transformJson} data-material-appearance={appearanceJson} data-immersive={String(immersive)} data-auto-rotate={String(autoRotate)} data-auto-rotate-speed={autoRotateSpeed} data-turntable-degrees-per-second={turntableDegreesPerSecond} data-respect-reduced-motion={respectReducedMotion ? undefined : 'false'} data-rotation-control={rotationControl === 'simple' ? 'simple' : undefined} data-wheel-zoom={String(wheelZoom)} tabindex={hasModel ? '0' : undefined} aria-label={hasModel ? `Interactive 3D view of ${title}` : undefined} aria-describedby={hasModel ? `viewer-keys-${uid}` : undefined}>
     <span class="stage-corner stage-corner--tl" aria-hidden="true"></span>
     <span class="stage-corner stage-corner--tr" aria-hidden="true"></span>
     <span class="stage-corner stage-corner--bl" aria-hidden="true"></span>
@@ -98,6 +98,19 @@ const transformJson = JSON.stringify(modelTransform);
       <span class="spinner" aria-hidden="true"></span>
       <span class="loading-text">Loading…</span>
     </div>
+
+    {hasModel && <details class="viewer-help" data-viewer-help hidden>
+      <summary>3D controls</summary>
+      <div class="viewer-help__panel">
+        <p>Drag to turn the view, or focus the sculpture and use the arrow keys. Use + / − to zoom and 0 to reset. Pause automatic rotation to keep a view still.</p>
+        <div class="viewer-help__directions" role="group" aria-label="Rotate the 3D view">
+          <button type="button" data-viewer-orbit="left" aria-label="Rotate view left">←</button>
+          <button type="button" data-viewer-orbit="up" aria-label="Rotate view up">↑</button>
+          <button type="button" data-viewer-orbit="down" aria-label="Rotate view down">↓</button>
+          <button type="button" data-viewer-orbit="right" aria-label="Rotate view right">→</button>
+        </div>
+      </div>
+    </details>}
 
     {immersive && hasModel && (
       <div class="immersive-tools" data-immersive-tools hidden aria-label="3D viewing tools">
@@ -152,6 +165,7 @@ const transformJson = JSON.stringify(modelTransform);
   )}
 
   {hasModel && <p class="stage-hint fine" data-hint hidden>Drag to turn the view · <span class="stage-hint__pan">right-drag or two-finger drag to move the view · </span>{wheelZoom && 'scroll or pinch to zoom · '}double-click or double-tap to reset</p>}
+  {hasModel && <p id={`viewer-keys-${uid}`} class="viewer-keyboard-instructions">Activate 3D, then focus the sculpture. Arrow keys rotate the view; plus and minus zoom; 0 or Home resets. The 3D controls menu also has rotation buttons.</p>}
 
   {spatialViewing && hasModel && <SpatialViewing title={title} poster={poster} museumLabel={museumLabel} reference={spatialReference} sizeNote={spatialNote} displaySupport={displaySupport} dimensionStatus={spatialDimensionStatus} requiresAssetCheck={Boolean(spatialAssetSha256)} referenceLabel={spatialLabel} sizeLabel={spatialSizeLabel} defaultMaxExtentMeters={spatialDefaultMaxExtentMeters} />}
   {!spatialViewing && spatialUnavailableNote && <a id="ar-vr" class="spatial-unavailable" data-spatial-unavailable href="#size-verification" title={spatialUnavailableNote}>AR / VR unavailable · Size unverified <span aria-hidden="true">↓</span></a>}
@@ -168,6 +182,9 @@ const transformJson = JSON.stringify(modelTransform);
 <script>
   import { rememberSpatialAppearance } from '../lib/spatial-materials.mjs';
   import { createTextureControl } from '../lib/viewerTexture';
+  import { createViewerRenderLoop, bindViewerRenderEvents } from '../lib/viewer-render-loop.mjs';
+  import { handleViewerKey, orbitViewer } from '../lib/viewer-input.mjs';
+  import { disposeViewerScene } from '../lib/viewer-resources.mjs';
 
   type ViewState = {
     position: number[];
@@ -186,6 +203,9 @@ const transformJson = JSON.stringify(modelTransform);
     setTexture: (pct: number) => void;
     setWireframe: (on: boolean) => void;
     setAutoRotate: (on: boolean) => void;
+    rotationState: () => { active: boolean; reduced: boolean };
+    orbit: (horizontal: number, vertical: number) => void;
+    invalidate: () => void;
     zoom: (factor: number) => void;
     reset: () => void;
     texture: ReturnType<typeof createTextureControl>;
@@ -415,7 +435,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     material.needsUpdate = true;
   }
 
-  async function buildViewer(stage: HTMLElement, glb: string, saved: ViewState | undefined, signal: AbortSignal): Promise<Viewer> {
+  async function buildViewer(stage: HTMLElement, glb: string, saved: ViewState | undefined, signal: AbortSignal, isVisible: () => boolean): Promise<Viewer> {
     const THREE = await import('three');
     const { DRACOLoader } = await import('three/examples/jsm/loaders/DRACOLoader.js');
     const { GLTFLoader } = await import('three/examples/jsm/loaders/GLTFLoader.js');
@@ -424,9 +444,8 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     const { MeshoptDecoder } = await import('three/examples/jsm/libs/meshopt_decoder.module.js');
     const { applyModelTransform, frameCameraToBox, normalizeModel, parseModelTransform } = await import(`${import.meta.env.BASE_URL}model-render-utils.js`);
     signal.throwIfAborted();
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const rotateOnLoad = stage.dataset.autoRotate !== 'false'
-      && (stage.dataset.respectReducedMotion === 'false' || !reduce);
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const respectReducedMotion = stage.dataset.respectReducedMotion !== 'false';
 
     let width = stage.clientWidth || 600;
     let height = stage.clientHeight || 600;
@@ -486,8 +505,9 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     controls.mouseButtons = { LEFT: THREE.MOUSE.ROTATE, MIDDLE: THREE.MOUSE.DOLLY, RIGHT: THREE.MOUSE.PAN };
     const turntableSpeed = Number(stage.dataset.turntableDegreesPerSecond || 0);
     const turnsModel = Number.isFinite(turntableSpeed) && turntableSpeed !== 0;
-    let rotating = saved?.autoRotate ?? rotateOnLoad;
-    controls.autoRotate = !turnsModel && rotating;
+    let rotationRequested = saved?.autoRotate ?? (stage.dataset.autoRotate !== 'false');
+    const rotationState = () => ({ active: rotationRequested && !(respectReducedMotion && reducedMotion.matches), reduced: respectReducedMotion && reducedMotion.matches });
+    controls.autoRotate = !turnsModel && rotationState().active;
     const timedRotation = stage.dataset.autoRotateSpeed !== undefined;
     const rotationSpeed = Number(stage.dataset.autoRotateSpeed ?? 1);
     controls.autoRotateSpeed = Number.isFinite(rotationSpeed) && rotationSpeed >= 0 ? rotationSpeed : 1;
@@ -497,7 +517,12 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     const dracoLoader = new DRACOLoader();
     dracoLoader.setDecoderPath(`${import.meta.env.BASE_URL}vendor/draco/`);
     loader.setDRACOLoader(dracoLoader);
+    let gltf: any;
+    let pendingReleased = false;
     const releasePending = () => {
+      if (pendingReleased) return;
+      pendingReleased = true;
+      if (gltf?.scene) disposeViewerScene(gltf.scene);
       controls.dispose();
       environment.dispose();
       renderer.dispose();
@@ -505,15 +530,14 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
       renderer.domElement.remove();
     };
     signal.addEventListener('abort', releasePending, { once: true });
-    let gltf;
     let verifiedAsset = false;
     try {
+      const response = await fetch(glb, { signal });
+      if (!response.ok) throw new Error(`Model request failed: ${response.status}`);
+      const bytes = await response.arrayBuffer();
       if (stage.dataset.spatialAssetSha256) {
         // Verify the bytes actually displayed, including models with mutable URLs.
         // A mismatch keeps ordinary 3D available while preventing an AR launch.
-        const response = await fetch(glb, { signal });
-        if (!response.ok) throw new Error(`Model request failed: ${response.status}`);
-        const bytes = await response.arrayBuffer();
         if (crypto.subtle) {
           try {
             const digest = new Uint8Array(await crypto.subtle.digest('SHA-256', bytes));
@@ -523,8 +547,10 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
             verifiedAsset = false;
           }
         }
-        gltf = await loader.parseAsync(bytes, new URL('.', new URL(glb, location.href)).href);
-      } else gltf = await loader.loadAsync(glb);
+      }
+      signal.throwIfAborted();
+      gltf = await loader.parseAsync(bytes, new URL('.', new URL(glb, location.href)).href);
+      if (signal.aborted) { disposeViewerScene(gltf.scene); signal.throwIfAborted(); }
     } catch (error) {
       signal.removeEventListener('abort', releasePending);
       if (!signal.aborted) releasePending();
@@ -634,116 +660,102 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     if (saved) {
       camera.position.fromArray(saved.position);
       controls.target.fromArray(saved.target);
-      controls.autoRotate = !turnsModel && saved.autoRotate;
+      controls.autoRotate = !turnsModel && rotationState().active;
       for (const item of wireframeMeshes) item.mesh.material = wireframe ? item.wireframeMaterial : item.solidMaterial;
       controls.update(timedRotation ? 0 : undefined);
     }
 
-    let visible = true;
     let disposed = false;
     let suspended = false;
-    let raf = 0;
-    let previousFrameTime: number | undefined;
-    function frame(now = performance.now()) {
-      raf = 0;
-      if (disposed || suspended || !visible || document.hidden) return;
-      const elapsed = previousFrameTime === undefined ? 0 : Math.max((now - previousFrameTime) / 1000, 0);
-      previousFrameTime = now;
-      // The featured sculpture turns independently of orbit-control interaction state.
-      // Use elapsed time so a slow device does not turn it into a nearly still image.
-      if (turnsModel && rotating) {
-        turntable.rotation.y = (turntable.rotation.y + THREE.MathUtils.degToRad(turntableSpeed) * Math.min(elapsed, 1)) % (Math.PI * 2);
-      }
-      controls.update(timedRotation ? Math.min(elapsed, 0.1) : undefined);
-      renderer.render(scene, camera);
-      raf = requestAnimationFrame(frame);
-    }
-    frame();
-
-    const ro = new ResizeObserver(() => {
-      if (suspended) return;
-      width = stage.clientWidth; height = stage.clientHeight;
-      renderer.setSize(width, height); camera.aspect = width / height; camera.updateProjectionMatrix();
+    const renderEvents = new AbortController();
+    const loop = createViewerRenderLoop({ visible: isVisible(), hidden: document.hidden,
+      onError: () => stage.closest('[data-viewer]')?.dispatchEvent(new Event('atrium:viewer-render-error')),
+      draw: (elapsed: number) => {
+        // The featured sculpture turns independently of orbit-control interaction state.
+        // Use elapsed time so a slow device does not turn it into a nearly still image.
+        if (turnsModel && rotationState().active) {
+          turntable.rotation.y = (turntable.rotation.y + THREE.MathUtils.degToRad(turntableSpeed) * Math.min(elapsed, 1)) % (Math.PI * 2);
+        }
+        const changed = controls.update(timedRotation ? Math.min(elapsed, 0.1) : undefined);
+        renderer.render(scene, camera);
+        return rotationState().active || changed;
+      },
     });
-    ro.observe(stage);
-    function updateRendering() {
-      cancelAnimationFrame(raf);
-      previousFrameTime = undefined;
-      frame();
-    }
-    document.addEventListener('visibilitychange', updateRendering);
-    window.addEventListener('pageshow', updateRendering);
+    const invalidate = () => loop.invalidate();
 
-    // Keep pending cleanup attached through material setup and the first render.
-    // If initialization throws, start() aborts the activation and releases its context.
-    signal.removeEventListener('abort', releasePending);
+    function resize() {
+      if (suspended) return;
+      width = stage.clientWidth || width; height = stage.clientHeight || height;
+      renderer.setSize(width, height); camera.aspect = width / height; camera.updateProjectionMatrix();
+      invalidate();
+    }
+    const ro = new ResizeObserver(resize);
+    ro.observe(stage);
+    function syncRotation() {
+      const state = rotationState();
+      controls.autoRotate = !turnsModel && state.active;
+      stage.closest('[data-viewer]')?.dispatchEvent(new CustomEvent('atrium:viewer-rotation-change', { detail: state }));
+      invalidate();
+    }
+    bindViewerRenderEvents({ loop, controls, media: reducedMotion, onMotionChange: syncRotation, signal: renderEvents.signal });
+    loop.invalidate();
+
+    // Pending cleanup owns initialization; later render failures restore the poster.
     const textureControl = createTextureControl(materials);
+    signal.removeEventListener('abort', releasePending);
     return {
       spatial: {
         THREE, renderer, scene, camera, model, ground, grid, box, verifiedAsset,
         suspend: () => {
           if (suspended || disposed) throw new Error('Finish the current view before starting another.');
           suspended = true;
-          cancelAnimationFrame(raf);
+          loop.setSuspended(true);
           const controlsEnabled = controls.enabled;
           controls.enabled = false;
           return () => {
             if (disposed) return;
             suspended = false;
             controls.enabled = controlsEnabled;
-            width = stage.clientWidth || width; height = stage.clientHeight || height;
-            renderer.setSize(width, height); camera.aspect = width / height; camera.updateProjectionMatrix();
-            updateRendering();
+            resize();
+            loop.setSuspended(false);
           };
         },
       },
-      setVisible: (next) => { visible = next; updateRendering(); },
-      capture: () => ({ position: camera.position.toArray(), target: controls.target.toArray(), autoRotate: rotating, wireframe, turntableAngle: turntable.rotation.y }),
+      setVisible: (next) => loop.setVisible(next),
+      capture: () => ({ position: camera.position.toArray(), target: controls.target.toArray(), autoRotate: rotationRequested, wireframe, turntableAngle: turntable.rotation.y }),
       dispose: () => {
         if (disposed) return;
         disposed = true;
-        cancelAnimationFrame(raf);
+        loop.destroy();
+        renderEvents.abort();
         ro.disconnect();
-        document.removeEventListener('visibilitychange', updateRendering);
-        window.removeEventListener('pageshow', updateRendering);
         controls.dispose();
-        const geometries = new Set<any>();
-        const surfaces = new Set<any>();
-        const textures = new Set<any>();
-        scene.traverse((object: any) => {
-          if (object.geometry) geometries.add(object.geometry);
-          for (const material of [object.material].flat()) if (material) surfaces.add(material);
-        });
-        for (const item of wireframeMeshes) {
-          for (const material of [item.solidMaterial, item.wireframeMaterial].flat()) surfaces.add(material);
-        }
-        for (const material of surfaces) {
-          for (const value of Object.values(material)) if ((value as any)?.isTexture) textures.add(value);
-          material.dispose();
-        }
-        for (const geometry of geometries) geometry.dispose();
-        for (const texture of textures) texture.dispose();
+        disposeViewerScene(scene, wireframeMeshes.flatMap(item => [item.solidMaterial, item.wireframeMaterial]));
         key.shadow.dispose();
         environment.dispose();
         renderer.dispose();
         renderer.forceContextLoss();
         renderer.domElement.remove();
       },
-      texture: textureControl,
-      setBrightness: (pct) => { renderer.toneMappingExposure = pct / 100; },
+      texture: { ...textureControl, setValue: (value) => { textureControl.setValue(value); invalidate(); } },
+      invalidate,
+      rotationState,
+      orbit: (horizontal, vertical) => { orbitViewer(THREE, camera, controls, horizontal, vertical); controls.update(timedRotation ? 0 : undefined); invalidate(); },
+      setBrightness: (pct) => { renderer.toneMappingExposure = pct / 100; invalidate(); },
       // Slider runs rough (0) → shiny (100); roughness is the inverse.
-      setTexture: (pct) => { if (appearance.preserveSourceMaterials === true) { textureControl.setValue(pct); return; } const r = 1 - pct / 100; for (const m of materials) { m.roughness = r; m.needsUpdate = true; } },
-      setWireframe: (on) => { wireframe = on; for (const item of wireframeMeshes) item.mesh.material = on ? item.wireframeMaterial : item.solidMaterial; },
-      setAutoRotate: (on) => { rotating = on; controls.autoRotate = !turnsModel && on; },
+      setTexture: (pct) => { if (appearance.preserveSourceMaterials === true) textureControl.setValue(pct); else { const r = 1 - pct / 100; for (const m of materials) { m.roughness = r; m.needsUpdate = true; } } invalidate(); },
+      setWireframe: (on) => { wireframe = on; for (const item of wireframeMeshes) item.mesh.material = on ? item.wireframeMaterial : item.solidMaterial; invalidate(); },
+      setAutoRotate: (on) => { rotationRequested = on; syncRotation(); },
       zoom: (factor) => {
         const offset = camera.position.clone().sub(controls.target);
         const distance = Math.max(controls.minDistance, Math.min(controls.maxDistance, offset.length() * factor));
         offset.setLength(distance);
         camera.position.copy(controls.target).add(offset);
         controls.update(timedRotation ? 0 : undefined);
+        invalidate();
       },
-      reset: () => { turntable.rotation.y = 0; camera.position.copy(home.pos); controls.target.copy(home.tgt); controls.update(timedRotation ? 0 : undefined); },
-      defaults: { exposure: Math.round(appearance.exposure * 100), texture: appearance.preserveSourceMaterials === true ? textureControl.defaultValue : appearance.textureDefault, autoRotate: rotating },
+      reset: () => { turntable.rotation.y = 0; camera.position.copy(home.pos); controls.target.copy(home.tgt); controls.update(timedRotation ? 0 : undefined); invalidate(); },
+      defaults: { exposure: Math.round(appearance.exposure * 100), texture: appearance.preserveSourceMaterials === true ? textureControl.defaultValue : appearance.textureDefault, get autoRotate() { return rotationState().active; } },
     };
   }
 
@@ -758,10 +770,14 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     }
   }
 
-  for (const root of document.querySelectorAll('[data-viewer]')) {
+  let pageSuspended = false;
+  const mountedViewers = new Map<HTMLElement, { dispose: () => void; refresh: () => void }>();
+  function mountViewer(root: HTMLElement) {
+    if (mountedViewers.has(root) || !root.isConnected || root.ownerDocument !== document) return;
     const stage = root.querySelector('[data-stage]') as HTMLElement | null;
     const glb = stage?.getAttribute('data-glb') || '';
-    if (!stage || !glb) continue;
+    if (!stage || !glb) return;
+    const lifetime = new AbortController();
     const poster = root.querySelector('[data-poster]') as HTMLElement | null;
     const loading = root.querySelector('[data-loading]') as HTMLElement | null;
     const activate = root.querySelector('[data-activate]') as HTMLButtonElement | null;
@@ -769,14 +785,25 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     const tools = root.querySelector('[data-immersive-tools]') as HTMLElement | null;
     const displayPanel = root.querySelector('[data-display-controls]') as HTMLElement | null;
     const hint = root.querySelector('[data-hint]') as HTMLElement | null;
+    const help = root.querySelector('[data-viewer-help]') as HTMLDetailsElement | null;
+    const startMode = root.getAttribute('data-auto-start');
     const lazy = root.getAttribute('data-auto-start') === 'visible' && 'IntersectionObserver' in window;
-    let visible = !lazy;
+    const intersectsViewport = () => {
+      const rect = stage!.getBoundingClientRect();
+      return rect.width > 0 && rect.height > 0 && rect.bottom > 0 && rect.top < window.innerHeight && rect.right > 0 && rect.left < window.innerWidth;
+    };
+    let visible = intersectsViewport();
     let activeViewer: Viewer | undefined;
     let saved: ViewState | undefined;
     let bindings: AbortController | undefined;
     let hintTimer: number | undefined;
     let generation = 0;
     let started = false;
+    let autoStartReady = false;
+    let startTimer: number | undefined;
+    let idleCallback: number | undefined;
+    let visibilityObserver: IntersectionObserver | undefined;
+    let preloadObserver: IntersectionObserver | undefined;
 
     function release() {
       generation += 1;
@@ -786,7 +813,8 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
       bindings?.abort();
       window.clearTimeout(hintTimer);
       stage!.classList.remove('is-live');
-      for (const element of [loading, tools, displayPanel, hud, hint]) if (element) element.hidden = true;
+      for (const element of [loading, tools, displayPanel, hud, hint, help]) if (element) element.hidden = true;
+      if (help) help.open = false;
       if (poster) poster.style.opacity = '1';
       if (activate) activate.hidden = false;
       residents.delete(root);
@@ -794,29 +822,49 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     }
 
     async function start() {
-      if (started) return; started = true;
+      if (started || lifetime.signal.aborted || pageSuspended) return; started = true;
       const current = ++generation;
       const events = new AbortController();
       bindings = events;
-      if (lazy) {
-        residents.delete(root);
-        residents.set(root, { visible: () => visible, release });
-        trimResidents();
-      }
+      residents.delete(root);
+      residents.set(root, { visible: () => visible, release });
+      trimResidents();
+      if (current !== generation || events.signal.aborted) return;
       if (activate) activate.hidden = true;
       if (poster) poster.style.opacity = '0';
       if (loading) loading.hidden = false;
       try {
-        const viewer = await buildViewer(stage!, glb, saved, events.signal);
+        const viewer = await buildViewer(stage!, glb, saved, events.signal, () => visible && !pageSuspended);
         if (current !== generation) { viewer.dispose(); return; }
         activeViewer = viewer;
-        viewer.setVisible(visible);
+        viewer.setVisible(visible && !pageSuspended);
         root.dispatchEvent(new CustomEvent('atrium:viewer-ready'));
         function on<K extends keyof HTMLElementEventMap>(target: HTMLElement | Document | null, type: K, listener: (event: HTMLElementEventMap[K]) => void) {
           target?.addEventListener(type, listener as EventListener, { signal: events.signal });
         }
         if (loading) loading.hidden = true;
         stage!.classList.add('is-live');
+        if (help) {
+          help.hidden = false;
+          const directions: Record<string, [number, number]> = { left: [-1, 0], right: [1, 0], up: [0, -1], down: [0, 1] };
+          for (const button of help.querySelectorAll<HTMLButtonElement>('[data-viewer-orbit]')) {
+            on(button, 'click', () => viewer.orbit(...directions[button.dataset.viewerOrbit!]));
+          }
+          on(help, 'keydown', event => {
+            if (event.key === 'Escape' && help.open) { event.preventDefault(); event.stopPropagation(); help.open = false; help.querySelector('summary')?.focus(); }
+          });
+        }
+        let wireOn = saved?.wireframe ?? false;
+        const syncWire = () => {
+          root.querySelector('[data-tool-wire]')?.setAttribute('aria-pressed', String(wireOn));
+          const checkbox = root.querySelector<HTMLInputElement>('[data-wireframe]');
+          if (checkbox) checkbox.checked = wireOn;
+        };
+        on(stage!, 'keydown', event => handleViewerKey(event, {
+          orbit: (horizontal: number, vertical: number) => viewer.orbit(horizontal, vertical),
+          zoom: (factor: number) => viewer.zoom(factor), reset: () => viewer.reset(),
+          toggleWireframe: () => { wireOn = !wireOn; viewer.setWireframe(wireOn); syncWire(); },
+        }));
         if (hint) {
           // Show the gesture hint once, then let it get out of the way: it fades after
           // a beat, or as soon as the visitor starts handling the model. Only canvas
@@ -837,11 +885,15 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
           const reset = tools.querySelector('[data-tool-reset]') as HTMLButtonElement | null;
           const fullscreen = tools.querySelector('[data-tool-fullscreen]') as HTMLButtonElement | null;
           if (fullscreen) fullscreen.hidden = typeof root.requestFullscreen !== 'function' || document.fullscreenEnabled === false;
-          let wireOn = saved?.wireframe ?? false;
           wire?.setAttribute('aria-pressed', String(wireOn));
-          let rotateOn = viewer.defaults.autoRotate;
           const syncRotationButton = () => {
+            const state = viewer.rotationState();
+            const rotateOn = state.active;
+            const checkbox = root.querySelector<HTMLInputElement>('[data-autorotate]');
+            if (checkbox) { checkbox.checked = rotateOn; checkbox.disabled = state.reduced; }
             if (!rotate) return;
+            rotate.disabled = state.reduced;
+            rotate.title = 'Start or pause automatic rotation';
             if (stage?.dataset.rotationControl === 'simple') {
               rotate.removeAttribute('aria-pressed');
               const action = rotateOn ? 'Pause' : 'Resume';
@@ -851,8 +903,10 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
             } else {
               rotate.setAttribute('aria-pressed', String(rotateOn));
             }
+            if (state.reduced) rotate.title = 'Automatic rotation is paused by your reduced-motion preference';
           };
           syncRotationButton();
+          on(root, 'atrium:viewer-rotation-change' as any, syncRotationButton);
           on(zoomIn, 'click', () => viewer.zoom(0.68));
           on(zoomOut, 'click', () => viewer.zoom(1.46));
           on(wire, 'click', () => {
@@ -861,9 +915,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
             viewer.setWireframe(wireOn);
           });
           on(rotate, 'click', () => {
-            rotateOn = !rotateOn;
-            syncRotationButton();
-            viewer.setAutoRotate(rotateOn);
+            viewer.setAutoRotate(!viewer.rotationState().active);
           });
           on(reset, 'click', () => viewer.reset());
           on(fullscreen, 'click', async () => {
@@ -880,17 +932,6 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
             if (fullscreen) {
               fullscreen.textContent = expanded ? 'Exit full screen' : 'Full screen';
               fullscreen.title = expanded ? 'Exit full screen' : 'Enter full screen';
-            }
-          });
-          on(stage!, 'keydown', (event) => {
-            if (event.key === '+' || event.key === '=') { event.preventDefault(); viewer.zoom(0.68); }
-            if (event.key === '-' || event.key === '_') { event.preventDefault(); viewer.zoom(1.46); }
-            if (event.key === '0') { event.preventDefault(); viewer.reset(); }
-            if (event.key.toLowerCase() === 'w') {
-              event.preventDefault();
-              wireOn = !wireOn;
-              wire?.setAttribute('aria-pressed', String(wireOn));
-              viewer.setWireframe(wireOn);
             }
           });
         }
@@ -938,8 +979,12 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
           if (readB && brightness) readB.textContent = `${brightness.value}%`;
           if (brightness) { viewer.setBrightness(+brightness.value); on(brightness, 'input', () => { viewer.setBrightness(+brightness.value); if (readB) readB.textContent = `${brightness.value}%`; }); }
           if (texture) { viewer.setTexture(+texture.value); on(texture, 'input', () => viewer.setTexture(+texture.value)); }
-          if (autorotate) { autorotate.checked = viewer.defaults.autoRotate; viewer.setAutoRotate(autorotate.checked); on(autorotate, 'change', () => viewer.setAutoRotate(autorotate.checked)); }
-          if (wire) on(wire, 'change', () => viewer.setWireframe(wire.checked));
+          if (autorotate) {
+            const sync = () => { const state = viewer.rotationState(); autorotate.checked = state.active; autorotate.disabled = state.reduced; };
+            sync(); on(root, 'atrium:viewer-rotation-change' as any, sync);
+            on(autorotate, 'change', () => viewer.setAutoRotate(autorotate.checked));
+          }
+          if (wire) on(wire, 'change', () => { wireOn = wire.checked; viewer.setWireframe(wireOn); syncWire(); });
           if (reset) on(reset, 'click', () => viewer.reset());
         }
         on(stage!, 'dblclick', (event) => {
@@ -961,34 +1006,80 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     const spatial = root.querySelector('[data-spatial]');
     if (spatial) {
       void import('../lib/spatial-viewer.mjs').then(({ bindSpatialViewing }) => {
-        bindSpatialViewing(spatial, () => activeViewer?.spatial, start);
+        if (!lifetime.signal.aborted) bindSpatialViewing(spatial, () => activeViewer?.spatial, start, { signal: lifetime.signal });
       });
     }
-    if (activate) activate.addEventListener('click', start);
-    if (lazy && 'IntersectionObserver' in window) {
-      const observer = new IntersectionObserver(([entry]) => {
-        visible = entry.isIntersecting;
-        activeViewer?.setVisible(visible);
-        if (visible) {
-          const resident = residents.get(root);
-          if (resident) { residents.delete(root); residents.set(root, resident); }
-          start();
-        }
-        trimResidents();
-      }, { rootMargin: '200px 0px' });
-      observer.observe(stage);
+    if (activate) activate.addEventListener('click', start, { signal: lifetime.signal });
+    root.addEventListener('atrium:viewer-render-error', () => {
+      release(); root.dispatchEvent(new CustomEvent('atrium:viewer-error'));
+    }, { signal: lifetime.signal });
+    const refresh = () => {
+      visible = intersectsViewport();
+      activeViewer?.setVisible(visible && !pageSuspended);
+      if (visible) {
+        const resident = residents.get(root);
+        if (resident) { residents.delete(root); residents.set(root, resident); }
+        if (!document.hidden && (lazy || startMode === 'true' && autoStartReady)) void start();
+      }
+      trimResidents();
+    };
+    if ('IntersectionObserver' in window) {
+      visibilityObserver = new IntersectionObserver(refresh);
+      visibilityObserver.observe(stage);
+      if (lazy) {
+        preloadObserver = new IntersectionObserver(([entry]) => { if (entry.isIntersecting && !document.hidden) void start(); }, { rootMargin: '200px 0px' });
+        preloadObserver.observe(stage);
+      }
+    } else {
+      window.addEventListener('scroll', refresh, { passive: true, signal: lifetime.signal });
+      window.addEventListener('resize', refresh, { signal: lifetime.signal });
     }
+    mountedViewers.set(root, { refresh, dispose: () => {
+      lifetime.abort(); visibilityObserver?.disconnect(); preloadObserver?.disconnect();
+      window.clearTimeout(startTimer);
+      if (idleCallback !== undefined) (window as any).cancelIdleCallback?.(idleCallback);
+      release(); mountedViewers.delete(root);
+    } });
     // Load single featured works after first paint; older browsers retain click activation.
     if (root.getAttribute('data-auto-start') === 'true') {
-      if ('requestIdleCallback' in window) (window as any).requestIdleCallback(() => start(), { timeout: 1500 });
-      else setTimeout(start, 300);
+      const begin = () => { autoStartReady = true; if (visible && !document.hidden) void start(); };
+      if ('requestIdleCallback' in window) idleCallback = (window as any).requestIdleCallback(begin, { timeout: 1500 });
+      else startTimer = window.setTimeout(begin, 300);
     } else if (activate) {
       activate.hidden = false;
     }
   }
+  const mountAll = () => { for (const root of document.querySelectorAll<HTMLElement>('[data-viewer]')) mountViewer(root); };
+  const disposeAll = () => { for (const viewer of [...mountedViewers.values()]) viewer.dispose(); };
+  document.addEventListener('atrium:viewer-mount', ((event: CustomEvent) => {
+    const root = event.detail?.root;
+    if (root instanceof HTMLElement && root.matches('[data-viewer]')) mountViewer(root);
+  }) as EventListener);
+  document.addEventListener('atrium:viewer-dispose', ((event: CustomEvent) => {
+    mountedViewers.get(event.detail?.root)?.dispose();
+  }) as EventListener);
+  document.addEventListener('astro:before-swap', disposeAll);
+  document.addEventListener('astro:page-load', mountAll);
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) for (const viewer of mountedViewers.values()) viewer.refresh(); });
+  window.addEventListener('pagehide', event => {
+    pageSuspended = true;
+    if (!event.persisted) disposeAll();
+    else for (const viewer of mountedViewers.values()) viewer.refresh();
+  });
+  window.addEventListener('pageshow', () => { pageSuspended = false; for (const viewer of mountedViewers.values()) viewer.refresh(); });
+  mountAll();
 </script>
 
 <style>
+  .model-stage:focus-visible { outline: 2px solid var(--v3-signal, #eccf7a); outline-offset: -3px; }
+  .viewer-keyboard-instructions { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+  .viewer-help { position: absolute; z-index: 12; right: 14px; bottom: 14px; color: var(--v3-ink, #f7f5ef); font: 400 12px/1.6 var(--v3-sans, sans-serif); }
+  .viewer-help summary { display: grid; place-items: center; min-height: 44px; padding: 8px 12px; border: 1px solid #c9d2dc55; border-radius: 4px; background: #15243ae8; cursor: pointer; list-style: none; }
+  .viewer-help summary::-webkit-details-marker { display: none; }
+  .viewer-help__panel { position: absolute; right: 0; bottom: calc(100% + 8px); width: min(260px, calc(100vw - 60px)); padding: 14px; border: 1px solid #c9d2dc55; border-radius: 4px; background: #101c2df5; }
+  .viewer-help__panel p { margin: 0 0 12px; }
+  .viewer-help__directions { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+  .viewer-help__directions button { min-width: 44px; min-height: 44px; color: inherit; background: #253750; border: 1px solid #c9d2dc55; border-radius: 3px; font: inherit; font-size: 20px; cursor: pointer; }
   .immersive-tools { max-width: 100%; flex-wrap: wrap; justify-content: center; }
   .immersive-tools button { white-space: nowrap; }
   .spatial-unavailable { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; color: var(--v3-muted, #c9c6bd); font: 500 11px/1.5 var(--v3-sans, sans-serif); text-decoration: none; }

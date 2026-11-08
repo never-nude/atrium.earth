@@ -1,0 +1,37 @@
+---
+import V3WorkCard from './V3WorkCard.astro';
+import type { Work } from '../../lib/catalog';
+import { withBase } from '../../lib/urls';
+import { COLLECTION_PAGE_SIZE, collectionPagePath } from '../../lib/collection-window.mjs';
+
+type Props = { works: Work[]; page: number; spatial?: boolean };
+const { works, page, spatial = false } = Astro.props;
+const entrance = spatial ? '/ar-vr/' : '/collection/';
+const offset = (page - 1) * COLLECTION_PAGE_SIZE;
+const visibleWorks = works.slice(offset, offset + COLLECTION_PAGE_SIZE);
+const pageCount = Math.ceil(works.length / COLLECTION_PAGE_SIZE);
+---
+
+<section class="v3-collection collection-page" aria-label={spatial ? 'Works available in AR and VR' : 'All works'}>
+  <div class="collection-page__entrance">
+    <a href={withBase(entrance)}>Search and filter all {works.length.toLocaleString()} works <span aria-hidden="true">→</span></a>
+    <nav aria-label="Collection view"><a href={withBase('/collection/')}>All works</a><a href={withBase('/ar-vr/')}>AR / VR</a></nav>
+  </div>
+  <p class="collection-page__count">Works {(offset + 1).toLocaleString()}–{(offset + visibleWorks.length).toLocaleString()} of {works.length.toLocaleString()}</p>
+  <div class="v3-grid">{visibleWorks.map((work, index) => <V3WorkCard work={work} eager={index < 8} spatial={spatial} />)}</div>
+  <nav class="collection-page__navigation" aria-label="Collection pages">
+    {page > 1 && <a href={withBase(collectionPagePath(entrance, page - 1))} rel="prev">← Previous 60 works</a>}
+    <span>Page {page} of {pageCount}</span>
+    {page < pageCount && <a href={withBase(collectionPagePath(entrance, page + 1))} rel="next">Next {Math.min(COLLECTION_PAGE_SIZE, works.length - offset - visibleWorks.length)} works →</a>}
+  </nav>
+</section>
+
+<style>
+  .collection-page__entrance { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px 32px; padding: 12px 0; border-block: 1px solid var(--v3-line); }
+  .collection-page__entrance nav { display: flex; flex-wrap: wrap; gap: 24px; }
+  .collection-page__entrance a, .collection-page__navigation a { color: var(--v3-signal); text-underline-offset: 5px; }
+  .collection-page__entrance a, .collection-page__navigation a { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-size: .8rem; }
+  .collection-page__count { margin: 20px 0; color: var(--v3-muted); font-size: .8rem; }
+  .collection-page__navigation { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 16px 32px; margin-top: 32px; font-size: .8rem; }
+  .collection-page__navigation span { color: var(--v3-muted); }
+</style>

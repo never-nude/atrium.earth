@@ -1,0 +1,19 @@
+---
+import V3CollectionPage from '../../../components/v3/V3CollectionPage.astro';
+import V3Layout from '../../../layouts/v3/V3Layout.astro';
+import { works } from '../../../lib/catalog';
+import { COLLECTION_PAGE_SIZE } from '../../../lib/collection-window.mjs';
+
+export function getStaticPaths() {
+  return Array.from({ length: Math.max(0, Math.ceil(works.length / COLLECTION_PAGE_SIZE) - 1) }, (_, index) => ({ params: { page: String(index + 2) }, props: { page: index + 2 } }));
+}
+const { page } = Astro.props;
+---
+<V3Layout title={`The collection — page ${page}`} description={`Browse works ${(page - 1) * COLLECTION_PAGE_SIZE + 1}–${Math.min(page * COLLECTION_PAGE_SIZE, works.length)} in Atrium’s collection.`} canonical="/collection/">
+  <header class="v3-page-hero v3-discovery-hero">
+    <p class="v3-kicker">The collection / {works.length} works</p>
+    <h1 class="v3-display">Explore the collection.</h1>
+    <p>Page {page}. Continue through the collection, or search every work by title, maker, place and material.</p>
+  </header>
+  <V3CollectionPage works={works} page={page} />
+</V3Layout>

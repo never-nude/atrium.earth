@@ -1,0 +1,63 @@
+---
+import V3Layout from '../../../layouts/v3/V3Layout.astro';
+import visitsData from '../../../data/curated-visits.json';
+import { workBySlug } from '../../../lib/catalog';
+import { shortWorkTitle } from '../../../lib/work-titles';
+import { withBase } from '../../../lib/urls';
+
+const editions = Object.entries(visitsData.visits);
+---
+
+<V3Layout title="How we curate" description="The selection, sources and limits behind Atrium’s AI-authored guided visits.">
+  <header class="v3-page-hero method-hero">
+    <p class="v3-kicker">Atrium / Curation</p>
+    <h1 class="v3-display">A reason to look again.</h1>
+    <p>A curator creates a path through works, and gives you something to notice along the way. Our short AI-authored visits make that path visible, including the sources behind it.</p>
+  </header>
+
+  <section class="method-grid" aria-label="How a guided edition is made">
+    <article><span class="method-number">01</span><h2>Begin with the works</h2><p>The first edition draws from an existing exhibition. Its six stops each have a usable 3D preview, a specific looking prompt and a connection to the next work.</p></article>
+    <article><span class="method-number">02</span><h2>Keep fact and reading distinct</h2><p>Dates, makers, materials and historical claims come from recorded evidence. The sequence and connections are curatorial interpretations. A visual similarity alone does not establish influence or a shared intention.</p></article>
+    <article><span class="method-number">03</span><h2>Publish an edition</h2><p>The selection and writing are prepared in advance. Everyone can visit the same edition and return to the same stop. No conversation or personal profile is needed to follow it.</p></article>
+  </section>
+
+  <section class="method-editions" aria-labelledby="editions-title">
+    <p class="v3-kicker">Inside the current edition</p>
+    <h2 id="editions-title">The route and its evidence.</h2>
+    {editions.map(([slug, visit]) => <article class="method-edition">
+      <div class="method-edition__intro"><p class="v3-kicker">AI-authored · Prepared {visit.provenance.preparedAt}</p><h3>{visit.title}</h3><p>{visit.rationale}</p><a class="v3-button v3-button--light" href={withBase(`/exhibitions/${slug}/#curated-visit`)}>Take the visit <span aria-hidden="true">→</span></a></div>
+      <div class="method-evidence"><h4>What the reading rests on</h4><p>These excerpts come from Atrium’s existing exhibition captions. Each links to the object’s recorded source; it is not a claim of a fresh institutional review.</p><ol>{visit.stops.map(stop => {
+        const work = workBySlug(stop.workSlug);
+        const evidence = visit.facts.filter(fact => stop.factIds.includes(fact.id));
+        return <li><strong>{shortWorkTitle(work?.title || stop.workSlug)}</strong>{evidence.map(fact => <p>{fact.text} <a href={fact.recordUrl}>Source record <span aria-hidden="true">↗</span></a></p>)}</li>;
+      })}</ol></div>
+    </article>)}
+  </section>
+
+  <section class="method-status" aria-labelledby="refresh-title"><p class="v3-kicker">What changes, and when</p><h2 id="refresh-title">A living museum, with a clear record.</h2><p>The homepage’s daily featured work and scheduled programme rotate through an approved pool using published selection rules. That rotation does not generate new writing.</p><p>Automatic AI generation is currently off. The guided visit is an AI-authored edition prepared for this release. A future automatic edition will need a connected AI service, source checks and a published generation record before it is described as automatic.</p><a href={withBase('/about/')}>About the collection and its sources <span aria-hidden="true">→</span></a></section>
+</V3Layout>
+
+<style>
+  .method-hero > p:last-child { max-width: 64ch; }
+  .method-grid, .method-editions, .method-status { max-width: var(--v3-max); margin: auto; padding: 0 var(--v3-pad) 72px; }
+  .method-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
+  .method-grid article { padding-top: 22px; border-top: 1px solid var(--v3-line); }
+  .method-number { color: var(--v3-signal); font-size: 12px; font-variant-numeric: tabular-nums; }
+  h2, h3, h4 { font-weight: 500; letter-spacing: -.03em; }
+  .method-grid h2 { font-size: 22px; }
+  p { color: var(--v3-muted); font-size: 14px; line-height: 1.8; }
+  .method-editions > h2, .method-status h2 { margin: 12px 0 28px; font-size: clamp(28px, 4vw, 44px); }
+  .method-edition { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: clamp(32px, 6vw, 96px); padding-top: 32px; border-top: 1px solid var(--v3-line); }
+  .method-edition h3 { font-size: 30px; margin: 16px 0; }
+  .method-edition .v3-button { margin-top: 16px; }
+  .method-evidence h4 { margin: 0; font-size: 19px; }
+  .method-evidence ol { padding-left: 22px; }
+  .method-evidence li { padding: 16px 0; border-bottom: 1px solid var(--v3-line); }
+  .method-evidence li::marker { color: var(--v3-signal); font-size: 12px; }
+  .method-evidence strong { font-size: 14px; font-weight: 500; }
+  .method-evidence li p { font-size: 12px; margin: 8px 0 0; }
+  a:not(.v3-button) { color: var(--v3-signal); text-underline-offset: 4px; }
+  .method-status p { max-width: 76ch; }
+  .method-status > a { display: inline-flex; align-items: center; gap: 12px; min-height: 44px; font-size: 13px; }
+  @media (max-width: 760px) { .method-grid, .method-edition { grid-template-columns: 1fr; } .method-grid, .method-editions, .method-status { padding-bottom: 44px; } .method-grid { gap: 22px; } }
+</style>
