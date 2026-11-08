@@ -277,3 +277,14 @@ Use the same graph-derived `gallery` version on all local imports/preload
 references and the HTML entry. The current six-module graph is f134795088c3;
 `test:spatial-museum-bindings` verifies all17 references and rejects stale or
 mixed graph versions. Publication/live confirmation follows in STATUS.md.
+
+
+### Coherent runtime confirmed live
+
+Release dd19dab25cb21200f1cccb43a2338431086099d2 / Pages42428695815 passed
+all production gates. LiveHTML/all6module bodies match graph f134795088c3.
+A fresh visit in the previously affected browser profile rendered all5Rodin
+works without warning, and selected The Eternal Idol with its geometry and
+details visible and no retry action. Both the stale-model reference and
+the partial-module-versioning problem are closed. Broader Awwwards work
+remains a prioritized plan in the chat, not additional implemented features.
