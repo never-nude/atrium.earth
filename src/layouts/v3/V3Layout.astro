@@ -2,6 +2,7 @@
 import V3Header from '../../components/v3/V3Header.astro';
 import StudioPeek from '../../components/v3/StudioPeek.astro';
 import GoogleAnalytics from '../../components/GoogleAnalytics.astro';
+import ArtworkImageRecovery from '../../components/ArtworkImageRecovery.astro';
 import { collectionCount } from '../../lib/v3';
 import { absoluteUrl, withBase, withoutBase } from '../../lib/urls';
 import '../../styles/v3/v3.css';
@@ -61,6 +62,7 @@ const pageTitle = title === 'Atrium.Earth' ? 'Atrium.Earth — Digital Sculpture
     <meta name="twitter:image" content={imageUrl} />
     <title>{pageTitle}</title>
     <GoogleAnalytics />
+    <ArtworkImageRecovery />
     <script is:inline>document.documentElement.classList.add('v3-js');</script>
     <slot name="head" />
   </head>

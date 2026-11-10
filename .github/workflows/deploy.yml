@@ -51,6 +51,7 @@ jobs:
           npm run test:world-state
           npm run test:spatial
           npm run test:spatial-museum-bindings
+          node scripts/test-artwork-image-recovery.mjs
 
       - name: Build
         run: npm run build
@@ -59,6 +60,9 @@ jobs:
 
       - name: Verify Pages package size
         run: node scripts/verify-pages-budget.mjs
+
+      - name: Verify published artwork images
+        run: node scripts/verify-published-artwork-images.mjs
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

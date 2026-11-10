@@ -1,6 +1,7 @@
 ---
 import V2Header from '../../components/v2/V2Header.astro';
 import GoogleAnalytics from '../../components/GoogleAnalytics.astro';
+import ArtworkImageRecovery from '../../components/ArtworkImageRecovery.astro';
 import { collectionCount } from '../../lib/v2';
 import { absoluteUrl, withBase, withoutBase } from '../../lib/urls';
 import '../../styles/v2/v2.css';
@@ -54,6 +55,7 @@ const pageTitle = title === 'Atrium.Earth' ? 'Atrium.Earth — Digital Sculpture
     <meta name="twitter:image" content={imageUrl} />
     <title>{pageTitle}</title>
     <GoogleAnalytics />
+    <ArtworkImageRecovery />
     <slot name="head" />
   </head>
   <body class:list={['v2-body', { 'v2-body--immersive': immersive }]}>
