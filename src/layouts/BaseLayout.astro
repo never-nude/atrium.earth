@@ -2,6 +2,7 @@
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import GoogleAnalytics from '../components/GoogleAnalytics.astro';
+import ArtworkImageRecovery from '../components/ArtworkImageRecovery.astro';
 import { absoluteUrl, withBase, withoutBase } from '../lib/urls';
 import '../styles/global.css';
 
@@ -53,6 +54,7 @@ const pageTitle = title === 'Atrium.Earth' ? 'Atrium.Earth — Digital Sculpture
     <slot name="head" />
     <title>{pageTitle}</title>
     <GoogleAnalytics />
+    <ArtworkImageRecovery />
     {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
   </head>
   <body>
