@@ -16,12 +16,12 @@ const works = pair ? [pair.a, pair.b] : [];
   <div class="looking-together__works">
     {works.map(work => <figure>
       <div class="looking-together__stage">
-        <Viewer glb={withBase(work.modelGlb)} modelBytes={work.modelBytes} poster={withBase(work.thumbnailImage)} title={work.title} hud={false} immersive={true} autoStart={false} posterLoading="lazy" upAxis={work.modelUpAxis} modelTransform={work.modelTransform} materialAppearance={work.materialAppearance} />
+        <Viewer glb={withBase(work.modelGlb)} modelBytes={work.modelBytes} poster={withBase(work.thumbnailImage)} title={work.title} hud={false} immersive={true} autoStart="preview" autoRotateSpeed={0.6} posterLoading="lazy" upAxis={work.modelUpAxis} modelTransform={work.modelTransform} materialAppearance={work.materialAppearance} />
       </div>
       <figcaption><h3>{shortWorkTitle(work.title)}</h3><p>{[work.maker || work.culture, work.displayDate].filter(Boolean).join(' · ')}</p><a href={withBase(v3WorkRoute(work))}>Details &amp; sources <span aria-hidden="true">↗</span></a></figcaption>
     </figure>)}
   </div>
-  <p class="looking-together__note">Choose “Examine in 3D”, then drag to turn each sculpture. The works are framed independently and are not shown at a shared physical scale.</p>
+  <p class="looking-together__note">Select a sculpture to handle it, then drag to turn it. Each work is framed independently.</p>
 </section>}
 
 <style>
@@ -32,12 +32,10 @@ const works = pair ? [pair.a, pair.b] : [];
   .looking-together__reading { max-width: 70ch; margin: 0; color: var(--v3-muted); font-size: 15px; line-height: 1.75; }
   .looking-together__works { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px; }
   .looking-together figure { min-width: 0; margin: 0; }
-  .looking-together__stage { --comparison-height: clamp(370px, 38vw, 480px); height: var(--comparison-height); padding: 0 12px; }
+  .looking-together__stage { --comparison-height: clamp(370px, 38vw, 480px); height: calc(var(--comparison-height) + 26px); padding: 0 12px; }
   .looking-together__stage :global(.viewer:not(:fullscreen):not([data-viewer-expanded])) { width: 100%; height: 100%; min-height: 0; }
-  .looking-together__stage :global(.viewer:not(:fullscreen):not([data-viewer-expanded]) > .model-stage) { width: 100%; height: calc(100% - 52px); min-height: 0; overflow: visible; border: 0; }
+  .looking-together__stage :global(.viewer:not(:fullscreen):not([data-viewer-expanded]) > .model-stage) { width: 100%; height: calc(100% - 78px); min-height: 0; overflow: visible; border: 0; }
   .looking-together__stage :global(.viewer:not(:fullscreen):not([data-viewer-expanded]) > .viewer-start) { position: absolute; inset: auto 0 0; justify-content: center; min-height: 52px; }
-  .looking-together__works:has([data-viewer-state="ready"]) .looking-together__stage { height: calc(var(--comparison-height) + 26px); }
-  .looking-together__works:has([data-viewer-state="ready"]) .looking-together__stage :global(.viewer:not(:fullscreen):not([data-viewer-expanded]) > .model-stage) { height: calc(100% - 78px); }
   .looking-together__stage :global(.viewer[data-viewer-state="ready"]:not(:fullscreen):not([data-viewer-expanded]) > .viewer-start) { min-height: 26px; }
   .looking-together__stage :global(.model-stage [data-poster]) { min-height: 0; object-fit: contain; }
   .looking-together__stage :global(.model-stage:not(.is-live) [data-poster]) { opacity: 1 !important; }

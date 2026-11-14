@@ -2293,3 +2293,8 @@ Concurrent publication integrated: main `adf948603428fe313a5b5fcbd2678fe7f69fc6f
 - The first CI run exposed capped globe counts missing from button names and model CDN requests failing on the local test origin. The follow-up fixes the names and adapts loopback model requests in the test runner. Both Chromium and WebKit passed the local exhibition entry check at 390 and 1440 px. Local Lighthouse measured 3.56 s LCP and 467,898 bytes.
 - The owner approved deployment on November 14. Publish after the review passes, verify the public routes, and continue with the next step when requested. See `docs/awwwards-run.md` for the baseline and regression proof.
 - [PR 84](https://github.com/never-nude/atrium.earth/pull/84) deployed successfully as `b4139c95` in [Pages run 43594595255](https://github.com/never-nude/atrium.earth/actions/runs/43594595255). All 32 live browser cases passed. At 375 px, Discobolus and the first guided stop both activated, orbited, paused and resumed with normal paused scrolling. Continue with Step 3 once requested.
+
+### Default rotation for large artwork previews
+
+- The owner approved default rotation and deployment as the last change in Step 2. The homepage hero, featured exhibition, close comparisons, and the paired exhibition cover use automatic 3D previews when visible. The page can scroll over a preview until the visitor selects it. Reduced-motion visitors get a still image with an explicit 3D button.
+- `codex/step-2-preview-rotation` owns the change. The Node suite passed with a regression check for scroll-first handling. Verify the full release and live motion before starting Step 3.

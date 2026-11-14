@@ -73,10 +73,10 @@ export function bindViewerReset(canvas, reset, signal) {
 }
 
 /** Start in the original handling mode, with tap-to-scroll available on demand. */
-export function bindViewerInput({ canvas, controls, signal, wheelZoom = true, onToggle, onReset }) {
+export function bindViewerInput({ canvas, controls, signal, wheelZoom = true, initiallyActive = true, onToggle, onReset }) {
   const rotateSpeed = controls.rotateSpeed;
   const enablePan = controls.enablePan;
-  let active = true;
+  let active = initiallyActive;
   function applyMode() {
     // Allow OrbitControls to finish pointer bookkeeping even in scroll mode.
     controls.rotateSpeed = active ? rotateSpeed : 0;
