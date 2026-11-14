@@ -24,3 +24,7 @@ export function absoluteUrl(path: string | undefined, site = 'https://atrium.ear
   const origin = new URL(site).origin;
   return new URL(withBase(withoutBase(value)), `${origin}/`).toString();
 }
+
+export function socialArtworkImage(image: string): string {
+  return image.replace(/(\/previews\/renders\/.+\/thumb)\.webp(?:\?preview=alpha1)?$/, '$1.jpg');
+}
