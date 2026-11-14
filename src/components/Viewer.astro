@@ -111,7 +111,7 @@ const sizeLabel = modelBytes && modelBytes > 0 ? ` · ${(modelBytes / 1e6).toFix
     {hasModel && !captioned && <details class="viewer-help" data-viewer-help hidden>
       <summary>3D controls</summary>
       <div class="viewer-help__panel">
-        <p>Drag to turn, or use the arrow keys. Pinch or use + / − to zoom. In full screen you can also scroll to zoom. Press 0 to reset.</p>
+        <p>Drag to turn, or use the arrow keys. {wheelZoom && 'While handling, swipe with two fingers on a trackpad to turn or tilt. '}Pinch on a touchscreen or use + / − to zoom. Press 0 to reset.</p>
         <div class="viewer-help__directions" role="group" aria-label="Rotate the 3D view">
           <button type="button" data-viewer-orbit="left" aria-label="Rotate view left">←</button>
           <button type="button" data-viewer-orbit="up" aria-label="Rotate view up">↑</button>
@@ -191,7 +191,7 @@ const sizeLabel = modelBytes && modelBytes > 0 ? ` · ${(modelBytes / 1e6).toFix
         <label><input type="checkbox" data-autorotate checked={autoRotate} /> Turn slowly</label>
         <label><input type="checkbox" data-wireframe /> Show scan mesh</label>
       </div>
-      <p class="viewer-caption__keyboard">Focus the sculpture and use the arrows to turn or tilt. Use + or − to zoom, 0 to reset, and Escape to stop handling.</p>
+      <p class="viewer-caption__keyboard">While handling, swipe with two fingers on a trackpad to turn or tilt. With the sculpture focused, use the arrows to turn or tilt, + or − to zoom, 0 to reset, and Escape to stop handling.</p>
     </div>
   </div>}
 
@@ -573,6 +573,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
       enabled: false, wheelZoom: root.dataset.wheelZoom !== 'false',
       onSelect: () => { rotationRequested = false; syncRotation(); },
       onReset: () => resetView(),
+      onWheelOrbit: orbit,
       onStateChange: ({ selected }) => {
         if (!selected && document.activeElement?.matches('[data-handling-done]') && root.contains(document.activeElement)) {
           stage.focus({ preventScroll: true });
@@ -774,6 +775,11 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
       },
     });
     const invalidate = () => loop.invalidate();
+    function orbit(horizontal: number, vertical: number) {
+      orbitViewer(THREE, camera, controls, horizontal, vertical);
+      controls.update(timedRotation ? 0 : undefined);
+      invalidate();
+    }
     function resetView() {
       // Flush any remaining drag damping before restoring the authored view.
       controls.enableDamping = false;
@@ -853,7 +859,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
       texture: { ...textureControl, setValue: (value) => { textureControl.setValue(value); invalidate(); } },
       invalidate,
       rotationState,
-      orbit: (horizontal, vertical) => { orbitViewer(THREE, camera, controls, horizontal, vertical); controls.update(timedRotation ? 0 : undefined); invalidate(); },
+      orbit,
       setBrightness: (pct) => { renderer.toneMappingExposure = pct / 100; invalidate(); },
       // Slider runs rough (0) → shiny (100); roughness is the inverse.
       setTexture: (pct) => { if (appearance.preserveSourceMaterials === true) textureControl.setValue(pct); else { const r = 1 - pct / 100; for (const m of materials) { m.roughness = r; m.needsUpdate = true; } } invalidate(); },

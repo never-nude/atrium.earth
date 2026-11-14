@@ -6,6 +6,7 @@ const TAP_MOVEMENT_PX = 8;
 const DOUBLE_TAP_MS = 340;
 const DOUBLE_TAP_PX = 36;
 const MIN_VISIBLE_RATIO = 0.4;
+const ORBIT_STEP_RADIANS = Math.PI / 36;
 const selectedByDocument = new WeakMap();
 
 /**
@@ -14,7 +15,7 @@ const selectedByDocument = new WeakMap();
  */
 export function bindViewerGestures({
   canvas, stage, root, signal, wheelZoom = true, enabled = true,
-  onSelect, onReset, onStateChange,
+  onSelect, onReset, onWheelOrbit, onStateChange,
 }) {
   const document = canvas.ownerDocument;
   const window = document.defaultView;
@@ -147,10 +148,20 @@ export function bindViewerGestures({
       // whenever we are not handling ordinary wheel input on the sculpture.
       if (!free() || !wheelZoom || event.ctrlKey || event.metaKey || event.altKey || event.shiftKey) {
         event.stopImmediatePropagation();
-      } else {
-        interact();
+        return;
       }
-    }, capture);
+      // Trackpad swipes arrive as pixel wheel deltas. Keep directional input
+      // for orbit, and let Three handle line/page wheel steps as zoom.
+      if (onWheelOrbit && event.deltaMode === 0) {
+        event.stopImmediatePropagation();
+        if (!event.cancelable || ![event.deltaX, event.deltaY].every(Number.isFinite) || (!event.deltaX && !event.deltaY)) return;
+        event.preventDefault();
+        const height = Math.max(1, canvas.clientHeight);
+        const units = delta => Math.max(-0.5, Math.min(0.5, delta / height)) * 2.4 / ORBIT_STEP_RADIANS;
+        onWheelOrbit(units(event.deltaX), units(event.deltaY));
+      }
+      interact();
+    }, { capture: true, passive: false, signal });
     const leave = event => {
       // Keep Done reachable when the pointer moves from the stage into its own
       // caption or Options. Moving outside the viewer still releases it.
@@ -233,9 +244,8 @@ export function orbitViewer(THREE, camera, controls, horizontal, vertical) {
   const offset = camera.position.clone().sub(controls.target);
   const up = new THREE.Quaternion().setFromUnitVectors(camera.up, new THREE.Vector3(0, 1, 0));
   const spherical = new THREE.Spherical().setFromVector3(offset.applyQuaternion(up));
-  const step = Math.PI / 36;
-  spherical.theta = THREE.MathUtils.clamp(spherical.theta + horizontal * step, controls.minAzimuthAngle, controls.maxAzimuthAngle);
-  spherical.phi = THREE.MathUtils.clamp(spherical.phi + vertical * step, Math.max(0.01, controls.minPolarAngle), Math.min(Math.PI - 0.01, controls.maxPolarAngle));
+  spherical.theta = THREE.MathUtils.clamp(spherical.theta + horizontal * ORBIT_STEP_RADIANS, controls.minAzimuthAngle, controls.maxAzimuthAngle);
+  spherical.phi = THREE.MathUtils.clamp(spherical.phi + vertical * ORBIT_STEP_RADIANS, Math.max(0.01, controls.minPolarAngle), Math.min(Math.PI - 0.01, controls.maxPolarAngle));
   offset.setFromSpherical(spherical).applyQuaternion(up.invert());
   camera.position.copy(controls.target).add(offset);
   camera.lookAt(controls.target);
