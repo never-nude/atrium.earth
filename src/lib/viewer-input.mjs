@@ -1,216 +1,105 @@
 const FORM_CONTROL = 'input, textarea, select, button, a, summary, [contenteditable]:not([contenteditable="false"]), [role="textbox"]';
 
-export const RELEASE_AFTER_MS = 5000;
-const FADE_MS = 1500;
 const TAP_MOVEMENT_PX = 8;
 const DOUBLE_TAP_MS = 340;
 const DOUBLE_TAP_PX = 36;
-const MIN_VISIBLE_RATIO = 0.4;
-const selectedByDocument = new WeakMap();
 
-/**
- * Register before OrbitControls so both the first pointer and later changes in
- * gesture direction reach it with the right speeds and capabilities.
- */
-export function bindViewerGestures({
-  canvas, stage, root, signal, wheelZoom = true, enabled = true,
-  onSelect, onReset, onStateChange,
-}) {
-  const document = canvas.ownerDocument;
-  const window = document.defaultView;
-  const ring = root.querySelector('[data-viewer-ring]');
+function bindCanvasTaps(canvas, { signal, onSingleTap, onDoubleTap }) {
   const pointers = new Map();
-  let controls, selected = false, overlay = false, lastTap;
-  let fullscreen = document.fullscreenElement === root;
-  let fadeTimer, releaseTimer;
+  let lastTap, singleTimer;
 
-  const free = () => enabled && (selected || fullscreen);
-  function applyGate() {
-    if (controls) {
-      controls.rotateSpeed = free() ? 0.9 : 0;
-      controls.enableZoom = free();
-      controls.enablePan = free();
-    }
-    // OrbitControls overwrites touchAction in its constructor. setControls()
-    // reapplies this gate without disabling pointer tracking.
-    canvas.style.touchAction = free() ? 'none' : 'pan-y';
-  }
-
-  function clearIdle() {
-    clearTimeout(fadeTimer);
-    clearTimeout(releaseTimer);
-    ring?.classList.remove('is-fading');
-  }
-
-  function interact() {
-    clearIdle();
-    if (!selected || fullscreen || pointers.size || signal.aborted) return;
-    fadeTimer = setTimeout(() => ring?.classList.add('is-fading'), RELEASE_AFTER_MS - FADE_MS);
-    releaseTimer = setTimeout(deselect, RELEASE_AFTER_MS);
-  }
-
-  function changeSelection(next) {
-    if (selected === next) return;
-    selected = next;
-    root.toggleAttribute('data-selected', selected);
-    applyGate();
-    if (selected) {
-      selectedByDocument.set(document, deselect);
-      onSelect?.();
-    } else if (selectedByDocument.get(document) === deselect) {
-      selectedByDocument.delete(document);
-    }
-    if (!signal.aborted) onStateChange?.({ selected, fullscreen });
-  }
-
-  function select() {
-    if (!enabled || selected || fullscreen || signal.aborted) return;
-    selectedByDocument.get(document)?.();
-    changeSelection(true);
-  }
-
-  function deselect() {
-    clearIdle();
-    pointers.clear();
+  function clearTap() {
+    clearTimeout(singleTimer);
     lastTap = undefined;
-    changeSelection(false);
   }
 
-  function syncFullscreen() {
-    const next = overlay || document.fullscreenElement === root;
-    if (next === fullscreen || signal.aborted) return;
-    fullscreen = next;
-    const wasSelected = selected;
-    deselect();
-    if (next) selectedByDocument.get(document)?.();
-    applyGate();
-    if (!wasSelected) onStateChange?.({ selected, fullscreen });
+  function singleTap() {
+    clearTap();
+    onSingleTap?.();
   }
 
-  function begin(event) {
-    if (!enabled || pointers.has(event.pointerId)) return;
-    const { clientX: x, clientY: y, pointerType: type, button } = event;
-    pointers.set(event.pointerId, { x, y, type, button, moved: false });
-    if (type === 'touch' && [...pointers.values()].filter(pointer => pointer.type === 'touch').length > 1) {
+  const options = { passive: true, signal };
+  canvas.addEventListener('pointerdown', event => {
+    if (!onSingleTap && event.pointerType !== 'touch') return;
+    if (event.button !== 0 || event.ctrlKey || event.metaKey || event.altKey || event.shiftKey) {
+      clearTap();
+      return;
+    }
+    pointers.set(event.pointerId, { x: event.clientX, y: event.clientY, moved: false });
+    if (pointers.size > 1) {
+      clearTap();
       for (const pointer of pointers.values()) pointer.moved = true;
-      lastTap = undefined;
-      select();
     }
-    interact();
-  }
-
-  function move(event) {
+  }, options);
+  const capture = { ...options, capture: true };
+  canvas.ownerDocument.addEventListener('pointermove', event => {
     const pointer = pointers.get(event.pointerId);
-    if (!pointer) return;
-    const dx = Math.abs(event.clientX - pointer.x);
-    const dy = Math.abs(event.clientY - pointer.y);
-    if (Math.hypot(dx, dy) >= TAP_MOVEMENT_PX) {
-      pointer.moved = true;
-      lastTap = undefined;
-    }
-    const handling = pointer.type === 'touch' ? pointer.moved && dx >= dy : dx > 0 || dy > 0;
-    if (handling) select();
-  }
-
+    if (!pointer || Math.hypot(event.clientX - pointer.x, event.clientY - pointer.y) < TAP_MOVEMENT_PX) return;
+    pointer.moved = true;
+    clearTap();
+  }, capture);
   function finish(event) {
     const pointer = pointers.get(event.pointerId);
     if (!pointer) return;
     pointers.delete(event.pointerId);
-    const cancelled = event.type !== 'pointerup';
-    const distance = Math.hypot(event.clientX - pointer.x, event.clientY - pointer.y);
-    if (!cancelled && !pointer.moved && distance < TAP_MOVEMENT_PX && (pointer.type === 'touch' || pointer.button === 0)) {
-      select();
-      const { clientX: x, clientY: y, timeStamp: time } = event;
-      if (lastTap && lastTap.type === pointer.type && time - lastTap.time <= DOUBLE_TAP_MS &&
-          Math.hypot(x - lastTap.x, y - lastTap.y) <= DOUBLE_TAP_PX) {
-        lastTap = undefined;
-        onReset?.();
-      } else {
-        lastTap = { type: pointer.type, x, y, time };
-      }
-    } else {
-      lastTap = undefined;
+    const { clientX: x, clientY: y, timeStamp: time, pointerType: type } = event;
+    if (event.type !== 'pointerup' || pointer.moved || Math.hypot(x - pointer.x, y - pointer.y) >= TAP_MOVEMENT_PX) {
+      clearTap();
+      return;
     }
-    interact();
+    if (lastTap && type === lastTap.type && time - lastTap.time <= DOUBLE_TAP_MS &&
+        Math.hypot(x - lastTap.x, y - lastTap.y) <= DOUBLE_TAP_PX) {
+      clearTap();
+      onDoubleTap();
+      return;
+    }
+    if (lastTap && onSingleTap) singleTap();
+    lastTap = { x, y, time, type };
+    if (onSingleTap) singleTimer = setTimeout(singleTap, DOUBLE_TAP_MS);
   }
+  canvas.ownerDocument.addEventListener('pointerup', finish, capture);
+  canvas.ownerDocument.addEventListener('pointercancel', finish, capture);
+  canvas.addEventListener('lostpointercapture', finish, options);
+  signal.addEventListener('abort', () => { clearTap(); pointers.clear(); }, { once: true });
+  return clearTap;
+}
 
-  if (!signal.aborted) {
-    const passive = { passive: true, signal };
-    const capture = { ...passive, capture: true };
-    canvas.addEventListener('pointerdown', begin, capture);
-    document.addEventListener('pointermove', move, capture);
-    document.addEventListener('pointerup', finish, capture);
-    document.addEventListener('pointercancel', finish, capture);
-    canvas.addEventListener('lostpointercapture', finish, passive);
-    canvas.addEventListener('wheel', event => {
-      // Leave browser wheel scrolling and modifier-directed zoom available
-      // whenever we are not handling ordinary wheel input on the sculpture.
-      if (!free() || !wheelZoom || event.ctrlKey || event.metaKey || event.altKey || event.shiftKey) {
-        event.stopImmediatePropagation();
-      } else {
-        interact();
-      }
-    }, capture);
-    const leave = event => {
-      // Keep Done reachable when the pointer moves from the stage into its own
-      // caption or Options. Moving outside the viewer still releases it.
-      if (event.pointerType === 'mouse' && !event.buttons && !fullscreen &&
-          !root.contains(event.relatedTarget)) deselect();
-    };
-    stage.addEventListener('pointerleave', leave, passive);
-    root.addEventListener('pointerleave', leave, passive);
-    document.addEventListener('pointerdown', event => {
-      if (!root.contains(event.target)) deselect();
-      else if (selected) interact();
-    }, capture);
-    document.addEventListener('keydown', event => {
-      if (event.key === 'Escape') deselect();
-    }, { signal });
-    document.addEventListener('fullscreenchange', syncFullscreen, { signal });
-    document.addEventListener('visibilitychange', () => {
-      if (document.hidden) deselect();
-    }, { signal });
-    window?.addEventListener('blur', deselect, { signal });
-    window?.addEventListener('scroll', () => {
-      if (!pointers.size && !fullscreen) deselect();
-    }, passive);
-    const visibility = window?.IntersectionObserver && new window.IntersectionObserver(([entry]) => {
-      if (entry && entry.intersectionRatio < MIN_VISIBLE_RATIO && !fullscreen && !signal.aborted) deselect();
-    }, { threshold: MIN_VISIBLE_RATIO });
-    visibility?.observe(stage);
+// Automatic viewers use native mouse double-click and direct touch double-tap.
+export function bindViewerReset(canvas, reset, signal) {
+  canvas.addEventListener('dblclick', event => {
+    if (event.pointerType !== 'touch' && !event.sourceCapabilities?.firesTouchEvents) reset();
+  }, { passive: true, signal });
+  bindCanvasTaps(canvas, { signal, onDoubleTap: reset });
+}
 
-    signal.addEventListener('abort', () => {
-      enabled = false;
-      deselect();
-      applyGate();
-      controls = undefined;
-      visibility?.disconnect();
-    }, { once: true });
+/** Start in the original handling mode, with tap-to-scroll available on demand. */
+export function bindViewerInput({ canvas, controls, signal, wheelZoom = true, onToggle, onReset }) {
+  const rotateSpeed = controls.rotateSpeed;
+  const enablePan = controls.enablePan;
+  let active = true;
+  function applyMode() {
+    // Allow OrbitControls to finish pointer bookkeeping even in scroll mode.
+    controls.rotateSpeed = active ? rotateSpeed : 0;
+    controls.enablePan = active && enablePan;
+    controls.enableZoom = active;
+    canvas.style.touchAction = active ? 'none' : 'pan-y';
   }
-
-  applyGate();
-  return {
-    setControls(next) {
-      if (signal.aborted) return;
-      controls = next;
-      applyGate();
-    },
-    setEnabled(next) {
-      if (signal.aborted || next === enabled) return;
-      enabled = next;
-      if (!enabled) deselect();
-      applyGate();
-    },
-    setFullscreen(next) {
-      if (signal.aborted) return;
-      overlay = next;
-      syncFullscreen();
-    },
-    isSelected: () => selected,
-    isFullscreen: () => fullscreen,
-    interact,
-    deselect,
-  };
+  const clearTap = bindCanvasTaps(canvas, {
+    signal, onSingleTap: () => setActive(!active), onDoubleTap: onReset,
+  });
+  function setActive(next) {
+    if (signal.aborted) return;
+    clearTap();
+    if (active === next) return;
+    active = next;
+    applyMode();
+    onToggle?.(active);
+  }
+  canvas.addEventListener('wheel', event => {
+    if (!active || !wheelZoom) event.stopImmediatePropagation();
+  }, { capture: true, passive: true, signal });
+  if (!signal.aborted) applyMode();
+  return { isActive: () => active, setActive };
 }
 
 // Scope shortcuts to the focused 3D surface, leaving sliders, links and native

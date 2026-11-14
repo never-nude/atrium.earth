@@ -227,13 +227,18 @@ body .v3-explorer:has(.v3-collection-switch) .v3-filter-row select, body .v3-exp
 .v3-empty p { color: var(--v3-muted); font-size: 14px; }
 .v3-empty button { min-height: 42px; padding: 10px 16px; border-radius: 8px; font-size: 12px; letter-spacing: 0; text-transform: none; }
 
-/* Size the artwork independently of the caption and its inline Options. */
+/* A full canvas, a separate toolbar, and a record that reads like a label. */
 .v3-object-stage { height: auto; min-height: 0; padding: 0 0 28px; overflow: visible; background: radial-gradient(85% 70% at 55% 30%, #1b2b43, var(--v3-void) 82%); }
 .v3-object-stage::after { display: none; }
-.v3-object-stage > .viewer:not(:fullscreen):not([data-viewer-expanded]) { position: relative; inset: auto; display: flex; flex-direction: column; width: 100%; height: auto; min-height: 0; gap: 0; }
-.v3-object-stage > .viewer:not(:fullscreen):not([data-viewer-expanded]) > .model-stage { flex: 0 0 auto; width: 100%; height: clamp(456px, calc(74svh - 44px), 776px); min-height: 0; }
-.v3-object-stage > .viewer:not(:fullscreen):not([data-viewer-expanded]) > .viewer-caption { margin-inline: var(--v3-pad); }
+.v3-object-stage > .viewer:not(:fullscreen):not([data-viewer-expanded]) { position: relative; inset: auto; display: flex; flex-direction: column; width: 100%; height: clamp(500px, 74svh, 820px); min-height: 0; }
+.v3-object-stage > .viewer:not(:fullscreen):not([data-viewer-expanded]) .model-stage { flex: 1 1 0; width: 100%; height: auto; min-height: 0; }
+.v3-object-viewer-controls { display: flex; align-items: center; gap: 8px 16px; margin: 0 var(--v3-pad); padding: 9px 0; border-top: 1px solid var(--v3-line); border-bottom: 1px solid var(--v3-line); }
+.v3-object-viewer-controls .immersive-tools { gap: 3px; }
+.v3-object-viewer-controls .immersive-tools button, .v3-object-viewer-controls .immersive-light summary { min-height: 40px; height: 40px; padding: 8px 12px; border-radius: 7px; color: var(--v3-muted); font-size: 11px; letter-spacing: 0; text-transform: none; }
+.v3-object-viewer-controls .immersive-tools button:hover, .v3-object-viewer-controls .immersive-tools button[aria-pressed="true"] { color: var(--v3-ink); background: #26374e; }
 .immersive-light__panel { border: 1px solid var(--v3-line-strong); border-radius: 12px; background: var(--v3-chrome-solid); box-shadow: 0 14px 40px rgba(0, 0, 0, .2); }
+.v3-object-stage > .viewer:not(:fullscreen):not([data-viewer-expanded]) .stage-hint { position: static; inset: auto; flex: 0 0 auto; width: auto; max-width: none; margin: 10px var(--v3-pad) 0; color: var(--v3-faint); transform: none; font-size: 10px; line-height: 1.6; text-align: left; }
+.v3-object-stage > .viewer .viewer-start { margin-inline: var(--v3-pad); }
 .v3-object-title { position: relative; inset: auto; width: auto; max-width: var(--v3-max); margin: 27px auto 0; padding: 0 var(--v3-pad); pointer-events: auto; }
 .v3-object-title .v3-kicker { color: var(--v3-faint); }
 .v3-object-title h1 { max-width: 28ch; margin: 0; font-family: var(--v3-sans); font-size: clamp(30px, 3.8vw, 54px); font-weight: 500; letter-spacing: -.045em; line-height: 1.12; }
@@ -423,7 +428,15 @@ body .v3-explorer:has(.v3-collection-switch) .v3-filter-row select, body .v3-exp
   .v3-spatial-feature__intro .v3-editorial { font-size: 15px; }
   .v3-spatial-feature__works { gap: 12px; }
   .v3-object-stage { padding: 0 0 24px; }
-  .v3-object-stage > .viewer:not(:fullscreen):not([data-viewer-expanded]) > .model-stage { height: clamp(350px, 52svh, 500px); }
+  .v3-object-stage > .viewer:not(:fullscreen):not([data-viewer-expanded]) { display: flex; gap: 0; height: auto; min-height: 0; }
+  .v3-object-stage > .viewer:not(:fullscreen):not([data-viewer-expanded]) .model-stage { flex: 0 0 auto; height: clamp(350px, 52svh, 500px); min-height: 0; }
+  .v3-object-stage > .viewer:not(:fullscreen):not([data-viewer-expanded]) .v3-object-viewer-controls { align-items: center; gap: 6px 10px; margin: 0 var(--v3-pad); padding: 8px 0; }
+  .v3-object-stage > .viewer:not(:fullscreen):not([data-viewer-expanded]) .immersive-tools { justify-content: flex-start; gap: 1px; }
+  .v3-object-stage > .viewer:not(:fullscreen):not([data-viewer-expanded]) .immersive-tools button { min-width: 0; height: 40px; padding: 8px 9px; font-size: 10px; }
+  .v3-object-stage > .viewer:not(:fullscreen):not([data-viewer-expanded]) .immersive-light { position: relative; }
+  .v3-object-stage > .viewer:not(:fullscreen):not([data-viewer-expanded]) .immersive-light summary { min-height: 40px; padding: 8px 9px; font-size: 10px; }
+  .v3-object-stage > .viewer:not(:fullscreen):not([data-viewer-expanded]) .immersive-light[open] { flex-basis: 100%; }
+  .v3-object-stage > .viewer:not(:fullscreen):not([data-viewer-expanded]) .immersive-light__panel { position: static; width: 100%; margin-top: 8px; padding: 16px 0; border: 0; border-top: 1px solid var(--v3-line); border-radius: 0; background: transparent; box-shadow: none; }
   .v3-object-title { margin-top: 22px; }
   .v3-object-title h1 { font-size: 30px; }
   .v3-object-title p:last-child { font-size: 12px; }

@@ -4,7 +4,7 @@ import { getEventListeners, setMaxListeners } from 'node:events';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { createViewerRenderLoop, bindViewerRenderEvents } from '../src/lib/viewer-render-loop.mjs';
-import { bindViewerGestures, handleViewerKey, orbitViewer, RELEASE_AFTER_MS } from '../src/lib/viewer-input.mjs';
+import { bindViewerInput, bindViewerReset, handleViewerKey, orbitViewer } from '../src/lib/viewer-input.mjs';
 import { disposeViewerScene } from '../src/lib/viewer-resources.mjs';
 import { bindSpatialViewing } from '../src/lib/spatial-viewer.mjs';
 
@@ -60,290 +60,179 @@ test('first-frame readiness waits for a successful visible draw and fires once p
   f.loop.destroy();
 });
 
-function gesturePage() {
-  const observers = new Set();
-  const document = Object.assign(new EventTarget(), { fullscreenElement: null });
-  document.defaultView = Object.assign(new EventTarget(), {
-    IntersectionObserver: class {
-      constructor(callback, { threshold }) {
-        assert.equal(threshold, .4);
-        this.notify = ratio => callback([{ intersectionRatio: ratio }]);
-      }
-      observe() { observers.add(this); }
-      disconnect() { observers.delete(this); }
-    },
-  });
-  return {
-    document,
-    observers,
-    nativeFullscreen(root) {
-      document.fullscreenElement = root;
-      document.dispatchEvent(new Event('fullscreenchange'));
-    },
-  };
-}
-
-function gestureViewer(t, { enabled = true, wheelZoom = true, page = gesturePage() } = {}) {
-  const { document } = page;
-  const stage = new EventTarget(), attributes = new Set(), fading = new Set();
-  const canvas = Object.assign(new EventTarget(), {
-    ownerDocument: document, style: {}, clientWidth: 300, clientHeight: 300,
-    setPointerCapture() {}, releasePointerCapture() {}, getRootNode: () => document,
-  });
-  const root = Object.assign(new EventTarget(), {
-    querySelector: () => ({ classList: fading }),
-    toggleAttribute: (name, active) => active ? attributes.add(name) : attributes.delete(name),
-    contains: target => [root, stage, canvas].includes(target),
-  });
-  // DOMTokenList.remove() has the same effect as deleting this set member.
-  fading.remove = name => fading.delete(name);
+test('touch double-tap and native mouse double-click reset the live sculpture', () => {
+  const document = new EventTarget();
+  const canvas = Object.assign(new EventTarget(), { ownerDocument: document });
   const lifetime = new AbortController();
-  setMaxListeners(0, lifetime.signal);
-  const states = [];
-  let selections = 0, resets = 0, time = 0;
-  const gate = bindViewerGestures({
-    canvas, stage, root, signal: lifetime.signal, wheelZoom, enabled,
-    onSelect: () => { selections++; },
-    onReset: () => { resets++; },
-    onStateChange: state => states.push(state),
-  });
-  const controls = { enabled: true };
-  gate.setControls(controls);
-  t.after(() => lifetime.abort());
-
-  function pointer(type, { pointerType = 'touch', id = 1, x = 0, y = 0, button = 0, delta = 20, target, ...rest } = {}) {
-    time += delta;
-    const event = Object.assign(new Event(type), { pointerType, pointerId: id, button, clientX: x, clientY: y, pageX: x, pageY: y, ...rest });
+  let resets = 0;
+  bindViewerReset(canvas, () => { resets++; }, lifetime.signal);
+  const pointer = (type, time, { id = 1, x = 10, y = 10 } = {}) => {
+    const event = Object.assign(new Event(type), { pointerType: 'touch', pointerId: id, button: 0, clientX: x, clientY: y });
     Object.defineProperty(event, 'timeStamp', { value: time });
-    (target ?? (type === 'pointerdown' ? canvas : document)).dispatchEvent(event);
-  }
-  const tap = options => { pointer('pointerdown', options); pointer('pointerup', options); };
-  const wheel = (modifiers = {}) => {
-    const event = Object.assign(new Event('wheel', { cancelable: true }), modifiers);
-    canvas.dispatchEvent(event);
-    return event.defaultPrevented;
+    const target = type === 'pointerdown' ? canvas : document;
+    target.dispatchEvent(event);
   };
-  return { page, canvas, root, stage, gate, controls, attributes, fading, states, lifetime, pointer, tap, wheel, get selections() { return selections; }, get resets() { return resets; } };
-}
+  const tap = (time, point) => { pointer('pointerdown', time, point); pointer('pointerup', time + 10, point); };
 
-test('unselected wheel keeps browser defaults; selected and fullscreen grant ordinary sculpture wheel', t => {
-  const v = gestureViewer(t);
-  let dolly = 0;
-  v.canvas.addEventListener('wheel', event => { dolly++; event.preventDefault(); });
-  assert.equal(v.controls.enabled, true);
-  assert.equal(v.canvas.style.touchAction, 'pan-y');
-  assert.equal(v.wheel(), false);
-  v.tap();
-  assert.equal(v.wheel(), true);
-  for (const modifier of ['ctrlKey', 'metaKey', 'altKey', 'shiftKey']) assert.equal(v.wheel({ [modifier]: true }), false);
-  v.gate.deselect();
-  v.page.nativeFullscreen({});
-  assert.equal(v.wheel(), false, 'An unrelated fullscreen element should have no effect');
-  v.page.nativeFullscreen(v.root);
-  assert.equal(v.wheel(), true);
-  v.page.nativeFullscreen(null);
-  assert.equal(v.wheel(), false);
-  assert.equal(dolly, 2);
+  tap(10);
+  tap(100);
+  assert.equal(resets, 1);
+  canvas.dispatchEvent(Object.assign(new Event('dblclick'), { sourceCapabilities: { firesTouchEvents: true } }));
+  assert.equal(resets, 1, 'Do not reset twice on a browser-generated touch double-click');
+  canvas.dispatchEvent(new Event('dblclick'));
+  assert.equal(resets, 2);
+  tap(500);
+  tap(900);
+  tap(980, { x: 70 });
+  assert.equal(resets, 2, 'Ignore taps outside the time or distance threshold');
 
-  const hero = gestureViewer(t, { wheelZoom: false });
-  hero.canvas.addEventListener('wheel', event => event.preventDefault());
-  hero.tap();
-  assert.equal(hero.wheel(), false);
-  assert.equal(hero.controls.enableZoom, true, 'Keep two-finger zoom available');
+  pointer('pointerdown', 1200);
+  pointer('pointermove', 1210, { x: 30 });
+  pointer('pointerup', 1220);
+  tap(1260);
+  assert.equal(resets, 2, 'Dragging cannot be the first tap');
+  pointer('pointerdown', 1300);
+  pointer('pointerdown', 1310, { id: 2 });
+  pointer('pointerup', 1320, { id: 2 });
+  pointer('pointerup', 1330);
+  tap(1380);
+  assert.equal(resets, 2, 'Pinching cannot count as taps');
+
+  lifetime.abort();
+  canvas.dispatchEvent(new Event('dblclick'));
+  assert.equal(resets, 2);
 });
 
-test('OrbitControls tracks an unselected drag and receives the same pointer when handling starts', t => {
-  const v = gestureViewer(t);
+function toggleFixture(t, wheelZoom = true) {
+  t.mock.timers.enable({ apis: ['setTimeout'] });
+  const document = new EventTarget();
+  // Node's EventTarget doesn't separate capture and target listeners. Model
+  // capture-first dispatch explicitly so Three sees only unfiltered wheel events.
+  const capture = new EventTarget();
+  const canvas = Object.assign(new EventTarget(), {
+    ownerDocument: document, style: {}, clientHeight: 300,
+    getRootNode: () => document, setPointerCapture() {}, releasePointerCapture() {},
+  });
+  canvas.addEventListener = (type, callback, options) => {
+    if (type === 'wheel' && options?.capture) capture.addEventListener(type, callback, options);
+    else EventTarget.prototype.addEventListener.call(canvas, type, callback, options);
+  };
+  const lifetime = new AbortController();
   const camera = new THREE.PerspectiveCamera();
   camera.position.set(0, 0, 4);
-  const controls = new OrbitControls(camera, v.canvas);
-  t.after(() => controls.dispose());
-  assert.equal(v.canvas.style.touchAction, 'none', 'Three overrides touch-action when it connects');
-  v.gate.setControls(controls);
-  assert.equal(v.canvas.style.touchAction, 'pan-y');
-  assert.equal(controls.rotateSpeed, 0);
-  assert.equal(controls.enableZoom, false);
-  assert.equal(controls.enablePan, false);
-
-  v.pointer('pointerdown');
-  v.pointer('pointermove', { x: 5 });
-  assert.equal(v.gate.isSelected(), false);
-  assert.ok(camera.position.distanceTo(new THREE.Vector3(0, 0, 4)) < 1e-9);
-  v.pointer('pointermove', { x: 10 });
-  assert.equal(v.gate.isSelected(), true);
-  assert.equal(controls.rotateSpeed, .9);
-  assert.equal(controls.enablePan, true);
-  assert.ok(Math.abs(camera.position.x) > 0, 'The threshold-crossing movement reaches OrbitControls');
-  v.pointer('pointerup', { x: 10 });
-
-  v.gate.deselect();
-  v.pointer('pointerdown');
-  v.pointer('pointerdown', { id: 2, x: 50 });
-  assert.equal(v.gate.isSelected(), true, 'Enable dolly before Three receives finger two');
-  const distance = camera.position.distanceTo(controls.target);
-  v.pointer('pointermove', { id: 2, x: 75 });
-  assert.notEqual(camera.position.distanceTo(controls.target), distance);
-  v.pointer('pointerup', { id: 2, x: 75 });
-  v.pointer('pointerup');
-});
-
-test('tap selection has no press timeout; vertical swipes and cancelled pointers cannot tap', t => {
-  const v = gestureViewer(t, { enabled: false });
-  v.tap();
-  assert.equal(v.selections, 0, 'Do not handle the sculpture before it is live');
-  v.gate.setEnabled(true);
-  v.pointer('pointerdown');
-  v.pointer('pointermove', { x: 4, y: 20 });
-  assert.equal(v.selections, 0);
-  v.pointer('pointercancel', { x: 4, y: 20 });
-  v.pointer('pointerup');
-  assert.equal(v.selections, 0);
-  v.pointer('pointerdown');
-  v.pointer('pointerup', { delta: 4000 });
-  assert.equal(v.selections, 1);
-  assert.equal(v.attributes.has('data-selected'), true);
-  v.gate.setEnabled(false);
-  assert.equal(v.attributes.has('data-selected'), false);
-  assert.equal(v.canvas.style.touchAction, 'pan-y');
-  assert.equal(v.controls.enabled, true, 'The gesture gate does not own OrbitControls lifecycle');
-});
-
-test('pointer double-tap and double-click reset only within the time and distance limits', t => {
-  const v = gestureViewer(t);
-  v.tap({ x: 15 });
-  v.tap({ x: 30 });
-  assert.equal(v.resets, 1);
-  v.tap({ x: 15, delta: 400 });
-  v.tap({ x: 56 });
-  assert.equal(v.resets, 1);
-  v.tap({ x: 56, delta: 350 });
-  assert.equal(v.resets, 1);
-  v.pointer('pointerdown', { x: 56 });
-  v.pointer('pointermove', { x: 69 });
-  v.pointer('pointerup', { x: 56 });
-  v.tap({ x: 56 });
-  assert.equal(v.resets, 1, 'A drag that returns to its start is still not a tap');
-  v.gate.deselect();
-  v.pointer('pointerdown', { pointerType: 'mouse' });
-  v.pointer('pointermove', { pointerType: 'mouse', x: 1 });
-  assert.equal(v.gate.isSelected(), true);
-  v.pointer('pointerup', { pointerType: 'mouse', x: 1 });
-  v.tap({ pointerType: 'mouse' });
-  v.tap({ pointerType: 'mouse' });
-  assert.equal(v.resets, 2);
-});
-
-test('selection is exclusive and releases on Escape, outside interaction, scroll and visibility', t => {
-  const page = gesturePage();
-  const first = gestureViewer(t, { page });
-  const second = gestureViewer(t, { page });
-  const { document } = page;
-  first.tap();
-  second.tap();
-  assert.equal(first.gate.isSelected(), false);
-  assert.equal(second.gate.isSelected(), true);
-
-  const expectRelease = trigger => {
-    first.tap();
-    assert.equal(first.gate.isSelected(), true);
-    trigger();
-    assert.equal(first.gate.isSelected(), false);
+  const controls = new OrbitControls(camera, canvas);
+  controls.enableZoom = wheelZoom;
+  controls.rotateSpeed = .9;
+  const changes = [];
+  let resets = 0, time = 0;
+  const input = bindViewerInput({
+    canvas, controls, signal: lifetime.signal, wheelZoom,
+    onToggle: value => changes.push(value), onReset: () => { resets++; },
+  });
+  t.after(() => { lifetime.abort(); controls.dispose(); });
+  function pointer(type, { pointerType = 'mouse', id = 1, x = 10, y = 10, button = 0, elapsed = 10 } = {}) {
+    time += elapsed;
+    const event = Object.assign(new Event(type), { pointerType, pointerId: id, button, clientX: x, clientY: y, pageX: x, pageY: y });
+    Object.defineProperty(event, 'timeStamp', { value: time });
+    (type === 'pointerdown' ? canvas : document).dispatchEvent(event);
+    // A capture-target pointercancel also reaches Three's canvas listener.
+    if (type === 'pointercancel') canvas.dispatchEvent(event);
+  }
+  const tap = point => { pointer('pointerdown', point); pointer('pointerup', point); };
+  const wheel = () => {
+    const event = Object.assign(new Event('wheel', { cancelable: true }), { deltaY: 120, deltaMode: 0, clientX: 10, clientY: 10 });
+    let stopped = false;
+    event.stopImmediatePropagation = () => { stopped = true; };
+    capture.dispatchEvent(event);
+    if (!stopped) canvas.dispatchEvent(event);
+    return event.defaultPrevented;
   };
-  expectRelease(() => document.dispatchEvent(Object.assign(new Event('keydown'), { key: 'Escape' })));
-  expectRelease(() => first.pointer('pointerdown', { target: document }));
-  expectRelease(() => document.defaultView.dispatchEvent(new Event('scroll')));
-  expectRelease(() => { document.hidden = true; document.dispatchEvent(new Event('visibilitychange')); });
-  document.hidden = false;
-  expectRelease(() => page.observers.values().next().value.notify(.39));
-  expectRelease(() => first.pointer('pointerleave', { pointerType: 'mouse', target: first.root, buttons: 0 }));
-  first.tap();
-  first.pointer('pointerleave', { pointerType: 'mouse', target: first.stage, buttons: 0, relatedTarget: first.root });
-  assert.equal(first.gate.isSelected(), true, 'Moving toward caption buttons keeps selection');
-  first.pointer('pointerdown');
-  document.defaultView.dispatchEvent(new Event('scroll'));
-  assert.equal(first.gate.isSelected(), true, 'Scroll cannot discard a live gesture');
-  first.pointer('pointercancel');
-  document.defaultView.dispatchEvent(new Event('scroll'));
-  assert.equal(first.gate.isSelected(), false);
-});
+  return { canvas, capture, document, lifetime, controls, camera, input, changes, pointer, tap, wheel, get resets() { return resets; } };
+}
 
-test('selection ring fades for its final 1.5 seconds and renews on interaction until release', t => {
-  t.mock.timers.enable({ apis: ['setTimeout'] });
-  const v = gestureViewer(t);
+test('manual viewer clicks pause and resume handling while leaving page wheel available when paused', t => {
+  const v = toggleFixture(t);
+  assert.equal(v.input.isActive(), true);
+  assert.equal(v.canvas.style.touchAction, 'none');
+  assert.equal(v.wheel(), true);
   v.tap();
-  t.mock.timers.tick(RELEASE_AFTER_MS - 1500 - 1);
-  assert.equal(v.fading.size, 0);
+  t.mock.timers.tick(339);
+  assert.equal(v.input.isActive(), true);
   t.mock.timers.tick(1);
-  assert.equal(v.fading.has('is-fading'), true);
-  v.gate.interact();
-  assert.equal(v.fading.size, 0);
-  t.mock.timers.tick(RELEASE_AFTER_MS - 1);
-  assert.equal(v.gate.isSelected(), true);
-  assert.equal(v.fading.has('is-fading'), true);
-  t.mock.timers.tick(1);
-  assert.equal(v.gate.isSelected(), false);
-  assert.equal(v.fading.size, 0);
-  v.pointer('pointerdown');
-  v.pointer('pointermove', { x: 15 });
-  t.mock.timers.tick(RELEASE_AFTER_MS * 2);
-  assert.equal(v.gate.isSelected(), true, 'An active pointer suppresses idle release');
-  v.pointer('pointerup', { x: 15 });
-  t.mock.timers.tick(RELEASE_AFTER_MS);
-  assert.equal(v.gate.isSelected(), false);
-});
+  assert.equal(v.input.isActive(), false);
+  assert.equal(v.canvas.style.touchAction, 'pan-y');
+  assert.equal(v.controls.enableZoom, false);
+  assert.equal(v.controls.enablePan, false);
+  assert.equal(v.controls.enabled, true);
+  assert.equal(v.wheel(), false);
 
-test('native and overlay fullscreen transitions are idempotent and return to unselected', t => {
-  t.mock.timers.enable({ apis: ['setTimeout'] });
-  const v = gestureViewer(t);
-  v.tap();
-  v.page.nativeFullscreen(v.root);
-  assert.deepEqual(v.states, [{ selected: true, fullscreen: false }, { selected: false, fullscreen: true }]);
-  assert.equal(v.attributes.has('data-selected'), false);
+  v.pointer('pointerdown', { pointerType: 'touch' });
+  v.pointer('pointermove', { pointerType: 'touch', y: 50 });
+  v.pointer('pointercancel', { pointerType: 'touch', y: 50 });
+  t.mock.timers.tick(340);
+  assert.equal(v.input.isActive(), false, 'Vertical swipe cannot resume handling');
+  v.tap({ pointerType: 'touch' });
+  t.mock.timers.tick(340);
+  assert.equal(v.input.isActive(), true);
   assert.equal(v.controls.rotateSpeed, .9);
-  t.mock.timers.tick(RELEASE_AFTER_MS * 2);
-  assert.equal(v.fading.size, 0);
   assert.equal(v.controls.enablePan, true);
-  v.page.nativeFullscreen(v.root);
-  v.page.nativeFullscreen(null);
-  assert.deepEqual(v.states.at(-1), { selected: false, fullscreen: false });
-  assert.equal(v.states.length, 3);
-  assert.equal(v.canvas.style.touchAction, 'pan-y');
-
-  v.gate.setFullscreen(true);
-  v.gate.setFullscreen(true);
-  v.page.nativeFullscreen({});
-  v.page.nativeFullscreen(null);
-  assert.equal(v.states.length, 4);
-  assert.equal(v.gate.isFullscreen(), true);
-  assert.equal(v.controls.enableZoom, true);
-  v.gate.setFullscreen(false);
-  assert.deepEqual(v.states.at(-1), { selected: false, fullscreen: false });
-  assert.equal(v.states.length, 5);
-  assert.equal(v.canvas.style.touchAction, 'pan-y');
+  assert.deepEqual(v.changes, [false, true]);
 });
 
-test('disposing a viewer clears selection, ring timers, observers and input listeners', t => {
-  t.mock.timers.enable({ apis: ['setTimeout'] });
-  const v = gestureViewer(t);
+test('drag and pinch still move the sculpture and neither toggles the viewer', t => {
+  const v = toggleFixture(t, false);
+  assert.equal(v.wheel(), false, 'Comparison can leave the page wheel available');
+  const before = v.camera.position.clone();
+  v.pointer('pointerdown');
+  v.pointer('pointermove', { x: 30 });
+  v.pointer('pointerup', { x: 10 });
+  assert.ok(v.camera.position.distanceTo(before) > .01);
+  v.pointer('pointerdown', { pointerType: 'touch' });
+  v.pointer('pointerdown', { pointerType: 'touch', id: 2, x: 50 });
+  const distance = v.camera.position.distanceTo(v.controls.target);
+  v.pointer('pointermove', { pointerType: 'touch', id: 2, x: 72 });
+  assert.notEqual(v.camera.position.distanceTo(v.controls.target), distance);
+  v.pointer('pointerup', { pointerType: 'touch', id: 2, x: 72 });
+  v.pointer('pointerup', { pointerType: 'touch' });
+  t.mock.timers.tick(340);
+  assert.equal(v.resets, 0);
+  assert.deepEqual(v.changes, []);
+});
+
+test('double-click and double-tap reset without toggling either handling state', t => {
+  const v = toggleFixture(t);
   v.tap();
-  t.mock.timers.tick(RELEASE_AFTER_MS - 1500);
+  t.mock.timers.tick(100);
+  v.tap();
+  v.canvas.dispatchEvent(new Event('dblclick'));
+  t.mock.timers.tick(400);
+  assert.equal(v.resets, 1);
+  assert.deepEqual(v.changes, []);
+
+  v.input.setActive(false);
+  v.tap({ pointerType: 'touch', elapsed: 400 });
+  t.mock.timers.tick(100);
+  v.tap({ pointerType: 'touch' });
+  t.mock.timers.tick(400);
+  assert.equal(v.resets, 2);
+  assert.equal(v.input.isActive(), false);
+  assert.deepEqual(v.changes, [false]);
+});
+
+test('explicit mode change and disposal cancel pending single click', t => {
+  const v = toggleFixture(t);
+  v.tap();
+  v.input.setActive(true);
+  t.mock.timers.tick(400);
+  assert.deepEqual(v.changes, []);
+  v.tap();
   v.lifetime.abort();
-  t.mock.timers.tick(RELEASE_AFTER_MS);
-  assert.equal(v.gate.isSelected(), false);
-  assert.equal(v.attributes.size, 0);
-  assert.equal(v.fading.size, 0);
-  assert.equal(v.page.observers.size, 0);
-  assert.equal(v.states.length, 1);
-  assert.equal(v.canvas.style.touchAction, 'pan-y');
-  for (const [target, types] of [
-    [v.canvas, ['pointerdown', 'lostpointercapture', 'wheel']],
-    [v.page.document, ['pointerdown', 'pointermove', 'pointerup', 'pointercancel', 'keydown', 'fullscreenchange', 'visibilitychange']],
-    [v.page.document.defaultView, ['blur', 'scroll']],
-    [v.stage, ['pointerleave']],
-    [v.root, ['pointerleave']],
-  ]) for (const type of types) assert.equal(getEventListeners(target, type).length, 0);
-  v.tap();
-  assert.equal(v.selections, 1);
+  t.mock.timers.tick(400);
+  v.input.setActive(false);
+  assert.deepEqual(v.changes, []);
+  assert.equal(getEventListeners(v.capture, 'wheel').length, 0);
+  assert.equal(getEventListeners(v.canvas, 'wheel').length, 1, 'Only Three’s wheel listener remains');
+  assert.equal(getEventListeners(v.document, 'pointermove').length, 0);
 });
 
 test('all activation modes use the same offscreen gate and retain invalidations until visible', () => {
