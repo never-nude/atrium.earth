@@ -59,7 +59,7 @@ const recordRoute = (position: number) => `${withBase(v3WorkRoute(visit.stops[po
       </div>
       <div class="curated-stop__viewer">
         <Viewer glb={withBase(stop.work.modelGlb)} modelBytes={stop.work.modelBytes} poster={withBase(stop.work.thumbnailImage)} title={stop.work.title}
-          hud={false} immersive={true} autoStart={false} autoRotate={false} wheelZoom={false} posterLoading="lazy"
+          hud={false} immersive={true} autoStart={false} wheelZoom={false} posterLoading="lazy"
           upAxis={stop.work.modelUpAxis} modelTransform={stop.work.modelTransform} materialAppearance={stop.work.materialAppearance} />
       </div>
       <div class="curated-stop__copy">
@@ -101,7 +101,6 @@ const recordRoute = (position: number) => `${withBase(v3WorkRoute(visit.stops[po
   .curated-stop__viewer :global(.viewer:not(:fullscreen):not([data-viewer-expanded]) > .model-stage) { width:100%; height:clamp(364px,calc(45vw - 56px),564px); min-height:0; background:var(--v3-well); }
   .curated-stop__viewer :global(.viewer:not(:fullscreen):not([data-viewer-expanded]) .immersive-tools:not([hidden])) { position:static; display:grid; grid-template-columns:36px 36px repeat(3,minmax(0,1fr)); width:100%; min-height:44px; padding:0; gap:4px; border:0; border-radius:0; background:transparent; backdrop-filter:none; transform:none; }
   .curated-stop__viewer :global(.immersive-tools [data-zoom-in]), .curated-stop__viewer :global(.immersive-tools [data-zoom-out]) { display:inline-flex; align-items:center; justify-content:center; }
-  .curated-stop__viewer :global(.immersive-tools [data-tool-wire]) { display:none; }
   .curated-stop__viewer :global(.immersive-tools button) { min-width:0; min-height:44px; padding:5px 3px; font-size:10px; letter-spacing:0; }
   .curated-stop__viewer :global(.stage-hint) { display:none!important; }
   .curated-stop__number { margin:0 0 14px; color:var(--visit-accent); font-size:10px; letter-spacing:.1em; text-transform:uppercase; }
@@ -137,10 +136,6 @@ const recordRoute = (position: number) => `${withBase(v3WorkRoute(visit.stops[po
     .curated-stop__introduction { grid-column: 1; grid-row: 1; }
     .curated-stop__viewer { grid-column: 1; grid-row: 2; }
     .curated-stop__viewer :global(.viewer:not(:fullscreen):not([data-viewer-expanded]) > .model-stage) { height: 250px; }
-    .curated-stop__viewer :global(.viewer:not(:fullscreen):not([data-viewer-expanded]) .immersive-tools:not([hidden])) { grid-template-columns: 36px 36px minmax(0, 1fr) minmax(0, 1fr); }
-    .curated-stop__viewer :global(.viewer:not(:fullscreen):not([data-viewer-expanded]) [data-tool-rotate]) { grid-column: 3 / span 2; }
-    .curated-stop__viewer :global(.viewer:not(:fullscreen):not([data-viewer-expanded]) [data-tool-reset]) { grid-column: 1 / span 2; }
-    .curated-stop__viewer :global(.viewer:not(:fullscreen):not([data-viewer-expanded]) [data-tool-fullscreen]) { grid-column: 3 / span 2; }
     .curated-stop__copy { grid-column: 1; grid-row: 3; }
     .curated-stop__number { display: none; }
     .curated-stop__introduction h3 { margin-bottom: 13px; font-size: 22px; }

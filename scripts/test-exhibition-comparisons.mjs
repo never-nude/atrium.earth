@@ -71,9 +71,17 @@ try {
       assert(a.width > 0 && b.width > 0 && Math.abs(a.top - b.top) < 1, `Models are not side by side at ${width}px`);
       assert(a.left >= 0 && a.right <= b.left + 1 && b.right <= width + 1, `Pair overflows at ${width}px`);
     }
-    for (const button of await pair.locator('.immersive-tools button:visible').all()) {
-      const box = await button.boundingBox();
-      assert(box.height >= 44 && box.x >= 0 && box.x + box.width <= width + 1, `Control clipped at ${width}px`);
+    assert.equal(await pair.getByRole('button', { name: 'Reset view' }).count(), 0);
+    for (const viewer of await pair.locator('.comparison__viewer').all()) {
+      const stage = await viewer.locator('[data-stage]').boundingBox();
+      const row = await viewer.getByRole('group', { name: '3D viewing tools' }).getByRole('button').all();
+      assert.deepEqual(await Promise.all(row.map(button => button.textContent())), ['Wireframe', 'Auto-rotate', 'Full screen']);
+      assert.equal(await viewer.getByRole('button', { name: 'Auto-rotate' }).getAttribute('aria-pressed'), 'false', 'Reduced motion stops automatic rotation');
+      const boxes = await Promise.all(row.map(button => button.boundingBox()));
+      for (const box of boxes) {
+        assert(box.height >= 44 && box.x >= stage.x - 1 && box.x + box.width <= stage.x + stage.width + 1, `Control clipped at ${width}px`);
+        assert(Math.abs(box.y - boxes[0].y) < 1, `Control is outside its toolbar row at ${width}px`);
+      }
     }
     const canvas = pair.locator('.viewer-canvas').first();
     const box = await canvas.boundingBox();
@@ -81,7 +89,7 @@ try {
     await page.mouse.down();
     await page.mouse.move(box.x + box.width * .7, box.y + box.height * .55, { steps: 5 });
     await page.mouse.up();
-    await pair.locator('[data-tool-reset]:visible').first().click();
+    await canvas.dblclick();
     await pair.locator('summary').click();
     assert(await pair.locator('details[open]').count());
     await pair.locator('summary').click();

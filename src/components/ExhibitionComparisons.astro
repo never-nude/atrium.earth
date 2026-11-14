@@ -32,7 +32,6 @@ const comparisons = exhibition.comparisons ?? [];
                 hud={false}
                 immersive={true}
                 autoStart="visible"
-                autoRotate={false}
                 wheelZoom={false}
                 posterLoading="lazy"
                 upAxis={work.modelUpAxis}
@@ -81,7 +80,6 @@ const comparisons = exhibition.comparisons ?? [];
   .comparison__artist { margin: 0 0 10px; color: var(--ex-accent); font-size: .68rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
   .comparison__work h3 { margin: 0; color: var(--v3-ink); font-family: var(--v3-serif); font-size: clamp(1.15rem, 2vw, 2.1rem); font-weight: 500; line-height: 1.12; }
   .comparison__viewer { height: clamp(300px, 48vw, 630px); min-width: 0; }
-  .comparison__viewer :global([data-tool-wire]) { display: none; }
   .comparison__look { margin: 28px 0 40px; padding: 20px 0; border-top: 1px solid var(--v3-line); border-bottom: 1px solid var(--v3-line); color: var(--v3-ink); font-family: var(--v3-serif); font-size: clamp(1.05rem, 1.5vw, 1.35rem); line-height: 1.5; }
   .comparison__look span { display: block; margin-bottom: 9px; color: var(--ex-accent); font-family: var(--v3-sans); font-size: .63rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
   .comparison__note { min-width: 0; }
@@ -100,11 +98,13 @@ const comparisons = exhibition.comparisons ?? [];
     .comparison__work figcaption { min-height: 128px; }
     .comparison__artist { font-size: .57rem; letter-spacing: .04em; }
     .comparison__viewer { height: clamp(235px, 76vw, 430px); }
-    .comparison__viewer :global([data-tool-rotate]) { display: none; }
-    /* Reset view and Full screen share the existing 52px control gutter. */
-    .comparison__viewer :global(.viewer:not(:fullscreen) .immersive-tools) { top: calc(100% + 4px); bottom: auto; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px; width: 100%; }
-    .comparison__viewer :global(.immersive-tools button) { padding-inline: 2px; min-width: 0; font-size: .58rem; letter-spacing: .02em; }
+    .comparison__viewer :global(.viewer:not(:fullscreen):not([data-viewer-expanded]) .immersive-tools) { top: calc(100% + 4px); bottom: auto; gap: 2px; width: 100%; }
+    .comparison__viewer :global(.immersive-tools button) { min-width: 0; padding-inline: 3px; font-size: 10px; letter-spacing: 0; text-transform: none; }
     .comparison__notes { grid-template-columns: 1fr; gap: 36px; }
     .comparison__look { margin-top: 20px; }
+  }
+  @media (max-width: 360px) {
+    .comparison__viewer :global(.viewer:not(:fullscreen):not([data-viewer-expanded]) .immersive-tools:not([hidden])) { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; }
+    .comparison__viewer :global(.viewer:not(:fullscreen):not([data-viewer-expanded]) .immersive-tools button) { padding-inline: 0; font-size: 9px; white-space: normal; }
   }
 </style>

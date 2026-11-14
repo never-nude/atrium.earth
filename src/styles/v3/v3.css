@@ -469,7 +469,6 @@ em, i { font-style: normal; }
 
 @media (max-width: 360px) {
   /* Narrowest phones: double-tap already resets (the hint says so); keep the bottom line clear. */
-  .v3-object-stage .immersive-tools [data-tool-reset] { display: none; }
 }
 
 @media (max-width: 520px) {

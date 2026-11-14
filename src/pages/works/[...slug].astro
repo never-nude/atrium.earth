@@ -4,7 +4,7 @@ import DimensionValue from '../../components/DimensionValue.astro';
 import V3WorkCard from '../../components/v3/V3WorkCard.astro';
 import V3Layout from '../../layouts/v3/V3Layout.astro';
 import { workBySlug, works, type Work } from '../../lib/catalog';
-import { exhibitions, neighborsFor, v3ExhibitionRoute, v3WorkRoute, workAutoRotates } from '../../lib/v3';
+import { exhibitions, neighborsFor, v3ExhibitionRoute, v3WorkRoute } from '../../lib/v3';
 import { withBase } from '../../lib/urls';
 import { museumLabelFor } from '../../lib/museum-label.mjs';
 import visitsData from '../../data/curated-visits.json';
@@ -62,7 +62,6 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
       hud={false}
       immersive={true}
       autoStart={false}
-      autoRotate={workAutoRotates(work)}
       displayControls={true}
       spatialViewing={work.spatialAccess.enabled}
       museumLabel={museumLabelFor(work)}
@@ -195,6 +194,8 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
   .work-journey p { margin: 0; color: var(--v3-muted); font-size: 12px; }
   .work-journey a { display: inline-flex; align-items: center; min-height: 44px; color: var(--v3-signal); font-size: 12px; text-underline-offset: 4px; }
   .v3-estimate-evidence { display: block; margin-top: 8px; font-size: 12px; line-height: 1.6; color: var(--v3-muted); }
+  .v3-object-stage :global(.viewer:is(:fullscreen, [data-viewer-expanded]) > .v3-object-viewer-controls) { position: fixed; inset: auto 12px max(36px, env(safe-area-inset-bottom)) 12px; z-index: 20; justify-content: center; gap: 0 12px; margin: 0; border: 0; padding: 0; }
+  .v3-object-stage :global(.viewer:is(:fullscreen, [data-viewer-expanded]) .v3-object-viewer-controls .immersive-tools:not([hidden])) { position: static !important; flex: 0 0 auto; }
   @media (max-width: 700px) {
     .v3-object-stage :global(.stage-hint) { display: none; }
     .v3-object-stage :global(.immersive-tools button), .v3-object-stage :global(.immersive-light summary) { min-height: 44px; }

@@ -17,7 +17,13 @@ const context = { exhibitionSlug, works, captions, previews };
 const before = JSON.stringify({ visit, works, captions, previews });
 assert.equal(validateCuratedVisit(visit, context), visit);
 assert.equal(visit.stops.length, 6);
-assert.equal(exhibition.workSlugs.length, 61, 'The full exhibition retains all61 works');
+assert.equal(exhibition.workSlugs.length, 60, 'The full exhibition has 60 works after deinstalling its former lead');
+const retiredLead = 'europe/eduardo-chillida-how-profound-is-the-air';
+assert.ok(!exhibition.workSlugs.includes(retiredLead));
+assert.ok(!captions[retiredLead]);
+assert.ok(!visit.stops.some(stop => stop.workSlug === retiredLead));
+assert.ok(!read('featured-works').works.some(entry => entry.slug === retiredLead));
+assert.ok(records.some(work => work.slug === retiredLead && !work.hidden));
 assert.equal(new Set(visit.stops.map(stop => stop.workSlug)).size, 6);
 assert.ok(visit.stops.reduce((sum, stop) => sum + previews[stop.workSlug].bytes, 0) < 12 * 1024 * 1024, 'The six existing previews keep the short route small');
 assert.equal(visit.provenance.unattendedGeneration, false);
@@ -67,4 +73,4 @@ for (const duplicate of [
   `visit=${visit.id}&stop=1&exhibition=${exhibitionSlug}&exhibition=${exhibitionSlug}`,
 ]) assert.equal(visitPositionFromSearch(duplicate, handoff), null, 'Duplicate context parameters are rejected');
 assert.equal(JSON.stringify({ visit, works, captions, previews }), before, 'The guide never mutates object, preview or exhibition records');
-console.log(`Curated visit passed: six existing works, seven caption facts, full61 retained, ${rejected} rejected editions, bounded URL handoffs and unchanged records.`);
+console.log(`Curated visit passed: six existing works, seven caption facts, 60 exhibition works, ${rejected} rejected editions, bounded URL handoffs and unchanged records.`);
