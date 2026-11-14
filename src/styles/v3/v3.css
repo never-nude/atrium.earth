@@ -229,7 +229,6 @@ em, i { font-style: normal; }
 .v3-wing-hero__meta strong { color: var(--v3-ink); font-family: var(--v3-serif); font-size: 1rem; font-weight: 500; letter-spacing: 0; text-transform: none; }
 .v3-wing-hero__viewer { min-width: 0; height: min(74svh, 760px); }
 .v3-wing-hero__viewer .viewer, .v3-wing-hero__viewer .model-stage { width: 100%; height: 100%; min-height: 0; }
-.v3-wing-hero__viewer .model-stage { background: transparent !important; }
 .v3-wing-hero__viewer [data-poster] { -webkit-mask-image: radial-gradient(ellipse farthest-side at 50% 50%, #000 58%, transparent 97%); mask-image: radial-gradient(ellipse farthest-side at 50% 50%, #000 58%, transparent 97%); }
 .v3-wing-hero__viewer .stage-hint { top: auto; bottom: 80px; }
 

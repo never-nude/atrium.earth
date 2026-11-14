@@ -1,6 +1,6 @@
 /* Import pages share the museum's quiet typography and rendered object portraits. */
 .v3-addition { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(28px, 5vw, 90px); padding: 42px 0; border-top: 1px solid var(--v3-line); color: var(--v3-ink); text-decoration: none; align-items: center; }
-.v3-addition__images { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); min-width: 0; overflow: hidden; background: #15243a; }
+.v3-addition__images { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); min-width: 0; overflow: hidden; }
 .v3-addition__images img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: contain; transition: transform .4s ease; }
 .v3-addition:hover .v3-addition__images img { transform: scale(1.035); }
 .v3-addition__copy { min-width: 0; }
