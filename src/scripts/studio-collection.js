@@ -1,26 +1,30 @@
 import { legacyWingRoutes } from '../data/wing-legacy-routes';
 import { withBase } from '../lib/urls';
+import { COLLECTION_PAGE_SIZE, COLLECTION_FILTER_KEYS, normalizeCollectionText, unpackCollectionIndex, readCollectionState, writeCollectionState, selectCollectionWindow, collectionPageNumber } from '../lib/collection-window.mjs';
+import { createCollectionCard } from '../lib/collection-card.mjs';
+import { groupMakerFacet } from '../lib/maker-groups.mjs';
 
 // Framed miniatures reuse one native viewer and never create collection tools or nested frames.
 const isStudioPeek = window.parent !== window && new URLSearchParams(location.search).get('studio-peek') === '1';
 if (!isStudioPeek && !document.documentElement.classList.contains('studio-peek')) {
 // Collection enhancements preserve the native work viewer and its model settings.
 const STORAGE_KEY = 'atrium-studio-saved-v1';
-const PAGE_SIZE = 60;
-const FILTER_KEYS = ['wing', 'era', 'place', 'material', 'size'];
-const STATE_KEYS = ['q', 'maker', ...FILTER_KEYS, 'sort', 'saved', 'density'];
+const PAGE_SIZE = COLLECTION_PAGE_SIZE;
+const FILTER_KEYS = COLLECTION_FILTER_KEYS;
 const collator = new Intl.Collator(undefined, { sensitivity: 'base', numeric: true });
 const saveButtons = new Map();
 const explorers = [];
+let controlId = 0;
 let activePeek = null;
 let peekOpenTimer = 0;
 let peekCloseTimer = 0;
 let peekPendingCard = null;
 let storageAvailable = true;
 let saved = readSaved();
+let enhancePeekCards = () => {};
 
 function normalize(value) {
-  return String(value || '').normalize('NFKD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase().replace(/\s+/g, ' ').trim();
+  return normalizeCollectionText(value);
 }
 
 function workPath(value) {
@@ -83,7 +87,13 @@ function updateSavedUI() {
 }
 
 function addSaveButton(container, pathname, title, objectPage = false) {
-  if (!pathname || container.querySelector(':scope > [data-studio-save]')) return;
+  if (!pathname) return;
+  const existing = container.querySelector(':scope > [data-studio-save]');
+  if (existing) {
+    if (!saveButtons.has(pathname)) saveButtons.set(pathname, new Set());
+    saveButtons.get(pathname).add(existing);
+    return;
+  }
   const button = document.createElement('button');
   button.type = 'button';
   button.className = `studio-save${objectPage ? ' studio-save--object' : ''}`;
@@ -92,7 +102,8 @@ function addSaveButton(container, pathname, title, objectPage = false) {
   const label = document.createElement('span');
   label.className = 'studio-save-label';
   button.append(icon(), label);
-  container.append(button);
+  if (objectPage) container.insertBefore(button, container.querySelector('.v3-object-nav'));
+  else container.append(button);
   if (!saveButtons.has(pathname)) saveButtons.set(pathname, new Set());
   saveButtons.get(pathname).add(button);
 }
@@ -134,6 +145,8 @@ function selectControl(labelText, className, dataKey, options) {
   const span = document.createElement('span');
   span.textContent = labelText;
   const select = document.createElement('select');
+  select.id = `studio-collection-control-${++controlId}`;
+  label.htmlFor = select.id;
   select.dataset[dataKey] = '';
   for (const [value, text] of options) {
     const option = document.createElement('option');
@@ -145,7 +158,7 @@ function selectControl(labelText, className, dataKey, options) {
   return { label, select };
 }
 
-function initializeExplorer(explorer) {
+async function initializeExplorer(explorer) {
   const form = explorer.querySelector('[data-v3-filter-form]');
   const search = explorer.querySelector('[data-v3-search]');
   const grid = explorer.querySelector('[data-v3-grid]');
@@ -153,7 +166,8 @@ function initializeExplorer(explorer) {
   const empty = explorer.querySelector('[data-v3-empty]');
   if (!form || !search || !grid || !count || !empty) return;
   const filters = [...form.querySelectorAll('[data-v3-filter]')];
-  const records = [...grid.querySelectorAll('[data-v3-card]')].map((card, index) => {
+  const initialCards = [...grid.querySelectorAll('[data-v3-card]')];
+  let records = initialCards.map((card, index) => {
     const title = card.querySelector('h3')?.textContent?.trim() || '';
     const makerLabel = card.dataset.makerLabel || card.querySelector('.v3-card__copy p')?.textContent?.split('·')[0]?.trim() || '';
     const rawYear = card.dataset.year?.trim();
@@ -162,8 +176,60 @@ function initializeExplorer(explorer) {
       search: normalize(`${card.dataset.search || ''} ${title} ${makerLabel}`), pathname: workPath(card.querySelector('a[href]')?.href || ''),
       facets: Object.fromEntries(FILTER_KEYS.map(key => [key, card.dataset[key] || ''])) };
   });
+  const status = explorer.querySelector('[data-studio-index-status]');
+  const pagination = explorer.querySelector('[data-studio-pagination]');
+  const indexURL = explorer.dataset.studioIndexUrl;
+  const cardData = new Map();
+  const chunkRequests = new Map();
+  let mountedCards = new Map(records.map(record => [record.pathname, record.card]));
+  const originalCards = indexURL ? new Map() : new Map(mountedCards);
+  if (indexURL) {
+    if (status) { status.hidden = false; status.textContent = 'Preparing search across the collection…'; }
+    try {
+      const response = await fetch(indexURL, { credentials: 'same-origin', cache: 'no-cache' });
+      if (!response.ok) throw new Error('Collection index unavailable');
+      const payload = await response.json();
+      if (payload.revision !== explorer.dataset.studioRevision) throw new Error('Collection edition changed');
+      records = unpackCollectionIndex(payload).filter(record => explorer.dataset.studioSpatial !== 'true' || Boolean(record.size));
+      for (const record of records) record.pathname = workPath(withBase(`/works/${record.slug}/`));
+    } catch {
+      if (status) {
+        status.hidden = false;
+        status.textContent = 'Search could not load. You can still open the works below and continue using the page links. ';
+        const retry = document.createElement('button');
+        retry.type = 'button';
+        retry.textContent = 'Retry search';
+        retry.addEventListener('click', () => initializeExplorer(explorer), { once: true });
+        status.append(retry);
+      }
+      return;
+    }
+  }
+  for (const control of form.querySelectorAll('input, select, button')) control.disabled = false;
+  async function ensureCards(selected) {
+    const chunks = new Set(selected.filter(record => !mountedCards.has(record.pathname) && !originalCards.has(record.pathname) && !cardData.has(record.pathname)).map(record => record.chunk));
+    await Promise.all([...chunks].map(chunk => {
+      if (!chunkRequests.has(chunk)) {
+        const request = fetch(`${explorer.dataset.studioChunkRoot}${chunk}.json?v=${encodeURIComponent(explorer.dataset.studioRevision)}`, { credentials: 'same-origin', cache: 'no-cache' }).then(async response => {
+          if (!response.ok) throw new Error('Card details unavailable');
+          const payload = await response.json();
+          if (payload?.version !== 1 || payload.revision !== explorer.dataset.studioRevision || payload.chunk !== chunk || !Array.isArray(payload.cards)) throw new Error('Invalid card details');
+          for (const card of payload.cards) {
+            const pathname = workPath(card.href);
+            if (!pathname) throw new Error('Invalid work identity');
+            cardData.set(pathname, card);
+          }
+        }).catch(error => { chunkRequests.delete(chunk); throw error; });
+        chunkRequests.set(chunk, request);
+      }
+      return chunkRequests.get(chunk);
+    }));
+  }
   const makers = new Map();
-  for (const record of records) if (record.maker && !makers.has(record.maker)) makers.set(record.maker, record.makerLabel || record.maker.replace(/-/g, ' '));
+  for (const record of records) if (record.maker) {
+    const group = groupMakerFacet(record.maker,record.makerLabel || record.maker.replace(/-/g,' '));
+    if (!makers.has(group.value)) makers.set(group.value,group.label);
+  }
   const makerControl = selectControl('Maker', 'studio-maker', 'studioMaker', [['', 'All makers'], ...[...makers].sort((a, b) => collator.compare(a[1], b[1]))]);
   const sortControl = selectControl('Sort', 'studio-sort', 'studioSort', [['curator', 'Curator’s order'], ['title', 'Title A–Z'], ['maker', 'Maker A–Z'], ['date', 'Date: earliest first'], ['newest', 'Recently added']]);
   const filterRow = form.querySelector('.v3-filter-row') || form;
@@ -214,10 +280,10 @@ function initializeExplorer(explorer) {
   let density = 'grid';
   let savedOnly = false;
   let limit = PAGE_SIZE;
+  let offset = (collectionPageNumber(location.pathname) - 1) * PAGE_SIZE;
   let timer = 0;
-  let currentSort = '';
-  let ordered = records;
-  const sorted = new Map([['curator', records]]);
+  let renderRequest = 0;
+  let lastRenderFailed = false;
   let legacyWingNotice = null;
 
   function explainLegacyWings(params) {
@@ -272,28 +338,28 @@ function initializeExplorer(explorer) {
   function readURL() {
     const params = new URLSearchParams(location.search);
     const retiredWing = explainLegacyWings(params);
-    search.value = params.get('q') || '';
-    makerControl.select.value = params.get('maker') || '';
-    for (const select of filters) select.value = params.get(select.dataset.v3Filter) || '';
-    sortControl.select.value = params.get('sort') || 'curator';
-    if (!sortControl.select.value) sortControl.select.value = 'curator';
-    savedOnly = params.get('saved') === '1';
-    density = params.get('density') === 'compact' ? 'compact' : 'grid';
+    const state = readCollectionState(params);
+    search.value = state.q;
+    makerControl.select.value = groupMakerFacet(state.maker,'').value;
+    for (const select of filters) select.value = state[select.dataset.v3Filter] || '';
+    sortControl.select.value = state.sort;
+    savedOnly = state.saved;
+    density = state.density;
     limit = PAGE_SIZE;
+    const refined = state.q || state.maker || state.saved || state.sort !== 'curator' || FILTER_KEYS.some(key => state[key]);
+    offset = refined ? 0 : (collectionPageNumber(location.pathname) - 1) * PAGE_SIZE;
     return retiredWing;
   }
 
+  function currentState() {
+    return { q: search.value, maker: makerControl.select.value, ...Object.fromEntries(filters.map(select => [select.dataset.v3Filter, select.value])), sort: sortControl.select.value, saved: savedOnly, density };
+  }
+
   function writeURL() {
-    const params = new URLSearchParams(location.search);
-    for (const key of STATE_KEYS) params.delete(key);
-    if (search.value.trim()) params.set('q', search.value.trim());
-    if (makerControl.select.value) params.set('maker', makerControl.select.value);
-    for (const select of filters) if (select.value) params.set(select.dataset.v3Filter, select.value);
-    if (sortControl.select.value !== 'curator') params.set('sort', sortControl.select.value);
-    if (savedOnly) params.set('saved', '1');
-    if (density === 'compact') params.set('density', 'compact');
+    const params = writeCollectionState(location.search, currentState());
     const suffix = params.toString();
-    history.replaceState(history.state, '', `${location.pathname}${suffix ? `?${suffix}` : ''}${location.hash}`);
+    const pathname = offset ? location.pathname : explorer.dataset.studioEntrance || location.pathname;
+    history.replaceState(history.state, '', `${pathname}${suffix ? `?${suffix}` : ''}${location.hash}`);
     syncCollectionLinks(suffix);
   }
 
@@ -305,37 +371,75 @@ function initializeExplorer(explorer) {
     }
   }
 
-  function render(updateURL = true) {
-    const sort = sortControl.select.value || 'curator';
-    if (sort !== currentSort) {
-      if (activePeek) closePeek();
-      if (!sorted.has(sort)) sorted.set(sort, [...records].sort((a, b) => {
-        if (sort === 'newest') return a.ingested !== b.ingested ? b.ingested.localeCompare(a.ingested) : b.catalogIndex - a.catalogIndex;
-        if (sort === 'date') return (a.year ?? Infinity) - (b.year ?? Infinity) || a.index - b.index;
-        return collator.compare(sort === 'maker' ? a.makerLabel : a.title, sort === 'maker' ? b.makerLabel : b.title) || a.index - b.index;
-      }));
-      ordered = sorted.get(sort) || records;
-      const fragment = document.createDocumentFragment();
-      for (const record of ordered) fragment.append(record.card);
-      grid.append(fragment);
-      currentSort = sort;
+  async function render(updateURL = true) {
+    const request = ++renderRequest;
+    const result = selectCollectionWindow(records, currentState(), { saved, offset, limit });
+    if (updateURL) writeURL();
+    else syncCollectionLinks(new URLSearchParams(location.search).toString());
+    const missing = result.records.some(record => !mountedCards.has(record.pathname));
+    if (missing) {
+      grid.setAttribute('aria-busy', 'true');
+      more.disabled = true;
+      if (status) { status.hidden = false; status.textContent = 'Loading matching works…'; }
     }
-    const terms = normalize(search.value).split(' ').filter(Boolean);
-    let matches = 0;
-    for (const record of ordered) {
-      const match = terms.every(term => record.search.includes(term)) && (!makerControl.select.value || record.maker === makerControl.select.value)
-        && (!savedOnly || saved.has(record.pathname)) && filters.every(select => !select.value || (select.dataset.v3Filter === 'material'
-          ? record.facets.material.split(/\s+/).includes(select.value) : record.facets[select.dataset.v3Filter] === select.value));
-      record.card.hidden = !(match && ++matches <= limit);
+    try {
+      await ensureCards(result.records);
+      if (request !== renderRequest) return;
+      // Create all new cards before replacing anything, retaining the readable
+      // current page if a partial network response is missing or malformed.
+      const nextCards = new Map(result.records.map(record => [record.pathname, mountedCards.get(record.pathname) || originalCards.get(record.pathname) || createCollectionCard(document, cardData.get(record.pathname), { spatial: explorer.dataset.studioSpatial === 'true' })]));
+      const focusedCard = document.activeElement instanceof Element ? document.activeElement.closest('[data-v3-card]') : null;
+      const focusedPath = focusedCard && grid.contains(focusedCard) ? workPath(focusedCard.querySelector('a[href]')?.href || '') : '';
+      if (activePeek && !nextCards.has(workPath(activePeek.card.querySelector('a[href]')?.href || ''))) closePeek();
+      for (const [pathname, card] of mountedCards) if (!nextCards.has(pathname)) card.remove();
+      if (focusedPath && !nextCards.has(focusedPath)) savedToggle.focus();
+      let index = 0;
+      for (const [pathname, card] of nextCards) {
+        if (grid.children[index] !== card) {
+          if (activePeek?.card === card) closePeek();
+          grid.insertBefore(card, grid.children[index] || null);
+        }
+        addSaveButton(card, pathname, card.querySelector('h3')?.textContent?.trim());
+        index += 1;
+      }
+      mountedCards = nextCards;
+      // Detached cards are discarded; metadata and JSON, rather than thousands
+      // of DOM nodes or save-button references, are the long-lived cache.
+      for (const [pathname, buttons] of saveButtons) {
+        for (const button of buttons) if (!button.isConnected) buttons.delete(button);
+        if (!buttons.size) saveButtons.delete(pathname);
+      }
+      enhancePeekCards(grid);
+      updateSavedUI();
+      if (pagination) pagination.hidden = true;
+      if (status) status.hidden = true;
+      lastRenderFailed = false;
+    } catch {
+      if (request !== renderRequest) return;
+      for (const record of result.records) if (!mountedCards.has(record.pathname) && !originalCards.has(record.pathname)) {
+        cardData.delete(record.pathname);
+        chunkRequests.delete(record.chunk);
+      }
+      if (status) { status.hidden = false; status.textContent = 'These results could not load. Your current works are still available. Try again, or continue with the page links below.'; }
+      if (pagination) pagination.hidden = false;
+      more.hidden = false;
+      more.disabled = false;
+      more.textContent = 'Retry loading results';
+      lastRenderFailed = true;
+      grid.removeAttribute('aria-busy');
+      return;
     }
-    const shown = Math.min(matches, limit);
-    const message = matches ? `Showing ${shown.toLocaleString()} of ${matches.toLocaleString()} ${matches === 1 ? 'work' : 'works'}${savedOnly ? ' saved on this browser' : ''}` : savedOnly ? 'No saved works match these filters.' : 'No works match these filters.';
+    grid.removeAttribute('aria-busy');
+    more.disabled = false;
+    const matches = result.total;
+    const shown = result.records.length;
+    const range = offset ? `${(offset + 1).toLocaleString()}–${(offset + shown).toLocaleString()}` : shown.toLocaleString();
+    const message = matches ? `Showing ${range} of ${matches.toLocaleString()} ${matches === 1 ? 'work' : 'works'}${savedOnly ? ' saved on this browser' : ''}` : savedOnly ? 'No saved works match these filters.' : 'No works match these filters.';
     if (count.textContent !== message) count.textContent = message;
     grid.hidden = matches === 0;
     empty.hidden = matches !== 0;
-    more.hidden = matches <= limit;
-    more.textContent = `Show ${Math.min(PAGE_SIZE, Math.max(0, matches - shown))} more works`;
-    if (activePeek?.card.hidden) closePeek();
+    more.hidden = !result.hasMore;
+    more.textContent = `Show ${Math.min(PAGE_SIZE, Math.max(0, matches - offset - shown))} more works`;
     explorer.dataset.studioDensity = density;
     for (const button of densityButtons) button.setAttribute('aria-pressed', String(button.dataset.studioDensityButton === density));
     savedToggle.setAttribute('aria-pressed', String(savedOnly));
@@ -343,16 +447,15 @@ function initializeExplorer(explorer) {
     const emptyText = empty.querySelector('p');
     if (emptyHeading) emptyHeading.textContent = savedOnly && saved.size === 0 ? 'Your saved collection starts here.' : 'No matching works.';
     if (emptyText) emptyText.textContent = savedOnly && saved.size === 0 ? 'Save a work with its bookmark button, then return here. Saved works stay on this browser.' : 'Try a broader search or clear the filters to explore the collection.';
-    if (updateURL) writeURL();
-    else syncCollectionLinks(new URLSearchParams(location.search).toString());
+    explorer.dispatchEvent(new CustomEvent('atrium:collection-rendered', { bubbles: true }));
   }
 
-  function update() { window.clearTimeout(timer); limit = PAGE_SIZE; render(); }
-  search.addEventListener('input', () => { window.clearTimeout(timer); timer = window.setTimeout(update, 120); });
+  function update() { window.clearTimeout(timer); limit = PAGE_SIZE; offset = 0; render(); }
+  search.addEventListener('input', () => { renderRequest += 1; window.clearTimeout(timer); timer = window.setTimeout(update, 120); });
   for (const select of [...filters, makerControl.select, sortControl.select]) select.addEventListener('change', update);
   for (const button of densityButtons) button.addEventListener('click', () => { density = button.dataset.studioDensityButton; render(); });
   savedToggle.addEventListener('click', () => { savedOnly = !savedOnly; update(); });
-  more.addEventListener('click', () => { limit += PAGE_SIZE; render(); });
+  more.addEventListener('click', () => { if (!lastRenderFailed) limit += PAGE_SIZE; render(); });
   form.addEventListener('submit', event => { event.preventDefault(); update(); });
   form.addEventListener('reset', event => {
     event.preventDefault();
@@ -515,7 +618,8 @@ function initializePeeks() {
       if (activePeek?.card === card && !activePeek.pinned && !card.matches(':hover') && !card.contains(document.activeElement)) closePeek();
     }, 200);
   }
-  for (const card of document.querySelectorAll('[data-v3-card]')) {
+  function enhance(root = document) {
+  for (const card of root.querySelectorAll('[data-v3-card]')) {
     const image = card.querySelector('.v3-card__image');
     const link = card.querySelector('a[href]');
     const pathname = workPath(link?.href || '');
@@ -560,6 +664,9 @@ function initializePeeks() {
       else mount(card, button, image, work, title, true);
     });
   }
+  }
+  enhancePeekCards = enhance;
+  enhance();
   window.addEventListener('message', event => {
     const request = activePeek;
     if (!request || event.origin !== location.origin || event.source !== request.frame.contentWindow || !event.data || typeof event.data !== 'object' || event.data.work !== request.work) return;

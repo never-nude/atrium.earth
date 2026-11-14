@@ -2,10 +2,12 @@
 import V3Layout from '../../../layouts/v3/V3Layout.astro';
 import Viewer from '../../../components/Viewer.astro';
 import ExhibitionComparisons from '../../../components/ExhibitionComparisons.astro';
+import CuratedVisit from '../../../components/CuratedVisit.astro';
 import { exhibitions, exhibitionFeaturedWork, nextExhibition, type V3Exhibition, v3ExhibitionRoute, v3WorkRoute } from '../../../lib/v3';
 import { isFeaturedWork } from '../../../lib/catalog';
 import { withBase } from '../../../lib/urls';
 import { shortWorkTitle } from '../../../lib/work-titles';
+import { curatedVisitFor } from '../../../lib/curated-visit.ts';
 
 export function getStaticPaths() {
   return exhibitions.map((exhibition) => ({ params: { slug: exhibition.slug }, props: { exhibition } }));
@@ -15,10 +17,10 @@ type Props = { exhibition: V3Exhibition };
 const { exhibition } = Astro.props;
 const lead = exhibitionFeaturedWork(exhibition);
 const next = nextExhibition(exhibition);
+const visit = curatedVisitFor(exhibition);
 const comparisons = exhibition.comparisons ?? [];
 const heroComparison = comparisons.find((pair) => pair.works.every(isFeaturedWork));
 const firstStop = comparisons.length ? '#pair-1' : '#stop-1';
-const progressCount = comparisons.length || exhibition.works.length;
 const stops = exhibition.works.map((work, index) => ({
   work,
   index: index + 1,
@@ -59,7 +61,7 @@ const stops = exhibition.works.map((work, index) => ({
       <h1 class="v3-display">{exhibition.title}</h1>
       <p class="v3-exhero__summary">{exhibition.summary}</p>
       <p class="v3-exhero__meta"><span>{stops.length} works{comparisons.length ? ` · ${comparisons.length} pairings` : ''}</span><span>Allow 15–30 minutes</span><span>3D views and records</span></p>
-      <a href={firstStop}>Begin exhibition <span>↓</span></a>
+      {visit ? <div class="exhibition-entrance-actions"><a class="exhibition-entrance-actions__guided" href="#curated-visit" data-curated-launch>Take a 5-minute visit <span aria-hidden="true">→</span></a><a href="#all-exhibition-works" data-visit-all>Explore all {stops.length} works <span aria-hidden="true">↓</span></a></div> : <a class="v3-exhero__begin" href={firstStop}>Begin exhibition <span aria-hidden="true">↓</span></a>}
     </div>
   </header>
 
@@ -76,15 +78,13 @@ const stops = exhibition.works.map((work, index) => ({
     </div>
   </section>
 
-  <nav class="v3-progress" data-v3-progress aria-hidden="true" style={`--ex-accent:${exhibition.accent}`}>
-    <span class="v3-progress__count"><b data-v3-progress-now>1</b>/{progressCount}</span>
-    <span class="v3-progress__track"><span class="v3-progress__fill" data-v3-progress-fill></span></span>
-    <span class="v3-progress__label">{exhibition.shortTitle}</span>
-  </nav>
+  {visit && <CuratedVisit visit={visit} accent={exhibition.accent} />}
 
+  <div id="all-exhibition-works" data-exhibition-full>
+  {visit && <header class="exhibition-full-heading"><p class="v3-kicker">The complete exhibition</p><h2 tabindex="-1" data-exhibition-full-title>Explore all {stops.length} works.</h2><a href="#curated-visit" data-curated-launch>Take the six-work visit <span aria-hidden="true">↑</span></a></header>}
   {comparisons.length ? <ExhibitionComparisons exhibition={exhibition} /> : <div class="v3-walk" style={`--ex-accent:${exhibition.accent}`}>
     {stops.map((stop) => (
-      <article class="v3-stop v3-reveal" id={`stop-${stop.index}`} data-v3-stop={stop.index} aria-label={`Stop ${stop.index}: ${stop.work.title}`}>
+      <article class="v3-stop v3-reveal" id={`stop-${stop.index}`} data-v3-stop={stop.index} data-exhibition-work={stop.work.slug} aria-label={`Stop ${stop.index}: ${stop.work.title}`}>
         <div class="v3-stop__viewer v3-exhibition-viewer v3-float" style={`view-transition-name: w-${stop.work.id};`}>
           <Viewer
             glb={stop.work.modelGlb ? withBase(stop.work.modelGlb) : ''}
@@ -105,7 +105,7 @@ const stops = exhibition.works.map((work, index) => ({
           <h2>{stop.work.title}</h2>
           {stop.meta && <p class="v3-stop__meta">{stop.meta}</p>}
           {stop.text && <p class="v3-wall">{stop.text}</p>}
-          <a class="v3-stop__open" href={withBase(v3WorkRoute(stop.work))}>Details &amp; sources <span>↗</span></a>
+          <a class="v3-stop__open" href={`${withBase(v3WorkRoute(stop.work))}?${new URLSearchParams({ exhibition: exhibition.slug })}`}>Details &amp; sources <span>↗</span></a>
         </div>
       </article>
     ))}
@@ -119,35 +119,18 @@ const stops = exhibition.works.map((work, index) => ({
       <strong>{next.title} →</strong>
     </a>
   </footer>
+  </div>
 
-  <script>
-    // The visitor always knows where they stand in the room.
-    const rail = document.querySelector('[data-v3-progress]');
-    const now = document.querySelector('[data-v3-progress-now]');
-    const fill = document.querySelector('[data-v3-progress-fill]');
-    const stops = [...document.querySelectorAll('[data-v3-stop]')];
-    if (rail && now && fill && stops.length && 'IntersectionObserver' in window) {
-      const total = stops.length;
-      const seen = new IntersectionObserver((entries) => {
-        for (const entry of entries) {
-          if (!entry.isIntersecting) continue;
-          const index = Number(entry.target.getAttribute('data-v3-stop')) || 1;
-          now.textContent = String(index);
-          fill.style.height = `${(index / total) * 100}%`;
-        }
-      }, { rootMargin: '-40% 0px -40% 0px' });
-      for (const stop of stops) seen.observe(stop);
-
-      const gate = new IntersectionObserver((entries) => {
-        for (const entry of entries) rail.classList.toggle('is-active', entry.isIntersecting);
-      }, { rootMargin: '10% 0px 10% 0px', threshold: 0 });
-      const walk = document.querySelector('.v3-walk');
-      if (walk) gate.observe(walk);
-    }
-  </script>
 </V3Layout>
 
 <style>
+  .exhibition-entrance-actions { display:flex; flex-wrap:wrap; gap:12px 24px; align-items:center; margin-top:24px; }
+  .exhibition-entrance-actions a { display:inline-flex; align-items:center; justify-content:center; gap:14px; min-height:44px; margin:0; padding:10px 15px; border:1px solid var(--v3-line-strong); border-radius:7px; color:var(--v3-ink); font-size:12px; line-height:1.5; text-decoration:none; }
+  .exhibition-entrance-actions .exhibition-entrance-actions__guided { background:var(--ex-accent); border-color:var(--ex-accent); color:#152239; }
+  #all-exhibition-works { scroll-margin-top:0; }
+  .exhibition-full-heading { max-width:var(--v3-max); margin:0 auto 38px; padding:30px var(--v3-pad) 0; border-top:1px solid var(--v3-line); }
+  .exhibition-full-heading h2 { margin:0 0 14px; color:var(--v3-ink); font-size:clamp(26px,3vw,40px); font-weight:500; letter-spacing:-.03em; }
+  .exhibition-full-heading a { display:inline-flex; align-items:center; gap:12px; min-height:44px; color:var(--v3-signal); font-size:12px; text-underline-offset:4px; }
   .exhibition-duet { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(16px, 4vw, 60px); width: min(100%, 1100px); margin: 0 auto; }
   .exhibition-duet figure { min-width: 0; margin: 0; }
   .exhibition-duet img { display: block; width: 100%; height: clamp(240px, 52svh, 620px); object-fit: contain; }

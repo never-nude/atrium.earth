@@ -78,6 +78,22 @@ Astro renders pages as static HTML. The museum filter script is small and only
 enhances the already-rendered grid. The three.js viewer has a still-image
 fallback and loads the web-detail GLB preview on object pages.
 
+The Collection and AR / VR entrances render60 cards, then search a shared public
+metadata index and fetch card details in120-work chunks. Index and chunk payloads
+share a content revision so stale responses cannot mix collection editions.
+Lean static pagination keeps every work reachable without JavaScript. Viewers
+draw on demand and suspend offscreen; guided visits connect one stop at a time.
+
+`npm run test:experience` checks browsing, maker groups, journey continuity,
+prepared curatorial evidence and viewer lifecycle. After a build,
+`node scripts/check-collection-window.mjs --dist` verifies all delivered records,
+chunk coherence and bounded pagination. The review workflow builds a complete
+package and checks the existing hosting budget without deploying it.
+
+The [prepared guided-visit contract](docs/curated-visits.md) records the first
+six-work AI-authored edition. Automatic AI generation is currently off; the
+homepage programme continues its existing scheduled selection rules.
+
 ## Audit
 
 - `AUDIT.md` summarizes the rebuild, verification status, assets, and review focus.

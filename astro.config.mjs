@@ -8,6 +8,7 @@ const consolidatedWorkAliases = ['/works/asia/ganesha-mia', '/asia/ganesha-mia']
 export function sitemapPageAllowed(page) {
   const pathname = new URL(page).pathname.replace(/\/+$/, '');
   return !/\/newest\/[^/]+$/.test(pathname)
+    && !/\/(?:collection|ar-vr)\/page\/\d+$/.test(pathname)
     && !/\/v[23](?:\/|$)/.test(pathname)
     && !pathname.includes('/wings/unfiled')
     && !/\/wings\/(?:near-east|greece-rome|americas-oceania)$/.test(pathname)
@@ -20,6 +21,7 @@ export default defineConfig({
   site: process.env.SITE || 'https://atrium.earth',
   base: base === '/' ? undefined : base,
   output: 'static',
+  devToolbar: { enabled: false },
   integrations: [
     // Keep retired design URLs and staging aliases out of the crawler sitemap.
     sitemap({ filter: sitemapPageAllowed }),

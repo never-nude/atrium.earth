@@ -1,0 +1,49 @@
+name: Review museum experience
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: experience-review-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Verify museum behaviour and source bindings
+        run: |
+          npm run verify:assets
+          npm run test:experience
+          npm run test:featured
+          npm run test:programme
+          npm run test:work-titles
+          npm run test:wings
+          npm run test:additions
+          npm run test:world-collection
+          npm run test:world-time
+          npm run test:world-state
+          npm run test:spatial
+          npm run test:spatial-museum-bindings
+          node scripts/test-artwork-image-recovery.mjs
+      - name: Build the complete production package
+        run: npm run build
+        env:
+          SITE: https://atrium.earth
+      - name: Verify hosting budget
+        run: node scripts/verify-pages-budget.mjs
+      - name: Verify bounded collection delivery
+        run: node scripts/check-collection-window.mjs --dist
+      - name: Verify published artwork images
+        run: node scripts/verify-published-artwork-images.mjs

@@ -1,0 +1,132 @@
+{
+  "schema": "atrium-curated-visits/1",
+  "visits": {
+    "the-work-of-the-surface": {
+      "id": "surface-six-20261107",
+      "title": "Six ways to read a surface",
+      "summary": "Find another face, follow a line of signs, look through carved openings, and watch a surface become space.",
+      "durationMinutes": 5,
+      "provenance": {
+        "authorship": "ai-authored",
+        "preparedAt": "2026-11-07",
+        "method": "An AI-authored selection and reading sequence prepared from this exhibition’s existing captions and linked object records. This edition is prepared in advance; it is not generated during your visit.",
+        "unattendedGeneration": false
+      },
+      "rationale": "These six works make a small change of viewpoint useful in six different ways: several fronts, incised signs, layered materials, a curved picture, open metal lines, and carved stone. They form a looking sequence, not a claim that their makers shared an intention or influenced one another.",
+      "facts": [
+        {
+          "id": "surface-helmet-four-faces",
+          "workSlug": "sub-saharan-africa/helmet-mask-four-faces",
+          "text": "This helmet mask has four faces and no single back.",
+          "recordUrl": "https://www.metmuseum.org/art/collection/search/824209",
+          "sourceRef": "v3-content:wallTexts/the-work-of-the-surface/captions/sub-saharan-africa/helmet-mask-four-faces"
+        },
+        {
+          "id": "surface-rongorongo-incision",
+          "workSlug": "americas/rongorongo-long-tablet-mnhn",
+          "text": "Closely incised signs follow the curved wooden surface of this Rongorongo tablet from Rapa Nui.",
+          "recordUrl": "https://zenodo.org/records/10343653",
+          "sourceRef": "v3-content:wallTexts/the-work-of-the-surface/captions/americas/rongorongo-long-tablet-mnhn"
+        },
+        {
+          "id": "surface-rongorongo-uncertainty",
+          "workSlug": "americas/rongorongo-long-tablet-mnhn",
+          "text": "The museum records 1,580 glyphs and notes that the writing remains undeciphered.",
+          "recordUrl": "https://zenodo.org/records/10343653",
+          "sourceRef": "v3-content:wallTexts/the-work-of-the-surface/captions/americas/rongorongo-long-tablet-mnhn"
+        },
+        {
+          "id": "surface-nasrid-layers",
+          "workSlug": "europe/nasrid-casket-mev",
+          "text": "Carved and drilled ivory panels expose gold leaf beneath the casket’s stars and rosettes.",
+          "recordUrl": "https://museuartmedieval.cat/es/colleccions/mobiliario/arqueta-mev-17829",
+          "sourceRef": "v3-content:wallTexts/the-work-of-the-surface/captions/europe/nasrid-casket-mev"
+        },
+        {
+          "id": "surface-courtly-bowl",
+          "workSlug": "asia/minai-bowl-courtly-scene-mia",
+          "text": "Overglaze polychromy and gold depict a courtly gathering on stonepaste.",
+          "recordUrl": "https://collections.artsmia.org/art/500/bowl-persia",
+          "sourceRef": "v3-content:wallTexts/the-work-of-the-surface/captions/asia/minai-bowl-courtly-scene-mia"
+        },
+        {
+          "id": "surface-pevsner-lines",
+          "workSlug": "europe/antoine-pevsner-developable-surface",
+          "text": "Pevsner builds a curved surface from welded metal filaments.",
+          "recordUrl": "https://www.guggenheim-venice.it/en/art/works/superficie-sviluppabile-1/",
+          "sourceRef": "v3-content:wallTexts/the-work-of-the-surface/captions/europe/antoine-pevsner-developable-surface"
+        },
+        {
+          "id": "surface-chillida-finish",
+          "workSlug": "europe/eduardo-chillida-how-profound-is-the-air",
+          "text": "The rough outer skin of the alabaster meets a precisely finished interior.",
+          "recordUrl": "https://pro.guggenheim-bilbao.eus/en/the-collection/works/how-profound-is-the-air",
+          "sourceRef": "v3-content:wallTexts/the-work-of-the-surface/captions/europe/eduardo-chillida-how-profound-is-the-air"
+        }
+      ],
+      "stops": [
+        {
+          "id": "another-face",
+          "workSlug": "sub-saharan-africa/helmet-mask-four-faces",
+          "title": "Find the next face",
+          "prompt": "Drag to turn the mask slowly. Find a second face, then a third. Is there a view you would call the back?",
+          "reading": "Four faces give this helmet mask several fronts. Moving around it changes which face meets you.",
+          "whyHere": "A turn immediately changes what you see: a first reason to leave a single front view behind.",
+          "factIds": ["surface-helmet-four-faces"],
+          "nextConnection": "Next, leave the recognizable face for rows of cut signs."
+        },
+        {
+          "id": "marks-and-meaning",
+          "workSlug": "americas/rongorongo-long-tablet-mnhn",
+          "title": "Follow a line of signs",
+          "prompt": "Turn the tablet to follow a row of cut signs around its curved wooden surface. Open Options to zoom in on the grooves.",
+          "reading": "The writing remains undeciphered. A clear model can show the marks without supplying their meaning.",
+          "whyHere": "Close looking has limits: seeing a mark clearly is different from being able to read it.",
+          "factIds": ["surface-rongorongo-incision", "surface-rongorongo-uncertainty"],
+          "nextConnection": "Next, look through cut openings rather than along incised lines."
+        },
+        {
+          "id": "through-the-surface",
+          "workSlug": "europe/nasrid-casket-mev",
+          "title": "Look beneath the carving",
+          "prompt": "Move around the lid and sides. Find a star or rosette where the carved ivory opens onto the gold leaf beneath.",
+          "reading": "Openings reveal another material below the carved panels. The casket’s surface is made in layers.",
+          "whyHere": "A surface can let you see the material below it, as well as cover an object.",
+          "factIds": ["surface-nasrid-layers"],
+          "nextConnection": "From a layered box, move to an image carried by a curved bowl."
+        },
+        {
+          "id": "a-curved-picture",
+          "workSlug": "asia/minai-bowl-courtly-scene-mia",
+          "title": "Tilt the picture",
+          "prompt": "Turn the bowl to keep its painted figures in view. Follow the scene toward the rim and notice how it bends with the container.",
+          "reading": "Paint and gold describe a courtly gathering on stonepaste. The image occupies a vessel, rather than a flat page.",
+          "whyHere": "The viewing angle becomes part of looking at an image.",
+          "factIds": ["surface-courtly-bowl"],
+          "nextConnection": "Now leave the painted image for a surface built from repeated metal lines."
+        },
+        {
+          "id": "open-lines",
+          "workSlug": "europe/antoine-pevsner-developable-surface",
+          "title": "Look between the lines",
+          "prompt": "Turn the work and look between the metal filaments. Notice when they read as a curved plane and when they open into gaps.",
+          "reading": "Pevsner joins metal lines into a curved surface. The spaces between them remain visible.",
+          "whyHere": "A surface does not need to be a continuous skin.",
+          "factIds": ["surface-pevsner-lines"],
+          "nextConnection": "Finish with the opposite approach: a solid stone block shaped around an opening."
+        },
+        {
+          "id": "where-stone-stops",
+          "workSlug": "europe/eduardo-chillida-how-profound-is-the-air",
+          "title": "Find where the finish changes",
+          "prompt": "Turn the alabaster block. Find the meeting between the rough exterior and the smoothly carved interior.",
+          "reading": "Different finishes give the same stone contrasting surfaces. Moving around the block changes the edge of the space within it.",
+          "whyHere": "The route ends at a boundary: where the stone stops, the opening starts.",
+          "factIds": ["surface-chillida-finish"],
+          "nextConnection": ""
+        }
+      ],
+      "closing": "You have reached the end of this six-work route. Keep one looking habit: try a less familiar side before moving on."
+    }
+  }
+}

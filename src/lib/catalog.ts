@@ -148,6 +148,7 @@ export type Work = {
   thumbnailImage: string;
   ingested?: string;
   modelGlb: string;
+  modelBytes?: number;
   modelUpAxis: string;
   modelTransform: ModelTransform;
   modelStats: string;
@@ -675,6 +676,7 @@ function normalize(raw: RawWork, fallbackIndex: number): Work {
     modelGlb: import.meta.env?.DEV && preview?.url
       ? `/__atrium-model/${encodeURIComponent(raw.slug)}`
       : preview?.url || '',
+    modelBytes: preview?.bytes,
     modelUpAxis: legacyTransformString(modelTransform),
     modelTransform,
     modelStats: modelStatsFor(preview, raw),

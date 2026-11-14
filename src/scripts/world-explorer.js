@@ -1,6 +1,7 @@
 import {connectWorldViewControls,updateWorldZoomControls} from './world-view-controls.js';
 import { timeStops, positionToYear, yearToPosition, formatWorldYear, parseWorldYear, workOverlapsPeriod } from '../lib/world-time.mjs';
 import { readWorldState, worldContinueUrl } from '../lib/world-state.mjs';
+import { worldWorkHref } from '../lib/work-journey.mjs';
 
 const mounted = new WeakSet();
 for (const root of document.querySelectorAll('[data-world-explorer]')) mount(root);
@@ -111,6 +112,9 @@ async function initialise(root, { compact, signal, register }) {
     const time = period();
     const href = worldContinueUrl(root.dataset.worldDetailUrl || '/world/', { place:state.place,mode:state.mode,from:time.start,to:time.end,all:time.all }, context, location.href);
     for (const link of root.querySelectorAll('[data-world-continue]')) link.href = href;
+    for (const link of list.querySelectorAll('[data-world-work-url]')) {
+      link.href = worldWorkHref(link.dataset.worldWorkUrl,{place:state.place,mode:state.mode,from:time.start,to:time.end,all:time.all},context,location.href);
+    }
   }
 
   function render() {
@@ -137,8 +141,10 @@ async function initialise(root, { compact, signal, register }) {
     root.querySelector('[data-world-place-title]').textContent = state.place === '__unplaced__' ? 'Origin uncertain or unrecorded' : place?.label || 'Across the world';
     const periodLabel = time.all ? 'All periods' : `${formatWorldYear(time.start)} — ${formatWorldYear(time.end)}`;
     root.querySelector('[data-world-period]').textContent = periodLabel;
-    root.querySelector('[data-world-period-count]').textContent = `${results.length.toLocaleString('en-US')} ${results.length === 1 ? 'work' : 'works'} ↓`;
-    root.querySelector('[data-world-result-count]').textContent = `${results.length.toLocaleString('en-US')} ${results.length === 1 ? 'work' : 'works'} · ${periodLabel}`;
+    const resultCount = `${results.length.toLocaleString('en-US')} ${results.length === 1 ? 'work' : 'works'}`;
+    const originQualifier = state.place ? '' : ' mapped by origin';
+    root.querySelector('[data-world-period-count]').textContent = `${resultCount} ↓`;
+    root.querySelector('[data-world-result-count]').textContent = `${resultCount}${originQualifier} · ${periodLabel}`;
     originNote.textContent = state.place === '__unplaced__'
       ? 'These records do not establish an origin confidently enough to place on the globe.'
       : place ? `Approximate ${place.precision === 'country' ? 'country' : 'regional'} location. Individual works retain their recorded origin and source details.`
@@ -175,7 +181,10 @@ async function initialise(root, { compact, signal, register }) {
   }
 
   function workCard(work) {
-    const card = document.createElement('a'); card.className = 'world-work'; card.href = work.url;
+    const time = period();
+    const card = document.createElement('a'); card.className = 'world-work';
+    card.dataset.worldWorkUrl = work.url;
+    card.href = worldWorkHref(work.url,{place:state.place,mode:state.mode,from:time.start,to:time.end,all:time.all},context,location.href);
     const image = document.createElement('img'); image.src = work.thumbnail; image.alt = work.fullTitle || work.title; image.width = 105; image.height = 128; image.loading = 'lazy'; image.decoding = 'async';
     const copy = document.createElement('div');
     const title = document.createElement(compact ? 'h4' : 'h3'); title.dataset.worldWorkTitle = ''; title.textContent = work.title;

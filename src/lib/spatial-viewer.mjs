@@ -3,7 +3,9 @@ import { makeQuickLookScene, startSpatialSession } from './spatial-session.mjs';
 import { viewingReferenceFor } from './spatial-access.mjs';
 import { bindMuseumPhotos } from './museum-photo.mjs';
 
-export function bindSpatialViewing(element, getContext, activate) {
+export function bindSpatialViewing(element, getContext, activate, { signal } = {}) {
+  if (signal?.aborted) return;
+  const on = (target, type, listener) => target?.addEventListener?.(type, listener, { signal });
   const find = (selector) => element.querySelector(selector);
   const dialog = find('[data-spatial-dialog]');
   const panel = find('.spatial-panel');
@@ -23,7 +25,7 @@ export function bindSpatialViewing(element, getContext, activate) {
   };
   const title = element.dataset.title;
   const museumLabel = JSON.parse(element.dataset.museumLabelJson || '{}');
-  bindMuseumPhotos(element, { title, ...museumLabel });
+  bindMuseumPhotos(element, { title, ...museumLabel }, { signal });
   const museumHUD = find('[data-spatial-museum-hud]');
   const labelToggle = find('[data-spatial-label-toggle]');
   let artworkPlaced = false;
@@ -33,7 +35,7 @@ export function bindSpatialViewing(element, getContext, activate) {
     find('[data-spatial-instructions]').hidden = placed;
     find('[data-spatial-adjust]').open = false;
   };
-  labelToggle.addEventListener('change', () => { museumHUD.hidden = !artworkPlaced || !labelToggle.checked; });
+  on(labelToggle, 'change', () => { museumHUD.hidden = !artworkPlaced || !labelToggle.checked; });
   const verifiedReference = element.dataset.verifiedReference === 'true';
   const approximate = element.dataset.dimensionStatus === 'approximate';
   const requiresAssetCheck = element.dataset.requiresAssetCheck === 'true' || verifiedReference;
@@ -274,14 +276,14 @@ export function bindSpatialViewing(element, getContext, activate) {
     loadModel();
     void checkCapabilities();
   }
-  find('[data-spatial-open]').addEventListener('click', openOptions);
-  window.addEventListener('hashchange', () => { if (location.hash === '#ar-vr') openOptions(); });
+  on(find('[data-spatial-open]'), 'click', openOptions);
+  on(window, 'hashchange', () => { if (location.hash === '#ar-vr') openOptions(); });
   // Deep links open options only; entering AR or VR still needs a user gesture.
   if (location.hash === '#ar-vr') openOptions();
-  retry.addEventListener('click', loadModel);
-  find('[data-spatial-close]').addEventListener('click', () => dialog.close());
-  find('[data-spatial-screen]').addEventListener('click', () => dialog.close());
-  dialog.addEventListener('close', () => {
+  on(retry, 'click', loadModel);
+  on(find('[data-spatial-close]'), 'click', () => dialog.close());
+  on(find('[data-spatial-screen]'), 'click', () => dialog.close());
+  on(dialog, 'close', () => {
     document.body.classList.remove('spatial-modal-open');
     pending?.abort();
     exportVersion++;
@@ -289,45 +291,51 @@ export function bindSpatialViewing(element, getContext, activate) {
     // Safari does not always focus the opening button after a pointer click.
     find('[data-spatial-open]').focus({ preventScroll: true });
   });
-  dialog.addEventListener('cancel', () => { pending?.abort(); });
-  find('[data-spatial-exit]').addEventListener('click', () => { pending?.abort(); });
+  on(dialog, 'cancel', () => { pending?.abort(); });
+  on(find('[data-spatial-exit]'), 'click', () => { pending?.abort(); });
   // A tap on a DOM overlay button must not also place or rotate the sculpture.
-  overlay.addEventListener('beforexrselect', (event) => {
+  on(overlay, 'beforexrselect', (event) => {
     if (event.target.closest('button, input, label')) event.preventDefault();
   });
-  find('[data-spatial-scale]').addEventListener('input', (event) => session?.setScale(event.target.value));
-  find('[data-spatial-support-height]').addEventListener('input', (event) => {
+  on(find('[data-spatial-scale]'), 'input', (event) => session?.setScale(event.target.value));
+  on(find('[data-spatial-support-height]'), 'input', (event) => {
     supportHeight.value = event.target.value;
     updateSupportChoice();
     invalidateQuickLook();
     session?.setSupportHeight(event.target.value);
   });
   for (const control of [supportMode, supportHeight]) {
-    control.addEventListener('input', () => { updateSupportChoice(); invalidateQuickLook(); say(''); });
+    on(control, 'input', () => { updateSupportChoice(); invalidateQuickLook(); say(''); });
   }
-  find('[data-spatial-reset-size]').addEventListener('click', () => session?.setScale(1));
-  find('[data-spatial-turn]').addEventListener('click', () => session?.rotate(Math.PI / 6));
-  find('[data-spatial-place]').addEventListener('click', () => session?.reposition());
-  ar.addEventListener('click', () => {
+  on(find('[data-spatial-reset-size]'), 'click', () => session?.setScale(1));
+  on(find('[data-spatial-turn]'), 'click', () => session?.rotate(Math.PI / 6));
+  on(find('[data-spatial-place]'), 'click', () => session?.reposition());
+  on(ar, 'click', () => {
     if (capabilities.ar) enter('immersive-ar');
     else if (quickLookSupported) void prepareQuickLook();
     else showHandoff('ar');
   });
-  vr.addEventListener('click', () => {
+  on(vr, 'click', () => {
     if (capabilities.vr) enter('immersive-vr');
     else showHandoff('vr');
   });
-  find('[data-spatial-copy]').addEventListener('click', copyPage);
-  urlInput.addEventListener('click', () => urlInput.select());
-  find('[data-spatial-share]').addEventListener('click', sharePage);
+  on(find('[data-spatial-copy]'), 'click', copyPage);
+  on(urlInput, 'click', () => urlInput.select());
+  on(find('[data-spatial-share]'), 'click', sharePage);
   const root = element.closest('[data-viewer]');
-  root.addEventListener('atrium:viewer-ready', () => { invalidateQuickLook(); loadFailed = false; update(); if (!busy && status.textContent === 'Loading the sculpture…') say(''); });
-  root.addEventListener('atrium:viewer-error', () => { loadFailed = true; update(); say('The sculpture could not load. Try again, or open this work on another device.'); });
-  window.addEventListener('pagehide', (event) => {
+  on(root, 'atrium:viewer-ready', () => { invalidateQuickLook(); loadFailed = false; update(); if (!busy && status.textContent === 'Loading the sculpture…') say(''); });
+  on(root, 'atrium:viewer-error', () => { loadFailed = true; update(); say('The sculpture could not load. Try again, or open this work on another device.'); });
+  on(window, 'pagehide', (event) => {
     pending?.abort();
     if (!event.persisted) { exportVersion++; invalidateQuickLook(); }
   });
-  xr?.addEventListener?.('devicechange', checkCapabilities);
+  on(xr, 'devicechange', checkCapabilities);
+  signal?.addEventListener('abort', () => {
+    exportVersion++; checkVersion++;
+    pending?.abort();
+    invalidateQuickLook();
+    if (dialog.open) { dialog.close(); document.body.classList.remove('spatial-modal-open'); }
+  }, { once: true });
   updateSupportChoice();
   void checkCapabilities();
 }

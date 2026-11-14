@@ -49,6 +49,7 @@ jobs:
           npm run test:world-collection
           npm run test:world-time
           npm run test:world-state
+          npm run test:experience
           npm run test:spatial
           npm run test:spatial-museum-bindings
           node scripts/test-artwork-image-recovery.mjs
@@ -60,6 +61,9 @@ jobs:
 
       - name: Verify Pages package size
         run: node scripts/verify-pages-budget.mjs
+
+      - name: Verify bounded collection delivery
+        run: node scripts/check-collection-window.mjs --dist
 
       - name: Verify published artwork images
         run: node scripts/verify-published-artwork-images.mjs

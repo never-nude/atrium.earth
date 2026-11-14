@@ -1,0 +1,36 @@
+---
+import V3Layout from '../layouts/v3/V3Layout.astro';
+import { withBase } from '../lib/urls';
+---
+
+<V3Layout title="Page not found" description="Find your way back to the Atrium Earth collection.">
+  <meta slot="head" name="robots" content="noindex" />
+  <section class="missing-page" aria-labelledby="missing-title">
+    <h1 id="missing-title" class="v3-display">Page not found</h1>
+    <p>Look up an artwork by title, maker, or material.</p>
+    <form action={withBase('/collection/')} method="get">
+      <label for="missing-search">Search the collection</label>
+      <div class="missing-page__search">
+        <input id="missing-search" name="q" type="search" required />
+        <button type="submit" class="v3-button v3-button--light">Search</button>
+      </div>
+    </form>
+    <div class="missing-page__links">
+      <a href={withBase('/')}>Return to Atrium</a>
+      <a href={withBase('/exhibitions/')}>Browse exhibitions</a>
+    </div>
+  </section>
+</V3Layout>
+
+<style>
+  .missing-page { max-width: 760px; margin-inline: auto; padding: clamp(48px, 10vw, 110px) var(--v3-pad); }
+  .missing-page h1 { margin: 0 0 16px; font-size: clamp(40px, 8vw, 78px); }
+  .missing-page p { color: var(--v3-muted); font-size: 16px; line-height: 1.6; }
+  .missing-page form { display: grid; gap: 8px; margin-block: 28px 18px; }
+  .missing-page label { font-size: 14px; }
+  .missing-page__search { display: flex; gap: 8px; }
+  .missing-page input { flex: 1; min-width: 0; min-height: 48px; border: 1px solid var(--v3-line-strong); border-radius: 8px; padding: 8px 12px; background: var(--v3-well); color: var(--v3-ink); font: inherit; }
+  .missing-page button { min-height: 48px; cursor: pointer; }
+  .missing-page__links { display: flex; flex-wrap: wrap; gap: 8px 20px; }
+  .missing-page__links a { display: inline-flex; align-items: center; min-height: 44px; color: var(--v3-signal); text-underline-offset: 4px; }
+</style>

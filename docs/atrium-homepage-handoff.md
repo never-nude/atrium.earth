@@ -288,3 +288,20 @@ works without warning, and selected The Eternal Idol with its geometry and
 details visible and no retry action. Both the stale-model reference and
 the partial-module-versioning problem are closed. Broader Awwwards work
 remains a prioritized plan in the chat, not additional implemented features.
+
+## Experience pass candidate, 2026-11-07
+
+The next pass is implemented on `codex/awwwards-pass-20261107`; its review and
+publication state are recorded in STATUS.md. It adds a concise homepage entrance,
+the optional six-work Surface visit, source/evidence curation page, bounded
+Collection/AR cards, lean progressive pagination, reviewed maker aliases,
+selection-aware record navigation, and demand-driven accessible Viewers.
+
+The owner chose to leave automatic AI generation off. The first route is an
+AI-authored prepared edition; no recurring provider job or paid API connection
+is active. Daily programme rotation continues under its existing rules.
+
+See [curated-visits.md](curated-visits.md) for edition and Viewer lifecycle
+contracts. Run `npm run test:experience`, then the normal complete build and
+`node scripts/check-collection-window.mjs --dist`. Review workflow checks the
+full hosting budget without publishing. Do not upload a sparse local build.

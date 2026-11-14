@@ -1,0 +1,144 @@
+---
+import Viewer from './Viewer.astro';
+import type { ResolvedCuratedVisit } from '../lib/curated-visit.ts';
+import { visitRecordQuery } from '../lib/curated-visit.mjs';
+import { withBase } from '../lib/urls';
+import { v3WorkRoute } from '../lib/v3';
+
+type Props = { visit: ResolvedCuratedVisit; accent: string };
+const { visit, accent } = Astro.props;
+const date = new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })
+  .format(new Date(`${visit.provenance.preparedAt}T00:00:00Z`));
+const client = JSON.stringify({ id: visit.id, exhibitionSlug: visit.exhibitionSlug,
+  stops: visit.stops.map(({ id, workSlug, title }) => ({ id, workSlug, title })) }).replace(/</g, '\\u003c');
+const recordRoute = (position: number) => `${withBase(v3WorkRoute(visit.stops[position].work))}?${visitRecordQuery(visit.exhibitionSlug, visit.id, position)}`;
+---
+
+<section id="curated-visit" class="curated-visit" style={`--visit-accent:${accent}`} data-curated-visit data-visit-id={visit.id} aria-labelledby="curated-visit-title">
+  <header class="curated-visit__header">
+    <div><p class="v3-kicker">Six works · About 5 minutes</p><h2 id="curated-visit-title">{visit.title}</h2><p class="curated-visit__summary">{visit.summary}</p></div>
+    <p class="curated-visit__edition">AI-authored edition<br /><span>Prepared {date}</span></p>
+  </header>
+
+  <div class="curated-visit__entrance" data-visit-entrance>
+    <button class="curated-visit__primary" type="button" data-visit-start hidden>Start the visit <span aria-hidden="true">→</span></button>
+    <a href="#all-exhibition-works" data-visit-all>Explore all {visit.fullWorkCount} works <span aria-hidden="true">↓</span></a>
+  </div>
+
+  <div class="curated-visit__session" data-visit-session hidden>
+    <nav class="curated-visit__progress" aria-label="Six-work visit">
+      <ol>{visit.stops.map((stop, index) => <li><button type="button" data-visit-step={index} aria-label={`Stop ${index + 1}: ${stop.title}`}><span aria-hidden="true">{String(index + 1).padStart(2, '0')}</span><span class="curated-visit__step-title">{stop.title}</span></button></li>)}</ol>
+      <p data-visit-status role="status" aria-live="polite" aria-atomic="true"></p>
+    </nav>
+    <div class="curated-visit__navigation" data-visit-navigation>
+      <button type="button" data-visit-back><span aria-hidden="true">←</span> Previous work</button>
+      <a href="#all-exhibition-works" data-visit-all>All {visit.fullWorkCount} works</a>
+      <button class="curated-visit__primary" type="button" data-visit-next>Next work <span aria-hidden="true">→</span></button>
+    </div>
+    <div class="curated-visit__active" data-visit-active></div>
+    <div id="curated-visit-complete" class="curated-visit__completion" data-visit-completion hidden>
+      <p class="v3-kicker">End of the visit</p><h3 tabindex="-1" data-visit-complete-heading>Keep looking.</h3><p>{visit.closing}</p>
+      <div><a class="curated-visit__primary" href="#all-exhibition-works" data-visit-all>Explore all {visit.fullWorkCount} works <span aria-hidden="true">→</span></a><button type="button" data-visit-restart>Revisit the six works</button></div>
+    </div>
+  </div>
+
+  <details class="curated-visit__method">
+    <summary>Why these six works?</summary>
+    <p>{visit.rationale}</p>
+    <ol>{visit.stops.map(stop => <li><strong>{stop.title}.</strong> {stop.whyHere}{' '}<a href={visit.facts.find(fact => fact.workSlug === stop.workSlug)!.recordUrl} target="_blank" rel="noopener noreferrer">Source record <span class="curated-visit__sr">for {stop.work.title} (opens in a new tab)</span><span aria-hidden="true">↗</span></a></li>)}</ol>
+    <p class="curated-visit__provenance">{visit.provenance.method} Edition {visit.id}.</p>
+  </details>
+  <noscript><p class="curated-visit__fallback">The interactive six-work visit needs JavaScript. <a href="#all-exhibition-works">Explore all {visit.fullWorkCount} works and their captions below.</a></p></noscript>
+
+  {visit.stops.map((stop, index) => <template data-visit-template={index}>
+    <article class="curated-stop" data-visit-panel data-visit-stop-id={stop.id} aria-labelledby={`visit-stop-${stop.id}`}>
+      <div class="curated-stop__introduction">
+        <p class="curated-stop__number">Stop {String(index + 1).padStart(2, '0')} / {String(visit.stops.length).padStart(2, '0')}</p>
+        <h3 id={`visit-stop-${stop.id}`} tabindex="-1" data-visit-stop-heading>{stop.work.title}</h3>
+        <div class="curated-stop__prompt"><p class="v3-kicker">{stop.title}</p><p>{stop.prompt}</p></div>
+      </div>
+      <div class="curated-stop__viewer">
+        <Viewer glb={withBase(stop.work.modelGlb)} modelBytes={stop.work.modelBytes} poster={withBase(stop.work.thumbnailImage)} title={stop.work.title}
+          hud={false} immersive={true} handlingCaption={true} autoStart="visible" autoRotate={false} posterLoading="lazy"
+          upAxis={stop.work.modelUpAxis} modelTransform={stop.work.modelTransform} materialAppearance={stop.work.materialAppearance} />
+      </div>
+      <div class="curated-stop__copy">
+        <p class="curated-stop__metadata">{[stop.work.maker || stop.work.culture, stop.work.displayDate, stop.work.medium].filter(Boolean).join(' · ')}</p>
+        <p class="curated-stop__reading">{stop.reading}</p>
+        <a class="curated-stop__record" href={recordRoute(index)}>Details &amp; sources <span aria-hidden="true">↗</span></a>
+        {stop.nextConnection && <p class="curated-stop__connection"><span>Up next</span>{stop.nextConnection}</p>}
+      </div>
+    </article>
+  </template>)}
+  <script type="application/json" data-visit-data set:html={client}></script>
+</section>
+
+<script>import '../scripts/curated-visit.js';</script>
+
+<style>
+  .curated-visit { max-width:var(--v3-max); margin:0 auto 52px; padding:38px var(--v3-pad) 0; scroll-margin-top:0; }
+  .curated-visit__header { display:flex; align-items:start; justify-content:space-between; gap:24px; padding-top:27px; border-top:1px solid var(--visit-accent); }
+  .curated-visit__header h2 { max-width:22ch; margin:0 0 15px; font-size:clamp(29px,3.4vw,47px); font-weight:500; line-height:1.14; letter-spacing:-.035em; }
+  .curated-visit__header .v3-kicker { margin:0 0 14px; color:var(--visit-accent); }
+  .curated-visit__summary { max-width:64ch; margin:0; color:var(--v3-muted); font-size:14px; line-height:1.75; }
+  .curated-visit__edition { flex:0 0 auto; margin:2px 0 0; color:var(--v3-ink); font-size:11px; line-height:1.8; text-align:right; }
+  .curated-visit__edition span { color:var(--v3-muted); }
+  .curated-visit__entrance { display:flex; align-items:center; flex-wrap:wrap; gap:14px 25px; margin-top:24px; }
+  .curated-visit button,.curated-visit__primary { display:inline-flex; align-items:center; justify-content:center; gap:13px; min-height:44px; padding:10px 16px; border:1px solid var(--v3-line-strong); border-radius:7px; color:var(--v3-ink); background:transparent; font:500 12px/1.5 var(--v3-sans); cursor:pointer; text-decoration:none; }
+  .curated-visit .curated-visit__primary { color:#172234; background:var(--visit-accent); border-color:var(--visit-accent); }
+  .curated-visit button:disabled { opacity:.4; cursor:default; }
+  .curated-visit__entrance > a,.curated-visit__navigation > a { display:inline-flex; min-height:44px; align-items:center; gap:12px; color:var(--v3-muted); font-size:12px; text-underline-offset:4px; }
+  .curated-visit__session { margin-top:26px; }
+  .curated-visit__progress ol { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:7px; margin:0; padding:0; list-style:none; }
+  .curated-visit__progress button { justify-content:start; width:100%; height:100%; gap:9px; padding:10px; border-radius:4px; color:var(--v3-muted); text-align:left; font-size:10px; }
+  .curated-visit__progress button > span:first-child { color:var(--visit-accent); font-size:11px; }
+  .curated-visit__progress button[aria-current="step"] { border-color:var(--visit-accent); color:var(--v3-ink); background:color-mix(in srgb,var(--visit-accent) 8%,transparent); }
+  .curated-visit__progress > p { margin:13px 0; color:var(--v3-muted); font-size:11px; line-height:1.6; }
+  .curated-stop { display:grid; grid-template-columns:minmax(0,1.35fr) minmax(0,1fr); align-items:center; column-gap:clamp(24px,4vw,56px); row-gap:20px; padding:24px 0; border-top:1px solid var(--v3-line); }
+  .curated-stop__introduction { grid-column:2; grid-row:1; align-self:end; }
+  .curated-stop__copy { grid-column:2; grid-row:2; align-self:start; }
+  .curated-stop__viewer { grid-column:1; grid-row:1 / span 2; min-width:0; }
+  .curated-stop__viewer :global(.viewer:not(:fullscreen):not([data-viewer-expanded]) > .model-stage) { width:100%; height:clamp(364px,calc(45vw - 56px),564px); min-height:0; background:var(--v3-well); }
+  .curated-stop__number { margin:0 0 14px; color:var(--visit-accent); font-size:10px; letter-spacing:.1em; text-transform:uppercase; }
+  .curated-stop__introduction h3 { margin:0 0 18px; font-size:clamp(25px,2.5vw,35px); font-weight:500; line-height:1.2; letter-spacing:-.025em; overflow-wrap:anywhere; }
+  .curated-stop__metadata { margin:0 0 14px; color:var(--v3-muted); font-size:11px; line-height:1.7; }
+  .curated-stop__prompt { border-left:2px solid var(--visit-accent); padding-left:17px; }
+  .curated-stop__prompt .v3-kicker { margin:0 0 9px; color:var(--visit-accent); font-size:10px; }
+  .curated-stop__prompt > p:last-child { margin:0; font-size:clamp(17px,1.5vw,21px); line-height:1.65; }
+  .curated-stop__reading { margin:0 0 14px; color:var(--v3-muted); font-size:13px; line-height:1.8; }
+  .curated-stop__record { display:inline-flex; align-items:center; min-height:44px; gap:13px; color:var(--v3-signal); font-size:12px; text-underline-offset:4px; }
+  .curated-stop__connection { margin:20px 0 0; padding-top:15px; border-top:1px solid var(--v3-line); color:var(--v3-muted); font-size:11px; line-height:1.7; }
+  .curated-stop__connection span { display:block; margin-bottom:4px; color:var(--visit-accent); font-size:9px; text-transform:uppercase; letter-spacing:.08em; }
+  .curated-visit__navigation { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:0 0 12px; }
+  .curated-visit__completion { padding:32px 0; border-top:1px solid var(--v3-line); }
+  .curated-visit__completion h3 { margin:0 0 14px; font-size:34px; font-weight:500; }
+  .curated-visit__completion > p:not(.v3-kicker) { max-width:64ch; color:var(--v3-muted); font-size:15px; line-height:1.8; }
+  .curated-visit__completion > div { display:flex; flex-wrap:wrap; gap:12px; margin-top:24px; }
+  .curated-visit__method { margin-top:15px; padding-top:15px; border-top:1px solid var(--v3-line); color:var(--v3-muted); font-size:12px; line-height:1.8; }
+  .curated-visit__method summary { width:fit-content; min-height:44px; padding:9px 0; color:var(--v3-ink); cursor:pointer; }
+  .curated-visit__method > p { max-width:85ch; }
+  .curated-visit__method ol { max-width:85ch; padding-left:20px; }
+  .curated-visit__method li { padding:5px 0; }
+  .curated-visit__method a { color:var(--v3-signal); text-underline-offset:3px; }
+  .curated-visit__provenance { padding-top:13px; border-top:1px solid var(--v3-line); font-size:11px; }
+  .curated-visit__sr { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+  .curated-visit__fallback { color:var(--v3-muted); font-size:13px; line-height:1.7; }
+  @media(max-width:900px) { .curated-visit__step-title { display:none; } .curated-visit__progress button { justify-content:center; } .curated-stop { grid-template-columns:minmax(0,1.1fr) minmax(0,1fr); gap:24px; } }
+  @media (max-width: 700px) {
+    .curated-visit { padding-top: 12px; }
+    .curated-visit__header { display: block; }
+    .curated-visit__edition { margin-top: 18px; text-align: left; }
+    .curated-stop { grid-template-columns: 1fr; gap: 18px; padding-top: 18px; }
+    .curated-stop__introduction { grid-column: 1; grid-row: 1; }
+    .curated-stop__viewer { grid-column: 1; grid-row: 2; }
+    .curated-stop__viewer :global(.viewer:not(:fullscreen):not([data-viewer-expanded]) > .model-stage) { height: 250px; }
+    .curated-stop__copy { grid-column: 1; grid-row: 3; }
+    .curated-stop__number { display: none; }
+    .curated-stop__introduction h3 { margin-bottom: 13px; font-size: 22px; }
+    .curated-stop__prompt > p:last-child { font-size: 16px; line-height: 1.65; }
+    .curated-visit__navigation { gap: 6px; }
+    .curated-visit__navigation > a { justify-content: center; text-align: center; font-size: 11px; }
+    .curated-visit__navigation button { gap: 5px; padding-inline: 8px; }
+  }
+  @media(max-width:700px) { .curated-visit[data-visit-state="active"] .curated-visit__header { padding-top:12px; } .curated-visit[data-visit-state="active"] .curated-visit__header h2 { max-width:none; margin-bottom:6px; font-size:18px; } .curated-visit[data-visit-state="active"] .curated-visit__header .v3-kicker { margin-bottom:8px; font-size:9px; } .curated-visit[data-visit-state="active"] .curated-visit__summary,.curated-visit[data-visit-state="active"] .curated-visit__edition br,.curated-visit[data-visit-state="active"] .curated-visit__edition span { display:none; } .curated-visit[data-visit-state="active"] .curated-visit__edition { margin-top:5px; font-size:10px; } .curated-visit[data-visit-state="active"] .curated-visit__session { margin-top:12px; } }
+</style>

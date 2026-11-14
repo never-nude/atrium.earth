@@ -258,12 +258,6 @@ em, i { font-style: normal; }
 .v3-exintro .v3-editorial { max-width: 28ch; }
 
 /* Progress rail: the visitor always knows where they stand in the room. */
-.v3-progress { position: fixed; z-index: 60; top: 50%; left: 18px; display: grid; gap: 10px; justify-items: center; transform: translateY(-50%); opacity: 0; pointer-events: none; transition: opacity .3s; }
-.v3-progress.is-active { opacity: 1; }
-.v3-progress__count { color: var(--v3-ink); font-size: .8rem; font-weight: 600; }
-.v3-progress__track { position: relative; width: 1px; height: clamp(120px, 22vh, 220px); background: var(--v3-line); }
-.v3-progress__fill { position: absolute; top: 0; left: 0; width: 100%; height: 0%; background: var(--ex-accent, var(--v3-signal)); transition: height .25s; }
-.v3-progress__label { max-width: 90px; color: var(--v3-faint); font-size: .56rem; font-weight: 600; letter-spacing: .12em; text-align: center; text-transform: uppercase; }
 
 /* Stops: one work at a time, wall text beside it. */
 .v3-walk { display: grid; gap: clamp(90px, 12vw, 190px); padding: 0 var(--v3-pad) clamp(110px, 14vw, 220px); }
@@ -408,7 +402,6 @@ em, i { font-style: normal; }
   .v3-facts { width: min(720px, 100%); }
   .v3-exhero__img { position: relative; top: auto; right: auto; width: min(70vw, 460px); margin: 40px auto 0; transform: none; order: 2; }
   .v3-exhero { align-items: end; }
-  .v3-progress { display: none; }
 }
 
 @media (max-width: 800px) {

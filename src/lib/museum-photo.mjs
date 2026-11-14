@@ -16,7 +16,9 @@ export async function museumPhotoFromFile(file) {
   } finally { URL.revokeObjectURL(url); }
 }
 
-export function bindMuseumPhotos(element, label) {
+export function bindMuseumPhotos(element, label, { signal } = {}) {
+  if (signal?.aborted) return;
+  const on = (target, type, listener) => target.addEventListener(type, listener, { signal });
   const find = selector => element.querySelector(selector);
   const dialog = find('[data-spatial-dialog]');
   const panel = find('.spatial-panel');
@@ -65,9 +67,9 @@ export function bindMuseumPhotos(element, label) {
     dialog.classList.remove('is-photo-editor');
   };
   for (const button of element.querySelectorAll('[data-museum-photo-choose]')) {
-    button.addEventListener('click', () => input.click());
+    on(button, 'click', () => input.click());
   }
-  input.addEventListener('change', () => {
+  on(input, 'change', () => {
     const file = input.files?.[0]; input.value = '';
     if (!file) return;
     const current = ++version;
@@ -84,11 +86,11 @@ export function bindMuseumPhotos(element, label) {
       if (current === version) status.textContent = 'This photo could not be opened. Choose a JPEG or PNG and try again.';
     });
   });
-  positions.forEach(button => button.addEventListener('click', () => {
+  positions.forEach(button => on(button, 'click', () => {
     if (!source || corner === button.dataset.museumPhotoPosition) return;
     corner = button.dataset.museumPhotoPosition; void render();
   }));
-  share.addEventListener('click', () => {
+  on(share, 'click', () => {
     if (!outputFile) return;
     const failed = error => {
       if (error?.name !== 'AbortError') status.textContent = 'Sharing is unavailable here. Use Download photo to save your copy.';
@@ -96,10 +98,11 @@ export function bindMuseumPhotos(element, label) {
     try { void navigator.share({ files: [outputFile], title: label.title }).catch(failed); }
     catch (error) { failed(error); }
   });
-  find('[data-museum-photo-back]').addEventListener('click', () => {
+  on(find('[data-museum-photo-back]'), 'click', () => {
     close(); find('[data-museum-photo-choose]').focus();
   });
-  dialog.addEventListener('close', close);
-  window.addEventListener('pagehide', event => { if (!event.persisted) close(); });
+  on(dialog, 'close', close);
+  on(window, 'pagehide', event => { if (!event.persisted) close(); });
+  signal?.addEventListener('abort', close, { once: true });
   return { close };
 }
