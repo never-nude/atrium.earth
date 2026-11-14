@@ -1,46 +1,105 @@
 const FORM_CONTROL = 'input, textarea, select, button, a, summary, [contenteditable]:not([contenteditable="false"]), [role="textbox"]';
 
-// Mouse double-click stays native. Recognize touch double-taps directly so
-// browsers that only dispatch the two pointer sequences still reset the view.
-export function bindViewerReset(canvas, reset, signal) {
-  const touches = new Map();
-  let lastTap;
+const TAP_MOVEMENT_PX = 8;
+const DOUBLE_TAP_MS = 340;
+const DOUBLE_TAP_PX = 36;
+
+function bindCanvasTaps(canvas, { signal, onSingleTap, onDoubleTap }) {
+  const pointers = new Map();
+  let lastTap, singleTimer;
+
+  function clearTap() {
+    clearTimeout(singleTimer);
+    lastTap = undefined;
+  }
+
+  function singleTap() {
+    clearTap();
+    onSingleTap?.();
+  }
+
   const options = { passive: true, signal };
-  canvas.addEventListener('dblclick', event => {
-    if (event.pointerType !== 'touch' && !event.sourceCapabilities?.firesTouchEvents) reset();
-  }, options);
   canvas.addEventListener('pointerdown', event => {
-    if (event.pointerType !== 'touch') return;
-    touches.set(event.pointerId, { x: event.clientX, y: event.clientY, moved: false });
-    if (touches.size > 1) {
-      lastTap = undefined;
-      for (const touch of touches.values()) touch.moved = true;
-    }
-  }, options);
-  canvas.addEventListener('pointermove', event => {
-    const touch = touches.get(event.pointerId);
-    if (touch && Math.hypot(event.clientX - touch.x, event.clientY - touch.y) >= 8) touch.moved = true;
-  }, options);
-  const finish = event => {
-    const touch = touches.get(event.pointerId);
-    if (!touch) return;
-    touches.delete(event.pointerId);
-    const { clientX: x, clientY: y, timeStamp: time } = event;
-    if (event.type !== 'pointerup' || touch.moved || Math.hypot(x - touch.x, y - touch.y) >= 8) {
-      lastTap = undefined;
+    if (!onSingleTap && event.pointerType !== 'touch') return;
+    if (event.button !== 0 || event.ctrlKey || event.metaKey || event.altKey || event.shiftKey) {
+      clearTap();
       return;
     }
-    if (lastTap && time - lastTap.time <= 340 && Math.hypot(x - lastTap.x, y - lastTap.y) <= 36) {
-      lastTap = undefined;
-      reset();
-    } else {
-      lastTap = { x, y, time };
+    pointers.set(event.pointerId, { x: event.clientX, y: event.clientY, moved: false });
+    if (pointers.size > 1) {
+      clearTap();
+      for (const pointer of pointers.values()) pointer.moved = true;
     }
-  };
+  }, options);
   const capture = { ...options, capture: true };
+  canvas.ownerDocument.addEventListener('pointermove', event => {
+    const pointer = pointers.get(event.pointerId);
+    if (!pointer || Math.hypot(event.clientX - pointer.x, event.clientY - pointer.y) < TAP_MOVEMENT_PX) return;
+    pointer.moved = true;
+    clearTap();
+  }, capture);
+  function finish(event) {
+    const pointer = pointers.get(event.pointerId);
+    if (!pointer) return;
+    pointers.delete(event.pointerId);
+    const { clientX: x, clientY: y, timeStamp: time, pointerType: type } = event;
+    if (event.type !== 'pointerup' || pointer.moved || Math.hypot(x - pointer.x, y - pointer.y) >= TAP_MOVEMENT_PX) {
+      clearTap();
+      return;
+    }
+    if (lastTap && type === lastTap.type && time - lastTap.time <= DOUBLE_TAP_MS &&
+        Math.hypot(x - lastTap.x, y - lastTap.y) <= DOUBLE_TAP_PX) {
+      clearTap();
+      onDoubleTap();
+      return;
+    }
+    if (lastTap && onSingleTap) singleTap();
+    lastTap = { x, y, time, type };
+    if (onSingleTap) singleTimer = setTimeout(singleTap, DOUBLE_TAP_MS);
+  }
   canvas.ownerDocument.addEventListener('pointerup', finish, capture);
   canvas.ownerDocument.addEventListener('pointercancel', finish, capture);
   canvas.addEventListener('lostpointercapture', finish, options);
+  signal.addEventListener('abort', () => { clearTap(); pointers.clear(); }, { once: true });
+  return clearTap;
+}
+
+// Automatic viewers use native mouse double-click and direct touch double-tap.
+export function bindViewerReset(canvas, reset, signal) {
+  canvas.addEventListener('dblclick', event => {
+    if (event.pointerType !== 'touch' && !event.sourceCapabilities?.firesTouchEvents) reset();
+  }, { passive: true, signal });
+  bindCanvasTaps(canvas, { signal, onDoubleTap: reset });
+}
+
+/** Start in the original handling mode, with tap-to-scroll available on demand. */
+export function bindViewerInput({ canvas, controls, signal, wheelZoom = true, onToggle, onReset }) {
+  const rotateSpeed = controls.rotateSpeed;
+  const enablePan = controls.enablePan;
+  let active = true;
+  function applyMode() {
+    // Allow OrbitControls to finish pointer bookkeeping even in scroll mode.
+    controls.rotateSpeed = active ? rotateSpeed : 0;
+    controls.enablePan = active && enablePan;
+    controls.enableZoom = active;
+    canvas.style.touchAction = active ? 'none' : 'pan-y';
+  }
+  const clearTap = bindCanvasTaps(canvas, {
+    signal, onSingleTap: () => setActive(!active), onDoubleTap: onReset,
+  });
+  function setActive(next) {
+    if (signal.aborted) return;
+    clearTap();
+    if (active === next) return;
+    active = next;
+    applyMode();
+    onToggle?.(active);
+  }
+  canvas.addEventListener('wheel', event => {
+    if (!active || !wheelZoom) event.stopImmediatePropagation();
+  }, { capture: true, passive: true, signal });
+  if (!signal.aborted) applyMode();
+  return { isActive: () => active, setActive };
 }
 
 // Scope shortcuts to the focused 3D surface, leaving sliders, links and native

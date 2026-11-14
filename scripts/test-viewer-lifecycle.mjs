@@ -2,8 +2,9 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { getEventListeners, setMaxListeners } from 'node:events';
 import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { createViewerRenderLoop, bindViewerRenderEvents } from '../src/lib/viewer-render-loop.mjs';
-import { bindViewerReset, handleViewerKey, orbitViewer } from '../src/lib/viewer-input.mjs';
+import { bindViewerInput, bindViewerReset, handleViewerKey, orbitViewer } from '../src/lib/viewer-input.mjs';
 import { disposeViewerScene } from '../src/lib/viewer-resources.mjs';
 import { bindSpatialViewing } from '../src/lib/spatial-viewer.mjs';
 
@@ -66,9 +67,9 @@ test('touch double-tap and native mouse double-click reset the live sculpture', 
   let resets = 0;
   bindViewerReset(canvas, () => { resets++; }, lifetime.signal);
   const pointer = (type, time, { id = 1, x = 10, y = 10 } = {}) => {
-    const event = Object.assign(new Event(type), { pointerType: 'touch', pointerId: id, clientX: x, clientY: y });
+    const event = Object.assign(new Event(type), { pointerType: 'touch', pointerId: id, button: 0, clientX: x, clientY: y });
     Object.defineProperty(event, 'timeStamp', { value: time });
-    const target = type === 'pointerup' || type === 'pointercancel' ? document : canvas;
+    const target = type === 'pointerdown' ? canvas : document;
     target.dispatchEvent(event);
   };
   const tap = (time, point) => { pointer('pointerdown', time, point); pointer('pointerup', time + 10, point); };
@@ -100,6 +101,138 @@ test('touch double-tap and native mouse double-click reset the live sculpture', 
   lifetime.abort();
   canvas.dispatchEvent(new Event('dblclick'));
   assert.equal(resets, 2);
+});
+
+function toggleFixture(t, wheelZoom = true) {
+  t.mock.timers.enable({ apis: ['setTimeout'] });
+  const document = new EventTarget();
+  // Node's EventTarget doesn't separate capture and target listeners. Model
+  // capture-first dispatch explicitly so Three sees only unfiltered wheel events.
+  const capture = new EventTarget();
+  const canvas = Object.assign(new EventTarget(), {
+    ownerDocument: document, style: {}, clientHeight: 300,
+    getRootNode: () => document, setPointerCapture() {}, releasePointerCapture() {},
+  });
+  canvas.addEventListener = (type, callback, options) => {
+    if (type === 'wheel' && options?.capture) capture.addEventListener(type, callback, options);
+    else EventTarget.prototype.addEventListener.call(canvas, type, callback, options);
+  };
+  const lifetime = new AbortController();
+  const camera = new THREE.PerspectiveCamera();
+  camera.position.set(0, 0, 4);
+  const controls = new OrbitControls(camera, canvas);
+  controls.enableZoom = wheelZoom;
+  controls.rotateSpeed = .9;
+  const changes = [];
+  let resets = 0, time = 0;
+  const input = bindViewerInput({
+    canvas, controls, signal: lifetime.signal, wheelZoom,
+    onToggle: value => changes.push(value), onReset: () => { resets++; },
+  });
+  t.after(() => { lifetime.abort(); controls.dispose(); });
+  function pointer(type, { pointerType = 'mouse', id = 1, x = 10, y = 10, button = 0, elapsed = 10 } = {}) {
+    time += elapsed;
+    const event = Object.assign(new Event(type), { pointerType, pointerId: id, button, clientX: x, clientY: y, pageX: x, pageY: y });
+    Object.defineProperty(event, 'timeStamp', { value: time });
+    (type === 'pointerdown' ? canvas : document).dispatchEvent(event);
+    // A capture-target pointercancel also reaches Three's canvas listener.
+    if (type === 'pointercancel') canvas.dispatchEvent(event);
+  }
+  const tap = point => { pointer('pointerdown', point); pointer('pointerup', point); };
+  const wheel = () => {
+    const event = Object.assign(new Event('wheel', { cancelable: true }), { deltaY: 120, deltaMode: 0, clientX: 10, clientY: 10 });
+    let stopped = false;
+    event.stopImmediatePropagation = () => { stopped = true; };
+    capture.dispatchEvent(event);
+    if (!stopped) canvas.dispatchEvent(event);
+    return event.defaultPrevented;
+  };
+  return { canvas, capture, document, lifetime, controls, camera, input, changes, pointer, tap, wheel, get resets() { return resets; } };
+}
+
+test('manual viewer clicks pause and resume handling while leaving page wheel available when paused', t => {
+  const v = toggleFixture(t);
+  assert.equal(v.input.isActive(), true);
+  assert.equal(v.canvas.style.touchAction, 'none');
+  assert.equal(v.wheel(), true);
+  v.tap();
+  t.mock.timers.tick(339);
+  assert.equal(v.input.isActive(), true);
+  t.mock.timers.tick(1);
+  assert.equal(v.input.isActive(), false);
+  assert.equal(v.canvas.style.touchAction, 'pan-y');
+  assert.equal(v.controls.enableZoom, false);
+  assert.equal(v.controls.enablePan, false);
+  assert.equal(v.controls.enabled, true);
+  assert.equal(v.wheel(), false);
+
+  v.pointer('pointerdown', { pointerType: 'touch' });
+  v.pointer('pointermove', { pointerType: 'touch', y: 50 });
+  v.pointer('pointercancel', { pointerType: 'touch', y: 50 });
+  t.mock.timers.tick(340);
+  assert.equal(v.input.isActive(), false, 'Vertical swipe cannot resume handling');
+  v.tap({ pointerType: 'touch' });
+  t.mock.timers.tick(340);
+  assert.equal(v.input.isActive(), true);
+  assert.equal(v.controls.rotateSpeed, .9);
+  assert.equal(v.controls.enablePan, true);
+  assert.deepEqual(v.changes, [false, true]);
+});
+
+test('drag and pinch still move the sculpture and neither toggles the viewer', t => {
+  const v = toggleFixture(t, false);
+  assert.equal(v.wheel(), false, 'Comparison can leave the page wheel available');
+  const before = v.camera.position.clone();
+  v.pointer('pointerdown');
+  v.pointer('pointermove', { x: 30 });
+  v.pointer('pointerup', { x: 10 });
+  assert.ok(v.camera.position.distanceTo(before) > .01);
+  v.pointer('pointerdown', { pointerType: 'touch' });
+  v.pointer('pointerdown', { pointerType: 'touch', id: 2, x: 50 });
+  const distance = v.camera.position.distanceTo(v.controls.target);
+  v.pointer('pointermove', { pointerType: 'touch', id: 2, x: 72 });
+  assert.notEqual(v.camera.position.distanceTo(v.controls.target), distance);
+  v.pointer('pointerup', { pointerType: 'touch', id: 2, x: 72 });
+  v.pointer('pointerup', { pointerType: 'touch' });
+  t.mock.timers.tick(340);
+  assert.equal(v.resets, 0);
+  assert.deepEqual(v.changes, []);
+});
+
+test('double-click and double-tap reset without toggling either handling state', t => {
+  const v = toggleFixture(t);
+  v.tap();
+  t.mock.timers.tick(100);
+  v.tap();
+  v.canvas.dispatchEvent(new Event('dblclick'));
+  t.mock.timers.tick(400);
+  assert.equal(v.resets, 1);
+  assert.deepEqual(v.changes, []);
+
+  v.input.setActive(false);
+  v.tap({ pointerType: 'touch', elapsed: 400 });
+  t.mock.timers.tick(100);
+  v.tap({ pointerType: 'touch' });
+  t.mock.timers.tick(400);
+  assert.equal(v.resets, 2);
+  assert.equal(v.input.isActive(), false);
+  assert.deepEqual(v.changes, [false]);
+});
+
+test('explicit mode change and disposal cancel pending single click', t => {
+  const v = toggleFixture(t);
+  v.tap();
+  v.input.setActive(true);
+  t.mock.timers.tick(400);
+  assert.deepEqual(v.changes, []);
+  v.tap();
+  v.lifetime.abort();
+  t.mock.timers.tick(400);
+  v.input.setActive(false);
+  assert.deepEqual(v.changes, []);
+  assert.equal(getEventListeners(v.capture, 'wheel').length, 0);
+  assert.equal(getEventListeners(v.canvas, 'wheel').length, 1, 'Only Three’s wheel listener remains');
+  assert.equal(getEventListeners(v.document, 'pointermove').length, 0);
 });
 
 test('all activation modes use the same offscreen gate and retain invalidations until visible', () => {
