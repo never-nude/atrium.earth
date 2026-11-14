@@ -110,6 +110,16 @@ dependencies and restore map, fresh full-content live-delivery checks and a fina
 unchanged-file check. Interrupted transfers or missing originals block removal.
 Tracked files and models still required by a Pages build remain protected.
 
+Post-deploy cleanup is part of completing each acquisition batch. After these
+checks pass, remove eligible batch-local source downloads, private render
+intermediates and transfer staging copies through the same exact-file workflow.
+Archive required review evidence first. Keep tracked/build assets and unresolved
+holds; report the exact removed file count and logical bytes, with any retained
+blockers.
+Archive and clear large completed verification-report caches in one bounded final
+pass; retain compact recovery maps, keys and removal journals. Distinguish logical
+file bytes removed from observed filesystem space changes and shared hardlinks.
+
 Keep credentials, signed download URLs, Drive identities and absolute local paths
 only in ignored private state, never in public manifests or Git. Temporary Actions
 artifacts, filename matches, reported sizes and hash prefixes are not sufficient
