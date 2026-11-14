@@ -14,6 +14,7 @@ const routes = [
   { id: 'guided-visit', path: '/exhibitions/the-work-of-the-surface/#curated-visit', primary: '[data-visit-active] [data-visit-stop-heading]' },
   { id: 'world', path: '/world/', primary: '#world-title', prepare: async page => {
     await page.locator('[data-world-place] option').nth(1).waitFor({ state: 'attached' });
+    await page.locator('[data-world-state="ready"] button[data-world-place]:visible').first().waitFor();
   } },
   { id: 'exhibition-entry', path: '/exhibitions/bodies-in-motion/', primary: '.v3-exhero__begin' },
   { id: 'missing', path: '/atrium-browser-check-missing/', primary: '#missing-title', status: 404 },
@@ -73,6 +74,7 @@ function measurePage(phone) {
 
 const hosted = process.env.BROWSER_CHECK_ORIGIN ? null : await serveBrowserChecks();
 const origin = process.env.BROWSER_CHECK_ORIGIN || hosted.origin;
+const localOrigin = ['127.0.0.1', 'localhost'].includes(new URL(origin).hostname);
 const selected = routes.filter(route => !process.env.BROWSER_CHECK_ROUTE || route.id === process.env.BROWSER_CHECK_ROUTE);
 if (!selected.length) throw new Error('Unknown browser check route');
 await mkdir(artifacts, { recursive: true });
@@ -95,6 +97,20 @@ async function check(engine, viewport, route, browser) {
   try {
     // External analytics must not make a static-site smoke check fail.
     await page.route('https://cloud.umami.is/**', route => route.fulfill({ status: 204 }));
+    // The model CDN permits Atrium's origin. Serve its original bytes to loopback QA.
+    if (localOrigin) await page.route('https://models.atrium.earth/models/previews/**/*.glb', async route => {
+      try {
+        const response = await route.fetch({
+          headers: { ...route.request().headers(), origin: 'https://atrium.earth' },
+          timeout: 15000,
+        });
+        if (!response.ok()) errors.push(`Model preview returned HTTP ${response.status()}: ${route.request().url()}`);
+        await route.fulfill({ response, headers: { ...response.headers(), 'access-control-allow-origin': new URL(origin).origin } });
+      } catch (error) {
+        errors.push(error.message);
+        await route.abort().catch(() => {});
+      }
+    });
     const response = await page.goto(new URL(route.path, origin).href, { waitUntil: 'domcontentloaded' });
     if (response?.status() !== (route.status ?? 200)) problems.push(`HTTP ${response?.status() ?? 'no response'}`);
     if (route.prepare) await route.prepare(page);
@@ -120,6 +136,7 @@ async function check(engine, viewport, route, browser) {
   } catch (error) {
     problems.push(error.message);
   } finally {
+    await page.unrouteAll({ behavior: 'wait' });
     if (errors.length) problems.push(...new Set(errors));
     results.push(result);
     console.log(`${result.engine} ${viewport.width} ${route.id}: ${problems.length ? problems.join(' | ') : 'pass'}${viewport.width === 390 && result.smallText ? ` (${result.smallText.length} small text, ${result.smallTargets.length} small targets)` : ''}`);

@@ -17,4 +17,6 @@ The existing Node checks pass through `npm test`. The new Playwright suite treat
 
 The baseline showed mismatched visible and spoken labels, an unnamed globe result link, and low contrast on the Surface exhibition's secondary action. The candidate uses accessible visible names, labels the globe results link, and makes the secondary action's background transparent. No 3D input or controls were changed. Text smaller than 12 px, targets smaller than 44 px, and the homepage 2.5 s / 1.5 MB Lighthouse budgets are report-only for the staged plan.
 
-Step 2 remains in review and is not deployed. The local preview is on port 5192.
+The review also caught capped globe marker counts missing from spoken labels. The browser suite tests the original CDN model bytes on the local build with a loopback-only origin allowance. A simulated foreground/background match on the `Begin exhibition` button failed the browser check at both Chromium widths. Deleting the old colour rule alone kept the button readable because a fallback already supplied a contrasting colour.
+
+On November 14, Mike approved [PR 84](https://github.com/never-nude/atrium.earth/pull/84) for deployment after its checks. A local Lighthouse run measured 3.56 s LCP and 467,898 bytes transferred.

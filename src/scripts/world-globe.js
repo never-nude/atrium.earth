@@ -185,11 +185,11 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
     button.style.cssText = `position:absolute;left:0;top:0;width:${MARKER_SIZE}px;height:${MARKER_SIZE}px;min-width:${MARKER_SIZE}px;min-height:${MARKER_SIZE}px;box-sizing:border-box;touch-action:manipulation;padding:0;border:1px solid ${place.color};border-radius:50%;background:#081326e8;color:${place.color};box-shadow:0 0 15px ${place.color}70;font:600 10px/1 system-ui;cursor:pointer;pointer-events:auto;transform:translate(-50%,-50%);z-index:2;outline-offset:4px`;
     const label = document.createElement('span');
     label.style.cssText = 'position:absolute;left:50%;bottom:calc(100% + 8px);transform:translateX(-50%);padding:5px 8px;max-width:180px;width:max-content;border:1px solid #50728d80;border-radius:3px;background:#050b1af2;color:#e9f7ff;font:11px/1.4 system-ui;text-align:center;opacity:0;pointer-events:none';
-    label.textContent = String(place.label || place.id);
+    label.textContent = `${place.label || place.id} `;
     label.setAttribute('aria-hidden', 'true');
     const number = document.createElement('span');
     number.setAttribute('aria-hidden', 'true');
-    button.append(number, label);
+    button.append(label, number);
     const showLabel = () => { label.style.opacity = '1'; button.style.zIndex = '5'; };
     const hideLabel = () => { label.style.opacity = selectedId === place.id ? '1' : '0'; button.style.zIndex = selectedId === place.id ? '4' : '2'; };
     button.addEventListener('pointerenter', showLabel, { signal });
@@ -478,8 +478,10 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
       for (const place of invitation ? [] : entries) {
         const count = countFor(place.id), selected = place.id === selectedId;
         if (!count) place.button.hidden = true;
-        place.number.textContent = count > 99 ? '99+' : String(count);
-        place.button.setAttribute('aria-label', `${place.label}: ${count} ${count === 1 ? 'work' : 'works'}. ${place.precision === 'country' ? 'Country' : 'Regional'} location, not an exact artwork site.`);
+        const markerCount = count > 99 ? '99+' : String(count);
+        const total = count > 99 ? ` (${count} in total)` : '';
+        place.number.textContent = markerCount;
+        place.button.setAttribute('aria-label', `${place.label}: ${markerCount} ${count === 1 ? 'work' : 'works'}${total}. ${place.precision === 'country' ? 'Country' : 'Regional'} location, not an exact artwork site.`);
         place.button.setAttribute('aria-pressed', String(selected));
         place.button.style.background = selected ? place.color : '#081326e8';
         place.button.style.color = selected ? '#04111c' : place.color;
