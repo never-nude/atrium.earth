@@ -155,7 +155,7 @@ const heroAlt = [
   .home-programme-hero :global(.viewer:not(:fullscreen):not([data-viewer-expanded]) .home-featured-controls .immersive-light) { position: relative; }
   .home-programme-hero :global(.viewer:not(:fullscreen):not([data-viewer-expanded]) .home-featured-controls .immersive-light[open]) { width: 100%; }
   .home-programme-hero :global(.viewer:not(:fullscreen):not([data-viewer-expanded]) .home-featured-controls .immersive-light__panel) { position: static; width: 100%; margin-top: 8px; box-shadow: none; }
-  .home-programme-hero :global(.viewer:is(:fullscreen, [data-viewer-expanded]) .home-featured-controls .immersive-tools:not([hidden])) { display: flex !important; }
+  .home-programme-hero :global(.viewer:is(:fullscreen, [data-viewer-expanded]) .home-featured-controls .immersive-tools:not([hidden])) { display: flex !important; position: absolute; inset: auto 12px max(28px, env(safe-area-inset-bottom)) 12px; transform: none; }
   .home-programme-hero > .v3-hero__copy { position: relative; inset: auto; grid-column: 1; grid-row: 1 / 3; align-self: center; width: auto; max-width: 580px; margin: 0; padding: 20px 0; }
   .home-programme-hero .v3-hero__copy h1 { margin: 18px 0; font-size: clamp(42px, 5.2vw, 78px); line-height: 1.06; }
   .home-programme-hero > .v3-hero__object { position: relative; inset: auto; grid-column: 2; grid-row: 2; justify-self: center; display: grid; justify-items: center; gap: 4px; max-width: 54ch; margin: 8px 0 0; padding: 0; text-align: center; }
