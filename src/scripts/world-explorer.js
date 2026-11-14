@@ -145,7 +145,7 @@ async function initialise(root, { compact, signal, register }) {
     const originQualifier = state.place ? '' : ' mapped by origin';
     const periodCount = root.querySelector('[data-world-period-count]');
     periodCount.textContent = `${resultCount} ↓`;
-    periodCount.setAttribute('aria-label', `${resultCount} works for this period`);
+    periodCount.setAttribute('aria-label', `${resultCount} for this period`);
     root.querySelector('[data-world-result-count]').textContent = `${resultCount}${originQualifier} · ${periodLabel}`;
     originNote.textContent = state.place === '__unplaced__'
       ? 'These records do not establish an origin confidently enough to place on the globe.'
