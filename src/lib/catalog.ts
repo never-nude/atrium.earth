@@ -671,7 +671,7 @@ function normalize(raw: RawWork, fallbackIndex: number): Work {
     tags: [...new Set(tags)],
     relatedWorks: [],
     posterImage: `/previews/posters/${raw.slug}/poster.svg`,
-    thumbnailImage: renderSet.has(raw.slug) ? `/previews/renders/${raw.slug}/thumb.webp` : `/previews/posters/${raw.slug}/poster.svg`,
+    thumbnailImage: renderSet.has(raw.slug) ? `/previews/renders/${raw.slug}/thumb.webp?preview=alpha1` : `/previews/posters/${raw.slug}/poster.svg`,
     // Match the configured version so a stale local mirror cannot hide a repair.
     modelGlb: import.meta.env?.DEV && preview?.url
       ? `/__atrium-model/${encodeURIComponent(raw.slug)}`

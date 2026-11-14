@@ -3,7 +3,7 @@ import V2Header from '../../components/v2/V2Header.astro';
 import GoogleAnalytics from '../../components/GoogleAnalytics.astro';
 import ArtworkImageRecovery from '../../components/ArtworkImageRecovery.astro';
 import { collectionCount } from '../../lib/v2';
-import { absoluteUrl, withBase, withoutBase } from '../../lib/urls';
+import { absoluteUrl, socialArtworkImage, withBase, withoutBase } from '../../lib/urls';
 import '../../styles/v2/v2.css';
 
 type Props = {
@@ -26,7 +26,7 @@ const site = String(Astro.site ?? 'https://atrium.earth');
 const currentPath = withoutBase(Astro.url.pathname);
 const canonicalPath = withoutBase(canonical).replace(/^\/v2(?=\/|$)/, '') || '/';
 const canonicalUrl = absoluteUrl(canonicalPath, site);
-const imageUrl = absoluteUrl(image, site);
+const imageUrl = absoluteUrl(socialArtworkImage(image), site);
 const pageTitle = title === 'Atrium.Earth' ? 'Atrium.Earth — Digital Sculpture Museum' : `${title} — Atrium.Earth`;
 ---
 

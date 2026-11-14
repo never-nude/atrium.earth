@@ -147,8 +147,7 @@ const heroAlt = [
   .home-programme-hero > .v3-hero__viewer { position: relative; inset: auto; grid-column: 2; grid-row: 1; --hero-artwork-height: clamp(370px, 57svh, 610px); height: auto; }
   .home-programme-hero :global(.viewer:not(:fullscreen):not([data-viewer-expanded])) { height: auto; }
   .home-programme-hero :global(.viewer:not(:fullscreen):not([data-viewer-expanded]) > .model-stage) { height: var(--hero-artwork-height); }
-  /* Mask legacy thumbnails at the image edge, where the baked backdrop ends. */
-  .home-programme-hero :global(.model-stage:not([data-rendered-still]) [data-poster][src$="/thumb.webp"]),
+  /* The recovery JPEG still has the original backdrop. */
   .home-programme-hero :global(.model-stage:not([data-rendered-still]) [data-poster][src*="/thumb.jpg"]) {
     inset: 50% auto auto 50%;
     width: min(100%, calc(var(--hero-artwork-height) * .8));

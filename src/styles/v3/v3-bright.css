@@ -280,3 +280,9 @@ body { background: var(--v3-void); }
   .v3-stop__viewer { height: clamp(340px, 62svh, 580px); }
   .v3-exhero--interactive .v3-exhero__copy { margin-top: 28px; }
 }
+
+/* Transparent renders already carry the artwork silhouette. */
+img[src*="/thumb.webp?preview=alpha1"] {
+  -webkit-mask-image: none !important;
+  mask-image: none !important;
+}

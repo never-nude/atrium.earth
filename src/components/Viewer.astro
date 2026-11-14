@@ -72,7 +72,7 @@ const {
 const hasModel = Boolean(glb);
 const uid = Math.random().toString(36).slice(2, 8);
 const appearanceJson = JSON.stringify(materialAppearance);
-const thumbnailSlug = /\/previews\/renders\/(.+)\/thumb\.webp$/.exec(poster)?.[1];
+const thumbnailSlug = /\/previews\/renders\/(.+)\/thumb\.webp(?:\?.*)?$/.exec(poster)?.[1];
 const renderedStill = hasModel && thumbnailSlug && previewStills.includes(thumbnailSlug) ? `${import.meta.env.BASE_URL.replace(/\/$/, '')}/images/viewer-stills/${thumbnailSlug}.webp` : '';
 const backdrop = ['backdropTop', 'backdropBase', 'backdropGlow'].map(key => {
   const value = materialAppearance[key];

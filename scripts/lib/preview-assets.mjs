@@ -55,6 +55,7 @@ export function previewAssets() {
     async configureServer(server) {
       const previews = JSON.parse(await readFile(path.join(server.config.root, 'src/data/previews.json'), 'utf8'));
       const externalPublic = process.env.ATRIUM_PREVIEW_PUBLIC_DIR;
+      const artworkPreviews = process.env.ATRIUM_PREVIEW_ARTWORK_DIR;
       const roots = [...new Set([externalPublic, path.join(server.config.root, 'public')].filter(Boolean))];
       const base = server.config.base.replace(/\/$/, '');
       server.middlewares.use(async (req, res, next) => {
@@ -71,7 +72,9 @@ export function previewAssets() {
           res.once('close', () => controller.abort());
 
           if (!model) {
-            for (const root of roots) {
+            const imageRoots = artworkPreviews && /^\/previews\/renders\/.+\/thumb\.webp$/.test(assetPath)
+              ? [artworkPreviews, ...roots] : roots;
+            for (const root of imageRoots) {
               const candidate = await existingFile(root, assetPath);
               if (!candidate) continue;
               res.setHeader('Content-Type', contentTypes[path.extname(candidate.file)] || 'application/octet-stream');
