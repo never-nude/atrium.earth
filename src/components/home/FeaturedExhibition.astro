@@ -1,4 +1,5 @@
 ---
+import Viewer from '../Viewer.astro';
 import { currentProgramme, type MuseumProgramme } from '../../lib/programme';
 import { exhibitionFeaturedWork, v3ExhibitionRoute } from '../../lib/v3';
 import { withBase } from '../../lib/urls';
@@ -20,10 +21,14 @@ const others = programme.exhibitions.filter(exhibition => exhibition.slug !== fo
       <p class="featured-exhibition__summary">{focus.summary}</p>
       <a class="v3-button v3-button--light" href={withBase(v3ExhibitionRoute(focus))}>Begin exhibition <span aria-hidden="true">→</span></a>
     </div>
-    <a class="featured-exhibition__art" href={withBase(v3ExhibitionRoute(focus))} aria-label={`${shortWorkTitle(lead.title)} · Begin ${focus.title}`}>
-      <img src={withBase(lead.thumbnailImage)} alt={lead.title} width="720" height="900" loading="lazy" decoding="async" />
-      <span>{shortWorkTitle(lead.title)}</span>
-    </a>
+    <figure class="featured-exhibition__art">
+      <div class="featured-exhibition__viewer v3-exhibition-viewer">
+        <Viewer glb={withBase(lead.modelGlb)} modelBytes={lead.modelBytes} poster={withBase(lead.thumbnailImage)}
+          title={lead.title} hud={false} immersive={true} autoStart="preview" autoRotateSpeed={0.35}
+          upAxis={lead.modelUpAxis} modelTransform={lead.modelTransform} materialAppearance={lead.materialAppearance} />
+      </div>
+      <figcaption><a href={withBase(v3ExhibitionRoute(focus))} aria-label={`${shortWorkTitle(lead.title)} · Begin ${focus.title}`}>{shortWorkTitle(lead.title)}</a></figcaption>
+    </figure>
   </article>
 
   <div class="featured-exhibition__more">
@@ -50,9 +55,12 @@ const others = programme.exhibitions.filter(exhibition => exhibition.slug !== fo
   .featured-exhibition__intro { max-width: 47ch; margin: 0 0 16px; color: var(--v3-ink); font-size: 17px; line-height: 1.65; }
   .featured-exhibition__summary { max-width: 58ch; margin: 0 0 28px; color: var(--v3-muted); font-size: 13px; line-height: 1.75; }
   .featured-exhibition .v3-button--light { color: #101827; background: var(--feature-accent); border-color: var(--feature-accent); }
-  .featured-exhibition__art { display: flex; min-width: 0; flex-direction: column; align-items: center; justify-content: center; min-height: 400px; padding: 24px; text-decoration: none; }
-  .featured-exhibition__art img { display: block; width: 100%; height: 350px; object-fit: contain; }
-  .featured-exhibition__art > span { margin-top: 16px; max-width: 40ch; color: var(--v3-muted); font-size: 11px; line-height: 1.5; text-align: center; }
+  .featured-exhibition__art { min-width: 0; margin: 0; padding: 12px 24px; }
+  .featured-exhibition__viewer { height: 428px; }
+  .featured-exhibition__viewer :global(.viewer:not(:fullscreen):not([data-viewer-expanded]) > .model-stage) { height: calc(100% - 78px); }
+  .featured-exhibition__viewer :global(.viewer:not(:fullscreen):not([data-viewer-expanded]) > .viewer-start) { position: absolute; inset: auto 0 0; justify-content: center; }
+  .featured-exhibition__art figcaption { display: grid; justify-items: center; margin-top: 4px; text-align: center; }
+  .featured-exhibition__art figcaption a { display: inline-flex; align-items: center; min-height: 44px; max-width: 40ch; color: var(--v3-muted); font-size: 11px; line-height: 1.5; text-underline-offset: 3px; }
   .featured-exhibition__more { margin-top: 44px; }
   .featured-exhibition__more-heading { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 12px 24px; margin-bottom: 8px; }
   .featured-exhibition__more-heading .v3-kicker { margin: 0; }
@@ -68,8 +76,8 @@ const others = programme.exhibitions.filter(exhibition => exhibition.slug !== fo
     .featured-exhibition__main { gap: 25px; grid-template-columns: 1fr; }
     .featured-exhibition h2 { max-width: 24ch; font-size: clamp(30px, 6vw, 42px); }
     .featured-exhibition__intro { font-size: 16px; }
-    .featured-exhibition__art { min-height: 300px; padding: 20px; }
-    .featured-exhibition__art img { height: 280px; }
+    .featured-exhibition__art { padding: 0; }
+    .featured-exhibition__viewer { height: 358px; }
     .featured-exhibition__teasers { grid-template-columns: 1fr; gap: 22px; }
     .featured-exhibition__teaser { grid-template-columns: 95px minmax(0, 1fr); gap: 20px; }
     .featured-exhibition__teaser img { width: 95px; height: 120px; }

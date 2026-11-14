@@ -35,7 +35,11 @@ const stops = exhibition.works.map((work, index) => ({
       <div class="exhibition-duet" aria-label="Featured works, side by side">
         {heroComparison.works.map((work) => (
           <figure class="v3-float v3-float--soft" data-featured-work={work.slug}>
-            <img src={withBase(work.thumbnailImage)} alt={work.title} width="720" height="900" loading="eager" decoding="async" />
+            <div class="exhibition-duet__viewer v3-exhibition-viewer">
+              <Viewer glb={withBase(work.modelGlb)} modelBytes={work.modelBytes} poster={withBase(work.thumbnailImage)}
+                title={work.title} hud={false} immersive={true} autoStart="preview" autoRotateSpeed={0.25}
+                posterLoading="eager" upAxis={work.modelUpAxis} modelTransform={work.modelTransform} materialAppearance={work.materialAppearance} />
+            </div>
             <figcaption>{exhibition.workNotes?.[work.slug]?.artist || work.maker} · {shortWorkTitle(work.title)}</figcaption>
           </figure>
         ))}
@@ -132,7 +136,9 @@ const stops = exhibition.works.map((work, index) => ({
   .exhibition-full-heading a { display:inline-flex; align-items:center; gap:12px; min-height:44px; color:var(--v3-signal); font-size:12px; text-underline-offset:4px; }
   .exhibition-duet { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(16px, 4vw, 60px); width: min(100%, 1100px); margin: 0 auto; }
   .exhibition-duet figure { min-width: 0; margin: 0; }
-  .exhibition-duet img { display: block; width: 100%; height: clamp(240px, 52svh, 620px); object-fit: contain; }
+  .exhibition-duet__viewer { height: clamp(318px, calc(52svh + 78px), 698px); }
+  .exhibition-duet__viewer :global(.viewer:not(:fullscreen):not([data-viewer-expanded]) > .model-stage) { height: calc(100% - 78px); }
+  .exhibition-duet__viewer :global(.viewer:not(:fullscreen):not([data-viewer-expanded]) > .viewer-start) { position: absolute; inset: auto 0 0; justify-content: center; }
   .exhibition-duet figcaption { margin-top: 12px; color: var(--v3-muted); font-size: .7rem; line-height: 1.5; text-align: center; }
   .exhibition-viewing-note { max-width: 64ch; margin: 28px 0 0; color: var(--v3-muted); font-size: .92rem; line-height: 1.6; }
   .exhibition-pair-index { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 24px; max-width: 800px; margin-top: 36px; }
@@ -140,7 +146,8 @@ const stops = exhibition.works.map((work, index) => ({
   .exhibition-pair-index a:hover { color: var(--v3-signal); }
   .exhibition-pair-index span { color: var(--v3-muted); font-size: .67rem; }
   @media (max-width: 650px) {
-    .exhibition-duet img { height: clamp(215px, 72vw, 390px); }
+    .exhibition-duet { grid-template-columns: 1fr; gap: 24px; }
+    .exhibition-duet__viewer { height: clamp(293px, calc(72vw + 78px), 468px); }
     .exhibition-duet figcaption { font-size: .62rem; }
     .exhibition-pair-index { grid-template-columns: 1fr; }
   }

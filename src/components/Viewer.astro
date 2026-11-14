@@ -15,7 +15,7 @@ type Props = {
   materialAppearance?: Record<string, unknown>;
   immersive?: boolean;
   posterLoading?: 'eager' | 'lazy';
-  autoStart?: boolean | 'visible';
+  autoStart?: boolean | 'visible' | 'preview';
   autoRotate?: boolean;
   autoRotateSpeed?: number;
   // Positive values turn the sculpture counterclockwise when viewed from above.
@@ -86,7 +86,7 @@ const stageBackdrop = hasModel ? [
   `--stage-glow-strength:${Number.isFinite(glowStrength) ? Math.max(0, Math.min(glowStrength, 1)) * 100 : 7}%`,
 ].join(';') : undefined;
 const transformJson = JSON.stringify(modelTransform);
-const manual = autoStart === false && hasModel;
+const hasStartStrip = hasModel && (autoStart === false || autoStart === 'preview');
 const sizeLabel = modelBytes && modelBytes > 0 ? ` · ${(modelBytes / 1e6).toFixed(1)} MB` : '';
 ---
 
@@ -99,12 +99,12 @@ const sizeLabel = modelBytes && modelBytes > 0 ? ` · ${(modelBytes / 1e6).toFix
     <span class="stage-tag" aria-hidden="true">{tag ?? (hasModel ? '3D MODEL' : 'PHOTOGRAPH')}</span>
 
     <img src={renderedStill || poster} data-fallback-poster={renderedStill ? poster : undefined} alt={posterAlt ?? `${title} — still image`} width="720" height="900" loading={posterLoading} decoding="async" data-poster />
-    {manual && <div class="viewer-download" aria-hidden="true"><span data-download-bar></span></div>}
+    {hasStartStrip && <div class="viewer-download" aria-hidden="true"><span data-download-bar></span></div>}
 
     {/* Rendered hidden: the script reveals it only when it is needed (auto-start
         off, or the model failed to load). Crawlers, pre-hydration paint, and
         no-JS visitors all get the still image with nothing offered on top of it. */}
-    {hasModel && !manual && (
+    {hasModel && !hasStartStrip && (
       <button class="stage-activate" type="button" data-activate aria-describedby={`viewer-status-${uid}`} hidden>
         <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
           <path d="M12 2 4 6.5v9L12 20l8-4.5v-9L12 2z" />
@@ -113,11 +113,11 @@ const sizeLabel = modelBytes && modelBytes > 0 ? ` · ${(modelBytes / 1e6).toFix
         <span data-activate-label>Examine in 3D</span>
       </button>
     )}
-    {!manual && <div class="stage-loading" data-loading aria-hidden="true" hidden>
+    {!hasStartStrip && <div class="stage-loading" data-loading aria-hidden="true" hidden>
       <span class="spinner" aria-hidden="true"></span>
       <span class="loading-text">Loading…</span>
     </div>}
-    {hasModel && !manual && <p id={`viewer-status-${uid}`} class="viewer-keyboard-instructions viewer-status" data-viewer-status role="status" aria-atomic="true"></p>}
+    {hasModel && !hasStartStrip && <p id={`viewer-status-${uid}`} class="viewer-keyboard-instructions viewer-status" data-viewer-status role="status" aria-atomic="true"></p>}
 
     {hasModel && (
       <div class="immersive-tools" data-immersive-tools hidden role="group" aria-label="3D viewing tools">
@@ -148,7 +148,7 @@ const sizeLabel = modelBytes && modelBytes > 0 ? ` · ${(modelBytes / 1e6).toFix
     )}
   </div>
 
-  {manual && <div class="viewer-start" data-viewer-start hidden>
+  {hasStartStrip && <div class="viewer-start" data-viewer-start hidden>
     <button class="viewer-start__button" type="button" data-activate aria-describedby={`viewer-status-${uid}`} hidden>
       <span data-activate-label>Examine in 3D{sizeLabel}</span>
     </button>
@@ -171,7 +171,7 @@ const sizeLabel = modelBytes && modelBytes > 0 ? ` · ${(modelBytes / 1e6).toFix
   )}
 
   {hasModel && <p class="stage-hint fine" data-hint hidden>Drag to turn the view · <span class="stage-hint__pan">right-drag or two-finger drag to move the view · </span>{wheelZoom && 'scroll or pinch to zoom · '}double-click or double-tap to reset</p>}
-  {hasModel && <p id={`viewer-keys-${uid}`} class="viewer-keyboard-instructions">After opening the 3D view, focus the sculpture and use arrow keys to turn, plus and minus to zoom, and 0 or Home to reset. {manual && 'Press Enter or Space to pause or resume handling.'}</p>}
+  {hasModel && <p id={`viewer-keys-${uid}`} class="viewer-keyboard-instructions">After opening the 3D view, focus the sculpture and use arrow keys to turn, plus and minus to zoom, and 0 or Home to reset. {hasStartStrip && 'Press Enter or Space to pause or resume handling.'}</p>}
 
   {spatialViewing && hasModel && <SpatialViewing title={title} poster={poster} museumLabel={museumLabel} reference={spatialReference} sizeNote={spatialNote} displaySupport={displaySupport} dimensionStatus={spatialDimensionStatus} requiresAssetCheck={Boolean(spatialAssetSha256)} referenceLabel={spatialLabel} sizeLabel={spatialSizeLabel} defaultMaxExtentMeters={spatialDefaultMaxExtentMeters} />}
   {!spatialViewing && spatialUnavailableNote && <a id="ar-vr" class="spatial-unavailable" data-spatial-unavailable href="#size-verification" title={spatialUnavailableNote}>AR / VR unavailable · Size unverified <span aria-hidden="true">↓</span></a>}
@@ -420,9 +420,11 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     isVisible: () => boolean;
     onFirstFrame: () => void;
     onHandlingChange?: (active: boolean) => void;
+    initialHandling?: () => boolean;
+    rotateWhilePaused: boolean;
     onProgress?: (progress: { loadedBytes: number; totalBytes: number | null }) => void;
   }): Promise<Viewer> {
-    const { saved, signal, isVisible, onFirstFrame, onHandlingChange, onProgress } = build;
+    const { saved, signal, isVisible, onFirstFrame, onHandlingChange, initialHandling, rotateWhilePaused, onProgress } = build;
     const THREE = await import('three');
     const { DRACOLoader } = await import('three/examples/jsm/loaders/DRACOLoader.js');
     const { GLTFLoader } = await import('three/examples/jsm/loaders/GLTFLoader.js');
@@ -503,7 +505,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     let rotationRequested = saved?.autoRotate ?? (stage.dataset.autoRotate !== 'false');
     let handling: Viewer['handling'];
     const rotationState = () => ({ active: rotationRequested && !(respectReducedMotion && reducedMotion.matches), reduced: respectReducedMotion && reducedMotion.matches });
-    const rotationRunning = () => rotationState().active && (handling?.isActive() ?? true);
+    const rotationRunning = () => rotationState().active && (rotateWhilePaused || (handling?.isActive() ?? true));
     controls.autoRotate = !turnsModel && rotationRunning();
     const timedRotation = stage.dataset.autoRotateSpeed !== undefined;
     const rotationSpeed = Number(stage.dataset.autoRotateSpeed ?? 1);
@@ -672,6 +674,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
             handling = bindViewerInput({
               canvas: renderer.domElement, controls, signal,
               wheelZoom: root.dataset.wheelZoom !== 'false',
+              initiallyActive: initialHandling?.(),
               onToggle: active => { syncRotation(); onHandlingChange(active); },
               onReset: resetView,
             });
@@ -898,12 +901,15 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     if (poster?.complete && !poster.naturalWidth) fallbackPoster();
     poster?.addEventListener('error', fallbackPoster, { signal: lifetime.signal });
     const startMode = document.documentElement.classList.contains('studio-peek') ? 'true' : root.dataset.autoStart;
+    const previewMode = startMode === 'preview';
+    const handlingEnabled = startMode === 'false' || previewMode;
+    const previewMotion = previewMode ? window.matchMedia('(prefers-reduced-motion: reduce)') : undefined;
     const lazy = startMode === 'visible' && 'IntersectionObserver' in window;
     const size = Number(root.dataset.modelBytes) || 0;
-    const examineLabel = startMode === 'false' && size ? `Examine in 3D · ${(size / 1e6).toFixed(1)} MB` : 'Examine in 3D';
+    const examineLabel = handlingEnabled && size ? `Examine in 3D · ${(size / 1e6).toFixed(1)} MB` : 'Examine in 3D';
     const announceState = (state: string) => {
       root.dataset.viewerState = state;
-      if (startStrip) startStrip.hidden = startMode !== 'false';
+      if (startStrip) startStrip.hidden = !handlingEnabled;
     };
     const intersectsViewport = () => {
       const rect = stage!.getBoundingClientRect();
@@ -917,6 +923,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     let feedbackTimer: number | undefined;
     let generation = 0;
     let started = false;
+    let requestedHandling = startMode === 'false';
     let autoStartReady = false;
     let startTimer: number | undefined;
     let idleCallback: number | undefined;
@@ -954,6 +961,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
       announceState('idle');
       residents.delete(root);
       started = false;
+      requestedHandling = startMode === 'false';
     }
 
     function fail(reason: string) {
@@ -991,7 +999,9 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
       try {
         const viewer = await buildViewer(root, stage!, glb, {
           saved, signal: events.signal, isVisible: () => visible && !pageSuspended,
-          onHandlingChange: startMode === 'false' ? showHandlingFeedback : undefined,
+          onHandlingChange: handlingEnabled ? showHandlingFeedback : undefined,
+          initialHandling: () => requestedHandling,
+          rotateWhilePaused: previewMode,
           onProgress: downloadLabel ? (progress) => {
             if (current !== generation || events.signal.aborted) return;
             const loaded = (progress.loadedBytes / 1e6).toFixed(1);
@@ -1007,15 +1017,17 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
             stage!.classList.add('is-live');
             if (poster) poster.style.opacity = '0';
             if (loading) loading.hidden = true;
-            for (const element of [tools, displayPanel, hud, hint]) if (element) element.hidden = false;
+            for (const element of [tools, displayPanel, hud]) if (element) element.hidden = false;
             if (status) status.textContent = moveFocus ? '3D view ready.' : '';
-            if (hint) {
+            if (hint && (!previewMode || requestedHandling)) {
+              hint.hidden = false;
               hint.classList.remove('is-dismissed');
               hintTimer = window.setTimeout(() => hint.classList.add('is-dismissed'), 7000);
             }
             root.removeAttribute('aria-busy');
             announceState('ready');
-            if (startMode === 'false') showHandlingFeedback(true);
+            if (requestedHandling) showHandlingFeedback(true);
+            else if (previewMode) root.dataset.handling = 'paused';
           },
         });
         if (current !== generation) { viewer.dispose(); return; }
@@ -1140,12 +1152,16 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
         if (!lifetime.signal.aborted) bindSpatialViewing(spatial, () => activeViewer?.spatial, start, { signal: lifetime.signal });
       });
     }
-    if (activate) activate.addEventListener('click', start, { signal: lifetime.signal });
-    if (startMode === 'false') {
+    const startWithHandling = () => {
+      requestedHandling = handlingEnabled;
+      void start();
+    };
+    if (activate) activate.addEventListener('click', startWithHandling, { signal: lifetime.signal });
+    if (handlingEnabled) {
       // Only clicks on the artwork box start loading. Panning the page over a
       // still image and interacting with the controls leave it in place.
       stage.addEventListener('click', event => {
-        if (event.target === stage || event.target === poster) void start();
+        if (event.target === stage || event.target === poster) startWithHandling();
       }, { signal: lifetime.signal });
       if (startStrip) startStrip.hidden = false;
     }
@@ -1156,7 +1172,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
       if (visible) {
         const resident = residents.get(root);
         if (resident) { residents.delete(root); residents.set(root, resident); }
-        if (!document.hidden && (lazy || startMode === 'true' && autoStartReady)) startAutomatically();
+        if (!document.hidden && (lazy || autoStartReady && !previewMotion?.matches)) startAutomatically();
       }
       trimResidents();
     };
@@ -1178,13 +1194,13 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
       release(); mountedViewers.delete(root);
     } });
     // Load single featured works after first paint; older browsers retain click activation.
-    if (startMode === 'true') {
-      const begin = () => { autoStartReady = true; if (visible && !document.hidden) startAutomatically(); };
+    if (startMode === 'true' || previewMode) {
+      const begin = () => { autoStartReady = true; refresh(); };
+      previewMotion?.addEventListener('change', refresh, { signal: lifetime.signal });
       if ('requestIdleCallback' in window) idleCallback = (window as any).requestIdleCallback(begin, { timeout: 1500 });
       else startTimer = window.setTimeout(begin, 300);
-    } else if (activate) {
-      activate.hidden = false;
     }
+    if (activate && startMode !== 'true') activate.hidden = false;
   }
   const mountAll = () => { for (const root of document.querySelectorAll<HTMLElement>('[data-viewer]')) mountViewer(root); };
   const disposeAll = () => { for (const viewer of [...mountedViewers.values()]) viewer.dispose(); };
@@ -1218,7 +1234,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
   .model-stage[data-rendered-still] [data-poster] { z-index: 3; min-height: 0; mask-image: none; -webkit-mask-image: none; }
   .model-stage[data-rendered-still].is-live [data-poster] { pointer-events: none; }
   .model-stage:not(.is-live) :global(.viewer-canvas) { visibility: hidden; }
-  .viewer[data-auto-start="false"]:is([data-viewer-state="idle"], [data-viewer-state="error"]) .model-stage { cursor: pointer; }
+  .viewer:is([data-auto-start="false"], [data-auto-start="preview"]):is([data-viewer-state="idle"], [data-viewer-state="error"]) .model-stage { cursor: pointer; }
   .viewer-start:not([hidden]) { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 12px; min-height: 44px; color: var(--v3-muted, #c9c6bd); font: 400 14px/1.45 var(--v3-sans, sans-serif); }
   .viewer-start__button { min-height: 44px; padding: 4px 10px; color: var(--v3-ink, #f7f5ef); background: transparent; border: 1px solid var(--v3-line, #677080); border-radius: 5px; font: inherit; cursor: pointer; }
   .viewer-start__button:hover { border-color: var(--v3-signal, #eccf7a); }
@@ -1237,9 +1253,9 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
   .viewer:fullscreen > .model-stage { width: 100%; height: 100%; min-height: 0; }
   .viewer[data-viewer-expanded] > .model-stage { height: 100% !important; min-height: 0 !important; background: var(--v3-void, #101827) !important; }
   .viewer:is(:fullscreen, [data-viewer-expanded]) .immersive-tools:not([hidden]) { position: fixed !important; z-index: 20; inset: auto 12px max(12px, env(safe-area-inset-bottom)) !important; display: flex !important; width: auto !important; transform: none !important; }
-  .viewer[data-auto-start="false"]:is(:fullscreen, [data-viewer-expanded]) .immersive-tools:not([hidden]) { bottom: max(36px, env(safe-area-inset-bottom)) !important; }
-  .viewer[data-auto-start="false"]:is(:fullscreen, [data-viewer-expanded]) > .model-stage { height: calc(100% - 26px) !important; }
-  .viewer[data-auto-start="false"]:is(:fullscreen, [data-viewer-expanded]) > .viewer-start { position: absolute; inset: auto 12px 0; margin: 0; justify-content: center; }
+  .viewer:is([data-auto-start="false"], [data-auto-start="preview"]):is(:fullscreen, [data-viewer-expanded]) .immersive-tools:not([hidden]) { bottom: max(36px, env(safe-area-inset-bottom)) !important; }
+  .viewer:is([data-auto-start="false"], [data-auto-start="preview"]):is(:fullscreen, [data-viewer-expanded]) > .model-stage { height: calc(100% - 26px) !important; }
+  .viewer:is([data-auto-start="false"], [data-auto-start="preview"]):is(:fullscreen, [data-viewer-expanded]) > .viewer-start { position: absolute; inset: auto 12px 0; margin: 0; justify-content: center; }
   .viewer-keyboard-instructions { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
   .viewer[data-viewer-state="error"] .viewer-status { z-index: 8; inset: auto 12px 12px; width: fit-content; height: auto; max-width: calc(100% - 24px); padding: 7px 10px; margin: 0; clip-path: none; white-space: normal; border-radius: 4px; color: #f7f5ef; background: #15243af5; font: 400 12px/1.5 var(--v3-sans, sans-serif); }
   .immersive-tools { max-width: 100%; flex-wrap: nowrap; justify-content: center; }

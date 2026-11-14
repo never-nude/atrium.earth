@@ -103,7 +103,7 @@ test('touch double-tap and native mouse double-click reset the live sculpture', 
   assert.equal(resets, 2);
 });
 
-function toggleFixture(t, wheelZoom = true) {
+function toggleFixture(t, wheelZoom = true, initiallyActive = true) {
   t.mock.timers.enable({ apis: ['setTimeout'] });
   const document = new EventTarget();
   // Node's EventTarget doesn't separate capture and target listeners. Model
@@ -126,7 +126,7 @@ function toggleFixture(t, wheelZoom = true) {
   const changes = [];
   let resets = 0, time = 0;
   const input = bindViewerInput({
-    canvas, controls, signal: lifetime.signal, wheelZoom,
+    canvas, controls, signal: lifetime.signal, wheelZoom, initiallyActive,
     onToggle: value => changes.push(value), onReset: () => { resets++; },
   });
   t.after(() => { lifetime.abort(); controls.dispose(); });
@@ -149,6 +149,19 @@ function toggleFixture(t, wheelZoom = true) {
   };
   return { canvas, capture, document, lifetime, controls, camera, input, changes, pointer, tap, wheel, get resets() { return resets; } };
 }
+
+test('a rotating preview can start in page-scroll mode and enter handling on tap', t => {
+  const v = toggleFixture(t, true, false);
+  assert.equal(v.input.isActive(), false);
+  assert.equal(v.canvas.style.touchAction, 'pan-y');
+  assert.equal(v.wheel(), false);
+  v.tap();
+  t.mock.timers.tick(340);
+  assert.equal(v.input.isActive(), true);
+  assert.equal(v.canvas.style.touchAction, 'none');
+  assert.equal(v.wheel(), true);
+  assert.deepEqual(v.changes, [true]);
+});
 
 test('manual viewer clicks pause and resume handling while leaving page wheel available when paused', t => {
   const v = toggleFixture(t);
