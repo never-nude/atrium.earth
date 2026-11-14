@@ -148,7 +148,7 @@ em, i { font-style: normal; }
 .v2-work-card { min-width: 0; }
 .v2-work-card[hidden] { display: none; }
 .v2-work-card > a { display: grid; gap: 14px; color: inherit; text-decoration: none; }
-.v2-work-card__image { position: relative; aspect-ratio: 4 / 5; overflow: hidden; background: #111; }
+.v2-work-card__image { position: relative; aspect-ratio: 4 / 5; overflow: hidden; }
 .v2-work-card__image::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(0,0,0,.62), transparent 32%); opacity: 0; transition: opacity .25s; }
 .v2-work-card__image img { width: 100%; height: 100%; object-fit: cover; transition: transform .65s cubic-bezier(.2,.8,.2,1), filter .3s; }
 .v2-work-card:hover img { transform: scale(1.035); filter: contrast(1.04); }
@@ -269,7 +269,7 @@ em, i { font-style: normal; }
 
 /* Shared Three.js stage. */
 .viewer, .model-stage { position: relative; min-width: 0; }
-.model-stage { min-height: 540px; overflow: hidden; background: radial-gradient(100% 70% at 50% 10%, #182238, #080808 78%); }
+.model-stage { min-height: 540px; overflow: hidden; }
 .model-stage [data-poster] { position: absolute; z-index: 1; inset: 0; width: 100%; height: 100%; object-fit: contain; transition: opacity .45s ease; }
 .viewer-canvas { position: absolute; z-index: 2; inset: 0; display: block; width: 100% !important; height: 100% !important; }
 .model-stage.is-live { cursor: grab; }

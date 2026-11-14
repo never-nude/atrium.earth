@@ -189,7 +189,6 @@ body .v3-explorer:has(.v3-collection-switch) .v3-filter-row select, body .v3-exp
 
 /* Show complete thumbnail silhouettes without edge fades or image recoloring.
    These rules apply to raster thumbnails only; the WebGL canvas is untouched. */
-.v3-float, .v3-float--soft, .v3-card__image { background: #15243a; }
 .v3-float img, .v3-float--soft img {
   -webkit-mask-image: none !important; mask-image: none !important;
   filter: none !important; box-shadow: none !important;
@@ -199,10 +198,10 @@ body .v3-explorer:has(.v3-collection-switch) .v3-filter-row select, body .v3-exp
 .v3-exrow__img, .v3-exrow:hover .v3-exrow__img { filter: none; opacity: 1; }
 
 .v3-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px 20px; }
-.v3-card { position: relative; min-width: 0; overflow: hidden; border: 1px solid var(--v3-line); border-radius: var(--studio-radius); background: #132136; transition: border-color .18s ease, box-shadow .18s ease; }
+.v3-card { position: relative; min-width: 0; overflow: hidden; border: 1px solid var(--v3-line); border-radius: var(--studio-radius); transition: border-color .18s ease, box-shadow .18s ease; }
 .v3-card:hover, .v3-card:focus-within { border-color: rgba(225, 233, 242, .32); box-shadow: 0 8px 24px rgba(4, 11, 21, .12); }
 .v3-card > a:first-child { display: block; height: 100%; color: inherit; text-decoration: none; }
-.v3-card__image { position: relative; width: 100%; aspect-ratio: 4 / 5; overflow: hidden; border-bottom: 1px solid var(--v3-line); border-radius: 0; background: #15243a; }
+.v3-card__image { position: relative; width: 100%; aspect-ratio: 4 / 5; overflow: hidden; }
 .v3-card__image img { display: block; width: 100%; height: 100%; object-fit: contain; }
 .v3-card__copy { padding: 15px 16px 17px; }
 .v3-card__copy h3 { margin: 0; color: var(--v3-ink); font-family: var(--v3-sans); font-size: 15px; font-weight: 500; letter-spacing: -.025em; line-height: 1.35; overflow-wrap: anywhere; }

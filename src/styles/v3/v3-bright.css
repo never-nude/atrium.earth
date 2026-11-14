@@ -68,13 +68,8 @@ body { background: var(--v3-void); }
   .v3-hero__continue { display: none; }
 }
 
-/* One ground under the hero: the viewer's own backdrop rectangle is suppressed
-   (it is set inline by the viewer script, hence !important) so the object and the
-   copy share the page's single radial glow; the poster fades at its edges while
-   the model loads. */
 /* Keep the canvas inside its reserved row, including below the global 540px minimum. */
 .v3-hero__viewer .viewer, .v3-hero__viewer .model-stage { min-height: 0; }
-.v3-hero__viewer .model-stage { background: transparent !important; }
 /* The featured work starts turning on load; keep its pause control in plain type. */
 .v3-hero__viewer [data-rotation-control="simple"] .immersive-tools:not([hidden]) { display: flex !important; left: auto; right: var(--v3-pad); top: 92px; bottom: auto; padding: 0; transform: none; border: 0; border-radius: 0; background: transparent; backdrop-filter: none; }
 .v3-hero__viewer [data-rotation-control="simple"] .immersive-tools button:not([data-tool-rotate]) { display: none; }
@@ -191,7 +186,7 @@ body { background: var(--v3-void); }
   .v3-object-stage { height: auto; min-height: 0; padding: 72px 0 32px; overflow: visible; background: radial-gradient(110% 60% at 50% 24%, var(--v3-glow), var(--v3-void) 78%); }
   .v3-object-stage::after { display: none; }
   .v3-object-stage > .viewer:not(:fullscreen) { position: relative; inset: auto; display: grid; gap: 12px; height: auto; min-height: 0; }
-  .v3-object-stage > .viewer:not(:fullscreen) .model-stage { height: clamp(320px, 54svh, 520px); min-height: 0; background: transparent !important; }
+  .v3-object-stage > .viewer:not(:fullscreen) .model-stage { height: clamp(320px, 54svh, 520px); min-height: 0; }
   .v3-object-stage > .viewer:not(:fullscreen) .v3-object-viewer-controls { display: flex; flex-wrap: wrap; align-items: start; gap: 12px; margin: 0 var(--v3-pad); }
   .v3-object-stage > .viewer:not(:fullscreen) .immersive-tools { position: static; flex: 1 1 auto; justify-content: space-between; gap: 2px; padding: 0; border: 0; border-radius: 0; background: transparent; backdrop-filter: none; transform: none; }
   .v3-object-stage > .viewer:not(:fullscreen) .immersive-tools button { min-width: 0; height: 44px; padding: 0 8px; }
@@ -256,7 +251,6 @@ body { background: var(--v3-void); }
   height: calc(100% - 52px);
   min-height: 0;
   overflow: visible;
-  background: transparent !important;
 }
 .v3-exhibition-viewer .model-stage [data-poster] { min-height: 0; }
 .v3-exhibition-viewer .immersive-tools {

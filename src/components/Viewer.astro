@@ -1209,7 +1209,8 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
 
 <style>
   .model-stage:focus-visible { outline: 2px solid var(--v3-signal, #eccf7a); outline-offset: -3px; }
-  .model-stage[data-glb]:not([data-glb=""]) {
+  .viewer:not(:fullscreen):not([data-viewer-expanded]) > .model-stage { background: transparent; }
+  .viewer:fullscreen > .model-stage[data-glb]:not([data-glb=""]) {
     background: radial-gradient(70% 52% at 50% 20%, color-mix(in srgb, var(--stage-glow) var(--stage-glow-strength), transparent), transparent 72%),
       radial-gradient(125% 95% at 50% -2%, var(--stage-top), var(--stage-base) 72%);
   }
