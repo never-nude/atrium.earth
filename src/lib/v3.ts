@@ -134,6 +134,17 @@ export { featuredWork, neighborsFor, works };
 export const collectionCount = works.length;
 export const newToCollection = recentlyPrepared(10);
 
+// These works open on their recorded face. Visitors can still turn them.
+const stillOpeningWorks = new Set([
+  'europe/venus-of-willendorf-nhmw-44-686',
+  'assyrian/ashurnasirpal-lion-hunt',
+  'michelangelo/battle-of-the-centaurs',
+]);
+
+export function workAutoRotates(work: Work): boolean {
+  return !stillOpeningWorks.has(work.slug);
+}
+
 export function v3WorkRoute(work: Work | string): string {
   const slug = typeof work === 'string' ? work : work.slug;
   return `/works/${slug}/`;

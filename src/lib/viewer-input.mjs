@@ -102,6 +102,60 @@ export function bindViewerInput({ canvas, controls, signal, wheelZoom = true, on
   return { isActive: () => active, setActive };
 }
 
+/** Bridge Safari trackpad magnification to the sculpture while it is handling. */
+export function bindViewerZoom({ canvas, signal, canHandle, onZoom }) {
+  const document = canvas.ownerDocument;
+  const touchPointers = new Set();
+  let previousScale;
+  const passive = { capture: true, passive: true, signal };
+  const gesture = { capture: true, passive: false, signal };
+  const validScale = scale => Number.isFinite(scale) && scale > 0;
+  const clearGesture = () => { previousScale = undefined; };
+  function ownsGesture() {
+    if (!canHandle() || touchPointers.size) clearGesture();
+    return previousScale !== undefined;
+  }
+
+  // A touchscreen pinch already reaches OrbitControls as two touch pointers.
+  canvas.addEventListener('pointerdown', event => {
+    clearGesture();
+    if (event.pointerType === 'touch') touchPointers.add(event.pointerId);
+  }, passive);
+  const releaseTouch = event => { touchPointers.delete(event.pointerId); };
+  document.addEventListener('pointerup', releaseTouch, passive);
+  document.addEventListener('pointercancel', releaseTouch, passive);
+  canvas.addEventListener('lostpointercapture', releaseTouch, passive);
+  document.defaultView?.addEventListener('blur', () => { clearGesture(); touchPointers.clear(); }, passive);
+
+  canvas.addEventListener('gesturestart', event => {
+    clearGesture();
+    if (!canHandle() || touchPointers.size || !event.cancelable) return;
+    previousScale = validScale(event.scale) ? event.scale : 1;
+    event.preventDefault();
+  }, gesture);
+  canvas.addEventListener('gesturechange', event => {
+    if (!ownsGesture()) return;
+    event.preventDefault();
+    if (!validScale(event.scale)) return;
+    const factor = previousScale / event.scale;
+    previousScale = event.scale;
+    if (validScale(factor) && factor !== 1) onZoom(factor);
+  }, gesture);
+  canvas.addEventListener('gestureend', event => {
+    if (ownsGesture()) event.preventDefault();
+    clearGesture();
+  }, gesture);
+  document.addEventListener('gestureend', clearGesture, { passive: true, signal });
+
+  // Some Safari versions also produce Ctrl-wheel from magnification. Keep
+  // Three's normal wheel behavior outside an owned GestureEvent sequence.
+  canvas.addEventListener('wheel', event => {
+    if (!event.ctrlKey || !ownsGesture()) return;
+    event.preventDefault();
+    event.stopImmediatePropagation();
+  }, gesture);
+}
+
 // Scope shortcuts to the focused 3D surface, leaving sliders, links and native
 // controls alone even when their keyboard events bubble through the stage.
 export function handleViewerKey(event, actions) {

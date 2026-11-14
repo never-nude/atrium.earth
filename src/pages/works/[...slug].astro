@@ -4,7 +4,7 @@ import DimensionValue from '../../components/DimensionValue.astro';
 import V3WorkCard from '../../components/v3/V3WorkCard.astro';
 import V3Layout from '../../layouts/v3/V3Layout.astro';
 import { workBySlug, works, type Work } from '../../lib/catalog';
-import { exhibitions, neighborsFor, v3ExhibitionRoute, v3WorkRoute } from '../../lib/v3';
+import { exhibitions, neighborsFor, v3ExhibitionRoute, v3WorkRoute, workAutoRotates } from '../../lib/v3';
 import { withBase } from '../../lib/urls';
 import { museumLabelFor } from '../../lib/museum-label.mjs';
 import visitsData from '../../data/curated-visits.json';
@@ -17,9 +17,6 @@ export function getStaticPaths() {
 type Props = { work: Work };
 const { work } = Astro.props;
 const socialImage = `/previews/renders/${work.slug}/thumb.jpg`;
-// These reviewed reliefs should open on their recorded face, rather than
-// automatically turn toward an unworked reverse. Visitors can still orbit.
-const startsStill = ['europe/venus-of-willendorf-nhmw-44-686','assyrian/ashurnasirpal-lion-hunt','michelangelo/battle-of-the-centaurs'].includes(work.slug);
 const { previous, next } = neighborsFor(work);
 const related = work.relatedWorks.map((slug) => workBySlug(slug)).filter((candidate): candidate is Work => Boolean(candidate)).slice(0, 6);
 const rooms = exhibitions.filter((exhibition) => exhibition.works.some((candidate) => candidate.slug === work.slug));
@@ -65,7 +62,7 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
       hud={false}
       immersive={true}
       autoStart={false}
-      autoRotate={!startsStill}
+      autoRotate={workAutoRotates(work)}
       displayControls={true}
       spatialViewing={work.spatialAccess.enabled}
       museumLabel={museumLabelFor(work)}

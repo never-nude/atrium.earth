@@ -4,7 +4,7 @@ import { getEventListeners, setMaxListeners } from 'node:events';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { createViewerRenderLoop, bindViewerRenderEvents } from '../src/lib/viewer-render-loop.mjs';
-import { bindViewerInput, bindViewerReset, handleViewerKey, orbitViewer } from '../src/lib/viewer-input.mjs';
+import { bindViewerInput, bindViewerReset, bindViewerZoom, handleViewerKey, orbitViewer } from '../src/lib/viewer-input.mjs';
 import { disposeViewerScene } from '../src/lib/viewer-resources.mjs';
 import { bindSpatialViewing } from '../src/lib/spatial-viewer.mjs';
 
@@ -139,8 +139,8 @@ function toggleFixture(t, wheelZoom = true) {
     if (type === 'pointercancel') canvas.dispatchEvent(event);
   }
   const tap = point => { pointer('pointerdown', point); pointer('pointerup', point); };
-  const wheel = () => {
-    const event = Object.assign(new Event('wheel', { cancelable: true }), { deltaY: 120, deltaMode: 0, clientX: 10, clientY: 10 });
+  const wheel = (modifiers = {}) => {
+    const event = Object.assign(new Event('wheel', { cancelable: true }), { deltaY: 120, deltaMode: 0, clientX: 10, clientY: 10, ...modifiers });
     let stopped = false;
     event.stopImmediatePropagation = () => { stopped = true; };
     capture.dispatchEvent(event);
@@ -233,6 +233,81 @@ test('explicit mode change and disposal cancel pending single click', t => {
   assert.equal(getEventListeners(v.capture, 'wheel').length, 0);
   assert.equal(getEventListeners(v.canvas, 'wheel').length, 1, 'Only Three’s wheel listener remains');
   assert.equal(getEventListeners(v.document, 'pointermove').length, 0);
+});
+
+function dispatchGesture(target, type, scale, cancelable = true) {
+  const event = Object.assign(new Event(type, { cancelable }), { scale });
+  target.dispatchEvent(event);
+  return event.defaultPrevented;
+}
+
+test('Safari trackpad scale produces incremental sculpture zoom and de-duplicates Ctrl-wheel', t => {
+  const v = toggleFixture(t);
+  const factors = [];
+  bindViewerZoom({ canvas: v.canvas, signal: v.lifetime.signal, canHandle: v.input.isActive, onZoom: factor => factors.push(factor) });
+  let wheelEvents = 0;
+  v.canvas.addEventListener('wheel', () => { wheelEvents++; });
+  const start = () => dispatchGesture(v.canvas, 'gesturestart', 1);
+  const change = scale => dispatchGesture(v.canvas, 'gesturechange', scale);
+  assert.equal(v.wheel({ ctrlKey: true }), true, 'Native Ctrl-wheel reaches OrbitControls');
+  assert.equal(wheelEvents, 1);
+  assert.equal(start(), true);
+  assert.equal(change(1.25), true);
+  assert.equal(change(1.25), true);
+  assert.equal(change(0), true);
+  assert.equal(change(1.5), true);
+  assert.deepEqual(factors, [.8, 1.25 / 1.5]);
+  assert.equal(v.wheel({ ctrlKey: true }), true, 'Duplicate Ctrl-wheel default is prevented');
+  assert.equal(wheelEvents, 1, 'Duplicate Ctrl-wheel does not reach OrbitControls');
+  assert.equal(v.wheel(), true);
+  assert.equal(wheelEvents, 2, 'Ordinary active wheel retains original behavior');
+  assert.equal(dispatchGesture(v.canvas, 'gestureend', 1.5), true);
+  assert.equal(change(2), false, 'Stray change cannot acquire a gesture');
+  assert.equal(v.wheel({ ctrlKey: true }), true);
+  assert.equal(wheelEvents, 3);
+});
+
+test('paused and off-canvas gestures leave browser zoom available', t => {
+  const v = toggleFixture(t);
+  const factors = [];
+  bindViewerZoom({ canvas: v.canvas, signal: v.lifetime.signal, canHandle: v.input.isActive, onZoom: factor => factors.push(factor) });
+  assert.equal(dispatchGesture(v.document, 'gesturestart', 1), false);
+  assert.equal(dispatchGesture(v.canvas, 'gesturechange', 1.3), false);
+  assert.equal(dispatchGesture(v.canvas, 'gesturestart', 1), true);
+  v.input.setActive(false);
+  assert.equal(dispatchGesture(v.canvas, 'gesturechange', 1.3), false);
+  assert.equal(dispatchGesture(v.canvas, 'gesturestart', 1), false);
+  assert.equal(v.wheel({ ctrlKey: true }), false);
+  v.input.setActive(true);
+  assert.equal(dispatchGesture(v.canvas, 'gesturechange', 1.5), false, 'A paused sequence cannot resume mid-gesture');
+  assert.equal(dispatchGesture(v.canvas, 'gesturestart', 1, false), false);
+  assert.equal(dispatchGesture(v.canvas, 'gesturechange', 1.5), false);
+  assert.deepEqual(factors, []);
+});
+
+test('Safari gesture bridge leaves touchscreen pointer pinch to Three and detaches on disposal', t => {
+  const v = toggleFixture(t);
+  const factors = [];
+  bindViewerZoom({ canvas: v.canvas, signal: v.lifetime.signal, canHandle: v.input.isActive, onZoom: factor => factors.push(factor) });
+  v.pointer('pointerdown', { pointerType: 'touch' });
+  v.pointer('pointerdown', { pointerType: 'touch', id: 2, x: 50 });
+  const before = v.camera.position.distanceTo(v.controls.target);
+  assert.equal(dispatchGesture(v.canvas, 'gesturestart', 1), false);
+  assert.equal(dispatchGesture(v.canvas, 'gesturechange', 1.3), false);
+  v.pointer('pointermove', { pointerType: 'touch', id: 2, x: 72 });
+  assert.notEqual(v.camera.position.distanceTo(v.controls.target), before);
+  v.pointer('pointerup', { pointerType: 'touch', id: 2 });
+  v.pointer('pointerup', { pointerType: 'touch' });
+  assert.equal(dispatchGesture(v.canvas, 'gesturestart', 1), true);
+  assert.equal(dispatchGesture(v.document, 'gestureend', 1), false, 'Ending off-canvas relinquishes ownership');
+  assert.equal(dispatchGesture(v.canvas, 'gesturechange', 1.3), false);
+  assert.equal(dispatchGesture(v.canvas, 'gesturestart', 1), true);
+  v.lifetime.abort();
+  assert.equal(dispatchGesture(v.canvas, 'gesturechange', 1.3), false);
+  assert.equal(getEventListeners(v.canvas, 'gesturestart').length, 0);
+  assert.equal(getEventListeners(v.document, 'gestureend').length, 0);
+  assert.equal(getEventListeners(v.capture, 'wheel').length, 0);
+  assert.deepEqual(factors, []);
 });
 
 test('all activation modes use the same offscreen gate and retain invalidations until visible', () => {

@@ -185,7 +185,7 @@ const sizeLabel = modelBytes && modelBytes > 0 ? ` · ${(modelBytes / 1e6).toFix
   import { rememberSpatialAppearance } from '../lib/spatial-materials.mjs';
   import { createTextureControl } from '../lib/viewerTexture';
   import { createViewerRenderLoop, bindViewerRenderEvents } from '../lib/viewer-render-loop.mjs';
-  import { bindViewerInput, bindViewerReset, handleViewerKey, orbitViewer } from '../lib/viewer-input.mjs';
+  import { bindViewerInput, bindViewerReset, bindViewerZoom, handleViewerKey, orbitViewer } from '../lib/viewer-input.mjs';
   import { fetchViewerModel } from '../lib/viewer-download.mjs';
   import { disposeViewerScene } from '../lib/viewer-resources.mjs';
 
@@ -700,6 +700,11 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
               onToggle: active => { syncRotation(); onHandlingChange(active); },
               onReset: resetView,
             });
+            bindViewerZoom({
+              canvas: renderer.domElement, signal,
+              canHandle: () => controls.enabled && Boolean(handling?.isActive()),
+              onZoom: zoomView,
+            });
           } else bindViewerReset(renderer.domElement, resetView, signal);
           onFirstFrame();
         }
@@ -716,6 +721,14 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
       },
     });
     const invalidate = () => loop.invalidate();
+    function zoomView(factor: number) {
+      const offset = camera.position.clone().sub(controls.target);
+      const distance = Math.max(controls.minDistance, Math.min(controls.maxDistance, offset.length() * factor));
+      offset.setLength(distance);
+      camera.position.copy(controls.target).add(offset);
+      controls.update(timedRotation ? 0 : undefined);
+      invalidate();
+    }
     function resetView() {
       // Flush any remaining drag damping before restoring the authored view.
       controls.enableDamping = false;
@@ -797,14 +810,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
       setTexture: (pct) => { if (appearance.preserveSourceMaterials === true) textureControl.setValue(pct); else { const r = 1 - pct / 100; for (const m of materials) { m.roughness = r; m.needsUpdate = true; } } invalidate(); },
       setWireframe: (on) => { wireframe = on; for (const item of wireframeMeshes) item.mesh.material = on ? item.wireframeMaterial : item.solidMaterial; invalidate(); },
       setAutoRotate: (on) => { rotationRequested = on; syncRotation(); },
-      zoom: (factor) => {
-        const offset = camera.position.clone().sub(controls.target);
-        const distance = Math.max(controls.minDistance, Math.min(controls.maxDistance, offset.length() * factor));
-        offset.setLength(distance);
-        camera.position.copy(controls.target).add(offset);
-        controls.update(timedRotation ? 0 : undefined);
-        invalidate();
-      },
+      zoom: zoomView,
       reset: resetView,
       get handling() { return handling; },
       defaults: { exposure: Math.round(appearance.exposure * 100), texture: appearance.preserveSourceMaterials === true ? textureControl.defaultValue : appearance.textureDefault, get autoRotate() { return rotationState().active; } },
