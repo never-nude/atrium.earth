@@ -37,7 +37,6 @@ function initialiseVisit(root) {
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
   const lifetime = new AbortController();
   const signal = lifetime.signal;
-  let stopEvents;
   let position = 0;
   let active = false;
 
@@ -56,11 +55,9 @@ function initialiseVisit(root) {
   }
 
   function disposeStop() {
-    stopEvents?.abort();
     const viewer = host.querySelector('[data-viewer]');
     if (viewer) document.dispatchEvent(new CustomEvent('atrium:viewer-dispose', { detail: { root: viewer } }));
     host.replaceChildren();
-    host.removeAttribute('aria-busy');
   }
 
   function updateLocation(index, hash, historyMode) {
@@ -95,12 +92,8 @@ function initialiseVisit(root) {
     host.append(fragment);
     const viewer = host.querySelector('[data-viewer]');
     if (viewer) {
-      stopEvents = new AbortController();
-      const region = viewer.closest('.curated-stop__viewer');
-      region?.setAttribute('aria-busy', 'true');
-      const settled = () => region?.removeAttribute('aria-busy');
-      viewer.addEventListener('atrium:viewer-ready', settled, { once: true, signal: stopEvents.signal });
-      viewer.addEventListener('atrium:viewer-error', settled, { once: true, signal: stopEvents.signal });
+      const tools = viewer.querySelector('[data-immersive-tools]');
+      if (tools) viewer.append(tools);
       document.dispatchEvent(new CustomEvent('atrium:viewer-mount', { detail: { root: viewer } }));
     }
     for (const [stepIndex, button] of steps.entries()) {
