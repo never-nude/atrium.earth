@@ -16,7 +16,7 @@ const works = pair ? [pair.a, pair.b] : [];
   <div class="looking-together__works">
     {works.map(work => <figure>
       <div class="looking-together__stage">
-        <Viewer glb={withBase(work.modelGlb)} modelBytes={work.modelBytes} poster={withBase(work.thumbnailImage)} title={work.title} hud={false} immersive={true} autoStart={false} autoRotate={false} posterLoading="lazy" upAxis={work.modelUpAxis} modelTransform={work.modelTransform} materialAppearance={work.materialAppearance} />
+        <Viewer glb={withBase(work.modelGlb)} modelBytes={work.modelBytes} poster={withBase(work.thumbnailImage)} title={work.title} hud={false} immersive={true} autoStart={false} posterLoading="lazy" upAxis={work.modelUpAxis} modelTransform={work.modelTransform} materialAppearance={work.materialAppearance} />
       </div>
       <figcaption><h3>{shortWorkTitle(work.title)}</h3><p>{[work.maker || work.culture, work.displayDate].filter(Boolean).join(' · ')}</p><a href={withBase(v3WorkRoute(work))}>Details &amp; sources <span aria-hidden="true">↗</span></a></figcaption>
     </figure>)}
@@ -43,12 +43,12 @@ const works = pair ? [pair.a, pair.b] : [];
   .looking-together__stage :global(.model-stage:not(.is-live) [data-poster]) { opacity: 1 !important; }
   .looking-together__stage :global(.model-stage:not(.is-live) .viewer-canvas) { visibility: hidden; }
   .looking-together__stage :global(.stage-tag), .looking-together__stage :global(.stage-corner), .looking-together__stage :global(.stage-hint) { display: none !important; }
-  .looking-together__stage :global(.viewer:not(:fullscreen):not([data-viewer-expanded]) .immersive-tools:not([hidden])) { display: flex; position: absolute; inset: auto 0 -48px 0; justify-content: center; flex-wrap: wrap; gap: 5px; min-height: 44px; padding: 0; border: 0; border-radius: 0; background: transparent; transform: none; backdrop-filter: none; }
+  .looking-together__stage :global(.viewer:not(:fullscreen):not([data-viewer-expanded]) .immersive-tools:not([hidden])) { display: flex; position: absolute; inset: auto 0 -48px 0; justify-content: center; gap: 5px; min-height: 44px; padding: 0; border: 0; border-radius: 0; background: transparent; transform: none; backdrop-filter: none; }
   .looking-together__stage :global(.immersive-tools button) { min-height: 44px; padding: 9px 12px; color: var(--v3-muted); font-size: 11px; letter-spacing: 0; }
   .looking-together__stage :global(.stage-loading) { inset: auto 15px 15px auto; transform: none; padding: 8px; background: #15243acc; border-radius: 5px; }
   .looking-together__stage :global(.viewer:fullscreen) { width: 100vw; height: 100dvh; background: var(--v3-void); }
   .looking-together__stage :global(.viewer:fullscreen .model-stage) { width: 100%; height: 100%; min-height: 0; overflow: hidden; }
-  .looking-together__stage :global(.viewer:fullscreen .immersive-tools:not([hidden])) { display: flex; width: auto; inset: auto 16px max(20px, env(safe-area-inset-bottom)) 16px; justify-content: center; flex-wrap: wrap; transform: none; }
+  .looking-together__stage :global(.viewer:fullscreen .immersive-tools:not([hidden])) { display: flex; width: auto; inset: auto 16px max(20px, env(safe-area-inset-bottom)) 16px; justify-content: center; transform: none; }
   .looking-together figcaption { padding: 20px 0 0; }
   .looking-together h3 { margin: 0 0 7px; font-size: 19px; font-weight: 500; line-height: 1.35; letter-spacing: -.02em; }
   .looking-together figcaption p { margin: 0 0 8px; color: var(--v3-muted); font-size: 11px; line-height: 1.6; }
@@ -58,8 +58,6 @@ const works = pair ? [pair.a, pair.b] : [];
     .looking-together { padding-top: 38px; padding-bottom: 40px; }
     .looking-together__works { grid-template-columns: 1fr; gap: 30px; }
     .looking-together__stage { --comparison-height: 400px; }
-    .looking-together__stage :global(.viewer:not(:fullscreen):not([data-viewer-expanded]) .immersive-tools:not([hidden])) { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
-    .looking-together__stage :global(.viewer:not(:fullscreen):not([data-viewer-expanded]) .immersive-tools [data-tool-wire]), .looking-together__stage :global(.viewer:not(:fullscreen):not([data-viewer-expanded]) .immersive-tools [data-tool-rotate]) { display: none; }
     .looking-together__reading { font-size: 14px; }
   }
 </style>

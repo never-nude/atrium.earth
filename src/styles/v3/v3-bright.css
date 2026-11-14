@@ -195,7 +195,6 @@ body { background: var(--v3-void); }
   .v3-object-stage > .viewer:not(:fullscreen) .v3-object-viewer-controls { display: flex; flex-wrap: wrap; align-items: start; gap: 12px; margin: 0 var(--v3-pad); }
   .v3-object-stage > .viewer:not(:fullscreen) .immersive-tools { position: static; flex: 1 1 auto; justify-content: space-between; gap: 2px; padding: 0; border: 0; border-radius: 0; background: transparent; backdrop-filter: none; transform: none; }
   .v3-object-stage > .viewer:not(:fullscreen) .immersive-tools button { min-width: 0; height: 44px; padding: 0 8px; }
-  .v3-object-stage > .viewer:not(:fullscreen) .immersive-tools [data-tool-reset] { display: block; }
   .v3-object-stage > .viewer:not(:fullscreen) .immersive-light { position: static; flex: 0 0 auto; }
   .v3-object-stage > .viewer:not(:fullscreen) .immersive-light summary { min-width: 0; min-height: 44px; width: fit-content; margin-left: auto; padding: 0 8px; gap: 10px; border: 0; border-radius: 0; background: transparent; backdrop-filter: none; }
   .v3-object-stage > .viewer:not(:fullscreen) .immersive-light[open] { flex-basis: 100%; }

@@ -12,7 +12,7 @@
         "method": "An AI-authored selection and reading sequence prepared from this exhibition’s existing captions and linked object records. This edition is prepared in advance; it is not generated during your visit.",
         "unattendedGeneration": false
       },
-      "rationale": "These six works make a small change of viewpoint useful in six different ways: several fronts, incised signs, layered materials, a curved picture, open metal lines, and carved stone. They form a looking sequence, not a claim that their makers shared an intention or influenced one another.",
+      "rationale": "These six works make a small change of viewpoint useful in six different ways: several fronts, incised signs, layered materials, a curved picture, open metal lines, and drawing through a clay coating. They form a looking sequence, not a claim that their makers shared an intention or influenced one another.",
       "facts": [
         {
           "id": "surface-helmet-four-faces",
@@ -57,11 +57,11 @@
           "sourceRef": "v3-content:wallTexts/the-work-of-the-surface/captions/europe/antoine-pevsner-developable-surface"
         },
         {
-          "id": "surface-chillida-finish",
-          "workSlug": "europe/eduardo-chillida-how-profound-is-the-air",
-          "text": "The rough outer skin of the alabaster meets a precisely finished interior.",
-          "recordUrl": "https://pro.guggenheim-bilbao.eus/en/the-collection/works/how-profound-is-the-air",
-          "sourceRef": "v3-content:wallTexts/the-work-of-the-surface/captions/europe/eduardo-chillida-how-profound-is-the-air"
+          "id": "surface-buncheong-fish",
+          "workSlug": "global/bottle-with-incised-and-sgraffito-fish-design-250c1384",
+          "text": "Bold lines cut through white slip to draw a fish on this Buncheong bottle.",
+          "recordUrl": "https://www.clevelandart.org/art/1962.153",
+          "sourceRef": "v3-content:wallTexts/the-work-of-the-surface/captions/global/bottle-with-incised-and-sgraffito-fish-design-250c1384"
         }
       ],
       "stops": [
@@ -113,16 +113,16 @@
           "reading": "Pevsner joins metal lines into a curved surface. The spaces between them remain visible.",
           "whyHere": "A surface does not need to be a continuous skin.",
           "factIds": ["surface-pevsner-lines"],
-          "nextConnection": "Finish with the opposite approach: a solid stone block shaped around an opening."
+          "nextConnection": "Finish with a line cut through the pale coating of a clay bottle."
         },
         {
-          "id": "where-stone-stops",
-          "workSlug": "europe/eduardo-chillida-how-profound-is-the-air",
-          "title": "Find where the finish changes",
-          "prompt": "Turn the alabaster block. Find the meeting between the rough exterior and the smoothly carved interior.",
-          "reading": "Different finishes give the same stone contrasting surfaces. Moving around the block changes the edge of the space within it.",
-          "whyHere": "The route ends at a boundary: where the stone stops, the opening starts.",
-          "factIds": ["surface-chillida-finish"],
+          "id": "fish-in-the-slip",
+          "workSlug": "global/bottle-with-incised-and-sgraffito-fish-design-250c1384",
+          "title": "Follow the fish",
+          "prompt": "Turn the bottle until you find the fish. Follow its dark outline as it curves away around the body.",
+          "reading": "The potter drew the fish by cutting through a pale clay coating. The darker clay underneath gives the lines their contrast.",
+          "whyHere": "The last turn brings you back to a cut line, now used to draw an animal you can recognize.",
+          "factIds": ["surface-buncheong-fish"],
           "nextConnection": ""
         }
       ],

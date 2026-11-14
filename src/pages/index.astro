@@ -8,7 +8,7 @@ import LookingTogether from '../components/home/LookingTogether.astro';
 import SpatialInvitation from '../components/home/SpatialInvitation.astro';
 import WorldExplorer from '../components/WorldExplorer.astro';
 import V3Layout from '../layouts/v3/V3Layout.astro';
-import { collectionCount, v3WorkRoute, v3ExhibitionRoute, workAutoRotates } from '../lib/v3';
+import { collectionCount, v3WorkRoute } from '../lib/v3';
 import { currentProgramme } from '../lib/programme';
 import { featuredWorks } from '../lib/catalog';
 import { withBase } from '../lib/urls';
@@ -59,7 +59,6 @@ const heroAlt = [
         modelTransform={featuredWork.modelTransform}
         materialAppearance={heroAppearance}
         autoStart={false}
-        autoRotate={workAutoRotates(featuredWork)}
         displayControls={true}
       />
     </div>
@@ -148,10 +147,22 @@ const heroAlt = [
   .home-programme-hero > .v3-hero__viewer { position: relative; inset: auto; grid-column: 2; grid-row: 1; --hero-artwork-height: clamp(370px, 57svh, 610px); height: auto; }
   .home-programme-hero :global(.viewer:not(:fullscreen):not([data-viewer-expanded])) { height: auto; }
   .home-programme-hero :global(.viewer:not(:fullscreen):not([data-viewer-expanded]) > .model-stage) { height: var(--hero-artwork-height); }
+  /* Mask legacy thumbnails at the image edge, where the baked backdrop ends. */
+  .home-programme-hero :global(.model-stage:not([data-rendered-still]) [data-poster][src$="/thumb.webp"]),
+  .home-programme-hero :global(.model-stage:not([data-rendered-still]) [data-poster][src*="/thumb.jpg"]) {
+    inset: 50% auto auto 50%;
+    width: min(100%, calc(var(--hero-artwork-height) * .8));
+    height: auto;
+    min-height: 0;
+    transform: translate(-50%, -50%);
+    mask-image: linear-gradient(to right, transparent, black 15% 85%, transparent),
+      linear-gradient(to bottom, transparent, black 12% 88%, transparent);
+    mask-composite: intersect;
+  }
   .home-programme-hero :global(.viewer:not(:fullscreen):not([data-viewer-expanded]) > .viewer-start) { justify-content: center; }
   .home-programme-hero :global(.home-featured-controls) { margin: 0; border-top: 0; flex-wrap: wrap; }
   .home-programme-hero :global(.home-featured-controls:not(:has([data-immersive-tools]:not([hidden])))) { display: none; }
-  .home-programme-hero :global(.viewer:not(:fullscreen):not([data-viewer-expanded]) .home-featured-controls .immersive-tools:not([hidden])) { display: flex !important; position: static; flex: 1 1 auto; justify-content: flex-start; flex-wrap: wrap; gap: 2px; padding: 0; border: 0; border-radius: 0; background: transparent; backdrop-filter: none; transform: none; }
+  .home-programme-hero :global(.viewer:not(:fullscreen):not([data-viewer-expanded]) .home-featured-controls .immersive-tools:not([hidden])) { display: flex !important; position: static; flex: 1 1 auto; justify-content: flex-start; gap: 2px; padding: 0; border: 0; border-radius: 0; background: transparent; backdrop-filter: none; transform: none; }
   .home-programme-hero :global(.viewer:not(:fullscreen):not([data-viewer-expanded]) .home-featured-controls .immersive-light) { position: relative; }
   .home-programme-hero :global(.viewer:not(:fullscreen):not([data-viewer-expanded]) .home-featured-controls .immersive-light[open]) { width: 100%; }
   .home-programme-hero :global(.viewer:not(:fullscreen):not([data-viewer-expanded]) .home-featured-controls .immersive-light__panel) { position: static; width: 100%; margin-top: 8px; box-shadow: none; }

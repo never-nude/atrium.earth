@@ -1,5 +1,6 @@
 ---
 import SpatialViewing from './SpatialViewing.astro';
+import previewStills from '../data/viewer-stills.json';
 type Props = {
   glb?: string;
   modelBytes?: number;
@@ -71,20 +72,33 @@ const {
 const hasModel = Boolean(glb);
 const uid = Math.random().toString(36).slice(2, 8);
 const appearanceJson = JSON.stringify(materialAppearance);
+const thumbnailSlug = /\/previews\/renders\/(.+)\/thumb\.webp$/.exec(poster)?.[1];
+const renderedStill = hasModel && thumbnailSlug && previewStills.includes(thumbnailSlug) ? `${import.meta.env.BASE_URL.replace(/\/$/, '')}/images/viewer-stills/${thumbnailSlug}.webp` : '';
+const backdrop = ['backdropTop', 'backdropBase', 'backdropGlow'].map(key => {
+  const value = materialAppearance[key];
+  return typeof value === 'string' && /^#[a-f\d]{6}$/i.test(value) ? value : undefined;
+});
+const glowStrength = Number(materialAppearance.backdropGlowStrength ?? 0.07);
+const stageBackdrop = hasModel ? [
+  `--stage-top:${backdrop[0] ?? '#15243a'}`,
+  `--stage-base:${backdrop[1] ?? '#15243a'}`,
+  `--stage-glow:${backdrop[2] ?? '#d7dee8'}`,
+  `--stage-glow-strength:${Number.isFinite(glowStrength) ? Math.max(0, Math.min(glowStrength, 1)) * 100 : 7}%`,
+].join(';') : undefined;
 const transformJson = JSON.stringify(modelTransform);
 const manual = autoStart === false && hasModel;
 const sizeLabel = modelBytes && modelBytes > 0 ? ` · ${(modelBytes / 1e6).toFixed(1)} MB` : '';
 ---
 
 <div class:list={['viewer', { 'viewer--immersive': immersive }]} data-viewer data-auto-start={String(autoStart)} data-viewer-state={hasModel ? 'idle' : undefined} data-model-bytes={modelBytes} data-wheel-zoom={String(wheelZoom)}>
-  <div class="model-stage" data-stage data-glb={hasModel ? glb : ''} data-spatial-asset-sha256={spatialViewing ? spatialAssetSha256 : undefined} data-up-axis={upAxis} data-model-transform={transformJson} data-material-appearance={appearanceJson} data-immersive={String(immersive)} data-auto-rotate={String(autoRotate)} data-auto-rotate-speed={autoRotateSpeed} data-turntable-degrees-per-second={turntableDegreesPerSecond} data-respect-reduced-motion={respectReducedMotion ? undefined : 'false'} data-rotation-control={rotationControl === 'simple' ? 'simple' : undefined} tabindex={hasModel ? '0' : undefined} aria-label={hasModel ? `Interactive 3D view of ${title}` : undefined} aria-describedby={hasModel ? `viewer-keys-${uid}` : undefined}>
+  <div class="model-stage" data-stage style={stageBackdrop} data-rendered-still={renderedStill ? true : undefined} data-glb={hasModel ? glb : ''} data-spatial-asset-sha256={spatialViewing ? spatialAssetSha256 : undefined} data-up-axis={upAxis} data-model-transform={transformJson} data-material-appearance={appearanceJson} data-immersive={String(immersive)} data-auto-rotate={String(autoRotate)} data-auto-rotate-speed={autoRotateSpeed} data-turntable-degrees-per-second={turntableDegreesPerSecond} data-respect-reduced-motion={respectReducedMotion ? undefined : 'false'} data-rotation-control={rotationControl === 'simple' ? 'simple' : undefined} tabindex={hasModel ? '0' : undefined} aria-label={hasModel ? `Interactive 3D view of ${title}` : undefined} aria-describedby={hasModel ? `viewer-keys-${uid}` : undefined}>
     <span class="stage-corner stage-corner--tl" aria-hidden="true"></span>
     <span class="stage-corner stage-corner--tr" aria-hidden="true"></span>
     <span class="stage-corner stage-corner--bl" aria-hidden="true"></span>
     <span class="stage-corner stage-corner--br" aria-hidden="true"></span>
     <span class="stage-tag" aria-hidden="true">{tag ?? (hasModel ? '3D MODEL' : 'PHOTOGRAPH')}</span>
 
-    <img src={poster} alt={posterAlt ?? `${title} — still image`} width="720" height="900" loading={posterLoading} decoding="async" data-poster />
+    <img src={renderedStill || poster} data-fallback-poster={renderedStill ? poster : undefined} alt={posterAlt ?? `${title} — still image`} width="720" height="900" loading={posterLoading} decoding="async" data-poster />
     {manual && <div class="viewer-download" aria-hidden="true"><span data-download-bar></span></div>}
 
     {/* Rendered hidden: the script reveals it only when it is needed (auto-start
@@ -105,13 +119,14 @@ const sizeLabel = modelBytes && modelBytes > 0 ? ` · ${(modelBytes / 1e6).toFix
     </div>}
     {hasModel && !manual && <p id={`viewer-status-${uid}`} class="viewer-keyboard-instructions viewer-status" data-viewer-status role="status" aria-atomic="true"></p>}
 
-    {immersive && hasModel && (
-      <div class="immersive-tools" data-immersive-tools hidden aria-label="3D viewing tools">
-        <button type="button" data-zoom-in aria-label="Zoom in" title="Zoom in">+</button>
-        <button type="button" data-zoom-out aria-label="Zoom out" title="Zoom out">−</button>
+    {hasModel && (
+      <div class="immersive-tools" data-immersive-tools hidden role="group" aria-label="3D viewing tools">
+        {immersive && <>
+          <button type="button" data-zoom-in aria-label="Zoom in" title="Zoom in">+</button>
+          <button type="button" data-zoom-out aria-label="Zoom out" title="Zoom out">−</button>
+        </>}
         <button type="button" data-tool-wire aria-pressed="false" title="Show the 3D model’s triangle edges">Wireframe</button>
         <button type="button" data-tool-rotate aria-pressed={String(autoRotate)} title="Start or pause automatic rotation">Auto-rotate</button>
-        <button type="button" data-tool-reset title="Reset the viewing angle and zoom">Reset view</button>
         <button type="button" data-tool-fullscreen aria-pressed="false" title="Enter full screen">Full screen</button>
       </div>
     )}
@@ -151,17 +166,6 @@ const sizeLabel = modelBytes && modelBytes > 0 ? ` · ${(modelBytes / 1e6).toFix
       <div class="hud-control">
         <label for={`r-${uid}`}>Texture <span class="hud-ends">rough → shiny</span></label>
         <input id={`r-${uid}`} type="range" min="0" max="100" step="1" value="20" data-texture />
-      </div>
-      <div class="hud-control hud-control--row">
-        <label class="hud-switch">
-          <input type="checkbox" data-autorotate checked={autoRotate} />
-          <span>Auto-rotate</span>
-        </label>
-        <label class="hud-switch">
-          <input type="checkbox" data-wireframe />
-          <span>Wireframe</span>
-        </label>
-        <button class="hud-reset" type="button" data-reset>Reset view</button>
       </div>
     </div>
   )}
@@ -230,10 +234,6 @@ const sizeLabel = modelBytes && modelBytes > 0 ? ` · ${(modelBytes / 1e6).toFix
     emissiveIntensity?: number;
     mapLift?: number;
     mapFloor?: number;
-    backdropTop?: string;
-    backdropBase?: string;
-    backdropGlow?: string;
-    backdropGlowStrength?: number;
     keyLightIntensity?: number;
     fillLightIntensity?: number;
     rimLightIntensity?: number;
@@ -258,10 +258,6 @@ const sizeLabel = modelBytes && modelBytes > 0 ? ` · ${(modelBytes / 1e6).toFix
     emissiveIntensity: 0,
     mapLift: 0.16,
     mapFloor: 0.05,
-    backdropTop: '#15243A',
-    backdropBase: '#15243A',
-    backdropGlow: '#D7DEE8',
-    backdropGlowStrength: 0.07,
     keyLightIntensity: 1.12,
     fillLightIntensity: 0.88,
     rimLightIntensity: 1.16,
@@ -283,27 +279,6 @@ const sizeLabel = modelBytes && modelBytes > 0 ? ` · ${(modelBytes / 1e6).toFix
   function noise01(value: number) {
     const s = Math.sin(value * 12.9898) * 43758.5453;
     return s - Math.floor(s);
-  }
-
-  function hexToRgba(hex: string | undefined, alpha: number) {
-    const source = (hex || '#E0A95B').replace('#', '').trim();
-    const full = source.length === 3 ? source.split('').map((char) => char + char).join('') : source;
-    if (!/^[0-9a-f]{6}$/i.test(full)) return `rgba(224, 169, 91, ${clamp01(alpha)})`;
-    const value = Number.parseInt(full, 16);
-    const r = (value >> 16) & 255;
-    const g = (value >> 8) & 255;
-    const b = value & 255;
-    return `rgba(${r}, ${g}, ${b}, ${clamp01(alpha)})`;
-  }
-
-  function applyStageBackdrop(stage: HTMLElement, appearance: Appearance) {
-    const top = appearance.backdropTop || defaultAppearance.backdropTop;
-    const base = appearance.backdropBase || defaultAppearance.backdropBase;
-    const glow = hexToRgba(appearance.backdropGlow, appearance.backdropGlowStrength ?? defaultAppearance.backdropGlowStrength ?? 0.18);
-    stage.style.background = [
-      `radial-gradient(70% 52% at 50% 20%, ${glow}, transparent 72%)`,
-      `radial-gradient(120% 80% at 50% -5%, ${top}, ${base} 78%)`,
-    ].join(', ');
   }
 
   function hasAuthoredVertexColors(mesh: any) {
@@ -463,7 +438,6 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     let height = stage.clientHeight || 600;
     const appearance = readAppearance(stage);
     const immersive = stage.dataset.immersive === 'true';
-    applyStageBackdrop(stage, appearance);
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     let suspended = false;
@@ -662,6 +636,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     grid.position.y = -size.y / 2 - 0.001;
     (grid.material as any).transparent = true;
     (grid.material as any).opacity = 0.18;
+    grid.visible = false;
     scene.add(grid);
 
     // A low-opacity neutral receiver grounds the object without tinting the
@@ -898,7 +873,14 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     const glb = stage?.getAttribute('data-glb') || '';
     if (!stage || !glb) return;
     const lifetime = new AbortController();
-    const poster = root.querySelector('[data-poster]') as HTMLElement | null;
+    const poster = root.querySelector<HTMLImageElement>('[data-poster]');
+    const fallbackPoster = () => {
+      if (!poster?.dataset.fallbackPoster) return;
+      const fallback = poster.dataset.fallbackPoster;
+      delete poster.dataset.fallbackPoster;
+      stage?.removeAttribute('data-rendered-still');
+      poster.src = fallback;
+    };
     const loading = root.querySelector('[data-loading]') as HTMLElement | null;
     const activate = root.querySelector('[data-activate]') as HTMLButtonElement | null;
     const activateLabel = root.querySelector('[data-activate-label]');
@@ -913,6 +895,8 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     const downloadBar = root.querySelector<HTMLElement>('[data-download-bar]');
     const fullscreenButton = root.querySelector<HTMLButtonElement>('[data-tool-fullscreen]');
     // Opening a collection miniature is already an explicit activation in its parent page.
+    if (poster?.complete && !poster.naturalWidth) fallbackPoster();
+    poster?.addEventListener('error', fallbackPoster, { signal: lifetime.signal });
     const startMode = document.documentElement.classList.contains('studio-peek') ? 'true' : root.dataset.autoStart;
     const lazy = startMode === 'visible' && 'IntersectionObserver' in window;
     const size = Number(root.dataset.modelBytes) || 0;
@@ -1043,8 +1027,6 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
         let wireOn = saved?.wireframe ?? false;
         const syncWire = () => {
           root.querySelector('[data-tool-wire]')?.setAttribute('aria-pressed', String(wireOn));
-          const checkbox = root.querySelector<HTMLInputElement>('[data-wireframe]');
-          if (checkbox) checkbox.checked = wireOn;
         };
         on(stage!, 'keydown', event => {
           if (event.target === stage && (event.key === 'Enter' || event.key === ' ') && viewer.handling) {
@@ -1074,13 +1056,10 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
           const zoomOut = tools.querySelector('[data-zoom-out]') as HTMLButtonElement | null;
           const wire = tools.querySelector('[data-tool-wire]') as HTMLButtonElement | null;
           const rotate = tools.querySelector('[data-tool-rotate]') as HTMLButtonElement | null;
-          const reset = tools.querySelector('[data-tool-reset]') as HTMLButtonElement | null;
-          wire?.setAttribute('aria-pressed', String(wireOn));
+          syncWire();
           const syncRotationButton = () => {
             const state = viewer.rotationState();
             const rotateOn = state.active;
-            const checkbox = root.querySelector<HTMLInputElement>('[data-autorotate]');
-            if (checkbox) { checkbox.checked = rotateOn; checkbox.disabled = state.reduced; }
             if (!rotate) return;
             rotate.disabled = state.reduced;
             rotate.title = 'Start or pause automatic rotation';
@@ -1101,13 +1080,12 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
           on(zoomOut, 'click', () => viewer.zoom(1.46));
           on(wire, 'click', () => {
             wireOn = !wireOn;
-            wire?.setAttribute('aria-pressed', String(wireOn));
             viewer.setWireframe(wireOn);
+            syncWire();
           });
           on(rotate, 'click', () => {
             viewer.setAutoRotate(!viewer.rotationState().active);
           });
-          on(reset, 'click', () => viewer.reset());
         }
         if (displayPanel) {
           const exposure = displayPanel.querySelector('[data-exposure]') as HTMLInputElement | null;
@@ -1142,22 +1120,12 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
         if (hud) {
           const brightness = hud.querySelector('[data-brightness]') as HTMLInputElement | null;
           const texture = hud.querySelector('[data-texture]') as HTMLInputElement | null;
-          const autorotate = hud.querySelector('[data-autorotate]') as HTMLInputElement | null;
-          const wire = hud.querySelector('[data-wireframe]') as HTMLInputElement | null;
-          const reset = hud.querySelector('[data-reset]') as HTMLButtonElement | null;
           const readB = hud.querySelector('[data-read-brightness]') as HTMLElement | null;
           if (brightness) brightness.value = String(viewer.defaults.exposure);
           if (texture) texture.value = String(viewer.defaults.texture);
           if (readB && brightness) readB.textContent = `${brightness.value}%`;
           if (brightness) { viewer.setBrightness(+brightness.value); on(brightness, 'input', () => { viewer.setBrightness(+brightness.value); if (readB) readB.textContent = `${brightness.value}%`; }); }
           if (texture) { viewer.setTexture(+texture.value); on(texture, 'input', () => viewer.setTexture(+texture.value)); }
-          if (autorotate) {
-            const sync = () => { const state = viewer.rotationState(); autorotate.checked = state.active; autorotate.disabled = state.reduced; };
-            sync(); on(root, 'atrium:viewer-rotation-change' as any, sync);
-            on(autorotate, 'change', () => viewer.setAutoRotate(autorotate.checked));
-          }
-          if (wire) on(wire, 'change', () => { wireOn = wire.checked; viewer.setWireframe(wireOn); syncWire(); });
-          if (reset) on(reset, 'click', () => viewer.reset());
         }
         // AR can use the loaded model while its screen viewer is offscreen.
         root.dispatchEvent(new CustomEvent('atrium:viewer-ready'));
@@ -1241,6 +1209,13 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
 
 <style>
   .model-stage:focus-visible { outline: 2px solid var(--v3-signal, #eccf7a); outline-offset: -3px; }
+  .model-stage[data-glb]:not([data-glb=""]) {
+    background: radial-gradient(70% 52% at 50% 20%, color-mix(in srgb, var(--stage-glow) var(--stage-glow-strength), transparent), transparent 72%),
+      radial-gradient(125% 95% at 50% -2%, var(--stage-top), var(--stage-base) 72%);
+  }
+
+  .model-stage[data-rendered-still] [data-poster] { z-index: 3; min-height: 0; mask-image: none; -webkit-mask-image: none; }
+  .model-stage[data-rendered-still].is-live [data-poster] { pointer-events: none; }
   .model-stage:not(.is-live) :global(.viewer-canvas) { visibility: hidden; }
   .viewer[data-auto-start="false"]:is([data-viewer-state="idle"], [data-viewer-state="error"]) .model-stage { cursor: pointer; }
   .viewer-start:not([hidden]) { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 12px; min-height: 44px; color: var(--v3-muted, #c9c6bd); font: 400 14px/1.45 var(--v3-sans, sans-serif); }
@@ -1256,15 +1231,21 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
   .viewer[data-viewer-state="loading"] .viewer-download { display: block; }
   .viewer-download span { display: block; width: 0; height: 100%; background: #c9a5ff; }
   .viewer[data-viewer-expanded] { position: fixed !important; z-index: 1000; inset: 0 !important; width: 100% !important; height: 100dvh !important; overflow: hidden; background: var(--v3-void, #101827); }
-  html:has(.viewer[data-viewer-expanded]) { overflow: hidden; }
+  :global(html:has(.viewer[data-viewer-expanded])) { overflow: hidden; }
+  .viewer:fullscreen { width: 100%; height: 100dvh; overflow: hidden; background: var(--v3-void, #101827); }
+  .viewer:fullscreen > .model-stage { width: 100%; height: 100%; min-height: 0; }
   .viewer[data-viewer-expanded] > .model-stage { height: 100% !important; min-height: 0 !important; background: var(--v3-void, #101827) !important; }
-  .viewer[data-viewer-expanded] .immersive-tools { position: absolute !important; display: flex !important; inset: auto 12px max(12px, env(safe-area-inset-bottom)) !important; width: auto !important; transform: none !important; }
+  .viewer:is(:fullscreen, [data-viewer-expanded]) .immersive-tools:not([hidden]) { position: fixed !important; z-index: 20; inset: auto 12px max(12px, env(safe-area-inset-bottom)) !important; display: flex !important; width: auto !important; transform: none !important; }
+  .viewer[data-auto-start="false"]:is(:fullscreen, [data-viewer-expanded]) .immersive-tools:not([hidden]) { bottom: max(36px, env(safe-area-inset-bottom)) !important; }
   .viewer[data-auto-start="false"]:is(:fullscreen, [data-viewer-expanded]) > .model-stage { height: calc(100% - 26px) !important; }
   .viewer[data-auto-start="false"]:is(:fullscreen, [data-viewer-expanded]) > .viewer-start { position: absolute; inset: auto 12px 0; margin: 0; justify-content: center; }
   .viewer-keyboard-instructions { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
   .viewer[data-viewer-state="error"] .viewer-status { z-index: 8; inset: auto 12px 12px; width: fit-content; height: auto; max-width: calc(100% - 24px); padding: 7px 10px; margin: 0; clip-path: none; white-space: normal; border-radius: 4px; color: #f7f5ef; background: #15243af5; font: 400 12px/1.5 var(--v3-sans, sans-serif); }
-  .immersive-tools { max-width: 100%; flex-wrap: wrap; justify-content: center; }
-  .immersive-tools button { white-space: nowrap; }
+  .immersive-tools { max-width: 100%; flex-wrap: nowrap; justify-content: center; }
+  .immersive-tools button { min-height: 44px; white-space: nowrap; }
+  .viewer:not(.viewer--immersive) .immersive-tools:not([hidden]) { position: absolute; z-index: 5; inset: auto 12px 12px; display: flex; gap: 4px; }
+  .viewer:not(.viewer--immersive) .immersive-tools button { padding: 0 10px; color: #f7f5ef; background: #15243a; border: 1px solid #52637b; border-radius: 7px; font: inherit; font-size: 12px; }
+  .viewer:not(.viewer--immersive) .immersive-tools button:is(:hover, [aria-pressed="true"]) { color: #101827; background: #eccf7a; }
   .spatial-unavailable { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; color: var(--v3-muted, #c9c6bd); font: 500 11px/1.5 var(--v3-sans, sans-serif); text-decoration: none; }
   .spatial-unavailable:hover { color: var(--v3-ink, #f7f5ef); text-decoration: underline; text-underline-offset: 4px; }
   .spatial-unavailable:focus-visible { outline: 2px solid var(--v3-signal, #eccf7a); outline-offset: 4px; }
