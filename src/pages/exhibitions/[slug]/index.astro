@@ -123,6 +123,7 @@ const stops = exhibition.works.map((work, index) => ({
 
 <style>
   .exhibition-entrance-actions { display:flex; flex-wrap:wrap; gap:12px 24px; align-items:center; margin-top:24px; }
+  .exhibition-entrance-actions a:not(.exhibition-entrance-actions__guided) { background: transparent; }
   .exhibition-entrance-actions a { display:inline-flex; align-items:center; justify-content:center; gap:14px; min-height:44px; margin:0; padding:10px 15px; border:1px solid var(--v3-line-strong); border-radius:7px; color:var(--v3-ink); font-size:12px; line-height:1.5; text-decoration:none; }
   .exhibition-entrance-actions .exhibition-entrance-actions__guided { background:var(--ex-accent); border-color:var(--ex-accent); color:#152239; }
   #all-exhibition-works { scroll-margin-top:0; }

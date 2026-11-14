@@ -23,24 +23,25 @@ jobs:
           cache: npm
       - run: npm ci
       - name: Verify museum behaviour and source bindings
-        run: |
-          npm run verify:assets
-          npm run test:experience
-          npm run test:featured
-          npm run test:programme
-          npm run test:work-titles
-          npm run test:wings
-          npm run test:additions
-          npm run test:world-collection
-          npm run test:world-time
-          npm run test:world-state
-          npm run test:spatial
-          npm run test:spatial-museum-bindings
-          node scripts/test-artwork-image-recovery.mjs
+        run: npm test
+      - name: Install browser engines
+        run: npx playwright install --with-deps chromium webkit
       - name: Build the complete production package
         run: npm run build
         env:
           SITE: https://atrium.earth
+      - name: Verify museum pages in Chromium and WebKit
+        run: npm run test:browser
+      - name: Report homepage performance
+        if: ${{ !cancelled() }}
+        run: npm run test:performance
+      - name: Upload browser reports
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: museum-browser-reports
+          path: test-results/
+          if-no-files-found: ignore
       - name: Verify hosting budget
         run: node scripts/verify-pages-budget.mjs
       - name: Verify bounded collection delivery

@@ -6,6 +6,9 @@
   "scripts": {
     "dev": "astro dev",
     "build": "npm run images:jpeg && astro build && node ./scripts/write-redirects.mjs && node ./scripts/prune-remote-assets.mjs && node ./scripts/prepare-artwork-previews.mjs",
+    "test": "npm run verify:assets && npm run test:featured && npm run test:programme && npm run test:work-titles && npm run test:wings && npm run test:additions && npm run test:world-collection && npm run test:world-time && npm run test:world-state && npm run test:experience && npm run test:spatial && npm run test:spatial-museum-bindings && node scripts/test-artwork-image-recovery.mjs",
+    "test:browser": "node ./scripts/test-browser-experience.mjs",
+    "test:performance": "node ./scripts/report-homepage-performance.mjs",
     "test:additions": "node ./scripts/test-additions.mjs",
     "test:featured": "node ./scripts/test-featured-selection.mjs",
     "test:programme": "node ./scripts/test-museum-programme.mjs",
