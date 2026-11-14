@@ -13,7 +13,7 @@
     "test:world-time": "node ./scripts/test-world-time.mjs",
     "test:world-state": "node --test ./scripts/world-state.test.mjs",
     "test:world-collection": "node ./scripts/test-world-collection.mjs",
-    "test:experience": "node --test ./scripts/collection-window.test.mjs ./scripts/work-journey.test.mjs ./scripts/maker-groups.test.mjs ./scripts/test-curated-visit.mjs ./scripts/test-viewer-lifecycle.mjs",
+    "test:experience": "node --test ./scripts/collection-window.test.mjs ./scripts/work-journey.test.mjs ./scripts/maker-groups.test.mjs ./scripts/test-curated-visit.mjs ./scripts/test-curated-visit-history.mjs ./scripts/test-viewer-lifecycle.mjs ./scripts/test-viewer-download.mjs",
     "test:review-artifacts": "node ./scripts/test-review-artifacts.mjs",
     "test:wings": "node --experimental-strip-types ./scripts/test-wings.ts",
     "preview": "astro preview",

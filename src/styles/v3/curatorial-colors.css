@@ -16,8 +16,8 @@
 .v3-exrow > b,
 .v3-exrow__kicker { color: var(--ex-accent, var(--v3-signal)); }
 .v3-exrow:hover h3 { color: var(--ex-accent, var(--v3-ink)); }
-.v3-exhero__copy > .v3-kicker,
-.v3-exhero__copy > a { color: var(--ex-accent, var(--v3-signal)); }
+.v3-exhero__copy > .v3-kicker { color: var(--ex-accent, var(--v3-signal)); }
+.v3-exhero a.v3-exhero__begin { color: #101827; }
 .v3-exhero { border-bottom: 1px solid var(--ex-accent, var(--v3-line)); }
 .v3-weekly-focus { padding-inline-start: 16px; border-inline-start: 2px solid var(--ex-accent); }
 .v3-weekly-focus > span { display: block; margin-bottom: 6px; color: var(--ex-accent); }

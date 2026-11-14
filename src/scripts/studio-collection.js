@@ -102,7 +102,8 @@ function addSaveButton(container, pathname, title, objectPage = false) {
   const label = document.createElement('span');
   label.className = 'studio-save-label';
   button.append(icon(), label);
-  container.append(button);
+  if (objectPage) container.insertBefore(button, container.querySelector('.v3-object-nav'));
+  else container.append(button);
   if (!saveButtons.has(pathname)) saveButtons.set(pathname, new Set());
   saveButtons.get(pathname).add(button);
 }

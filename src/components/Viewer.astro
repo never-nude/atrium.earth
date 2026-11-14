@@ -2,6 +2,7 @@
 import SpatialViewing from './SpatialViewing.astro';
 type Props = {
   glb?: string;
+  modelBytes?: number;
   poster: string;
   /** Alt text for the still image. Describe the work itself; the default only names it. */
   posterAlt?: string;
@@ -21,6 +22,7 @@ type Props = {
   respectReducedMotion?: boolean;
   rotationControl?: 'full' | 'simple';
   wheelZoom?: boolean;
+  handlingCaption?: boolean;
   displayControls?: boolean;
   spatialViewing?: boolean;
   museumLabel?: Record<string, string>;
@@ -36,6 +38,7 @@ type Props = {
 };
 const {
   glb = '',
+  modelBytes,
   poster,
   posterAlt,
   title,
@@ -53,6 +56,7 @@ const {
   respectReducedMotion = true,
   rotationControl = 'full',
   wheelZoom = true,
+  handlingCaption = false,
   displayControls = false,
   spatialViewing = false,
   museumLabel,
@@ -70,10 +74,12 @@ const hasModel = Boolean(glb);
 const uid = Math.random().toString(36).slice(2, 8);
 const appearanceJson = JSON.stringify(materialAppearance);
 const transformJson = JSON.stringify(modelTransform);
+const captioned = handlingCaption && hasModel;
+const sizeLabel = modelBytes && modelBytes > 0 ? ` · ${(modelBytes / 1e6).toFixed(1)} MB` : '';
 ---
 
-<div class:list={['viewer', { 'viewer--immersive': immersive }]} data-viewer data-auto-start={String(autoStart)}>
-  <div class="model-stage" data-stage data-glb={hasModel ? glb : ''} data-spatial-asset-sha256={spatialViewing ? spatialAssetSha256 : undefined} data-up-axis={upAxis} data-model-transform={transformJson} data-material-appearance={appearanceJson} data-immersive={String(immersive)} data-auto-rotate={String(autoRotate)} data-auto-rotate-speed={autoRotateSpeed} data-turntable-degrees-per-second={turntableDegreesPerSecond} data-respect-reduced-motion={respectReducedMotion ? undefined : 'false'} data-rotation-control={rotationControl === 'simple' ? 'simple' : undefined} data-wheel-zoom={String(wheelZoom)} tabindex={hasModel ? '0' : undefined} aria-label={hasModel ? `Interactive 3D view of ${title}` : undefined} aria-describedby={hasModel ? `viewer-keys-${uid}` : undefined}>
+<div class:list={['viewer', { 'viewer--immersive': immersive, 'viewer--captioned': captioned }]} data-viewer data-auto-start={String(autoStart)} data-viewer-state={hasModel ? 'idle' : undefined} data-model-bytes={modelBytes} data-wheel-zoom={String(wheelZoom)}>
+  <div class="model-stage" data-stage data-glb={hasModel ? glb : ''} data-spatial-asset-sha256={spatialViewing ? spatialAssetSha256 : undefined} data-up-axis={upAxis} data-model-transform={transformJson} data-material-appearance={appearanceJson} data-immersive={String(immersive)} data-auto-rotate={String(autoRotate)} data-auto-rotate-speed={autoRotateSpeed} data-turntable-degrees-per-second={turntableDegreesPerSecond} data-respect-reduced-motion={respectReducedMotion ? undefined : 'false'} data-rotation-control={rotationControl === 'simple' ? 'simple' : undefined} tabindex={hasModel ? '0' : undefined} aria-label={hasModel ? `Interactive 3D view of ${title}` : undefined} aria-describedby={hasModel ? `viewer-keys-${uid}` : undefined}>
     <span class="stage-corner stage-corner--tl" aria-hidden="true"></span>
     <span class="stage-corner stage-corner--tr" aria-hidden="true"></span>
     <span class="stage-corner stage-corner--bl" aria-hidden="true"></span>
@@ -81,38 +87,45 @@ const transformJson = JSON.stringify(modelTransform);
     <span class="stage-tag" aria-hidden="true">{tag ?? (hasModel ? '3D MODEL' : 'PHOTOGRAPH')}</span>
 
     <img src={poster} alt={posterAlt ?? `${title} — still image`} width="720" height="900" loading={posterLoading} decoding="async" data-poster />
+    {hasModel && <div class="viewer-ring" data-viewer-ring aria-hidden="true"></div>}
+    {captioned && <div class="viewer-download" aria-hidden="true"><span data-download-bar></span></div>}
 
     {/* Rendered hidden: the script reveals it only when it is needed (auto-start
         off, or the model failed to load). Crawlers, pre-hydration paint, and
         no-JS visitors all get the still image with nothing offered on top of it. */}
-    {hasModel && (
-      <button class="stage-activate" type="button" data-activate hidden>
+    {hasModel && !captioned && (
+      <button class="stage-activate" type="button" data-activate aria-describedby={`viewer-status-${uid}`} hidden>
         <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
           <path d="M12 2 4 6.5v9L12 20l8-4.5v-9L12 2z" />
           <path d="M4 6.5 12 11l8-4.5M12 11v9" />
         </svg>
-        Examine in 3D
+        <span data-activate-label>Examine in 3D</span>
       </button>
     )}
-    <div class="stage-loading" data-loading hidden>
+    {!captioned && <div class="stage-loading" data-loading aria-hidden="true" hidden>
       <span class="spinner" aria-hidden="true"></span>
       <span class="loading-text">Loading…</span>
-    </div>
+    </div>}
+    {hasModel && !captioned && <p id={`viewer-status-${uid}`} class="viewer-keyboard-instructions viewer-status" data-viewer-status role="status" aria-atomic="true"></p>}
 
-    {hasModel && <details class="viewer-help" data-viewer-help hidden>
+    {hasModel && !captioned && <details class="viewer-help" data-viewer-help hidden>
       <summary>3D controls</summary>
       <div class="viewer-help__panel">
-        <p>Drag to turn the view, or focus the sculpture and use the arrow keys. Use + / − to zoom and 0 to reset. Pause automatic rotation to keep a view still.</p>
+        <p>Drag to turn, or use the arrow keys. Pinch or use + / − to zoom. In full screen you can also scroll to zoom. Press 0 to reset.</p>
         <div class="viewer-help__directions" role="group" aria-label="Rotate the 3D view">
           <button type="button" data-viewer-orbit="left" aria-label="Rotate view left">←</button>
           <button type="button" data-viewer-orbit="up" aria-label="Rotate view up">↑</button>
           <button type="button" data-viewer-orbit="down" aria-label="Rotate view down">↓</button>
           <button type="button" data-viewer-orbit="right" aria-label="Rotate view right">→</button>
         </div>
+        <div class="viewer-help__zoom" role="group" aria-label="Change the 3D zoom">
+          <button type="button" data-viewer-zoom="in" aria-label="Zoom in">+</button>
+          <button type="button" data-viewer-zoom="out" aria-label="Zoom out">−</button>
+        </div>
       </div>
     </details>}
 
-    {immersive && hasModel && (
+    {immersive && hasModel && !captioned && (
       <div class="immersive-tools" data-immersive-tools hidden aria-label="3D viewing tools">
         <button type="button" data-zoom-in aria-label="Zoom in" title="Zoom in">+</button>
         <button type="button" data-zoom-out aria-label="Zoom out" title="Zoom out">−</button>
@@ -123,7 +136,7 @@ const transformJson = JSON.stringify(modelTransform);
       </div>
     )}
 
-    {immersive && hasModel && displayControls && (
+    {immersive && hasModel && displayControls && !captioned && (
       <details class="immersive-light" data-display-controls hidden>
         <summary>Display <span>+</span></summary>
         <div class="immersive-light__panel" aria-label="Display controls">
@@ -140,7 +153,49 @@ const transformJson = JSON.stringify(modelTransform);
     )}
   </div>
 
-  {hud && hasModel && (
+  {captioned && <div class="viewer-caption" data-viewer-caption hidden>
+    <div class="viewer-caption__row">
+      <div class="viewer-caption__status">
+        <p id={`viewer-status-${uid}`} class="viewer-keyboard-instructions" data-viewer-status role="status" aria-atomic="true"></p>
+        <span class="viewer-caption__error" aria-hidden="true">3D didn’t load.</span>
+        <span class="viewer-caption__loading" data-download-label aria-hidden="true">Loading 3D</span>
+        <button type="button" data-activate aria-describedby={`viewer-status-${uid}`} hidden><span data-activate-label>Examine in 3D{sizeLabel}</span></button>
+        <span class="viewer-caption__hint" aria-hidden="true">
+          <span class="viewer-caption__touch">Tap to handle</span>
+          <span class="viewer-caption__mouse">Click or drag the sculpture to handle it</span>
+        </span>
+        <button class="viewer-caption__done" type="button" data-handling-done>Done</button>
+        <button type="button" data-tool-reset hidden>Reset view</button>
+      </div>
+      <div class="viewer-caption__controls">
+        {spatialViewing && <SpatialViewing compactOpener title={title} poster={poster} museumLabel={museumLabel} reference={spatialReference} sizeNote={spatialNote} displaySupport={displaySupport} dimensionStatus={spatialDimensionStatus} requiresAssetCheck={Boolean(spatialAssetSha256)} referenceLabel={spatialLabel} sizeLabel={spatialSizeLabel} defaultMaxExtentMeters={spatialDefaultMaxExtentMeters} />}
+        {!spatialViewing && spatialUnavailableNote && <a id="ar-vr" class="spatial-unavailable" data-spatial-unavailable href="#size-verification" title={spatialUnavailableNote}>AR / VR unavailable <span aria-hidden="true">↓</span></a>}
+        <button type="button" data-tool-fullscreen aria-pressed="false" hidden>Full screen</button>
+        <button type="button" data-viewer-options-toggle aria-expanded="false" aria-controls={`viewer-options-${uid}`} hidden>Options</button>
+      </div>
+    </div>
+    <div id={`viewer-options-${uid}`} class="viewer-caption__options" data-viewer-options hidden>
+      <fieldset>
+        <legend>Move the view without dragging</legend>
+        <div class="viewer-caption__directions">
+          <button type="button" data-viewer-orbit="left">Turn left</button>
+          <button type="button" data-viewer-orbit="right">Turn right</button>
+          <button type="button" data-viewer-orbit="up">Tilt up</button>
+          <button type="button" data-viewer-orbit="down">Tilt down</button>
+          <button type="button" data-viewer-zoom="in">Zoom in</button>
+          <button type="button" data-viewer-zoom="out">Zoom out</button>
+        </div>
+      </fieldset>
+      <div class="viewer-caption__settings">
+        <label>Brightness <input type="range" min="5" max="120" step="1" value="20" data-caption-brightness /></label>
+        <label><input type="checkbox" data-autorotate checked={autoRotate} /> Turn slowly</label>
+        <label><input type="checkbox" data-wireframe /> Show scan mesh</label>
+      </div>
+      <p class="viewer-caption__keyboard">Focus the sculpture and use the arrows to turn or tilt. Use + or − to zoom, 0 to reset, and Escape to stop handling.</p>
+    </div>
+  </div>}
+
+  {hud && hasModel && !captioned && (
     <div class="viewer-hud" data-hud-panel hidden>
       <div class="hud-control">
         <label for={`b-${uid}`}>Exposure <span class="hud-read" data-read-brightness>20%</span></label>
@@ -164,11 +219,11 @@ const transformJson = JSON.stringify(modelTransform);
     </div>
   )}
 
-  {hasModel && <p class="stage-hint fine" data-hint hidden>Drag to turn the view · <span class="stage-hint__pan">right-drag or two-finger drag to move the view · </span>{wheelZoom && 'scroll or pinch to zoom · '}double-click or double-tap to reset</p>}
-  {hasModel && <p id={`viewer-keys-${uid}`} class="viewer-keyboard-instructions">Activate 3D, then focus the sculpture. Arrow keys rotate the view; plus and minus zoom; 0 or Home resets. The 3D controls menu also has rotation buttons.</p>}
+  {hasModel && !captioned && <p class="stage-hint fine" data-hint hidden>Click or drag to handle · pinch to zoom · double-click or double-tap to reset</p>}
+  {hasModel && <p id={`viewer-keys-${uid}`} class="viewer-keyboard-instructions">Click or drag to handle the sculpture. Press Escape to stop. While the sculpture has keyboard focus, use arrow keys to turn, plus and minus to zoom, and 0 or Home to reset.</p>}
 
-  {spatialViewing && hasModel && <SpatialViewing title={title} poster={poster} museumLabel={museumLabel} reference={spatialReference} sizeNote={spatialNote} displaySupport={displaySupport} dimensionStatus={spatialDimensionStatus} requiresAssetCheck={Boolean(spatialAssetSha256)} referenceLabel={spatialLabel} sizeLabel={spatialSizeLabel} defaultMaxExtentMeters={spatialDefaultMaxExtentMeters} />}
-  {!spatialViewing && spatialUnavailableNote && <a id="ar-vr" class="spatial-unavailable" data-spatial-unavailable href="#size-verification" title={spatialUnavailableNote}>AR / VR unavailable · Size unverified <span aria-hidden="true">↓</span></a>}
+  {spatialViewing && hasModel && !captioned && <SpatialViewing title={title} poster={poster} museumLabel={museumLabel} reference={spatialReference} sizeNote={spatialNote} displaySupport={displaySupport} dimensionStatus={spatialDimensionStatus} requiresAssetCheck={Boolean(spatialAssetSha256)} referenceLabel={spatialLabel} sizeLabel={spatialSizeLabel} defaultMaxExtentMeters={spatialDefaultMaxExtentMeters} />}
+  {!spatialViewing && spatialUnavailableNote && !captioned && <a id="ar-vr" class="spatial-unavailable" data-spatial-unavailable href="#size-verification" title={spatialUnavailableNote}>AR / VR unavailable · Size unverified <span aria-hidden="true">↓</span></a>}
 
   <noscript>
     {/* Without JavaScript the still image is the presentation, not a fallback: hide
@@ -183,7 +238,8 @@ const transformJson = JSON.stringify(modelTransform);
   import { rememberSpatialAppearance } from '../lib/spatial-materials.mjs';
   import { createTextureControl } from '../lib/viewerTexture';
   import { createViewerRenderLoop, bindViewerRenderEvents } from '../lib/viewer-render-loop.mjs';
-  import { handleViewerKey, orbitViewer } from '../lib/viewer-input.mjs';
+  import { bindViewerGestures, handleViewerKey, orbitViewer } from '../lib/viewer-input.mjs';
+  import { fetchViewerModel } from '../lib/viewer-download.mjs';
   import { disposeViewerScene } from '../lib/viewer-resources.mjs';
 
   type ViewState = {
@@ -208,6 +264,7 @@ const transformJson = JSON.stringify(modelTransform);
     invalidate: () => void;
     zoom: (factor: number) => void;
     reset: () => void;
+    gestures: ReturnType<typeof bindViewerGestures>;
     texture: ReturnType<typeof createTextureControl>;
     defaults: { exposure: number; texture: number; autoRotate: boolean };
   };
@@ -435,7 +492,14 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     material.needsUpdate = true;
   }
 
-  async function buildViewer(stage: HTMLElement, glb: string, saved: ViewState | undefined, signal: AbortSignal, isVisible: () => boolean): Promise<Viewer> {
+  async function buildViewer(root: HTMLElement, stage: HTMLElement, glb: string, build: {
+    saved?: ViewState;
+    signal: AbortSignal;
+    isVisible: () => boolean;
+    onFirstFrame: () => void;
+    onProgress?: (progress: { loadedBytes: number; totalBytes: number | null }) => void;
+  }): Promise<Viewer> {
+    const { saved, signal, isVisible, onFirstFrame, onProgress } = build;
     const THREE = await import('three');
     const { DRACOLoader } = await import('three/examples/jsm/loaders/DRACOLoader.js');
     const { GLTFLoader } = await import('three/examples/jsm/loaders/GLTFLoader.js');
@@ -454,6 +518,8 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     applyStageBackdrop(stage, appearance);
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    let suspended = false;
+    let contextLost = false;
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setSize(width, height);
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
@@ -463,7 +529,14 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     renderer.domElement.classList.add('viewer-canvas');
     stage.appendChild(renderer.domElement);
-    renderer.domElement.addEventListener('contextmenu', (e) => e.preventDefault());
+    function reportRenderError(reason: string) {
+      root.dispatchEvent(new CustomEvent('atrium:viewer-render-error', { detail: { reason } }));
+    }
+    renderer.domElement.addEventListener('webglcontextlost', event => {
+      event.preventDefault();
+      contextLost = true;
+      if (!suspended) reportRenderError('context-lost');
+    }, { signal });
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(35, width / height, immersive ? 0.001 : 0.01, 200);
@@ -495,14 +568,23 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     rim.position.set(-2.7, 2.6, 3.4);
     scene.add(rim);
 
+    const gestures = bindViewerGestures({
+      canvas: renderer.domElement, stage, root, signal,
+      enabled: false, wheelZoom: root.dataset.wheelZoom !== 'false',
+      onSelect: () => { rotationRequested = false; syncRotation(); },
+      onReset: () => resetView(),
+      onStateChange: ({ selected }) => {
+        if (!selected && document.activeElement?.matches('[data-handling-done]') && root.contains(document.activeElement)) {
+          stage.focus({ preventScroll: true });
+        }
+      },
+    });
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
     controls.dampingFactor = 0.08;
-    controls.enablePan = true;
-    controls.enableZoom = stage.dataset.wheelZoom !== 'false';
-    controls.rotateSpeed = 0.9;
     controls.zoomSpeed = immersive ? 1.35 : 0.8;
     controls.mouseButtons = { LEFT: THREE.MOUSE.ROTATE, MIDDLE: THREE.MOUSE.DOLLY, RIGHT: THREE.MOUSE.PAN };
+    gestures.setControls(controls);
     const turntableSpeed = Number(stage.dataset.turntableDegreesPerSecond || 0);
     const turnsModel = Number.isFinite(turntableSpeed) && turntableSpeed !== 0;
     let rotationRequested = saved?.autoRotate ?? (stage.dataset.autoRotate !== 'false');
@@ -532,9 +614,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     signal.addEventListener('abort', releasePending, { once: true });
     let verifiedAsset = false;
     try {
-      const response = await fetch(glb, { signal });
-      if (!response.ok) throw new Error(`Model request failed: ${response.status}`);
-      const bytes = await response.arrayBuffer();
+      const bytes = await fetchViewerModel(glb, { signal, expectedBytes: Number(root.dataset.modelBytes), onProgress });
       if (stage.dataset.spatialAssetSha256) {
         // Verify the bytes actually displayed, including models with mutable URLs.
         // A mismatch keeps ordinary 3D available while preventing an AR launch.
@@ -656,6 +736,14 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     scene.add(ground);
 
     const home = { pos: camera.position.clone(), tgt: controls.target.clone() };
+    const resetButton = root.classList.contains('viewer--captioned')
+      ? root.querySelector<HTMLButtonElement>('[data-tool-reset]') : null;
+    function syncReset() {
+      if (!resetButton) return;
+      resetButton.hidden = camera.position.distanceToSquared(home.pos) < 1e-8
+        && controls.target.distanceToSquared(home.tgt) < 1e-8
+        && Math.abs(turntable.rotation.y) < 1e-5;
+    }
     let wireframe = saved?.wireframe ?? false;
     if (saved) {
       camera.position.fromArray(saved.position);
@@ -666,10 +754,13 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     }
 
     let disposed = false;
-    let suspended = false;
     const renderEvents = new AbortController();
     const loop = createViewerRenderLoop({ visible: isVisible(), hidden: document.hidden,
-      onError: () => stage.closest('[data-viewer]')?.dispatchEvent(new Event('atrium:viewer-render-error')),
+      onError: () => reportRenderError('render'),
+      onFirstFrame: () => {
+        if (renderer.getContext().isContextLost()) reportRenderError('context-lost');
+        else { gestures.setEnabled(true); onFirstFrame(); }
+      },
       draw: (elapsed: number) => {
         // The featured sculpture turns independently of orbit-control interaction state.
         // Use elapsed time so a slow device does not turn it into a nearly still image.
@@ -678,10 +769,25 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
         }
         const changed = controls.update(timedRotation ? Math.min(elapsed, 0.1) : undefined);
         renderer.render(scene, camera);
+        syncReset();
         return rotationState().active || changed;
       },
     });
     const invalidate = () => loop.invalidate();
+    function resetView() {
+      // Flush any remaining drag damping before restoring the authored view.
+      controls.enableDamping = false;
+      controls.autoRotate = false;
+      controls.update(0);
+      turntable.rotation.y = 0;
+      camera.position.copy(home.pos);
+      controls.target.copy(home.tgt);
+      controls.update(0);
+      controls.enableDamping = true;
+      controls.autoRotate = !turnsModel && rotationState().active;
+      syncReset();
+      invalidate();
+    }
 
     function resize() {
       if (suspended) return;
@@ -709,6 +815,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
         suspend: () => {
           if (suspended || disposed) throw new Error('Finish the current view before starting another.');
           suspended = true;
+          gestures.setEnabled(false);
           loop.setSuspended(true);
           const controlsEnabled = controls.enabled;
           controls.enabled = false;
@@ -716,12 +823,18 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
             if (disposed) return;
             suspended = false;
             controls.enabled = controlsEnabled;
+            gestures.setEnabled(stage.classList.contains('is-live'));
+            if (contextLost) {
+              queueMicrotask(() => { if (!disposed) reportRenderError('context-lost'); });
+              return;
+            }
             resize();
             loop.setSuspended(false);
           };
         },
       },
       setVisible: (next) => loop.setVisible(next),
+      gestures,
       capture: () => ({ position: camera.position.toArray(), target: controls.target.toArray(), autoRotate: rotationRequested, wireframe, turntableAngle: turntable.rotation.y }),
       dispose: () => {
         if (disposed) return;
@@ -754,9 +867,74 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
         controls.update(timedRotation ? 0 : undefined);
         invalidate();
       },
-      reset: () => { turntable.rotation.y = 0; camera.position.copy(home.pos); controls.target.copy(home.tgt); controls.update(timedRotation ? 0 : undefined); invalidate(); },
+      reset: resetView,
       defaults: { exposure: Math.round(appearance.exposure * 100), texture: appearance.preserveSourceMaterials === true ? textureControl.defaultValue : appearance.textureDefault, get autoRotate() { return rotationState().active; } },
     };
+  }
+
+  function bindViewerFullscreen(root: HTMLElement, button: HTMLButtonElement, viewer: Viewer, signal: AbortSignal) {
+    const { gestures } = viewer;
+    const native = () => document.fullscreenElement === root;
+    const overlay = () => root.hasAttribute('data-viewer-expanded');
+    function syncButton() {
+      const expanded = native() || overlay();
+      button.setAttribute('aria-pressed', String(expanded));
+      button.textContent = expanded ? 'Exit full screen' : 'Full screen';
+    }
+    const inerted: HTMLElement[] = [];
+    function showOverlay() {
+      root.setAttribute('data-viewer-expanded', '');
+      root.setAttribute('role', 'dialog');
+      root.setAttribute('aria-modal', 'true');
+      root.setAttribute('aria-label', 'Full-screen sculpture');
+      // Leave the viewer in place so its running canvas and AR dialog keep their state.
+      for (let child = root; child.parentElement && child !== document.body; child = child.parentElement) {
+        for (const sibling of child.parentElement.children) {
+          if (sibling !== child && sibling instanceof HTMLElement && !sibling.inert) {
+            sibling.inert = true;
+            inerted.push(sibling);
+          }
+        }
+      }
+      gestures.setFullscreen(true);
+      syncButton();
+      button.focus({ preventScroll: true });
+    }
+    function closeOverlay() {
+      if (!overlay()) return;
+      root.removeAttribute('data-viewer-expanded');
+      root.removeAttribute('role');
+      root.removeAttribute('aria-modal');
+      root.removeAttribute('aria-label');
+      for (const sibling of inerted.splice(0)) sibling.inert = false;
+      gestures.setFullscreen(false);
+      syncButton();
+      if (!signal.aborted) button.focus({ preventScroll: true });
+    }
+    button.addEventListener('click', async () => {
+      if (overlay()) { closeOverlay(); return; }
+      if (native()) { await document.exitFullscreen().catch(() => {}); return; }
+      if (document.fullscreenEnabled && root.requestFullscreen) {
+        try {
+          await root.requestFullscreen();
+          if (signal.aborted && native()) await document.exitFullscreen().catch(() => {});
+          return;
+        } catch { /* An embedded or mobile browser can refuse native fullscreen. */ }
+      }
+      if (!signal.aborted) showOverlay();
+    }, { signal });
+    document.addEventListener('fullscreenchange', syncButton, { signal });
+    root.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !event.defaultPrevented && overlay() && !root.querySelector('dialog[open]')) {
+        event.preventDefault();
+        closeOverlay();
+      }
+    }, { signal });
+    signal.addEventListener('abort', () => {
+      closeOverlay();
+      if (native()) void document.exitFullscreen().catch(() => {});
+    }, { once: true });
+    syncButton();
   }
 
   // Exhibition pages can contain many models. Keep four nearby/recent viewers,
@@ -765,7 +943,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
   function trimResidents() {
     for (const [element, resident] of residents) {
       if (residents.size <= 4) break;
-      if (resident.visible() || document.fullscreenElement === element || element.contains(document.activeElement)) continue;
+      if (resident.visible() || document.fullscreenElement === element || (element as HTMLElement).hasAttribute('data-viewer-expanded') || element.contains(document.activeElement)) continue;
       resident.release();
     }
   }
@@ -781,11 +959,27 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     const poster = root.querySelector('[data-poster]') as HTMLElement | null;
     const loading = root.querySelector('[data-loading]') as HTMLElement | null;
     const activate = root.querySelector('[data-activate]') as HTMLButtonElement | null;
+    const activateLabel = root.querySelector('[data-activate-label]');
+    const status = root.querySelector('[data-viewer-status]');
     const hud = root.querySelector('[data-hud-panel]') as HTMLElement | null;
     const tools = root.querySelector('[data-immersive-tools]') as HTMLElement | null;
     const displayPanel = root.querySelector('[data-display-controls]') as HTMLElement | null;
     const hint = root.querySelector('[data-hint]') as HTMLElement | null;
     const help = root.querySelector('[data-viewer-help]') as HTMLDetailsElement | null;
+    const caption = root.querySelector<HTMLElement>('[data-viewer-caption]');
+    const captionOptions = root.querySelector<HTMLElement>('[data-viewer-options]');
+    const optionsToggle = root.querySelector<HTMLButtonElement>('[data-viewer-options-toggle]');
+    const downloadLabel = root.querySelector('[data-download-label]');
+    const downloadBar = root.querySelector<HTMLElement>('[data-download-bar]');
+    const fullscreenButton = root.querySelector<HTMLButtonElement>('[data-tool-fullscreen]');
+    const done = root.querySelector<HTMLButtonElement>('[data-handling-done]');
+    const resetButton = caption?.querySelector<HTMLButtonElement>('[data-tool-reset]');
+    const size = Number(root.dataset.modelBytes) || 0;
+    const examineLabel = size && caption ? `Examine in 3D · ${(size / 1e6).toFixed(1)} MB` : 'Examine in 3D';
+    const setOptionsOpen = (open: boolean) => {
+      if (captionOptions) captionOptions.hidden = !open;
+      optionsToggle?.setAttribute('aria-expanded', String(open));
+    };
     const startMode = root.getAttribute('data-auto-start');
     const lazy = root.getAttribute('data-auto-start') === 'visible' && 'IntersectionObserver' in window;
     const intersectsViewport = () => {
@@ -808,17 +1002,38 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     function release() {
       generation += 1;
       if (activeViewer) saved = activeViewer.capture();
+      bindings?.abort();
       activeViewer?.dispose();
       activeViewer = undefined;
-      bindings?.abort();
       window.clearTimeout(hintTimer);
       stage!.classList.remove('is-live');
-      for (const element of [loading, tools, displayPanel, hud, hint, help]) if (element) element.hidden = true;
+      for (const element of [loading, tools, displayPanel, hud, hint, help, resetButton, optionsToggle]) if (element) element.hidden = true;
+      if (caption && fullscreenButton) fullscreenButton.hidden = true;
+      setOptionsOpen(false);
+      downloadBar?.style.removeProperty('width');
       if (help) help.open = false;
       if (poster) poster.style.opacity = '1';
       if (activate) activate.hidden = false;
+      if (activateLabel) activateLabel.textContent = examineLabel;
+      if (status) status.textContent = '';
+      root.dataset.viewerState = 'idle';
       residents.delete(root);
       started = false;
+    }
+
+    function fail(reason: string) {
+      if (!started) return;
+      const restoreFocus = root.contains(document.activeElement) && !root.querySelector('dialog[open]');
+      release();
+      root.dataset.viewerState = 'error';
+      if (activateLabel) activateLabel.textContent = 'Retry 3D';
+      if (status) status.textContent = 'The 3D view could not load. The still image is available.';
+      if (restoreFocus) activate?.focus({ preventScroll: true });
+      root.dispatchEvent(new CustomEvent('atrium:viewer-error', { detail: { reason } }));
+    }
+
+    function startAutomatically() {
+      if (root.dataset.viewerState !== 'error') void start();
     }
 
     async function start() {
@@ -830,61 +1045,117 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
       residents.set(root, { visible: () => visible, release });
       trimResidents();
       if (current !== generation || events.signal.aborted) return;
+      const moveFocus = activate !== null && document.activeElement === activate;
       if (activate) activate.hidden = true;
-      if (poster) poster.style.opacity = '0';
+      if (moveFocus) stage!.focus({ preventScroll: true });
+      root.dataset.viewerState = 'loading';
+      if (status) status.textContent = moveFocus ? 'Loading the 3D view.' : '';
       if (loading) loading.hidden = false;
+      if (downloadLabel) downloadLabel.textContent = size ? `Loading 3D · 0.0 of ${(size / 1e6).toFixed(1)} MB` : 'Loading 3D';
       try {
-        const viewer = await buildViewer(stage!, glb, saved, events.signal, () => visible && !pageSuspended);
+        const viewer = await buildViewer(root, stage!, glb, {
+          saved, signal: events.signal, isVisible: () => visible && !pageSuspended,
+          onProgress: downloadLabel ? (progress) => {
+            if (current !== generation || events.signal.aborted) return;
+            const loaded = (progress.loadedBytes / 1e6).toFixed(1);
+            const total = progress.totalBytes ? (progress.totalBytes / 1e6).toFixed(1) : null;
+            const label = `Loading 3D · ${loaded}${total === null ? '' : ` of ${total}`} MB`;
+            if (downloadLabel.textContent !== label) downloadLabel.textContent = label;
+            if (downloadBar) downloadBar.style.width = progress.totalBytes
+              ? `${Math.floor(Math.min(100, progress.loadedBytes / progress.totalBytes * 100))}%`
+              : '';
+          } : undefined,
+          onFirstFrame: () => {
+            if (current !== generation || events.signal.aborted) return;
+            stage!.classList.add('is-live');
+            if (poster) poster.style.opacity = '0';
+            if (loading) loading.hidden = true;
+            for (const element of [tools, displayPanel, hud, hint, help]) if (element) element.hidden = false;
+            if (caption && fullscreenButton) fullscreenButton.hidden = false;
+            if (optionsToggle) optionsToggle.hidden = false;
+            if (status) status.textContent = moveFocus ? '3D view ready.' : '';
+            if (hint) {
+              hint.classList.remove('is-dismissed');
+              hintTimer = window.setTimeout(() => hint.classList.add('is-dismissed'), 7000);
+            }
+            root.dataset.viewerState = 'ready';
+          },
+        });
         if (current !== generation) { viewer.dispose(); return; }
         activeViewer = viewer;
         viewer.setVisible(visible && !pageSuspended);
-        root.dispatchEvent(new CustomEvent('atrium:viewer-ready'));
         function on<K extends keyof HTMLElementEventMap>(target: HTMLElement | Document | null, type: K, listener: (event: HTMLElementEventMap[K]) => void) {
           target?.addEventListener(type, listener as EventListener, { signal: events.signal });
         }
-        if (loading) loading.hidden = true;
-        stage!.classList.add('is-live');
-        if (help) {
-          help.hidden = false;
+        const moveView = captionOptions ?? help;
+        if (moveView) {
           const directions: Record<string, [number, number]> = { left: [-1, 0], right: [1, 0], up: [0, -1], down: [0, 1] };
-          for (const button of help.querySelectorAll<HTMLButtonElement>('[data-viewer-orbit]')) {
+          for (const button of moveView.querySelectorAll<HTMLButtonElement>('[data-viewer-orbit]')) {
             on(button, 'click', () => viewer.orbit(...directions[button.dataset.viewerOrbit!]));
           }
-          on(help, 'keydown', event => {
-            if (event.key === 'Escape' && help.open) { event.preventDefault(); event.stopPropagation(); help.open = false; help.querySelector('summary')?.focus(); }
-          });
+          for (const button of moveView.querySelectorAll<HTMLButtonElement>('[data-viewer-zoom]')) {
+            on(button, 'click', () => viewer.zoom(button.dataset.viewerZoom === 'in' ? 0.68 : 1.46));
+          }
         }
+        if (help) on(help, 'keydown', event => {
+          if (event.key === 'Escape' && help.open) { event.preventDefault(); help.open = false; help.querySelector('summary')?.focus(); }
+        });
         let wireOn = saved?.wireframe ?? false;
         const syncWire = () => {
           root.querySelector('[data-tool-wire]')?.setAttribute('aria-pressed', String(wireOn));
           const checkbox = root.querySelector<HTMLInputElement>('[data-wireframe]');
           if (checkbox) checkbox.checked = wireOn;
         };
-        on(stage!, 'keydown', event => handleViewerKey(event, {
-          orbit: (horizontal: number, vertical: number) => viewer.orbit(horizontal, vertical),
-          zoom: (factor: number) => viewer.zoom(factor), reset: () => viewer.reset(),
-          toggleWireframe: () => { wireOn = !wireOn; viewer.setWireframe(wireOn); syncWire(); },
-        }));
+        on(stage!, 'keydown', event => {
+          if (handleViewerKey(event, {
+            orbit: (horizontal: number, vertical: number) => viewer.orbit(horizontal, vertical),
+            zoom: (factor: number) => viewer.zoom(factor), reset: () => viewer.reset(),
+            toggleWireframe: () => { wireOn = !wireOn; viewer.setWireframe(wireOn); syncWire(); },
+          })) viewer.gestures.interact();
+        });
+        if (caption) {
+          const brightness = captionOptions?.querySelector<HTMLInputElement>('[data-caption-brightness]') ?? null;
+          const slow = captionOptions?.querySelector<HTMLInputElement>('[data-autorotate]') ?? null;
+          const mesh = captionOptions?.querySelector<HTMLInputElement>('[data-wireframe]') ?? null;
+          if (brightness) brightness.value = String(viewer.defaults.exposure);
+          const syncSlow = () => {
+            const state = viewer.rotationState();
+            if (slow) { slow.checked = state.active; slow.disabled = state.reduced; }
+          };
+          syncSlow();
+          syncWire();
+          on(root, 'atrium:viewer-rotation-change' as any, syncSlow);
+          on(brightness, 'input', () => { if (brightness) viewer.setBrightness(+brightness.value); viewer.gestures.interact(); });
+          on(slow, 'change', () => { if (slow) viewer.setAutoRotate(slow.checked); viewer.gestures.interact(); });
+          on(mesh, 'change', () => {
+            if (mesh) { wireOn = mesh.checked; viewer.setWireframe(wireOn); syncWire(); }
+            viewer.gestures.interact();
+          });
+          on(caption, 'click', () => viewer.gestures.interact());
+          on(optionsToggle, 'click', () => setOptionsOpen(Boolean(captionOptions?.hidden)));
+          on(captionOptions, 'keydown', event => {
+            if (event.key !== 'Escape' || captionOptions?.hidden) return;
+            event.preventDefault(); setOptionsOpen(false); optionsToggle?.focus();
+          });
+          on(done, 'click', () => viewer.gestures.deselect());
+          on(resetButton ?? null, 'click', () => { viewer.reset(); stage!.focus({ preventScroll: true }); });
+        }
+        if (fullscreenButton) bindViewerFullscreen(root, fullscreenButton, viewer, events.signal);
         if (hint) {
           // Show the gesture hint once, then let it get out of the way: it fades after
           // a beat, or as soon as the visitor starts handling the model. Only canvas
           // pointerdowns count — toolbar taps bubble through the stage and must not eat it.
-          hint.hidden = false;
           const dismissHint = () => hint.classList.add('is-dismissed');
-          hintTimer = window.setTimeout(dismissHint, 7000);
           on(stage!, 'pointerdown', (event) => {
             if (event.target instanceof Element && event.target.classList.contains('viewer-canvas')) dismissHint();
           });
         }
         if (tools) {
-          tools.hidden = false;
           const zoomIn = tools.querySelector('[data-zoom-in]') as HTMLButtonElement | null;
           const zoomOut = tools.querySelector('[data-zoom-out]') as HTMLButtonElement | null;
           const wire = tools.querySelector('[data-tool-wire]') as HTMLButtonElement | null;
           const rotate = tools.querySelector('[data-tool-rotate]') as HTMLButtonElement | null;
           const reset = tools.querySelector('[data-tool-reset]') as HTMLButtonElement | null;
-          const fullscreen = tools.querySelector('[data-tool-fullscreen]') as HTMLButtonElement | null;
-          if (fullscreen) fullscreen.hidden = typeof root.requestFullscreen !== 'function' || document.fullscreenEnabled === false;
           wire?.setAttribute('aria-pressed', String(wireOn));
           const syncRotationButton = () => {
             const state = viewer.rotationState();
@@ -918,25 +1189,8 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
             viewer.setAutoRotate(!viewer.rotationState().active);
           });
           on(reset, 'click', () => viewer.reset());
-          on(fullscreen, 'click', async () => {
-            try {
-              if (document.fullscreenElement === root) await document.exitFullscreen();
-              else await root.requestFullscreen?.();
-            } catch {
-              if (fullscreen) fullscreen.hidden = true;
-            }
-          });
-          on(document, 'fullscreenchange', () => {
-            const expanded = document.fullscreenElement === root;
-            fullscreen?.setAttribute('aria-pressed', String(expanded));
-            if (fullscreen) {
-              fullscreen.textContent = expanded ? 'Exit full screen' : 'Full screen';
-              fullscreen.title = expanded ? 'Exit full screen' : 'Enter full screen';
-            }
-          });
         }
         if (displayPanel) {
-          displayPanel.hidden = false;
           const exposure = displayPanel.querySelector('[data-exposure]') as HTMLInputElement | null;
           const texture = displayPanel.querySelector('[data-surface-texture]') as HTMLInputElement | null;
           const resetTexture = displayPanel.querySelector('[data-texture-reset]') as HTMLButtonElement | null;
@@ -967,7 +1221,6 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
           }
         }
         if (hud) {
-          hud.hidden = false;
           const brightness = hud.querySelector('[data-brightness]') as HTMLInputElement | null;
           const texture = hud.querySelector('[data-texture]') as HTMLInputElement | null;
           const autorotate = hud.querySelector('[data-autorotate]') as HTMLInputElement | null;
@@ -987,19 +1240,10 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
           if (wire) on(wire, 'change', () => { wireOn = wire.checked; viewer.setWireframe(wireOn); syncWire(); });
           if (reset) on(reset, 'click', () => viewer.reset());
         }
-        on(stage!, 'dblclick', (event) => {
-          // Double-tap resets only on the model itself — a double-click on a display
-          // control inside the stage must not throw the view away.
-          if (event.target instanceof Element && event.target.classList.contains('viewer-canvas')) viewer.reset();
-        });
-      } catch (err) {
-        if (current !== generation) return;
-        release();
-        root.dispatchEvent(new CustomEvent('atrium:viewer-error'));
-        if (loading) loading.hidden = true;
-        if (poster) poster.style.opacity = '1';
-        if (activate) activate.hidden = false;
-        started = false;
+        // AR can use the loaded model while its screen viewer is offscreen.
+        root.dispatchEvent(new CustomEvent('atrium:viewer-ready'));
+      } catch {
+        if (current === generation) fail('load');
       }
     }
 
@@ -1010,16 +1254,20 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
       });
     }
     if (activate) activate.addEventListener('click', start, { signal: lifetime.signal });
-    root.addEventListener('atrium:viewer-render-error', () => {
-      release(); root.dispatchEvent(new CustomEvent('atrium:viewer-error'));
-    }, { signal: lifetime.signal });
+    if (caption) {
+      caption.hidden = false;
+      if (activate) activate.hidden = false;
+      // Native click follows an unmoved touch, and scrolling does not fire it.
+      poster?.addEventListener('click', start, { signal: lifetime.signal });
+    }
+    root.addEventListener('atrium:viewer-render-error', event => fail((event as CustomEvent).detail.reason), { signal: lifetime.signal });
     const refresh = () => {
       visible = intersectsViewport();
       activeViewer?.setVisible(visible && !pageSuspended);
       if (visible) {
         const resident = residents.get(root);
         if (resident) { residents.delete(root); residents.set(root, resident); }
-        if (!document.hidden && (lazy || startMode === 'true' && autoStartReady)) void start();
+        if (!document.hidden && (lazy || startMode === 'true' && autoStartReady)) startAutomatically();
       }
       trimResidents();
     };
@@ -1027,7 +1275,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
       visibilityObserver = new IntersectionObserver(refresh);
       visibilityObserver.observe(stage);
       if (lazy) {
-        preloadObserver = new IntersectionObserver(([entry]) => { if (entry.isIntersecting && !document.hidden) void start(); }, { rootMargin: '200px 0px' });
+        preloadObserver = new IntersectionObserver(([entry]) => { if (entry.isIntersecting && !document.hidden) startAutomatically(); }, { rootMargin: '200px 0px' });
         preloadObserver.observe(stage);
       }
     } else {
@@ -1042,7 +1290,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     } });
     // Load single featured works after first paint; older browsers retain click activation.
     if (root.getAttribute('data-auto-start') === 'true') {
-      const begin = () => { autoStartReady = true; if (visible && !document.hidden) void start(); };
+      const begin = () => { autoStartReady = true; if (visible && !document.hidden) startAutomatically(); };
       if ('requestIdleCallback' in window) idleCallback = (window as any).requestIdleCallback(begin, { timeout: 1500 });
       else startTimer = window.setTimeout(begin, 300);
     } else if (activate) {
@@ -1072,14 +1320,71 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
 
 <style>
   .model-stage:focus-visible { outline: 2px solid var(--v3-signal, #eccf7a); outline-offset: -3px; }
+  .model-stage:not(.is-live) :global(.viewer-canvas) { visibility: hidden; }
+  .viewer-ring { position: absolute; z-index: 6; inset: 0; pointer-events: none; opacity: 0; box-shadow: inset 0 0 0 2px #c9a5ff, inset 0 0 28px rgba(201,165,255,.16); transition: opacity .18s ease; }
+  .viewer[data-selected] .viewer-ring { opacity: 1; }
+  .viewer[data-selected] .viewer-ring.is-fading { opacity: .2; transition-duration: 1.5s; }
+  .viewer:is(:fullscreen,[data-viewer-expanded]) .viewer-ring { display: none; }
+  .viewer--captioned .model-stage [data-poster] { cursor: pointer; touch-action: pan-y; }
+  .viewer--captioned:not([data-selected]) .model-stage { cursor: grab; }
+  .viewer-download { position: absolute; z-index: 6; inset: auto 0 0; height: 3px; display: none; background: #c9a5ff26; pointer-events: none; }
+  .viewer[data-viewer-state="loading"] .viewer-download { display: block; }
+  .viewer-download span { display: block; width: 0; height: 100%; background: #c9a5ff; }
+  .viewer-caption { position: relative; color: var(--v3-ink, #f7f5ef); font: 400 14px/1.45 var(--v3-sans, sans-serif); }
+  .viewer-caption__row, .viewer-caption__status, .viewer-caption__controls { display: flex; align-items: center; flex-wrap: wrap; gap: 0 8px; }
+  .viewer-caption__row { justify-content: space-between; min-height: 44px; border-bottom: 1px solid var(--v3-line, #677080); }
+  .viewer-caption__status, .viewer-caption__controls { min-height: 44px; }
+  .viewer-caption__controls { margin-inline-start: auto; }
+  .viewer-caption button { min-width: 44px; min-height: 44px; padding: 8px; border: 0; border-radius: 4px; background: transparent; color: inherit; font: inherit; cursor: pointer; }
+  .viewer-caption button:hover, .viewer-caption button[aria-expanded="true"] { background: #c9a5ff18; color: #e4d5ff; }
+  .viewer-caption button:focus-visible { outline: 2px solid #c9a5ff; outline-offset: -2px; }
+  .viewer-caption__hint, .viewer-caption__error, .viewer-caption__loading, .viewer-caption__keyboard { color: var(--v3-muted, #c9c6bd); }
+  .viewer-caption__hint, .viewer-caption__mouse, .viewer-caption__error, .viewer-caption__loading,
+  .viewer-caption button.viewer-caption__done { display: none; }
+  .viewer[data-viewer-state="ready"]:not([data-selected]):not(:fullscreen):not([data-viewer-expanded]) .viewer-caption__hint,
+  .viewer[data-viewer-state="loading"] .viewer-caption__loading,
+  .viewer[data-viewer-state="error"] .viewer-caption__error { display: inline; }
+  .viewer[data-viewer-state="ready"][data-selected] .viewer-caption__done { display: inline-flex; align-items: center; gap: 8px; }
+  .viewer-caption__done::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #c9a5ff; }
+  .viewer-caption__options { display: grid; gap: 12px; padding: 16px 0; border-bottom: 1px solid var(--v3-line, #677080); }
+  .viewer-caption__options[hidden] { display: none; }
+  .viewer-caption__options fieldset { min-inline-size: 0; padding: 0; margin: 0; border: 0; }
+  .viewer-caption__options legend { margin-bottom: 6px; font-weight: 600; }
+  .viewer-caption__directions, .viewer-caption__settings { display: flex; flex-wrap: wrap; gap: 0 8px; align-items: center; }
+  .viewer-caption__directions button { border: 1px solid var(--v3-line, #677080); margin-block: 4px; }
+  .viewer-caption__settings label { display: inline-flex; align-items: center; min-height: 44px; gap: 8px; margin-inline-end: 10px; }
+  .viewer-caption__settings input { accent-color: #c9a5ff; }
+  .viewer-caption__keyboard { margin: 0; }
+  .viewer[data-viewer-expanded] { position: fixed !important; z-index: 1000; inset: 0 !important; width: 100% !important; height: 100dvh !important; overflow: hidden; background: var(--v3-void, #101827); }
+  html:has(.viewer[data-viewer-expanded]) { overflow: hidden; }
+  .viewer[data-viewer-expanded] > .model-stage { height: 100% !important; min-height: 0 !important; background: var(--v3-void, #101827) !important; }
+  .viewer[data-viewer-expanded] .immersive-tools { position: absolute !important; display: flex !important; inset: auto 12px max(12px, env(safe-area-inset-bottom)) !important; width: auto !important; transform: none !important; }
+  .viewer--captioned:is(:fullscreen,[data-viewer-expanded]) { display: flex; flex-direction: column; width: 100vw; height: 100dvh; }
+  .viewer--captioned:is(:fullscreen,[data-viewer-expanded]) > .model-stage { flex: 1 1 0; height: auto !important; min-height: 0; width: 100%; }
+  .viewer--captioned:is(:fullscreen,[data-viewer-expanded]) > .viewer-caption { flex: 0 0 auto; max-height: 48%; overflow: auto; padding: 0 max(12px, env(safe-area-inset-right)) env(safe-area-inset-bottom) max(12px, env(safe-area-inset-left)); }
+  @media (min-width: 720px) and (pointer: fine) {
+    .viewer-caption__mouse { display: inline; }
+    .viewer-caption__touch { display: none; }
+  }
+  @media (max-width: 719px) {
+    .viewer-caption__row, .viewer-caption__status, .viewer-caption__controls { column-gap: 2px; }
+    .viewer-caption__row button { padding-inline: 4px; }
+    .viewer-caption__keyboard { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .viewer .viewer-ring, .viewer[data-selected] .viewer-ring.is-fading { transition: none; }
+  }
   .viewer-keyboard-instructions { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+  .viewer[data-viewer-state="error"] .viewer-status { z-index: 8; inset: auto 12px 12px; width: fit-content; height: auto; max-width: calc(100% - 24px); padding: 7px 10px; margin: 0; clip-path: none; white-space: normal; border-radius: 4px; color: #f7f5ef; background: #15243af5; font: 400 12px/1.5 var(--v3-sans, sans-serif); }
+  :global(html.studio-peek) .viewer-help { display: none; }
   .viewer-help { position: absolute; z-index: 12; right: 14px; bottom: 14px; color: var(--v3-ink, #f7f5ef); font: 400 12px/1.6 var(--v3-sans, sans-serif); }
   .viewer-help summary { display: grid; place-items: center; min-height: 44px; padding: 8px 12px; border: 1px solid #c9d2dc55; border-radius: 4px; background: #15243ae8; cursor: pointer; list-style: none; }
   .viewer-help summary::-webkit-details-marker { display: none; }
   .viewer-help__panel { position: absolute; right: 0; bottom: calc(100% + 8px); width: min(260px, calc(100vw - 60px)); padding: 14px; border: 1px solid #c9d2dc55; border-radius: 4px; background: #101c2df5; }
   .viewer-help__panel p { margin: 0 0 12px; }
   .viewer-help__directions { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
-  .viewer-help__directions button { min-width: 44px; min-height: 44px; color: inherit; background: #253750; border: 1px solid #c9d2dc55; border-radius: 3px; font: inherit; font-size: 20px; cursor: pointer; }
+  .viewer-help__zoom { display: flex; gap: 6px; margin-top: 6px; }
+  .viewer-help__panel button { min-width: 44px; min-height: 44px; color: inherit; background: #253750; border: 1px solid #c9d2dc55; border-radius: 3px; font: inherit; font-size: 20px; cursor: pointer; }
   .immersive-tools { max-width: 100%; flex-wrap: wrap; justify-content: center; }
   .immersive-tools button { white-space: nowrap; }
   .spatial-unavailable { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; color: var(--v3-muted, #c9c6bd); font: 500 11px/1.5 var(--v3-sans, sans-serif); text-decoration: none; }

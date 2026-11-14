@@ -21,7 +21,6 @@ const visit = curatedVisitFor(exhibition);
 const comparisons = exhibition.comparisons ?? [];
 const heroComparison = comparisons.find((pair) => pair.works.every(isFeaturedWork));
 const firstStop = comparisons.length ? '#pair-1' : '#stop-1';
-const progressCount = comparisons.length || exhibition.works.length;
 const stops = exhibition.works.map((work, index) => ({
   work,
   index: index + 1,
@@ -62,7 +61,7 @@ const stops = exhibition.works.map((work, index) => ({
       <h1 class="v3-display">{exhibition.title}</h1>
       <p class="v3-exhero__summary">{exhibition.summary}</p>
       <p class="v3-exhero__meta"><span>{stops.length} works{comparisons.length ? ` · ${comparisons.length} pairings` : ''}</span><span>Allow 15–30 minutes</span><span>3D views and records</span></p>
-      {visit ? <div class="exhibition-entrance-actions"><a class="exhibition-entrance-actions__guided" href="#curated-visit" data-curated-launch>Take a 5-minute visit <span aria-hidden="true">→</span></a><a href="#all-exhibition-works" data-visit-all>Explore all {stops.length} works <span aria-hidden="true">↓</span></a></div> : <a href={firstStop}>Begin exhibition <span>↓</span></a>}
+      {visit ? <div class="exhibition-entrance-actions"><a class="exhibition-entrance-actions__guided" href="#curated-visit" data-curated-launch>Take a 5-minute visit <span aria-hidden="true">→</span></a><a href="#all-exhibition-works" data-visit-all>Explore all {stops.length} works <span aria-hidden="true">↓</span></a></div> : <a class="v3-exhero__begin" href={firstStop}>Begin exhibition <span aria-hidden="true">↓</span></a>}
     </div>
   </header>
 
@@ -83,12 +82,6 @@ const stops = exhibition.works.map((work, index) => ({
 
   <div id="all-exhibition-works" data-exhibition-full>
   {visit && <header class="exhibition-full-heading"><p class="v3-kicker">The complete exhibition</p><h2 tabindex="-1" data-exhibition-full-title>Explore all {stops.length} works.</h2><a href="#curated-visit" data-curated-launch>Take the six-work visit <span aria-hidden="true">↑</span></a></header>}
-  <nav class="v3-progress" data-v3-progress aria-hidden="true" style={`--ex-accent:${exhibition.accent}`}>
-    <span class="v3-progress__count"><b data-v3-progress-now>1</b>/{progressCount}</span>
-    <span class="v3-progress__track"><span class="v3-progress__fill" data-v3-progress-fill></span></span>
-    <span class="v3-progress__label">{exhibition.shortTitle}</span>
-  </nav>
-
   {comparisons.length ? <ExhibitionComparisons exhibition={exhibition} /> : <div class="v3-walk" style={`--ex-accent:${exhibition.accent}`}>
     {stops.map((stop) => (
       <article class="v3-stop v3-reveal" id={`stop-${stop.index}`} data-v3-stop={stop.index} data-exhibition-work={stop.work.slug} aria-label={`Stop ${stop.index}: ${stop.work.title}`}>
@@ -128,31 +121,6 @@ const stops = exhibition.works.map((work, index) => ({
   </footer>
   </div>
 
-  <script>
-    // The visitor always knows where they stand in the room.
-    const rail = document.querySelector('[data-v3-progress]');
-    const now = document.querySelector('[data-v3-progress-now]');
-    const fill = document.querySelector('[data-v3-progress-fill]');
-    const stops = [...document.querySelectorAll('[data-v3-stop]')];
-    if (rail && now && fill && stops.length && 'IntersectionObserver' in window) {
-      const total = stops.length;
-      const seen = new IntersectionObserver((entries) => {
-        for (const entry of entries) {
-          if (!entry.isIntersecting) continue;
-          const index = Number(entry.target.getAttribute('data-v3-stop')) || 1;
-          now.textContent = String(index);
-          fill.style.height = `${(index / total) * 100}%`;
-        }
-      }, { rootMargin: '-40% 0px -40% 0px' });
-      for (const stop of stops) seen.observe(stop);
-
-      const gate = new IntersectionObserver((entries) => {
-        for (const entry of entries) rail.classList.toggle('is-active', entry.isIntersecting);
-      }, { rootMargin: '10% 0px 10% 0px', threshold: 0 });
-      const walk = document.querySelector('.v3-walk');
-      if (walk) gate.observe(walk);
-    }
-  </script>
 </V3Layout>
 
 <style>

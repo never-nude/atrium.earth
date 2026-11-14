@@ -59,12 +59,13 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
   <section id="sculpture" class="v3-object-stage" aria-labelledby="v3-object-title" tabindex="-1" style={`view-transition-name: w-${work.id};`}>
     <Viewer
       glb={withBase(work.modelGlb)}
+      modelBytes={work.modelBytes}
       poster={withBase(work.thumbnailImage)}
       title={work.title}
       hud={false}
       immersive={true}
+      handlingCaption={true}
       autoRotate={!startsStill}
-      displayControls={true}
       spatialViewing={work.spatialAccess.enabled}
       museumLabel={museumLabelFor(work)}
       spatialAssetSha256={work.spatialAccess.assetSha256}
@@ -102,18 +103,6 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
     // The interface recedes while the visitor handles the sculpture (see .is-engaged in v3.css).
     const stageSection = document.querySelector('.v3-object-stage');
     const canvasHost = stageSection?.querySelector('.model-stage');
-    const viewerRoot = stageSection?.querySelector('.viewer');
-    // Keep controls within their viewer's event scope, with their own row
-    // outside the measured canvas so they do not cover the artwork.
-    if (viewerRoot && canvasHost) {
-      const controls = [viewerRoot.querySelector('[data-immersive-tools]'), viewerRoot.querySelector('[data-display-controls]'), viewerRoot.querySelector('[data-spatial]'), viewerRoot.querySelector('[data-spatial-unavailable]')].filter((element): element is HTMLElement => element instanceof HTMLElement);
-      if (controls.length) {
-        const controlsRow = document.createElement('div');
-        controlsRow.className = 'v3-object-viewer-controls';
-        canvasHost.after(controlsRow);
-        controlsRow.append(...controls);
-      }
-    }
     let quietTimer = 0;
     if (stageSection && canvasHost) {
       // Track live pointers by id so a pinch (two fingers) stays engaged until the
@@ -197,8 +186,4 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
   .work-journey p { margin: 0; color: var(--v3-muted); font-size: 12px; }
   .work-journey a { display: inline-flex; align-items: center; min-height: 44px; color: var(--v3-signal); font-size: 12px; text-underline-offset: 4px; }
   .v3-estimate-evidence { display: block; margin-top: 8px; font-size: 12px; line-height: 1.6; color: var(--v3-muted); }
-  @media (max-width: 700px) {
-    .v3-object-stage :global(.stage-hint) { display: none; }
-    .v3-object-stage :global(.immersive-tools button), .v3-object-stage :global(.immersive-light summary) { min-height: 44px; }
-  }
 </style>

@@ -1,10 +1,11 @@
 // A viewer draws only after an invalidation or while its controls are moving.
 // Visibility/suspension gates keep every activation mode on the same lifecycle.
-export function createViewerRenderLoop({ draw, onError = error => { throw error; }, requestFrame = requestAnimationFrame, cancelFrame = cancelAnimationFrame, visible = true, hidden = false }) {
+export function createViewerRenderLoop({ draw, onFirstFrame, onError = error => { throw error; }, requestFrame = requestAnimationFrame, cancelFrame = cancelAnimationFrame, visible = true, hidden = false }) {
   let frame = null;
   let previous;
   let suspended = false;
   let destroyed = false;
+  let firstFrame = true;
   let dirty = true;
   const active = () => !destroyed && visible && !hidden && !suspended;
   function cancel() {
@@ -19,7 +20,10 @@ export function createViewerRenderLoop({ draw, onError = error => { throw error;
     previous = now;
     dirty = false;
     let moving;
-    try { moving = draw(elapsed) === true; }
+    try {
+      moving = draw(elapsed) === true;
+      if (firstFrame && active()) { firstFrame = false; onFirstFrame?.(); }
+    }
     catch (error) { destroyed = true; cancel(); onError(error); return; }
     if (active() && (moving || dirty)) schedule();
     else previous = undefined;

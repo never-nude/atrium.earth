@@ -16,7 +16,7 @@ const works = pair ? [pair.a, pair.b] : [];
   <div class="looking-together__works">
     {works.map(work => <figure>
       <div class="looking-together__stage">
-        <Viewer glb={withBase(work.modelGlb)} poster={withBase(work.thumbnailImage)} title={work.title} hud={false} immersive={true} autoStart={false} autoRotate={false} wheelZoom={false} posterLoading="lazy" upAxis={work.modelUpAxis} modelTransform={work.modelTransform} materialAppearance={work.materialAppearance} />
+        <Viewer glb={withBase(work.modelGlb)} poster={withBase(work.thumbnailImage)} title={work.title} hud={false} immersive={true} autoStart={false} autoRotate={false} posterLoading="lazy" upAxis={work.modelUpAxis} modelTransform={work.modelTransform} materialAppearance={work.materialAppearance} />
       </div>
       <figcaption><h3>{shortWorkTitle(work.title)}</h3><p>{[work.maker || work.culture, work.displayDate].filter(Boolean).join(' · ')}</p><a href={withBase(v3WorkRoute(work))}>Details &amp; sources <span aria-hidden="true">↗</span></a></figcaption>
     </figure>)}

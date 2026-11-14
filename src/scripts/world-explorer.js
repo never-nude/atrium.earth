@@ -141,8 +141,10 @@ async function initialise(root, { compact, signal, register }) {
     root.querySelector('[data-world-place-title]').textContent = state.place === '__unplaced__' ? 'Origin uncertain or unrecorded' : place?.label || 'Across the world';
     const periodLabel = time.all ? 'All periods' : `${formatWorldYear(time.start)} — ${formatWorldYear(time.end)}`;
     root.querySelector('[data-world-period]').textContent = periodLabel;
-    root.querySelector('[data-world-period-count]').textContent = `${results.length.toLocaleString('en-US')} ${results.length === 1 ? 'work' : 'works'} ↓`;
-    root.querySelector('[data-world-result-count]').textContent = `${results.length.toLocaleString('en-US')} ${results.length === 1 ? 'work' : 'works'} · ${periodLabel}`;
+    const resultCount = `${results.length.toLocaleString('en-US')} ${results.length === 1 ? 'work' : 'works'}`;
+    const originQualifier = state.place ? '' : ' mapped by origin';
+    root.querySelector('[data-world-period-count]').textContent = `${resultCount} ↓`;
+    root.querySelector('[data-world-result-count]').textContent = `${resultCount}${originQualifier} · ${periodLabel}`;
     originNote.textContent = state.place === '__unplaced__'
       ? 'These records do not establish an origin confidently enough to place on the globe.'
       : place ? `Approximate ${place.precision === 'country' ? 'country' : 'regional'} location. Individual works retain their recorded origin and source details.`
