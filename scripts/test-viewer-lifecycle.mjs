@@ -83,7 +83,7 @@ function gesturePage() {
   };
 }
 
-function gestureViewer(t, { enabled = true, wheelZoom = true, page = gesturePage() } = {}) {
+function gestureViewer(t, { enabled = true, wheelZoom = true, onWheelOrbit, page = gesturePage() } = {}) {
   const { document } = page;
   const stage = new EventTarget(), attributes = new Set(), fading = new Set();
   const canvas = Object.assign(new EventTarget(), {
@@ -102,7 +102,7 @@ function gestureViewer(t, { enabled = true, wheelZoom = true, page = gesturePage
   const states = [];
   let selections = 0, resets = 0, time = 0;
   const gate = bindViewerGestures({
-    canvas, stage, root, signal: lifetime.signal, wheelZoom, enabled,
+    canvas, stage, root, signal: lifetime.signal, wheelZoom, enabled, onWheelOrbit,
     onSelect: () => { selections++; },
     onReset: () => { resets++; },
     onStateChange: state => states.push(state),
@@ -185,6 +185,36 @@ test('OrbitControls tracks an unselected drag and receives the same pointer when
   assert.notEqual(camera.position.distanceTo(controls.target), distance);
   v.pointer('pointerup', { id: 2, x: 75 });
   v.pointer('pointerup');
+});
+
+test('selected pixel swipes rotate and tilt without zooming or moving the target', t => {
+  const camera = new THREE.PerspectiveCamera();
+  camera.position.set(0, 0, 4);
+  const v = gestureViewer(t, { onWheelOrbit: (horizontal, vertical) => {
+    orbitViewer(THREE, camera, controls, horizontal, vertical);
+    controls.update();
+  } });
+  const controls = new OrbitControls(camera, v.canvas);
+  t.after(() => controls.dispose());
+  v.gate.setControls(controls);
+  const swipe = { deltaMode: 0, deltaX: 30, deltaY: 24, clientX: 150, clientY: 150 };
+  const initial = camera.position.clone();
+  const target = controls.target.clone();
+  assert.equal(v.wheel(swipe), false, 'Before selection, the swipe scrolls the page');
+  assert.ok(camera.position.distanceTo(initial) < 1e-9);
+  v.tap({ pointerType: 'mouse' });
+  assert.equal(v.wheel(swipe), true);
+  assert.ok(Math.abs(controls.getAzimuthalAngle()) > 0.1);
+  assert.ok(Math.abs(controls.getPolarAngle() - Math.PI / 2) > 0.1);
+  assert.ok(controls.target.equals(target));
+  assert.ok(Math.abs(camera.position.distanceTo(target) - initial.distanceTo(target)) < 1e-9);
+  const turned = camera.position.clone();
+  assert.equal(v.wheel({ ...swipe, ctrlKey: true }), false, 'Browser pinch and zoom modifiers keep their defaults');
+  assert.ok(camera.position.distanceTo(turned) < 1e-9);
+  assert.equal(v.wheel({ ...swipe, deltaMode: 1, deltaX: 0, deltaY: 1 }), true);
+  assert.ok(Math.abs(camera.position.distanceTo(target) - initial.distanceTo(target)) > 0.01, 'Line wheel steps still zoom');
+  v.gate.deselect();
+  assert.equal(v.wheel(swipe), false);
 });
 
 test('tap selection has no press timeout; vertical swipes and cancelled pointers cannot tap', t => {
