@@ -2246,3 +2246,8 @@ Concurrent publication integrated: main `adf948603428fe313a5b5fcbd2678fe7f69fc6f
 
 - The owner requested click-to-toggle before deployment. After the first click starts 3D, a single click pauses handling and restores page scrolling. The next click resumes without reloading or resetting the view. Brief text below the image announces each change and disappears after 2.4 seconds. With focus on the sculpture, Enter or Space also toggles handling. Dragging and pinching retain their normal behavior, and a double-click or double-tap resets instead.
 - All 44 experience tests passed. Browser checks confirmed pause, scrolling after the text cleared, resume, drag, keyboard toggling, and feedback placement below the homepage comparison controls. Physical touch gestures remain unverified on this revision.
+
+### Restored sculpture viewer deployed
+
+- The owner approved the original viewer and clarified before merge that a repeat click should toggle handling, with text that disappears. [PR 79](https://github.com/never-nude/atrium.earth/pull/79) passed complete review on `3748faf7`. Merge `b7a3434f` published successfully in [Pages run 43537717176](https://github.com/never-nude/atrium.earth/actions/runs/43537717176).
+- Production checks passed all 44 experience tests, all 3,122 unique public cards and 6,244 artwork images. The package has 21,207 files and 909,070,027 bytes. Live browser verification on Saint Jerome confirmed poster-first activation, the pause message disappearing, page scrolling over the paused canvas, and resuming with the same canvas. The guided viewer also rendered after activation. A physical iPhone tap and pinch check remains open.
