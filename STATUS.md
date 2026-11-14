@@ -2286,3 +2286,9 @@ Concurrent publication integrated: main `adf948603428fe313a5b5fcbd2678fe7f69fc6f
 - The `codex/page-artwork-backdrop` preview removes backgrounds belonging to inline viewer stages and artwork display wrappers. The page or section supplies one continuous background. Explicit fullscreen and the dedicated map and spatial interfaces retain their own scene backdrops.
 - All 47 experience tests and the programme check passed. The Astro build generated 8,719 pages. Verified the Surface poster, live canvas, and fullscreen at 323, 390, and 1440 px. The preview is on port 5190 and awaits review before deployment.
 - When the owner reported three tones, confirmed the active tab was using older port 5186, which served both an opaque thumbnail and the old card fill. Retired previews on ports 5186 and 5188 now redirect to port 5190. The exact homepage Bowl card uses the transparent WebP without a card fill at 323 and 390 px. Background samples across the image, former card edge, and surrounding page all matched.
+
+### Road to Awwwards Step 2
+
+- This Codex chat owns [PR 84](https://github.com/never-nude/atrium.earth/pull/84) on `codex/step-2-browser-ci`. The release review and Pages build now run the Node suite and check eight routes in Chromium and WebKit. Fixes align spoken and visible labels and improve exhibition button contrast.
+- The first CI run exposed capped globe counts missing from button names and model CDN requests failing on the local test origin. The follow-up fixes the names and adapts loopback model requests in the test runner. Both Chromium and WebKit passed the local exhibition entry check at 390 and 1440 px. Local Lighthouse measured 3.56 s LCP and 467,898 bytes.
+- The owner approved deployment on November 14. Publish after the review passes, verify the public routes, and continue with the next step when requested. See `docs/awwwards-run.md` for the baseline and regression proof.

@@ -31,7 +31,7 @@ const Subheading = compact ? 'h3' : 'h2';
         </ul>
 
         <section class="world-time" aria-labelledby={`${instanceId}-time-title`}>
-          <div class="world-time-heading"><div><p class="world-eyebrow" id={`${instanceId}-time-title`}>Time</p><Subheading data-world-period>All periods</Subheading></div><a href={`#${instanceId}-results`} data-world-period-count></a></div>
+          <div class="world-time-heading"><div><p class="world-eyebrow" id={`${instanceId}-time-title`}>Time</p><Subheading data-world-period>All periods</Subheading></div><a href={`#${instanceId}-results`} data-world-period-count aria-label="View works for this period"></a></div>
           <div class="world-time-range" data-world-range>
             <div class="world-time-track"><span data-world-range-fill></span></div>
             <label class="sr-only" for={`${instanceId}-from`}>Earliest date</label><input id={`${instanceId}-from`} type="range" min="0" max="1000" step="any" value="0" data-world-from aria-describedby={`${instanceId}-time-help`} />

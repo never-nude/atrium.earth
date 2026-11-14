@@ -16,7 +16,7 @@ const current = (href: string) => currentPath === href || currentPath.startsWith
 ---
 
 <header class="v3-header studio-header" data-v3-header>
-  <a class="v3-brand" href={withBase('/')} aria-label="Atrium home">
+  <a class="v3-brand" href={withBase('/')}>
     <span>Atrium</span><sup>Earth</sup>
   </a>
 
@@ -27,11 +27,11 @@ const current = (href: string) => currentPath === href || currentPath.startsWith
   </nav>
 
   <div class="studio-header__actions">
-    <button type="button" class="studio-search-trigger" data-studio-search aria-label="Search the collection">
+    <button type="button" class="studio-search-trigger" data-studio-search aria-label="Search">
       <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg>
-      <span>Search</span><kbd>⌘ K</kbd>
+      <span>Search</span><kbd aria-hidden="true"></kbd>
     </button>
-    <a class="studio-saved" href={withBase('/collection/?saved=1')} aria-label="Saved works">Saved <span data-studio-saved-count>0</span></a>
+    <a class="studio-saved" href={withBase('/collection/?saved=1')}>Saved <span data-studio-saved-count>0</span></a>
   </div>
 
   <details class="v3-menu">
@@ -45,3 +45,7 @@ const current = (href: string) => currentPath === href || currentPath.startsWith
     </nav>
   </details>
 </header>
+
+<style>
+  .studio-search-trigger kbd::before { content: "⌘ K"; }
+</style>

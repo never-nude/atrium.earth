@@ -20,7 +20,7 @@ const others = programme.exhibitions.filter(exhibition => exhibition.slug !== fo
       <p class="featured-exhibition__summary">{focus.summary}</p>
       <a class="v3-button v3-button--light" href={withBase(v3ExhibitionRoute(focus))}>Begin exhibition <span aria-hidden="true">→</span></a>
     </div>
-    <a class="featured-exhibition__art" href={withBase(v3ExhibitionRoute(focus))} aria-label={`Begin ${focus.title}`}>
+    <a class="featured-exhibition__art" href={withBase(v3ExhibitionRoute(focus))} aria-label={`${shortWorkTitle(lead.title)} · Begin ${focus.title}`}>
       <img src={withBase(lead.thumbnailImage)} alt={lead.title} width="720" height="900" loading="lazy" decoding="async" />
       <span>{shortWorkTitle(lead.title)}</span>
     </a>

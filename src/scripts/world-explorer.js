@@ -143,7 +143,9 @@ async function initialise(root, { compact, signal, register }) {
     root.querySelector('[data-world-period]').textContent = periodLabel;
     const resultCount = `${results.length.toLocaleString('en-US')} ${results.length === 1 ? 'work' : 'works'}`;
     const originQualifier = state.place ? '' : ' mapped by origin';
-    root.querySelector('[data-world-period-count]').textContent = `${resultCount} ↓`;
+    const periodCount = root.querySelector('[data-world-period-count]');
+    periodCount.textContent = `${resultCount} ↓`;
+    periodCount.setAttribute('aria-label', `${resultCount} for this period`);
     root.querySelector('[data-world-result-count]').textContent = `${resultCount}${originQualifier} · ${periodLabel}`;
     originNote.textContent = state.place === '__unplaced__'
       ? 'These records do not establish an origin confidently enough to place on the globe.'
