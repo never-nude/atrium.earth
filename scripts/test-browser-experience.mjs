@@ -4,6 +4,7 @@ import { join } from 'node:path';
 import { chromium, webkit } from 'playwright';
 import sharp from 'sharp';
 import { serveBrowserChecks } from './serve-browser-checks.mjs';
+import { AUTO_START_MODEL_LIMIT } from '../src/lib/viewer-preview.mjs';
 
 const axePath = createRequire(import.meta.url).resolve('axe-core/axe.min.js');
 const artifacts = process.env.BROWSER_REPORT_DIR || 'test-results/browser';
@@ -152,16 +153,29 @@ async function inspectMotion(page, route, prefix, result) {
     result.readyCanvases.push({ ...frame, ...await measure() });
     return;
   }
+  if (route.id === 'homepage') {
+    const manual = page.locator('main [data-viewer][data-auto-start="false"]');
+    for (const viewer of await manual.all()) {
+      await viewer.getByRole('button', { name: /^Examine in 3D/ }).waitFor({ state: 'visible' });
+      if (await viewer.getAttribute('data-viewer-state') !== 'idle') throw new Error('A manual preview started without interaction');
+    }
+  }
   const viewers = route.id === 'homepage'
     ? page.locator('main [data-viewer][data-auto-start="preview"]')
     : page.locator('main [data-viewer][data-auto-start="false"]').first();
   const count = await viewers.count();
-  if (!count) throw new Error('Expected inspectable 3D previews');
+  if (!count && route.id !== 'homepage') throw new Error('Expected inspectable 3D previews');
   for (let i = 0; i < count; i++) {
     const viewer = viewers.nth(i);
     await viewer.locator('[data-stage]').evaluate(element => element.scrollIntoView({ block: 'center', behavior: 'instant' }));
     if (route.id === 'artwork') await viewer.getByRole('button', { name: /^Examine in 3D/ }).click();
     await page.waitForFunction(element => element.dataset.viewerState === 'ready', await viewer.elementHandle(), { timeout: 45000 });
+    if (route.id === 'homepage') {
+      const size = Number(await viewer.getAttribute('data-model-bytes'));
+      if (size <= 0 || size > AUTO_START_MODEL_LIMIT || await viewer.getAttribute('data-still-painted') !== 'true') {
+        throw new Error('An automatic preview exceeded its budget or skipped the still paint');
+      }
+    }
     const frame = await captureCanvas(viewer.locator('.viewer-canvas'), `${prefix}-viewer-${i + 1}.png`);
     result.readyCanvases.push({ ...frame, ...await measure() });
   }

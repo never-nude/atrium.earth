@@ -66,6 +66,7 @@ const showRooms = Boolean(wing && rooms.length > 1);
       <div class="v3-wing-hero__viewer">
         <Viewer
           glb={withBase(featured.modelGlb)}
+          modelBytes={featured.modelBytes}
           poster={withBase(featured.thumbnailImage)}
           title={featured.title}
           hud={false}

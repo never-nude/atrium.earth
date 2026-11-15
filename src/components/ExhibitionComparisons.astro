@@ -27,6 +27,7 @@ const comparisons = exhibition.comparisons ?? [];
             <div class="comparison__viewer v3-exhibition-viewer v3-float">
               <Viewer
                 glb={withBase(work.modelGlb)}
+                modelBytes={work.modelBytes}
                 poster={withBase(work.thumbnailImage)}
                 title={work.title}
                 hud={false}

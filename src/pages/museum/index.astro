@@ -40,6 +40,7 @@ const newAdditions = recentlyPrepared(3);
     <div class="feature-block">
       <Viewer
         glb={featured.hasPreview ? withBase(featured.modelGlb) : ''}
+        modelBytes={featured.modelBytes}
         poster={withBase(featured.thumbnailImage)}
         title={featured.title}
         hud={false}
