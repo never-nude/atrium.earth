@@ -1,14 +1,14 @@
 ---
-import { wingSummaries, wingRoute } from '../../lib/wings';
+import { wingSummaries, wingRoute, type WingSummary } from '../../lib/wings';
 import { withBase } from '../../lib/urls';
 import { wingAccent } from '../../data/wing-palettes';
 
-type Props = { compact?: boolean };
-const { compact = false } = Astro.props;
+type Props = { compact?: boolean; summaries?: WingSummary[] };
+const { compact = false, summaries = wingSummaries } = Astro.props;
 ---
 
 <div class:list={['v3-wings-grid', { 'v3-wings-grid--compact': compact }]}>
-  {wingSummaries.map(({ wing, count, featured }, index) => (
+  {summaries.map(({ wing, count, featured }, index) => (
     <a class="v3-wing-card v3-reveal" href={withBase(wingRoute(wing.id))} style={'--wing-accent:'+wingAccent(wing.id)}>
       {featured && (
         <span class="v3-wing-card__image v3-float v3-float--soft">

@@ -58,6 +58,7 @@ async function initialise(root, { compact, signal, register }) {
   const works = Array.isArray(data.works) ? data.works : [];
   const placeById = new Map(places.map(place => [place.id, place]));
   const featured = new Set(data.featured || []);
+  const excluded = new Set(compact ? (root.dataset.worldExcludedWorks || '').split('|') : []);
   const ranked = [...works].sort((a, b) => Number(featured.has(b.slug)) - Number(featured.has(a.slug)) || a.title.localeCompare(b.title));
   const stops = timeStops(data.dateMin, data.dateMax);
   const from = root.querySelector('[data-world-from]');
@@ -163,7 +164,8 @@ async function initialise(root, { compact, signal, register }) {
     const fill = root.querySelector('[data-world-range-fill]');
     fill.style.left = `${state.from / 10}%`; fill.style.width = `${(state.to-state.from) / 10}%`;
     const cards = document.createDocumentFragment();
-    for (const work of results.slice(0,state.limit)) cards.append(workCard(work));
+    const cardResults = results.filter(work => !excluded.has(work.slug)).slice(0, state.limit);
+    for (const work of cardResults) cards.append(workCard(work));
     list.replaceChildren(cards);
     empty.hidden = results.length !== 0;
     if (more) {
@@ -174,7 +176,12 @@ async function initialise(root, { compact, signal, register }) {
       }
     }
     const shown = root.querySelector('[data-world-shown-count]');
-    if (shown) { shown.hidden = results.length === 0; shown.textContent = `Showing ${Math.min(state.limit,results.length).toLocaleString('en-US')} of ${results.length.toLocaleString('en-US')} works`; }
+    if (shown) {
+      shown.hidden = results.length === 0;
+      shown.textContent = cardResults.length === 0 && results.length
+        ? 'Open the full explorer to see this selection.'
+        : `Showing ${cardResults.length.toLocaleString('en-US')} of ${results.length.toLocaleString('en-US')} works`;
+    }
     updateContinue();
     globe?.update({counts,selectedId:place?.id || null});
     root.dataset.selectedPlace = state.place;

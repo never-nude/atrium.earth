@@ -1,15 +1,17 @@
 ---
 import Viewer from '../Viewer.astro';
-import { currentProgramme, type MuseumProgramme } from '../../lib/programme';
-import { exhibitionFeaturedWork, v3ExhibitionRoute } from '../../lib/v3';
+import type { Work } from '../../lib/catalog';
+import { v3ExhibitionRoute, type V3Exhibition } from '../../lib/v3';
 import { withBase } from '../../lib/urls';
 import { shortWorkTitle } from '../../lib/work-titles';
 
-type Props = { programme?: MuseumProgramme };
-const { programme = currentProgramme } = Astro.props;
-const { focus, focusIntro } = programme;
-const lead = exhibitionFeaturedWork(focus);
-const others = programme.exhibitions.filter(exhibition => exhibition.slug !== focus.slug).slice(0, 2);
+type Props = {
+  focus: V3Exhibition;
+  focusIntro: string;
+  lead: Work;
+  teasers: Array<{ exhibition: V3Exhibition; work?: Work }>;
+};
+const { focus, focusIntro, lead, teasers } = Astro.props;
 ---
 
 <section id="featured-exhibition" class="featured-exhibition" aria-labelledby="exhibitions-home-title" data-home-section="exhibitions" data-programme-focus={focus.slug} style={`--feature-accent:${focus.accent}`}>
@@ -34,13 +36,12 @@ const others = programme.exhibitions.filter(exhibition => exhibition.slug !== fo
   <div class="featured-exhibition__more">
     <div class="featured-exhibition__more-heading"><p class="v3-kicker">Other ways of looking</p><a href={withBase('/exhibitions/')}>All exhibitions <span aria-hidden="true">↗</span></a></div>
     <div class="featured-exhibition__teasers">
-      {others.map(exhibition => {
-        const work = exhibitionFeaturedWork(exhibition);
-        return <a class="featured-exhibition__teaser" href={withBase(v3ExhibitionRoute(exhibition))} style={`--teaser-accent:${exhibition.accent}`}>
-          <img src={withBase(work.thumbnailImage)} alt="" width="240" height="300" loading="lazy" decoding="async" />
+      {teasers.map(({ exhibition, work }) => (
+        <a class="featured-exhibition__teaser" href={withBase(v3ExhibitionRoute(exhibition))} style={`--teaser-accent:${exhibition.accent}`}>
+          {work && <img src={withBase(work.thumbnailImage)} alt="" width="240" height="300" loading="lazy" decoding="async" />}
           <div><p class="v3-kicker">{exhibition.kicker}</p><h3>{exhibition.title}</h3><span>Explore exhibition <span aria-hidden="true">→</span></span></div>
-        </a>;
-      })}
+        </a>
+      ))}
     </div>
   </div>
 </section>
@@ -67,6 +68,7 @@ const others = programme.exhibitions.filter(exhibition => exhibition.slug !== fo
   .featured-exhibition__more-heading > a { display: inline-flex; align-items: center; gap: 12px; min-height: 44px; color: var(--v3-signal); font-size: 12px; text-underline-offset: 4px; }
   .featured-exhibition__teasers { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 30px; }
   .featured-exhibition__teaser { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 24px; align-items: center; padding-top: 23px; border-top: 1px solid var(--teaser-accent, var(--v3-line)); text-decoration: none; }
+  .featured-exhibition__teaser:not(:has(img)) { grid-template-columns: 1fr; }
   .featured-exhibition__teaser img { display: block; width: 120px; height: 142px; object-fit: contain; }
   .featured-exhibition__teaser .v3-kicker { margin: 0 0 8px; color: var(--teaser-accent); font-size: 9px; }
   .featured-exhibition__teaser h3 { margin: 0 0 14px; color: var(--v3-ink); font-size: clamp(19px, 1.9vw, 26px); font-weight: 500; line-height: 1.25; letter-spacing: -.025em; }

@@ -9,15 +9,24 @@ import SpatialInvitation from '../components/home/SpatialInvitation.astro';
 import WorldExplorer from '../components/WorldExplorer.astro';
 import V3Layout from '../layouts/v3/V3Layout.astro';
 import { collectionCount, v3WorkRoute } from '../lib/v3';
-import { currentProgramme } from '../lib/programme';
-import { featuredWorks } from '../lib/catalog';
+import { currentProgramme, programmeDate } from '../lib/programme';
+import { selectHomepageWorks } from '../lib/homepage-selection.mjs';
+import previews from '../data/previews.json';
+import spatialManifest from '../../public/spatial-museum/collection-manifest.json';
+import { featuredWorks, workBySlug, type Work } from '../lib/catalog';
 import { withBase } from '../lib/urls';
-import { arVrCount } from '../lib/spatial-catalog';
+import { arVrCount, arVrFeatured } from '../lib/spatial-catalog';
 import { shortWorkTitle } from '../lib/work-titles';
 import { wingSummaries } from '../lib/wings';
 
-const randomRoutes = featuredWorks.map((work) => withBase(v3WorkRoute(work)));
 const { hero: featuredWork } = currentProgramme;
+const room = currentProgramme.room ?? spatialManifest.rooms[0];
+const selection = selectHomepageWorks({
+  programme: currentProgramme, reviewed: featuredWorks, previews, date: programmeDate,
+  roomWorks: (room?.slugs ?? []).map(workBySlug).filter((work): work is Work => Boolean(work)),
+  spatialWorks: arVrFeatured, wings: wingSummaries, newestWorks,
+});
+const randomRoutes = featuredWorks.map(work => withBase(v3WorkRoute(work)));
 const heroAppearance = {
   ...featuredWork.materialAppearance,
   backdropTop: '#1c2b41',
@@ -87,28 +96,28 @@ const heroAlt = [
   </section>
 
   <div id="v3-home-content"></div>
-  <FeaturedExhibition />
-  <LookingTogether />
-  <SpatialInvitation />
+  <FeaturedExhibition focus={currentProgramme.focus} focusIntro={currentProgramme.focusIntro} lead={selection.lead} teasers={selection.teasers} />
+  <LookingTogether pair={selection.pair} />
+  <SpatialInvitation room={room} roomWork={selection.roomWork} spatialWork={selection.spatialWork} />
 
   <section class="v3-section v3-section--line home-wings" aria-labelledby="wings-home-title" data-home-section="wings">
-    <WorldExplorer compact={true} />
+    <WorldExplorer compact={true} excludedWorkSlugs={selection.usedSlugs} />
     <div class="v3-section-head v3-section-head--split">
       <div><p class="v3-kicker">04 / Museum wings</p><h2 id="wings-home-title" class="v3-display">Follow your curiosity.</h2></div>
       <a href={withBase('/wings/')}>Explore all {wingSummaries.length} wings <span aria-hidden="true">→</span></a>
     </div>
     <p class="home-section-intro">Explore by region, then by period. Each work has one primary home when its regional origin is known.</p>
-    <V3WingGrid compact={true} />
+    <V3WingGrid compact={true} summaries={selection.wingCards} />
   </section>
 
-  {newestWorks.length > 0 && (
+  {selection.newest.length > 0 && (
     <section class="v3-section v3-section--line v3-additions-home home-newest" aria-labelledby="new-title" data-home-section="newest">
       <div class="v3-section-head v3-section-head--split">
         <div><p class="v3-kicker">05 / Recent additions</p><h2 id="new-title" class="v3-display">New to Atrium.</h2></div>
         <a href={withBase('/newest/')}>View newest additions <span aria-hidden="true">→</span></a>
       </div>
       <p class="home-section-intro">Explore the latest additions to the 3D collection.</p>
-      <div class="v3-grid">{newestWorks.slice(0, 4).map((work) => <V3WorkCard work={work} />)}</div>
+      <div class="v3-grid">{selection.newest.map((work: Work) => <V3WorkCard work={work} />)}</div>
     </section>
   )}
 

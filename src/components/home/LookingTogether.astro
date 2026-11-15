@@ -1,13 +1,12 @@
 ---
 import Viewer from '../Viewer.astro';
-import { currentProgramme } from '../../lib/programme';
 import type { V3Pairing } from '../../lib/v3';
 import { v3WorkRoute } from '../../lib/v3';
 import { withBase } from '../../lib/urls';
 import { shortWorkTitle } from '../../lib/work-titles';
 
 type Props = { pair?: V3Pairing };
-const { pair = currentProgramme.pairings[0] } = Astro.props;
+const { pair } = Astro.props;
 const works = pair ? [pair.a, pair.b] : [];
 ---
 
