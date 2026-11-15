@@ -44,3 +44,25 @@ Pending owner decisions: 39 straightforward casing fixes and 21 additional museu
 The draft passed `npm test`, the full build, all 32 reduced-motion and 12 normal-motion browser checks across Chromium and WebKit, and the Pages, collection-window and artwork-image verification scripts. Reviewed 390 px and 1440 px screenshots of touched route types. No physical phone or live deployment checks for the draft.
 
 No pull request or deployment for Step 2B yet. Recheck the final step after the owner's decisions. The 26 reviewed Pacific additions are checkpointed separately, with acquisition publication on hold during the Pages package work.
+
+### Step 2B after Mike's decisions
+
+The candidate applies 39 reversible headline-case corrections, including the eight exact titles Mike supplied. Museum wording remains recorded in the existing evidence and in `docs/step-2b-title-casing.json`. The 21 casing alignments and 17 wording alternatives are deferred to step 8.
+
+An automatic preview is limited to a known model size of 3,000,000 bytes. Its still must decode and have a visible frame to paint before the first request. Explicit activation can open heavier works. Delaying the Lion still in Chromium and WebKit held every model request until the still painted. The alternate programme date was checked with the 7,200,532-byte Belvedere Torso. Both engines showed the still and kept the model idle until Examine in 3D was selected.
+
+All 36 approved exclusions remain public and were removed from featured promotion. There are 250 reviewed featured works and 3,122 public works. The gallery card on the homepage picks a work from the featured list when that room has one. Rooms with none show the gallery invitation without an artwork image. This keeps Selma Burke's work out of the rotating homepage card and available in its gallery.
+
+The current November 9–15 UTC programme compares Meissonnier's *Covered Tureen on Stand* with the Persian *Bowl with Courtly Scene* as **Ornament Follows Form**. The hero queue in order is *Bowl with Courtly Scene*, *Covered Tureen on Stand*, *Animal vessel (Underwater Panther)*, *Prestige Stool (Kuo fo)*, *Saint Jerome and the Lion*, *Belvedere Torso*, and *Lion*. The November 15 UTC build uses *Lion*.
+
+| Measurement | November 15 UTC build | Result |
+| --- | ---: | --- |
+| LCP | 3.392 s | Above the 2.5 s target |
+| Bytes before the hero still painted | 447,864 | Under the 1,500,000-byte budget |
+| Bytes before interaction | 1,756,777 | Includes the only automatic model, the 485,848-byte Lion |
+
+The still presented at 560 ms and the Lion request started at 900 ms in the Chromium trace. Lighthouse reports LCP with simulated throttling. The two transfer figures use observed network timing. In steps 4 and 3 the 1.5 MB transfer limit applies to bytes before the still paints. One model of up to 3,000,000 bytes may then start automatically.
+
+The final candidate passed unit tests, the production build, 32 reduced-motion browser checks and 12 normal-motion browser checks in Chromium and WebKit. All 24 examined canvases rendered and the lowest pressed toggle contrast measured 11.75:1 after the 1.20:1 live failure. At 375 px the work page and first guided stop passed the input and scrolling comparison with no sideways overflow. Reviewed representative screenshots of the changed route types at 390 and 1440 px. The Pages tar measured 971,571,200 bytes and all collection and artwork-image checks passed. Physical phone and live deployment checks are pending.
+
+Step 2B is prepared on `codex/step-2b-preview-audit` and awaits deployment approval.
