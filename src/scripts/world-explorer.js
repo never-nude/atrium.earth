@@ -169,7 +169,7 @@ async function initialise(root, { compact, signal, register }) {
     if (more) {
       more.hidden = compact || results.length <= state.limit;
       if (!more.hidden) {
-        const label = `Show more works (${Math.min(state.limit,results.length)} of ${results.length}) `;
+        const label = `Show more works (${Math.min(state.limit,results.length).toLocaleString('en-US')} of ${results.length.toLocaleString('en-US')}) `;
         if (more.firstChild?.nodeType === 3) more.firstChild.textContent = label; else more.textContent = label;
       }
     }
