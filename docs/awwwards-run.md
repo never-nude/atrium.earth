@@ -82,3 +82,13 @@ Branch `codex/handling-hybrid`. The same OrbitControls input rules now apply to 
 The Node tests and complete 8,719-page build passed. The release checks verified 3,122 public collection cards and 6,244 artwork images. Chromium native full screen and the WebKit overlay both changed canvas touch action from `pan-y` to `none` and back. The local homepage Lighthouse run reported 3.389 s LCP, 437,112 bytes before the still, and 1,746,025 bytes before interaction. These performance measurements are report-only in this step.
 
 Serve the built candidate for phone review with `node scripts/serve-phone-preview.mjs`. It listens on port 5196 and prints the Mac's LAN address. It resolves only catalogue-listed model URLs. Automated WebKit cannot reproduce iPhone Safari scrolling. The physical phone test comes before requesting deployment approval.
+
+### Revised after the iPhone test
+
+The phone test showed that deciding by the direction of the drag was hard to predict. The replacement decides at touch-down. Touching the sculpture claims the gesture and raises a purple light behind it. Touching the backdrop or touching during momentum gives the gesture to the page. A second finger can claim a pinch from the backdrop when its midpoint is on the sculpture and the page is still.
+
+The viewer samples the alpha of its existing rendered frame at a small size. The hit test uses a 12 px touch tolerance. It excludes the grid and cast shadow, and landing does not render or read from the graphics card. If a rendered frame yields no readable silhouette, the viewer falls back to projected artwork bounds. The visible pick mode is recorded on each live stage for verification.
+
+Automated WebKit cannot reproduce iPhone Safari scrolling. Review the updated build over Wi-Fi before asking for permission to deploy.
+
+The revised regression suite passed all 14 location, wheel, and camera assertions on the built candidate. With motion enabled, the hint disappeared on the first turn and rotation resumed after 4,014 ms. Both Chromium and WebKit used the silhouette on all ten tested viewer slots, including the homepage previews, Surface, a guided stop, Discobolus, the paired exhibition cover, and a wing hero. The complete production build and Node suite passed.

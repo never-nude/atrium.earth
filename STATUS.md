@@ -2318,3 +2318,8 @@ The approved title fixes, automatic download gate and promotion exclusions are r
 - The owner specified one gesture system for all screen sculpture viewers, with a physical iPhone check before deployment approval. This chat owns `codex/handling-hybrid`. The branch includes the Step 2C homepage uniqueness and lead-budget prerequisites in PR #87.
 - The live baseline failed five Chromium gesture assertions. The combined candidate passed all eight and the live-frame hint and four-second rotation checks. The complete build, Node suite, artwork delivery, and local-network model relay passed. Native fullscreen in Chromium and the WebKit overlay both restored the inline scroll rules on exit.
 - The handling branch is prepared for phone review on port 5196. Wait for the owner to confirm native Safari handling feels right, then ask for deployment approval. See `docs/awwwards-run.md` for measured evidence.
+
+### Touch-down location and hold light
+
+- The owner superseded directional ownership after trying it on iPhone. PR #88 remains the handling draft. Touch-down on the silhouette claims the sculpture. Backdrop landings and landings during scrolling remain native. A soft purple light signals a held sculpture. The model keeps mouse and wheel input on OrbitControls.
+- The phone preview remains on 5196. Verify the revised build, then wait for native iPhone feedback before asking for approval to deploy.
