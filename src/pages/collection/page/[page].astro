@@ -11,7 +11,7 @@ const { page } = Astro.props;
 ---
 <V3Layout title={`The collection — page ${page}`} description={`Browse works ${(page - 1) * COLLECTION_PAGE_SIZE + 1}–${Math.min(page * COLLECTION_PAGE_SIZE, works.length)} in Atrium’s collection.`} canonical="/collection/">
   <header class="v3-page-hero v3-discovery-hero">
-    <p class="v3-kicker">The collection / {works.length} works</p>
+    <p class="v3-kicker">The collection / {works.length.toLocaleString('en-US')} works</p>
     <h1 class="v3-display">Explore the collection.</h1>
     <p>Page {page}. Continue through the collection, or search every work by title, maker, place and material.</p>
   </header>

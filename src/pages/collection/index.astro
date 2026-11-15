@@ -6,11 +6,11 @@ import { collectionCount, featuredWork, works } from '../../lib/v3';
 
 <V3Layout
   title="Explore the collection"
-  description={`Search ${collectionCount} sculptures by title, maker, place, period, and material.`}
+  description={`Search ${collectionCount.toLocaleString('en-US')} sculptures by title, maker, place, period, and material.`}
   image={featuredWork.thumbnailImage}
 >
   <header class="v3-page-hero v3-discovery-hero">
-    <p class="v3-kicker">The collection / {collectionCount} works</p>
+    <p class="v3-kicker">The collection / {collectionCount.toLocaleString('en-US')} works</p>
     <h1 class="v3-display">Explore the collection.</h1>
     <p>Find a work by title, maker, place or material. Choose AR / VR to explore all compatible models, with reviewed references and unverified display sizes clearly labeled.</p>
   </header>

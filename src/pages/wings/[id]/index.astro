@@ -50,7 +50,7 @@ const showRooms = Boolean(wing && rooms.length > 1);
   {featured ? (
     <section class="v3-wing-hero" aria-labelledby="wing-title" data-featured-work={featured.slug}>
       <div class="v3-wing-hero__copy">
-        <p class="v3-kicker">Wing {String(wingIndex + 1).padStart(2, '0')} · {wingWorks.length} {wingWorks.length === 1 ? 'work' : 'works'}</p>
+        <p class="v3-kicker">Wing {String(wingIndex + 1).padStart(2, '0')} · {wingWorks.length.toLocaleString('en-US')} {wingWorks.length === 1 ? 'work' : 'works'}</p>
         <h1 id="wing-title" class="v3-display">{name}</h1>
         <p>{blurb}</p>
         <div class="v3-wing-hero__meta">
@@ -79,7 +79,7 @@ const showRooms = Boolean(wing && rooms.length > 1);
     </section>
   ) : (
     <header class="v3-page-hero">
-      <p class="v3-kicker">The collection / {wingWorks.length} {wingWorks.length === 1 ? 'work' : 'works'}</p>
+      <p class="v3-kicker">The collection / {wingWorks.length.toLocaleString('en-US')} {wingWorks.length === 1 ? 'work' : 'works'}</p>
       <h1 class="v3-display">{name}</h1>
       <p>{blurb} Explore them here, or <a href={withBase('/collection/')}>browse the complete collection</a>.</p>
     </header>
@@ -103,7 +103,7 @@ const showRooms = Boolean(wing && rooms.length > 1);
           return (
             <section class="v3-wing-room" aria-labelledby={`room-${roomIndex}`}>
               <header class="v3-wing-room__head">
-                <p class="v3-kicker">Room {String(roomIndex + 1).padStart(2, '0')} · {room.works.length} {room.works.length === 1 ? 'work' : 'works'}</p>
+                <p class="v3-kicker">Room {String(roomIndex + 1).padStart(2, '0')} · {room.works.length.toLocaleString('en-US')} {room.works.length === 1 ? 'work' : 'works'}</p>
                 <h3 id={`room-${roomIndex}`} class="v3-display">{room.era}</h3>
               </header>
               <div class="v3-grid">

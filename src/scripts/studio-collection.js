@@ -433,8 +433,8 @@ async function initializeExplorer(explorer) {
     more.disabled = false;
     const matches = result.total;
     const shown = result.records.length;
-    const range = offset ? `${(offset + 1).toLocaleString()}–${(offset + shown).toLocaleString()}` : shown.toLocaleString();
-    const message = matches ? `Showing ${range} of ${matches.toLocaleString()} ${matches === 1 ? 'work' : 'works'}${savedOnly ? ' saved on this browser' : ''}` : savedOnly ? 'No saved works match these filters.' : 'No works match these filters.';
+    const range = offset ? `${(offset + 1).toLocaleString('en-US')}–${(offset + shown).toLocaleString('en-US')}` : shown.toLocaleString('en-US');
+    const message = matches ? `Showing ${range} of ${matches.toLocaleString('en-US')} ${matches === 1 ? 'work' : 'works'}${savedOnly ? ' saved on this browser' : ''}` : savedOnly ? 'No saved works match these filters.' : 'No works match these filters.';
     if (count.textContent !== message) count.textContent = message;
     grid.hidden = matches === 0;
     empty.hidden = matches !== 0;

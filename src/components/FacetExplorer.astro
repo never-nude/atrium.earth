@@ -64,7 +64,7 @@ const stillCount = works.length - modelCount;
     </div>
 
     <div class="result-row">
-      <span data-result-count>Catalog records · <b>{totalCount}</b> · {works.length} available to browse</span>
+      <span data-result-count>Catalog records · <b>{totalCount.toLocaleString('en-US')}</b> · {works.length.toLocaleString('en-US')} available to browse</span>
       <button class="button subtle" type="reset" data-reset-filters>Reset</button>
     </div>
   </form>
@@ -75,7 +75,7 @@ const stillCount = works.length - modelCount;
 
   <div class="empty-state" data-empty hidden>
     <strong>No records match these filters.</strong>
-    <p class="fine">Try removing a filter, or <button type="button" class="text-link" data-reset-inline>reset all filters</button> to see all {works.length} published records.</p>
+    <p class="fine">Try removing a filter, or <button type="button" class="text-link" data-reset-inline>reset all filters</button> to see all {works.length.toLocaleString('en-US')} published records.</p>
   </div>
 </div>
 
@@ -142,8 +142,8 @@ const stillCount = works.length - modelCount;
 
       const anyFilter = Boolean(query) || selects.some((select) => select.value);
       count.innerHTML = anyFilter
-        ? `Showing <b>${visible}</b> of <b>${total}</b> published records · <b>${catalogTotal}</b> catalogued`
-        : `Catalog records · <b>${catalogTotal}</b> · ${total} available to browse`;
+        ? `Showing <b>${visible.toLocaleString('en-US')}</b> of <b>${total.toLocaleString('en-US')}</b> published records · <b>${catalogTotal.toLocaleString('en-US')}</b> catalogued`
+        : `Catalog records · <b>${catalogTotal.toLocaleString('en-US')}</b> · ${total.toLocaleString('en-US')} available to browse`;
 
       const none = visible === 0;
       grid.classList.toggle('hidden', none);
