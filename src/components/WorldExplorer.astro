@@ -2,12 +2,12 @@
 import { withBase } from '../lib/urls';
 import { worldPayloadUrl } from '../lib/world-payload';
 import WorldViewControls from './WorldViewControls.astro';
-type Props = { compact?: boolean; instanceId?: string };
-const {compact=false, instanceId=compact ? 'home-world' : 'world'} = Astro.props;
+type Props = { compact?: boolean; instanceId?: string; excludedWorkSlugs?: string[] };
+const {compact=false, instanceId=compact ? 'home-world' : 'world', excludedWorkSlugs = []} = Astro.props;
 const Heading = compact ? 'h2' : 'h1';
 const Subheading = compact ? 'h3' : 'h2';
 ---
-  <section id={compact ? 'explore-the-world' : undefined} class:list={['world-page', {'world-page--compact':compact}]} data-world-explorer data-world-compact={compact ? '' : undefined} data-world-data-url={worldPayloadUrl} data-world-detail-url={withBase('/world/')} aria-labelledby={`${instanceId}-title`}>
+  <section id={compact ? 'explore-the-world' : undefined} class:list={['world-page', {'world-page--compact':compact}]} data-world-explorer data-world-compact={compact ? '' : undefined} data-world-excluded-works={compact && excludedWorkSlugs.length ? excludedWorkSlugs.join('|') : undefined} data-world-data-url={worldPayloadUrl} data-world-detail-url={withBase('/world/')} aria-labelledby={`${instanceId}-title`}>
     <header class="world-heading">
       <div><p class="world-eyebrow">Atrium / Place &amp; time</p><Heading id={`${instanceId}-title`} data-world-title>A world of art.</Heading><p>Turn the globe. Choose a place. Travel through time.</p></div>
       {compact ? <a href={withBase('/world/')} data-world-continue>Open full explorer <span aria-hidden="true">↗</span></a> : <a href={withBase('/wings/')}>Explore the museum wings <span aria-hidden="true">↗</span></a>}

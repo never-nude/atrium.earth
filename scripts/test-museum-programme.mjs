@@ -2,8 +2,10 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import { buildFeaturedSelection, HOMEPAGE_PREVIEW_LIMIT } from '../src/lib/featured-selection.mjs';
+import { selectHomepageWorks } from '../src/lib/homepage-selection.mjs';
+import { AUTO_START_MODEL_LIMIT } from '../src/lib/viewer-preview.mjs';
 import {
-  buildMuseumProgramme, isPreviewBudgetEligible, parseProgrammeDate, programmeCalendar, rotateContextWork,
+  buildMuseumProgramme, exhibitionLeadForDate, isPreviewBudgetEligible, parseProgrammeDate, programmeCalendar, rotateContextWork,
   GENERAL_HERO_PROMPT, PROGRAMME_LAYOUTS, PROGRAMME_SECTIONS,
 } from '../src/lib/museum-programme.mjs';
 
@@ -223,6 +225,51 @@ const contextMonday = rotateContextWork(sample, '2026-11-02', 'a-wing');
 assert.equal(contextMonday, rotateContextWork(sample, '2026-11-08', 'a-wing'));
 assert.notEqual(contextMonday, rotateContextWork(sample, '2026-11-09', 'a-wing'));
 assert.equal(rotateContextWork([], '2026-11-02', 'a-wing'), null);
+
+const reviewedSlugs = new Set(reviewed.map(work => work.slug));
+for (const exhibition of exhibitions) {
+  const chosen = exhibitionLeadForDate(exhibition, reviewedSlugs, previews, '2026-11-16');
+  assert.ok(chosen, `Reviewed lead under the cap: ${exhibition.slug}`);
+  assert.ok(exhibition.works.includes(chosen));
+  assert.ok(reviewedSlugs.has(chosen.slug));
+  assert.ok(previews[chosen.slug].bytes <= AUTO_START_MODEL_LIMIT);
+}
+const collisionDate = '2026-11-09';
+const collisionProgramme = forDate(collisionDate);
+assert.ok([surfacePair.a.slug, surfacePair.b.slug].includes(collisionProgramme.hero.slug),
+  'Regression fixture: the old homepage would repeat the hero in its comparison.');
+const selectionArgs = {
+  programme: collisionProgramme, reviewed, previews, date: collisionDate, wings: [],
+  roomWorks: [collisionProgramme.hero, ...collisionProgramme.room.slugs.map(slug => bySlug.get(slug)).filter(Boolean)],
+  spatialWorks: [collisionProgramme.hero, ...reviewed.slice(0, 6)],
+  newestWorks: [collisionProgramme.hero, ...visible.slice(-8)],
+};
+const distinct = selectHomepageWorks(selectionArgs);
+assert.ok(distinct.pair, 'Choose the next approved comparison instead of breaking the pair.');
+assert.notEqual(distinct.pair, surfacePair);
+for (let offset = 0; offset < 224; offset++) {
+  const date = new Date(anchor + offset * DAY);
+  const programme = buildMuseumProgramme({ ...inputs, date });
+  const selection = selectHomepageWorks({ ...selectionArgs, programme, date });
+  assert.ok(selection.pair, `Keep a full comparison on ${date.toISOString()}`);
+  const workSlots = [
+    programme.hero, selection.lead, selection.pair?.a, selection.pair?.b,
+    ...selection.teasers.map(teaser => teaser.work), selection.roomWork, selection.spatialWork, ...selection.newest,
+  ].filter(Boolean);
+  assert.equal(new Set(workSlots.map(work => work.slug)).size, workSlots.length, date.toISOString());
+  assert.deepEqual(new Set(selection.usedSlugs), new Set(workSlots.map(work => work.slug)));
+  assert.ok(previews[selection.lead.slug].bytes <= AUTO_START_MODEL_LIMIT);
+  assert.equal(selection.teasers.length, 2);
+  assert.equal(selection.newest.length, 4);
+}
+
+const atCap = { slug: 'at-cap', hasPreview: true };
+const aboveCap = { slug: 'above-cap', hasPreview: true };
+const uncappedFocus = { slug: 'cap-test', works: [atCap, aboveCap] };
+const capReviewed = new Set([atCap.slug, aboveCap.slug]);
+const capPreviews = { 'at-cap': { bytes: AUTO_START_MODEL_LIMIT }, 'above-cap': { bytes: AUTO_START_MODEL_LIMIT + 1 } };
+assert.equal(exhibitionLeadForDate(uncappedFocus, capReviewed, capPreviews, collisionDate), atCap);
+assert.equal(exhibitionLeadForDate(uncappedFocus, capReviewed, capPreviews, collisionDate, new Set([atCap.slug])), null);
 
 function freeze(value) {
   if (value && typeof value === 'object' && !Object.isFrozen(value)) {

@@ -1,17 +1,11 @@
 ---
-import { currentProgramme, type MuseumProgramme } from '../../lib/programme';
-import { isFeaturedWork, workBySlug } from '../../lib/catalog';
-import { arVrFeatured } from '../../lib/spatial-catalog';
+import type { MuseumRoom } from '../../lib/programme';
+import type { Work } from '../../lib/catalog';
 import { v3WorkRoute } from '../../lib/v3';
 import { withBase } from '../../lib/urls';
-import spatialManifest from '../../../public/spatial-museum/collection-manifest.json';
 
-type Props = { programme?: MuseumProgramme };
-const { programme = currentProgramme } = Astro.props;
-const room = programme.room || spatialManifest.rooms[0];
-const roomWorkSlug = room?.slugs.find(isFeaturedWork);
-const roomWork = roomWorkSlug ? workBySlug(roomWorkSlug) : undefined;
-const spatialWork = arVrFeatured.find(work => work.spatialAccess?.enabled);
+type Props = { room?: MuseumRoom; roomWork?: Work; spatialWork?: Work };
+const { room, roomWork, spatialWork } = Astro.props;
 const roomUrl = room ? `/spatial-museum/?room=${room.id}` : '/spatial-museum/';
 const arUrl = spatialWork ? `${v3WorkRoute(spatialWork)}#ar-vr` : '/ar-vr/';
 ---

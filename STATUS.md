@@ -2306,3 +2306,9 @@ Work branch `codex/step-2b-preview-audit` starts from `b8b054660`. Toggle contra
 ### 2026-11-14 — Step 2B approved changes verified locally
 
 The approved title fixes, automatic download gate and promotion exclusions are ready for deployment review. All 44 browser checks pass and the three homepage performance numbers are recorded in `docs/awwwards-run.md`. Wait for deployment approval before merging. The Pacific addition batch remains paused during the Pages package work.
+
+### 2026-11-15 — Step 2C homepage prerequisites prepared
+
+- On `codex/step-2c-homepage-prereqs` from `87224847`, the homepage reserves each displayed work once across its feature, exhibition lead and teasers, approved comparison, gallery and AR / VR cards, wings and recent additions. Compact world results sample the remaining matching works. Globe totals and the full explorer use the complete collection.
+- Central exhibition leads rotate among reviewed members with a preview at or below 3,000,000 bytes. All eight exhibitions have an eligible pool. The separate Michelangelo and Rodin duet keeps David on explicit activation and Rodin on automatic preview.
+- Programme tests checked the known hero/comparison collision, a 224-day rotation and the exact byte boundary. All 57 experience tests and the world collection and state tests passed. Local HTTP checks with the November 16 programme showed 16 distinct homepage stills, a 1,011,544-byte featured exhibition lead and the expected exhibition entrances. Release CI and owner approval precede publication.
