@@ -92,3 +92,7 @@ The viewer samples the alpha of its existing rendered frame at a small size. The
 Automated WebKit cannot reproduce iPhone Safari scrolling. Review the updated build over Wi-Fi before asking for permission to deploy.
 
 The revised regression suite passed all 14 location, wheel, and camera assertions on the built candidate. With motion enabled, the hint disappeared on the first turn and rotation resumed after 4,014 ms. Both Chromium and WebKit used the silhouette on all ten tested viewer slots, including the homepage previews, Surface, a guided stop, Discobolus, the paired exhibition cover, and a wing hero. The complete production build and Node suite passed.
+
+On November 15, Mike approved the touch-down handling after the iPhone trial. [PR 88](https://github.com/never-nude/atrium.earth/pull/88) published it with a 160 ms fade in and 220 ms fade out for the light. The [Pages release](https://github.com/never-nude/atrium.earth/actions/runs/43767796471) passed 44 page checks and 14 gesture checks. The live suite passed on retry after a phone-width homepage model load timed out on the first run. Live automatic rotation resumed after 4,003 ms.
+
+Mike then asked to remove the purple hold light. The follow-up removes the light, its styling and the silhouette center calculation used to position it. The gesture tests check whether the sculpture claims the touch by observing native cancellation on contact.

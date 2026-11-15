@@ -42,9 +42,8 @@ async function instrumentControls(page) {
       const canvas = event.target.closest('canvas.viewer-canvas');
       if (!canvas) return;
       canvas.__atriumTestTouchStart = {
+        event,
         ageOfScroll: performance.now() - (window.__atriumTestLastScroll ?? -Infinity),
-        cancelable: event.cancelable,
-        trusted: event.isTrusted,
       };
     }, { capture: true, passive: true });
   });
@@ -212,24 +211,24 @@ async function pointOn(canvas, kind) {
   return point;
 }
 
-function isHeld(canvas) {
-  return canvas.evaluate(element => element.closest('[data-stage]').hasAttribute('data-sculpture-held'));
+function readTouchStart(canvas) {
+  return canvas.evaluate(element => {
+    const start = element.__atriumTestTouchStart;
+    delete element.__atriumTestTouchStart;
+    if (!start) return null;
+    // The browser input command returned after dispatch. Read the original
+    // event now so target and bubbling listeners have finished handling it.
+    return {
+      trusted: start.event.isTrusted,
+      prevented: start.event.defaultPrevented,
+      ageOfScroll: start.ageOfScroll,
+    };
+  });
 }
 
-async function assertHoldLight(canvas, held, expectedDuration) {
-  await canvas.page().waitForFunction(({ element, targetOpacity }) => {
-    const stage = element.closest('[data-stage]');
-    return Math.abs(Number(getComputedStyle(stage, '::before').opacity) - targetOpacity) <= 0.02;
-  }, { element: await canvas.elementHandle(), targetOpacity: Number(held) }, { timeout: 2000 });
-  const light = await canvas.evaluate(element => {
-    const stage = element.closest('[data-stage]');
-    const style = getComputedStyle(stage, '::before');
-    return { background: style.backgroundImage, transitionDuration: style.transitionDuration };
-  });
-  assert.match(light.background, /rgba?\(201, 165, 255(?:,|\))/);
-  const duration = Number.parseFloat(light.transitionDuration);
-  const matches = expectedDuration === 0 ? duration < 0.001 : Math.abs(duration - expectedDuration) < 0.001;
-  assert.ok(matches, `Expected the held light transition to take ${expectedDuration}s, got ${light.transitionDuration}`);
+function assertTouchOwnership(start, claimed, message) {
+  assert.ok(start?.trusted, 'Expected a trusted touchstart on the canvas');
+  assert.equal(start.prevented, claimed, message);
 }
 
 const readPose = canvas => canvas.evaluate(element => ({
@@ -253,11 +252,12 @@ function touchEvent(client, point, type, offsets = []) {
   });
 }
 
-async function touchGesture(client, point, frames, whileHeld) {
+async function touchGesture(client, canvas, point, frames) {
   await touchEvent(client, point, 'touchStart', frames[0]);
   try {
-    if (whileHeld) await whileHeld();
+    const touchStart = await readTouchStart(canvas);
     for (const move of frames.slice(1)) await touchEvent(client, point, 'touchMove', move);
+    return touchStart;
   } finally {
     await touchEvent(client, point, 'touchEnd');
   }
@@ -281,12 +281,10 @@ async function checkMobile(client, canvas, check) {
     const point = await pointOn(canvas, 'backdrop');
     await settlePose(canvas);
     const before = await track(canvas);
-    let held;
-    await touchGesture(client, point, [[[0, 0]], [[1, -14]], [[1, -37]], [[0, -68]], [[0, -104]]],
-      async () => { held = await isHeld(canvas); });
+    const touchStart = await touchGesture(client, canvas, point, [[[0, 0]], [[1, -14]], [[1, -37]], [[0, -68]], [[0, -104]]]);
     await nextPaint(canvas.page());
     const after = await readPose(canvas);
-    assert.equal(held, false, 'Backdrop touch must stay with the page');
+    assertTouchOwnership(touchStart, false, 'Backdrop touch must stay with the page');
     assert.ok(after.scroll - before.scroll > 15, `Backdrop scroll moved ${after.scroll - before.scroll}px`);
     assertStill(before, after);
   });
@@ -304,15 +302,13 @@ async function checkMobile(client, canvas, check) {
         return [[initial[0][0] - delta, 0], [initial[1][0] + delta, 0]];
       });
       const before = await track(canvas);
-      let held;
-      await touchGesture(client, point, frames, async () => { held = await isHeld(canvas); });
+      const touchStart = await touchGesture(client, canvas, point, frames);
       await nextPaint(canvas.page());
       const after = await readPose(canvas);
       const zoom = after.distance - before.distance;
       assert.ok(Math.abs(zoom) > 0.015 && Math.abs(after.scroll - before.scroll) <= 1 && Math.abs(after.scale - before.scale) < 1e-6,
         `Pinch should zoom only the sculpture (distance change ${zoom.toFixed(4)}, scroll ${after.scroll - before.scroll}px, scale ${before.scale} → ${after.scale})`);
-      assert.equal(held, true, 'The pinch should be held before any movement');
-      assert.equal(await isHeld(canvas), false, 'Both fingers released');
+      assertTouchOwnership(touchStart, true, 'The sculpture should claim the pinch before any movement');
     });
   }
 
@@ -320,21 +316,14 @@ async function checkMobile(client, canvas, check) {
     await settleScroll(canvas);
     const point = await pointOn(canvas, 'art');
     const before = await track(canvas);
-    let held;
-    await touchGesture(client, point, [[[0, 0]], [[0, -14]], [[0, -35]], [[31, -60]], [[78, -72]]],
-      async () => {
-        held = await isHeld(canvas);
-        if (held) await assertHoldLight(canvas, true, 0);
-      });
+    const touchStart = await touchGesture(client, canvas, point, [[[0, 0]], [[0, -14]], [[0, -35]], [[31, -60]], [[78, -72]]]);
     await nextPaint(canvas.page());
     const after = await readPose(canvas);
     const moved = distance(after.position, before.position);
     const tilted = Math.abs(after.position[1] - before.position[1]);
     assert.ok(moved > 0.01 && tilted > 0.01 && Math.abs(after.scroll - before.scroll) <= 1,
       `Sculpture drag should orbit and tilt (camera travel ${moved.toFixed(4)}, vertical travel ${tilted.toFixed(4)}, scroll ${after.scroll - before.scroll}px)`);
-    assert.equal(held, true, 'The sculpture should get its held state on touch-down, before motion');
-    assert.equal(await isHeld(canvas), false, 'The held state should clear on release');
-    await assertHoldLight(canvas, false, 0);
+    assertTouchOwnership(touchStart, true, 'The sculpture should claim touch-down before movement');
   });
 
   await check('a second touch on the sculpture during native scrolling stays with the page', async () => {
@@ -363,21 +352,18 @@ async function checkMobile(client, canvas, check) {
     }
 
     const point = await canvas.evaluate((element, art) => {
+      delete element.__atriumTestTouchStart;
       const x = art.x;
       const y = Math.round(element.getBoundingClientRect().top + art.offsetY);
       return document.elementFromPoint(x, y) === element ? { x, y } : null;
     }, art);
     assert.ok(point, 'The sculpture should remain in reach after the native swipe');
-    let held, touchStart;
-    await touchGesture(client, point, [[[0, 0]], [[0, -18]], [[12, -44]], [[36, -82]]], async () => {
-      held = await isHeld(canvas);
-      touchStart = await canvas.evaluate(element => element.__atriumTestTouchStart);
-    });
+    const touchStart = await touchGesture(client, canvas, point, [[[0, 0]], [[0, -18]], [[12, -44]], [[36, -82]]]);
     await nextPaint(canvas.page());
     const after = await readPose(canvas);
-    assert.ok(touchStart?.trusted && touchStart.ageOfScroll < 150,
-      `The second trusted touch must land within the scroll guard (age ${Math.round(touchStart?.ageOfScroll)}ms)`);
-    assert.equal(held, false, 'The recent native scroll must prevent sculpture capture');
+    assertTouchOwnership(touchStart, false, 'The recent native scroll must prevent sculpture capture');
+    assert.ok(touchStart.ageOfScroll < 150,
+      `The second touch must land within the scroll guard (age ${Math.round(touchStart.ageOfScroll)}ms)`);
     assert.ok(after.scroll - before.scroll > 40, `Native scrolling moved ${after.scroll - before.scroll}px`);
     assertStill(before, after);
   });
@@ -470,17 +456,16 @@ async function checkAutomaticRotation(browser) {
     const client = await context.newCDPSession(page);
     await settleScroll(canvas);
     const point = await pointOn(canvas, 'art');
-    await touchGesture(client, point, [[[0, 0]], [[-20, 0]], [[-40, 0]]]);
+    await touchGesture(client, canvas, point, [[[0, 0]], [[-20, 0]], [[-40, 0]]]);
     await page.waitForFunction(element => element.hidden || element.classList.contains('is-dismissed'), await hint.elementHandle());
     await page.waitForFunction(element => element.__atriumTestPose.rotating, await canvas.elementHandle(), { timeout: 8000 });
 
     const holdPoint = await pointOn(canvas, 'art');
     await touchEvent(client, holdPoint, 'touchStart', [[0, 0]]);
+    assertTouchOwnership(await readTouchStart(canvas), true, 'The sculpture should claim touch-down before movement');
     await nextPaint(page);
     const pressed = await track(canvas);
     assert.equal(pressed.rotating, false, 'Automatic rotation must hold while the finger is down');
-    assert.equal(await isHeld(canvas), true, 'The sculpture should be held before the finger moves');
-    await assertHoldLight(canvas, true, 0.16);
     await page.waitForTimeout(250);
     const held = await readPose(canvas);
     assert.ok(distance(pressed.position, held.position) < 1e-7, 'The sculpture moved while the finger held still');
@@ -489,14 +474,12 @@ async function checkAutomaticRotation(browser) {
       element.addEventListener('touchend', () => { element.__atriumTestReleasedAt = performance.now(); }, { once: true });
     });
     await touchEvent(client, holdPoint, 'touchEnd');
-    assert.equal(await isHeld(canvas), false, 'The held state should clear on release');
-    await assertHoldLight(canvas, false, 0.22);
     await page.waitForFunction(element => element.__atriumTestPose.rotating, await canvas.elementHandle(), { timeout: 8000 });
     const pausedFor = await canvas.evaluate(element =>
       element.__atriumTestTrace.settled.find(frame => frame.rotating).frameTime - element.__atriumTestReleasedAt,
     );
     assert.ok(pausedFor >= 3900 && pausedFor < 5500, `Rotation resumed after ${Math.round(pausedFor)}ms`);
-    console.log(`PASS 390px homepage: hold light faded in and out, hint dismissed on turn, rotation resumed after ${Math.round(pausedFor)}ms`);
+    console.log(`PASS 390px homepage: hint dismissed on turn, rotation resumed after ${Math.round(pausedFor)}ms`);
 
     await ready(page, home, { steady: false });
     assert.equal(await hint.isVisible(), false, 'The gesture hint returned after turning a sculpture in this session');

@@ -63,7 +63,7 @@ export function createRotationHold(signal, onChange) {
 }
 
 export function bindViewerInput({
-  canvas, controls, signal, wheelZoom = true, hit, onHeld, onOrbit, onPan, onZoom,
+  canvas, controls, signal, wheelZoom = true, hit, onOrbit, onPan, onZoom,
   onInteraction, onWheel, onTurn, onReset, onDiscardInertia,
 }) {
   const document = canvas.ownerDocument;
@@ -94,7 +94,6 @@ export function bindViewerInput({
     prevent(event);
     onInteraction(true);
     onDiscardInertia();
-    onHeld(true);
   }
 
   function addTouch(event) {
@@ -153,7 +152,6 @@ export function bindViewerInput({
     const owned = touch.owner === 'sculpture';
     if (owned) {
       if (canceled) onDiscardInertia();
-      onHeld(false);
       onInteraction(false);
     }
     if (touchSequences.get(document) === sequence) touchSequences.delete(document);

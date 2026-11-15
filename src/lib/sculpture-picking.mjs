@@ -21,7 +21,7 @@ export function hitSculptureMask(mask, bounds, x, y, tolerance) {
 export function createSculpturePicker(canvas, projectBounds, onMode) {
   const sample = canvas.ownerDocument.createElement('canvas');
   let context = sample.getContext('2d', { willReadFrequently: true });
-  let mask, bounds, center, nextSample = 0;
+  let mask, bounds, nextSample = 0;
   let lastWidth, lastHeight;
   let mode;
 
@@ -46,29 +46,17 @@ export function createSculpturePicker(canvas, projectBounds, onMode) {
         context.drawImage(canvas, 0, 0, width, height);
         const { data } = context.getImageData(0, 0, width, height);
         const scaleX = width / cssWidth, scaleY = height / cssHeight;
-        let left = width, right = -1, top = height, bottom = -1;
-        for (let row = 0; row < height; row++) {
-          for (let col = 0; col < width; col++) {
-            if (data[4 * (row * width + col) + 3] < ALPHA_CUTOFF) continue;
-            left = Math.min(left, col);
-            right = Math.max(right, col);
-            top = Math.min(top, row);
-            bottom = row;
-          }
-        }
-        if (right >= 0) {
+        for (let alpha = 3; alpha < data.length; alpha += 4) {
+          if (data[alpha] < ALPHA_CUTOFF) continue;
           mask = { data, width, height, scaleX, scaleY };
-          center = { x: (left + right + 1) / (2 * width), y: (top + bottom + 1) / (2 * height) };
+          break;
         }
       } catch {
         // A renderer whose output cannot be read can still use projected bounds.
         context = null;
       }
     }
-    if (!mask) {
-      bounds = projectBounds(cssWidth, cssHeight);
-      center = bounds ? { x: (bounds.left + bounds.right) / (2 * cssWidth), y: (bounds.top + bounds.bottom) / (2 * cssHeight) } : undefined;
-    }
+    if (!mask) bounds = projectBounds(cssWidth, cssHeight);
     const nextMode = mask ? 'silhouette' : 'bounds';
     if (mode !== nextMode) { mode = nextMode; onMode(mode); }
     // Read from the frame already rendered. Landing never performs a GPU read
@@ -78,7 +66,6 @@ export function createSculpturePicker(canvas, projectBounds, onMode) {
 
   return {
     update,
-    get center() { return center; },
     hit(clientX, clientY, isTouch) {
       const rect = canvas.getBoundingClientRect();
       return hitSculptureMask(mask, bounds, clientX - rect.left, clientY - rect.top, isTouch ? TOUCH_TOLERANCE : 0);
