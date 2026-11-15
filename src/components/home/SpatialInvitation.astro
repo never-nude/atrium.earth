@@ -1,6 +1,6 @@
 ---
 import { currentProgramme, type MuseumProgramme } from '../../lib/programme';
-import { workBySlug } from '../../lib/catalog';
+import { isFeaturedWork, workBySlug } from '../../lib/catalog';
 import { arVrFeatured } from '../../lib/spatial-catalog';
 import { v3WorkRoute } from '../../lib/v3';
 import { withBase } from '../../lib/urls';
@@ -9,7 +9,8 @@ import spatialManifest from '../../../public/spatial-museum/collection-manifest.
 type Props = { programme?: MuseumProgramme };
 const { programme = currentProgramme } = Astro.props;
 const room = programme.room || spatialManifest.rooms[0];
-const roomWork = room?.slugs.map(slug => workBySlug(slug)).find(Boolean);
+const roomWorkSlug = room?.slugs.find(isFeaturedWork);
+const roomWork = roomWorkSlug ? workBySlug(roomWorkSlug) : undefined;
 const spatialWork = arVrFeatured.find(work => work.spatialAccess?.enabled);
 const roomUrl = room ? `/spatial-museum/?room=${room.id}` : '/spatial-museum/';
 const arUrl = spatialWork ? `${v3WorkRoute(spatialWork)}#ar-vr` : '/ar-vr/';
@@ -35,6 +36,7 @@ const arUrl = spatialWork ? `${v3WorkRoute(spatialWork)}#ar-vr` : '/ar-vr/';
   .spatial-invitation__eyebrow { margin: 0 0 24px; }
   .spatial-invitation__entries { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 30px; }
   .spatial-invitation__entry { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(100px, .75fr); gap: 17px; align-items: center; padding: 26px; border: 1px solid var(--v3-line); background: var(--v3-well); }
+  .spatial-invitation__entry:not(:has(.spatial-invitation__art)) { grid-template-columns: 1fr; }
   .spatial-invitation__copy .v3-kicker { margin: 0 0 14px; font-size: 10px; }
   .spatial-invitation h2 { margin: 0 0 15px; font-size: clamp(23px, 2.4vw, 32px); line-height: 1.18; font-weight: 500; letter-spacing: -.035em; }
   .spatial-invitation__copy > p:not(.v3-kicker) { margin: 0 0 12px; color: var(--v3-muted); font-size: 12px; line-height: 1.7; }
