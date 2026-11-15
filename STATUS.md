@@ -2323,3 +2323,8 @@ The approved title fixes, automatic download gate and promotion exclusions are r
 
 - The owner superseded directional ownership after trying it on iPhone. PR #88 remains the handling draft. Touch-down on the silhouette claims the sculpture. Backdrop landings and landings during scrolling remain native. A soft purple light signals a held sculpture. The model keeps mouse and wheel input on OrbitControls.
 - The phone preview remains on 5196. Verify the revised build, then wait for native iPhone feedback before asking for approval to deploy.
+
+### Handling published and hold light removed in follow-up
+
+- Mike approved touch-down handling on his iPhone. [PR 88](https://github.com/never-nude/atrium.earth/pull/88) deployed via [Pages run 43767796471](https://github.com/never-nude/atrium.earth/actions/runs/43767796471). The live browser suite passed after retrying a timed-out model load.
+- Mike then asked to remove the purple cue. This chat owns `codex/remove-sculpture-hold-glow`. The candidate removes the decorative overlay and validates landing ownership through the browser event itself. The preview is on port 5196.

@@ -160,12 +160,12 @@ function inputFixture(t, wheelZoom = true) {
   const camera = new THREE.PerspectiveCamera();
   camera.position.set(0, 0, 4);
   const controls = new OrbitControls(camera, canvas);
-  const interactions = [], factors = [], held = [], orbits = [], pans = [], pinches = [];
+  const interactions = [], factors = [], orbits = [], pans = [], pinches = [];
   let resets = 0, discarded = 0, time = 0;
   bindViewerZoom({ canvas, signal: lifetime.signal, canHandle: () => wheelZoom && controls.enabled, onZoom: factor => factors.push(factor) });
   const input = bindViewerInput({
     canvas, controls, signal: lifetime.signal, wheelZoom,
-    hit: x => x >= 35 && x <= 65, onHeld: value => held.push(value),
+    hit: x => x >= 35 && x <= 65,
     onInteraction: next => interactions.push(next), onWheel() {},
     onTurn() {}, onReset: () => resets++, onDiscardInertia: () => discarded++,
     onOrbit: (dx, dy) => orbits.push([dx, dy]), onPan: (dx, dy) => pans.push([dx, dy]),
@@ -204,7 +204,7 @@ function inputFixture(t, wheelZoom = true) {
   const move = (x, y, options) => touchEvent('touchmove', [point(x, y)], options);
   const lift = (x, y, options) => touchEvent('touchend', [], { changedTouches: [point(x, y)], ...options });
   return { canvas, canvasCapture, document, documentCapture, lifetime, controls, camera, input, interactions, factors,
-    held, orbits, pans, pinches, pressPointer, wheel, touchEvent, start, move, lift,
+    orbits, pans, pinches, pressPointer, wheel, touchEvent, start, move, lift,
     get resets() { return resets; }, get discarded() { return discarded; } };
 }
 
@@ -213,13 +213,11 @@ test('touch over the silhouette immediately holds, orbits vertically and release
   assert.equal(v.canvas.style.touchAction, 'auto');
   assert.equal(v.pressPointer('touch', 50), true, 'OrbitControls never sees a native touch pointer');
   assert.equal(v.start(50, 10), true);
-  assert.deepEqual(v.held, [true]);
   assert.deepEqual(v.interactions, [true]);
   assert.equal(v.move(50, 50), true);
   assert.equal(v.move(90, 55), true, 'ownership survives leaving the silhouette');
   assert.deepEqual(v.orbits, [[0, 40], [40, 5]]);
   v.lift(90, 55);
-  assert.deepEqual(v.held, [true, false]);
   assert.deepEqual(v.interactions, [true, false]);
   assert.equal(v.resets, 0);
 });
@@ -236,17 +234,17 @@ test('backdrop, fling and uncancelable touches leave the viewer untouched', t =>
   assert.equal(v.start(50, 10), false);
   assert.equal(v.move(50, 70), false);
   v.lift(50, 70);
-  assert.deepEqual(v.held, []);
+  assert.deepEqual(v.interactions, []);
   assert.deepEqual(v.orbits, []);
   assert.equal(v.pressPointer('mouse', 10), true);
 });
 
-test('cancel drops the glow and clears the distance baseline for the next touch', t => {
+test('cancel ends input and clears the distance baseline for the next touch', t => {
   const v = inputFixture(t);
   v.start(50, 10);
   v.move(50, 30);
   v.touchEvent('touchcancel', []);
-  assert.deepEqual(v.held, [true, false]);
+  assert.deepEqual(v.interactions, [true, false]);
   assert.equal(v.discarded, 2);
   v.start(60, 80);
   v.move(63, 85);
