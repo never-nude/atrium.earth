@@ -13,6 +13,11 @@ const visible = read('catalog').filter(work => !work.hidden)
   .map(work => ({ ...work, hasPreview: Boolean(previews[work.slug]?.url) }));
 const selected = buildFeaturedSelection(review, visible, renders);
 const allowed = new Set(selected.map(work => work.slug));
+assert.equal(review.promotionExclusions.length, 36, 'The owner-selected promotion hold contains 34 confirmed works and two unresolved makers.');
+for (const slug of review.promotionExclusions) {
+  assert.ok(!allowed.has(slug), `${slug}: promotion exclusion must stay outside the featured pool`);
+  assert.ok(visible.some(work => work.slug === slug), `${slug}: promotion removal must retain the public catalogue record`);
+}
 const homepageApproved = new Set(review.works.filter(entry => entry.homepage).map(entry => entry.slug));
 const homepagePool = selected.filter(work => homepageApproved.has(work.slug));
 assert.equal(selected.length, FEATURED_WORK_COUNT);
@@ -56,6 +61,8 @@ assert.throws(() => buildFeaturedSelection(duplicate, visible, renders), /Duplic
 assert.throws(() => buildFeaturedSelection({ ...review, works: review.works.slice(1) }, visible, renders), /exactly 250/);
 const noReason = copy(); noReason.works[0].reason = '';
 assert.throws(() => buildFeaturedSelection(noReason, visible, renders), /curatorial reason/);
+const excluded = copy(); excluded.promotionExclusions.push(excluded.works[0].slug);
+assert.throws(() => buildFeaturedSelection(excluded, visible, renders), /excluded from promotion/);
 const noHomepage = copy(); delete noHomepage.works[0].homepage;
 assert.throws(() => buildFeaturedSelection(noHomepage, visible, renders), /homepage decision/);
 const unknown = copy(); unknown.works[0].slug = 'fixture/missing';

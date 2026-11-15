@@ -36,8 +36,8 @@ const exhibitions = [
 }));
 const pairings = content.pairings.filter(pair => reviewed.some(work => work.slug === pair.a) && reviewed.some(work => work.slug === pair.b))
   .map(pair => ({ ...pair, a: bySlug.get(pair.a), b: bySlug.get(pair.b) }));
-const colourPair = pairings.find(pair => pair.a.slug === 'modern/saint-phalle-firebird-stravinsky'
-  && pair.b.slug === 'americas-oceania/jeff-koons-play-doh');
+const surfacePair = pairings.find(pair => pair.a.slug === 'europe/covered-tureen-meissonnier-cleveland'
+  && pair.b.slug === 'asia/minai-bowl-courtly-scene-mia');
 const rejectedPair = pairings.find(pair => pair.a.slug === 'egyptian/portrait-of-nefertiti-smk-cast'
   && pair.b.slug === 'roman/bust-of-augustus-oak-crown-msr');
 const homepagePairings = pairings.filter(pair => pair !== rejectedPair
@@ -69,9 +69,9 @@ for (const focus of programmes.focuses) {
 }
 assert.equal(reviewed.length, 250, 'The explicit featured membership remains unchanged.');
 assert.ok(eligible.length >= 7);
-assert.ok(colourPair, 'The vivid comparison resolves from the existing reviewed catalogue.');
+assert.ok(surfacePair, 'The replacement surface comparison resolves from the reviewed catalogue.');
 assert.ok(rejectedPair, 'Excluding a homepage pairing preserves its catalogue entry.');
-assert.ok(homepagePairings.includes(colourPair));
+assert.ok(homepagePairings.includes(surfacePair));
 
 for (const invalid of ['2026-02-29', '2026-02-30', '2026-13-01', '2026-00-01', '2026-11-6', '2026-11-06T00:00:00Z', '', ' 2026-11-06']) {
   assert.throws(() => parseProgrammeDate(invalid));
@@ -140,7 +140,7 @@ for (let week = 0; week < 32; week += 1) {
     assert.ok([pair.a, pair.b].every(work => approved.has(work.slug) && isPreviewBudgetEligible(work, previews)));
   }
   const spotlighted = programme.focus.slug === 'the-work-of-the-surface';
-  if (spotlighted) assert.equal(programme.pairings[0], colourPair);
+  if (spotlighted) assert.equal(programme.pairings[0], surfacePair);
   const pairScores = programme.pairings.slice(spotlighted ? 1 : 0).map(pair => overlap([pair.a.slug, pair.b.slug], focus));
   assert.deepEqual(pairScores, [...pairScores].sort((a, b) => b - a));
   assert.ok(rooms.includes(programme.room));
@@ -151,7 +151,7 @@ assert.equal(layoutKeys.size, 1);
 for (let offset = 0; offset < 28; offset += 1) {
   const programme = buildMuseumProgramme({ ...inputs, date: new Date(anchor + offset * DAY) });
   assert.equal(programme.focus.slug, 'the-work-of-the-surface');
-  assert.equal(programme.pairings[0], colourPair, 'Colour Takes Shape leads throughout the current four-week focus.');
+  assert.equal(programme.pairings[0], surfacePair, 'Ornament Follows Form leads throughout the current four-week focus.');
 }
 assert.equal(forDate('2026-11-29T23:59:59.999Z').focus.slug, 'the-work-of-the-surface');
 assert.equal(forDate('2026-11-30T00:00:00.000Z').focus.slug, 'bodies-in-motion');

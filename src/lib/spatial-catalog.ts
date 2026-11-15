@@ -7,7 +7,7 @@ export const arVrApproximateCount = arVrWorks.filter(work => work.spatialAccess.
 export const arVrUnknownCount = arVrWorks.filter(work => work.spatialAccess.status === 'unknown').length;
 
 // Show unknown (red), approximate (yellow), then verified (green) dimensions; thumbnails are not to scale.
-const candidates = ['laocoon', 'modern/dubuffet-la-chiffonniere', 'asia/gilt-bronze-pensive-bodhisattva-e989b9'];
+const candidates = ['laocoon', 'egyptian/seated-scribe-e3023-louvre', 'asia/gilt-bronze-pensive-bodhisattva-e989b9'];
 export const arVrFeatured = candidates.map(slug => workBySlug(slug))
   .filter((work): work is Work => Boolean(work?.spatialAccess.enabled && isFeaturedWork(work)));
 for (const work of featuredWorks) {

@@ -8,8 +8,10 @@ export function buildFeaturedSelection(review, works, renders) {
     throw new Error(`Featured review must contain exactly ${FEATURED_WORK_COUNT} works.`);
   }
   const bySlug = new Map(works.map(work => [work.slug, work]));
+  const excluded = new Set(review.promotionExclusions ?? []);
   const seen = new Set();
   return review.works.map(entry => {
+    if (excluded.has(entry.slug)) throw new Error(`Work is excluded from promotion: ${entry.slug}`);
     if (seen.has(entry.slug)) throw new Error(`Duplicate featured work: ${entry.slug}`);
     seen.add(entry.slug);
     const work = bySlug.get(entry.slug);
