@@ -2298,3 +2298,9 @@ Concurrent publication integrated: main `adf948603428fe313a5b5fcbd2678fe7f69fc6f
 
 - The owner approved default rotation and deployment as the last change in Step 2. The homepage hero, featured exhibition, close comparisons, and the paired exhibition cover use automatic 3D previews when visible. The page can scroll over a preview until the visitor selects it. Reduced-motion visitors get a still image with an explicit 3D button.
 - `codex/step-2-preview-rotation` owns the change. The Node suite passed with a regression check for scroll-first handling. Verify the full release and live motion before starting Step 3.
+
+
+## 2026-11-14 — Oceania-first acquisition started
+
+- Owner/task: this Codex chat, branch `codex/oceania-expansion-20261114`, based on `b8b054660`. User requested 100+ new pieces, prioritizing the small Oceania selection. Initial catalog: 3,141 records, with 28 assigned to Oceania.
+- Discovery is split across Polynesia, Melanesia/Micronesia and Australia. Current publisher/license/download checks, exact-object deduplication, source/serving visual review, permanent private backup, verified deployment and bounded local cleanup remain required. All accepted chunks will share logical batch `oceania-expansion-20261114`. No new piece is acquired or published at this checkpoint.
