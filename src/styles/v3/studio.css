@@ -234,7 +234,7 @@ body .v3-explorer:has(.v3-collection-switch) .v3-filter-row select, body .v3-exp
 .v3-object-viewer-controls { display: flex; align-items: center; gap: 8px 16px; margin: 0 var(--v3-pad); padding: 9px 0; border-top: 1px solid var(--v3-line); border-bottom: 1px solid var(--v3-line); }
 .v3-object-viewer-controls .immersive-tools { gap: 3px; }
 .v3-object-viewer-controls .immersive-tools button, .v3-object-viewer-controls .immersive-light summary { min-height: 40px; height: 40px; padding: 8px 12px; border-radius: 7px; color: var(--v3-muted); font-size: 11px; letter-spacing: 0; text-transform: none; }
-.v3-object-viewer-controls .immersive-tools button:hover, .v3-object-viewer-controls .immersive-tools button[aria-pressed="true"] { color: var(--v3-ink); background: #26374e; }
+.v3-object-viewer-controls .immersive-tools button:hover { color: var(--v3-ink); background: #26374e; }
 .immersive-light__panel { border: 1px solid var(--v3-line-strong); border-radius: 12px; background: var(--v3-chrome-solid); box-shadow: 0 14px 40px rgba(0, 0, 0, .2); }
 .v3-object-stage > .viewer:not(:fullscreen):not([data-viewer-expanded]) .stage-hint { position: static; inset: auto; flex: 0 0 auto; width: auto; max-width: none; margin: 10px var(--v3-pad) 0; color: var(--v3-faint); transform: none; font-size: 10px; line-height: 1.6; text-align: left; }
 .v3-object-stage > .viewer .viewer-start { margin-inline: var(--v3-pad); }

@@ -1,6 +1,7 @@
 ---
 import SpatialViewing from './SpatialViewing.astro';
 import previewStills from '../data/viewer-stills.json';
+import { previewStartMode } from '../lib/viewer-preview.mjs';
 type Props = {
   glb?: string;
   modelBytes?: number;
@@ -16,6 +17,7 @@ type Props = {
   immersive?: boolean;
   posterLoading?: 'eager' | 'lazy';
   autoStart?: boolean | 'visible' | 'preview';
+  measureStill?: boolean;
   autoRotate?: boolean;
   autoRotateSpeed?: number;
   // Positive values turn the sculpture counterclockwise when viewed from above.
@@ -49,7 +51,8 @@ const {
   materialAppearance = {},
   immersive = false,
   posterLoading = 'lazy',
-  autoStart = true,
+  autoStart: requestedAutoStart = true,
+  measureStill = false,
   autoRotate = true,
   autoRotateSpeed,
   turntableDegreesPerSecond,
@@ -70,6 +73,7 @@ const {
   displaySupport,
 } = Astro.props;
 const hasModel = Boolean(glb);
+const autoStart = previewStartMode(requestedAutoStart, modelBytes);
 const uid = Math.random().toString(36).slice(2, 8);
 const appearanceJson = JSON.stringify(materialAppearance);
 const thumbnailSlug = /\/previews\/renders\/(.+)\/thumb\.webp(?:\?.*)?$/.exec(poster)?.[1];
@@ -98,7 +102,7 @@ const sizeLabel = modelBytes && modelBytes > 0 ? ` · ${(modelBytes / 1e6).toFix
     <span class="stage-corner stage-corner--br" aria-hidden="true"></span>
     <span class="stage-tag" aria-hidden="true">{tag ?? (hasModel ? '3D MODEL' : 'PHOTOGRAPH')}</span>
 
-    <img src={renderedStill || poster} data-fallback-poster={renderedStill ? poster : undefined} alt={posterAlt ?? `${title} — still image`} width="720" height="900" loading={posterLoading} decoding="async" data-poster />
+    <img src={renderedStill || poster} data-fallback-poster={renderedStill ? poster : undefined} alt={posterAlt ?? `${title} — still image`} width="720" height="900" loading={posterLoading} decoding="async" elementtiming={measureStill ? 'atrium-homepage-still' : undefined} data-poster />
     {hasStartStrip && <div class="viewer-download" aria-hidden="true"><span data-download-bar></span></div>}
 
     {/* Rendered hidden: the script reveals it only when it is needed (auto-start
@@ -877,15 +881,18 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     if (!stage || !glb) return;
     const lifetime = new AbortController();
     const poster = root.querySelector<HTMLImageElement>('[data-poster]');
+    const activate = root.querySelector('[data-activate]') as HTMLButtonElement | null;
     const fallbackPoster = () => {
-      if (!poster?.dataset.fallbackPoster) return;
+      if (!poster?.dataset.fallbackPoster) {
+        if (activate) activate.hidden = false;
+        return;
+      }
       const fallback = poster.dataset.fallbackPoster;
       delete poster.dataset.fallbackPoster;
       stage?.removeAttribute('data-rendered-still');
       poster.src = fallback;
     };
     const loading = root.querySelector('[data-loading]') as HTMLElement | null;
-    const activate = root.querySelector('[data-activate]') as HTMLButtonElement | null;
     const activateLabel = root.querySelector('[data-activate-label]');
     const status = root.querySelector('[data-viewer-status]');
     const hud = root.querySelector('[data-hud-panel]') as HTMLElement | null;
@@ -900,11 +907,12 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     // Opening a collection miniature is already an explicit activation in its parent page.
     if (poster?.complete && !poster.naturalWidth) fallbackPoster();
     poster?.addEventListener('error', fallbackPoster, { signal: lifetime.signal });
-    const startMode = document.documentElement.classList.contains('studio-peek') ? 'true' : root.dataset.autoStart;
+    const studioPeek = document.documentElement.classList.contains('studio-peek');
+    const startMode = studioPeek ? 'true' : root.dataset.autoStart;
     const previewMode = startMode === 'preview';
     const handlingEnabled = startMode === 'false' || previewMode;
     const previewMotion = previewMode ? window.matchMedia('(prefers-reduced-motion: reduce)') : undefined;
-    const lazy = startMode === 'visible' && 'IntersectionObserver' in window;
+    const observeStill = !studioPeek && (startMode !== 'false' || poster?.hasAttribute('elementtiming'));
     const size = Number(root.dataset.modelBytes) || 0;
     const examineLabel = handlingEnabled && size ? `Examine in 3D · ${(size / 1e6).toFixed(1)} MB` : 'Examine in 3D';
     const announceState = (state: string) => {
@@ -924,11 +932,9 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     let generation = 0;
     let started = false;
     let requestedHandling = startMode === 'false';
-    let autoStartReady = false;
-    let startTimer: number | undefined;
-    let idleCallback: number | undefined;
+    let stillFrame: number | undefined;
+    let stillPending = false;
     let visibilityObserver: IntersectionObserver | undefined;
-    let preloadObserver: IntersectionObserver | undefined;
     function clearHandlingFeedback() {
       window.clearTimeout(feedbackTimer);
       if (handlingFeedback) handlingFeedback.textContent = '';
@@ -1166,40 +1172,70 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
       if (startStrip) startStrip.hidden = false;
     }
     root.addEventListener('atrium:viewer-render-error', event => fail((event as CustomEvent).detail.reason), { signal: lifetime.signal });
+    const canPaintStill = () => poster && poster.complete && poster.naturalWidth > 0
+      && !document.hidden && !pageSuspended && intersectsViewport()
+      && (poster.checkVisibility?.({ opacityProperty: true, visibilityProperty: true }) ?? true);
+    function observeStillPaint() {
+      if (!observeStill || !poster || root.dataset.stillPainted || stillPending || !canPaintStill()) return;
+      const image = poster;
+      const source = image.currentSrc;
+      stillPending = true;
+      const sameStill = () => !lifetime.signal.aborted && image.currentSrc === source && canPaintStill();
+      const retryReplacement = () => {
+        stillPending = false;
+        if (!lifetime.signal.aborted && image.currentSrc !== source) refresh();
+      };
+      void image.decode().then(() => {
+        if (!sameStill()) { retryReplacement(); return; }
+        // rAF runs before paint. Leave a full visible frame for the decoded
+        // poster before allowing any automatic model request.
+        stillFrame = window.requestAnimationFrame(() => {
+          if (!sameStill()) { retryReplacement(); return; }
+          stillFrame = window.requestAnimationFrame(() => {
+            if (!sameStill()) { retryReplacement(); return; }
+            stillPending = false;
+            root.dataset.stillPainted = 'true';
+            if (image.hasAttribute('elementtiming')) performance.mark('atrium-homepage-still-painted');
+            refresh();
+          });
+        });
+      }, retryReplacement);
+    }
     const refresh = () => {
       visible = intersectsViewport();
       activeViewer?.setVisible(visible && !pageSuspended);
       if (visible) {
         const resident = residents.get(root);
         if (resident) { residents.delete(root); residents.set(root, resident); }
-        if (!document.hidden && (lazy || autoStartReady && !previewMotion?.matches)) startAutomatically();
+        observeStillPaint();
+        if (!document.hidden && (studioPeek || root.dataset.stillPainted && startMode !== 'false' && !previewMotion?.matches)) {
+          startAutomatically();
+        }
       }
       trimResidents();
     };
     if ('IntersectionObserver' in window) {
       visibilityObserver = new IntersectionObserver(refresh);
       visibilityObserver.observe(stage);
-      if (lazy) {
-        preloadObserver = new IntersectionObserver(([entry]) => { if (entry.isIntersecting && !document.hidden) startAutomatically(); }, { rootMargin: '200px 0px' });
-        preloadObserver.observe(stage);
-      }
     } else {
       window.addEventListener('scroll', refresh, { passive: true, signal: lifetime.signal });
       window.addEventListener('resize', refresh, { signal: lifetime.signal });
     }
     mountedViewers.set(root, { refresh, dispose: () => {
-      lifetime.abort(); visibilityObserver?.disconnect(); preloadObserver?.disconnect();
-      window.clearTimeout(startTimer);
-      if (idleCallback !== undefined) (window as any).cancelIdleCallback?.(idleCallback);
+      lifetime.abort(); visibilityObserver?.disconnect();
+      if (stillFrame !== undefined) window.cancelAnimationFrame(stillFrame);
       release(); mountedViewers.delete(root);
     } });
-    // Load single featured works after first paint; older browsers retain click activation.
-    if (startMode === 'true' || previewMode) {
-      const begin = () => { autoStartReady = true; refresh(); };
-      previewMotion?.addEventListener('change', refresh, { signal: lifetime.signal });
-      if ('requestIdleCallback' in window) idleCallback = (window as any).requestIdleCallback(begin, { timeout: 1500 });
-      else startTimer = window.setTimeout(begin, 300);
+    if (observeStill) {
+      poster?.addEventListener('load', refresh, { signal: lifetime.signal });
+      // Some exhibition stills start in an opacity transition as they enter
+      // the viewport. Retry once that ancestor finishes revealing the still.
+      document.addEventListener('transitionend', event => {
+        if (event.propertyName === 'opacity' && event.target instanceof Element && event.target.contains(stage)) refresh();
+      }, { signal: lifetime.signal });
     }
+    previewMotion?.addEventListener('change', refresh, { signal: lifetime.signal });
+    refresh();
     if (activate && startMode !== 'true') activate.hidden = false;
   }
   const mountAll = () => { for (const root of document.querySelectorAll<HTMLElement>('[data-viewer]')) mountViewer(root); };
@@ -1262,7 +1298,8 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
   .immersive-tools button { min-height: 44px; white-space: nowrap; }
   .viewer:not(.viewer--immersive) .immersive-tools:not([hidden]) { position: absolute; z-index: 5; inset: auto 12px 12px; display: flex; gap: 4px; }
   .viewer:not(.viewer--immersive) .immersive-tools button { padding: 0 10px; color: #f7f5ef; background: #15243a; border: 1px solid #52637b; border-radius: 7px; font: inherit; font-size: 12px; }
-  .viewer:not(.viewer--immersive) .immersive-tools button:is(:hover, [aria-pressed="true"]) { color: #101827; background: #eccf7a; }
+  .viewer:not(.viewer--immersive) .immersive-tools button:hover { color: #101827; background: #eccf7a; }
+  .viewer[data-viewer] .immersive-tools button[aria-pressed="true"] { color: #101827; background: #e9d17e; }
   .spatial-unavailable { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; color: var(--v3-muted, #c9c6bd); font: 500 11px/1.5 var(--v3-sans, sans-serif); text-decoration: none; }
   .spatial-unavailable:hover { color: var(--v3-ink, #f7f5ef); text-decoration: underline; text-underline-offset: 4px; }
   .spatial-unavailable:focus-visible { outline: 2px solid var(--v3-signal, #eccf7a); outline-offset: 4px; }

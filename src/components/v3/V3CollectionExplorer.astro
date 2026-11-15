@@ -23,13 +23,13 @@ const explorerId = spatial ? 'ar-vr-explorer' : 'collection-explorer';
   <form class="v3-explorer__tools" data-v3-filter-form aria-label={spatial ? 'Search and filter AR and VR works' : 'Search and filter works'}>
     {collectionNavigation && (
       <nav class="v3-collection-switch" aria-label="Collection view">
-        <a href={withBase('/collection/')} data-v3-collection-view aria-current={!spatial ? 'page' : undefined}>All works <span>{collectionCount}</span></a>
-        <a href={withBase('/ar-vr/')} data-v3-collection-view aria-current={spatial ? 'page' : undefined}>AR / VR <span>{arVrCount}</span></a>
+        <a href={withBase('/collection/')} data-v3-collection-view aria-current={!spatial ? 'page' : undefined}>All works <span>{collectionCount.toLocaleString('en-US')}</span></a>
+        <a href={withBase('/ar-vr/')} data-v3-collection-view aria-current={spatial ? 'page' : undefined}>AR / VR <span>{arVrCount.toLocaleString('en-US')}</span></a>
       </nav>
     )}
     <label class="v3-search" for={`${explorerId}-search`}>
       <span class="v3-sr-only">Search the collection</span>
-      <input id={`${explorerId}-search`} type="search" placeholder={`Search ${works.length} works, makers, places…`} autocomplete="off" data-v3-search disabled={bounded} />
+      <input id={`${explorerId}-search`} type="search" placeholder={`Search ${works.length.toLocaleString('en-US')} works, makers, places…`} autocomplete="off" data-v3-search disabled={bounded} />
     </label>
 
     <div class="v3-filter-row">
@@ -39,7 +39,7 @@ const explorerId = spatial ? 'ar-vr-explorer' : 'collection-explorer';
       <label for={`${explorerId}-place`}><span>Place</span><select id={`${explorerId}-place`} data-v3-filter="place" disabled={bounded}><option value="">Everywhere</option>{facets.geography.map((item) => <option value={item.value}>{item.label}</option>)}</select></label>
       <label for={`${explorerId}-material`}><span>Material</span><select id={`${explorerId}-material`} data-v3-filter="material" disabled={bounded}><option value="">All materials</option>{facets.materials.map((item) => <option value={item.value}>{item.label}</option>)}</select></label>
       <button type="reset" data-v3-reset disabled={bounded}>Clear</button>
-      <p aria-live="polite" data-v3-count>{bounded ? `Works ${offset + 1}–${offset + visibleWorks.length} of ${works.length.toLocaleString()}` : `${works.length} works`}</p>
+      <p aria-live="polite" data-v3-count>{bounded ? `Works ${(offset + 1).toLocaleString('en-US')}–${(offset + visibleWorks.length).toLocaleString('en-US')} of ${works.length.toLocaleString('en-US')}` : `${works.length.toLocaleString('en-US')} works`}</p>
     </div>
   </form>
 

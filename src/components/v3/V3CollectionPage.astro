@@ -14,10 +14,10 @@ const pageCount = Math.ceil(works.length / COLLECTION_PAGE_SIZE);
 
 <section class="v3-collection collection-page" aria-label={spatial ? 'Works available in AR and VR' : 'All works'}>
   <div class="collection-page__entrance">
-    <a href={withBase(entrance)}>Search and filter all {works.length.toLocaleString()} works <span aria-hidden="true">→</span></a>
+    <a href={withBase(entrance)}>Search and filter all {works.length.toLocaleString('en-US')} works <span aria-hidden="true">→</span></a>
     <nav aria-label="Collection view"><a href={withBase('/collection/')}>All works</a><a href={withBase('/ar-vr/')}>AR / VR</a></nav>
   </div>
-  <p class="collection-page__count">Works {(offset + 1).toLocaleString()}–{(offset + visibleWorks.length).toLocaleString()} of {works.length.toLocaleString()}</p>
+  <p class="collection-page__count">Works {(offset + 1).toLocaleString('en-US')}–{(offset + visibleWorks.length).toLocaleString('en-US')} of {works.length.toLocaleString('en-US')}</p>
   <div class="v3-grid">{visibleWorks.map((work, index) => <V3WorkCard work={work} eager={index < 8} spatial={spatial} />)}</div>
   <nav class="collection-page__navigation" aria-label="Collection pages">
     {page > 1 && <a href={withBase(collectionPagePath(entrance, page - 1))} rel="prev">← Previous 60 works</a>}

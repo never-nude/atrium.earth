@@ -14,13 +14,13 @@ const newAdditions = recentlyPrepared(3);
 
 <BaseLayout
   title="Museum"
-  description={`Browse ${catalogCount} catalogued sculptures by era, place, material, and maker.`}
+  description={`Browse ${catalogCount.toLocaleString('en-US')} catalogued sculptures by era, place, material, and maker.`}
   image={featured.thumbnailImage}
 >
   <section class="page-shell" aria-labelledby="museum-title">
-    <p class="eyebrow">The museum · {catalogCount} works</p>
+    <p class="eyebrow">The museum · {catalogCount.toLocaleString('en-US')} works</p>
     <h1 id="museum-title">The collection.</h1>
-    <p class="lede">{catalogCount} catalogued works, with {works.length} currently available to browse. Use the filters to narrow by era, place, material, or maker — or search by name.</p>
+    <p class="lede">{catalogCount.toLocaleString('en-US')} catalogued works, with {works.length.toLocaleString('en-US')} currently available to browse. Use the filters to narrow by era, place, material, or maker — or search by name.</p>
     <TimelineStrip />
   </section>
 
@@ -40,6 +40,7 @@ const newAdditions = recentlyPrepared(3);
     <div class="feature-block">
       <Viewer
         glb={featured.hasPreview ? withBase(featured.modelGlb) : ''}
+        modelBytes={featured.modelBytes}
         poster={withBase(featured.thumbnailImage)}
         title={featured.title}
         hud={false}

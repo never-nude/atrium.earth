@@ -42,7 +42,7 @@ const groups = facets.eras.map((facet) => ({
     <section class="section" id={group.value} aria-labelledby={`${group.value}-title`}>
       <div class="section-head">
         <div>
-          <p class="eyebrow">{group.count} works</p>
+          <p class="eyebrow">{group.count.toLocaleString('en-US')} works</p>
           <h2 id={`${group.value}-title`}>{group.label}</h2>
         </div>
         <p class="lede">{group.firstYear !== null ? `Starts around ${formatYear(group.firstYear)}` : 'Dates are being reviewed for this group.'}</p>

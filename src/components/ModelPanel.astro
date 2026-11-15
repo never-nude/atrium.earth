@@ -23,6 +23,7 @@ const hasModel = Boolean(work.modelGlb);
     <div class="viewer-grid">
       <Viewer
         glb={hasModel ? withBase(work.modelGlb) : ''}
+        modelBytes={work.modelBytes}
         poster={withBase(work.thumbnailImage)}
         title={work.title}
         hud={true}

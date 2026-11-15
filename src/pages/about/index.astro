@@ -8,7 +8,7 @@ const stats = [
   ['Eras', facets.eras.length],
   ['Places', facets.geography.length],
   ['Materials', facets.materials.length],
-];
+] as const;
 ---
 
 <V3Layout title="About" description="What Atrium is, where the records come from, and how the 3D works.">
@@ -21,7 +21,7 @@ const stats = [
   <section class="about-content" aria-labelledby="how-title">
     <div class="about-copy">
       <h2 id="how-title">How it works</h2>
-      <p>Open any piece to turn it and look closely — or drop to a wireframe to see how it's built. The 3D loads on its own; a photo and the facts are always there too.</p>
+      <p>On a work’s page, choose Examine in 3D to load the model. Turn it to look closely or switch to wireframe to see how it’s built. A still image and the catalog record are available when you open the page.</p>
 
       <h2>Where the records come from</h2>
       <p>The records and 3D scans come from more than thirty open-access museums, archives and scanning projects, including the Cleveland Museum of Art, SMK Open, The Metropolitan Museum of Art, the Smithsonian, the Louvre, the Musée Saint-Raymond, the Małopolska museums, the Minneapolis Institute of Art, Threedscans and contributors on Sketchfab and Zenodo. Every work links to its source and carries that source's licence. We show the objective facts we can confirm — maker, date, material, dimensions, where it's held — and leave the rest blank rather than guess.</p>
@@ -40,7 +40,7 @@ const stats = [
       <h2 id="collection-title">The collection</h2>
       <div class="about-stat-grid">
         {stats.map(([label, value]) => (
-          <div class="about-stat"><strong>{value}</strong><span>{label}</span></div>
+          <div class="about-stat"><strong>{value.toLocaleString('en-US')}</strong><span>{label}</span></div>
         ))}
       </div>
     </aside>

@@ -47,6 +47,7 @@ const stops = exhibition.works.map((work, index) => ({
     ) : <div class="v3-exhero__viewer v3-exhibition-viewer v3-float v3-float--soft" data-featured-work={lead.slug}>
       <Viewer
         glb={lead.modelGlb ? withBase(lead.modelGlb) : ''}
+        modelBytes={lead.modelBytes}
         poster={withBase(lead.thumbnailImage)}
         title={lead.title}
         hud={false}
@@ -91,6 +92,7 @@ const stops = exhibition.works.map((work, index) => ({
         <div class="v3-stop__viewer v3-exhibition-viewer v3-float" style={`view-transition-name: w-${stop.work.id};`}>
           <Viewer
             glb={stop.work.modelGlb ? withBase(stop.work.modelGlb) : ''}
+            modelBytes={stop.work.modelBytes}
             poster={withBase(stop.work.thumbnailImage)}
             title={stop.work.title}
             hud={false}

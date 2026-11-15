@@ -40,7 +40,7 @@ const heroAlt = [
 
 <V3Layout
   title="Atrium.Earth"
-  description={`Explore ${collectionCount} sculptures in 3D, save favourites, and visit themed galleries. ${arVrCount} models are available in AR and VR on compatible devices.`}
+  description={`Explore ${collectionCount.toLocaleString('en-US')} sculptures in 3D, save favourites, and visit themed galleries. ${arVrCount.toLocaleString('en-US')} models are available in AR and VR on compatible devices.`}
   image={featuredWork.thumbnailImage}
 >
   <div class="home-programme" data-programme data-programme-week={currentProgramme.weekKey} data-programme-day={currentProgramme.dayKey} data-programme-layout={currentProgramme.layout} data-programme-hero={featuredWork.slug} style={`--home-programme-accent:${currentProgramme.accent}`}>
@@ -55,6 +55,7 @@ const heroAlt = [
         hud={false}
         immersive={true}
         posterLoading="eager"
+        measureStill
         upAxis={featuredWork.modelUpAxis}
         modelTransform={featuredWork.modelTransform}
         materialAppearance={heroAppearance}

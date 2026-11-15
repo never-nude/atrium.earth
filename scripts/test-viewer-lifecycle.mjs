@@ -7,6 +7,17 @@ import { createViewerRenderLoop, bindViewerRenderEvents } from '../src/lib/viewe
 import { bindViewerInput, bindViewerReset, bindViewerZoom, handleViewerKey, orbitViewer } from '../src/lib/viewer-input.mjs';
 import { disposeViewerScene } from '../src/lib/viewer-resources.mjs';
 import { bindSpatialViewing } from '../src/lib/spatial-viewer.mjs';
+import { AUTO_START_MODEL_LIMIT, previewStartMode } from '../src/lib/viewer-preview.mjs';
+
+test('only known model sizes at or below 3 MB can start automatically', () => {
+  for (const mode of [true, 'preview', 'visible']) {
+    assert.equal(previewStartMode(mode, AUTO_START_MODEL_LIMIT), mode);
+    for (const size of [AUTO_START_MODEL_LIMIT + 1, undefined, 0, -1, NaN, 2.5]) {
+      assert.equal(previewStartMode(mode, size), false);
+    }
+  }
+  assert.equal(previewStartMode(false, 1), false);
+});
 
 function frames(draw, options = {}) {
   const queued = new Map(); let next = 1, time = 0;

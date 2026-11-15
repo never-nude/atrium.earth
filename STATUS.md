@@ -2298,3 +2298,11 @@ Concurrent publication integrated: main `adf948603428fe313a5b5fcbd2678fe7f69fc6f
 
 - The owner approved default rotation and deployment as the last change in Step 2. The homepage hero, featured exhibition, close comparisons, and the paired exhibition cover use automatic 3D previews when visible. The page can scroll over a preview until the visitor selects it. Reduced-motion visitors get a still image with an explicit 3D button.
 - `codex/step-2-preview-rotation` owns the change. The Node suite passed with a regression check for scroll-first handling. Verify the full release and live motion before starting Step 3.
+
+### 2026-11-14 — Awwwards Step 2B draft
+
+Work branch `codex/step-2b-preview-audit` starts from `b8b054660`. Toggle contrast, normal-motion browser coverage, count formatting, About copy and Lighthouse model accounting are implemented and checked locally. See `docs/awwwards-run.md` for measurements. Wait for the owner’s title, cap and promotional-slot choices, then finish and request separate deployment approval. The acquisition branch checkpoint `a2385e6a1` has 26 reviewed Oceania additions pending publication. Keep acquisitions on hold during the Pages package work.
+
+### 2026-11-14 — Step 2B approved changes verified locally
+
+The approved title fixes, automatic download gate and promotion exclusions are ready for deployment review. All 44 browser checks pass and the three homepage performance numbers are recorded in `docs/awwwards-run.md`. Wait for deployment approval before merging. The Pacific addition batch remains paused during the Pages package work.

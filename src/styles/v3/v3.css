@@ -367,7 +367,7 @@ em, i { font-style: normal; }
 .immersive-tools { position: absolute; z-index: 20; left: 50%; bottom: 24px; display: flex; align-items: center; gap: 4px; padding: 5px; background: rgba(7,10,16,.62); border: 1px solid rgba(255,255,255,.18); border-radius: 999px; backdrop-filter: blur(16px); transform: translateX(-50%); }
 .immersive-tools button { min-width: 42px; height: 38px; padding: 0 12px; color: rgba(255,255,255,.75); background: transparent; border: 0; border-radius: 999px; cursor: pointer; font-size: .6rem; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; }
 .immersive-tools button:first-child, .immersive-tools button:nth-child(2) { min-width: 38px; padding: 0; font-size: 1rem; }
-.immersive-tools button:hover, .immersive-tools button[aria-pressed="true"] { color: var(--v3-void); background: var(--v3-signal); }
+.immersive-tools button:hover { color: var(--v3-void); background: var(--v3-signal); }
 .viewer--immersive:fullscreen, .viewer--immersive:fullscreen .model-stage { width: 100vw; height: 100vh; background: var(--v3-void); }
 .viewer--immersive:fullscreen .immersive-tools { bottom: max(24px, env(safe-area-inset-bottom)); }
 .viewer--immersive:fullscreen .stage-hint { top: 24px; bottom: auto; }
