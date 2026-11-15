@@ -5,6 +5,7 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { createViewerRenderLoop, bindViewerRenderEvents } from '../src/lib/viewer-render-loop.mjs';
 import { bindViewerInput, bindViewerZoom, createRotationHold, createTouchGesture, handleViewerKey, orbitViewer } from '../src/lib/viewer-input.mjs';
+import { hitSculptureMask } from '../src/lib/sculpture-picking.mjs';
 import { disposeViewerScene } from '../src/lib/viewer-resources.mjs';
 import { bindSpatialViewing } from '../src/lib/spatial-viewer.mjs';
 import { AUTO_START_MODEL_LIMIT, previewStartMode } from '../src/lib/viewer-preview.mjs';
@@ -71,33 +72,48 @@ test('first-frame readiness waits for a successful visible draw and fires once p
   f.loop.destroy();
 });
 
-test('touch direction stays vertical or sideways for the whole finger sequence', () => {
-  const touch = createTouchGesture();
-  touch.begin(10, 10, false);
-  assert.equal(touch.move(11, 11), 'pending');
-  assert.equal(touch.move(12, 18), 'page');
-  assert.equal(touch.move(70, 20), 'page');
+const point = (clientX, clientY = 10, identifier = 1) => ({ clientX, clientY, identifier });
+
+test('touch-down decides ownership, with a midpoint exception before the page scrolls', () => {
+  const touch = createTouchGesture(x => x >= 35 && x <= 65);
+  touch.begin([point(50)], true, false);
+  assert.equal(touch.owner, 'sculpture');
+  touch.addFinger([point(50), point(90, 10, 2)], false);
+  assert.equal(touch.owner, 'sculpture', 'the first touch keeps ownership until lift');
   touch.end();
-  touch.begin(10, 10, false);
-  assert.equal(touch.move(18, 12), 'sculpture');
-  assert.equal(touch.move(20, 70), 'sculpture');
+  assert.equal(touch.owner, null);
+  touch.begin([point(15)], true, false);
+  assert.equal(touch.owner, 'page');
+  touch.addFinger([point(15), point(85, 10, 2)], true);
+  assert.equal(touch.owner, 'sculpture');
   touch.end();
-  touch.begin(10, 10, false);
-  assert.equal(touch.move(13, 13), 'sculpture', 'ties orbit');
+  touch.begin([point(15), point(85, 10, 2)], true, false);
+  assert.equal(touch.owner, 'sculpture', 'simultaneous pinch also tests the midpoint');
 });
 
-test('two fingers, cancellation and fullscreen have explicit touch ownership', () => {
-  const touch = createTouchGesture();
-  touch.begin(10, 10, false);
-  touch.addFinger();
-  assert.equal(touch.move(10, 35), 'sculpture');
+test('a fling or uncancelable start locks the sequence to the page', () => {
+  const touch = createTouchGesture(() => true);
+  touch.begin([point(50)], false, false);
+  touch.addFinger([point(25), point(75, 10, 2)], true);
+  assert.equal(touch.owner, 'page');
   touch.end();
-  assert.equal(touch.move(10, 35), null);
-  touch.begin(10, 10, true);
-  assert.equal(touch.move(10, 11), 'sculpture');
-  touch.end();
-  touch.begin(10, 10, false);
-  assert.equal(touch.move(10, 35), 'page');
+  const fullscreen = createTouchGesture(() => false);
+  fullscreen.begin([point(5)], true, true);
+  assert.equal(fullscreen.owner, 'sculpture');
+});
+
+test('the silhouette picker excludes the shadow and adds fingertip tolerance', () => {
+  const data = new Uint8ClampedArray(24 * 20 * 4);
+  data[4 * (10 * 24 + 8) + 3] = 255;
+  data[4 * (10 * 24 + 20) + 3] = 40;
+  const mask = { data, width: 24, height: 20, scaleX: 0.25, scaleY: 0.25 };
+  assert.equal(hitSculptureMask(mask, null, 32, 40, 0), true);
+  assert.equal(hitSculptureMask(mask, null, 80, 40, 12), false);
+  assert.equal(hitSculptureMask(mask, null, 44, 40, 12), true);
+  assert.equal(hitSculptureMask(mask, null, 48, 40, 12), false);
+  const bounds = {left: 20, right: 30, top: 20, bottom: 30};
+  assert.equal(hitSculptureMask(null, bounds, 42, 26, 12), true);
+  assert.equal(hitSculptureMask(null, bounds, 43, 26, 12), false);
 });
 
 test('rotation waits until the last input has been idle for four seconds', t => {
@@ -144,26 +160,29 @@ function inputFixture(t, wheelZoom = true) {
   const camera = new THREE.PerspectiveCamera();
   camera.position.set(0, 0, 4);
   const controls = new OrbitControls(camera, canvas);
-  const interactions = [], factors = [];
-  let resets = 0, turns = 0, discarded = 0, time = 0;
+  const interactions = [], factors = [], held = [], orbits = [], pans = [], pinches = [];
+  let resets = 0, discarded = 0, time = 0;
   bindViewerZoom({ canvas, signal: lifetime.signal, canHandle: () => wheelZoom && controls.enabled, onZoom: factor => factors.push(factor) });
   const input = bindViewerInput({
     canvas, controls, signal: lifetime.signal, wheelZoom,
+    hit: x => x >= 35 && x <= 65, onHeld: value => held.push(value),
     onInteraction: next => interactions.push(next), onWheel() {},
-    onTurn: () => turns++, onReset: () => resets++, onDiscardInertia: () => discarded++,
+    onTurn() {}, onReset: () => resets++, onDiscardInertia: () => discarded++,
+    onOrbit: (dx, dy) => orbits.push([dx, dy]), onPan: (dx, dy) => pans.push([dx, dy]),
+    onZoom: factor => pinches.push(factor),
   });
   t.after(() => { lifetime.abort(); controls.dispose(); });
-  function pointer(type, { pointerType = 'touch', id = 1, x = 10, y = 10, button = 0, elapsed = 10 } = {}) {
-    time += elapsed;
-    const event = Object.assign(new Event(type), { pointerType, pointerId: id, button, clientX: x, clientY: y, pageX: x, pageY: y });
-    Object.defineProperty(event, 'timeStamp', { value: time });
-    documentCapture.dispatchEvent(event);
-    if (type === 'pointerdown' || type === 'pointercancel') {
-      canvasCapture.dispatchEvent(event);
-      canvas.dispatchEvent(event);
-    } else document.dispatchEvent(event);
+
+  function pressPointer(pointerType, clientX) {
+    const event = Object.assign(new Event('pointerdown', { cancelable: true }), {
+      pointerType, pointerId: 1, button: 0, clientX, clientY: 10,
+    });
+    let stopped = false;
+    const stop = event.stopImmediatePropagation.bind(event);
+    event.stopImmediatePropagation = () => { stopped = true; stop(); };
+    canvasCapture.dispatchEvent(event);
+    return stopped;
   }
-  const tap = point => { pointer('pointerdown', point); pointer('pointerup', point); };
   const wheel = (modifiers = {}) => {
     const event = Object.assign(new Event('wheel', { cancelable: true }), { deltaY: 120, deltaMode: 0, clientX: 10, clientY: 10, ...modifiers });
     let stopped = false;
@@ -173,71 +192,82 @@ function inputFixture(t, wheelZoom = true) {
     if (!stopped) canvas.dispatchEvent(event);
     return event.defaultPrevented;
   };
-  function touchmove(x, y, cancelable = true) {
-    const event = Object.assign(new Event('touchmove', { cancelable }), { touches: [{clientX: x, clientY: y}] });
-    canvas.dispatchEvent(event);
+  function touchEvent(type, touches, { changedTouches = touches, cancelable = true, elapsed = 10, target = canvas } = {}) {
+    time += elapsed;
+    const event = Object.assign(new Event(type, { cancelable }), { touches, changedTouches });
+    Object.defineProperties(event, { timeStamp: { value: time }, target: { value: target } });
+    documentCapture.dispatchEvent(event);
+    if (target === canvas) canvas.dispatchEvent(event);
     return event.defaultPrevented;
   }
-  return { canvas, canvasCapture, document, documentCapture, lifetime, controls, camera, input, interactions, factors, pointer, tap, wheel, touchmove,
-    get resets() { return resets; }, get turns() { return turns; }, get discarded() { return discarded; } };
+  const start = (x, y, options) => touchEvent('touchstart', [point(x, y)], options);
+  const move = (x, y, options) => touchEvent('touchmove', [point(x, y)], options);
+  const lift = (x, y, options) => touchEvent('touchend', [], { changedTouches: [point(x, y)], ...options });
+  return { canvas, canvasCapture, document, documentCapture, lifetime, controls, camera, input, interactions, factors,
+    held, orbits, pans, pinches, pressPointer, wheel, touchEvent, start, move, lift,
+    get resets() { return resets; }, get discarded() { return discarded; } };
 }
 
-test('the canvas gives vertical flicks to the page and keeps a sideways turn claimed', t => {
+test('touch over the silhouette immediately holds, orbits vertically and releases', t => {
   const v = inputFixture(t);
-  const original = v.camera.position.clone();
-  assert.equal(v.canvas.style.touchAction, 'pan-y');
-  v.pointer('pointerdown');
-  v.pointer('pointermove', { y: 40, x: 14 });
-  assert.equal(v.touchmove(14, 40), false);
-  assert.ok(v.camera.position.distanceTo(original) < 1e-10);
-  v.pointer('pointercancel');
-  assert.equal(v.discarded, 2);
-  assert.deepEqual(v.interactions, [true, false]);
-
-  v.pointer('pointerdown');
-  v.pointer('pointermove', { x: 40, y: 14 });
-  assert.equal(v.touchmove(40, 14), true);
-  assert.ok(v.camera.position.distanceTo(original) > .01);
-  const beforeTilt = v.camera.position.clone();
-  v.pointer('pointermove', { x: 40, y: 60 });
-  assert.equal(v.touchmove(40, 60), true);
-  assert.equal(v.touchmove(40, 60, false), false, 'Do not prevent a non-cancelable touchmove');
-  assert.notEqual(v.camera.position.y, beforeTilt.y);
-  v.pointer('pointerup', { x: 40, y: 60 });
-  assert.equal(v.resets, 0);
-  assert.ok(v.turns >= 2);
-});
-
-test('only double gestures reset the sculpture', t => {
-  const v = inputFixture(t);
-  v.tap();
-  assert.equal(v.resets, 0);
-  v.tap();
-  assert.equal(v.resets, 1);
-  v.canvasCapture.dispatchEvent(Object.assign(new Event('dblclick'), { sourceCapabilities: { firesTouchEvents: true } }));
-  assert.equal(v.resets, 1);
-  v.canvasCapture.dispatchEvent(new Event('dblclick'));
-  assert.equal(v.resets, 2);
-  v.tap({elapsed: 400});
-  v.pointer('pointerdown', {x: 80});
-  v.pointer('pointermove', {x: 90});
-  v.pointer('pointerup', {x: 90});
-  v.tap({x: 90});
-  assert.equal(v.resets, 2);
-});
-
-test('a native scroll keeps rotation on hold until the thumb lifts', t => {
-  const v = inputFixture(t);
-  v.pointer('pointerdown');
-  v.canvasCapture.dispatchEvent(Object.assign(new Event('touchstart'), { targetTouches: [{}] }));
-  v.pointer('pointermove', { y: 40 });
-  v.pointer('pointercancel');
+  assert.equal(v.canvas.style.touchAction, 'auto');
+  assert.equal(v.pressPointer('touch', 50), true, 'OrbitControls never sees a native touch pointer');
+  assert.equal(v.start(50, 10), true);
+  assert.deepEqual(v.held, [true]);
   assert.deepEqual(v.interactions, [true]);
-  v.canvasCapture.dispatchEvent(Object.assign(new Event('touchend'), { targetTouches: [] }));
+  assert.equal(v.move(50, 50), true);
+  assert.equal(v.move(90, 55), true, 'ownership survives leaving the silhouette');
+  assert.deepEqual(v.orbits, [[0, 40], [40, 5]]);
+  v.lift(90, 55);
+  assert.deepEqual(v.held, [true, false]);
   assert.deepEqual(v.interactions, [true, false]);
+  assert.equal(v.resets, 0);
 });
 
-test('unmodified wheel scrolls the page unless fullscreen and wheel zoom is enabled', t => {
+test('backdrop, fling and uncancelable touches leave the viewer untouched', t => {
+  const v = inputFixture(t);
+  assert.equal(v.start(10, 10), false);
+  assert.equal(v.move(50, 70), false, 'dragging into the silhouette does not claim');
+  v.lift(50, 70);
+  assert.equal(v.start(50, 10, { cancelable: false }), false);
+  assert.equal(v.move(50, 70), false);
+  v.lift(50, 70);
+  v.documentCapture.dispatchEvent(new Event('scroll'));
+  assert.equal(v.start(50, 10), false);
+  assert.equal(v.move(50, 70), false);
+  v.lift(50, 70);
+  assert.deepEqual(v.held, []);
+  assert.deepEqual(v.orbits, []);
+  assert.equal(v.pressPointer('mouse', 10), true);
+});
+
+test('cancel drops the glow and clears the distance baseline for the next touch', t => {
+  const v = inputFixture(t);
+  v.start(50, 10);
+  v.move(50, 30);
+  v.touchEvent('touchcancel', []);
+  assert.deepEqual(v.held, [true, false]);
+  assert.equal(v.discarded, 2);
+  v.start(60, 80);
+  v.move(63, 85);
+  assert.deepEqual(v.orbits, [[0, 20], [3, 5]]);
+  v.lift(63, 85);
+});
+
+test('only a double tap or an artwork double-click resets', t => {
+  const v = inputFixture(t);
+  v.start(50, 10); v.lift(50, 10);
+  assert.equal(v.resets, 0);
+  v.start(50, 10); v.lift(50, 10);
+  assert.equal(v.resets, 1);
+  v.canvasCapture.dispatchEvent(Object.assign(new Event('dblclick'), {clientX: 10, clientY: 10}));
+  v.canvasCapture.dispatchEvent(Object.assign(new Event('dblclick'), {clientX: 50, clientY: 10, sourceCapabilities: { firesTouchEvents: true } }));
+  assert.equal(v.resets, 1);
+  v.canvasCapture.dispatchEvent(Object.assign(new Event('dblclick'), {clientX: 50, clientY: 10}));
+  assert.equal(v.resets, 2);
+});
+
+test('wheel and fullscreen retain their existing input exceptions', t => {
   const v = inputFixture(t);
   assert.equal(v.wheel(), false);
   assert.equal(v.wheel({ctrlKey: true}), true);
@@ -245,13 +275,11 @@ test('unmodified wheel scrolls the page unless fullscreen and wheel zoom is enab
   v.input.setFullscreen(true);
   assert.equal(v.canvas.style.touchAction, 'none');
   assert.equal(v.wheel(), true);
-  const before = v.camera.position.clone();
-  v.pointer('pointerdown');
-  v.pointer('pointermove', {y: 40});
-  assert.ok(v.camera.position.distanceTo(before) > .01);
-  v.pointer('pointerup', {y: 40});
+  assert.equal(v.start(10, 10), true);
+  assert.equal(v.move(10, 40), true);
+  v.lift(10, 40);
   v.input.setFullscreen(false);
-  assert.equal(v.canvas.style.touchAction, 'pan-y');
+  assert.equal(v.canvas.style.touchAction, 'auto');
   assert.equal(v.wheel(), false);
 
   const disabled = inputFixture(t, false);
@@ -290,17 +318,15 @@ test('Safari trackpad scale zooms the sculpture without duplicate Ctrl-wheel', t
   assert.equal(wheelEvents, 2);
 });
 
-test('touchscreen pinch stays with OrbitControls, including in wheel-disabled viewers', t => {
+test('a pinch can claim empty space by its midpoint, including in wheel-disabled viewers', t => {
   const v = inputFixture(t, false);
-  v.pointer('pointerdown');
-  v.pointer('pointerdown', { id: 2, x: 50 });
-  const before = v.camera.position.distanceTo(v.controls.target);
+  const a = point(15), b = point(85, 10, 2);
+  assert.equal(v.touchEvent('touchstart', [a, b]), true);
   assert.equal(dispatchGesture(v.canvasCapture, 'gesturestart', 1), false);
-  assert.equal(dispatchGesture(v.canvasCapture, 'gesturechange', 1.3), false);
-  v.pointer('pointermove', { id: 2, x: 72 });
-  assert.notEqual(v.camera.position.distanceTo(v.controls.target), before);
-  v.pointer('pointerup', { id: 2, x: 72 });
-  v.pointer('pointerup');
+  assert.equal(v.touchEvent('touchmove', [point(10, 20), point(95, 20, 2)]), true);
+  assert.deepEqual(v.pinches, [70 / 85]);
+  assert.deepEqual(v.pans, [[2.5, 10]]);
+  v.touchEvent('touchend', [], { changedTouches: [a,b] });
   assert.equal(v.resets, 0);
   v.lifetime.abort();
   assert.equal(getEventListeners(v.canvasCapture, 'gesturestart').length, 0);

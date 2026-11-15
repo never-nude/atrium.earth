@@ -1,30 +1,42 @@
 const FORM_CONTROL = 'input, textarea, select, button, a, summary, [contenteditable]:not([contenteditable="false"]), [role="textbox"]';
 
-const TAP_MOVEMENT_PX = 8;
 const DOUBLE_TAP_MS = 340;
 const DOUBLE_TAP_PX = 36;
 
-// Keep the first direction for the whole one-finger gesture. This follows
-// model-viewer's SmoothControls election, including horizontal ties.
-export function createTouchGesture() {
-  let owner = null;
-  let startX = 0, startY = 0;
+const SCROLL_QUIET_MS = 150;
+const scrollClocks = new WeakMap();
+const touchSequences = new WeakMap();
+
+function scrollClock(document) {
+  if (!scrollClocks.has(document)) {
+    let last = -Infinity;
+    document.addEventListener('scroll', () => { last = performance.now(); }, { capture: true, passive: true });
+    scrollClocks.set(document, () => last);
+  }
+  return scrollClocks.get(document);
+}
+
+export function createTouchGesture(hit) {
+  let owner = null, lockedToPage = false;
+  function hits(point) { return hit(point.clientX, point.clientY); }
+  function hitsMidpoint(points) {
+    return points.length > 1 && hit(
+      (points[0].clientX + points[1].clientX) / 2,
+      (points[0].clientY + points[1].clientY) / 2,
+    );
+  }
   return {
     get owner() { return owner; },
-    begin(x, y, fullscreen) {
-      startX = x;
-      startY = y;
-      owner = fullscreen ? 'sculpture' : 'pending';
+    begin(points, canClaim, fullscreen) {
+      lockedToPage = !canClaim;
+      owner = canClaim && (fullscreen || hits(points[0]) || hitsMidpoint(points)) ? 'sculpture' : 'page';
     },
-    addFinger() { owner = 'sculpture'; },
-    move(x, y) {
-      if (owner === 'pending') {
-        const dx = Math.abs(x - startX), dy = Math.abs(y - startY);
-        if (Math.max(dx, dy) >= 2) owner = dy > dx ? 'page' : 'sculpture';
-      }
-      return owner;
+    addFinger(points, canClaim) {
+      if (owner !== 'page') return;
+      if (!canClaim) lockedToPage = true;
+      if (!lockedToPage && hitsMidpoint(points)) owner = 'sculpture';
     },
-    end() { owner = null; },
+    end() { owner = null; lockedToPage = false; },
   };
 }
 
@@ -36,6 +48,7 @@ export function createRotationHold(signal, onChange) {
     onChange();
   }
   function rest() {
+    if (signal.aborted) return;
     clearTimeout(timer);
     setHeld(true);
     if (!interacting) timer = setTimeout(() => setHeld(false), 4000);
@@ -43,136 +56,186 @@ export function createRotationHold(signal, onChange) {
   signal.addEventListener('abort', () => clearTimeout(timer), { once: true });
   return {
     get held() { return held; },
+    get interacting() { return interacting; },
     setInteracting(next) { interacting = next; rest(); },
     noteInput: rest,
   };
 }
 
-export function bindViewerInput({ canvas, controls, signal, wheelZoom = true, onInteraction, onWheel, onTurn, onReset, onDiscardInertia }) {
+export function bindViewerInput({
+  canvas, controls, signal, wheelZoom = true, hit, onHeld, onOrbit, onPan, onZoom,
+  onInteraction, onWheel, onTurn, onReset, onDiscardInertia,
+}) {
   const document = canvas.ownerDocument;
-  const pointers = new Map();
-  const touch = createTouchGesture();
-  const rotateSpeed = controls.rotateSpeed;
+  const lastScroll = scrollClock(document);
+  const touch = createTouchGesture((x, y) => hit(x, y, true));
   const capture = { capture: true, passive: true, signal };
-  let fullscreen = false;
-  let nativeTouch = false, interacting = false;
-  let lastTap;
+  let fullscreen = false, sequence, landedAt, previous, lastTap, mouse;
+  let moved = false;
 
-  function syncInteraction() {
-    const next = nativeTouch || pointers.size > 0;
-    if (next === interacting) return;
-    interacting = next;
-    onInteraction(next);
+  const claimable = event => event.cancelable && controls.enabled && (fullscreen || (
+    performance.now() - lastScroll() >= SCROLL_QUIET_MS && lastScroll() < (landedAt ?? Infinity)
+  ));
+  const prevent = event => { if (event.cancelable) event.preventDefault(); };
+  const singlePoint = points => points.length === 1 ? points[0] : {
+    clientX: (points[0].clientX + points[1].clientX) / 2,
+    clientY: (points[0].clientY + points[1].clientY) / 2,
+  };
+  function measure(points) {
+    const first = points[0].identifier, second = points[1]?.identifier;
+    return {
+      point: singlePoint(points),
+      ids: second === undefined ? [first, undefined] : [Math.min(first, second), Math.max(first, second)],
+      distance: points.length < 2 ? 0 : Math.hypot(points[0].clientX - points[1].clientX, points[0].clientY - points[1].clientY),
+    };
   }
 
-  function updateSpeed() {
-    controls.rotateSpeed = touch.owner && touch.owner !== 'sculpture' ? 0 : rotateSpeed;
+  function holdTouch(event) {
+    prevent(event);
+    onInteraction(true);
+    onDiscardInertia();
+    onHeld(true);
   }
 
-  function finish(event) {
-    const pointer = pointers.get(event.pointerId);
-    if (!pointer) return;
-    pointers.delete(event.pointerId);
-    const canceled = event.type !== 'pointerup';
-    if (canceled) onDiscardInertia();
-    if (!pointers.size) {
-      touch.end();
-      updateSpeed();
-      canvas.style.cursor = 'grab';
-    }
-    syncInteraction();
-
-    const { clientX: x, clientY: y, timeStamp: time } = event;
-    if (pointer.type !== 'touch' || canceled || pointer.moved || Math.hypot(x - pointer.x, y - pointer.y) >= TAP_MOVEMENT_PX) {
+  function addTouch(event) {
+    const points = event.touches;
+    const owned = touch.owner === 'sculpture';
+    touch.addFinger(points, claimable(event));
+    if (touch.owner === 'sculpture') {
+      if (!owned) holdTouch(event);
+      else prevent(event);
+      previous = measure(points);
+      moved = true;
       lastTap = undefined;
-    } else if (lastTap && time - lastTap.time <= DOUBLE_TAP_MS && Math.hypot(x - lastTap.x, y - lastTap.y) <= DOUBLE_TAP_PX) {
-      lastTap = undefined;
-      onReset();
-    } else {
-      lastTap = { x, y, time };
     }
   }
 
-  function cancelPointer(pointerId) {
-    if (!pointers.has(pointerId)) return;
-    // Three's own pointercancel listener clears its document listeners and
-    // pointer state. Forward cancellation when the browser only sends touchcancel.
-    canvas.dispatchEvent(new PointerEvent('pointercancel', { pointerId, bubbles: true }));
-    if (canvas.hasPointerCapture(pointerId)) canvas.releasePointerCapture(pointerId);
+  function startTouch(event) {
+    if (!event.touches.length || event.defaultPrevented || touchSequences.has(document)) return;
+    touch.begin(event.touches, claimable(event), fullscreen);
+    landedAt = performance.now();
+    sequence = new AbortController();
+    touchSequences.set(document, sequence);
+    moved = event.touches.length > 1;
+    if (touch.owner === 'sculpture') {
+      holdTouch(event);
+      previous = measure(event.touches);
+    } else lastTap = undefined;
+    // Keep the non-passive document listeners scoped to an active touch so a
+    // second finger can land beyond the canvas without delaying other traffic.
+    const gesture = { capture: true, passive: false, signal: sequence.signal };
+    document.addEventListener('touchstart', addTouch, gesture);
+    document.addEventListener('touchmove', event => { if (event.target !== canvas) moveTouch(event); }, gesture);
+    document.addEventListener('touchend', endTouch, gesture);
+    document.addEventListener('touchcancel', endTouch, gesture);
   }
 
-  canvas.addEventListener('pointerdown', event => {
-    if (!controls.enabled || pointers.has(event.pointerId)) return;
-    const isTouch = event.pointerType === 'touch';
-    if (!isTouch && event.button !== 0 && event.button !== 1 && event.button !== 2) return;
-    const first = pointers.size === 0;
-    pointers.set(event.pointerId, { type: event.pointerType, x: event.clientX, y: event.clientY, moved: false, turns: event.button === 0 && !event.ctrlKey && !event.metaKey && !event.shiftKey });
-    syncInteraction();
-    if (first) {
-      onDiscardInertia();
-      if (isTouch) touch.begin(event.clientX, event.clientY, fullscreen);
-      else canvas.style.cursor = 'grabbing';
-    }
-    if (isTouch && pointers.size > 1) {
-      touch.addFinger();
-      for (const pointer of pointers.values()) pointer.moved = true;
-      lastTap = undefined;
-    }
-    updateSpeed();
-  }, capture);
-
-  document.addEventListener('pointermove', event => {
-    const pointer = pointers.get(event.pointerId);
-    if (!pointer) return;
-    const moved = event.clientX !== pointer.x || event.clientY !== pointer.y;
-    if (moved && (Math.hypot(event.clientX - pointer.x, event.clientY - pointer.y) >= TAP_MOVEMENT_PX)) {
-      pointer.moved = true;
-      lastTap = undefined;
-    }
-    if (pointer.type === 'touch') {
-      if (touch.move(event.clientX, event.clientY) === 'sculpture' && pointers.size === 1 && moved) {
-        pointer.moved = true;
+  function moveTouch(event) {
+    if (touch.owner !== 'sculpture' || !event.touches.length || !controls.enabled) return;
+    prevent(event);
+    const next = measure(event.touches);
+    const sameFingers = previous.ids.every((id, index) => id === next.ids[index]);
+    const dx = next.point.clientX - previous.point.clientX, dy = next.point.clientY - previous.point.clientY;
+    if (sameFingers) {
+      if (next.ids[1] !== undefined) {
+        if (previous.distance > 0 && next.distance > 0 && next.distance !== previous.distance) onZoom(previous.distance / next.distance);
+        if (dx || dy) onPan(dx, dy);
+      } else if (dx || dy) {
+        onOrbit(dx, dy);
         onTurn();
       }
-      updateSpeed();
-    } else if (pointer.turns && moved) onTurn();
-  }, capture);
-
-  // WebKit needs a non-passive listener installed before the gesture begins.
-  // Keep ownership after a sideways start even when the finger moves vertically.
-  canvas.addEventListener('touchmove', event => {
-    if (touch.owner === 'pending' && event.touches.length === 1) {
-      touch.move(event.touches[0].clientX, event.touches[0].clientY);
-      updateSpeed();
+      if (dx || dy || next.distance !== previous.distance) moved = true;
     }
-    if (touch.owner === 'sculpture' && event.cancelable) event.preventDefault();
-  }, { passive: false, signal });
-
-  document.addEventListener('pointerup', finish, capture);
-  document.addEventListener('pointercancel', finish, capture);
-  canvas.addEventListener('lostpointercapture', event => cancelPointer(event.pointerId), capture);
-  // A native scroll cancels the pointer before the thumb actually lifts.
-  function updateNativeTouch(event) {
-    nativeTouch = event.targetTouches.length > 0;
-    syncInteraction();
+    previous = next;
   }
-  canvas.addEventListener('touchstart', updateNativeTouch, capture);
-  canvas.addEventListener('touchend', updateNativeTouch, capture);
-  canvas.addEventListener('touchcancel', event => {
-    for (const [id, pointer] of pointers) if (pointer.type === 'touch') cancelPointer(id);
-    updateNativeTouch(event);
-  }, capture);
-  document.defaultView?.addEventListener('blur', () => {
-    nativeTouch = false;
-    for (const id of pointers.keys()) cancelPointer(id);
-    syncInteraction();
-  }, capture);
-  signal.addEventListener('abort', () => {
-    for (const id of pointers.keys()) cancelPointer(id);
-  }, { once: true });
 
+  function clearTouch(canceled) {
+    const owned = touch.owner === 'sculpture';
+    if (owned) {
+      if (canceled) onDiscardInertia();
+      onHeld(false);
+      onInteraction(false);
+    }
+    if (touchSequences.get(document) === sequence) touchSequences.delete(document);
+    sequence?.abort();
+    sequence = undefined;
+    touch.end();
+    previous = undefined;
+    landedAt = undefined;
+  }
+
+  function endTouch(event) {
+    const canceled = event.type === 'touchcancel';
+    const owned = touch.owner === 'sculpture';
+    if (owned) prevent(event);
+    if (!canceled && event.touches.length) {
+      if (owned) previous = measure(event.touches);
+      return;
+    }
+    clearTouch(canceled);
+    if (!owned || canceled || moved || !event.changedTouches.length) {
+      lastTap = undefined;
+      return;
+    }
+    const {clientX: x, clientY: y} = event.changedTouches[0];
+    const time = event.timeStamp;
+    if (lastTap && time - lastTap.time <= DOUBLE_TAP_MS && Math.hypot(x - lastTap.x, y - lastTap.y) <= DOUBLE_TAP_PX) {
+      lastTap = undefined;
+      onReset();
+    } else lastTap = { x, y, time };
+  }
+
+  canvas.addEventListener('touchstart', startTouch, { passive: false, signal });
+  // WebKit can make touchmove non-cancelable unless a non-passive listener
+  // is already installed when the first finger lands.
+  canvas.addEventListener('touchmove', moveTouch, { passive: false, signal });
+  canvas.addEventListener('pointerdown', event => {
+    // Native TouchEvents alone decide who receives a finger. Three still owns
+    // mouse and wheel gestures, which use its original pointer capture.
+    if (event.pointerType === 'touch') { event.stopImmediatePropagation(); return; }
+    if (!controls.enabled || sequence || event.button > 2 || (!fullscreen && !hit(event.clientX, event.clientY, false))) {
+      event.stopImmediatePropagation();
+      return;
+    }
+    mouse = { id: event.pointerId, turns: event.button === 0 && !event.ctrlKey && !event.metaKey && !event.shiftKey };
+    onInteraction(true);
+    onDiscardInertia();
+    canvas.style.cursor = 'grabbing';
+  }, capture);
+  canvas.addEventListener('pointermove', event => {
+    if (event.pointerType === 'touch' || mouse) return;
+    canvas.style.cursor = fullscreen || hit(event.clientX, event.clientY, false) ? 'grab' : 'auto';
+  }, capture);
+  canvas.addEventListener('pointerleave', () => { if (!mouse) canvas.style.cursor = 'auto'; }, capture);
+  document.addEventListener('pointermove', event => {
+    if (mouse?.id === event.pointerId && mouse.turns && (event.movementX || event.movementY)) onTurn();
+  }, capture);
+  function endMouse(event) {
+    if (mouse?.id !== event.pointerId) return;
+    mouse = undefined;
+    if (event.type !== 'pointerup') onDiscardInertia();
+    canvas.style.cursor = fullscreen || hit(event.clientX, event.clientY, false) ? 'grab' : 'auto';
+    onInteraction(false);
+  }
+  document.addEventListener('pointerup', endMouse, capture);
+  document.addEventListener('pointercancel', endMouse, capture);
+  function cancelMouse() {
+    if (!mouse) return;
+    const { id } = mouse;
+    canvas.dispatchEvent(new PointerEvent('pointercancel', { pointerId: id, bubbles: true }));
+    if (canvas.hasPointerCapture(id)) canvas.releasePointerCapture(id);
+    mouse = undefined;
+    onInteraction(false);
+    canvas.style.cursor = 'auto';
+  }
+  canvas.addEventListener('lostpointercapture', cancelMouse, capture);
+  document.defaultView?.addEventListener('blur', () => { clearTouch(true); cancelMouse(); }, capture);
+  signal.addEventListener('abort', () => { clearTouch(true); cancelMouse(); }, { once: true });
+  canvas.addEventListener('contextmenu', event => {
+    if (!mouse && !fullscreen && !hit(event.clientX, event.clientY, false)) event.stopImmediatePropagation();
+  }, capture);
   canvas.addEventListener('dblclick', event => {
-    if (event.pointerType !== 'touch' && !event.sourceCapabilities?.firesTouchEvents) onReset();
+    if (event.pointerType !== 'touch' && !event.sourceCapabilities?.firesTouchEvents && (fullscreen || hit(event.clientX, event.clientY, false))) onReset();
   }, capture);
   canvas.addEventListener('wheel', event => {
     const modified = event.ctrlKey || event.metaKey;
@@ -180,17 +243,17 @@ export function bindViewerInput({ canvas, controls, signal, wheelZoom = true, on
       event.stopImmediatePropagation();
       return;
     }
-    if (event.cancelable) event.preventDefault();
+    prevent(event);
     onWheel();
   }, { capture: true, passive: false, signal });
 
-  canvas.style.cursor = 'grab';
   function setFullscreen(next) {
     fullscreen = next;
-    canvas.style.touchAction = fullscreen ? 'none' : 'pan-y';
+    canvas.style.cursor = fullscreen ? 'grab' : 'auto';
+    canvas.style.touchAction = fullscreen ? 'none' : 'auto';
   }
   setFullscreen(false);
-  return { setFullscreen };
+  return { setFullscreen, get hasTouchSequence() { return Boolean(sequence); } };
 }
 
 /** Bridge Safari trackpad magnification to the sculpture when wheel zoom is enabled. */
@@ -267,12 +330,11 @@ export function handleViewerKey(event, actions) {
   return true;
 }
 
-export function orbitViewer(THREE, camera, controls, horizontal, vertical) {
+export function orbitViewer(THREE, camera, controls, horizontal, vertical, step = Math.PI / 36) {
   if (!controls.enabled || !Number.isFinite(horizontal) || !Number.isFinite(vertical)) return;
   const offset = camera.position.clone().sub(controls.target);
   const up = new THREE.Quaternion().setFromUnitVectors(camera.up, new THREE.Vector3(0, 1, 0));
   const spherical = new THREE.Spherical().setFromVector3(offset.applyQuaternion(up));
-  const step = Math.PI / 36;
   spherical.theta = THREE.MathUtils.clamp(spherical.theta + horizontal * step, controls.minAzimuthAngle, controls.maxAzimuthAngle);
   spherical.phi = THREE.MathUtils.clamp(spherical.phi + vertical * step, Math.max(0.01, controls.minPolarAngle), Math.min(Math.PI - 0.01, controls.maxPolarAngle));
   offset.setFromSpherical(spherical).applyQuaternion(up.invert());
