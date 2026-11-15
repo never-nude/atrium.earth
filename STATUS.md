@@ -2312,3 +2312,9 @@ The approved title fixes, automatic download gate and promotion exclusions are r
 - On `codex/step-2c-homepage-prereqs` from `87224847`, the homepage reserves each displayed work once across its feature, exhibition lead and teasers, approved comparison, gallery and AR / VR cards, wings and recent additions. Compact world results sample the remaining matching works. Globe totals and the full explorer use the complete collection.
 - Central exhibition leads rotate among reviewed members with a preview at or below 3,000,000 bytes. All eight exhibitions have an eligible pool. The separate Michelangelo and Rodin duet keeps David on explicit activation and Rodin on automatic preview.
 - Programme tests checked the known hero/comparison collision, a 224-day rotation and the exact byte boundary. All 57 experience tests and the world collection and state tests passed. Local HTTP checks with the November 16 programme showed 16 distinct homepage stills, a 1,011,544-byte featured exhibition lead and the expected exhibition entrances. Release CI and owner approval precede publication.
+
+### Sculpture handling preview
+
+- The owner specified one gesture system for all screen sculpture viewers, with a physical iPhone check before deployment approval. This chat owns `codex/handling-hybrid`. The branch includes the Step 2C homepage uniqueness and lead-budget prerequisites in PR #87.
+- The live baseline failed five Chromium gesture assertions. The combined candidate passed all eight and the live-frame hint and four-second rotation checks. The complete build, Node suite, artwork delivery, and local-network model relay passed. Native fullscreen in Chromium and the WebKit overlay both restored the inline scroll rules on exit.
+- The handling branch is prepared for phone review on port 5196. Wait for the owner to confirm native Safari handling feels right, then ask for deployment approval. See `docs/awwwards-run.md` for measured evidence.
