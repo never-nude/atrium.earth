@@ -1339,11 +1339,15 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
   .viewer:is([data-auto-start="false"], [data-auto-start="preview"]):is(:fullscreen, [data-viewer-expanded]) > .viewer-start { position: absolute; inset: auto 12px 0; margin: 0; justify-content: center; }
   .viewer-gesture-hint { position: absolute; z-index: 7; inset: auto 8px 8px; max-width: max-content; margin: auto; padding: 5px 8px; border-radius: 4px; color: #f7f5ef; background: #101827e8; font: 400 12px/1.4 var(--v3-sans, sans-serif); text-align: center; pointer-events: none; transition: opacity .45s ease; }
   .viewer-gesture-hint.is-dismissed { opacity: 0; }
-  .model-stage::before { content: ''; position: absolute; z-index: 1; inset: 0; pointer-events: none; opacity: 0; background: radial-gradient(ellipse at var(--sculpture-glow-x, 50%) var(--sculpture-glow-y, 50%), #c9a5ff72, #c9a5ff2e 34%, #c9a5ff00 72%); }
-  .model-stage[data-sculpture-held]::before { opacity: 1; transition: opacity 120ms ease-out; }
+  .model-stage::before {
+    content: ''; position: absolute; z-index: 1; inset: 0; pointer-events: none; opacity: 0;
+    background: radial-gradient(ellipse at var(--sculpture-glow-x, 50%) var(--sculpture-glow-y, 50%), #c9a5ff60, #c9a5ff24 34%, #c9a5ff00 72%);
+    transition: opacity 220ms ease-out;
+  }
+  .model-stage[data-sculpture-held]::before { opacity: 1; transition-duration: 160ms; }
   @media (prefers-reduced-motion: reduce) {
     .viewer-gesture-hint { transition: none; }
-    .model-stage[data-sculpture-held]::before { transition-duration: 0s !important; }
+    .model-stage::before { transition-duration: 0s !important; }
   }
   .viewer-keyboard-instructions { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
   .viewer[data-viewer-state="error"] .viewer-status { z-index: 8; inset: auto 12px 12px; width: fit-content; height: auto; max-width: calc(100% - 24px); padding: 7px 10px; margin: 0; clip-path: none; white-space: normal; border-radius: 4px; color: #f7f5ef; background: #15243af5; font: 400 12px/1.5 var(--v3-sans, sans-serif); }
