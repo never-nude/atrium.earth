@@ -4,9 +4,9 @@ import { join, resolve } from 'node:path';
 import { promisify } from 'node:util';
 import { chromium } from 'playwright';
 import { serveBrowserChecks } from './serve-browser-checks.mjs';
+import { HOMEPAGE_PERFORMANCE_BUDGETS as budgets, summarizeHomepagePerformance } from './homepage-performance.mjs';
 
 const output = resolve(process.env.PERFORMANCE_REPORT_DIR || 'test-results/performance');
-const budgets = { lcpMs: 2500, transferredBytes: 1_500_000 };
 await mkdir(output, { recursive: true });
 let site;
 try {
@@ -17,26 +17,19 @@ try {
   await promisify(execFile)(process.execPath, [
     resolve('node_modules/lighthouse/cli/index.js'), site.origin,
     '--only-categories=performance', '--output=json', '--output=html',
-    `--output-path=${join(output, 'homepage')}`, '--max-wait-for-load=25000',
+    `--output-path=${join(output, 'homepage')}`, '--max-wait-for-load=25000', '--save-assets',
     '--chrome-flags=--headless --no-sandbox', '--quiet',
   ], { env: { ...process.env, CHROME_PATH: chromium.executablePath() }, timeout: 65000 });
-  const { audits, runtimeError } = JSON.parse(await readFile(report, 'utf8'));
-  const modelTransfers = (audits['network-requests']?.details?.items ?? [])
-    .filter(item => /\/models\/previews\/.*\.glb(?:\?|$)/.test(item.url))
-    .map(({ url, statusCode, transferSize, resourceSize }) => ({ url: new URL(url).pathname, statusCode, transferSize, resourceSize }));
-  const measured = {
-    lcpMs: Math.round(audits['largest-contentful-paint'].numericValue),
-    transferredBytes: Math.round(audits['total-byte-weight'].numericValue),
-  };
-  if (Object.values(measured).some(value => !Number.isFinite(value))) {
-    throw new Error(runtimeError?.message || 'Lighthouse did not report both measurements');
-  }
-  const underBudget = Object.fromEntries(Object.keys(budgets).map(key => [key, measured[key] <= budgets[key]]));
-  await writeFile(join(output, 'budget.json'), JSON.stringify({ measured, modelTransfers, budgets, underBudget }, null, 2) + '\n');
-  console.log('Homepage performance (report only)', { measured, modelTransfers, budgets, underBudget });
+  const [lighthouse, trace, devtoolsLog] = await Promise.all([
+    report, join(output, 'homepage-0.trace.json'), join(output, 'homepage-0.devtoolslog.json'),
+  ].map(async file => JSON.parse(await readFile(file, 'utf8'))));
+  if (lighthouse.runtimeError) throw new Error(lighthouse.runtimeError.message);
+  const result = summarizeHomepagePerformance({ lighthouse, trace, devtoolsLog });
+  await writeFile(join(output, 'budget.json'), JSON.stringify(result, null, 2) + '\n');
+  console.log('Homepage performance (report only)', result);
 } catch (error) {
   const message = error.killed ? 'Lighthouse timed out' : error.message;
-  await writeFile(join(output, 'budget.json'), JSON.stringify({ budgets, error: message }, null, 2) + '\n');
+  await writeFile(join(output, 'budget.json'), JSON.stringify({ status: 'measurement-error', budgets, error: message }, null, 2) + '\n');
   console.warn('Homepage performance could not be measured:', message);
 } finally {
   await site?.close();
