@@ -117,6 +117,7 @@ const sizeLabel = modelBytes && modelBytes > 0 ? ` · ${(modelBytes / 1e6).toFix
         <span data-activate-label>Examine in 3D</span>
       </button>
     )}
+    {hasModel && <p class="viewer-gesture-hint" data-hint hidden></p>}
     {!hasStartStrip && <div class="stage-loading" data-loading aria-hidden="true" hidden>
       <span class="spinner" aria-hidden="true"></span>
       <span class="loading-text">Loading…</span>
@@ -158,7 +159,6 @@ const sizeLabel = modelBytes && modelBytes > 0 ? ` · ${(modelBytes / 1e6).toFix
     </button>
     <span data-download-label data-loading hidden aria-hidden="true">Loading 3D</span>
     <p id={`viewer-status-${uid}`} class="viewer-keyboard-instructions viewer-start__status" data-viewer-status role="status" aria-atomic="true"></p>
-    <p class="viewer-handling-feedback" data-handling-feedback role="status" aria-atomic="true"></p>
   </div>}
 
   {hud && hasModel && (
@@ -174,8 +174,7 @@ const sizeLabel = modelBytes && modelBytes > 0 ? ` · ${(modelBytes / 1e6).toFix
     </div>
   )}
 
-  {hasModel && <p class="stage-hint fine" data-hint hidden>Drag to turn the view · <span class="stage-hint__pan">right-drag or two-finger drag to move the view · </span>{wheelZoom && 'scroll or pinch to zoom · '}double-click or double-tap to reset</p>}
-  {hasModel && <p id={`viewer-keys-${uid}`} class="viewer-keyboard-instructions">After opening the 3D view, focus the sculpture and use arrow keys to turn, plus and minus to zoom, and 0 or Home to reset. {hasStartStrip && 'Press Enter or Space to pause or resume handling.'}</p>}
+  {hasModel && <p id={`viewer-keys-${uid}`} class="viewer-keyboard-instructions">After opening the 3D view, focus the sculpture and use arrow keys to turn, plus and minus to zoom, and 0 or Home to reset.</p>}
 
   {spatialViewing && hasModel && <SpatialViewing title={title} poster={poster} museumLabel={museumLabel} reference={spatialReference} sizeNote={spatialNote} displaySupport={displaySupport} dimensionStatus={spatialDimensionStatus} requiresAssetCheck={Boolean(spatialAssetSha256)} referenceLabel={spatialLabel} sizeLabel={spatialSizeLabel} defaultMaxExtentMeters={spatialDefaultMaxExtentMeters} />}
   {!spatialViewing && spatialUnavailableNote && <a id="ar-vr" class="spatial-unavailable" data-spatial-unavailable href="#size-verification" title={spatialUnavailableNote}>AR / VR unavailable · Size unverified <span aria-hidden="true">↓</span></a>}
@@ -184,7 +183,7 @@ const sizeLabel = modelBytes && modelBytes > 0 ? ` · ${(modelBytes / 1e6).toFix
     {/* Without JavaScript the still image is the presentation, not a fallback: hide
         every affordance that promises an interaction the page cannot deliver. */}
     <style is:inline>
-      .viewer .stage-tag, .viewer .stage-activate, .viewer .stage-loading, .viewer .stage-hint { display: none !important; }
+      .viewer .stage-tag, .viewer .stage-activate, .viewer .stage-loading, .viewer-gesture-hint { display: none !important; }
     </style>
   </noscript>
 </div>
@@ -193,7 +192,8 @@ const sizeLabel = modelBytes && modelBytes > 0 ? ` · ${(modelBytes / 1e6).toFix
   import { rememberSpatialAppearance } from '../lib/spatial-materials.mjs';
   import { createTextureControl } from '../lib/viewerTexture';
   import { createViewerRenderLoop, bindViewerRenderEvents } from '../lib/viewer-render-loop.mjs';
-  import { bindViewerInput, bindViewerReset, bindViewerZoom, handleViewerKey, orbitViewer } from '../lib/viewer-input.mjs';
+  import { bindViewerInput, bindViewerZoom, createRotationHold, handleViewerKey, orbitViewer } from '../lib/viewer-input.mjs';
+  import { createSculpturePicker } from '../lib/sculpture-picking.mjs';
   import { fetchViewerModel } from '../lib/viewer-download.mjs';
   import { disposeViewerScene } from '../lib/viewer-resources.mjs';
 
@@ -219,7 +219,7 @@ const sizeLabel = modelBytes && modelBytes > 0 ? ` · ${(modelBytes / 1e6).toFix
     invalidate: () => void;
     zoom: (factor: number) => void;
     reset: () => void;
-    handling?: ReturnType<typeof bindViewerInput>;
+    setFullscreen: (expanded: boolean) => void;
     texture: ReturnType<typeof createTextureControl>;
     defaults: { exposure: number; texture: number; autoRotate: boolean };
   };
@@ -423,12 +423,10 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     signal: AbortSignal;
     isVisible: () => boolean;
     onFirstFrame: () => void;
-    onHandlingChange?: (active: boolean) => void;
-    initialHandling?: () => boolean;
-    rotateWhilePaused: boolean;
+    onTurn: () => void;
     onProgress?: (progress: { loadedBytes: number; totalBytes: number | null }) => void;
   }): Promise<Viewer> {
-    const { saved, signal, isVisible, onFirstFrame, onHandlingChange, initialHandling, rotateWhilePaused, onProgress } = build;
+    const { saved, signal, isVisible, onFirstFrame, onTurn, onProgress } = build;
     const THREE = await import('three');
     const { DRACOLoader } = await import('three/examples/jsm/loaders/DRACOLoader.js');
     const { GLTFLoader } = await import('three/examples/jsm/loaders/GLTFLoader.js');
@@ -503,13 +501,13 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     controls.mouseButtons = { LEFT: THREE.MOUSE.ROTATE, MIDDLE: THREE.MOUSE.DOLLY, RIGHT: THREE.MOUSE.PAN };
     controls.rotateSpeed = 0.9;
     controls.enablePan = true;
-    controls.enableZoom = root.dataset.wheelZoom !== 'false';
+    const wheelZoom = root.dataset.wheelZoom !== 'false';
     const turntableSpeed = Number(stage.dataset.turntableDegreesPerSecond || 0);
     const turnsModel = Number.isFinite(turntableSpeed) && turntableSpeed !== 0;
     let rotationRequested = saved?.autoRotate ?? (stage.dataset.autoRotate !== 'false');
-    let handling: Viewer['handling'];
+    const rotationHold = createRotationHold(signal, syncRotation);
     const rotationState = () => ({ active: rotationRequested && !(respectReducedMotion && reducedMotion.matches), reduced: respectReducedMotion && reducedMotion.matches });
-    const rotationRunning = () => rotationState().active && (rotateWhilePaused || (handling?.isActive() ?? true));
+    const rotationRunning = () => rotationState().active && !rotationHold.held;
     controls.autoRotate = !turnsModel && rotationRunning();
     const timedRotation = stage.dataset.autoRotateSpeed !== undefined;
     const rotationSpeed = Number(stage.dataset.autoRotateSpeed ?? 1);
@@ -667,38 +665,37 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
       controls.update(timedRotation ? 0 : undefined);
     }
 
+    const corner = new THREE.Vector3();
+    const picker = createSculpturePicker(renderer.domElement, (width, height) => {
+      let left = Infinity, right = -Infinity, top = Infinity, bottom = -Infinity;
+      for (const x of [box.min.x, box.max.x]) for (const y of [box.min.y, box.max.y]) for (const z of [box.min.z, box.max.z]) {
+        corner.set(x, y, z);
+        if (turnsModel) corner.applyMatrix4(turntable.matrixWorld);
+        corner.project(camera);
+        if (corner.z < -1 || corner.z > 1) continue;
+        const screenX = (corner.x + 1) * width / 2, screenY = (1 - corner.y) * height / 2;
+        left = Math.min(left, screenX); right = Math.max(right, screenX);
+        top = Math.min(top, screenY); bottom = Math.max(bottom, screenY);
+      }
+      if (Number.isFinite(left)) return { left, right, top, bottom };
+    }, mode => { stage.dataset.sculpturePicker = mode; });
+
     let disposed = false;
     const renderEvents = new AbortController();
     const loop = createViewerRenderLoop({ visible: isVisible(), hidden: document.hidden,
       onError: () => reportRenderError('render'),
       onFirstFrame: () => {
         if (renderer.getContext().isContextLost()) reportRenderError('context-lost');
-        else {
-          if (onHandlingChange) {
-            handling = bindViewerInput({
-              canvas: renderer.domElement, controls, signal,
-              wheelZoom: root.dataset.wheelZoom !== 'false',
-              initiallyActive: initialHandling?.(),
-              onToggle: active => { syncRotation(); onHandlingChange(active); },
-              onReset: resetView,
-            });
-            bindViewerZoom({
-              canvas: renderer.domElement, signal,
-              canHandle: () => controls.enabled && Boolean(handling?.isActive()),
-              onZoom: zoomView,
-            });
-          } else bindViewerReset(renderer.domElement, resetView, signal);
-          onFirstFrame();
-        }
+        else onFirstFrame();
       },
       draw: (elapsed: number) => {
-        // The featured sculpture turns independently of orbit-control interaction state.
-        // Use elapsed time so a slow device does not turn it into a nearly still image.
+        // Use elapsed time so turntable motion stays consistent on slow devices.
         if (turnsModel && rotationRunning()) {
           turntable.rotation.y = (turntable.rotation.y + THREE.MathUtils.degToRad(turntableSpeed) * Math.min(elapsed, 1)) % (Math.PI * 2);
         }
         const changed = controls.update(timedRotation ? Math.min(elapsed, 0.1) : undefined);
         renderer.render(scene, camera);
+        if (!rotationHold.interacting) picker.update(performance.now(), !rotationRunning() && !changed);
         return rotationRunning() || changed;
       },
     });
@@ -711,7 +708,20 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
       controls.update(timedRotation ? 0 : undefined);
       invalidate();
     }
+    function discardInertia() {
+      // Flush OrbitControls' damping through its public update, then restore
+      // the displayed view before another frame can be drawn.
+      const position = camera.position.clone(), target = controls.target.clone();
+      const damping = controls.enableDamping;
+      controls.enableDamping = false;
+      controls.update(0);
+      camera.position.copy(position);
+      controls.target.copy(target);
+      controls.update(0);
+      controls.enableDamping = damping;
+    }
     function resetView() {
+      rotationHold.noteInput();
       // Flush any remaining drag damping before restoring the authored view.
       controls.enableDamping = false;
       controls.autoRotate = false;
@@ -735,11 +745,57 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     ro.observe(stage);
     function syncRotation() {
       const state = rotationState();
+      const wasTurning = controls.autoRotate;
       controls.autoRotate = !turnsModel && rotationRunning();
+      if (wasTurning && !controls.autoRotate) discardInertia();
       stage.closest('[data-viewer]')?.dispatchEvent(new CustomEvent('atrium:viewer-rotation-change', { detail: state }));
       invalidate();
     }
     bindViewerRenderEvents({ loop, controls, media: reducedMotion, onMotionChange: syncRotation, signal: renderEvents.signal });
+    const onInteraction = (active: boolean) => {
+      rotationHold.setInteracting(active);
+      if (!active) invalidate();
+    };
+    // Register the Safari bridge first so it can suppress duplicate Ctrl-wheel.
+    bindViewerZoom({
+      canvas: renderer.domElement, signal,
+      canHandle: () => wheelZoom && controls.enabled && !input.hasTouchSequence,
+      onZoom: zoomView, onInteraction,
+    });
+    const panOffset = new THREE.Vector3(), panUp = new THREE.Vector3();
+    const input = bindViewerInput({
+      canvas: renderer.domElement, controls, signal, wheelZoom,
+      hit: (x, y, touch) => picker.hit(x, y, touch),
+      onHeld: held => {
+        const center = picker.center;
+        if (held && center) {
+          stage.style.setProperty('--sculpture-glow-x', `${center.x * 100}%`);
+          stage.style.setProperty('--sculpture-glow-y', `${center.y * 100}%`);
+        }
+        stage.toggleAttribute('data-sculpture-held', held);
+      },
+      onOrbit: (dx, dy) => {
+        const radiansPerPixel = 2 * Math.PI * controls.rotateSpeed / Math.max(1, stage.clientHeight);
+        orbitViewer(THREE, camera, controls, -dx, -dy, radiansPerPixel);
+        controls.update(0);
+        invalidate();
+      },
+      onPan: (dx, dy) => {
+        const unitsPerPixel = 2 * camera.position.distanceTo(controls.target)
+          * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) / Math.max(1, stage.clientHeight);
+        camera.updateMatrix();
+        panOffset.setFromMatrixColumn(camera.matrix, 0).multiplyScalar(-dx * unitsPerPixel);
+        panUp.setFromMatrixColumn(camera.matrix, 1);
+        panOffset.addScaledVector(panUp, dy * unitsPerPixel);
+        camera.position.add(panOffset);
+        controls.target.add(panOffset);
+        controls.update(0);
+        invalidate();
+      },
+      onZoom: factor => zoomView(factor ** controls.zoomSpeed),
+      onInteraction, onWheel: rotationHold.noteInput,
+      onTurn, onReset: resetView, onDiscardInertia: discardInertia,
+    });
     loop.invalidate();
 
     // Pending cleanup owns initialization; later render failures restore the poster.
@@ -786,26 +842,34 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
       texture: { ...textureControl, setValue: (value) => { textureControl.setValue(value); invalidate(); } },
       invalidate,
       rotationState,
-      orbit: (horizontal, vertical) => { orbitViewer(THREE, camera, controls, horizontal, vertical); controls.update(timedRotation ? 0 : undefined); invalidate(); },
+      orbit: (horizontal, vertical) => {
+        rotationHold.noteInput();
+        const before = camera.position.clone();
+        orbitViewer(THREE, camera, controls, horizontal, vertical);
+        if (!camera.position.equals(before)) onTurn();
+        controls.update(timedRotation ? 0 : undefined);
+        invalidate();
+      },
       setBrightness: (pct) => { renderer.toneMappingExposure = pct / 100; invalidate(); },
       // Slider runs rough (0) → shiny (100); roughness is the inverse.
       setTexture: (pct) => { if (appearance.preserveSourceMaterials === true) textureControl.setValue(pct); else { const r = 1 - pct / 100; for (const m of materials) { m.roughness = r; m.needsUpdate = true; } } invalidate(); },
       setWireframe: (on) => { wireframe = on; for (const item of wireframeMeshes) item.mesh.material = on ? item.wireframeMaterial : item.solidMaterial; invalidate(); },
       setAutoRotate: (on) => { rotationRequested = on; syncRotation(); },
-      zoom: zoomView,
+      zoom: factor => { rotationHold.noteInput(); zoomView(factor); },
       reset: resetView,
-      get handling() { return handling; },
+      setFullscreen: input.setFullscreen,
       defaults: { exposure: Math.round(appearance.exposure * 100), texture: appearance.preserveSourceMaterials === true ? textureControl.defaultValue : appearance.textureDefault, get autoRotate() { return rotationState().active; } },
     };
   }
 
-  function bindViewerFullscreen(root: HTMLElement, button: HTMLButtonElement, signal: AbortSignal) {
+  function bindViewerFullscreen(root: HTMLElement, button: HTMLButtonElement, signal: AbortSignal, onChange: (expanded: boolean) => void) {
     const native = () => document.fullscreenElement === root;
     const overlay = () => root.hasAttribute('data-viewer-expanded');
     function syncButton() {
       const expanded = native() || overlay();
       button.setAttribute('aria-pressed', String(expanded));
       button.textContent = expanded ? 'Exit full screen' : 'Full screen';
+      onChange(expanded);
     }
     const inerted: HTMLElement[] = [];
     function showOverlay() {
@@ -872,6 +936,35 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     }
   }
 
+  const turnedKey = 'atrium-sculpture-turned';
+  let hintShown = false, sculptureTurned = false;
+  let dismissCurrentHint: (() => void) | undefined;
+
+  function markSculptureTurned() {
+    if (sculptureTurned) return;
+    sculptureTurned = true;
+    try { sessionStorage.setItem(turnedKey, '1'); } catch { /* Storage is optional. */ }
+    dismissCurrentHint?.();
+  }
+
+  function showGestureHint(hint: HTMLElement | null, signal: AbortSignal) {
+    if (!hint || hintShown || sculptureTurned) return;
+    try { if (sessionStorage.getItem(turnedKey)) return; } catch { /* Storage is optional. */ }
+    hintShown = true;
+    const touch = navigator.maxTouchPoints > 0 || matchMedia('(pointer: coarse)').matches;
+    hint.textContent = touch ? 'Touch the sculpture to turn it · pinch to zoom' : 'Drag the sculpture to turn it · pinch or Ctrl-scroll to zoom';
+    hint.hidden = false;
+    hint.classList.remove('is-dismissed');
+    const dismiss = () => {
+      window.clearTimeout(timer);
+      hint.classList.add('is-dismissed');
+      if (dismissCurrentHint === dismiss) dismissCurrentHint = undefined;
+    };
+    const timer = window.setTimeout(dismiss, 6000);
+    dismissCurrentHint = dismiss;
+    signal.addEventListener('abort', dismiss, { once: true });
+  }
+
   let pageSuspended = false;
   const mountedViewers = new Map<HTMLElement, { dispose: () => void; refresh: () => void }>();
   function mountViewer(root: HTMLElement) {
@@ -901,7 +994,6 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     const hint = root.querySelector('[data-hint]') as HTMLElement | null;
     const downloadLabel = root.querySelector('[data-download-label]');
     const startStrip = root.querySelector<HTMLElement>('[data-viewer-start]');
-    const handlingFeedback = root.querySelector<HTMLElement>('[data-handling-feedback]');
     const downloadBar = root.querySelector<HTMLElement>('[data-download-bar]');
     const fullscreenButton = root.querySelector<HTMLButtonElement>('[data-tool-fullscreen]');
     // Opening a collection miniature is already an explicit activation in its parent page.
@@ -910,14 +1002,14 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     const studioPeek = document.documentElement.classList.contains('studio-peek');
     const startMode = studioPeek ? 'true' : root.dataset.autoStart;
     const previewMode = startMode === 'preview';
-    const handlingEnabled = startMode === 'false' || previewMode;
+    const hasManualStart = startMode === 'false' || previewMode;
     const previewMotion = previewMode ? window.matchMedia('(prefers-reduced-motion: reduce)') : undefined;
     const observeStill = !studioPeek && (startMode !== 'false' || poster?.hasAttribute('elementtiming'));
     const size = Number(root.dataset.modelBytes) || 0;
-    const examineLabel = handlingEnabled && size ? `Examine in 3D · ${(size / 1e6).toFixed(1)} MB` : 'Examine in 3D';
+    const examineLabel = hasManualStart && size ? `Examine in 3D · ${(size / 1e6).toFixed(1)} MB` : 'Examine in 3D';
     const announceState = (state: string) => {
       root.dataset.viewerState = state;
-      if (startStrip) startStrip.hidden = !handlingEnabled;
+      if (startStrip) startStrip.hidden = !hasManualStart;
     };
     const intersectsViewport = () => {
       const rect = stage!.getBoundingClientRect();
@@ -927,36 +1019,20 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     let activeViewer: Viewer | undefined;
     let saved: ViewState | undefined;
     let bindings: AbortController | undefined;
-    let hintTimer: number | undefined;
-    let feedbackTimer: number | undefined;
     let generation = 0;
     let started = false;
-    let requestedHandling = startMode === 'false';
     let stillFrame: number | undefined;
     let stillPending = false;
     let visibilityObserver: IntersectionObserver | undefined;
-    function clearHandlingFeedback() {
-      window.clearTimeout(feedbackTimer);
-      if (handlingFeedback) handlingFeedback.textContent = '';
-    }
-    function showHandlingFeedback(active: boolean) {
-      clearHandlingFeedback();
-      root.dataset.handling = active ? 'active' : 'paused';
-      if (!handlingFeedback) return;
-      handlingFeedback.textContent = active ? '3D controls on' : '3D controls paused';
-      feedbackTimer = window.setTimeout(clearHandlingFeedback, 2400);
-    }
-
     function release() {
       generation += 1;
       if (activeViewer) saved = activeViewer.capture();
       bindings?.abort();
       activeViewer?.dispose();
       activeViewer = undefined;
-      window.clearTimeout(hintTimer);
-      clearHandlingFeedback();
-      delete root.dataset.handling;
       stage!.classList.remove('is-live');
+      stage!.removeAttribute('data-sculpture-held');
+      stage!.removeAttribute('data-sculpture-picker');
       for (const element of [loading, tools, displayPanel, hud, hint]) if (element) element.hidden = true;
       downloadBar?.style.removeProperty('width');
       if (poster) poster.style.opacity = '1';
@@ -967,7 +1043,6 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
       announceState('idle');
       residents.delete(root);
       started = false;
-      requestedHandling = startMode === 'false';
     }
 
     function fail(reason: string) {
@@ -1005,9 +1080,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
       try {
         const viewer = await buildViewer(root, stage!, glb, {
           saved, signal: events.signal, isVisible: () => visible && !pageSuspended,
-          onHandlingChange: handlingEnabled ? showHandlingFeedback : undefined,
-          initialHandling: () => requestedHandling,
-          rotateWhilePaused: previewMode,
+          onTurn: markSculptureTurned,
           onProgress: downloadLabel ? (progress) => {
             if (current !== generation || events.signal.aborted) return;
             const loaded = (progress.loadedBytes / 1e6).toFixed(1);
@@ -1025,15 +1098,9 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
             if (loading) loading.hidden = true;
             for (const element of [tools, displayPanel, hud]) if (element) element.hidden = false;
             if (status) status.textContent = moveFocus ? '3D view ready.' : '';
-            if (hint && (!previewMode || requestedHandling)) {
-              hint.hidden = false;
-              hint.classList.remove('is-dismissed');
-              hintTimer = window.setTimeout(() => hint.classList.add('is-dismissed'), 7000);
-            }
+            showGestureHint(hint, events.signal);
             root.removeAttribute('aria-busy');
             announceState('ready');
-            if (requestedHandling) showHandlingFeedback(true);
-            else if (previewMode) root.dataset.handling = 'paused';
           },
         });
         if (current !== generation) { viewer.dispose(); return; }
@@ -1047,28 +1114,13 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
           root.querySelector('[data-tool-wire]')?.setAttribute('aria-pressed', String(wireOn));
         };
         on(stage!, 'keydown', event => {
-          if (event.target === stage && (event.key === 'Enter' || event.key === ' ') && viewer.handling) {
-            event.preventDefault();
-            if (!event.repeat) viewer.handling.setActive(!viewer.handling.isActive());
-            return;
-          }
-          if (viewer.handling && !viewer.handling.isActive()) return;
           handleViewerKey(event, {
             orbit: (horizontal: number, vertical: number) => viewer.orbit(horizontal, vertical),
             zoom: (factor: number) => viewer.zoom(factor), reset: () => viewer.reset(),
             toggleWireframe: () => { wireOn = !wireOn; viewer.setWireframe(wireOn); syncWire(); },
           });
         });
-        if (fullscreenButton) bindViewerFullscreen(root, fullscreenButton, events.signal);
-        if (hint) {
-          // Show the gesture hint once, then let it get out of the way: it fades after
-          // a beat, or as soon as the visitor starts handling the model. Only canvas
-          // pointerdowns count — toolbar taps bubble through the stage and must not eat it.
-          const dismissHint = () => hint.classList.add('is-dismissed');
-          on(stage!, 'pointerdown', (event) => {
-            if (event.target instanceof Element && event.target.classList.contains('viewer-canvas')) dismissHint();
-          });
-        }
+        if (fullscreenButton) bindViewerFullscreen(root, fullscreenButton, events.signal, viewer.setFullscreen);
         if (tools) {
           const zoomIn = tools.querySelector('[data-zoom-in]') as HTMLButtonElement | null;
           const zoomOut = tools.querySelector('[data-zoom-out]') as HTMLButtonElement | null;
@@ -1158,16 +1210,12 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
         if (!lifetime.signal.aborted) bindSpatialViewing(spatial, () => activeViewer?.spatial, start, { signal: lifetime.signal });
       });
     }
-    const startWithHandling = () => {
-      requestedHandling = handlingEnabled;
-      void start();
-    };
-    if (activate) activate.addEventListener('click', startWithHandling, { signal: lifetime.signal });
-    if (handlingEnabled) {
+    if (activate) activate.addEventListener('click', start, { signal: lifetime.signal });
+    if (hasManualStart) {
       // Only clicks on the artwork box start loading. Panning the page over a
       // still image and interacting with the controls leave it in place.
       stage.addEventListener('click', event => {
-        if (event.target === stage || event.target === poster) startWithHandling();
+        if (event.target === stage || event.target === poster) void start();
       }, { signal: lifetime.signal });
       if (startStrip) startStrip.hidden = false;
     }
@@ -1274,10 +1322,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
   .viewer-start:not([hidden]) { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 12px; min-height: 44px; color: var(--v3-muted, #c9c6bd); font: 400 14px/1.45 var(--v3-sans, sans-serif); }
   .viewer-start__button { min-height: 44px; padding: 4px 10px; color: var(--v3-ink, #f7f5ef); background: transparent; border: 1px solid var(--v3-line, #677080); border-radius: 5px; font: inherit; cursor: pointer; }
   .viewer-start__button:hover { border-color: var(--v3-signal, #eccf7a); }
-  .viewer-handling-feedback { display: none; margin: 0; font-size: 13px; }
   .viewer[data-viewer-state="ready"] .viewer-start { min-height: 26px; }
-  .viewer[data-viewer-state="ready"] .viewer-handling-feedback { display: block; }
-  .viewer[data-handling="paused"] .model-stage { cursor: pointer; }
   .viewer[data-viewer-state="error"] .viewer-start__status { position: static; width: auto; height: auto; clip-path: none; white-space: normal; }
   :global(html.studio-peek) .viewer-start { display: none !important; }
   .viewer-download { position: absolute; z-index: 6; inset: auto 0 0; height: 3px; display: none; background: #c9a5ff26; pointer-events: none; }
@@ -1292,6 +1337,18 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
   .viewer:is([data-auto-start="false"], [data-auto-start="preview"]):is(:fullscreen, [data-viewer-expanded]) .immersive-tools:not([hidden]) { bottom: max(36px, env(safe-area-inset-bottom)) !important; }
   .viewer:is([data-auto-start="false"], [data-auto-start="preview"]):is(:fullscreen, [data-viewer-expanded]) > .model-stage { height: calc(100% - 26px) !important; }
   .viewer:is([data-auto-start="false"], [data-auto-start="preview"]):is(:fullscreen, [data-viewer-expanded]) > .viewer-start { position: absolute; inset: auto 12px 0; margin: 0; justify-content: center; }
+  .viewer-gesture-hint { position: absolute; z-index: 7; inset: auto 8px 8px; max-width: max-content; margin: auto; padding: 5px 8px; border-radius: 4px; color: #f7f5ef; background: #101827e8; font: 400 12px/1.4 var(--v3-sans, sans-serif); text-align: center; pointer-events: none; transition: opacity .45s ease; }
+  .viewer-gesture-hint.is-dismissed { opacity: 0; }
+  .model-stage::before {
+    content: ''; position: absolute; z-index: 1; inset: 0; pointer-events: none; opacity: 0;
+    background: radial-gradient(ellipse at var(--sculpture-glow-x, 50%) var(--sculpture-glow-y, 50%), #c9a5ff60, #c9a5ff24 34%, #c9a5ff00 72%);
+    transition: opacity 220ms ease-out;
+  }
+  .model-stage[data-sculpture-held]::before { opacity: 1; transition-duration: 160ms; }
+  @media (prefers-reduced-motion: reduce) {
+    .viewer-gesture-hint { transition: none; }
+    .model-stage::before { transition-duration: 0s !important; }
+  }
   .viewer-keyboard-instructions { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
   .viewer[data-viewer-state="error"] .viewer-status { z-index: 8; inset: auto 12px 12px; width: fit-content; height: auto; max-width: calc(100% - 24px); padding: 7px 10px; margin: 0; clip-path: none; white-space: normal; border-radius: 4px; color: #f7f5ef; background: #15243af5; font: 400 12px/1.5 var(--v3-sans, sans-serif); }
   .immersive-tools { max-width: 100%; flex-wrap: nowrap; justify-content: center; }
