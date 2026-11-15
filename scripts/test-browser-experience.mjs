@@ -111,20 +111,27 @@ async function captureCanvas(canvas, file) {
     height: Math.floor(Math.min(viewport.height, bounds.y + bounds.height)) - y,
   };
   if (clip.width < 10 || clip.height < 10) throw new Error(`Canvas has no visible area: ${file}`);
-  // Compare the rendered canvas against its own backdrop to catch blank WebGL
-  // frames even when the stage behind the transparent canvas has a gradient.
-  const frame = await canvas.page().screenshot({ clip, path: file, timeout: 30000 });
-  const opacity = await canvas.evaluate(element => {
-    const { style } = element;
-    const original = [style.getPropertyValue('opacity'), style.getPropertyPriority('opacity')];
-    style.setProperty('opacity', '0', 'important');
-    return original;
+  // Hide sibling overlays (including map markers) so they cannot make a
+  // uniformly broken canvas look detailed. Retain the stage's own backdrop.
+  const savedStyles = await canvas.evaluateHandle(element => {
+    const siblings = [...element.parentElement.children].filter(node => node !== element);
+    const saved = [...siblings, element].map(node => [node, node.getAttribute('style')]);
+    for (const node of siblings) node.style.setProperty('visibility', 'hidden', 'important');
+    return saved;
   });
-  let backdrop;
+  let frame, backdrop;
   try {
+    frame = await canvas.page().screenshot({ clip, path: file, timeout: 30000 });
+    await canvas.evaluate(element => element.style.setProperty('opacity', '0', 'important'));
     backdrop = await canvas.page().screenshot({ clip, timeout: 30000 });
   } finally {
-    await canvas.evaluate((element, [value, priority]) => element.style.setProperty('opacity', value, priority), opacity);
+    await savedStyles.evaluate(saved => {
+      for (const [node, style] of saved) {
+        if (style === null) node.removeAttribute('style');
+        else node.setAttribute('style', style);
+      }
+    });
+    await savedStyles.dispose();
   }
   const decode = image => sharp(image).resize(96, 96, { fit: 'fill' }).removeAlpha().raw().toBuffer();
   const [pixels, blank] = await Promise.all([decode(frame), decode(backdrop)]);
