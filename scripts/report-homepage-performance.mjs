@@ -10,7 +10,9 @@ const budgets = { lcpMs: 2500, transferredBytes: 1_500_000 };
 await mkdir(output, { recursive: true });
 let site;
 try {
-  site = await serveBrowserChecks();
+  // Lighthouse visits a loopback origin. Relay only the built homepage's
+  // public model assets so the CDN's production CORS policy does not omit them.
+  site = await serveBrowserChecks('dist', { measureModels: true });
   const report = join(output, 'homepage.report.json');
   await promisify(execFile)(process.execPath, [
     resolve('node_modules/lighthouse/cli/index.js'), site.origin,
@@ -19,6 +21,9 @@ try {
     '--chrome-flags=--headless --no-sandbox', '--quiet',
   ], { env: { ...process.env, CHROME_PATH: chromium.executablePath() }, timeout: 65000 });
   const { audits, runtimeError } = JSON.parse(await readFile(report, 'utf8'));
+  const modelTransfers = (audits['network-requests']?.details?.items ?? [])
+    .filter(item => /\/models\/previews\/.*\.glb(?:\?|$)/.test(item.url))
+    .map(({ url, statusCode, transferSize, resourceSize }) => ({ url: new URL(url).pathname, statusCode, transferSize, resourceSize }));
   const measured = {
     lcpMs: Math.round(audits['largest-contentful-paint'].numericValue),
     transferredBytes: Math.round(audits['total-byte-weight'].numericValue),
@@ -27,8 +32,8 @@ try {
     throw new Error(runtimeError?.message || 'Lighthouse did not report both measurements');
   }
   const underBudget = Object.fromEntries(Object.keys(budgets).map(key => [key, measured[key] <= budgets[key]]));
-  await writeFile(join(output, 'budget.json'), JSON.stringify({ measured, budgets, underBudget }, null, 2) + '\n');
-  console.log('Homepage performance (report only)', { measured, budgets, underBudget });
+  await writeFile(join(output, 'budget.json'), JSON.stringify({ measured, modelTransfers, budgets, underBudget }, null, 2) + '\n');
+  console.log('Homepage performance (report only)', { measured, modelTransfers, budgets, underBudget });
 } catch (error) {
   const message = error.killed ? 'Lighthouse timed out' : error.message;
   await writeFile(join(output, 'budget.json'), JSON.stringify({ budgets, error: message }, null, 2) + '\n');
