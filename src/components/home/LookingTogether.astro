@@ -20,7 +20,7 @@ const works = pair ? [pair.a, pair.b] : [];
       <figcaption><h3>{shortWorkTitle(work.title)}</h3><p>{[work.maker || work.culture, work.displayDate].filter(Boolean).join(' · ')}</p><a href={withBase(v3WorkRoute(work))}>Details &amp; sources <span aria-hidden="true">↗</span></a></figcaption>
     </figure>)}
   </div>
-  <p class="looking-together__note">Select a sculpture to handle it, then drag to turn it. Each work is framed independently.</p>
+  <p class="looking-together__note">Each work is framed independently.</p>
 </section>}
 
 <style>
@@ -39,7 +39,7 @@ const works = pair ? [pair.a, pair.b] : [];
   .looking-together__stage :global(.model-stage [data-poster]) { min-height: 0; object-fit: contain; }
   .looking-together__stage :global(.model-stage:not(.is-live) [data-poster]) { opacity: 1 !important; }
   .looking-together__stage :global(.model-stage:not(.is-live) .viewer-canvas) { visibility: hidden; }
-  .looking-together__stage :global(.stage-tag), .looking-together__stage :global(.stage-corner), .looking-together__stage :global(.stage-hint) { display: none !important; }
+  .looking-together__stage :global(.stage-tag), .looking-together__stage :global(.stage-corner) { display: none !important; }
   .looking-together__stage :global(.viewer:not(:fullscreen):not([data-viewer-expanded]) .immersive-tools:not([hidden])) { display: flex; position: absolute; inset: auto 0 -48px 0; justify-content: center; gap: 5px; min-height: 44px; padding: 0; border: 0; border-radius: 0; background: transparent; transform: none; backdrop-filter: none; }
   .looking-together__stage :global(.immersive-tools button) { min-height: 44px; padding: 9px 12px; color: var(--v3-muted); font-size: 11px; letter-spacing: 0; }
   .looking-together__stage :global(.stage-loading) { inset: auto 15px 15px auto; transform: none; padding: 8px; background: #15243acc; border-radius: 5px; }

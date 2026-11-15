@@ -4,113 +4,208 @@ const TAP_MOVEMENT_PX = 8;
 const DOUBLE_TAP_MS = 340;
 const DOUBLE_TAP_PX = 36;
 
-function bindCanvasTaps(canvas, { signal, onSingleTap, onDoubleTap }) {
+// Keep the first direction for the whole one-finger gesture. This follows
+// model-viewer's SmoothControls election, including horizontal ties.
+export function createTouchGesture() {
+  let owner = null;
+  let startX = 0, startY = 0;
+  return {
+    get owner() { return owner; },
+    begin(x, y, fullscreen) {
+      startX = x;
+      startY = y;
+      owner = fullscreen ? 'sculpture' : 'pending';
+    },
+    addFinger() { owner = 'sculpture'; },
+    move(x, y) {
+      if (owner === 'pending') {
+        const dx = Math.abs(x - startX), dy = Math.abs(y - startY);
+        if (Math.max(dx, dy) >= 2) owner = dy > dx ? 'page' : 'sculpture';
+      }
+      return owner;
+    },
+    end() { owner = null; },
+  };
+}
+
+export function createRotationHold(signal, onChange) {
+  let timer, interacting = false, held = false;
+  function setHeld(next) {
+    if (held === next) return;
+    held = next;
+    onChange();
+  }
+  function rest() {
+    clearTimeout(timer);
+    setHeld(true);
+    if (!interacting) timer = setTimeout(() => setHeld(false), 4000);
+  }
+  signal.addEventListener('abort', () => clearTimeout(timer), { once: true });
+  return {
+    get held() { return held; },
+    setInteracting(next) { interacting = next; rest(); },
+    noteInput: rest,
+  };
+}
+
+export function bindViewerInput({ canvas, controls, signal, wheelZoom = true, onInteraction, onWheel, onTurn, onReset, onDiscardInertia }) {
+  const document = canvas.ownerDocument;
   const pointers = new Map();
-  let lastTap, singleTimer;
+  const touch = createTouchGesture();
+  const rotateSpeed = controls.rotateSpeed;
+  const capture = { capture: true, passive: true, signal };
+  let fullscreen = false;
+  let nativeTouch = false, interacting = false;
+  let lastTap;
 
-  function clearTap() {
-    clearTimeout(singleTimer);
-    lastTap = undefined;
+  function syncInteraction() {
+    const next = nativeTouch || pointers.size > 0;
+    if (next === interacting) return;
+    interacting = next;
+    onInteraction(next);
   }
 
-  function singleTap() {
-    clearTap();
-    onSingleTap?.();
+  function updateSpeed() {
+    controls.rotateSpeed = touch.owner && touch.owner !== 'sculpture' ? 0 : rotateSpeed;
   }
 
-  const options = { passive: true, signal };
-  canvas.addEventListener('pointerdown', event => {
-    if (!onSingleTap && event.pointerType !== 'touch') return;
-    if (event.button !== 0 || event.ctrlKey || event.metaKey || event.altKey || event.shiftKey) {
-      clearTap();
-      return;
-    }
-    pointers.set(event.pointerId, { x: event.clientX, y: event.clientY, moved: false });
-    if (pointers.size > 1) {
-      clearTap();
-      for (const pointer of pointers.values()) pointer.moved = true;
-    }
-  }, options);
-  const capture = { ...options, capture: true };
-  canvas.ownerDocument.addEventListener('pointermove', event => {
-    const pointer = pointers.get(event.pointerId);
-    if (!pointer || Math.hypot(event.clientX - pointer.x, event.clientY - pointer.y) < TAP_MOVEMENT_PX) return;
-    pointer.moved = true;
-    clearTap();
-  }, capture);
   function finish(event) {
     const pointer = pointers.get(event.pointerId);
     if (!pointer) return;
     pointers.delete(event.pointerId);
-    const { clientX: x, clientY: y, timeStamp: time, pointerType: type } = event;
-    if (event.type !== 'pointerup' || pointer.moved || Math.hypot(x - pointer.x, y - pointer.y) >= TAP_MOVEMENT_PX) {
-      clearTap();
-      return;
+    const canceled = event.type !== 'pointerup';
+    if (canceled) onDiscardInertia();
+    if (!pointers.size) {
+      touch.end();
+      updateSpeed();
+      canvas.style.cursor = 'grab';
     }
-    if (lastTap && type === lastTap.type && time - lastTap.time <= DOUBLE_TAP_MS &&
-        Math.hypot(x - lastTap.x, y - lastTap.y) <= DOUBLE_TAP_PX) {
-      clearTap();
-      onDoubleTap();
-      return;
-    }
-    if (lastTap && onSingleTap) singleTap();
-    lastTap = { x, y, time, type };
-    if (onSingleTap) singleTimer = setTimeout(singleTap, DOUBLE_TAP_MS);
-  }
-  canvas.ownerDocument.addEventListener('pointerup', finish, capture);
-  canvas.ownerDocument.addEventListener('pointercancel', finish, capture);
-  canvas.addEventListener('lostpointercapture', finish, options);
-  signal.addEventListener('abort', () => { clearTap(); pointers.clear(); }, { once: true });
-  return clearTap;
-}
+    syncInteraction();
 
-// Automatic viewers use native mouse double-click and direct touch double-tap.
-export function bindViewerReset(canvas, reset, signal) {
+    const { clientX: x, clientY: y, timeStamp: time } = event;
+    if (pointer.type !== 'touch' || canceled || pointer.moved || Math.hypot(x - pointer.x, y - pointer.y) >= TAP_MOVEMENT_PX) {
+      lastTap = undefined;
+    } else if (lastTap && time - lastTap.time <= DOUBLE_TAP_MS && Math.hypot(x - lastTap.x, y - lastTap.y) <= DOUBLE_TAP_PX) {
+      lastTap = undefined;
+      onReset();
+    } else {
+      lastTap = { x, y, time };
+    }
+  }
+
+  function cancelPointer(pointerId) {
+    if (!pointers.has(pointerId)) return;
+    // Three's own pointercancel listener clears its document listeners and
+    // pointer state. Forward cancellation when the browser only sends touchcancel.
+    canvas.dispatchEvent(new PointerEvent('pointercancel', { pointerId, bubbles: true }));
+    if (canvas.hasPointerCapture(pointerId)) canvas.releasePointerCapture(pointerId);
+  }
+
+  canvas.addEventListener('pointerdown', event => {
+    if (!controls.enabled || pointers.has(event.pointerId)) return;
+    const isTouch = event.pointerType === 'touch';
+    if (!isTouch && event.button !== 0 && event.button !== 1 && event.button !== 2) return;
+    const first = pointers.size === 0;
+    pointers.set(event.pointerId, { type: event.pointerType, x: event.clientX, y: event.clientY, moved: false, turns: event.button === 0 && !event.ctrlKey && !event.metaKey && !event.shiftKey });
+    syncInteraction();
+    if (first) {
+      onDiscardInertia();
+      if (isTouch) touch.begin(event.clientX, event.clientY, fullscreen);
+      else canvas.style.cursor = 'grabbing';
+    }
+    if (isTouch && pointers.size > 1) {
+      touch.addFinger();
+      for (const pointer of pointers.values()) pointer.moved = true;
+      lastTap = undefined;
+    }
+    updateSpeed();
+  }, capture);
+
+  document.addEventListener('pointermove', event => {
+    const pointer = pointers.get(event.pointerId);
+    if (!pointer) return;
+    const moved = event.clientX !== pointer.x || event.clientY !== pointer.y;
+    if (moved && (Math.hypot(event.clientX - pointer.x, event.clientY - pointer.y) >= TAP_MOVEMENT_PX)) {
+      pointer.moved = true;
+      lastTap = undefined;
+    }
+    if (pointer.type === 'touch') {
+      if (touch.move(event.clientX, event.clientY) === 'sculpture' && pointers.size === 1 && moved) {
+        pointer.moved = true;
+        onTurn();
+      }
+      updateSpeed();
+    } else if (pointer.turns && moved) onTurn();
+  }, capture);
+
+  // WebKit needs a non-passive listener installed before the gesture begins.
+  // Keep ownership after a sideways start even when the finger moves vertically.
+  canvas.addEventListener('touchmove', event => {
+    if (touch.owner === 'pending' && event.touches.length === 1) {
+      touch.move(event.touches[0].clientX, event.touches[0].clientY);
+      updateSpeed();
+    }
+    if (touch.owner === 'sculpture' && event.cancelable) event.preventDefault();
+  }, { passive: false, signal });
+
+  document.addEventListener('pointerup', finish, capture);
+  document.addEventListener('pointercancel', finish, capture);
+  canvas.addEventListener('lostpointercapture', event => cancelPointer(event.pointerId), capture);
+  // A native scroll cancels the pointer before the thumb actually lifts.
+  function updateNativeTouch(event) {
+    nativeTouch = event.targetTouches.length > 0;
+    syncInteraction();
+  }
+  canvas.addEventListener('touchstart', updateNativeTouch, capture);
+  canvas.addEventListener('touchend', updateNativeTouch, capture);
+  canvas.addEventListener('touchcancel', event => {
+    for (const [id, pointer] of pointers) if (pointer.type === 'touch') cancelPointer(id);
+    updateNativeTouch(event);
+  }, capture);
+  document.defaultView?.addEventListener('blur', () => {
+    nativeTouch = false;
+    for (const id of pointers.keys()) cancelPointer(id);
+    syncInteraction();
+  }, capture);
+  signal.addEventListener('abort', () => {
+    for (const id of pointers.keys()) cancelPointer(id);
+  }, { once: true });
+
   canvas.addEventListener('dblclick', event => {
-    if (event.pointerType !== 'touch' && !event.sourceCapabilities?.firesTouchEvents) reset();
-  }, { passive: true, signal });
-  bindCanvasTaps(canvas, { signal, onDoubleTap: reset });
-}
-
-/** Start in the original handling mode, with tap-to-scroll available on demand. */
-export function bindViewerInput({ canvas, controls, signal, wheelZoom = true, initiallyActive = true, onToggle, onReset }) {
-  const rotateSpeed = controls.rotateSpeed;
-  const enablePan = controls.enablePan;
-  let active = initiallyActive;
-  function applyMode() {
-    // Allow OrbitControls to finish pointer bookkeeping even in scroll mode.
-    controls.rotateSpeed = active ? rotateSpeed : 0;
-    controls.enablePan = active && enablePan;
-    controls.enableZoom = active;
-    canvas.style.touchAction = active ? 'none' : 'pan-y';
-  }
-  const clearTap = bindCanvasTaps(canvas, {
-    signal, onSingleTap: () => setActive(!active), onDoubleTap: onReset,
-  });
-  function setActive(next) {
-    if (signal.aborted) return;
-    clearTap();
-    if (active === next) return;
-    active = next;
-    applyMode();
-    onToggle?.(active);
-  }
+    if (event.pointerType !== 'touch' && !event.sourceCapabilities?.firesTouchEvents) onReset();
+  }, capture);
   canvas.addEventListener('wheel', event => {
-    if (!active || !wheelZoom) event.stopImmediatePropagation();
-  }, { capture: true, passive: true, signal });
-  if (!signal.aborted) applyMode();
-  return { isActive: () => active, setActive };
+    const modified = event.ctrlKey || event.metaKey;
+    if (!controls.enabled || !wheelZoom || (!fullscreen && !modified)) {
+      event.stopImmediatePropagation();
+      return;
+    }
+    if (event.cancelable) event.preventDefault();
+    onWheel();
+  }, { capture: true, passive: false, signal });
+
+  canvas.style.cursor = 'grab';
+  function setFullscreen(next) {
+    fullscreen = next;
+    canvas.style.touchAction = fullscreen ? 'none' : 'pan-y';
+  }
+  setFullscreen(false);
+  return { setFullscreen };
 }
 
-/** Bridge Safari trackpad magnification to the sculpture while it is handling. */
-export function bindViewerZoom({ canvas, signal, canHandle, onZoom }) {
+/** Bridge Safari trackpad magnification to the sculpture when wheel zoom is enabled. */
+export function bindViewerZoom({ canvas, signal, canHandle, onZoom, onInteraction = () => {} }) {
   const document = canvas.ownerDocument;
   const touchPointers = new Set();
   let previousScale;
   const passive = { capture: true, passive: true, signal };
   const gesture = { capture: true, passive: false, signal };
   const validScale = scale => Number.isFinite(scale) && scale > 0;
-  const clearGesture = () => { previousScale = undefined; };
+  const clearGesture = () => {
+    if (previousScale === undefined) return;
+    previousScale = undefined;
+    onInteraction(false);
+  };
   function ownsGesture() {
     if (!canHandle() || touchPointers.size) clearGesture();
     return previousScale !== undefined;
@@ -131,6 +226,7 @@ export function bindViewerZoom({ canvas, signal, canHandle, onZoom }) {
     clearGesture();
     if (!canHandle() || touchPointers.size || !event.cancelable) return;
     previousScale = validScale(event.scale) ? event.scale : 1;
+    onInteraction(true);
     event.preventDefault();
   }, gesture);
   canvas.addEventListener('gesturechange', event => {
