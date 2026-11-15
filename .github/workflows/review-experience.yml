@@ -32,6 +32,8 @@ jobs:
           SITE: https://atrium.earth
       - name: Verify museum pages in Chromium and WebKit
         run: npm run test:browser
+      - name: Verify sculpture gestures in Chromium
+        run: npm run test:handling-browser
       - name: Report homepage performance
         if: ${{ !cancelled() }}
         run: npm run test:performance
