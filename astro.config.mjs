@@ -26,6 +26,7 @@ export default defineConfig({
     sitemap({ filter: sitemapPageAllowed }),
   ],
   redirects: {
+    '/detail/egyptian/coffin-of-peftjaoeneith-68d0e0': '/works/egyptian/coffin-of-peftjaoeneith-68d0e0/',
     '/exhibitions/the-space-between': '/exhibitions/the-price-of-victory/',
     '/exhibitions/where-is-the-work': '/exhibitions/the-price-of-victory/',
     // The Night Vitrine staged under /v3 is now the primary site.

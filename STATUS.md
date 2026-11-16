@@ -2379,3 +2379,13 @@ The approved title fixes, automatic download gate and promotion exclusions are r
 
 - The full history distinguishes nine previously public works from two records held at intake. Only the nine previously public works are restored. Crouching Spider and Borne au Logos V stay held under the freeze on new publications.
 - The earlier deployment run 43805143703 was canceled before publishing. This correction supersedes the 11-work candidate above. The nine restorations and Fata Morgana sort-year correction are the complete catalogue diff from the last live release.
+
+## 2026-11-16 — Compact individual artwork pages
+
+- Local branch `codex/compact-object-pages` from release `5e677425b`. The shared artwork template shows one title, keeps Save beside it, groups secondary viewer controls under 3D settings, and puts the full object record behind Details & sources. Previous and next links follow the artwork content. Existing alternate model and AR routes are retained.
+- Seated Figure passed the layout and interaction checks in phone-width WebKit and desktop Chromium. The broader suite's Chromium homepage performance trace reached its 20-second timeout. Local preview awaits owner review.
+
+### Evening release
+
+- The owner authorized deploying the compact layout. During the iPhone model review, a matched-angle comparison reproduced a pale seam beside the painted coffin lid’s eye in the lightweight model. The release withdraws only that derivative, restores the size-labeled tap for the 32.8 MB full scan, and redirects its old Full detail link to the same work. The six other derivatives remain active. Asset verification passes for all six.
+- Deployment and public route checks follow. Storage migration and further model conversion remain separate from this release.
