@@ -2367,3 +2367,10 @@ The approved title fixes, automatic download gate and promotion exclusions are r
 - Browser checks audit the threshold across generated stages, prove that Piero de’ Medici stays idle through the first paint until a tap, and verify a large Surface sculpture remains idle when scrolled into view. The Piero tap test intercepts the request to avoid transferring the full original.
 - Report the first attempt for each load. A timeout is a failed result and requires explanation. Report any subsequent run separately.
 - Large-work AR / VR deep links also wait for the size-labelled control. The Piero browser fixture enters through its AR / VR hash and checks the network before any tap.
+
+## 2026-11-15 — Pages measurement and earlier catalogue holds
+
+- Task and branch: Restore previously hidden catalogue records for which no earlier named owner instruction was found, and correct the Fata Morgana sort year, on `codex/restore-older-hidden-works` from deployed `fd87c56f4`.
+- The baseline Pages release reports 21,267 files totalling 876,892,722 bytes. The deployed ZIP directory identifies its uncompressed tar as 902,778,880 bytes. [Release](https://github.com/never-nude/atrium.earth/actions/runs/43798987503)
+- Compared the latest 41 approved holds with the 19 pre-existing holds. This candidate restores 11 records. Eight have an earlier documented owner instruction and are retained under the conditional request. Both Minneapolis Ganesha records have individual work routes again. Changes are limited to catalogue visibility, the Ganesha routing and regression check, and the Fata Morgana sort year of 1572.
+- The complete Node suite and whitespace validation passed. All 11 candidate models passed first-attempt live header checks. No exhibition placements or model files changed. Production verification follows deployment.

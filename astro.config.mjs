@@ -3,7 +3,6 @@ import { defineConfig } from 'astro/config';
 import { previewAssets } from './scripts/lib/preview-assets.mjs';
 
 const base = process.env.BASE_PATH || '/';
-const consolidatedWorkAliases = ['/works/asia/ganesha-mia', '/asia/ganesha-mia'];
 
 export function sitemapPageAllowed(page) {
   const pathname = new URL(page).pathname.replace(/\/+$/, '');
@@ -14,8 +13,7 @@ export function sitemapPageAllowed(page) {
     && !pathname.includes('/wings/unfiled')
     && !/\/wings\/(?:near-east|greece-rome|americas-oceania)$/.test(pathname)
     && !pathname.includes('/exhibitions/the-space-between')
-    && !pathname.includes('/exhibitions/where-is-the-work')
-    && !consolidatedWorkAliases.some(alias => pathname.endsWith(alias));
+    && !pathname.includes('/exhibitions/where-is-the-work');
 }
 
 export default defineConfig({
@@ -28,10 +26,6 @@ export default defineConfig({
     sitemap({ filter: sitemapPageAllowed }),
   ],
   redirects: {
-    // One museum object: retain the historical Commons/STL source record and
-    // asset maps while public visits use the reviewed GLB listing.
-    '/works/asia/ganesha-mia': { status: 301, destination: '/works/asia/ganesha-java-mia/' },
-    '/asia/ganesha-mia': { status: 301, destination: '/works/asia/ganesha-java-mia/' },
     '/exhibitions/the-space-between': '/exhibitions/the-price-of-victory/',
     '/exhibitions/where-is-the-work': '/exhibitions/the-price-of-victory/',
     // The Night Vitrine staged under /v3 is now the primary site.
