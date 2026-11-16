@@ -1,0 +1,73 @@
+name: Remove unused figure study transfer objects
+on:
+  push:
+    branches: [codex/figure-source-fetch-20261115]
+    paths: [.github/workflows/cleanup-figure-transfer-20261115.yml]
+permissions:
+  contents: read
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /scripts/r2-sigv4.mjs
+            /docs/ingest/figure-studies-unused-transfer-20261115.json
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Check existing catalogue and remove only unused staging copies
+        env:
+          GH_TOKEN: ${{ github.token }}
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: |
+          node --input-type=module <<'NODE'
+          import assert from 'node:assert/strict';
+          import fs from 'node:fs';
+          import {execFileSync} from 'node:child_process';
+          import {sha256Hex,signRequest} from './scripts/r2-sigv4.mjs';
+          const {models}=JSON.parse(fs.readFileSync('docs/ingest/figure-studies-unused-transfer-20261115.json','utf8'));
+          const permitted=new Set([
+            'greek/pair-of-bronze-athletes-archaeological-museum-delphi',
+            'europe/reclining-nude-i-aurora-matisse-bronze',
+            'asia/woman-ogiwara-rokuzan-bronze',
+            'roman/venus-pendula-aversa-medallion'
+          ]);
+          assert.equal(models.length,permitted.size);
+          const current=execFileSync('gh',['api','-H','Accept: application/vnd.github.raw+json','repos/never-nude/atrium.earth/contents/src/data/previews.json?ref=main'],{encoding:'utf8',maxBuffer:8000000});
+          const previews=JSON.parse(current);
+          const credentials={accessKeyId:process.env.R2_ACCESS_KEY_ID,secretAccessKey:process.env.R2_SECRET_ACCESS_KEY};
+          const requests=models.map(m=>{
+            assert(permitted.delete(m.slug));
+            assert(/^[a-f0-9]{64}$/.test(m.sha256));
+            const key='models/previews/'+m.slug+'/preview-'+m.sha256.slice(0,12)+'.glb';
+            assert.equal(m.url,'https://models.atrium.earth/'+key);
+            assert(!previews[m.slug]&&!current.includes(m.url),'A published mapping is protected');
+            const url='https://'+process.env.R2_ACCOUNT_ID+'.r2.cloudflarestorage.com/'+process.env.R2_BUCKET+'/'+key;
+            return {...m,url};
+          });
+          async function request(url,method){
+            const {headers}=signRequest({method,url,headers:{},payloadHash:sha256Hex(Buffer.alloc(0)),...credentials});
+            return fetch(url,{method,headers,signal:AbortSignal.timeout(45000)});
+          }
+          for(const m of requests){
+            const original=await request(m.url,'GET');
+            if(original.status===404){console.log('Already absent '+m.slug);continue;}
+            assert.equal(original.status,200);
+            const body=Buffer.from(await original.arrayBuffer());
+            assert.equal(body.length,m.bytes);
+            assert.equal(sha256Hex(body),m.sha256);
+            const deletion=await request(m.url,'DELETE');
+            assert.equal(deletion.status,204);
+            const remaining=await request(m.url,'HEAD');
+            assert.equal(remaining.status,404);
+            console.log('Removed unused transfer '+m.slug);
+          }
+          NODE
