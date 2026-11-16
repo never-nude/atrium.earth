@@ -396,7 +396,8 @@ body .v3-explorer:has(.v3-collection-switch) .v3-filter-row select, body .v3-exp
   .v3-card__copy h3 { font-size: 13px; line-height: 1.35; }
   .v3-card__copy p { font-size: 10px; line-height: 1.6; }
   .v3-card__spatial-link { padding: 10px 11px; font-size: 10px; }
-  .studio-save { top: 7px; right: 7px; width: 33px; height: 33px; padding: 8px; }
+  .studio-save:not(.studio-save--object) { top: 7px; right: 7px; width: 33px; height: 33px; padding: 8px; }
+  .studio-save--object { min-width: 44px; min-height: 44px; padding: 8px 12px; white-space: nowrap; }
   [data-studio-density="compact"] .v3-grid { gap: 12px 10px; }
   [data-studio-density="compact"] .v3-card__copy { padding: 10px; }
   [data-studio-density="compact"] .v3-card__copy h3 { font-size: 12px; }
@@ -441,7 +442,6 @@ body .v3-explorer:has(.v3-collection-switch) .v3-filter-row select, body .v3-exp
   .v3-object-title p:last-child { font-size: 12px; }
   .v3-object-actions { display: grid; grid-template-columns: minmax(0, 1fr) auto; justify-items: start; gap: 9px; margin-top: 18px; }
   .v3-object-actions .v3-object-record-link { min-height: 44px; }
-  .v3-object-actions .studio-save--object { grid-column: 2; grid-row: 1; justify-self: end; width: auto; min-height: 44px; padding: 8px 12px; }
   .v3-object-nav { grid-column: 1 / -1; grid-row: 2; margin-left: 0; }
   .v3-object-nav i { display: none; }
   .v3-object-nav a { min-width: 44px; min-height: 44px; padding: 0 7px; }
