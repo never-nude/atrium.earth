@@ -182,23 +182,28 @@ async function pointOn(canvas, kind) {
           ? samples.every(([sx, sy]) => alpha(sx, sy) >= 192)
           : backdropOffsets.every(dx => backdropOffsets.every(dy => alpha(x + dx, y + dy) < 48));
         if (!valid) continue;
-        let spread;
+        let pinch;
         if (kind === 'midpoint') {
-          for (let step = 40; x - step >= left + 20 && x + step <= right - 20; step += 4) {
-            const fingerLocations = [x - step, x + step];
-            const empty = fingerLocations.every(fingerX => [
-              [fingerX, y], [fingerX - 14, y], [fingerX + 14, y], [fingerX, y - 14], [fingerX, y + 14],
-            ].every(([sx, sy]) => alpha(sx, sy) < 48));
-            if (!empty) continue;
-            if (document.elementFromPoint(x - step, y) !== element || document.elementFromPoint(x + step, y) !== element) continue;
-            spread = step;
-            break;
+          // The featured sculpture changes weekly. Wide reliefs can leave
+          // space above and below even when both horizontal edges are filled.
+          for (const [dx, dy] of [[1, 0], [0, 1]]) {
+            const room = dx ? Math.min(x - left, right - x) : Math.min(y - top, bottom - y);
+            for (let spread = 40; spread <= room - 20; spread += 4) {
+              const fingers = [-spread, spread].map(offset => [x + dx * offset, y + dy * offset]);
+              const empty = fingers.every(([fx, fy]) => document.elementFromPoint(fx, fy) === element
+                && [[0, 0], [-14, 0], [14, 0], [0, -14], [0, 14]].every(([sx, sy]) => alpha(fx + sx, fy + sy) < 48));
+              if (empty) {
+                pinch = { spread, dx, dy };
+                break;
+              }
+            }
+            if (pinch) break;
           }
-          if (!spread) continue;
+          if (!pinch) continue;
         }
         const preferredX = needsArt ? midX : left + margin;
         const score = Math.abs(x - preferredX) * (needsArt ? 1 : 3) + Math.abs(y - midY) * 1.5;
-        if (!selected || score < selected.score) selected = { x, y, score, spread };
+        if (!selected || score < selected.score) selected = { x, y, score, pinch };
       }
     }
     if (!selected || document.elementFromPoint(selected.x, selected.y) !== element) return null;
@@ -206,7 +211,7 @@ async function pointOn(canvas, kind) {
       x: selected.x,
       y: selected.y,
       offsetY: selected.y - bounds.y,
-      spread: selected.spread,
+      pinch: selected.pinch,
     };
   }, kind);
   assert.ok(point, `Could not place a gesture on the rendered ${kind}`);
@@ -296,12 +301,13 @@ async function checkMobile(client, canvas, check) {
     await check(`pinching ${location} zooms without moving or zooming the page`, async () => {
       await settleScroll(canvas);
       const point = await pointOn(canvas, kind);
-      const initial = point.spread ? [[-point.spread, 0], [point.spread, 0]] : [[0, 0], [32, 0]];
+      const { spread, dx, dy } = point.pinch ?? { spread: 0, dx: 1, dy: 0 };
+      const initial = spread ? [-spread, spread] : [0, 32];
       // Close the wider pinch, so the next gesture still has accessible backdrop.
       const direction = kind === 'midpoint' ? -1 : 1;
       const frames = [0, 6, 12, 19].map(step => {
         const delta = direction * step;
-        return [[initial[0][0] - delta, 0], [initial[1][0] + delta, 0]];
+        return [initial[0] - delta, initial[1] + delta].map(offset => [offset * dx, offset * dy]);
       });
       const before = await track(canvas);
       const touchStart = await touchGesture(client, canvas, point, frames);
