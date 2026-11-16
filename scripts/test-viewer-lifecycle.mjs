@@ -462,6 +462,7 @@ test('AR and photo optional lifecycle signal removes global/control listeners an
   class Node extends EventTarget {
     constructor() { super(); this.dataset = {}; this.value = 'auto'; this.style = {}; this.open = false; this.hidden = false; this.classList = { add() {}, remove() {} }; }
     setAttribute() {} removeAttribute() {} toggleAttribute() {} focus() {} select() {}
+    showModal() { this.open = true; }
     close() { this.open = false; this.dispatchEvent(new Event('close')); }
   }
   const nodes = new Map(), root = new Node();
@@ -489,4 +490,15 @@ test('AR and photo optional lifecycle signal removes global/control listeners an
   const incomplete = new AbortController(); setMaxListeners(0, incomplete.signal);
   assert.doesNotThrow(() => bindSpatialViewing(element, () => undefined, () => {}, { signal: incomplete.signal }));
   incomplete.abort();
+  const gated = new AbortController(); setMaxListeners(0, gated.signal);
+  let starts = 0;
+  location.hash = '#ar-vr';
+  bindSpatialViewing(element, () => undefined, () => { starts++; }, { signal: gated.signal, requireModelTap: true });
+  win.dispatchEvent(new Event('hashchange'));
+  assert.equal(starts, 0);
+  assert.equal(dialog.open, false);
+  element.querySelector('[data-spatial-open]').dispatchEvent(new Event('click'));
+  assert.equal(starts, 1);
+  assert.equal(dialog.open, true);
+  gated.abort();
 });

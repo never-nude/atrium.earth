@@ -12,7 +12,7 @@ const routes = [
   { id: 'homepage', path: '/', primary: '#v3-home-title', viewers: 'main [data-viewer]' },
   { id: 'collection', path: '/collection/', primary: 'main h1' },
   { id: 'artwork', path: '/works/discobolus/', primary: '#v3-object-title', viewers: '#sculpture [data-viewer]' },
-  { id: 'large-artwork', path: '/works/renaissance/piero-medici-mino-smk-cast/', primary: '#v3-object-title', largeModel: true },
+  { id: 'large-artwork', path: '/works/renaissance/piero-medici-mino-smk-cast/#ar-vr', primary: '#v3-object-title', largeModel: true },
   { id: 'exhibition', path: '/exhibitions/the-work-of-the-surface/', primary: 'main h1' },
   { id: 'guided-visit', path: '/exhibitions/the-work-of-the-surface/#curated-visit', primary: '[data-visit-active] [data-visit-stop-heading]' },
   { id: 'world', path: '/world/', primary: '#world-title', prepare: async page => {
