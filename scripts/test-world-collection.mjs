@@ -58,7 +58,7 @@ const publicWorks = records.filter(record => !record.hidden).map(record => ({
 const world = buildWorldCollection({ records, publicWorks, placesData, corrections });
 assert.equal(world.totalCount, records.filter(record => !record.hidden).length);
 assert.equal(new Set(world.works.map(work => work.slug)).size, world.totalCount);
-assert.ok(!world.works.some(work => work.slug === 'asia/ganesha-mia'), 'The consolidated hidden alternate stays out.');
+assert.ok(world.works.some(work => work.slug === 'asia/ganesha-mia'), 'The restored Minneapolis Ganesha has its own entry.');
 assert.ok(world.works.some(work => work.slug === 'asia/ganesha-java-mia'));
 const byId = new Map(world.places.map(place => [place.id, place]));
 const rawBySlug = new Map(records.map(record => [record.slug, record]));
