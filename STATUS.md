@@ -2374,3 +2374,8 @@ The approved title fixes, automatic download gate and promotion exclusions are r
 - The baseline Pages release reports 21,267 files totalling 876,892,722 bytes. The deployed ZIP directory identifies its uncompressed tar as 902,778,880 bytes. [Release](https://github.com/never-nude/atrium.earth/actions/runs/43798987503)
 - Compared the latest 41 approved holds with the 19 pre-existing holds. This candidate restores 11 records. Eight have an earlier documented owner instruction and are retained under the conditional request. Both Minneapolis Ganesha records have individual work routes again. Changes are limited to catalogue visibility, the Ganesha routing and regression check, and the Fata Morgana sort year of 1572.
 - The complete Node suite and whitespace validation passed. All 11 candidate models passed first-attempt live header checks. No exhibition placements or model files changed. Production verification follows deployment.
+
+### Restoration release correction
+
+- The full history distinguishes nine previously public works from two records held at intake. Only the nine previously public works are restored. Crouching Spider and Borne au Logos V stay held under the freeze on new publications.
+- The earlier deployment run 43805143703 was canceled before publishing. This correction supersedes the 11-work candidate above. The nine restorations and Fata Morgana sort-year correction are the complete catalogue diff from the last live release.
