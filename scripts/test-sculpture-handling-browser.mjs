@@ -2,18 +2,22 @@ import assert from 'node:assert/strict';
 import { chromium } from 'playwright';
 import { serveBrowserChecks } from './serve-browser-checks.mjs';
 import { requiresModelActivation } from '../src/lib/viewer-preview.mjs';
+import { firstViewFor } from '../src/lib/first-view-models.mjs';
+import firstViewModels from '../src/data/first-view-models.json' with { type: 'json' };
+import originals from '../src/data/previews.json' with { type: 'json' };
 
 const suppliedOrigin = process.env.BROWSER_CHECK_ORIGIN;
 const hosted = suppliedOrigin ? null : await serveBrowserChecks(process.env.BROWSER_CHECK_DIST);
 const origin = new URL(suppliedOrigin ?? hosted.origin);
 const local = ['localhost', '127.0.0.1'].includes(origin.hostname);
 const home = { name: 'homepage', path: '/', viewer: '.home-programme-hero [data-viewer]' };
-const artwork = { name: 'Discobolus artwork', path: '/works/discobolus/', viewer: '#sculpture [data-viewer]' };
+const artwork = { name: 'Discobolus artwork', path: '/works/discobolus/', viewer: '#sculpture [data-viewer]', firstViewSlug: 'discobolus' };
 const thinker = { name: 'The Thinker artwork', path: '/works/rodin/the-thinker/', viewer: '#sculpture [data-viewer]' };
 const exhibitionStop = {
   name: 'Bodies in Motion Discobolus',
   path: '/exhibitions/bodies-in-motion/',
   viewer: '[data-exhibition-work="discobolus"] [data-viewer]',
+  firstViewSlug: 'discobolus',
 };
 const surface = {
   name: 'Surface exhibition',
@@ -46,7 +50,7 @@ async function instrumentControls(page) {
   const transfers = new Map();
   modelTransfers.set(page, transfers);
   page.on('request', request => {
-    if (!/^\/(?:models\/previews\/|__atrium-model\/)/.test(modelPath(request.url()))) return;
+    if (!/^\/(?:models\/(?:previews|first-views)\/|__atrium-(?:model|first-view)\/)/.test(modelPath(request.url()))) return;
     transfers.set(request, { url: request.url(), started: performance.now() });
   });
   page.on('response', response => {
@@ -116,7 +120,7 @@ controls.update = function (...args) {
 `;
     await route.fulfill({ response, body: source + '\n' + probe });
   });
-  if (local) await page.route('https://models.atrium.earth/models/previews/**/*.glb', async route => {
+  if (local) await page.route(/^https:\/\/models\.atrium\.earth\/models\/(?:previews|first-views)\/.+\.glb$/, async route => {
     try {
       const response = await route.fetch({
         headers: { ...route.request().headers(), origin: 'https://atrium.earth' },
@@ -132,9 +136,26 @@ controls.update = function (...args) {
 }
 
 async function loadRoute(page, route) {
+  modelTransfers.get(page)?.clear();
   const response = await page.goto(new URL(route.path, origin).href, { waitUntil: 'domcontentloaded' });
   assert.equal(response?.status(), 200);
   return page.locator(route.viewer);
+}
+
+async function checkFirstViewTransfer(page, viewer, slug) {
+  const original = originals[slug];
+  const firstView = firstViewFor(slug, original, firstViewModels[slug]);
+  if (!firstView) return;
+  const model = modelPath(await viewer.locator('[data-stage]').getAttribute('data-glb'));
+  const validPaths = [modelPath(firstView.url)];
+  if (firstView.url.startsWith('https://')) validPaths.push(`/__atrium-first-view/${slug}`);
+  assert.ok(validPaths.includes(model), `${slug}: expected the first-view GLB and received ${model}`);
+  assert.equal(Number(await viewer.getAttribute('data-model-bytes')), firstView.bytes);
+  const transfers = [...modelTransfers.get(page).values()];
+  const models = transfers.filter(transfer => modelPath(transfer.url) === model);
+  assert.ok(models.some(model => model.status === 200), `${slug}: a first-view transfer must finish successfully`);
+  assert.ok(!transfers.some(transfer => [modelPath(original.url), `/__atrium-model/${slug}`].includes(modelPath(transfer.url))),
+    `${slug}: an inline first view must never request the original model`);
 }
 
 async function waitForViewer(page, viewer, { scroll = true } = {}) {
@@ -519,7 +540,7 @@ async function checkAutoOpeningAndRotation(browser) {
   try {
     const page = await context.newPage();
     await instrumentControls(page);
-    for (const route of [{ ...home, viewer: 'main [data-viewer]' }, exhibitionStop, thinker]) {
+    for (const route of [{ ...home, viewer: 'main [data-viewer]' }, artwork, exhibitionStop, thinker]) {
       const viewers = (await loadRoute(page, route)).filter({
         has: page.locator('[data-stage][data-glb]:not([data-glb=""])'),
       });
@@ -539,6 +560,7 @@ async function checkAutoOpeningAndRotation(browser) {
             continue;
           }
           const canvas = await waitForViewer(page, viewer, { scroll: route !== thinker });
+          if (route.firstViewSlug) await checkFirstViewTransfer(page, viewer, route.firstViewSlug);
           const initial = (await readPose(canvas)).position;
           await page.waitForFunction(({ element, initial }) => {
             const pose = element.__atriumTestPose;
@@ -609,7 +631,8 @@ async function checkAutomaticRotation(browser) {
 let browser;
 try {
   browser = await chromium.launch({ args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
-  for (const { route, touch } of cases) {
+  const gestureCases = process.env.BROWSER_CHECK_HANDLING_AUTO_ONLY === '1' ? [] : cases;
+  for (const { route, touch } of gestureCases) {
     const width = touch ? 390 : 1440;
     const prefix = `${width}px ${route.name}`;
     const context = await browser.newContext({

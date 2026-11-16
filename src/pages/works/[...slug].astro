@@ -9,6 +9,7 @@ import { withBase } from '../../lib/urls';
 import { museumLabelFor } from '../../lib/museum-label.mjs';
 import visitsData from '../../data/curated-visits.json';
 import { worldPayloadUrl } from '../../lib/world-payload';
+import { modelSizeLabel } from '../../lib/viewer-preview.mjs';
 
 export function getStaticPaths() {
   return works.map((work) => ({ params: { slug: work.slug }, props: { work } }));
@@ -16,6 +17,8 @@ export function getStaticPaths() {
 
 type Props = { work: Work };
 const { work } = Astro.props;
+const fullDetailPath = work.hasFirstView ? withBase(`/detail/${work.slug}/`) : '';
+const inlineSpatialViewing = !work.hasFirstView && work.spatialAccess.enabled;
 const socialImage = `/previews/renders/${work.slug}/thumb.jpg`;
 const { previous, next } = neighborsFor(work);
 const related = work.relatedWorks.map((slug) => workBySlug(slug)).filter((candidate): candidate is Work => Boolean(candidate)).slice(0, 6);
@@ -63,7 +66,7 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
       immersive={true}
       loadingPlacement="below"
       displayControls={true}
-      spatialViewing={work.spatialAccess.enabled}
+      spatialViewing={inlineSpatialViewing}
       museumLabel={museumLabelFor(work)}
       spatialAssetSha256={work.spatialAccess.assetSha256}
       spatialDimensionStatus={work.spatialAccess.status}
@@ -87,7 +90,13 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
     </div>
 
     <div class="v3-object-actions">
-      <a class="v3-object-record-link" href="#object-record">Details &amp; sources <span aria-hidden="true">↓</span></a>
+      <div class="work-record-actions">
+        <a class="v3-object-record-link" href="#object-record">Details &amp; sources <span aria-hidden="true">↓</span></a>
+        {fullDetailPath && <a class="v3-object-record-link" data-full-detail href={fullDetailPath}>Full detail · {modelSizeLabel(work.originalBytes)} <span aria-hidden="true">↗</span></a>}
+        {fullDetailPath && work.spatialAccess.enabled && (
+          <a id="ar-vr" class="v3-object-record-link" href={`${fullDetailPath}#ar-vr`}>AR / VR <span aria-hidden="true">↗</span></a>
+        )}
+      </div>
 
       <nav class="v3-object-nav" aria-label="Previous and next sculptures">
         <a data-work-previous href={withBase(v3WorkRoute(previous))} aria-label={`Previous work: ${previous.title}`}><span>←</span><i>{previous.title}</i></a>
@@ -189,6 +198,8 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
 </V3Layout>
 
 <style>
+  .work-record-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+  .work-record-actions #ar-vr { scroll-margin-top: 88px; }
   .work-journey { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px 24px; padding: 12px var(--v3-pad); border-bottom: 1px solid var(--v3-line); background: var(--v3-well); }
   .work-journey[hidden], .v3-object-nav a[hidden] { display: none; }
   .work-journey p { margin: 0; color: var(--v3-muted); font-size: 12px; }

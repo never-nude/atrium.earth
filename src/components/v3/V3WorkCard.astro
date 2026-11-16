@@ -4,7 +4,6 @@ import { publicDataset } from '../../lib/catalog';
 import { v3WorkRoute } from '../../lib/v3';
 import { withBase } from '../../lib/urls';
 import { shortWorkTitle } from '../../lib/work-titles';
-import previews from '../../data/previews.json';
 
 type Props = { work: Work; eager?: boolean; stop?: number; spatial?: boolean; displayTitle?: string };
 const { work, eager = false, stop, spatial = false, displayTitle = work.title } = Astro.props;
@@ -13,8 +12,7 @@ const data = publicDataset(work);
 const detail = [work.maker || work.culture, work.displayDate].filter(Boolean).join(' · ');
 const alt = `${work.title}${detail ? ` — ${detail}` : ''}`;
 const spatialAccess = work.spatialAccess?.enabled ? work.spatialAccess : null;
-const preview = (previews as Record<string, { bytes?: number }>)[work.slug];
-const previewBytes = typeof preview?.bytes === 'number' && Number.isFinite(preview.bytes) && preview.bytes > 0 ? preview.bytes : undefined;
+const previewBytes = work.modelBytes || undefined;
 ---
 
 <article

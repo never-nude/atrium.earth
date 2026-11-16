@@ -6,7 +6,8 @@ import path from 'node:path';
 import { pipeline } from 'node:stream/promises';
 import { fileURLToPath } from 'node:url';
 import { parseArgs } from 'node:util';
-import { previewAssets } from './lib/preview-assets.mjs';
+import { previewAssets, firstViewPrefix } from './lib/preview-assets.mjs';
+import { firstViewFor } from '../src/lib/first-view-models.mjs';
 
 const repo = fileURLToPath(new URL('..', import.meta.url));
 const { values } = parseArgs({ options: { port: { type: 'string', default: '5196' }, dist: { type: 'string', default: path.join(repo, 'dist') } } });
@@ -15,7 +16,9 @@ if (!Number.isInteger(port) || port < 1 || port > 65535) throw new Error('Choose
 const dist = await realpath(values.dist);
 if (!(await stat(path.join(dist, 'index.html'))).isFile()) throw new Error('Build the site before starting the phone preview.');
 
-const manifest = JSON.parse(await readFile(path.join(repo, 'src/data/previews.json'), 'utf8'));
+const modelData = await Promise.all(['previews.json', 'first-view-models.json']
+  .map(name => readFile(path.join(repo, 'src/data', name), 'utf8')));
+const [manifest, firstViewBindings] = modelData.map(source => JSON.parse(source));
 const origins = new Set(['https://atrium.earth', 'https://models.atrium.earth']);
 const byModelPath = new Map();
 const absoluteModels = new Map();
@@ -31,12 +34,16 @@ for (const [slug, record] of Object.entries(manifest)) {
   byModelPath.set(url.pathname, relayPath);
   absoluteModels.set(url.href, url.pathname);
 }
+for (const [slug, binding] of Object.entries(firstViewBindings)) {
+  const record = firstViewFor(slug, manifest[slug], binding);
+  if (record && !record.url.startsWith('/')) absoluteModels.set(record.url, `${firstViewPrefix}${encodeURIComponent(slug)}`);
+}
 
 // Use the development relay's origin restrictions, streaming, content length,
 // GLB header and hash checks. The build's text is adapted only in this server.
 process.env.ATRIUM_PREVIEW_PUBLIC_DIR ??= dist;
 let previewMiddleware;
-await previewAssets().configureServer({
+await previewAssets({ firstViewPublicDir: dist }).configureServer({
   config: { root: repo, base: '/' },
   middlewares: { use(handler) { previewMiddleware = handler; } },
 });
@@ -50,7 +57,7 @@ const types = {
   '.mp4': 'video/mp4', '.webm': 'video/webm',
 };
 const rewrittenTypes = new Set(['.html', '.js', '.mjs', '.json']);
-const absoluteModel = /https:\/\/(?:models\.)?atrium\.earth\/models\/previews\/[a-z0-9_/%.-]+\.glb\b/gi;
+const absoluteModel = /https:\/\/(?:models\.)?atrium\.earth\/models\/(?:previews|first-views)\/[a-z0-9_/%.-]+\.glb\b/gi;
 
 async function fileInBuild(pathname) {
   try {
@@ -106,6 +113,10 @@ const server = createServer(async (req, res) => {
     const relayPath = byModelPath.get(pathname);
     if (relayPath) {
       await previewMiddleware({ url: relayPath, method: req.method }, res, () => plain(res, 404, 'Unknown preview model'));
+      return;
+    }
+    if (pathname.startsWith(firstViewPrefix) || pathname.startsWith('/models/first-views/')) {
+      await previewMiddleware(req, res, () => plain(res, 404, 'Unknown preview model'));
       return;
     }
     if (/^\/(?:models\/previews|__atrium-model)(?:\/|$)/.test(pathname) || /\.glb$/i.test(pathname)) {

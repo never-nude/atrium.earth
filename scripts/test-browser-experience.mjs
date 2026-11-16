@@ -5,14 +5,21 @@ import { chromium, webkit } from 'playwright';
 import sharp from 'sharp';
 import { serveBrowserChecks } from './serve-browser-checks.mjs';
 import { AUTO_START_MODEL_LIMIT, INLINE_AUTO_LOAD_LIMIT, requiresModelActivation } from '../src/lib/viewer-preview.mjs';
+import { firstViewFor } from '../src/lib/first-view-models.mjs';
+import firstViewModels from '../src/data/first-view-models.json' with { type: 'json' };
+import originals from '../src/data/previews.json' with { type: 'json' };
 
 const axePath = createRequire(import.meta.url).resolve('axe-core/axe.min.js');
 const artifacts = process.env.BROWSER_REPORT_DIR || 'test-results/browser';
+const largeArtworkSlug = 'renaissance/piero-medici-mino-smk-cast';
+const largeOriginal = originals[largeArtworkSlug];
+const largeFirstView = firstViewFor(largeArtworkSlug, largeOriginal, firstViewModels[largeArtworkSlug]);
+const largeDetailPath = `/detail/${largeArtworkSlug}/`;
 const routes = [
   { id: 'homepage', path: '/', primary: '#v3-home-title', viewers: 'main [data-viewer]' },
   { id: 'collection', path: '/collection/', primary: 'main h1' },
   { id: 'artwork', path: '/works/discobolus/', primary: '#v3-object-title', viewers: '#sculpture [data-viewer]' },
-  { id: 'large-artwork', path: '/works/renaissance/piero-medici-mino-smk-cast/#ar-vr', primary: '#v3-object-title', largeModel: true },
+  { id: 'large-artwork', path: `/works/${largeArtworkSlug}/${largeFirstView ? '' : '#ar-vr'}`, primary: '#v3-object-title', largeModel: true },
   { id: 'exhibition', path: '/exhibitions/the-work-of-the-surface/', primary: 'main h1' },
   { id: 'guided-visit', path: '/exhibitions/the-work-of-the-surface/#curated-visit', primary: '[data-visit-active] [data-visit-stop-heading]' },
   { id: 'world', path: '/world/', primary: '#world-title', prepare: async page => {
@@ -102,11 +109,16 @@ const selected = routes.filter(route => !process.env.BROWSER_CHECK_ROUTE || rout
 if (!selected.length) throw new Error('Unknown browser check route');
 await mkdir(artifacts, { recursive: true });
 const results = [];
-const largeArtworkSlug = 'renaissance/piero-medici-mino-smk-cast';
-
 function modelPath(url) {
   const path = new URL(url, origin).pathname;
   try { return decodeURIComponent(path); } catch { return path; }
+}
+
+function isLargeOriginal(url) {
+  const requested = new URL(url, origin);
+  const canonical = new URL(largeOriginal.url, origin);
+  return requested.href === canonical.href
+    || (requested.origin === new URL(origin).origin && modelPath(requested.href) === `/__atrium-model/${largeArtworkSlug}`);
 }
 
 function observeModelRequests(page, requests) {
@@ -114,7 +126,7 @@ function observeModelRequests(page, requests) {
   const start = performance.now();
   const elapsed = () => Math.round(performance.now() - start);
   page.on('request', request => {
-    if (!/^\/(?:models\/previews\/|__atrium-model\/)/.test(modelPath(request.url()))) return;
+    if (!/^\/(?:models\/(?:previews|first-views)\/|__atrium-(?:model|first-view)\/)/.test(modelPath(request.url()))) return;
     const entry = { url: request.url(), requestedMs: elapsed() };
     seen.set(request, entry);
     requests.push(entry);
@@ -144,6 +156,18 @@ async function viewerState(viewer, modelRequests) {
     };
   });
   return { ...state, requests: modelRequests.filter(request => modelPath(request.url) === modelPath(state.model)) };
+}
+
+async function waitForReadyModel(page, viewer, modelRequests) {
+  try {
+    const terminal = await page.waitForFunction(element => {
+      const state = element.dataset.viewerState;
+      return ['ready', 'error'].includes(state) ? state : false;
+    }, await viewer.elementHandle(), { timeout: 45000 });
+    if (await terminal.jsonValue() !== 'ready') throw new Error('Viewer reported a model error');
+  } catch (error) {
+    throw new Error(`First model attempt failed. ${error.message} ${JSON.stringify(await viewerState(viewer, modelRequests))}`);
+  }
 }
 
 async function captureCanvas(canvas, file) {
@@ -221,15 +245,7 @@ async function inspectMotion(page, route, prefix, result) {
       await checkModelGate(page, viewer, result.modelRequests);
       continue;
     }
-    try {
-      const terminal = await page.waitForFunction(element => {
-        const state = element.dataset.viewerState;
-        return ['ready', 'error'].includes(state) ? state : false;
-      }, await viewer.elementHandle(), { timeout: 45000 });
-      if (await terminal.jsonValue() !== 'ready') throw new Error('Viewer reported a model error');
-    } catch (error) {
-      throw new Error(`First model attempt failed. ${error.message} ${JSON.stringify(await viewerState(viewer, result.modelRequests))}`);
-    }
+    await waitForReadyModel(page, viewer, result.modelRequests);
     if (await viewer.getAttribute('data-still-painted') !== 'true') throw new Error('The viewer started before its still painted');
     const canvas = viewer.locator('.viewer-canvas');
     const frame = await captureCanvas(canvas, `${prefix}-viewer-${i + 1}.png`);
@@ -271,12 +287,51 @@ async function checkModelGate(page, viewer, modelRequests) {
 
 async function checkHeavyArtwork(page, result) {
   const viewer = page.locator('#sculpture [data-viewer]');
+  if (largeFirstView) {
+    const initial = await viewerState(viewer, result.modelRequests);
+    const expectedPaths = [modelPath(largeFirstView.url)];
+    if (largeFirstView.url.startsWith('https://')) expectedPaths.push(`/__atrium-first-view/${largeArtworkSlug}`);
+    if (!expectedPaths.includes(modelPath(initial.model)) || Number(initial.bytes) !== largeFirstView.bytes
+      || await viewer.getAttribute('data-model-activation') === 'tap'
+      || await viewer.locator('[data-load-model]').count()) {
+      throw new Error(`The work page must open the verified first view automatically. ${JSON.stringify(initial)}`);
+    }
+    if (await viewer.locator('[data-spatial]').count()) throw new Error('The lightweight geometry must not be used for AR / VR');
+    const link = page.locator('[data-full-detail]');
+    const label = (await link.textContent()).trim();
+    const detail = new URL(await link.getAttribute('href'), origin);
+    if (detail.origin !== new URL(origin).origin || detail.pathname !== largeDetailPath || !label.includes(`${(largeOriginal.bytes / 1e6).toFixed(1)} MB`)) {
+      throw new Error(`Full detail must link to the original route and disclose the original size: ${label} ${detail.href}`);
+    }
+    await viewer.locator('[data-stage]').evaluate(element => element.scrollIntoView({ block: 'center', behavior: 'instant' }));
+    await waitForReadyModel(page, viewer, result.modelRequests);
+    const state = await viewerState(viewer, result.modelRequests);
+    if (state.requests.length !== 1 || state.requests[0].status !== 200 || result.modelRequests.some(request => isLargeOriginal(request.url))) {
+      throw new Error(`The work page must fetch only its first view once. ${JSON.stringify(result.modelRequests)}`);
+    }
+    result.firstView = { modelBytes: largeFirstView.bytes, transfer: state.requests[0] };
+    detail.hash = 'ar-vr';
+    const response = await page.goto(detail.href, { waitUntil: 'domcontentloaded' });
+    if (response?.status() !== 200) throw new Error(`Original detail route returned HTTP ${response?.status() ?? 'no response'}`);
+    await page.locator('#detail-title').waitFor({ state: 'visible' });
+    await page.addScriptTag({ path: axePath });
+  }
   const bytes = Number(await viewer.getAttribute('data-model-bytes'));
-  if (!(bytes > INLINE_AUTO_LOAD_LIMIT)) throw new Error('Piero no longer exercises the large-model threshold');
+  if (bytes !== largeOriginal.bytes || bytes <= INLINE_AUTO_LOAD_LIMIT
+    || !isLargeOriginal(await viewer.locator('[data-stage]').getAttribute('data-glb'))) {
+    throw new Error('Piero no longer exercises the canonical large-model threshold');
+  }
   const button = await checkModelGate(page, viewer, result.modelRequests);
+  const spatial = viewer.locator('[data-spatial-open]');
+  await spatial.waitFor({ state: 'visible' });
+  if (!(await spatial.textContent())?.includes(`${(bytes / 1e6).toFixed(1)} MB`)
+    || await viewer.locator('[data-spatial-dialog][open]').count()
+    || result.modelRequests.some(request => isLargeOriginal(request.url))) {
+    throw new Error('An AR / VR deep link must keep the original tap-gated and disclose its size');
+  }
   result.manualCheck = { modelBytes: bytes, label: (await button.textContent()).trim(), beforeTapRequests: 0 };
   if (result.motion !== 'no-preference') return;
-  const request = page.waitForRequest(req => modelPath(req.url()).includes(largeArtworkSlug));
+  const request = page.waitForRequest(req => isLargeOriginal(req.url()));
   // The intercepted response is empty on purpose, so this proves the tap
   // reached the loader without transferring or allocating the 274 MB original.
   try {
@@ -332,7 +387,7 @@ async function check(engine, viewport, route, browser, motion = 'reduce') {
     // External analytics must not make a static-site smoke check fail.
     await page.route('https://cloud.umami.is/**', route => route.fulfill({ status: 204 }));
     // The model CDN permits Atrium's origin. Serve its original bytes to loopback QA.
-    if (localOrigin) await page.route('https://models.atrium.earth/models/previews/**/*.glb', async route => {
+    if (localOrigin) await page.route(/^https:\/\/models\.atrium\.earth\/models\/(?:previews|first-views)\/.+\.glb$/, async route => {
       try {
         const response = await route.fetch({
           headers: { ...route.request().headers(), origin: 'https://atrium.earth' },
@@ -347,7 +402,7 @@ async function check(engine, viewport, route, browser, motion = 'reduce') {
     });
     if (route.largeModel) {
       await page.route(
-        url => /^\/(?:models\/previews\/|__atrium-model\/)/.test(modelPath(url.href)) && modelPath(url.href).includes(largeArtworkSlug),
+        url => isLargeOriginal(url.href),
         route => route.fulfill({ status: 204, headers: { 'access-control-allow-origin': new URL(origin).origin } }),
       );
     }

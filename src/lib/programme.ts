@@ -1,7 +1,6 @@
 import programmes from '../data/museum-programmes.json';
-import previews from '../data/previews.json';
 import spatialManifest from '../../public/spatial-museum/collection-manifest.json';
-import { homepageFeaturedWorks, type Work } from './catalog';
+import { inlinePreviewMap as previews, homepageFeaturedWorks, type Work } from './catalog';
 import { exhibitions, pairings, type V3Exhibition, type V3Pairing } from './v3';
 import { buildMuseumProgramme } from './museum-programme.mjs';
 import { programmeDate } from './museum-date.mjs';

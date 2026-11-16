@@ -10,6 +10,7 @@ export function sitemapPageAllowed(page) {
   return !/\/newest\/[^/]+$/.test(pathname)
     && !/\/(?:collection|ar-vr)\/page\/\d+$/.test(pathname)
     && !/\/v[23](?:\/|$)/.test(pathname)
+    && !/\/detail\//.test(pathname)
     && !pathname.includes('/wings/unfiled')
     && !/\/wings\/(?:near-east|greece-rome|americas-oceania)$/.test(pathname)
     && !pathname.includes('/exhibitions/the-space-between')

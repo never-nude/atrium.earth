@@ -1,6 +1,5 @@
 import { wings, type Wing, type WingId } from '../data/wings';
-import { featuredWorks, works, type Work } from './catalog';
-import previews from '../data/previews.json';
+import { inlinePreviewMap as previews, featuredWorks, works, type Work } from './catalog';
 import { isPreviewBudgetEligible, rotateContextWork } from './museum-programme.mjs';
 import { programmeDate } from './museum-date.mjs';
 
