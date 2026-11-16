@@ -88,6 +88,7 @@ const stageBackdrop = hasModel ? [
 ].join(';') : undefined;
 const transformJson = JSON.stringify(modelTransform);
 const tapToLoad = hasModel && requiresModelActivation(modelBytes);
+const downloadSize = tapToLoad ? modelSizeLabel(modelBytes) : undefined;
 const hasStartStrip = hasModel && (loadingPlacement === 'below' || tapToLoad);
 ---
 
@@ -149,7 +150,7 @@ const hasStartStrip = hasModel && (loadingPlacement === 'below' || tapToLoad);
   </div>
 
   {hasStartStrip && <div class="viewer-start" data-viewer-start hidden>
-    {tapToLoad && <button class="viewer-start__button" type="button" data-load-model aria-describedby={`viewer-status-${uid}`} hidden>Load 3D · {modelSizeLabel(modelBytes)}</button>}
+    {tapToLoad && <button class="viewer-start__button" type="button" data-load-model aria-describedby={`viewer-status-${uid}`} hidden>Load 3D · {downloadSize}</button>}
     <button class="viewer-start__button" type="button" data-retry aria-describedby={`viewer-status-${uid}`} hidden>Retry 3D</button>
     <span data-download-label data-loading hidden aria-hidden="true">Loading 3D</span>
     <p id={`viewer-status-${uid}`} class="viewer-keyboard-instructions viewer-start__status" data-viewer-status role="status" aria-atomic="true"></p>
@@ -170,7 +171,7 @@ const hasStartStrip = hasModel && (loadingPlacement === 'below' || tapToLoad);
 
   {hasModel && <p id={`viewer-keys-${uid}`} class="viewer-keyboard-instructions">After opening the 3D view, focus the sculpture and use arrow keys to turn, plus and minus to zoom, and 0 or Home to reset.</p>}
 
-  {spatialViewing && hasModel && <SpatialViewing title={title} poster={poster} museumLabel={museumLabel} reference={spatialReference} sizeNote={spatialNote} displaySupport={displaySupport} dimensionStatus={spatialDimensionStatus} requiresAssetCheck={Boolean(spatialAssetSha256)} referenceLabel={spatialLabel} sizeLabel={spatialSizeLabel} defaultMaxExtentMeters={spatialDefaultMaxExtentMeters} />}
+  {spatialViewing && hasModel && <SpatialViewing title={title} poster={poster} museumLabel={museumLabel} reference={spatialReference} sizeNote={spatialNote} displaySupport={displaySupport} dimensionStatus={spatialDimensionStatus} requiresAssetCheck={Boolean(spatialAssetSha256)} referenceLabel={spatialLabel} sizeLabel={spatialSizeLabel} defaultMaxExtentMeters={spatialDefaultMaxExtentMeters} downloadSize={downloadSize} />}
   {!spatialViewing && spatialUnavailableNote && <a id="ar-vr" class="spatial-unavailable" data-spatial-unavailable href="#size-verification" title={spatialUnavailableNote}>AR / VR unavailable · Size unverified <span aria-hidden="true">↓</span></a>}
 
   <noscript>
@@ -1186,7 +1187,9 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     const spatial = root.querySelector('[data-spatial]');
     if (spatial) {
       void import('../lib/spatial-viewer.mjs').then(({ bindSpatialViewing }) => {
-        if (!lifetime.signal.aborted) bindSpatialViewing(spatial, () => activeViewer?.spatial, start, { signal: lifetime.signal });
+        if (!lifetime.signal.aborted) bindSpatialViewing(spatial, () => activeViewer?.spatial, start, {
+          signal: lifetime.signal, requireModelTap: tapRequired,
+        });
       });
     }
     retry?.addEventListener('click', start, { signal: lifetime.signal });

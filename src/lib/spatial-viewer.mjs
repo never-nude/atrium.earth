@@ -3,7 +3,7 @@ import { makeQuickLookScene, startSpatialSession } from './spatial-session.mjs';
 import { viewingReferenceFor } from './spatial-access.mjs';
 import { bindMuseumPhotos } from './museum-photo.mjs';
 
-export function bindSpatialViewing(element, getContext, activate, { signal } = {}) {
+export function bindSpatialViewing(element, getContext, activate, { signal, requireModelTap = false } = {}) {
   if (signal?.aborted) return;
   const on = (target, type, listener) => target?.addEventListener?.(type, listener, { signal });
   const find = (selector) => element.querySelector(selector);
@@ -277,9 +277,12 @@ export function bindSpatialViewing(element, getContext, activate, { signal } = {
     void checkCapabilities();
   }
   on(find('[data-spatial-open]'), 'click', openOptions);
-  on(window, 'hashchange', () => { if (location.hash === '#ar-vr') openOptions(); });
-  // Deep links open options only; entering AR or VR still needs a user gesture.
-  if (location.hash === '#ar-vr') openOptions();
+  // Heavy models wait at the size-labelled control on a deep link.
+  const openLinkedOptions = () => {
+    if (location.hash === '#ar-vr' && (!requireModelTap || getContext())) openOptions();
+  };
+  on(window, 'hashchange', openLinkedOptions);
+  openLinkedOptions();
   on(retry, 'click', loadModel);
   on(find('[data-spatial-close]'), 'click', () => dialog.close());
   on(find('[data-spatial-screen]'), 'click', () => dialog.close());

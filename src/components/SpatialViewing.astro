@@ -1,8 +1,8 @@
 ---
 import MuseumLabel from './MuseumLabel.astro';
 import MuseumPhotoEditor from './MuseumPhotoEditor.astro';
-type Props = { title: string; poster: string; museumLabel?: Record<string, string>; reference?: { axis: string; meters: number; extentFraction?: number; estimated?: boolean } | null; sizeNote?: string; displaySupport?: { kind: string; height?: number; note: string } | null; dimensionStatus?: 'verified' | 'approximate' | 'unknown'; requiresAssetCheck?: boolean; referenceLabel?: string; sizeLabel?: string; defaultMaxExtentMeters?: number };
-const { title, poster, museumLabel = { title }, reference, sizeNote = 'Physical size is not yet calibrated. Display size is adjustable.', displaySupport, dimensionStatus = 'unknown', requiresAssetCheck = false, referenceLabel, sizeLabel, defaultMaxExtentMeters } = Astro.props;
+type Props = { title: string; poster: string; museumLabel?: Record<string, string>; reference?: { axis: string; meters: number; extentFraction?: number; estimated?: boolean } | null; sizeNote?: string; displaySupport?: { kind: string; height?: number; note: string } | null; dimensionStatus?: 'verified' | 'approximate' | 'unknown'; requiresAssetCheck?: boolean; referenceLabel?: string; sizeLabel?: string; defaultMaxExtentMeters?: number; downloadSize?: string };
+const { title, poster, museumLabel = { title }, reference, sizeNote = 'Physical size is not yet calibrated. Display size is adjustable.', displaySupport, dimensionStatus = 'unknown', requiresAssetCheck = false, referenceLabel, sizeLabel, defaultMaxExtentMeters, downloadSize } = Astro.props;
 const verified = dimensionStatus === 'verified';
 const approximate = dimensionStatus === 'approximate';
 const standHeight = displaySupport?.height && displaySupport.height > 0 ? displaySupport.height : 1;
@@ -11,7 +11,7 @@ const defaultSize = defaultMaxExtentMeters && defaultMaxExtentMeters < 1 ? `${Ma
 <div id="ar-vr" class="spatial-viewing" data-spatial data-dimension-status={dimensionStatus} data-museum-label-json={JSON.stringify(museumLabel)} data-verified-reference={String(verified)} data-requires-asset-check={String(requiresAssetCheck)} data-title={title} data-reference-axis={reference?.axis} data-reference-meters={reference?.meters} data-reference-extent-fraction={reference?.extentFraction} data-default-max-extent-meters={!reference ? defaultMaxExtentMeters || 1 : undefined} data-support-recommendation={displaySupport?.kind}>
   <button type="button" class="spatial-open" data-spatial-open aria-describedby="spatial-dimension-badge">
     <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Z M4 7.5l8 4.5 8-4.5 M12 12v9" /></svg>
-    View in AR / VR
+    View in AR / VR{downloadSize && ` · ${downloadSize}`}
   </button>
   <span id="spatial-dimension-badge" class="spatial-dimension-badge" data-spatial-dimension-badge>{referenceLabel}{sizeLabel && ` · ${sizeLabel}`}</span>
   <dialog class="spatial-dialog" data-spatial-dialog aria-label={`View ${title} in AR or VR`}>

@@ -12,7 +12,7 @@ const routes = [
   { id: 'homepage', path: '/', primary: '#v3-home-title', viewers: 'main [data-viewer]' },
   { id: 'collection', path: '/collection/', primary: 'main h1' },
   { id: 'artwork', path: '/works/discobolus/', primary: '#v3-object-title', viewers: '#sculpture [data-viewer]' },
-  { id: 'large-artwork', path: '/works/renaissance/piero-medici-mino-smk-cast/', primary: '#v3-object-title', largeModel: true },
+  { id: 'large-artwork', path: '/works/renaissance/piero-medici-mino-smk-cast/#ar-vr', primary: '#v3-object-title', largeModel: true },
   { id: 'exhibition', path: '/exhibitions/the-work-of-the-surface/', primary: 'main h1' },
   { id: 'guided-visit', path: '/exhibitions/the-work-of-the-surface/#curated-visit', primary: '[data-visit-active] [data-visit-stop-heading]' },
   { id: 'world', path: '/world/', primary: '#world-title', prepare: async page => {
@@ -255,7 +255,13 @@ async function checkModelGate(page, viewer, modelRequests) {
     throw new Error(`The tap control does not disclose its ${bytes}-byte model size`);
   }
   // Let the hydrated in-view layout reach the same paint point as automatic starts.
-  await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+  try {
+    await page.waitForFunction(() => new Promise(resolve =>
+      requestAnimationFrame(() => requestAnimationFrame(() => resolve(true))),
+    ), undefined, { polling: 100, timeout: 15000 });
+  } catch (error) {
+    throw new Error(`First gate paint timed out. ${error.message} ${JSON.stringify(await viewerState(viewer, modelRequests))}`);
+  }
   const state = await viewerState(viewer, modelRequests);
   if (state.state !== 'idle' || state.requests.length || await viewer.locator('canvas.viewer-canvas').count()) {
     throw new Error(`Model started without a tap. ${JSON.stringify(state)}`);
