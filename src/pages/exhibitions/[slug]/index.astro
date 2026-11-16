@@ -37,7 +37,7 @@ const stops = exhibition.works.map((work, index) => ({
           <figure class="v3-float v3-float--soft" data-featured-work={work.slug}>
             <div class="exhibition-duet__viewer v3-exhibition-viewer">
               <Viewer glb={withBase(work.modelGlb)} modelBytes={work.modelBytes} poster={withBase(work.thumbnailImage)}
-                title={work.title} hud={false} immersive={true} autoStart="preview" autoRotateSpeed={0.25}
+                title={work.title} hud={false} immersive={true} loadingPlacement="below"
                 posterLoading="eager" upAxis={work.modelUpAxis} modelTransform={work.modelTransform} materialAppearance={work.materialAppearance} />
             </div>
             <figcaption>{exhibition.workNotes?.[work.slug]?.artist || work.maker} · {shortWorkTitle(work.title)}</figcaption>
@@ -52,8 +52,6 @@ const stops = exhibition.works.map((work, index) => ({
         title={lead.title}
         hud={false}
         immersive={true}
-        autoStart="visible"
-        autoRotateSpeed={0.25}
         posterLoading="eager"
         upAxis={lead.modelUpAxis}
         modelTransform={lead.modelTransform}
@@ -97,7 +95,6 @@ const stops = exhibition.works.map((work, index) => ({
             title={stop.work.title}
             hud={false}
             immersive={true}
-            autoStart="visible"
             posterLoading="lazy"
             upAxis={stop.work.modelUpAxis}
             modelTransform={stop.work.modelTransform}

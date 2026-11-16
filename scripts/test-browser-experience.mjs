@@ -1,4 +1,4 @@
-import { mkdir, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
 import { createRequire } from 'node:module';
 import { join } from 'node:path';
 import { chromium, webkit } from 'playwright';
@@ -9,23 +9,25 @@ import { AUTO_START_MODEL_LIMIT } from '../src/lib/viewer-preview.mjs';
 const axePath = createRequire(import.meta.url).resolve('axe-core/axe.min.js');
 const artifacts = process.env.BROWSER_REPORT_DIR || 'test-results/browser';
 const routes = [
-  { id: 'homepage', path: '/', primary: '#v3-home-title' },
+  { id: 'homepage', path: '/', primary: '#v3-home-title', viewers: 'main [data-viewer]' },
   { id: 'collection', path: '/collection/', primary: 'main h1' },
-  { id: 'artwork', path: '/works/discobolus/', primary: '#v3-object-title' },
+  { id: 'artwork', path: '/works/discobolus/', primary: '#v3-object-title', viewers: '#sculpture [data-viewer]' },
   { id: 'exhibition', path: '/exhibitions/the-work-of-the-surface/', primary: 'main h1' },
   { id: 'guided-visit', path: '/exhibitions/the-work-of-the-surface/#curated-visit', primary: '[data-visit-active] [data-visit-stop-heading]' },
   { id: 'world', path: '/world/', primary: '#world-title', prepare: async page => {
     await page.locator('[data-world-place] option').nth(1).waitFor({ state: 'attached' });
     await page.locator('[data-world-state="ready"] button[data-world-place]:visible').first().waitFor();
   } },
-  { id: 'exhibition-entry', path: '/exhibitions/bodies-in-motion/', primary: '.v3-exhero__begin' },
+  {
+    id: 'exhibition-entry', path: '/exhibitions/bodies-in-motion/', primary: '.v3-exhero__begin',
+    viewers: '[data-exhibition-work="discobolus"] [data-viewer]',
+  },
   { id: 'missing', path: '/atrium-browser-check-missing/', primary: '#missing-title', status: 404 },
 ];
 const viewports = [
   { width: 390, height: 844 },
   { width: 1440, height: 900 },
 ];
-const motionRoutes = new Set(['homepage', 'artwork', 'world']);
 
 function measurePage(phone) {
   const alpha = color => {
@@ -91,7 +93,8 @@ function measurePage(phone) {
   return { overflow: Math.max(0, document.documentElement.scrollWidth - innerWidth), sameColors, toggleContrast, smallTargets, smallText };
 }
 
-const hosted = process.env.BROWSER_CHECK_ORIGIN ? null : await serveBrowserChecks();
+const dist = process.env.BROWSER_CHECK_DIST || 'dist';
+const hosted = process.env.BROWSER_CHECK_ORIGIN ? null : await serveBrowserChecks(dist);
 const origin = process.env.BROWSER_CHECK_ORIGIN || hosted.origin;
 const localOrigin = ['127.0.0.1', 'localhost'].includes(new URL(origin).hostname);
 const selected = routes.filter(route => !process.env.BROWSER_CHECK_ROUTE || route.id === process.env.BROWSER_CHECK_ROUTE);
@@ -153,21 +156,14 @@ async function inspectMotion(page, route, prefix, result) {
     result.readyCanvases.push({ ...frame, ...await measure() });
     return;
   }
-  if (route.id === 'homepage') {
-    const manual = page.locator('main [data-viewer][data-auto-start="false"]');
-    for (const viewer of await manual.all()) {
-      await viewer.getByRole('button', { name: /^Examine in 3D/ }).waitFor({ state: 'visible' });
-      if (await viewer.getAttribute('data-viewer-state') !== 'idle') throw new Error('A manual preview started without interaction');
-    }
-  }
-  const viewers = route.id === 'homepage'
-    ? page.locator('main [data-viewer][data-auto-start="preview"]')
-    : page.locator('#sculpture [data-viewer][data-auto-start="detail"]');
+  const viewers = page.locator(route.viewers).filter({
+    has: page.locator('[data-stage][data-glb]:not([data-glb=""])'),
+  });
   const count = await viewers.count();
-  if (route.id === 'artwork' && count !== 1) throw new Error('Expected one automatic detail viewer on the artwork page');
+  if (!count) throw new Error('Expected a sculpture viewer to open automatically');
   for (let i = 0; i < count; i++) {
     const viewer = viewers.nth(i);
-    if (route.id === 'homepage') {
+    if (route.id !== 'artwork') {
       await viewer.locator('[data-stage]').evaluate(element => element.scrollIntoView({ block: 'center', behavior: 'instant' }));
     }
     await page.waitForFunction(element => element.dataset.viewerState === 'ready', await viewer.elementHandle(), { timeout: 45000 });
@@ -175,8 +171,11 @@ async function inspectMotion(page, route, prefix, result) {
     if (!Number.isSafeInteger(modelBytes) || modelBytes <= 0 || await viewer.getAttribute('data-still-painted') !== 'true') {
       throw new Error('The viewer started without a recorded model size or a painted still');
     }
-    if (route.id === 'homepage' && modelBytes > AUTO_START_MODEL_LIMIT) {
-      throw new Error('An automatic homepage preview exceeded its budget');
+    const budgeted = route.id === 'homepage' && await viewer.evaluate(element =>
+      Boolean(element.closest('.home-programme-hero, .featured-exhibition__viewer')),
+    );
+    if (budgeted && modelBytes > AUTO_START_MODEL_LIMIT) {
+      throw new Error('A featured homepage sculpture exceeded its selection budget');
     }
     const canvas = viewer.locator('.viewer-canvas');
     const frame = await captureCanvas(canvas, `${prefix}-viewer-${i + 1}.png`);
@@ -288,13 +287,33 @@ async function check(engine, viewport, route, browser, motion = 'reduce') {
   }
 }
 
+async function checkPublishedViewerMarkup() {
+  const paths = await readdir(dist, { recursive: true });
+  let stages = 0, routes = 0;
+  for (const file of paths.filter(path => path.endsWith('.html'))) {
+    const html = await readFile(join(dist, file), 'utf8');
+    const viewers = html.match(/<[^>]+\bdata-stage\s[^>]*\bdata-glb="[^"]+"[^>]*>/g);
+    if (!viewers) continue;
+    if (/<[^>]+\bdata-(?:auto-start|activate)(?:[=\s>])|>Examine in 3D(?:[\s<])/i.test(html)) {
+      throw new Error(`An inline model requires initial activation in ${file}`);
+    }
+    const retries = html.match(/<button[^>]*\bdata-retry\s[^>]*\bhidden(?:[=\s>])/g);
+    if (retries?.length !== viewers.length) throw new Error(`An inline model is missing a hidden retry button in ${file}`);
+    stages += viewers.length;
+    routes++;
+  }
+  if (!stages) throw new Error('The build contains no inspectable sculpture stages');
+  console.log(`Checked all ${stages} model stages across ${routes} built pages for activation gates`);
+}
+
 try {
+  if (hosted) await checkPublishedViewerMarkup();
   for (const engine of [chromium, webkit].filter(engine => !process.env.BROWSER_CHECK_ENGINE || engine.name() === process.env.BROWSER_CHECK_ENGINE)) {
     const browser = await engine.launch();
     try {
       for (const viewport of viewports) {
         for (const route of selected) await check(engine, viewport, route, browser);
-        for (const route of selected.filter(item => motionRoutes.has(item.id))) await check(engine, viewport, route, browser, 'no-preference');
+        for (const route of selected.filter(item => item.viewers || item.id === 'world')) await check(engine, viewport, route, browser, 'no-preference');
       }
     } finally {
       await browser.close();

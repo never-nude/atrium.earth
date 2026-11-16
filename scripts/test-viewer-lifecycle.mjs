@@ -8,23 +8,6 @@ import { bindViewerInput, bindViewerZoom, createRotationHold, createTouchGesture
 import { hitSculptureMask } from '../src/lib/sculpture-picking.mjs';
 import { disposeViewerScene } from '../src/lib/viewer-resources.mjs';
 import { bindSpatialViewing } from '../src/lib/spatial-viewer.mjs';
-import { AUTO_START_MODEL_LIMIT, previewStartMode } from '../src/lib/viewer-preview.mjs';
-
-test('automatic browsing previews require a known model size at or below 3 MB', () => {
-  for (const mode of [true, 'preview', 'visible']) {
-    assert.equal(previewStartMode(mode, AUTO_START_MODEL_LIMIT), mode);
-    for (const size of [AUTO_START_MODEL_LIMIT + 1, undefined, 0, -1, NaN, 2.5]) {
-      assert.equal(previewStartMode(mode, size), false);
-    }
-  }
-  assert.equal(previewStartMode(false, 1), false);
-});
-
-test('a dedicated sculpture view can start regardless of the browsing preview limit', () => {
-  for (const size of [undefined, AUTO_START_MODEL_LIMIT, AUTO_START_MODEL_LIMIT + 1]) {
-    assert.equal(previewStartMode('detail', size), 'detail');
-  }
-});
 
 function frames(draw, options = {}) {
   const queued = new Map(); let next = 1, time = 0;
@@ -143,6 +126,22 @@ test('rotation waits until the last input has been idle for four seconds', t => 
   lifetime.abort();
   t.mock.timers.tick(4000);
   assert.equal(changes, 3);
+});
+
+test('explicit rotation resumes after release and preserves a live gesture hold', t => {
+  t.mock.timers.enable({ apis: ['setTimeout'] });
+  const lifetime = new AbortController();
+  let changes = 0;
+  const hold = createRotationHold(lifetime.signal, () => changes++);
+  hold.setInteracting(true);
+  assert.equal(hold.resume(), false);
+  assert.equal(hold.held, true);
+  hold.setInteracting(false);
+  assert.equal(hold.resume(), true);
+  assert.equal(hold.held, false);
+  t.mock.timers.tick(4000);
+  assert.equal(changes, 2);
+  lifetime.abort();
 });
 
 function inputFixture(t, wheelZoom = true) {
