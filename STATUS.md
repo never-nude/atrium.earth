@@ -2360,3 +2360,9 @@ The approved title fixes, automatic download gate and promotion exclusions are r
 - Mike reported activation gates on the Bodies in Motion Discobolus and the homepage Seated Figure, and slow or imperceptible rotation on the homepage Thinker. This change removes the activation gate from the shared viewer. Each inline model begins loading after its still paints in view, shows loading progress, and offers retry on failure.
 - The shared camera rotation uses one time-based pace. Explicitly turning Auto-rotate back on resumes a released gesture. Reduced motion and the pause while handling the sculpture are respected. Homepage lead selection retains its first-screen byte budget independently of viewer behavior.
 - Node tests passed. The GitHub review builds the full site, checks the generated markup for activation gates, and runs browser tests for the homepage comparisons, the exact inline Discobolus, and the Thinker.
+
+### Temporary large-model loading safeguard
+
+- The owner approved tap-to-load for inline models over 25,000,000 bytes while the seven-work first-view pilot is reviewed. The viewer selects this behavior from the serving model's byte count. A size-labelled button opens the current model and automatically disappears from works that receive a lighter serving model at or below the limit.
+- Browser checks audit the threshold across generated stages, prove that Piero de’ Medici stays idle through the first paint until a tap, and verify a large Surface sculpture remains idle when scrolled into view. The Piero tap test intercepts the request to avoid transferring the full original.
+- Report the first attempt for each load. A timeout is a failed result and requires explanation. Report any subsequent run separately.

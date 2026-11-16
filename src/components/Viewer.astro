@@ -1,6 +1,7 @@
 ---
 import SpatialViewing from './SpatialViewing.astro';
 import previewStills from '../data/viewer-stills.json';
+import { modelSizeLabel, requiresModelActivation } from '../lib/viewer-preview.mjs';
 type Props = {
   glb?: string;
   modelBytes?: number;
@@ -86,10 +87,11 @@ const stageBackdrop = hasModel ? [
   `--stage-glow-strength:${Number.isFinite(glowStrength) ? Math.max(0, Math.min(glowStrength, 1)) * 100 : 7}%`,
 ].join(';') : undefined;
 const transformJson = JSON.stringify(modelTransform);
-const hasStartStrip = hasModel && loadingPlacement === 'below';
+const tapToLoad = hasModel && requiresModelActivation(modelBytes);
+const hasStartStrip = hasModel && (loadingPlacement === 'below' || tapToLoad);
 ---
 
-<div class:list={['viewer', { 'viewer--immersive': immersive }]} data-viewer data-loading-placement={hasStartStrip ? 'below' : undefined} data-viewer-state={hasModel ? 'idle' : undefined} data-model-bytes={modelBytes} data-wheel-zoom={String(wheelZoom)}>
+<div class:list={['viewer', { 'viewer--immersive': immersive }]} data-viewer data-loading-placement={hasStartStrip ? 'below' : undefined} data-viewer-state={hasModel ? 'idle' : undefined} data-model-bytes={modelBytes} data-model-activation={tapToLoad ? 'tap' : undefined} data-wheel-zoom={String(wheelZoom)}>
   <div class="model-stage" data-stage style={stageBackdrop} data-rendered-still={renderedStill ? true : undefined} data-glb={hasModel ? glb : ''} data-spatial-asset-sha256={spatialViewing ? spatialAssetSha256 : undefined} data-up-axis={upAxis} data-model-transform={transformJson} data-material-appearance={appearanceJson} data-immersive={String(immersive)} data-auto-rotate={String(autoRotate)} data-turntable-degrees-per-second={turntableDegreesPerSecond} data-respect-reduced-motion={respectReducedMotion ? undefined : 'false'} data-rotation-control={rotationControl === 'simple' ? 'simple' : undefined} tabindex={hasModel ? '0' : undefined} aria-label={hasModel ? `Interactive 3D view of ${title}` : undefined} aria-describedby={hasModel ? `viewer-keys-${uid}` : undefined}>
     <span class="stage-corner stage-corner--tl" aria-hidden="true"></span>
     <span class="stage-corner stage-corner--tr" aria-hidden="true"></span>
@@ -147,6 +149,7 @@ const hasStartStrip = hasModel && loadingPlacement === 'below';
   </div>
 
   {hasStartStrip && <div class="viewer-start" data-viewer-start hidden>
+    {tapToLoad && <button class="viewer-start__button" type="button" data-load-model aria-describedby={`viewer-status-${uid}`} hidden>Load 3D · {modelSizeLabel(modelBytes)}</button>}
     <button class="viewer-start__button" type="button" data-retry aria-describedby={`viewer-status-${uid}`} hidden>Retry 3D</button>
     <span data-download-label data-loading hidden aria-hidden="true">Loading 3D</span>
     <p id={`viewer-status-${uid}`} class="viewer-keyboard-instructions viewer-start__status" data-viewer-status role="status" aria-atomic="true"></p>
@@ -959,8 +962,11 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     const lifetime = new AbortController();
     const poster = root.querySelector<HTMLImageElement>('[data-poster]');
     const retry = root.querySelector<HTMLButtonElement>('[data-retry]');
-    // Opening a collection miniature is already an explicit activation in its parent page.
+    const loadModel = root.querySelector<HTMLButtonElement>('[data-load-model]');
     const studioPeek = document.documentElement.classList.contains('studio-peek');
+    // Large miniatures may start only after a size-labelled button in the parent page.
+    const explicitPeek = studioPeek && new URLSearchParams(location.search).get('intent') === 'explicit';
+    const tapRequired = root.dataset.modelActivation === 'tap' && !explicitPeek;
     const fallbackPoster = () => {
       if (!poster?.dataset.fallbackPoster) {
         refresh();
@@ -981,7 +987,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     const startStrip = root.querySelector<HTMLElement>('[data-viewer-start]');
     const downloadBar = root.querySelector<HTMLElement>('[data-download-bar]');
     const fullscreenButton = root.querySelector<HTMLButtonElement>('[data-tool-fullscreen]');
-    const observeStill = !studioPeek;
+    const observeStill = !studioPeek && !tapRequired;
     const size = Number(root.dataset.modelBytes) || 0;
     const intersectsViewport = () => {
       const rect = stage!.getBoundingClientRect();
@@ -1008,6 +1014,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
       downloadBar?.style.removeProperty('width');
       if (poster) poster.style.opacity = '1';
       if (retry) retry.hidden = true;
+      if (loadModel) loadModel.hidden = !tapRequired;
       if (status) status.textContent = '';
       root.removeAttribute('aria-busy');
       root.dataset.viewerState = 'idle';
@@ -1020,6 +1027,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
       const restoreFocus = root.contains(document.activeElement) && !root.querySelector('dialog[open]');
       release();
       root.dataset.viewerState = 'error';
+      if (loadModel) loadModel.hidden = true;
       if (retry) retry.hidden = false;
       if (status) status.textContent = 'The 3D view could not load. The still image is available.';
       if (restoreFocus) retry?.focus({ preventScroll: true });
@@ -1039,8 +1047,9 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
       residents.set(root, { visible: () => visible, release });
       trimResidents();
       if (current !== generation || events.signal.aborted) return;
-      const moveFocus = retry !== null && document.activeElement === retry;
+      const moveFocus = document.activeElement === retry || document.activeElement === loadModel;
       if (retry) retry.hidden = true;
+      if (loadModel) loadModel.hidden = true;
       if (moveFocus) stage!.focus({ preventScroll: true });
       root.dataset.viewerState = 'loading';
       root.setAttribute('aria-busy', 'true');
@@ -1181,6 +1190,8 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
       });
     }
     retry?.addEventListener('click', start, { signal: lifetime.signal });
+    loadModel?.addEventListener('click', start, { signal: lifetime.signal });
+    if (loadModel) loadModel.hidden = !tapRequired;
     if (startStrip) startStrip.hidden = studioPeek;
     root.addEventListener('atrium:viewer-render-error', event => fail((event as CustomEvent).detail.reason), { signal: lifetime.signal });
     const canPaintStill = () => poster && poster.complete && poster.naturalWidth > 0
@@ -1221,7 +1232,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
         observeStillPaint();
         const cannotPaintStill = !poster || (poster.complete && !poster.naturalWidth && !poster.dataset.fallbackPoster);
         const stillSettled = root.dataset.stillPainted || cannotPaintStill;
-        if (!document.hidden && (studioPeek || stillSettled)) {
+        if (!tapRequired && !document.hidden && (studioPeek || stillSettled)) {
           startAutomatically();
         }
       }

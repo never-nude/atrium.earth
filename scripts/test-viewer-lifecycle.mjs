@@ -8,6 +8,16 @@ import { bindViewerInput, bindViewerZoom, createRotationHold, createTouchGesture
 import { hitSculptureMask } from '../src/lib/sculpture-picking.mjs';
 import { disposeViewerScene } from '../src/lib/viewer-resources.mjs';
 import { bindSpatialViewing } from '../src/lib/spatial-viewer.mjs';
+import { INLINE_AUTO_LOAD_LIMIT, modelSizeLabel, requiresModelActivation } from '../src/lib/viewer-preview.mjs';
+
+test('the viewer automatically opens through exactly 25 MB and gates larger or unmeasured models', () => {
+  assert.equal(requiresModelActivation(3_000_000), false);
+  assert.equal(requiresModelActivation(INLINE_AUTO_LOAD_LIMIT - 1), false);
+  assert.equal(requiresModelActivation(INLINE_AUTO_LOAD_LIMIT), false);
+  assert.equal(requiresModelActivation(INLINE_AUTO_LOAD_LIMIT + 1), true);
+  for (const bytes of [undefined, NaN, 0, -1, 2.5]) assert.equal(requiresModelActivation(bytes), true);
+  assert.equal(modelSizeLabel(273_799_496), '273.8 MB');
+});
 
 function frames(draw, options = {}) {
   const queued = new Map(); let next = 1, time = 0;
