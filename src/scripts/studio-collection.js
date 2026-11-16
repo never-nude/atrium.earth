@@ -3,6 +3,7 @@ import { withBase } from '../lib/urls';
 import { COLLECTION_PAGE_SIZE, COLLECTION_FILTER_KEYS, normalizeCollectionText, unpackCollectionIndex, readCollectionState, writeCollectionState, selectCollectionWindow, collectionPageNumber } from '../lib/collection-window.mjs';
 import { createCollectionCard } from '../lib/collection-card.mjs';
 import { groupMakerFacet } from '../lib/maker-groups.mjs';
+import { modelSizeLabel, requiresModelActivation } from '../lib/viewer-preview.mjs';
 
 // Framed miniatures reuse one native viewer and never create collection tools or nested frames.
 const isStudioPeek = window.parent !== window && new URLSearchParams(location.search).get('studio-peek') === '1';
@@ -625,6 +626,7 @@ function initializePeeks() {
     const pathname = workPath(link?.href || '');
     if (!image || !pathname || card.dataset.studioPeekAvailable === 'false' || card.querySelector(':scope > .studio-peek-trigger')) continue;
     const previewBytes = Number(card.dataset.studioPreviewBytes);
+    const downloadSize = requiresModelActivation(previewBytes) ? ` · ${modelSizeLabel(previewBytes)}` : '';
     const withinAutomaticBudget = Number.isFinite(previewBytes) && previewBytes > 0 && previewBytes <= 8 * 1024 * 1024;
     let work;
     try { work = decodeURIComponent(pathname.slice('/works/'.length).replace(/\/$/, '')); } catch { continue; }
@@ -632,10 +634,10 @@ function initializePeeks() {
     const button = document.createElement('button');
     button.type = 'button';
     button.className = 'studio-peek-trigger';
-    button.setAttribute('aria-label', `Preview ${title} in 3D`);
+    button.setAttribute('aria-label', `Preview ${title} in 3D${downloadSize}`);
     button.setAttribute('aria-pressed', 'false');
     button.title = 'Preview in 3D; select again to close';
-    button.textContent = '3D';
+    button.textContent = `3D${downloadSize}`;
     card.append(button);
     const label = document.createElement('span');
     label.className = 'studio-peek-label';

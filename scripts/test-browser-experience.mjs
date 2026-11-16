@@ -4,7 +4,7 @@ import { join } from 'node:path';
 import { chromium, webkit } from 'playwright';
 import sharp from 'sharp';
 import { serveBrowserChecks } from './serve-browser-checks.mjs';
-import { AUTO_START_MODEL_LIMIT } from '../src/lib/viewer-preview.mjs';
+import { AUTO_START_MODEL_LIMIT, INLINE_AUTO_LOAD_LIMIT, requiresModelActivation } from '../src/lib/viewer-preview.mjs';
 
 const axePath = createRequire(import.meta.url).resolve('axe-core/axe.min.js');
 const artifacts = process.env.BROWSER_REPORT_DIR || 'test-results/browser';
@@ -12,6 +12,7 @@ const routes = [
   { id: 'homepage', path: '/', primary: '#v3-home-title', viewers: 'main [data-viewer]' },
   { id: 'collection', path: '/collection/', primary: 'main h1' },
   { id: 'artwork', path: '/works/discobolus/', primary: '#v3-object-title', viewers: '#sculpture [data-viewer]' },
+  { id: 'large-artwork', path: '/works/renaissance/piero-medici-mino-smk-cast/', primary: '#v3-object-title', largeModel: true },
   { id: 'exhibition', path: '/exhibitions/the-work-of-the-surface/', primary: 'main h1' },
   { id: 'guided-visit', path: '/exhibitions/the-work-of-the-surface/#curated-visit', primary: '[data-visit-active] [data-visit-stop-heading]' },
   { id: 'world', path: '/world/', primary: '#world-title', prepare: async page => {
@@ -101,6 +102,49 @@ const selected = routes.filter(route => !process.env.BROWSER_CHECK_ROUTE || rout
 if (!selected.length) throw new Error('Unknown browser check route');
 await mkdir(artifacts, { recursive: true });
 const results = [];
+const largeArtworkSlug = 'renaissance/piero-medici-mino-smk-cast';
+
+function modelPath(url) {
+  const path = new URL(url, origin).pathname;
+  try { return decodeURIComponent(path); } catch { return path; }
+}
+
+function observeModelRequests(page, requests) {
+  const seen = new Map();
+  const start = performance.now();
+  const elapsed = () => Math.round(performance.now() - start);
+  page.on('request', request => {
+    if (!/^\/(?:models\/previews\/|__atrium-model\/)/.test(modelPath(request.url()))) return;
+    const entry = { url: request.url(), requestedMs: elapsed() };
+    seen.set(request, entry);
+    requests.push(entry);
+  });
+  page.on('response', response => {
+    const entry = seen.get(response.request());
+    if (entry) Object.assign(entry, { status: response.status(), responseMs: elapsed() });
+  });
+  page.on('requestfinished', request => {
+    const entry = seen.get(request);
+    if (entry) entry.finishedMs = elapsed();
+  });
+  page.on('requestfailed', request => {
+    const entry = seen.get(request);
+    if (entry) Object.assign(entry, { failure: request.failure()?.errorText, failedMs: elapsed() });
+  });
+}
+
+async function viewerState(viewer, modelRequests) {
+  const state = await viewer.evaluate(element => {
+    const stage = element.querySelector('[data-stage]');
+    const bounds = stage.getBoundingClientRect();
+    return {
+      model: stage.dataset.glb, bytes: element.dataset.modelBytes, state: element.dataset.viewerState,
+      stillPainted: element.dataset.stillPainted, download: element.querySelector('[data-download-label]')?.textContent,
+      viewport: { top: Math.round(bounds.top), bottom: Math.round(bounds.bottom), height: innerHeight },
+    };
+  });
+  return { ...state, requests: modelRequests.filter(request => modelPath(request.url) === modelPath(state.model)) };
+}
 
 async function captureCanvas(canvas, file) {
   await canvas.waitFor({ state: 'visible' });
@@ -166,17 +210,27 @@ async function inspectMotion(page, route, prefix, result) {
     if (route.id !== 'artwork') {
       await viewer.locator('[data-stage]').evaluate(element => element.scrollIntoView({ block: 'center', behavior: 'instant' }));
     }
-    await page.waitForFunction(element => element.dataset.viewerState === 'ready', await viewer.elementHandle(), { timeout: 45000 });
     const modelBytes = Number(await viewer.getAttribute('data-model-bytes'));
-    if (!Number.isSafeInteger(modelBytes) || modelBytes <= 0 || await viewer.getAttribute('data-still-painted') !== 'true') {
-      throw new Error('The viewer started without a recorded model size or a painted still');
-    }
     const budgeted = route.id === 'homepage' && await viewer.evaluate(element =>
       Boolean(element.closest('.home-programme-hero, .featured-exhibition__viewer')),
     );
-    if (budgeted && modelBytes > AUTO_START_MODEL_LIMIT) {
+    if (budgeted && (!Number.isSafeInteger(modelBytes) || modelBytes <= 0 || modelBytes > AUTO_START_MODEL_LIMIT)) {
       throw new Error('A featured homepage sculpture exceeded its selection budget');
     }
+    if (requiresModelActivation(modelBytes)) {
+      await checkModelGate(page, viewer, result.modelRequests);
+      continue;
+    }
+    try {
+      const terminal = await page.waitForFunction(element => {
+        const state = element.dataset.viewerState;
+        return ['ready', 'error'].includes(state) ? state : false;
+      }, await viewer.elementHandle(), { timeout: 45000 });
+      if (await terminal.jsonValue() !== 'ready') throw new Error('Viewer reported a model error');
+    } catch (error) {
+      throw new Error(`First model attempt failed. ${error.message} ${JSON.stringify(await viewerState(viewer, result.modelRequests))}`);
+    }
+    if (await viewer.getAttribute('data-still-painted') !== 'true') throw new Error('The viewer started before its still painted');
     const canvas = viewer.locator('.viewer-canvas');
     const frame = await captureCanvas(canvas, `${prefix}-viewer-${i + 1}.png`);
     result.readyCanvases.push({ ...frame, modelBytes, ...await measure() });
@@ -186,6 +240,49 @@ async function inspectMotion(page, route, prefix, result) {
       await checkArtworkFullscreen(page, viewer, canvas);
     }
   }
+}
+
+async function checkModelGate(page, viewer, modelRequests) {
+  if (await viewer.getAttribute('data-model-activation') !== 'tap') throw new Error('A large model is missing the tap requirement');
+  const stage = viewer.locator('[data-stage]');
+  await stage.evaluate(element => element.scrollIntoView({ block: 'center', behavior: 'instant' }));
+  await viewer.locator('[data-poster]').waitFor({ state: 'visible' });
+  const button = viewer.locator('[data-load-model]');
+  await button.waitFor({ state: 'visible' });
+  const title = await button.textContent();
+  const bytes = Number(await viewer.getAttribute('data-model-bytes'));
+  if (Number.isSafeInteger(bytes) && bytes > 0 && !title?.includes(`${(bytes / 1e6).toFixed(1)} MB`)) {
+    throw new Error(`The tap control does not disclose its ${bytes}-byte model size`);
+  }
+  // Let the hydrated in-view layout reach the same paint point as automatic starts.
+  await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+  const state = await viewerState(viewer, modelRequests);
+  if (state.state !== 'idle' || state.requests.length || await viewer.locator('canvas.viewer-canvas').count()) {
+    throw new Error(`Model started without a tap. ${JSON.stringify(state)}`);
+  }
+  return button;
+}
+
+async function checkHeavyArtwork(page, result) {
+  const viewer = page.locator('#sculpture [data-viewer]');
+  const bytes = Number(await viewer.getAttribute('data-model-bytes'));
+  if (!(bytes > INLINE_AUTO_LOAD_LIMIT)) throw new Error('Piero no longer exercises the large-model threshold');
+  const button = await checkModelGate(page, viewer, result.modelRequests);
+  result.manualCheck = { modelBytes: bytes, label: (await button.textContent()).trim(), beforeTapRequests: 0 };
+  if (result.motion !== 'no-preference') return;
+  const request = page.waitForRequest(req => modelPath(req.url()).includes(largeArtworkSlug));
+  // The intercepted response is empty on purpose, so this proves the tap
+  // reached the loader without transferring or allocating the 274 MB original.
+  try {
+    await Promise.all([request, result.viewport.width === 390 ? button.tap() : button.click()]);
+    await page.waitForFunction(element => element.dataset.viewerState === 'error', await viewer.elementHandle());
+  } catch (error) {
+    throw new Error(`First tapped load did not reach the expected recovery state. ${error.message} ${JSON.stringify(await viewerState(viewer, result.modelRequests))}`);
+  }
+  await viewer.locator('[data-retry]').waitFor({ state: 'visible' });
+  await viewer.locator('[data-poster]').waitFor({ state: 'visible' });
+  result.manualCheck.requestsAfterTap = (await viewerState(viewer, result.modelRequests)).requests.length;
+  if (result.manualCheck.requestsAfterTap !== 1) throw new Error('A single tap should issue one model request');
 }
 
 async function checkArtworkFullscreen(page, viewer, canvas) {
@@ -215,7 +312,8 @@ async function check(engine, viewport, route, browser, motion = 'reduce') {
   page.setDefaultTimeout(20000);
   const errors = [];
   const problems = [];
-  const result = { engine: engine.name(), viewport, route: route.id, motion, problems };
+  const result = { engine: engine.name(), viewport, route: route.id, motion, problems, modelRequests: [] };
+  observeModelRequests(page, result.modelRequests);
   const prefix = join(artifacts, `${engine.name()}-${viewport.width}-${route.id}${motion === 'reduce' ? '' : '-motion'}`);
   page.on('pageerror', error => errors.push(error.message));
   page.on('console', message => {
@@ -237,10 +335,16 @@ async function check(engine, viewport, route, browser, motion = 'reduce') {
         if (!response.ok()) errors.push(`Model preview returned HTTP ${response.status()}: ${route.request().url()}`);
         await route.fulfill({ response, headers: { ...response.headers(), 'access-control-allow-origin': new URL(origin).origin } });
       } catch (error) {
-        errors.push(error.message);
+        errors.push(`First model delivery attempt failed for ${route.request().url()}: ${error.message}`);
         await route.abort().catch(() => {});
       }
     });
+    if (route.largeModel) {
+      await page.route(
+        url => /^\/(?:models\/previews\/|__atrium-model\/)/.test(modelPath(url.href)) && modelPath(url.href).includes(largeArtworkSlug),
+        route => route.fulfill({ status: 204, headers: { 'access-control-allow-origin': new URL(origin).origin } }),
+      );
+    }
     const response = await page.goto(new URL(route.path, origin).href, { waitUntil: 'domcontentloaded' });
     if (response?.status() !== (route.status ?? 200)) problems.push(`HTTP ${response?.status() ?? 'no response'}`);
     if (route.prepare) await route.prepare(page);
@@ -248,17 +352,25 @@ async function check(engine, viewport, route, browser, motion = 'reduce') {
     await page.evaluate(() => Promise.race([document.fonts.ready, new Promise(resolve => setTimeout(resolve, 1500))]));
     await page.addScriptTag({ path: axePath });
     Object.assign(result, await page.evaluate(measurePage, viewport.width === 390));
-    if (motion === 'no-preference') {
+    if (route.largeModel) {
+      await checkHeavyArtwork(page, result);
+    } else if (route.id === 'exhibition' && viewport.width === 390) {
+      const offscreen = page.locator('main [data-viewer][data-model-activation="tap"]').last();
+      if (!await offscreen.count()) throw new Error('The Surface exhibition no longer exercises an offscreen large sculpture');
+      const initial = await viewerState(offscreen, result.modelRequests);
+      if (initial.viewport.top < initial.viewport.height || initial.requests.length) throw new Error(`Large offscreen model has an unexpected initial state. ${JSON.stringify(initial)}`);
+      await checkModelGate(page, offscreen, result.modelRequests);
+    } else if (motion === 'no-preference') {
       result.readyCanvases = [];
       await inspectMotion(page, route, prefix, result);
     }
-    result.axe = await page.evaluate(async () => {
-      const { violations } = await window.axe.run();
+    result.axe = await page.evaluate(async selector => {
+      const { violations } = await window.axe.run(selector || document);
       return violations.filter(item => ['serious', 'critical'].includes(item.impact)).map(item => ({
         id: item.id, impact: item.impact,
         nodes: item.nodes.map(node => ({ target: node.target, failure: node.failureSummary })),
       }));
-    });
+    }, route.largeModel ? '#sculpture [data-viewer]' : null);
     if (result.overflow > 1) problems.push(`Horizontal overflow ${result.overflow}px`);
     if (result.sameColors.length) problems.push(`Text matches its background: ${result.sameColors.map(item => item.label).join(', ')}`);
     if (result.axe.length) problems.push(`axe: ${result.axe.map(item => `${item.id} (${item.nodes.length})`).join(', ')}`);
@@ -289,21 +401,37 @@ async function check(engine, viewport, route, browser, motion = 'reduce') {
 
 async function checkPublishedViewerMarkup() {
   const paths = await readdir(dist, { recursive: true });
-  let stages = 0, routes = 0;
+  let stages = 0, routes = 0, manualStages = 0;
   for (const file of paths.filter(path => path.endsWith('.html'))) {
     const html = await readFile(join(dist, file), 'utf8');
     const viewers = html.match(/<[^>]+\bdata-stage\s[^>]*\bdata-glb="[^"]+"[^>]*>/g);
     if (!viewers) continue;
-    if (/<[^>]+\bdata-(?:auto-start|activate)(?:[=\s>])|>Examine in 3D(?:[\s<])/i.test(html)) {
-      throw new Error(`An inline model requires initial activation in ${file}`);
+    const roots = [...html.matchAll(/<div[^>]*\bdata-viewer(?=[=\s>])[^>]*>/g)];
+    let checked = 0;
+    for (let i = 0; i < roots.length; i++) {
+      const [tag] = roots[i];
+      const fragment = html.slice(roots[i].index + tag.length, roots[i + 1]?.index ?? html.length);
+      if (!/<[^>]+\bdata-stage\s[^>]*\bdata-glb="[^"]+"/.test(fragment)) continue;
+      checked++;
+      const bytes = Number(tag.match(/\bdata-model-bytes="([^"]+)"/)?.[1]);
+      const needsTap = requiresModelActivation(bytes);
+      const buttons = [...fragment.matchAll(/<button[^>]*\bdata-load-model(?=[=\s>])[^>]*>([\s\S]*?)<\/button>/g)];
+      const retries = fragment.match(/<button[^>]*\bdata-retry\s[^>]*\bhidden(?:[=\s>])/g);
+      if (/\bdata-model-activation="tap"/.test(tag) !== needsTap || buttons.length !== Number(needsTap)) {
+        throw new Error(`Incorrect activation gate for a ${bytes}-byte model in ${file}`);
+      }
+      if (needsTap && Number.isSafeInteger(bytes) && bytes > 0 && !buttons[0][1].includes(`${(bytes / 1e6).toFixed(1)} MB`)) {
+        throw new Error(`A gated model does not disclose its ${bytes}-byte size in ${file}`);
+      }
+      if (retries?.length !== 1) throw new Error(`An inline model is missing a hidden retry button in ${file}`);
+      if (needsTap) manualStages++;
     }
-    const retries = html.match(/<button[^>]*\bdata-retry\s[^>]*\bhidden(?:[=\s>])/g);
-    if (retries?.length !== viewers.length) throw new Error(`An inline model is missing a hidden retry button in ${file}`);
+    if (checked !== viewers.length) throw new Error(`Could not audit every inline model in ${file}`);
     stages += viewers.length;
     routes++;
   }
   if (!stages) throw new Error('The build contains no inspectable sculpture stages');
-  console.log(`Checked all ${stages} model stages across ${routes} built pages for activation gates`);
+  console.log(`Checked ${stages} model stages across ${routes} built pages. ${manualStages} require a tap and ${stages - manualStages} open automatically.`);
 }
 
 try {
@@ -313,7 +441,7 @@ try {
     try {
       for (const viewport of viewports) {
         for (const route of selected) await check(engine, viewport, route, browser);
-        for (const route of selected.filter(item => item.viewers || item.id === 'world')) await check(engine, viewport, route, browser, 'no-preference');
+        for (const route of selected.filter(item => item.viewers || item.largeModel || item.id === 'world')) await check(engine, viewport, route, browser, 'no-preference');
       }
     } finally {
       await browser.close();

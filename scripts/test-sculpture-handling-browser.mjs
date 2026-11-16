@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { chromium } from 'playwright';
 import { serveBrowserChecks } from './serve-browser-checks.mjs';
+import { requiresModelActivation } from '../src/lib/viewer-preview.mjs';
 
 const suppliedOrigin = process.env.BROWSER_CHECK_ORIGIN;
 const hosted = suppliedOrigin ? null : await serveBrowserChecks(process.env.BROWSER_CHECK_DIST);
@@ -34,8 +35,32 @@ function fail(message) {
 }
 
 const distance = (a, b) => Math.hypot(...a.map((value, index) => value - b[index]));
+const modelTransfers = new WeakMap();
+
+function modelPath(url) {
+  const path = new URL(url, origin).pathname;
+  try { return decodeURIComponent(path); } catch { return path; }
+}
 
 async function instrumentControls(page) {
+  const transfers = new Map();
+  modelTransfers.set(page, transfers);
+  page.on('request', request => {
+    if (!/^\/(?:models\/previews\/|__atrium-model\/)/.test(modelPath(request.url()))) return;
+    transfers.set(request, { url: request.url(), started: performance.now() });
+  });
+  page.on('response', response => {
+    const transfer = transfers.get(response.request());
+    if (transfer) Object.assign(transfer, { status: response.status(), responseMs: Math.round(performance.now() - transfer.started) });
+  });
+  page.on('requestfinished', request => {
+    const transfer = transfers.get(request);
+    if (transfer) transfer.completedMs = Math.round(performance.now() - transfer.started);
+  });
+  page.on('requestfailed', request => {
+    const transfer = transfers.get(request);
+    if (transfer) Object.assign(transfer, { failedMs: Math.round(performance.now() - transfer.started), failure: request.failure()?.errorText });
+  });
   await page.addInitScript(() => {
     const getContext = HTMLCanvasElement.prototype.getContext;
     HTMLCanvasElement.prototype.getContext = function (type, options) {
@@ -92,11 +117,17 @@ controls.update = function (...args) {
     await route.fulfill({ response, body: source + '\n' + probe });
   });
   if (local) await page.route('https://models.atrium.earth/models/previews/**/*.glb', async route => {
-    const response = await route.fetch({
-      headers: { ...route.request().headers(), origin: 'https://atrium.earth' },
-      timeout: 20000,
-    });
-    await route.fulfill({ response, headers: { ...response.headers(), 'access-control-allow-origin': origin.origin } });
+    try {
+      const response = await route.fetch({
+        headers: { ...route.request().headers(), origin: 'https://atrium.earth' },
+        timeout: 20000,
+      });
+      await route.fulfill({ response, headers: { ...response.headers(), 'access-control-allow-origin': origin.origin } });
+    } catch (error) {
+      const transfer = transfers.get(route.request());
+      if (transfer) transfer.relayFailure = error.message;
+      await route.abort().catch(() => {});
+    }
   });
 }
 
@@ -109,12 +140,27 @@ async function loadRoute(page, route) {
 async function waitForViewer(page, viewer, { scroll = true } = {}) {
   if (scroll) await viewer.locator('[data-stage]').evaluate(element => element.scrollIntoView({ block: 'center', behavior: 'instant' }));
   const canvas = viewer.locator('canvas.viewer-canvas');
-  await canvas.waitFor({ state: 'visible', timeout: 45000 });
-  await page.waitForFunction(
-    element => element.closest('[data-viewer]').dataset.viewerState === 'ready' && element.__atriumTestPose,
-    await canvas.elementHandle(),
-    { timeout: 45000 },
-  );
+  try {
+    const terminal = await page.waitForFunction(element => {
+      const state = element.dataset.viewerState;
+      return state === 'error' || (state === 'ready' && element.querySelector('canvas.viewer-canvas')?.__atriumTestPose)
+        ? state : false;
+    }, await viewer.elementHandle(), { timeout: 45000 });
+    if (await terminal.jsonValue() !== 'ready') throw new Error('Viewer reported a model error');
+    await canvas.waitFor({ state: 'visible' });
+  } catch (error) {
+    const state = await viewer.evaluate(element => {
+      const stage = element.querySelector('[data-stage]');
+      const bounds = stage.getBoundingClientRect();
+      return {
+        model: stage.dataset.glb, bytes: element.dataset.modelBytes, state: element.dataset.viewerState,
+        stillPainted: element.dataset.stillPainted, download: element.querySelector('[data-download-label]')?.textContent,
+        viewport: { top: Math.round(bounds.top), bottom: Math.round(bounds.bottom), height: innerHeight },
+      };
+    });
+    const transfers = [...modelTransfers.get(page).values()].filter(entry => modelPath(entry.url) === modelPath(state.model));
+    throw new Error(`First model attempt failed. ${error.message} ${JSON.stringify({ ...state, transfers })}`);
+  }
   return canvas;
 }
 
@@ -483,6 +529,15 @@ async function checkAutoOpeningAndRotation(browser) {
         const label = await stage.getAttribute('aria-label');
         const description = `${route.name}: ${label?.replace('Interactive 3D view of ', '') ?? 'sculpture'}`;
         try {
+          const bytes = Number(await viewer.getAttribute('data-model-bytes'));
+          if (requiresModelActivation(bytes)) {
+            assert.equal(route.viewer, 'main [data-viewer]', 'This fixture should still open automatically');
+            await stage.evaluate(element => element.scrollIntoView({ block: 'center', behavior: 'instant' }));
+            await viewer.locator('[data-load-model]').waitFor({ state: 'visible' });
+            assert.equal(await viewer.getAttribute('data-viewer-state'), 'idle', 'Large model must wait for a tap');
+            console.log(`PASS 390px ${description} waits for a tap`);
+            continue;
+          }
           const canvas = await waitForViewer(page, viewer, { scroll: route !== thinker });
           const initial = (await readPose(canvas)).position;
           await page.waitForFunction(({ element, initial }) => {
