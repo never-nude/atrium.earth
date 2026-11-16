@@ -1,5 +1,6 @@
 import rawCatalog from '../data/catalog.json';
 import rawPreviews from '../data/previews.json';
+import rawFirstViewModels from '../data/first-view-models.json';
 import rawRenders from '../data/renders.json';
 import rawOrientations from '../data/orientations.json';
 import rawMaterialAppearances from '../data/material-appearances.json';
@@ -15,6 +16,7 @@ import { physicalDimensionsFor } from './physical-dimensions.mjs';
 import { spatialEligibilityFor } from './spatial-eligibility.mjs';
 import { spatialAccessFor } from './spatial-access.mjs';
 import { approximateDimensionsFor } from './approximate-dimensions.mjs';
+import { firstViewFor } from './first-view-models.mjs';
 import { assignWing } from './assignWing';
 import type { WingId } from '../data/wings';
 
@@ -66,10 +68,17 @@ type RawWork = {
 type Preview = {
   url: string;
   bytes: number;
+  sha256?: string;
+  triangles?: number;
   sourceBytes?: number;
   sourceFormat?: string;
   faces?: number;
   sourceFaces?: number;
+};
+
+type FirstViewBinding = {
+  original: { url: string; bytes: number; sha256: string };
+  firstView: Preview & { sha256: string; triangles: number; largestTexture: { width: number; height: number } | null };
 };
 
 type OrientationEntry = string | {
@@ -149,6 +158,9 @@ export type Work = {
   ingested?: string;
   modelGlb: string;
   modelBytes?: number;
+  originalGlb: string;
+  originalBytes?: number;
+  hasFirstView: boolean;
   modelUpAxis: string;
   modelTransform: ModelTransform;
   modelStats: string;
@@ -212,6 +224,13 @@ export const catalogCount = (rawCatalog as RawWork[]).length;
 // Keep deferred scans in the source catalog, but exclude them from every public surface.
 const rawWorks = (rawCatalog as RawWork[]).filter((work) => !work.hidden);
 const previewMap = rawPreviews as Record<string, Preview>;
+const firstViewBindings = rawFirstViewModels as Record<string, FirstViewBinding>;
+export const inlinePreviewMap: Record<string, Preview> = Object.fromEntries(
+  Object.entries(previewMap).map(([slug, original]) => [
+    slug,
+    firstViewFor(slug, original, firstViewBindings[slug]) ?? original,
+  ]),
+);
 const renderSet = new Set(rawRenders as string[]);
 const orientationMap = rawOrientations as Record<string, OrientationEntry>;
 const appearanceConfig = rawMaterialAppearances as {
@@ -582,7 +601,8 @@ function makerFor(raw: RawWork): string {
 function modelStatsFor(preview: Preview | undefined, raw: RawWork): string {
   if (!preview) return '3D preview queued';
   const size = preview.bytes ? `${Math.round(preview.bytes / 1024)} KB` : 'web preview';
-  const faces = preview.faces ? `${preview.faces.toLocaleString()} faces` : 'optimized mesh';
+  const faces = preview.triangles ? `${preview.triangles.toLocaleString()} triangles`
+    : preview.faces ? `${preview.faces.toLocaleString()} faces` : 'optimized mesh';
   const source = raw.model?.format ? raw.model.format.toUpperCase() : 'source mesh';
   return `${size}, ${faces}, prepared from ${source}`;
 }
@@ -604,6 +624,16 @@ function normalize(raw: RawWork, fallbackIndex: number): Work {
   const sourceMuseum = clean(raw.source_institution);
   const museum = clean(raw.displayed_at) || clean(raw.current_location) || clean(raw.museum);
   const preview = previewMap[raw.slug];
+  const inlinePreview = inlinePreviewMap[raw.slug];
+  const hasFirstView = inlinePreview !== preview;
+  const originalGlb = import.meta.env?.DEV && preview?.url
+    ? `/__atrium-model/${encodeURIComponent(raw.slug)}`
+    : preview?.url || '';
+  const modelGlb = hasFirstView
+    ? import.meta.env?.DEV && inlinePreview.url.startsWith('https://')
+      ? `/__atrium-first-view/${encodeURIComponent(raw.slug)}`
+      : inlinePreview.url
+    : originalGlb;
   const movement = movementFor(raw, era);
   const medium = clean(raw.material);
   const title = clean(correction?.title || raw.title) || titleCaseSlug(raw.slug);
@@ -672,14 +702,14 @@ function normalize(raw: RawWork, fallbackIndex: number): Work {
     relatedWorks: [],
     posterImage: `/previews/posters/${raw.slug}/poster.svg`,
     thumbnailImage: renderSet.has(raw.slug) ? `/previews/renders/${raw.slug}/thumb.webp?preview=alpha1` : `/previews/posters/${raw.slug}/poster.svg`,
-    // Match the configured version so a stale local mirror cannot hide a repair.
-    modelGlb: import.meta.env?.DEV && preview?.url
-      ? `/__atrium-model/${encodeURIComponent(raw.slug)}`
-      : preview?.url || '',
-    modelBytes: preview?.bytes,
+    modelGlb,
+    modelBytes: inlinePreview?.bytes,
+    originalGlb,
+    originalBytes: preview?.bytes,
+    hasFirstView,
     modelUpAxis: legacyTransformString(modelTransform),
     modelTransform,
-    modelStats: modelStatsFor(preview, raw),
+    modelStats: modelStatsFor(inlinePreview, raw),
     featuredWeight: Math.max(1, 5 - Number(raw.tier || 3)),
     ingested: raw.ingested || undefined,
     heroCrop: 'center',
@@ -786,7 +816,7 @@ export function featuredWorkIn(candidates: Work[]): Work | undefined {
 }
 
 export function homepageHeroWorkForDate(date = new Date()): Work {
-  return homepageHeroForDate(homepageFeaturedWorks, previewMap, date);
+  return homepageHeroForDate(homepageFeaturedWorks, inlinePreviewMap, date);
 }
 
 export function collectionHighlights(): Work[] {

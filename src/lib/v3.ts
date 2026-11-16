@@ -1,6 +1,5 @@
 import v3Content from '../data/v3-content.json';
-import { featuredWorks, homepageHeroWorkForDate, isFeaturedWork, recentlyPrepared, workBySlug, works, type Work } from './catalog';
-import previews from '../data/previews.json';
+import { inlinePreviewMap as previews, featuredWorks, homepageHeroWorkForDate, isFeaturedWork, recentlyPrepared, workBySlug, works, type Work } from './catalog';
 import { exhibitionLeadForDate } from './museum-programme.mjs';
 import { programmeDate } from './museum-date.mjs';
 import { exhibitions as baseExhibitions, featuredWork, neighborsFor, type V2Exhibition } from './v2';

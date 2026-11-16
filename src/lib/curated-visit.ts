@@ -1,7 +1,6 @@
 import editions from '../data/curated-visits.json';
-import previews from '../data/previews.json';
 import { validateCuratedVisit } from './curated-visit.mjs';
-import type { Work } from './catalog';
+import { inlinePreviewMap as previews, type Work } from './catalog';
 import type { V3Exhibition } from './v3';
 
 export type CuratedVisit = typeof editions.visits['the-work-of-the-surface'];

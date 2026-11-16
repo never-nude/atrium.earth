@@ -1,0 +1,88 @@
+---
+import Viewer from '../../components/Viewer.astro';
+import V3Layout from '../../layouts/v3/V3Layout.astro';
+import { works, type Work } from '../../lib/catalog';
+import { museumLabelFor } from '../../lib/museum-label.mjs';
+import { withBase } from '../../lib/urls';
+import { v3WorkRoute } from '../../lib/v3';
+import { modelSizeLabel } from '../../lib/viewer-preview.mjs';
+
+export function getStaticPaths() {
+  return works.filter((work) => work.hasFirstView).map((work) => ({
+    params: { slug: work.slug },
+    props: { work },
+  }));
+}
+
+type Props = { work: Work };
+const { work } = Astro.props;
+const workRoute = v3WorkRoute(work);
+const workPath = withBase(workRoute);
+---
+
+<V3Layout
+  title={`${work.title} · Full detail`}
+  description={`Examine the original 3D scan of ${work.title}.`}
+  canonical={workRoute}
+  image={`/previews/renders/${work.slug}/thumb.jpg`}
+  immersive={true}
+>
+  <header class="detail-heading">
+    <a class="v3-object-record-link" href={workPath}><span aria-hidden="true">←</span> Back to work</a>
+    <div>
+      <p class="v3-kicker">Original scan · {modelSizeLabel(work.originalBytes)}</p>
+      <h1 id="detail-title">{work.title}</h1>
+    </div>
+    <a class="v3-object-record-link" href={`${workPath}#object-record`}>Details &amp; sources <span aria-hidden="true">↗</span></a>
+  </header>
+
+  <section id="sculpture" class="v3-object-stage" aria-labelledby="detail-title">
+    <Viewer
+      glb={withBase(work.originalGlb)}
+      modelBytes={work.originalBytes}
+      poster={withBase(work.thumbnailImage)}
+      title={work.title}
+      hud={false}
+      immersive={true}
+      loadingPlacement="below"
+      displayControls={true}
+      spatialViewing={work.spatialAccess.enabled}
+      museumLabel={museumLabelFor(work)}
+      spatialAssetSha256={work.spatialAccess.assetSha256}
+      spatialDimensionStatus={work.spatialAccess.status}
+      spatialLabel={work.spatialAccess.label}
+      spatialSizeLabel={work.spatialAccess.sizeLabel}
+      spatialDefaultMaxExtentMeters={work.spatialAccess.defaultMaxExtentMeters}
+      spatialReference={work.spatialAccess.reference}
+      displaySupport={work.displaySupport}
+      spatialNote={work.spatialAccess.verified ? `${work.spatialAccess.sizeLabel}. ${work.spatialNote}` : work.spatialAccess.note}
+      posterLoading="eager"
+      upAxis={work.modelUpAxis}
+      modelTransform={work.modelTransform}
+      materialAppearance={work.materialAppearance}
+    />
+  </section>
+</V3Layout>
+
+<script>
+  const viewer = document.querySelector('#sculpture > [data-viewer]');
+  const start = viewer?.querySelector('.viewer-start');
+  const controls = viewer?.querySelectorAll('[data-immersive-tools], [data-display-controls], [data-spatial]');
+  if (start && controls?.length) {
+    const row = document.createElement('div');
+    row.className = 'v3-object-viewer-controls';
+    start.after(row);
+    row.append(...controls);
+  }
+</script>
+
+<style>
+  .detail-heading { display: flex; align-items: center; flex-wrap: wrap; gap: 12px 24px; padding: 16px var(--v3-pad); }
+  .detail-heading > div { flex: 1 1 180px; }
+  .detail-heading h1 { margin: 4px 0 0; font-size: clamp(1.25rem, 3vw, 2.4rem); font-weight: 500; line-height: 1.14; }
+  .detail-heading .v3-kicker { color: var(--v3-muted); }
+  .detail-heading .v3-object-record-link { min-height: 44px; }
+  .v3-object-stage :global(#ar-vr) { scroll-margin-top: 88px; }
+  .v3-object-stage :global(.viewer:is(:fullscreen, [data-viewer-expanded]) > .v3-object-viewer-controls) { position: fixed; inset: auto 12px max(36px, env(safe-area-inset-bottom)) 12px; z-index: 20; justify-content: center; gap: 0 12px; margin: 0; border: 0; padding: 0; }
+  .v3-object-stage :global(.viewer:is(:fullscreen, [data-viewer-expanded]) .v3-object-viewer-controls .immersive-tools:not([hidden])) { position: static !important; flex: 0 0 auto; }
+</style>

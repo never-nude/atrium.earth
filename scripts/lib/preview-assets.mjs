@@ -4,8 +4,11 @@ import { createHash } from 'node:crypto';
 import path from 'node:path';
 import { Readable, Transform } from 'node:stream';
 import { pipeline } from 'node:stream/promises';
+import { firstViewFor } from '../../src/lib/first-view-models.mjs';
 
 const modelPrefix = '/__atrium-model/';
+export const firstViewPrefix = '/__atrium-first-view/';
+const firstViewAssetPrefix = '/models/first-views/';
 const allowedOrigins = new Set(['https://models.atrium.earth', 'https://atrium.earth']);
 const contentTypes = { '.webp': 'image/webp', '.svg': 'image/svg+xml', '.png': 'image/png', '.jpg': 'image/jpeg', '.js': 'text/javascript', '.json': 'application/json', '.wasm': 'application/wasm', '.html': 'text/html', '.css': 'text/css' };
 const isInside = (root, file) => {
@@ -45,7 +48,7 @@ async function validLocalModel(candidate, record, hashPrefix) {
 
 // Registered only by Vite's development server. No serving copy or model cache
 // is written; every remote URL must come from this checkout's fixed preview map.
-export function previewAssets() {
+export function previewAssets({ firstViewPublicDir } = {}) {
   return {
     name: 'atrium-read-only-preview-assets',
     apply: 'serve',
@@ -53,18 +56,30 @@ export function previewAssets() {
       return { cacheDir: path.resolve(config.root || process.cwd(), '.astro/vite-cache') };
     },
     async configureServer(server) {
-      const previews = JSON.parse(await readFile(path.join(server.config.root, 'src/data/previews.json'), 'utf8'));
+      const modelData = await Promise.all(['previews.json', 'first-view-models.json']
+        .map(name => readFile(path.join(server.config.root, 'src/data', name), 'utf8')));
+      const [previews, bindings] = modelData.map(source => JSON.parse(source));
+      const firstViews = new Map(Object.entries(bindings).flatMap(([slug, binding]) => {
+        const record = firstViewFor(slug, previews[slug], binding);
+        return record ? [[slug, record]] : [];
+      }));
+      const localFirstViews = new Map([...firstViews.values()]
+        .filter(record => record.url.startsWith('/')).map(record => [record.url, record]));
       const externalPublic = process.env.ATRIUM_PREVIEW_PUBLIC_DIR;
       const artworkPreviews = process.env.ATRIUM_PREVIEW_ARTWORK_DIR;
       const roots = [...new Set([externalPublic, path.join(server.config.root, 'public')].filter(Boolean))];
+      const firstViewRoots = firstViewPublicDir ? [firstViewPublicDir] : roots;
       const base = server.config.base.replace(/\/$/, '');
       server.middlewares.use(async (req, res, next) => {
         const controller = new AbortController();
         try {
           let pathname = new URL(req.url || '/', 'http://localhost').pathname;
           if (base && pathname.startsWith(`${base}/`)) pathname = pathname.slice(base.length);
-          const model = pathname.startsWith(modelPrefix);
           const assetPath = path.posix.normalize(decodeURIComponent(pathname));
+          const firstViewRelay = pathname.startsWith(firstViewPrefix);
+          const firstViewFile = assetPath.startsWith(firstViewAssetPrefix);
+          const firstView = firstViewRelay || firstViewFile;
+          const model = firstView || pathname.startsWith(modelPrefix);
           const staticAsset = /^\/(?:previews|spatial-museum|vendor|images)\//.test(assetPath)
             || ['/model-render-utils.js', '/favicon.svg'].includes(assetPath);
           if (!model && !staticAsset) return next();
@@ -87,19 +102,21 @@ export function previewAssets() {
             return next();
           }
 
-          const slug = decodeURIComponent(pathname.slice(modelPrefix.length));
-          const record = Object.hasOwn(previews, slug) ? previews[slug] : null;
+          const slug = firstViewFile ? '' : decodeURIComponent(pathname.slice((firstViewRelay ? firstViewPrefix : modelPrefix).length));
+          const record = firstViewFile ? localFirstViews.get(assetPath)
+            : firstViewRelay ? firstViews.get(slug)
+            : Object.hasOwn(previews, slug) ? previews[slug] : null;
           if (!record) { res.statusCode = 404; res.end('Unknown preview model'); return; }
           const url = new URL(record.url, 'https://atrium.earth');
-          if (!allowedOrigins.has(url.origin) || url.username || url.password || url.search || url.hash
+          if (!firstView && (!allowedOrigins.has(url.origin) || url.username || url.password || url.search || url.hash
             || !url.pathname.startsWith(`/models/previews/${slug}/`) || !url.pathname.endsWith('.glb')
-            || !Number.isSafeInteger(record.bytes) || record.bytes < 12) throw new Error('Invalid preview binding');
-          const hashPrefix = /\/preview-([a-f0-9]{12,64})\.glb$/.exec(url.pathname)?.[1];
+            || !Number.isSafeInteger(record.bytes) || record.bytes < 12)) throw new Error('Invalid preview binding');
+          const hashPrefix = firstView ? record.sha256 : /\/preview-([a-f0-9]{12,64})\.glb$/.exec(url.pathname)?.[1];
           // A cloud URL without a content hash cannot prove that an old local
           // mirror is the current revision. Request that version from its host.
           if (hashPrefix || record.url.startsWith('/')) {
-            const modelPaths = [...new Set([url.pathname, `/models/previews/${slug}/preview.glb`])];
-            for (const root of roots) for (const modelPath of modelPaths) {
+            const modelPaths = firstView ? [url.pathname] : [...new Set([url.pathname, `/models/previews/${slug}/preview.glb`])];
+            for (const root of firstView ? firstViewRoots : roots) for (const modelPath of modelPaths) {
               const candidate = await existingFile(root, modelPath);
               if (!await validLocalModel(candidate, record, hashPrefix)) continue;
               res.setHeader('Content-Type', 'model/gltf-binary');
@@ -110,16 +127,44 @@ export function previewAssets() {
               return;
             }
           }
+          if (firstView && record.url.startsWith('/')) throw new Error('The local first view does not match its reviewed file');
 
           // Deliberately omit Range: an ordinary full GLB response is supported
           // by the viewer and avoids forwarding partial compressed representations.
           const upstream = await fetch(url, {
             method: req.method, redirect: 'error', signal: controller.signal,
-            headers: { Origin: 'https://atrium.earth', 'User-Agent': 'AtriumLocalPreview/1.0' },
+            headers: {
+              Origin: 'https://atrium.earth',
+              'User-Agent': 'AtriumLocalPreview/1.0',
+              ...(firstView ? { 'Accept-Encoding': 'identity' } : {}),
+            },
           });
           if (!upstream.ok) { res.statusCode = upstream.status; res.end('Preview model unavailable'); return; }
           const length = Number(upstream.headers.get('content-length'));
           const encoded = upstream.headers.has('content-encoding');
+          if (firstView) {
+            if (!encoded && length !== record.bytes) throw new Error('First view has a different recorded size');
+            let body;
+            if (req.method !== 'HEAD') {
+              // First views are capped at 3 MB. Verify the complete response before sending it to the viewer.
+              let bytes = 0;
+              const chunks = [];
+              for await (const chunk of upstream.body) {
+                bytes += chunk.length;
+                if (bytes > record.bytes) throw new Error('First view exceeds its recorded size');
+                chunks.push(chunk);
+              }
+              body = Buffer.concat(chunks, bytes);
+              if (bytes !== record.bytes || !validHeader(body, bytes) || createHash('sha256').update(body).digest('hex') !== record.sha256) {
+                throw new Error('First view bytes do not match the configured model');
+              }
+            }
+            res.setHeader('Content-Type', 'model/gltf-binary');
+            res.setHeader('Content-Length', record.bytes);
+            res.setHeader('Cache-Control', 'private, max-age=300');
+            res.end(body);
+            return;
+          }
           if (!encoded && length > record.bytes) throw new Error('Preview exceeds its recorded size');
           res.setHeader('Content-Type', 'model/gltf-binary');
           // Node fetch decodes gzip/br but retains their compressed length header.

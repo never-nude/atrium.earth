@@ -2,7 +2,6 @@ import { works, publicDataset } from './catalog';
 import { createHash } from 'node:crypto';
 import { shortWorkTitle } from './work-titles';
 import { withBase } from './urls';
-import previews from '../data/previews.json';
 import { COLLECTION_CHUNK_SIZE, packCollectionIndex } from './collection-window.mjs';
 
 // Only the normalized public catalogue enters either endpoint. No model URLs,
@@ -12,8 +11,7 @@ const entries = works.map((work) => {
   const title = shortWorkTitle(work.title);
   const makerLabel = work.maker || 'Maker not yet recorded';
   const spatialAccess = work.spatialAccess?.enabled ? work.spatialAccess : null;
-  const preview = (previews as Record<string, { bytes?: number }>)[work.slug];
-  const previewBytes = typeof preview?.bytes === 'number' && Number.isFinite(preview.bytes) && preview.bytes > 0 ? preview.bytes : undefined;
+  const previewBytes = work.modelBytes || undefined;
   const detail = [work.maker || work.culture, work.displayDate].filter(Boolean).join(' · ');
   return {
     metadata: { slug: work.slug, title, search: data.search, year: data.year, wing: data.wing, era: data.era, place: data.place, material: data.material, maker: data.maker, makerLabel, catalogIndex: work.index, ingested: work.ingested || '', size: spatialAccess?.status || '' },
