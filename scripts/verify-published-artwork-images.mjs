@@ -2,12 +2,17 @@
 // finished Pages package, after copying, JPEG generation and pruning.
 import { readFile, readdir, realpath } from 'node:fs/promises';
 import path from 'node:path';
+import pagesAssets from '../src/data/pages-cdn-assets.json' with { type: 'json' };
 
 const site = 'https://atrium.earth';
+const cdn = 'https://models.atrium.earth';
 const firstPartyHosts = new Set(['atrium.earth', 'www.atrium.earth']);
 const assetDirectories = new Set(['previews', 'models', 'vendor', '_astro']);
-const referencePattern = /(?:^|[\s"'(=,])((?:(?:https?:)?\/\/[^/\s"'<>]+)?\/previews\/renders\/[^\s"'<>?#]+?\/thumb\.(?:webp|jpg))(?=$|[\s"'<>?,#)])/g;
+const referencePattern = /(?:^|[\s"'(=,])((?:(?:https?:)?\/\/[^/\s"'<>]+)?\/previews\/renders\/[^\s"'<>?#]+?\/thumb(?:-[a-f0-9]{12})?\.(?:webp|jpg))(?=$|[\s"'<>?,#)])/g;
 const thumbnailPath = /^\/previews\/renders\/(?:[a-z0-9_-]+\/)+thumb\.(?:webp|jpg)$/i;
+const cdnJpegs = new Map(Object.entries(pagesAssets)
+  .filter(([pathname]) => pathname.endsWith('/thumb.jpg'))
+  .map(([pathname, { key }]) => [`${cdn}/${key}`, pathname]));
 const maxReportedFailures = 20;
 
 async function* documents(root, directory = root) {
@@ -42,6 +47,7 @@ function completeJpeg(bytes) {
 async function verify(directory) {
   const root = await realpath(path.resolve(directory));
   const references = new Set();
+  const remoteJpegs = new Set();
   const failures = [];
   let failureCount = 0;
   let documentCount = 0;
@@ -56,9 +62,19 @@ async function verify(directory) {
     for (const [, reference] of document.matchAll(referencePattern)) {
       try {
         const url = new URL(reference, site);
+        if (url.origin === cdn) {
+          const pathname = cdnJpegs.get(url.href);
+          if (!pathname) throw new Error('Unverified CDN thumbnail');
+          references.add(pathname);
+          remoteJpegs.add(url.href);
+          continue;
+        }
         if (!firstPartyHosts.has(url.hostname) || url.port || url.username || url.password) continue;
         const pathname = decodeURIComponent(url.pathname);
         if (!thumbnailPath.test(pathname)) throw new Error('Unexpected thumbnail path');
+        if (pathname.endsWith('/thumb.jpg') && Object.hasOwn(pagesAssets, pathname)) {
+          throw new Error('Expected a verified CDN thumbnail address');
+        }
         references.add(pathname);
       } catch {
         report(`Invalid artwork image URL in ${path.relative(root, filename)}: ${reference.slice(0, 180)}`);
@@ -66,6 +82,7 @@ async function verify(directory) {
     }
   }
   if (!references.size) report('No first-party artwork thumbnail references found in the built HTML or JSON.');
+  if (cdnJpegs.size && !remoteJpegs.size) report('No verified CDN JPEGs are referenced in the built HTML or JSON.');
 
   const expectedFiles = new Set();
   for (const reference of references) {
@@ -92,6 +109,7 @@ async function verify(directory) {
     return;
   }
   console.log(`Verified ${expectedFiles.size.toLocaleString('en')} WebP and JPEG files for ${references.size.toLocaleString('en')} unique artwork image paths in ${documentCount.toLocaleString('en')} built HTML and JSON files.`);
+  console.log(`Verified ${remoteJpegs.size.toLocaleString('en')} distinct CDN JPEG references against the transfer receipt.`);
 }
 
 try {

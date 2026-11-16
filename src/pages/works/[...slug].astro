@@ -217,6 +217,7 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
 <style>
   .work-title-line { display: flex; align-items: start; justify-content: space-between; gap: 12px; }
   .work-title-line h1 { min-width: 0; overflow-wrap: anywhere; }
+  .work-title-line [data-work-save-slot] { flex: none; }
   .work-title-line :global(.studio-save--object) { position: static; margin: 0; }
   .work-disclosure { margin: 0 var(--v3-pad); border-top: 1px solid var(--v3-line); scroll-margin-top: 88px; }
   .work-disclosure > summary { display: flex; align-items: center; justify-content: space-between; min-height: 56px; cursor: pointer; font-weight: 600; list-style: none; }

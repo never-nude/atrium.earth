@@ -57,6 +57,15 @@ test('a model requested after the gate but before actual presentation fails the 
   assert.equal(result.underBudget.autoStartedModels, false);
 });
 
+test('a CDN first view counts against the homepage model allowance', () => {
+  const f = fixture();
+  const model = f.devtoolsLog.find(event => event.method === 'Network.requestWillBeSent' && event.params.requestId === 'model');
+  model.params.request.url = url + '__performance-model/models/first-views/test/first-f4c7f1cad9bc.glb';
+  const result = summarizeHomepagePerformance(f);
+  assert.equal(result.modelTransfers[0].url, '/models/first-views/test/first-f4c7f1cad9bc.glb');
+  assert.equal(result.modelTransfers[0].resourceSize, 2_650_000);
+});
+
 test('a 1.5 MB still budget cannot hide an expensive pre-paint response', () => {
   const f = fixture();
   f.devtoolsLog.splice(4, 0, request('heavy', 'heavy.bin', 100.2), response('heavy', 100.21, 50),

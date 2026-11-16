@@ -30,6 +30,8 @@ jobs:
         run: npm run build
         env:
           SITE: https://atrium.earth
+      - name: Verify live model CDN addresses in the built site
+        run: node scripts/verify-published-model-delivery.mjs
       - name: Verify museum pages in Chromium and WebKit
         run: npm run test:browser
       - name: Verify sculpture gestures in Chromium

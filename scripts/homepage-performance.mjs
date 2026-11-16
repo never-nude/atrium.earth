@@ -10,7 +10,7 @@ export const HOMEPAGE_PERFORMANCE_BUDGETS = Object.freeze({
 });
 
 const positive = value => Number.isFinite(value) && value >= 0 ? value : 0;
-const isModel = url => /\/models\/previews\/.*\.glb(?:\?|$)/.test(url);
+const isModel = url => /\/models\/(?:previews|first-views)\/.*\.glb(?:\?|$)/.test(url);
 const displayUrl = url => {
   try { return new URL(url).pathname.replace(/^\/__performance-model/, ''); }
   catch { return url; }
