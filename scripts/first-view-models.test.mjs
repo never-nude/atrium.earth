@@ -52,3 +52,14 @@ test('rejects invalid derivative metrics and a URL that does not exactly name it
     assert.equal(firstViewFor(slug, original, { ...binding, firstView }), undefined);
   }
 });
+
+test('the named Triumph fidelity exception accepts up to 8 MB', () => {
+  const triumph = 'modern/triumph-republic-dalou-place-nation';
+  const triumphOriginal = { ...original, url: original.url.replace(slug, triumph) };
+  const firstView = { ...binding.firstView, bytes: 8_000_000, url: firstUrl.replace(slug, triumph) };
+  const triumphBinding = { original: { ...triumphOriginal, sha256: originalHash }, firstView };
+  assert.equal(firstViewFor(triumph, triumphOriginal, triumphBinding), firstView);
+  assert.equal(firstViewFor(triumph, triumphOriginal, {
+    ...triumphBinding, firstView: { ...firstView, bytes: 8_000_001 },
+  }), undefined);
+});

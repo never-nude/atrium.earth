@@ -146,7 +146,7 @@ export function previewAssets({ firstViewPublicDir } = {}) {
             if (!encoded && length !== record.bytes) throw new Error('First view has a different recorded size');
             let body;
             if (req.method !== 'HEAD') {
-              // First views are capped at 3 MB. Verify the complete response before sending it to the viewer.
+              // The approved binding bounds the response. Verify the complete file before serving it.
               let bytes = 0;
               const chunks = [];
               for await (const chunk of upstream.body) {
