@@ -17,7 +17,7 @@ const context = { exhibitionSlug, works, captions, previews };
 const before = JSON.stringify({ visit, works, captions, previews });
 assert.equal(validateCuratedVisit(visit, context), visit);
 assert.equal(visit.stops.length, 6);
-assert.equal(exhibition.workSlugs.length, 60, 'The full exhibition has 60 works after deinstalling its former lead');
+assert.equal(exhibition.workSlugs.length, 59, 'The full exhibition excludes the hidden reconstruction');
 const retiredLead = 'europe/eduardo-chillida-how-profound-is-the-air';
 assert.ok(!exhibition.workSlugs.includes(retiredLead));
 assert.ok(!captions[retiredLead]);
@@ -73,4 +73,4 @@ for (const duplicate of [
   `visit=${visit.id}&stop=1&exhibition=${exhibitionSlug}&exhibition=${exhibitionSlug}`,
 ]) assert.equal(visitPositionFromSearch(duplicate, handoff), null, 'Duplicate context parameters are rejected');
 assert.equal(JSON.stringify({ visit, works, captions, previews }), before, 'The guide never mutates object, preview or exhibition records');
-console.log(`Curated visit passed: six existing works, seven caption facts, 60 exhibition works, ${rejected} rejected editions, bounded URL handoffs and unchanged records.`);
+console.log(`Curated visit passed: six existing works, seven caption facts, ${exhibition.workSlugs.length} exhibition works, ${rejected} rejected editions, bounded URL handoffs and unchanged records.`);
