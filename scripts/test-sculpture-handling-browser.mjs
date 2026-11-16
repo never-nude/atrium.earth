@@ -8,6 +8,12 @@ const origin = new URL(suppliedOrigin ?? hosted.origin);
 const local = ['localhost', '127.0.0.1'].includes(origin.hostname);
 const home = { name: 'homepage', path: '/', viewer: '.home-programme-hero [data-viewer]' };
 const artwork = { name: 'Discobolus artwork', path: '/works/discobolus/', viewer: '#sculpture [data-viewer]' };
+const thinker = { name: 'The Thinker artwork', path: '/works/rodin/the-thinker/', viewer: '#sculpture [data-viewer]' };
+const exhibitionStop = {
+  name: 'Bodies in Motion Discobolus',
+  path: '/exhibitions/bodies-in-motion/',
+  viewer: '[data-exhibition-work="discobolus"] [data-viewer]',
+};
 const surface = {
   name: 'Surface exhibition',
   path: '/exhibitions/the-work-of-the-surface/',
@@ -94,17 +100,14 @@ controls.update = function (...args) {
   });
 }
 
-async function ready(page, route, { steady = true } = {}) {
+async function loadRoute(page, route) {
   const response = await page.goto(new URL(route.path, origin).href, { waitUntil: 'domcontentloaded' });
   assert.equal(response?.status(), 200);
-  const viewer = page.locator(route.viewer);
-  const startMode = await viewer.getAttribute('data-auto-start');
-  if (route === artwork) {
-    assert.equal(startMode, 'detail', 'The artwork must load in place without activation');
-  } else {
-    await viewer.locator('[data-stage]').scrollIntoViewIfNeeded();
-    if (startMode === 'false') await viewer.getByRole('button', { name: /^Examine in 3D/ }).click();
-  }
+  return page.locator(route.viewer);
+}
+
+async function waitForViewer(page, viewer, { scroll = true } = {}) {
+  if (scroll) await viewer.locator('[data-stage]').evaluate(element => element.scrollIntoView({ block: 'center', behavior: 'instant' }));
   const canvas = viewer.locator('canvas.viewer-canvas');
   await canvas.waitFor({ state: 'visible', timeout: 45000 });
   await page.waitForFunction(
@@ -112,11 +115,14 @@ async function ready(page, route, { steady = true } = {}) {
     await canvas.elementHandle(),
     { timeout: 45000 },
   );
+  return canvas;
+}
+
+async function ready(page, route, { steady = true } = {}) {
+  const viewer = await loadRoute(page, route);
+  const canvas = await waitForViewer(page, viewer, { scroll: route !== artwork });
   if (!steady) return canvas;
-  // Preview activation needs normal motion. Use the actual pause control for
-  // the homepage and initialize reduced motion for automatically opened details.
   const rotate = viewer.locator('[data-tool-rotate]');
-  if (route === home) await rotate.click();
   await page.waitForFunction(element => element.getAttribute('aria-pressed') === 'false', await rotate.elementHandle());
   await settlePose(canvas);
   return canvas;
@@ -460,6 +466,40 @@ async function checkDesktop(page, canvas, check) {
   });
 }
 
+async function checkAutoOpeningAndRotation(browser) {
+  const context = await browser.newContext({
+    viewport: { width: 390, height: 844 }, hasTouch: true, isMobile: true, reducedMotion: 'no-preference',
+  });
+  try {
+    const page = await context.newPage();
+    await instrumentControls(page);
+    for (const route of [{ ...home, viewer: 'main [data-viewer]' }, exhibitionStop, thinker]) {
+      const viewers = (await loadRoute(page, route)).filter({
+        has: page.locator('[data-stage][data-glb]:not([data-glb=""])'),
+      });
+      assert.ok(await viewers.count(), `${route.name}: expected at least one sculpture viewer`);
+      for (const viewer of await viewers.all()) {
+        const stage = viewer.locator('[data-stage]');
+        const label = await stage.getAttribute('aria-label');
+        const description = `${route.name}: ${label?.replace('Interactive 3D view of ', '') ?? 'sculpture'}`;
+        try {
+          const canvas = await waitForViewer(page, viewer, { scroll: route !== thinker });
+          const initial = (await readPose(canvas)).position;
+          await page.waitForFunction(({ element, initial }) => {
+            const pose = element.__atriumTestPose;
+            return pose?.rotating && Math.hypot(...pose.position.map((coordinate, axis) => coordinate - initial[axis])) > 0.01;
+          }, { element: await canvas.elementHandle(), initial }, { timeout: 8000 });
+          console.log(`PASS 390px ${description} opens untouched and actually rotates`);
+        } catch (error) {
+          fail(`390px ${description}: ${error.message}`);
+        }
+      }
+    }
+  } finally {
+    await context.close();
+  }
+}
+
 // Opt in to elapsed-time checks when validating a release locally.
 async function checkAutomaticRotation(browser) {
   const context = await browser.newContext({
@@ -521,7 +561,7 @@ try {
       viewport: { width, height: touch ? 844 : 900 },
       hasTouch: touch,
       isMobile: touch,
-      reducedMotion: route === home ? 'no-preference' : 'reduce',
+      reducedMotion: 'reduce',
     });
     try {
       const page = await context.newPage();
@@ -542,6 +582,11 @@ try {
     } finally {
       await context.close();
     }
+  }
+  try {
+    await checkAutoOpeningAndRotation(browser);
+  } catch (error) {
+    fail(`automatic sculpture opening and rotation: ${error.message}`);
   }
   if (process.env.BROWSER_CHECK_MOTION === '1') {
     try {

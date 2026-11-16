@@ -59,7 +59,7 @@ const recordRoute = (position: number) => `${withBase(v3WorkRoute(visit.stops[po
       </div>
       <div class="curated-stop__viewer">
         <Viewer glb={withBase(stop.work.modelGlb)} modelBytes={stop.work.modelBytes} poster={withBase(stop.work.thumbnailImage)} title={stop.work.title}
-          hud={false} immersive={true} autoStart="detail" posterLoading="lazy"
+          hud={false} immersive={true} loadingPlacement="below" posterLoading="lazy"
           upAxis={stop.work.modelUpAxis} modelTransform={stop.work.modelTransform} materialAppearance={stop.work.materialAppearance} />
       </div>
       <div class="curated-stop__copy">

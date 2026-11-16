@@ -59,6 +59,12 @@ export function createRotationHold(signal, onChange) {
     get interacting() { return interacting; },
     setInteracting(next) { interacting = next; rest(); },
     noteInput: rest,
+    resume() {
+      if (interacting || !held || signal.aborted) return false;
+      clearTimeout(timer);
+      setHeld(false);
+      return true;
+    },
   };
 }
 

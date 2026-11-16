@@ -26,7 +26,7 @@ const { focus, focusIntro, lead, teasers } = Astro.props;
     <figure class="featured-exhibition__art">
       <div class="featured-exhibition__viewer v3-exhibition-viewer">
         <Viewer glb={withBase(lead.modelGlb)} modelBytes={lead.modelBytes} poster={withBase(lead.thumbnailImage)}
-          title={lead.title} hud={false} immersive={true} autoStart="preview" autoRotateSpeed={0.35}
+          title={lead.title} hud={false} immersive={true} loadingPlacement="below"
           upAxis={lead.modelUpAxis} modelTransform={lead.modelTransform} materialAppearance={lead.materialAppearance} />
       </div>
       <figcaption><a href={withBase(v3ExhibitionRoute(focus))} aria-label={`${shortWorkTitle(lead.title)} · Begin ${focus.title}`}>{shortWorkTitle(lead.title)}</a></figcaption>

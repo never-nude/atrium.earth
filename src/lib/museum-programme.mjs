@@ -1,5 +1,5 @@
 import { HOMEPAGE_PREVIEW_LIMIT } from './featured-selection.mjs';
-import { previewStartMode } from './viewer-preview.mjs';
+import { isWithinInitialPreviewBudget } from './viewer-preview.mjs';
 
 // Curated-calendar automation: reuse existing editorial choices and approved
 // objects. This is deterministic scheduling, with no live AI or model calls.
@@ -74,11 +74,11 @@ export function isPreviewBudgetEligible(work, previews) {
     && Number.isFinite(bytes) && bytes > 0 && bytes <= HOMEPAGE_PREVIEW_LIMIT);
 }
 
-/** Only reviewed works in the exhibition with an auto-startable model can lead. */
+/** Keep the homepage exhibition lead small enough for its first preview. */
 export function exhibitionLeadForDate(exhibition, reviewedSlugs, previews, date, used = new Set()) {
   const eligible = exhibition.works.filter(work => !used.has(work.slug) && reviewedSlugs.has(work.slug)
     && isPreviewBudgetEligible(work, previews)
-    && previewStartMode('preview', previews[work.slug].bytes) === 'preview');
+    && isWithinInitialPreviewBudget(previews[work.slug].bytes));
   return rotateContextWork(eligible, date, `exhibition:${exhibition.slug}`);
 }
 
