@@ -7,6 +7,7 @@ const hosted = suppliedOrigin ? null : await serveBrowserChecks(process.env.BROW
 const origin = new URL(suppliedOrigin ?? hosted.origin);
 const local = ['localhost', '127.0.0.1'].includes(origin.hostname);
 const home = { name: 'homepage', path: '/', viewer: '.home-programme-hero [data-viewer]' };
+const artwork = { name: 'Discobolus artwork', path: '/works/discobolus/', viewer: '#sculpture [data-viewer]' };
 const surface = {
   name: 'Surface exhibition',
   path: '/exhibitions/the-work-of-the-surface/',
@@ -14,8 +15,10 @@ const surface = {
 };
 const cases = [
   { route: home, touch: true },
+  { route: artwork, touch: true },
   { route: surface, touch: true },
   { route: home, touch: false },
+  { route: artwork, touch: false },
 ];
 let failures = 0;
 
@@ -95,11 +98,12 @@ async function ready(page, route, { steady = true } = {}) {
   const response = await page.goto(new URL(route.path, origin).href, { waitUntil: 'domcontentloaded' });
   assert.equal(response?.status(), 200);
   const viewer = page.locator(route.viewer);
-  await viewer.locator('[data-stage]').scrollIntoViewIfNeeded();
-  // A manual asset may legitimately need to be fetched first. Once the canvas
-  // opens, all checks start a gesture without any click to enable handling.
-  if (await viewer.getAttribute('data-auto-start') === 'false') {
-    await viewer.getByRole('button', { name: /^Examine in 3D/ }).click();
+  const startMode = await viewer.getAttribute('data-auto-start');
+  if (route === artwork) {
+    assert.equal(startMode, 'detail', 'The artwork must load in place without activation');
+  } else {
+    await viewer.locator('[data-stage]').scrollIntoViewIfNeeded();
+    if (startMode === 'false') await viewer.getByRole('button', { name: /^Examine in 3D/ }).click();
   }
   const canvas = viewer.locator('canvas.viewer-canvas');
   await canvas.waitFor({ state: 'visible', timeout: 45000 });
@@ -109,13 +113,11 @@ async function ready(page, route, { steady = true } = {}) {
     { timeout: 45000 },
   );
   if (!steady) return canvas;
-  // Previews open only under the ordinary motion preference. Once live, turn
-  // automatic rotation off through the browser so gesture changes can be isolated.
-  if (route === home) await page.emulateMedia({ reducedMotion: 'reduce' });
-  await page.waitForFunction(element => {
-    const rotate = element.closest('[data-viewer]').querySelector('[data-tool-rotate]');
-    return rotate?.disabled === true;
-  }, await canvas.elementHandle());
+  // Preview activation needs normal motion. Use the actual pause control for
+  // the homepage and initialize reduced motion for automatically opened details.
+  const rotate = viewer.locator('[data-tool-rotate]');
+  if (route === home) await rotate.click();
+  await page.waitForFunction(element => element.getAttribute('aria-pressed') === 'false', await rotate.elementHandle());
   await settlePose(canvas);
   return canvas;
 }
@@ -366,6 +368,21 @@ async function checkMobile(client, canvas, check) {
       `The second touch must land within the scroll guard (age ${Math.round(touchStart.ageOfScroll)}ms)`);
     assert.ok(after.scroll - before.scroll > 40, `Native scrolling moved ${after.scroll - before.scroll}px`);
     assertStill(before, after);
+  });
+
+  await check('dragging two fingers on the sculpture pans the view', async () => {
+    await settleScroll(canvas);
+    const point = await pointOn(canvas, 'art');
+    const frames = [0, 6, 12, 18].map(step => [[step, -step], [32 + step, -step]]);
+    const before = await track(canvas);
+    const touchStart = await touchGesture(client, canvas, point, frames);
+    await nextPaint(canvas.page());
+    const after = await readPose(canvas);
+    assertTouchOwnership(touchStart, true, 'The sculpture should claim the two-finger drag');
+    assert.ok(distance(before.target, after.target) > 0.01, 'The two-finger drag should move the camera target');
+    assert.ok(Math.abs(after.distance - before.distance) < 1e-6, 'A parallel two-finger drag should not zoom');
+    assert.ok(Math.abs(after.scroll - before.scroll) <= 1 && Math.abs(after.scale - before.scale) < 1e-6,
+      'The two-finger drag should leave page scrolling and zoom alone');
   });
 }
 
