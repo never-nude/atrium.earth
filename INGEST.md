@@ -243,7 +243,7 @@ repairing metadata, rerendering thumbnails, or replacing a model derivative.
 ## Field semantics
 
 - `tier` = curatorial prominence (1 featured … 3 default). Ingest always sets 3; promote by hand.
-- `license_tier` = licensing class from the manifest (1 CC0/PD, 2 BY/BY-SA). NC never enters the public catalog.
+- `license_tier` = licensing class from the manifest (1 CC0/PD, 2 BY/BY-SA). Automated imports skip noncommercial sources. The individually reviewed British Museum *Ain Sakhri Lovers* display uses tier 3 and retains its CC BY-NC-SA 4.0 license.
 - `model.sourcePath` is relative to `SOURCE_ATRIUM_DIR`. Raw sources never ship in this repo.
 
 ## Env
