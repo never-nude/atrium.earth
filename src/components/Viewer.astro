@@ -16,7 +16,7 @@ type Props = {
   materialAppearance?: Record<string, unknown>;
   immersive?: boolean;
   posterLoading?: 'eager' | 'lazy';
-  autoStart?: boolean | 'visible' | 'preview';
+  autoStart?: boolean | 'visible' | 'preview' | 'detail';
   measureStill?: boolean;
   autoRotate?: boolean;
   autoRotateSpeed?: number;
@@ -90,7 +90,7 @@ const stageBackdrop = hasModel ? [
   `--stage-glow-strength:${Number.isFinite(glowStrength) ? Math.max(0, Math.min(glowStrength, 1)) * 100 : 7}%`,
 ].join(';') : undefined;
 const transformJson = JSON.stringify(modelTransform);
-const hasStartStrip = hasModel && (autoStart === false || autoStart === 'preview');
+const hasStartStrip = hasModel && (autoStart === false || autoStart === 'preview' || autoStart === 'detail');
 const sizeLabel = modelBytes && modelBytes > 0 ? ` · ${(modelBytes / 1e6).toFixed(1)} MB` : '';
 ---
 
@@ -967,9 +967,14 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     const lifetime = new AbortController();
     const poster = root.querySelector<HTMLImageElement>('[data-poster]');
     const activate = root.querySelector('[data-activate]') as HTMLButtonElement | null;
+    // Opening a collection miniature is already an explicit activation in its parent page.
+    const studioPeek = document.documentElement.classList.contains('studio-peek');
+    const startMode = studioPeek ? 'true' : root.dataset.autoStart;
+    const detailMode = startMode === 'detail';
     const fallbackPoster = () => {
       if (!poster?.dataset.fallbackPoster) {
-        if (activate) activate.hidden = false;
+        if (detailMode) refresh();
+        else if (activate) activate.hidden = false;
         return;
       }
       const fallback = poster.dataset.fallbackPoster;
@@ -988,11 +993,6 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     const startStrip = root.querySelector<HTMLElement>('[data-viewer-start]');
     const downloadBar = root.querySelector<HTMLElement>('[data-download-bar]');
     const fullscreenButton = root.querySelector<HTMLButtonElement>('[data-tool-fullscreen]');
-    // Opening a collection miniature is already an explicit activation in its parent page.
-    if (poster?.complete && !poster.naturalWidth) fallbackPoster();
-    poster?.addEventListener('error', fallbackPoster, { signal: lifetime.signal });
-    const studioPeek = document.documentElement.classList.contains('studio-peek');
-    const startMode = studioPeek ? 'true' : root.dataset.autoStart;
     const previewMode = startMode === 'preview';
     const hasManualStart = startMode === 'false' || previewMode;
     const previewMotion = previewMode ? window.matchMedia('(prefers-reduced-motion: reduce)') : undefined;
@@ -1001,7 +1001,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     const examineLabel = hasManualStart && size ? `Examine in 3D · ${(size / 1e6).toFixed(1)} MB` : 'Examine in 3D';
     const announceState = (state: string) => {
       root.dataset.viewerState = state;
-      if (startStrip) startStrip.hidden = !hasManualStart;
+      if (startStrip) startStrip.hidden = !(hasManualStart || detailMode);
     };
     const intersectsViewport = () => {
       const rect = stage!.getBoundingClientRect();
@@ -1027,7 +1027,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
       for (const element of [loading, tools, displayPanel, hud, hint]) if (element) element.hidden = true;
       downloadBar?.style.removeProperty('width');
       if (poster) poster.style.opacity = '1';
-      if (activate) activate.hidden = false;
+      if (activate) activate.hidden = detailMode;
       if (activateLabel) activateLabel.textContent = examineLabel;
       if (status) status.textContent = '';
       root.removeAttribute('aria-busy');
@@ -1041,6 +1041,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
       const restoreFocus = root.contains(document.activeElement) && !root.querySelector('dialog[open]');
       release();
       announceState('error');
+      if (activate) activate.hidden = false;
       if (activateLabel) activateLabel.textContent = 'Retry 3D';
       if (status) status.textContent = 'The 3D view could not load. The still image is available.';
       if (restoreFocus) activate?.focus({ preventScroll: true });
@@ -1247,7 +1248,9 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
         const resident = residents.get(root);
         if (resident) { residents.delete(root); residents.set(root, resident); }
         observeStillPaint();
-        if (!document.hidden && (studioPeek || root.dataset.stillPainted && startMode !== 'false' && !previewMotion?.matches)) {
+        const cannotPaintStill = detailMode && (!poster || (poster.complete && !poster.naturalWidth && !poster.dataset.fallbackPoster));
+        const stillSettled = root.dataset.stillPainted || cannotPaintStill;
+        if (!document.hidden && (studioPeek || stillSettled && startMode !== 'false' && !previewMotion?.matches)) {
           startAutomatically();
         }
       }
@@ -1274,8 +1277,10 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
       }, { signal: lifetime.signal });
     }
     previewMotion?.addEventListener('change', refresh, { signal: lifetime.signal });
+    poster?.addEventListener('error', fallbackPoster, { signal: lifetime.signal });
+    if (poster?.complete && !poster.naturalWidth) fallbackPoster();
     refresh();
-    if (activate && startMode !== 'true') activate.hidden = false;
+    if (activate && startMode !== 'true' && !detailMode && !started) activate.hidden = false;
   }
   const mountAll = () => { for (const root of document.querySelectorAll<HTMLElement>('[data-viewer]')) mountViewer(root); };
   const disposeAll = () => { for (const viewer of [...mountedViewers.values()]) viewer.dispose(); };
@@ -1325,9 +1330,9 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
   .viewer:fullscreen > .model-stage { width: 100%; height: 100%; min-height: 0; }
   .viewer[data-viewer-expanded] > .model-stage { height: 100% !important; min-height: 0 !important; background: var(--v3-void, #101827) !important; }
   .viewer:is(:fullscreen, [data-viewer-expanded]) .immersive-tools:not([hidden]) { position: fixed !important; z-index: 20; inset: auto 12px max(12px, env(safe-area-inset-bottom)) !important; display: flex !important; width: auto !important; transform: none !important; }
-  .viewer:is([data-auto-start="false"], [data-auto-start="preview"]):is(:fullscreen, [data-viewer-expanded]) .immersive-tools:not([hidden]) { bottom: max(36px, env(safe-area-inset-bottom)) !important; }
-  .viewer:is([data-auto-start="false"], [data-auto-start="preview"]):is(:fullscreen, [data-viewer-expanded]) > .model-stage { height: calc(100% - 26px) !important; }
-  .viewer:is([data-auto-start="false"], [data-auto-start="preview"]):is(:fullscreen, [data-viewer-expanded]) > .viewer-start { position: absolute; inset: auto 12px 0; margin: 0; justify-content: center; }
+  .viewer:is([data-auto-start="false"], [data-auto-start="preview"], [data-auto-start="detail"]):is(:fullscreen, [data-viewer-expanded]) .immersive-tools:not([hidden]) { bottom: max(36px, env(safe-area-inset-bottom)) !important; }
+  .viewer:is([data-auto-start="false"], [data-auto-start="preview"], [data-auto-start="detail"]):is(:fullscreen, [data-viewer-expanded]) > .model-stage { height: calc(100% - 26px) !important; }
+  .viewer:is([data-auto-start="false"], [data-auto-start="preview"], [data-auto-start="detail"]):is(:fullscreen, [data-viewer-expanded]) > .viewer-start { position: absolute; inset: auto 12px 0; margin: 0; justify-content: center; }
   .viewer-gesture-hint { position: absolute; z-index: 7; inset: auto 8px 8px; max-width: max-content; margin: auto; padding: 5px 8px; border-radius: 4px; color: #f7f5ef; background: #101827e8; font: 400 12px/1.4 var(--v3-sans, sans-serif); text-align: center; pointer-events: none; transition: opacity .45s ease; }
   .viewer-gesture-hint.is-dismissed { opacity: 0; }
   @media (prefers-reduced-motion: reduce) { .viewer-gesture-hint { transition: none; } }

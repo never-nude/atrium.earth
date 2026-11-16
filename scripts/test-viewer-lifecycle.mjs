@@ -10,7 +10,7 @@ import { disposeViewerScene } from '../src/lib/viewer-resources.mjs';
 import { bindSpatialViewing } from '../src/lib/spatial-viewer.mjs';
 import { AUTO_START_MODEL_LIMIT, previewStartMode } from '../src/lib/viewer-preview.mjs';
 
-test('only known model sizes at or below 3 MB can start automatically', () => {
+test('automatic browsing previews require a known model size at or below 3 MB', () => {
   for (const mode of [true, 'preview', 'visible']) {
     assert.equal(previewStartMode(mode, AUTO_START_MODEL_LIMIT), mode);
     for (const size of [AUTO_START_MODEL_LIMIT + 1, undefined, 0, -1, NaN, 2.5]) {
@@ -18,6 +18,12 @@ test('only known model sizes at or below 3 MB can start automatically', () => {
     }
   }
   assert.equal(previewStartMode(false, 1), false);
+});
+
+test('a dedicated sculpture view can start regardless of the browsing preview limit', () => {
+  for (const size of [undefined, AUTO_START_MODEL_LIMIT, AUTO_START_MODEL_LIMIT + 1]) {
+    assert.equal(previewStartMode('detail', size), 'detail');
+  }
 });
 
 function frames(draw, options = {}) {

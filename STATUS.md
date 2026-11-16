@@ -2328,3 +2328,9 @@ The approved title fixes, automatic download gate and promotion exclusions are r
 
 - Mike approved touch-down handling on his iPhone. [PR 88](https://github.com/never-nude/atrium.earth/pull/88) deployed via [Pages run 43767796471](https://github.com/never-nude/atrium.earth/actions/runs/43767796471). The live browser suite passed after retrying a timed-out model load.
 - Mike then asked to remove the purple cue. This chat owns `codex/remove-sculpture-hold-glow`. The candidate removes the decorative overlay and validates landing ownership through the browser event itself. The preview is on port 5196.
+
+### Automatic handling on artwork pages
+
+- Mike approved publishing this change on November 15. Artwork pages and the active guided-visit stop start their single model after the visible still paints. Visitors can use the same inline gestures and full-screen control as on the homepage. Dedicated viewers show download progress and hold automatic rotation under reduced motion.
+- The 3 MB automatic-download limit still applies to browsing previews. Guided stops and exhibition comparisons use the shared trackpad zoom behavior. The Step 2C date correction and Step 4 migration are separate work.
+- The Node viewer checks cover the dedicated start mode and the browsing limit. The browser suite checks first-frame readiness, gesture ownership, panning and full screen on the Discobolus record. Verify the production package and live deployment from `codex/auto-start-artwork-viewers`.

@@ -162,22 +162,51 @@ async function inspectMotion(page, route, prefix, result) {
   }
   const viewers = route.id === 'homepage'
     ? page.locator('main [data-viewer][data-auto-start="preview"]')
-    : page.locator('main [data-viewer][data-auto-start="false"]').first();
+    : page.locator('#sculpture [data-viewer][data-auto-start="detail"]');
   const count = await viewers.count();
-  if (!count && route.id !== 'homepage') throw new Error('Expected inspectable 3D previews');
+  if (route.id === 'artwork' && count !== 1) throw new Error('Expected one automatic detail viewer on the artwork page');
   for (let i = 0; i < count; i++) {
     const viewer = viewers.nth(i);
-    await viewer.locator('[data-stage]').evaluate(element => element.scrollIntoView({ block: 'center', behavior: 'instant' }));
-    if (route.id === 'artwork') await viewer.getByRole('button', { name: /^Examine in 3D/ }).click();
-    await page.waitForFunction(element => element.dataset.viewerState === 'ready', await viewer.elementHandle(), { timeout: 45000 });
     if (route.id === 'homepage') {
-      const size = Number(await viewer.getAttribute('data-model-bytes'));
-      if (size <= 0 || size > AUTO_START_MODEL_LIMIT || await viewer.getAttribute('data-still-painted') !== 'true') {
-        throw new Error('An automatic preview exceeded its budget or skipped the still paint');
-      }
+      await viewer.locator('[data-stage]').evaluate(element => element.scrollIntoView({ block: 'center', behavior: 'instant' }));
     }
-    const frame = await captureCanvas(viewer.locator('.viewer-canvas'), `${prefix}-viewer-${i + 1}.png`);
-    result.readyCanvases.push({ ...frame, ...await measure() });
+    await page.waitForFunction(element => element.dataset.viewerState === 'ready', await viewer.elementHandle(), { timeout: 45000 });
+    const modelBytes = Number(await viewer.getAttribute('data-model-bytes'));
+    if (!Number.isSafeInteger(modelBytes) || modelBytes <= 0 || await viewer.getAttribute('data-still-painted') !== 'true') {
+      throw new Error('The viewer started without a recorded model size or a painted still');
+    }
+    if (route.id === 'homepage' && modelBytes > AUTO_START_MODEL_LIMIT) {
+      throw new Error('An automatic homepage preview exceeded its budget');
+    }
+    const canvas = viewer.locator('.viewer-canvas');
+    const frame = await captureCanvas(canvas, `${prefix}-viewer-${i + 1}.png`);
+    result.readyCanvases.push({ ...frame, modelBytes, ...await measure() });
+    if (route.id === 'artwork') {
+      const rotate = viewer.locator('[data-tool-rotate]');
+      if (await rotate.getAttribute('aria-pressed') !== 'true') throw new Error('Artwork auto-rotation should be on by default');
+      await checkArtworkFullscreen(page, viewer, canvas);
+    }
+  }
+}
+
+async function checkArtworkFullscreen(page, viewer, canvas) {
+  const fullscreen = viewer.getByRole('button', { name: 'Full screen', exact: true });
+  await fullscreen.click();
+  const root = await viewer.elementHandle();
+  await page.waitForFunction(element => (
+    (document.fullscreenElement === element || element.hasAttribute('data-viewer-expanded'))
+    && element.querySelector('[data-tool-fullscreen]').getAttribute('aria-pressed') === 'true'
+  ), root);
+  if (await canvas.evaluate(element => getComputedStyle(element).touchAction) !== 'none') {
+    throw new Error('Artwork full screen is missing free sculpture handling');
+  }
+  await viewer.getByRole('button', { name: 'Exit full screen', exact: true }).click();
+  await page.waitForFunction(element => (
+    document.fullscreenElement !== element && !element.hasAttribute('data-viewer-expanded')
+    && element.querySelector('[data-tool-fullscreen]').getAttribute('aria-pressed') === 'false'
+  ), root);
+  if (await canvas.evaluate(element => getComputedStyle(element).touchAction) !== 'auto') {
+    throw new Error('Artwork full screen did not restore normal inline scrolling on exit');
   }
 }
 
