@@ -4,6 +4,7 @@ import { createServer } from 'node:http';
 import { extname, resolve, sep } from 'node:path';
 import { once } from 'node:events';
 import { Readable } from 'node:stream';
+import { firstViewFor } from '../src/lib/first-view-models.mjs';
 
 const contentTypes = {
   '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css',
@@ -20,13 +21,20 @@ export async function serveBrowserChecks(directory = 'dist', { measureModels = f
   let performanceHomepage;
   if (measureModels) {
     const homepage = await readFile(resolve(root, 'index.html'), 'utf8');
-    const previews = JSON.parse(await readFile(new URL('../src/data/previews.json', import.meta.url), 'utf8'));
-    for (const { url } of Object.values(previews)) {
-      if (url?.startsWith(`${modelHost}/models/previews/`) && homepage.includes(`data-glb="${url}"`)) {
-        models.add(new URL(url).pathname);
+    const [previews, bindings] = await Promise.all(['previews.json', 'first-view-models.json']
+      .map(async file => JSON.parse(await readFile(new URL(`../src/data/${file}`, import.meta.url), 'utf8'))));
+    for (const [slug, original] of Object.entries(previews)) {
+      const first = firstViewFor(slug, original, bindings[slug]);
+      for (const { url } of [original, first].filter(Boolean)) {
+        if (url?.startsWith(`${modelHost}/models/`) && homepage.includes(`data-glb="${url}"`)) {
+          models.add(new URL(url).pathname);
+        }
       }
     }
-    performanceHomepage = Buffer.from(homepage.replaceAll(`data-glb="${modelHost}/models/previews/`, `data-glb="${modelPrefix}/models/previews/`));
+    performanceHomepage = Buffer.from(homepage.replace(
+      /data-glb="https:\/\/models\.atrium\.earth(\/models\/[^"]+)"/g,
+      (binding, modelPath) => models.has(modelPath) ? `data-glb="${modelPrefix}${modelPath}"` : binding,
+    ));
   }
   const server = createServer(async (request, response) => {
     try {

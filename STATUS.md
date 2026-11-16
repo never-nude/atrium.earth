@@ -2389,3 +2389,10 @@ The approved title fixes, automatic download gate and promotion exclusions are r
 
 - The owner authorized deploying the compact layout. During the iPhone model review, a matched-angle comparison reproduced a pale seam beside the painted coffin lid’s eye in the lightweight model. The release withdraws only that derivative, restores the size-labeled tap for the 32.8 MB full scan, and redirects its old Full detail link to the same work. The six other derivatives remain active. Asset verification passes for all six.
 - Deployment and public route checks follow. Storage migration and further model conversion remain separate from this release.
+
+## 2026-11-16 — Stage 2 CDN switch
+
+- The owner approved Stage 2 and a live release check. Branch `codex/stage-two-cdn-urls` switches 391 model previews, six first views and 3,171 duplicate JPEGs using the [verified Stage 1 receipt](https://github.com/never-nude/atrium.earth/actions/runs/43927607185). The build verifies every retained Pages copy by exact size and SHA-256. Visible WebPs and viewer stills continue to load from Pages.
+- The model URL change carries forward 16 scale calibrations, two verified AR eligibility records and eight static gallery URL bindings. The tests cover the first-view and original model relays, the static museum bindings and JPEG recovery.
+- Review and deployment both request every CDN model named in the finished package with the production Origin. A missing response, unexpected length or incorrect access-control header fails the release on its first attempt. The optional dimension-catalog audit also stops on existing missing review metadata on the base branch. The migrated scale bindings were checked independently.
+- This release includes the approved mobile Save fix. Stage 3 requires a separate owner approval after live verification. The daily 09:17 UTC programme rebuild remains scheduled.
