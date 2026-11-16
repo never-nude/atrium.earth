@@ -103,8 +103,7 @@ function addSaveButton(container, pathname, title, objectPage = false) {
   const label = document.createElement('span');
   label.className = 'studio-save-label';
   button.append(icon(), label);
-  if (objectPage) container.insertBefore(button, container.querySelector('.v3-object-nav'));
-  else container.append(button);
+  container.append(button);
   if (!saveButtons.has(pathname)) saveButtons.set(pathname, new Set());
   saveButtons.get(pathname).add(button);
 }
@@ -113,7 +112,7 @@ for (const card of document.querySelectorAll('[data-v3-card]')) {
   const link = card.querySelector('a[href]');
   if (link) addSaveButton(card, workPath(link.href), card.querySelector('h3')?.textContent?.trim());
 }
-const objectActions = document.querySelector('.v3-object-actions');
+const objectActions = document.querySelector('[data-work-save-slot]');
 if (objectActions) addSaveButton(objectActions, workPath(location.href), document.querySelector('h1')?.textContent?.trim(), true);
 
 document.addEventListener('click', event => {
