@@ -486,7 +486,7 @@ async function check(engine, viewport, route, browser, motion = 'reduce') {
       if (!(await count.textContent()).includes('no-matching-atrium-work-992')) {
         throw new Error('An empty result must identify the submitted query');
       }
-      await page.locator('[data-v3-reset]').click();
+      await page.locator('[data-v3-empty-reset]').click();
       await page.waitForFunction(() => {
         const input = document.querySelector('[data-v3-search]');
         return input?.value === '' && !document.querySelector('[data-v3-grid]')?.hidden
