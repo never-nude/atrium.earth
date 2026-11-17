@@ -2409,6 +2409,7 @@ The approved title fixes, automatic download gate and promotion exclusions are r
 
 - Branch `codex/stage-three-prep` hardens the release checks and preserves the Pages copies. The [Stage 1 receipt](docs/ingest/2026-11-16-step4-pages-copy-receipt.json) retains the seven first-attempt readback failures and their later passes. New delivery checks issue one request per URL.
 - The final Awwwards submission review is a binary go/no-go gate on a frozen release candidate. An item without passing evidence is no-go. Any subsequent fix requires a new candidate and a fresh checklist pass. See [Road to Awwwards](docs/awwwards-run.md#final-submission-review).
+- The first PR A browser run caught WebKit fading the title and bottom navigation for 450 ms after opening fallback fullscreen. The follow-up hides those layers immediately. Local WebKit verified the fix with normal motion at 320 and 390 px before the next CI run.
 - Stage 3 removal requires Mike's separate approval after a scheduled rebuild has passed on main.
 
 ## 2026-11-17 — Stage 3 Pages package removal candidate
