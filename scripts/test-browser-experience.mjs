@@ -379,6 +379,8 @@ async function checkHeavyArtwork(page, result) {
 }
 
 async function checkArtworkFullscreen(page, viewer, canvas) {
+  const phone = page.viewportSize().width === 390;
+  if (phone) await viewer.evaluate(element => { element.requestFullscreen = undefined; });
   const fullscreen = viewer.getByRole('button', { name: 'Full screen', exact: true });
   await fullscreen.click();
   const root = await viewer.elementHandle();
@@ -389,6 +391,13 @@ async function checkArtworkFullscreen(page, viewer, canvas) {
   if (await canvas.evaluate(element => getComputedStyle(element).touchAction) !== 'none') {
     throw new Error('Artwork full screen is missing free sculpture handling');
   }
+  if (phone && !await viewer.evaluate(element => {
+    const background = [...document.querySelectorAll('[data-viewer-background]')];
+    return element.hasAttribute('data-viewer-expanded') && background.some(node => node.matches('header'))
+      && background.every(node => node.inert && getComputedStyle(node).opacity === '0');
+  })) {
+    throw new Error('Mobile full screen must hide the surrounding page layers');
+  }
   await viewer.getByRole('button', { name: 'Exit full screen', exact: true }).click();
   await page.waitForFunction(element => (
     document.fullscreenElement !== element && !element.hasAttribute('data-viewer-expanded')
@@ -396,6 +405,9 @@ async function checkArtworkFullscreen(page, viewer, canvas) {
   ), root);
   if (await canvas.evaluate(element => getComputedStyle(element).touchAction) !== 'auto') {
     throw new Error('Artwork full screen did not restore normal inline scrolling on exit');
+  }
+  if (phone && await page.locator('[data-viewer-background]').count()) {
+    throw new Error('Leaving mobile full screen must restore the surrounding page layers');
   }
 }
 
