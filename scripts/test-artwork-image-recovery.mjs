@@ -61,9 +61,7 @@ await onError({ target: lazy });
 assert.equal(lazy.src, `${cdn}/${pagesAssets[playDoh.replace('.webp', '.jpg')].key}`);
 assert.deepEqual(requests, ['/review/previews/cdn-jpegs.json']);
 await onError({ target: lazy });
-assert.equal(lazy.src, `${origin}/review${playDoh.replace('.webp', '.jpg')}?v=2&artwork-recovery=1`);
 assert.equal(lazy.srcset, undefined);
-await onError({ target: lazy });
 assert.match(lazy.src, /^data:image\/svg\+xml,/);
 assert.match(decodeURIComponent(lazy.src), /Image temporarily unavailable/);
 assert.equal(lazy.alt, 'Image temporarily unavailable. Play-Doh');
@@ -74,6 +72,8 @@ assert.equal(lazy.src, finalSource);
 const unmigrated = new Image('/review/previews/renders/future-work/thumb.webp');
 await onError({ target: unmigrated });
 assert.equal(unmigrated.src, `${origin}/review/previews/renders/future-work/thumb.jpg?artwork-recovery=1`);
+await onError({ target: unmigrated });
+assert.match(unmigrated.src, /^data:image\/svg\+xml,/);
 
 for (const src of [`https://other.example${firebird}`, '/favicon.svg', '/images/other.webp']) {
   const image = new Image(src);
@@ -82,4 +82,4 @@ for (const src of [`https://other.example${firebird}`, '/favicon.svg', '/images/
 }
 await onError({ target: { src: firebird } });
 assert.deepEqual(requests, ['/review/previews/cdn-jpegs.json']);
-console.log('Artwork recovery passed for eager and lazy failures, verified CDN JPEGs, retained local siblings, terminal fallback and unrelated resources.');
+console.log('Artwork recovery passed for eager and lazy failures, CDN-to-placeholder recovery, unmigrated local JPEGs and unrelated resources.');

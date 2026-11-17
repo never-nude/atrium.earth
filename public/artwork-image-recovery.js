@@ -2,7 +2,7 @@
   const thumbnailPath = /\/previews\/renders\/((?:[^/]+\/)*[^/]+)\/thumb\.(webp|jpg)$/;
   const jpegMap = document.currentScript?.dataset.jpegMap;
   const pending = new WeakSet();
-  const backups = new WeakMap();
+  const cdnRequests = new WeakMap();
   let hashes;
   const placeholder = 'data:image/svg+xml,' + encodeURIComponent(
     '<svg xmlns="http://www.w3.org/2000/svg" width="720" height="900" viewBox="0 0 720 900"><rect width="720" height="900" fill="#17263a"/><text x="360" y="450" fill="#c7d4e4" font-family="system-ui,sans-serif" font-size="24" text-anchor="middle" dominant-baseline="middle">Image temporarily unavailable</text></svg>'
@@ -14,15 +14,21 @@
       .catch(() => ({}));
   }
 
+  function showPlaceholder(image) {
+    image.removeAttribute('srcset');
+    if (image.alt) image.alt = `Image temporarily unavailable. ${image.alt}`;
+    image.src = placeholder;
+  }
+
   async function recoverArtworkImage(image) {
     if (!(image instanceof HTMLImageElement) || !image.src) return;
 
     const url = new URL(image.src, document.baseURI);
-    const backup = backups.get(image);
-    if (backup) {
-      backups.delete(image);
-      if (url.href === backup.cdn) {
-        image.src = backup.local;
+    const cdnRequest = cdnRequests.get(image);
+    if (cdnRequest) {
+      cdnRequests.delete(image);
+      if (url.href === cdnRequest) {
+        showPlaceholder(image);
         return;
       }
     }
@@ -43,7 +49,7 @@
         if (image.src !== source) return;
         if (/^[a-z0-9_-]+(?:\/[a-z0-9_-]+)*$/.test(slug) && typeof hash === 'string' && /^[a-f0-9]{12}$/.test(hash)) {
           cdn = `https://models.atrium.earth/previews/renders/${slug}/thumb-${hash}.jpg`;
-          backups.set(image, { cdn, local: url.href });
+          cdnRequests.set(image, cdn);
         }
       }
       image.removeAttribute('srcset');
@@ -51,9 +57,7 @@
       return;
     }
 
-    image.removeAttribute('srcset');
-    if (image.alt) image.alt = `Image temporarily unavailable. ${image.alt}`;
-    image.src = placeholder;
+    showPlaceholder(image);
   }
 
   // Image errors do not bubble. Capture them for lazy and dynamically added images.

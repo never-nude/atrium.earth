@@ -3,6 +3,7 @@
 import { readFile, readdir, realpath } from 'node:fs/promises';
 import path from 'node:path';
 import pagesAssets from '../src/data/pages-cdn-assets.json' with { type: 'json' };
+import { matchesPagesAsset } from '../src/lib/pages-asset-digest.mjs';
 
 const site = 'https://atrium.earth';
 const cdn = 'https://models.atrium.earth';
@@ -47,13 +48,23 @@ function completeJpeg(bytes) {
 async function verify(directory) {
   const root = await realpath(path.resolve(directory));
   const references = new Set();
+  const localJpegReferences = new Set();
   const remoteJpegs = new Set();
+  const recoveryHashes = JSON.parse(await readFile(path.join(root, 'previews/cdn-jpegs.json'), 'utf8'));
+  const cdnJpegPaths = new Set();
   const failures = [];
   let failureCount = 0;
   let documentCount = 0;
   function report(message) {
     failureCount += 1;
     if (failures.length < maxReportedFailures) failures.push(message);
+  }
+
+  for (const [slug, hash] of Object.entries(recoveryHashes)) {
+    const url = `${cdn}/previews/renders/${slug}/thumb-${hash}.jpg`;
+    const pathname = cdnJpegs.get(url);
+    if (!pathname) report(`Missing verified JPEG mapping for ${slug}`);
+    else cdnJpegPaths.add(pathname);
   }
 
   for await (const filename of documents(root)) {
@@ -67,14 +78,13 @@ async function verify(directory) {
           if (!pathname) throw new Error('Unverified CDN thumbnail');
           references.add(pathname);
           remoteJpegs.add(url.href);
+          cdnJpegPaths.add(pathname);
           continue;
         }
         if (!firstPartyHosts.has(url.hostname) || url.port || url.username || url.password) continue;
         const pathname = decodeURIComponent(url.pathname);
         if (!thumbnailPath.test(pathname)) throw new Error('Unexpected thumbnail path');
-        if (pathname.endsWith('/thumb.jpg') && Object.hasOwn(pagesAssets, pathname)) {
-          throw new Error('Expected a verified CDN thumbnail address');
-        }
+        if (pathname.endsWith('/thumb.jpg')) localJpegReferences.add(pathname);
         references.add(pathname);
       } catch {
         report(`Invalid artwork image URL in ${path.relative(root, filename)}: ${reference.slice(0, 180)}`);
@@ -86,8 +96,10 @@ async function verify(directory) {
 
   const expectedFiles = new Set();
   for (const reference of references) {
-    expectedFiles.add(reference);
-    expectedFiles.add(reference.replace(/\.(?:webp|jpg)$/i, reference.endsWith('.webp') ? '.jpg' : '.webp'));
+    const webp = reference.replace(/\.jpg$/i, '.webp');
+    const jpeg = webp.replace(/\.webp$/i, '.jpg');
+    expectedFiles.add(webp);
+    if (localJpegReferences.has(jpeg) || !cdnJpegPaths.has(jpeg)) expectedFiles.add(jpeg);
   }
   for (const pathname of expectedFiles) {
     const filename = path.resolve(root, `.${pathname}`);
@@ -96,6 +108,9 @@ async function verify(directory) {
       const bytes = await readFile(filename);
       const valid = pathname.endsWith('.webp') ? completeWebp(bytes) : completeJpeg(bytes);
       if (!valid) report(`${pathname}: incomplete or incorrect image format`);
+      if (Object.hasOwn(pagesAssets, pathname) && (
+        cdnJpegPaths.has(pathname) || matchesPagesAsset(bytes, pagesAssets[pathname])
+      )) report(`${pathname}: expected a CDN thumbnail address for this inventory JPEG`);
     } catch (error) {
       report(`${pathname}: ${error.code === 'ENOENT' ? 'missing from package' : error.code || error.message}`);
     }

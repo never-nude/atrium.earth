@@ -2396,3 +2396,17 @@ The approved title fixes, automatic download gate and promotion exclusions are r
 - The model URL change carries forward 16 scale calibrations, two verified AR eligibility records and eight static gallery URL bindings. The tests cover the first-view and original model relays, the static museum bindings and JPEG recovery.
 - Review and deployment both request every CDN model named in the finished package with the production Origin. A missing response, unexpected length or incorrect access-control header fails the release on its first attempt. The optional dimension-catalog audit also stops on existing missing review metadata on the base branch. The migrated scale bindings were checked independently.
 - This release includes the approved mobile Save fix. Stage 3 requires a separate owner approval after live verification. The daily 09:17 UTC programme rebuild remains scheduled.
+
+## 2026-11-17 — Stage 3 Pages removal candidate
+
+- Branch `codex/stage-three-pages-removal` verifies each old Pages copy before excluding it from the package. A changed model fails the build. A changed JPEG stays local and is named in the build warning. The model URLs and storage objects are outside this change.
+- The build checks a 500,000,000-byte budget, emits a receipt for omitted paths and rejects built references to those paths on Pages. Recovery uses the verified CDN JPEG or the locally generated JPEG for changed work. The phone preview rejects removed inventory paths.
+- Local pruning matched and excluded 3,568 copies totaling 471,962,600 bytes. No JPEGs differed. The first local Chromium timing test timed out at its 20-second limit during concurrent builds. The production-style CI build is the review evidence.
+- Mike approves Stage 3 after the next scheduled rebuild has passed on main.
+
+## 2026-11-17 — Stage 3 Pages package removal candidate
+
+- Branch `codex/stage-three-pages-removal` removes inventory copies from the built Pages package after checking their sizes and SHA-256 digests. The build keeps a changed JPEG and uses its local URL. It rejects a changed model or first view. All source files stay in Git. This work makes no R2 writes.
+- The package budget is 500,000,000 bytes. The check rejects retained verified copies and built references to removed Pages paths, and writes `test-results/pages-removal.json`. The phone preview serves retained JPEGs from the build and rejects removed inventory paths.
+- Local pruning removed 3,568 verified copies totalling 471,962,600 bytes and found zero changed JPEGs. The artwork recovery test and phone preview fixture passed. Local negative checks rejected a changed model, an inventory model left in the package, and a stale Pages path in a built document.
+- The first local `npm test` hit the Chromium trace's existing 20-second timeout while builds overlapped. That test makes no public CDN requests. The complete hardening-based CI run must pass before approval. The owner will merge after the next scheduled rebuild succeeds on main.
