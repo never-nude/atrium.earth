@@ -79,6 +79,65 @@ test('requests the exact address once with production Origin and validates the r
   assert.equal(delivery.contentRange, 'bytes 0-11/500');
 });
 
+test('consumes a validated range through EOF without cancelling its body', async () => {
+  let calls = 0;
+  let pulls = 0;
+  let reachedEnd = false;
+  let cancellations = 0;
+  const body = new ReadableStream({
+    pull(controller) {
+      pulls += 1;
+      if (pulls === 1) controller.enqueue(glbHeader.subarray(0, 5));
+      else if (pulls === 2) controller.enqueue(glbHeader.subarray(5));
+      else {
+        reachedEnd = true;
+        controller.close();
+      }
+    },
+    cancel() { cancellations += 1; },
+  }, { highWaterMark: 0 });
+  await verifyPublishedModel(glb, modelBytes, () => {
+    calls += 1;
+    return rangeResponse({ body });
+  });
+  assert.equal(calls, 1);
+  assert.equal(reachedEnd, true);
+  assert.equal(cancellations, 0);
+});
+
+test('rejects short and overlong range bodies despite a declared length of 12', async () => {
+  for (const body of [glbHeader.subarray(0, 11), Buffer.concat([glbHeader, Buffer.from([0])])]) {
+    let calls = 0;
+    await assert.rejects(verifyPublishedModel(glb, modelBytes, () => {
+      calls += 1;
+      return rangeResponse({ body });
+    }), { message: `Expected body size 12, received ${body.length}` });
+    assert.equal(calls, 1);
+  }
+});
+
+test('bounds a header-only 200 response and cancels its remaining body', async () => {
+  let calls = 0;
+  let pulls = 0;
+  let cancellations = 0;
+  const body = new ReadableStream({
+    pull(controller) {
+      pulls += 1;
+      assert.equal(pulls, 1, 'A header probe must not read the rest of a 200 response');
+      controller.enqueue(glbHeader);
+    },
+    cancel() { cancellations += 1; },
+  }, { highWaterMark: 0 });
+  const delivery = await verifyPublishedModel(glb, modelBytes, () => {
+    calls += 1;
+    return rangeResponse({ body, status: 200, headers: { 'content-length': String(modelBytes) } });
+  });
+  assert.equal(calls, 1);
+  assert.equal(delivery.status, 200);
+  assert.equal(pulls, 1);
+  assert.equal(cancellations, 1);
+});
+
 test('rejects a missing object, mismatched length, missing production CORS or altered GLB header', async () => {
   for (const [response, expected] of [
     [rangeResponse({ status: 404 }), /HTTP 404/],
