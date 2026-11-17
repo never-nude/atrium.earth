@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
     inputs:
       manifest:
-        description: 'Reviewed preview manifest under docs/ingest/'
+        description: 'Reviewed preview or Pages copy manifest under docs/ingest/'
         required: true
         type: string
 
@@ -19,6 +19,7 @@ permissions:
 
 jobs:
   upload:
+    if: ${{ inputs.manifest != 'docs/ingest/2026-11-16-step4-pages-copy.json' }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -79,3 +80,61 @@ jobs:
           include-hidden-files: true
           if-no-files-found: error
           retention-days: 30
+  pages-copy:
+    if: ${{ inputs.manifest == 'docs/ingest/2026-11-16-step4-pages-copy.json' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /scripts/
+            /docs/ingest/2026-11-16-step4-pages-copy.json
+            /src/data/first-view-models.json
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Confirm pinned release
+        id: release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          manifest=docs/ingest/2026-11-16-step4-pages-copy.json
+          run=$(jq -r '.pagesRun' "$manifest")
+          commit=$(jq -r '.sourceCommit' "$manifest")
+          gh api "repos/${GITHUB_REPOSITORY}/actions/runs/$run" |
+            jq -e --arg commit "$commit" '.head_sha == $commit and .head_branch == "main" and .conclusion == "success"'
+          echo "run=$run" >> "$GITHUB_OUTPUT"
+      - uses: actions/download-artifact@v4
+        with:
+          name: github-pages
+          path: .atrium-ingest/pages-copy
+          run-id: ${{ steps.release.outputs.run }}
+          github-token: ${{ github.token }}
+      - name: Stage eligible assets from Pages
+        run: |
+          python3 scripts/stage-pages-asset-copy.py \
+            .atrium-ingest/pages-copy/artifact.tar docs/ingest/2026-11-16-step4-pages-copy.json \
+            src/data/first-view-models.json .atrium-ingest/pages-copy/staged
+      - name: Copy objects and verify complete public readbacks
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: >-
+          node scripts/copy-pages-assets-to-r2.mjs
+          .atrium-ingest/pages-copy/staged
+          .atrium-ingest/pages-copy/receipt.json
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: pages-copy-receipt
+          path: |
+            .atrium-ingest/pages-copy/staged/inventory.json
+            .atrium-ingest/pages-copy/receipt.json
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90

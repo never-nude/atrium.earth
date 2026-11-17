@@ -1,5 +1,9 @@
 # Road to Awwwards
 
+## Final submission review
+
+Freeze the release candidate before the final Awwwards review. Use a binary go/no-go checklist with evidence for every item. Submit only when every item is go. A failure, missing evidence, or uncertainty is no-go. Reopen work in a new candidate if a fix is needed, then run the checklist again on that candidate. Make all design and implementation decisions before the final review.
+
 ## 2026-11-13 — Step 0 and Step 2
 
 The baseline uses the approved artwork backdrop revision `5115f672`, merged and deployed from `dcf53240` in [PR 83](https://github.com/never-nude/atrium.earth/pull/83). The Pages deployment succeeded in [run 43549748968](https://github.com/never-nude/atrium.earth/actions/runs/43549748968).

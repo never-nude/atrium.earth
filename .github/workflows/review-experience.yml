@@ -32,6 +32,8 @@ jobs:
           SITE: https://atrium.earth
       - name: Verify live model CDN addresses in the built site
         run: node scripts/verify-published-model-delivery.mjs
+      - name: Verify live artwork JPEG CDN addresses in the built site
+        run: node scripts/verify-published-jpeg-delivery.mjs
       - name: Verify museum pages in Chromium and WebKit
         run: npm run test:browser
       - name: Verify sculpture gestures in Chromium
@@ -39,16 +41,16 @@ jobs:
       - name: Report homepage performance
         if: ${{ !cancelled() }}
         run: npm run test:performance
-      - name: Upload browser reports
-        if: ${{ !cancelled() }}
-        uses: actions/upload-artifact@v4
-        with:
-          name: museum-browser-reports
-          path: test-results/
-          if-no-files-found: ignore
       - name: Verify hosting budget
         run: node scripts/verify-pages-budget.mjs
       - name: Verify bounded collection delivery
         run: node scripts/check-collection-window.mjs --dist
       - name: Verify published artwork images
         run: node scripts/verify-published-artwork-images.mjs
+      - name: Upload release reports
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: museum-browser-reports
+          path: test-results/
+          if-no-files-found: ignore

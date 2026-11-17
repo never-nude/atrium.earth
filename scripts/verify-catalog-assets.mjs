@@ -51,13 +51,18 @@ if (problems.length) {
   console.log('All catalog slugs have a local preview or configured R2 URL, a local thumbnail, and unique slugs. Remote availability is not checked by this command.');
 }
 const firstViewProblems = [];
+let localFirstViews = 0;
+let cdnFirstViews = 0;
 for (const [slug, binding] of Object.entries(firstViews)) {
   const firstView = firstViewFor(slug, previews[slug], binding);
   if (!seen.has(slug) || !firstView) {
     firstViewProblems.push(`${slug}: invalid first-view binding`);
     continue;
   }
-  if (!firstView.url.startsWith('/')) continue;
+  if (!firstView.url.startsWith('/')) {
+    cdnFirstViews++;
+    continue;
+  }
   try {
     const file = path.join(root, 'public', firstView.url);
     if (fs.statSync(file).size !== firstView.bytes) throw new Error('incorrect file size');
@@ -66,6 +71,7 @@ for (const [slug, binding] of Object.entries(firstViews)) {
       throw new Error('invalid GLB header');
     }
     if (createHash('sha256').update(glb).digest('hex') !== firstView.sha256) throw new Error('incorrect SHA-256');
+    localFirstViews++;
   } catch (error) {
     firstViewProblems.push(`${slug}: ${error.message}`);
   }
@@ -74,5 +80,5 @@ if (firstViewProblems.length) {
   console.error(firstViewProblems.join('\n'));
   process.exitCode = 1;
 } else {
-  console.log(`Verified ${Object.keys(firstViews).length} first-view bindings and local variant files.`);
+  console.log(`Verified ${Object.keys(firstViews).length} first-view bindings, including ${localFirstViews} local SHA-256 checks. ${cdnFirstViews} CDN first views have separate delivery checks.`);
 }
