@@ -4,6 +4,7 @@ import { join } from 'node:path';
 import { chromium, webkit } from 'playwright';
 import sharp from 'sharp';
 import { serveBrowserChecks } from './serve-browser-checks.mjs';
+import { readBrowserModel } from './lib/browser-model-relay.mjs';
 import { AUTO_START_MODEL_LIMIT, INLINE_AUTO_LOAD_LIMIT, isWithinInitialPreviewBudget, requiresModelActivation } from '../src/lib/viewer-preview.mjs';
 import { firstViewFor } from '../src/lib/first-view-models.mjs';
 import catalog from '../src/data/catalog.json' with { type: 'json' };
@@ -478,14 +479,8 @@ async function check(engine, viewport, route, browser, motion = 'reduce') {
     // The model CDN permits Atrium's origin. Serve its original bytes to loopback QA.
     if (localOrigin) await page.route(/^https:\/\/models\.atrium\.earth\/models\/(?:previews|first-views)\/.+\.glb$/, async route => {
       try {
-        const response = await route.fetch({
-          headers: { ...route.request().headers(), origin: 'https://atrium.earth' },
-          timeout: 15000,
-          maxRedirects: 0,
-          maxRetries: 0,
-        });
-        if (!response.ok()) errors.push(`Model preview returned HTTP ${response.status()}: ${route.request().url()}`);
-        await route.fulfill({ response, headers: { ...response.headers(), 'access-control-allow-origin': new URL(origin).origin } });
+        const response = await readBrowserModel(route.request().url(), { timeout: 15000 });
+        await route.fulfill({ ...response, headers: { ...response.headers, 'access-control-allow-origin': new URL(origin).origin } });
       } catch (error) {
         errors.push(`First model delivery attempt failed for ${route.request().url()}: ${error.message}`);
         await route.abort().catch(() => {});

@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { chromium } from 'playwright';
 import { serveBrowserChecks } from './serve-browser-checks.mjs';
+import { readBrowserModel } from './lib/browser-model-relay.mjs';
 import { requiresModelActivation } from '../src/lib/viewer-preview.mjs';
 import { firstViewFor } from '../src/lib/first-view-models.mjs';
 import firstViewModels from '../src/data/first-view-models.json' with { type: 'json' };
@@ -122,11 +123,8 @@ controls.update = function (...args) {
   });
   if (local) await page.route(/^https:\/\/models\.atrium\.earth\/models\/(?:previews|first-views)\/.+\.glb$/, async route => {
     try {
-      const response = await route.fetch({
-        headers: { ...route.request().headers(), origin: 'https://atrium.earth' },
-        timeout: 20000,
-      });
-      await route.fulfill({ response, headers: { ...response.headers(), 'access-control-allow-origin': origin.origin } });
+      const response = await readBrowserModel(route.request().url());
+      await route.fulfill({ ...response, headers: { ...response.headers, 'access-control-allow-origin': origin.origin } });
     } catch (error) {
       const transfer = transfers.get(route.request());
       if (transfer) transfer.relayFailure = error.message;
