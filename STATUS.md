@@ -2414,5 +2414,5 @@ The approved title fixes, automatic download gate and promotion exclusions are r
 
 ## 2026-11-17 — Earlier model downloads on artwork pages
 
-- Branch `codex/start-artwork-download-sooner` preloads the single model on an artwork page when it fits the existing 3 MB initial-preview budget. This includes Candelabrum. The viewer starts its transfer alongside graphics setup instead of waiting for the rendering libraries and scene. The still remains visible until the first 3D frame.
+- Branch `codex/start-artwork-download-sooner` starts the model on an artwork page while its still loads when it fits the existing 3 MB initial-preview budget. This includes Candelabrum. The viewer starts its transfer alongside graphics setup. An initial browser preload caused two WebKit requests and was replaced with one viewer request. The still remains visible until the first 3D frame.
 - Homepage and exhibition viewers keep their existing visibility and still-image rules. Large models keep their existing download controls. The release uses the existing model files and keeps the retained Pages copies.
