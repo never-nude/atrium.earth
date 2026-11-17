@@ -503,9 +503,9 @@ async function checkDesktop(page, canvas, check) {
     assert.equal(cursor, 'grab');
     assert.equal(scrollingCursor, 'grabbing');
   });
-  await check('plain wheel scrolls without zooming the sculpture', async () => {
+  await check('trackpad scroll over the backdrop scrolls the page', async () => {
     await settleScroll(canvas);
-    const { x, y } = await pointOn(canvas, 'art');
+    const { x, y } = await pointOn(canvas, 'backdrop');
     const before = await readPose(canvas);
     await page.mouse.move(x, y);
     await page.mouse.wheel(0, 150);
@@ -514,22 +514,17 @@ async function checkDesktop(page, canvas, check) {
     const after = await readPose(canvas);
     assert.ok(Math.abs(after.distance - before.distance) < 1e-6, 'A plain wheel should leave sculpture distance unchanged');
   });
-  await check('Ctrl-wheel zooms the sculpture without scrolling the page', async () => {
+  await check('two-finger trackpad scroll over the sculpture zooms without scrolling the page', async () => {
     await settleScroll(canvas);
     const { x, y } = await pointOn(canvas, 'art');
     const before = await readPose(canvas);
     await page.mouse.move(x, y);
-    await page.keyboard.down('Control');
-    try {
-      await page.mouse.wheel(0, -150);
-    } finally {
-      await page.keyboard.up('Control');
-    }
+    await page.mouse.wheel(0, -150);
     await nextPaint(page);
     const after = await readPose(canvas);
-    assert.ok(Math.abs(after.distance - before.distance) > 0.015, 'Ctrl-wheel should zoom the sculpture');
-    assert.ok(Math.abs(after.scroll - before.scroll) <= 1, 'Ctrl-wheel should leave the page in place');
-    assert.ok(Math.abs(after.scale - before.scale) < 1e-6, 'Ctrl-wheel should leave the page scale unchanged');
+    assert.ok(Math.abs(after.distance - before.distance) > 0.015, 'Trackpad scroll should zoom the sculpture');
+    assert.ok(Math.abs(after.scroll - before.scroll) <= 1, 'Trackpad zoom should leave the page in place');
+    assert.ok(Math.abs(after.scale - before.scale) < 1e-6, 'Trackpad zoom should leave the page scale unchanged');
   });
 }
 

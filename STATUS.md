@@ -2416,3 +2416,8 @@ The approved title fixes, automatic download gate and promotion exclusions are r
 
 - Branch `codex/start-artwork-download-sooner` starts the model on an artwork page while its still loads when it fits the existing 3 MB initial-preview budget. This includes Candelabrum. The viewer starts its transfer alongside graphics setup. An initial browser preload caused two WebKit requests and was replaced with one viewer request. The still remains visible until the first 3D frame.
 - Homepage and exhibition viewers keep their existing visibility and still-image rules. Large models keep their existing download controls. The release uses the existing model files and keeps the retained Pages copies.
+
+## 2026-11-17 — Trackpad zoom over the sculpture
+
+- Mike requested ordinary two-finger trackpad scrolling to zoom only over the sculpture silhouette. Shared wheel input now uses the existing silhouette picker. The backdrop scrolls the page. Full-screen wheel input covers the stage.
+- The same input handler serves the index, work pages and exhibitions. Touch ownership, panning and pinch handling retain their existing implementation. The unit checks cover backdrop pass-through, silhouette zoom, disabled zoom, and Safari magnification deduplication. The first unit run caught the old test's backdrop Ctrl-wheel expectation; the updated silhouette fixture passed all 26 checks.

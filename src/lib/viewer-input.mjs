@@ -242,8 +242,7 @@ export function bindViewerInput({
     if (event.pointerType !== 'touch' && !event.sourceCapabilities?.firesTouchEvents && (fullscreen || hit(event.clientX, event.clientY, false))) onReset();
   }, capture);
   canvas.addEventListener('wheel', event => {
-    const modified = event.ctrlKey || event.metaKey;
-    if (!controls.enabled || !wheelZoom || (!fullscreen && !modified)) {
+    if (!controls.enabled || !wheelZoom || (!fullscreen && !hit(event.clientX, event.clientY, false))) {
       event.stopImmediatePropagation();
       return;
     }
