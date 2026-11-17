@@ -636,6 +636,7 @@ function initializePeeks() {
     const button = document.createElement('button');
     button.type = 'button';
     button.className = 'studio-peek-trigger';
+    if (downloadSize) button.dataset.studioSizedDownload = '';
     button.setAttribute('aria-label', `Preview ${title} in 3D${downloadSize}`);
     button.setAttribute('aria-pressed', 'false');
     button.title = 'Preview in 3D; select again to close';

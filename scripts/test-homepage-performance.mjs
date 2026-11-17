@@ -123,18 +123,26 @@ test('real Chromium trace identifies image presentation and accounts for a respo
   skip: existsSync(chromium.executablePath()) ? false : 'Playwright Chromium is not installed; deterministic trace tests still run',
 }, async () => {
   const png = await sharp({ create: { width: 200, height: 200, channels: 3, background: 'orange' } }).png().toBuffer();
+  let pendingStream;
   const server = createServer((req, res) => {
     if (req.url === '/still.png') {
-      setTimeout(() => { res.writeHead(200, { 'Content-Type': 'image/png', 'Content-Length': png.length }); res.end(png); }, 150);
+      res.writeHead(200, { 'Content-Type': 'image/png', 'Content-Length': png.length }); res.end(png);
     } else if (req.url === '/stream.bin') {
+      pendingStream = res;
       res.writeHead(200, { 'Content-Length': 4000 }); res.write(Buffer.alloc(1000));
-      setTimeout(() => res.end(Buffer.alloc(3000)), 900);
+    } else if (req.url === '/finish-stream') {
+      // The browser releases the rest only after presentation and model delivery.
+      pendingStream.end(Buffer.alloc(3000));
+      res.writeHead(204); res.end();
     } else if (req.url === '/models/previews/test/preview.glb') {
       res.writeHead(200, { 'Content-Type': 'model/gltf-binary', 'Content-Length': 2000 }); res.end(Buffer.alloc(2000));
     } else {
       res.writeHead(200, { 'Content-Type': 'text/html' });
-      res.end(`<img src="/still.png" elementtiming="atrium-homepage-still"><script>
-        const stream = fetch('/stream.bin').then(r => r.arrayBuffer());
+      res.end(`<img elementtiming="atrium-homepage-still"><script>
+        (async () => {
+        const response = await fetch('/stream.bin');
+        const reader = response.body.getReader();
+        await reader.read();
         const painted = new Promise(resolve => {
           const observer = new PerformanceObserver(list => {
             if (list.getEntries().some(entry => entry.identifier === 'atrium-homepage-still')) {
@@ -143,6 +151,7 @@ test('real Chromium trace identifies image presentation and accounts for a respo
           });
           observer.observe({ type: 'element', buffered: true });
         });
+        document.querySelector('img').src = '/still.png';
         document.querySelector('img').decode().then(() => requestAnimationFrame(() => requestAnimationFrame(async () => {
           await painted;
           // Keep the success fixture beyond presentation-time quantization;
@@ -150,8 +159,11 @@ test('real Chromium trace identifies image presentation and accounts for a respo
           await new Promise(resolve => setTimeout(resolve, 16));
           performance.mark('atrium-homepage-still-painted');
           await fetch('/models/previews/test/preview.glb').then(r => r.arrayBuffer());
-          await stream; window.finished = true;
+          await fetch('/finish-stream');
+          while (!(await reader.read()).done) {}
+          window.finished = true;
         })));
+        })();
       </script>`);
     }
   });

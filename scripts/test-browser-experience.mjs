@@ -157,16 +157,57 @@ function observeModelRequests(page, requests) {
 }
 
 function waitForExpectedModels(page, records) {
-  return Promise.allSettled(records.map(({ url }) => page.waitForEvent('requestfinished', {
-    predicate: request => request.url() === new URL(url, origin).href,
-    timeout: 45000,
-  })));
+  const pending = new Map();
+  const outcomes = records.map(({ url }) => new Promise((resolve, reject) => {
+    pending.set(new URL(url, origin).href, { resolve, reject });
+  }));
+  let timer;
+  function cleanup() {
+    clearTimeout(timer);
+    page.off('request', requested);
+    page.off('requestfinished', finished);
+    page.off('requestfailed', failed);
+    page.off('close', closed);
+  }
+  function stop(reason) {
+    for (const waiting of pending.values()) waiting.reject(new Error(reason));
+    pending.clear();
+    cleanup();
+  }
+  function arm() {
+    clearTimeout(timer);
+    timer = setTimeout(() => stop(`No expected model delivery activity for 45 seconds. Pending: ${[...pending.keys()].join(', ')}`), 45000);
+  }
+  function requested(request) {
+    if (pending.has(request.url())) arm();
+  }
+  function finished(request) {
+    const waiting = pending.get(request.url());
+    if (!waiting) return;
+    waiting.resolve(request);
+    pending.delete(request.url());
+    if (pending.size) arm();
+    else cleanup();
+  }
+  function failed(request) {
+    if (pending.has(request.url())) stop(`First model request failed: ${request.url()} ${request.failure()?.errorText}`);
+  }
+  function closed() {
+    stop('Page closed before all expected models were delivered');
+  }
+  page.on('request', requested);
+  page.on('requestfinished', finished);
+  page.on('requestfailed', failed);
+  page.on('close', closed);
+  arm();
+  return Promise.allSettled(outcomes);
 }
 
 async function checkExpectedModels(deliveries, records, requests) {
   const outcomes = await deliveries;
   return Promise.all(outcomes.map(async (outcome, index) => {
     const { url, bytes } = records[index];
+    if (outcome.status === 'rejected') throw outcome.reason;
     const matching = requests.filter(request => request.url === new URL(url, origin).href);
     const response = outcome.status === 'fulfilled' ? await outcome.value.response() : null;
     const length = Number(response?.headers()['content-length']);

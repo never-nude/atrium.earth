@@ -11,7 +11,7 @@ const jpegAssets = new Map(Object.entries(pagesAssets)
   .filter(([pathname]) => pathname.endsWith('/thumb.jpg'))
   .map(([, asset]) => [`${cdn}/${asset.key}`, asset.bytes]));
 
-export async function verifyPublishedJpeg(url, bytes, request = fetch) {
+export async function verifyPublishedJpeg(url, bytes, request) {
   const { body, delivery } = await readCdnAsset(url, { bytes, mime: 'image/jpeg' }, request);
   if (body[0] !== 0xff || body[1] !== 0xd8 || body[2] !== 0xff) throw new Error('Invalid JPEG start marker');
   return delivery;
