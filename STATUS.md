@@ -2420,3 +2420,7 @@ The approved title fixes, automatic download gate and promotion exclusions are r
 ### 2026-11-17 — Sensual sculpture publication in progress
 
 The owner authorized the forty-work selection. This chat owns codex/sensual-forty-20261117 from a1ab7a75. Fresh source requests explicitly record the reviewed Creative Commons licenses, including noncommercial museum display and unchanged ND models. A duplicate Fitzwilliam torso and a conflicting Bather dataset are replaced by Simonis’s Truth Unveiled and the restored Glyptotek Apollo. Acquisition and release checks are in progress.
+
+### 2026-11-17 — Forty sensual sculpture additions prepared
+
+On codex/sensual-forty-20261117, the owner-approved batch contains 40 accepted works and real reviewed thumbnails. Source acquisition, eight-direction source/reference and serving comparisons, exact R2 public readbacks and permanent private Drive backups passed. Model assets retain their exact source licenses. Three compressed models preserve topology and image bytes with 16-bit attribute quantization. Three legacy material workflows have faithful technical conversions. The local Node collection/viewer/spatial suite passed. Build, PR gates, deployment and final live/cleanup checks remain in progress.
