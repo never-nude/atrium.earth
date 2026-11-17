@@ -2416,3 +2416,17 @@ The approved title fixes, automatic download gate and promotion exclusions are r
 
 - Branch `codex/start-artwork-download-sooner` starts the model on an artwork page while its still loads when it fits the existing 3 MB initial-preview budget. This includes Candelabrum. The viewer starts its transfer alongside graphics setup. An initial browser preload caused two WebKit requests and was replaced with one viewer request. The still remains visible until the first 3D frame.
 - Homepage and exhibition viewers keep their existing visibility and still-image rules. Large models keep their existing download controls. The release uses the existing model files and keeps the retained Pages copies.
+
+## 2026-11-17 — Stage 3 Pages package removal candidate
+
+- Branch `codex/stage-three-pages-removal` removes inventory copies from the built Pages package after checking their sizes and SHA-256 digests. The build keeps a changed JPEG and uses its local URL. It rejects a changed model or first view. All source files stay in Git. This work makes no R2 writes.
+- The package budget is 500,000,000 bytes. The check rejects retained verified copies and built references to removed Pages paths, and writes `test-results/pages-removal.json`. The phone preview serves retained JPEGs from the build and rejects removed inventory paths.
+- Local pruning removed 3,568 verified copies totalling 471,962,600 bytes and found zero changed JPEGs. The artwork recovery test and phone preview fixture passed. Local negative checks rejected a changed model, an inventory model left in the package, and a stale Pages path in a built document.
+- The local Stage 3 build against the Stage 2 base contains 17,730 files and 397,869,296 bytes. The package check found zero references to removed Pages assets in 14,541 built documents. CI will check the combined hardening and removal branch.
+- The first local `npm test` hit the Chromium trace's existing 20-second timeout while builds overlapped. That test makes no public CDN requests. The complete hardening-based CI run must pass before approval. The owner will merge after the next scheduled rebuild succeeds on main.
+
+## 2026-11-17 — Stage 3 release-gate repair
+
+- Refreshed draft PR #102 against main a1ab7a75 and resolved STATUS.md by retaining both entries. The original failed PR #104 review was WebKit 390 px artwork with normal motion, reporting insufficient contrast on previous/next artwork labels. The labels now restore immediately after full screen.
+- Expected room-model deliveries retain the exact URL, single request, HTTP 200 and Content-Length assertions. A 45-second inactivity guard resets when an expected request starts or completes, so sequential room loading has a full interval for each model. Failed requests fail immediately. The loopback delivery proxy retains its 15-second network deadline and zero retries.
+- Fresh review runs on changed commits remain distinct from the failed run 44054940057. Stage 3 remains a draft for Mike's merge decision.

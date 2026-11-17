@@ -5,6 +5,7 @@ import path from 'node:path';
 import { Readable, Transform } from 'node:stream';
 import { pipeline } from 'node:stream/promises';
 import { firstViewFor } from '../../src/lib/first-view-models.mjs';
+import pagesAssets from '../../src/data/pages-cdn-assets.json' with { type: 'json' };
 
 const modelPrefix = '/__atrium-model/';
 export const firstViewPrefix = '/__atrium-first-view/';
@@ -69,6 +70,7 @@ export function previewAssets({ firstViewPublicDir } = {}) {
       const artworkPreviews = process.env.ATRIUM_PREVIEW_ARTWORK_DIR;
       const roots = [...new Set([externalPublic, path.join(server.config.root, 'public')].filter(Boolean))];
       const firstViewRoots = firstViewPublicDir ? [firstViewPublicDir] : roots;
+      const useBuildOnly = assetPath => firstViewPublicDir && Object.hasOwn(pagesAssets, assetPath);
       const base = server.config.base.replace(/\/$/, '');
       server.middlewares.use(async (req, res, next) => {
         const controller = new AbortController();
@@ -87,8 +89,9 @@ export function previewAssets({ firstViewPublicDir } = {}) {
           res.once('close', () => controller.abort());
 
           if (!model) {
+            const assetRoots = useBuildOnly(assetPath) ? [firstViewPublicDir] : roots;
             const imageRoots = artworkPreviews && /^\/previews\/renders\/.+\/thumb\.webp$/.test(assetPath)
-              ? [artworkPreviews, ...roots] : roots;
+              ? [artworkPreviews, ...assetRoots] : assetRoots;
             for (const root of imageRoots) {
               const candidate = await existingFile(root, assetPath);
               if (!candidate) continue;
@@ -117,6 +120,7 @@ export function previewAssets({ firstViewPublicDir } = {}) {
           if (hashPrefix || record.url.startsWith('/')) {
             const modelPaths = firstView ? [url.pathname] : [...new Set([url.pathname, `/models/previews/${slug}/preview.glb`])];
             for (const root of firstView ? firstViewRoots : roots) for (const modelPath of modelPaths) {
+              if (useBuildOnly(modelPath) && root !== firstViewPublicDir) continue;
               const candidate = await existingFile(root, modelPath);
               if (!await validLocalModel(candidate, record, hashPrefix)) continue;
               res.setHeader('Content-Type', 'model/gltf-binary');

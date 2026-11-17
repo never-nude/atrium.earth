@@ -1,4 +1,7 @@
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
 import pagesAssets from '../data/pages-cdn-assets.json';
+import { matchesPagesAsset } from './pages-asset-digest.mjs';
 import { withoutBase } from './urls';
 
 const localJpeg = /^\/previews\/renders\/([a-z0-9_-]+(?:\/[a-z0-9_-]+)*)\/thumb\.jpg$/;
@@ -11,7 +14,13 @@ export const artworkJpegHashes = Object.fromEntries(Object.entries(pagesAssets).
   if (!/^[a-f0-9]{12}$/.test(hash) || asset.key !== `previews/renders/${slug}/thumb-${hash}.jpg`) {
     throw new Error(`Invalid verified JPEG address for ${slug}`);
   }
-  return [[slug, hash]];
+  try {
+    const jpeg = readFileSync(resolve('public', `.${pathname}`));
+    return matchesPagesAsset(jpeg, asset) ? [[slug, hash]] : [];
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code === 'ENOENT') return [];
+    throw error;
+  }
 }));
 
 export function socialArtworkImage(image: string): string {
