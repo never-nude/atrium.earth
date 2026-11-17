@@ -1312,7 +1312,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
   .viewer-download span { display: block; width: 0; height: 100%; background: #c9a5ff; }
   .viewer[data-viewer-expanded] { position: fixed !important; z-index: 1000; inset: 0 !important; width: 100% !important; height: 100dvh !important; overflow: hidden; background: var(--v3-void, #101827); }
   :global(html:has(.viewer[data-viewer-expanded])) { overflow: hidden; }
-  :global([data-viewer-background]) { opacity: 0 !important; }
+  :global([data-viewer-background]) { visibility: hidden !important; opacity: 0 !important; transition: none !important; }
   .viewer:fullscreen { width: 100%; height: 100dvh; overflow: hidden; background: var(--v3-void, #101827); }
   .viewer:fullscreen > .model-stage { width: 100%; height: 100%; min-height: 0; }
   .viewer[data-viewer-expanded] > .model-stage { height: 100% !important; min-height: 0 !important; background: var(--v3-void, #101827) !important; }
