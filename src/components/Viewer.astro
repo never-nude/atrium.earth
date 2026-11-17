@@ -5,6 +5,7 @@ import { modelSizeLabel, requiresModelActivation } from '../lib/viewer-preview.m
 type Props = {
   glb?: string;
   modelBytes?: number;
+  startBeforeStill?: boolean;
   poster: string;
   /** Alt text for the still image. Describe the work itself; the default only names it. */
   posterAlt?: string;
@@ -40,6 +41,7 @@ type Props = {
 const {
   glb = '',
   modelBytes,
+  startBeforeStill = false,
   poster,
   posterAlt,
   title,
@@ -92,7 +94,7 @@ const downloadSize = tapToLoad ? modelSizeLabel(modelBytes) : undefined;
 const hasStartStrip = hasModel && (loadingPlacement === 'below' || tapToLoad);
 ---
 
-<div class:list={['viewer', { 'viewer--immersive': immersive }]} data-viewer data-loading-placement={hasStartStrip ? 'below' : undefined} data-viewer-state={hasModel ? 'idle' : undefined} data-model-bytes={modelBytes} data-model-activation={tapToLoad ? 'tap' : undefined} data-wheel-zoom={String(wheelZoom)}>
+<div class:list={['viewer', { 'viewer--immersive': immersive }]} data-viewer data-loading-placement={hasStartStrip ? 'below' : undefined} data-viewer-state={hasModel ? 'idle' : undefined} data-model-bytes={modelBytes} data-model-activation={tapToLoad ? 'tap' : undefined} data-wheel-zoom={String(wheelZoom)} data-start-before-still={startBeforeStill || undefined}>
   <div class="model-stage" data-stage style={stageBackdrop} data-rendered-still={renderedStill ? true : undefined} data-glb={hasModel ? glb : ''} data-spatial-asset-sha256={spatialViewing ? spatialAssetSha256 : undefined} data-up-axis={upAxis} data-model-transform={transformJson} data-material-appearance={appearanceJson} data-immersive={String(immersive)} data-auto-rotate={String(autoRotate)} data-turntable-degrees-per-second={turntableDegreesPerSecond} data-respect-reduced-motion={respectReducedMotion ? undefined : 'false'} data-rotation-control={rotationControl === 'simple' ? 'simple' : undefined} tabindex={hasModel ? '0' : undefined} aria-label={hasModel ? `Interactive 3D view of ${title}` : undefined} aria-describedby={hasModel ? `viewer-keys-${uid}` : undefined}>
     <span class="stage-corner stage-corner--tl" aria-hidden="true"></span>
     <span class="stage-corner stage-corner--tr" aria-hidden="true"></span>
@@ -422,13 +424,21 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     onProgress?: (progress: { loadedBytes: number; totalBytes: number | null }) => void;
   }): Promise<Viewer> {
     const { saved, signal, isVisible, onFirstFrame, onTurn, onProgress } = build;
-    const THREE = await import('three');
-    const { DRACOLoader } = await import('three/examples/jsm/loaders/DRACOLoader.js');
-    const { GLTFLoader } = await import('three/examples/jsm/loaders/GLTFLoader.js');
-    const { OrbitControls } = await import('three/examples/jsm/controls/OrbitControls.js');
-    const { RoomEnvironment } = await import('three/examples/jsm/environments/RoomEnvironment.js');
-    const { MeshoptDecoder } = await import('three/examples/jsm/libs/meshopt_decoder.module.js');
-    const { applyModelTransform, frameCameraToBox, normalizeModel, parseModelTransform } = await import(`${import.meta.env.BASE_URL}model-render-utils.js`);
+    signal.throwIfAborted();
+    const modelBytes = fetchViewerModel(glb, { signal, expectedBytes: Number(root.dataset.modelBytes), onProgress });
+    // Setup can still be running when a request fails. The parse path below
+    // awaits the original promise and handles its error.
+    void modelBytes.catch(() => {});
+    const [THREE, { DRACOLoader }, { GLTFLoader }, { OrbitControls }, { RoomEnvironment }, { MeshoptDecoder },
+      { applyModelTransform, frameCameraToBox, normalizeModel, parseModelTransform }] = await Promise.all([
+      import('three'),
+      import('three/examples/jsm/loaders/DRACOLoader.js'),
+      import('three/examples/jsm/loaders/GLTFLoader.js'),
+      import('three/examples/jsm/controls/OrbitControls.js'),
+      import('three/examples/jsm/environments/RoomEnvironment.js'),
+      import('three/examples/jsm/libs/meshopt_decoder.module.js'),
+      import(`${import.meta.env.BASE_URL}model-render-utils.js`),
+    ]);
     signal.throwIfAborted();
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     const respectReducedMotion = stage.dataset.respectReducedMotion !== 'false';
@@ -526,7 +536,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     signal.addEventListener('abort', releasePending, { once: true });
     let verifiedAsset = false;
     try {
-      const bytes = await fetchViewerModel(glb, { signal, expectedBytes: Number(root.dataset.modelBytes), onProgress });
+      const bytes = await modelBytes;
       if (stage.dataset.spatialAssetSha256) {
         // Verify the bytes actually displayed, including models with mutable URLs.
         // A mismatch keeps ordinary 3D available while preventing an AR launch.
@@ -1217,7 +1227,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
       void image.decode().then(() => {
         if (!sameStill()) { retryReplacement(); return; }
         // rAF runs before paint. Leave a full visible frame for the decoded
-        // poster before allowing any automatic model request.
+        // poster before allowing a paint-gated automatic model request.
         stillFrame = window.requestAnimationFrame(() => {
           if (!sameStill()) { retryReplacement(); return; }
           stillFrame = window.requestAnimationFrame(() => {
@@ -1239,7 +1249,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
         observeStillPaint();
         const cannotPaintStill = !poster || (poster.complete && !poster.naturalWidth && !poster.dataset.fallbackPoster);
         const stillSettled = root.dataset.stillPainted || cannotPaintStill;
-        if (!tapRequired && !document.hidden && (studioPeek || stillSettled)) {
+        if (!tapRequired && !document.hidden && (studioPeek || stillSettled || root.hasAttribute('data-start-before-still'))) {
           startAutomatically();
         }
       }

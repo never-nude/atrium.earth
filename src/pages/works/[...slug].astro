@@ -9,7 +9,7 @@ import { withBase } from '../../lib/urls';
 import { museumLabelFor } from '../../lib/museum-label.mjs';
 import visitsData from '../../data/curated-visits.json';
 import { worldPayloadUrl } from '../../lib/world-payload';
-import { modelSizeLabel } from '../../lib/viewer-preview.mjs';
+import { isWithinInitialPreviewBudget, modelSizeLabel } from '../../lib/viewer-preview.mjs';
 
 export function getStaticPaths() {
   return works.map((work) => ({ params: { slug: work.slug }, props: { work } }));
@@ -60,6 +60,7 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
     <Viewer
       glb={withBase(work.modelGlb)}
       modelBytes={work.modelBytes}
+      startBeforeStill={isWithinInitialPreviewBudget(work.modelBytes)}
       poster={withBase(work.thumbnailImage)}
       title={work.title}
       hud={false}

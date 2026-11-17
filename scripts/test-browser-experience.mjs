@@ -4,7 +4,7 @@ import { join } from 'node:path';
 import { chromium, webkit } from 'playwright';
 import sharp from 'sharp';
 import { serveBrowserChecks } from './serve-browser-checks.mjs';
-import { AUTO_START_MODEL_LIMIT, INLINE_AUTO_LOAD_LIMIT, requiresModelActivation } from '../src/lib/viewer-preview.mjs';
+import { AUTO_START_MODEL_LIMIT, INLINE_AUTO_LOAD_LIMIT, isWithinInitialPreviewBudget, requiresModelActivation } from '../src/lib/viewer-preview.mjs';
 import { firstViewFor } from '../src/lib/first-view-models.mjs';
 import catalog from '../src/data/catalog.json' with { type: 'json' };
 import firstViewModels from '../src/data/first-view-models.json' with { type: 'json' };
@@ -278,7 +278,11 @@ async function inspectMotion(page, route, prefix, result) {
       continue;
     }
     await waitForReadyModel(page, viewer, result.modelRequests);
-    if (await viewer.getAttribute('data-still-painted') !== 'true') throw new Error('The viewer started before its still painted');
+    const earlyStart = await viewer.getAttribute('data-start-before-still') !== null;
+    if (earlyStart ? route.id !== 'artwork' || !isWithinInitialPreviewBudget(modelBytes)
+      : await viewer.getAttribute('data-still-painted') !== 'true') {
+      throw new Error('The viewer violated its still-image loading policy');
+    }
     const canvas = viewer.locator('.viewer-canvas');
     const frame = await captureCanvas(canvas, `${prefix}-viewer-${i + 1}.png`);
     result.readyCanvases.push({ ...frame, modelBytes, ...await measure() });
