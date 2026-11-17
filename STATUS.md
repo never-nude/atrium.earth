@@ -2412,6 +2412,11 @@ The approved title fixes, automatic download gate and promotion exclusions are r
 - The first PR A browser run caught WebKit fading the title and bottom navigation for 450 ms after opening fallback fullscreen. The follow-up hides those layers immediately. Local WebKit verified the fix with normal motion at 320 and 390 px before the next CI run.
 - Stage 3 removal requires Mike's separate approval after a scheduled rebuild has passed on main.
 
+## 2026-11-17 — Earlier model downloads on artwork pages
+
+- Branch `codex/start-artwork-download-sooner` starts the model on an artwork page while its still loads when it fits the existing 3 MB initial-preview budget. This includes Candelabrum. The viewer starts its transfer alongside graphics setup. An initial browser preload caused two WebKit requests and was replaced with one viewer request. The still remains visible until the first 3D frame.
+- Homepage and exhibition viewers keep their existing visibility and still-image rules. Large models keep their existing download controls. The release uses the existing model files and keeps the retained Pages copies.
+
 ## 2026-11-17 — Stage 3 Pages package removal candidate
 
 - Branch `codex/stage-three-pages-removal` removes inventory copies from the built Pages package after checking their sizes and SHA-256 digests. The build keeps a changed JPEG and uses its local URL. It rejects a changed model or first view. All source files stay in Git. This work makes no R2 writes.
