@@ -434,7 +434,9 @@ async function initializeExplorer(explorer) {
     const matches = result.total;
     const shown = result.records.length;
     const range = offset ? `${(offset + 1).toLocaleString('en-US')}–${(offset + shown).toLocaleString('en-US')}` : shown.toLocaleString('en-US');
-    const message = matches ? `Showing ${range} of ${matches.toLocaleString('en-US')} ${matches === 1 ? 'work' : 'works'}${savedOnly ? ' saved on this browser' : ''}` : savedOnly ? 'No saved works match these filters.' : 'No works match these filters.';
+    const query = search.value.trim();
+    const queryLabel = query ? ` for “${query}”` : '';
+    const message = matches ? `Showing ${range} of ${matches.toLocaleString('en-US')} ${matches === 1 ? 'work' : 'works'}${queryLabel}${savedOnly ? ' saved on this browser' : ''}` : savedOnly ? 'No saved works match these filters.' : `No works match${query ? queryLabel : ' these filters'}.`;
     if (count.textContent !== message) count.textContent = message;
     grid.hidden = matches === 0;
     empty.hidden = matches !== 0;
@@ -452,6 +454,7 @@ async function initializeExplorer(explorer) {
 
   function update() { window.clearTimeout(timer); limit = PAGE_SIZE; offset = 0; render(); }
   search.addEventListener('input', () => { renderRequest += 1; window.clearTimeout(timer); timer = window.setTimeout(update, 120); });
+  search.addEventListener('search', update);
   for (const select of [...filters, makerControl.select, sortControl.select]) select.addEventListener('change', update);
   for (const button of densityButtons) button.addEventListener('click', () => { density = button.dataset.studioDensityButton; render(); });
   savedToggle.addEventListener('click', () => { savedOnly = !savedOnly; update(); });

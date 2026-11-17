@@ -119,7 +119,7 @@ export async function readCdnAsset(url, { bytes, mime, varyByOrigin = false, ful
 export async function checkDeliveries(assets, verify) {
   let next = 0;
   const results = new Array(assets.length);
-  await Promise.all(Array.from({ length: 12 }, async () => {
+  await Promise.all(Array.from({ length: 4 }, async () => {
     while (next < assets.length) {
       const index = next++;
       const asset = assets[index];

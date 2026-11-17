@@ -464,7 +464,35 @@ async function check(engine, viewport, route, browser, motion = 'reduce') {
     await page.evaluate(() => Promise.race([document.fonts.ready, new Promise(resolve => setTimeout(resolve, 1500))]));
     await page.addScriptTag({ path: axePath });
     Object.assign(result, await page.evaluate(measurePage, viewport.width === 390));
-    if (route.id === 'full-detail') {
+    if (route.id === 'collection') {
+      const search = page.locator('[data-v3-search]');
+      const count = page.locator('[data-v3-count]');
+      await search.fill('roman');
+      await page.locator('[data-v3-filter-form] button[type="submit"]').click();
+      await page.waitForFunction(() => {
+        const grid = document.querySelector('[data-v3-grid]');
+        return grid?.getAttribute('aria-busy') !== 'true'
+          && document.querySelector('[data-v3-count]')?.textContent.includes('for “roman”');
+      });
+      if (!await page.locator('[data-v3-card] a[href*="/works/discobolus/"]').count()) {
+        throw new Error('Roman search must show the matching Discobolus work');
+      }
+      if (new URL(page.url()).searchParams.get('q') !== 'roman') {
+        throw new Error('Submitting search must preserve the Roman query in the address');
+      }
+      await search.fill('no-matching-atrium-work-992');
+      await search.press('Enter');
+      await page.locator('[data-v3-empty]').waitFor({ state: 'visible' });
+      if (!(await count.textContent()).includes('no-matching-atrium-work-992')) {
+        throw new Error('An empty result must identify the submitted query');
+      }
+      await page.locator('[data-v3-reset]').click();
+      await page.waitForFunction(() => {
+        const input = document.querySelector('[data-v3-search]');
+        return input?.value === '' && !document.querySelector('[data-v3-grid]')?.hidden
+          && !new URL(location.href).searchParams.has('q');
+      });
+    } else if (route.id === 'full-detail') {
       const viewer = page.locator('#sculpture [data-viewer]');
       const state = await viewerState(viewer, result.modelRequests);
       if (new URL(state.model, origin).href !== new URL(detailOriginal.url, origin).href
