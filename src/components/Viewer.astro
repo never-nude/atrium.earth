@@ -422,13 +422,21 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     onProgress?: (progress: { loadedBytes: number; totalBytes: number | null }) => void;
   }): Promise<Viewer> {
     const { saved, signal, isVisible, onFirstFrame, onTurn, onProgress } = build;
-    const THREE = await import('three');
-    const { DRACOLoader } = await import('three/examples/jsm/loaders/DRACOLoader.js');
-    const { GLTFLoader } = await import('three/examples/jsm/loaders/GLTFLoader.js');
-    const { OrbitControls } = await import('three/examples/jsm/controls/OrbitControls.js');
-    const { RoomEnvironment } = await import('three/examples/jsm/environments/RoomEnvironment.js');
-    const { MeshoptDecoder } = await import('three/examples/jsm/libs/meshopt_decoder.module.js');
-    const { applyModelTransform, frameCameraToBox, normalizeModel, parseModelTransform } = await import(`${import.meta.env.BASE_URL}model-render-utils.js`);
+    signal.throwIfAborted();
+    const modelBytes = fetchViewerModel(glb, { signal, expectedBytes: Number(root.dataset.modelBytes), onProgress });
+    // Setup can still be running when a request fails. The parse path below
+    // awaits the original promise and handles its error.
+    void modelBytes.catch(() => {});
+    const [THREE, { DRACOLoader }, { GLTFLoader }, { OrbitControls }, { RoomEnvironment }, { MeshoptDecoder },
+      { applyModelTransform, frameCameraToBox, normalizeModel, parseModelTransform }] = await Promise.all([
+      import('three'),
+      import('three/examples/jsm/loaders/DRACOLoader.js'),
+      import('three/examples/jsm/loaders/GLTFLoader.js'),
+      import('three/examples/jsm/controls/OrbitControls.js'),
+      import('three/examples/jsm/environments/RoomEnvironment.js'),
+      import('three/examples/jsm/libs/meshopt_decoder.module.js'),
+      import(`${import.meta.env.BASE_URL}model-render-utils.js`),
+    ]);
     signal.throwIfAborted();
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     const respectReducedMotion = stage.dataset.respectReducedMotion !== 'false';
@@ -526,7 +534,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     signal.addEventListener('abort', releasePending, { once: true });
     let verifiedAsset = false;
     try {
-      const bytes = await fetchViewerModel(glb, { signal, expectedBytes: Number(root.dataset.modelBytes), onProgress });
+      const bytes = await modelBytes;
       if (stage.dataset.spatialAssetSha256) {
         // Verify the bytes actually displayed, including models with mutable URLs.
         // A mismatch keeps ordinary 3D available while preventing an AR launch.

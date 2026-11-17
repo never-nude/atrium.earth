@@ -9,7 +9,7 @@ import { withBase } from '../../lib/urls';
 import { museumLabelFor } from '../../lib/museum-label.mjs';
 import visitsData from '../../data/curated-visits.json';
 import { worldPayloadUrl } from '../../lib/world-payload';
-import { modelSizeLabel } from '../../lib/viewer-preview.mjs';
+import { isWithinInitialPreviewBudget, modelSizeLabel } from '../../lib/viewer-preview.mjs';
 
 export function getStaticPaths() {
   return works.map((work) => ({ params: { slug: work.slug }, props: { work } }));
@@ -51,6 +51,9 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
   image={socialImage}
   immersive={true}
 >
+  {import.meta.env.PROD && work.modelGlb && isWithinInitialPreviewBudget(work.modelBytes) && (
+    <link slot="head" rel="preload" as="fetch" href={withBase(work.modelGlb)} crossorigin="anonymous" />
+  )}
   <nav class="work-journey" data-work-journey aria-label="Your visit" hidden>
     <p data-journey-label></p><a data-journey-return href={withBase('/exhibitions/')}>Return to exhibition →</a>
   </nav>
