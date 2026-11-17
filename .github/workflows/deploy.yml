@@ -52,6 +52,9 @@ jobs:
       - name: Verify live model CDN addresses in the built site
         run: node scripts/verify-published-model-delivery.mjs
 
+      - name: Verify live artwork JPEG CDN addresses in the built site
+        run: node scripts/verify-published-jpeg-delivery.mjs
+
       - name: Verify museum pages in Chromium and WebKit
         run: npm run test:browser
 
@@ -62,14 +65,6 @@ jobs:
         if: ${{ !cancelled() }}
         run: npm run test:performance
 
-      - name: Upload browser reports
-        if: ${{ !cancelled() }}
-        uses: actions/upload-artifact@v4
-        with:
-          name: museum-browser-reports
-          path: test-results/
-          if-no-files-found: ignore
-
       - name: Verify Pages package size
         run: node scripts/verify-pages-budget.mjs
 
@@ -78,6 +73,14 @@ jobs:
 
       - name: Verify published artwork images
         run: node scripts/verify-published-artwork-images.mjs
+
+      - name: Upload release reports
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: museum-browser-reports
+          path: test-results/
+          if-no-files-found: ignore
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
