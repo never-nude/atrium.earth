@@ -1,5 +1,7 @@
 import { mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
+import { requestCdnResource } from './cdn-http2-request.mjs';
+export { requestCdnResource } from './cdn-http2-request.mjs';
 
 export const site = 'https://atrium.earth';
 export const cdn = 'https://models.atrium.earth';
@@ -69,21 +71,27 @@ async function readHeader(body) {
   }
 }
 
-export async function readCdnAsset(url, { bytes, mime, varyByOrigin = false, full = false }, request = fetch) {
+export async function readCdnAsset(url, { bytes, mime, varyByOrigin = false, full = false }, request = requestCdnResource) {
   const target = new URL(url);
   if (target.origin !== cdn || target.username || target.password || target.search || target.hash) {
     throw new Error('Unexpected CDN address');
   }
   if (!Number.isSafeInteger(bytes) || bytes < headerBytes) throw new Error('Invalid registered CDN asset size');
-  const response = await request(url, {
-    redirect: 'error',
-    signal: AbortSignal.timeout(20_000),
-    headers: {
-      Origin: site,
-      ...(!full && { Range: `bytes=0-${headerBytes - 1}` }),
-      'Accept-Encoding': 'identity',
-    },
-  });
+  let response;
+  try {
+    response = await request(url, {
+      redirect: 'error',
+      signal: AbortSignal.timeout(20_000),
+      headers: {
+        Origin: site,
+        ...(!full && { Range: `bytes=0-${headerBytes - 1}` }),
+        'Accept-Encoding': 'identity',
+      },
+    });
+  } catch (error) {
+    error.deliveryPhase = 'response headers';
+    throw error;
+  }
   const cors = response.headers.get('access-control-allow-origin');
   const contentType = response.headers.get('content-type');
   const vary = response.headers.get('vary');
@@ -108,9 +116,15 @@ export async function readCdnAsset(url, { bytes, mime, varyByOrigin = false, ful
     await response.body?.cancel().catch(() => {});
     throw new Error(issue);
   }
-  // A validated range is only 12 bytes; finish it without aborting its connection.
-  const body = full || response.status === 206
-    ? Buffer.from(await response.arrayBuffer()) : await readHeader(response.body);
+  // Finish the complete range body so an early stream close is a failure.
+  const complete = full || response.status === 206;
+  let body;
+  try {
+    body = complete ? Buffer.from(await response.arrayBuffer()) : await readHeader(response.body);
+  } catch (error) {
+    error.deliveryPhase = 'response body';
+    throw error;
+  }
   if (response.status === 206 && body.length !== headerBytes) {
     throw new Error(`Expected body size ${headerBytes}, received ${body.length}`);
   }
@@ -124,7 +138,7 @@ export async function readCdnAsset(url, { bytes, mime, varyByOrigin = false, ful
 export async function checkDeliveries(assets, verify) {
   let next = 0;
   const results = new Array(assets.length);
-  await Promise.all(Array.from({ length: 12 }, async () => {
+  await Promise.all(Array.from({ length: 4 }, async () => {
     while (next < assets.length) {
       const index = next++;
       const asset = assets[index];
@@ -132,7 +146,9 @@ export async function checkDeliveries(assets, verify) {
         if (!asset.bytes) throw new Error('No registered size for this published URL');
         results[index] = { ...asset, delivery: await verify(asset) };
       } catch (error) {
-        results[index] = { ...asset, error: [error.message, error.cause?.code].filter(Boolean).join(' ') };
+        results[index] = { ...asset, error: [
+          error.deliveryPhase && `[${error.deliveryPhase}]`, error.message, error.code || error.cause?.code,
+        ].filter(Boolean).join(' ') };
       }
     }
   }));

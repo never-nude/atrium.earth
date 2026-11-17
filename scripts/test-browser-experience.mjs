@@ -4,6 +4,8 @@ import { join } from 'node:path';
 import { chromium, webkit } from 'playwright';
 import sharp from 'sharp';
 import { serveBrowserChecks } from './serve-browser-checks.mjs';
+import { readBrowserModel } from './lib/browser-model-relay.mjs';
+import { requestCdnResource } from './lib/cdn-http2-request.mjs';
 import { AUTO_START_MODEL_LIMIT, INLINE_AUTO_LOAD_LIMIT, isWithinInitialPreviewBudget, requiresModelActivation } from '../src/lib/viewer-preview.mjs';
 import { firstViewFor } from '../src/lib/first-view-models.mjs';
 import catalog from '../src/data/catalog.json' with { type: 'json' };
@@ -157,16 +159,57 @@ function observeModelRequests(page, requests) {
 }
 
 function waitForExpectedModels(page, records) {
-  return Promise.allSettled(records.map(({ url }) => page.waitForEvent('requestfinished', {
-    predicate: request => request.url() === new URL(url, origin).href,
-    timeout: 45000,
-  })));
+  const pending = new Map();
+  const outcomes = records.map(({ url }) => new Promise((resolve, reject) => {
+    pending.set(new URL(url, origin).href, { resolve, reject });
+  }));
+  let timer;
+  function cleanup() {
+    clearTimeout(timer);
+    page.off('request', requested);
+    page.off('requestfinished', finished);
+    page.off('requestfailed', failed);
+    page.off('close', closed);
+  }
+  function stop(reason) {
+    for (const waiting of pending.values()) waiting.reject(new Error(reason));
+    pending.clear();
+    cleanup();
+  }
+  function arm() {
+    clearTimeout(timer);
+    timer = setTimeout(() => stop(`No expected model delivery activity for 45 seconds. Pending: ${[...pending.keys()].join(', ')}`), 45000);
+  }
+  function requested(request) {
+    if (pending.has(request.url())) arm();
+  }
+  function finished(request) {
+    const waiting = pending.get(request.url());
+    if (!waiting) return;
+    waiting.resolve(request);
+    pending.delete(request.url());
+    if (pending.size) arm();
+    else cleanup();
+  }
+  function failed(request) {
+    if (pending.has(request.url())) stop(`First model request failed: ${request.url()} ${request.failure()?.errorText}`);
+  }
+  function closed() {
+    stop('Page closed before all expected models were delivered');
+  }
+  page.on('request', requested);
+  page.on('requestfinished', finished);
+  page.on('requestfailed', failed);
+  page.on('close', closed);
+  arm();
+  return Promise.allSettled(outcomes);
 }
 
 async function checkExpectedModels(deliveries, records, requests) {
   const outcomes = await deliveries;
   return Promise.all(outcomes.map(async (outcome, index) => {
     const { url, bytes } = records[index];
+    if (outcome.status === 'rejected') throw outcome.reason;
     const matching = requests.filter(request => request.url === new URL(url, origin).href);
     const response = outcome.status === 'fulfilled' ? await outcome.value.response() : null;
     const length = Number(response?.headers()['content-length']);
@@ -437,14 +480,8 @@ async function check(engine, viewport, route, browser, motion = 'reduce') {
     // The model CDN permits Atrium's origin. Serve its original bytes to loopback QA.
     if (localOrigin) await page.route(/^https:\/\/models\.atrium\.earth\/models\/(?:previews|first-views)\/.+\.glb$/, async route => {
       try {
-        const response = await route.fetch({
-          headers: { ...route.request().headers(), origin: 'https://atrium.earth' },
-          timeout: 15000,
-          maxRedirects: 0,
-          maxRetries: 0,
-        });
-        if (!response.ok()) errors.push(`Model preview returned HTTP ${response.status()}: ${route.request().url()}`);
-        await route.fulfill({ response, headers: { ...response.headers(), 'access-control-allow-origin': new URL(origin).origin } });
+        const response = await readBrowserModel(route.request().url(), { timeout: 15000 });
+        await route.fulfill({ ...response, headers: { ...response.headers, 'access-control-allow-origin': new URL(origin).origin } });
       } catch (error) {
         errors.push(`First model delivery attempt failed for ${route.request().url()}: ${error.message}`);
         await route.abort().catch(() => {});
@@ -464,7 +501,35 @@ async function check(engine, viewport, route, browser, motion = 'reduce') {
     await page.evaluate(() => Promise.race([document.fonts.ready, new Promise(resolve => setTimeout(resolve, 1500))]));
     await page.addScriptTag({ path: axePath });
     Object.assign(result, await page.evaluate(measurePage, viewport.width === 390));
-    if (route.id === 'full-detail') {
+    if (route.id === 'collection') {
+      const search = page.locator('[data-v3-search]');
+      const count = page.locator('[data-v3-count]');
+      await search.fill('roman');
+      await page.locator('[data-v3-filter-form] button[type="submit"]').click();
+      await page.waitForFunction(() => {
+        const grid = document.querySelector('[data-v3-grid]');
+        return grid?.getAttribute('aria-busy') !== 'true'
+          && document.querySelector('[data-v3-count]')?.textContent.includes('for “roman”');
+      });
+      if (!await page.locator('[data-v3-card] a[href*="/works/discobolus/"]').count()) {
+        throw new Error('Roman search must show the matching Discobolus work');
+      }
+      if (new URL(page.url()).searchParams.get('q') !== 'roman') {
+        throw new Error('Submitting search must preserve the Roman query in the address');
+      }
+      await search.fill('no-matching-atrium-work-992');
+      await search.press('Enter');
+      await page.locator('[data-v3-empty]').waitFor({ state: 'visible' });
+      if (!(await count.textContent()).includes('no-matching-atrium-work-992')) {
+        throw new Error('An empty result must identify the submitted query');
+      }
+      await page.locator('[data-v3-empty-reset]').click();
+      await page.waitForFunction(() => {
+        const input = document.querySelector('[data-v3-search]');
+        return input?.value === '' && !document.querySelector('[data-v3-grid]')?.hidden
+          && !new URL(location.href).searchParams.has('q');
+      });
+    } else if (route.id === 'full-detail') {
       const viewer = page.locator('#sculpture [data-viewer]');
       const state = await viewerState(viewer, result.modelRequests);
       if (new URL(state.model, origin).href !== new URL(detailOriginal.url, origin).href
@@ -590,6 +655,7 @@ try {
     }
   }
 } finally {
+  requestCdnResource.close();
   await hosted?.close();
   await writeFile(join(artifacts, 'report.json'), JSON.stringify(results, null, 2) + '\n');
 }

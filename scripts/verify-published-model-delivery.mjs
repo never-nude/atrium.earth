@@ -5,7 +5,7 @@ import { readFile, rm } from 'node:fs/promises';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { firstViewFor } from '../src/lib/first-view-models.mjs';
-import { cdn, checkDeliveries, readCdnAsset, scanBuiltCdnReferences, writeDeliveryReport } from './lib/cdn-delivery.mjs';
+import { cdn, checkDeliveries, readCdnAsset, scanBuiltCdnReferences, writeDeliveryReport, requestCdnResource } from './lib/cdn-delivery.mjs';
 
 const reportFile = 'test-results/published-model-delivery.json';
 const modelTypes = {
@@ -45,7 +45,7 @@ async function registeredModels() {
   return metadata;
 }
 
-export async function verifyPublishedModel(url, bytes, request = fetch, sha256) {
+export async function verifyPublishedModel(url, bytes, request, sha256) {
   const extension = path.extname(new URL(url).pathname).toLowerCase();
   const mime = modelTypes[extension];
   if (!mime) throw new Error(`Unsupported model extension: ${extension}`);
@@ -78,7 +78,7 @@ export async function verifyModelDelivery(directory = 'dist') {
   const models = [...references].map(([url, document]) => ({ url, document, ...metadata.get(url) }));
   if (!models.length) throw new Error('No CDN model addresses were found in the built package');
 
-  const results = await checkDeliveries(models, ({ url, bytes, sha256 }) => verifyPublishedModel(url, bytes, fetch, sha256));
+  const results = await checkDeliveries(models, ({ url, bytes, sha256 }) => verifyPublishedModel(url, bytes, undefined, sha256));
   const failures = results.filter(result => result.error);
   const firstViews = results.filter(result => result.sha256);
   const verifiedFirstViews = firstViews.filter(result => result.delivery);
@@ -103,5 +103,5 @@ if (process.argv[1] && pathToFileURL(path.resolve(process.argv[1])).href === imp
   verifyModelDelivery(process.argv[2]).catch(error => {
     console.error(error.message);
     process.exitCode = 1;
-  });
+  }).finally(() => requestCdnResource.close());
 }

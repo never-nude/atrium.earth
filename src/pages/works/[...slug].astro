@@ -225,9 +225,9 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
   .work-disclosure > summary::-webkit-details-marker { display: none; }
   .work-disclosure > summary::after { content: '+'; }
   .work-disclosure[open] > summary::after { content: '−'; }
-  .v3-object-nav.work-bottom-nav { position: static; margin: 24px var(--v3-pad); gap: 12px; }
+  .v3-object-nav.work-bottom-nav { position: static; margin: 24px var(--v3-pad); gap: 12px; transition: none; }
   .work-bottom-nav a { min-width: 0; min-height: 44px; }
-  .work-bottom-nav i, .work-bottom-nav a:hover i { display: block; max-width: 22ch; opacity: 1; }
+  .work-bottom-nav i, .work-bottom-nav a:hover i { display: block; max-width: 22ch; opacity: 1; transition: none; }
   .v3-object-stage :global(.work-viewer-settings) { position: relative; }
   .v3-object-stage :global(.work-viewer-settings > summary) { display: flex; align-items: center; min-height: 44px; padding: 0 10px; cursor: pointer; color: var(--v3-muted); font-size: 12px; }
   .v3-object-stage :global(.work-settings-panel) { position: absolute; z-index: 35; bottom: calc(100% + 6px); left: 0; min-width: 164px; display: grid; padding: 6px; border: 1px solid var(--v3-line); border-radius: 8px; background: var(--v3-void); }

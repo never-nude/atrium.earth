@@ -954,7 +954,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     try { if (sessionStorage.getItem(turnedKey)) return; } catch { /* Storage is optional. */ }
     hintShown = true;
     const touch = navigator.maxTouchPoints > 0 || matchMedia('(pointer: coarse)').matches;
-    hint.textContent = touch ? 'Touch the sculpture to turn it · pinch to zoom' : 'Drag the sculpture to turn it · pinch or Ctrl-scroll to zoom';
+    hint.textContent = touch ? 'Touch the sculpture to turn it · pinch to zoom' : 'Drag to turn · scroll over the sculpture to zoom';
     hint.hidden = false;
     hint.classList.remove('is-dismissed');
     const dismiss = () => {

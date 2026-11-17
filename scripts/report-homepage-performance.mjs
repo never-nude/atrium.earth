@@ -19,7 +19,9 @@ try {
     '--only-categories=performance', '--output=json', '--output=html',
     `--output-path=${join(output, 'homepage')}`, '--max-wait-for-load=25000', '--save-assets',
     '--chrome-flags=--headless --no-sandbox', '--quiet',
-  ], { env: { ...process.env, CHROME_PATH: chromium.executablePath() }, timeout: 65000 });
+  // This covers browser startup, analysis and artifact writes as well as the
+  // separately capped 25-second navigation. A successful CI report took 61s.
+  ], { env: { ...process.env, CHROME_PATH: chromium.executablePath() }, timeout: 120000 });
   const [lighthouse, trace, devtoolsLog] = await Promise.all([
     report, join(output, 'homepage-0.trace.json'), join(output, 'homepage-0.devtoolslog.json'),
   ].map(async file => JSON.parse(await readFile(file, 'utf8'))));

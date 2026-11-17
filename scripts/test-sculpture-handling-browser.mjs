@@ -1,6 +1,8 @@
 import assert from 'node:assert/strict';
 import { chromium } from 'playwright';
 import { serveBrowserChecks } from './serve-browser-checks.mjs';
+import { readBrowserModel } from './lib/browser-model-relay.mjs';
+import { requestCdnResource } from './lib/cdn-http2-request.mjs';
 import { requiresModelActivation } from '../src/lib/viewer-preview.mjs';
 import { firstViewFor } from '../src/lib/first-view-models.mjs';
 import firstViewModels from '../src/data/first-view-models.json' with { type: 'json' };
@@ -122,11 +124,8 @@ controls.update = function (...args) {
   });
   if (local) await page.route(/^https:\/\/models\.atrium\.earth\/models\/(?:previews|first-views)\/.+\.glb$/, async route => {
     try {
-      const response = await route.fetch({
-        headers: { ...route.request().headers(), origin: 'https://atrium.earth' },
-        timeout: 20000,
-      });
-      await route.fulfill({ response, headers: { ...response.headers(), 'access-control-allow-origin': origin.origin } });
+      const response = await readBrowserModel(route.request().url());
+      await route.fulfill({ ...response, headers: { ...response.headers, 'access-control-allow-origin': origin.origin } });
     } catch (error) {
       const transfer = transfers.get(route.request());
       if (transfer) transfer.relayFailure = error.message;
@@ -503,9 +502,9 @@ async function checkDesktop(page, canvas, check) {
     assert.equal(cursor, 'grab');
     assert.equal(scrollingCursor, 'grabbing');
   });
-  await check('plain wheel scrolls without zooming the sculpture', async () => {
+  await check('trackpad scroll over the backdrop scrolls the page', async () => {
     await settleScroll(canvas);
-    const { x, y } = await pointOn(canvas, 'art');
+    const { x, y } = await pointOn(canvas, 'backdrop');
     const before = await readPose(canvas);
     await page.mouse.move(x, y);
     await page.mouse.wheel(0, 150);
@@ -514,22 +513,17 @@ async function checkDesktop(page, canvas, check) {
     const after = await readPose(canvas);
     assert.ok(Math.abs(after.distance - before.distance) < 1e-6, 'A plain wheel should leave sculpture distance unchanged');
   });
-  await check('Ctrl-wheel zooms the sculpture without scrolling the page', async () => {
+  await check('two-finger trackpad scroll over the sculpture zooms without scrolling the page', async () => {
     await settleScroll(canvas);
     const { x, y } = await pointOn(canvas, 'art');
     const before = await readPose(canvas);
     await page.mouse.move(x, y);
-    await page.keyboard.down('Control');
-    try {
-      await page.mouse.wheel(0, -150);
-    } finally {
-      await page.keyboard.up('Control');
-    }
+    await page.mouse.wheel(0, -150);
     await nextPaint(page);
     const after = await readPose(canvas);
-    assert.ok(Math.abs(after.distance - before.distance) > 0.015, 'Ctrl-wheel should zoom the sculpture');
-    assert.ok(Math.abs(after.scroll - before.scroll) <= 1, 'Ctrl-wheel should leave the page in place');
-    assert.ok(Math.abs(after.scale - before.scale) < 1e-6, 'Ctrl-wheel should leave the page scale unchanged');
+    assert.ok(Math.abs(after.distance - before.distance) > 0.015, 'Trackpad scroll should zoom the sculpture');
+    assert.ok(Math.abs(after.scroll - before.scroll) <= 1, 'Trackpad zoom should leave the page in place');
+    assert.ok(Math.abs(after.scale - before.scale) < 1e-6, 'Trackpad zoom should leave the page scale unchanged');
   });
 }
 
@@ -675,6 +669,7 @@ try {
   }
 } finally {
   if (browser) await browser.close();
+  requestCdnResource.close();
   if (hosted) await hosted.close();
 }
 

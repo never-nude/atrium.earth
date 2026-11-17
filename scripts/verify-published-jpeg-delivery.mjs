@@ -3,7 +3,7 @@ import { readFile, rm } from 'node:fs/promises';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import pagesAssets from '../src/data/pages-cdn-assets.json' with { type: 'json' };
-import { cdn, checkDeliveries, readCdnAsset, scanBuiltCdnReferences, writeDeliveryReport } from './lib/cdn-delivery.mjs';
+import { cdn, checkDeliveries, readCdnAsset, scanBuiltCdnReferences, writeDeliveryReport, requestCdnResource } from './lib/cdn-delivery.mjs';
 
 const reportFile = 'test-results/published-jpeg-delivery.json';
 const recoveryFile = 'previews/cdn-jpegs.json';
@@ -11,7 +11,7 @@ const jpegAssets = new Map(Object.entries(pagesAssets)
   .filter(([pathname]) => pathname.endsWith('/thumb.jpg'))
   .map(([, asset]) => [`${cdn}/${asset.key}`, asset.bytes]));
 
-export async function verifyPublishedJpeg(url, bytes, request = fetch) {
+export async function verifyPublishedJpeg(url, bytes, request) {
   const { body, delivery } = await readCdnAsset(url, { bytes, mime: 'image/jpeg' }, request);
   if (body[0] !== 0xff || body[1] !== 0xd8 || body[2] !== 0xff) throw new Error('Invalid JPEG start marker');
   return delivery;
@@ -50,5 +50,5 @@ if (process.argv[1] && pathToFileURL(path.resolve(process.argv[1])).href === imp
   verifyJpegDelivery(process.argv[2]).catch(error => {
     console.error(error.message);
     process.exitCode = 1;
-  });
+  }).finally(() => requestCdnResource.close());
 }

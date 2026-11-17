@@ -280,11 +280,16 @@ test('only a double tap or an artwork double-click resets', t => {
   assert.equal(v.resets, 2);
 });
 
-test('wheel and fullscreen retain their existing input exceptions', t => {
+test('wheel zoom follows the silhouette and fullscreen handles the whole stage', t => {
   const v = inputFixture(t);
   assert.equal(v.wheel(), false);
-  assert.equal(v.wheel({ctrlKey: true}), true);
-  assert.equal(v.wheel({metaKey: true}), true);
+  assert.equal(v.wheel({ctrlKey: true}), false);
+  assert.equal(v.wheel({metaKey: true}), false);
+  const distance = v.camera.position.length();
+  assert.equal(v.wheel({clientX: 50}), true);
+  assert.notEqual(v.camera.position.length(), distance);
+  assert.equal(v.wheel({clientX: 50, ctrlKey: true}), true);
+  assert.equal(v.wheel({clientX: 50, metaKey: true}), true);
   v.input.setFullscreen(true);
   assert.equal(v.canvas.style.touchAction, 'none');
   assert.equal(v.wheel(), true);
@@ -301,6 +306,7 @@ test('wheel and fullscreen retain their existing input exceptions', t => {
     assert.equal(disabled.wheel(), false);
     assert.equal(disabled.wheel({ctrlKey: true}), false);
     assert.equal(disabled.wheel({metaKey: true}), false);
+    assert.equal(disabled.wheel({clientX: 50}), false);
   }
 });
 
@@ -316,18 +322,18 @@ test('Safari trackpad scale zooms the sculpture without duplicate Ctrl-wheel', t
   v.canvas.addEventListener('wheel', () => wheelEvents++);
   const start = () => dispatchGesture(v.canvasCapture, 'gesturestart', 1);
   const change = scale => dispatchGesture(v.canvasCapture, 'gesturechange', scale);
-  assert.equal(v.wheel({ ctrlKey: true }), true);
+  assert.equal(v.wheel({ ctrlKey: true, clientX: 50 }), true);
   assert.equal(wheelEvents, 1);
   assert.equal(start(), true);
   assert.equal(change(1.25), true);
   assert.equal(change(0), true);
   assert.equal(change(1.5), true);
   assert.deepEqual(v.factors, [.8, 1.25 / 1.5]);
-  assert.equal(v.wheel({ ctrlKey: true }), true);
+  assert.equal(v.wheel({ ctrlKey: true, clientX: 50 }), true);
   assert.equal(wheelEvents, 1);
   assert.equal(dispatchGesture(v.canvasCapture, 'gestureend', 1.5), true);
   assert.equal(change(2), false);
-  assert.equal(v.wheel({ ctrlKey: true }), true);
+  assert.equal(v.wheel({ ctrlKey: true, clientX: 50 }), true);
   assert.equal(wheelEvents, 2);
 });
 
