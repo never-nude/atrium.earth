@@ -3,6 +3,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import {createHash} from 'node:crypto';
+import {matchesReviewedSourcePermission} from './reviewed-source-permissions.mjs';
 
 const manifest=process.env.MANIFEST,token=process.env.SKETCHFAB_TOKEN;
 if (!/^docs\/ingest\/[a-z0-9-]+-source-request\.json$/.test(manifest||'') || !token) throw Error('Reviewed manifest and Sketchfab credential required');
@@ -26,8 +27,7 @@ try {
   if (detailBody.includes(token) || /[?&](?:token|signature|awsaccesskeyid|x-amz-signature|x-amz-credential)=/i.test(detailBody)) throw Error('Credential-bearing metadata cannot enter the source artifact');
   await fs.writeFile(path.join(dir,'public-model-detail.json'),detailBody);
   const label=detail.license?.label||'',licenseUrl=detail.license?.url||'';
-  if (detail.uid!==model.uid || !detail.isDownloadable || !['CC0 Public Domain','CC Attribution','CC Attribution-ShareAlike'].includes(label)
-      || !/^https?:\/\/creativecommons\.org\/(licenses\/(by|by-sa)\/4\.0|publicdomain\/zero\/1\.0)\/?$/.test(licenseUrl)
+  if (detail.uid!==model.uid || !detail.isDownloadable || !matchesReviewedSourcePermission(detail.license,model.license_url)
       || detail.user?.username!==model.publisher) throw Error('Fresh source identity, publisher or eligible permission mismatch');
   const metadata=await api(`https://api.sketchfab.com/v3/models/${model.uid}/download`),delivery=metadata.glb;
   if (!delivery || !Number.isSafeInteger(delivery.size) || delivery.size<=0 || delivery.size>500_000_000) throw Error('No bounded authenticated GLB delivery');

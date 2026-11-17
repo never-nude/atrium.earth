@@ -108,7 +108,12 @@ export async function readCdnAsset(url, { bytes, mime, varyByOrigin = false, ful
     await response.body?.cancel().catch(() => {});
     throw new Error(issue);
   }
-  const body = full ? Buffer.from(await response.arrayBuffer()) : await readHeader(response.body);
+  // A validated range is only 12 bytes; finish it without aborting its connection.
+  const body = full || response.status === 206
+    ? Buffer.from(await response.arrayBuffer()) : await readHeader(response.body);
+  if (response.status === 206 && body.length !== headerBytes) {
+    throw new Error(`Expected body size ${headerBytes}, received ${body.length}`);
+  }
   if (full && body.length !== bytes) throw new Error(`Expected body size ${bytes}, received ${body.length}`);
   return { body, delivery: {
     status: response.status, accessControlAllowOrigin: cors, contentType, vary,
