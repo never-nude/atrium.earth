@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { chromium } from 'playwright';
 import { serveBrowserChecks } from './serve-browser-checks.mjs';
 import { readBrowserModel } from './lib/browser-model-relay.mjs';
+import { requestCdnResource } from './lib/cdn-http2-request.mjs';
 import { requiresModelActivation } from '../src/lib/viewer-preview.mjs';
 import { firstViewFor } from '../src/lib/first-view-models.mjs';
 import firstViewModels from '../src/data/first-view-models.json' with { type: 'json' };
@@ -668,6 +669,7 @@ try {
   }
 } finally {
   if (browser) await browser.close();
+  requestCdnResource.close();
   if (hosted) await hosted.close();
 }
 

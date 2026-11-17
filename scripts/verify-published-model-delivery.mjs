@@ -5,7 +5,7 @@ import { readFile, rm } from 'node:fs/promises';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { firstViewFor } from '../src/lib/first-view-models.mjs';
-import { cdn, checkDeliveries, readCdnAsset, scanBuiltCdnReferences, writeDeliveryReport } from './lib/cdn-delivery.mjs';
+import { cdn, checkDeliveries, readCdnAsset, scanBuiltCdnReferences, writeDeliveryReport, requestCdnResource } from './lib/cdn-delivery.mjs';
 
 const reportFile = 'test-results/published-model-delivery.json';
 const modelTypes = {
@@ -103,5 +103,5 @@ if (process.argv[1] && pathToFileURL(path.resolve(process.argv[1])).href === imp
   verifyModelDelivery(process.argv[2]).catch(error => {
     console.error(error.message);
     process.exitCode = 1;
-  });
+  }).finally(() => requestCdnResource.close());
 }

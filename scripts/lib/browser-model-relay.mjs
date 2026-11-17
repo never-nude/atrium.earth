@@ -1,4 +1,4 @@
-import { requestWithFreshConnection } from './fresh-https-request.mjs';
+import { requestCdnResource } from './cdn-http2-request.mjs';
 
 const cdn = 'https://models.atrium.earth';
 const site = 'https://atrium.earth';
@@ -30,7 +30,7 @@ async function errorExcerpt(response) {
 
 // Test-only CORS relay: request the production address once with production
 // headers, never inherited loopback/browser headers, redirects or retries.
-export async function readBrowserModel(url, { timeout = 20000, request = requestWithFreshConnection } = {}) {
+export async function readBrowserModel(url, { timeout = 20000, request = requestCdnResource } = {}) {
   const target = new URL(url);
   const pathname = decodeURIComponent(target.pathname);
   if (target.origin !== cdn || target.username || target.password || target.search || target.hash

@@ -3,7 +3,7 @@ import { readFile, rm } from 'node:fs/promises';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import pagesAssets from '../src/data/pages-cdn-assets.json' with { type: 'json' };
-import { cdn, checkDeliveries, readCdnAsset, scanBuiltCdnReferences, writeDeliveryReport } from './lib/cdn-delivery.mjs';
+import { cdn, checkDeliveries, readCdnAsset, scanBuiltCdnReferences, writeDeliveryReport, requestCdnResource } from './lib/cdn-delivery.mjs';
 
 const reportFile = 'test-results/published-jpeg-delivery.json';
 const recoveryFile = 'previews/cdn-jpegs.json';
@@ -50,5 +50,5 @@ if (process.argv[1] && pathToFileURL(path.resolve(process.argv[1])).href === imp
   verifyJpegDelivery(process.argv[2]).catch(error => {
     console.error(error.message);
     process.exitCode = 1;
-  });
+  }).finally(() => requestCdnResource.close());
 }

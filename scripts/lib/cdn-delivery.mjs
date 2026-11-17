@@ -1,6 +1,7 @@
 import { mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
-import { requestWithFreshConnection } from './fresh-https-request.mjs';
+import { requestCdnResource } from './cdn-http2-request.mjs';
+export { requestCdnResource } from './cdn-http2-request.mjs';
 
 export const site = 'https://atrium.earth';
 export const cdn = 'https://models.atrium.earth';
@@ -70,7 +71,7 @@ async function readHeader(body) {
   }
 }
 
-export async function readCdnAsset(url, { bytes, mime, varyByOrigin = false, full = false }, request = requestWithFreshConnection) {
+export async function readCdnAsset(url, { bytes, mime, varyByOrigin = false, full = false }, request = requestCdnResource) {
   const target = new URL(url);
   if (target.origin !== cdn || target.username || target.password || target.search || target.hash) {
     throw new Error('Unexpected CDN address');

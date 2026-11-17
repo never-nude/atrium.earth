@@ -5,6 +5,7 @@ import { chromium, webkit } from 'playwright';
 import sharp from 'sharp';
 import { serveBrowserChecks } from './serve-browser-checks.mjs';
 import { readBrowserModel } from './lib/browser-model-relay.mjs';
+import { requestCdnResource } from './lib/cdn-http2-request.mjs';
 import { AUTO_START_MODEL_LIMIT, INLINE_AUTO_LOAD_LIMIT, isWithinInitialPreviewBudget, requiresModelActivation } from '../src/lib/viewer-preview.mjs';
 import { firstViewFor } from '../src/lib/first-view-models.mjs';
 import catalog from '../src/data/catalog.json' with { type: 'json' };
@@ -654,6 +655,7 @@ try {
     }
   }
 } finally {
+  requestCdnResource.close();
   await hosted?.close();
   await writeFile(join(artifacts, 'report.json'), JSON.stringify(results, null, 2) + '\n');
 }
