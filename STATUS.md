@@ -2416,3 +2416,7 @@ The approved title fixes, automatic download gate and promotion exclusions are r
 
 - Branch `codex/start-artwork-download-sooner` starts the model on an artwork page while its still loads when it fits the existing 3 MB initial-preview budget. This includes Candelabrum. The viewer starts its transfer alongside graphics setup. An initial browser preload caused two WebKit requests and was replaced with one viewer request. The still remains visible until the first 3D frame.
 - Homepage and exhibition viewers keep their existing visibility and still-image rules. Large models keep their existing download controls. The release uses the existing model files and keeps the retained Pages copies.
+
+### 2026-11-17 — Sensual sculpture publication in progress
+
+The owner authorized the forty-work selection. This chat owns codex/sensual-forty-20261117 from a1ab7a75. Fresh source requests explicitly record the reviewed Creative Commons licenses, including noncommercial museum display and unchanged ND models. A duplicate Fitzwilliam torso and a conflicting Bather dataset are replaced by Simonis’s Truth Unveiled and the restored Glyptotek Apollo. Acquisition and release checks are in progress.
