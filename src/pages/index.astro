@@ -157,7 +157,7 @@ const heroAlt = [
   .home-programme-hero :global(.viewer:not(:fullscreen):not([data-viewer-expanded])) { height: auto; }
   .home-programme-hero :global(.viewer:not(:fullscreen):not([data-viewer-expanded]) > .model-stage) { height: var(--hero-artwork-height); }
   /* The recovery JPEG still has the original backdrop. */
-  .home-programme-hero :global(.model-stage:not([data-rendered-still]) [data-poster][src*="/thumb.jpg"]) {
+  .home-programme-hero :global(.model-stage:not([data-rendered-still]) [data-poster]:is([src*="/thumb.jpg"], [src*="/thumb-"][src$=".jpg"])) {
     inset: 50% auto auto 50%;
     width: min(100%, calc(var(--hero-artwork-height) * .8));
     height: auto;

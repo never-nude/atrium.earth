@@ -859,7 +859,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
       button.textContent = expanded ? 'Exit full screen' : 'Full screen';
       onChange(expanded);
     }
-    const inerted: HTMLElement[] = [];
+    const background = new Map<HTMLElement, boolean>();
     function showOverlay() {
       root.setAttribute('data-viewer-expanded', '');
       root.setAttribute('role', 'dialog');
@@ -868,10 +868,10 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
       // Leave the viewer in place so its running canvas and AR dialog keep their state.
       for (let child = root; child.parentElement && child !== document.body; child = child.parentElement) {
         for (const sibling of child.parentElement.children) {
-          if (sibling !== child && sibling instanceof HTMLElement && !sibling.inert) {
-            sibling.inert = true;
-            inerted.push(sibling);
-          }
+          if (sibling === child || !(sibling instanceof HTMLElement)) continue;
+          background.set(sibling, sibling.inert);
+          sibling.inert = true;
+          sibling.setAttribute('data-viewer-background', '');
         }
       }
       syncButton();
@@ -883,7 +883,11 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
       root.removeAttribute('role');
       root.removeAttribute('aria-modal');
       root.removeAttribute('aria-label');
-      for (const sibling of inerted.splice(0)) sibling.inert = false;
+      for (const [sibling, wasInert] of background) {
+        sibling.inert = wasInert;
+        sibling.removeAttribute('data-viewer-background');
+      }
+      background.clear();
       syncButton();
       if (!signal.aborted) button.focus({ preventScroll: true });
     }
@@ -1308,6 +1312,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
   .viewer-download span { display: block; width: 0; height: 100%; background: #c9a5ff; }
   .viewer[data-viewer-expanded] { position: fixed !important; z-index: 1000; inset: 0 !important; width: 100% !important; height: 100dvh !important; overflow: hidden; background: var(--v3-void, #101827); }
   :global(html:has(.viewer[data-viewer-expanded])) { overflow: hidden; }
+  :global([data-viewer-background]) { opacity: 0 !important; }
   .viewer:fullscreen { width: 100%; height: 100dvh; overflow: hidden; background: var(--v3-void, #101827); }
   .viewer:fullscreen > .model-stage { width: 100%; height: 100%; min-height: 0; }
   .viewer[data-viewer-expanded] > .model-stage { height: 100% !important; min-height: 0 !important; background: var(--v3-void, #101827) !important; }

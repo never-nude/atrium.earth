@@ -80,8 +80,18 @@ function embeddedWorks(source) {
   return records;
 }
 
+function verifyRoomUrls(rooms) {
+  for (const { id, appleAR } of rooms) {
+    assert.match(id, /^[a-z0-9-]+$/, 'Invalid museum room ID');
+    assert.match(appleAR?.sha256 ?? '', /^[a-f0-9]{64}$/, `Missing or invalid room SHA-256: ${id}`);
+    const expected = `https://models.atrium.earth/models/rooms/${id}/room-${appleAR.sha256.slice(0, 12)}.usdz`;
+    assert.equal(appleAR.url, expected, `Room USDZ URL drift: ${id}`);
+  }
+}
+
 function verifyBindings(records, data, previewMap) {
   assert.ok(Array.isArray(data.rooms) && data.rooms.length > 0, 'Museum rooms are missing');
+  verifyRoomUrls(data.rooms);
   const slugs = data.rooms.flatMap(room => {
     assert.equal(room.slugs.length, room.count, `Room count differs: ${room.id}`);
     return room.slugs;
@@ -119,6 +129,9 @@ const urlCopies = verifyEveryModelUrl(runtime, works, previews);
 const stale = structuredClone(works);
 stale[0].modelUrl = 'https://atrium.earth/models/previews/retired/preview.glb';
 assert.throws(() => verifyBindings(stale, manifest, previews), /preview URL drift/);
+const staleRooms = structuredClone(manifest.rooms);
+staleRooms[0].appleAR.url = staleRooms[0].appleAR.url.replace(/room-[a-f0-9]{12}\.usdz$/, 'room-000000000000.usdz');
+assert.throws(() => verifyRoomUrls(staleRooms), /Room USDZ URL drift/);
 const changedBytes = structuredClone(works);
 changedBytes[0].bytes++;
 assert.throws(() => verifyBindings(changedBytes, manifest, previews), /preview byte drift/);
@@ -146,3 +159,4 @@ const changedGraph = { ...sources, [owner]: sources[owner] + '\n' };
 assert.throws(() => verifyRuntimeGraph(changedGraph, html), /entry graph digest is stale/);
 
 console.log(`Static museum bindings passed: all ${works.length} works / ${urlCopies} model URL copies; ${Object.keys(sources).length} modules / ${graph.references} dependency/preload references use graph ${graph.version}; model and module-cache drift regressions are rejected.`);
+console.log(`Verified ${manifest.rooms.length} room USDZ URLs against their room IDs and SHA-256 prefixes.`);
