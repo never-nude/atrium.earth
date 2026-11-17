@@ -2424,3 +2424,9 @@ The approved title fixes, automatic download gate and promotion exclusions are r
 - Local pruning removed 3,568 verified copies totalling 471,962,600 bytes and found zero changed JPEGs. The artwork recovery test and phone preview fixture passed. Local negative checks rejected a changed model, an inventory model left in the package, and a stale Pages path in a built document.
 - The local Stage 3 build against the Stage 2 base contains 17,730 files and 397,869,296 bytes. The package check found zero references to removed Pages assets in 14,541 built documents. CI will check the combined hardening and removal branch.
 - The first local `npm test` hit the Chromium trace's existing 20-second timeout while builds overlapped. That test makes no public CDN requests. The complete hardening-based CI run must pass before approval. The owner will merge after the next scheduled rebuild succeeds on main.
+
+## 2026-11-17 — Stage 3 release-gate repair
+
+- Refreshed draft PR #102 against main a1ab7a75 and resolved STATUS.md by retaining both entries. The original failed PR #104 review was WebKit 390 px artwork with normal motion, reporting insufficient contrast on previous/next artwork labels. The labels now restore immediately after full screen.
+- Expected room-model deliveries retain the exact URL, single request, HTTP 200 and Content-Length assertions. A 45-second inactivity guard resets when an expected request starts or completes, so sequential room loading has a full interval for each model. Failed requests fail immediately. The loopback delivery proxy retains its 15-second network deadline and zero retries.
+- Fresh review runs on changed commits remain distinct from the failed run 44054940057. Stage 3 remains a draft for Mike's merge decision.
