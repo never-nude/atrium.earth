@@ -126,7 +126,7 @@ export async function readCdnAsset(url, { bytes, mime, varyByOrigin = false, ful
     throw error;
   }
   if (response.status === 206 && body.length !== headerBytes) {
-    throw new Error(`Expected range body size ${headerBytes}, received ${body.length}`);
+    throw new Error(`Expected body size ${headerBytes}, received ${body.length}`);
   }
   if (full && body.length !== bytes) throw new Error(`Expected body size ${bytes}, received ${body.length}`);
   return { body, delivery: {
