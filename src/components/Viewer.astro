@@ -7,6 +7,7 @@ type Props = {
   modelBytes?: number;
   startBeforeStill?: boolean;
   poster: string;
+  posterStill?: string;
   /** Alt text for the still image. Describe the work itself; the default only names it. */
   posterAlt?: string;
   title: string;
@@ -43,6 +44,7 @@ const {
   modelBytes,
   startBeforeStill = false,
   poster,
+  posterStill,
   posterAlt,
   title,
   hud = true,
@@ -76,7 +78,11 @@ const hasModel = Boolean(glb);
 const uid = Math.random().toString(36).slice(2, 8);
 const appearanceJson = JSON.stringify(materialAppearance);
 const thumbnailSlug = /\/previews\/renders\/(.+)\/thumb\.webp(?:\?.*)?$/.exec(poster)?.[1];
-const renderedStill = hasModel && thumbnailSlug && previewStills.includes(thumbnailSlug) ? `${import.meta.env.BASE_URL.replace(/\/$/, '')}/images/viewer-stills/${thumbnailSlug}.webp` : '';
+const renderedStill = hasModel ? posterStill ?? (
+  thumbnailSlug && previewStills.includes(thumbnailSlug)
+    ? `${import.meta.env.BASE_URL.replace(/\/$/, '')}/images/viewer-stills/${thumbnailSlug}.webp`
+    : ''
+) : '';
 const backdrop = ['backdropTop', 'backdropBase', 'backdropGlow'].map(key => {
   const value = materialAppearance[key];
   return typeof value === 'string' && /^#[a-f\d]{6}$/i.test(value) ? value : undefined;
@@ -236,6 +242,7 @@ const hasStartStrip = hasModel && (loadingPlacement === 'below' || tapToLoad);
     mapLift?: number;
     mapFloor?: number;
     keyLightIntensity?: number;
+    keyLightCameraOffset?: [number, number, number];
     fillLightIntensity?: number;
     rimLightIntensity?: number;
     hemiLightIntensity?: number;
@@ -481,10 +488,12 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
 
     // Keep the gallery rig spectrally neutral: authored base-colour, normal and
     // PBR maps supply the object's colour and surface character. The lights only
-    // reveal form, and their direction is fixed rather than visitor-controlled.
+    // reveal form. A staged presentation may position its key in camera space.
     scene.add(new THREE.HemisphereLight(0xffffff, 0x606060, appearance.hemiLightIntensity ?? 0.7));
     const key = new THREE.DirectionalLight(0xffffff, appearance.keyLightIntensity ?? 2.4);
     const keyRadius = 5, keyHeight = 4;
+    const keyLightCameraOffset = appearance.keyLightCameraOffset
+      ? new THREE.Vector3(...appearance.keyLightCameraOffset) : null;
     const fixedKeyAngle = 0.15 * Math.PI * 2;
     key.position.set(Math.cos(fixedKeyAngle) * keyRadius, keyHeight, Math.sin(fixedKeyAngle) * keyRadius);
     key.castShadow = true;
@@ -617,7 +626,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
     // PCF filtering produce a soft grounding shadow without painting detail onto
     // the object's authored texture.
     const shadowSpan = Math.max(size.x, size.y, size.z) * 2.2;
-    const keyDist = Math.hypot(keyRadius, keyHeight);
+    const keyDist = keyLightCameraOffset?.length() ?? Math.hypot(keyRadius, keyHeight);
     const shadowCam = key.shadow.camera;
     shadowCam.left = -shadowSpan;
     shadowCam.right = shadowSpan;
@@ -697,6 +706,11 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
           turntable.rotation.y = (turntable.rotation.y + THREE.MathUtils.degToRad(turntableSpeed) * Math.min(elapsed, 1)) % (Math.PI * 2);
         }
         const changed = controls.update(Math.min(elapsed, 0.25));
+        if (keyLightCameraOffset) {
+          key.position.copy(keyLightCameraOffset).applyQuaternion(camera.quaternion).add(controls.target);
+          key.target.position.copy(controls.target);
+          key.target.updateMatrixWorld();
+        }
         renderer.render(scene, camera);
         if (!rotationHold.interacting) picker.update(performance.now(), !rotationRunning() && !changed);
         return rotationRunning() || changed;

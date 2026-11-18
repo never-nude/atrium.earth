@@ -27,6 +27,27 @@ README.md was inspected for project context (observed blob `512ea6af19a98afa7d6e
 
 Neither computer's checkout, uncommitted changes, unpushed commits, local paths, running tasks, nor separate Codex conversations has been inspected. Do not mark either machine synchronized based on these files alone.
 
+## 2026-11-18 — Homepage release and CDN pacing candidate
+
+- The [ordered homepage release](https://github.com/never-nude/atrium.earth/actions/runs/44375368726) at `7b3cd20e` built successfully. All 14 URLs from the earlier HTTP 500 incident returned valid partial responses. The verifier received HTTP 500 for `modern/male-nude-mares-emporda` and timed out before response headers for `greek/terracotta-warship-cyprus-fitzwilliam`. The other 3,172 model URLs and all six first-view hashes passed. Pages skipped deployment.
+- This Codex session prepared local branch `codex/homepage-cdn-pacing` from `7b3cd20e`, reusing the verifier and regression tests from [PR #107's pacing change](https://github.com/never-nude/atrium.earth/commit/4c106a297a61e31dca9a14871f3b4ab0a759c5be). The verifier spaces request starts by at least 100 ms and keeps the existing four-worker and single-attempt checks. The globe remains in PR #107 for its own release.
+- Node 22 tests and an 8,842-page Pages build passed locally before the authorized live review.
+- [PR #111's paced review](https://github.com/never-nude/atrium.earth/actions/runs/44380927507) passed all 3,174 model URLs, all six first-view hashes and all 3,120 JPEG URLs. Four of 64 browser cases failed the homepage's 3 MB featured-model budget. The explicit Discobolus pin had searched the scheduled rotation pool, which excludes it, and fell back to a 7,200,532-byte Belvedere Torso model.
+- PR #111 selects Discobolus for the curated edition from the reviewed featured collection and applies the shared first-preview budget. Its verified first view is 483,184 bytes.
+- The [next review](https://github.com/never-nude/atrium.earth/actions/runs/44386021899) was canceled on the owner's instruction before the build or live checks. The runner spent 31 minutes downloading 139 MB of Linux packages from the AWS Ubuntu mirror and was still downloading at cancellation. The review and Pages build now use the digest-pinned Playwright 1.61.1 image so both browser engines and their dependencies are available at startup.
+- The owner approved Discobolus's torso view, two-o'clock key light and 15% higher exposure for the homepage. The opening still matches the live 3D setup. The homepage shows four of 40 visual picks from the 300 latest eligible acquisitions, and the Newest index shows all 40 followed by the remaining latest arrivals.
+- Node 22 tests, an 8,842-page Pages build, the Pages package budget, the collection window and artwork image checks passed. Discobolus rendered in local phone and desktop Chromium and WebKit using the retained asset, and the built Newest index contained all 40 picks plus 36 other works from the latest import. Both CDN URL lists still match the passing audit. The owner authorized a fresh review and deployment on success. Owner review of the deployed homepage precedes the globe release.
+- The [fresh hosted review](https://github.com/never-nude/atrium.earth/actions/runs/44393687289) passed setup and build, then hit 11 pre-header CDN failures. The [subsequent 11-URL check](https://github.com/never-nude/atrium.earth/actions/runs/44396676572) passed from both a hosted runner and the Mac. The owner-approved full Mac audit on `14ad97be` passed 3,174 model URLs, six first-view hashes and 3,120 JPEG URLs on the first attempt.
+- PR #111 allows a manual review to select a dedicated runner by label. The main-branch Pages build can use a temporary release-runner selector for the authorized push. Other reviews and scheduled builds use the existing hosted runner, and the existing verification and deploy steps are retained. The owner authorized normal checks on an isolated runner and a homepage deployment on success, with a review pause before the globe.
+
+
+## 2026-11-18 — Clean homepage release restart
+
+- This Codex session rebuilt the homepage candidate from the current `main` (`7b3cd20e`) on `codex/homepage-release-restart`. The source and workflow files match [draft PR #111](https://github.com/never-nude/atrium.earth/pull/111). The Discobolus camera and lighting, curated set of 40 recent additions, and the existing live release gates carry forward. The globe is outside this candidate.
+- Node 22 tests, the 8,842-page Pages build, the package budget, the collection window, and published artwork image validation passed. Chromium and WebKit exercised the homepage and Newest index in desktop and phone viewports with the locally retained 483,184-byte Discobolus GLB. An offline scan resolved all built CDN references (3,174 models and 3,120 JPEGs).
+- The [dedicated-runner review](https://github.com/never-nude/atrium.earth/actions/runs/44400340963) failed on a Cloudflare R2 origin HTTP 500 for the Quetzalcoatl preview at 21:23:24 UTC (Ray `a5ca093da9b43cbb-DFW`). The origin's internal error is unknown. Cloudflare's portal restricted private technical cases on the Free plan.
+- The owner placed production on hold pending Cloudflare's response. This restart performed local validation only. Starting the next live review requires the owner's direction under [Issue #109](https://github.com/never-nude/atrium.earth/issues/109).
+
 ## Next session
 
 1. Read AGENTS.md and existing project instructions.
