@@ -26,8 +26,10 @@ export type MuseumProgramme = {
 
 const result = buildMuseumProgramme({
   date: programmeDate,
-  programmes,
-  exhibitions,
+  // Owner-selected homepage exhibition; retain the normal calendar configuration
+  // and its rotation rules for other programme callers.
+  programmes: { ...programmes, focuses: programmes.focuses.filter(focus => focus.exhibitionId === 'what-survives') },
+  exhibitions:
   homepageWorks: homepageFeaturedWorks,
   previews,
   pairings,
