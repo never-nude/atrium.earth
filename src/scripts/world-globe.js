@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { shortestLongitudeDelta, globeTurnEase, pointOnGlobe } from '../lib/world-globe-motion.mjs';
 
 const RAD = Math.PI / 180;
 const OPENING = { x: 0.16, y: -0.32 };
@@ -36,19 +37,19 @@ function landRings(data) {
   return polygons;
 }
 
-function paintLand(ctx, polygons, box, glow = true, vivid = false) {
+function paintLand(ctx, polygons, box, glow = true, vivid = false, signature = false) {
   ctx.save();
   ctx.translate(box.x, box.y);
   ctx.lineWidth = 0.8;
-  ctx.fillStyle = '#123a51';
+  ctx.fillStyle = signature ? '#273044' : '#123a51';
   if (vivid && ctx.createLinearGradient) {
     const gradient = ctx.createLinearGradient(0, 0, box.width, box.height);
     gradient.addColorStop(0, '#248b9d'); gradient.addColorStop(0.4, '#155a83');
     gradient.addColorStop(0.7, '#176f78'); gradient.addColorStop(1, '#34396c');
     ctx.fillStyle = gradient;
   }
-  ctx.strokeStyle = '#43e7ed';
-  ctx.shadowColor = '#13bfe8';
+  ctx.strokeStyle = signature ? '#b3a67a' : '#43e7ed';
+  ctx.shadowColor = signature ? '#e9d17e' : '#13bfe8';
   ctx.shadowBlur = glow ? 5 : 0;
   for (const polygon of polygons) {
     ctx.beginPath();
@@ -72,19 +73,34 @@ function paintLand(ctx, polygons, box, glow = true, vivid = false) {
  * Persisted pagehide pauses this instance; pageshow resumes it. Callers should
  * not destroy a bfcache-preserved instance unless they recreate it on pageshow.
  */
-export function createWorldGlobe({ host, places = [], onSelect, onReady, onError, landUrl, presentation = 'explorer', autoRotate = false, onZoomChange, onAutoRotateChange } = {}) {
+export function createWorldGlobe({ host, places = [], onSelect, onReady, onError, landUrl, presentation = 'explorer', autoRotate, onZoomChange, onAutoRotateChange } = {}) {
   if (!(host instanceof HTMLElement)) throw new TypeError('World globe requires a host element.');
   const events = new AbortController();
   const signal = events.signal;
   const invitation = presentation === 'invitation';
+  const signature = presentation === 'signature';
+  const createdAt = performance.now();
+  const metrics = { createdAtMs: createdAt, firstFrameAtMs: null, firstFrameMs: null, lastTurnFps: null, lastTurnDurationMs: null };
+  let readyNotified = false;
+  let turnSample;
+  let resumeTimer;
+  let resumeAt = 0;
+  let handActive = false;
+  let hoverHeld = false;
+  let keyboardHeld = false;
+  let lastScrollAt = -Infinity;
+  let touchGesture;
+  let suppressClickUntil = 0;
   const original = { position: host.style.position, minHeight: host.style.minHeight };
   if (getComputedStyle(host).position === 'static') host.style.position = 'relative';
   if (!host.clientHeight) host.style.minHeight = '360px';
   const mount = document.createElement('div');
   mount.dataset.worldView = '';
-  mount.style.cssText = 'position:absolute;inset:0;overflow:hidden;background:radial-gradient(ellipse at 50% 48%,#0b2042 0%,#050b1a 58%,#030712 100%);isolation:isolate';
+  mount.style.cssText = 'position:absolute;inset:0;overflow:hidden;isolation:isolate;background:' + (signature ? 'transparent' : 'radial-gradient(ellipse at 50% 48%,#0b2042 0%,#050b1a 58%,#030712 100%)');
+  if (signature) mount.dataset.worldSignatureView = '';
   const canvas = document.createElement('canvas');
   canvas.style.cssText = 'display:block;width:100%;height:100%;touch-action:pan-y;outline-offset:-4px;position:absolute;inset:0';
+  if (signature) canvas.style.touchAction = 'auto';
   canvas.tabIndex = 0;
   canvas.setAttribute('role', 'img');
   canvas.setAttribute('aria-label', invitation
@@ -100,6 +116,7 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
   if (invitation) markers.setAttribute('aria-hidden', 'true');
   const fallback = document.createElement('p');
   fallback.style.cssText = 'position:absolute;left:24px;right:24px;bottom:18px;margin:0;color:#bed5ec;font:12px/1.6 system-ui;pointer-events:none';
+  if (signature) fallback.style.cssText = 'position:absolute;left:24px;right:24px;bottom:18px;margin:0;color:var(--v3-muted,#b3bbc7);font:12px/1.6 var(--v3-sans,system-ui);pointer-events:none';
   fallback.setAttribute('role', 'status');
   mount.append(canvas, flat, markers, fallback);
   host.append(mount);
@@ -110,7 +127,7 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
       || !Number.isFinite(place.lat) || !Number.isFinite(place.lon)
       || Math.abs(place.lat) > 90 || Math.abs(place.lon) > 180
       || !['country', 'region'].includes(place.precision)) continue;
-    unique.set(place.id, { ...place, color: safeColor(place.color), vector: worldPosition(place.lat, place.lon, 1.025) });
+    unique.set(place.id, { ...place, color: signature ? '#e9d17e' : safeColor(place.color), vector: worldPosition(place.lat, place.lon, 1.025) });
   }
   const entries = [...unique.values()];
   let counts = Object.create(null);
@@ -130,7 +147,7 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
   let drag;
   let pinch;
   let zoom = 1;
-  let autoRotateRequested = Boolean(autoRotate);
+  let autoRotateRequested = Boolean(autoRotate ?? signature);
   let previousFrameTime;
   let originPoints;
   const rotation = { ...OPENING };
@@ -146,11 +163,12 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
   };
   const countFor = id => Number.isFinite(counts[id]) ? Math.max(0, Math.floor(counts[id])) : 0;
   const isAutoRotating = () => autoRotateRequested && !reducedMotion.matches && mode === 'globe' && Boolean(renderer);
+  const shouldRotate = () => isAutoRotating() && (!signature || (!handActive && !hoverHeld && !keyboardHeld && performance.now() >= resumeAt));
   function notifyMotion() { queueMicrotask(() => { if (!destroyed) { try { onAutoRotateChange?.(isAutoRotating()); } catch {} } }); }
   function updateCamera() {
     if (!camera || !width || !height) return;
     camera.aspect = width / height;
-    const fit = invitation ? 1.2 : 1.4;
+    const fit = invitation ? 1.2 : signature ? 1.28 : 1.4;
     const distance = fit / (Math.tan(camera.fov * RAD / 2) * Math.min(camera.aspect, 1)) * zoom;
     camera.position.set(0, 0, Math.max(1.35, distance));
     camera.far = Math.max(20, distance + 4); camera.updateProjectionMatrix();
@@ -159,7 +177,7 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
     zoom = clamp(value, 0.65, 1.35); updateCamera(); schedule();
     queueMicrotask(() => { if (!destroyed) { try { onZoomChange?.({ canZoomIn: zoom > 0.6501, canZoomOut: zoom < 1.3499, zoom }); } catch {} } });
   }
-  function setAutoRotate(value) { autoRotateRequested = Boolean(value); previousFrameTime = undefined; notifyMotion(); schedule(); return isAutoRotating(); }
+  function setAutoRotate(value) { autoRotateRequested = Boolean(value); if (signature && value) resumeAt = 0; previousFrameTime = undefined; notifyMotion(); schedule(); return isAutoRotating(); }
   function syncMode() {
     canvas.style.display = mode === 'globe' && renderer ? 'block' : 'none';
     canvas.tabIndex = mode === 'globe' && renderer ? 0 : -1;
@@ -183,12 +201,18 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
     button.hidden = true;
     button.dataset.worldPlace = place.id;
     button.style.cssText = `position:absolute;left:0;top:0;width:${MARKER_SIZE}px;height:${MARKER_SIZE}px;min-width:${MARKER_SIZE}px;min-height:${MARKER_SIZE}px;box-sizing:border-box;touch-action:manipulation;padding:0;border:1px solid ${place.color};border-radius:50%;background:#081326e8;color:${place.color};box-shadow:0 0 15px ${place.color}70;font:600 10px/1 system-ui;cursor:pointer;pointer-events:auto;transform:translate(-50%,-50%);z-index:2;outline-offset:4px`;
+    if (signature) {
+      button.style.cssText = 'position:absolute;left:0;top:0;width:44px;height:44px;min-width:44px;min-height:44px;box-sizing:border-box;touch-action:auto;padding:0;border:0;border-radius:50%;background:transparent;color:#e9d17e;cursor:pointer;pointer-events:auto;transform:translate(-50%,-50%);z-index:2;outline-offset:1px';
+      button.dataset.worldLight = '';
+    }
     const label = document.createElement('span');
     label.style.cssText = 'position:absolute;left:50%;bottom:calc(100% + 8px);transform:translateX(-50%);padding:5px 8px;max-width:180px;width:max-content;border:1px solid #50728d80;border-radius:3px;background:#050b1af2;color:#e9f7ff;font:11px/1.4 system-ui;text-align:center;opacity:0;pointer-events:none';
+    if (signature) label.style.cssText = 'position:absolute;left:50%;bottom:calc(100% - 2px);transform:translateX(-50%);padding:7px 10px;max-width:210px;width:max-content;border:1px solid #e9d17e40;border-radius:5px;background:#101b2cf5;color:#f4f1e8;font:12px/1.45 var(--v3-sans,system-ui);text-align:center;opacity:0;pointer-events:none';
     label.textContent = `${place.label || place.id} `;
     label.setAttribute('aria-hidden', 'true');
     const number = document.createElement('span');
     number.setAttribute('aria-hidden', 'true');
+    if (signature) number.style.cssText = 'display:block;position:absolute;left:50%;top:50%;width:7px;height:7px;border-radius:50%;transform:translate(-50%,-50%);background:currentColor;box-shadow:0 0 8px currentColor,0 0 18px #e9d17e55;pointer-events:none;transition:width 180ms ease-out,height 180ms ease-out,opacity 180ms ease-out';
     button.append(label, number);
     const showLabel = () => { label.style.opacity = '1'; button.style.zIndex = '5'; };
     const hideLabel = () => { label.style.opacity = selectedId === place.id ? '1' : '0'; button.style.zIndex = selectedId === place.id ? '4' : '2'; };
@@ -196,7 +220,10 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
     button.addEventListener('pointerleave', hideLabel, { signal });
     button.addEventListener('focus', showLabel, { signal });
     button.addEventListener('blur', hideLabel, { signal });
-    button.addEventListener('click', () => { if (countFor(place.id)) onSelect?.(place.id); }, { signal });
+    button.addEventListener('click', event => {
+      const id = signature && event.detail ? nearestMarker(event.clientX, event.clientY) || place.id : place.id;
+      if (countFor(id) && (!signature || !event.detail || performance.now() >= suppressClickUntil)) onSelect?.(id);
+    }, { signal });
     markers.append(button);
     place.button = button; place.number = number; place.labelNode = label;
   }
@@ -213,18 +240,19 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
   function initializeWebGL() {
     try {
       renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true, powerPreference: 'low-power' });
-      renderer.setClearColor(0x030712, 0);
+      renderer.setClearColor(signature ? 0x101b2c : 0x030712, 0);
       renderer.outputColorSpace = THREE.SRGBColorSpace;
       scene = new THREE.Scene();
       camera = new THREE.PerspectiveCamera(42, 1, 0.1, 20);
       earth = new THREE.Group(); scene.add(earth);
       const surface = own(new THREE.MeshPhongMaterial(invitation
         ? { color: 0xc9e8ff, emissive: 0x06223b, emissiveIntensity: 0.45, specular: 0x225c79, shininess: 24 }
+        : signature ? { color: 0xb9b6a6, emissive: 0x101b2c, emissiveIntensity: .5, specular: 0x28283e, shininess: 8 }
         : { color: 0x0a1a34, emissive: 0x031027, shininess: 14 }));
       earth.add(new THREE.Mesh(own(new THREE.SphereGeometry(1, 64, 40)), surface));
-      scene.add(new THREE.AmbientLight(0x689de0, invitation ? 0.8 : 1.7));
-      const key = new THREE.DirectionalLight(0x9deeff, invitation ? 1.7 : 2.2); key.position.set(-3, 3, 4); scene.add(key);
-      const fill = new THREE.DirectionalLight(0xca54ff, 0.65); fill.position.set(3, -1, -2); scene.add(fill);
+      scene.add(new THREE.AmbientLight(signature ? 0xb9b3d1 : 0x689de0, invitation ? 0.8 : signature ? 1.25 : 1.7));
+      const key = new THREE.DirectionalLight(signature ? 0xe9d17e : 0x9deeff, invitation ? 1.7 : signature ? 1.5 : 2.2); key.position.set(-3, 3, 4); scene.add(key);
+      const fill = new THREE.DirectionalLight(signature ? 0xc9a5ff : 0xca54ff, signature ? .4 : .65); fill.position.set(3, -1, -2); scene.add(fill);
       const grid = [];
       for (const lat of [-60, -30, 0, 30, 60]) for (let lon = -180; lon < 180; lon += 4) {
         grid.push(...worldPosition(lat, lon, 1.003).toArray(), ...worldPosition(lat, lon + 4, 1.003).toArray());
@@ -232,14 +260,16 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
       for (let lon = -180; lon < 180; lon += 30) for (let lat = -88; lat < 88; lat += 4) {
         grid.push(...worldPosition(lat, lon, 1.003).toArray(), ...worldPosition(lat + 4, lon, 1.003).toArray());
       }
-      if (!invitation) makeLine(grid, 0x3481bd, 0.22);
+      if (!invitation) makeLine(grid, signature ? 0xc9a5ff : 0x3481bd, signature ? .1 : .22);
       const atmosphereMaterial = own(new THREE.ShaderMaterial({
         transparent: true, side: THREE.BackSide, depthWrite: false, blending: THREE.AdditiveBlending,
         vertexShader: 'varying vec3 n; varying vec3 v; void main(){vec4 p=modelViewMatrix*vec4(position,1.);n=normalize(normalMatrix*normal);v=normalize(-p.xyz);gl_Position=projectionMatrix*p;}',
-        fragmentShader: 'varying vec3 n; varying vec3 v; void main(){float rim=pow(1.-abs(dot(normalize(n),normalize(v))),3.);gl_FragColor=vec4(.08,.65,1.,rim*.34);}',
+        fragmentShader: signature
+          ? 'varying vec3 n; varying vec3 v; void main(){float rim=pow(1.-abs(dot(normalize(n),normalize(v))),3.);gl_FragColor=vec4(.79,.65,1.,rim*.16);}'
+          : 'varying vec3 n; varying vec3 v; void main(){float rim=pow(1.-abs(dot(normalize(n),normalize(v))),3.);gl_FragColor=vec4(.08,.65,1.,rim*.34);}',
       }));
       scene.add(new THREE.Mesh(own(new THREE.SphereGeometry(1.075, 48, 32)), atmosphereMaterial));
-      for (const [radius, color, tilt] of invitation ? [] : [[1.2, 0x447cff, 1.18], [1.26, 0xbe55ff, -0.72]]) {
+      for (const [radius, color, tilt] of invitation || signature ? [] : [[1.2, 0x447cff, 1.18], [1.26, 0xbe55ff, -0.72]]) {
         const ring = new THREE.LineLoop(own(new THREE.BufferGeometry().setFromPoints(Array.from({ length: 128 }, (_, i) => new THREE.Vector3(Math.cos(i / 128 * Math.PI * 2) * radius, Math.sin(i / 128 * Math.PI * 2) * radius, 0)))), own(new THREE.LineBasicMaterial({ color, transparent: true, opacity: 0.22, depthWrite: false })));
         ring.rotation.x = tilt; ring.rotation.z = 0.24; scene.add(ring);
       }
@@ -255,8 +285,8 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
     let ctx;
     try { ctx = atlas.getContext('2d'); } catch {}
     if (ctx) {
-      ctx.fillStyle = '#07152b'; ctx.fillRect(0, 0, 1024, 512);
-      paintLand(ctx, polygons, { x: 0, y: 0, width: 1024, height: 512 }, true, invitation);
+      ctx.fillStyle = signature ? '#101b2c' : '#07152b'; ctx.fillRect(0, 0, 1024, 512);
+      paintLand(ctx, polygons, { x: 0, y: 0, width: 1024, height: 512 }, !signature, invitation, signature);
       texture = own(new THREE.CanvasTexture(atlas)); texture.colorSpace = THREE.SRGBColorSpace;
       // This matches SphereGeometry's seam with the documented +Z/Greenwich convention.
       texture.offset.x = 0.25; texture.wrapS = THREE.RepeatWrapping;
@@ -269,10 +299,10 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
       const b = worldPosition(ring[i][1], ring[i][0], 1.006);
       coast.push(...a.toArray(), ...b.toArray());
     }
-    makeLine(coast, 0x61f8e4, 0.88);
+    makeLine(coast, signature ? 0xe9d17e : 0x61f8e4, signature ? .38 : .88);
     const pointsGeometry = own(new THREE.BufferGeometry());
     pointsGeometry.setAttribute('position', new THREE.Float32BufferAttribute(coast.filter((_, index) => Math.floor(index / 3) % 4 === 0), 3));
-    earth.add(new THREE.Points(pointsGeometry, own(new THREE.PointsMaterial({ color: 0x8efbff, size: 0.009, transparent: true, opacity: 0.65, depthWrite: false }))));
+    earth.add(new THREE.Points(pointsGeometry, own(new THREE.PointsMaterial({ color: signature ? 0xc9a5ff : 0x8efbff, size: signature ? .005 : 0.009, transparent: true, opacity: 0.65, depthWrite: false }))));
     syncOriginPoints();
   }
 
@@ -320,11 +350,11 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
     ctx.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
     ctx.clearRect(0, 0, width, height);
     const box = mapBox();
-    ctx.fillStyle = '#061329'; ctx.fillRect(box.x, box.y, box.width, box.height);
-    ctx.strokeStyle = '#29517466'; ctx.lineWidth = 0.6;
+    ctx.fillStyle = signature ? '#101b2c' : '#061329'; ctx.fillRect(box.x, box.y, box.width, box.height);
+    ctx.strokeStyle = signature ? '#c9a5ff18' : '#29517466'; ctx.lineWidth = 0.6;
     for (let lon = -180; lon <= 180; lon += 30) { const x = box.x + (lon + 180) / 360 * box.width; ctx.beginPath(); ctx.moveTo(x, box.y); ctx.lineTo(x, box.y + box.height); ctx.stroke(); }
     for (let lat = -90; lat <= 90; lat += 30) { const y = box.y + (90 - lat) / 180 * box.height; ctx.beginPath(); ctx.moveTo(box.x, y); ctx.lineTo(box.x + box.width, y); ctx.stroke(); }
-    paintLand(ctx, polygons, box, true, invitation);
+    paintLand(ctx, polygons, box, !signature, invitation, signature);
     if (invitation) for (const place of entries) {
       if (!countFor(place.id)) continue;
       const x = box.x + (place.lon + 180) / 360 * box.width;
@@ -341,7 +371,7 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
     const ordered = [...entries].sort((a, b) => Number(b.id === selectedId) - Number(a.id === selectedId) || Number(b.id === focusedId) - Number(a.id === focusedId) || countFor(b.id) - countFor(a.id));
     for (const place of ordered) {
       const count = countFor(place.id);
-      let x = 0, y = 0, shown = count > 0;
+      let x = 0, y = 0, shown = count > 0 || (signature && place.id === selectedId);
       if (mode === 'map') {
         const box = mapBox(); x = box.x + (place.lon + 180) / 360 * box.width; y = box.y + (90 - place.lat) / 180 * box.height;
       } else if (camera && earth) {
@@ -351,9 +381,9 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
         shown = shown && front > 0.12 && projected.z > -1 && projected.z < 1;
         x = (projected.x + 1) * width / 2; y = (1 - projected.y) * height / 2;
       } else shown = false;
-      const inset = MARKER_SIZE / 2 + 4;
+      const inset = signature ? 22 : MARKER_SIZE / 2 + 4;
       shown = shown && x >= inset && x <= width - inset && y >= inset && y <= height - inset;
-      if (shown && place.id !== selectedId && place.id !== focusedId && occupied.some(point => Math.hypot(point.x - x, point.y - y) < MARKER_SIZE + 4)) shown = false;
+      if (!signature && shown && place.id !== selectedId && place.id !== focusedId && occupied.some(point => Math.hypot(point.x - x, point.y - y) < MARKER_SIZE + 4)) shown = false;
       place.button.hidden = !shown;
       if (!shown) continue;
       occupied.push({ x, y }); positions.set(place.id, { x, y });
@@ -368,15 +398,15 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
     raf = 0;
     if (destroyed || pageSuspended || !visible || document.hidden || !width || !height) return;
     const elapsed = previousFrameTime === undefined ? 0 : Math.max(0, (now - previousFrameTime) / 1000);
-    if (isAutoRotating() && !tween && previousFrameTime !== undefined && elapsed < 1 / 30) { schedule(); return; }
+    if (!signature && isAutoRotating() && !tween && previousFrameTime !== undefined && elapsed < 1 / 30) { schedule(); return; }
     previousFrameTime = now;
     if (tween) {
       const p = clamp((now - tween.start) / tween.duration, 0, 1);
-      const eased = p * p * (3 - 2 * p);
+      const eased = signature ? globeTurnEase(p) : p * p * (3 - 2 * p);
       rotation.x = tween.from.x + (tween.to.x - tween.from.x) * eased;
       rotation.y = tween.from.y + (tween.to.y - tween.from.y) * eased;
       if (p === 1) tween = null;
-    } else if (isAutoRotating() && !drag && !pinch) rotation.y += Math.min(elapsed, 0.08) * 0.045;
+    } else if (shouldRotate() && !drag && !pinch) rotation.y += Math.min(elapsed, 0.08) * 0.045;
     syncMode();
     if (mode === 'globe' && renderer) {
       earth.rotation.set(rotation.x, rotation.y, 0, 'XYZ');
@@ -385,30 +415,285 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
       catch (error) { useFlatFallback(error); drawFlat(); }
     } else drawFlat();
     projectMarkers();
-    if (tween || isAutoRotating()) schedule();
+    if (signature && landLoaded) {
+      if (metrics.firstFrameAtMs === null) {
+        metrics.firstFrameAtMs = now; metrics.firstFrameMs = now - createdAt;
+        host.dataset.worldFirstFrameMs = String(Math.round(now));
+      }
+      if (turnSample) { turnSample.frames++; turnSample.first ??= now; turnSample.last = now; }
+      if (turnSample && !tween && !drag && !pinch && !handActive) finishFrameSample();
+      if (!readyNotified) {
+        readyNotified = true;
+        try { onReady?.({ mode, webgl: Boolean(renderer), landLoaded, presentation, playing: isAutoRotating(), firstFrameAtMs: metrics.firstFrameAtMs, firstFrameMs: metrics.firstFrameMs }); } catch (error) { reportError(error); }
+      }
+    }
+    if (tween || shouldRotate()) schedule();
   }
   function schedule() { if (!destroyed && !pageSuspended && visible && !document.hidden && !raf) raf = requestAnimationFrame(render); }
   function finishMotion() { previousFrameTime = undefined; if (tween) { Object.assign(rotation, tween.to); tween = null; } }
   function orient(target, duration = 620) {
-    const shortest = ((target.y - rotation.y + Math.PI) % (Math.PI * 2) + Math.PI * 2) % (Math.PI * 2) - Math.PI;
+    const shortest = shortestLongitudeDelta(rotation.y, target.y);
     const to = { x: clamp(target.x, -1.48, 1.48), y: rotation.y + shortest };
     if (reducedMotion.matches || mode === 'map') { Object.assign(rotation, to); tween = null; }
-    else tween = { from: { ...rotation }, to, start: performance.now(), duration };
+    else {
+      if (signature) beginFrameSample();
+      tween = { from: { ...rotation }, to, start: performance.now(), duration: signature ? 800 : duration };
+    }
     schedule();
   }
   function resize() {
     if (destroyed) return;
-    width = Math.round(host.clientWidth); height = Math.round(host.clientHeight);
-    if (!width || !height) return;
-    pixelRatio = Math.min(devicePixelRatio || 1, 1.5);
+    const nextWidth = Math.round(host.clientWidth), nextHeight = Math.round(host.clientHeight);
+    if (!nextWidth || !nextHeight) {
+      if (!signature) { width = nextWidth; height = nextHeight; }
+      return;
+    }
+    // Only the signature planet trades a little canvas density for phone frame time.
+    // Its HTML lights, labels and artwork stills retain the screen's native density.
+    const pixelLimit = signature && Math.min(innerWidth, nextWidth) <= 760 ? 1.25 : 1.5;
+    const nextPixelRatio = Math.min(devicePixelRatio || 1, pixelLimit);
+    if (signature && width === nextWidth && height === nextHeight && pixelRatio === nextPixelRatio) return;
+    const pixelRatioChanged = pixelRatio !== nextPixelRatio;
+    width = nextWidth; height = nextHeight; pixelRatio = nextPixelRatio;
     flat.width = Math.round(width * pixelRatio); flat.height = Math.round(height * pixelRatio);
     if (renderer) {
-      renderer.setPixelRatio(pixelRatio); renderer.setSize(width, height, false);
+      if (!signature || pixelRatioChanged) renderer.setPixelRatio(pixelRatio);
+      renderer.setSize(width, height, false);
       updateCamera();
       if (originPoints) originPoints.material.uniforms.pointScale.value = 24 * pixelRatio;
     }
     schedule();
   }
+  function beginFrameSample() {
+    turnSample = { frames: 0, first: null, last: null, started: performance.now() };
+  }
+  function finishFrameSample() {
+    if (!turnSample) return;
+    const sample = turnSample; turnSample = null;
+    if (sample.frames < 2 || sample.last <= sample.first) return;
+    metrics.lastTurnFps = (sample.frames - 1) * 1000 / (sample.last - sample.first);
+    metrics.lastTurnDurationMs = sample.last - sample.started;
+    host.dataset.worldTurnFps = metrics.lastTurnFps.toFixed(1);
+    host.dataset.worldTurnDurationMs = String(Math.round(metrics.lastTurnDurationMs));
+  }
+  function pauseForHand() {
+    if (!signature) return;
+    clearTimeout(resumeTimer);
+    resumeAt = performance.now() + 4000;
+    previousFrameTime = undefined;
+    resumeTimer = setTimeout(() => {
+      if (destroyed) return;
+      previousFrameTime = undefined; schedule();
+    }, 4000);
+  }
+  function nearestMarker(clientX, clientY) {
+    const bounds = host.getBoundingClientRect();
+    const x = clientX - bounds.left, y = clientY - bounds.top;
+    let distance = 22, nearest = null;
+    for (const [id, position] of positions) {
+      const next = Math.hypot(position.x - x, position.y - y);
+      if (next <= distance) { distance = next; nearest = id; }
+    }
+    return nearest;
+  }
+  function globeHit(clientX, clientY, target) {
+    if (mode !== 'globe' || !renderer || !camera) return false;
+    if (target instanceof Element && target.closest('[data-world-light]:not([hidden])')) return true;
+    return pointOnGlobe(clientX, clientY, host.getBoundingClientRect(), camera.position.z, camera.fov);
+  }
+  function installSignatureHandling() {
+    // Chrome may mark programmatic canvas focus as focus-visible after a click.
+    // Explicit pointer input wins; before any input the browser's focus ring is useful.
+    let keyboardModality = null;
+    const isKeyboardTarget = target => target instanceof Element &&
+      (target === canvas || Boolean(target.closest('[data-world-light]')));
+    const holdsKeyboardFocus = target => isKeyboardTarget(target) &&
+      (keyboardModality === true || (keyboardModality === null && target.matches(':focus-visible')));
+    const setKeyboardHold = held => {
+      if (held === keyboardHeld) return;
+      keyboardHeld = held;
+      if (held) { clearTimeout(resumeTimer); previousFrameTime = undefined; }
+      else pauseForHand();
+      schedule();
+    };
+    const clearKeyboardModality = () => {
+      keyboardModality = false;
+      setKeyboardHold(false);
+    };
+    window.addEventListener('keydown', event => {
+      if (event.metaKey || event.altKey || event.ctrlKey) return;
+      keyboardModality = true;
+      if (isKeyboardTarget(document.activeElement)) setKeyboardHold(true);
+    }, { signal, capture: true });
+    window.addEventListener('pointerdown', clearKeyboardModality, { signal, capture: true, passive: true });
+    window.addEventListener('touchstart', clearKeyboardModality, { signal, capture: true, passive: true });
+    mount.addEventListener('focusin', event => setKeyboardHold(holdsKeyboardFocus(event.target)), { signal });
+    mount.addEventListener('focusout', () => queueMicrotask(() => {
+      if (!destroyed) setKeyboardHold(holdsKeyboardFocus(document.activeElement));
+    }), { signal });
+    const touchDistance = touches => Math.hypot(touches[0].clientX - touches[1].clientX, touches[0].clientY - touches[1].clientY);
+    const midpoint = touches => ({ x: (touches[0].clientX + touches[1].clientX) / 2, y: (touches[0].clientY + touches[1].clientY) / 2 });
+    const noteScroll = () => { lastScrollAt = performance.now(); };
+    window.addEventListener('scroll', noteScroll, { capture: true, passive: true, signal });
+    canvas.style.cursor = 'auto';
+    const hold = () => {
+      clearTimeout(resumeTimer); handActive = true; tween = null; previousFrameTime = undefined;
+    };
+    const release = () => {
+      handActive = false; drag = null; pinch = null;
+      finishFrameSample(); pauseForHand(); schedule();
+    };
+    function hover(event) {
+      if (event.pointerType === 'touch') return;
+      const hit = globeHit(event.clientX, event.clientY, event.target);
+      if (hoverHeld !== hit) {
+        hoverHeld = hit;
+        if (hit) { clearTimeout(resumeTimer); previousFrameTime = undefined; }
+        else if (!handActive) pauseForHand();
+      }
+      if (!drag) canvas.style.cursor = hit ? 'grab' : 'auto';
+      const nearest = nearestMarker(event.clientX, event.clientY);
+      for (const place of entries) {
+        place.labelNode.style.opacity = place.id === nearest || place.id === selectedId ? '1' : '0';
+        place.button.style.zIndex = place.id === nearest ? '5' : place.id === selectedId ? '4' : '2';
+      }
+    }
+    mount.addEventListener('pointermove', event => {
+      hover(event);
+      if (event.pointerType === 'touch' || !drag || drag.id !== event.pointerId) return;
+      const dx = event.clientX - drag.x, dy = event.clientY - drag.y;
+      drag.moved ||= Math.hypot(dx, dy) > 5;
+      rotation.y = drag.rotation.y + dx * .006;
+      rotation.x = clamp(drag.rotation.x + dy * .004, -1.48, 1.48);
+      schedule();
+    }, { signal });
+    mount.addEventListener('pointerdown', event => {
+      if (event.pointerType === 'touch' || event.button !== 0 || !globeHit(event.clientX, event.clientY, event.target)) return;
+      hold(); beginFrameSample();
+      drag = { id: event.pointerId, x: event.clientX, y: event.clientY, rotation: { ...rotation }, moved: false };
+      event.target.setPointerCapture?.(event.pointerId);
+      if (event.target === canvas) canvas.focus({ preventScroll: true });
+      canvas.style.cursor = 'grabbing';
+    }, { signal });
+    const endPointer = event => {
+      if (event.pointerType === 'touch' || !drag || drag.id !== event.pointerId) return;
+      if (drag.moved) suppressClickUntil = performance.now() + 350;
+      release();
+      if (event.type === 'pointerup') hover(event);
+      else { hoverHeld = false; canvas.style.cursor = 'auto'; }
+    };
+    mount.addEventListener('pointerup', endPointer, { signal });
+    mount.addEventListener('pointercancel', endPointer, { signal });
+    mount.addEventListener('lostpointercapture', endPointer, { signal });
+    mount.addEventListener('pointerleave', event => {
+      if (event.pointerType === 'touch') return;
+      hoverHeld = false;
+      if (!drag) { canvas.style.cursor = 'auto'; pauseForHand(); }
+    }, { signal });
+    mount.addEventListener('touchstart', event => {
+      const now = performance.now();
+      if (!touchGesture) {
+        const first = event.touches[0];
+        const owns = event.cancelable && now - lastScrollAt >= 150 && globeHit(first.clientX, first.clientY, event.target);
+        touchGesture = { owner: owns ? 'globe' : 'page', pageLocked: !event.cancelable || now - lastScrollAt < 150, startedAt: now, scrollAtStart: lastScrollAt,
+          x: first.clientX, y: first.clientY, rotation: { ...rotation }, moved: false,
+          marker: nearestMarker(first.clientX, first.clientY) };
+        if (owns) { hold(); beginFrameSample(); }
+      }
+      if (touchGesture.owner === 'page' && !touchGesture.pageLocked && event.touches.length === 2 && event.cancelable
+        && now - lastScrollAt >= 150 && lastScrollAt <= touchGesture.scrollAtStart) {
+        const middle = midpoint(event.touches);
+        if (globeHit(middle.x, middle.y)) {
+          touchGesture.owner = 'globe'; touchGesture.marker = null; hold(); beginFrameSample();
+        }
+      }
+      if (touchGesture.owner !== 'globe') return;
+      if (!event.cancelable) { touchGesture.owner = 'page'; touchGesture.pageLocked = true; release(); return; }
+      event.preventDefault();
+      hoverHeld = false;
+      if (event.touches.length === 2) {
+        pinch = { distance: Math.max(1, touchDistance(event.touches)), zoom };
+        touchGesture.moved = true; touchGesture.marker = null;
+      }
+    }, { signal, capture: true, passive: false });
+    mount.addEventListener('touchmove', event => {
+      if (touchGesture?.owner !== 'globe') return;
+      if (event.cancelable) event.preventDefault();
+      else { touchGesture.owner = 'page'; touchGesture.pageLocked = true; release(); return; }
+      if (event.touches.length === 2) {
+        pinch ??= { distance: Math.max(1, touchDistance(event.touches)), zoom };
+        setZoom(pinch.zoom * pinch.distance / Math.max(1, touchDistance(event.touches)));
+        touchGesture.moved = true; touchGesture.marker = null;
+      } else if (event.touches.length === 1) {
+        const touch = event.touches[0];
+        const dx = touch.clientX - touchGesture.x, dy = touch.clientY - touchGesture.y;
+        touchGesture.moved ||= Math.hypot(dx, dy) > 7;
+        rotation.y = touchGesture.rotation.y + dx * .006;
+        rotation.x = clamp(touchGesture.rotation.x + dy * .004, -1.48, 1.48);
+        schedule();
+      }
+    }, { signal, capture: true, passive: false });
+    const endTouch = event => {
+      if (!touchGesture) return;
+      if (event.touches.length) {
+        if (event.touches.length === 1 && touchGesture.owner === 'globe') {
+          pinch = null;
+          touchGesture.x = event.touches[0].clientX; touchGesture.y = event.touches[0].clientY;
+          touchGesture.rotation = { ...rotation };
+        }
+        return;
+      }
+      const ended = touchGesture; touchGesture = null;
+      // Page-owned touches must not select a light through a later native click.
+      // Keyboard activation (detail=0) stays available in the click handler.
+      suppressClickUntil = performance.now() + 350;
+      if (ended.owner !== 'globe') return;
+      if (event.cancelable) event.preventDefault();
+      release();
+      if (event.type !== 'touchcancel' && ended.marker && !ended.moved && countFor(ended.marker)) onSelect?.(ended.marker);
+    };
+    mount.addEventListener('touchend', endTouch, { signal, capture: true, passive: false });
+    mount.addEventListener('touchcancel', endTouch, { signal, capture: true, passive: false });
+    let magnification;
+    mount.addEventListener('wheel', event => {
+      if (event.ctrlKey && magnification !== undefined) { if (event.cancelable) event.preventDefault(); return; }
+      if (!globeHit(event.clientX, event.clientY, event.target) || !event.cancelable) return;
+      clearKeyboardModality(); event.preventDefault(); pauseForHand(); tween = null;
+      const delta = event.deltaY * (event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? height : 1);
+      setZoom(zoom * Math.exp(clamp(delta, -180, 180) * (event.ctrlKey ? .006 : .002)));
+    }, { signal, passive: false });
+    // Safari exposes trackpad magnification independently of wheel/ctrl-wheel.
+    mount.addEventListener('gesturestart', event => {
+      if (touchGesture || !globeHit(event.clientX, event.clientY, event.target) || !event.cancelable) return;
+      clearKeyboardModality(); event.preventDefault(); magnification = zoom; pauseForHand();
+    }, { signal, passive: false });
+    mount.addEventListener('gesturechange', event => {
+      if (magnification === undefined || !Number.isFinite(event.scale)) return;
+      if (event.cancelable) event.preventDefault();
+      setZoom(magnification / Math.max(.1, event.scale)); pauseForHand();
+    }, { signal, passive: false });
+    mount.addEventListener('gestureend', event => {
+      if (magnification !== undefined && event.cancelable) event.preventDefault();
+      magnification = undefined;
+    }, { signal, passive: false });
+    document.addEventListener('gestureend', () => { magnification = undefined; }, { signal, passive: true });
+    canvas.addEventListener('keydown', event => {
+      if (mode !== 'globe') return;
+      const delta = { ArrowLeft: [-.14, 0], ArrowRight: [.14, 0], ArrowUp: [0, -.12], ArrowDown: [0, .12] }[event.key];
+      if (event.key === 'Home') { event.preventDefault(); pauseForHand(); setZoom(1); orient(OPENING, 800); }
+      else if (['+', '='].includes(event.key)) { event.preventDefault(); pauseForHand(); setZoom(zoom * .85); }
+      else if (['-', '_'].includes(event.key)) { event.preventDefault(); pauseForHand(); setZoom(zoom / .85); }
+      else if (delta) {
+        clearKeyboardModality(); event.preventDefault(); pauseForHand(); tween = null;
+        rotation.y += delta[0]; rotation.x = clamp(rotation.x + delta[1], -1.48, 1.48); schedule();
+      }
+    }, { signal });
+    window.addEventListener('blur', () => { hoverHeld = false; keyboardHeld = false; keyboardModality = false; touchGesture = null; magnification = undefined; release(); }, { signal });
+    window.addEventListener('pagehide', () => { magnification = undefined; }, { signal });
+    return () => { clearTimeout(resumeTimer); };
+  }
+
+  if (!signature) {
   canvas.addEventListener('pointerdown', event => {
     if (event.button !== 0 || mode !== 'globe') return;
     tween = null;
@@ -451,9 +736,11 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
     else if (delta) { event.preventDefault(); setAutoRotate(false); tween = null; rotation.y += delta[0]; rotation.x = clamp(rotation.x + delta[1], -1.48, 1.48); schedule(); }
   }, { signal });
   // No wheel listener: the globe never consumes page scrolling.
+  } else installSignatureHandling();
+
   document.addEventListener('visibilitychange', () => { if (document.hidden) { cancelAnimationFrame(raf); raf = 0; finishMotion(); } else schedule(); }, { signal });
   window.addEventListener('pagehide', event => {
-    pageSuspended = true; cancelAnimationFrame(raf); raf = 0; finishMotion(); endDrag(); pinch = null;
+    pageSuspended = true; cancelAnimationFrame(raf); raf = 0; finishMotion(); drag = null; canvas.style.cursor = signature ? 'auto' : 'grab'; pinch = null; touchGesture = null; handActive = false; hoverHeld = false; keyboardHeld = false;
     if (!event.persisted) api.destroy();
   }, { signal });
   window.addEventListener('pageshow', () => { pageSuspended = false; resize(); schedule(); }, { signal });
@@ -478,20 +765,46 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
       for (const place of invitation ? [] : entries) {
         const count = countFor(place.id), selected = place.id === selectedId;
         if (!count) place.button.hidden = true;
-        const markerCount = count > 99 ? '99+' : String(count);
-        const total = count > 99 ? ` (${count} in total)` : '';
-        place.number.textContent = markerCount;
+        const markerCount = signature ? count.toLocaleString('en-US') : count > 99 ? '99+' : String(count);
+        const total = !signature && count > 99 ? ` (${count} in total)` : '';
+        place.number.textContent = signature ? '' : markerCount;
         place.button.setAttribute('aria-label', `${place.label}: ${markerCount} ${count === 1 ? 'work' : 'works'}${total}. ${place.precision === 'country' ? 'Country' : 'Regional'} location, not an exact artwork site.`);
         place.button.setAttribute('aria-pressed', String(selected));
+        if (signature) {
+          const size = 4.5 + Math.log1p(count) * 1.15;
+          place.button.dataset.worldCount = String(count);
+          place.number.style.width = `${size}px`; place.number.style.height = `${size}px`;
+          place.number.style.opacity = String(count ? .45 + Math.min(.55, Math.log1p(count) / 12) : .16);
+          place.button.style.color = selected ? '#c9a5ff' : '#e9d17e';
+          place.labelNode.textContent = `${place.label} · ${markerCount} ${count === 1 ? 'work' : 'works'}`;
+          place.labelNode.style.opacity = selected ? '1' : '0'; place.button.style.zIndex = selected ? '4' : '2';
+          continue;
+        }
         place.button.style.background = selected ? place.color : '#081326e8';
         place.button.style.color = selected ? '#04111c' : place.color;
         place.button.style.boxShadow = selected ? `0 0 0 4px ${place.color}33,0 0 24px ${place.color}99` : `0 0 15px ${place.color}70`;
         place.labelNode.style.opacity = selected ? '1' : '0'; place.button.style.zIndex = selected ? '4' : '2';
       }
-      if (selectedId && selectedId !== before && countFor(selectedId)) { const place = unique.get(selectedId); orient({ x: place.lat * RAD, y: -place.lon * RAD }); }
+      if (selectedId && selectedId !== before && (signature || countFor(selectedId))) { const place = unique.get(selectedId); if (signature) pauseForHand(); orient({ x: place.lat * RAD, y: -place.lon * RAD }, signature ? 800 : 620); }
       schedule();
     },
-    reset() { if (!destroyed) { setZoom(1); orient(OPENING); } },
+    reset() { if (!destroyed) { setZoom(1); if (signature) pauseForHand(); orient(OPENING); } },
+    centerPlace(id) {
+      const place = unique.get(id);
+      if (destroyed || !place) return false;
+      if (signature) pauseForHand();
+      orient({ x: place.lat * RAD, y: -place.lon * RAD }, 800);
+      return true;
+    },
+    captureView() { return { rotation: { ...rotation }, zoom, mode, autoRotateRequested }; },
+    restoreView(view) {
+      if (destroyed || !view || !Number.isFinite(view.rotation?.x) || !Number.isFinite(view.rotation?.y) || !Number.isFinite(view.zoom)) return false;
+      autoRotateRequested = Boolean(view.autoRotateRequested);
+      setZoom(view.zoom);
+      if (signature) pauseForHand();
+      orient(view.rotation, 800); notifyMotion(); return true;
+    },
+    getMetrics() { return { ...metrics, rotating: shouldRotate(), rotation: { ...rotation }, zoom, mode }; },
     zoomIn() { if (!destroyed) setZoom(zoom * 0.85); },
     zoomOut() { if (!destroyed) setZoom(zoom / 0.85); },
     setAutoRotate(value) { return destroyed ? false : setAutoRotate(value); },
@@ -506,7 +819,7 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
     },
     destroy() {
       if (destroyed) return;
-      destroyed = true; events.abort(); cancelAnimationFrame(raf); tween = null; drag = null; pinch = null;
+      destroyed = true; events.abort(); clearTimeout(resumeTimer); cancelAnimationFrame(raf); tween = null; drag = null; pinch = null;
       observer?.disconnect(); visibilityObserver?.disconnect();
       for (const resource of owned) resource.dispose(); owned.clear();
       renderer?.dispose(); renderer?.forceContextLoss(); renderer = null;
@@ -526,7 +839,7 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
       const data = landRings(JSON.parse(text));
       if (destroyed) return;
       polygons = data; landLoaded = true; addLand(); schedule();
-      try { onReady?.({ mode, webgl: Boolean(renderer), landLoaded, presentation, playing: isAutoRotating() }); } catch (error) { reportError(error); }
+      if (!signature) { try { onReady?.({ mode, webgl: Boolean(renderer), landLoaded, presentation, playing: isAutoRotating() }); } catch (error) { reportError(error); } }
     } catch (error) {
       if (destroyed || signal.aborted) return;
       landFailed = true; fallback.textContent = 'The map is unavailable. Use the place selector to explore.';

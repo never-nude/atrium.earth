@@ -4,6 +4,7 @@ import { COLLECTION_PAGE_SIZE, COLLECTION_FILTER_KEYS, normalizeCollectionText, 
 import { createCollectionCard } from '../lib/collection-card.mjs';
 import { groupMakerFacet } from '../lib/maker-groups.mjs';
 import { modelSizeLabel, requiresModelActivation } from '../lib/viewer-preview.mjs';
+import { hasWorldCollectionFilter, readWorldCollectionFilter, clearWorldCollectionFilter } from '../lib/world-selection.mjs';
 
 // Framed miniatures reuse one native viewer and never create collection tools or nested frames.
 const isStudioPeek = window.parent !== window && new URLSearchParams(location.search).get('studio-peek') === '1';
@@ -165,6 +166,10 @@ async function initializeExplorer(explorer) {
   const count = explorer.querySelector('[data-v3-count]');
   const empty = explorer.querySelector('[data-v3-empty]');
   if (!form || !search || !grid || !count || !empty) return;
+  if (hasWorldCollectionFilter(location.search)) {
+    grid.hidden = true;
+    count.textContent = 'Finding works from this origin…';
+  }
   const filters = [...form.querySelectorAll('[data-v3-filter]')];
   const initialCards = [...grid.querySelectorAll('[data-v3-card]')];
   let records = initialCards.map((card, index) => {
@@ -181,6 +186,42 @@ async function initializeExplorer(explorer) {
   const indexURL = explorer.dataset.studioIndexUrl;
   const cardData = new Map();
   const chunkRequests = new Map();
+  const originBadge = explorer.querySelector('[data-studio-origin-filter]');
+  const originLabel = explorer.querySelector('[data-studio-origin-label]');
+  let worldDataRequest;
+  let originFilter = null;
+  function showOriginFailure() {
+    grid.hidden = true; empty.hidden = true;
+    count.textContent = 'The selected origin could not be loaded.';
+    if (originBadge) originBadge.hidden = true;
+    if (status) {
+      status.hidden = false;
+      const text = document.createTextNode('Works from this place are unavailable right now. ');
+      const clear = document.createElement('button');
+      clear.type = 'button'; clear.className = 'studio-view-button';
+      clear.textContent = 'Clear place filter';
+      clear.addEventListener('click', () => {
+        const destination = new URL(explorer.dataset.studioEntrance || location.pathname, location.href);
+        destination.search = clearWorldCollectionFilter(location.search).toString();
+        location.assign(destination.href);
+      }, { once: true });
+      status.replaceChildren(text, clear);
+    }
+    if (pagination) pagination.hidden = true;
+  }
+  async function readOriginFilter() {
+    if (!hasWorldCollectionFilter(location.search)) return null;
+    if (!worldDataRequest) {
+      worldDataRequest = (async () => {
+        const source = new URL(explorer.dataset.worldDataUrl || '', location.href);
+        if (!explorer.dataset.worldDataUrl || source.origin !== location.origin) throw new Error('Origin metadata must be local');
+        const response = await fetch(source, { credentials: 'same-origin', cache: 'no-cache' });
+        if (!response.ok) throw new Error('Origin metadata is unavailable');
+        return response.json();
+      })();
+    }
+    return readWorldCollectionFilter(location.search, await worldDataRequest);
+  }
   let mountedCards = new Map(records.map(record => [record.pathname, record.card]));
   const originalCards = indexURL ? new Map() : new Map(mountedCards);
   if (indexURL) {
@@ -193,6 +234,7 @@ async function initializeExplorer(explorer) {
       records = unpackCollectionIndex(payload).filter(record => explorer.dataset.studioSpatial !== 'true' || Boolean(record.size));
       for (const record of records) record.pathname = workPath(withBase(`/works/${record.slug}/`));
     } catch {
+      if (hasWorldCollectionFilter(location.search)) { showOriginFailure(); return; }
       if (status) {
         status.hidden = false;
         status.textContent = 'Search could not load. You can still open the works below and continue using the page links. ';
@@ -346,7 +388,8 @@ async function initializeExplorer(explorer) {
     savedOnly = state.saved;
     density = state.density;
     limit = PAGE_SIZE;
-    const refined = state.q || state.maker || state.saved || state.sort !== 'curator' || FILTER_KEYS.some(key => state[key]);
+    const refined = state.q || state.maker || state.saved || state.sort !== 'curator'
+      || hasWorldCollectionFilter(params) || FILTER_KEYS.some(key => state[key]);
     offset = refined ? 0 : (collectionPageNumber(location.pathname) - 1) * PAGE_SIZE;
     return retiredWing;
   }
@@ -373,7 +416,20 @@ async function initializeExplorer(explorer) {
 
   async function render(updateURL = true) {
     const request = ++renderRequest;
-    const result = selectCollectionWindow(records, currentState(), { saved, offset, limit });
+    try {
+      originFilter = await readOriginFilter();
+      if (request !== renderRequest) return;
+    } catch {
+      if (request !== renderRequest) return;
+      showOriginFailure(); more.hidden = true;
+      return;
+    }
+    if (originBadge) originBadge.hidden = !originFilter;
+    if (originLabel && originFilter) originLabel.textContent = `${originFilter.label} · ${originFilter.periodLabel}`;
+    const sourceRecords = originFilter ? records.filter(record => originFilter.slugs.has(record.slug)) : records;
+    explorer.dataset.studioOrigin = originFilter?.place || '';
+    explorer.dataset.studioOriginCount = String(sourceRecords.length);
+    const result = selectCollectionWindow(sourceRecords, currentState(), { saved, offset, limit });
     if (updateURL) writeURL();
     else syncCollectionLinks(new URLSearchParams(location.search).toString());
     const missing = result.records.some(record => !mountedCards.has(record.pathname));
@@ -430,13 +486,15 @@ async function initializeExplorer(explorer) {
       return;
     }
     grid.removeAttribute('aria-busy');
+    explorer.removeAttribute('data-studio-origin-pending');
     more.disabled = false;
     const matches = result.total;
     const shown = result.records.length;
     const range = offset ? `${(offset + 1).toLocaleString('en-US')}–${(offset + shown).toLocaleString('en-US')}` : shown.toLocaleString('en-US');
     const query = search.value.trim();
     const queryLabel = query ? ` for “${query}”` : '';
-    const message = matches ? `Showing ${range} of ${matches.toLocaleString('en-US')} ${matches === 1 ? 'work' : 'works'}${queryLabel}${savedOnly ? ' saved on this browser' : ''}` : savedOnly ? 'No saved works match these filters.' : `No works match${query ? queryLabel : ' these filters'}.`;
+    const originName = originFilter ? ` from ${originFilter.label}` : '';
+    const message = matches ? `Showing ${range} of ${matches.toLocaleString('en-US')} ${matches === 1 ? 'work' : 'works'}${originName}${queryLabel}${savedOnly ? ' saved on this browser' : ''}` : savedOnly ? 'No saved works match these filters.' : `No works match${query ? queryLabel : ' these filters'}.`;
     if (count.textContent !== message) count.textContent = message;
     grid.hidden = matches === 0;
     empty.hidden = matches !== 0;
@@ -467,6 +525,15 @@ async function initializeExplorer(explorer) {
     sortControl.select.value = 'curator';
     density = 'grid';
     savedOnly = false;
+    if (hasWorldCollectionFilter(location.search)) {
+      const params = clearWorldCollectionFilter(location.search);
+      history.replaceState(history.state, '', `${location.pathname}${params.size ? `?${params}` : ''}${location.hash}`);
+    }
+    update();
+  });
+  explorer.querySelector('[data-studio-origin-clear]')?.addEventListener('click', () => {
+    const params = clearWorldCollectionFilter(location.search);
+    history.replaceState(history.state, '', `${location.pathname}${params.size ? `?${params}` : ''}${location.hash}`);
     update();
   });
   explorer.querySelector('[data-v3-empty-reset]')?.addEventListener('click', () => { form.reset(); search.focus(); });
