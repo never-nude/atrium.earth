@@ -4,6 +4,11 @@ on:
   pull_request:
     branches: [main]
   workflow_dispatch:
+    inputs:
+      runner_label:
+        description: Optional label of a dedicated release runner
+        type: string
+        required: false
 
 permissions:
   contents: read
@@ -14,7 +19,7 @@ concurrency:
 
 jobs:
   verify:
-    runs-on: ubuntu-latest
+    runs-on: ${{ github.event_name == 'workflow_dispatch' && inputs.runner_label != '' && fromJSON(format('["self-hosted","{0}"]', inputs.runner_label)) || 'ubuntu-latest' }}
     container:
       # Match the Playwright version in package-lock.json.
       image: mcr.microsoft.com/playwright:v1.61.1-resolute@sha256:6b3d024edb132382b0064c4ca56abec52d5df95b93c63dd61a81d3a37abdef7f

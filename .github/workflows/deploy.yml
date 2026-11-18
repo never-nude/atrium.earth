@@ -21,7 +21,7 @@ concurrency:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && vars.ATRIUM_RELEASE_RUNNER != '' && fromJSON(format('["self-hosted","{0}"]', vars.ATRIUM_RELEASE_RUNNER)) || 'ubuntu-latest' }}
     container:
       # Match the Playwright version in package-lock.json.
       image: mcr.microsoft.com/playwright:v1.61.1-resolute@sha256:6b3d024edb132382b0064c4ca56abec52d5df95b93c63dd61a81d3a37abdef7f
