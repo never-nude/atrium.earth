@@ -116,6 +116,84 @@ phone-review restriction is superseded for this release. Remote review and live
 deployment still need passing evidence; consult STATUS.md and the pull request
 for their actual outcome.
 
+### Current coordinator handoff
+
+The latest instruction supersedes that deployment authorization: follow
+[Issue 109](https://github.com/never-nude/atrium.earth/issues/109). This Codex chat
+is a branch contributor; the designated ChatGPT conversation owns releases and
+the existing CDN failure. Do not merge, deploy, cancel another thread's jobs or
+start new CDN checks here without explicit reassignment.
+
+The candidate integrates main `7b3cd20e` / PR 108 and preserves its homepage and
+opening camera perspectives. Combined local validation passed: full Node suite
+with 124 experience tests, production build, eight existing world-route browser
+cases, four signature audit cases, and package/collection/image checks. The
+package is 24,755 files / 910,383,071 bytes. The latest normal-motion Mac-hosted
+WebKit measurements are 211 ms to land / 121 ms to the loaded visible still /
+44.7 fps; Chromium is 357 ms / 277.6 ms / 77.6 fps. They are not iPhone results.
+
+Earlier remote reviews failed on a 429, then an isolated body deadline. A later
+recheck passed both CDN sweeps but recorded two browser model-delivery timeouts
+and stalled between WebKit cases; it was cancelled and is not a pass. The branch
+now bounds and checkpoints the old browser runner, with fresh processes and
+unchanged case assertions/network deadlines. Five deterministic runner fixtures
+and all eight real local world cases passed, including cleanup. The full remote
+64-case page and gesture suites have not been run on this integrated head.
+
+The handoff push suppresses its automatic review trigger to honor the CDN hold.
+This leaves checks unrun, not passing. The coordinator must order the complete
+review on the exact head before merge and verify production afterward.
+
+The [sanitized validation handoff](step-6-validation-20261118.json) identifies the
+tested code commit, local outcomes, earlier failed/cancelled runs and the gates
+that remain unverified. It contains no private workspace inventories or keys.
+
+## Prompt for Claude's independent critique
+
+```text
+Review Atrium.Earth independently, both visually and under the hood, then choose
+one bounded next improvement.
+
+Site: https://atrium.earth
+Repo: https://github.com/never-nude/atrium.earth
+Coordination: https://github.com/never-nude/atrium.earth/issues/109
+Globe candidate: https://github.com/never-nude/atrium.earth/pull/107
+
+Read Issue 109, AGENTS.md, STATUS.md, docs/awwwards-run.md and
+docs/step-6-globe.md. Verify current main, the deployed version and pending PRs;
+do not assume this candidate is live or that historical notes are current.
+
+Inspect desktop and phone-sized visitor journeys: homepage, collection search,
+artwork inspection, exhibitions/guided visits, globe, filtered collection and
+fullscreen. Critique hierarchy, identity, typography, pacing, discovery, loading,
+accessibility and whether the art gets sufficient space. Inspect architecture,
+data projections, rendering/lifecycle costs, asset delivery and test reliability.
+Be candid; challenge the existing decisions when evidence warrants it.
+
+Give five prioritized findings. Each needs a specific URL or file/line, evidence,
+visitor impact, smallest useful correction and testable acceptance criteria.
+Separate observed defects, design preferences and unverified concerns. Desktop
+WebKit emulation does not establish physical-iPhone behavior. Preserve and report
+first-attempt failures and timeouts; do not erase them with later passes or invent
+a cause. Existing CDN failures belong to the release coordinator.
+
+Choose one high-impact improvement within the permitted scope. If you have repo
+tools, implement it on a separate branch from current main, preserve others' work,
+self-audit and provide local desktop and phone previews. Otherwise give one
+Codex-ready brief with scope, file targets, acceptance checks and phone checklist.
+
+Follow Issue 109: no merges, deployments, new CDN checks or cancellation of
+another thread's jobs. The designated ChatGPT conversation coordinates releases.
+Preserve models, provenance holds and accepted sculpture handling. Do not acquire
+works or roll out more first views. Stage 3 file removal, wings, grounding and the
+tilt limit remain parked. Automatic AI generation remains off.
+
+The final Awwwards review will freeze one candidate and use a binary GO/NO-GO
+checklist: every item needs passing evidence; uncertainty is NO-GO. Fixes create
+a new candidate and require a fresh checklist pass. Make design decisions before
+that final gate.
+```
+
 ## Scope protections
 
 Models, catalogue records, orientations and artwork-page handling are unchanged.
