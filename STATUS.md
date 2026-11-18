@@ -2474,3 +2474,11 @@ The full local production build passes: 8,842 pages and 877,192,353 package byte
 - Completed on branch: code changes only. The shared museum scheduling engine remains unchanged; homepage selects a curated edition. Artwork geometry, attribution, licensing and source delivery assets are unchanged. The former Surface-specific five-minute button now links to What Survives as an exhibition invitation, not an unsupported five-minute curated visit.
 - Validation: source reviewed through GitHub connector. Complete GitHub Actions review and live render/deployment confirmation must be checked separately; no claims of local browser inspection or verified camera aesthetics.
 - Next: pass production review gates; merge PR #108 only on success; verify GitHub Pages deployment and live homepage with both artwork views. Preserve any concurrent work.
+
+## 2026-11-18 — Model CDN failure investigation (Issue #109)
+
+- This Codex session owns `codex/cdn-verification-109` in an isolated clone based on `7b3cd20e`.
+- The [failed Pages job](https://github.com/never-nude/atrium.earth/actions/runs/44369203959/job/135031078175) received HTTP 500 for 14 of 3,174 model URLs. All six first-view hashes passed and zero CDN references were unresolved. The identical 14 URLs returned valid 206 responses in both the [earlier Pages run](https://github.com/never-nude/atrium.earth/actions/runs/44275531036) and [PR #108 review](https://github.com/never-nude/atrium.earth/actions/runs/44366640673). The failing report lacks request-level data to locate the source of the 500s within the CDN path.
+- The diagnostic patch retains status, UTC response time, Cloudflare Ray ID and cache status in the model and JPEG reports when an HTTP status fails validation. The HTTP/2 regression fixture verifies that a 500 still fails after one request.
+- Local Node 22 tests and the 8,842-page Pages build passed, along with the package budget, collection window, and artwork-image checks. The build contains the same 3,174 model URLs as the failing report and zero unresolved references. Review CI is held on the draft pending coordinator authorization for a live sweep.
+- The release coordinator can check Cloudflare records for `models.atrium.earth` between 18:27:37 and 18:34:22 UTC and authorize live review. Release still requires passing live gates.
