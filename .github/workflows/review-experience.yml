@@ -1,61 +1,31 @@
-name: Review museum experience
+name: Compare 11 model CDN URLs
 
 on:
-  pull_request:
-    branches: [main]
   workflow_dispatch:
 
 permissions:
   contents: read
 
-concurrency:
-  group: experience-review-${{ github.ref }}
-  cancel-in-progress: true
-
 jobs:
-  verify:
+  diagnostic:
+    if: github.ref == 'refs/heads/codex/cdn-11-url-diagnostic'
     runs-on: ubuntu-latest
-    container:
-      # Match the Playwright version in package-lock.json.
-      image: mcr.microsoft.com/playwright:v1.61.1-resolute@sha256:6b3d024edb132382b0064c4ca56abec52d5df95b93c63dd61a81d3a37abdef7f
-      options: --init --ipc=host
-    defaults:
-      run:
-        shell: bash
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            scripts
+            src/lib
+            src/data
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
-      - run: npm ci
-      - name: Verify museum behaviour and source bindings
-        run: npm test
-      - name: Build the complete production package
-        run: npm run build
-        env:
-          SITE: https://atrium.earth
-      - name: Verify live model CDN addresses in the built site
-        run: node scripts/verify-published-model-delivery.mjs
-      - name: Verify live artwork JPEG CDN addresses in the built site
-        run: node scripts/verify-published-jpeg-delivery.mjs
-      - name: Verify museum pages in Chromium and WebKit
-        run: npm run test:browser
-      - name: Verify sculpture gestures in Chromium
-        run: npm run test:handling-browser
-      - name: Report homepage performance
-        if: ${{ !cancelled() }}
-        run: npm run test:performance
-      - name: Verify hosting budget
-        run: node scripts/verify-pages-budget.mjs
-      - name: Verify bounded collection delivery
-        run: node scripts/check-collection-window.mjs --dist
-      - name: Verify published artwork images
-        run: node scripts/verify-published-artwork-images.mjs
-      - name: Upload release reports
-        if: ${{ !cancelled() }}
-        uses: actions/upload-artifact@v4
+      - name: Check the 11 URLs once
+        run: node scripts/cdn-diagnostic.mjs github-actions cdn-diagnostic.json
+      - uses: actions/upload-artifact@v4
+        if: always()
         with:
-          name: museum-browser-reports
-          path: test-results/
-          if-no-files-found: ignore
+          name: cdn-diagnostic-evidence
+          path: cdn-diagnostic.json
+          if-no-files-found: error
