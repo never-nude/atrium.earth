@@ -1,4 +1,5 @@
-import { mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, readdir } from 'node:fs/promises';
+import { renameSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { join } from 'node:path';
 import { chromium, webkit } from 'playwright';
@@ -6,6 +7,7 @@ import sharp from 'sharp';
 import { serveBrowserChecks } from './serve-browser-checks.mjs';
 import { readBrowserModel } from './lib/browser-model-relay.mjs';
 import { requestCdnResource } from './lib/cdn-http2-request.mjs';
+import { browserDeadline, runBoundedBrowserCase, BROWSER_CLEANUP_TIMEOUT_MS, BROWSER_SUITE_TIMEOUT_MS } from './lib/browser-check-runner.mjs';
 import { AUTO_START_MODEL_LIMIT, INLINE_AUTO_LOAD_LIMIT, isWithinInitialPreviewBudget, requiresModelActivation } from '../src/lib/viewer-preview.mjs';
 import { firstViewFor } from '../src/lib/first-view-models.mjs';
 import catalog from '../src/data/catalog.json' with { type: 'json' };
@@ -115,13 +117,63 @@ function measurePage(phone) {
 }
 
 const dist = process.env.BROWSER_CHECK_DIST || 'dist';
-const hosted = process.env.BROWSER_CHECK_ORIGIN ? null : await serveBrowserChecks(dist);
-const origin = process.env.BROWSER_CHECK_ORIGIN || hosted.origin;
-const localOrigin = ['127.0.0.1', 'localhost'].includes(new URL(origin).hostname);
+let hosted, origin, localOrigin;
 const selected = routes.filter(route => !process.env.BROWSER_CHECK_ROUTE || route.id === process.env.BROWSER_CHECK_ROUTE);
 if (!selected.length) throw new Error('Unknown browser check route');
 await mkdir(artifacts, { recursive: true });
 const results = [];
+const browserServers = new Set();
+const specifications = [chromium, webkit]
+  .filter(engine => !process.env.BROWSER_CHECK_ENGINE || engine.name() === process.env.BROWSER_CHECK_ENGINE)
+  .flatMap(engine => viewports.flatMap(viewport => [
+    ...selected.map(route => ({ engine, viewport, route, motion: 'reduce' })),
+    ...selected.filter(route => route.viewers || route.largeModel || route.id === 'world')
+      .map(route => ({ engine, viewport, route, motion: 'no-preference' })),
+  ]));
+const caseId = ({ engine, viewport, route, motion }) => `${engine.name()}-${viewport.width}-${route.id}-${motion}`;
+function saveReport() {
+  const file = join(artifacts, 'report.json');
+  writeFileSync(file + '.tmp', JSON.stringify(results, null, 2) + '\n');
+  renameSync(file + '.tmp', file);
+}
+function killBrowser(server) {
+  const child = server?.process();
+  if (!child || child.exitCode !== null || child.signalCode !== null) return;
+  // Playwright launches detached process groups on POSIX. Kill only this
+  // owned browser's group, including its renderer children, as its launcher does.
+  if (process.platform !== 'win32') {
+    try { process.kill(-child.pid, 'SIGKILL'); return; }
+    catch (error) { if (error.code === 'ESRCH') return; }
+  }
+  child.kill('SIGKILL');
+}
+// A hard outer watchdog also covers stalled browser cleanup or protocol calls.
+// Persist the active failure and every unrun case before terminating this run.
+const suiteTimer = setTimeout(() => {
+  const message = `Whole browser suite timed out after ${BROWSER_SUITE_TIMEOUT_MS} ms (no retry)`;
+  for (const result of results.filter(result => result.status !== 'passed' && result.status !== 'failed')) {
+    result.problems.push(message);
+    result.failures ||= [];
+    result.failures.push({ phase: result.phase, message, code: 'BROWSER_SUITE_TIMEOUT' });
+    result.status = 'failed';
+  }
+  for (const specification of specifications) if (!results.some(result => result.id === caseId(specification))) {
+    results.push({ id: caseId(specification), engine: specification.engine.name(), viewport: specification.viewport,
+      route: specification.route.id, motion: specification.motion, status: 'not-run', phase: 'suite-timeout', problems: [message] });
+  }
+  if (!results.some(result => result.problems.includes(message))) {
+    results.push({ id: 'suite', status: 'failed', phase: 'suite-timeout', problems: [message] });
+  }
+  console.error(message);
+  try { saveReport(); }
+  finally {
+    for (const server of browserServers) {
+      try { killBrowser(server); } catch (error) { console.error(`Browser hard kill failed: ${error.message}`); }
+    }
+    try { requestCdnResource.close(); } catch (error) { console.error(`CDN transport close failed: ${error.message}`); }
+    process.exit(1);
+  }
+}, BROWSER_SUITE_TIMEOUT_MS);
 function modelPath(url) {
   const path = new URL(url, origin).pathname;
   try { return decodeURIComponent(path); } catch { return path; }
@@ -458,139 +510,173 @@ async function checkArtworkFullscreen(page, viewer, canvas) {
   }
 }
 
-async function check(engine, viewport, route, browser, motion = 'reduce') {
-  const context = await browser.newContext({ viewport, reducedMotion: motion, hasTouch: viewport.width === 390 });
-  const page = await context.newPage();
-  page.setDefaultTimeout(20000);
+async function check(engine, viewport, route, motion = 'reduce') {
+  let browserServer, browser, context, page;
   const errors = [];
   const problems = [];
-  const result = { engine: engine.name(), viewport, route: route.id, motion, problems, modelRequests: [] };
-  observeModelRequests(page, result.modelRequests);
+  const id = caseId({ engine, viewport, route, motion });
+  const result = { id, engine: engine.name(), viewport, route: route.id, motion, problems, modelRequests: [] };
+  const resultIndex = results.push(result) - 1;
   const prefix = join(artifacts, `${engine.name()}-${viewport.width}-${route.id}${motion === 'reduce' ? '' : '-motion'}`);
-  page.on('pageerror', error => errors.push(error.message));
-  page.on('console', message => {
-    if (message.type() !== 'error') return;
-    const location = message.location().url;
-    if (route.status === 404 && location === new URL(route.path, origin).href && /404/.test(message.text())) return;
-    errors.push(`${message.text()} ${location}`.trim());
-  });
-  try {
-    // External analytics must not make a static-site smoke check fail.
-    await page.route('https://cloud.umami.is/**', route => route.fulfill({ status: 204 }));
-    // The model CDN permits Atrium's origin. Serve its original bytes to loopback QA.
-    if (localOrigin) await page.route(/^https:\/\/models\.atrium\.earth\/models\/(?:previews|first-views)\/.+\.glb$/, async route => {
-      try {
-        const response = await readBrowserModel(route.request().url(), { timeout: 15000 });
-        await route.fulfill({ ...response, headers: { ...response.headers, 'access-control-allow-origin': new URL(origin).origin } });
-      } catch (error) {
-        errors.push(`First model delivery attempt failed for ${route.request().url()}: ${error.message}`);
-        await route.abort().catch(() => {});
-      }
-    });
-    if (route.largeModel) {
-      await page.route(
-        url => isLargeOriginal(url.href),
-        route => route.fulfill({ status: 204, headers: { 'access-control-allow-origin': new URL(origin).origin } }),
-      );
-    }
-    const expectedDeliveries = route.expectedModels && waitForExpectedModels(page, route.expectedModels);
-    const response = await page.goto(new URL(route.path, origin).href, { waitUntil: 'domcontentloaded' });
-    if (response?.status() !== (route.status ?? 200)) problems.push(`HTTP ${response?.status() ?? 'no response'}`);
-    if (route.prepare) await route.prepare(page);
-    await page.locator(route.primary).waitFor({ state: 'visible' });
-    await page.evaluate(() => Promise.race([document.fonts.ready, new Promise(resolve => setTimeout(resolve, 1500))]));
-    await page.addScriptTag({ path: axePath });
-    Object.assign(result, await page.evaluate(measurePage, viewport.width === 390));
-    if (route.id === 'collection') {
-      const search = page.locator('[data-v3-search]');
-      const count = page.locator('[data-v3-count]');
-      await search.fill('roman');
-      await page.locator('[data-v3-filter-form] button[type="submit"]').click();
-      await page.waitForFunction(() => {
-        const grid = document.querySelector('[data-v3-grid]');
-        return grid?.getAttribute('aria-busy') !== 'true'
-          && document.querySelector('[data-v3-count]')?.textContent.includes('for “roman”');
-      });
-      if (!await page.locator('[data-v3-card] a[href*="/works/discobolus/"]').count()) {
-        throw new Error('Roman search must show the matching Discobolus work');
-      }
-      if (new URL(page.url()).searchParams.get('q') !== 'roman') {
-        throw new Error('Submitting search must preserve the Roman query in the address');
-      }
-      await search.fill('no-matching-atrium-work-992');
-      await search.press('Enter');
-      await page.locator('[data-v3-empty]').waitFor({ state: 'visible' });
-      if (!(await count.textContent()).includes('no-matching-atrium-work-992')) {
-        throw new Error('An empty result must identify the submitted query');
-      }
-      await page.locator('[data-v3-empty-reset]').click();
-      await page.waitForFunction(() => {
-        const input = document.querySelector('[data-v3-search]');
-        return input?.value === '' && !document.querySelector('[data-v3-grid]')?.hidden
-          && !new URL(location.href).searchParams.has('q');
-      });
-    } else if (route.id === 'full-detail') {
-      const viewer = page.locator('#sculpture [data-viewer]');
-      const state = await viewerState(viewer, result.modelRequests);
-      if (new URL(state.model, origin).href !== new URL(detailOriginal.url, origin).href
-        || Number(state.bytes) !== detailOriginal.bytes) {
-        throw new Error(`Full detail must load the original Discobolus scan. ${JSON.stringify(state)}`);
-      }
-      await viewer.locator('[data-stage]').scrollIntoViewIfNeeded();
-      await waitForReadyModel(page, viewer, result.modelRequests);
-    } else if (route.id === 'spatial-museum') {
-      const room = await page.locator('.route-current').textContent();
-      if (!room.includes(rodinRoom.title)) throw new Error(`The museum did not open the Rodin room. ${room}`);
-    } else if (route.largeModel) {
-      await checkHeavyArtwork(page, result);
-    } else if (route.id === 'exhibition' && viewport.width === 390) {
-      const offscreen = page.locator('main [data-viewer][data-model-activation="tap"]').last();
-      if (!await offscreen.count()) throw new Error('The Surface exhibition no longer exercises an offscreen large sculpture');
-      const initial = await viewerState(offscreen, result.modelRequests);
-      if (initial.viewport.top < initial.viewport.height || initial.requests.length) throw new Error(`Large offscreen model has an unexpected initial state. ${JSON.stringify(initial)}`);
-      await checkModelGate(page, offscreen, result.modelRequests);
-    } else if (motion === 'no-preference') {
-      result.readyCanvases = [];
-      await inspectMotion(page, route, prefix, result);
-    }
-    if (expectedDeliveries) {
-      result.verifiedModels = await checkExpectedModels(expectedDeliveries, route.expectedModels, result.modelRequests);
-    }
-    result.axe = await page.evaluate(async selector => {
-      const { violations } = await window.axe.run(selector || document);
-      return violations.filter(item => ['serious', 'critical'].includes(item.impact)).map(item => ({
-        id: item.id, impact: item.impact,
-        nodes: item.nodes.map(node => ({ target: node.target, failure: node.failureSummary })),
-      }));
-    }, route.largeModel ? '#sculpture [data-viewer]' : route.axeScope ?? null);
-    if (result.overflow > 1) problems.push(`Horizontal overflow ${result.overflow}px`);
-    if (result.sameColors.length) problems.push(`Text matches its background: ${result.sameColors.map(item => item.label).join(', ')}`);
-    if (result.axe.length) problems.push(`axe: ${result.axe.map(item => `${item.id} (${item.nodes.length})`).join(', ')}`);
-    for (const measurement of [result, ...(result.readyCanvases ?? [])]) {
-      for (const item of measurement.toggleContrast.filter(item => item.ratio < 4.5)) {
-        problems.push(`${item.label} pressed contrast ${item.ratio.toFixed(2)}:1 (< 4.5:1)`);
-      }
-      if (measurement === result) continue;
-      if (measurement.overflow > 1) problems.push(`Ready canvas page overflow ${measurement.overflow}px`);
-      if (measurement.sameColors.length) problems.push(`Ready canvas text matches its background: ${measurement.sameColors.map(item => item.label).join(', ')}`);
-    }
-    try {
-      await page.screenshot({ path: `${prefix}.png`, timeout: 15000 });
-    } catch (error) {
-      result.screenshotError = error.message;
-    }
-  } catch (error) {
-    problems.push(error.message);
-  } finally {
-    await page.unrouteAll({ behavior: 'wait' });
+  const checkpoint = () => {
     if (errors.length) problems.push(...new Set(errors));
     problems.splice(0, problems.length, ...new Set(problems));
-    results.push(result);
-    const deliveries = result.verifiedModels?.length
-      ? ` | ${result.verifiedModels.length} model deliveries verified` : '';
-    console.log(`${result.engine} ${viewport.width} ${route.id} ${motion}: ${problems.length ? problems.join(' | ') : 'pass'}${viewport.width === 390 && result.smallText ? ` (${result.smallText.length} small text, ${result.smallTargets.length} small targets)` : ''}${deliveries}`);
-    await context.close();
-  }
+    // Timed-out promise losers can settle later. Keep completed reports detached
+    // from their page listeners and mutable in-flight measurement objects.
+    if (result.phase === 'complete') {
+      result.status = problems.length ? 'failed' : 'passed';
+      results[resultIndex] = structuredClone(result);
+    }
+    saveReport();
+  };
+  await runBoundedBrowserCase({
+    id, result, checkpoint,
+    run: async (phase, isRunning) => {
+      await phase('launch browser server', async () => {
+        const launched = await engine.launchServer();
+        if (!isRunning()) {
+          void browserDeadline(() => launched.kill(), 2000, 'Late browser launch cleanup').catch(() => killBrowser(launched));
+          throw new Error('Browser launched after its case stopped');
+        }
+        browserServer = launched;
+        browserServers.add(launched);
+      });
+      await phase('connect browser', async () => { browser = await engine.connect(browserServer.wsEndpoint(), { timeout: 30000 }); });
+      await phase('create context', async () => {
+        context = await browser.newContext({ viewport, reducedMotion: motion, hasTouch: viewport.width === 390 });
+      });
+      await phase('create page', async () => { page = await context.newPage(); });
+      page.setDefaultTimeout(20000);
+      observeModelRequests(page, result.modelRequests);
+      page.on('pageerror', error => errors.push(error.message));
+      page.on('console', message => {
+        if (message.type() !== 'error') return;
+        const location = message.location().url;
+        if (route.status === 404 && location === new URL(route.path, origin).href && /404/.test(message.text())) return;
+        errors.push(`${message.text()} ${location}`.trim());
+      });
+      await phase('page checks', async () => {
+        // External analytics must not make a static-site smoke check fail.
+        await page.route('https://cloud.umami.is/**', route => route.fulfill({ status: 204 }));
+        // The model CDN permits Atrium's origin. Serve its original bytes to loopback QA.
+        if (localOrigin) await page.route(/^https:\/\/models\.atrium\.earth\/models\/(?:previews|first-views)\/.+\.glb$/, async route => {
+          try {
+            const response = await readBrowserModel(route.request().url(), { timeout: 15000 });
+            await route.fulfill({ ...response, headers: { ...response.headers, 'access-control-allow-origin': new URL(origin).origin } });
+          } catch (error) {
+            errors.push(`First model delivery attempt failed for ${route.request().url()}: ${error.message}`);
+            await route.abort().catch(() => {});
+          }
+        });
+        if (route.largeModel) {
+          await page.route(
+            url => isLargeOriginal(url.href),
+            route => route.fulfill({ status: 204, headers: { 'access-control-allow-origin': new URL(origin).origin } }),
+          );
+        }
+        const expectedDeliveries = route.expectedModels && waitForExpectedModels(page, route.expectedModels);
+        const response = await phase('navigation', () => page.goto(new URL(route.path, origin).href, { waitUntil: 'domcontentloaded' }));
+        if (response?.status() !== (route.status ?? 200)) problems.push(`HTTP ${response?.status() ?? 'no response'}`);
+        if (route.prepare) await phase('route preparation', () => route.prepare(page));
+        await page.locator(route.primary).waitFor({ state: 'visible' });
+        await phase('font readiness', () => page.evaluate(() => Promise.race([document.fonts.ready, new Promise(resolve => setTimeout(resolve, 1500))])));
+        await phase('install axe', () => page.addScriptTag({ path: axePath }));
+        Object.assign(result, await phase('page measurements', () => page.evaluate(measurePage, viewport.width === 390)));
+        await phase('route behaviour', async () => {
+          if (route.id === 'collection') {
+            const search = page.locator('[data-v3-search]');
+            const count = page.locator('[data-v3-count]');
+            await search.fill('roman');
+            await page.locator('[data-v3-filter-form] button[type="submit"]').click();
+            await page.waitForFunction(() => {
+              const grid = document.querySelector('[data-v3-grid]');
+              return grid?.getAttribute('aria-busy') !== 'true'
+                && document.querySelector('[data-v3-count]')?.textContent.includes('for “roman”');
+            });
+            if (!await page.locator('[data-v3-card] a[href*="/works/discobolus/"]').count()) {
+              throw new Error('Roman search must show the matching Discobolus work');
+            }
+            if (new URL(page.url()).searchParams.get('q') !== 'roman') {
+              throw new Error('Submitting search must preserve the Roman query in the address');
+            }
+            await search.fill('no-matching-atrium-work-992');
+            await search.press('Enter');
+            await page.locator('[data-v3-empty]').waitFor({ state: 'visible' });
+            if (!(await count.textContent()).includes('no-matching-atrium-work-992')) {
+              throw new Error('An empty result must identify the submitted query');
+            }
+            await page.locator('[data-v3-empty-reset]').click();
+            await page.waitForFunction(() => {
+              const input = document.querySelector('[data-v3-search]');
+              return input?.value === '' && !document.querySelector('[data-v3-grid]')?.hidden
+                && !new URL(location.href).searchParams.has('q');
+            });
+          } else if (route.id === 'full-detail') {
+            const viewer = page.locator('#sculpture [data-viewer]');
+            const state = await viewerState(viewer, result.modelRequests);
+            if (new URL(state.model, origin).href !== new URL(detailOriginal.url, origin).href
+              || Number(state.bytes) !== detailOriginal.bytes) {
+              throw new Error(`Full detail must load the original Discobolus scan. ${JSON.stringify(state)}`);
+            }
+            await viewer.locator('[data-stage]').scrollIntoViewIfNeeded();
+            await waitForReadyModel(page, viewer, result.modelRequests);
+          } else if (route.id === 'spatial-museum') {
+            const room = await page.locator('.route-current').textContent();
+            if (!room.includes(rodinRoom.title)) throw new Error(`The museum did not open the Rodin room. ${room}`);
+          } else if (route.largeModel) {
+            await phase('large artwork behaviour', () => checkHeavyArtwork(page, result));
+          } else if (route.id === 'exhibition' && viewport.width === 390) {
+            const offscreen = page.locator('main [data-viewer][data-model-activation="tap"]').last();
+            if (!await offscreen.count()) throw new Error('The Surface exhibition no longer exercises an offscreen large sculpture');
+            const initial = await viewerState(offscreen, result.modelRequests);
+            if (initial.viewport.top < initial.viewport.height || initial.requests.length) throw new Error(`Large offscreen model has an unexpected initial state. ${JSON.stringify(initial)}`);
+            await checkModelGate(page, offscreen, result.modelRequests);
+          } else if (motion === 'no-preference') {
+            result.readyCanvases = [];
+            await phase('motion and canvas checks', () => inspectMotion(page, route, prefix, result));
+          }
+        });
+        if (expectedDeliveries) {
+          result.verifiedModels = await phase('expected model deliveries', () => checkExpectedModels(expectedDeliveries, route.expectedModels, result.modelRequests));
+        }
+        result.axe = await phase('axe audit', () => page.evaluate(async selector => {
+          const { violations } = await window.axe.run(selector || document);
+          return violations.filter(item => ['serious', 'critical'].includes(item.impact)).map(item => ({
+            id: item.id, impact: item.impact,
+            nodes: item.nodes.map(node => ({ target: node.target, failure: node.failureSummary })),
+          }));
+        }, route.largeModel ? '#sculpture [data-viewer]' : route.axeScope ?? null));
+        if (result.overflow > 1) problems.push(`Horizontal overflow ${result.overflow}px`);
+        if (result.sameColors.length) problems.push(`Text matches its background: ${result.sameColors.map(item => item.label).join(', ')}`);
+        if (result.axe.length) problems.push(`axe: ${result.axe.map(item => `${item.id} (${item.nodes.length})`).join(', ')}`);
+        for (const measurement of [result, ...(result.readyCanvases ?? [])]) {
+          for (const item of measurement.toggleContrast.filter(item => item.ratio < 4.5)) {
+            problems.push(`${item.label} pressed contrast ${item.ratio.toFixed(2)}:1 (< 4.5:1)`);
+          }
+          if (measurement === result) continue;
+          if (measurement.overflow > 1) problems.push(`Ready canvas page overflow ${measurement.overflow}px`);
+          if (measurement.sameColors.length) problems.push(`Ready canvas text matches its background: ${measurement.sameColors.map(item => item.label).join(', ')}`);
+        }
+        try {
+          await phase('page screenshot', () => page.screenshot({ path: `${prefix}.png`, timeout: 15000 }));
+        } catch (error) {
+          result.screenshotError = error.message;
+          problems.push(`Screenshot failed: ${error.message}`);
+        }
+      });
+    },
+    cleanup: async phase => {
+      await phase('route cleanup', () => page?.unrouteAll({ behavior: 'wait' }));
+      await phase('context close', () => context?.close());
+      await phase('browser connection close', () => browser?.close());
+      await phase('browser process close', () => browserServer?.close());
+    },
+    forceKill: () => browserServer?.kill(),
+    hardKill: () => killBrowser(browserServer),
+  });
+  const deliveries = result.verifiedModels?.length
+    ? ` | ${result.verifiedModels.length} model deliveries verified` : '';
+  console.log(`${result.engine} ${viewport.width} ${route.id} ${motion}: ${problems.length ? problems.join(' | ') : 'pass'}${viewport.width === 390 && result.smallText ? ` (${result.smallText.length} small text, ${result.smallTargets.length} small targets)` : ''}${deliveries}`);
 }
 
 async function checkPublishedJpegCatalog() {
@@ -639,24 +725,32 @@ async function checkPublishedViewerMarkup() {
 }
 
 try {
+  console.log('START suite: static server and built preflight');
+  hosted = process.env.BROWSER_CHECK_ORIGIN ? null : await serveBrowserChecks(dist);
+  origin = process.env.BROWSER_CHECK_ORIGIN || hosted.origin;
+  localOrigin = ['127.0.0.1', 'localhost'].includes(new URL(origin).hostname);
+  saveReport();
   if (hosted) {
     await checkPublishedJpegCatalog();
     await checkPublishedViewerMarkup();
   }
-  for (const engine of [chromium, webkit].filter(engine => !process.env.BROWSER_CHECK_ENGINE || engine.name() === process.env.BROWSER_CHECK_ENGINE)) {
-    const browser = await engine.launch();
-    try {
-      for (const viewport of viewports) {
-        for (const route of selected) await check(engine, viewport, route, browser);
-        for (const route of selected.filter(item => item.viewers || item.largeModel || item.id === 'world')) await check(engine, viewport, route, browser, 'no-preference');
-      }
-    } finally {
-      await browser.close();
-    }
-  }
+  for (const { engine, viewport, route, motion } of specifications) await check(engine, viewport, route, motion);
 } finally {
-  requestCdnResource.close();
-  await hosted?.close();
-  await writeFile(join(artifacts, 'report.json'), JSON.stringify(results, null, 2) + '\n');
+  saveReport();
+  try { requestCdnResource.close(); }
+  catch (error) { results.push({ id: 'suite-transport-cleanup', status: 'failed', phase: 'transport close', problems: [error.message] }); }
+  try {
+    console.log('START suite: static server cleanup');
+    await browserDeadline(() => hosted?.close(), BROWSER_CLEANUP_TIMEOUT_MS, 'Static server cleanup');
+  } catch (error) {
+    results.push({ id: 'suite-cleanup', status: 'failed', phase: 'static server cleanup', problems: [error.message] });
+  } finally {
+    for (const server of browserServers) {
+      try { killBrowser(server); }
+      catch (error) { results.push({ id: 'suite-browser-cleanup', status: 'failed', phase: 'hard kill', problems: [error.message] }); }
+    }
+    saveReport();
+    clearTimeout(suiteTimer);
+  }
 }
-if (results.some(result => result.problems.length)) process.exitCode = 1;
+if (results.length !== specifications.length || results.some(result => result.status !== 'passed' || result.problems.length)) process.exitCode = 1;
