@@ -8,6 +8,7 @@ import { collectionCount } from '../../lib/v3';
 import { arVrCount } from '../../lib/spatial-catalog';
 import { withBase } from '../../lib/urls';
 import { COLLECTION_PAGE_SIZE, collectionPagePath } from '../../lib/collection-window.mjs';
+import { worldPayloadUrl } from '../../lib/world-payload';
 
 type Props = { works: Work[]; spatial?: boolean; collectionNavigation?: boolean; page?: number };
 const { works, spatial = false, collectionNavigation = false, page = 1 } = Astro.props;
@@ -19,7 +20,7 @@ const pageCount = Math.ceil(works.length / COLLECTION_PAGE_SIZE);
 const explorerId = spatial ? 'ar-vr-explorer' : 'collection-explorer';
 ---
 
-<div class="v3-explorer" data-studio-explorer data-studio-index-url={bounded ? withBase(`/collection/data/index.json?v=${collectionDataVersion}`) : undefined} data-studio-revision={bounded ? collectionDataVersion : undefined} data-studio-chunk-root={bounded ? withBase('/collection/data/') : undefined} data-studio-entrance={bounded ? withBase(entrance) : undefined} data-studio-spatial={String(spatial)}>
+<div class="v3-explorer" data-studio-explorer data-world-data-url={worldPayloadUrl} data-studio-index-url={bounded ? withBase(`/collection/data/index.json?v=${collectionDataVersion}`) : undefined} data-studio-revision={bounded ? collectionDataVersion : undefined} data-studio-chunk-root={bounded ? withBase('/collection/data/') : undefined} data-studio-entrance={bounded ? withBase(entrance) : undefined} data-studio-spatial={String(spatial)}>
   <form class="v3-explorer__tools" data-v3-filter-form aria-label={spatial ? 'Search and filter AR and VR works' : 'Search and filter works'}>
     {collectionNavigation && (
       <nav class="v3-collection-switch" aria-label="Collection view">
@@ -46,6 +47,20 @@ const explorerId = spatial ? 'ar-vr-explorer' : 'collection-explorer';
     </div>
   </form>
 
+  <script is:inline>
+    {
+      const explorer = document.currentScript.closest('[data-studio-explorer]');
+      if (explorer && new URLSearchParams(location.search).has('origin')) {
+        explorer.setAttribute('data-studio-origin-pending', '');
+        const count = explorer.querySelector('[data-v3-count]');
+        if (count) count.textContent = 'Finding works from this origin…';
+      }
+    }
+  </script>
+  <div class="studio-origin-filter" data-studio-origin-filter hidden>
+    <span data-studio-origin-label></span>
+    <button type="button" data-studio-origin-clear>Clear place filter</button>
+  </div>
   <p class="v3-collection-load-status" role="status" data-studio-index-status hidden></p>
   {bounded && <noscript><p>Browse the collection 60 works at a time using the page links below. Search and filters become available with JavaScript.</p></noscript>}
 
@@ -75,5 +90,9 @@ const explorerId = spatial ? 'ar-vr-explorer' : 'collection-explorer';
   .v3-collection-pagination a { display: inline-flex; align-items: center; min-height: 44px; color: var(--v3-signal); text-underline-offset: 5px; }
   .v3-collection-pagination span, .v3-collection-load-status { color: var(--v3-muted); }
   .v3-collection-load-status { max-width: 70ch; font-size: .85rem; line-height: 1.6; }
+  .studio-origin-filter { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px 20px; margin-bottom:20px; padding:12px 16px; border:1px solid var(--v3-line); border-radius:8px; color:var(--v3-muted); font-size:13px; }
+  .studio-origin-filter button { min-height:44px; padding:8px 12px; border:1px solid var(--v3-line); border-radius:6px; color:var(--v3-ink); background:transparent; font:inherit; cursor:pointer; }
+  .studio-origin-filter[hidden] { display:none; }
+  .v3-explorer[data-studio-origin-pending] :global([data-v3-grid]) { display:none; }
   [data-studio-pagination][hidden] { display: none; }
 </style>

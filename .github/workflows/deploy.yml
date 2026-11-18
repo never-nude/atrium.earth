@@ -22,6 +22,7 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 60
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -56,10 +57,14 @@ jobs:
         run: node scripts/verify-published-jpeg-delivery.mjs
 
       - name: Verify museum pages in Chromium and WebKit
+        timeout-minutes: 25
         run: npm run test:browser
 
       - name: Verify sculpture gestures in Chromium
         run: npm run test:handling-browser
+
+      - name: Verify the world signature in Chromium and WebKit
+        run: npm run test:world-browser
 
       - name: Report homepage performance
         if: ${{ !cancelled() }}

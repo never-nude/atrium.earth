@@ -28,7 +28,7 @@ export function connectWorldViewControls(root, globe, fullscreenTarget) {
   controls.querySelector('[data-world-zoom-in]').addEventListener('click',() => globe.zoomIn(),{signal});
   controls.querySelector('[data-world-zoom-out]').addEventListener('click',() => globe.zoomOut(),{signal});
   rotate.addEventListener('click',() => {globe.setAutoRotate(!globe.isAutoRotating());syncRotation();},{signal});
-  controls.querySelector('[data-world-view-reset]').addEventListener('click',() => {globe.reset();syncRotation();},{signal});
+  controls.querySelector('[data-world-view-reset]')?.addEventListener('click',() => {globe.reset();syncRotation();},{signal});
   fullscreen.addEventListener('click',async () => {
     try {
       status.textContent = '';

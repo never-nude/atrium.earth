@@ -1,7 +1,8 @@
 import {connectWorldViewControls,updateWorldZoomControls} from './world-view-controls.js';
-import { timeStops, positionToYear, yearToPosition, formatWorldYear, parseWorldYear, workOverlapsPeriod } from '../lib/world-time.mjs';
+import { timeStops, positionToYear, yearToPosition, formatWorldYear, parseWorldYear } from '../lib/world-time.mjs';
 import { readWorldState, worldContinueUrl } from '../lib/world-state.mjs';
 import { worldWorkHref } from '../lib/work-journey.mjs';
+import { WORLD_SELECTION_LIMIT, rankWorldWorks, selectWorldWorks, worldCollectionHref } from '../lib/world-selection.mjs';
 
 const mounted = new WeakSet();
 for (const root of document.querySelectorAll('[data-world-explorer]')) mount(root);
@@ -54,12 +55,14 @@ async function initialise(root, { compact, signal, register }) {
   const data = await readData(root, signal);
   signal.throwIfAborted();
   const on = (target, type, listener) => target?.addEventListener(type, listener, { signal });
+  const signature = root.hasAttribute('data-world-signature');
   const places = Array.isArray(data.places) ? data.places : [];
   const works = Array.isArray(data.works) ? data.works : [];
   const placeById = new Map(places.map(place => [place.id, place]));
   const featured = new Set(data.featured || []);
   const excluded = new Set(compact ? (root.dataset.worldExcludedWorks || '').split('|') : []);
-  const ranked = [...works].sort((a, b) => Number(featured.has(b.slug)) - Number(featured.has(a.slug)) || a.title.localeCompare(b.title));
+  const ranked = signature ? rankWorldWorks(works, data.featured || [])
+    : [...works].sort((a, b) => Number(featured.has(b.slug)) - Number(featured.has(a.slug)) || a.title.localeCompare(b.title));
   const stops = timeStops(data.dateMin, data.dateMax);
   const from = root.querySelector('[data-world-from]');
   const to = root.querySelector('[data-world-to]');
@@ -71,17 +74,32 @@ async function initialise(root, { compact, signal, register }) {
   const empty = root.querySelector('[data-world-empty]');
   const originNote = root.querySelector('[data-world-origin-note]');
   const loading = root.querySelector('[data-world-loading]');
-  const initialLimit = compact ? 2 : 3;
+  const selection = root.querySelector('[data-world-selection]');
+  const selectionClose = root.querySelector('[data-world-selection-close]');
+  const seeAll = root.querySelector('[data-world-see-all]');
+  const placeList = root.querySelector('[data-world-place-list]');
+  const placeButtons = new Map();
+  const initialLimit = signature ? WORLD_SELECTION_LIMIT : compact ? 2 : 3;
   const context = { places, dateMin: stops[0], dateMax: stops.at(-1) };
   const inbound = readWorldState(compact ? '' : location.search, context);
   const state = {place:inbound.place,from:inbound.all ? 0 : yearToPosition(inbound.from,stops),to:inbound.all ? 1000 : yearToPosition(inbound.to,stops),limit:initialLimit,mode:inbound.mode};
   let globe;
   let disconnectControls;
   let frame;
+  let selectionFrame;
+  let returnView = null;
+  let returnFocus = null;
+  let returnPageY = null;
+  let returnScrollTarget = null;
+  let restoreTimer = 0;
+  let keyboardInteraction = false;
+  let cardKey = '';
+  let selectionToken = 0;
+  const scrollTarget = () => signature && document.fullscreenElement === root ? root : window;
   register({
-    suspend() { cancelAnimationFrame(frame); },
+    suspend() { cancelAnimationFrame(frame); cancelAnimationFrame(selectionFrame); clearTimeout(restoreTimer); },
     resume() { queueRender(); },
-    destroy() { cancelAnimationFrame(frame); disconnectControls?.(); globe?.destroy(); },
+    destroy() { cancelAnimationFrame(frame); cancelAnimationFrame(selectionFrame); clearTimeout(restoreTimer); disconnectControls?.(); globe?.destroy(); },
   });
 
   const options = [...places].sort((a,b) => a.label.localeCompare(b.label));
@@ -89,6 +107,15 @@ async function initialise(root, { compact, signal, register }) {
     const option = document.createElement('option');
     option.value = place.id; option.textContent = place.label;
     select.append(option);
+    if (signature && placeList) {
+      const button = document.createElement('button');
+      button.type = 'button'; button.dataset.worldListPlace = place.id;
+      const label = document.createElement('span'); label.textContent = place.label;
+      const count = document.createElement('span'); count.dataset.worldListCount = '';
+      button.append(label, count);
+      on(button, 'click', () => choosePlace(place.id));
+      placeList.append(button); placeButtons.set(place.id, button);
+    }
   }
   const unknownOption = document.createElement('option');
   unknownOption.value = '__unplaced__'; unknownOption.textContent = 'Origin uncertain or unrecorded';
@@ -121,15 +148,9 @@ async function initialise(root, { compact, signal, register }) {
   function render() {
     if (signal.aborted) return;
     const time = period();
-    const eligible = ranked.filter(work => workOverlapsPeriod(work,time.start,time.end,time.all));
-    const counts = Object.fromEntries(places.map(place => [place.id,0]));
-    let unplaced = 0;
-    for (const work of eligible) {
-      if (work.placeId && Object.hasOwn(counts,work.placeId)) counts[work.placeId]++;
-      else unplaced++;
-    }
+    const { counts, results, unplaced } = selectWorldWorks(ranked, places, { place: state.place,
+      from: time.start, to: time.end, all: time.all });
     const isPlaced = work => placeById.has(work.placeId);
-    const results = eligible.filter(work => state.place === '__unplaced__' ? !isPlaced(work) : state.place ? work.placeId === state.place : isPlaced(work));
     const place = placeById.get(state.place);
     select.value = state.place;
     for (const option of select.options) {
@@ -139,19 +160,26 @@ async function initialise(root, { compact, signal, register }) {
       }
     }
     unknownOption.textContent = `Origin uncertain or unrecorded · ${unplaced.toLocaleString('en-US')}`;
+    for (const [id, button] of placeButtons) {
+      const count = counts[id] || 0;
+      button.querySelector('[data-world-list-count]').textContent = count.toLocaleString('en-US');
+      button.setAttribute('aria-label', `${placeById.get(id).label}, ${count.toLocaleString('en-US')} ${count === 1 ? 'work' : 'works'}`);
+      button.setAttribute('aria-pressed', String(state.place === id));
+    }
     root.querySelector('[data-world-place-title]').textContent = state.place === '__unplaced__' ? 'Origin uncertain or unrecorded' : place?.label || 'Across the world';
     const periodLabel = time.all ? 'All periods' : `${formatWorldYear(time.start)} — ${formatWorldYear(time.end)}`;
     root.querySelector('[data-world-period]').textContent = periodLabel;
     const resultCount = `${results.length.toLocaleString('en-US')} ${results.length === 1 ? 'work' : 'works'}`;
     const originQualifier = state.place ? '' : ' mapped by origin';
     const periodCount = root.querySelector('[data-world-period-count]');
-    periodCount.textContent = `${resultCount} ↓`;
+    periodCount.textContent = signature ? resultCount : `${resultCount} ↓`;
     periodCount.setAttribute('aria-label', `${resultCount} for this period`);
     root.querySelector('[data-world-result-count]').textContent = `${resultCount}${originQualifier} · ${periodLabel}`;
     originNote.textContent = state.place === '__unplaced__'
       ? 'These records do not establish an origin confidently enough to place on the globe.'
       : place ? `Approximate ${place.precision === 'country' ? 'country' : 'regional'} location. Individual works retain their recorded origin and source details.`
-        : 'Choose a glowing place, or use the list above. Colors identify broad geographic regions.';
+        : signature ? 'Choose a light on the globe or a place from the list. Locations follow documented origins.'
+          : 'Choose a glowing place, or use the list above. Colors identify broad geographic regions.';
     const uncertainDates = works.filter(work => (state.place === '__unplaced__' ? !placeById.has(work.placeId) : state.place ? work.placeId === state.place : placeById.has(work.placeId)) && (!Number.isFinite(work.start) || !Number.isFinite(work.end))).length;
     root.querySelector('[data-world-uncertainty]').textContent = uncertainDates
       ? time.all ? `${uncertainDates.toLocaleString('en-US')} records in this selection have uncertain dates. Narrowing the timeline uses only dependable date ranges.`
@@ -163,13 +191,29 @@ async function initialise(root, { compact, signal, register }) {
     fromText.value = formatWorldYear(time.start); toText.value = formatWorldYear(time.end);
     const fill = root.querySelector('[data-world-range-fill]');
     fill.style.left = `${state.from / 10}%`; fill.style.width = `${(state.to-state.from) / 10}%`;
-    const cards = document.createDocumentFragment();
-    const cardResults = results.filter(work => !excluded.has(work.slug)).slice(0, state.limit);
-    for (const work of cardResults) cards.append(workCard(work));
-    list.replaceChildren(cards);
+    const cardResults = signature && !state.place ? [] : results.filter(work => !excluded.has(work.slug)).slice(0, state.limit);
+    const nextCardKey = cardResults.map(work => work.slug).join('|');
+    if (!signature || nextCardKey !== cardKey) {
+      const cards = document.createDocumentFragment();
+      for (const work of cardResults) cards.append(workCard(work));
+      list.replaceChildren(cards); cardKey = nextCardKey;
+    }
+    if (signature && selection) {
+      selection.hidden = !state.place;
+      const title = root.querySelector('[data-world-selection-title]');
+      if (title) title.textContent = place?.label || (state.place === '__unplaced__' ? 'Origin uncertain or unrecorded' : '');
+      const count = root.querySelector('[data-world-selection-count]');
+      if (count) count.textContent = `${resultCount} · ${periodLabel}`;
+      root.dataset.worldSelectionOpen = String(Boolean(state.place));
+      if (seeAll) {
+        seeAll.href = worldCollectionHref(root.dataset.worldCollectionUrl || '/collection/',
+          { place: state.place, from: time.start, to: time.end, all: time.all }, location.href);
+        seeAll.textContent = `See all ${results.length.toLocaleString('en-US')} ${results.length === 1 ? 'work' : 'works'} from here`;
+      }
+    }
     empty.hidden = results.length !== 0;
     if (more) {
-      more.hidden = compact || results.length <= state.limit;
+      more.hidden = signature || compact || results.length <= state.limit;
       if (!more.hidden) {
         const label = `Show more works (${Math.min(state.limit,results.length).toLocaleString('en-US')} of ${results.length.toLocaleString('en-US')}) `;
         if (more.firstChild?.nodeType === 3) more.firstChild.textContent = label; else more.textContent = label;
@@ -194,9 +238,12 @@ async function initialise(root, { compact, signal, register }) {
     const card = document.createElement('a'); card.className = 'world-work';
     card.dataset.worldWorkUrl = work.url;
     card.href = worldWorkHref(work.url,{place:state.place,mode:state.mode,from:time.start,to:time.end,all:time.all},context,location.href);
-    const image = document.createElement('img'); image.src = work.thumbnail; image.alt = work.fullTitle || work.title; image.width = 105; image.height = 128; image.loading = 'lazy'; image.decoding = 'async';
+    const image = document.createElement('img');
+    image.src = signature && root.dataset.worldStillsBase ? `${root.dataset.worldStillsBase}${work.slug}.webp` : work.thumbnail;
+    image.alt = signature ? '' : work.fullTitle || work.title; image.width = signature ? 160 : 105; image.height = signature ? 190 : 128; image.loading = 'lazy'; image.decoding = 'async';
     const copy = document.createElement('div');
     const title = document.createElement(compact ? 'h4' : 'h3'); title.dataset.worldWorkTitle = ''; title.textContent = work.title;
+    if (signature && work.fullTitle) card.title = work.fullTitle;
     const maker = document.createElement('p'); maker.textContent = work.maker || '';
     const date = document.createElement('p'); date.textContent = work.dateLabel || 'Date not recorded';
     const action = document.createElement('span'); action.textContent = 'Examine the work ↗';
@@ -207,11 +254,97 @@ async function initialise(root, { compact, signal, register }) {
   }
 
   function choosePlace(id) {
-    state.place = id === '__unplaced__' || placeById.has(id) ? id : '';
+    const started = performance.now();
+    const nextPlace = id === '__unplaced__' || placeById.has(id) ? id : '';
+    if (signature && nextPlace && !state.place) {
+      returnView = globe?.captureView?.() || null;
+      returnScrollTarget = scrollTarget();
+      returnPageY = returnScrollTarget === window ? window.scrollY : root.scrollTop;
+      returnFocus = document.activeElement instanceof HTMLElement && root.contains(document.activeElement)
+        ? document.activeElement : select;
+    }
+    if (signature && !nextPlace && state.place) { closeSelection(); return; }
+    state.place = nextPlace;
     state.limit = initialLimit; render();
+    if (signature && state.place && selection) {
+      clearTimeout(restoreTimer);
+      const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const keyboardChoice = keyboardInteraction;
+      root.querySelector('.world-observatory')?.scrollIntoView({ block: 'start', behavior: reduced ? 'instant' : 'smooth' });
+      const token = ++selectionToken;
+      let followedSelection = false;
+      cancelAnimationFrame(selectionFrame);
+      const measureVisible = () => {
+        if (signal.aborted || token !== selectionToken || selection.hidden) return;
+        const elapsed = performance.now() - started;
+        const firstCard = list.firstElementChild;
+        const image = firstCard?.querySelector('img');
+        const box = (image || empty).getBoundingClientRect();
+        const headerBottom = document.fullscreenElement === root ? 0
+          : document.querySelector('[data-v3-header]')?.getBoundingClientRect().bottom || 0;
+        const visibleHeight = Math.max(0, Math.min(box.bottom, innerHeight) - Math.max(box.top, 0, headerBottom));
+        const halfVisible = box.height > 0 && visibleHeight / box.height >= .5;
+        if (!halfVisible && !followedSelection && elapsed >= (reduced ? 0 : 450)) {
+          // A short screen can fit the globe or the stills, but not both in full.
+          // After the selected layout settles, make one small follow movement.
+          followedSelection = true;
+          const delta = box.bottom - (innerHeight - 20);
+          if (Math.abs(delta) > 1) scrollTarget().scrollBy({ top: delta, behavior: reduced ? 'instant' : 'smooth' });
+        }
+        const visible = box.width > 0 && box.right > 0 && box.left < innerWidth && halfVisible
+          && (!image || (image.complete && image.naturalWidth > 0))
+          && Number(getComputedStyle(firstCard ? list : empty).opacity) > 0;
+        if (!visible && elapsed < 5000) { selectionFrame = requestAnimationFrame(measureVisible); return; }
+        if (!visible) { root.dataset.worldSelectionVisibleError = 'The selected works did not enter the viewport'; return; }
+        delete root.dataset.worldSelectionVisibleError;
+        root.dataset.worldSelectionVisibleMs = elapsed.toFixed(2);
+        if (!root.hasAttribute('data-world-first-selection-ms')) root.dataset.worldFirstSelectionMs = elapsed.toFixed(2);
+        if (keyboardChoice && keyboardInteraction) root.querySelector('[data-world-selection-title]')?.focus({ preventScroll: true });
+        root.dispatchEvent(new CustomEvent('atrium:world-selection-visible', {
+          detail: { place: state.place, elapsedMs: elapsed, works: list.children.length }, bubbles: true,
+        }));
+      };
+      selectionFrame = requestAnimationFrame(() => { selectionFrame = requestAnimationFrame(measureVisible); });
+    }
+  }
+  function closeSelection(restore = true) {
+    selectionToken++; cancelAnimationFrame(selectionFrame);
+    state.place = ''; state.limit = initialLimit; render();
+    if (restore && returnView) {
+      const restoredMode = globe?.setMode(returnView.mode) === false ? 'map' : returnView.mode;
+      setMode(restoredMode);
+      globe?.restoreView?.(returnView);
+    }
+    const pageY = returnPageY;
+    const scrollOwner = returnScrollTarget;
+    const focus = returnFocus;
+    const keyboard = keyboardInteraction;
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    clearTimeout(restoreTimer);
+    if (restore && pageY !== null) restoreTimer = window.setTimeout(() => {
+      if (signal.aborted || state.place) return;
+      if (scrollOwner === window || scrollOwner?.isConnected) scrollOwner.scrollTo({ top: pageY, behavior: reduced ? 'instant' : 'smooth' });
+      if (keyboard && focus?.isConnected) focus.focus({ preventScroll: true });
+    }, reduced ? 0 : 480);
+    returnView = null;
+    returnFocus = null; returnPageY = null; returnScrollTarget = null;
   }
   function queueRender() { if (signal.aborted) return; cancelAnimationFrame(frame); frame = requestAnimationFrame(render); }
   on(select,'change',() => choosePlace(select.value));
+  on(selectionClose, 'click', () => closeSelection());
+  if (signature) root.addEventListener('pointerdown', () => { keyboardInteraction = false; }, { signal, capture: true });
+  on(root, 'keydown', event => {
+    if (signature && ['Tab', 'Enter', ' ', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Escape'].includes(event.key)) keyboardInteraction = true;
+  });
+  on(window, 'keydown', event => {
+    // Safari can leave body focused after a pointer chooses Globe or Map.
+    // Keep Escape available there without intercepting header/dialog controls.
+    const active = document.activeElement;
+    if (signature && event.key === 'Escape' && state.place && !event.defaultPrevented
+      && (active === document.body || root.contains(active)) && !document.querySelector('dialog[open]')) {
+      keyboardInteraction = true; event.preventDefault(); closeSelection();
+    }
+  });
   on(from,'input',() => {state.from = Math.min(Number(from.value),state.to);state.limit = initialLimit;queueRender();});
   on(to,'input',() => {state.to = Math.max(Number(to.value),state.from);state.limit = initialLimit;queueRender();});
   on(more,'click',() => {
@@ -221,9 +354,12 @@ async function initialise(root, { compact, signal, register }) {
     list.children[firstNew]?.focus();
   });
   on(root.querySelector('[data-world-reset]'),'click',() => {
+    if (signature) closeSelection(false);
     state.place = '';state.from = 0;state.to = 1000;state.limit = initialLimit;
     root.querySelector('[data-world-date-error]').textContent = '';
-    globe?.pause();globe?.reset();setMode(globe?.setMode('globe') === false ? 'map' : 'globe');render();
+    if (!signature) globe?.pause();
+    globe?.reset(); if (signature) globe?.setAutoRotate(true);
+    setMode(globe?.setMode('globe') === false ? 'map' : 'globe');render();
   });
   on(root.querySelector('[data-world-date-form]'),'submit',event => {
     event.preventDefault();
@@ -237,7 +373,9 @@ async function initialise(root, { compact, signal, register }) {
   function setMode(mode) {
     state.mode = mode === 'map' ? 'map' : 'globe';
     for (const item of root.querySelectorAll('[data-world-mode]')) item.setAttribute('aria-pressed',String(item.dataset.worldMode === state.mode));
-    root.querySelector('[data-world-map-hint]').textContent = state.mode === 'globe' ? 'Drag to turn · Select a glowing place' : 'Select a glowing place';
+    root.querySelector('[data-world-map-hint]').textContent = state.mode === 'globe'
+      ? signature ? 'Touch or drag the globe to turn · Pinch to zoom' : 'Drag to turn · Select a glowing place'
+      : 'Choose a light or use the place list';
     root.dataset.worldMode = state.mode;
     root.dispatchEvent(new Event('world-mode-change'));
     updateContinue();
@@ -253,13 +391,20 @@ async function initialise(root, { compact, signal, register }) {
     const { createWorldGlobe } = await import('./world-globe.js');
     signal.throwIfAborted();
     globe = createWorldGlobe({
-      host:root.querySelector('[data-world-globe]'),places,onSelect:choosePlace,autoRotate:false,
+      host:root.querySelector('[data-world-globe]'),places,onSelect:choosePlace,autoRotate:signature,
+      ...(signature ? { presentation: 'signature' } : {}),
       onReady:info => {if(signal.aborted)return;setMode(info.mode);root.dataset.worldState='ready';if(loading)loading.hidden=true;},
       onError:(error,info) => {if(signal.aborted)return;root.dataset.worldState='fallback';setMode(info?.mode || error?.mode || 'map');if(loading)loading.textContent='Choose a place from the list to explore its works.';},
       onZoomChange:info => updateWorldZoomControls(root,info),
       onAutoRotateChange:() => root.dispatchEvent(new Event('world-rotation-change')),
     });
-    disconnectControls = connectWorldViewControls(root,globe,root.querySelector('[data-world-viewport]'));
+    disconnectControls = connectWorldViewControls(root,globe,signature ? root : root.querySelector('[data-world-viewport]'));
+    if (signature && state.place && !returnView) {
+      returnView = globe.captureView?.() || null;
+      returnScrollTarget = scrollTarget();
+      returnPageY = returnScrollTarget === window ? window.scrollY : root.scrollTop;
+      returnFocus = root.querySelector('[data-world-mode="globe"]');
+    }
     setMode(globe.setMode(state.mode) === false ? 'map' : state.mode);render();
   } catch {
     if(signal.aborted)return;
