@@ -1,0 +1,178 @@
+{
+  "schema": "atrium-step6-coordinator-handoff/1",
+  "testedCodeCommit": "2edf38b30b091bc140d39c442e8f56fde184992b",
+  "integratedMain": "7b3cd20e073c1604b646b7f9a7dc15ed842ac658",
+  "coordinationIssue": "https://github.com/never-nude/atrium.earth/issues/109",
+  "pullRequest": "https://github.com/never-nude/atrium.earth/pull/107",
+  "releaseState": "not merged or deployed; full remote validation deferred to the release coordinator",
+  "local": {
+    "fullNodeSuite": "passed on first invocation after integration",
+    "experienceTests": {
+      "passed": 124,
+      "failed": 0,
+      "skipped": 0
+    },
+    "productionBuild": {
+      "status": "passed",
+      "pages": 8842,
+      "redirects": 5444,
+      "retainedPagesObjects": 3568,
+      "retainedPagesBytes": 471962600
+    },
+    "package": {
+      "files": 24755,
+      "fileBytes": 910383071,
+      "existingLimitBytes": 1000000000
+    },
+    "collection": {
+      "publicRecords": 3160,
+      "uniqueCards": 3160
+    },
+    "publishedImages": {
+      "verifiedPaths": 6320,
+      "cdnJpegReferencesMatchedToLocalReceipt": 3120,
+      "newCdnChecks": false
+    },
+    "existingWorldIntegration": {
+      "status": "passed",
+      "cases": [
+        {
+          "id": "chromium-390-world-reduce",
+          "status": "passed",
+          "problems": []
+        },
+        {
+          "id": "chromium-390-world-no-preference",
+          "status": "passed",
+          "problems": []
+        },
+        {
+          "id": "chromium-1440-world-reduce",
+          "status": "passed",
+          "problems": []
+        },
+        {
+          "id": "chromium-1440-world-no-preference",
+          "status": "passed",
+          "problems": []
+        },
+        {
+          "id": "webkit-390-world-reduce",
+          "status": "passed",
+          "problems": []
+        },
+        {
+          "id": "webkit-390-world-no-preference",
+          "status": "passed",
+          "problems": []
+        },
+        {
+          "id": "webkit-1440-world-reduce",
+          "status": "passed",
+          "problems": []
+        },
+        {
+          "id": "webkit-1440-world-no-preference",
+          "status": "passed",
+          "problems": []
+        }
+      ]
+    },
+    "signatureAudit": {
+      "status": "passed",
+      "environment": "Headless desktop Playwright, fresh browser and context per case. Phone widths emulate viewport, touch and devicePixelRatio 3; no physical iPhone, CPU or network performance is implied.",
+      "cases": [
+        {
+          "id": "webkit-390-no-preference",
+          "status": "passed",
+          "timings": {
+            "firstLandFrameNavigationMs": 211,
+            "firstPointToVisibleLoadedStillMs": 121,
+            "centeringTurn": {
+              "fps": 44.7,
+              "sampledDurationMs": 810
+            }
+          },
+          "modelRequests": [],
+          "failures": []
+        },
+        {
+          "id": "webkit-320-reduce",
+          "status": "passed",
+          "timings": {
+            "firstLandFrameNavigationMs": 276,
+            "firstPointToVisibleLoadedStillMs": 49,
+            "centeringTurn": {
+              "fps": null,
+              "reason": "Not applicable: reduced motion jumps without an animated turn."
+            }
+          },
+          "modelRequests": [],
+          "failures": []
+        },
+        {
+          "id": "chromium-1440-no-preference",
+          "status": "passed",
+          "timings": {
+            "firstLandFrameNavigationMs": 357,
+            "firstPointToVisibleLoadedStillMs": 277.6,
+            "centeringTurn": {
+              "fps": 77.6,
+              "sampledDurationMs": 811
+            }
+          },
+          "modelRequests": [],
+          "failures": []
+        },
+        {
+          "id": "chromium-1440-reduce",
+          "status": "passed",
+          "timings": {
+            "firstLandFrameNavigationMs": 360,
+            "firstPointToVisibleLoadedStillMs": 56.1,
+            "centeringTurn": {
+              "fps": null,
+              "reason": "Not applicable: reduced motion jumps without an animated turn."
+            }
+          },
+          "modelRequests": [],
+          "failures": []
+        }
+      ]
+    },
+    "runnerFixtures": {
+      "passed": 5,
+      "failed": 0,
+      "skipped": 0
+    },
+    "physicalIphonePerformanceMeasured": false
+  },
+  "earlierRemoteAttempts": [
+    {
+      "run": "https://github.com/never-nude/atrium.earth/actions/runs/44353564920",
+      "head": "9384cbaf",
+      "outcome": "failed",
+      "evidence": "3173/3174 models; one HTTP429; 6/6 first-view hashes; downstream browser checks skipped"
+    },
+    {
+      "run": "https://github.com/never-nude/atrium.earth/actions/runs/44357991746",
+      "head": "4c106a29",
+      "outcome": "failed",
+      "evidence": "3173/3174 models; one body-phase 20s timeout; 6/6 first-view hashes; downstream browser checks skipped"
+    },
+    {
+      "run": "https://github.com/never-nude/atrium.earth/actions/runs/44361538412",
+      "head": "aaae2b2b",
+      "outcome": "explicitly cancelled after browser stall; not a pass",
+      "evidence": "3174/3174 models and 3120/3120 JPEGs passed; 48 page cases logged, 46 passed and 2 model-delivery failures, 16 unverified"
+    }
+  ],
+  "notEstablished": [
+    "cause of the upstream delivery failures",
+    "exact unbounded await at the WebKit stall",
+    "current-head full 64-case remote page/gesture pass",
+    "current-head homepage LCP",
+    "physical-iPhone frame rate"
+  ],
+  "remainingGate": "Coordinator-authorized full remote review on the exact pushed head, then ordered merge/deploy/live verification."
+}
