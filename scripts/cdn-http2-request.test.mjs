@@ -4,7 +4,9 @@ import { once } from 'node:events';
 import { connect, constants, createServer } from 'node:http2';
 import test from 'node:test';
 import { promisify } from 'node:util';
+import { checkDeliveries } from './lib/cdn-delivery.mjs';
 import { createCdnHttp2Request } from './lib/cdn-http2-request.mjs';
+import { verifyPublishedModel } from './verify-published-model-delivery.mjs';
 
 const address = name => `https://models.atrium.earth/models/previews/${name}/preview.glb`;
 const timeout = { timeout: 5000 };
@@ -87,6 +89,24 @@ test('returns redirect and HTTP 500 responses without following or retrying', ti
   assert.equal(failed.status, 500);
   assert.equal(await failed.text(), 'failure');
   assert.equal(local.requests.length, 2);
+});
+
+test('records Cloudflare diagnostics on the failed first model delivery', timeout, async t => {
+  const local = await fixture(t, stream => {
+    stream.respond({ ':status': 500, 'cf-ray': 'example-IAD', 'cf-cache-status': 'BYPASS' });
+    stream.end('internal error');
+  });
+  const asset = { url: address('failure'), document: 'index.html', bytes: 500 };
+  const started = Date.now();
+  const [result] = await checkDeliveries([asset], ({ url, bytes }) => verifyPublishedModel(url, bytes, local.transport));
+  const { receivedAt, ...httpResponse } = result.httpResponse;
+  const observed = Date.parse(receivedAt);
+  assert.ok(observed >= started && observed <= Date.now());
+  assert.deepEqual(httpResponse, { status: 500, cfRay: 'example-IAD', cfCacheStatus: 'BYPASS' });
+  assert.equal(result.error, 'HTTP 500');
+  assert.equal(result.delivery, undefined);
+  assert.equal(local.requests.length, 1);
+  assert.equal(local.requests[0].range, 'bytes=0-11');
 });
 
 test('a reset before headers is one failed request', timeout, async t => {

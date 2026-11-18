@@ -99,8 +99,9 @@ export async function readCdnAsset(url, { bytes, mime, varyByOrigin = false, ful
   const range = response.headers.get('content-range');
   const encoding = response.headers.get('content-encoding');
   const expectedRange = `bytes 0-${headerBytes - 1}/${bytes}`;
+  const rejectedStatus = !(response.status === 200 || (!full && response.status === 206));
   let issue;
-  if (!(response.status === 200 || (!full && response.status === 206))) issue = `HTTP ${response.status}`;
+  if (rejectedStatus) issue = `HTTP ${response.status}`;
   else if (varyByOrigin && cors !== site) issue = `Expected production CORS, received ${cors || 'no header'}`;
   else if (varyByOrigin && !vary?.split(',').some(value => value.trim().toLowerCase() === 'origin')) {
     issue = `Expected Vary: Origin, received ${vary || 'no header'}`;
@@ -113,8 +114,18 @@ export async function readCdnAsset(url, { bytes, mime, varyByOrigin = false, ful
     issue = `Expected Content-Length ${bytes}, received ${length || 'no header'}`;
   } else if (!response.body) issue = 'Missing response body';
   if (issue) {
+    const error = new Error(issue);
+    if (rejectedStatus) {
+      // Keep the correlation metadata from this response without reading its body.
+      error.httpResponse = {
+        status: response.status,
+        receivedAt: new Date().toISOString(),
+        cfRay: response.headers.get('cf-ray'),
+        cfCacheStatus: response.headers.get('cf-cache-status'),
+      };
+    }
     await response.body?.cancel().catch(() => {});
-    throw new Error(issue);
+    throw error;
   }
   // Finish the complete range body so an early stream close is a failure.
   const complete = full || response.status === 206;
@@ -146,9 +157,12 @@ export async function checkDeliveries(assets, verify) {
         if (!asset.bytes) throw new Error('No registered size for this published URL');
         results[index] = { ...asset, delivery: await verify(asset) };
       } catch (error) {
-        results[index] = { ...asset, error: [
-          error.deliveryPhase && `[${error.deliveryPhase}]`, error.message, error.code || error.cause?.code,
-        ].filter(Boolean).join(' ') };
+        results[index] = {
+          ...asset,
+          error: [error.deliveryPhase && `[${error.deliveryPhase}]`, error.message, error.code || error.cause?.code]
+            .filter(Boolean).join(' '),
+          ...(error.httpResponse && { httpResponse: error.httpResponse }),
+        };
       }
     }
   }));
