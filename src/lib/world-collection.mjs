@@ -6,6 +6,18 @@ const uncertainty = /\b(?:or|possibly|probably|perhaps|uncertain|unconfirmed|unr
 const holdingOrCapture = /\b(?:museum|musee|museu|museo|institute|library|foundation|university|smithsonian|abbey|church|monastery|cathedral|gallery|galleries|collection|collections|captur(?:e|ed)|scan(?:ned|ning)?|photogrammetry|display(?:ed)?|held|holding|installed|installation|studio|artist|nationality|inspired)\b/iu;
 const production = /\b(?:made|manufactur(?:e|ed)|production|produced|casting|cast in|cast at|workshop|foundry)\b/iu;
 
+// A relative age cannot become a moving "current year minus age" calculation.
+// For this reviewed prehistoric record only, retain the existing catalogue's
+// approximate sorting coordinate in the timeline while preserving its written
+// age unchanged. This is a display projection, not a newly asserted exact date.
+const reviewedRelativeAge = {
+  slug: 'europe/venus-of-willendorf-nhmw-44-686',
+  label: 'c. 29,500 years ago',
+  accession: 'NHMW-PRAE-44.686',
+  source: 'https://www.nhm-wien.ac.at/en/research/prehistory/research/venus-research',
+  coordinate: -27500,
+};
+
 function castRecord(record) {
   return /^KAS\d/iu.test(text(record.accession))
     || /\b(?:plaster cast|royal cast collection)\b/iu.test(`${record.title ?? ''} ${record.material ?? ''} ${record.scan_source ?? ''}`);
@@ -140,6 +152,12 @@ function numericSpan(value) {
 /** Interpret only the recorded production label; year_sort is never date evidence. */
 export function worldDateSpan(record) {
   const label = text(record.year);
+  if (record.slug === reviewedRelativeAge.slug && label === reviewedRelativeAge.label
+    && text(record.accession) === reviewedRelativeAge.accession
+    && text(record.source_record_url).replace(/\/+$/u, '') === reviewedRelativeAge.source
+    && record.year_sort === reviewedRelativeAge.coordinate) {
+    return { start: reviewedRelativeAge.coordinate, end: reviewedRelativeAge.coordinate };
+  }
   if (!label || uncertainty.test(label)
     || /\b(?:after|before|acquir(?:ed|ed on)|acquisition|accessioned|discovered|excavated|published|publication|scanned|captured|original|prototype|modeled|modelled|conceived|composition|reconstruction|copy|style)\b/iu.test(label)) return { ...unknown };
   // Historical KAS/prototype dates must not become dates of an undated cast.

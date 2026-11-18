@@ -61,6 +61,9 @@ jobs:
       - name: Verify sculpture gestures in Chromium
         run: npm run test:handling-browser
 
+      - name: Verify the world signature in Chromium and WebKit
+        run: npm run test:world-browser
+
       - name: Report homepage performance
         if: ${{ !cancelled() }}
         run: npm run test:performance

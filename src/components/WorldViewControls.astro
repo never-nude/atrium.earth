@@ -1,9 +1,13 @@
-<div class="world-view-controls" data-world-view-controls role="group" aria-label="Globe viewing tools" hidden>
+---
+type Props = { signature?: boolean };
+const { signature = false } = Astro.props;
+---
+<div class="world-view-controls" data-world-view-controls data-world-controls-signature={signature ? '' : undefined} role="group" aria-label="Globe viewing tools" hidden>
   <button type="button" data-world-zoom-in aria-label="Zoom in" title="Zoom in">+</button>
   <button type="button" data-world-zoom-out aria-label="Zoom out" title="Zoom out">−</button>
   <span aria-hidden="true"></span>
   <button type="button" data-world-rotate aria-pressed="false" title="Start or pause automatic rotation">Auto-rotate</button>
-  <button type="button" data-world-view-reset title="Reset the viewing angle and zoom">Reset view</button>
+  {!signature && <button type="button" data-world-view-reset title="Reset the viewing angle and zoom">Reset view</button>}
   <button type="button" data-world-fullscreen aria-pressed="false" title="Enter full screen">Full screen</button>
   <p data-world-view-status role="status"></p>
 </div>
@@ -17,4 +21,11 @@
   .world-view-controls > p { flex-basis:100%; margin:0; text-align:center; color:#ffbca0; font-size:10px; line-height:1.5; }
   .world-view-controls > p:empty { display:none; }
   @media(max-width:400px) { .world-view-controls { gap:4px; padding-inline:6px; } .world-view-controls button { padding:8px; font-size:10px; } .world-view-controls > span { display:none; } }
+  .world-view-controls[data-world-controls-signature] { gap:8px; min-height:56px; padding:4px 0; color:var(--v3-ink); border:0; background:transparent; }
+  [data-world-controls-signature] button { min-width:44px; min-height:44px; padding:10px 14px; border:1px solid var(--v3-line-strong); border-radius:6px; background:transparent; color:var(--v3-muted); font:500 12px/1.4 var(--v3-sans); }
+  [data-world-controls-signature] button:hover { color:var(--v3-ink); border-color:var(--v3-signal); background:var(--v3-well); }
+  [data-world-controls-signature] button[aria-pressed="true"] { color:var(--v3-void); background:var(--v3-signal); border-color:var(--v3-signal); }
+  [data-world-controls-signature] > span { background:var(--v3-line-strong); }
+  [data-world-controls-signature] > p { color:#ffc2ae; font-size:12px; }
+  @media(max-width:400px) { .world-view-controls[data-world-controls-signature] { gap:6px; } [data-world-controls-signature] button { padding-inline:10px; font-size:12px; } }
 </style>
