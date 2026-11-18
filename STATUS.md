@@ -2465,3 +2465,12 @@ The full local production build passes: 8,842 pages and 877,192,353 package byte
 
 - While the phone batch awaited full review, main advanced to `0f3322de` through the separately approved forty-work publication. This branch merges that exact production state, preserving its catalogue, model bindings, orientations and thumbnails. The shared range-probe change is retained together with the HTTP/2 transport and response-phase diagnostics. The approved phone UI is unchanged. The combined candidate requires full review before merge.
 - Review `44195244474` was cancelled after more than eleven minutes installing system browser dependencies, before any site checks. Replacement `44197360598` started on the same pre-integration head; it cannot establish the combined release. Both attempts remain in the release record. No failed model request is retried or hidden.
+
+
+## 2026-11-18 — Homepage curated edition (ChatGPT / PR #108)
+
+- Task: update homepage hero to Discobolus; feature What Survives with the existing Iznik Jug; keep Seated Figures comparison prominent; give Discobolus, The Thinker, and the Middle Niger figure closer three-quarter opening camera perspectives on both homepage and work pages; refine homepage and sitewide editorial copy.
+- Branch: `chatgpt/hero-discobolus-20261118`; owner: ChatGPT via GitHub connector. Local computer checkouts not inspected.
+- Completed on branch: code changes only. The shared museum scheduling engine remains unchanged; homepage selects a curated edition. Artwork geometry, attribution, licensing and source delivery assets are unchanged. The former Surface-specific five-minute button now links to What Survives as an exhibition invitation, not an unsupported five-minute curated visit.
+- Validation: source reviewed through GitHub connector. Complete GitHub Actions review and live render/deployment confirmation must be checked separately; no claims of local browser inspection or verified camera aesthetics.
+- Next: pass production review gates; merge PR #108 only on success; verify GitHub Pages deployment and live homepage with both artwork views. Preserve any concurrent work.
