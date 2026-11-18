@@ -14,7 +14,7 @@ const arUrl = spatialWork ? `${v3WorkRoute(spatialWork)}#ar-vr` : '/ar-vr/';
   <p class="v3-kicker spatial-invitation__eyebrow">03 / Beyond the object view</p>
   <div class="spatial-invitation__entries">
     <article class="spatial-invitation__entry">
-      <div class="spatial-invitation__copy"><p class="v3-kicker">A room to explore</p><h2 id="studio-museum-title">Enter a 3D gallery.</h2><p>{room ? `${room.title} · ${room.count} works` : 'Explore themed rooms from the collection.'}</p><a href={withBase(roomUrl)}>Enter the gallery <span aria-hidden="true">→</span></a></div>
+      <div class="spatial-invitation__copy"><p class="v3-kicker">A room to explore</p><h2 id="studio-museum-title">Step inside the collection.</h2><p>{room ? `${room.title} · ${room.count} works` : 'Explore themed rooms from the collection.'}</p><a href={withBase(roomUrl)}>Enter the gallery <span aria-hidden="true">→</span></a></div>
       {roomWork && <a class="spatial-invitation__art" href={withBase(roomUrl)} aria-label={`Enter ${room.title}`}><img src={withBase(roomWork.thumbnailImage)} alt={roomWork.title} width="360" height="450" loading="lazy" decoding="async" /></a>}
     </article>
     <article class="spatial-invitation__entry">

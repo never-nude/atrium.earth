@@ -24,14 +24,23 @@ export type MuseumProgramme = {
   dayKey: string;
 };
 
-const result = buildMuseumProgramme({
+// The homepage has a curator-selected edition; the general programme engine
+// keeps its tested rotation behaviour for other callers and future editions.
+const scheduled = buildMuseumProgramme({
   date: programmeDate,
-  programmes,
+  programmes: { ...programmes, focuses: programmes.focuses.filter(focus => focus.exhibitionId === 'what-survives') },
   exhibitions,
   homepageWorks: homepageFeaturedWorks,
   previews,
   pairings,
   rooms: spatialManifest.rooms,
 });
+const selectedHero = homepageFeaturedWorks.find(work => work.slug === 'discobolus'
+  && work.hasPreview && previews[work.slug]?.bytes > 0 && previews[work.slug].bytes <= 15 * 1024 * 1024);
+const result = {
+  ...scheduled,
+  hero: selectedHero ?? scheduled.hero,
+  heroPrompt: selectedHero ? 'Turn the work to compare its front, sides and back.' : scheduled.heroPrompt,
+};
 export const currentProgramme = result as MuseumProgramme;
 export { programmeDate };

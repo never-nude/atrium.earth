@@ -638,6 +638,12 @@ function normalize(raw: RawWork, fallbackIndex: number): Work {
   const medium = clean(raw.material);
   const title = clean(correction?.title || raw.title) || titleCaseSlug(raw.slug);
   const modelTransform = modelTransformFor(orientationMap[raw.slug]);
+  // Camera-only opening perspectives shared by the homepage and work pages.
+  // Keep model geometry, upright corrections, materials and AR unchanged.
+  if (raw.slug === 'rodin/the-thinker') modelTransform.viewDirection = [0.85, 0.3, 0.65];
+  if (raw.slug === 'sub-saharan-africa/seated-figure-middle-niger') modelTransform.viewDirection = [0.85, 0.3, 0.65];
+  // Three-quarter view emphasizes the thrower's twisting torso and arm line.
+  if (raw.slug === 'discobolus') modelTransform.viewDirection = [0.8, 0.25, 0.65];
   const dimensionRecord = rawPhysicalDimensions[raw.slug];
   const physicalDimensions = physicalDimensionsFor(raw.dimensions, dimensionRecord, preview?.url, rawOrientations[raw.slug]);
   const spatialEligibility = spatialEligibilityFor({

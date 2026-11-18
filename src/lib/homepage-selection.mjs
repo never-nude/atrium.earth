@@ -9,11 +9,22 @@ export function selectHomepageWorks({ programme, reviewed, previews, date, roomW
     used.add(work.slug);
     return work;
   }
-  const lead = reserve(exhibitionLeadForDate(programme.focus, reviewedSlugs, previews, date, used));
+  // Curator-selected lead for What Survives, subject to existing homepage
+  // approval and preview-size checks, with the normal lead as fallback.
+  const iznikLead = programme.focus.slug === 'what-survives'
+    ? programme.focus.works.find(work => work.slug === 'asia/iznik-jug-english-mounts-fitzwilliam'
+      && reviewedSlugs.has(work.slug) && isPreviewBudgetEligible(work, previews) && !used.has(work.slug))
+    : null;
+  const lead = reserve(iznikLead ?? exhibitionLeadForDate(programme.focus, reviewedSlugs, previews, date, used));
   if (!lead) throw new Error(`Homepage exhibition ${programme.focus.slug} needs a distinct reviewed lead within the auto-start budget.`);
 
-  // Keep pairs intact and let the existing editorial ordering choose a fallback.
-  const pair = programme.pairings.find(({ a, b }) => !used.has(a.slug) && !used.has(b.slug));
+  // Curator-selected homepage comparison. Keep the existing editorial ordering
+  // as fallback if either seated figure is already reserved for another slot.
+  const seatedPair = programme.pairings.find(({ a, b }) =>
+    new Set([a.slug, b.slug]).has('rodin/the-thinker')
+    && new Set([a.slug, b.slug]).has('sub-saharan-africa/seated-figure-middle-niger')
+    && !used.has(a.slug) && !used.has(b.slug));
+  const pair = seatedPair ?? programme.pairings.find(({ a, b }) => !used.has(a.slug) && !used.has(b.slug));
   if (pair) {
     reserve(pair.a);
     reserve(pair.b);

@@ -48,7 +48,7 @@ const heroAlt = [
 
 <V3Layout
   title="Atrium.Earth"
-  description={`Explore ${collectionCount.toLocaleString('en-US')} sculptures in 3D, save favourites, and visit themed galleries. ${arVrCount.toLocaleString('en-US')} models are available in AR and VR on compatible devices.`}
+  description={`Explore ${collectionCount.toLocaleString('en-US')} works of art and craftsmanship in 3D, from antiquity to today. Discover exhibitions, galleries, and immersive AR and VR experiences.`}
   image={featuredWork.thumbnailImage}
 >
   <div class="home-programme" data-programme data-programme-week={currentProgramme.weekKey} data-programme-day={currentProgramme.dayKey} data-programme-layout={currentProgramme.layout} data-programme-hero={featuredWork.slug} style={`--home-programme-accent:${currentProgramme.accent}`}>
@@ -75,10 +75,10 @@ const heroAlt = [
     <div class="v3-hero__veil" aria-hidden="true"></div>
     <div class="v3-hero__copy">
       <p class="v3-kicker">A museum you can move through</p>
-      <h1 id="v3-home-title" class="v3-display">A closer look<br />at sculpture.</h1>
-      <p class="v3-hero__lede">Turn sculpture in 3D. Follow a short curated visit, or find your own way through {collectionCount.toLocaleString('en-US')} works.</p>
+      <h1 id="v3-home-title" class="v3-display">What hands<br />have made.</h1>
+      <p class="v3-hero__lede">Explore human ingenuity and craftsmanship, from antiquity to today. Turn objects in 3D and discover the stories behind them.</p>
       <div class="v3-actions">
-        <a class="v3-button v3-button--light" href={withBase('/exhibitions/the-work-of-the-surface/#curated-visit')}>A 5-minute visit <span aria-hidden="true">→</span></a>
+        <a class="v3-button v3-button--light" href={withBase('/exhibitions/what-survives/')}>Explore What Survives <span aria-hidden="true">→</span></a>
         <a class="v3-button v3-button--ghost" href={withBase('/collection/')}>Browse all works <span aria-hidden="true">↗</span></a>
       </div>
       <p class="home-hero-prompt"><span>Look closely</span>{currentProgramme.heroPrompt}</p>
@@ -121,8 +121,8 @@ const heroAlt = [
 
   <section class="v3-section v3-random home-random" aria-labelledby="random-title" data-home-section="discovery">
     <p class="v3-kicker">06 / A different starting point</p>
-    <h2 id="random-title">Choose a work at random.</h2>
-    <p>A different starting point can change what you notice.</p>
+    <h2 id="random-title">Discover something unexpected.</h2>
+    <p>Let chance lead you to an object, a place, or a story you might have missed.</p>
     <a class="v3-random__button" href={randomRoutes[0]} data-random-work>Choose a work <span>↗</span></a>
   </section>
 
