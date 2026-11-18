@@ -1,9 +1,10 @@
 import programmes from '../data/museum-programmes.json';
 import spatialManifest from '../../public/spatial-museum/collection-manifest.json';
-import { inlinePreviewMap as previews, homepageFeaturedWorks, type Work } from './catalog';
+import { featuredWorks, inlinePreviewMap as previews, homepageFeaturedWorks, type Work } from './catalog';
 import { exhibitions, pairings, type V3Exhibition, type V3Pairing } from './v3';
 import { buildMuseumProgramme } from './museum-programme.mjs';
 import { programmeDate } from './museum-date.mjs';
+import { isWithinInitialPreviewBudget } from './viewer-preview.mjs';
 
 export type ProgrammeLayout = 'exhibition-first';
 export type ProgrammeSection = 'wings' | 'galleries' | 'ar-vr' | 'comparisons' | 'exhibitions';
@@ -35,8 +36,9 @@ const scheduled = buildMuseumProgramme({
   pairings,
   rooms: spatialManifest.rooms,
 });
-const selectedHero = homepageFeaturedWorks.find(work => work.slug === 'discobolus'
-  && work.hasPreview && previews[work.slug]?.bytes > 0 && previews[work.slug].bytes <= 15 * 1024 * 1024);
+// Discobolus is approved for this curated edition. The rotation continues to use its own review pool.
+const selectedHero = featuredWorks.find(work => work.slug === 'discobolus'
+  && work.hasPreview && isWithinInitialPreviewBudget(work.modelBytes));
 const result = {
   ...scheduled,
   hero: selectedHero ?? scheduled.hero,

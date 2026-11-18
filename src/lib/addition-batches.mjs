@@ -1,9 +1,4 @@
-/**
- * Newest public imports, independent of their batch's original publication date.
- * Show exactly the latest logical batch, including its earlier continuations.
- * Never fill a small import with older works or truncate a large import.
- */
-export function buildNewestWorks(records, publicWorks) {
+function orderedPublicImports(records, publicWorks) {
   const published = new Map(publicWorks.map((work) => [work.slug, work]));
   const candidates = records.flatMap((record, order) => {
     const work = published.get(record.slug);
@@ -24,15 +19,31 @@ export function buildNewestWorks(records, publicWorks) {
   });
   candidates.sort((a, b) => b.importedAt - a.importedAt || b.catalogIndex - a.catalogIndex || b.order - a.order);
   const seen = new Set();
-  const unique = candidates.filter(({ work }) => {
+  return candidates.filter(({ work }) => {
     if (seen.has(work.slug)) return false;
     seen.add(work.slug);
     return true;
   });
-  const latestBatch = unique[0]?.batch;
+}
+
+/**
+ * Newest public imports, independent of their batch's original publication date.
+ * Show exactly the latest logical batch, including its earlier continuations.
+ * Never fill a small import with older works or truncate a large import.
+ */
+export function buildNewestWorks(records, publicWorks) {
+  const imports = orderedPublicImports(records, publicWorks);
+  const latestBatch = imports[0]?.batch;
   if (!latestBatch) return [];
-  return unique
+  return imports
     .filter((entry) => entry.batch === latestBatch)
+    .map(({ work }) => work);
+}
+
+export function buildRecentModelWorks(records, publicWorks, limit) {
+  return orderedPublicImports(records, publicWorks)
+    .filter(({ work, importedAt }) => work.hasPreview && Number.isFinite(importedAt))
+    .slice(0, limit)
     .map(({ work }) => work);
 }
 

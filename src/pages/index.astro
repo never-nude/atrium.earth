@@ -2,7 +2,7 @@
 import Viewer from '../components/Viewer.astro';
 import V3WorkCard from '../components/v3/V3WorkCard.astro';
 import V3WingGrid from '../components/v3/V3WingGrid.astro';
-import { newestWorks } from '../lib/additions';
+import { curatedRecentWorks, newestWorks } from '../lib/additions';
 import FeaturedExhibition from '../components/home/FeaturedExhibition.astro';
 import LookingTogether from '../components/home/LookingTogether.astro';
 import SpatialInvitation from '../components/home/SpatialInvitation.astro';
@@ -23,15 +23,21 @@ const room = currentProgramme.room ?? spatialManifest.rooms[0];
 const selection = selectHomepageWorks({
   programme: currentProgramme, reviewed: featuredWorks, previews, date: programmeDate,
   roomWorks: (room?.slugs ?? []).map(workBySlug).filter((work): work is Work => Boolean(work)),
-  spatialWorks: arVrFeatured, wings: wingSummaries, newestWorks,
+  spatialWorks: arVrFeatured, wings: wingSummaries, newestWorks: [...curatedRecentWorks, ...newestWorks],
 });
 const randomRoutes = featuredWorks.map(work => withBase(v3WorkRoute(work)));
+const isDiscobolus = featuredWork.slug === 'discobolus';
+const heroTransform = isDiscobolus
+  ? { ...featuredWork.modelTransform, viewDirection: [0.8, 0.25, -0.65] }
+  : featuredWork.modelTransform;
 const heroAppearance = {
   ...featuredWork.materialAppearance,
   backdropTop: '#1c2b41',
   backdropBase: '#15243a',
   backdropGlow: '#c9d2dc',
   backdropGlowStrength: 0.08,
+  // Camera-space X and Y place the key at two o'clock, with Z toward the viewer.
+  ...(isDiscobolus && { keyLightCameraOffset: [4.330127, 2.5, 4], exposure: 0.23 }),
 };
 
 // Alt text describes the work the way a wall label would: title, maker, date,
@@ -58,6 +64,7 @@ const heroAlt = [
         glb={withBase(featuredWork.modelGlb)}
         modelBytes={featuredWork.modelBytes}
         poster={withBase(featuredWork.thumbnailImage)}
+        posterStill={isDiscobolus ? withBase('/images/viewer-stills/discobolus-home.webp') : undefined}
         posterAlt={heroAlt}
         title={featuredWork.title}
         hud={false}
@@ -65,7 +72,7 @@ const heroAlt = [
         posterLoading="eager"
         measureStill
         upAxis={featuredWork.modelUpAxis}
-        modelTransform={featuredWork.modelTransform}
+        modelTransform={heroTransform}
         materialAppearance={heroAppearance}
         loadingPlacement="below"
         displayControls={true}
