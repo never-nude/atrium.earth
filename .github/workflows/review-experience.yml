@@ -15,6 +15,13 @@ concurrency:
 jobs:
   verify:
     runs-on: ubuntu-latest
+    container:
+      # Match the Playwright version in package-lock.json.
+      image: mcr.microsoft.com/playwright:v1.61.1-resolute@sha256:6b3d024edb132382b0064c4ca56abec52d5df95b93c63dd61a81d3a37abdef7f
+      options: --init --ipc=host
+    defaults:
+      run:
+        shell: bash
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -24,8 +31,6 @@ jobs:
       - run: npm ci
       - name: Verify museum behaviour and source bindings
         run: npm test
-      - name: Install browser engines
-        run: npx playwright install --with-deps chromium webkit
       - name: Build the complete production package
         run: npm run build
         env:
