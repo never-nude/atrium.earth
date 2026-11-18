@@ -9,7 +9,13 @@ export function selectHomepageWorks({ programme, reviewed, previews, date, roomW
     used.add(work.slug);
     return work;
   }
-  const lead = reserve(exhibitionLeadForDate(programme.focus, reviewedSlugs, previews, date, used));
+  // Curator-selected lead for What Survives, subject to existing homepage
+  // approval and preview-size checks, with the normal lead as fallback.
+  const iznikLead = programme.focus.slug === 'what-survives'
+    ? programme.focus.works.find(work => work.slug === 'asia/iznik-jug-english-mounts-fitzwilliam'
+      && reviewedSlugs.has(work.slug) && isPreviewBudgetEligible(work, previews) && !used.has(work.slug))
+    : null;
+  const lead = reserve(iznikLead ?? exhibitionLeadForDate(programme.focus, reviewedSlugs, previews, date, used));
   if (!lead) throw new Error(`Homepage exhibition ${programme.focus.slug} needs a distinct reviewed lead within the auto-start budget.`);
 
   // Keep pairs intact and let the existing editorial ordering choose a fallback.
