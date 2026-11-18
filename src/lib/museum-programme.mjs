@@ -152,10 +152,7 @@ export function buildMuseumProgramme({ date, programmes, exhibitions, homepageWo
   const focus = bySlug.get(focusConfig.exhibitionId);
   const focusSlugs = new Set(focus.works.map(work => work.slug));
   const heroQueue = buildHeroQueue(homepageWorks, previews, focusSlugs, calendar.weekKey);
-  // Curator-selected homepage hero. Keep the reviewed, preview-budget-eligible
-  // daily queue as the fallback without changing exhibition scheduling.
-  const hero = (homepageWorks ?? []).find(work => work.slug === 'discobolus'
-    && isPreviewBudgetEligible(work, previews)) ?? heroQueue[calendar.dayIndex % heroQueue.length];
+  const hero = heroQueue[calendar.dayIndex % heroQueue.length];
   const focusIntro = focusConfig.focusIntro || focus.invitation || '';
   const layout = PROGRAMME_LAYOUTS[0];
   const homepageSlugs = new Set((homepageWorks ?? [])
