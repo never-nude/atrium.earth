@@ -109,6 +109,13 @@ below the existing 1,000,000,000-byte cap. All 3,160 public collection records h
 unique cards, and all 6,320 published WebP/JPEG paths passed verification. The
 separately gated Stage 3 reduction has not happened.
 
+### Release authorization
+
+Mike subsequently instructed Codex to push and deploy this batch. The earlier
+phone-review restriction is superseded for this release. Remote review and live
+deployment still need passing evidence; consult STATUS.md and the pull request
+for their actual outcome.
+
 ## Scope protections
 
 Models, catalogue records, orientations and artwork-page handling are unchanged.
