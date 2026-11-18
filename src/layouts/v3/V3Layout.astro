@@ -23,7 +23,7 @@ type Props = {
 
 const {
   title = 'Atrium.Earth',
-  description = 'A borderless digital museum for exploring sculpture in three dimensions.',
+  description = 'A digital museum exploring what human hands have made, from antiquity to today.',
   image = '/previews/renders/michelangelo/david/thumb.webp',
   canonical = Astro.url.pathname,
   immersive = false,
@@ -35,7 +35,7 @@ const currentPath = withoutBase(Astro.url.pathname);
 const canonicalPath = withoutBase(canonical).replace(/^\/v3(?=\/|$)/, '') || '/';
 const canonicalUrl = absoluteUrl(canonicalPath, site);
 const imageUrl = absoluteUrl(socialArtworkImage(image), site);
-const pageTitle = title === 'Atrium.Earth' ? 'Atrium.Earth — Digital Sculpture Museum' : `${title} — Atrium.Earth`;
+const pageTitle = title === 'Atrium.Earth' ? 'Atrium.Earth — Museum for the Art of Making' : `${title} — Atrium.Earth`;
 ---
 
 <!doctype html>
@@ -75,7 +75,7 @@ const pageTitle = title === 'Atrium.Earth' ? 'Atrium.Earth — Digital Sculpture
       <footer class="v3-footer">
         <div>
           <strong>Atrium.Earth</strong>
-          <span>Digital sculpture museum</span>
+          <span>Museum for the art of making</span>
           <span class="v3-footer__credit">Records and scans via open-access museums and contributors — see each work for its source</span>
         </div>
         <nav aria-label="Footer">
