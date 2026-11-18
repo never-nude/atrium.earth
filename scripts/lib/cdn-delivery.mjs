@@ -10,6 +10,61 @@ const host = /models\.atrium\.earth/gi;
 const addressPrefix = /(?:^|[\s"'\x60<>,=(\[\]])(?:https:)?\/\/$/i;
 const assetPath = /^\/(?:[a-z0-9_%.-]+\/)*[a-z0-9_%.-]+\.(glb|gltf|usdz|jpg)(?=$|[\s"'\x60<>,})\]])/i;
 const documentTypes = /\.(?:html?|json|css|[cm]?js|xml|svg|map|txt|webmanifest)$/i;
+export const CDN_AUDIT_START_INTERVAL_MS = 100;
+
+// Share one start gate across audits in this process. Verification responses may
+// overlap; the existing worker count still bounds each audit to four in flight.
+// Queued pacing does not consume a request's 20-second delivery deadline.
+export function createCdnAuditStartGate({
+  now = () => performance.now(),
+  wait = milliseconds => new Promise(resolve => setTimeout(resolve, Math.ceil(milliseconds))),
+} = {}) {
+  let previousStart = -Infinity;
+  let turn = Promise.resolve();
+  return start => {
+    const started = turn.then(async () => {
+      let time = now();
+      if (!Number.isFinite(time)) throw new Error('Audit clock must be finite');
+      while (time - previousStart < CDN_AUDIT_START_INTERVAL_MS) {
+        await wait(CDN_AUDIT_START_INTERVAL_MS - (time - previousStart));
+        time = now();
+        if (!Number.isFinite(time)) throw new Error('Audit clock must be finite');
+      }
+      // An object prevents the queue from awaiting the verification response.
+      // Measure after synchronous dispatch setup as well, so a slower first
+      // connection cannot shorten the next actual request's spacing.
+      try {
+        return { pending: start() };
+      } finally {
+        previousStart = now();
+        if (!Number.isFinite(previousStart)) throw new Error('Audit clock must be finite');
+      }
+    });
+    turn = started.then(() => {}, () => {});
+    return started.then(({ pending }) => pending);
+  };
+}
+const paceAuditStart = createCdnAuditStartGate();
+
+function httpFailure(response) {
+  const details = [];
+  const fields = [
+    ['retry-after', 'Retry-After', 128, value => /^\d{1,10}$/.test(value)
+      || (/^[a-z]{3}, \d{2} [a-z]{3} \d{4} \d{2}:\d{2}:\d{2} GMT$/i.test(value) && Number.isFinite(Date.parse(value)))],
+    ['cf-ray', 'CF-Ray', 96, value => /^[a-f0-9]{8,64}(?:-[a-z0-9]{2,12})?$/i.test(value)],
+    ['cf-cache-status', 'CF-Cache-Status', 32, value => /^(?:HIT|MISS|DYNAMIC|EXPIRED|STALE|BYPASS|REVALIDATED|UPDATING|NONE|UNKNOWN)$/i.test(value)],
+    ['cf-mitigated', 'CF-Mitigated', 32, value => /^challenge$/i.test(value)],
+  ];
+  // Only public operational headers are reported, never cookies, credentials
+  // or the error body. Unexpected/oversized field contents are not copied.
+  for (const [name, label, maximum, valid] of fields) {
+    const raw = response.headers.get(name);
+    if (!raw) continue;
+    const value = raw.trim();
+    details.push(label + ': ' + (value.length <= maximum && valid(value) ? value : '[invalid]'));
+  }
+  return 'HTTP ' + response.status + (details.length ? ' (' + details.join('; ') + ')' : '');
+}
 
 async function* documents(directory) {
   for (const entry of await readdir(directory, { withFileTypes: true })) {
@@ -100,7 +155,7 @@ export async function readCdnAsset(url, { bytes, mime, varyByOrigin = false, ful
   const encoding = response.headers.get('content-encoding');
   const expectedRange = `bytes 0-${headerBytes - 1}/${bytes}`;
   let issue;
-  if (!(response.status === 200 || (!full && response.status === 206))) issue = `HTTP ${response.status}`;
+  if (!(response.status === 200 || (!full && response.status === 206))) issue = httpFailure(response);
   else if (varyByOrigin && cors !== site) issue = `Expected production CORS, received ${cors || 'no header'}`;
   else if (varyByOrigin && !vary?.split(',').some(value => value.trim().toLowerCase() === 'origin')) {
     issue = `Expected Vary: Origin, received ${vary || 'no header'}`;
@@ -135,7 +190,7 @@ export async function readCdnAsset(url, { bytes, mime, varyByOrigin = false, ful
   } };
 }
 
-export async function checkDeliveries(assets, verify) {
+export async function checkDeliveries(assets, verify, { paceStart = paceAuditStart } = {}) {
   let next = 0;
   const results = new Array(assets.length);
   await Promise.all(Array.from({ length: 4 }, async () => {
@@ -144,7 +199,7 @@ export async function checkDeliveries(assets, verify) {
       const asset = assets[index];
       try {
         if (!asset.bytes) throw new Error('No registered size for this published URL');
-        results[index] = { ...asset, delivery: await verify(asset) };
+        results[index] = { ...asset, delivery: await paceStart(() => verify(asset)) };
       } catch (error) {
         results[index] = { ...asset, error: [
           error.deliveryPhase && `[${error.deliveryPhase}]`, error.message, error.code || error.cause?.code,

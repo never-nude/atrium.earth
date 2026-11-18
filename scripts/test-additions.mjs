@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { buildAdditionBatches, buildNewestWorks } from '../src/lib/addition-batches.mjs';
+import { buildAdditionBatches, buildNewestWorks, buildRecentModelWorks } from '../src/lib/addition-batches.mjs';
 const visible = ['a', 'b', 'c', 'd', 'e'].map((slug) => ({ slug, title: slug }));
 const records = [
   { slug: 'a', ingested: '2026-09-19', ingest_batch: 'morning', ingested_at: '2026-09-19T10:00:00.000Z' },
@@ -89,6 +89,9 @@ assert.equal(continuedNewest.length, 46);
 assert(continuedNewest.includes('continued-1'));
 assert(continuedNewest.includes('continued-new'));
 assert(!continuedNewest.some(slug => slug.startsWith('intervening-')));
+const modelPublic = continuedPublic.map(work => ({ ...work, hasPreview: work.slug !== 'intervening-40' }));
+assert.deepEqual(buildRecentModelWorks(continuedBatch, modelPublic, 3).map(work => work.slug),
+  ['continued-new', 'intervening-39', 'intervening-38']);
 
 // Four sequential write chunks can form one 240-work logical batch without
 // truncating Newest or splitting the internal batch record.
