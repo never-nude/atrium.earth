@@ -27,6 +27,12 @@ README.md was inspected for project context (observed blob `512ea6af19a98afa7d6e
 
 Neither computer's checkout, uncommitted changes, unpushed commits, local paths, running tasks, nor separate Codex conversations has been inspected. Do not mark either machine synchronized based on these files alone.
 
+## 2026-11-18 — Homepage release and CDN pacing candidate
+
+- The [ordered homepage release](https://github.com/never-nude/atrium.earth/actions/runs/44375368726) at `7b3cd20e` built successfully. All 14 URLs from the earlier HTTP 500 incident returned valid partial responses. The verifier received HTTP 500 for `modern/male-nude-mares-emporda` and timed out before response headers for `greek/terracotta-warship-cyprus-fitzwilliam`. The other 3,172 model URLs and all six first-view hashes passed. Pages skipped deployment.
+- This Codex session prepared local branch `codex/homepage-cdn-pacing` from `7b3cd20e`, reusing the verifier and regression tests from [PR #107's pacing change](https://github.com/never-nude/atrium.earth/commit/4c106a297a61e31dca9a14871f3b4ab0a759c5be). The verifier spaces request starts by at least 100 ms and keeps the existing four-worker and single-attempt checks. The globe remains in PR #107 for its own release.
+- Node 22 tests and an 8,842-page Pages build passed locally. The new candidate has no live verification. The next action is a coordinator-approved review of the homepage candidate, followed by a passing Pages deployment and owner review before starting the globe release.
+
 ## Next session
 
 1. Read AGENTS.md and existing project instructions.
