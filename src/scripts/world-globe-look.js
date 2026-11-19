@@ -1,12 +1,12 @@
 // The sculpted look of the signature globe.
 //
 // The earth is treated as an object in a vitrine: land cast in low relief,
-// a dark lacquered sea with engraved waterlines, one warm key light at two
+// a dark lacquered sea, one warm key light at two
 // o'clock and a violet rim, matching the way Atrium lights its sculpture.
 // Each documented origin is a real point of light with a hairline beam.
 //
 // Everything is derived at run time from the bundled Natural Earth land mask.
-// The relief and waterlines are a stylised emboss of the coastline; they are
+// The relief is a stylised emboss of the coastline; they are
 // not terrain or bathymetry.
 import * as THREE from 'three';
 import { RELIEF_SLOPE_RANGE, approach, bakeRelief, lightMetrics, softenMask } from '../lib/world-globe-relief.mjs';
@@ -101,7 +101,6 @@ const SURFACE_FRAGMENT = /* glsl */`
     vec2 uv = vec2(vUv.x + 0.25, 1.0 - vUv.y);
     float cover = texture2D(uCoast, uv).r * uHasLand;
     vec4 relief = texture2D(uRelief, uv);
-    float shelf = relief.g * uHasLand;
     vec2 slope = (relief.ba - 0.5) * ${RELIEF_SLOPE_RANGE.toFixed(4)} * uHasLand;
 
     // The shoreline is the half-way contour of a softened mask: a clean curve at any size.
@@ -137,13 +136,6 @@ const SURFACE_FRAGMENT = /* glsl */`
     vec3 sea = mix(uSea, uSeaLit, keyG * keyG);
     sea += uKeyColor * (gloss64 * gloss64 * 0.22 + gloss16 * 0.030);
     sea += uRimColor * rimG * sqrt(rimG) * 0.10;
-
-    // Engraved waterlines hug the coast and fade out to sea.
-    float band = shelf * 6.5;
-    float crowd = fwidth(band);
-    float waterline = 1.0 - smoothstep(0.30, 1.10, abs(fract(band - 0.5) - 0.5) / max(crowd, 1e-4));
-    waterline *= smoothstep(0.05, 0.14, shelf) * (1.0 - smoothstep(0.30, 0.55, crowd));
-    sea += uInk * waterline * (0.026 + 0.062 * keyG) * uDetail;
 
     // Engraved graticule, every thirty degrees. Longitude jumps by a whole turn at the
     // antimeridian, so its footprint comes from the direction itself, which has no seam.
@@ -429,7 +421,7 @@ export function createGlobeLook({ scene, earth, camera, places }) {
     uCoast: { value: blank }, uRelief: { value: blank },
     uKey: { value: KEY_DIRECTION }, uRim: { value: RIM_DIRECTION },
     uSea: { value: colour('#070c18') }, uSeaLit: { value: colour('#15213a') },
-    uLand: { value: colour('#4d412d') }, uGild: { value: colour('#f1dc9a') },
+    uLand: { value: colour('#3b465f') }, uGild: { value: colour('#f1dc9a') },
     uKeyColor: { value: colour('#fff2d6') }, uRimColor: { value: colour('#c9a5ff') },
     uAmbient: { value: colour('#3b3a52') }, uInk: { value: colour('#f5f2e9') },
     uHasLand: { value: 0 }, uExposure: { value: 1 }, uDetail: { value: 1 },

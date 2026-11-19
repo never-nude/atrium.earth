@@ -14,8 +14,7 @@ behaviour and data.
 - **An object, not a diagram.** Land is cast in low relief and lit by one warm
   key light at two o'clock with a violet rim, the same direction as the
   homepage's featured sculpture. The coast is drawn by that light: gilded where
-  it faces the key, violet in the shadow. The sea is dark lacquer with engraved
-  waterlines and a 30° graticule.
+  it faces the key, violet in the shadow. The land is slate blue. The sea is dark lacquer with a 30° graticule.
 - **Lights are light.** Each documented origin is drawn in WebGL as a solid
   point with a glow and a hairline beam, on the same absolute scale as before
   (more works, brighter). They ease in and out as the period changes and come on
@@ -33,9 +32,9 @@ behaviour and data.
 - **It turns a little sooner and a touch faster**, at the owner's request: it
   resumes three seconds after a hand lets go (four before) and turns 2% faster
   (0.0459 radians a second, 0.045 before).
-- **The flat map** uses the same bronze and lacquer. It keeps its DOM points.
+- **The flat map** uses slate land on a dark blue sea with a fine muted gold coast. It keeps its DOM points.
 
-The relief and waterlines are a stylised emboss of the bundled Natural Earth
+The relief is a stylised emboss of the bundled Natural Earth
 coastline. They are not terrain or bathymetry; see
 [`public/world/ATTRIBUTION.md`](../public/world/ATTRIBUTION.md). No asset,
 dataset or dependency was added.
@@ -249,3 +248,7 @@ nothing about WebKit, which still has not run.
   owner has since designated this session release coordinator for this pull
   request, so the remote review runs on the head that carries these notes; its
   result is recorded on the pull request, not here.
+
+## Owner look adjustment on 2026-11-19
+
+Slate blue land replaces the bronze surface. The sea retains its graticule and lighting, with coastal waterlines removed. The flat map restores main's slate land, dark blue sea and muted gold coast, using its independent pixel density. All four local Chromium and WebKit signature profiles passed after installing the matching browsers. The focused 15 tests, full Node suite and 8,835-page build passed. Full remote review is pending.

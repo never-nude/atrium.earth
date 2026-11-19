@@ -44,7 +44,7 @@ page controls own fullscreen and disable it when unsupported or denied.
 ## Sculpted signature globe
 
 The `signature` presentation draws the earth as an object under museum light:
-land in low relief, a dark sea with engraved waterlines, one warm key light at
+slate land in low relief, a dark sea, one warm key light at
 two o'clock and a violet rim. Everything is derived in the browser from the
 same unchanged `land.geo.json`; no elevation, bathymetry, imagery or other
 dataset is added.
@@ -53,8 +53,6 @@ dataset is added.
   land mask and blurs it twice. The narrow blur bevels the coast so the light
   draws the shoreline; the wide blur rounds each landmass slightly. Inland
   surfaces carry a procedural hand-worked grain. None of it represents height.
-- **The waterlines are not depth.** They are contours of the wide blur: they
-  record distance from the generalized coast, nothing about the sea floor.
 - The graticule, atmosphere, dust field, beams and selection ring are
   decorative interface graphics.
 - Each light still marks a country or broad regional anchor, never an exact

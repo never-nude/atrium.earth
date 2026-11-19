@@ -43,44 +43,20 @@ function landRings(data) {
   return polygons;
 }
 
-function paintLand(ctx, polygons, box, glow = true, vivid = false, signature = false, density = 1) {
+function paintLand(ctx, polygons, box, glow = true, vivid = false, signature = false) {
   ctx.save();
   ctx.translate(box.x, box.y);
   ctx.lineWidth = 0.8;
-  ctx.fillStyle = signature ? '#40372a' : '#123a51';
+  ctx.fillStyle = signature ? '#273044' : '#123a51';
   if (vivid && ctx.createLinearGradient) {
     const gradient = ctx.createLinearGradient(0, 0, box.width, box.height);
     gradient.addColorStop(0, '#248b9d'); gradient.addColorStop(0.4, '#155a83');
     gradient.addColorStop(0.7, '#176f78'); gradient.addColorStop(1, '#34396c');
     ctx.fillStyle = gradient;
   }
-  ctx.strokeStyle = signature ? '#e9d17e85' : '#43e7ed';
+  ctx.strokeStyle = signature ? '#b3a67a' : '#43e7ed';
   ctx.shadowColor = signature ? '#e9d17e' : '#13bfe8';
   ctx.shadowBlur = glow ? 5 : 0;
-  if (signature) {
-    // The flat map is the same cast relief laid out: bronze under the two o'clock light,
-    // with each landmass throwing a soft shadow onto the sea below and to its left.
-    if (ctx.createLinearGradient) {
-      const gradient = ctx.createLinearGradient(box.width, 0, 0, box.height);
-      gradient.addColorStop(0, '#5b4e37'); gradient.addColorStop(0.55, '#43392a'); gradient.addColorStop(1, '#2e2720');
-      ctx.fillStyle = gradient;
-    }
-    ctx.shadowColor = '#03060cb3'; ctx.shadowBlur = 5 * density;
-    ctx.shadowOffsetX = -1.5 * density; ctx.shadowOffsetY = 2.5 * density;
-    for (const polygon of polygons) {
-      ctx.beginPath();
-      for (const ring of polygon) {
-        ring.forEach(([lon, lat], index) => {
-          const x = (lon + 180) / 360 * box.width, y = (90 - lat) / 180 * box.height;
-          if (index) ctx.lineTo(x, y); else ctx.moveTo(x, y);
-        });
-        ctx.closePath();
-      }
-      ctx.fill('evenodd');
-    }
-    ctx.shadowColor = 'transparent'; ctx.shadowBlur = 0; ctx.shadowOffsetX = 0; ctx.shadowOffsetY = 0;
-    ctx.fillStyle = 'transparent';
-  }
   for (const polygon of polygons) {
     ctx.beginPath();
     for (const ring of polygon) {
@@ -434,18 +410,11 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
     ctx.setTransform(flatPixelRatio, 0, 0, flatPixelRatio, 0, 0);
     ctx.clearRect(0, 0, width, height);
     const box = mapBox();
-    ctx.save();
-    if (signature) {
-      // A sheet of the same dark lacquer as the globe's sea, with the land clipped to it.
-      ctx.beginPath();
-      if (ctx.roundRect) ctx.roundRect(box.x, box.y, box.width, box.height, 10); else ctx.rect(box.x, box.y, box.width, box.height);
-      ctx.fillStyle = '#0a111f'; ctx.fill(); ctx.clip();
-    } else { ctx.fillStyle = '#061329'; ctx.fillRect(box.x, box.y, box.width, box.height); }
-    ctx.strokeStyle = signature ? '#f5f2e90f' : '#29517466'; ctx.lineWidth = 0.6;
+    ctx.fillStyle = signature ? '#101b2c' : '#061329'; ctx.fillRect(box.x, box.y, box.width, box.height);
+    ctx.strokeStyle = signature ? '#c9a5ff18' : '#29517466'; ctx.lineWidth = 0.6;
     for (let lon = -180; lon <= 180; lon += 30) { const x = box.x + (lon + 180) / 360 * box.width; ctx.beginPath(); ctx.moveTo(x, box.y); ctx.lineTo(x, box.y + box.height); ctx.stroke(); }
     for (let lat = -90; lat <= 90; lat += 30) { const y = box.y + (90 - lat) / 180 * box.height; ctx.beginPath(); ctx.moveTo(box.x, y); ctx.lineTo(box.x + box.width, y); ctx.stroke(); }
-    paintLand(ctx, polygons, box, !signature, invitation, signature, flatPixelRatio);
-    ctx.restore();
+    paintLand(ctx, polygons, box, !signature, invitation, signature);
     if (invitation) for (const place of entries) {
       if (!countFor(place.id)) continue;
       const x = box.x + (place.lon + 180) / 360 * box.width;
