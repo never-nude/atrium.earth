@@ -204,7 +204,7 @@ Open issues / observations, not changed here:
 
 Next step: the owner's check on a physical iPhone (Map, tap a light; turn the globe with a thumb resting on the page), then the release coordinator's full review of the exact head, which is the first WebKit run of the new phase. Every commit on the branch carries `[skip ci]`, so the review has to be started deliberately.
 
-Delivery: pushed to `origin/claude/blissful-noether-d0eenj` with a draft pull request against `main`. Remote checks are unrun, not green. Not merged. Not deployed.
+Delivery: pushed to `origin/claude/blissful-noether-d0eenj` as [draft PR #118](https://github.com/never-nude/atrium.earth/pull/118) against `main`. Opening it started no workflow run. Remote checks are unrun, not green. Not merged. Not deployed.
 
 ## Next session
 
