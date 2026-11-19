@@ -65,6 +65,26 @@ Neither computer's checkout, uncommitted changes, unpushed commits, local paths,
 
 - The [first GitHub review](https://github.com/never-nude/atrium.earth/actions/runs/44431877616) passed both CDN address checks. The browser matrix rejected a redundant ARIA label on the homepage globe's period count before initialization. It also recorded full-model request failures on existing artwork routes. The accessibility correction removes the unsupported label while preserving the displayed count. Node 22 tests, the full build, the globe suite, and serious/critical axe checks in Chromium and WebKit before and after initialization all passed locally. The corrected head requires a full review.
 
+
+## 2026-11-18 — Step 6B and Step 5 review candidate
+
+This Codex session prepared `codex/step-6b-step-5` from deployed main `07824458`. The preview is for the owner's iPhone review. Production requires the owner's approval.
+
+| Item | First check and final local result |
+| --- | --- |
+| 1. Globe selection | The first phone browser run flagged the new coverage link's touch target. After enlarging it, desktop side panels, phone auto-scroll, the 60 ms stagger, reduced motion, and Back to globe passed. The measured desktop turn was 801 ms in the first passing desktop run. |
+| 2. Globe above the fold | The first desktop assertion selected both the globe and hidden map canvases. Targeting the interactive canvas confirmed that it ends at 867 px in a 900 px viewport before scrolling. |
+| 3. Origin coverage | The first origin checks passed with 94 recoveries. The Met's published record then supplied one more. Its earlier unmapped expectation needed updating, and the full Node suite passed afterward. Coverage rose from 1,958 to 2,053, with 1,107 unmapped. Every remaining work has a reason in the generated `/world/unmapped.json`. Existing map assignments were identical in the baseline comparison. |
+| 4. 3D galleries | The first graph audit passed for 47 works and eight room USDZ bindings. The first visual check found a primary button cascade issue, and a drawer audit found newly inherited light text on a light surface. The corrected page passed local Chromium and WebKit room checks with all five Rodin room models and the Works drawer. The extra drawer audit still records existing accessible-name mismatches. |
+| 5. Retired entrances | The first built audit passed. All four redirects point to Collection and are absent from both sitemap outputs. Built HTML contains zero links to the retired entrances and the migration map has zero destinations to them. The four pages save 11,689,409 bytes. The final package is 899,475,820 bytes, 10,943,850 bytes smaller than the local baseline. |
+| 6. Phone type | The first completed 390 px sweep found zero visible text below 12 px. The final sweep covered 19 routes in both Chromium and WebKit. The browser suite now fails for visible text below 12 px on its phone cases. The five focused suite routes passed. |
+| 7. Chance | The first completed test proved that the highest and lowest random draws produce different public destinations and that the no-JavaScript fallback opens a real work. The endpoint contains exactly the 3,160 public works. |
+| 8. Group D | Held for the exact 11-work list. The A–C handoff records the designation and count without Group D membership. The catalogue had other reconstruction batches. The place-loss report depends on the same list. |
+
+The first integrated build caught a TypeScript/MJS name collision when importing the world projection. Explicit module imports resolved it. The final local Node suite, 8,839-page production build, four globe browser profiles, Pages package, collection, and published-image checks passed. The exact iPhone Safari test and production review are pending.
+
+Collection and AR / VR now open in newest artwork-date order, and saved Curator’s order links fall back to that default. Newest Additions opens by date added and sorts its 40 picks and latest-import works within their existing sections. Both support earliest and newest artwork dates, oldest and newest dates added, and title and maker in both alphabetical directions. The first Node tests, 8,839-page build, and local browser checks passed. Chromium desktop and WebKit phone also exercised all eight choices, saved sort links, and default listings without JavaScript. The package is 899,478,216 bytes and the updated preview is ready for the owner’s phone review.
+
 ## Next session
 
 1. Read AGENTS.md and existing project instructions.

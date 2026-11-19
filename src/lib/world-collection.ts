@@ -14,6 +14,7 @@ export type WorldWork = {
   start: number | null;
   end: number | null;
   placeId: string | null;
+  originReason: string;
   thumbnail: string;
   url: string;
   sourceLabel: string;

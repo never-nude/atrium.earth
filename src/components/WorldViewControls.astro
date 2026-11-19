@@ -13,14 +13,14 @@ const { signature = false } = Astro.props;
 </div>
 <style>
   .world-view-controls { position:relative; display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:5px; min-height:52px; padding:6px 10px; color:#d6e5ee; border-top:1px solid #b3d9eb1a; background:#09111ee8; }
-  .world-view-controls button { display:inline-flex; align-items:center; justify-content:center; min-height:36px; min-width:36px; padding:8px 11px; color:#d6e5ee; border:1px solid #acc3d333; border-radius:5px; background:#111e2d; cursor:pointer; font:500 11px/1.3 var(--v3-sans); white-space:nowrap; }
+  .world-view-controls button { display:inline-flex; align-items:center; justify-content:center; min-height:36px; min-width:36px; padding:8px 11px; color:#d6e5ee; border:1px solid #acc3d333; border-radius:5px; background:#111e2d; cursor:pointer; font:500 max(var(--atrium-text-floor, 0px), 11px)/1.3 var(--v3-sans); white-space:nowrap; }
   .world-view-controls button:hover { color:#f1fbff; background:#1b3044; border-color:#71cfe37a; }
   .world-view-controls button[aria-pressed="true"] { color:#081621; background:#80e6f3; border-color:#80e6f3; }
   .world-view-controls button:disabled { opacity:.4; cursor:default; }
   .world-view-controls > span { height:16px; width:1px; margin-inline:3px; background:#b3d9eb33; }
-  .world-view-controls > p { flex-basis:100%; margin:0; text-align:center; color:#ffbca0; font-size:10px; line-height:1.5; }
+  .world-view-controls > p { flex-basis:100%; margin:0; text-align:center; color:#ffbca0; font-size:max(var(--atrium-text-floor, 0px), 10px); line-height:1.5; }
   .world-view-controls > p:empty { display:none; }
-  @media(max-width:400px) { .world-view-controls { gap:4px; padding-inline:6px; } .world-view-controls button { padding:8px; font-size:10px; } .world-view-controls > span { display:none; } }
+  @media(max-width:400px) { .world-view-controls { gap:4px; padding-inline:6px; } .world-view-controls button { padding:8px; font-size:max(var(--atrium-text-floor, 0px), 10px); } .world-view-controls > span { display:none; } }
   .world-view-controls[data-world-controls-signature] { gap:8px; min-height:56px; padding:4px 0; color:var(--v3-ink); border:0; background:transparent; }
   [data-world-controls-signature] button { min-width:44px; min-height:44px; padding:10px 14px; border:1px solid var(--v3-line-strong); border-radius:6px; background:transparent; color:var(--v3-muted); font:500 12px/1.4 var(--v3-sans); }
   [data-world-controls-signature] button:hover { color:var(--v3-ink); border-color:var(--v3-signal); background:var(--v3-well); }

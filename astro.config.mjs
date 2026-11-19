@@ -7,6 +7,7 @@ const base = process.env.BASE_PATH || '/';
 export function sitemapPageAllowed(page) {
   const pathname = new URL(page).pathname.replace(/\/+$/, '');
   return !/\/newest\/[^/]+$/.test(pathname)
+    && !/\/(?:makers|geography|materials|museum)$/.test(pathname)
     && !/\/(?:collection|ar-vr)\/page\/\d+$/.test(pathname)
     && !/\/v[23](?:\/|$)/.test(pathname)
     && !/\/detail\//.test(pathname)
@@ -26,6 +27,10 @@ export default defineConfig({
     sitemap({ filter: sitemapPageAllowed }),
   ],
   redirects: {
+    '/makers/': '/collection/',
+    '/geography/': '/collection/',
+    '/materials/': '/collection/',
+    '/museum/': '/collection/',
     '/detail/egyptian/coffin-of-peftjaoeneith-68d0e0': '/works/egyptian/coffin-of-peftjaoeneith-68d0e0/',
     '/exhibitions/the-space-between': '/exhibitions/the-price-of-victory/',
     '/exhibitions/where-is-the-work': '/exhibitions/the-price-of-victory/',

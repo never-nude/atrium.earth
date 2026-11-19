@@ -12,6 +12,7 @@ import '../../styles/v3/spatial-discovery.css';
 import '../../styles/v3/additions.css';
 import '../../styles/v3/studio.css';
 import '../../styles/v3/curatorial-colors.css';
+import '../../styles/phone-type.css';
 
 type Props = {
   title?: string;
@@ -19,6 +20,7 @@ type Props = {
   image?: string;
   canonical?: string;
   immersive?: boolean;
+  mainElement?: 'main' | 'div';
 };
 
 const {
@@ -27,6 +29,7 @@ const {
   image = '/previews/renders/michelangelo/david/thumb.webp',
   canonical = Astro.url.pathname,
   immersive = false,
+  mainElement: Main = 'main',
 } = Astro.props;
 
 const site = String(Astro.site ?? 'https://atrium.earth');
@@ -70,7 +73,7 @@ const pageTitle = title === 'Atrium.Earth' ? 'Atrium.Earth — Museum for the Ar
   <body class:list={['v3-body', { 'v3-body--immersive': immersive }]}>
     <a class="v3-skip" href="#main">Skip to the museum</a>
     <V3Header currentPath={currentPath} />
-    <main id="main"><slot /></main>
+    <Main id="main" tabindex={Main === 'div' ? -1 : undefined}><slot /></Main>
     {!immersive && (
       <footer class="v3-footer">
         <div>

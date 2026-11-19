@@ -1,0 +1,4 @@
+/* Keep desktop type scales while giving captions and controls a readable phone floor. */
+@media (max-width: 430px) {
+  :root { --atrium-text-floor: 12px; }
+}

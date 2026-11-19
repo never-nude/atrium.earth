@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { gzipSync } from 'node:zlib';
 import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
-import { unpackCollectionIndex, COLLECTION_CHUNK_SIZE, COLLECTION_PAGE_SIZE } from '../src/lib/collection-window.mjs';
+import { unpackCollectionIndex, COLLECTION_CHUNK_SIZE, COLLECTION_PAGE_SIZE, DEFAULT_COLLECTION_SORT, workComparator } from '../src/lib/collection-window.mjs';
 import { createCollectionCard } from '../src/lib/collection-card.mjs';
 
 // Verify the delivered HTTP or built static package, without a browser/models.
@@ -55,14 +55,18 @@ for (let chunk = 0; chunk < Math.ceil(records.length / COLLECTION_CHUNK_SIZE); c
 }
 assert.equal(allCards.size, records.length);
 const checked = [];
+const defaultOrder = [...records].sort(workComparator(DEFAULT_COLLECTION_SORT));
 for (const mode of ['collection', 'ar-vr']) {
-  const count = mode === 'ar-vr' ? records.filter(record => record.size).length : records.length;
+  const works = mode === 'ar-vr' ? defaultOrder.filter(record => record.size) : defaultOrder;
+  const count = works.length;
   const pages = Math.ceil(count / COLLECTION_PAGE_SIZE);
   for (const page of [1, 2, pages]) {
     const path = page === 1 ? `/${mode}/` : `/${mode}/page/${page}/`;
     const html = await read(path);
     const cards = (html.match(/\bdata-v3-card(?=[\s>])/g) || []).length;
     assert.equal(cards, Math.min(COLLECTION_PAGE_SIZE, count - (page - 1) * COLLECTION_PAGE_SIZE), `${path} bounded SSR`);
+    const paths = [...html.matchAll(/<article\b[^>]*\bdata-v3-card(?=[\s>])[^>]*>\s*<a href="([^"]+)"/g)].map(([, href]) => href);
+    assert.deepEqual(paths, works.slice((page - 1) * COLLECTION_PAGE_SIZE, page * COLLECTION_PAGE_SIZE).map(work => `/works/${work.slug}/`), `${path} is in the default artwork date order`);
     assert.equal(/rel="prev"/.test(html), page > 1, `${path} previous page`);
     assert.equal(/rel="next"/.test(html), page < pages, `${path} next page`);
     assert.match(html, new RegExp(`rel="canonical" href="https://atrium\\.earth/${mode}/"`));

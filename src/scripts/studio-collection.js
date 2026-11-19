@@ -1,6 +1,6 @@
 import { legacyWingRoutes } from '../data/wing-legacy-routes';
 import { withBase } from '../lib/urls';
-import { COLLECTION_PAGE_SIZE, COLLECTION_FILTER_KEYS, normalizeCollectionText, unpackCollectionIndex, readCollectionState, writeCollectionState, selectCollectionWindow, collectionPageNumber } from '../lib/collection-window.mjs';
+import { COLLECTION_PAGE_SIZE, COLLECTION_FILTER_KEYS, DEFAULT_COLLECTION_SORT, WORK_SORT_OPTIONS, workCardSortValues, normalizeCollectionText, unpackCollectionIndex, readCollectionState, writeCollectionState, selectCollectionWindow, collectionPageNumber } from '../lib/collection-window.mjs';
 import { createCollectionCard } from '../lib/collection-card.mjs';
 import { groupMakerFacet } from '../lib/maker-groups.mjs';
 import { modelSizeLabel, requiresModelActivation } from '../lib/viewer-preview.mjs';
@@ -172,13 +172,10 @@ async function initializeExplorer(explorer) {
   }
   const filters = [...form.querySelectorAll('[data-v3-filter]')];
   const initialCards = [...grid.querySelectorAll('[data-v3-card]')];
-  let records = initialCards.map((card, index) => {
-    const title = card.querySelector('h3')?.textContent?.trim() || '';
-    const makerLabel = card.dataset.makerLabel || card.querySelector('.v3-card__copy p')?.textContent?.split('·')[0]?.trim() || '';
-    const rawYear = card.dataset.year?.trim();
-    const rawIndex = Number(card.dataset.studioIndex);
-    return { card, index, catalogIndex: Number.isFinite(rawIndex) && rawIndex > 0 ? rawIndex : index, ingested: card.dataset.studioIngested || '', title, makerLabel, maker: card.dataset.maker || '', year: rawYear && Number.isFinite(Number(rawYear)) ? Number(rawYear) : null,
-      search: normalize(`${card.dataset.search || ''} ${title} ${makerLabel}`), pathname: workPath(card.querySelector('a[href]')?.href || ''),
+  let records = initialCards.map(card => {
+    const sortValues = workCardSortValues(card);
+    return { card, ...sortValues, maker: card.dataset.maker || '',
+      search: normalize(`${card.dataset.search || ''} ${sortValues.title} ${sortValues.makerLabel}`), pathname: workPath(sortValues.slug),
       facets: Object.fromEntries(FILTER_KEYS.map(key => [key, card.dataset[key] || ''])) };
   });
   const status = explorer.querySelector('[data-studio-index-status]');
@@ -273,7 +270,7 @@ async function initializeExplorer(explorer) {
     if (!makers.has(group.value)) makers.set(group.value,group.label);
   }
   const makerControl = selectControl('Maker', 'studio-maker', 'studioMaker', [['', 'All makers'], ...[...makers].sort((a, b) => collator.compare(a[1], b[1]))]);
-  const sortControl = selectControl('Sort', 'studio-sort', 'studioSort', [['curator', 'Curator’s order'], ['title', 'Title A–Z'], ['maker', 'Maker A–Z'], ['date', 'Date: earliest first'], ['newest', 'Recently added']]);
+  const sortControl = selectControl('Sort', 'studio-sort', 'studioSort', WORK_SORT_OPTIONS);
   const filterRow = form.querySelector('.v3-filter-row') || form;
   filterRow.prepend(makerControl.label);
   if (filterRow !== form) {
@@ -388,7 +385,7 @@ async function initializeExplorer(explorer) {
     savedOnly = state.saved;
     density = state.density;
     limit = PAGE_SIZE;
-    const refined = state.q || state.maker || state.saved || state.sort !== 'curator'
+    const refined = state.q || state.maker || state.saved || state.sort !== DEFAULT_COLLECTION_SORT
       || hasWorldCollectionFilter(params) || FILTER_KEYS.some(key => state[key]);
     offset = refined ? 0 : (collectionPageNumber(location.pathname) - 1) * PAGE_SIZE;
     return retiredWing;
@@ -522,7 +519,7 @@ async function initializeExplorer(explorer) {
     event.preventDefault();
     search.value = '';
     for (const select of [...filters, makerControl.select]) select.value = '';
-    sortControl.select.value = 'curator';
+    sortControl.select.value = DEFAULT_COLLECTION_SORT;
     density = 'grid';
     savedOnly = false;
     if (hasWorldCollectionFilter(location.search)) {

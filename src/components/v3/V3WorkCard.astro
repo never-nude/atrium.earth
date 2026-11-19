@@ -19,7 +19,7 @@ const previewBytes = work.modelBytes || undefined;
   class="v3-card"
   data-v3-card
   data-search={data.search}
-  data-year={data.year}
+  data-year={String(work.yearStart ?? '')}
   data-wing={data.wing}
   data-era={data.era}
   data-place={data.place}

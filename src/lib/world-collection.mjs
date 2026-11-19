@@ -6,6 +6,47 @@ const uncertainty = /\b(?:or|possibly|probably|perhaps|uncertain|unconfirmed|unr
 const holdingOrCapture = /\b(?:museum|musee|museu|museo|institute|library|foundation|university|smithsonian|abbey|church|monastery|cathedral|gallery|galleries|collection|collections|captur(?:e|ed)|scan(?:ned|ning)?|photogrammetry|display(?:ed)?|held|holding|installed|installation|studio|artist|nationality|inspired)\b/iu;
 const production = /\b(?:made|manufactur(?:e|ed)|production|produced|casting|cast in|cast at|workshop|foundry)\b/iu;
 
+// Exact catalogue terms with a documented broad geography. A regional point
+// avoids assigning a disputed country or claiming to know a precise findspot.
+const regionalGeography = new Map(Object.entries({
+  'gabon equatorial guinea cameroon fang region': 'fang-region',
+  'nigeria benin': 'yoruba-region',
+  'kongo region democratic republic of the congo republic of the congo angola': 'kongo-region',
+  'angola democratic republic of the congo chokwe region': 'chokwe-region',
+  'democratic republic of the congo angola': 'chokwe-region',
+  'gandhara present day afghanistan or pakistan': 'gandhara',
+  'gandhara afghanistan or pakistan': 'gandhara',
+  'mediterranean world': 'mediterranean',
+  'roman empire': 'mediterranean',
+  'roman imperial': 'mediterranean',
+  'roman late republican early imperial': 'mediterranean',
+  'athens': 'attica',
+  'attic': 'attica',
+  'corinth': 'peloponnese',
+  'tarraco tarragona spain': 'spain',
+}));
+const regionalCulture = new Map(Object.entries({
+  'roman': 'mediterranean', 'ancient roman': 'mediterranean',
+  'roman imperial': 'mediterranean', 'etruscan': 'etruria',
+  'maya': 'maya-region', 'tibetan': 'tibetan-plateau', 'gandharan': 'gandhara',
+  'fang': 'fang-region', 'yoruba': 'yoruba-region', 'kongo bakongo': 'kongo-region',
+  'chokwe': 'chokwe-region', 'greek attic athens': 'attica', 'ancient greek attic': 'attica',
+  'greek corinthian corinth': 'peloponnese', 'ancient greek corinthian corinth': 'peloponnese',
+  'djenne inland niger delta': 'middle-niger', 'middle niger': 'middle-niger',
+}));
+const requiresMatchingCulture = new Set(['nigeria benin', 'democratic republic of the congo angola']);
+// The Met records Middle Niger civilization and Mali for accession 1981.218.
+// https://collectionapi.metmuseum.org/public/collection/v1/objects/314362
+const middleNigerSource = 'https://www.metmuseum.org/art/collection/search/314362';
+const unknownDetail = /^(?:(?:precise|exact|specific) (?:findspot|provenance|workshop|origin|place)|(?:findspot|region)) (?:is )?(?:unknown|unrecorded|not (?:known|recorded|supplied))\.?$/iu;
+
+function geographicScope(value) {
+  return text(value).replace(/\(([^()]*)\)/gu, (all, qualifier) => {
+    const description = qualifier.split(/[,;]/u).map(part => part.trim());
+    return unknownDetail.test(description.at(-1)) && !description.slice(0, -1).some(part => uncertainty.test(part) || holdingOrCapture.test(part)) ? '' : all;
+  }).replace(/[;,]\s*([^;,]+)$/u, (all, detail) => unknownDetail.test(detail) ? '' : all).trim();
+}
+
 // A relative age cannot become a moving "current year minus age" calculation.
 // For this reviewed prehistoric record only, retain the existing catalogue's
 // approximate sorting coordinate in the timeline while preserving its written
@@ -95,8 +136,8 @@ function resolveOrigin(record, { general, countries }) {
     return { placeId: null, reason: 'reconstruction-origin-unresolved' };
   }
   const countryLabel = text(record.origin_country);
-  const geography = text(record.geography);
-  const original = text(record.original_location);
+  const geography = geographicScope(record.geography);
+  const original = geographicScope(record.original_location);
   if (countryLabel && uncertainty.test(countryLabel)) return { placeId: null, reason: 'uncertain-origin' };
   const country = countryLabel ? placeFromLabel(countryLabel, countries) : null;
   if (castRecord(record) && !country && !production.test(`${geography} ${original}`)) {
@@ -124,9 +165,34 @@ function resolveOrigin(record, { general, countries }) {
     : { placeId: null, reason: original ? 'unresolved-original-location' : 'origin-not-recorded' };
 }
 
+function originIndexes(places) {
+  return { general: aliasIndex(places), countries: aliasIndex(places, true), byId: new Map(places.map(place => [place.id, place])) };
+}
+
+function resolveRecordedOrigin(record, indexes) {
+  const original = resolveOrigin(record, indexes);
+  if (original.placeId || castRecord(record) || text(record.origin_country)
+    || !['uncertain-origin', 'unresolved-geography', 'unresolved-original-location', 'origin-not-recorded', 'holding-only'].includes(original.reason)) return original;
+  const culture = regionalCulture.get(key(record.culture));
+  const geography = geographicScope(record.geography);
+  const location = key(geography || record.original_location);
+  if (!location && record.slug === 'sub-saharan-africa/seated-figure-middle-niger' && record.accession === '1981.218'
+    && text(record.source_record_url || record.source_url).replace(/\/+$/u, '') === middleNigerSource && indexes.byId.has('middle-niger')) {
+    return { placeId: 'middle-niger', reason: 'primary-record-cultural-region' };
+  }
+  const anchor = regionalGeography.get(location);
+  if (anchor && indexes.byId.has(anchor) && (!requiresMatchingCulture.has(location) || anchor === culture)) {
+    return { placeId: anchor, reason: 'documented-geographic-region' };
+  }
+  if (culture && indexes.byId.has(culture) && (!location || original.reason === 'holding-only' || location === key(record.culture))) {
+    return { placeId: culture, reason: 'documented-cultural-region' };
+  }
+  return original;
+}
+
 export function resolveWorldOrigin(record, placesData) {
   const places = placesData.places ?? placesData;
-  return resolveOrigin(record, { general: aliasIndex(places), countries: aliasIndex(places, true) });
+  return resolveRecordedOrigin(record, originIndexes(places));
 }
 
 function eraSign(value) { return /^(?:BCE|BC)$/iu.test(value ?? '') ? -1 : 1; }
@@ -199,7 +265,7 @@ export function worldDateSpan(record) {
 /** Project public metadata only. Source objects, assets and geography remain unchanged. */
 export function buildWorldCollection({ records, publicWorks, placesData, corrections = {} }) {
   const placeDefinitions = placesData.places ?? placesData;
-  const originIndexes = { general: aliasIndex(placeDefinitions), countries: aliasIndex(placeDefinitions, true) };
+  const indexes = originIndexes(placeDefinitions);
   const publicBySlug = new Map(publicWorks.map(work => [work.slug, work]));
   const originReasons = {};
   const works = [];
@@ -208,7 +274,7 @@ export function buildWorldCollection({ records, publicWorks, placesData, correct
     const record = { ...originalRecord, ...(correction.catalog ?? {}) };
     const publicWork = publicBySlug.get(record.slug);
     if (record.hidden || !publicWork) continue;
-    const origin = resolveOrigin(record, originIndexes);
+    const origin = resolveRecordedOrigin(record, indexes);
     originReasons[origin.reason] = (originReasons[origin.reason] ?? 0) + 1;
     const date = worldDateSpan(record);
     works.push({
@@ -219,6 +285,7 @@ export function buildWorldCollection({ records, publicWorks, placesData, correct
       start: date.start,
       end: date.end,
       placeId: origin.placeId,
+      originReason: origin.reason,
       thumbnail: publicWork.thumbnailImage,
       url: publicWork.route,
       sourceLabel: text(publicWork.sourceMuseum || record.source_institution) || 'Catalogue record',

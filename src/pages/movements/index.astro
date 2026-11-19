@@ -32,7 +32,7 @@ const groups = facets.movements.map((facet) => ({ ...facet, works: worksForFacet
           <p class="eyebrow">{group.count.toLocaleString('en-US')} works</p>
           <h2 id={`${group.value}-title`}>{group.label}</h2>
         </div>
-        <a class="text-link" href={withBase(`/museum/?movement=${group.value}`)}>Open in museum</a>
+        <a class="text-link" href={withBase(`/collection/?q=${encodeURIComponent(group.label)}`)}>Search the collection</a>
       </div>
       <div class="rail">
         {group.works.slice(0, 8).map((work) => <WorkCard work={work} />)}

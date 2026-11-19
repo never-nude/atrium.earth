@@ -1,0 +1,33 @@
+---
+import V3Layout from '../../layouts/v3/V3Layout.astro';
+import { withBase } from '../../lib/urls';
+---
+
+<V3Layout title="3D galleries" description="Explore sculpture at documented physical scale, on screen and in AR or VR." immersive mainElement="div">
+  <link slot="head" rel="stylesheet" href={withBase('/spatial-museum/assets/index-CFkfrrIZ.css')} />
+  <div id="museum-root"></div>
+  <noscript><p>Enable JavaScript to explore the 3D galleries, or <a href={withBase('/collection/')}>browse the collection</a>.</p></noscript>
+  <script is:inline type="module" crossorigin src="/spatial-museum/assets/index-Ctt1-TjS.js?gallery=8ff1fc51c241"></script>
+</V3Layout>
+
+<style is:global>
+  body:has(#museum-root) { display:flex; flex-direction:column; height:100dvh; }
+  body:has(#museum-root) > [data-v3-header] { flex-shrink:0; }
+  body:has(#museum-root) > #main { flex:1; min-height:0; }
+  #museum-root, #museum-root .museum-shell { width:100%; height:100%; }
+  #museum-root .museum-shell { color:#292c28; }
+  #museum-root .museum-shell:fullscreen, #museum-root .museum-shell:xr-overlay { height:100dvh; }
+  #museum-root .museum-header { gap:12px; }
+  #museum-root .museum-header > .brand { display:none; }
+  #museum-root .header-actions { margin-left:auto; }
+  #museum-root :is(button,input,select,textarea) { font-family:var(--v3-sans); }
+  #museum-root :where(.room-selector,.library-trigger,.icon-button,.xr-trigger,.enter-button,.fullscreen-button,.next-work,.panel-close,.route-map,.xr-mode-button,.xr-copy-link,.retry-work,.load-warning,.scene-error button) {
+    min-height:44px; border:1px solid var(--v3-line-strong); border-radius:8px; color:var(--v3-ink);
+    background:var(--v3-void); font-size:12px; font-weight:600; letter-spacing:0;
+  }
+  #museum-root :is(.xr-trigger,.enter-button) { background:var(--v3-signal); border-color:var(--v3-signal); color:var(--v3-void); }
+  #museum-root :is(.xr-trigger,.enter-button):hover { background:#f4df9b; }
+  #museum-root :is(.room-selector svg,.library-trigger small) { color:var(--v3-muted); }
+  #museum-root .museum-modal :is(.eyebrow,.directory-count,.wing-card-heading small,.wing-card-heading span,.wing-card-subtitle) { color:#475143; }
+  #museum-root .museum-modal > p { color:#475143; }
+</style>

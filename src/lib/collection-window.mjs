@@ -6,8 +6,58 @@ export const COLLECTION_CHUNK_SIZE = 120;
 export const COLLECTION_FILTER_KEYS = ['wing', 'era', 'place', 'material', 'size'];
 export const COLLECTION_STATE_KEYS = ['q', 'maker', ...COLLECTION_FILTER_KEYS, 'sort', 'saved', 'density'];
 export const COLLECTION_INDEX_FIELDS = ['slug', 'title', 'search', 'year', 'wing', 'era', 'place', 'material', 'maker', 'makerLabel', 'catalogIndex', 'ingested', 'size'];
-const sorts = new Set(['curator', 'title', 'maker', 'date', 'newest']);
-const collator = new Intl.Collator(undefined, { sensitivity: 'base', numeric: true });
+export const DEFAULT_COLLECTION_SORT = 'date-latest';
+export const WORK_SORT_OPTIONS = [
+  ['date-latest', 'Artwork date, newest first'],
+  ['date', 'Artwork date, earliest first'],
+  ['newest', 'Date added, newest first'],
+  ['added-earliest', 'Date added, oldest first'],
+  ['title', 'Title A–Z'],
+  ['title-desc', 'Title Z–A'],
+  ['maker', 'Maker A–Z'],
+  ['maker-desc', 'Maker Z–A'],
+];
+const sorts = new Set(WORK_SORT_OPTIONS.map(([value]) => value));
+const collator = new Intl.Collator('en', { sensitivity: 'base', numeric: true });
+
+export function resolveWorkSort(value, fallback = DEFAULT_COLLECTION_SORT) {
+  return sorts.has(value) ? value : fallback;
+}
+
+function compareKnown(a, b, compare) {
+  if (a == null || a === '') return b == null || b === '' ? 0 : 1;
+  if (b == null || b === '') return -1;
+  return compare(a, b);
+}
+
+const makerName = record => record.makerLabel === 'Maker not yet recorded' ? '' : record.makerLabel;
+const compareWorks = {
+  'date-latest': (a, b) => compareKnown(a.year, b.year, (x, y) => y - x),
+  date: (a, b) => compareKnown(a.year, b.year, (x, y) => x - y),
+  newest: (a, b) => compareKnown(a.ingested, b.ingested, (x, y) => y.localeCompare(x)) || b.catalogIndex - a.catalogIndex,
+  'added-earliest': (a, b) => compareKnown(a.ingested, b.ingested, (x, y) => x.localeCompare(y)) || a.catalogIndex - b.catalogIndex,
+  title: (a, b) => collator.compare(a.title, b.title),
+  'title-desc': (a, b) => collator.compare(b.title, a.title),
+  maker: (a, b) => compareKnown(makerName(a), makerName(b), collator.compare),
+  'maker-desc': (a, b) => compareKnown(makerName(a), makerName(b), (x, y) => collator.compare(y, x)),
+};
+
+export function workComparator(sort) {
+  const compare = compareWorks[resolveWorkSort(sort)];
+  return (a, b) => compare(a, b) || a.catalogIndex - b.catalogIndex || a.slug.localeCompare(b.slug);
+}
+
+export function workCardSortValues(card) {
+  const year = card.dataset.year?.trim();
+  return {
+    slug: card.querySelector('a[href]')?.getAttribute('href') || '',
+    title: card.querySelector('h3')?.textContent?.trim() || '',
+    makerLabel: card.dataset.makerLabel || '',
+    year: year && Number.isFinite(Number(year)) ? Number(year) : null,
+    catalogIndex: Number(card.dataset.studioIndex) || 0,
+    ingested: card.dataset.studioIngested || '',
+  };
+}
 
 export function normalizeCollectionText(value) {
   return String(value || '').normalize('NFKD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase().replace(/\s+/g, ' ').trim();
@@ -36,14 +86,14 @@ export function unpackCollectionIndex(payload) {
 export function readCollectionState(search) {
   const params = search instanceof URLSearchParams ? search : new URLSearchParams(search);
   const state = Object.fromEntries(['q', 'maker', ...COLLECTION_FILTER_KEYS].map(key => [key, params.get(key) || '']));
-  return { ...state, sort: sorts.has(params.get('sort')) ? params.get('sort') : 'curator', saved: params.get('saved') === '1', density: params.get('density') === 'compact' ? 'compact' : 'grid' };
+  return { ...state, sort: resolveWorkSort(params.get('sort')), saved: params.get('saved') === '1', density: params.get('density') === 'compact' ? 'compact' : 'grid' };
 }
 
 export function writeCollectionState(search, state) {
   const params = new URLSearchParams(search);
   for (const key of COLLECTION_STATE_KEYS) params.delete(key);
   for (const key of ['q', 'maker', ...COLLECTION_FILTER_KEYS]) if (String(state[key] || '').trim()) params.set(key, String(state[key]).trim());
-  if (sorts.has(state.sort) && state.sort !== 'curator') params.set('sort', state.sort);
+  if (resolveWorkSort(state.sort) !== DEFAULT_COLLECTION_SORT) params.set('sort', state.sort);
   if (state.saved) params.set('saved', '1');
   if (state.density === 'compact') params.set('density', 'compact');
   return params;
@@ -55,12 +105,7 @@ export function selectCollectionWindow(records, state, { saved = new Set(), offs
     && makerFacetMatches(record.maker, state.maker)
     && (!state.saved || saved.has(record.pathname))
     && COLLECTION_FILTER_KEYS.every(key => !state[key] || (key === 'material' ? record.facets.material.split(/\s+/).includes(state[key]) : record.facets[key] === state[key])));
-  const sort = sorts.has(state.sort) ? state.sort : 'curator';
-  if (sort !== 'curator') matches.sort((a, b) => {
-    if (sort === 'newest') return a.ingested !== b.ingested ? b.ingested.localeCompare(a.ingested) : b.catalogIndex - a.catalogIndex || a.index - b.index;
-    if (sort === 'date') return (a.year ?? Infinity) - (b.year ?? Infinity) || a.index - b.index;
-    return collator.compare(sort === 'maker' ? a.makerLabel : a.title, sort === 'maker' ? b.makerLabel : b.title) || a.index - b.index;
-  });
+  matches.sort(workComparator(state.sort));
   const start = Math.max(0, Math.trunc(Number(offset) || 0));
   const size = Math.max(1, Math.trunc(Number(limit) || COLLECTION_PAGE_SIZE));
   return { total: matches.length, records: matches.slice(start, start + size), offset: start, hasMore: matches.length > start + size };

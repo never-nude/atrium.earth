@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { COLLECTION_PAGE_SIZE, COLLECTION_CHUNK_SIZE, COLLECTION_INDEX_FIELDS, packCollectionIndex, unpackCollectionIndex, readCollectionState, writeCollectionState, selectCollectionWindow, collectionPagePath, collectionPageNumber } from '../src/lib/collection-window.mjs';
+import { COLLECTION_PAGE_SIZE, COLLECTION_CHUNK_SIZE, COLLECTION_INDEX_FIELDS, DEFAULT_COLLECTION_SORT, packCollectionIndex, unpackCollectionIndex, readCollectionState, writeCollectionState, selectCollectionWindow, collectionPagePath, collectionPageNumber } from '../src/lib/collection-window.mjs';
 import { createCollectionCard } from '../src/lib/collection-card.mjs';
 
 function record(index, overrides = {}) {
@@ -26,7 +26,8 @@ test('pagination is bounded and reaches every record, including the final 22', (
   const first = selectCollectionWindow(all, state);
   assert.equal(first.total, 3022);
   assert.equal(first.records.length, COLLECTION_PAGE_SIZE);
-  assert.equal(first.records.at(-1).slug, 'region/work-59');
+  assert.equal(first.records[0].slug, 'region/work-3021');
+  assert.equal(first.records.at(-1).slug, 'region/work-2962');
   assert.equal(first.hasMore, true);
   const more = selectCollectionWindow(all, state, { limit: 120 });
   assert.equal(more.records.length, 120);
@@ -47,15 +48,23 @@ test('search reaches past the initial page and combines every term, accents and 
   assert.equal(selectCollectionWindow(collection, { ...state, place: 'beni' }).total, 0, 'Other facets match exact values');
 });
 
-test('all sorts are stable, preserve unknown dates and retain numeric title order', () => {
-  const collection = records([record(0, { title: 'Work 10', year: '', makerLabel: 'Zed', ingested: '2026-01-03' }), record(1, { title: 'Work 2', year: '-100', makerLabel: 'Alpha', ingested: '2026-01-02' }), record(2, { title: 'Work 2', year: '1500', makerLabel: 'Alpha', ingested: '2026-01-03' })]);
-  const slugs = sort => selectCollectionWindow(collection, { ...state, sort }).records.map(record => record.slug);
-  assert.deepEqual(slugs('curator'), ['region/work-0', 'region/work-1', 'region/work-2']);
-  assert.deepEqual(slugs('title'), ['region/work-1', 'region/work-2', 'region/work-0']);
-  assert.deepEqual(slugs('maker'), ['region/work-1', 'region/work-2', 'region/work-0']);
-  assert.deepEqual(slugs('date'), ['region/work-1', 'region/work-2', 'region/work-0']);
-  assert.deepEqual(slugs('newest'), ['region/work-2', 'region/work-0', 'region/work-1']);
-  assert.deepEqual(slugs('unsupported'), slugs('curator'));
+test('sorts handle both directions, BCE dates, ties and missing values', () => {
+  const collection = records([
+    record(0, { title: 'Work 10', year: '', makerLabel: 'Zed', ingested: '2026-01-03' }),
+    record(1, { title: 'Work 2', year: '-3500', makerLabel: 'Alpha', ingested: '2026-01-02' }),
+    record(2, { title: 'Work 2', year: '1500', makerLabel: 'Alpha', ingested: '2026-01-03' }),
+    record(3, { title: 'Work 4', year: '-3000', makerLabel: 'Maker not yet recorded', ingested: '' }),
+  ]);
+  const order = sort => selectCollectionWindow(collection, { ...state, sort }).records.map(record => record.catalogIndex);
+  assert.deepEqual(order('date-latest'), [2, 3, 1, 0]);
+  assert.deepEqual(order('date'), [1, 3, 2, 0]);
+  assert.deepEqual(order('newest'), [2, 0, 1, 3]);
+  assert.deepEqual(order('added-earliest'), [1, 0, 2, 3]);
+  assert.deepEqual(order('title'), [1, 2, 3, 0]);
+  assert.deepEqual(order('title-desc'), [0, 3, 1, 2]);
+  assert.deepEqual(order('maker'), [1, 2, 0, 3]);
+  assert.deepEqual(order('maker-desc'), [0, 1, 2, 3]);
+  assert.deepEqual(order('curator'), order(DEFAULT_COLLECTION_SORT));
 });
 
 test('saved-only matches canonical work paths globally and keeps an empty state', () => {
@@ -73,7 +82,8 @@ test('URL state round-trips Collection/AR facets and density while preserving un
   assert.equal(params.getAll('q').length, 1);
   const cleared = writeCollectionState(params, state);
   assert.equal(cleared.toString(), 'unrelated=keep');
-  assert.equal(readCollectionState('?sort=not-a-sort&density=huge&saved=yes').sort, 'curator');
+  assert.equal(readCollectionState('?sort=not-a-sort&density=huge&saved=yes').sort, DEFAULT_COLLECTION_SORT);
+  assert.equal(readCollectionState('?sort=curator').sort, DEFAULT_COLLECTION_SORT);
   assert.equal(readCollectionState('?density=huge&saved=yes').density, 'grid');
   assert.equal(readCollectionState('?saved=yes').saved, false);
 });

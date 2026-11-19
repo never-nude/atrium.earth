@@ -1355,7 +1355,7 @@ ${shader.fragmentShader.replace('#include <map_fragment>', `
   .viewer:not(.viewer--immersive) .immersive-tools button { padding: 0 10px; color: #f7f5ef; background: #15243a; border: 1px solid #52637b; border-radius: 7px; font: inherit; font-size: 12px; }
   .viewer:not(.viewer--immersive) .immersive-tools button:hover { color: #101827; background: #eccf7a; }
   .viewer[data-viewer] .immersive-tools button[aria-pressed="true"] { color: #101827; background: #e9d17e; }
-  .spatial-unavailable { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; color: var(--v3-muted, #c9c6bd); font: 500 11px/1.5 var(--v3-sans, sans-serif); text-decoration: none; }
+  .spatial-unavailable { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; color: var(--v3-muted, #c9c6bd); font: 500 max(var(--atrium-text-floor, 0px), 11px)/1.5 var(--v3-sans, sans-serif); text-decoration: none; }
   .spatial-unavailable:hover { color: var(--v3-ink, #f7f5ef); text-decoration: underline; text-underline-offset: 4px; }
   .spatial-unavailable:focus-visible { outline: 2px solid var(--v3-signal, #eccf7a); outline-offset: 4px; }
 </style>

@@ -41,16 +41,16 @@ const works = pair ? [pair.a, pair.b] : [];
   .looking-together__stage :global(.model-stage:not(.is-live) .viewer-canvas) { visibility: hidden; }
   .looking-together__stage :global(.stage-tag), .looking-together__stage :global(.stage-corner) { display: none !important; }
   .looking-together__stage :global(.viewer:not(:fullscreen):not([data-viewer-expanded]) .immersive-tools:not([hidden])) { display: flex; position: absolute; inset: auto 0 -48px 0; justify-content: center; gap: 5px; min-height: 44px; padding: 0; border: 0; border-radius: 0; background: transparent; transform: none; backdrop-filter: none; }
-  .looking-together__stage :global(.immersive-tools button) { min-height: 44px; padding: 9px 12px; color: var(--v3-muted); font-size: 11px; letter-spacing: 0; }
+  .looking-together__stage :global(.immersive-tools button) { min-height: 44px; padding: 9px 12px; color: var(--v3-muted); font-size: max(var(--atrium-text-floor, 0px), 11px); letter-spacing: 0; }
   .looking-together__stage :global(.stage-loading) { inset: auto 15px 15px auto; transform: none; padding: 8px; background: #15243acc; border-radius: 5px; }
   .looking-together__stage :global(.viewer:fullscreen) { width: 100vw; height: 100dvh; background: var(--v3-void); }
   .looking-together__stage :global(.viewer:fullscreen .model-stage) { width: 100%; height: 100%; min-height: 0; overflow: hidden; }
   .looking-together__stage :global(.viewer:fullscreen .immersive-tools:not([hidden])) { display: flex; width: auto; inset: auto 16px max(20px, env(safe-area-inset-bottom)) 16px; justify-content: center; transform: none; }
   .looking-together figcaption { padding: 20px 0 0; }
   .looking-together h3 { margin: 0 0 7px; font-size: 19px; font-weight: 500; line-height: 1.35; letter-spacing: -.02em; }
-  .looking-together figcaption p { margin: 0 0 8px; color: var(--v3-muted); font-size: 11px; line-height: 1.6; }
-  .looking-together figcaption a { display: inline-flex; align-items: center; gap: 12px; min-height: 38px; color: var(--v3-signal); font-size: 11px; text-underline-offset: 4px; }
-  .looking-together__note { max-width: 85ch; margin: 23px 0 0; color: var(--v3-faint); font-size: 11px; line-height: 1.75; }
+  .looking-together figcaption p { margin: 0 0 8px; color: var(--v3-muted); font-size: max(var(--atrium-text-floor, 0px), 11px); line-height: 1.6; }
+  .looking-together figcaption a { display: inline-flex; align-items: center; gap: 12px; min-height: 38px; color: var(--v3-signal); font-size: max(var(--atrium-text-floor, 0px), 11px); text-underline-offset: 4px; }
+  .looking-together__note { max-width: 85ch; margin: 23px 0 0; color: var(--v3-faint); font-size: max(var(--atrium-text-floor, 0px), 11px); line-height: 1.75; }
   @media (max-width: 650px) {
     .looking-together { padding-top: 38px; padding-bottom: 40px; }
     .looking-together__works { grid-template-columns: 1fr; gap: 30px; }

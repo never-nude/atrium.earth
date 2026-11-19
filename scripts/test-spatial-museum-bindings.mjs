@@ -9,7 +9,7 @@ const root = process.cwd();
 const museum = path.join(root, 'public/spatial-museum');
 const manifest = JSON.parse(readFileSync(path.join(museum, 'collection-manifest.json'), 'utf8'));
 const previews = JSON.parse(readFileSync(path.join(root, 'src/data/previews.json'), 'utf8'));
-const html = readFileSync(path.join(museum, 'index.html'), 'utf8');
+const html = readFileSync(path.join(root, 'src/pages/spatial-museum/index.astro'), 'utf8');
 const sources = Object.fromEntries(readdirSync(path.join(museum, 'assets')).filter(file => file.endsWith('.js')).map(file => [file, readFileSync(path.join(museum, 'assets', file), 'utf8')]));
 
 function localModuleReferences(source) {
