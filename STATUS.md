@@ -85,6 +85,35 @@ The first integrated build caught a TypeScript/MJS name collision when importing
 
 Collection and AR / VR now open in newest artwork-date order, and saved Curator’s order links fall back to that default. Newest Additions opens by date added and sorts its 40 picks and latest-import works within their existing sections. Both support earliest and newest artwork dates, oldest and newest dates added, and title and maker in both alphabetical directions. The first Node tests, 8,839-page build, and local browser checks passed. Chromium desktop and WebKit phone also exercised all eight choices, saved sort links, and default listings without JavaScript. The package is 899,478,216 bytes and the updated preview is ready for the owner’s phone review.
 
+## 2026-11-19 — Sculpted globe candidate (Claude Code)
+
+Task / owner / branch: the owner asked for a better globe on `/world/` and in the homepage preview. This Claude Code cloud session owns `claude/zen-lamport-u8qk48`, cut from `main` at `d220a851`. It is a contributor branch under [Issue #109](https://github.com/never-nude/atrium.earth/issues/109).
+
+Completed:
+
+- The signature globe is drawn as an object under museum light: land in low relief, a dark sea with engraved waterlines, one warm key light at two o'clock and a violet rim. Origins are WebGL points of light with beams; the chosen place turns violet with a ring. The flat map uses the same palette. Everything is derived in the browser from the existing `land.geo.json`. No asset, dataset or dependency was added, and the relief is labelled as decorative, not terrain.
+- In the overview, Globe/Map, Reset and the viewing tools float in the stage margins, so the globe is about 543 px across at 1440 × 900 (483 px before) and about 313 px on a 390 px phone (299 px before). Place and period data, selection, stills, collection links, the place directory and keyboard access are the existing behaviour.
+- A drag turns the globe by the angle that keeps the surface under the hand, a released drag coasts and settles, and zoom eases. Reduced motion removes all three.
+- **A defect on `main` is fixed here.** While the stage changes height after a place is chosen or closed, `main` paints the globe's canvas empty: 11 of 11 resize frames in normal motion and 1 of 1 in reduced motion in a headless Chromium probe. The canvas is cleared by the resize and only redrawn on the next frame. This branch draws again inside the resize: 0 of 9 and 0 of 1. `npm run test:world-browser` gains a last phase, `stage resize never paints an empty globe`, which fails on `main` and passes here.
+- The renderer starts at up to two device pixels per CSS pixel and steps down through fixed tiers if it stays below about 27 frames per second. Software rasterisers start two tiers down.
+
+Validation actually performed (Linux container, headless Chromium, software renderer; first attempts unless stated):
+
+- `npm test` exit 0. Experience suite: 135 tests, 134 passed, 1 skipped because the pinned Playwright has no matching Chromium build in this container. Eleven are new. Three new assertions were wrong when first written and were corrected without changing the code under test.
+- `npm run build` exit 0 four times, 8,839 pages each; the fourth is the committed code, and `npm test` passed again after it. Package 24,759 files / 899,510,293 bytes. Collection window and published-image checks passed.
+- Globe browser audit on each build, same outcome each time: both Chromium cases of the suite passed (1440 × 900, normal and reduced motion). Fourth build: first land frame 289 ms, choice to a loaded visible still 172 ms, centering turn 22.8 fps on the software renderer, whole globe above the fold, zero model requests, no console, page or asset errors, no serious or critical axe findings, no overflow, sub-12 px text, sub-44 px control or cyan.
+- The new resize phase failed its own first run in reduced motion because it read its starting height too late. The phase was corrected; product code was not involved.
+
+Open issues / blockers:
+
+- **WebKit is not installed in this container, so the suite's two WebKit cases did not run.** As a stand-in only, the same phone profiles ran in Chromium: 320 × 640 reduced motion passed; 390 × 844 normal motion passed every phase through keyboard selection, exact collection handoff and Willendorf, then failed `whole-world fullscreen selection and internal-scroll restoration`. The suite never runs that phase at phone width, and the same stand-in fails the same phase on `main`. It is recorded, not fixed.
+- No real-GPU or physical-phone frame rate exists. Under the software renderer the globe auto-rotated at 27.1 fps on desktop and 32.0 fps at phone size after stepping down, against 31.1 and 45.5 fps for `main` in the same harness.
+- `test:browser`, `test:handling-browser` and `test:performance` were not run. Remote review and both live CDN checks were not run under Issue #109.
+
+Next step: the owner's phone review using the six checks in [the review notes](docs/sculpted-globe.md), then the release coordinator's full review on the exact head, including WebKit, before any merge.
+
+Delivery: pushed to `origin/claude/zen-lamport-u8qk48` with a draft pull request. The head commit carries `[skip ci]` so opening the pull request does not start a CDN sweep; remote checks are unrun, not green. Not merged. Not deployed.
+
 ## Next session
 
 1. Read AGENTS.md and existing project instructions.

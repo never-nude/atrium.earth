@@ -40,3 +40,55 @@ restores zoom and opening orientation while preserving the chosen rotation mode.
 Auto-rotation is opt-in, stops while hidden/offscreen and follows reduced motion.
 Two-finger pinch and keyboard +/− adjust zoom; there is no wheel capture. Shared
 page controls own fullscreen and disable it when unsupported or denied.
+
+## Sculpted signature globe
+
+The `signature` presentation draws the earth as an object under museum light:
+land in low relief, a dark sea with engraved waterlines, one warm key light at
+two o'clock and a violet rim. Everything is derived in the browser from the
+same unchanged `land.geo.json`; no elevation, bathymetry, imagery or other
+dataset is added.
+
+- **The relief is not terrain.** `src/lib/world-globe-relief.mjs` softens the
+  land mask and blurs it twice. The narrow blur bevels the coast so the light
+  draws the shoreline; the wide blur rounds each landmass slightly. Inland
+  surfaces carry a procedural hand-worked grain. None of it represents height.
+- **The waterlines are not depth.** They are contours of the wide blur: they
+  record distance from the generalized coast, nothing about the sea floor.
+- The graticule, atmosphere, dust field, beams and selection ring are
+  decorative interface graphics.
+- Each light still marks a country or broad regional anchor, never an exact
+  artwork site. Core size, brightness and beam height follow the number of
+  works on an absolute logarithmic scale (`lightMetrics`), so narrowing the
+  period dims the world rather than re-normalising it.
+
+On the sculpted globe the lights are drawn in WebGL. The place buttons remain
+in the DOM as 44 px targets, focus rings and labels, positioned by transform;
+the flat map and the no-WebGL fallback keep their visible DOM points.
+
+The canvas starts at up to two device pixels per CSS pixel. While the globe is
+turning, `createPacingWatch` samples frame pacing and steps down through
+`QUALITY_TIERS` (density, fine engraving, then the dust field) if the renderer
+stays below roughly 27 frames per second. It never steps back up, and a steady
+30 fps cap is not treated as slow. `getMetrics()` reports `qualityTier`,
+`pixelRatio` and `reliefBakeMs`; the host element mirrors the bake time and any
+tier change as `data-world-relief-bake-ms` and `data-world-quality-tier`.
+
+Software rasterisers (`startingTier`) begin two tiers down, since they pay for
+every pixel on the CPU.
+
+A canvas is cleared when it is resized, and resize observers run after a
+frame's animation callbacks but before it is painted. The sculpted globe
+therefore draws again inside the resize itself; otherwise the earth is painted
+empty for as long as its stage is changing height, which is every time a place
+is chosen or closed. `npm run test:world-browser` reads the drawing buffer
+during that change and fails on any empty frame.
+
+Zoom from buttons, keys and the wheel eases toward its goal; pinch follows the
+fingers exactly. A drag turns the globe by the angle that keeps the surface
+under the hand at the stage's current size, and a released drag keeps turning
+briefly and settles. Reduced motion removes the easing, the inertia, the
+opening sequence and the ring's ripple, and jumps straight to the resting state.
+
+On a narrow stage the globe is sized to leave a lane at each side: a touch that
+starts on the globe turns it, so a thumb needs room beside it to scroll the page.
