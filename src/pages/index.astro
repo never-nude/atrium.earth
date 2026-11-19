@@ -6,7 +6,7 @@ import { curatedRecentWorks, newestWorks } from '../lib/additions';
 import FeaturedExhibition from '../components/home/FeaturedExhibition.astro';
 import LookingTogether from '../components/home/LookingTogether.astro';
 import SpatialInvitation from '../components/home/SpatialInvitation.astro';
-import WorldExplorer from '../components/WorldExplorer.astro';
+import WorldSignature from '../components/WorldSignature.astro';
 import V3Layout from '../layouts/v3/V3Layout.astro';
 import { collectionCount, v3WorkRoute } from '../lib/v3';
 import { currentProgramme, programmeDate } from '../lib/programme';
@@ -106,7 +106,7 @@ const heroAlt = [
   <SpatialInvitation room={room} roomWork={selection.roomWork} spatialWork={selection.spatialWork} />
 
   <section class="v3-section v3-section--line home-wings" aria-labelledby="wings-home-title" data-home-section="wings">
-    <WorldExplorer compact={true} excludedWorkSlugs={selection.usedSlugs} />
+    <WorldSignature compact />
     <div class="v3-section-head v3-section-head--split">
       <div><p class="v3-kicker">04 / Museum wings</p><h2 id="wings-home-title" class="v3-display">Follow your curiosity.</h2></div>
       <a href={withBase('/wings/')}>Explore all {wingSummaries.length} wings <span aria-hidden="true">→</span></a>

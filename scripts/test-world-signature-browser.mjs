@@ -36,6 +36,61 @@ async function saveReport() {
   await writeFile(join(reportRoot, 'latest.json'), JSON.stringify({ runId, report: join(runId, 'report.json'), status: report.status }, null, 2) + '\n');
 }
 
+function frontPoint(lights) {
+  return lights.evaluateAll(buttons => {
+    const positions = buttons.map(button => {
+      const box = button.getBoundingClientRect();
+      return { id: button.dataset.worldPlace, x: box.left + box.width / 2, y: box.top + box.height / 2 };
+    }).filter(point => point.x >= 0 && point.x <= innerWidth && point.y >= 0 && point.y <= innerHeight);
+    return positions.find(point => point.id === 'egypt') || positions.sort((a, b) =>
+      Math.hypot(a.x - innerWidth / 2, a.y - innerHeight / 2) - Math.hypot(b.x - innerWidth / 2, b.y - innerHeight / 2))[0];
+  });
+}
+
+async function checkHomepageGlobe(context, touch) {
+  const homepage = await context.newPage();
+  try {
+    // The homepage has its own artwork viewers. Keep this globe test on the built site's local assets.
+    await homepage.route(url => url.origin !== origin.origin, route => route.abort());
+    const response = await homepage.goto(new URL('/', origin).href, { waitUntil: 'domcontentloaded' });
+    assert.equal(response?.status(), 200);
+    const root = homepage.locator('#explore-the-world[data-world-signature][data-world-compact]');
+    assert.equal(await root.getAttribute('data-world-state'), null, 'The homepage globe must wait until it is near the viewport');
+    await root.locator('[data-world-globe]').scrollIntoViewIfNeeded();
+    await root.and(homepage.locator('[data-world-state="ready"][data-world-mode="globe"]')).waitFor();
+    const rotate = root.locator('[data-world-rotate]');
+    if (await rotate.getAttribute('aria-pressed') === 'true') await rotate.click();
+    const point = await frontPoint(root.locator('button[data-world-light]:visible'));
+    assert(point, 'The homepage must show selectable globe lights');
+    const overviewScroll = await homepage.evaluate(() => scrollY);
+    if (touch) await homepage.touchscreen.tap(point.x, point.y);
+    else await homepage.mouse.click(point.x, point.y);
+    const selection = root.locator('[data-world-selection]');
+    await selection.waitFor({ state: 'visible' });
+    assert.equal(await root.getAttribute('data-selected-place'), point.id);
+    const cards = selection.locator('[data-world-works] a');
+    const count = await cards.count();
+    assert(count > 0 && count <= 12, 'The homepage must use the shared artwork selection');
+    assert.match(await cards.first().locator('img').getAttribute('src'), /^\/world\/stills\/.+\.webp$/);
+    assert.equal(new URL(await selection.locator('[data-world-see-all]').getAttribute('href'), origin).searchParams.get('origin'), point.id);
+    assert.equal(await root.getByRole('link', { name: 'Open full globe' }).getAttribute('href'), '/world/');
+
+    await root.getByRole('button', { name: 'Map', exact: true }).click();
+    const back = selection.getByRole('button', { name: 'Back to globe' });
+    assert((await back.boundingBox())?.height >= 44, 'The return button must have a phone-sized touch target');
+    if (touch) await back.tap();
+    else await back.click();
+    await selection.waitFor({ state: 'hidden' });
+    await homepage.waitForFunction(y => {
+      const root = document.querySelector('#explore-the-world');
+      return root.dataset.selectedPlace === '' && root.dataset.worldMode === 'globe' && Math.abs(scrollY - y) < 3;
+    }, overviewScroll);
+    return { selectedPlace: point.id, cards: count, restoredOverview: true };
+  } finally {
+    await homepage.close();
+  }
+}
+
 async function deadline(promise, milliseconds, message) {
   let timer;
   try {
@@ -199,14 +254,7 @@ async function runCase(specification) {
     });
     await phase('initial page audit and screenshot', async () => { await audit('initial'); await screenshot('initial'); });
     await phase('first front-point selection and loaded still', async () => {
-      const point = await page.locator('button[data-world-light]:visible').evaluateAll(buttons => {
-        const positions = buttons.map(button => {
-          const box = button.getBoundingClientRect();
-          return { id: button.dataset.worldPlace, x: box.left + box.width / 2, y: box.top + box.height / 2 };
-        }).filter(point => point.x >= 0 && point.x <= innerWidth && point.y >= 0 && point.y <= innerHeight);
-        return positions.find(point => point.id === 'egypt') || positions.sort((a, b) =>
-          Math.hypot(a.x - innerWidth / 2, a.y - innerHeight / 2) - Math.hypot(b.x - innerWidth / 2, b.y - innerHeight / 2))[0];
-      });
+      const point = await frontPoint(page.locator('button[data-world-light]:visible'));
       assert(point, 'No visible front-side point can be selected in the viewport');
       result.firstPoint = point;
       if (specification.width < 700) await page.touchscreen.tap(point.x, point.y);
@@ -418,6 +466,9 @@ async function runCase(specification) {
         result.fullscreen = { selected, restored, exited: true };
       }, 45000);
     }
+    if (specification.motion === 'no-preference') await phase('homepage globe light selection and return', async () => {
+      result.homepage = await checkHomepageGlobe(context, specification.width < 700);
+    }, 45000);
     expect(!result.modelRequests.filter(request => request.page === 'world').length, 'The world page downloaded a sculpture model', result.modelRequests);
     expect(!result.pageErrors.length, 'Page errors were observed', result.pageErrors);
     expect(!result.consoleErrors.length, 'Console errors were observed', result.consoleErrors);
