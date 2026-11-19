@@ -179,6 +179,7 @@ Tests added:
 
 - `scripts/world-globe-motion.test.mjs` has two new tests, for the fingers on the stage and for the tap rule.
 - `scripts/test-world-signature-browser.mjs` has three new phases. `a tap on a flat-map light selects it` runs in every touch case, which in this suite are the two WebKit phone cases. Two Chromium-only phases run in the 1440 × 900 normal-motion case: a phone-sized touch page driven through Chromium's own input pipeline (the resting finger, the flat-map tap, the two refusals, labels against the controls), and a mouse phase (the hover label, the reset turn). Against the build of `main` these phases record eight failures in that case, and the flat-map tap fails in both phone stand-ins. Nothing else fails there.
+- A separate commit changes one existing phase of that suite and no product code. After leaving full screen the suite read the Full screen button at once, a frame before the `fullscreenchange` event that updates it. That read failed 2 of 10 runs in this container with `'true' !== 'false'`, once on a build with these fixes and once on a build without them. The suite now waits up to three seconds for the button and then asserts it as before. The 22 runs since, on builds with and without the fixes, did not fail there.
 
 Validation actually performed (Linux container; headless Chromium 1243 on a software renderer, driven by the repository's pinned Playwright through a launcher preload, so the suite's own script ran unmodified):
 

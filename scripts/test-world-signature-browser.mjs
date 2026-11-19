@@ -739,6 +739,10 @@ async function runCase(specification) {
         assert.equal(restored.mode, 'globe');
         await fullscreen.click();
         await page.waitForFunction(() => !document.fullscreenElement);
+        // The button follows the fullscreenchange event, which the browser sends a frame after
+        // the page has left full screen. Give it that frame: reading it at once is a race.
+        await page.waitForFunction(selector => document.querySelector(selector).querySelector('[data-world-fullscreen]')
+          .getAttribute('aria-pressed') === 'false', rootSelector, { timeout: 3000 }).catch(() => {});
         assert.equal(await fullscreen.getAttribute('aria-pressed'), 'false');
         result.fullscreen = { selected, restored, exited: true };
       }, 45000);
