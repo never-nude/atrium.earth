@@ -2550,3 +2550,14 @@ The full local production build passes: 8,842 pages and 877,192,353 package byte
 - Publishing the ready branch must not start another automatic CDN sweep. The handoff commit will explicitly suppress its push/PR workflow trigger, leaving remote checks unrun rather than green. The release coordinator must authorize and run the full review on the exact head before merging. The underlying workflow checks remain intact.
 - The combined candidate's first local signature audit passed all four cases, including exact origin/time collection membership, Willendorf, fullscreen, keyboard/list access, 44 px controls and 12 px minimum phone text. It made zero model requests. Mac-hosted WebKit 390 px DPR 3 measured 211 ms to land, 121 ms to a loaded visible still and 44.7 fps during the turn; Chromium 1440 px measured 357 ms / 277.6 ms / 77.6 fps. These are emulation results, not physical-iPhone measurements or proof of a frame-rate improvement.
 - Final local-only package, collection and image checks each passed: 24,755 files / 910,383,071 bytes under the existing 1 GB cap; 3,160 unique public collection cards; 6,320 image paths and 3,120 CDN JPEG references checked against local files/receipts. No new CDN requests or sweeps were made by these checks. A scope diff against `7b3cd20e` confirms catalogue/model bindings, accepted artwork handling, camera perspectives, original previews and the curated homepage remain unchanged by the globe contribution. Full remote release, 64-case page and gesture validation remain the coordinator's responsibility.
+
+
+## 2026-11-19 — Atrium Traffic macOS app
+
+- Task: a native macOS app for seeing where the site's visitors come from. Branch `claude/happy-thompson-3mly1b`, owned by a Claude Code cloud session.
+- Added `apps/AtriumTraffic`, a SwiftUI Swift package that reads the existing GA4 property through the Analytics Data API with the owner's own read-only Google sign-in. Views: overview, live, sources, referring pages, places, landing pages, devices and a minute-level activity log. Setup and limits are in `apps/AtriumTraffic/README.md`.
+- The website, its analytics tag, build and deployment are unchanged. Credentials stay in the macOS keychain; none are in Git.
+- `.github/workflows/traffic-app.yml` compiles the app on a macOS runner when files under `apps/AtriumTraffic` are pushed. It makes no CDN or site requests.
+- No pull request was opened: any pull request to `main` starts the full live CDN review, which is under the owner's release coordination in [Issue 109](https://github.com/never-nude/atrium.earth/issues/109).
+- Not yet verified: the app has not been run against the live Analytics property. That needs the owner's Mac and Google sign-in.
+- Next: owner builds with `apps/AtriumTraffic/scripts/build-app.sh`, completes the one-time Google OAuth client setup and signs in.
