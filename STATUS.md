@@ -123,6 +123,28 @@ The owner asked this session to check the 390 × 844 fullscreen failure recorded
 - Change: `scripts/test-world-signature-browser.mjs` only. The fullscreen phase returns to all periods first if an earlier phase left a date filter. With it, all four stand-in cases pass, and so does the 1440 × 900 case with the functional phase in front. In the suite's own order that branch is not taken. Product code did not change.
 - Still not established: any WebKit result. The stand-in is Chromium at phone size.
 
+## 2026-11-19 — JPEG siblings for 30 figure studies (Claude Code)
+
+Task / owner / branch: the owner asked this Claude Code cloud session to resolve the 30 JPEG thumbnails that every build left untracked. It is its own commit on `claude/zen-lamport-u8qk48`, independent of the globe change, and can be cherry-picked into a separate pull request.
+
+Completed:
+
+- `4b64c234` (2026-11-15, "Publish 30 documented physical figure studies") added 30 `thumb.webp` renders without their `thumb.jpg` siblings. The build's `images:jpeg` step recreated them on every run, so each build left 30 untracked files, and the README's rule that every `thumb.webp` has a JPEG sibling did not hold in Git.
+- The 30 siblings are now tracked: 1,570,812 bytes at JPEG quality 82, written by the unchanged `scripts/generate-jpeg-thumbnails.mjs`. No WebP, script or page changed.
+
+Validation actually performed (Linux container):
+
+- Tracked `thumb.webp` and `thumb.jpg` under `public/previews/renders`: 3,211 and 3,181 before, 3,211 and 3,211 after. No JPEG lacks a WebP.
+- The 30 files are byte-identical to the ones the last full build of this branch wrote into `dist`. A second generator run left all 30 hashes unchanged.
+- All 30 are 1,000 × 1,250 px JPEGs, the pixel dimensions of their WebPs.
+- Earlier in this session four full builds regenerated the other 3,181 tracked JPEGs without a diff.
+
+Open issues / blockers: none known. `npm test` and the build were not run again for this commit. It adds only files the build already produced, so the published package does not change.
+
+Next step: none for this task. A build on a checkout that contains this commit should leave `git status` clean; that was checked for the 30 directories in a sparse checkout, not yet with a full build.
+
+Delivery: pushed to `origin/claude/zen-lamport-u8qk48` in the same draft pull request as the globe candidate. Not merged. Not deployed.
+
 ## Next session
 
 1. Read AGENTS.md and existing project instructions.
