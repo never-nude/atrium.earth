@@ -106,13 +106,22 @@ Validation actually performed (Linux container, headless Chromium, software rend
 
 Open issues / blockers:
 
-- **WebKit is not installed in this container, so the suite's two WebKit cases did not run.** As a stand-in only, the same phone profiles ran in Chromium: 320 × 640 reduced motion passed; 390 × 844 normal motion passed every phase through keyboard selection, exact collection handoff and Willendorf, then failed `whole-world fullscreen selection and internal-scroll restoration`. The suite never runs that phase at phone width, and the same stand-in fails the same phase on `main`. It is recorded, not fixed.
+- **WebKit is not installed in this container, so the suite's two WebKit cases did not run.** As a stand-in only, the same phone profiles ran in Chromium: 320 × 640 reduced motion passed; 390 × 844 normal motion passed every phase through keyboard selection, exact collection handoff and Willendorf, then failed `whole-world fullscreen selection and internal-scroll restoration`. The suite never runs that phase at phone width, and the same stand-in fails the same phase on `main`. It is recorded, not fixed. **This reading was wrong; see the correction below.**
 - No real-GPU or physical-phone frame rate exists. Under the software renderer the globe auto-rotated at 27.1 fps on desktop and 32.0 fps at phone size after stepping down, against 31.1 and 45.5 fps for `main` in the same harness.
 - `test:browser`, `test:handling-browser` and `test:performance` were not run. Remote review and both live CDN checks were not run under Issue #109.
 
 Next step: the owner's phone review using the six checks in [the review notes](docs/sculpted-globe.md), then the release coordinator's full review on the exact head, including WebKit, before any merge.
 
 Delivery: pushed to `origin/claude/zen-lamport-u8qk48` with a draft pull request. The head commit carries `[skip ci]` so opening the pull request does not start a CDN sweep; remote checks are unrun, not green. Not merged. Not deployed.
+
+### Correction — the phone-width fullscreen failure was the stand-in harness
+
+The owner asked this session to check the 390 × 844 fullscreen failure recorded above. It is not a defect in the page, on this branch or on `main`, and the earlier description of it as an untested phone-width combination was wrong.
+
+- Cause: the Chromium stand-in ran the suite's functional phase and its fullscreen phase in one page. The suite never does: the functional phase is WebKit-only and the fullscreen phase is Chromium-only. The functional phase ends with Willendorf's date range (27,500–25,000 BCE) applied, and the fullscreen phase then chooses Egypt, which has 81 works on the globe and none in that range. The phase waited for a still that the page was right not to show.
+- Evidence, all headless Chromium on a software renderer against the same build: a fresh 390 × 844 page shows the Egypt selection in fullscreen (visible event at 402 ms); the 390 × 844 case without the functional phase passes the fullscreen phase (still visible in 84 ms, internal scroll restored to 546); the 1440 × 900 case fails identically once the functional phase is put in front of it.
+- Change: `scripts/test-world-signature-browser.mjs` only. The fullscreen phase returns to all periods first if an earlier phase left a date filter. With it, all four stand-in cases pass, and so does the 1440 × 900 case with the functional phase in front. In the suite's own order that branch is not taken. Product code did not change.
+- Still not established: any WebKit result. The stand-in is Chromium at phone size.
 
 ## Next session
 

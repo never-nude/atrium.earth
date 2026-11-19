@@ -437,6 +437,16 @@ async function runCase(specification) {
         // This is functional animation settlement, after all first metrics were
         // recorded; it does not contribute to a performance measurement.
         await page.waitForTimeout(900);
+        // The functional phase ends on a prehistoric date filter, under which Egypt has
+        // no works and therefore no still for this phase to wait for. Clear any filter an
+        // earlier phase left, so that this phase does not depend on the order of the suite.
+        const period = root.locator('[data-world-period]');
+        if ((await period.textContent())?.trim() !== 'All periods') {
+          await root.locator('[data-world-reset]').click();
+          await page.waitForFunction(selector => document.querySelector(selector)
+            .querySelector('[data-world-period]').textContent.trim() === 'All periods', rootSelector);
+          await page.waitForTimeout(900);
+        }
         assert.equal(await page.evaluate(() => document.fullscreenEnabled), true, 'Desktop fullscreen must be available');
         const fullscreen = root.locator('[data-world-fullscreen]');
         await fullscreen.click();

@@ -132,18 +132,50 @@ renderer. Each line is the first attempt unless it says otherwise.
 - **WebKit is not installed here, so the suite's two WebKit cases did not run.**
   As a stand-in only, the same two phone profiles ran in Chromium:
   - 320 × 640 reduced motion: passed.
-  - 390 × 844 normal motion: failed in `whole-world fullscreen selection and
-    internal-scroll restoration`, after passing every earlier phase including
-    keyboard selection, exact collection handoff, close restoration and
-    Willendorf. The repository's suite never runs that phase at phone width (it
-    is Chromium-only and both phone cases are WebKit). The same substitution
-    fails the same phase on `main`, so this is not introduced here; it is an
-    untested combination, recorded rather than fixed.
+  - 390 × 844 normal motion: passed, including fullscreen selection at phone
+    width (still visible 260 ms after the choice, internal scroll restored).
+    These notes first recorded a failure in this case and called it an untested
+    phone-width combination. That reading was wrong:
+    [it was the stand-in harness](#the-stand-in-failure-that-was-not-a-defect).
 - The new resize phase failed on its own first run in reduced motion because it
   took its starting height after the selection had already been applied. The
   phase was corrected; the product code was not involved.
 - The resize defect was found in the first build's audit: its fullscreen
   screenshot showed an empty canvas although both desktop cases had passed.
+
+## The stand-in failure that was not a defect
+
+The first Chromium stand-in for the 390 × 844 case failed in `whole-world
+fullscreen selection and internal-scroll restoration`, on this branch and on
+`main` alike. These notes recorded it as an untested phone-width combination.
+It was the harness, not the page.
+
+The suite runs its functional phase only in the WebKit phone case and its
+fullscreen phase only in the Chromium desktop case. The stand-in ran both in one
+page. The functional phase ends with the Venus of Willendorf's date range
+(27,500–25,000 BCE) still applied, and the fullscreen phase then chooses Egypt.
+Egypt has 81 works on the globe, the earliest from 3000 BCE, and none in that
+range; Austria is the only place lit in it. The phase waited seven seconds for
+a still the page was right not to show.
+
+All runs are headless Chromium on a software renderer against the same build:
+
+| Run | Functional phase first | Fullscreen phase |
+| --- | --- | --- |
+| 390 × 844, fresh page, fullscreen then Egypt | no | selection shown; visible event at 402 ms |
+| 390 × 844, suite phases without the functional one | no | passed: still visible in 84 ms, scroll 546 → 265 → 546 |
+| 1440 × 900, functional phase put in front | yes | failed the same way as the phone stand-in |
+| 390 × 844, with the phase clearing a leftover filter | yes | passed: 260 ms, scroll 0 → 190 → 0 |
+| 1440 × 900, with the phase clearing a leftover filter | yes | passed: 193 ms, scroll 0 → 133 → 0 |
+| 1440 × 900, the suite's own order | no | passed: 185 ms, scroll 402 → 165 → 402 |
+
+The scroll figures are the fullscreen root's position before the choice, while
+the works are shown, and after closing.
+
+The fullscreen phase now returns to all periods first if an earlier phase left a
+date filter, so it no longer depends on the order of the suite. In the suite's
+own order that branch is not taken. Product code did not change, and this says
+nothing about WebKit, which still has not run.
 
 ## Not established
 
