@@ -15,6 +15,9 @@
 .v3-additions-home .v3-section-head { margin-bottom: 22px; }
 .v3-additions-home .v3-addition { border-top: 0; padding-bottom: 0; }
 .v3-additions-archive, .v3-additions-works { padding: 0 var(--v3-pad) clamp(70px, 9vw, 140px); }
+.v3-additions-sort { margin: 0 var(--v3-pad) 18px; }
+.v3-additions-sort .studio-sort { width: min(100%, 220px); }
+.v3-additions-sort select { min-height: 44px; }
 .v3-additions-hero { min-height: 480px; }
 .v3-additions-hero h1 { max-width: 17ch; font-size: clamp(3.3rem, 6.6vw, 7.8rem); overflow-wrap: break-word; }
 .v3-additions-hero .v3-editorial { max-width: 52ch; line-height: 1.5; font-size: clamp(1.05rem, 1.5vw, 1.35rem); }

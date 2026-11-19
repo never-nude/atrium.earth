@@ -2,10 +2,14 @@
 import V3Layout from '../../layouts/v3/V3Layout.astro';
 import V3WorkCard from '../../components/v3/V3WorkCard.astro';
 import { curatedRecentWorks, newestWorks } from '../../lib/additions';
+import { sortWorks } from '../../lib/collection-data';
+import { WORK_SORT_OPTIONS } from '../../lib/collection-window.mjs';
 
 const hasPicks = curatedRecentWorks.length > 0;
 const pickedSlugs = new Set(curatedRecentWorks.map(work => work.slug));
-const latestImport = newestWorks.filter(work => !pickedSlugs.has(work.slug));
+const defaultSort = 'newest';
+const picks = sortWorks(curatedRecentWorks, defaultSort);
+const latestImport = sortWorks(newestWorks.filter(work => !pickedSlugs.has(work.slug)), defaultSort);
 const description = hasPicks
   ? `Explore ${curatedRecentWorks.length} picks from recent additions and browse the latest arrivals in 3D.`
   : `Explore the ${newestWorks.length} most recently added works in Atrium, each in 3D.`;
@@ -18,10 +22,18 @@ const description = hasPicks
       <p class="v3-editorial">{description}</p>
     </div>
   </section>
+  <div class="v3-additions-sort" hidden data-additions-sort>
+    <label class="studio-sort">
+      <span>{hasPicks && latestImport.length ? 'Sort within each section' : 'Sort'}</span>
+      <select>
+        {WORK_SORT_OPTIONS.map(([value, label]) => <option value={value} selected={value === defaultSort}>{label}</option>)}
+      </select>
+    </label>
+  </div>
   {hasPicks && (
     <section class="v3-additions-works" aria-labelledby="recent-picks-title">
       <div class="v3-additions-count"><h2 id="recent-picks-title">{curatedRecentWorks.length} picks from recent additions</h2><span>Explore in 3D</span></div>
-      <div class="v3-grid">{curatedRecentWorks.map((work, i) => <V3WorkCard work={work} eager={i < 4} />)}</div>
+      <div class="v3-grid" data-additions-grid>{picks.map((work, i) => <V3WorkCard work={work} eager={i < 4} />)}</div>
     </section>
   )}
   {latestImport.length > 0 && (
@@ -30,7 +42,44 @@ const description = hasPicks
         <h2 id="recent-works-title">{hasPicks ? 'More from the latest import' : `${latestImport.length} recent ${latestImport.length === 1 ? 'work' : 'works'}`}</h2>
         <span>Explore in 3D</span>
       </div>
-      <div class="v3-grid">{latestImport.map((work, i) => <V3WorkCard work={work} eager={!hasPicks && i < 4} />)}</div>
+      <div class="v3-grid" data-additions-grid>{latestImport.map((work, i) => <V3WorkCard work={work} eager={!hasPicks && i < 4} />)}</div>
     </section>
   )}
 </V3Layout>
+
+<script>
+  import { resolveWorkSort, workCardSortValues, workComparator } from '../../lib/collection-window.mjs';
+
+  const control = document.querySelector<HTMLElement>('[data-additions-sort]');
+  const select = control?.querySelector('select');
+  if (select && control) {
+    const grids = [...document.querySelectorAll('[data-additions-grid]')].map(grid => ({
+      grid,
+      works: [...grid.querySelectorAll<HTMLElement>('[data-v3-card]')].map(card => ({ card, ...workCardSortValues(card) })),
+    }));
+    const defaultSort = select.value;
+    const readSort = () => resolveWorkSort(new URLSearchParams(location.search).get('sort'), defaultSort);
+    const render = () => {
+      const compare = workComparator(select.value);
+      for (const { grid, works } of grids) {
+        works.sort(compare).forEach(({ card }, index) => {
+          if (grid.children[index] !== card) grid.insertBefore(card, grid.children[index] || null);
+        });
+      }
+    };
+    const sync = () => {
+      select.value = readSort();
+      render();
+    };
+    sync();
+    control.hidden = !grids.length;
+    select.addEventListener('change', () => {
+      const url = new URL(location.href);
+      if (select.value === defaultSort) url.searchParams.delete('sort');
+      else url.searchParams.set('sort', select.value);
+      history.replaceState(history.state, '', url);
+      render();
+    });
+    window.addEventListener('popstate', sync);
+  }
+</script>

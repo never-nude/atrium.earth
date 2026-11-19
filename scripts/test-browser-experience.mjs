@@ -25,8 +25,9 @@ const largeFirstView = firstViewFor(largeArtworkSlug, largeOriginal, firstViewMo
 const largeDetailPath = `/detail/${largeArtworkSlug}/`;
 const routes = [
   { id: 'homepage', path: '/', primary: '#v3-home-title', viewers: 'main [data-viewer]' },
-  { id: 'collection', path: '/collection/', primary: 'main h1' },
+  { id: 'collection', path: '/collection/', primary: 'main h1', prepare: page => page.locator('[data-studio-sort]').waitFor() },
   { id: 'ar-vr', path: '/ar-vr/', primary: 'main h1' },
+  { id: 'newest', path: '/newest/', primary: '[data-additions-sort] select' },
   { id: 'wings', path: '/wings/', primary: 'main h1' },
   { id: 'artwork', path: '/works/discobolus/', primary: '#v3-object-title', viewers: '#sculpture [data-viewer]' },
   { id: 'full-detail', path: '/detail/discobolus/', primary: '#detail-title', expectedModels: [detailOriginal] },
@@ -606,18 +607,18 @@ async function check(engine, viewport, route, motion = 'reduce') {
           if (route.id === 'collection') {
             const search = page.locator('[data-v3-search]');
             const count = page.locator('[data-v3-count]');
-            await search.fill('roman');
+            await search.fill('roman discobolus');
             await page.locator('[data-v3-filter-form] button[type="submit"]').click();
             await page.waitForFunction(() => {
               const grid = document.querySelector('[data-v3-grid]');
               return grid?.getAttribute('aria-busy') !== 'true'
-                && document.querySelector('[data-v3-count]')?.textContent.includes('for “roman”');
+                && document.querySelector('[data-v3-count]')?.textContent.includes('for “roman discobolus”');
             });
             if (!await page.locator('[data-v3-card] a[href*="/works/discobolus/"]').count()) {
-              throw new Error('Roman search must show the matching Discobolus work');
+              throw new Error('Roman Discobolus search must show the matching work');
             }
-            if (new URL(page.url()).searchParams.get('q') !== 'roman') {
-              throw new Error('Submitting search must preserve the Roman query in the address');
+            if (new URL(page.url()).searchParams.get('q') !== 'roman discobolus') {
+              throw new Error('Submitting search must preserve the query in the address');
             }
             await search.fill('no-matching-atrium-work-992');
             await search.press('Enter');
@@ -631,6 +632,17 @@ async function check(engine, viewport, route, motion = 'reduce') {
               return input?.value === '' && !document.querySelector('[data-v3-grid]')?.hidden
                 && !new URL(location.href).searchParams.has('q');
             });
+          } else if (route.id === 'newest') {
+            const sort = page.locator('[data-additions-sort] select');
+            if (await sort.inputValue() !== 'newest') throw new Error('Newest Additions must open in date-added order');
+            await sort.selectOption('date-latest');
+            const sorted = await page.locator('[data-additions-grid]').evaluateAll(grids => grids.length > 0 && grids.every(grid => {
+              const years = [...grid.querySelectorAll('[data-year]')].map(card => card.dataset.year === '' ? -Infinity : Number(card.dataset.year));
+              return years.every((year, index) => index === 0 || years[index - 1] >= year);
+            }));
+            if (!sorted || new URL(page.url()).searchParams.get('sort') !== 'date-latest') {
+              throw new Error('Newest Additions must sort each section by artwork date and preserve the choice in the address');
+            }
           } else if (route.id === 'full-detail') {
             const viewer = page.locator('#sculpture [data-viewer]');
             const state = await viewerState(viewer, result.modelRequests);

@@ -1,7 +1,7 @@
 ---
 import V3CollectionPage from '../../../components/v3/V3CollectionPage.astro';
 import V3Layout from '../../../layouts/v3/V3Layout.astro';
-import { works } from '../../../lib/catalog';
+import { collectionWorksByDate as works } from '../../../lib/collection-data';
 import { COLLECTION_PAGE_SIZE } from '../../../lib/collection-window.mjs';
 
 export function getStaticPaths() {

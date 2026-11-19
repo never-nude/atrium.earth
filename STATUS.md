@@ -83,6 +83,8 @@ This Codex session prepared `codex/step-6b-step-5` from deployed main `07824458`
 
 The first integrated build caught a TypeScript/MJS name collision when importing the world projection. Explicit module imports resolved it. The final local Node suite, 8,839-page production build, four globe browser profiles, Pages package, collection, and published-image checks passed. The exact iPhone Safari test and production review are pending.
 
+Collection and AR / VR now open in newest artwork-date order, and saved Curator’s order links fall back to that default. Newest Additions opens by date added and sorts its 40 picks and latest-import works within their existing sections. Both support earliest and newest artwork dates, oldest and newest dates added, and title and maker in both alphabetical directions. The first Node tests, 8,839-page build, and local browser checks passed. Chromium desktop and WebKit phone also exercised all eight choices, saved sort links, and default listings without JavaScript. The package is 899,478,216 bytes and the updated preview is ready for the owner’s phone review.
+
 ## Next session
 
 1. Read AGENTS.md and existing project instructions.
