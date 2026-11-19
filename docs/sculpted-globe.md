@@ -105,6 +105,14 @@ verifier. Each fix above was instead reproduced and re-run directly.
   under the floating Globe/Map and Reset controls. A tap is unaffected: it
   selects, and the controls then return to the page flow.
 
+### Fixed afterwards
+
+All five items in the two lists above are fixed on the follow-up branch
+`claude/blissful-noether-d0eenj`. What was reproduced, what was measured before
+and after, and what is still unverified are in
+[STATUS.md](../STATUS.md), under "Globe touch and pointer fixes after the
+sculpted-globe review".
+
 ## Rendering cost
 
 The surface shader reads two textures per pixel and computes the grain only on

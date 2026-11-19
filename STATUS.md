@@ -161,6 +161,50 @@ Next step: none for this task. A build on a checkout that contains this commit s
 
 Delivery: pushed to `origin/claude/zen-lamport-u8qk48` in the same draft pull request as the globe candidate. Not merged. Not deployed.
 
+## 2026-11-19 — Globe touch and pointer fixes after the sculpted-globe review (Claude Code)
+
+Task / owner / branch: the owner asked a second Claude Code cloud session to fix the defects that the review of the sculpted globe found and that [PR #117](https://github.com/never-nude/atrium.earth/pull/117) left unchanged: two touch defects in `installSignatureHandling`, and three smaller items listed at the end of the sculpted-globe entry above. This session owns `claude/blissful-noether-d0eenj`, cut from `main` at `8e8dfcbb`. It is a contributor branch under [Issue #109](https://github.com/never-nude/atrium.earth/issues/109): this session started no remote review and no CDN check, and merged and deployed nothing.
+
+The work began on PR #117's then head `68b8380f`, because that branch rewrote the same handlers. PR #117 was squash-merged at 21:50 UTC with one more commit, which changes the globe's colours, the flat map's palette and one catalogue entry and none of the code changed here. The work was replayed onto `main` without conflict, and every figure below was measured again on production builds of `8e8dfcbb` and of this branch.
+
+Completed. Each item was reproduced on `main` and re-run on this branch, in headless Chromium with touch emulation on a software renderer:
+
+- **On a touch screen, a tap on a light of the flat map selects it.** No touch can turn the flat map, so every touch on it is the page's, and every page-owned touch refused the click that follows it. On `main` a tap on Greenland selected nothing at 390 × 844, at 320 × 640 with reduced motion, and in the no-WebGL fallback, which is always the flat map; `button.click()` on the same button selected it each time. On this branch all three taps select Greenland. The refusal is kept for everything else the page owns: a touch that scrolled, that landed on a page still moving, that a second finger joined, or that moved more than 7 px, the tolerance the globe already used for its own taps. A 12 px slide on a light, after which Chromium still sends a click, selects nothing on either build. Neither does a scroll that begins on a light.
+- **A finger resting outside the stage no longer takes part in the globe's gestures.** The handlers counted `event.touches`, which is every finger on the screen. On `main`, with a finger resting on the page heading, a 120 px drag on the globe moved the surface 8 px and drove the zoom to its limit, having been read as a pinch. After both fingers lifted the globe did not turn again (0 px in 1.2 s, measured 4.2 s later) and the next tap on Egypt selected nothing. On this branch the surface follows the finger for 86 px as it does with one finger, the zoom is untouched, the globe turns again (11 px in 1.2 s) and the tap selects Egypt. Either finger may land first. The handlers now take the fingers whose touch began inside the stage. `targetTouches` was not used: it lists the fingers on one element only, and a pinch often lands on two different lights. That pinch zooms on both builds.
+- **A hover label goes when the pointer leaves the stage.** Among overlapping lights the nearest light shows its label while the pointer is over a neighbour's target, so the labelled light never hears the pointer leave. Twelve one-step exits per view: 11 on the globe and 12 on the flat map left a label behind on `main`, none on this branch. A chosen light keeps its label.
+- **Reset exploration turns the globe home.** `setMode()` finished any motion even when asked for the view already on show, and the reset asks for the globe straight after starting the turn. On `main` the globe went from 300 px away to its opening view in one frame. On this branch it turns for about 800 ms. From the flat map it still opens on the opening view at once, and reduced motion still jumps. Closing a place passes through the same call. On a private instance of the built script, asking for the view on show in the middle of a turn moved the rotation from −1.511 to −2.094 radians at once on `main` and left it at −1.491 on this branch; changing the view still settles motion at once on both.
+- **Labels stay clear of the floating Globe/Map and Reset controls.** PR #117 introduced this one. The focus label of every light on show was measured against the controls: 23 of 92 lay under a control at 390 × 844 and 29 of 92 at 320 × 640 on `main`, none on this branch. At the closest zoom the counts were 9, 16 and 3 at 390, 320 and 820 px wide, and are 0. The page now tells the globe which of its elements float over the stage (`overlays`), and a label that would open under one opens below its light, clear of the control.
+
+Tests added:
+
+- `scripts/world-globe-motion.test.mjs` has two new tests, for the fingers on the stage and for the tap rule.
+- `scripts/test-world-signature-browser.mjs` has three new phases. `a tap on a flat-map light selects it` runs in every touch case, which in this suite are the two WebKit phone cases. Two Chromium-only phases run in the 1440 × 900 normal-motion case: a phone-sized touch page driven through Chromium's own input pipeline (the resting finger, the flat-map tap, the two refusals, labels against the controls), and a mouse phase (the hover label, the reset turn). Against the build of `main` these phases record eight failures in that case, and the flat-map tap fails in both phone stand-ins. Nothing else fails there.
+
+Validation actually performed (Linux container; headless Chromium 1243 on a software renderer, driven by the repository's pinned Playwright through a launcher preload, so the suite's own script ran unmodified):
+
+- `npm test` exit 0. Experience suite 141 tests: 140 passed, 1 skipped because the pinned Playwright has no matching Chromium build in the container.
+- `npm run build` exit 0 for `8e8dfcbb` and for this branch, 8,835 pages each, no untracked file left behind. Package 24,753 files / 899,443,352 bytes against 899,441,889 for `main`: 1,463 bytes more, in the two script chunks that changed. Package budget, collection window and published-image checks passed.
+- Globe browser audit on this branch: both Chromium cases passed in 7 of 7 runs, with no empty resize frame, no console, page or asset error and no model request. On `main` the same script fails only the new phases.
+- The suite's two WebKit phone cases, run in Chromium as a stand-in only: both passed on this branch, and both failed at the flat-map tap on `main`.
+- Page suite, world route, Chromium only: all four cases passed.
+- Three of my own checks were wrong when first written and were corrected without changing product code. The first resting-finger reproduction lifted the fingers in the wrong order. The first reset check passed on the unfixed build, because the unattended rotation alone moves the lights; it now reads the globe's own turn timing. One travel measurement read a light that had just passed behind the globe as a 411 px leap; positions are now read in one step.
+- One rule in the product code was added after measurement: the first label fix left 5, 11 and 2 lights under the controls at the closest zoom, so a label that still lies under a control now drops clear of it.
+
+Not established:
+
+- **Any WebKit result.** WebKit is not installed in this container. The new flat-map phase has never run in WebKit. Its first run is the next remote review.
+- **Touch behaviour on a physical iPhone was not verified.** Everything above is Chromium with touch emulation.
+- `test:browser` beyond the world route, `test:handling-browser` and `test:performance` were not run. No remote review and no live CDN check was started.
+
+Open issues / observations, not changed here:
+
+- A focused light's label hides when the pointer leaves that light's own target, although the light is still focused. That is the existing `hideLabel` behaviour.
+- The label rule looks only at the controls over the top of the stage. The viewing tools over the bottom of the stage are not considered; one reading of an earlier build showed 1 of 52 labels under them at the closest zoom, and no later reading did.
+
+Next step: the owner's check on a physical iPhone (Map, tap a light; turn the globe with a thumb resting on the page), then the release coordinator's full review of the exact head, which is the first WebKit run of the new phase. Every commit on the branch carries `[skip ci]`, so the review has to be started deliberately.
+
+Delivery: pushed to `origin/claude/blissful-noether-d0eenj` with a draft pull request against `main`. Remote checks are unrun, not green. Not merged. Not deployed.
+
 ## Next session
 
 1. Read AGENTS.md and existing project instructions.

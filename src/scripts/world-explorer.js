@@ -369,6 +369,8 @@ async function initialise(root, { compact, signal, register }) {
     signal.throwIfAborted();
     globe = createWorldGlobe({
       host:root.querySelector('[data-world-globe]'),places,onSelect:choosePlace,autoRotate:true,presentation:'signature',
+      // In the overview these float over the top of the stage; a light's label must not open under them.
+      overlays:() => root.querySelectorAll('.world-map-toolbar > *'),
       onReady:info => {if(signal.aborted)return;setMode(info.mode);root.dataset.worldState='ready';if(loading)loading.hidden=true;},
       onError:(error,info) => {if(signal.aborted)return;root.dataset.worldState='fallback';setMode(info?.mode || error?.mode || 'map');if(loading)loading.textContent='Choose a place from the list to explore its works.';},
       onZoomChange:info => updateWorldZoomControls(root,info),
