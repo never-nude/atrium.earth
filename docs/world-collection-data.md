@@ -1,6 +1,6 @@
 # World collection data
 
-The globe groups the existing public collection by recorded object or artistic origin. It does not locate works at their current museums, locate scans at their capture sites, or infer origins from titles, artist nationality, culture labels, wings or source folders. The existing wing system is unchanged.
+The globe groups the public collection by recorded object or artistic origin. It uses explicit geographic evidence and reviewed historical-cultural regions. Current holdings, scan capture sites, titles, artist nationality, and catalogue folders provide no origin evidence.
 
 `src/lib/world-collection.ts` exports `worldCollection` with `places`, `works`, `unplacedCount`, `undatedCount`, `totalCount`, `dateMin` and `dateMax`. Each work retains the current public working title, maker and unchanged date label. Thumbnail and work routes remain relative to the site base; the page applies `withBase`. Source labels and URLs identify existing catalogue evidence, rather than the plotted coordinate's location.
 
@@ -8,7 +8,7 @@ The globe groups the existing public collection by recorded object or artistic o
 
 The normalized catalogue's geography can fall back to collection folders or title matching. Those normalized values are deliberately excluded. The projection reads explicit raw `origin_country`, `geography` and, conservatively, `original_location`, after existing identity corrections.
 
-Only explicit aliases are recognized. A named city followed by an explicit country can support that country's representative point; it does not produce a city marker. Ambiguous alternatives, conflicting countries, museum/collection strings, capture locations, artist-nationality phrases and unresolved reconstruction origins remain unplaced. The bare names Georgia and Congo are ambiguous; a dedicated country field or unambiguous full name can resolve them. Korea is represented as the peninsula region rather than assigning a modern state.
+Exact geographic aliases can support representative country or regional points. A specific locality can remain unconfirmed while a broader location is established. A reviewed set of historical-cultural labels supplies regional points, including Roman Mediterranean, Gandhara, and Etruria. Where a geographic description gives several countries without a named region, a matching recorded culture is required for the reviewed regional cases. Unresolved alternatives, conflicting countries, museum or capture strings, artist nationality, and unresolved reconstruction origins stay unmapped. A dedicated country field or unambiguous full name can resolve Georgia or Congo. Korea uses its peninsula region.
 
 Historical casts need a country or explicit manufacture/workshop basis. Their museum holding or the location of the copied original is insufficient. Unknown exact findspots do not erase an otherwise explicit broad origin: “Korea; exact findspot unknown” remains a Korea-region entry.
 
@@ -48,9 +48,11 @@ Examples:
 - The Pensive Bodhisattva uses the Korea regional point despite its unknown exact findspot, with a broad 6th–7th century envelope of 500–699.
 - The Copenhagen Thinker's France/Copenhagen label and modeled/cast chronology remain unplaced and undated for this projection.
 - The SMK Terme Ruler can use its documented Italian cast workshop country, while its unknown casting date remains undated.
-- The Middle Niger seated figure remains unplaced because its current raw origin fields are blank; the Met holding is not used as an origin. Its 13th-century label still supplies a date envelope.
+- The Met records Mali and Middle Niger civilization for the seated figure, accession 1981.218. The globe uses the Middle Niger regional point. [Met collection record](https://collectionapi.metmuseum.org/public/collection/v1/objects/314362)
 - The Kraków pharmacy Asklepios remains unplaced when manufacture origin is unrecorded, even though its holding museum and early 20th-century date are known.
 
 ## Verification
+
+The generated `/world/unmapped.json` lists the reason for every remaining unmapped public work. The link beneath the globe opens the same work set in Collection.
 
 Run `node scripts/test-world-collection.mjs`. The focused tests cover ambiguous aliases, museum/capture exclusions, missing title/folder fallbacks, cast scope, corrected geography, hidden records, century and BCE ranges, mixed-event dates, exact date-label preservation, coordinate bounds, public route shape, coverage counts and immutable inputs. No browser, server, complete application build, model downloads or publication are part of this data-layer check.

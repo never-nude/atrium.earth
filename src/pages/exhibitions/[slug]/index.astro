@@ -138,16 +138,16 @@ const stops = exhibition.works.map((work, index) => ({
   .exhibition-duet__viewer { height: clamp(318px, calc(52svh + 78px), 698px); }
   .exhibition-duet__viewer :global(.viewer:not(:fullscreen):not([data-viewer-expanded]) > .model-stage) { height: calc(100% - 78px); }
   .exhibition-duet__viewer :global(.viewer:not(:fullscreen):not([data-viewer-expanded]) > .viewer-start) { position: absolute; inset: auto 0 0; justify-content: center; }
-  .exhibition-duet figcaption { margin-top: 12px; color: var(--v3-muted); font-size: .7rem; line-height: 1.5; text-align: center; }
+  .exhibition-duet figcaption { margin-top: 12px; color: var(--v3-muted); font-size: max(var(--atrium-text-floor, 0px), .7rem); line-height: 1.5; text-align: center; }
   .exhibition-viewing-note { max-width: 64ch; margin: 28px 0 0; color: var(--v3-muted); font-size: .92rem; line-height: 1.6; }
   .exhibition-pair-index { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 24px; max-width: 800px; margin-top: 36px; }
   .exhibition-pair-index a { display: flex; gap: 16px; align-items: baseline; min-height: 44px; padding: 14px 0; border-top: 1px solid var(--v3-line); color: var(--v3-ink); font-size: .85rem; line-height: 1.4; text-decoration: none; }
   .exhibition-pair-index a:hover { color: var(--v3-signal); }
-  .exhibition-pair-index span { color: var(--v3-muted); font-size: .67rem; }
+  .exhibition-pair-index span { color: var(--v3-muted); font-size: max(var(--atrium-text-floor, 0px), .67rem); }
   @media (max-width: 650px) {
     .exhibition-duet { grid-template-columns: 1fr; gap: 24px; }
     .exhibition-duet__viewer { height: clamp(293px, calc(72vw + 78px), 468px); }
-    .exhibition-duet figcaption { font-size: .62rem; }
+    .exhibition-duet figcaption { font-size: max(var(--atrium-text-floor, 0px), .62rem); }
     .exhibition-pair-index { grid-template-columns: 1fr; }
   }
 </style>

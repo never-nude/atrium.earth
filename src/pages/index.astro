@@ -25,7 +25,6 @@ const selection = selectHomepageWorks({
   roomWorks: (room?.slugs ?? []).map(workBySlug).filter((work): work is Work => Boolean(work)),
   spatialWorks: arVrFeatured, wings: wingSummaries, newestWorks: [...curatedRecentWorks, ...newestWorks],
 });
-const randomRoutes = featuredWorks.map(work => withBase(v3WorkRoute(work)));
 const isDiscobolus = featuredWork.slug === 'discobolus';
 const heroTransform = isDiscobolus
   ? { ...featuredWork.modelTransform, viewDirection: [0.8, 0.25, -0.65] }
@@ -130,7 +129,7 @@ const heroAlt = [
     <p class="v3-kicker">06 / A different starting point</p>
     <h2 id="random-title">Discover something unexpected.</h2>
     <p>Let chance lead you to an object, a place, or a story you might have missed.</p>
-    <a class="v3-random__button" href={randomRoutes[0]} data-random-work>Choose a work <span>↗</span></a>
+    <a class="v3-random__button" href={withBase(v3WorkRoute(featuredWork))} data-random-work={withBase('/collection/data/chance.json')}>Choose a work <span>↗</span></a>
   </section>
 
   </div>
@@ -147,13 +146,24 @@ const heroAlt = [
     }
   </script>
 
-  <script define:vars={{ randomRoutes }}>
-    const randomLink = document.querySelector('[data-random-work]');
-    randomLink?.addEventListener('click', (event) => {
-      event.preventDefault();
-      const next = randomRoutes[Math.floor(Math.random() * randomRoutes.length)];
-      window.location.href = next;
-    });
+  <script>
+    const randomLink = document.querySelector<HTMLAnchorElement>('[data-random-work]');
+    if (randomLink?.dataset.randomWork) {
+      let ready = false;
+      const chooseWork = fetch(randomLink.dataset.randomWork)
+        .then(response => response.ok ? response.json() : [])
+        .then((routes: string[]) => {
+          if (routes.length) randomLink.href = routes[Math.floor(Math.random() * routes.length)];
+        })
+        .catch(() => { /* The original artwork link is always available. */ })
+        .finally(() => { ready = true; });
+      randomLink.addEventListener('click', async event => {
+        if (ready || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+        event.preventDefault();
+        await chooseWork;
+        location.assign(randomLink.href);
+      });
+    }
   </script>
 </V3Layout>
 
@@ -186,12 +196,12 @@ const heroAlt = [
   .home-programme-hero .v3-hero__copy h1 { margin: 18px 0; font-size: clamp(42px, 5.2vw, 78px); line-height: 1.06; }
   .home-programme-hero > .v3-hero__object { position: relative; inset: auto; grid-column: 2; grid-row: 2; justify-self: center; display: grid; justify-items: center; gap: 4px; max-width: 54ch; margin: 8px 0 0; padding: 0; text-align: center; }
   .home-programme-hero .v3-hero__object strong { display: block; font-size: 15px; }
-  .home-programme-hero .v3-hero__object > span:first-child { font-size: 11px; }
+  .home-programme-hero .v3-hero__object > span:first-child { font-size: max(var(--atrium-text-floor, 0px), 11px); }
   .home-programme-hero .v3-hero__object span + span::before { content: none; }
   .home-programme-hero .v3-hero__record-link { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; color: var(--v3-signal); text-underline-offset: 4px; }
   .home-programme-hero > .v3-hero__veil, .home-programme-hero > .v3-hero__continue { display: none; }
   .home-hero-prompt { max-width: 38ch; margin: 22px 0 0; padding-left: 14px; border-left: 2px solid var(--home-programme-accent); color: var(--v3-muted); font-size: 12px; line-height: 1.65; }
-  .home-hero-prompt > span { display: block; margin-bottom: 5px; color: var(--home-programme-accent); font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
+  .home-hero-prompt > span { display: block; margin-bottom: 5px; color: var(--home-programme-accent); font-size: max(var(--atrium-text-floor, 0px), 11px); font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
   .home-section-intro { max-width: 66ch; margin: -8px 0 30px; color: var(--v3-muted); font-size: 14px; line-height: 1.7; }
   .home-wings :global(.v3-wing-card__image) { aspect-ratio: 3 / 2; }
   .home-wings :global(.v3-wing-card__copy > strong) { font-size: clamp(23px, 2.25vw, 31px); }
@@ -202,14 +212,14 @@ const heroAlt = [
     .home-programme-hero { display: flex; flex-direction: column; min-height: 0; padding: 26px 0 28px; }
     .home-programme-hero > .v3-hero__copy { order: 0; align-self: stretch; max-width: none; width: auto; margin: 0; padding: 0 var(--v3-pad); }
     .home-programme-hero .v3-hero__copy h1 { margin: 12px 0; font-size: clamp(37px, 9.6vw, 60px); }
-    .home-programme-hero .v3-hero__copy .v3-kicker { margin: 0; font-size: 11px; }
+    .home-programme-hero .v3-hero__copy .v3-kicker { margin: 0; font-size: max(var(--atrium-text-floor, 0px), 11px); }
     .home-programme-hero .v3-hero__lede { max-width: 48ch; font-size: 13px; line-height: 1.65; }
     .home-programme-hero .v3-actions { flex-direction: row; align-items: stretch; margin-top: 18px; gap: 8px; }
     .home-programme-hero .v3-button { flex: 1 1 140px; min-height: 46px; padding: 11px 13px; gap: 12px; font-size: 12px; }
     .home-programme-hero > .v3-hero__viewer { order: 1; width: 100%; --hero-artwork-height: clamp(260px, 39svh, 400px); margin-top: 16px; }
     .home-programme-hero :global(.home-featured-controls) { margin-inline: var(--v3-pad); }
     .home-programme-hero :global(.home-featured-controls .immersive-tools button),
-    .home-programme-hero :global(.home-featured-controls .immersive-light summary) { min-height: 44px; padding-inline: 9px; font-size: 11px; }
+    .home-programme-hero :global(.home-featured-controls .immersive-light summary) { min-height: 44px; padding-inline: 9px; font-size: max(var(--atrium-text-floor, 0px), 11px); }
     .home-programme-hero > .v3-hero__object { order: 2; align-self: center; max-width: calc(100% - 40px); margin: 0; }
     .home-programme-hero .home-hero-prompt { display: none; }
   }
@@ -218,11 +228,11 @@ const heroAlt = [
     .home-wings :global(.v3-wings-grid) { gap: 28px; }
     .home-wings :global(.v3-wing-card) { grid-template-columns: 112px minmax(0, 1fr); grid-template-rows: 1fr; column-gap: 14px; padding-top: 14px; }
     .home-wings :global(.v3-wing-card__image) { aspect-ratio: 4 / 5; align-self: start; }
-    .home-wings :global(.v3-wing-card__number) { top: 18px; left: 5px; font-size: 11px; }
+    .home-wings :global(.v3-wing-card__number) { top: 18px; left: 5px; font-size: max(var(--atrium-text-floor, 0px), 11px); }
     .home-wings :global(.v3-wing-card__copy) { padding: 0 0 0 2px; }
     .home-wings :global(.v3-wing-card__copy > strong) { margin-top: 8px; font-size: 22px; }
-    .home-wings :global(.v3-wing-card__blurb) { margin-top: 9px; font-size: 11px; }
-    .home-wings :global(.v3-wing-card__link) { margin-top: 12px; padding-top: 10px; font-size: 11px; }
+    .home-wings :global(.v3-wing-card__blurb) { margin-top: 9px; font-size: max(var(--atrium-text-floor, 0px), 11px); }
+    .home-wings :global(.v3-wing-card__link) { margin-top: 12px; padding-top: 10px; font-size: max(var(--atrium-text-floor, 0px), 11px); }
     .home-section-intro { font-size: 13px; }
     .home-random { padding-block: 52px; }
   }

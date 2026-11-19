@@ -6,9 +6,9 @@ const entries = ['a','b','c'].map(slug=>({slug,title:slug.toUpperCase()}));
 const exhibitions = [{slug:'surface',title:'Surface',works:entries}];
 const visits = [{exhibition:'surface',id:'six',title:'Six ways',stops:entries}];
 test('guided records keep stop order and return to that stop without cycling',()=>{
-  const current = exhibitionJourney('?exhibition=surface&visit=six&stop=2','b',exhibitions,visits,'/museum/');
-  assert.equal(current.returnHref,'/museum/exhibitions/surface/?visit=six&stop=2#curated-visit');
-  assert.equal(current.next.href,'/museum/works/c/?exhibition=surface&visit=six&stop=3');
+  const current = exhibitionJourney('?exhibition=surface&visit=six&stop=2','b',exhibitions,visits,'/preview/');
+  assert.equal(current.returnHref,'/preview/exhibitions/surface/?visit=six&stop=2#curated-visit');
+  assert.equal(current.next.href,'/preview/works/c/?exhibition=surface&visit=six&stop=3');
   assert.equal(exhibitionJourney('?exhibition=surface&visit=six&stop=1','a',exhibitions,visits).previous,null);
   assert.equal(exhibitionJourney('?exhibition=surface&visit=six&stop=3','c',exhibitions,visits).next,null);
 });

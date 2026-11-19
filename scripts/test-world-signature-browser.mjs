@@ -251,6 +251,15 @@ async function runCase(specification) {
       });
       assert(Number.isFinite(result.timings.firstLandFrameNavigationMs), 'First land-frame timing is unavailable');
       assert.equal(await page.locator(rootSelector).getAttribute('data-world-mode'), 'globe', 'First view must be the actual globe');
+      if (specification.width === 1440 && specification.height === 900) {
+        const position = await page.locator('[data-world-globe] canvas[role="img"]').evaluate(canvas => {
+          const { top, bottom } = canvas.getBoundingClientRect();
+          return { top, bottom, viewport: innerHeight, scroll: scrollY };
+        });
+        assert(position.scroll === 0 && position.top >= 0 && position.bottom <= position.viewport,
+          'The whole globe must fit at 1440 × 900 before scrolling: ' + JSON.stringify(position));
+        result.initialGlobePosition = position;
+      }
     });
     await phase('initial page audit and screenshot', async () => { await audit('initial'); await screenshot('initial'); });
     await phase('first front-point selection and loaded still', async () => {
@@ -275,6 +284,18 @@ async function runCase(specification) {
       const cards = page.locator('[data-world-works] > a');
       const count = await cards.count();
       expect(count > 0 && count <= 12, 'Selected row must contain 1–12 works', count);
+      const layout = await page.locator(rootSelector).evaluate(root => {
+        const stage = root.querySelector('[data-world-globe]').getBoundingClientRect();
+        const panel = root.querySelector('[data-world-selection]').getBoundingClientRect();
+        const animations = [...root.querySelectorAll('[data-world-works] a')].map(card => {
+          const style = getComputedStyle(card);
+          return { name: style.animationName, delay: Number.parseFloat(style.animationDelay) * 1000 };
+        });
+        return { beside: panel.left >= stage.right - 1, below: panel.top >= stage.bottom - 1, animations };
+      });
+      expect(specification.width >= 1024 ? layout.beside : layout.below, 'The selection panel must sit beside the globe on desktop and below it on phones', layout);
+      expect(layout.animations.every(({ name, delay }, index) => specification.motion === 'reduce' ? name === 'none'
+        : name !== 'none' && Math.abs(delay - index * 60) < 2), 'The per-work stagger must respect reduced motion', layout.animations);
       const images = await cards.locator('img').evaluateAll(elements => elements.map(image => {
         const box = image.getBoundingClientRect();
         return { url: new URL(image.src).pathname, loading: image.loading, width: image.naturalWidth,
@@ -303,7 +324,7 @@ async function runCase(specification) {
       await audit('selected');
       if (specification.motion === 'reduce') {
         const motion = await page.evaluate(() => {
-          const row = document.querySelector('[data-world-works]');
+          const row = document.querySelector('[data-world-works] a');
           const light = document.querySelector('[data-world-light] > span:last-child');
           return { rowAnimation: getComputedStyle(row).animationName, lightTransition: getComputedStyle(light).transitionDuration };
         });

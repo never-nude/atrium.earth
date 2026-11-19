@@ -8,7 +8,7 @@ type Props = {
 const { currentPath } = Astro.props;
 
 const nav: Array<[string, string]> = [
-  ['Museum', '/museum/'],
+  ['Collection', '/collection/'],
   ['About', '/about/'],
 ];
 const isCurrent = (href: string) => currentPath === href || (href !== '/' && currentPath.startsWith(href));

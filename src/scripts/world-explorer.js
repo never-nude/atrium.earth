@@ -183,8 +183,8 @@ async function initialise(root, { compact, signal, register }) {
     const nextCardKey = cardResults.map(work => work.slug).join('|');
     if (nextCardKey !== cardKey) {
       const cards = document.createDocumentFragment();
-      for (const work of cardResults) cards.append(workCard(work));
-      list.replaceChildren(cards); cardKey = nextCardKey;
+      for (const [index, work] of cardResults.entries()) cards.append(workCard(work, index));
+      list.replaceChildren(cards); list.scrollLeft = 0; cardKey = nextCardKey;
     }
     if (selection) {
       selection.hidden = !state.place;
@@ -212,8 +212,9 @@ async function initialise(root, { compact, signal, register }) {
     root.dataset.periodFrom = String(time.start); root.dataset.periodTo = String(time.end);
   }
 
-  function workCard(work) {
+  function workCard(work, index) {
     const card = document.createElement('a'); card.className = 'world-work';
+    card.style.setProperty('--world-card-delay', `${index * 60}ms`);
     card.dataset.worldWorkUrl = work.url;
     const image = document.createElement('img');
     image.src = `${root.dataset.worldStillsBase}${work.slug}.webp`;
@@ -247,7 +248,8 @@ async function initialise(root, { compact, signal, register }) {
       clearTimeout(restoreTimer);
       const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
       const keyboardChoice = keyboardInteraction;
-      root.querySelector('.world-observatory')?.scrollIntoView({ block: 'start', behavior: reduced ? 'instant' : 'smooth' });
+      const sidePanel = matchMedia('(min-width: 1024px)').matches;
+      root.querySelector('.world-observatory')?.scrollIntoView({ block: sidePanel ? 'nearest' : 'start', behavior: reduced ? 'instant' : 'smooth' });
       const token = ++selectionToken;
       let followedSelection = false;
       cancelAnimationFrame(selectionFrame);
@@ -261,7 +263,7 @@ async function initialise(root, { compact, signal, register }) {
           : document.querySelector('[data-v3-header]')?.getBoundingClientRect().bottom || 0;
         const visibleHeight = Math.max(0, Math.min(box.bottom, innerHeight) - Math.max(box.top, 0, headerBottom));
         const halfVisible = box.height > 0 && visibleHeight / box.height >= .5;
-        if (!halfVisible && !followedSelection && elapsed >= (reduced ? 0 : 450)) {
+        if (!sidePanel && !halfVisible && !followedSelection && elapsed >= (reduced ? 0 : 450)) {
           // A short screen can fit the globe or the stills, but not both in full.
           // After the selected layout settles, make one small follow movement.
           followedSelection = true;
@@ -270,7 +272,7 @@ async function initialise(root, { compact, signal, register }) {
         }
         const visible = box.width > 0 && box.right > 0 && box.left < innerWidth && halfVisible
           && (!image || (image.complete && image.naturalWidth > 0))
-          && Number(getComputedStyle(firstCard ? list : empty).opacity) > 0;
+          && Number(getComputedStyle(firstCard || empty).opacity) > 0;
         if (!visible && elapsed < 5000) { selectionFrame = requestAnimationFrame(measureVisible); return; }
         if (!visible) { root.dataset.worldSelectionVisibleError = 'The selected works did not enter the viewport'; return; }
         delete root.dataset.worldSelectionVisibleError;

@@ -31,7 +31,7 @@ const arUrl = spatialWork ? `${v3WorkRoute(spatialWork)}#ar-vr` : '/ar-vr/';
   .spatial-invitation__entries { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 30px; }
   .spatial-invitation__entry { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(100px, .75fr); gap: 17px; align-items: center; padding: 26px; border: 1px solid var(--v3-line); background: var(--v3-well); }
   .spatial-invitation__entry:not(:has(.spatial-invitation__art)) { grid-template-columns: 1fr; }
-  .spatial-invitation__copy .v3-kicker { margin: 0 0 14px; font-size: 11px; }
+  .spatial-invitation__copy .v3-kicker { margin: 0 0 14px; font-size: max(var(--atrium-text-floor, 0px), 11px); }
   .spatial-invitation h2 { margin: 0 0 15px; font-size: clamp(23px, 2.4vw, 32px); line-height: 1.18; font-weight: 500; letter-spacing: -.035em; }
   .spatial-invitation__copy > p:not(.v3-kicker) { margin: 0 0 12px; color: var(--v3-muted); font-size: 12px; line-height: 1.7; }
   .spatial-invitation__copy > a { display: inline-flex; align-items: center; gap: 13px; min-height: 44px; color: var(--v3-signal); font-size: 12px; text-underline-offset: 4px; }

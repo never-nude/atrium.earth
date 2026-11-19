@@ -80,7 +80,7 @@
   font-weight: 500;
   text-decoration: none;
 }
-.v3-collection-switch a span { color: var(--v3-faint); font-size: .7rem; font-variant-numeric: tabular-nums; }
+.v3-collection-switch a span { color: var(--v3-faint); font-size: max(var(--atrium-text-floor, 0px), .7rem); font-variant-numeric: tabular-nums; }
 .v3-collection-switch a:hover { color: var(--v3-ink); }
 .v3-collection-switch a[aria-current="page"] { color: var(--v3-ink); border-bottom-color: var(--v3-signal); }
 /* Keep collection navigation and search joined at the viewport edge. The shared
@@ -122,7 +122,7 @@ body:has(.v3-collection-switch) .v3-header {
   padding: 0 0 4px;
   border-bottom: 1px solid var(--v3-line-strong);
   color: var(--v3-ink);
-  font-size: .72rem;
+  font-size: max(var(--atrium-text-floor, 0px), .72rem);
   font-weight: 500;
   text-decoration: none;
 }

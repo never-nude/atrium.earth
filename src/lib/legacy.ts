@@ -12,7 +12,7 @@ const facetRedirects: Redirect[] = [
     .filter((facet) => facet.label !== 'Maker not yet recorded')
     .map((facet) => ({
       from: `/${facet.value}/`,
-      to: `/makers/#${facet.value}`,
+      to: `/collection/?maker=${encodeURIComponent(facet.value)}`,
       status: 301 as const,
       reason: 'Legacy maker collection route',
     })),
@@ -20,24 +20,24 @@ const facetRedirects: Redirect[] = [
     .filter((facet) => facet.label !== 'Unassigned geography')
     .map((facet) => ({
       from: `/${facet.value}/`,
-      to: `/geography/#${facet.value}`,
+      to: `/collection/?place=${encodeURIComponent(facet.value)}`,
       status: 301 as const,
       reason: 'Legacy geography collection route',
     })),
 ];
 
 const legacyCollectionRedirects: Redirect[] = [
-  { from: '/americas/', to: '/geography/#americas-and-oceania', status: 301, reason: 'Legacy collection route' },
-  { from: '/asia/', to: '/geography/#asia', status: 301, reason: 'Legacy collection route' },
-  { from: '/assyrian/', to: '/geography/#ancient-near-east', status: 301, reason: 'Legacy collection route' },
-  { from: '/bouchardon/', to: '/makers/#bouchardon', status: 301, reason: 'Legacy collection route' },
-  { from: '/donatello/', to: '/makers/#donatello', status: 301, reason: 'Legacy collection route' },
-  { from: '/lorenzi/', to: '/makers/#lorenzi', status: 301, reason: 'Legacy collection route' },
-  { from: '/michelangelo/', to: '/makers/#michelangelo', status: 301, reason: 'Legacy collection route' },
-  { from: '/palmyra/', to: '/geography/#ancient-near-east', status: 301, reason: 'Legacy collection route' },
-  { from: '/rodin/', to: '/makers/#auguste-rodin', status: 301, reason: 'Legacy collection route' },
-  { from: '/sub-saharan-africa/', to: '/geography/#sub-saharan-africa', status: 301, reason: 'Legacy collection route' },
-  { from: '/verrocchio/', to: '/makers/#verrocchio', status: 301, reason: 'Legacy collection route' },
+  { from: '/americas/', to: '/collection/?place=americas-and-oceania', status: 301, reason: 'Legacy collection route' },
+  { from: '/asia/', to: '/collection/?place=asia', status: 301, reason: 'Legacy collection route' },
+  { from: '/assyrian/', to: '/collection/?place=ancient-near-east', status: 301, reason: 'Legacy collection route' },
+  { from: '/bouchardon/', to: '/collection/?maker=bouchardon', status: 301, reason: 'Legacy collection route' },
+  { from: '/donatello/', to: '/collection/?maker=donatello', status: 301, reason: 'Legacy collection route' },
+  { from: '/lorenzi/', to: '/collection/?maker=lorenzi', status: 301, reason: 'Legacy collection route' },
+  { from: '/michelangelo/', to: '/collection/?maker=michelangelo', status: 301, reason: 'Legacy collection route' },
+  { from: '/palmyra/', to: '/collection/?place=ancient-near-east', status: 301, reason: 'Legacy collection route' },
+  { from: '/rodin/', to: '/collection/?maker=auguste-rodin', status: 301, reason: 'Legacy collection route' },
+  { from: '/sub-saharan-africa/', to: '/collection/?place=sub-saharan-africa', status: 301, reason: 'Legacy collection route' },
+  { from: '/verrocchio/', to: '/collection/?maker=verrocchio', status: 301, reason: 'Legacy collection route' },
 ];
 
 const exactWorkRedirects: Redirect[] = works.map((work) => ({

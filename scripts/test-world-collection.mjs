@@ -17,7 +17,7 @@ assert.equal(origin({ geography: 'Benin, Nigeria' }), 'nigeria');
 assert.equal(origin({ geography: 'Côte d’Ivoire' }), origin({ geography: "Cote d'Ivoire" }));
 assert.equal(origin({ geography: 'Georgia' }), null, 'An ambiguous name does not imply the country rather than a US state.');
 assert.equal(origin({ origin_country: 'Georgia' }), 'georgia', 'The explicit country field resolves that ambiguity.');
-for (const geography of ['Congo', 'Turkey or Syria', 'Egypt (possibly)', 'France; Copenhagen, Denmark', 'Gabon / Equatorial Guinea / Cameroon (Fang region)', 'Central Asia (Sogdiana) or Tibet']) {
+for (const geography of ['Congo', 'Turkey or Syria', 'Egypt (possibly)', 'France; Copenhagen, Denmark', 'Nigeria / Benin', 'Central Asia (Sogdiana) or Tibet']) {
   assert.equal(origin({ geography }), null, geography);
 }
 for (const geography of ['Musée du Louvre, France', 'Minneapolis Institute of Art, USA', 'The Royal Cast Collection, Copenhagen, Denmark', 'Captured in London, England', 'France (artist nationality)']) {
@@ -30,6 +30,13 @@ assert.equal(origin({ title: 'SMK plaster cast', accession: 'KAS123', geography:
 assert.equal(origin({ title: 'SMK plaster cast', accession: 'KAS123', geography: 'Rome; Malpieri workshop', origin_country: 'Italy' }), 'italy');
 assert.equal(origin({ origin_country: 'Italy', geography: 'France' }), null);
 assert.equal(origin({ title: 'Digital Reconstruction', geography: 'France' }), null);
+assert.equal(origin({ geography: 'Gabon / Equatorial Guinea / Cameroon (Fang region)' }), 'fang-region');
+assert.equal(origin({ geography: 'Nigeria / Benin', culture: 'Yoruba' }), 'yoruba-region');
+assert.equal(origin({ geography: 'Gandhara (present-day Afghanistan or Pakistan)', culture: 'Gandharan' }), 'gandhara');
+assert.equal(origin({ geography: 'Italy (Etruscan; exact workshop unknown)' }), 'italy');
+assert.equal(origin({ culture: 'Ancient Roman' }), 'mediterranean');
+assert.equal(origin({ culture: 'Roman', geography: 'Possibly Smyrna, Ionia' }), null);
+assert.equal(origin({ title: 'SMK plaster cast', culture: 'Ancient Roman' }), null);
 
 assert.deepEqual(span('1501–1504'), { start: 1501, end: 1504 });
 assert.deepEqual(span('1900–01'), { start: 1900, end: 1901 });
@@ -103,9 +110,13 @@ const thinker = world.works.find(work => work.slug === 'rodin/the-thinker');
 assert.equal(thinker.placeId, null); assert.equal(thinker.start, null);
 const david = world.works.find(work => work.slug === 'michelangelo/david');
 assert.equal(david.placeId, 'italy'); assert.deepEqual([david.start, david.end], [1501, 1504]);
-const museumOnly = world.works.find(work => work.slug === 'sub-saharan-africa/seated-figure-middle-niger');
-assert.equal(museumOnly.placeId, null, 'The Met holding cannot supply an origin absent from raw fields.');
-assert.deepEqual([museumOnly.start, museumOnly.end], [1200, 1299]);
+const middleNiger = world.works.find(work => work.slug === 'sub-saharan-africa/seated-figure-middle-niger');
+assert.equal(middleNiger.placeId, 'middle-niger', 'The published Met culture and country support the region.');
+assert.equal(middleNiger.originReason, 'primary-record-cultural-region');
+assert.deepEqual([middleNiger.start, middleNiger.end], [1200, 1299]);
+const middleNigerRecord = rawBySlug.get(middleNiger.slug);
+assert.equal(origin({ ...middleNigerRecord, source_url: '' }), null, 'The Met holding alone does not establish origin.');
+assert.equal(origin({ ...middleNigerRecord, accession: 'Unverified accession' }), null);
 
 function freeze(value) {
   if (value && typeof value === 'object' && !Object.isFrozen(value)) { Object.freeze(value); for (const entry of Object.values(value)) freeze(entry); }

@@ -26,6 +26,8 @@ const largeDetailPath = `/detail/${largeArtworkSlug}/`;
 const routes = [
   { id: 'homepage', path: '/', primary: '#v3-home-title', viewers: 'main [data-viewer]' },
   { id: 'collection', path: '/collection/', primary: 'main h1' },
+  { id: 'ar-vr', path: '/ar-vr/', primary: 'main h1' },
+  { id: 'wings', path: '/wings/', primary: 'main h1' },
   { id: 'artwork', path: '/works/discobolus/', primary: '#v3-object-title', viewers: '#sculpture [data-viewer]' },
   { id: 'full-detail', path: '/detail/discobolus/', primary: '#detail-title', expectedModels: [detailOriginal] },
   {
@@ -36,6 +38,7 @@ const routes = [
   },
   { id: 'large-artwork', path: `/works/${largeArtworkSlug}/${largeFirstView ? '' : '#ar-vr'}`, primary: '#v3-object-title', largeModel: true },
   { id: 'exhibition', path: '/exhibitions/the-work-of-the-surface/', primary: 'main h1' },
+  { id: 'what-survives', path: '/exhibitions/what-survives/', primary: 'main h1' },
   { id: 'guided-visit', path: '/exhibitions/the-work-of-the-surface/#curated-visit', primary: '[data-visit-active] [data-visit-stop-heading]' },
   { id: 'world', path: '/world/', primary: '#world-title', prepare: async page => {
     await page.locator('[data-world-place] option').nth(1).waitFor({ state: 'attached' });
@@ -107,11 +110,28 @@ function measurePage(phone) {
     }
   }
   const smallText = [];
-  if (phone) for (const element of document.querySelectorAll('body *')) {
-    const directText = [...element.childNodes].map(node => node.nodeType === Node.TEXT_NODE ? node.textContent : '').join('').trim();
-    if (!directText || !visible(element) || getComputedStyle(element).clipPath !== 'none') continue;
-    const fontSize = Number.parseFloat(getComputedStyle(element).fontSize);
-    if (fontSize < 12) smallText.push({ text: directText.replace(/\s+/g, ' ').slice(0, 100), fontSize });
+  if (phone) {
+    const texts = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    const range = document.createRange();
+    for (let node = texts.nextNode(); node; node = texts.nextNode()) {
+      const element = node.parentElement;
+      const text = node.textContent.trim();
+      if (!text || element.closest('script,style,noscript,template,[hidden]')) continue;
+      const fontSize = Number.parseFloat(getComputedStyle(element).fontSize);
+      if (fontSize >= 12) continue;
+      range.selectNode(node);
+      if (![...range.getClientRects()].some(rect => rect.width > 1 && rect.height > 1)) continue;
+      let visibleText = true;
+      for (let ancestor = element; ancestor; ancestor = ancestor.parentElement) {
+        const style = getComputedStyle(ancestor);
+        if (style.visibility !== 'visible' || style.opacity === '0' || style.display === 'none'
+          || (style.clipPath !== 'none' && ancestor.getBoundingClientRect().width <= 2)) {
+          visibleText = false;
+          break;
+        }
+      }
+      if (visibleText) smallText.push({ text: text.replace(/\s+/g, ' ').slice(0, 100), fontSize });
+    }
   }
   return { overflow: Math.max(0, document.documentElement.scrollWidth - innerWidth), sameColors, toggleContrast, smallTargets, smallText };
 }
@@ -650,6 +670,10 @@ async function check(engine, viewport, route, motion = 'reduce') {
         if (result.sameColors.length) problems.push(`Text matches its background: ${result.sameColors.map(item => item.label).join(', ')}`);
         if (result.axe.length) problems.push(`axe: ${result.axe.map(item => `${item.id} (${item.nodes.length})`).join(', ')}`);
         for (const measurement of [result, ...(result.readyCanvases ?? [])]) {
+          if (measurement.smallText.length) {
+            const examples = measurement.smallText.slice(0, 4).map(({ text, fontSize }) => `“${text}” ${fontSize}px`);
+            problems.push(`${measurement.smallText.length} visible text runs below 12px (${examples.join(', ')})`);
+          }
           for (const item of measurement.toggleContrast.filter(item => item.ratio < 4.5)) {
             problems.push(`${item.label} pressed contrast ${item.ratio.toFixed(2)}:1 (< 4.5:1)`);
           }

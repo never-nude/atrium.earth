@@ -61,7 +61,7 @@ const { focus, focusIntro, lead, teasers } = Astro.props;
   .featured-exhibition__viewer :global(.viewer:not(:fullscreen):not([data-viewer-expanded]) > .model-stage) { height: calc(100% - 78px); }
   .featured-exhibition__viewer :global(.viewer:not(:fullscreen):not([data-viewer-expanded]) > .viewer-start) { position: absolute; inset: auto 0 0; justify-content: center; }
   .featured-exhibition__art figcaption { display: grid; justify-items: center; margin-top: 4px; text-align: center; }
-  .featured-exhibition__art figcaption a { display: inline-flex; align-items: center; min-height: 44px; max-width: 40ch; color: var(--v3-muted); font-size: 11px; line-height: 1.5; text-underline-offset: 3px; }
+  .featured-exhibition__art figcaption a { display: inline-flex; align-items: center; min-height: 44px; max-width: 40ch; color: var(--v3-muted); font-size: max(var(--atrium-text-floor, 0px), 11px); line-height: 1.5; text-underline-offset: 3px; }
   .featured-exhibition__more { margin-top: 44px; }
   .featured-exhibition__more-heading { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 12px 24px; margin-bottom: 8px; }
   .featured-exhibition__more-heading .v3-kicker { margin: 0; }
@@ -70,9 +70,9 @@ const { focus, focusIntro, lead, teasers } = Astro.props;
   .featured-exhibition__teaser { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 24px; align-items: center; padding-top: 23px; border-top: 1px solid var(--teaser-accent, var(--v3-line)); text-decoration: none; }
   .featured-exhibition__teaser:not(:has(img)) { grid-template-columns: 1fr; }
   .featured-exhibition__teaser img { display: block; width: 120px; height: 142px; object-fit: contain; }
-  .featured-exhibition__teaser .v3-kicker { margin: 0 0 8px; color: var(--teaser-accent); font-size: 11px; }
+  .featured-exhibition__teaser .v3-kicker { margin: 0 0 8px; color: var(--teaser-accent); font-size: max(var(--atrium-text-floor, 0px), 11px); }
   .featured-exhibition__teaser h3 { margin: 0 0 14px; color: var(--v3-ink); font-size: clamp(19px, 1.9vw, 26px); font-weight: 500; line-height: 1.25; letter-spacing: -.025em; }
-  .featured-exhibition__teaser div > span { color: var(--v3-signal); font-size: 11px; }
+  .featured-exhibition__teaser div > span { color: var(--v3-signal); font-size: max(var(--atrium-text-floor, 0px), 11px); }
   @media (max-width: 760px) {
     .featured-exhibition { padding-top: 42px; padding-bottom: 42px; }
     .featured-exhibition__main { gap: 25px; grid-template-columns: 1fr; }
