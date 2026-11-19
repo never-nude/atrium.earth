@@ -56,6 +56,15 @@ Neither computer's checkout, uncommitted changes, unpushed commits, local paths,
 - Local Chromium and WebKit passed the eight world-route cases and four signature cases, including exact collection links, Willendorf, fullscreen, keyboard/list selection, and reduced motion. The signature test observed zero model requests on the world page. The phone-sized cases use browser emulation.
 - The release coordinator will run the normal GitHub review for this head and publish only after a successful review.
 
+
+## 2026-11-18 — Match the homepage and full globe
+
+- This Codex session based `codex/homepage-globe-consistency` on the deployed globe commit `96367aa2`. The homepage now uses the shared globe, lights, exact place and period links, and artwork stills in a compact, lazy-loaded section. The homepage link opens the full globe overview.
+- The selected artwork row on both pages has a labeled **Back to globe** button. Returning restores the prior view, map mode and scroll position, with a focus fallback for keyboard visitors.
+- Local Node 22 tests, the 8,842-page production build, package budget, collection window and published-image checks passed. The world-route matrix passed all eight cases, and the globe signature suite passed all four profiles, including the new homepage checks at phone and desktop widths. The built CDN URL sets match the deployed candidate. The draft is for review under [Issue #109](https://github.com/never-nude/atrium.earth/issues/109); live verification and deployment remain pending.
+
+- The [first GitHub review](https://github.com/never-nude/atrium.earth/actions/runs/44431877616) passed both CDN address checks. The browser matrix rejected a redundant ARIA label on the homepage globe's period count before initialization. It also recorded full-model request failures on existing artwork routes. The accessibility correction removes the unsupported label while preserving the displayed count. Node 22 tests, the full build, the globe suite, and serious/critical axe checks in Chromium and WebKit before and after initialization all passed locally. The corrected head requires a full review.
+
 ## Next session
 
 1. Read AGENTS.md and existing project instructions.

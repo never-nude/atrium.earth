@@ -2,16 +2,22 @@
 import { withBase } from '../lib/urls';
 import { worldPayloadUrl } from '../lib/world-payload';
 import WorldViewControls from './WorldViewControls.astro';
+
+interface Props { compact?: boolean }
+const { compact = false } = Astro.props;
+const instance = compact ? 'home-world' : 'world';
+const Heading = compact ? 'h2' : 'h1';
+const Subheading = compact ? 'h3' : 'h2';
 ---
 
-<section class="world-page world-signature" data-world-explorer data-world-signature data-world-data-url={worldPayloadUrl} data-world-detail-url={withBase('/world/')} data-world-stills-base={withBase('/world/stills/')} aria-labelledby="world-title">
+<section id={compact ? 'explore-the-world' : undefined} class:list={['world-page world-signature', { 'world-signature--compact': compact }]} data-world-explorer data-world-signature data-world-compact={compact ? '' : undefined} data-world-data-url={worldPayloadUrl} data-world-collection-url={withBase('/collection/')} data-world-stills-base={withBase('/world/stills/')} aria-labelledby={`${instance}-title`}>
   <header class="world-heading">
     <div>
       <p class="world-eyebrow">Place &amp; time</p>
-      <h1 id="world-title" data-world-title>A world of sculpture.</h1>
+      <Heading id={`${instance}-title`} data-world-title>A world of sculpture.</Heading>
       <p class="world-intro">Turn the earth. Choose a place. Follow its art through time.</p>
     </div>
-    <a class="world-collection-link" href={withBase('/collection/')}>Browse the collection <span aria-hidden="true">↗</span></a>
+    <a class="world-collection-link" href={withBase(compact ? '/world/' : '/collection/')}>{compact ? 'Open full globe' : 'Browse the collection'} <span aria-hidden="true">↗</span></a>
   </header>
 
   <section class="world-observatory" aria-label="Explore documented origins">
@@ -23,52 +29,51 @@ import WorldViewControls from './WorldViewControls.astro';
         </div>
         <button class="world-reset" type="button" data-world-reset>Reset exploration <span aria-hidden="true">↺</span></button>
       </div>
-      <div class="world-globe" data-world-globe data-land-url={withBase('/world/land.geo.json')} aria-label="Interactive globe of documented artwork origins" aria-describedby="world-globe-help">
+      <div class="world-globe" data-world-globe data-land-url={withBase('/world/land.geo.json')} aria-label="Interactive globe of documented artwork origins" aria-describedby={`${instance}-globe-help`}>
         <p class="world-loading" data-world-loading>Bringing the world into view…</p>
       </div>
       <WorldViewControls signature={true} />
     </div>
-    <div class="world-map-caption" id="world-globe-help">
+    <div class="world-map-caption" id={`${instance}-globe-help`}>
       <p data-world-map-hint>Touch the globe to turn it · pinch to zoom</p>
       <p>Each light is a documented origin. Brighter lights hold more works.</p>
     </div>
   </section>
 
-  <section id="world-results" class="world-selection" data-world-selection aria-labelledby="world-results-title" hidden>
+  <section id={`${instance}-results`} class="world-selection" data-world-selection aria-labelledby={`${instance}-results-title`} hidden>
     <header class="world-selection-heading">
       <div>
         <p class="world-eyebrow">A closer look</p>
-        <h2 id="world-results-title" data-world-place-title data-world-selection-title tabindex="-1"></h2>
+        <Subheading id={`${instance}-results-title`} data-world-place-title data-world-selection-title tabindex="-1"></Subheading>
         <p data-world-result-count data-world-selection-count aria-live="polite" aria-atomic="true"></p>
       </div>
-      <button class="world-selection-close" type="button" data-world-selection-close aria-label="Close these works and return to the globe"><span aria-hidden="true">×</span><span>Close</span></button>
+      <button class="world-selection-close" type="button" data-world-selection-close><span aria-hidden="true">←</span> Back to globe</button>
     </header>
     <div class="world-work-list" data-world-works></div>
     <div class="world-selection-foot">
       <p class="world-shown-count" data-world-shown-count></p>
       <a class="world-see-all" data-world-see-all href={withBase('/collection/')}>See all works from here <span aria-hidden="true">↗</span></a>
     </div>
-    <button type="button" data-world-more hidden>Show more works</button>
     <p class="world-empty" data-world-empty hidden>No works match this period. Widen the dates to see more.</p>
     <p class="world-uncertainty" data-world-uncertainty></p>
   </section>
 
   <div class="world-navigation">
-    <section class="world-time" aria-labelledby="world-time-title">
+    <section class="world-time" aria-labelledby={`${instance}-time-title`}>
       <div class="world-time-heading">
-        <div><p class="world-eyebrow" id="world-time-title">Travel through time</p><h2 data-world-period>All periods</h2></div>
-        <span data-world-period-count aria-label="Works for this period"></span>
+        <div><p class="world-eyebrow" id={`${instance}-time-title`}>Travel through time</p><Subheading data-world-period>All periods</Subheading></div>
+        <span data-world-period-count></span>
       </div>
       <div class="world-time-range" data-world-range>
         <div class="world-time-track"><span data-world-range-fill></span></div>
-        <label class="sr-only" for="world-from">Earliest date</label>
-        <input id="world-from" type="range" min="0" max="1000" step="any" value="0" data-world-from aria-describedby="world-time-help" />
-        <label class="sr-only" for="world-to">Latest date</label>
-        <input id="world-to" type="range" min="0" max="1000" step="any" value="1000" data-world-to aria-describedby="world-time-help" />
+        <label class="sr-only" for={`${instance}-from`}>Earliest date</label>
+        <input id={`${instance}-from`} type="range" min="0" max="1000" step="any" value="0" data-world-from aria-describedby={`${instance}-time-help`} />
+        <label class="sr-only" for={`${instance}-to`}>Latest date</label>
+        <input id={`${instance}-to`} type="range" min="0" max="1000" step="any" value="1000" data-world-to aria-describedby={`${instance}-time-help`} />
       </div>
       <div class="world-time-ticks" data-world-ticks aria-hidden="true"></div>
       <div class="world-time-foot">
-        <p id="world-time-help">Move either end to explore a period. Earlier time is compressed.</p>
+        <p id={`${instance}-time-help`}>Move either end to explore a period. Earlier time is compressed.</p>
         <details class="world-exact">
           <summary>Exact dates</summary>
           <form data-world-date-form>
@@ -93,25 +98,28 @@ import WorldViewControls from './WorldViewControls.astro';
 
 
 
-  <footer class="world-context">
+  {!compact && <footer class="world-context">
     <p>The lights follow documented origins, rather than the museums that hold the works. Country and regional locations are approximate.</p>
     <a href={withBase('/collection/')}>Explore every work <span aria-hidden="true">↗</span></a>
-  </footer>
+  </footer>}
   <noscript><p>The globe needs JavaScript. <a href={withBase('/collection/')}>Browse the collection</a> to explore every work.</p></noscript>
 </section>
 <script>import '../scripts/world-explorer.js';</script>
 
 <style>
   .world-signature { --world-accent:var(--v3-signal); --world-purple:#c9a5ff; color:var(--v3-ink); background:var(--v3-void); padding:52px var(--v3-pad) 48px; }
+  .world-signature--compact { --world-globe-height:clamp(320px,37vw,490px); padding:0 0 30px; margin-bottom:40px; border-bottom:1px solid var(--v3-line); }
   .world-signature:fullscreen { width:100%; height:100%; overflow:auto; padding-top:24px; background:var(--v3-void); scroll-padding-top:20px; }
-  :global(body:has([data-world-signature]) .studio-header :is(a,button,summary)) { min-width:44px; min-height:44px; }
-  :global(body:has([data-world-signature]) :is(.v3-nav,.studio-nav) a) { display:inline-flex; align-items:center; }
-  :global(body:has([data-world-signature]) :is(.v3-nav,.studio-nav) a[aria-current="page"]::after) { bottom:-11px; }
-  :global(body:has([data-world-signature]) .v3-footer nav a) { display:inline-flex; align-items:center; min-width:44px; min-height:44px; font-size:12px; }
+  .world-signature--compact:fullscreen { padding-inline:var(--v3-pad); }
+  :global(body:has([data-world-signature]:not([data-world-compact])) .studio-header :is(a,button,summary)) { min-width:44px; min-height:44px; }
+  :global(body:has([data-world-signature]:not([data-world-compact])) :is(.v3-nav,.studio-nav) a) { display:inline-flex; align-items:center; }
+  :global(body:has([data-world-signature]:not([data-world-compact])) :is(.v3-nav,.studio-nav) a[aria-current="page"]::after) { bottom:-11px; }
+  :global(body:has([data-world-signature]:not([data-world-compact])) .v3-footer nav a) { display:inline-flex; align-items:center; min-width:44px; min-height:44px; font-size:12px; }
   .world-heading,.world-observatory,.world-navigation,.world-selection,.world-context { max-width:1320px; margin-inline:auto; }
   .world-heading { display:flex; align-items:end; justify-content:space-between; gap:32px; margin-bottom:28px; }
   .world-eyebrow { margin:0 0 12px; color:var(--v3-signal); font:600 12px/1.5 var(--v3-sans); letter-spacing:.13em; text-transform:uppercase; }
-  h1 { margin:0 0 16px; font-size:clamp(40px,5.7vw,80px); font-weight:500; letter-spacing:-.055em; line-height:1.06; }
+  [data-world-title] { margin:0 0 16px; font-size:clamp(40px,5.7vw,80px); font-weight:500; letter-spacing:-.055em; line-height:1.06; }
+  .world-signature--compact [data-world-title] { font-size:clamp(32px,4.5vw,60px); }
   .world-intro { margin:0; color:var(--v3-muted); font-size:16px; line-height:1.7; }
   .world-collection-link,.world-context a { display:inline-flex; align-items:center; min-height:44px; gap:16px; color:var(--v3-signal); font-size:14px; text-underline-offset:6px; }
   .world-collection-link { flex-shrink:0; }
@@ -126,7 +134,7 @@ import WorldViewControls from './WorldViewControls.astro';
   .world-reset { padding-right:0; }
   .world-reset:hover { color:var(--v3-ink); }
   .world-reset span { color:var(--v3-signal); font-size:20px; }
-  .world-globe { position:relative; width:100%; height:clamp(440px,47vw,650px); min-height:0; transition:height .45s cubic-bezier(.2,.7,.2,1); }
+  .world-globe { position:relative; width:100%; height:var(--world-globe-height,clamp(440px,47vw,650px)); min-height:0; transition:height .45s cubic-bezier(.2,.7,.2,1); }
   .world-signature[data-selected-place]:not([data-selected-place=""]) .world-globe { height:360px; }
   .world-globe :global(canvas) { display:block; max-width:100%; }
   .world-loading { position:absolute; inset:45% 12px auto; margin:0; text-align:center; color:var(--v3-muted); font-size:14px; }
@@ -136,7 +144,7 @@ import WorldViewControls from './WorldViewControls.astro';
   .world-time { min-width:0; }
   .world-time-heading { display:flex; align-items:end; justify-content:space-between; gap:18px; }
   .world-time-heading .world-eyebrow { margin-bottom:5px; }
-  .world-time-heading h2 { margin:0; font-size:24px; font-weight:500; letter-spacing:-.03em; line-height:1.3; }
+  .world-time-heading [data-world-period] { margin:0; font-size:24px; font-weight:500; letter-spacing:-.03em; line-height:1.3; }
   .world-time-heading > :is(a,span) { display:inline-flex; align-items:center; justify-content:end; min-height:44px; color:var(--v3-muted); font-size:12px; text-align:right; }
   .world-time-range { position:relative; height:48px; margin:16px 12px 0; }
   .world-time-track { position:absolute; inset:22px 22px auto; height:3px; border-radius:3px; background:var(--v3-line-strong); }
@@ -174,10 +182,10 @@ import WorldViewControls from './WorldViewControls.astro';
   .world-selection { margin-top:40px; padding-top:28px; border-top:1px solid var(--v3-line-strong); scroll-margin-top:90px; }
   .world-selection-heading { display:flex; align-items:start; justify-content:space-between; gap:20px; margin-bottom:22px; }
   .world-selection-heading .world-eyebrow { color:var(--world-purple); margin-bottom:7px; }
-  .world-selection-heading h2 { margin:0; font-size:clamp(30px,4vw,48px); font-weight:500; letter-spacing:-.045em; line-height:1.15; }
+  .world-selection-heading [data-world-selection-title] { margin:0; overflow-wrap:anywhere; font-size:clamp(30px,4vw,48px); font-weight:500; letter-spacing:-.045em; line-height:1.15; }
   .world-selection-heading [data-world-result-count] { margin:8px 0 0; color:var(--v3-muted); font-size:13px; line-height:1.65; }
-  .world-selection-close { display:flex; align-items:center; justify-content:center; gap:9px; min-width:44px; min-height:44px; padding:8px 12px; border:1px solid var(--v3-line-strong); border-radius:6px; color:var(--v3-muted); background:transparent; font:13px var(--v3-sans); cursor:pointer; }
-  .world-selection-close > span:first-child { font-size:25px; line-height:1; }
+  .world-selection-close { display:flex; flex-shrink:0; align-items:center; justify-content:center; gap:8px; min-height:44px; padding:8px 12px; border:1px solid var(--v3-line-strong); border-radius:6px; color:var(--v3-ink); background:transparent; font:13px var(--v3-sans); cursor:pointer; }
+  .world-selection-close > span { color:var(--v3-signal); font-size:18px; line-height:1; }
   .world-work-list { display:flex; gap:22px; overflow-x:auto; padding:5px 0 18px; scroll-snap-type:x proximity; scrollbar-width:thin; scrollbar-color:var(--v3-line-strong) transparent; }
   .world-work-list :global(.world-work) { display:flex; flex-direction:column; flex:0 0 166px; min-width:0; gap:15px; color:var(--v3-ink); text-decoration:none; scroll-snap-align:start; }
   .world-work-list :global(.world-work img) { display:block; width:166px; height:190px; object-fit:contain; }
@@ -196,33 +204,35 @@ import WorldViewControls from './WorldViewControls.astro';
   .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; border:0; }
   @keyframes world-works-rise { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
   @media(max-width:760px) {
-    :global(body:has([data-world-signature]) .v3-brand sup),
-    :global(body:has([data-world-signature]) [data-studio-saved-count]),
-    :global(body:has([data-world-signature]) .v3-menu > summary),
-    :global(body:has([data-world-signature]) .studio-search-form button[type="submit"]) { font-size:12px; }
-    :global(body:has([data-world-signature]) .studio-search-form button[type="submit"]) { min-width:44px; min-height:44px; }
+    :global(body:has([data-world-signature]:not([data-world-compact])) .v3-brand sup),
+    :global(body:has([data-world-signature]:not([data-world-compact])) [data-studio-saved-count]),
+    :global(body:has([data-world-signature]:not([data-world-compact])) .v3-menu > summary),
+    :global(body:has([data-world-signature]:not([data-world-compact])) .studio-search-form button[type="submit"]) { font-size:12px; }
+    :global(body:has([data-world-signature]:not([data-world-compact])) .studio-search-form button[type="submit"]) { min-width:44px; min-height:44px; }
     .world-signature { padding:30px 20px 36px; }
+    .world-signature--compact:not(:fullscreen) { padding-inline:0; padding-top:0; }
     .world-heading { display:block; margin-bottom:20px; }
     .world-collection-link { margin-top:12px; font-size:12px; }
     .world-intro { max-width:35ch; font-size:14px; }
-    .world-globe { height:365px; min-height:300px; margin-inline:-12px; width:calc(100% + 24px); }
+    .world-globe { height:var(--world-globe-height,365px); min-height:300px; margin-inline:-12px; width:calc(100% + 24px); }
     .world-signature[data-selected-place]:not([data-selected-place=""]) .world-globe { height:240px; min-height:0; }
     .world-signature[data-selected-place]:not([data-selected-place=""]) .world-map-caption > p:last-child { display:none; }
     .world-mode button,.world-reset { padding-inline:12px; font-size:12px; }
     .world-reset { padding-right:0; gap:7px; }
     .world-map-caption { margin-bottom:20px; }
     .world-navigation { grid-template-columns:1fr; gap:22px; padding-top:22px; }
-    .world-time-heading h2 { font-size:21px; }
+    .world-time-heading [data-world-period] { font-size:21px; }
     .world-time-heading > :is(a,span) { max-width:95px; }
     .world-time-foot { flex-wrap:wrap; gap:2px 15px; }
     .world-exact { width:100%; }
     .world-exact form { padding-top:0; }
     .world-place-directory { margin-top:0; }
     .world-selection { margin-top:28px; padding-top:23px; }
-    .world-selection-close { padding-inline:10px; }
-    .world-selection-close > span:last-child { display:none; }
+    .world-selection-heading { gap:12px; }
+    .world-selection-close { padding-inline:9px; font-size:12px; }
     .world-selection-heading .world-eyebrow { display:none; }
     .world-work-list { gap:16px; margin-right:-20px; padding-right:20px; }
+    .world-signature--compact .world-work-list { margin-right:0; padding-right:0; }
     .world-work-list :global(.world-work img) { height:160px; }
     .world-selection-foot { align-items:start; }
     .world-see-all { justify-content:space-between; width:100%; }
