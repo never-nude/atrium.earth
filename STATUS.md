@@ -85,6 +85,82 @@ The first integrated build caught a TypeScript/MJS name collision when importing
 
 Collection and AR / VR now open in newest artwork-date order, and saved Curator’s order links fall back to that default. Newest Additions opens by date added and sorts its 40 picks and latest-import works within their existing sections. Both support earliest and newest artwork dates, oldest and newest dates added, and title and maker in both alphabetical directions. The first Node tests, 8,839-page build, and local browser checks passed. Chromium desktop and WebKit phone also exercised all eight choices, saved sort links, and default listings without JavaScript. The package is 899,478,216 bytes and the updated preview is ready for the owner’s phone review.
 
+## 2026-11-19 — Sculpted globe candidate (Claude Code)
+
+Task / owner / branch: the owner asked for a better globe on `/world/` and in the homepage preview. This Claude Code cloud session owns `claude/zen-lamport-u8qk48`, cut from `main` at `d220a851`. It is a contributor branch under [Issue #109](https://github.com/never-nude/atrium.earth/issues/109).
+
+Completed:
+
+- The signature globe is drawn as an object under museum light: land in low relief, a dark sea with engraved waterlines, one warm key light at two o'clock and a violet rim. Origins are WebGL points of light with beams; the chosen place turns violet with a ring. The flat map uses the same palette. Everything is derived in the browser from the existing `land.geo.json`. No asset, dataset or dependency was added, and the relief is labelled as decorative, not terrain.
+- In the overview, Globe/Map, Reset and the viewing tools float in the stage margins, so the globe is about 543 px across at 1440 × 900 (483 px before) and about 313 px on a 390 px phone (299 px before). Place and period data, selection, stills, collection links, the place directory and keyboard access are the existing behaviour.
+- A drag turns the globe by the angle that keeps the surface under the hand, a released drag coasts and settles, and zoom eases. Reduced motion removes all three.
+- **A defect on `main` is fixed here.** While the stage changes height after a place is chosen or closed, `main` paints the globe's canvas empty: 11 of 11 resize frames in normal motion and 1 of 1 in reduced motion in a headless Chromium probe. The canvas is cleared by the resize and only redrawn on the next frame. This branch draws again inside the resize: 0 of 9 and 0 of 1. `npm run test:world-browser` gains a last phase, `stage resize never paints an empty globe`, which fails on `main` and passes here.
+- The renderer starts at up to two device pixels per CSS pixel and steps down through fixed tiers if it stays below about 27 frames per second. Software rasterisers start two tiers down.
+
+Validation actually performed (Linux container, headless Chromium, software renderer; first attempts unless stated):
+
+- `npm test` exit 0. Experience suite: 135 tests, 134 passed, 1 skipped because the pinned Playwright has no matching Chromium build in this container. Eleven are new. Three new assertions were wrong when first written and were corrected without changing the code under test.
+- `npm run build` exit 0 four times, 8,839 pages each; the fourth is the committed code, and `npm test` passed again after it. Package 24,759 files / 899,510,293 bytes. Collection window and published-image checks passed.
+- Globe browser audit on each build, same outcome each time: both Chromium cases of the suite passed (1440 × 900, normal and reduced motion). Fourth build: first land frame 289 ms, choice to a loaded visible still 172 ms, centering turn 22.8 fps on the software renderer, whole globe above the fold, zero model requests, no console, page or asset errors, no serious or critical axe findings, no overflow, sub-12 px text, sub-44 px control or cyan.
+- The new resize phase failed its own first run in reduced motion because it read its starting height too late. The phase was corrected; product code was not involved.
+
+Open issues / blockers:
+
+- **WebKit is not installed in this container, so the suite's two WebKit cases did not run.** As a stand-in only, the same phone profiles ran in Chromium: 320 × 640 reduced motion passed; 390 × 844 normal motion passed every phase through keyboard selection, exact collection handoff and Willendorf, then failed `whole-world fullscreen selection and internal-scroll restoration`. The suite never runs that phase at phone width, and the same stand-in fails the same phase on `main`. It is recorded, not fixed. **This reading was wrong; see the correction below.**
+- No real-GPU or physical-phone frame rate exists. Under the software renderer the globe auto-rotated at 27.1 fps on desktop and 32.0 fps at phone size after stepping down, against 31.1 and 45.5 fps for `main` in the same harness.
+- `test:browser`, `test:handling-browser` and `test:performance` were not run. Remote review and both live CDN checks were not run under Issue #109.
+
+Next step: the owner's phone review using the six checks in [the review notes](docs/sculpted-globe.md), then the release coordinator's full review on the exact head, including WebKit, before any merge.
+
+Delivery: pushed to `origin/claude/zen-lamport-u8qk48` with a draft pull request. The head commit carries `[skip ci]` so opening the pull request does not start a CDN sweep; remote checks are unrun, not green. Not merged. Not deployed.
+
+### Correction — the phone-width fullscreen failure was the stand-in harness
+
+The owner asked this session to check the 390 × 844 fullscreen failure recorded above. It is not a defect in the page, on this branch or on `main`, and the earlier description of it as an untested phone-width combination was wrong.
+
+- Cause: the Chromium stand-in ran the suite's functional phase and its fullscreen phase in one page. The suite never does: the functional phase is WebKit-only and the fullscreen phase is Chromium-only. The functional phase ends with Willendorf's date range (27,500–25,000 BCE) applied, and the fullscreen phase then chooses Egypt, which has 81 works on the globe and none in that range. The phase waited for a still that the page was right not to show.
+- Evidence, all headless Chromium on a software renderer against the same build: a fresh 390 × 844 page shows the Egypt selection in fullscreen (visible event at 402 ms); the 390 × 844 case without the functional phase passes the fullscreen phase (still visible in 84 ms, internal scroll restored to 546); the 1440 × 900 case fails identically once the functional phase is put in front of it.
+- Change: `scripts/test-world-signature-browser.mjs` only. The fullscreen phase returns to all periods first if an earlier phase left a date filter. With it, all four stand-in cases pass, and so does the 1440 × 900 case with the functional phase in front. In the suite's own order that branch is not taken. Product code did not change.
+- Still not established: any WebKit result. The stand-in is Chromium at phone size.
+
+### Review fixes, auto-rotation and release coordination
+
+- The owner asked for the globe to turn a little sooner and 2% faster. It now resumes three seconds after a hand lets go (four before) and turns at 0.0459 radians a second (0.045 before).
+- An independent review of the first commit was started and then stopped early at the owner's request to limit its cost. Two of five reviewers finished; no finding went to a second verifier. Both reported the same four defects introduced by the first commit, plus two more, and each was reproduced on that commit and re-run after its fix in headless Chromium:
+  - The selection ring was aimed in the wrong space and showed as a tilted crescent (25–29° off the surface; now 0°).
+  - Lights were drawn on the surface but their targets sat 2.5% above it, so a click exactly on a light could open its neighbour (19 of 92 lights in the opening view; now 0).
+  - Wheel zoom stood still while wheel events kept arriving (0 movement during a 1.05 s stream; now it moves throughout).
+  - A slow, steady drag was read as a slow renderer and lowered the quality tier for the rest of the visit (now it stays on its tier).
+  - The flat map took its density from the WebGL tier (0.85 device px per CSS px; now 1.0 at DPR 1, as before this branch).
+  - With the coastline request failing, the stage was empty in Globe mode (now a plain sphere behind the message).
+- `scripts/world-globe-look.test.mjs` is new; its three tests fail on the first commit and pass now.
+- Validation actually performed on the fixed code (same container): `npm test` exit 0, experience suite 139 tests, 138 passed, 1 skipped for the same reason as before; `npm run build` exit 0, 8,839 pages, no untracked file left behind; package 24,759 files / 899,512,036 bytes; collection window and published-image checks passed; globe browser audit passed its two Chromium cases and both phone-size Chromium stand-ins with no empty resize frame, no error and no model request.
+- Still not established locally: any WebKit result, any real-GPU or phone frame rate, `test:browser`, `test:handling-browser`, `test:performance`.
+- Found by the review, already on `main`, not changed here: in Map mode on a touch screen a tap on a light never selects it (the place list works); a second finger resting outside the stage leaves the globe held; a hover label can stay visible after the pointer leaves in one step; Reset exploration jumps rather than turns. Introduced here and not fixed: at phone width a hover or focus label of the northernmost lights can sit under the floating Globe/Map and Reset controls.
+- Release: on 2026-11-19 the owner designated this session release coordinator for [PR #117](https://github.com/never-nude/atrium.earth/pull/117): run the full remote review, then merge and deploy if it passes. When this entry was committed the remote review had not run, and nothing was merged or deployed. `main` at `d220a851` ([PR #115](https://github.com/never-nude/atrium.earth/pull/115)) is itself not live: its push deploy failed on one aborted model request in the page suite and the scheduled deploy failed at the live model address gate, so a release of this branch also publishes PR #115. The outcome is recorded on PR #117 and [Issue #109](https://github.com/never-nude/atrium.earth/issues/109), not here.
+
+## 2026-11-19 — JPEG siblings for 30 figure studies (Claude Code)
+
+Task / owner / branch: the owner asked this Claude Code cloud session to resolve the 30 JPEG thumbnails that every build left untracked. It is its own commit on `claude/zen-lamport-u8qk48`, independent of the globe change, and can be cherry-picked into a separate pull request.
+
+Completed:
+
+- `4b64c234` (2026-11-15, "Publish 30 documented physical figure studies") added 30 `thumb.webp` renders without their `thumb.jpg` siblings. The build's `images:jpeg` step recreated them on every run, so each build left 30 untracked files, and the README's rule that every `thumb.webp` has a JPEG sibling did not hold in Git.
+- The 30 siblings are now tracked: 1,570,812 bytes at JPEG quality 82, written by the unchanged `scripts/generate-jpeg-thumbnails.mjs`. No WebP, script or page changed.
+
+Validation actually performed (Linux container):
+
+- Tracked `thumb.webp` and `thumb.jpg` under `public/previews/renders`: 3,211 and 3,181 before, 3,211 and 3,211 after. No JPEG lacks a WebP.
+- The 30 files are byte-identical to the ones the last full build of this branch wrote into `dist`. A second generator run left all 30 hashes unchanged.
+- All 30 are 1,000 × 1,250 px JPEGs, the pixel dimensions of their WebPs.
+- Earlier in this session four full builds regenerated the other 3,181 tracked JPEGs without a diff.
+
+Open issues / blockers: none known. `npm test` and the build were not run again for this commit. It adds only files the build already produced, so the published package does not change.
+
+Next step: none for this task. A build on a checkout that contains this commit should leave `git status` clean; that was checked for the 30 directories in a sparse checkout, not yet with a full build.
+
+Delivery: pushed to `origin/claude/zen-lamport-u8qk48` in the same draft pull request as the globe candidate. Not merged. Not deployed.
+
 ## Next session
 
 1. Read AGENTS.md and existing project instructions.
@@ -2570,3 +2646,7 @@ The full local production build passes: 8,842 pages and 877,192,353 package byte
 - Publishing the ready branch must not start another automatic CDN sweep. The handoff commit will explicitly suppress its push/PR workflow trigger, leaving remote checks unrun rather than green. The release coordinator must authorize and run the full review on the exact head before merging. The underlying workflow checks remain intact.
 - The combined candidate's first local signature audit passed all four cases, including exact origin/time collection membership, Willendorf, fullscreen, keyboard/list access, 44 px controls and 12 px minimum phone text. It made zero model requests. Mac-hosted WebKit 390 px DPR 3 measured 211 ms to land, 121 ms to a loaded visible still and 44.7 fps during the turn; Chromium 1440 px measured 357 ms / 277.6 ms / 77.6 fps. These are emulation results, not physical-iPhone measurements or proof of a frame-rate improvement.
 - Final local-only package, collection and image checks each passed: 24,755 files / 910,383,071 bytes under the existing 1 GB cap; 3,160 unique public collection cards; 6,320 image paths and 3,120 CDN JPEG references checked against local files/receipts. No new CDN requests or sweeps were made by these checks. A scope diff against `7b3cd20e` confirms catalogue/model bindings, accepted artwork handling, camera perspectives, original previews and the curated homepage remain unchanged by the globe contribution. Full remote release, 64-case page and gesture validation remain the coordinator's responsibility.
+
+## 2026-11-19 — PR 117 owner look adjustment and release
+
+The owner assigned this Codex session to continue on `claude/zen-lamport-u8qk48` and use PR 117 as the single release vehicle. Slate land replaces bronze, coastal waterlines are removed, and the flat map restores main's colors while retaining its independent pixel density. The requested Maiden Castle removal is included. The 15 focused globe tests and full Node suite passed. The first build caught an incorrectly bounded function replacement, corrected before the passing 8,835-page build. The first browser invocation lacked matching installed browsers. After installing them, all four Chromium and WebKit signature profiles passed, including the stage resize check. A desktop screenshot confirmed slate land, gold coast highlights and violet rim without concentric waterlines. Full remote review and live deployment remain pending.

@@ -1,8 +1,14 @@
 import * as THREE from 'three';
 import { shortestLongitudeDelta, globeTurnEase, pointOnGlobe } from '../lib/world-globe-motion.mjs';
+import { QUALITY_TIERS, approach, createPacingWatch, easingStep, startingTier } from '../lib/world-globe-relief.mjs';
+import { createGlobeLook } from './world-globe-look.js';
 
 const RAD = Math.PI / 180;
 const OPENING = { x: 0.16, y: -0.32 };
+// The unattended turn, in radians a second, and how long the sculpted globe waits after a
+// hand lets go before it turns again.
+const AUTO_ROTATE_SPEED = 0.0459;
+const AUTO_ROTATE_RESUME_MS = 3000;
 const MARKER_SIZE = 32;
 const clamp = (n, low, high) => Math.max(low, Math.min(high, n));
 const safeColor = value => /^#(?:[a-f\d]{3}|[a-f\d]{6})$/i.test(value || '') ? value : '#39e4ff';
@@ -127,7 +133,10 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
       || !Number.isFinite(place.lat) || !Number.isFinite(place.lon)
       || Math.abs(place.lat) > 90 || Math.abs(place.lon) > 180
       || !['country', 'region'].includes(place.precision)) continue;
-    unique.set(place.id, { ...place, color: signature ? '#e9d17e' : safeColor(place.color), vector: worldPosition(place.lat, place.lon, 1.025) });
+    // The sculpted globe draws each light on the surface at this vector and projects the same
+    // vector for its hit target, so a pointer on a light is on that light's target. The legacy
+    // views float their DOM markers a little above the sphere.
+    unique.set(place.id, { ...place, color: signature ? '#e9d17e' : safeColor(place.color), vector: worldPosition(place.lat, place.lon, signature ? 1 : 1.025) });
   }
   const entries = [...unique.values()];
   let counts = Object.create(null);
@@ -147,6 +156,16 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
   let drag;
   let pinch;
   let zoom = 1;
+  let zoomGoal = 1;
+  let spin = null;
+  let look = null;
+  let tier = 0;
+  const pacing = signature ? createPacingWatch() : null;
+  let dotsHidden = null;
+  let hoveredId = null;
+  // True when the previous frame asked for this one, so the gap between them is the renderer's own pace.
+  let chained = false;
+  let flatPixelRatio = 1;
   let autoRotateRequested = Boolean(autoRotate ?? signature);
   let previousFrameTime;
   let originPoints;
@@ -168,21 +187,39 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
   function updateCamera() {
     if (!camera || !width || !height) return;
     camera.aspect = width / height;
-    const fit = invitation ? 1.2 : signature ? 1.28 : 1.4;
-    const distance = fit / (Math.tan(camera.fov * RAD / 2) * Math.min(camera.aspect, 1)) * zoom;
+    const fit = invitation ? 1.2 : 1.4, tangent = Math.tan(camera.fov * RAD / 2);
+    // The sculpted globe leaves a margin above and below for its floating tools. On a narrow
+    // stage it also keeps a lane at each side: a touch on the globe turns it, so a thumb
+    // needs somewhere beside it to scroll the page.
+    const distance = (signature ? Math.max(1.26 / tangent, 1.24 / (tangent * camera.aspect))
+      : fit / (tangent * Math.min(camera.aspect, 1))) * zoom;
     camera.position.set(0, 0, Math.max(1.35, distance));
-    camera.far = Math.max(20, distance + 4); camera.updateProjectionMatrix();
+    camera.far = Math.max(signature ? 40 : 20, distance + 4); camera.updateProjectionMatrix();
+    look?.resize({ width, height, pixelRatio });
   }
-  function setZoom(value) {
-    zoom = clamp(value, 0.65, 1.35); updateCamera(); schedule();
-    queueMicrotask(() => { if (!destroyed) { try { onZoomChange?.({ canZoomIn: zoom > 0.6501, canZoomOut: zoom < 1.3499, zoom }); } catch {} } });
+  // Buttons, keys and the wheel ease toward their goal; fingers on the glass are followed exactly.
+  function setZoom(value, immediate = !signature) {
+    zoomGoal = clamp(value, 0.65, 1.35);
+    if (immediate || reducedMotion.matches || !renderer) zoom = zoomGoal;
+    updateCamera(); schedule();
+    queueMicrotask(() => { if (!destroyed) { try { onZoomChange?.({ canZoomIn: zoomGoal > 0.6501, canZoomOut: zoomGoal < 1.3499, zoom: zoomGoal }); } catch {} } });
   }
   function setAutoRotate(value) { autoRotateRequested = Boolean(value); if (signature && value) resumeAt = 0; previousFrameTime = undefined; notifyMotion(); schedule(); return isAutoRotating(); }
+  // On the sculpted globe the lights are drawn in WebGL; the buttons remain as
+  // the touch targets, focus rings and labels. The flat map keeps its DOM points.
+  const drawnLights = () => Boolean(look && renderer && mode === 'globe');
+  function syncDots() {
+    const hide = drawnLights();
+    if (hide === dotsHidden) return;
+    dotsHidden = hide;
+    for (const place of entries) if (place.number) place.number.style.opacity = hide ? '0' : place.dotOpacity ?? '1';
+  }
   function syncMode() {
     canvas.style.display = mode === 'globe' && renderer ? 'block' : 'none';
     canvas.tabIndex = mode === 'globe' && renderer ? 0 : -1;
     flat.style.display = mode === 'map' ? 'block' : 'none';
     markers.style.display = invitation ? 'none' : 'block';
+    if (signature) syncDots();
   }
   function useFlatFallback(error) {
     if (destroyed) return;
@@ -202,24 +239,25 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
     button.dataset.worldPlace = place.id;
     button.style.cssText = `position:absolute;left:0;top:0;width:${MARKER_SIZE}px;height:${MARKER_SIZE}px;min-width:${MARKER_SIZE}px;min-height:${MARKER_SIZE}px;box-sizing:border-box;touch-action:manipulation;padding:0;border:1px solid ${place.color};border-radius:50%;background:#081326e8;color:${place.color};box-shadow:0 0 15px ${place.color}70;font:600 10px/1 system-ui;cursor:pointer;pointer-events:auto;transform:translate(-50%,-50%);z-index:2;outline-offset:4px`;
     if (signature) {
-      button.style.cssText = 'position:absolute;left:0;top:0;width:44px;height:44px;min-width:44px;min-height:44px;box-sizing:border-box;touch-action:auto;padding:0;border:0;border-radius:50%;background:transparent;color:#e9d17e;cursor:pointer;pointer-events:auto;transform:translate(-50%,-50%);z-index:2;outline-offset:1px';
+      button.style.cssText = 'position:absolute;left:0;top:0;width:44px;height:44px;min-width:44px;min-height:44px;box-sizing:border-box;touch-action:auto;padding:0;border:0;border-radius:50%;background:transparent;color:#e9d17e;cursor:pointer;pointer-events:auto;transform:translate(-100px,-100px);z-index:2;outline-offset:-9px';
       button.dataset.worldLight = '';
     }
     const label = document.createElement('span');
     label.style.cssText = 'position:absolute;left:50%;bottom:calc(100% + 8px);transform:translateX(-50%);padding:5px 8px;max-width:180px;width:max-content;border:1px solid #50728d80;border-radius:3px;background:#050b1af2;color:#e9f7ff;font:11px/1.4 system-ui;text-align:center;opacity:0;pointer-events:none';
-    if (signature) label.style.cssText = 'position:absolute;left:50%;bottom:calc(100% - 2px);transform:translateX(-50%);padding:7px 10px;max-width:210px;width:max-content;border:1px solid #e9d17e40;border-radius:5px;background:#101b2cf5;color:#f4f1e8;font:12px/1.45 var(--v3-sans,system-ui);text-align:center;opacity:0;pointer-events:none';
+    if (signature) label.style.cssText = 'position:absolute;left:50%;bottom:calc(50% + 15px);transform:translateX(-50%);padding:6px 11px;max-width:240px;width:max-content;border:1px solid #e9d17e47;border-radius:14px;background:#0c1524eb;color:#f5f2e9;font:500 12px/1.45 var(--v3-sans,system-ui);letter-spacing:.01em;text-align:center;opacity:0;pointer-events:none;box-shadow:0 6px 22px #05080f8c;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);transition:opacity 140ms ease-out';
     label.textContent = `${place.label || place.id} `;
     label.setAttribute('aria-hidden', 'true');
     const number = document.createElement('span');
     number.setAttribute('aria-hidden', 'true');
     if (signature) number.style.cssText = 'display:block;position:absolute;left:50%;top:50%;width:7px;height:7px;border-radius:50%;transform:translate(-50%,-50%);background:currentColor;box-shadow:0 0 8px currentColor,0 0 18px #e9d17e55;pointer-events:none;transition:width 180ms ease-out,height 180ms ease-out,opacity 180ms ease-out';
     button.append(label, number);
-    const showLabel = () => { label.style.opacity = '1'; button.style.zIndex = '5'; };
+    const showLabel = () => { placeLabel(place); label.style.opacity = '1'; button.style.zIndex = '5'; };
     const hideLabel = () => { label.style.opacity = selectedId === place.id ? '1' : '0'; button.style.zIndex = selectedId === place.id ? '4' : '2'; };
     button.addEventListener('pointerenter', showLabel, { signal });
     button.addEventListener('pointerleave', hideLabel, { signal });
-    button.addEventListener('focus', showLabel, { signal });
-    button.addEventListener('blur', hideLabel, { signal });
+    // Keyboard focus lifts its light exactly as a pointer does.
+    button.addEventListener('focus', () => { showLabel(); if (signature && hoveredId !== place.id) { hoveredId = place.id; if (look?.setHover(place.id)) schedule(); } }, { signal });
+    button.addEventListener('blur', () => { hideLabel(); if (signature && hoveredId === place.id) { hoveredId = null; if (look?.setHover(null)) schedule(); } }, { signal });
     button.addEventListener('click', event => {
       const id = signature && event.detail ? nearestMarker(event.clientX, event.clientY) || place.id : place.id;
       if (countFor(id) && (!signature || !event.detail || performance.now() >= suppressClickUntil)) onSelect?.(id);
@@ -229,6 +267,15 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
   }
 
   function own(resource) { owned.add(resource); return resource; }
+  // Firefox reports the real renderer directly and warns about the debug extension; others need it.
+  function rendererName(gl) {
+    try {
+      const reported = String(gl.getParameter(gl.RENDERER) || '');
+      if (reported && !/^webkit webgl$|^webgl/i.test(reported)) return reported;
+      const debug = gl.getExtension('WEBGL_debug_renderer_info');
+      return debug ? String(gl.getParameter(debug.UNMASKED_RENDERER_WEBGL) || '') : reported;
+    } catch { return ''; }
+  }
   function makeLine(segments, color, opacity, parent = earth) {
     const geometry = own(new THREE.BufferGeometry());
     geometry.setAttribute('position', new THREE.Float32BufferAttribute(segments, 3));
@@ -245,6 +292,13 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
       scene = new THREE.Scene();
       camera = new THREE.PerspectiveCamera(42, 1, 0.1, 20);
       earth = new THREE.Group(); scene.add(earth);
+      if (signature) {
+        look = createGlobeLook({ scene, earth, camera, places: entries });
+        tier = startingTier(rendererName(renderer.getContext()));
+        if (tier) { look.setQuality(QUALITY_TIERS[tier]); host.dataset.worldQualityTier = String(tier); }
+        canvas.addEventListener('webglcontextlost', event => { event.preventDefault(); useFlatFallback(new Error('World WebGL context was lost.')); }, { signal });
+        return;
+      }
       const surface = own(new THREE.MeshPhongMaterial(invitation
         ? { color: 0xc9e8ff, emissive: 0x06223b, emissiveIntensity: 0.45, specular: 0x225c79, shininess: 24 }
         : signature ? { color: 0xb9b6a6, emissive: 0x101b2c, emissiveIntensity: .5, specular: 0x28283e, shininess: 8 }
@@ -281,6 +335,12 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
 
   function addLand() {
     if (!earth) return;
+    if (look) {
+      const bakeMs = look.setLand(polygons, height * pixelRatio);
+      if (bakeMs !== null) { metrics.reliefBakeMs = bakeMs; host.dataset.worldReliefBakeMs = bakeMs.toFixed(1); }
+      look.setLights(countFor, selectedId); look.resize({ width, height, pixelRatio });
+      return;
+    }
     const atlas = document.createElement('canvas'); atlas.width = 1024; atlas.height = 512;
     let ctx;
     try { ctx = atlas.getContext('2d'); } catch {}
@@ -347,7 +407,7 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
       return;
     }
     flatFailed = false;
-    ctx.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+    ctx.setTransform(flatPixelRatio, 0, 0, flatPixelRatio, 0, 0);
     ctx.clearRect(0, 0, width, height);
     const box = mapBox();
     ctx.fillStyle = signature ? '#101b2c' : '#061329'; ctx.fillRect(box.x, box.y, box.width, box.height);
@@ -362,36 +422,58 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
       ctx.fillStyle = place.color; ctx.beginPath(); ctx.arc(x, y, 2.5, 0, Math.PI * 2); ctx.fill();
     }
   }
+  const projected = new THREE.Vector3(), toCamera = new THREE.Vector3(), outward = new THREE.Vector3();
+  function setShown(place, shown) { if (place.button.hidden === shown) place.button.hidden = !shown; }
+  // Labels sit just above their light, flipping below or sideways at the stage edge.
+  function placeLabel(place) {
+    const point = positions.get(place.id);
+    if (!point) return;
+    const label = place.labelNode, gap = signature ? 'calc(50% + 15px)' : 'calc(100% + 8px)';
+    label.style.left = point.x < 100 ? '0' : point.x > width - 100 ? '100%' : '50%';
+    label.style.transform = point.x < 100 ? 'none' : point.x > width - 100 ? 'translateX(-100%)' : 'translateX(-50%)';
+    label.style.bottom = point.y < 70 ? 'auto' : gap;
+    label.style.top = point.y < 70 ? gap : 'auto';
+  }
   function projectMarkers() {
     positions.clear();
     if (invitation) return;
-    if (!landLoaded || landFailed || (mode === 'map' && flatFailed)) { entries.forEach(place => { place.button.hidden = true; }); return; }
+    if (!landLoaded || landFailed || (mode === 'map' && flatFailed)) { entries.forEach(place => setShown(place, false)); return; }
     const occupied = [];
     const focusedId = document.activeElement?.dataset?.worldPlace;
-    const ordered = [...entries].sort((a, b) => Number(b.id === selectedId) - Number(a.id === selectedId) || Number(b.id === focusedId) - Number(a.id === focusedId) || countFor(b.id) - countFor(a.id));
+    // Only the legacy numbered markers thin each other out, so only they need an order.
+    const ordered = signature ? entries : [...entries].sort((a, b) => Number(b.id === selectedId) - Number(a.id === selectedId) || Number(b.id === focusedId) - Number(a.id === focusedId) || countFor(b.id) - countFor(a.id));
+    const box = mode === 'map' ? mapBox() : null;
+    const inset = signature ? 22 : MARKER_SIZE / 2 + 4;
     for (const place of ordered) {
       const count = countFor(place.id);
       let x = 0, y = 0, shown = count > 0 || (signature && place.id === selectedId);
-      if (mode === 'map') {
-        const box = mapBox(); x = box.x + (place.lon + 180) / 360 * box.width; y = box.y + (90 - place.lat) / 180 * box.height;
+      if (box) {
+        x = box.x + (place.lon + 180) / 360 * box.width; y = box.y + (90 - place.lat) / 180 * box.height;
       } else if (camera && earth) {
-        const world = place.vector.clone().applyMatrix4(earth.matrixWorld);
-        const front = world.clone().normalize().dot(camera.position.clone().sub(world).normalize());
-        const projected = world.project(camera);
+        projected.copy(place.vector).applyMatrix4(earth.matrixWorld);
+        const front = outward.copy(projected).normalize().dot(toCamera.copy(camera.position).sub(projected).normalize());
+        projected.project(camera);
         shown = shown && front > 0.12 && projected.z > -1 && projected.z < 1;
         x = (projected.x + 1) * width / 2; y = (1 - projected.y) * height / 2;
       } else shown = false;
-      const inset = signature ? 22 : MARKER_SIZE / 2 + 4;
       shown = shown && x >= inset && x <= width - inset && y >= inset && y <= height - inset;
       if (!signature && shown && place.id !== selectedId && place.id !== focusedId && occupied.some(point => Math.hypot(point.x - x, point.y - y) < MARKER_SIZE + 4)) shown = false;
-      place.button.hidden = !shown;
+      setShown(place, shown);
       if (!shown) continue;
-      occupied.push({ x, y }); positions.set(place.id, { x, y });
+      const point = place.screen ||= { x: 0, y: 0 };
+      point.x = x; point.y = y; positions.set(place.id, point);
+      if (signature) {
+        // A transform moves the 44 px target without asking the page to lay out again.
+        if (Math.abs(x - place.drawnX) > 0.2 || Math.abs(y - place.drawnY) > 0.2 || place.drawnX === undefined) {
+          place.button.style.transform = `translate(${(x - 22).toFixed(1)}px,${(y - 22).toFixed(1)}px)`;
+          place.drawnX = x; place.drawnY = y;
+        }
+        if (place.id === selectedId || place.id === focusedId || place.id === hoveredId) placeLabel(place);
+        continue;
+      }
+      occupied.push(point);
       place.button.style.left = `${x}px`; place.button.style.top = `${y}px`;
-      place.labelNode.style.left = x < 100 ? '0' : x > width - 100 ? '100%' : '50%';
-      place.labelNode.style.transform = x < 100 ? 'none' : x > width - 100 ? 'translateX(-100%)' : 'translateX(-50%)';
-      place.labelNode.style.bottom = y < 70 ? 'auto' : 'calc(100% + 8px)';
-      place.labelNode.style.top = y < 70 ? 'calc(100% + 8px)' : 'auto';
+      placeLabel(place);
     }
   }
   function render(now) {
@@ -400,16 +482,43 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
     const elapsed = previousFrameTime === undefined ? 0 : Math.max(0, (now - previousFrameTime) / 1000);
     if (!signature && isAutoRotating() && !tween && previousFrameTime !== undefined && elapsed < 1 / 30) { schedule(); return; }
     previousFrameTime = now;
+    const paced = chained; chained = false;
     if (tween) {
       const p = clamp((now - tween.start) / tween.duration, 0, 1);
       const eased = signature ? globeTurnEase(p) : p * p * (3 - 2 * p);
       rotation.x = tween.from.x + (tween.to.x - tween.from.x) * eased;
       rotation.y = tween.from.y + (tween.to.y - tween.from.y) * eased;
       if (p === 1) tween = null;
-    } else if (shouldRotate() && !drag && !pinch) rotation.y += Math.min(elapsed, 0.08) * 0.045;
+    } else if (spin && !drag && !pinch && !handActive) {
+      // A released globe keeps turning and settles, like something with weight.
+      const step = easingStep(elapsed);
+      rotation.y += spin.y * step;
+      rotation.x = clamp(rotation.x + spin.x * step, -1.48, 1.48);
+      const decay = Math.exp(-step * 3.4);
+      spin.x *= decay; spin.y *= decay;
+      if (Math.hypot(spin.x, spin.y) < 0.03) spin = null;
+    } else if (shouldRotate() && !drag && !pinch) rotation.y += Math.min(elapsed, 0.08) * AUTO_ROTATE_SPEED;
+    if (zoom !== zoomGoal) {
+      // A wheel or a held key restarts the frame clock with every event. The zoom still
+      // takes a step on each frame, or it would stand still until the input stopped.
+      zoom = approach(zoom, zoomGoal, 13, easingStep(elapsed));
+      updateCamera();
+    }
     syncMode();
+    let lookMoving = false;
+    // Only frames the globe asked for itself say anything about the renderer. A frame drawn
+    // because a pointer moved arrives at the pointer's pace, however fast the renderer is.
+    if (look && mode === 'globe' && renderer && paced && tier < QUALITY_TIERS.length - 1) {
+      const drop = pacing.sample(elapsed);
+      if (drop) {
+        tier = Math.min(QUALITY_TIERS.length - 1, tier + drop);
+        look.setQuality(QUALITY_TIERS[tier]); host.dataset.worldQualityTier = String(tier);
+        applySize(false);
+      }
+    }
     if (mode === 'globe' && renderer) {
       earth.rotation.set(rotation.x, rotation.y, 0, 'XYZ');
+      lookMoving = Boolean(look?.frame(now, { still: reducedMotion.matches, turning: shouldRotate() || Boolean(tween) || Boolean(spin) }));
       scene.updateMatrixWorld(); camera.updateMatrixWorld();
       try { renderer.render(scene, camera); }
       catch (error) { useFlatFallback(error); drawFlat(); }
@@ -427,11 +536,32 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
         try { onReady?.({ mode, webgl: Boolean(renderer), landLoaded, presentation, playing: isAutoRotating(), firstFrameAtMs: metrics.firstFrameAtMs, firstFrameMs: metrics.firstFrameMs }); } catch (error) { reportError(error); }
       }
     }
-    if (tween || shouldRotate()) schedule();
+    if (tween || spin || zoom !== zoomGoal || lookMoving || shouldRotate()) { chained = true; schedule(); }
   }
   function schedule() { if (!destroyed && !pageSuspended && visible && !document.hidden && !raf) raf = requestAnimationFrame(render); }
-  function finishMotion() { previousFrameTime = undefined; if (tween) { Object.assign(rotation, tween.to); tween = null; } }
+  function finishMotion() {
+    previousFrameTime = undefined; spin = null; chained = false;
+    if (tween) { Object.assign(rotation, tween.to); tween = null; }
+    if (zoom !== zoomGoal) { zoom = zoomGoal; updateCamera(); }
+  }
+  // Angular velocity over the last moments of a drag, so a flick carries on and a rest does not.
+  function trackSpin(gesture) {
+    const now = performance.now();
+    const trail = gesture.trail ||= [];
+    trail.push({ time: now, x: rotation.x, y: rotation.y });
+    while (trail.length > 2 && now - trail[0].time > 120) trail.shift();
+  }
+  function releaseSpin(gesture) {
+    const trail = gesture?.trail, now = performance.now();
+    spin = null;
+    if (!signature || reducedMotion.matches || !trail || trail.length < 2 || now - trail.at(-1).time > 70) return;
+    const first = trail[0], last = trail.at(-1), seconds = (last.time - first.time) / 1000;
+    if (seconds < 0.016) return;
+    const x = clamp((last.x - first.x) / seconds, -5, 5), y = clamp((last.y - first.y) / seconds, -5, 5);
+    if (Math.hypot(x, y) > 0.12) spin = { x, y };
+  }
   function orient(target, duration = 620) {
+    spin = null;
     const shortest = shortestLongitudeDelta(rotation.y, target.y);
     const to = { x: clamp(target.x, -1.48, 1.48), y: rotation.y + shortest };
     if (reducedMotion.matches || mode === 'map') { Object.assign(rotation, to); tween = null; }
@@ -441,27 +571,45 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
     }
     schedule();
   }
-  function resize() {
+  // Resizing a canvas clears it, and resize observers run after this frame's animation
+  // callbacks but before it is painted. Without drawing again here the globe is blank for
+  // as long as its stage is changing size, which is every time a place is chosen or closed.
+  function redraw() {
+    if (destroyed || pageSuspended || !visible || document.hidden || !width || !height) return;
+    if (mode === 'globe' && renderer) {
+      earth.rotation.set(rotation.x, rotation.y, 0, 'XYZ');
+      scene.updateMatrixWorld(); camera.updateMatrixWorld();
+      try { renderer.render(scene, camera); }
+      catch (error) { useFlatFallback(error); drawFlat(); }
+    } else drawFlat();
+    projectMarkers();
+  }
+  function resize() { applySize(true); }
+  function applySize(draw) {
     if (destroyed) return;
     const nextWidth = Math.round(host.clientWidth), nextHeight = Math.round(host.clientHeight);
     if (!nextWidth || !nextHeight) {
       if (!signature) { width = nextWidth; height = nextHeight; }
       return;
     }
-    // Only the signature planet trades a little canvas density for phone frame time.
-    // Its HTML lights, labels and artwork stills retain the screen's native density.
-    const pixelLimit = signature && Math.min(innerWidth, nextWidth) <= 760 ? 1.25 : 1.5;
+    // The sculpted globe draws its lights in WebGL, so fill rate sets the budget. It starts
+    // at two device pixels per CSS pixel and gives density back if the renderer cannot keep up.
+    const pixelLimit = signature ? QUALITY_TIERS[tier].pixelRatio : 1.5;
     const nextPixelRatio = Math.min(devicePixelRatio || 1, pixelLimit);
-    if (signature && width === nextWidth && height === nextHeight && pixelRatio === nextPixelRatio) return;
+    // The flat map is drawn in 2D and has no fill rate to save: it keeps its own density,
+    // whichever tier the globe has settled on.
+    const nextFlatRatio = Math.min(devicePixelRatio || 1, signature && Math.min(innerWidth, nextWidth) <= 760 ? 1.25 : 1.5);
+    if (signature && width === nextWidth && height === nextHeight && pixelRatio === nextPixelRatio && flatPixelRatio === nextFlatRatio) return;
     const pixelRatioChanged = pixelRatio !== nextPixelRatio;
-    width = nextWidth; height = nextHeight; pixelRatio = nextPixelRatio;
-    flat.width = Math.round(width * pixelRatio); flat.height = Math.round(height * pixelRatio);
+    width = nextWidth; height = nextHeight; pixelRatio = nextPixelRatio; flatPixelRatio = nextFlatRatio;
+    flat.width = Math.round(width * flatPixelRatio); flat.height = Math.round(height * flatPixelRatio);
     if (renderer) {
       if (!signature || pixelRatioChanged) renderer.setPixelRatio(pixelRatio);
       renderer.setSize(width, height, false);
       updateCamera();
       if (originPoints) originPoints.material.uniforms.pointScale.value = 24 * pixelRatio;
     }
+    if (draw && signature) redraw();
     schedule();
   }
   function beginFrameSample() {
@@ -476,15 +624,25 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
     host.dataset.worldTurnFps = metrics.lastTurnFps.toFixed(1);
     host.dataset.worldTurnDurationMs = String(Math.round(metrics.lastTurnDurationMs));
   }
+  // Radians of turn per pixel of drag, so the surface stays under the hand. Perspective
+  // enlarges the near face of the sphere, so its centre moves further on screen per radian
+  // than the silhouette radius suggests; the small lead keeps points off-centre from lagging.
+  function dragGain() {
+    const distance = camera?.position.z || 0;
+    if (!(distance > 1) || !height) return 0.006;
+    const radius = height / (2 * Math.tan(camera.fov * RAD / 2) * Math.sqrt(distance * distance - 1));
+    const nearFace = radius * Math.sqrt((distance + 1) / (distance - 1));
+    return 1.06 / clamp(nearFace, 130, 620);
+  }
   function pauseForHand() {
     if (!signature) return;
     clearTimeout(resumeTimer);
-    resumeAt = performance.now() + 4000;
+    resumeAt = performance.now() + AUTO_ROTATE_RESUME_MS;
     previousFrameTime = undefined;
     resumeTimer = setTimeout(() => {
       if (destroyed) return;
       previousFrameTime = undefined; schedule();
-    }, 4000);
+    }, AUTO_ROTATE_RESUME_MS);
   }
   function nearestMarker(clientX, clientY) {
     const bounds = host.getBoundingClientRect();
@@ -537,7 +695,7 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
     window.addEventListener('scroll', noteScroll, { capture: true, passive: true, signal });
     canvas.style.cursor = 'auto';
     const hold = () => {
-      clearTimeout(resumeTimer); handActive = true; tween = null; previousFrameTime = undefined;
+      clearTimeout(resumeTimer); handActive = true; tween = null; spin = null; previousFrameTime = undefined;
     };
     const release = () => {
       handActive = false; drag = null; pinch = null;
@@ -551,10 +709,16 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
         if (hit) { clearTimeout(resumeTimer); previousFrameTime = undefined; }
         else if (!handActive) pauseForHand();
       }
-      if (!drag) canvas.style.cursor = hit ? 'grab' : 'auto';
-      const nearest = nearestMarker(event.clientX, event.clientY);
+      const nearest = drag ? null : nearestMarker(event.clientX, event.clientY);
+      if (!drag) canvas.style.cursor = nearest ? 'pointer' : hit ? 'grab' : 'auto';
+      if (nearest !== hoveredId) {
+        hoveredId = nearest;
+        if (look?.setHover(nearest)) schedule();
+      }
       for (const place of entries) {
-        place.labelNode.style.opacity = place.id === nearest || place.id === selectedId ? '1' : '0';
+        const lifted = place.id === nearest || place.id === selectedId;
+        if (lifted) placeLabel(place);
+        place.labelNode.style.opacity = lifted ? '1' : '0';
         place.button.style.zIndex = place.id === nearest ? '5' : place.id === selectedId ? '4' : '2';
       }
     }
@@ -563,14 +727,14 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
       if (event.pointerType === 'touch' || !drag || drag.id !== event.pointerId) return;
       const dx = event.clientX - drag.x, dy = event.clientY - drag.y;
       drag.moved ||= Math.hypot(dx, dy) > 5;
-      rotation.y = drag.rotation.y + dx * .006;
-      rotation.x = clamp(drag.rotation.x + dy * .004, -1.48, 1.48);
-      schedule();
+      rotation.y = drag.rotation.y + dx * drag.gain;
+      rotation.x = clamp(drag.rotation.x + dy * drag.gain * .7, -1.48, 1.48);
+      trackSpin(drag); schedule();
     }, { signal });
     mount.addEventListener('pointerdown', event => {
       if (event.pointerType === 'touch' || event.button !== 0 || !globeHit(event.clientX, event.clientY, event.target)) return;
       hold(); beginFrameSample();
-      drag = { id: event.pointerId, x: event.clientX, y: event.clientY, rotation: { ...rotation }, moved: false };
+      drag = { id: event.pointerId, x: event.clientX, y: event.clientY, rotation: { ...rotation }, moved: false, gain: dragGain() };
       event.target.setPointerCapture?.(event.pointerId);
       if (event.target === canvas) canvas.focus({ preventScroll: true });
       canvas.style.cursor = 'grabbing';
@@ -578,6 +742,7 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
     const endPointer = event => {
       if (event.pointerType === 'touch' || !drag || drag.id !== event.pointerId) return;
       if (drag.moved) suppressClickUntil = performance.now() + 350;
+      if (event.type === 'pointerup' && drag.moved) releaseSpin(drag);
       release();
       if (event.type === 'pointerup') hover(event);
       else { hoverHeld = false; canvas.style.cursor = 'auto'; }
@@ -588,6 +753,7 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
     mount.addEventListener('pointerleave', event => {
       if (event.pointerType === 'touch') return;
       hoverHeld = false;
+      if (hoveredId !== null) { hoveredId = null; if (look?.setHover(null)) schedule(); }
       if (!drag) { canvas.style.cursor = 'auto'; pauseForHand(); }
     }, { signal });
     mount.addEventListener('touchstart', event => {
@@ -596,7 +762,7 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
         const first = event.touches[0];
         const owns = event.cancelable && now - lastScrollAt >= 150 && globeHit(first.clientX, first.clientY, event.target);
         touchGesture = { owner: owns ? 'globe' : 'page', pageLocked: !event.cancelable || now - lastScrollAt < 150, startedAt: now, scrollAtStart: lastScrollAt,
-          x: first.clientX, y: first.clientY, rotation: { ...rotation }, moved: false,
+          x: first.clientX, y: first.clientY, rotation: { ...rotation }, moved: false, gain: dragGain(),
           marker: nearestMarker(first.clientX, first.clientY) };
         if (owns) { hold(); beginFrameSample(); }
       }
@@ -622,15 +788,15 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
       else { touchGesture.owner = 'page'; touchGesture.pageLocked = true; release(); return; }
       if (event.touches.length === 2) {
         pinch ??= { distance: Math.max(1, touchDistance(event.touches)), zoom };
-        setZoom(pinch.zoom * pinch.distance / Math.max(1, touchDistance(event.touches)));
-        touchGesture.moved = true; touchGesture.marker = null;
+        setZoom(pinch.zoom * pinch.distance / Math.max(1, touchDistance(event.touches)), true);
+        touchGesture.moved = true; touchGesture.marker = null; touchGesture.trail = null;
       } else if (event.touches.length === 1) {
         const touch = event.touches[0];
         const dx = touch.clientX - touchGesture.x, dy = touch.clientY - touchGesture.y;
         touchGesture.moved ||= Math.hypot(dx, dy) > 7;
-        rotation.y = touchGesture.rotation.y + dx * .006;
-        rotation.x = clamp(touchGesture.rotation.x + dy * .004, -1.48, 1.48);
-        schedule();
+        rotation.y = touchGesture.rotation.y + dx * touchGesture.gain;
+        rotation.x = clamp(touchGesture.rotation.x + dy * touchGesture.gain * .7, -1.48, 1.48);
+        trackSpin(touchGesture); schedule();
       }
     }, { signal, capture: true, passive: false });
     const endTouch = event => {
@@ -639,7 +805,7 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
         if (event.touches.length === 1 && touchGesture.owner === 'globe') {
           pinch = null;
           touchGesture.x = event.touches[0].clientX; touchGesture.y = event.touches[0].clientY;
-          touchGesture.rotation = { ...rotation };
+          touchGesture.rotation = { ...rotation }; touchGesture.gain = dragGain(); touchGesture.trail = null;
         }
         return;
       }
@@ -649,6 +815,7 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
       suppressClickUntil = performance.now() + 350;
       if (ended.owner !== 'globe') return;
       if (event.cancelable) event.preventDefault();
+      if (event.type !== 'touchcancel' && ended.moved) releaseSpin(ended);
       release();
       if (event.type !== 'touchcancel' && ended.marker && !ended.moved && countFor(ended.marker)) onSelect?.(ended.marker);
     };
@@ -660,7 +827,7 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
       if (!globeHit(event.clientX, event.clientY, event.target) || !event.cancelable) return;
       clearKeyboardModality(); event.preventDefault(); pauseForHand(); tween = null;
       const delta = event.deltaY * (event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? height : 1);
-      setZoom(zoom * Math.exp(clamp(delta, -180, 180) * (event.ctrlKey ? .006 : .002)));
+      setZoom((event.ctrlKey ? zoom : zoomGoal) * Math.exp(clamp(delta, -180, 180) * (event.ctrlKey ? .006 : .002)), event.ctrlKey);
     }, { signal, passive: false });
     // Safari exposes trackpad magnification independently of wheel/ctrl-wheel.
     mount.addEventListener('gesturestart', event => {
@@ -670,7 +837,7 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
     mount.addEventListener('gesturechange', event => {
       if (magnification === undefined || !Number.isFinite(event.scale)) return;
       if (event.cancelable) event.preventDefault();
-      setZoom(magnification / Math.max(.1, event.scale)); pauseForHand();
+      setZoom(magnification / Math.max(.1, event.scale), true); pauseForHand();
     }, { signal, passive: false });
     mount.addEventListener('gestureend', event => {
       if (magnification !== undefined && event.cancelable) event.preventDefault();
@@ -681,10 +848,10 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
       if (mode !== 'globe') return;
       const delta = { ArrowLeft: [-.14, 0], ArrowRight: [.14, 0], ArrowUp: [0, -.12], ArrowDown: [0, .12] }[event.key];
       if (event.key === 'Home') { event.preventDefault(); pauseForHand(); setZoom(1); orient(OPENING, 800); }
-      else if (['+', '='].includes(event.key)) { event.preventDefault(); pauseForHand(); setZoom(zoom * .85); }
-      else if (['-', '_'].includes(event.key)) { event.preventDefault(); pauseForHand(); setZoom(zoom / .85); }
+      else if (['+', '='].includes(event.key)) { event.preventDefault(); pauseForHand(); setZoom(zoomGoal * .85); }
+      else if (['-', '_'].includes(event.key)) { event.preventDefault(); pauseForHand(); setZoom(zoomGoal / .85); }
       else if (delta) {
-        clearKeyboardModality(); event.preventDefault(); pauseForHand(); tween = null;
+        clearKeyboardModality(); event.preventDefault(); pauseForHand(); tween = null; spin = null;
         rotation.y += delta[0]; rotation.x = clamp(rotation.x + delta[1], -1.48, 1.48); schedule();
       }
     }, { signal });
@@ -774,10 +941,12 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
           const size = 4.5 + Math.log1p(count) * 1.15;
           place.button.dataset.worldCount = String(count);
           place.number.style.width = `${size}px`; place.number.style.height = `${size}px`;
-          place.number.style.opacity = String(count ? .45 + Math.min(.55, Math.log1p(count) / 12) : .16);
+          place.dotOpacity = String(count ? .45 + Math.min(.55, Math.log1p(count) / 12) : .16);
+          place.number.style.opacity = drawnLights() ? '0' : place.dotOpacity;
           place.button.style.color = selected ? '#c9a5ff' : '#e9d17e';
           place.labelNode.textContent = `${place.label} · ${markerCount} ${count === 1 ? 'work' : 'works'}`;
-          place.labelNode.style.opacity = selected ? '1' : '0'; place.button.style.zIndex = selected ? '4' : '2';
+          if (selected) placeLabel(place);
+          place.labelNode.style.opacity = selected || place.id === hoveredId ? '1' : '0'; place.button.style.zIndex = selected ? '4' : '2';
           continue;
         }
         place.button.style.background = selected ? place.color : '#081326e8';
@@ -785,6 +954,7 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
         place.button.style.boxShadow = selected ? `0 0 0 4px ${place.color}33,0 0 24px ${place.color}99` : `0 0 15px ${place.color}70`;
         place.labelNode.style.opacity = selected ? '1' : '0'; place.button.style.zIndex = selected ? '4' : '2';
       }
+      look?.setLights(countFor, selectedId);
       if (selectedId && selectedId !== before && (signature || countFor(selectedId))) { const place = unique.get(selectedId); if (signature) pauseForHand(); orient({ x: place.lat * RAD, y: -place.lon * RAD }, signature ? 800 : 620); }
       schedule();
     },
@@ -796,7 +966,7 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
       orient({ x: place.lat * RAD, y: -place.lon * RAD }, 800);
       return true;
     },
-    captureView() { return { rotation: { ...rotation }, zoom, mode, autoRotateRequested }; },
+    captureView() { return { rotation: { ...rotation }, zoom: zoomGoal, mode, autoRotateRequested }; },
     restoreView(view) {
       if (destroyed || !view || !Number.isFinite(view.rotation?.x) || !Number.isFinite(view.rotation?.y) || !Number.isFinite(view.zoom)) return false;
       autoRotateRequested = Boolean(view.autoRotateRequested);
@@ -804,9 +974,9 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
       if (signature) pauseForHand();
       orient(view.rotation, 800); notifyMotion(); return true;
     },
-    getMetrics() { return { ...metrics, rotating: shouldRotate(), rotation: { ...rotation }, zoom, mode }; },
-    zoomIn() { if (!destroyed) setZoom(zoom * 0.85); },
-    zoomOut() { if (!destroyed) setZoom(zoom / 0.85); },
+    getMetrics() { return { ...metrics, rotating: shouldRotate(), rotation: { ...rotation }, zoom, mode, qualityTier: tier, pixelRatio }; },
+    zoomIn() { if (!destroyed) setZoom(zoomGoal * 0.85); },
+    zoomOut() { if (!destroyed) setZoom(zoomGoal / 0.85); },
     setAutoRotate(value) { return destroyed ? false : setAutoRotate(value); },
     isAutoRotating() { return !destroyed && isAutoRotating(); },
     pause() { return destroyed ? false : setAutoRotate(false); },
@@ -821,6 +991,7 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
       if (destroyed) return;
       destroyed = true; events.abort(); clearTimeout(resumeTimer); cancelAnimationFrame(raf); tween = null; drag = null; pinch = null;
       observer?.disconnect(); visibilityObserver?.disconnect();
+      look?.dispose(); look = null;
       for (const resource of owned) resource.dispose(); owned.clear();
       renderer?.dispose(); renderer?.forceContextLoss(); renderer = null;
       mount.remove(); flat.width = 1; flat.height = 1;
@@ -843,6 +1014,8 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
     } catch (error) {
       if (destroyed || signal.aborted) return;
       landFailed = true; fallback.textContent = 'The map is unavailable. Use the place selector to explore.';
+      // Without its coastline the sculpted globe is still a plain sphere behind the message.
+      look?.showBare();
       reportError(error); schedule();
     }
   })();

@@ -194,7 +194,8 @@ async function runCase(specification) {
     observedPage.on('requestfailed', request => {
       const failure = request.failure()?.errorText || '';
       const cancelled = /abort|cancel/i.test(failure);
-      const changesSelection = activePhase === 'keyboard, exact collection handoff, close restoration and Willendorf';
+      const changesSelection = ['keyboard, exact collection handoff, close restoration and Willendorf',
+        'stage resize never paints an empty globe'].includes(activePhase);
       const expectedCancellation = cancelled && (activePhase === 'cleanup'
         || (changesSelection && request.resourceType() === 'image' && Number.isFinite(result.timings.firstPointToVisibleLoadedStillMs)));
       result.failedRequests.push({ page: label, url: request.url(), failure,
@@ -436,6 +437,16 @@ async function runCase(specification) {
         // This is functional animation settlement, after all first metrics were
         // recorded; it does not contribute to a performance measurement.
         await page.waitForTimeout(900);
+        // The functional phase ends on a prehistoric date filter, under which Egypt has
+        // no works and therefore no still for this phase to wait for. Clear any filter an
+        // earlier phase left, so that this phase does not depend on the order of the suite.
+        const period = root.locator('[data-world-period]');
+        if ((await period.textContent())?.trim() !== 'All periods') {
+          await root.locator('[data-world-reset]').click();
+          await page.waitForFunction(selector => document.querySelector(selector)
+            .querySelector('[data-world-period]').textContent.trim() === 'All periods', rootSelector);
+          await page.waitForTimeout(900);
+        }
         assert.equal(await page.evaluate(() => document.fullscreenEnabled), true, 'Desktop fullscreen must be available');
         const fullscreen = root.locator('[data-world-fullscreen]');
         await fullscreen.click();
@@ -490,6 +501,49 @@ async function runCase(specification) {
     if (specification.motion === 'no-preference') await phase('homepage globe light selection and return', async () => {
       result.homepage = await checkHomepageGlobe(context, specification.width < 700);
     }, 45000);
+    await phase('stage resize never paints an empty globe', async () => {
+      // Runs last: every timing above is already recorded, and this reads pixels.
+      // Choosing a place changes the stage's height. A canvas is cleared when it is
+      // resized, and resize observers run after that frame's animation callbacks, so
+      // the globe must draw again in the same frame or it is painted empty.
+      const root = page.locator(rootSelector);
+      if (!await root.locator('[data-world-selection]').evaluate(element => element.hidden)) {
+        await root.locator('[data-world-selection-close]').click();
+        await page.waitForFunction(() => document.querySelector('[data-world-selection]').hidden);
+      }
+      // Functional settlement of the closing layout and scroll, not a measurement.
+      await page.waitForTimeout(1000);
+      assert.equal(await root.getAttribute('data-world-mode'), 'globe', 'The resize check needs the globe, not the flat map');
+      result.resizeFrames = await page.evaluate(selector => new Promise((resolve, reject) => {
+        const root = document.querySelector(selector);
+        const host = root.querySelector('[data-world-globe]');
+        const canvas = host.querySelector('canvas[role="img"]');
+        const gl = canvas.getContext('webgl2');
+        if (!gl) { reject(new Error('The globe canvas has no WebGL 2 context to inspect')); return; }
+        const pixel = new Uint8Array(4);
+        const firstHeight = host.clientHeight;
+        let resizes = 0, blank = 0;
+        // Created after the globe's own observer, so it runs after it within each frame:
+        // what the centre of the drawing buffer holds here is what that frame will paint.
+        // With reduced motion the height changes at once and there is a single callback.
+        const probe = new ResizeObserver(() => {
+          resizes++;
+          gl.readPixels(canvas.width >> 1, canvas.height >> 1, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, pixel);
+          if (pixel[3] === 0) blank++;
+        });
+        probe.observe(host);
+        const select = root.querySelector('select[data-world-place]');
+        select.value = 'egypt';
+        select.dispatchEvent(new Event('change', { bubbles: true }));
+        setTimeout(() => {
+          probe.disconnect();
+          resolve({ resizes, blank, firstHeight, lastHeight: host.clientHeight });
+        }, 1500);
+      }), rootSelector);
+      assert(result.resizeFrames.resizes >= 1 && result.resizeFrames.lastHeight < result.resizeFrames.firstHeight,
+        'Choosing a place did not change the stage height: ' + JSON.stringify(result.resizeFrames));
+      expect(result.resizeFrames.blank === 0, 'The globe was painted empty while its stage changed size', result.resizeFrames);
+    }, 20000);
     expect(!result.modelRequests.filter(request => request.page === 'world').length, 'The world page downloaded a sculpture model', result.modelRequests);
     expect(!result.pageErrors.length, 'Page errors were observed', result.pageErrors);
     expect(!result.consoleErrors.length, 'Console errors were observed', result.consoleErrors);

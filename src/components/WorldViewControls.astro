@@ -22,7 +22,7 @@ const { signature = false } = Astro.props;
   .world-view-controls > p:empty { display:none; }
   @media(max-width:400px) { .world-view-controls { gap:4px; padding-inline:6px; } .world-view-controls button { padding:8px; font-size:max(var(--atrium-text-floor, 0px), 10px); } .world-view-controls > span { display:none; } }
   .world-view-controls[data-world-controls-signature] { gap:8px; min-height:56px; padding:4px 0; color:var(--v3-ink); border:0; background:transparent; }
-  [data-world-controls-signature] button { min-width:44px; min-height:44px; padding:10px 14px; border:1px solid var(--v3-line-strong); border-radius:6px; background:transparent; color:var(--v3-muted); font:500 12px/1.4 var(--v3-sans); }
+  [data-world-controls-signature] button { min-width:44px; min-height:44px; padding:10px 14px; border:1px solid var(--v3-line-strong); border-radius:6px; background:rgba(var(--v3-veil),.62); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); color:var(--v3-muted); font:500 12px/1.4 var(--v3-sans); }
   [data-world-controls-signature] button:hover { color:var(--v3-ink); border-color:var(--v3-signal); background:var(--v3-well); }
   [data-world-controls-signature] button[aria-pressed="true"] { color:var(--v3-void); background:var(--v3-signal); border-color:var(--v3-signal); }
   [data-world-controls-signature] > span { background:var(--v3-line-strong); }
