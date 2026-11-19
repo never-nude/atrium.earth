@@ -11,6 +11,7 @@ import { browserDeadline, runBoundedBrowserCase, BROWSER_CLEANUP_TIMEOUT_MS, BRO
 import { AUTO_START_MODEL_LIMIT, INLINE_AUTO_LOAD_LIMIT, isWithinInitialPreviewBudget, requiresModelActivation } from '../src/lib/viewer-preview.mjs';
 import { firstViewFor } from '../src/lib/first-view-models.mjs';
 import catalog from '../src/data/catalog.json' with { type: 'json' };
+import recentAdditionPicks from '../src/data/recent-addition-picks.json' with { type: 'json' };
 import firstViewModels from '../src/data/first-view-models.json' with { type: 'json' };
 import originals from '../src/data/previews.json' with { type: 'json' };
 import spatialCollection from '../public/spatial-museum/collection-manifest.json' with { type: 'json' };
@@ -633,6 +634,12 @@ async function check(engine, viewport, route, motion = 'reduce') {
                 && !new URL(location.href).searchParams.has('q');
             });
           } else if (route.id === 'newest') {
+            const expectedPicks = recentAdditionPicks.filter(slug => catalog.some(work => work.slug === slug && !work.hidden) && originals[slug]);
+            const actualPicks = await page.locator('[aria-labelledby="recent-picks-title"] [data-v3-card] > a:first-child')
+              .evaluateAll(links => links.map(link => new URL(link.href).pathname.slice('/works/'.length).replace(/\/$/, '')));
+            if (JSON.stringify([...actualPicks].sort()) !== JSON.stringify([...expectedPicks].sort())) {
+              throw new Error('Newest Additions must retain every public pinned pick as new imports arrive');
+            }
             const sort = page.locator('[data-additions-sort] select');
             if (await sort.inputValue() !== 'newest') throw new Error('Newest Additions must open in date-added order');
             await sort.selectOption('date-latest');

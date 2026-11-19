@@ -2650,3 +2650,9 @@ The full local production build passes: 8,842 pages and 877,192,353 package byte
 ## 2026-11-19 — PR 117 owner look adjustment and release
 
 The owner assigned this Codex session to continue on `claude/zen-lamport-u8qk48` and use PR 117 as the single release vehicle. Slate land replaces bronze, coastal waterlines are removed, and the flat map restores main's colors while retaining its independent pixel density. The requested Maiden Castle removal is included. The 15 focused globe tests and full Node suite passed. The first build caught an incorrectly bounded function replacement, corrected before the passing 8,835-page build. The first browser invocation lacked matching installed browsers. After installing them, all four Chromium and WebKit signature profiles passed, including the stage resize check. A desktop screenshot confirmed slate land, gold coast highlights and violet rim without concentric waterlines. Full remote review and live deployment remain pending.
+
+## 2026-11-19 — Black American art and cultural-history release candidate
+
+This Codex session owns codex/black-american-release-20261119 from deployed main 8e8dfcbb. The prepared 25-work batch is reconciled into current main, preserving all 3,211 prior records apart from recomputed indices and totals. There are 3,184 public works. The six acquisition holds remain excluded. The reviewed model bytes, thumbnails, labels and physical-scale limitations carry forward. All 40 pinned recent picks remain available when new acquisitions arrive.
+
+The full Node suite passed. The 25 reviewed serving files are staged in the black-american-20261118-display prerelease, totaling 545,373,860 bytes. The complete production build, local browser checks and immutable CDN upload/readbacks are pending. Production deployment requires the owner's approval. Original acquisition files and the private archive are preserved in the separate acquisition checkout.
