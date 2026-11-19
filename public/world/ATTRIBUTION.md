@@ -62,15 +62,22 @@ dataset is added.
   works on an absolute logarithmic scale (`lightMetrics`), so narrowing the
   period dims the world rather than re-normalising it.
 
-On the sculpted globe the lights are drawn in WebGL. The place buttons remain
-in the DOM as 44 px targets, focus rings and labels, positioned by transform;
-the flat map and the no-WebGL fallback keep their visible DOM points.
+On the sculpted globe the lights are drawn in WebGL, on the surface, at the
+same point each place button is projected from. The buttons remain in the DOM
+as 44 px targets, focus rings and labels centred on their lights and positioned
+by transform; the flat map and the no-WebGL fallback keep their visible DOM
+points. If the coastline cannot be loaded, the sculpted globe shows a plain
+sphere with no lights behind the place-selector instruction.
 
 The canvas starts at up to two device pixels per CSS pixel. While the globe is
-turning, `createPacingWatch` samples frame pacing and steps down through
+turning by itself (auto-rotation, a centring turn, a coasting release or an
+eased zoom), `createPacingWatch` samples frame pacing and steps down through
 `QUALITY_TIERS` (density, fine engraving, then the dust field) if the renderer
-stays below roughly 27 frames per second. It never steps back up, and a steady
-30 fps cap is not treated as slow. `getMetrics()` reports `qualityTier`,
+stays below roughly 27 frames per second. Frames drawn because a pointer moved
+arrive at the pointer's pace and are not sampled. It never steps back up, and a
+steady 30 fps cap is not treated as slow. The flat map is drawn in 2D and keeps
+its own density on every tier: up to 1.25 device pixels per CSS pixel on narrow
+stages and 1.5 elsewhere. `getMetrics()` reports `qualityTier`,
 `pixelRatio` and `reliefBakeMs`; the host element mirrors the bake time and any
 tier change as `data-world-relief-bake-ms` and `data-world-quality-tier`.
 
@@ -84,10 +91,14 @@ empty for as long as its stage is changing height, which is every time a place
 is chosen or closed. `npm run test:world-browser` reads the drawing buffer
 during that change and fails on any empty frame.
 
-Zoom from buttons, keys and the wheel eases toward its goal; pinch follows the
-fingers exactly. A drag turns the globe by the angle that keeps the surface
-under the hand at the stage's current size, and a released drag keeps turning
-briefly and settles. Reduced motion removes the easing, the inertia, the
+Unlike the views described above, the signature globe takes the wheel while the
+pointer is over its disc. Zoom from buttons, keys and the wheel eases toward its
+goal, and keeps easing while wheel events are still arriving; pinch follows the
+fingers exactly. A sideways drag turns the globe by the angle that keeps the
+surface under the hand at the stage's current size; vertical turning keeps its
+earlier 0.7 gearing. A released drag keeps turning briefly and settles. Left
+alone, the globe turns at 0.0459 radians a second (one turn in about 137
+seconds) and resumes three seconds after a hand lets go. Reduced motion removes the easing, the inertia, the
 opening sequence and the ring's ripple, and jumps straight to the resting state.
 
 On a narrow stage the globe is sized to leave a lane at each side: a touch that

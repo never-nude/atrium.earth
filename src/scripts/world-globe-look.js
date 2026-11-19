@@ -21,6 +21,8 @@ const HALO_OUTER = 1.56;
 // Unit vectors toward each light, in view space (+x right, +y up, +z to the viewer).
 const KEY_DIRECTION = new THREE.Vector3(0.60, 0.56, 0.57).normalize();
 const RIM_DIRECTION = new THREE.Vector3(-0.78, -0.34, -0.52).normalize();
+// The selection ring is a plane; this is the way it faces before it is laid on the surface.
+const RING_FACING = new THREE.Vector3(0, 0, 1);
 // Surface colours are linear (lit, then encoded). Glow colours are display-referred:
 // they are added straight onto the page, so they skip the output transform.
 const colour = hex => new THREE.Color(hex);
@@ -86,9 +88,10 @@ const SURFACE_FRAGMENT = /* glsl */`
       a + k1 * u.x + k2 * u.y + k3 * u.z + k4 * u.x * u.y + k5 * u.y * u.z + k6 * u.z * u.x + k7 * u.x * u.y * u.z,
       du * vec3(k1 + k4 * u.y + k6 * u.z + k7 * u.y * u.z, k2 + k5 * u.z + k4 * u.x + k7 * u.z * u.x, k3 + k6 * u.x + k5 * u.y + k7 * u.x * u.y));
   }
-  // An antialiased hairline wherever the coordinate crosses an integer.
-  float hairline(float coordinate, float width) {
-    float distance = abs(fract(coordinate - 0.5) - 0.5) / max(fwidth(coordinate), 1e-5);
+  // An antialiased hairline wherever the coordinate crosses an integer. The footprint is
+  // how far the coordinate moves across one pixel.
+  float hairline(float coordinate, float footprint, float width) {
+    float distance = abs(fract(coordinate - 0.5) - 0.5) / max(footprint, 1e-5);
     return 1.0 - smoothstep(width - 0.5, width + 0.5, distance);
   }
 
@@ -142,9 +145,12 @@ const SURFACE_FRAGMENT = /* glsl */`
     waterline *= smoothstep(0.05, 0.14, shelf) * (1.0 - smoothstep(0.30, 0.55, crowd));
     sea += uInk * waterline * (0.026 + 0.062 * keyG) * uDetail;
 
-    // Engraved graticule, every thirty degrees.
-    float meridian = hairline(atan(n.x, n.z) * 1.9098593, 0.5) * (1.0 - smoothstep(0.90, 0.985, abs(n.y)));
-    float parallel = hairline(asin(clamp(n.y, -1.0, 1.0)) * 1.9098593, 0.5);
+    // Engraved graticule, every thirty degrees. Longitude jumps by a whole turn at the
+    // antimeridian, so its footprint comes from the direction itself, which has no seam.
+    float turn = (abs(n.z * dFdx(n.x) - n.x * dFdx(n.z)) + abs(n.z * dFdy(n.x) - n.x * dFdy(n.z))) / max(dot(n.xz, n.xz), 1e-6);
+    float meridian = hairline(atan(n.x, n.z) * 1.9098593, turn * 1.9098593, 0.5) * (1.0 - smoothstep(0.90, 0.985, abs(n.y)));
+    float latitude = asin(clamp(n.y, -1.0, 1.0)) * 1.9098593;
+    float parallel = hairline(latitude, fwidth(latitude), 0.5);
     float graticule = max(meridian, parallel);
     sea += uInk * graticule * (0.028 + 0.050 * keyG);
 
@@ -165,7 +171,8 @@ const SURFACE_FRAGMENT = /* glsl */`
     colour += mix(uRimColor * 0.30, uGild, smoothstep(0.08, 0.7, key)) * coast * 0.16;
 
     // Atmosphere on the limb, warm toward the key light.
-    float graze = 1.0 - max(dot(G, V), 0.0);
+    // Clamped at both ends: straight on, rounding can put the dot product a hair above one.
+    float graze = clamp(1.0 - dot(G, V), 0.0, 1.0);
     float fresnel = graze * graze * graze * sqrt(graze);
     float lit = smoothstep(-0.30, 0.70, dot(G, uKey));
     colour += mix(uRimColor * 0.20, uKeyColor * 0.15, lit) * fresnel;
@@ -437,7 +444,8 @@ export function createGlobeLook({ scene, earth, camera, places }) {
     uKey: { value: new THREE.Vector2(KEY_DIRECTION.x, KEY_DIRECTION.y).normalize() },
     uWarm: { value: glowColour('#f4dfae') }, uCool: { value: violet },
   };
-  // Only the band outside the silhouette is ever rasterised.
+  // Only a band around the silhouette is rasterised. It starts a little inside the limb,
+  // so the glow meets the sphere without a gap.
   const halo = new THREE.Mesh(own(new THREE.RingGeometry(HALO_INNER, HALO_OUTER, 96, 1)),
     own(new THREE.ShaderMaterial({ uniforms: haloUniforms, vertexShader: HALO_VERTEX, fragmentShader: HALO_FRAGMENT, depthTest: false, ...additive })));
   halo.renderOrder = -2; halo.frustumCulled = false; halo.visible = false;
@@ -472,8 +480,10 @@ export function createGlobeLook({ scene, earth, camera, places }) {
   const position = new Float32Array(count * 3), seed = new Float32Array(count);
   const dawn = new THREE.Vector3(0.7, 0.35, 0.6).normalize();
   places.forEach((place, i) => {
+    // Each light is drawn exactly at the caller's vector: the caller projects the same
+    // vector for the hit target, focus ring and label, so they cannot drift apart.
+    position.set([place.vector.x, place.vector.y, place.vector.z], i * 3);
     const unit = place.vector.clone().normalize();
-    position.set([unit.x, unit.y, unit.z], i * 3);
     seed[i] = random();
     // The lights come on from the key-lit east, like a room being lit.
     delay[i] = 0.15 + (1 - (unit.dot(dawn) * 0.5 + 0.5)) * 0.55 + random() * 0.4;
@@ -539,10 +549,12 @@ export function createGlobeLook({ scene, earth, camera, places }) {
   let settled = false;
   let sky = true;
   let stageDetail = 1, tierDetail = 1;
+  let bare = false;
   const outward = new THREE.Vector3();
 
   function show() {
-    for (const object of [surface, halo, glows, lights, beams]) object.visible = landReady;
+    for (const object of [surface, halo]) object.visible = landReady;
+    for (const object of [glows, lights, beams]) object.visible = landReady && !bare;
     stars.visible = landReady && sky;
   }
 
@@ -585,9 +597,19 @@ export function createGlobeLook({ scene, earth, camera, places }) {
         surfaceUniforms.uRelief.value = relief;
         surfaceUniforms.uHasLand.value = 1;
       }
-      landReady = true; settled = false;
+      landReady = true; bare = false; settled = false;
       show();
       return mask ? performance.now() - started : null;
+    },
+
+    /**
+     * The coastline could not be loaded. Show the plain sphere under the same light, with
+     * no lights on it: the caller offers no place to choose on the globe in that state.
+     */
+    showBare() {
+      if (landReady) return;
+      landReady = true; bare = true; settled = false;
+      show();
     },
 
     /** `countFor(id)` is the number of works; the chosen place turns violet and gains a ring. */
@@ -596,9 +618,12 @@ export function createGlobeLook({ scene, earth, camera, places }) {
       if (next !== chosen) {
         chosen = next;
         if (chosen >= 0) {
-          outward.fromArray(position, chosen * 3);
-          ring.position.copy(outward).multiplyScalar(1.004);
-          ring.lookAt(outward.multiplyScalar(2));
+          // The ring turns with the earth, so it is laid on the surface in the earth's own
+          // space. (lookAt would aim it at a point in the room and tilt it off the surface.)
+          ring.position.fromArray(position, chosen * 3);
+          outward.copy(ring.position).normalize();
+          ring.position.addScaledVector(outward, 0.004);
+          ring.quaternion.setFromUnitVectors(RING_FACING, outward);
           pulseUntil = clock + 4.4;
         }
       }
@@ -695,7 +720,7 @@ export function createGlobeLook({ scene, earth, camera, places }) {
       const wanted = chosen >= 0 ? 1 : 0;
       ringPresence = still ? wanted : approach(ringPresence, wanted, 7, seconds);
       ringUniforms.uPresence.value = ringPresence;
-      ring.visible = ringPresence > 0.003;
+      ring.visible = ringPresence > 0.003 && !bare;
       const pulsing = !still && chosen >= 0 && clock < pulseUntil;
       ringUniforms.uPulse.value = pulsing ? Math.min(1, (pulseUntil - clock) / 0.9) : 0;
       if (ringPresence !== wanted || pulsing) moving = true;

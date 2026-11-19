@@ -123,6 +123,22 @@ The owner asked this session to check the 390 × 844 fullscreen failure recorded
 - Change: `scripts/test-world-signature-browser.mjs` only. The fullscreen phase returns to all periods first if an earlier phase left a date filter. With it, all four stand-in cases pass, and so does the 1440 × 900 case with the functional phase in front. In the suite's own order that branch is not taken. Product code did not change.
 - Still not established: any WebKit result. The stand-in is Chromium at phone size.
 
+### Review fixes, auto-rotation and release coordination
+
+- The owner asked for the globe to turn a little sooner and 2% faster. It now resumes three seconds after a hand lets go (four before) and turns at 0.0459 radians a second (0.045 before).
+- An independent review of the first commit was started and then stopped early at the owner's request to limit its cost. Two of five reviewers finished; no finding went to a second verifier. Both reported the same four defects introduced by the first commit, plus two more, and each was reproduced on that commit and re-run after its fix in headless Chromium:
+  - The selection ring was aimed in the wrong space and showed as a tilted crescent (25–29° off the surface; now 0°).
+  - Lights were drawn on the surface but their targets sat 2.5% above it, so a click exactly on a light could open its neighbour (19 of 92 lights in the opening view; now 0).
+  - Wheel zoom stood still while wheel events kept arriving (0 movement during a 1.05 s stream; now it moves throughout).
+  - A slow, steady drag was read as a slow renderer and lowered the quality tier for the rest of the visit (now it stays on its tier).
+  - The flat map took its density from the WebGL tier (0.85 device px per CSS px; now 1.0 at DPR 1, as before this branch).
+  - With the coastline request failing, the stage was empty in Globe mode (now a plain sphere behind the message).
+- `scripts/world-globe-look.test.mjs` is new; its three tests fail on the first commit and pass now.
+- Validation actually performed on the fixed code (same container): `npm test` exit 0, experience suite 139 tests, 138 passed, 1 skipped for the same reason as before; `npm run build` exit 0, 8,839 pages, no untracked file left behind; package 24,759 files / 899,512,036 bytes; collection window and published-image checks passed; globe browser audit passed its two Chromium cases and both phone-size Chromium stand-ins with no empty resize frame, no error and no model request.
+- Still not established locally: any WebKit result, any real-GPU or phone frame rate, `test:browser`, `test:handling-browser`, `test:performance`.
+- Found by the review, already on `main`, not changed here: in Map mode on a touch screen a tap on a light never selects it (the place list works); a second finger resting outside the stage leaves the globe held; a hover label can stay visible after the pointer leaves in one step; Reset exploration jumps rather than turns. Introduced here and not fixed: at phone width a hover or focus label of the northernmost lights can sit under the floating Globe/Map and Reset controls.
+- Release: on 2026-11-19 the owner designated this session release coordinator for [PR #117](https://github.com/never-nude/atrium.earth/pull/117): run the full remote review, then merge and deploy if it passes. When this entry was committed the remote review had not run, and nothing was merged or deployed. `main` at `d220a851` ([PR #115](https://github.com/never-nude/atrium.earth/pull/115)) is itself not live: its push deploy failed on one aborted model request in the page suite and the scheduled deploy failed at the live model address gate, so a release of this branch also publishes PR #115. The outcome is recorded on PR #117 and [Issue #109](https://github.com/never-nude/atrium.earth/issues/109), not here.
+
 ## 2026-11-19 — JPEG siblings for 30 figure studies (Claude Code)
 
 Task / owner / branch: the owner asked this Claude Code cloud session to resolve the 30 JPEG thumbnails that every build left untracked. It is its own commit on `claude/zen-lamport-u8qk48`, independent of the globe change, and can be cherry-picked into a separate pull request.

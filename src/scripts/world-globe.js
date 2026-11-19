@@ -1,10 +1,14 @@
 import * as THREE from 'three';
 import { shortestLongitudeDelta, globeTurnEase, pointOnGlobe } from '../lib/world-globe-motion.mjs';
-import { QUALITY_TIERS, approach, createPacingWatch, startingTier } from '../lib/world-globe-relief.mjs';
+import { QUALITY_TIERS, approach, createPacingWatch, easingStep, startingTier } from '../lib/world-globe-relief.mjs';
 import { createGlobeLook } from './world-globe-look.js';
 
 const RAD = Math.PI / 180;
 const OPENING = { x: 0.16, y: -0.32 };
+// The unattended turn, in radians a second, and how long the sculpted globe waits after a
+// hand lets go before it turns again.
+const AUTO_ROTATE_SPEED = 0.0459;
+const AUTO_ROTATE_RESUME_MS = 3000;
 const MARKER_SIZE = 32;
 const clamp = (n, low, high) => Math.max(low, Math.min(high, n));
 const safeColor = value => /^#(?:[a-f\d]{3}|[a-f\d]{6})$/i.test(value || '') ? value : '#39e4ff';
@@ -153,7 +157,10 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
       || !Number.isFinite(place.lat) || !Number.isFinite(place.lon)
       || Math.abs(place.lat) > 90 || Math.abs(place.lon) > 180
       || !['country', 'region'].includes(place.precision)) continue;
-    unique.set(place.id, { ...place, color: signature ? '#e9d17e' : safeColor(place.color), vector: worldPosition(place.lat, place.lon, 1.025) });
+    // The sculpted globe draws each light on the surface at this vector and projects the same
+    // vector for its hit target, so a pointer on a light is on that light's target. The legacy
+    // views float their DOM markers a little above the sphere.
+    unique.set(place.id, { ...place, color: signature ? '#e9d17e' : safeColor(place.color), vector: worldPosition(place.lat, place.lon, signature ? 1 : 1.025) });
   }
   const entries = [...unique.values()];
   let counts = Object.create(null);
@@ -180,6 +187,9 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
   const pacing = signature ? createPacingWatch() : null;
   let dotsHidden = null;
   let hoveredId = null;
+  // True when the previous frame asked for this one, so the gap between them is the renderer's own pace.
+  let chained = false;
+  let flatPixelRatio = 1;
   let autoRotateRequested = Boolean(autoRotate ?? signature);
   let previousFrameTime;
   let originPoints;
@@ -421,7 +431,7 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
       return;
     }
     flatFailed = false;
-    ctx.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+    ctx.setTransform(flatPixelRatio, 0, 0, flatPixelRatio, 0, 0);
     ctx.clearRect(0, 0, width, height);
     const box = mapBox();
     ctx.save();
@@ -434,7 +444,7 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
     ctx.strokeStyle = signature ? '#f5f2e90f' : '#29517466'; ctx.lineWidth = 0.6;
     for (let lon = -180; lon <= 180; lon += 30) { const x = box.x + (lon + 180) / 360 * box.width; ctx.beginPath(); ctx.moveTo(x, box.y); ctx.lineTo(x, box.y + box.height); ctx.stroke(); }
     for (let lat = -90; lat <= 90; lat += 30) { const y = box.y + (90 - lat) / 180 * box.height; ctx.beginPath(); ctx.moveTo(box.x, y); ctx.lineTo(box.x + box.width, y); ctx.stroke(); }
-    paintLand(ctx, polygons, box, !signature, invitation, signature, pixelRatio);
+    paintLand(ctx, polygons, box, !signature, invitation, signature, flatPixelRatio);
     ctx.restore();
     if (invitation) for (const place of entries) {
       if (!countFor(place.id)) continue;
@@ -503,6 +513,7 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
     const elapsed = previousFrameTime === undefined ? 0 : Math.max(0, (now - previousFrameTime) / 1000);
     if (!signature && isAutoRotating() && !tween && previousFrameTime !== undefined && elapsed < 1 / 30) { schedule(); return; }
     previousFrameTime = now;
+    const paced = chained; chained = false;
     if (tween) {
       const p = clamp((now - tween.start) / tween.duration, 0, 1);
       const eased = signature ? globeTurnEase(p) : p * p * (3 - 2 * p);
@@ -511,20 +522,24 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
       if (p === 1) tween = null;
     } else if (spin && !drag && !pinch && !handActive) {
       // A released globe keeps turning and settles, like something with weight.
-      const step = Math.min(elapsed, 0.05);
+      const step = easingStep(elapsed);
       rotation.y += spin.y * step;
       rotation.x = clamp(rotation.x + spin.x * step, -1.48, 1.48);
       const decay = Math.exp(-step * 3.4);
       spin.x *= decay; spin.y *= decay;
       if (Math.hypot(spin.x, spin.y) < 0.03) spin = null;
-    } else if (shouldRotate() && !drag && !pinch) rotation.y += Math.min(elapsed, 0.08) * 0.045;
+    } else if (shouldRotate() && !drag && !pinch) rotation.y += Math.min(elapsed, 0.08) * AUTO_ROTATE_SPEED;
     if (zoom !== zoomGoal) {
-      zoom = approach(zoom, zoomGoal, 13, Math.min(elapsed, 0.05));
+      // A wheel or a held key restarts the frame clock with every event. The zoom still
+      // takes a step on each frame, or it would stand still until the input stopped.
+      zoom = approach(zoom, zoomGoal, 13, easingStep(elapsed));
       updateCamera();
     }
     syncMode();
     let lookMoving = false;
-    if (look && mode === 'globe' && renderer && tier < QUALITY_TIERS.length - 1) {
+    // Only frames the globe asked for itself say anything about the renderer. A frame drawn
+    // because a pointer moved arrives at the pointer's pace, however fast the renderer is.
+    if (look && mode === 'globe' && renderer && paced && tier < QUALITY_TIERS.length - 1) {
       const drop = pacing.sample(elapsed);
       if (drop) {
         tier = Math.min(QUALITY_TIERS.length - 1, tier + drop);
@@ -552,11 +567,11 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
         try { onReady?.({ mode, webgl: Boolean(renderer), landLoaded, presentation, playing: isAutoRotating(), firstFrameAtMs: metrics.firstFrameAtMs, firstFrameMs: metrics.firstFrameMs }); } catch (error) { reportError(error); }
       }
     }
-    if (tween || spin || zoom !== zoomGoal || lookMoving || shouldRotate()) schedule();
+    if (tween || spin || zoom !== zoomGoal || lookMoving || shouldRotate()) { chained = true; schedule(); }
   }
   function schedule() { if (!destroyed && !pageSuspended && visible && !document.hidden && !raf) raf = requestAnimationFrame(render); }
   function finishMotion() {
-    previousFrameTime = undefined; spin = null;
+    previousFrameTime = undefined; spin = null; chained = false;
     if (tween) { Object.assign(rotation, tween.to); tween = null; }
     if (zoom !== zoomGoal) { zoom = zoomGoal; updateCamera(); }
   }
@@ -612,10 +627,13 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
     // at two device pixels per CSS pixel and gives density back if the renderer cannot keep up.
     const pixelLimit = signature ? QUALITY_TIERS[tier].pixelRatio : 1.5;
     const nextPixelRatio = Math.min(devicePixelRatio || 1, pixelLimit);
-    if (signature && width === nextWidth && height === nextHeight && pixelRatio === nextPixelRatio) return;
+    // The flat map is drawn in 2D and has no fill rate to save: it keeps its own density,
+    // whichever tier the globe has settled on.
+    const nextFlatRatio = Math.min(devicePixelRatio || 1, signature && Math.min(innerWidth, nextWidth) <= 760 ? 1.25 : 1.5);
+    if (signature && width === nextWidth && height === nextHeight && pixelRatio === nextPixelRatio && flatPixelRatio === nextFlatRatio) return;
     const pixelRatioChanged = pixelRatio !== nextPixelRatio;
-    width = nextWidth; height = nextHeight; pixelRatio = nextPixelRatio;
-    flat.width = Math.round(width * pixelRatio); flat.height = Math.round(height * pixelRatio);
+    width = nextWidth; height = nextHeight; pixelRatio = nextPixelRatio; flatPixelRatio = nextFlatRatio;
+    flat.width = Math.round(width * flatPixelRatio); flat.height = Math.round(height * flatPixelRatio);
     if (renderer) {
       if (!signature || pixelRatioChanged) renderer.setPixelRatio(pixelRatio);
       renderer.setSize(width, height, false);
@@ -650,12 +668,12 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
   function pauseForHand() {
     if (!signature) return;
     clearTimeout(resumeTimer);
-    resumeAt = performance.now() + 4000;
+    resumeAt = performance.now() + AUTO_ROTATE_RESUME_MS;
     previousFrameTime = undefined;
     resumeTimer = setTimeout(() => {
       if (destroyed) return;
       previousFrameTime = undefined; schedule();
-    }, 4000);
+    }, AUTO_ROTATE_RESUME_MS);
   }
   function nearestMarker(clientX, clientY) {
     const bounds = host.getBoundingClientRect();
@@ -1027,6 +1045,8 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
     } catch (error) {
       if (destroyed || signal.aborted) return;
       landFailed = true; fallback.textContent = 'The map is unavailable. Use the place selector to explore.';
+      // Without its coastline the sculpted globe is still a plain sphere behind the message.
+      look?.showBare();
       reportError(error); schedule();
     }
   })();

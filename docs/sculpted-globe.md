@@ -26,10 +26,13 @@ behaviour and data.
   about 543 px across (483 px before) with its tools above the fold; on a 390 px
   phone about 313 px (299 px before) in a stage that is 36 px shorter overall.
   Choosing a place returns the tools to the page flow beside the works, as before.
-- **It answers the hand.** A drag turns the globe by the angle that keeps the
-  surface under the pointer at the current size, a released drag coasts and
-  settles, and zoom from buttons, keys and the wheel eases. Reduced motion
-  removes all of that.
+- **It answers the hand.** A sideways drag turns the globe by the angle that
+  keeps the surface under the pointer at the current size (vertical turning
+  keeps its earlier 0.7 gearing), a released drag coasts and settles, and zoom
+  from buttons, keys and the wheel eases. Reduced motion removes all of that.
+- **It turns a little sooner and a touch faster**, at the owner's request: it
+  resumes three seconds after a hand lets go (four before) and turns 2% faster
+  (0.0459 radians a second, 0.045 before).
 - **The flat map** uses the same bronze and lacquer. It keeps its DOM points.
 
 The relief and waterlines are a stylised emboss of the bundled Natural Earth
@@ -58,6 +61,50 @@ Reading the drawing buffer from a later observer in the same frame, on a 1440 ×
 The sculpted globe now draws again inside the resize. `npm run test:world-browser`
 has a final phase, `stage resize never paints an empty globe`, that fails on
 `main` and passes here. It runs after every recorded timing.
+
+## Defects an independent review found, now fixed
+
+Two reviewers read the first commit of this branch separately and reported the
+same four defects, plus two more. Each was reproduced on that commit and
+re-run after the fix, in headless Chromium on a software renderer:
+
+| Defect in the first commit | Before | After |
+| --- | --- | --- |
+| The selection ring was aimed with `lookAt`, which works in the room's space, not the turning earth's, so it showed as a tilted crescent | tilted 25–29°, 30 of 72 rim points under the surface | 0°, 0 of 72 |
+| Lights were drawn on the surface but their targets sat 2.5% above it, so a click exactly on a light could open its neighbour | 19 of 92 lights in the opening view; United Kingdom opened England | 0 of 92 |
+| Wheel zoom stood still while wheel events kept arriving, then jumped | moved 0 during a 1.05 s stream | moved throughout |
+| A slow, steady drag was read as a slow renderer and lowered quality for the rest of the visit | two to three tiers down | stays on its tier |
+| The flat map took its density from the WebGL quality tier | 0.85 device px per CSS px | 1.0 at DPR 1, as before this branch |
+| With the coastline request failing, the stage was empty in Globe mode | blank canvas | plain sphere behind the message |
+
+Smaller ones fixed with them: the 180° meridian was drawn heavier than the
+others, one square root could be given a value a hair below zero, and a comment
+about the halo was false.
+
+`scripts/world-globe-look.test.mjs` is new. Its three tests fail on the first
+commit and pass now: the ring lies on the surface however far the globe has
+turned, each light is drawn at the vector its target is projected from, and the
+bare sphere shows nothing that looks like a choice.
+
+The review was stopped early at the owner's request to limit its cost. Two of
+its five reviewers finished; the layout, test-suite and documentation reviewers
+and the two visual critics did not, and no finding was sent to a second
+verifier. Each fix above was instead reproduced and re-run directly.
+
+### Found by the review, already on `main`, not changed here
+
+- In Map mode on a touch screen, a tap on a light never selects it: every
+  page-owned touch suppresses the click that follows. The place list works.
+- If a second finger rests outside the stage while the globe is turned, the
+  globe stays held after both lift and the next tap is swallowed.
+- A hover label can stay visible when the pointer leaves the stage in one step.
+- Reset exploration jumps rather than turns.
+
+### Introduced here, not fixed
+
+- At phone width the hover or focus label of the northernmost lights can sit
+  under the floating Globe/Map and Reset controls. A tap is unaffected: it
+  selects, and the controls then return to the page flow.
 
 ## Rendering cost
 
@@ -143,6 +190,22 @@ renderer. Each line is the first attempt unless it says otherwise.
 - The resize defect was found in the first build's audit: its fullscreen
   screenshot showed an empty canvas although both desktop cases had passed.
 
+### After the review fixes
+
+The same container, on the fixed code:
+
+- `npm test`: exit 0. Experience suite 139 tests: 138 passed, the same one
+  skipped. Four are new with the fixes.
+- `npm run build`: 8,839 pages, exit 0, and it leaves no untracked file.
+- Package: 24,759 files / 899,512,036 bytes. Collection window and
+  published-image checks passed.
+- Globe browser audit, same adapted copy: both Chromium cases of the suite
+  passed, and so did both phone-size Chromium stand-ins. No resize frame was
+  painted empty (0 of 11, 0 of 1, 0 of 12, 0 of 1), and there were no console,
+  page or asset errors and no model requests.
+- Each defect in the table above was reproduced on the first commit and re-run
+  on the fixed code with the reviewers' own scripts.
+
 ## The stand-in failure that was not a defect
 
 The first Chromium stand-in for the 390 × 844 case failed in `whole-world
@@ -182,6 +245,7 @@ nothing about WebKit, which still has not run.
 - Any WebKit result, any physical phone, and any real-GPU frame rate.
 - The 64-case page suite and the sculpture gesture suite (`test:browser`,
   `test:handling-browser`): not run here.
-- Remote review and both live CDN checks: not run, under Issue 109. The head
-  commit carries `[skip ci]` so that opening the pull request does not start a
-  sweep. Those checks are unrun, not green.
+- Remote review and both live CDN checks: not run at the time of writing. The
+  owner has since designated this session release coordinator for this pull
+  request, so the remote review runs on the head that carries these notes; its
+  result is recorded on the pull request, not here.

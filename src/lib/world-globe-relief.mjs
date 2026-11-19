@@ -177,6 +177,15 @@ export function bakeRelief(mask, width, height, { bevel = 1, shelf = 5 } = {}) {
   return { data, width: w, height: h };
 }
 
+/**
+ * Seconds by which an eased value advances this frame. A frame clock that was just
+ * restarted reports no elapsed time; a nominal frame then keeps the motion going, so
+ * input that restarts the clock on every frame cannot hold it still.
+ */
+export function easingStep(elapsed, longest = 0.05) {
+  return elapsed > 0 ? Math.min(elapsed, longest) : 1 / 60;
+}
+
 /** Rendering tiers, best first. A slow renderer steps down and never back up. */
 export const QUALITY_TIERS = Object.freeze([
   Object.freeze({ pixelRatio: 2, detail: 1, sky: true }),
@@ -191,7 +200,7 @@ export function startingTier(rendererName) {
 }
 
 /**
- * Watches frame pacing while the globe is turning. `sample(seconds)` returns
+ * Watches frame pacing while the globe is turning by itself. `sample(seconds)` returns
  * how many tiers to drop (0, 1 or 2) once a full window of frames was mostly
  * slow. The threshold sits below 30 frames a second on purpose: a browser that
  * caps animation at 30 (a phone saving power) is steady, not struggling.

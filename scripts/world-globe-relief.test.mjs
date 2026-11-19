@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { LIGHT_REFERENCE_COUNT, QUALITY_TIERS, RELIEF_SLOPE_RANGE, RELIEF_WIDTH, approach, bakeRelief, blurField, createPacingWatch, halveField, lightMetrics, softenMask, startingTier } from '../src/lib/world-globe-relief.mjs';
+import { LIGHT_REFERENCE_COUNT, QUALITY_TIERS, RELIEF_SLOPE_RANGE, RELIEF_WIDTH, approach, bakeRelief, blurField, createPacingWatch, easingStep, halveField, lightMetrics, softenMask, startingTier } from '../src/lib/world-globe-relief.mjs';
 
 test('lights grow with the number of works and vanish at zero', () => {
   assert.deepEqual(lightMetrics(0), { size: 0, glow: 0, beam: 0 });
@@ -183,4 +183,15 @@ test('the pacing watch drops a tier for sustained slow frames only', () => {
   assert.equal(paused.sample(1 / 20), 1);
   paused.reset();
   assert.equal(run(paused, 1 / 20, 35), 0);
+});
+
+test('an eased value keeps moving when input restarts the frame clock on every frame', () => {
+  assert.equal(easingStep(0), 1 / 60);
+  assert.equal(easingStep(undefined), 1 / 60);
+  assert.equal(easingStep(0.02), 0.02);
+  assert.equal(easingStep(0.4), 0.05);
+  // A wheel stream that restarts the clock before each of 45 frames still reaches its goal.
+  let zoom = 1;
+  for (let frame = 0; frame < 45; frame++) zoom = approach(zoom, 0.65, 13, easingStep(0));
+  assert.equal(zoom, 0.65);
 });
