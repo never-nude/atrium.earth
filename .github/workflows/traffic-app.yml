@@ -1,0 +1,26 @@
+name: Build Atrium Traffic
+
+on:
+  push:
+    paths:
+      - apps/AtriumTraffic/**
+      - .github/workflows/traffic-app.yml
+
+permissions:
+  contents: read
+
+concurrency:
+  group: traffic-app-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: macos-15
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: apps/AtriumTraffic
+      - name: Build the macOS app bundle
+        working-directory: apps/AtriumTraffic
+        run: ./scripts/build-app.sh
