@@ -19,6 +19,7 @@ test('image-only records require exact local bytes and explicit source/permissio
   try {
     assert.equal(await verifyCatalogImagePreview(slug, image, { root, work }), true);
     await assert.rejects(() => verifyCatalogImagePreview(slug, image, { root, work, model: { url: '/missing.glb' } }), /Both model and image/);
+    await assert.rejects(() => verifyCatalogImagePreview(slug, image, { root, work, model: null }), /Both model and image/);
     for (const field of ['source_url', 'source_record_url', 'license_url', 'scan_author', 'license', 'attribution']) {
       await assert.rejects(() => verifyCatalogImagePreview(slug, image, { root, work: { ...work, [field]: '' } }), /Missing image/);
     }

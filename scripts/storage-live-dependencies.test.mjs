@@ -53,6 +53,76 @@ try {
   const snapshot = await collectStorageLiveDependencies({ repoRoot: repo });
   assert.equal(snapshot.worktreeRoots.length, 2);
   assert.equal(snapshot.remoteRequirements.length, 2);
+  // The older registered checkout has no image manifest. An explicit image-only
+  // binding in the current checkout must work without inventing a model binding.
+  const imageSlug = 'piece-image', imageUrl = `/images/artworks/${imageSlug}/image.png`;
+  const imageBytes = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+jfZkAAAAASUVORK5CYII=', 'base64');
+  const imageBinding = { url: imageUrl, bytes: imageBytes.length, sha256: hash(imageBytes) };
+  const withImage = [...catalog, { slug: imageSlug }];
+  const imageManifest = binding => put(repo, 'src/data/image-previews.json', JSON.stringify({ [imageSlug]: binding }));
+  await put(repo, 'src/data/catalog.json', JSON.stringify(withImage));
+  await imageManifest(imageBinding);
+  await put(repo, `public${imageUrl}`, imageBytes);
+  const imageSnapshot = await collectStorageLiveDependencies({ repoRoot: repo });
+  const imagePiece = imageSnapshot.pieces.find(piece => piece.repoRoot === repo && piece.slug === imageSlug);
+  assert.equal(imagePiece.previewKind, 'image');
+  assert.equal(imagePiece.localPath, path.join(repo, `public${imageUrl}`));
+  assert.equal(imageSnapshot.remoteRequirements.length, 2, 'Images do not replace or add remote GLB requirements');
+  assert.ok(imageSnapshot.protectedDependencies.some(dependency => dependency.path === imagePiece.localPath && dependency.kind === 'local-preview'));
+  assert.equal(imageSnapshot.worktreeRoots.length, 2, 'Old worktrees may omit the image manifest');
+  count++;
+  const imageCandidate = { ...base, candidateId: 'image', sourceRootId: 'repo', relativePath: `public${imageUrl}`,
+    absolutePath: imagePiece.localPath, sha256: imageBinding.sha256, bytes: imageBinding.bytes,
+    assetRole: 'derivative-other', pieces: [imageSlug] };
+  await block(imageCandidate, {}, 'local-runtime-preview');
+  await block(imageCandidate, {}, 'public-site-asset');
+  // A public image alias also protects the actual local bytes it references.
+  await put(archive, 'photograph.png', imageBytes);
+  await rm(imagePiece.localPath);
+  await symlink(path.join(archive, 'photograph.png'), imagePiece.localPath);
+  const aliasSnapshot = await collectStorageLiveDependencies({ repoRoot: repo });
+  assert.ok(aliasSnapshot.protectedDependencies.some(dependency => dependency.path === path.join(archive, 'photograph.png') && dependency.kind === 'local-preview-alias'));
+  count++;
+  await block({ ...imageCandidate, sourceRootId: 'archive', relativePath: 'photograph.png', absolutePath: path.join(archive, 'photograph.png'), assetRole: 'provider-original' }, {}, 'local-runtime-preview');
+  await rm(imagePiece.localPath);
+  await put(repo, `public${imageUrl}`, imageBytes);
+  const rejectDiscovery = async reason => {
+    await assert.rejects(collectStorageLiveDependencies({ repoRoot: repo }), reason);
+    count++;
+  };
+  for (const malformed of [null, {}, { ...imageBinding, url: '/images/artworks/another-piece/image.png' },
+    { ...imageBinding, url: `${imageUrl}?download=1` }, { ...imageBinding, url: `/images/artworks/${imageSlug}/../image.png` },
+    { ...imageBinding, url: `https://example.invalid${imageUrl}` }, { ...imageBinding, url: `/models/previews/${imageSlug}/preview.glb` },
+    { ...imageBinding, bytes: 0 }, { ...imageBinding, bytes: 1.5 }, { ...imageBinding, sha256: 'short' }]) {
+    await imageManifest(malformed);
+    await rejectDiscovery(/Invalid image preview binding/);
+  }
+  await imageManifest({ ...imageBinding, bytes: imageBinding.bytes + 1 });
+  await rejectDiscovery(/Image preview byte count mismatch/);
+  await imageManifest({ ...imageBinding, sha256: '0'.repeat(64) });
+  await rejectDiscovery(/Image preview SHA256 mismatch/);
+  await imageManifest(imageBinding);
+  await put(repo, `public${imageUrl}`, Buffer.alloc(imageBytes.length));
+  await rejectDiscovery(/Image preview SHA256 mismatch/);
+  await rm(imagePiece.localPath);
+  await rejectDiscovery(/Missing local image preview/);
+  await put(repo, `public${imageUrl}`, imageBytes);
+  await put(repo, 'src/data/previews.json', JSON.stringify({ ...previews, [imageSlug]: { url: '/missing.glb', bytes: imageBytes.length } }));
+  await rejectDiscovery(/Conflicting model\/image preview bindings/);
+  await put(repo, 'src/data/previews.json', JSON.stringify({ ...previews, [imageSlug]: null }));
+  await rejectDiscovery(/Conflicting model\/image preview bindings/);
+  await put(repo, 'src/data/previews.json', JSON.stringify(previews));
+  await put(repo, 'src/data/image-previews.json', '{}');
+  await rejectDiscovery(/Unsupported\/missing live preview: piece-image/);
+  await imageManifest(imageBinding);
+  const missingModel = { ...previews }; delete missingModel['piece-remote'];
+  await put(repo, 'src/data/previews.json', JSON.stringify(missingModel));
+  await rejectDiscovery(/Unsupported\/missing live preview: piece-remote/);
+  await put(repo, 'src/data/previews.json', JSON.stringify(previews));
+  await put(repo, 'src/data/image-previews.json', '[]');
+  await rejectDiscovery(/Invalid catalog\/preview data/);
+  await put(repo, 'src/data/catalog.json', JSON.stringify(catalog));
+  await rm(path.join(repo, 'src/data/image-previews.json'));
   const allowed = await run(); assert.equal(allowed.allowed.length, 1); assert.equal(allowed.results[0].offlineRestoreRequired, true); count++;
   await block(base, { verifiedBackups: [] }, 'backup-full-byte');
   await block(base, { verifiedBackups: [{ ...backup(base), method: 'metadata-size' }] }, 'backup-full-byte');

@@ -6,7 +6,7 @@ import sharp from 'sharp';
 // An image record is an explicit alternative to a model, never a missing-model
 // exception. Bind it to the exact local image, source, creator and permission.
 export async function verifyCatalogImagePreview(slug, image, { root, model, work }) {
-  if (model) throw new Error('Both model and image previews are configured');
+  if (model !== undefined) throw new Error('Both model and image previews are configured');
   const prefix = `/images/artworks/${slug}/`;
   if (!image || !image.url?.startsWith(prefix)
       || !/^image\.(?:jpg|png|webp)$/.test(image.url.slice(prefix.length))
