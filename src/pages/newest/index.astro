@@ -11,8 +11,8 @@ const defaultSort = 'newest';
 const picks = sortWorks(curatedRecentWorks, defaultSort);
 const latestImport = sortWorks(newestWorks.filter(work => !pickedSlugs.has(work.slug)), defaultSort);
 const description = hasPicks
-  ? `Explore ${curatedRecentWorks.length} picks from recent additions and browse the latest arrivals in 3D.`
-  : `Explore the ${newestWorks.length} most recently added works in Atrium, each in 3D.`;
+  ? `Explore ${curatedRecentWorks.length} picks from recent additions and browse the latest arrivals.`
+  : `Explore the ${newestWorks.length} most recently added works in Atrium.`;
 ---
 <V3Layout title="Newest Additions" description={description} image={(curatedRecentWorks[0] ?? newestWorks[0])?.thumbnailImage}>
   <section class="v3-page-hero v3-additions-hero" aria-labelledby="additions-title">
@@ -40,7 +40,7 @@ const description = hasPicks
     <section class="v3-additions-works" aria-labelledby="recent-works-title">
       <div class="v3-additions-count">
         <h2 id="recent-works-title">{hasPicks ? 'More from the latest import' : `${latestImport.length} recent ${latestImport.length === 1 ? 'work' : 'works'}`}</h2>
-        <span>Explore in 3D</span>
+        <span>Explore the works</span>
       </div>
       <div class="v3-grid" data-additions-grid>{latestImport.map((work, i) => <V3WorkCard work={work} eager={!hasPicks && i < 4} />)}</div>
     </section>

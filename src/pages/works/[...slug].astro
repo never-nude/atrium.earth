@@ -47,7 +47,7 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
 
 <V3Layout
   title={work.title}
-  description={`${work.title}${work.maker ? ` by ${work.maker}` : ''}. Explore the sculpture in 3D.`}
+  description={`${work.title}${work.maker ? ` by ${work.maker}` : ''}. ${work.hasPreview ? 'Explore the sculpture in 3D.' : 'View the sculpture and its collection record.'}`}
   image={socialImage}
   immersive={true}
 >
@@ -61,7 +61,7 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
       glb={withBase(work.modelGlb)}
       modelBytes={work.modelBytes}
       startBeforeStill={isWithinInitialPreviewBudget(work.modelBytes)}
-      poster={withBase(work.thumbnailImage)}
+      poster={withBase(work.hasPreview ? work.thumbnailImage : work.posterImage)}
       title={work.title}
       hud={false}
       immersive={true}
@@ -74,7 +74,7 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
       spatialLabel={work.spatialAccess.label}
       spatialSizeLabel={work.spatialAccess.sizeLabel}
       spatialDefaultMaxExtentMeters={work.spatialAccess.defaultMaxExtentMeters}
-      spatialUnavailableNote={work.spatialAccess.enabled ? undefined : work.spatialAccess.note}
+      spatialUnavailableNote={work.hasPreview && !work.spatialAccess.enabled ? work.spatialAccess.note : undefined}
       spatialReference={work.spatialAccess.reference}
       displaySupport={work.displaySupport}
       spatialNote={work.spatialAccess.verified ? `${work.spatialAccess.sizeLabel}. ${work.spatialNote}` : work.spatialAccess.note}
@@ -168,10 +168,15 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
     }
   </script>
 
+  {work.context && <section class="work-disclosure work-context" aria-label="About this work">
+    <p>{work.context}</p>
+    <p class="work-context-sources">Sources: {work.contextSources.map((source, index) => <>{index > 0 && ' · '}<a href={source.url}>{source.label} ↗</a></>)}</p>
+  </section>}
+
   <details id="object-record" class="work-disclosure">
     <summary>Details &amp; sources</summary>
     <dl class="v3-facts">
-      <div id="size-verification" tabindex="-1"><dt>AR / VR</dt><dd><strong class="v3-dimension-status" data-dimension-status={work.spatialAccess.status}>{work.spatialAccess.label}{work.spatialAccess.enabled && ` · ${work.spatialAccess.sizeLabel}`}</strong>. {work.spatialAccess.note}{work.spatialAccess.status === 'approximate' && work.spatialAccess.sourceText && <small class="v3-estimate-evidence">Listed dimensions / description: {work.spatialAccess.sourceText}{work.spatialAccess.sourceUrl && <> <a href={work.spatialAccess.sourceUrl}>Source ↗</a></>}</small>}</dd></div>
+      {work.hasPreview && <div id="size-verification" tabindex="-1"><dt>AR / VR</dt><dd><strong class="v3-dimension-status" data-dimension-status={work.spatialAccess.status}>{work.spatialAccess.label}{work.spatialAccess.enabled && ` · ${work.spatialAccess.sizeLabel}`}</strong>. {work.spatialAccess.note}{work.spatialAccess.status === 'approximate' && work.spatialAccess.sourceText && <small class="v3-estimate-evidence">Listed dimensions / description: {work.spatialAccess.sourceText}{work.spatialAccess.sourceUrl && <> <a href={work.spatialAccess.sourceUrl}>Source ↗</a></>}</small>}</dd></div>}
       {facts.map(([label, value]) => <div><dt>{label}</dt><dd>{label === 'Dimensions'
         ? <DimensionValue value={work.dimensions} note={work.dimensionsNote} sourceUrl={work.dimensionsSourceUrl} />
         : value}</dd></div>)}
@@ -179,14 +184,14 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
       {work.relatedSourceRecordUrls.filter((url) => url !== work.sourceRecordUrl).map((url, index) => (
         <div><dt>Additional record</dt><dd><a href={url}>Collection record {index + 2} ↗</a></dd></div>
       ))}
-      {work.sourceUrl && <div><dt>3D source</dt><dd><a href={work.sourceUrl}>{sourceLabel} ↗</a></dd></div>}
-      {work.scanSource && <div><dt>Model / capture</dt><dd>{work.scanSource}</dd></div>}
-      {work.scanAuthor && <div><dt>Captured by</dt><dd>{work.scanAuthor}</dd></div>}
+      {work.sourceUrl && <div><dt>{work.hasPreview ? '3D source' : 'Image source'}</dt><dd><a href={work.sourceUrl}>{sourceLabel} ↗</a></dd></div>}
+      {work.scanSource && <div><dt>{work.hasPreview ? 'Model / capture' : 'Image'}</dt><dd>{work.scanSource}</dd></div>}
+      {work.scanAuthor && <div><dt>{work.hasPreview ? 'Captured by' : 'Image by'}</dt><dd>{work.scanAuthor}</dd></div>}
       {work.creditLine && <div><dt>Credit</dt><dd>{work.creditLine}</dd></div>}
       {work.rights && !/review pending/i.test(work.rights) && (
         <div>
           <dt>Rights</dt>
-          <dd>{work.licenseUrl ? <a href={work.licenseUrl} rel="license">3D scan: {work.rights} ↗</a> : work.rights}</dd>
+          <dd>{work.licenseUrl ? <a href={work.licenseUrl} rel="license">{work.hasPreview ? '3D scan' : 'Image'}: {work.rights} ↗</a> : work.rights}</dd>
         </div>
       )}
       {work.aiTrainingRestricted && <div><dt>AI use</dt><dd>Source marked NoAI</dd></div>}
@@ -221,6 +226,10 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
   .work-title-line [data-work-save-slot] { flex: none; }
   .work-title-line :global(.studio-save--object) { position: static; margin: 0; }
   .work-disclosure { margin: 0 var(--v3-pad); border-top: 1px solid var(--v3-line); scroll-margin-top: 88px; }
+  .work-context { padding: 24px 0; }
+  .work-context p { max-width: 75ch; font-size: 16px; line-height: 1.7; }
+  .work-context .work-context-sources { margin-top: 12px; font-size: 12px; color: var(--v3-muted); }
+  .work-context a { display: inline-block; min-height: 44px; padding: 12px 0; text-underline-offset: 4px; }
   .work-disclosure > summary { display: flex; align-items: center; justify-content: space-between; min-height: 56px; cursor: pointer; font-weight: 600; list-style: none; }
   .work-disclosure > summary::-webkit-details-marker { display: none; }
   .work-disclosure > summary::after { content: '+'; }

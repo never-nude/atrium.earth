@@ -3,6 +3,7 @@ import { dirname, join, resolve } from 'node:path';
 import sharp from 'sharp';
 import { removeStudioMatte } from './lib/artwork-preview-matte.mjs';
 import viewerStills from '../src/data/viewer-stills.json' with { type: 'json' };
+import imagePreviews from '../src/data/image-previews.json' with { type: 'json' };
 
 const source = resolve(process.argv[2] ?? 'dist');
 const output = resolve(process.argv[3] ?? source);
@@ -25,7 +26,12 @@ await Promise.all(Array.from({ length: Math.min(4, files.length) }, async () => 
     const temporary = destination + '.tmp';
     await mkdir(dirname(destination), { recursive: true });
 
-    if (exactStills.has(slug)) {
+    if (Object.hasOwn(imagePreviews, slug)) {
+      // Museum/photographer images retain their original background and framing.
+      if (original !== destination) await copyFile(original, destination);
+      bytes += (await stat(destination)).size;
+      continue;
+    } else if (exactStills.has(slug)) {
       await copyFile(resolve('public/images/viewer-stills', slug + '.webp'), temporary);
       exact += 1;
     } else {

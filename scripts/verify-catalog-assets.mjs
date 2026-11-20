@@ -2,10 +2,12 @@ import { createHash } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import { firstViewFor } from '../src/lib/first-view-models.mjs';
+import { verifyCatalogImagePreview } from './lib/catalog-image-preview.mjs';
 
 const root = process.cwd();
 const catalog = JSON.parse(fs.readFileSync(path.join(root, 'src/data/catalog.json'), 'utf8'));
 const previews = JSON.parse(fs.readFileSync(path.join(root, 'src/data/previews.json'), 'utf8'));
+const images = JSON.parse(fs.readFileSync(path.join(root, 'src/data/image-previews.json'), 'utf8'));
 
 const firstViews = JSON.parse(fs.readFileSync(path.join(root, 'src/data/first-view-models.json'), 'utf8'));
 const seen = new Set();
@@ -40,15 +42,23 @@ for (const work of catalog) {
     thumbPath,
   };
 
-  if (duplicate || !(remoteConfigured || (localConfigured && row.previewExists)) || !row.thumbExists) problems.push(row);
+  if (Object.hasOwn(images, slug)) {
+    try {
+      await verifyCatalogImagePreview(slug, images[slug], { root, model: previews[slug], work });
+      if (duplicate || !row.thumbExists) throw new Error('Duplicate slug or missing thumbnail');
+    } catch (error) {
+      problems.push({ ...row, imageError: error.message });
+    }
+  } else if (duplicate || !(remoteConfigured || (localConfigured && row.previewExists)) || !row.thumbExists) problems.push(row);
 }
+for (const slug of Object.keys(images)) if (!seen.has(slug)) problems.push({ slug, imageError: 'Image has no catalogue record' });
 
 console.log(`catalogCount=${catalog.length}`);
 if (problems.length) {
   console.table(problems);
   process.exitCode = 1;
 } else {
-  console.log('All catalog slugs have a local preview or configured R2 URL, a local thumbnail, and unique slugs. Remote availability is not checked by this command.');
+  console.log(`All catalog slugs have a model binding or verified local image, a local thumbnail, and unique slugs (${Object.keys(images).length} images). Remote model availability is not checked by this command.`);
 }
 const firstViewProblems = [];
 let localFirstViews = 0;

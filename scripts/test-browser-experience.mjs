@@ -31,6 +31,7 @@ const routes = [
   { id: 'newest', path: '/newest/', primary: '[data-additions-sort] select' },
   { id: 'wings', path: '/wings/', primary: 'main h1' },
   { id: 'artwork', path: '/works/discobolus/', primary: '#v3-object-title', viewers: '#sculpture [data-viewer]' },
+  { id: 'photograph', path: '/works/americas/clytie-rinehart-met/', primary: '#v3-object-title', photograph: true },
   { id: 'full-detail', path: '/detail/discobolus/', primary: '#detail-title', expectedModels: [detailOriginal] },
   {
     id: 'spatial-museum', path: '/spatial-museum/?room=rodin-marble',
@@ -662,6 +663,23 @@ async function check(engine, viewport, route, motion = 'reduce') {
           } else if (route.id === 'spatial-museum') {
             const room = await page.locator('.route-current').textContent();
             if (!room.includes(rodinRoom.title)) throw new Error(`The museum did not open the Rodin room. ${room}`);
+          } else if (route.photograph) {
+            await page.waitForFunction(() => {
+              const image = document.querySelector('#sculpture [data-poster]');
+              return image?.complete && image.naturalWidth > 1 && image.naturalHeight > 1;
+            });
+            const image = page.locator('#sculpture [data-poster]');
+            if (!(await image.getAttribute('src')).includes('/images/artworks/americas/clytie-rinehart-met/image.jpg')) {
+              throw new Error('Photograph artwork must display its full image, not a model poster or thumbnail');
+            }
+            if (result.modelRequests.length || await page.locator('#sculpture [data-glb]:not([data-glb=""]), #sculpture [data-load-model], #sculpture [data-immersive-tools], #sculpture [data-spatial], #sculpture [data-spatial-unavailable]').count()) {
+              throw new Error('Photograph artwork must not request a model or offer 3D/AR controls');
+            }
+            await page.locator('#object-record').evaluate(element => { element.open = true; });
+            if (!await page.locator('#object-record a[rel="license"]').count()
+              || !await page.locator('.work-context a[href]').count()) {
+              throw new Error('Photograph artwork must retain image rights and researched sources');
+            }
           } else if (route.largeModel) {
             await phase('large artwork behaviour', () => checkHeavyArtwork(page, result));
           } else if (route.id === 'exhibition' && viewport.width === 390) {

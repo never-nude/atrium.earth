@@ -1,5 +1,7 @@
 import rawCatalog from '../data/catalog.json';
 import rawPreviews from '../data/previews.json';
+import rawImagePreviews from '../data/image-previews.json';
+import rawWorkContext from '../data/work-context.json';
 import rawFirstViewModels from '../data/first-view-models.json';
 import rawRenders from '../data/renders.json';
 import rawOrientations from '../data/orientations.json';
@@ -151,6 +153,8 @@ export type Work = {
   rights: string;
   licenseUrl: string;
   provenance: string;
+  context: string;
+  contextSources: Array<{ label: string; url: string }>;
   tags: string[];
   relatedWorks: string[];
   posterImage: string;
@@ -624,6 +628,8 @@ function normalize(raw: RawWork, fallbackIndex: number): Work {
   const sourceMuseum = clean(raw.source_institution);
   const museum = clean(raw.displayed_at) || clean(raw.current_location) || clean(raw.museum);
   const preview = previewMap[raw.slug];
+  const imagePreview = (rawImagePreviews as Record<string, { url: string }>)[raw.slug];
+  const context = (rawWorkContext as Record<string, { text: string; sources: Array<{ label: string; url: string }> }>)[raw.slug];
   const inlinePreview = inlinePreviewMap[raw.slug];
   const hasFirstView = inlinePreview !== preview;
   const originalGlb = import.meta.env?.DEV && preview?.url
@@ -704,9 +710,11 @@ function normalize(raw: RawWork, fallbackIndex: number): Work {
     rights: clean(raw.license) || 'Rights review pending',
     licenseUrl: clean(raw.license_url),
     provenance: '',
+    context: context?.text || '',
+    contextSources: context?.sources || [],
     tags: [...new Set(tags)],
     relatedWorks: [],
-    posterImage: `/previews/posters/${raw.slug}/poster.svg`,
+    posterImage: imagePreview?.url || `/previews/posters/${raw.slug}/poster.svg`,
     thumbnailImage: renderSet.has(raw.slug) ? `/previews/renders/${raw.slug}/thumb.webp?preview=alpha1` : `/previews/posters/${raw.slug}/poster.svg`,
     modelGlb,
     modelBytes: inlinePreview?.bytes,
