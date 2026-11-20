@@ -86,4 +86,6 @@ Links below describe the release candidate; see the release result before treati
 
 ## Release result
 
-Pending local browser validation and the normal full review. No production deployment has begun for this PR.
+Review `44661225754` was cancelled by this release coordinator during its build after a date audit found four new labels that the existing conservative globe parser could not read. Both live CDN gates were skipped; no live sweep began. The corrections separate the physical creation date from attribution/prototype wording: Mirbach `1981 cast`, Bartolini `c. 1835–1845`, Clytie `1872 carved`, and the NGA carving `Mid-late 18th century`. Maker/history retain the other information. Four actual-record regression assertions verify the physical spans; the date parser and its legitimate uncertainty checks are unchanged.
+
+The corrected head requires the full normal review before release. No production deployment has begun for this PR.
