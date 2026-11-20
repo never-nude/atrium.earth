@@ -139,3 +139,16 @@ assert.equal(empty.dateMin, null); assert.equal(empty.dateMax, null);
 console.log(JSON.stringify({ passed: true, total: world.totalCount, placed: world.totalCount - world.unplacedCount,
   unplaced: world.unplacedCount, dated: world.totalCount - world.undatedCount, undated: world.undatedCount,
   places: world.places.length, dateMin: world.dateMin, dateMax: world.dateMax, originReasons: world.originReasons }, null, 2));
+
+// Physical creation dates from the new collection records remain usable even
+// when a separate attribution or prototype has a different date in the context.
+for (const [slug, expected] of [
+  ['europe/triton-and-nymph-after-tilgner-mirbach', { start: 1981, end: 1981 }],
+  ['europe/nymph-with-scorpion-bartolini-louvre', { start: 1835, end: 1845 }],
+  ['americas/clytie-rinehart-met', { start: 1872, end: 1872 }],
+  ['europe/bather-or-nymph-at-bath-nga', { start: 1700, end: 1799 }],
+]) {
+  const record = records.find(work => work.slug === slug);
+  assert.ok(record, `Missing dated physical object: ${slug}`);
+  assert.deepEqual(worldDateSpan(record), expected, `Physical creation span: ${slug}`);
+}

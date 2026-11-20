@@ -40,6 +40,26 @@ function localPreview(root, url) {
   return inside(path.join(root, 'public'), file) ? file : null;
 }
 
+async function localImagePreview(root, slug, binding) {
+  const prefix = `/images/artworks/${slug}/`;
+  if (!binding || Array.isArray(binding) || typeof binding !== 'object'
+    || typeof binding.url !== 'string' || !binding.url.startsWith(prefix)
+    || !/^image\.(?:jpg|png|webp)$/.test(binding.url.slice(prefix.length))
+    || !Number.isSafeInteger(binding.bytes) || binding.bytes <= 0
+    || !hashPattern.test(binding.sha256 || '')) throw new Error(`Invalid image preview binding: ${slug}`);
+  const file = localPreview(root, binding.url);
+  let before;
+  try { before = await stat(file); }
+  catch { throw new Error(`Missing local image preview: ${slug}`); }
+  if (!before.isFile() || before.size !== binding.bytes) throw new Error(`Image preview byte count mismatch: ${slug}`);
+  if (await sha256(file) !== binding.sha256) throw new Error(`Image preview SHA256 mismatch: ${slug}`);
+  const after = await stat(file);
+  if (!['dev', 'ino', 'size', 'mtimeMs', 'ctimeMs'].every(key => before[key] === after[key])) {
+    throw new Error(`Image preview changed during verification: ${slug}`);
+  }
+  return binding;
+}
+
 /** Discover every registered checkout. Missing prunable registrations have no
  * filesystem dependencies; an explicitly supplied missing checkout is an error.
  * No Git refresh/index write, fetch, branch change, or build is performed. */
@@ -67,6 +87,8 @@ export async function collectStorageLiveDependencies({ repoRoot, worktreeRoots =
     }
     const catalog = await json(path.join(root, 'src/data/catalog.json'));
     const previews = await json(path.join(root, 'src/data/previews.json'));
+    const imagesFile = path.join(root, 'src/data/image-previews.json');
+    const images = await exists(imagesFile) ? await json(imagesFile) : {};
     const bindingData = {};
     if (root === repoRoot) {
       for (const name of ['physical-dimensions', 'spatial-eligibility']) {
@@ -74,12 +96,15 @@ export async function collectStorageLiveDependencies({ repoRoot, worktreeRoots =
         bindingData[name] = await exists(file) ? await json(file) : {};
       }
     }
-    if (!Array.isArray(catalog) || !previews || Array.isArray(previews) || typeof previews !== 'object') throw new Error(`Invalid catalog/preview data: ${root}`);
+    if (!Array.isArray(catalog) || !previews || Array.isArray(previews) || typeof previews !== 'object'
+      || !images || Array.isArray(images) || typeof images !== 'object') throw new Error(`Invalid catalog/preview data: ${root}`);
     const seen = new Set();
     for (const work of catalog) {
       if (!/^[a-z0-9][a-z0-9-]*(?:\/[a-z0-9][a-z0-9-]*)*$/.test(work.slug) || seen.has(work.slug)) throw new Error(`Invalid/duplicate catalog slug: ${root}`);
       seen.add(work.slug);
-      let preview = previews[work.slug];
+      const imageOnly = Object.hasOwn(images, work.slug);
+      if (imageOnly && Object.hasOwn(previews, work.slug)) throw new Error(`Conflicting model/image preview bindings: ${work.slug}`);
+      let preview = imageOnly ? await localImagePreview(root, work.slug, images[work.slug]) : previews[work.slug];
       if (root === repoRoot && preview) {
         const spatial = bindingData['physical-dimensions']?.[work.slug]?.spatial;
         const eligibility = bindingData['spatial-eligibility']?.[work.slug];
@@ -89,7 +114,8 @@ export async function collectStorageLiveDependencies({ repoRoot, worktreeRoots =
         preview = { ...preview, expectedSha256s: [...new Set(expected)] };
       }
       const local = localPreview(root, preview?.url), remote = remotePreview(work.slug, preview);
-      pieces.push({ repoRoot: root, slug: work.slug, hidden: Boolean(work.hidden), sourcePath: work.model?.sourcePath || '', preview, localPath: local });
+      pieces.push({ repoRoot: root, slug: work.slug, hidden: Boolean(work.hidden), sourcePath: work.model?.sourcePath || '', preview, localPath: local,
+        ...(imageOnly ? { previewKind: 'image' } : {}) });
       if (local) {
         protectedDependencies.push({ path: local, kind: 'local-preview', repoRoot: root, slug: work.slug });
         if (await exists(local)) {
