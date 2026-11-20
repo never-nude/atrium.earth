@@ -2666,3 +2666,12 @@ Draft PR 119 contains the prepared release. Owner iPhone review and approval for
 ### 2026-11-19 — Source-package metadata correction before release
 
 The owner approved deployment of PR 119. Final preflight identified 24 single-file records with source-undefined.glb paths and a copied two-file-pair description. The records now use their actual source.glb restore names and a single-file description. All 26 original files were rehashed against the private recovery entries, totaling 673,014,372 bytes. Wiz retains its separate right/left originals and distinct original-package and serving-container sizes. The complete Node suite passed after this correction. The full remote release review runs on the corrected head.
+
+## 2026-11-19 — Nymph catalogue additions after the completed 25-work release
+
+This Codex release-coordination session owns `codex/nymphs-water-spirits-20261119`, based on deployed main `d0bb92fb`. The owner cancelled the exhibition and requested catalogue additions only, after the 25-work Black American release. That deployment and its checked source offload are complete.
+
+- Matched all 12 supplied existing slugs; all are public with model bindings. The other 18 exact physical works are absent by source UID, institution and accession. Similar titles refer to other physical versions and are not duplicates.
+- The bounded six-source request preserves exact publishers and current license URLs, including individually reviewed noncommercial grants and an unchanged native NoDerivatives model. Acquisition is source-only, with no production deployment or live CDN sweep.
+- Remaining work: identify and license still images for works without a verified scan, inspect acquired models, permanently archive source packages, implement the existing image-only viewer path for catalogue records, add researched context and attribution, run normal validation, then perform the authorized release. Unresolved rights or identification cases remain held rather than being guessed.
+- The following separate task is the owner's globe inclusion/omission audit, including undated works and origin evidence.
