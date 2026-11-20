@@ -10,7 +10,7 @@ The regular Collection provides search, date ordering, maker, period and materia
 
 ## Requested works and preview types
 
-Links below describe the release candidate; see the release result before treating them as live.
+All twenty-seven Atrium pages linked below were verified live after publication. The three held rows link to their source records, not to invented Atrium pages.
 
 | # | Work / Atrium page | Preview | Catalogue action |
 |---|---|---|---|
@@ -92,4 +92,12 @@ The full dedicated-runner [review 44662178126](https://github.com/never-nude/atr
 
 A final offline-tool compatibility fix adds explicit image bindings to storage dependency discovery. It validates local image path, stable bytes and full hash, rejects model/image conflicts, and protects image files and aliases under existing local-preview rules. Older worktrees may omit the image map. Remote GLB receipt/CORS/deletion rules are unchanged. The full storage suite passed forty-six Node tests, including sixty safety acceptance/rejection checks in its dependency test; the full default Node suite also passed again with 140 experience tests and no skips. The asset verifier now rejects null model/image conflicts consistently.
 
-Those final changes affect only offline validators/tests and documentation. The site source, assets, package configuration and workflows are byte-identical to the passed review head. The normal production workflow will recheck the final merged head before publication. No production deployment has begun yet.
+Those final changes affect only offline validators/tests and documentation. The site source, assets, package configuration and workflows are byte-identical to the passed review head. The normal [production workflow 44665068856](https://github.com/never-nude/atrium.earth/actions/runs/44665068856) passed on its first attempt for published main `8a27d103015cf7431d1cd98631dc8ce0d1c215c5`, with all 3,204 model URLs, six first-view hashes, 3,119 CDN JPEG URLs, eighty-four browser cases and four globe profiles. GitHub Pages environment deployment 7932435717 reports success.
+
+All twenty-seven included artwork pages passed live 390 px WebKit checks: eighteen visible ready 3D previews and nine photographs; exact canonical routes, titles and researched paragraphs; source/rights links; no page/asset errors or horizontal overflow. Newest showed forty pinned picks plus fifteen new records, and Collection search found all twenty-seven. The owner cannot perform the optional physical iPhone check now; that test remains pending rather than being inferred from emulation.
+
+Fresh targeted full-GET proofs verified six model hashes/bytes/production CORS and nine same-origin full-image hashes/bytes. The live homepage retains Discobolus, What Survives and its headline. The live world payload contains 3,199 public works, 2,079 mapped and 1,120 unmapped, including 846 mapped works without a usable date span. All four corrected physical date spans match the published projection.
+
+Normal quarantine cleanup removed 147 exact backed-up working files: sixteen provider sources, 130 private intermediates and one old report, totaling 251,887,731 logical bytes. All forty-five public serving files and two provenance containers retain full hash/byte matches. Available filesystem space was observed at 496,758,550,528 bytes before and 496,953,421,824 after, an increase of 194,871,296 bytes; this is distinct from logical bytes removed. Immutable recovery maps, keys and compact journals remain. Final controls passed full owner-only private readback. This covers the accepted batch only, not the entire collection.
+
+The temporary runner selector is removed and the dedicated VM stopped. The three content rights holds remain; no automated deployment blocker remains. The following globe investigation is read-only and its broader corrections have not been deployed.
