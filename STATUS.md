@@ -2650,3 +2650,19 @@ The full local production build passes: 8,842 pages and 877,192,353 package byte
 ## 2026-11-19 — PR 117 owner look adjustment and release
 
 The owner assigned this Codex session to continue on `claude/zen-lamport-u8qk48` and use PR 117 as the single release vehicle. Slate land replaces bronze, coastal waterlines are removed, and the flat map restores main's colors while retaining its independent pixel density. The requested Maiden Castle removal is included. The 15 focused globe tests and full Node suite passed. The first build caught an incorrectly bounded function replacement, corrected before the passing 8,835-page build. The first browser invocation lacked matching installed browsers. After installing them, all four Chromium and WebKit signature profiles passed, including the stage resize check. A desktop screenshot confirmed slate land, gold coast highlights and violet rim without concentric waterlines. Full remote review and live deployment remain pending.
+
+## 2026-11-19 — Black American art and cultural-history release candidate
+
+This Codex session owns codex/black-american-release-20261119 from deployed main 8e8dfcbb. The prepared 25-work batch is reconciled into current main, preserving all 3,211 prior records apart from recomputed indices and totals. There are 3,184 public works. The six acquisition holds remain excluded. The reviewed model bytes, thumbnails, labels and physical-scale limitations carry forward. All 40 pinned recent picks remain available when new acquisitions arrive.
+
+The full Node suite passed with 139 experience tests and no skips. A clean serial build produced 8,927 pages and a 904,480,310-byte package. Collection delivery and all 6,368 referenced image paths passed verification. The first local build attempt overlapped another local build and exited, so validation uses the clean serial build.
+
+All 25 immutable CDN uploads and full SHA-256/byte readbacks passed in runs 44639424027 and 44639427473, totaling 545,373,860 bytes. Their receipts match the catalogue URLs and reviewed hashes. New images remain Pages-local. The four Newest browser profiles passed, including pinned membership and phone text checks. All four globe profiles passed.
+
+Offline work-page checks produced 50 valid passes across 25 desktop Chromium and 25 phone-sized WebKit cases, plus both listing checks. Every model reached ready, all 25 were found through Collection, and Newest retained 40 picks plus 25 additions. Phone checks found no text below 12 px or horizontal overflow. Initial large-file tests exited Chromium when response bodies were injected through the test protocol. The two large models passed using normal streamed delivery. A WebKit SHARIFA timeout came from blocked local blob/data decoder requests in the harness and passed when those requests were allowed. Original reports were retained.
+
+Draft PR 119 contains the prepared release. Owner iPhone review and approval for the full live review and deployment are pending. Original acquisition files and the private archive are preserved in the separate acquisition checkout.
+
+### 2026-11-19 — Source-package metadata correction before release
+
+The owner approved deployment of PR 119. Final preflight identified 24 single-file records with source-undefined.glb paths and a copied two-file-pair description. The records now use their actual source.glb restore names and a single-file description. All 26 original files were rehashed against the private recovery entries, totaling 673,014,372 bytes. Wiz retains its separate right/left originals and distinct original-package and serving-container sizes. The complete Node suite passed after this correction. The full remote release review runs on the corrected head.
