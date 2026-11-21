@@ -41,7 +41,7 @@ const Subheading = compact ? 'h3' : 'h2';
       <p>Each light is a documented origin. Brighter lights hold more works.</p>
     </div>
     <p class="world-coverage">
-      {(worldCollection.totalCount - worldCollection.unplacedCount).toLocaleString('en-US')} works shown on the globe.
+      {(worldCollection.totalCount - worldCollection.unplacedCount).toLocaleString('en-US')} works have a mapped origin.
       {worldCollection.unplacedCount.toLocaleString('en-US')} works have no mapped origin yet.
       <a href={withBase('/collection/?origin=__unplaced__')}>Browse works without a mapped origin</a>
     </p>
@@ -81,7 +81,7 @@ const Subheading = compact ? 'h3' : 'h2';
       </div>
       <div class="world-time-ticks" data-world-ticks aria-hidden="true"></div>
       <div class="world-time-foot">
-        <p id={`${instance}-time-help`}>Move either end to explore a period. Earlier time is compressed.</p>
+        <p id={`${instance}-time-help`}>Move either end to explore a period. Works without a usable date appear only in All periods. Earlier time is compressed.</p>
         <details class="world-exact">
           <summary>Exact dates</summary>
           <form data-world-date-form>

@@ -69,6 +69,48 @@ assert.ok(world.works.some(work => work.slug === 'asia/ganesha-mia'), 'The resto
 assert.ok(world.works.some(work => work.slug === 'asia/ganesha-java-mia'));
 const byId = new Map(world.places.map(place => [place.id, place]));
 const rawBySlug = new Map(records.map(record => [record.slug, record]));
+
+// Restore these records on the reviewed evidence without relaxing the
+// general geography, competing countries, or current holdings checks.
+const recoveredOrigins = {
+  'americas/zuni-owl-jug-yale': 'united-states-of-america',
+  'oceania/hoa-hakananai-a-british-museum': 'rapa-nui',
+  'europe/vendel-i-helmet-5a810a': 'sweden',
+  'europe/vendel-xii-helmet-8c297f': 'sweden',
+  'europe/vendel-xiv-helmet-be9b5b': 'sweden',
+  'asia/supports-with-addorsed-figures-cleveland-2011-144-8dec5f': 'tibetan-plateau',
+  'asia/piggy-bank-14bfd1': 'indonesia',
+  'asia/raft-cup-cleveland-1977-7-a254ff': 'china',
+  'asia/monster-caryatid-cleveland-1957-357-70d852': 'china',
+  'europe/ceremonial-cross-of-count-liudolf-cleveland-1931-461': 'germany',
+  'michelangelo/bearded-captive-smk-cast': 'italy',
+  'roman/ciste-a-cordoni-hassle-96979-hst': 'italy',
+  'egyptian/false-door-irienakhet-mia': 'egypt',
+};
+const worksBySlug = new Map(world.works.map(work => [work.slug, work]));
+for (const [slug, placeId] of Object.entries(recoveredOrigins)) {
+  assert.equal(worksBySlug.get(slug)?.placeId, placeId, slug);
+  assert.equal(worksBySlug.get(slug)?.originReason, 'reviewed-origin', slug);
+}
+for (const slug of [
+  'roman/aesculapius-allard-pierson-35-902763',
+  'europe/stockholm-jousting-helmet-a4eea3',
+  'europe/dancing-satyr-krakow-cast-rz11-2a7661',
+  'europe/marcellus-as-hermes-historical-germanicus-plaster-cast-bed74a',
+]) {
+  assert.equal(worksBySlug.get(slug)?.placeId, null, slug);
+  assert.equal(worksBySlug.get(slug)?.originReason, 'reviewed-origin-uncertain', slug);
+}
+const zuni = rawBySlug.get('americas/zuni-owl-jug-yale');
+assert.equal(origin({ ...zuni, accession: 'Different accession' }), null);
+assert.equal(origin({ ...zuni, source_record_url: 'https://example.org/different-object' }), null);
+assert.equal(origin({ ...zuni, origin_country: 'Mexico' }), null, 'A conflicting origin revision revokes the reviewed exception.');
+assert.equal(origin({ ...zuni, title: 'Digital Reconstruction' }), null, 'The existing reconstruction guard applies first.');
+const vendel = rawBySlug.get('europe/vendel-i-helmet-5a810a');
+assert.equal(origin({ ...vendel, slug: 'europe/unreviewed-helmet' }), null, 'Institution-like findspot wording needs record-specific evidence.');
+const beardedCaptive = rawBySlug.get('michelangelo/bearded-captive-smk-cast');
+assert.equal(origin({ ...beardedCaptive, slug: 'michelangelo/unreviewed-cast' }), null, 'A cast destination does not establish a manufacture site.');
+
 const allowedRegions = ['Europe', 'Africa', 'Asia', 'Americas', 'Oceania', 'Transregional'];
 for (const place of placesData.places) {
   assert.ok(Number.isFinite(place.lat) && Math.abs(place.lat) <= 90, place.id);
