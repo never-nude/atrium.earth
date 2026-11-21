@@ -30,7 +30,7 @@ export type MuseumProgramme = {
 const scheduled = buildMuseumProgramme({
   date: programmeDate,
   programmes: { ...programmes, focuses: programmes.focuses.filter(focus => focus.exhibitionId === 'what-survives') },
-  exhibitions,
+  exhibitions: exhibitions.filter(exhibition => !exhibition.orderedGallery),
   homepageWorks: homepageFeaturedWorks,
   previews,
   pairings,

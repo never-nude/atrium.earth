@@ -1,4 +1,5 @@
 import v3Content from '../data/v3-content.json';
+import bodyUnveiled from '../data/the-body-unveiled.json';
 import { inlinePreviewMap as previews, featuredWorks, homepageHeroWorkForDate, isFeaturedWork, recentlyPrepared, workBySlug, works, type Work } from './catalog';
 import { exhibitionLeadForDate } from './museum-programme.mjs';
 import { programmeDate } from './museum-date.mjs';
@@ -10,6 +11,7 @@ export type V3Exhibition = V2Exhibition & {
   comparisons?: V3ExhibitionComparison[];
   workNotes?: Record<string, ExhibitionWorkNote>;
   viewingNote?: string;
+  orderedGallery?: boolean;
 };
 
 type ExhibitionWorkNote = { artist?: string; medium?: string; modelNote?: string };
@@ -36,12 +38,16 @@ type NewExhibitionSeed = {
   works: Array<{ slug: string; text: string } & ExhibitionWorkNote>;
   comparisons?: ComparisonSeed[];
   viewingNote?: string;
+  orderedGallery?: boolean;
 };
 type PairingSeed = { title: string; a: string; b: string; line: string };
 
 const wallTexts = (v3Content as { wallTexts: Record<string, WallText> }).wallTexts;
 const newExhibitionSeed = (v3Content as { newExhibition: NewExhibitionSeed }).newExhibition;
-const additionalExhibitionSeeds = (v3Content as { additionalExhibitions?: NewExhibitionSeed[] }).additionalExhibitions ?? [];
+const additionalExhibitionSeeds: NewExhibitionSeed[] = [
+  ...((v3Content as { additionalExhibitions?: NewExhibitionSeed[] }).additionalExhibitions ?? []),
+  bodyUnveiled,
+];
 const pairingSeeds = (v3Content as { pairings: PairingSeed[] }).pairings;
 
 function captionMap(entries: Array<{ slug: string; text: string }>): Record<string, string> {
@@ -123,6 +129,7 @@ export const pairings: V3Pairing[] = pairingSeeds
 
 const reviewedSlugs = new Set(featuredWorks.map(work => work.slug));
 export function exhibitionFeaturedWork(exhibition: V3Exhibition): Work {
+  if (exhibition.orderedGallery) return exhibition.works[0];
   const work = exhibitionLeadForDate(exhibition, reviewedSlugs, previews, programmeDate);
   if (!work) throw new Error(`Exhibition ${exhibition.slug} needs a reviewed lead within the auto-start budget.`);
   return work;
