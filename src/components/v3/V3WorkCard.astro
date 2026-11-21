@@ -43,6 +43,7 @@ const previewBytes = work.modelBytes || undefined;
         decoding="async"
       />
       {typeof stop === 'number' && <span class="v3-card__stop" aria-hidden="true">{String(stop).padStart(2, '0')}</span>}
+      {work.photoOnly && <span class="v3-card__photo-label">Photo only</span>}
     </div>
     <div class="v3-card__copy">
       <h3>{thumbnailTitle}</h3>

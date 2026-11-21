@@ -173,6 +173,7 @@ export type Work = {
   index: number;
   search: string;
   hasPreview: boolean;
+  photoOnly: boolean;
   sourceUrl: string;
   sourceRecordUrl: string;
   relatedSourceRecordUrls: string[];
@@ -730,6 +731,7 @@ function normalize(raw: RawWork, fallbackIndex: number): Work {
     index: raw.index || fallbackIndex + 1,
     search: `${title} ${clean(raw.search) || `${maker} ${era} ${geography} ${materials.join(' ')}`}`.toLowerCase(),
     hasPreview: Boolean(preview?.url),
+    photoOnly: Boolean(imagePreview?.url && !preview?.url),
     sourceUrl: clean(raw.source_url),
     sourceRecordUrl: clean(raw.source_record_url),
     relatedSourceRecordUrls: Array.isArray(raw.related_source_record_urls)

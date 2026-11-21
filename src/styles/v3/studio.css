@@ -203,6 +203,12 @@ body .v3-explorer:has(.v3-collection-switch) .v3-filter-row select, body .v3-exp
 .v3-card > a:first-child { display: block; height: 100%; color: inherit; text-decoration: none; }
 .v3-card__image { position: relative; width: 100%; aspect-ratio: 4 / 5; overflow: hidden; }
 .v3-card__image img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.v3-card__photo-label {
+  position: absolute; z-index: 2; bottom: 10px; left: 10px;
+  max-width: calc(100% - 20px); padding: 5px 8px; border-radius: 4px;
+  background: rgba(16, 27, 44, .94); color: var(--v3-ink);
+  font-size: 12px; font-weight: 500; line-height: 1.3;
+}
 .v3-card__copy { padding: 15px 16px 17px; }
 .v3-card__copy h3 { margin: 0; color: var(--v3-ink); font-family: var(--v3-sans); font-size: 15px; font-weight: 500; letter-spacing: -.025em; line-height: 1.35; overflow-wrap: anywhere; }
 .v3-card__copy p { margin: 7px 0 0; color: var(--v3-muted); font-size: max(var(--atrium-text-floor, 0px), 11px); font-weight: 400; letter-spacing: 0; line-height: 1.6; }
@@ -241,7 +247,8 @@ body .v3-explorer:has(.v3-collection-switch) .v3-filter-row select, body .v3-exp
 .v3-object-title { position: relative; inset: auto; width: auto; max-width: var(--v3-max); margin: 27px auto 0; padding: 0 var(--v3-pad); pointer-events: auto; }
 .v3-object-title .v3-kicker { color: var(--v3-faint); }
 .v3-object-title h1 { max-width: 28ch; margin: 0; font-family: var(--v3-sans); font-size: clamp(30px, 3.8vw, 54px); font-weight: 500; letter-spacing: -.045em; line-height: 1.12; }
-.v3-object-title p:last-child { color: var(--v3-muted); font-family: var(--v3-sans); font-size: 13px; line-height: 1.6; }
+.v3-object-title > p { margin: 0; color: var(--v3-muted); font-family: var(--v3-sans); font-size: 13px; line-height: 1.6; }
+.v3-object-title .v3-object-photo-note { color: var(--v3-ink); }
 .v3-object-actions { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; margin: 22px var(--v3-pad) 0; }
 .v3-object-record-link { position: static; min-height: 40px; gap: 18px; padding: 10px 13px; border-radius: 8px; font-size: max(var(--atrium-text-floor, 0px), 11px); letter-spacing: 0; text-transform: none; }
 .v3-object-nav { position: static; display: flex; gap: 8px; }
@@ -446,7 +453,7 @@ body .v3-explorer:has(.v3-collection-switch) .v3-filter-row select, body .v3-exp
   .v3-object-stage > .viewer:not(:fullscreen):not([data-viewer-expanded]) .immersive-light__panel { position: static; width: 100%; margin-top: 8px; padding: 16px 0; border: 0; border-top: 1px solid var(--v3-line); border-radius: 0; background: transparent; box-shadow: none; }
   .v3-object-title { margin-top: 22px; }
   .v3-object-title h1 { font-size: 30px; }
-  .v3-object-title p:last-child { font-size: 12px; }
+  .v3-object-title > p { font-size: 12px; }
   .v3-object-actions { display: grid; grid-template-columns: minmax(0, 1fr) auto; justify-items: start; gap: 9px; margin-top: 18px; }
   .v3-object-actions .v3-object-record-link { min-height: 44px; }
   .v3-object-nav { grid-column: 1 / -1; grid-row: 2; margin-left: 0; }

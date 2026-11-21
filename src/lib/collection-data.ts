@@ -28,6 +28,7 @@ const entries = works.map((work) => {
   return {
     metadata: { ...sortValues, search: data.search, year, wing: data.wing, era: data.era, place: data.place, material: data.material, maker: data.maker, size: spatialAccess?.status || '' },
     card: { id: work.id, href: withBase(`/works/${work.slug}/`), title: work.title, caption: title, detail, alt: `${work.title}${detail ? ` — ${detail}` : ''}`, thumbnail: withBase(work.thumbnailImage), spatialLabel: spatialAccess?.label || '',
+      photoOnly: work.photoOnly || undefined,
       attributes: { search: data.search, year, wing: data.wing, era: data.era, place: data.place, material: data.material, maker: data.maker, makerLabel, size: spatialAccess?.status,
         studioPreviewBytes: previewBytes, studioPeekAvailable: String(work.hasPreview), studioIndex: work.index, studioIngested: work.ingested || undefined } },
   };

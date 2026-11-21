@@ -26,6 +26,12 @@ export function createCollectionCard(document, data, { spatial = false } = {}) {
   img.loading = 'lazy';
   img.decoding = 'async';
   image.append(img);
+  if (data.photoOnly === true) {
+    const format = document.createElement('span');
+    format.className = 'v3-card__photo-label';
+    format.textContent = 'Photo only';
+    image.append(format);
+  }
   const copy = document.createElement('div');
   copy.className = 'v3-card__copy';
   const heading = document.createElement('h3');

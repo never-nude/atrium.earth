@@ -116,10 +116,25 @@ test('dynamic cards preserve short captions, full identification, JPEGs, attribu
   assert.equal(link.attributes.href, '/works/region/work-1/');
   assert.equal(link.children[0].children[0].attributes.src, card.thumbnail);
   assert.equal(link.children[0].children[0].alt, card.alt);
+  assert.equal(link.children[0].children.length, 1);
   assert.equal(link.children[1].children[0].textContent, 'Formal title');
   assert.equal(link.children[1].children[1].textContent, card.detail);
   assert.equal(spatial.attributes.href, '/works/region/work-1/#ar-vr');
   assert.match(spatial.attributes['aria-label'], /Formal title \(cast\).*Dimensions unknown/);
+});
+
+test('dynamically loaded photo-only cards show their format without a 3D action', () => {
+  const element = createCollectionCard(document, {
+    ...card,
+    photoOnly: true,
+    spatialLabel: '',
+    attributes: { studioPeekAvailable: 'false' },
+  }, { spatial: true });
+  assert.equal(element.dataset.studioPeekAvailable, 'false');
+  assert.equal(element.children.length, 1);
+  const label = element.children[0].children[0].children[1];
+  assert.equal(label.className, 'v3-card__photo-label');
+  assert.equal(label.textContent, 'Photo only');
 });
 
 test('fetched text cannot inject HTML and executable or cross-origin URLs are rejected', () => {

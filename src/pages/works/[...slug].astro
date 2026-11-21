@@ -47,7 +47,7 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
 
 <V3Layout
   title={work.title}
-  description={`${work.title}${work.maker ? ` by ${work.maker}` : ''}. ${work.hasPreview ? 'Explore the sculpture in 3D.' : 'View the sculpture and its collection record.'}`}
+  description={`${work.title}${work.maker ? ` by ${work.maker}` : ''}. ${work.photoOnly ? 'View a photograph and the collection record.' : work.hasPreview ? 'Explore the sculpture in 3D.' : 'View the sculpture and its collection record.'}`}
   image={socialImage}
   immersive={true}
 >
@@ -90,6 +90,7 @@ const sourceLabel = work.sourceMuseum || (work.sourceUrl ? new URL(work.sourceUr
         <div data-work-save-slot></div>
       </div>
       <p>{[work.maker, work.displayDate].filter(Boolean).join(' · ')}</p>
+      {work.photoOnly && <p class="v3-object-photo-note">Photo only. No 3D scan available.</p>}
     </div>
 
     {fullDetailPath && <div class="v3-object-actions">
