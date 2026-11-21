@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { shortestLongitudeDelta, globeTurnEase, pointOnGlobe } from '../lib/world-globe-motion.mjs';
+import { TAP_SLOP, shortestLongitudeDelta, globeTurnEase, plainTap, pointOnGlobe, touchesOn } from '../lib/world-globe-motion.mjs';
 import { QUALITY_TIERS, approach, createPacingWatch, easingStep, startingTier } from '../lib/world-globe-relief.mjs';
 import { createGlobeLook } from './world-globe-look.js';
 
@@ -78,8 +78,10 @@ function paintLand(ctx, polygons, box, glow = true, vivid = false, signature = f
  * onError(error, { mode, webgl, landLoaded }) reports the actual fallback mode.
  * Persisted pagehide pauses this instance; pageshow resumes it. Callers should
  * not destroy a bfcache-preserved instance unless they recreate it on pageshow.
+ * overlays() returns the page's own elements that may float over the host; the
+ * sculpted globe keeps its labels out from under them.
  */
-export function createWorldGlobe({ host, places = [], onSelect, onReady, onError, landUrl, presentation = 'explorer', autoRotate, onZoomChange, onAutoRotateChange } = {}) {
+export function createWorldGlobe({ host, places = [], onSelect, onReady, onError, landUrl, presentation = 'explorer', autoRotate, onZoomChange, onAutoRotateChange, overlays } = {}) {
   if (!(host instanceof HTMLElement)) throw new TypeError('World globe requires a host element.');
   const events = new AbortController();
   const signal = events.signal;
@@ -163,6 +165,8 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
   const pacing = signature ? createPacingWatch() : null;
   let dotsHidden = null;
   let hoveredId = null;
+  // Where the page floats its own controls over the stage, in stage coordinates.
+  let covered = [];
   // True when the previous frame asked for this one, so the gap between them is the renderer's own pace.
   let chained = false;
   let flatPixelRatio = 1;
@@ -424,15 +428,48 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
   }
   const projected = new THREE.Vector3(), toCamera = new THREE.Vector3(), outward = new THREE.Vector3();
   function setShown(place, shown) { if (place.button.hidden === shown) place.button.hidden = !shown; }
-  // Labels sit just above their light, flipping below or sideways at the stage edge.
+  // The page's floating controls move when the stage changes size or a place is chosen or
+  // closed. They are read then, not while labels are being placed, so that no frame of a
+  // turn has to wait for the page to lay out again.
+  function measureOverlays() {
+    covered = [];
+    if (typeof overlays !== 'function') return;
+    try {
+      const bounds = host.getBoundingClientRect();
+      for (const element of overlays() || []) {
+        const box = element.getBoundingClientRect();
+        if (box.width > 0 && box.height > 0 && box.right > bounds.left && box.left < bounds.right && box.bottom > bounds.top && box.top < bounds.bottom) {
+          covered.push({ left: box.left - bounds.left, right: box.right - bounds.left, top: box.top - bounds.top, bottom: box.bottom - bounds.top });
+        }
+      }
+    } catch {}
+  }
+  // Labels sit just above their light, flipping below or sideways at the stage edge. Where the
+  // page has floated a control over that part of the stage the label goes below its light too,
+  // and far enough below to be clear of the control.
   function placeLabel(place) {
     const point = positions.get(place.id);
     if (!point) return;
-    const label = place.labelNode, gap = signature ? 'calc(50% + 15px)' : 'calc(100% + 8px)';
-    label.style.left = point.x < 100 ? '0' : point.x > width - 100 ? '100%' : '50%';
-    label.style.transform = point.x < 100 ? 'none' : point.x > width - 100 ? 'translateX(-100%)' : 'translateX(-50%)';
-    label.style.bottom = point.y < 70 ? 'auto' : gap;
-    label.style.top = point.y < 70 ? gap : 'auto';
+    const label = place.labelNode;
+    const left = point.x < 100, right = !left && point.x > width - 100;
+    label.style.left = left ? '0' : right ? '100%' : '50%';
+    label.style.transform = left ? 'none' : right ? 'translateX(-100%)' : 'translateX(-50%)';
+    let below = point.y < 70, gap = signature ? 'calc(50% + 15px)' : 'calc(100% + 8px)', size = null;
+    // A label has no size while its light is hidden; one measured then is not kept.
+    if (signature && covered.length) size = place.labelSize ||= label.offsetWidth ? { width: label.offsetWidth, height: label.offsetHeight } : null;
+    if (size) {
+      const x = left ? point.x - 22 : right ? point.x + 22 - size.width : point.x - size.width / 2;
+      // The lowest edge of any control that a label with its top at `y` would lie under.
+      const under = y => covered.reduce((edge, box) => x < box.right && x + size.width > box.left && y < box.bottom && y + size.height > box.top
+        ? Math.max(edge, box.bottom) : edge, -Infinity);
+      below ||= under(point.y - 15 - size.height) > -Infinity;
+      if (below) {
+        const edge = under(point.y + 15);
+        if (edge > -Infinity) gap = `calc(50% + ${Math.ceil(edge + 4 - point.y)}px)`;
+      }
+    }
+    label.style.bottom = below ? 'auto' : gap;
+    label.style.top = below ? gap : 'auto';
   }
   function projectMarkers() {
     positions.clear();
@@ -601,6 +638,8 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
     const nextFlatRatio = Math.min(devicePixelRatio || 1, signature && Math.min(innerWidth, nextWidth) <= 760 ? 1.25 : 1.5);
     if (signature && width === nextWidth && height === nextHeight && pixelRatio === nextPixelRatio && flatPixelRatio === nextFlatRatio) return;
     const pixelRatioChanged = pixelRatio !== nextPixelRatio;
+    // Read first, while the page's layout is still the one this size came from.
+    measureOverlays();
     width = nextWidth; height = nextHeight; pixelRatio = nextPixelRatio; flatPixelRatio = nextFlatRatio;
     flat.width = Math.round(width * flatPixelRatio); flat.height = Math.round(height * flatPixelRatio);
     if (renderer) {
@@ -654,8 +693,10 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
     }
     return nearest;
   }
+  // Whether the stage shows the globe. Otherwise it is the flat map, which no touch can turn.
+  const globeShown = () => mode === 'globe' && Boolean(renderer && camera);
   function globeHit(clientX, clientY, target) {
-    if (mode !== 'globe' || !renderer || !camera) return false;
+    if (!globeShown()) return false;
     if (target instanceof Element && target.closest('[data-world-light]:not([hidden])')) return true;
     return pointOnGlobe(clientX, clientY, host.getBoundingClientRect(), camera.position.z, camera.fov);
   }
@@ -753,47 +794,73 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
     mount.addEventListener('pointerleave', event => {
       if (event.pointerType === 'touch') return;
       hoverHeld = false;
-      if (hoveredId !== null) { hoveredId = null; if (look?.setHover(null)) schedule(); }
+      if (hoveredId !== null) {
+        // The label goes with the pointer. Among overlapping lights the nearest one is rarely
+        // the one whose target the pointer was over, so that light's own button never hears
+        // the pointer go. A chosen or focused light keeps its label.
+        const place = unique.get(hoveredId);
+        if (place && hoveredId !== selectedId && place.button !== document.activeElement) {
+          place.labelNode.style.opacity = '0'; place.button.style.zIndex = '2';
+        }
+        hoveredId = null; if (look?.setHover(null)) schedule();
+      }
       if (!drag) { canvas.style.cursor = 'auto'; pauseForHand(); }
     }, { signal });
+    // Only fingers that came down on the stage take part in its gestures. One resting anywhere
+    // else on the page must not turn a drag into a pinch, and when the hand on the globe lifts
+    // the gesture is over, although that other finger is still down.
+    const stageTouches = event => touchesOn(mount, event.touches);
     mount.addEventListener('touchstart', event => {
       const now = performance.now();
+      const touches = stageTouches(event);
       if (!touchGesture) {
-        const first = event.touches[0];
-        const owns = event.cancelable && now - lastScrollAt >= 150 && globeHit(first.clientX, first.clientY, event.target);
+        const first = touches[0];
+        if (!first) return;
+        const owns = event.cancelable && now - lastScrollAt >= 150 && globeHit(first.clientX, first.clientY, first.target);
         touchGesture = { owner: owns ? 'globe' : 'page', pageLocked: !event.cancelable || now - lastScrollAt < 150, startedAt: now, scrollAtStart: lastScrollAt,
-          x: first.clientX, y: first.clientY, rotation: { ...rotation }, moved: false, gain: dragGain(),
+          x: first.clientX, y: first.clientY, rotation: { ...rotation }, moved: false, gain: dragGain(), flat: !globeShown(),
           marker: nearestMarker(first.clientX, first.clientY) };
         if (owns) { hold(); beginFrameSample(); }
       }
-      if (touchGesture.owner === 'page' && !touchGesture.pageLocked && event.touches.length === 2 && event.cancelable
+      if (touchGesture.owner === 'page' && !touchGesture.pageLocked && touches.length === 2 && event.cancelable
         && now - lastScrollAt >= 150 && lastScrollAt <= touchGesture.scrollAtStart) {
-        const middle = midpoint(event.touches);
+        const middle = midpoint(touches);
         if (globeHit(middle.x, middle.y)) {
           touchGesture.owner = 'globe'; touchGesture.marker = null; hold(); beginFrameSample();
         }
       }
-      if (touchGesture.owner !== 'globe') return;
+      if (touchGesture.owner !== 'globe') {
+        // Two fingers on the page are not a tap, whatever they go on to do.
+        if (touches.length > 1) touchGesture.moved = true;
+        return;
+      }
       if (!event.cancelable) { touchGesture.owner = 'page'; touchGesture.pageLocked = true; release(); return; }
       event.preventDefault();
       hoverHeld = false;
-      if (event.touches.length === 2) {
-        pinch = { distance: Math.max(1, touchDistance(event.touches)), zoom };
+      if (touches.length === 2) {
+        pinch = { distance: Math.max(1, touchDistance(touches)), zoom };
         touchGesture.moved = true; touchGesture.marker = null;
       }
     }, { signal, capture: true, passive: false });
     mount.addEventListener('touchmove', event => {
-      if (touchGesture?.owner !== 'globe') return;
+      if (!touchGesture) return;
+      const touches = stageTouches(event);
+      if (touchGesture.owner !== 'globe') {
+        // The page scrolls with this touch; the stage only notes that it has travelled.
+        touchGesture.moved ||= touches.length !== 1
+          || Math.hypot(touches[0].clientX - touchGesture.x, touches[0].clientY - touchGesture.y) > TAP_SLOP;
+        return;
+      }
       if (event.cancelable) event.preventDefault();
       else { touchGesture.owner = 'page'; touchGesture.pageLocked = true; release(); return; }
-      if (event.touches.length === 2) {
-        pinch ??= { distance: Math.max(1, touchDistance(event.touches)), zoom };
-        setZoom(pinch.zoom * pinch.distance / Math.max(1, touchDistance(event.touches)), true);
+      if (touches.length === 2) {
+        pinch ??= { distance: Math.max(1, touchDistance(touches)), zoom };
+        setZoom(pinch.zoom * pinch.distance / Math.max(1, touchDistance(touches)), true);
         touchGesture.moved = true; touchGesture.marker = null; touchGesture.trail = null;
-      } else if (event.touches.length === 1) {
-        const touch = event.touches[0];
+      } else if (touches.length === 1) {
+        const touch = touches[0];
         const dx = touch.clientX - touchGesture.x, dy = touch.clientY - touchGesture.y;
-        touchGesture.moved ||= Math.hypot(dx, dy) > 7;
+        touchGesture.moved ||= Math.hypot(dx, dy) > TAP_SLOP;
         rotation.y = touchGesture.rotation.y + dx * touchGesture.gain;
         rotation.x = clamp(touchGesture.rotation.x + dy * touchGesture.gain * .7, -1.48, 1.48);
         trackSpin(touchGesture); schedule();
@@ -801,18 +868,25 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
     }, { signal, capture: true, passive: false });
     const endTouch = event => {
       if (!touchGesture) return;
-      if (event.touches.length) {
-        if (event.touches.length === 1 && touchGesture.owner === 'globe') {
+      const touches = stageTouches(event);
+      if (touches.length) {
+        if (touches.length === 1 && touchGesture.owner === 'globe') {
           pinch = null;
-          touchGesture.x = event.touches[0].clientX; touchGesture.y = event.touches[0].clientY;
+          touchGesture.x = touches[0].clientX; touchGesture.y = touches[0].clientY;
           touchGesture.rotation = { ...rotation }; touchGesture.gain = dragGain(); touchGesture.trail = null;
         }
         return;
       }
       const ended = touchGesture; touchGesture = null;
-      // Page-owned touches must not select a light through a later native click.
-      // Keyboard activation (detail=0) stays available in the click handler.
-      suppressClickUntil = performance.now() + 350;
+      // Page-owned touches must not select a light through a later native click: they began
+      // as a scroll, or on a page that was still moving. The flat map is the exception. Every
+      // touch on it is the page's, so there a plain tap is how a light is chosen, and the click
+      // that follows it is let through. Keyboard activation (detail=0) stays available in the
+      // click handler.
+      const lifted = event.changedTouches[0];
+      const flatMapTap = ended.owner === 'page' && ended.flat && event.type === 'touchend'
+        && Boolean(lifted) && plainTap(ended, lifted, lastScrollAt);
+      if (!flatMapTap) suppressClickUntil = performance.now() + 350;
       if (ended.owner !== 'globe') return;
       if (event.cancelable) event.preventDefault();
       if (event.type !== 'touchcancel' && ended.moved) releaseSpin(ended);
@@ -928,6 +1002,7 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
       if (next.counts && typeof next.counts === 'object') counts = Object.fromEntries(entries.map(place => [place.id, next.counts[place.id]]));
       const before = selectedId;
       if (Object.hasOwn(next, 'selectedId')) selectedId = unique.has(next.selectedId) ? next.selectedId : null;
+      if (selectedId !== before) measureOverlays();
       if (invitation) syncOriginPoints();
       for (const place of invitation ? [] : entries) {
         const count = countFor(place.id), selected = place.id === selectedId;
@@ -944,7 +1019,8 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
           place.dotOpacity = String(count ? .45 + Math.min(.55, Math.log1p(count) / 12) : .16);
           place.number.style.opacity = drawnLights() ? '0' : place.dotOpacity;
           place.button.style.color = selected ? '#c9a5ff' : '#e9d17e';
-          place.labelNode.textContent = `${place.label} · ${markerCount} ${count === 1 ? 'work' : 'works'}`;
+          const text = `${place.label} · ${markerCount} ${count === 1 ? 'work' : 'works'}`;
+          if (place.labelNode.textContent !== text) { place.labelNode.textContent = text; place.labelSize = null; }
           if (selected) placeLabel(place);
           place.labelNode.style.opacity = selected || place.id === hoveredId ? '1' : '0'; place.button.style.zIndex = selected ? '4' : '2';
           continue;
@@ -983,8 +1059,13 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
     play() { return destroyed ? false : setAutoRotate(true); },
     setMode(next) {
       if (destroyed || !['globe', 'map'].includes(next)) return false;
-      mode = next === 'globe' && renderer ? 'globe' : 'map'; finishMotion();
-      syncMode(); notifyMotion(); entries.forEach(place => { if (place.button) place.button.hidden = true; }); schedule();
+      const shown = next === 'globe' && renderer ? 'globe' : 'map';
+      // Asking for the view already on show changes nothing, and above all does not cut short
+      // a turn in progress: "Reset exploration" turns the globe home and asks for the globe.
+      if (shown !== mode) {
+        mode = shown; finishMotion();
+        syncMode(); notifyMotion(); entries.forEach(place => { if (place.button) place.button.hidden = true; }); schedule();
+      }
       return mode === next;
     },
     destroy() {

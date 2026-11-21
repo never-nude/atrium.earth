@@ -47,6 +47,250 @@ function frontPoint(lights) {
   });
 }
 
+// Centres of the lights on show, keyed by place. Read in one step inside the page: a light
+// can pass behind the turning globe between a locator's visibility test and the reading of
+// its box, and would then seem to have leapt to the corner of the page.
+const lightCentres = page => page.locator(rootSelector).evaluate(root => Object.fromEntries(
+  [...root.querySelectorAll('button[data-world-light]:not([hidden])')].map(button => [button.dataset.worldPlace, button.getBoundingClientRect()])
+    .filter(([, box]) => box.width > 0).map(([id, box]) => [id, { x: box.left + box.width / 2, y: box.top + box.height / 2 }])));
+// The furthest any light on show in both readings has travelled between them.
+const furthestTravel = (before, after) => Math.max(0, ...Object.keys(before).filter(id => after[id])
+  .map(id => Math.hypot(after[id].x - before[id].x, after[id].y - before[id].y)));
+
+// The shown light furthest from every other, with nothing lying over its centre: a touch
+// there can only mean that light.
+function isolatedLight(lights) {
+  return lights.evaluateAll(buttons => {
+    const points = buttons.filter(button => !button.hidden && button.getBoundingClientRect().width > 0).map(button => {
+      const box = button.getBoundingClientRect();
+      return { id: button.dataset.worldPlace, x: box.left + box.width / 2, y: box.top + box.height / 2, button };
+    });
+    return points.filter(point => point.x >= 0 && point.x <= innerWidth && point.y >= 0 && point.y <= innerHeight
+      && point.button.contains(document.elementFromPoint(point.x, point.y)))
+      .map(({ button, ...point }) => ({ ...point, nearestNeighbourPx: Math.round(Math.min(...points
+        .filter(other => other.id !== point.id).map(other => Math.hypot(other.x - point.x, other.y - point.y)))) }))
+      .sort((a, b) => b.nearestNeighbourPx - a.nearestNeighbourPx)[0] || null;
+  });
+}
+
+const selectedPlace = page => page.locator(rootSelector).getAttribute('data-selected-place');
+const waitForPlace = (page, id, timeout = 4000) => page.waitForFunction(([selector, place]) =>
+  document.querySelector(selector).dataset.selectedPlace === place, [rootSelector, id], { timeout }).then(() => true, () => false);
+
+async function resetExploration(page) {
+  await page.locator(rootSelector).locator('[data-world-reset]').click();
+  await page.waitForFunction(selector => {
+    const root = document.querySelector(selector);
+    return root.dataset.selectedPlace === '' && root.dataset.worldMode === 'globe' && root.querySelector('[data-world-selection]').hidden;
+  }, rootSelector);
+}
+
+async function showFlatMap(page) {
+  const root = page.locator(rootSelector);
+  await root.locator('[data-world-mode="map"]').click();
+  await page.waitForFunction(selector => document.querySelector(selector).dataset.worldMode === 'map', rootSelector);
+  await root.locator('[data-world-globe]').scrollIntoViewIfNeeded();
+  // Functional settlement, not a measurement: a touch that lands on a page still moving is
+  // rightly not a tap.
+  await page.waitForTimeout(700);
+}
+
+// No touch can turn the flat map, so every touch on it is the page's and its lights are
+// chosen by the click the browser sends after a tap. Starts and ends as "Reset exploration"
+// leaves the page: on the globe, all periods, no place chosen.
+async function checkFlatMapTap(page) {
+  await resetExploration(page);
+  await showFlatMap(page);
+  const point = await isolatedLight(page.locator('button[data-world-light]:visible'));
+  assert(point, 'No flat-map light is in view to tap');
+  await page.touchscreen.tap(point.x, point.y);
+  const selected = await waitForPlace(page, point.id);
+  const outcome = { light: point.id, nearestNeighbourPx: point.nearestNeighbourPx, selected, selectedPlace: await selectedPlace(page) };
+  await resetExploration(page);
+  return outcome;
+}
+
+// Chromium only: several fingers, and fingers that travel, need the browser's own input
+// pipeline. A phone-sized touch page of its own, so that the case's page is left as it was.
+async function checkStageTouches(browser, observe) {
+  const context = await browser.newContext({ viewport: { width: 390, height: 844 }, hasTouch: true, deviceScaleFactor: 3 });
+  try {
+    await context.route('https://cloud.umami.is/**', route => route.fulfill({ status: 204 }));
+    const page = await context.newPage();
+    page.setDefaultTimeout(15000);
+    observe(page, 'touch');
+    const response = await page.goto(worldPath, { waitUntil: 'domcontentloaded' });
+    assert.equal(response?.status(), 200);
+    await page.waitForFunction(selector => {
+      const root = document.querySelector(selector);
+      return root?.dataset.worldState === 'ready' && root.dataset.worldMode === 'globe'
+        && root.querySelector('[data-world-globe]')?.hasAttribute('data-world-first-frame-ms');
+    }, rootSelector, { timeout: 20000 });
+    const root = page.locator(rootSelector);
+    const client = await context.newCDPSession(page);
+    // touchStart and touchMove list every finger that is down; touchEnd the fingers lifting.
+    const touch = (type, ...fingers) => client.send('Input.dispatchTouchEvent', { type, touchPoints: fingers.map(([x, y, id]) => ({ x, y, id })) });
+    const zoomLimits = () => root.evaluate(element => ['in', 'out'].map(direction => element.querySelector(`[data-world-zoom-${direction}]`).disabled));
+    const nextFrames = () => page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+
+    // 1. A finger rests on the page heading while another drags the globe 120 px towards it.
+    const geometry = await root.evaluate(element => {
+      const host = element.querySelector('[data-world-globe]'), stage = host.getBoundingClientRect();
+      const title = element.querySelector('[data-world-title]').getBoundingClientRect();
+      const resting = { x: stage.left + stage.width / 2, y: title.top + title.height / 2 };
+      return { globe: { x: stage.left + stage.width / 2, y: stage.top + stage.height / 2 + 30 }, resting,
+        restingOnScreen: resting.y > 0 && resting.y < innerHeight, restingOnStage: host.contains(document.elementFromPoint(resting.x, resting.y)) };
+    });
+    assert(geometry.restingOnScreen && !geometry.restingOnStage, 'The resting finger needs a place on screen outside the stage: ' + JSON.stringify(geometry));
+    const { globe, resting } = geometry;
+    const lightsBefore = await lightCentres(page);
+    const tracked = Object.entries(lightsBefore).sort(([, a], [, b]) =>
+      Math.hypot(a.x - globe.x, a.y - globe.y) - Math.hypot(b.x - globe.x, b.y - globe.y))[0][0];
+    const zoomBefore = await zoomLimits();
+    await touch('touchStart', [globe.x, globe.y, 0]);
+    await touch('touchStart', [globe.x, globe.y, 0], [resting.x, resting.y, 1]);
+    for (let step = 1; step <= 12; step++) await touch('touchMove', [globe.x, globe.y - step * 10, 0], [resting.x, resting.y, 1]);
+    await nextFrames();
+    const zoomDuring = await zoomLimits();
+    const dragged = (await lightCentres(page))[tracked];
+    await touch('touchEnd', [globe.x, globe.y - 120, 0]);
+    await touch('touchEnd', [resting.x, resting.y, 1]);
+    // Functional settlement: the coast after the drag ends, and the globe waits three seconds
+    // after a hand lets go before it turns again.
+    await page.waitForTimeout(3700);
+    const atRest = await lightCentres(page);
+    await page.waitForTimeout(1200);
+    const resumedTravelPx = furthestTravel(atRest, await lightCentres(page));
+    const point = await frontPoint(root.locator('button[data-world-light]:visible'));
+    assert(point, 'No light is in view to tap after the resting finger lifted');
+    await page.touchscreen.tap(point.x, point.y);
+    const tapLanded = await waitForPlace(page, point.id);
+    const restingFinger = {
+      trackedLight: tracked, trackedLightTravelPx: dragged ? Math.round(Math.hypot(dragged.x - lightsBefore[tracked].x, dragged.y - lightsBefore[tracked].y)) : null,
+      zoomLimitsBefore: zoomBefore, zoomLimitsDuring: zoomDuring, readAsPinch: zoomDuring.some((limit, index) => limit !== zoomBefore[index]),
+      resumedTravelPx: Math.round(resumedTravelPx * 10) / 10, nextTap: { light: point.id, selected: tapLanded, selectedPlace: await selectedPlace(page) },
+    };
+
+    // 2. A tap on a flat-map light.
+    const flatMapTap = await checkFlatMapTap(page);
+
+    // 3. What the flat map still refuses. A slide too short to scroll the page, after which
+    // browsers send a click all the same; then a scroll that begins on a light.
+    await showFlatMap(page);
+    const slid = await isolatedLight(root.locator('button[data-world-light]:visible'));
+    assert(slid, 'No flat-map light is in view to slide on');
+    await touch('touchStart', [slid.x, slid.y, 0]);
+    await touch('touchMove', [slid.x + 12, slid.y, 0]);
+    await touch('touchEnd', [slid.x + 12, slid.y, 0]);
+    await page.waitForTimeout(600);
+    const afterSlide = await selectedPlace(page);
+    const scrollBefore = await page.evaluate(() => scrollY);
+    await touch('touchStart', [slid.x, slid.y, 0]);
+    for (let step = 1; step <= 8; step++) { await touch('touchMove', [slid.x, slid.y - step * 20, 0]); await page.waitForTimeout(16); }
+    await touch('touchEnd', [slid.x, slid.y - 160, 0]);
+    await page.waitForTimeout(600);
+    const flatMapRefusals = { light: slid.id, selectedAfterShortSlide: afterSlide,
+      scrolledPx: await page.evaluate(before => scrollY - before, scrollBefore), selectedAfterScroll: await selectedPlace(page) };
+    await resetExploration(page);
+
+    // 4. At this width Globe/Map and Reset float over the top of the stage, where the
+    // northernmost lights are. No light's label may open underneath them.
+    // Functional settlement: the turn home after the reset.
+    await page.waitForTimeout(1200);
+    const labels = await root.evaluate(async element => {
+      const host = element.querySelector('[data-world-globe]').getBoundingClientRect();
+      const controls = [...element.querySelectorAll('.world-map-toolbar > *')].map(control => control.getBoundingClientRect());
+      const northern = [...element.querySelectorAll('button[data-world-light]:not([hidden])')]
+        .filter(button => button.getBoundingClientRect().top + 22 - host.top < 140);
+      const under = [];
+      for (const button of northern) {
+        button.focus({ preventScroll: true });
+        await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+        const label = button.firstElementChild.getBoundingClientRect();
+        if (controls.some(box => Math.min(label.right, box.right) - Math.max(label.left, box.left) > 0.5
+          && Math.min(label.bottom, box.bottom) - Math.max(label.top, box.top) > 0.5)) under.push(button.dataset.worldPlace);
+      }
+      if (document.activeElement instanceof HTMLElement) document.activeElement.blur();
+      return { controlsFloatOverStage: controls.some(box => box.bottom > host.top + 1 && box.top < host.bottom - 1), northernLights: northern.length, under };
+    });
+    return { restingFinger, flatMapTap, flatMapRefusals, labels };
+  } finally {
+    await context.close();
+  }
+}
+
+// Two things a mouse shows on the desktop page. Leaves the page as "Reset exploration" does.
+async function checkPointerAndReset(page) {
+  const root = page.locator(rootSelector);
+  const lights = root.locator('button[data-world-light]:visible');
+  await resetExploration(page);
+  // Functional settlement: the turn home. The globe is then held still to be measured.
+  await page.waitForTimeout(1200);
+  const rotate = root.locator('[data-world-rotate]');
+  if (await rotate.getAttribute('aria-pressed') === 'true') await rotate.click();
+  const stage = await root.locator('[data-world-globe]').boundingBox();
+  const centre = { x: stage.x + stage.width / 2, y: stage.y + stage.height / 2 };
+  const outside = { x: stage.x - 20, y: centre.y };
+  assert(await root.evaluate((element, point) => point.x > 0 && !element.querySelector('[data-world-globe]')
+    .contains(document.elementFromPoint(point.x, point.y)), outside), 'The pointer needs a place on screen beside the stage');
+  await page.mouse.move(outside.x, outside.y);
+  await page.waitForTimeout(400);
+
+  // 1. Among overlapping lights the pointer is over one light's target while a neighbour is
+  // nearest and shows its label. Leaving the stage from there in one step must take the label away.
+  const clustered = await lights.evaluateAll(buttons => buttons.filter(button => !button.hidden && button.getBoundingClientRect().width > 0).map(button => {
+    const box = button.getBoundingClientRect(), x = box.left + box.width / 2, y = box.top + box.height / 2;
+    return { nearest: button.dataset.worldPlace, x, y, pointerOver: document.elementFromPoint(x, y)?.dataset?.worldPlace };
+  }).filter(light => light.pointerOver && light.pointerOver !== light.nearest && light.y > 0 && light.y < innerHeight).slice(0, 3));
+  assert(clustered.length, 'No overlapping lights are in view to leave from');
+  const labelsLeftBehind = [];
+  for (const light of clustered) {
+    await page.mouse.move(light.x, light.y, { steps: 1 });
+    await page.mouse.move(outside.x, outside.y, { steps: 1 });
+    // Functional settlement: the label's own fade.
+    await page.waitForTimeout(250);
+    const shown = await lights.evaluateAll(buttons => buttons
+      .filter(button => !button.hidden && Number(getComputedStyle(button.firstElementChild).opacity) > 0.5).map(button => button.dataset.worldPlace));
+    if (shown.length) labelsLeftBehind.push({ ...light, shown });
+  }
+
+  // 2. "Reset exploration" turns the globe home; it does not jump there.
+  const home = await lightCentres(page);
+  await page.mouse.move(centre.x - 150, centre.y);
+  await page.mouse.down();
+  for (let step = 1; step <= 15; step++) await page.mouse.move(centre.x - 150 + step * 20, centre.y);
+  // Rest before letting go, so that the globe does not coast.
+  await page.waitForTimeout(250);
+  await page.mouse.up();
+  await page.mouse.move(outside.x, outside.y);
+  await page.waitForTimeout(600);
+  const turnedAwayPx = furthestTravel(home, await lightCentres(page));
+  // The globe times each animated turn it makes, as the centering-turn phase reads. The drag's
+  // own timing is cleared first, so that only a turn made by the reset can be found afterwards.
+  // The reset also starts the unattended rotation again, which is why how far the lights have
+  // travelled soon after the click is recorded but not judged.
+  const turn = await root.evaluate(element => new Promise(resolve => {
+    const host = element.querySelector('[data-world-globe]');
+    const read = () => Object.fromEntries([...element.querySelectorAll('button[data-world-light]:not([hidden])')].map(button => [button.dataset.worldPlace, button.getBoundingClientRect()])
+      .filter(([, box]) => box.width > 0).map(([id, box]) => [id, { x: box.left + box.width / 2, y: box.top + box.height / 2 }]));
+    delete host.dataset.worldTurnDurationMs; delete host.dataset.worldTurnFps;
+    element.querySelector('[data-world-reset]').click();
+    const clicked = performance.now();
+    let early = null;
+    const tick = now => {
+      early ||= now - clicked >= 100 ? { afterMs: Math.round(now - clicked), lights: read() } : null;
+      if (now - clicked >= 1500) resolve({ early, late: { afterMs: Math.round(now - clicked), lights: read() },
+        turnDurationMs: Number(host.dataset.worldTurnDurationMs) || 0, turnFps: Number(host.dataset.worldTurnFps) || 0 });
+      else requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }));
+  return { labelsLeftBehind, clusteredLightsTried: clustered.length, reset: { turnedAwayPx: Math.round(turnedAwayPx),
+    turnDurationMs: turn.turnDurationMs, turnFps: turn.turnFps,
+    earlySampleMs: turn.early.afterMs, earlySampleFromHomePx: Math.round(furthestTravel(home, turn.early.lights)),
+    lateSampleMs: turn.late.afterMs, fromHomePx: Math.round(furthestTravel(home, turn.late.lights)) } };
+}
+
 async function checkHomepageGlobe(context, touch) {
   const homepage = await context.newPage();
   try {
@@ -195,6 +439,7 @@ async function runCase(specification) {
       const failure = request.failure()?.errorText || '';
       const cancelled = /abort|cancel/i.test(failure);
       const changesSelection = ['keyboard, exact collection handoff, close restoration and Willendorf',
+        'a tap on a flat-map light selects it', 'touches on the stage at phone size: a finger beside it, the flat map, and labels',
         'stage resize never paints an empty globe'].includes(activePhase);
       const expectedCancellation = cancelled && (activePhase === 'cleanup'
         || (changesSelection && request.resourceType() === 'image' && Number.isFinite(result.timings.firstPointToVisibleLoadedStillMs)));
@@ -494,6 +739,10 @@ async function runCase(specification) {
         assert.equal(restored.mode, 'globe');
         await fullscreen.click();
         await page.waitForFunction(() => !document.fullscreenElement);
+        // The button follows the fullscreenchange event, which the browser sends a frame after
+        // the page has left full screen. Give it that frame: reading it at once is a race.
+        await page.waitForFunction(selector => document.querySelector(selector).querySelector('[data-world-fullscreen]')
+          .getAttribute('aria-pressed') === 'false', rootSelector, { timeout: 3000 }).catch(() => {});
         assert.equal(await fullscreen.getAttribute('aria-pressed'), 'false');
         result.fullscreen = { selected, restored, exited: true };
       }, 45000);
@@ -501,6 +750,35 @@ async function runCase(specification) {
     if (specification.motion === 'no-preference') await phase('homepage globe light selection and return', async () => {
       result.homepage = await checkHomepageGlobe(context, specification.width < 700);
     }, 45000);
+    const expectFlatMapTap = (tap, where) => expect(tap.selected, where + ': a tap on a flat-map light did not select it', tap);
+    if (specification.width < 700) await phase('a tap on a flat-map light selects it', async () => {
+      result.flatMapTap = await checkFlatMapTap(page);
+      expectFlatMapTap(result.flatMapTap, 'This page');
+    }, 30000);
+    if (specification.engine === chromium && specification.motion === 'no-preference') {
+      await phase('touches on the stage at phone size: a finger beside it, the flat map, and labels', async () => {
+        const touches = result.stageTouches = await checkStageTouches(browser, observe);
+        const { restingFinger, flatMapRefusals } = touches;
+        expect(!restingFinger.readAsPinch, 'A finger resting beside the stage turned a one-finger drag into a pinch', restingFinger);
+        expect(restingFinger.trackedLightTravelPx >= 40, 'With a finger resting beside the stage, a drag did not turn the globe', restingFinger);
+        expect(restingFinger.resumedTravelPx > 1, 'The globe stayed held after the dragging finger and the resting finger had both lifted', restingFinger);
+        expect(restingFinger.nextTap.selected, 'The tap after a resting finger lifted did not select its light', restingFinger);
+        expectFlatMapTap(touches.flatMapTap, 'Chromium touch page');
+        expect(flatMapRefusals.selectedAfterShortSlide === '', 'A slide on a flat-map light selected it', flatMapRefusals);
+        expect(flatMapRefusals.scrolledPx > 40 && flatMapRefusals.selectedAfterScroll === '',
+          'A touch that began on a flat-map light must scroll the page and select nothing', flatMapRefusals);
+        expect(touches.labels.controlsFloatOverStage && touches.labels.northernLights > 0,
+          'The label check needs the floating controls and lights beneath them', touches.labels);
+        expect(!touches.labels.under.length, 'A light’s label opened under the floating Globe/Map or Reset control', touches.labels);
+      }, 90000);
+      await phase('a hover label goes with the pointer, and Reset exploration turns the globe home', async () => {
+        const pointer = result.pointerAndReset = await checkPointerAndReset(page);
+        expect(!pointer.labelsLeftBehind.length, 'A hover label stayed after the pointer left the stage', pointer.labelsLeftBehind);
+        expect(pointer.reset.turnedAwayPx > 100, 'The globe was not turned away before the reset', pointer.reset);
+        expect(pointer.reset.turnDurationMs >= 600, 'Reset exploration jumped to the opening view instead of turning to it', pointer.reset);
+        expect(pointer.reset.fromHomePx < 40, 'Reset exploration did not bring the globe back to its opening view', pointer.reset);
+      }, 45000);
+    }
     await phase('stage resize never paints an empty globe', async () => {
       // Runs last: every timing above is already recorded, and this reads pixels.
       // Choosing a place changes the stage's height. A canvas is cleared when it is
