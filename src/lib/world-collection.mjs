@@ -1,3 +1,5 @@
+import reviewedOrigins from '../data/world-reviewed-origins.json' with { type: 'json' };
+
 const text = value => typeof value === 'string' ? value.trim() : '';
 const key = value => text(value).normalize('NFKD').replace(/\p{M}/gu, '').toLowerCase()
   .replace(/[’']/gu, ' ').replace(/&/gu, ' and ').replace(/[^a-z0-9]+/gu, ' ').trim().replace(/\s+/gu, ' ');
@@ -131,9 +133,19 @@ function placeFromLabel(value, index) {
 }
 
 /** Resolve recorded origin, never normalized folder/title fallbacks or holdings. */
-function resolveOrigin(record, { general, countries }) {
+function resolveOrigin(record, { general, countries, byId }) {
   if (/\b(?:digital reconstruction|virtual material study)\b/iu.test(`${record.title ?? ''} ${record.material ?? ''}`)) {
     return { placeId: null, reason: 'reconstruction-origin-unresolved' };
+  }
+  // Apply a reviewed result only to the same object and origin evidence. Keep
+  // a changed record unresolved until its binding is reviewed again.
+  const reviewed = Object.hasOwn(reviewedOrigins, record.slug) ? reviewedOrigins[record.slug] : null;
+  if (reviewed) {
+    const evidenceMatches = Object.entries(reviewed.match).every(([field, expected]) => text(record[field]) === expected);
+    if (!evidenceMatches || (reviewed.placeId !== null && !byId.has(reviewed.placeId))) {
+      return { placeId: null, reason: 'reviewed-origin-needs-review' };
+    }
+    return { placeId: reviewed.placeId, reason: reviewed.placeId ? 'reviewed-origin' : 'reviewed-origin-uncertain' };
   }
   const countryLabel = text(record.origin_country);
   const geography = geographicScope(record.geography);
@@ -215,6 +227,48 @@ function numericSpan(value) {
   return { start: Math.min(first, last), end: Math.max(first, last) };
 }
 
+// Source-reviewed readings from the globe origin/date audit (2026-11-19).
+// Only these exact catalogue records opt in to the new date forms. Feed the
+// reviewed spelling into the existing parser; the displayed label stays intact.
+const reviewedDateLabels = {
+  'egyptian/false-door-irienakhet-mia': {
+    accession: '52.22', source: 'https://collections.artsmia.org/art/1230/false-door-ancient-egyptian',
+    label: 'about 2400 BCE', production: 'c. 2400 BCE',
+  },
+  'europe/sappho-epinay-met': {
+    accession: 'O.L.97.IV', source: 'https://www.metmuseum.org/art/collection/search/209017',
+    label: 'About 1895', production: 'c. 1895',
+  },
+  'europe/kilnasaggart-inscribed-pillar-stone-c6e5c1': {
+    accession: '', source: 'https://www.communities-ni.gov.uk/heritage-sites/kilnasaggart-pillar-stone',
+    label: 'About 700', production: 'c. 700',
+  },
+  'roman/torso-apollo-cleveland-1924-1017-368499': {
+    accession: '1924.1017', source: 'https://www.clevelandart.org/art/1924.1017',
+    label: 'About 100–200 CE', production: 'c. 100–200 CE',
+  },
+  'europe/cockatoo-ddebac': {
+    accession: 'PE 10', source: 'https://skd-online-collection.skd.museum/Details/Index/118580',
+    label: 'August 1734', production: '1734',
+  },
+  'europe/descending-macaw-42b038': {
+    accession: 'PE 688', source: 'https://skd-online-collection.skd.museum/Details/Index/119428',
+    label: 'May 1732', production: '1732',
+  },
+  'europe/vase-with-chinoiserie-decoration-92f402': {
+    accession: 'PE 666', source: 'https://skd-online-collection.skd.museum/Details/Index/119275',
+    label: '17 August 1726', production: '1726',
+  },
+  'europe/half-of-a-twin-capital-with-a-motif-of-hearts-0cadda': {
+    accession: 'DA/168/2012', source: 'https://muzea.malopolska.pl/en/objects-list/2376',
+    label: '4th quarter of the 11th century', production: '11th century',
+  },
+  'asia/kundika-water-ewer-cleveland': {
+    accession: '1921.631', source: 'https://www.clevelandart.org/art/1921.631',
+    label: '1100s', production: '12th century',
+  },
+};
+
 /** Interpret only the recorded production label; year_sort is never date evidence. */
 export function worldDateSpan(record) {
   const label = text(record.year);
@@ -230,7 +284,10 @@ export function worldDateSpan(record) {
   if (castRecord(record) && !castProductionDateSupported(record, label)) return { ...unknown };
   const events = label.match(/\b(?:cast|casting|carved|made|created|completed)\b/giu) ?? [];
   if (events.length > 1) return { ...unknown };
-  let value = label.replace(/\b(?:cast|casting|carved|made|created|completed)\b/giu, '')
+  const reviewed = reviewedDateLabels[record.slug];
+  const normalizedLabel = reviewed && label === reviewed.label && text(record.accession) === reviewed.accession
+    && text(record.source_record_url).replace(/\/+$/u, '') === reviewed.source ? reviewed.production : label;
+  let value = normalizedLabel.replace(/\b(?:cast|casting|carved|made|created|completed)\b/giu, '')
     .replace(/\b(?:circa|approximately|approx\.?|ca\.?|c\.)\s*/giu, '')
     .replace(/(?<=\d),(?=\d{3}\b)/gu, '')
     .replace(/\bto\b/giu, '–').trim().replace(/^[-,:;\s]+|[-,:;\s]+$/gu, '');

@@ -17,7 +17,7 @@
     "test:work-titles": "node --experimental-strip-types ./scripts/test-work-titles.mjs",
     "test:world-time": "node ./scripts/test-world-time.mjs",
     "test:world-state": "node --test ./scripts/world-state.test.mjs",
-    "test:world-collection": "node ./scripts/test-world-collection.mjs",
+    "test:world-collection": "node --test ./scripts/test-world-collection.mjs ./scripts/world-reviewed-dates.test.mjs",
     "test:experience": "node --test ./scripts/catalog-image-preview.test.mjs ./scripts/collection-window.test.mjs ./scripts/work-journey.test.mjs ./scripts/maker-groups.test.mjs ./scripts/test-curated-visit.mjs ./scripts/test-curated-visit-history.mjs ./scripts/test-viewer-lifecycle.mjs ./scripts/test-viewer-download.mjs ./scripts/test-homepage-performance.mjs ./scripts/first-view-models.test.mjs ./scripts/published-model-delivery.test.mjs ./scripts/published-model-delivery-transport.test.mjs ./scripts/browser-model-relay.test.mjs ./scripts/cdn-http2-request.test.mjs ./scripts/world-globe-motion.test.mjs ./scripts/world-globe-relief.test.mjs ./scripts/world-globe-look.test.mjs ./scripts/world-selection.test.mjs ./scripts/artwork-preview-matte.test.mjs ./scripts/browser-check-runner.test.mjs",
     "test:review-artifacts": "node ./scripts/test-review-artifacts.mjs",
     "test:wings": "node --experimental-strip-types ./scripts/test-wings.ts",
