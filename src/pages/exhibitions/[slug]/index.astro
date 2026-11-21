@@ -3,6 +3,7 @@ import V3Layout from '../../../layouts/v3/V3Layout.astro';
 import Viewer from '../../../components/Viewer.astro';
 import ExhibitionComparisons from '../../../components/ExhibitionComparisons.astro';
 import CuratedVisit from '../../../components/CuratedVisit.astro';
+import V3WorkCard from '../../../components/v3/V3WorkCard.astro';
 import { exhibitions, exhibitionFeaturedWork, nextExhibition, type V3Exhibition, v3ExhibitionRoute, v3WorkRoute } from '../../../lib/v3';
 import { isFeaturedWork } from '../../../lib/catalog';
 import { withBase } from '../../../lib/urls';
@@ -62,7 +63,7 @@ const stops = exhibition.works.map((work, index) => ({
       <p class="v3-kicker">Exhibition {exhibition.number} · {exhibition.kicker}</p>
       <h1 class="v3-display">{exhibition.title}</h1>
       <p class="v3-exhero__summary">{exhibition.summary}</p>
-      <p class="v3-exhero__meta"><span>{stops.length} works{comparisons.length ? ` · ${comparisons.length} pairings` : ''}</span><span>Allow 15–30 minutes</span><span>3D views and records</span></p>
+      <p class="v3-exhero__meta"><span>{stops.length} works{comparisons.length ? ` · ${comparisons.length} pairings` : ''}</span><span>{exhibition.orderedGallery ? 'Least to most graphic' : 'Allow 15–30 minutes'}</span><span>3D views and records</span></p>
       {visit ? <div class="exhibition-entrance-actions"><a class="exhibition-entrance-actions__guided" href="#curated-visit" data-curated-launch>Take a 5-minute visit <span aria-hidden="true">→</span></a><a href="#all-exhibition-works" data-visit-all>Explore all {stops.length} works <span aria-hidden="true">↓</span></a></div> : <a class="v3-exhero__begin" href={firstStop}>Begin exhibition <span aria-hidden="true">↓</span></a>}
     </div>
   </header>
@@ -84,7 +85,19 @@ const stops = exhibition.works.map((work, index) => ({
 
   <div id="all-exhibition-works" data-exhibition-full>
   {visit && <header class="exhibition-full-heading"><p class="v3-kicker">The complete exhibition</p><h2 tabindex="-1" data-exhibition-full-title>Explore all {stops.length} works.</h2><a href="#curated-visit" data-curated-launch>Take the six-work visit <span aria-hidden="true">↑</span></a></header>}
-  {comparisons.length ? <ExhibitionComparisons exhibition={exhibition} /> : <div class="v3-walk" style={`--ex-accent:${exhibition.accent}`}>
+  {exhibition.orderedGallery ? (
+    <div class="ordered-exhibition-grid v3-grid" aria-label="Works in exhibition order">
+      {stops.map(stop => (
+        <div id={`stop-${stop.index}`} data-exhibition-work={stop.work.slug} data-v3-stop={stop.index}>
+          <V3WorkCard work={stop.work} stop={stop.index} exhibitionSlug={exhibition.slug} showViewKind />
+          <details class="ordered-exhibition-label">
+            <summary>About {shortWorkTitle(stop.work.title)}</summary>
+            <p>{stop.text}</p>
+          </details>
+        </div>
+      ))}
+    </div>
+  ) : comparisons.length ? <ExhibitionComparisons exhibition={exhibition} /> : <div class="v3-walk" style={`--ex-accent:${exhibition.accent}`}>
     {stops.map((stop) => (
       <article class="v3-stop v3-reveal" id={`stop-${stop.index}`} data-v3-stop={stop.index} data-exhibition-work={stop.work.slug} aria-label={`Stop ${stop.index}: ${stop.work.title}`}>
         <div class="v3-stop__viewer v3-exhibition-viewer v3-float" style={`view-transition-name: w-${stop.work.id};`}>
@@ -125,6 +138,10 @@ const stops = exhibition.works.map((work, index) => ({
 </V3Layout>
 
 <style>
+  .ordered-exhibition-grid { margin: 0 var(--v3-pad) 72px; }
+  .ordered-exhibition-grid > div { min-width: 0; scroll-margin-top: 110px; }
+  .ordered-exhibition-label { margin: 8px 0 20px; padding: 12px; color: var(--v3-muted); font-size: .875rem; line-height: 1.5; }
+  .ordered-exhibition-label summary { cursor: pointer; }
   .exhibition-entrance-actions { display:flex; flex-wrap:wrap; gap:12px 24px; align-items:center; margin-top:24px; }
   .exhibition-entrance-actions a:not(.exhibition-entrance-actions__guided) { background: transparent; }
   .exhibition-entrance-actions a { display:inline-flex; align-items:center; justify-content:center; gap:14px; min-height:44px; margin:0; padding:10px 15px; border:1px solid var(--v3-line-strong); border-radius:7px; color:var(--v3-ink); font-size:12px; line-height:1.5; text-decoration:none; }

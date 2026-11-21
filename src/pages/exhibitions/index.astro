@@ -1,9 +1,10 @@
 ---
 import V3Layout from '../../layouts/v3/V3Layout.astro';
-import { exhibitionFeaturedWork, v3ExhibitionRoute } from '../../lib/v3';
+import { exhibitions as allExhibitions, exhibitionFeaturedWork, v3ExhibitionRoute } from '../../lib/v3';
 import { currentProgramme } from '../../lib/programme';
 import { withBase } from '../../lib/urls';
-const { exhibitions, focus, focusIntro } = currentProgramme;
+const { focus, focusIntro } = currentProgramme;
+const exhibitions = [...currentProgramme.exhibitions, ...allExhibitions.filter(exhibition => exhibition.orderedGallery)];
 ---
 
 <V3Layout

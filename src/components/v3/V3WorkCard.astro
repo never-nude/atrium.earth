@@ -5,14 +5,15 @@ import { v3WorkRoute } from '../../lib/v3';
 import { withBase } from '../../lib/urls';
 import { shortWorkTitle } from '../../lib/work-titles';
 
-type Props = { work: Work; eager?: boolean; stop?: number; spatial?: boolean; displayTitle?: string };
-const { work, eager = false, stop, spatial = false, displayTitle = work.title } = Astro.props;
+type Props = { work: Work; eager?: boolean; stop?: number; spatial?: boolean; displayTitle?: string; showViewKind?: boolean; exhibitionSlug?: string };
+const { work, eager = false, stop, spatial = false, displayTitle = work.title, showViewKind = false, exhibitionSlug } = Astro.props;
 const thumbnailTitle = shortWorkTitle(displayTitle);
 const data = publicDataset(work);
 const detail = [work.maker || work.culture, work.displayDate].filter(Boolean).join(' · ');
 const alt = `${work.title}${detail ? ` — ${detail}` : ''}`;
 const spatialAccess = work.spatialAccess?.enabled ? work.spatialAccess : null;
 const previewBytes = work.modelBytes || undefined;
+const detailHref = withBase(v3WorkRoute(work)) + (exhibitionSlug ? `?${new URLSearchParams({ exhibition: exhibitionSlug })}` : '');
 ---
 
 <article
@@ -32,7 +33,7 @@ const previewBytes = work.modelBytes || undefined;
   data-studio-index={work.index}
   data-studio-ingested={work.ingested || undefined}
 >
-  <a href={withBase(v3WorkRoute(work))}>
+  <a href={detailHref}>
     <div class="v3-card__image v3-float" style={`view-transition-name: w-${work.id};`}>
       <img
         src={withBase(work.thumbnailImage)}
@@ -47,6 +48,7 @@ const previewBytes = work.modelBytes || undefined;
     <div class="v3-card__copy">
       <h3>{thumbnailTitle}</h3>
       {detail && <p>{detail}</p>}
+      {showViewKind && <p class="work-card-media">{work.hasPreview ? 'View in 3D' : 'Still image'}</p>}
     </div>
   </a>
   {spatial && spatialAccess && (
@@ -55,3 +57,7 @@ const previewBytes = work.modelBytes || undefined;
     </a>
   )}
 </article>
+
+<style>
+  .work-card-media { color: var(--v3-signal); margin-top: 6px; }
+</style>
