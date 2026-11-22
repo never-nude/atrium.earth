@@ -554,6 +554,9 @@ async function check(engine, viewport, route, motion = 'reduce') {
   };
   await runBoundedBrowserCase({
     id, result, checkpoint,
+    // Give WebKit's 30-second Playwright shutdown fallback time to finish
+    // before the case's separate force-kill reserve begins.
+    cleanupTimeout: engine.name() === 'webkit' ? 35_000 : BROWSER_CLEANUP_TIMEOUT_MS,
     run: async (phase, isRunning) => {
       await phase('launch browser server', async () => {
         const launched = await engine.launchServer();
