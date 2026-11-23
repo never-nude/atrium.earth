@@ -523,13 +523,22 @@ async function runCase(specification) {
         const pixel = new Uint8Array(4);
         const firstHeight = host.clientHeight;
         let resizes = 0, blank = 0;
-        // Created after the globe's own observer, so it runs after it within each frame:
-        // what the centre of the drawing buffer holds here is what that frame will paint.
-        // With reduced motion the height changes at once and there is a single callback.
-        const probe = new ResizeObserver(() => {
+        let bufferWidth = gl.drawingBufferWidth, bufferHeight = gl.drawingBufferHeight;
+        const samples = [];
+        // The globe's observer runs first. Only an actual backing-store resize
+        // requires a new draw here. A CSS-only observation may see a discarded
+        // drawing buffer even though the previous frame is still composited.
+        const probe = new ResizeObserver(([entry]) => {
+          const width = gl.drawingBufferWidth, height = gl.drawingBufferHeight;
+          const sample = { stageWidth: entry.contentRect.width, stageHeight: entry.contentRect.height,
+            bufferWidth: width, bufferHeight: height, alpha: null };
+          samples.push(sample);
+          if (width === bufferWidth && height === bufferHeight) return;
+          bufferWidth = width; bufferHeight = height;
           resizes++;
-          gl.readPixels(canvas.width >> 1, canvas.height >> 1, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, pixel);
-          if (pixel[3] === 0) blank++;
+          gl.readPixels(width >> 1, height >> 1, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, pixel);
+          sample.alpha = pixel[3];
+          if (sample.alpha === 0) blank++;
         });
         probe.observe(host);
         const select = root.querySelector('select[data-world-place]');
@@ -537,7 +546,7 @@ async function runCase(specification) {
         select.dispatchEvent(new Event('change', { bubbles: true }));
         setTimeout(() => {
           probe.disconnect();
-          resolve({ resizes, blank, firstHeight, lastHeight: host.clientHeight });
+          resolve({ resizes, blank, firstHeight, lastHeight: host.clientHeight, samples });
         }, 1500);
       }), rootSelector);
       assert(result.resizeFrames.resizes >= 1 && result.resizeFrames.lastHeight < result.resizeFrames.firstHeight,
