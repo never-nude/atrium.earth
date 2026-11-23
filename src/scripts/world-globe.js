@@ -575,7 +575,8 @@ export function createWorldGlobe({ host, places = [], onSelect, onReady, onError
   // callbacks but before it is painted. Without drawing again here the globe is blank for
   // as long as its stage is changing size, which is every time a place is chosen or closed.
   function redraw() {
-    if (destroyed || pageSuspended || !visible || document.hidden || !width || !height) return;
+    // A simultaneous resize and scroll can precede the next intersection notification.
+    if (destroyed || pageSuspended || document.hidden || !width || !height) return;
     if (mode === 'globe' && renderer) {
       earth.rotation.set(rotation.x, rotation.y, 0, 'XYZ');
       scene.updateMatrixWorld(); camera.updateMatrixWorld();
