@@ -563,10 +563,14 @@ async function runCase(specification) {
     noteFailure(error.message);
   } finally {
     activePhase = 'cleanup'; result.phase = 'cleanup';
-    for (const [label, close] of [
-      ['context', () => context?.close()], ['browser connection', () => browser?.close()], ['browser server', () => browserServer?.close()],
+    // Let Playwright finish its own 30-second WebKit server shutdown.
+    const serverCloseTimeout = specification.engine.name() === 'webkit' ? 35_000 : 10_000;
+    for (const [label, close, timeout] of [
+      ['context', () => context?.close(), 10_000],
+      ['browser connection', () => browser?.close(), 10_000],
+      ['browser server', () => browserServer?.close(), serverCloseTimeout],
     ]) {
-      try { await deadline(Promise.resolve().then(close), 10000, id + ' / closing ' + label); }
+      try { await deadline(Promise.resolve().then(close), timeout, id + ' / closing ' + label); }
       catch (error) { noteFailure(error.message); browserServer?.process()?.kill('SIGKILL'); }
     }
     result.status = result.failures.length ? 'failed' : 'passed';
