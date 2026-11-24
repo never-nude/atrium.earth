@@ -2722,3 +2722,9 @@ All 100 selected models and thumbnails passed local checks. Of 800 source and se
 The Node suite passed with one optional Chromium trace check skipped because the bundled browser was absent. The 9,483-page build and 943,004,120-byte Pages package passed. Build inspection verified all 100 Newest cards and artwork bindings, 6,798 artwork images, and the collection window. At 1,365 and 390 pixels the local browser check confirmed all 100 cards and rendered six sample viewers in each profile. All prior records match the base except for recomputed indices and totals.
 
 The draft is for release coordination under [Issue #109](https://github.com/never-nude/atrium.earth/issues/109). The 100-work selection locks the restore inventory of 108 original source members. Private backup verification and production delivery remain pending. The upload manifests specify the exact serving bytes for the coordinator.
+
+## 2026-11-23 — Bernini’s Apollo and Daphne in 3D
+
+The owner authorized publication of the one-work update on `codex/bernini-3d-release-20261123`, based on published main `b4c0257f`. The existing Apollo and Daphne record receives the unchanged Scan the World model and matching rendered thumbnails from [draft #123](https://github.com/never-nude/atrium.earth/pull/123). The exhibition stays on its own branch. A normalized source comparison confirms that only this accession’s catalogue and preview bindings differ.
+
+The [publisher’s record](https://zenodo.org/records/20224894) identifies the Borghese sculpture and licenses the model under CC BY-NC-SA 4.0. The public record identifies the unconfirmed capture subject (marble or cast). The model’s exact byte count and SHA-256 match the binding and the private archive proof documented in draft #123. This release holds for the normal review, production checks, and targeted live verification under [Issue #109](https://github.com/never-nude/atrium.earth/issues/109).
