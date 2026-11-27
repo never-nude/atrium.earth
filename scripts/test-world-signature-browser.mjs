@@ -360,8 +360,15 @@ async function runCase(specification) {
       await screenshot('place-directory-open');
       assert.equal(await page.locator('[data-world-list-place]').count(), data.places.length, 'Every documented origin needs a keyboard/list entry');
       const egypt = page.locator('[data-world-list-place="egypt"]');
+      await egypt.evaluate(button => {
+        button.addEventListener('click', () => {
+          const heading = button.closest('[data-world-explorer]').querySelector('[data-world-selection-title]');
+          button.dataset.selectionFocused = String(document.activeElement === heading);
+        }, { once: true });
+      });
       await egypt.focus();
       await page.keyboard.press('Enter');
+      assert.equal(await egypt.getAttribute('data-selection-focused'), 'true', 'Keyboard selection must focus the heading during activation, before testing still visibility');
       await page.waitForFunction(() => document.activeElement === document.querySelector('[data-world-selection-title]'), undefined, { timeout: 10000 });
       const expected = data.works.filter(work => work.placeId === 'egypt').map(work => work.slug).sort();
       assert.equal(Number(await page.locator(rootSelector).getAttribute('data-result-count')), expected.length);

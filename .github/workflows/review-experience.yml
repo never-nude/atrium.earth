@@ -45,9 +45,22 @@ jobs:
         run: node scripts/verify-published-model-delivery.mjs
       - name: Verify live artwork JPEG CDN addresses in the built site
         run: node scripts/verify-published-jpeg-delivery.mjs
-      - name: Verify museum pages in Chromium and WebKit
+      # Run each engine with its own suite watchdog and report.
+      - name: Verify museum pages in Chromium
+        id: browser-chromium
         timeout-minutes: 25
         run: npm run test:browser
+        env:
+          BROWSER_CHECK_ENGINE: chromium
+          BROWSER_REPORT_DIR: test-results/browser/chromium
+
+      - name: Verify museum pages in WebKit
+        if: ${{ !cancelled() && steps.browser-chromium.outcome != 'skipped' }}
+        timeout-minutes: 25
+        run: npm run test:browser
+        env:
+          BROWSER_CHECK_ENGINE: webkit
+          BROWSER_REPORT_DIR: test-results/browser/webkit
       - name: Verify sculpture gestures in Chromium
         run: npm run test:handling-browser
       - name: Verify the world signature in Chromium and WebKit
