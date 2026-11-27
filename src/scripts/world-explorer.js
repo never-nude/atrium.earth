@@ -247,7 +247,9 @@ async function initialise(root, { compact, signal, register }) {
     if (state.place && selection) {
       clearTimeout(restoreTimer);
       const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-      const keyboardChoice = keyboardInteraction;
+      // Announce keyboard selections as soon as the panel opens. Lazy stills
+      // and viewport settling are measured separately below.
+      if (keyboardInteraction) root.querySelector('[data-world-selection-title]')?.focus({ preventScroll: true });
       const sidePanel = matchMedia('(min-width: 1024px)').matches;
       root.querySelector('.world-observatory')?.scrollIntoView({ block: sidePanel ? 'nearest' : 'start', behavior: reduced ? 'instant' : 'smooth' });
       const token = ++selectionToken;
@@ -278,7 +280,6 @@ async function initialise(root, { compact, signal, register }) {
         delete root.dataset.worldSelectionVisibleError;
         root.dataset.worldSelectionVisibleMs = elapsed.toFixed(2);
         if (!root.hasAttribute('data-world-first-selection-ms')) root.dataset.worldFirstSelectionMs = elapsed.toFixed(2);
-        if (keyboardChoice && keyboardInteraction) root.querySelector('[data-world-selection-title]')?.focus({ preventScroll: true });
         root.dispatchEvent(new CustomEvent('atrium:world-selection-visible', {
           detail: { place: state.place, elapsedMs: elapsed, works: list.children.length }, bubbles: true,
         }));
